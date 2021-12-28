@@ -13,11 +13,11 @@ zp_apply_filter('log_setup', true, 'install', '');
 
 /* fix for NULL theme name */
 $active = getOptionList();
-$sql = "SELECT * FROM " . prefix('options') . ' WHERE `theme` IS NULL';
-$optionlist = query_full_array($sql);
+$sql = "SELECT * FROM " . $_zp_db->prefix('options') . ' WHERE `theme` IS NULL';
+$optionlist = $_zp_db->queryFullArray($sql);
 if ($optionlist) {
 	foreach ($optionlist as $option) {
-		query('DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option['id']);
+		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `id`=' . $option['id']);
 		setOption($option['name'], $active[$option['name']]);
 	}
 }
@@ -265,8 +265,8 @@ setOptionDefault('search_no_albums', 0);
 $admins = $_zp_authority->getAdministrators('groups');
 foreach ($admins as $group) {
 	if (is_null($group['other_credentials'])) {
-		$sql = 'UPDATE ' . prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . db_quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
-		query($sql);
+		$sql = 'UPDATE ' . $_zp_db->prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . $_zp_db->quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
+		$_zp_db->query($sql);
 	}
 }
 
@@ -361,7 +361,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 if (getOption('search_space_is_OR')) {
 	setOption('search_space_is', '|');
 }
-query('DELETE FROM ' . prefix('options') . ' WHERE `name`="search_space_is_OR"', false);
+$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`="search_space_is_OR"', false);
 
 if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
@@ -480,7 +480,7 @@ $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
  * 
  * these may have been used in third party themes. Themes should cease using these options and instead use the appropriate gallery methods.
  */
-$unprotectedpages = query_full_array("SELECT name FROM " . prefix('options') . " WHERE name LIKE 'gallery_page_unprotected_%' ");
+$unprotectedpages = $_zp_db->queryFullArray("SELECT name FROM " . $_zp_db->prefix('options') . " WHERE name LIKE 'gallery_page_unprotected_%' ");
 if ($unprotectedpages) {
 	foreach ($unprotectedpages as $unprotectedpage) {
 		purgeOption($unprotectedpage['name']);
@@ -515,14 +515,14 @@ if (TEST_RELEASE) {
 }
 
 //	cleanup options for missing elements
-$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' WHERE `creator` IS NOT NULL';
-$result = query_full_array($sql);
+$sql = 'SELECT DISTINCT `creator` FROM ' . $_zp_db->prefix('options') . ' WHERE `creator` IS NOT NULL';
+$result = $_zp_db->queryFullArray($sql);
 if (is_array($result)) {
 	foreach ($result as $row) {
 		$filename = $row['creator'];
 		if (!file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator`=' . db_quote($filename);
-			query($sql);
+			$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `creator`=' . $_zp_db->quote($filename);
+			$_zp_db->query($sql);
 			if (strpos($filename, PLUGIN_FOLDER) !== false || strpos($filename, USER_PLUGIN_FOLDER) !== false) {
 				purgeOption('zp_plugin_' . stripSuffix(basename($filename)));
 			}
@@ -530,14 +530,14 @@ if (is_array($result)) {
 	}
 }
 // missing themes
-$sql = 'SELECT DISTINCT `theme` FROM ' . prefix('options') . ' WHERE `theme` IS NOT NULL';
-$result = query_full_array($sql);
+$sql = 'SELECT DISTINCT `theme` FROM ' . $_zp_db->prefix('options') . ' WHERE `theme` IS NOT NULL';
+$result = $_zp_db->queryFullArray($sql);
 if (is_array($result)) {
 	foreach ($result as $row) {
 		$filename = THEMEFOLDER . '/' . $row['theme'];
 		if ($filename && !file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($row['theme']);
-			query($sql);
+			$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `theme`=' . $_zp_db->quote($row['theme']);
+			$_zp_db->query($sql);
 		}
 	}
 }
@@ -549,7 +549,7 @@ setOption('last_update_check', 30);
 $autoRotate = getOption('auto_rotate');
 if (!is_null($autoRotate)) {
 	if (!$autoRotate) {
-		query('UPDATE ' . prefix('images') . ' SET `EXIFOrientation`=NULL');
+		$_zp_db->query('UPDATE ' . $_zp_db->prefix('images') . ' SET `EXIFOrientation`=NULL');
 		setOption('EXIFOrientation', 0);
 		setOption('EXIFOrientation-disabled', 1);
 	}
@@ -586,8 +586,8 @@ setOptionDefault('search_page_sort_direction', '');
 
 purgeOption('zp_plugin_releaseUpdater');
 
-query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
-query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
+$_zp_db->query('UPDATE ' . $_zp_db->prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
+$_zp_db->query('UPDATE ' . $_zp_db->prefix('administrators') . ' SET `passupdate`=' . $_zp_db->quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');

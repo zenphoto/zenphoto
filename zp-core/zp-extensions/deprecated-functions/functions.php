@@ -136,14 +136,15 @@ function listUses($files, $base, $pattern) {
  * @return boolean
  */
 function listDBUses($pattern) {
+	global $_zp_db;
 	$lookfor = array('images', 'albums', 'news', 'pages');
 	$found = array();
 	foreach ($lookfor as $table) {
 		echo '<br /><strong>' . sprintf(gettext('%s table'), $table) . '</strong>';
 		$output = false;
-		$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `codeblock` <> "" and `codeblock` IS NOT NULL and `codeblock`!="a:0:{}"';
-		$result = query($sql);
-		while ($row = db_fetch_assoc($result)) {
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix($table) . ' WHERE `codeblock` <> "" and `codeblock` IS NOT NULL and `codeblock`!="a:0:{}"';
+		$result = $_zp_db->query($sql);
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$codeblocks = getSerializedArray($row['codeblock']);
 			foreach ($codeblocks as $key => $codeblock) {
 				switch ($table) {

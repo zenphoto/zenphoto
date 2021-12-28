@@ -65,29 +65,29 @@ function gallerystats_filesize_r($path) {
  * @param int $limit Number of entries to show
  */
 function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number = 0, $to_number = 10) {
-	global $webpath;
+	global $webpath, $_zp_db;
 	$limit = $from_number . "," . $to_number;
 	$bargraphmaxsize = 90;
 	switch ($type) {
 		case "albums":
 			$typename = gettext("Albums");
-			$dbquery = "SELECT * FROM " . prefix('albums');
+			$dbquery = "SELECT * FROM " . $_zp_db->prefix('albums');
 			break;
 		case "images":
 			$typename = gettext("Images");
-			$dbquery = "SELECT * FROM " . prefix('images');
+			$dbquery = "SELECT * FROM " . $_zp_db->prefix('images');
 			break;
 		case "pages":
 			$typename = gettext("Pages");
-			$dbquery = "SELECT * FROM " . prefix('pages');
+			$dbquery = "SELECT * FROM " . $_zp_db->prefix('pages');
 			break;
 		case "news":
 			$typename = gettext("News Articles");
-			$dbquery = "SELECT * FROM " . prefix('news');
+			$dbquery = "SELECT * FROM " . $_zp_db->prefix('news');
 			break;
 		case "newscategories":
 			$typename = gettext("News Categories");
-			$dbquery = "SELECT * FROM " . prefix('news_categories');
+			$dbquery = "SELECT * FROM " . $_zp_db->prefix('news_categories');
 			break;
 		case "tags":
 			$typename = gettext("Tags");
@@ -100,7 +100,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "mostused":
 			switch ($type) {
 				case "tags":
-					$itemssorted = query_full_array("SELECT tagobj.tagid, count(*) as tagcount, tags.* FROM " . prefix('obj_to_tag') . " AS tagobj, " . prefix('tags') . " AS tags WHERE tags.id=tagobj.tagid GROUP BY tags.id ORDER BY tagcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT tagobj.tagid, count(*) as tagcount, tags.* FROM " . $_zp_db->prefix('obj_to_tag') . " AS tagobj, " . $_zp_db->prefix('tags') . " AS tags WHERE tags.id=tagobj.tagid GROUP BY tags.id ORDER BY tagcount DESC LIMIT " . $limit);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;
 					} else {
@@ -108,7 +108,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					}
 					break;
 				case"newscategories":
-					$itemssorted = query_full_array("SELECT news2cat.cat_id, count(*) as catcount, cats.* FROM " . prefix('news2cat') . " AS news2cat, " . prefix('news_categories') . " AS cats WHERE cats.id=news2cat.cat_id GROUP BY news2cat.cat_id ORDER BY catcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT news2cat.cat_id, count(*) as catcount, cats.* FROM " . $_zp_db->prefix('news2cat') . " AS news2cat, " . $_zp_db->prefix('news_categories') . " AS cats WHERE cats.id=news2cat.cat_id GROUP BY news2cat.cat_id ORDER BY catcount DESC LIMIT " . $limit);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;
 					} else {
@@ -121,7 +121,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "popular":
 			switch ($type) {
 				case 'rss':
-					$itemssorted = query_full_array("SELECT `type`,`aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT `type`,`aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter' ORDER BY CONVERT(data,UNSIGNED) DESC LIMIT " . $limit);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;
 					} else {
@@ -129,7 +129,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					}
 					break;
 				default:
-					$itemssorted = query_full_array($dbquery . " ORDER BY hitcounter DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray($dbquery . " ORDER BY hitcounter DESC LIMIT " . $limit);
 					if (empty($itemssorted)) {
 						$maxvalue = 0;
 					} else {
@@ -140,8 +140,8 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$headline = $typename . " - " . gettext("most viewed");
 			break;
 		case "popularimages":
-			$dbquery = "SELECT a.*, ROUND(AVG( i.hitcounter ), 0) AS average FROM " . prefix('albums') . " a INNER JOIN " . prefix('images') . " i ON i.albumid = a.id ";
-			$itemssorted = query_full_array($dbquery . " GROUP BY i.albumid ORDER BY average DESC LIMIT " . $limit);
+			$dbquery = "SELECT a.*, ROUND(AVG( i.hitcounter ), 0) AS average FROM " . $_zp_db->prefix('albums') . " a INNER JOIN " . $_zp_db->prefix('images') . " i ON i.albumid = a.id ";
+			$itemssorted = $_zp_db->queryFullArray($dbquery . " GROUP BY i.albumid ORDER BY average DESC LIMIT " . $limit);
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
@@ -150,7 +150,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$headline = $typename . " - " . gettext("most viewed images");
 			break;
 		case "mostrated":
-			$itemssorted = query_full_array($dbquery . " ORDER BY total_votes DESC LIMIT " . $limit);
+			$itemssorted = $_zp_db->queryFullArray($dbquery . " ORDER BY total_votes DESC LIMIT " . $limit);
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
@@ -159,7 +159,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$headline = $typename . " - " . gettext("most rated");
 			break;
 		case "toprated":
-			$itemssorted = query_full_array($dbquery . " ORDER BY (total_value/total_votes) DESC, total_value DESC LIMIT $limit");
+			$itemssorted = $_zp_db->queryFullArray($dbquery . " ORDER BY (total_value/total_votes) DESC, total_value DESC LIMIT $limit");
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
@@ -174,16 +174,16 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "mostcommented":
 			switch ($type) {
 				case "albums":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, albums.* FROM " . prefix('comments') . " AS comments, " . prefix('albums') . " AS albums WHERE albums.id=comments.ownerid AND type = 'albums' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, albums.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=comments.ownerid AND type = 'albums' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 				case "images":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, images.* FROM " . prefix('comments') . " AS comments, " . prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, images.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 				case "pages":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . prefix('comments') . " AS comments, " . prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'pages' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'pages' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 				case "news":
-					$itemssorted = query_full_array("SELECT comments.ownerid, count(*) as commentcount, news.* FROM " . prefix('comments') . " AS comments, " . prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, news.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $limit);
 					break;
 			}
 			if (empty($itemssorted)) {
@@ -194,7 +194,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 			$headline = $typename . " - " . gettext("most commented");
 			break;
 		case "mostimages":
-			$itemssorted = query_full_array("SELECT images.albumid, count(*) as imagenumber, albums.* FROM " . prefix('images') . " AS images, " . prefix('albums') . " AS albums WHERE albums.id=images.albumid GROUP BY images.albumid ORDER BY imagenumber DESC LIMIT " . $limit);
+			$itemssorted = $_zp_db->queryFullArray("SELECT images.albumid, count(*) as imagenumber, albums.* FROM " . $_zp_db->prefix('images') . " AS images, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=images.albumid GROUP BY images.albumid ORDER BY imagenumber DESC LIMIT " . $limit);
 			if (empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {
@@ -205,7 +205,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 		case "latest":
 			switch ($type) {
 				case "albums":
-					$allalbums = query_full_array($dbquery . " ORDER BY id DESC LIMIT " . $limit);
+					$allalbums = $_zp_db->queryFullArray($dbquery . " ORDER BY id DESC LIMIT " . $limit);
 					$albums = array();
 					foreach ($allalbums as $album) {
 						$albumobj = AlbumBase::newAlbum($album['folder']);
@@ -219,7 +219,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 					$headline = $typename . " - " . gettext("latest");
 					break;
 				case "images":
-					$itemssorted = query_full_array($dbquery . " ORDER BY id DESC LIMIT " . $limit);
+					$itemssorted = $_zp_db->queryFullArray($dbquery . " ORDER BY id DESC LIMIT " . $limit);
 					$barsize = 0;
 					$maxvalue = 1;
 					$headline = $typename . " - " . gettext("latest");
@@ -387,7 +387,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				break;
 			case "images":
 				if ($item['albumid']) {
-					$getalbumfolder = query_single_row("SELECT title, folder, `show` from " . prefix("albums") . " WHERE id = " . $item['albumid']);
+					$getalbumfolder = $_zp_db->querySingleRow("SELECT title, folder, `show` from " . $_zp_db->prefix("albums") . " WHERE id = " . $item['albumid']);
 					if ($sortorder === "latest") {
 						$value = "<span";
 						if ($getalbumfolder['show'] != "1") {

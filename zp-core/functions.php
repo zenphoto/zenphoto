@@ -246,7 +246,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
  * @return string
  */
 function lookupSortKey($sorttype, $default, $table) {
-	global $_zp_fieldLists;
+	global $_zp_fieldLists, $_zp_db;
 	switch (strtolower($sorttype)) {
 		case 'random':
 			return 'RAND()';
@@ -269,7 +269,7 @@ function lookupSortKey($sorttype, $default, $table) {
 			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
 				$dbfields = $_zp_fieldLists[$table];
 			} else {
-				$result = db_list_fields($table);
+				$result = $_zp_db->listFields($table);
 				$dbfields = array();
 				if ($result) {
 					foreach ($result as $row) {
@@ -692,6 +692,7 @@ function disableExtension($extension, $persistent = true) {
  * @return array
  */
 function fetchComments($number) {
+	global $_zp_db;
 	if ($number) {
 		$limit = " LIMIT $number";
 	} else {
@@ -701,8 +702,8 @@ function fetchComments($number) {
 	$comments = array();
 	if (zp_loggedin(ADMIN_RIGHTS | COMMENT_RIGHTS)) {
 		if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-			$sql = "SELECT *, (date + 0) AS date FROM " . prefix('comments') . " ORDER BY id DESC$limit";
-			$comments = query_full_array($sql);
+			$sql = "SELECT *, (date + 0) AS date FROM " . $_zp_db->prefix('comments') . " ORDER BY id DESC$limit";
+			$comments = $_zp_db->queryFullArray($sql);
 		} else {
 			$albumlist = getManagedAlbumList();
 			$albumIDs = array();
@@ -713,7 +714,7 @@ function fetchComments($number) {
 				}
 			}
 			if (count($albumIDs) > 0) {
-				$sql = "SELECT  *, (`date` + 0) AS date FROM " . prefix('comments') . " WHERE ";
+				$sql = "SELECT  *, (`date` + 0) AS date FROM " . $_zp_db->prefix('comments') . " WHERE ";
 
 				$sql .= " (`type`='albums' AND (";
 				$i = 0;
@@ -721,23 +722,23 @@ function fetchComments($number) {
 					if ($i > 0) {
 						$sql .= " OR ";
 					}
-					$sql .= "(" . prefix('comments') . ".ownerid=$ID)";
+					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=$ID)";
 					$i++;
 				}
 				$sql .= ")) ";
 				$sql .= " ORDER BY id DESC$limit";
-				$albumcomments = query($sql);
+				$albumcomments = $_zp_db->query($sql);
 				if ($albumcomments) {
-					while ($comment = db_fetch_assoc($albumcomments)) {
+					while ($comment = $_zp_db->fetchAssoc($albumcomments)) {
 						$comments[$comment['id']] = $comment;
 					}
-					db_free_result($albumcomments);
+					$_zp_db->freeResult($albumcomments);
 				}
-				$sql = "SELECT *, " . prefix('comments') . ".id as id, " .
-								prefix('comments') . ".name as name, (" . prefix('comments') . ".date + 0) AS date, " .
-								prefix('images') . ".`albumid` as albumid," .
-								prefix('images') . ".`id` as imageid" .
-								" FROM " . prefix('comments') . "," . prefix('images') . " WHERE ";
+				$sql = "SELECT *, " . $_zp_db->prefix('comments') . ".id as id, " .
+								$_zp_db->prefix('comments') . ".name as name, (" . $_zp_db->prefix('comments') . ".date + 0) AS date, " .
+								$_zp_db->prefix('images') . ".`albumid` as albumid," .
+								$_zp_db->prefix('images') . ".`id` as imageid" .
+								" FROM " . $_zp_db->prefix('comments') . "," . $_zp_db->prefix('images') . " WHERE ";
 
 				$sql .= "(`type` IN (" . zp_image_types("'") . ") AND (";
 				$i = 0;
@@ -745,17 +746,17 @@ function fetchComments($number) {
 					if ($i > 0) {
 						$sql .= " OR ";
 					}
-					$sql .= "(" . prefix('comments') . ".ownerid=" . prefix('images') . ".id AND " . prefix('images') . ".albumid=$ID)";
+					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=" . $_zp_db->prefix('images') . ".id AND " . $_zp_db->prefix('images') . ".albumid=$ID)";
 					$i++;
 				}
 				$sql .= "))";
-				$sql .= " ORDER BY " . prefix('images') . ".`id` DESC$limit";
-				$imagecomments = query($sql);
+				$sql .= " ORDER BY " . $_zp_db->prefix('images') . ".`id` DESC$limit";
+				$imagecomments = $_zp_db->query($sql);
 				if ($imagecomments) {
-					while ($comment = db_fetch_assoc($imagecomments)) {
+					while ($comment = $_zp_db->fetchAssoc($imagecomments)) {
 						$comments[$comment['id']] = $comment;
 					}
-					db_free_result($imagecomments);
+					$_zp_db->freeResult($imagecomments);
 				}
 				krsort($comments);
 				if ($number) {
@@ -774,16 +775,16 @@ function fetchComments($number) {
  * @return array
  */
 function getManagedAlbumList() {
-	global $_zp_admin_album_list, $_zp_current_admin_obj;
+	global $_zp_admin_album_list, $_zp_current_admin_obj, $_zp_db;
 	$_zp_admin_album_list = array();
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-		$sql = "SELECT `folder` FROM " . prefix('albums') . ' WHERE `parentid` IS NULL';
-		$albums = query($sql);
+		$sql = "SELECT `folder` FROM " . $_zp_db->prefix('albums') . ' WHERE `parentid` IS NULL';
+		$albums = $_zp_db->query($sql);
 		if ($albums) {
-			while ($album = db_fetch_assoc($albums)) {
+			while ($album = $_zp_db->fetchAssoc($albums)) {
 				$_zp_admin_album_list[$album['folder']] = 32767;
 			}
-			db_free_result($albums);
+			$_zp_db->freeResult($albums);
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
@@ -808,17 +809,18 @@ function getManagedAlbumList() {
  * @return array
  */
 function populateManagedObjectsList($type, $id, $rights = false) {
+	global $_zp_db;
 	if ($id <= 0) {
 		return array();
 	}
 	$cv = array();
 	if (empty($type) || substr($type, 0, 5) == 'album') {
-		$sql = "SELECT " . prefix('albums') . ".`folder`," . prefix('albums') . ".`title`," . prefix('admin_to_object') . ".`edit` FROM " . prefix('albums') . ", " .
-						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('albums') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type LIKE 'album%'";
-		$currentvalues = query($sql, false);
+		$sql = "SELECT " . $_zp_db->prefix('albums') . ".`folder`," . $_zp_db->prefix('albums') . ".`title`," . $_zp_db->prefix('admin_to_object') . ".`edit` FROM " . $_zp_db->prefix('albums') . ", " .
+						$_zp_db->prefix('admin_to_object') . " WHERE " . $_zp_db->prefix('admin_to_object') . ".adminid=" . $id .
+						" AND " . $_zp_db->prefix('albums') . ".id=" . $_zp_db->prefix('admin_to_object') . ".objectid AND " . $_zp_db->prefix('admin_to_object') . ".type LIKE 'album%'";
+		$currentvalues = $_zp_db->query($sql, false);
 		if ($currentvalues) {
-			while ($albumitem = db_fetch_assoc($currentvalues)) {
+			while ($albumitem = $_zp_db->fetchAssoc($currentvalues)) {
 				$folder = $albumitem['folder'];
 				$name = get_language_string($albumitem['title']);
 				if ($type && !$rights) {
@@ -827,39 +829,39 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 					$cv[] = array('data' => $folder, 'name' => $name, 'type' => 'album', 'edit' => $albumitem['edit'] + 0);
 				}
 			}
-			db_free_result($currentvalues);
+			$_zp_db->freeResult($currentvalues);
 		}
 	}
 	if (empty($type) || $type == 'pages') {
-		$sql = 'SELECT ' . prefix('pages') . '.`title`,' . prefix('pages') . '.`titlelink` FROM ' . prefix('pages') . ', ' .
-						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('pages') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='pages'";
-		$currentvalues = query($sql, false);
+		$sql = 'SELECT ' . $_zp_db->prefix('pages') . '.`title`,' . $_zp_db->prefix('pages') . '.`titlelink` FROM ' . $_zp_db->prefix('pages') . ', ' .
+						$_zp_db->prefix('admin_to_object') . " WHERE " . $_zp_db->prefix('admin_to_object') . ".adminid=" . $id .
+						" AND " . $_zp_db->prefix('pages') . ".id=" . $_zp_db->prefix('admin_to_object') . ".objectid AND " . $_zp_db->prefix('admin_to_object') . ".type='pages'";
+		$currentvalues = $_zp_db->query($sql, false);
 		if ($currentvalues) {
-			while ($item = db_fetch_assoc($currentvalues)) {
+			while ($item = $_zp_db->fetchAssoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
 					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'pages');
 				}
 			}
-			db_free_result($currentvalues);
+			$_zp_db->freeResult($currentvalues);
 		}
 	}
 	if (empty($type) || $type == 'news') {
-		$sql = 'SELECT ' . prefix('news_categories') . '.`titlelink`,' . prefix('news_categories') . '.`title` FROM ' . prefix('news_categories') . ', ' .
-						prefix('admin_to_object') . " WHERE " . prefix('admin_to_object') . ".adminid=" . $id .
-						" AND " . prefix('news_categories') . ".id=" . prefix('admin_to_object') . ".objectid AND " . prefix('admin_to_object') . ".type='news'";
-		$currentvalues = query($sql, false);
+		$sql = 'SELECT ' . $_zp_db->prefix('news_categories') . '.`titlelink`,' . $_zp_db->prefix('news_categories') . '.`title` FROM ' . $_zp_db->prefix('news_categories') . ', ' .
+						$_zp_db->prefix('admin_to_object') . " WHERE " . $_zp_db->prefix('admin_to_object') . ".adminid=" . $id .
+						" AND " . $_zp_db->prefix('news_categories') . ".id=" . $_zp_db->prefix('admin_to_object') . ".objectid AND " . $_zp_db->prefix('admin_to_object') . ".type='news'";
+		$currentvalues = $_zp_db->query($sql, false);
 		if ($currentvalues) {
-			while ($item = db_fetch_assoc($currentvalues)) {
+			while ($item = $_zp_db->fetchAssoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
 					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'news');
 				}
 			}
-			db_free_result($currentvalues);
+			$_zp_db->freeResult($currentvalues);
 		}
 	}
 	return $cv;
@@ -871,7 +873,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
  * @return array
  */
 function getAllSubAlbumIDs($albumfolder = '') {
-	global $_zp_current_album;
+	global $_zp_current_album, $_zp_db;
 	if (empty($albumfolder)) {
 		if (isset($_zp_current_album)) {
 			$albumfolder = $_zp_current_album->getFileName();
@@ -879,8 +881,8 @@ function getAllSubAlbumIDs($albumfolder = '') {
 			return null;
 		}
 	}
-	$query = "SELECT `id`,`folder`, `show` FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote(db_LIKE_escape($albumfolder) . '%');
-	$subIDs = query_full_array($query);
+	$query = "SELECT `id`,`folder`, `show` FROM " . $_zp_db->prefix('albums') . " WHERE `folder` LIKE " . $_zp_db->quote($_zp_db->likeEscape($albumfolder) . '%');
+	$subIDs = $_zp_db->queryFullArray($query);
 	return $subIDs;
 }
 
@@ -1051,7 +1053,7 @@ function setupTheme($album = NULL) {
  * @return array
  */
 function getAllTagsUnique($checkaccess = false) {
-	global $_zp_unique_tags, $_zp_unique_tags_excluded;
+	global $_zp_unique_tags, $_zp_unique_tags_excluded, $_zp_db;
 	if (zp_loggedin(VIEW_ALL_RIGHTS)) {
 		$checkaccess = false;
 	}
@@ -1066,10 +1068,10 @@ function getAllTagsUnique($checkaccess = false) {
 		}
 	}
 	$all_unique_tags = array();
-	$sql = "SELECT DISTINCT `name`, `id` FROM " . prefix('tags') . ' ORDER BY `name`';
-	$unique_tags = query($sql);
+	$sql = "SELECT DISTINCT `name`, `id` FROM " . $_zp_db->prefix('tags') . ' ORDER BY `name`';
+	$unique_tags = $_zp_db->query($sql);
 	if ($unique_tags) {
-		while ($tagrow = db_fetch_assoc($unique_tags)) {
+		while ($tagrow = $_zp_db->fetchAssoc($unique_tags)) {
 			if ($checkaccess) {
 				if (getTagCountByAccess($tagrow) != 0) {
 					$all_unique_tags[] = $tagrow['name'];
@@ -1078,7 +1080,7 @@ function getAllTagsUnique($checkaccess = false) {
 				$all_unique_tags[] = $tagrow['name'];
 			}
 		}
-		db_free_result($unique_tags);
+		$_zp_db->freeResult($unique_tags);
 	}
 	if ($checkaccess) {
 		$_zp_unique_tags_excluded = $all_unique_tags;
@@ -1099,7 +1101,7 @@ function getAllTagsUnique($checkaccess = false) {
  * @return array
  */
 function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
-	global $_zp_count_tags;
+	global $_zp_count_tags, $_zp_db;
 	if (!is_null($_zp_count_tags)) {
 		return $_zp_count_tags;
 	}
@@ -1108,10 +1110,10 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
 		$checkaccess = false;
 	}
 	$_zp_count_tags = array();
-	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . prefix('tags') . " as tags ORDER BY `name`";
-	$tagresult = query($sql);
+	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM " . $_zp_db->prefix('obj_to_tag') . " as object WHERE object.tagid = tags.id) AS count FROM " . $_zp_db->prefix('tags') . " as tags ORDER BY `name`";
+	$tagresult = $_zp_db->query($sql);
 	if ($tagresult) {
-		while ($tag = db_fetch_assoc($tagresult)) {
+		while ($tag = $_zp_db->fetchAssoc($tagresult)) {
 			if ($checkaccess) {
 				$count = getTagCountByAccess($tag);
 				if ($count != 0) {
@@ -1127,7 +1129,7 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
 				}
 			}
 		}
-		db_free_result($tagresult);
+		$_zp_db->freeResult($tagresult);
 	}
 	return $_zp_count_tags;
 }
@@ -1141,7 +1143,7 @@ function getAllTagsCount($exclude_unassigned = false, $checkaccess = false) {
  * @return int
  */
 function getTagCountByAccess($tag) {
-	global $_zp_zenpage, $_zp_object_to_tags;
+	global $_zp_zenpage, $_zp_object_to_tags, $_zp_db;
 	if (array_key_exists('count', $tag) && $tag['count'] == 0) {
 		return $tag['count'];
 	}
@@ -1161,8 +1163,8 @@ function getTagCountByAccess($tag) {
 		return 0;
 	}
 	if (is_null($_zp_object_to_tags)) {
-		$sql = "SELECT tagid, type, objectid FROM " . prefix('obj_to_tag') . " ORDER BY tagid";
-		$_zp_object_to_tags = query_full_array($sql);
+		$sql = "SELECT tagid, type, objectid FROM " . $_zp_db->prefix('obj_to_tag') . " ORDER BY tagid";
+		$_zp_object_to_tags = $_zp_db->queryFullArray($sql);
 	}
 	$count = '';
 	if ($_zp_object_to_tags) {
@@ -1211,6 +1213,7 @@ function getTagCountByAccess($tag) {
  * @param string $tbl database table of the object
  */
 function storeTags($tags, $id, $tbl) {
+	global $_zp_db;
 	if ($id) {
 		$tagsLC = array();
 		foreach ($tags as $key => $tag) {
@@ -1222,29 +1225,29 @@ function storeTags($tags, $id, $tbl) {
 				}
 			}
 		}
-		$sql = "SELECT `id`, `tagid` from " . prefix('obj_to_tag') . " WHERE `objectid`='" . $id . "' AND `type`='" . $tbl . "'";
-		$result = query($sql);
+		$sql = "SELECT `id`, `tagid` from " . $_zp_db->prefix('obj_to_tag') . " WHERE `objectid`='" . $id . "' AND `type`='" . $tbl . "'";
+		$result = $_zp_db->query($sql);
 		$existing = array();
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
-				$dbtag = query_single_row("SELECT `name` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
+			while ($row = $_zp_db->fetchAssoc($result)) {
+				$dbtag = $_zp_db->querySingleRow("SELECT `name` FROM " . $_zp_db->prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
 				$existingLC = mb_strtolower($dbtag['name']);
 				if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
 					$existing[] = $existingLC;
 				} else { // tag no longer set, remove it
-					query("DELETE FROM " . prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
+					$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 		$tags = array_diff($tagsLC, $existing); // new tags for the object
 		foreach ($tags as $key => $tag) {
-			$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `name`=" . db_quote($key));
+			$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `name`=" . $_zp_db->quote($key));
 			if (!is_array($dbtag)) { // tag does not exist
-				query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")", false);
-				$dbtag = array('id' => db_insert_id());
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('tags') . " (name) VALUES (" . $_zp_db->quote($key) . ")", false);
+				$dbtag = array('id' => $_zp_db->insertID());
 			}
-			query("INSERT INTO " . prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
+			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
 		}
 	}
 }
@@ -1258,16 +1261,17 @@ function storeTags($tags, $id, $tbl) {
  * @return unknown
  */
 function readTags($id, $tbl) {
+	global $_zp_db;
 	$tags = array();
-	$result = query("SELECT `tagid` FROM " . prefix('obj_to_tag') . " WHERE `type`='" . $tbl . "' AND `objectid`='" . $id . "'");
+	$result = $_zp_db->query("SELECT `tagid` FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE `type`='" . $tbl . "' AND `objectid`='" . $id . "'");
 	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
-			$dbtag = query_single_row("SELECT `name` FROM" . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
+		while ($row = $_zp_db->fetchAssoc($result)) {
+			$dbtag = $_zp_db->querySingleRow("SELECT `name` FROM" . $_zp_db->prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
 			if ($dbtag) {
 				$tags[] = $dbtag['name'];
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 	}
 	sortArray($tags);
 	return $tags;
@@ -1594,15 +1598,15 @@ function sortArray(&$array, $descending = false, $natsort = true, $case_sensitiv
  * @return array
  */
 function getNotViewableAlbums() {
-	global $_zp_not_viewable_album_list;
+	global $_zp_not_viewable_album_list, $_zp_db;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 		return array(); //admins can see all
 	if (is_null($_zp_not_viewable_album_list)) {
-		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
-		$result = query($sql);
+		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . $_zp_db->prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$result = $_zp_db->query($sql);
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				if (checkAlbumPassword($row['folder'])) {
 					$album = AlbumBase::newAlbum($row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
@@ -1612,7 +1616,7 @@ function getNotViewableAlbums() {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 	}
 	return $_zp_not_viewable_album_list;
@@ -1624,7 +1628,7 @@ function getNotViewableAlbums() {
  * @return array
  */
 function getNotViewableImages() {
-	global $_zp_not_viewable_image_list;
+	global $_zp_not_viewable_image_list, $_zp_db;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 		return array(); //admins can see all
 	}
@@ -1634,11 +1638,11 @@ function getNotViewableImages() {
 		$where = ' OR `albumid` in (' . implode(',', $hidealbums) . ')';
 	}
 	if (is_null($_zp_not_viewable_image_list)) {
-		$sql = 'SELECT DISTINCT `id` FROM ' . prefix('images') . ' WHERE `show` = 0' . $where;
-		$result = query($sql);
+		$sql = 'SELECT DISTINCT `id` FROM ' . $_zp_db->prefix('images') . ' WHERE `show` = 0' . $where;
+		$result = $_zp_db->query($sql);
 		if ($result) {
 			$_zp_not_viewable_image_list = array();
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$_zp_not_viewable_image_list[] = $row['id'];
 			}
 		}
@@ -1827,7 +1831,7 @@ function restore_context() {
  * @param string $authType override of athorization type
  */
 function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news, $_zp_gallery;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news, $_zp_gallery, $_zp_db;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && @$_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
@@ -1864,8 +1868,8 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 					$parentID = $pageobj->getParentID();
 					if ($parentID == 0)
 						break;
-					$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
-					$result = query_single_row($sql);
+					$sql = 'SELECT `titlelink` FROM ' . $_zp_db->prefix('pages') . ' WHERE `id`=' . $parentID;
+					$result = $_zp_db->querySingleRow($sql);
 					$pageobj = new ZenpagePage($result['titlelink']);
 					$authType = "zpcms_auth_page_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
@@ -1894,8 +1898,8 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
 							$parentID = $catobj->getParentID();
 							if ($parentID == 0)
 								break;
-							$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
-							$result = query_single_row($sql);
+							$sql = 'SELECT `titlelink` FROM ' . $_zp_db->prefix('news_categories') . ' WHERE `id`=' . $parentID;
+							$result = $_zp_db->querySingleRow($sql);
 							$catobj = new ZenpageCategory($result['titlelink']);
 							$authType = "zpcms_auth_category_" . $catobj->getID();
 							$check_auth = $catobj->getPassword();
@@ -2003,8 +2007,9 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
  * @param string $key
  */
 function getOptionFromDB($key) {
-	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($key) . " AND `ownerid`=0";
-	$optionlist = query_single_row($sql, false);
+	global $_zp_db;
+	$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($key) . " AND `ownerid`=0";
+	$optionlist = $_zp_db->querySingleRow($sql, false);
 	return @$optionlist['value'];
 }
 
@@ -2018,7 +2023,7 @@ function getOptionFromDB($key) {
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  */
 function setThemeOption($key, $value, $album, $theme, $default = false) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
 		$id = 0;
 	} else {
@@ -2030,20 +2035,20 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
 	}
 	$creator = THEMEFOLDER . '/' . $theme;
 
-	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . db_quote($key) . ',0,' . db_quote($theme) . ',' . db_quote($creator) . ',';
+	$sql = 'INSERT INTO ' . $_zp_db->prefix('options') . ' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES (' . $_zp_db->quote($key) . ',0,' . $_zp_db->quote($theme) . ',' . $_zp_db->quote($creator) . ',';
 	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 	if (is_null($value)) {
 		$sql .= 'NULL';
 		$sqlu .= 'NULL';
 	} else {
-		$sql .= db_quote($value);
-		$sqlu .= db_quote($value);
+		$sql .= $_zp_db->quote($value);
+		$sqlu .= $_zp_db->quote($value);
 	}
 	$sql .= ') ';
 	if (!$default) {
 		$sql .= $sqlu;
 	}
-	$result = query($sql, false);
+	$result = $_zp_db->query($sql, false);
 }
 
 /**
@@ -2072,7 +2077,7 @@ function replaceThemeOption($oldkey, $newkey) {
  * @since Zenphoto 1.5.1
  */
 function purgeThemeOption($key, $album = NULL, $theme = NULL) {
-	global $_set_theme_album, $_zp_gallery;
+	global $_set_theme_album, $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
 		$album = $_set_theme_album;
 	}
@@ -2085,8 +2090,8 @@ function purgeThemeOption($key, $album = NULL, $theme = NULL) {
 	if (empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($key) . ' AND `ownerid`=' . $id . ' AND `theme`=' . db_quote($theme);
-	query($sql, false);
+	$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`=' . $_zp_db->quote($key) . ' AND `ownerid`=' . $id . ' AND `theme`=' . $_zp_db->quote($theme);
+	$_zp_db->query($sql, false);
 }
 
 /**
@@ -2111,7 +2116,7 @@ function setThemeOptionDefault($key, $value) {
  * @return mixed
  */
 function getThemeOption($option, $album = NULL, $theme = NULL) {
-	global $_set_theme_album, $_zp_gallery;
+	global $_set_theme_album, $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
 		$album = $_set_theme_album;
 	}
@@ -2126,16 +2131,16 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	}
 
 	// album-theme
-	$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . db_quote($theme);
-	$db = query_single_row($sql);
+	$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($option) . " AND `ownerid`=" . $id . " AND `theme`=" . $_zp_db->quote($theme);
+	$db = $_zp_db->querySingleRow($sql);
 	if (!$db) {
 		// raw theme option
-		$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=0 AND `theme`=" . db_quote($theme);
-		$db = query_single_row($sql);
+		$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($option) . " AND `ownerid`=0 AND `theme`=" . $_zp_db->quote($theme);
+		$db = $_zp_db->querySingleRow($sql);
 		if (!$db) {
 			// raw album option
-			$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
-			$db = query_single_row($sql);
+			$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($option) . " AND `ownerid`=" . $id . " AND `theme`=NULL";
+			$db = $_zp_db->querySingleRow($sql);
 			if (!$db) {
 				return getOption($option);
 			}
@@ -2349,13 +2354,13 @@ function XSRFdefender($action) {
  * @param striong $action
  */
 function getXSRFToken($action) {
-	global $_zp_current_admin_obj;
+	global $_zp_current_admin_obj, $_zp_db;
 	$admindata = '';
 	if (!is_null($_zp_current_admin_obj)) {
 		$admindata = $_zp_current_admin_obj->getData();
 		unset($admindata['lastvisit']);
 	}
-	return sha1($action . prefix(ZENPHOTO_VERSION) . serialize($admindata) . session_id());
+	return sha1($action . $_zp_db->prefix(ZENPHOTO_VERSION) . serialize($admindata) . session_id());
 }
 
 /**
@@ -2480,7 +2485,8 @@ function getLanguageFlag($lang) {
  * @return mixed
  */
 function getItemByID($table, $id) {
-	if ($result = query_single_row('SELECT * FROM ' . prefix($table) . ' WHERE id =' . (int) $id)) {
+	global $_zp_db;
+	if ($result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix($table) . ' WHERE id =' . (int) $id)) {
 		switch ($table) {
 			case 'images':
 				if ($alb = getItemByID('albums', $result['albumid'])) {
@@ -2665,7 +2671,7 @@ function applyMacros($text) {
 
 						foreach ($parms as $key => $value) {
 							$key++;
-							$expression = preg_replace('/\$' . $key . '/', db_quote($value), $expression);
+							$expression = preg_replace('/\$' . $key . '/', $_zp_db->quote($value), $expression);
 						}
 						eval($expression);
 						if (!isset($data) || is_null($data)) {

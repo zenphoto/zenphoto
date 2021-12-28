@@ -75,15 +75,15 @@ h2 {
 	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like phpMyAdmin."); ?>
 </p>
 <?php
-$database_name = db_name();
-$prefix = trim(prefix(),'`');
-$resource = db_show('tables');
+$database_name = $_zp_db->getDBName();
+$prefix = trim($_zp_db->prefix(),'`');
+$resource = $_zp_db->show('tables');
 if ($resource) {
 	$result = array();
-	while ($row = db_fetch_assoc($resource)) {
+	while ($row = $_zp_db->fetchAssoc($resource)) {
 		$result[] = $row;
 	}
-	db_free_result($resource);
+	$_zp_db->freeResult($resource);
 } else {
 	$result = false;
 }
@@ -99,7 +99,7 @@ if (is_array($result)) {
 <ul>
 <li>
 <?php
-$dbsoftware = db_software();
+$dbsoftware = $_zp_db->getSoftware();
 printf(gettext('%1$s version: <strong>%2$s</strong>'),$dbsoftware['application'],$dbsoftware['version']);
 ?>
 </li>
@@ -116,7 +116,7 @@ if(empty($prefix)) {
 </ul>
 <ul>
 <?php
-$result = db_show('variables','character_set%');
+$result = $_zp_db->show('variables','character_set%');
 if (is_array($result)) {
 	foreach ($result as $row) {
 	?>
@@ -129,7 +129,7 @@ if (is_array($result)) {
 </ul>
 <ul>
 <?php
-$result = db_show('variables','collation%');
+$result = $_zp_db->show('variables','collation%');
 if (is_array($result)) {
 	foreach ($result as $row) {
 	?>
@@ -162,7 +162,7 @@ foreach($tables as $table) {
 	<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
 		<tr>
 			<?php
-			$cols = $tablecols = db_list_fields($table);
+			$cols = $tablecols = $_zp_db->listFields($table);
 			$cols = array_shift($cols);
 			foreach ($cols as $col=>$value) {
 				 ?>
@@ -201,8 +201,8 @@ foreach($tables as $table) {
 	 ?>
  </table>
 	<?php
-	$sql = 'SHOW KEYS FROM '.prefix($table);
-	$result = query_full_array($sql);
+	$sql = 'SHOW KEYS FROM '.$_zp_db->prefix($table);
+	$result = $_zp_db->queryFullArray($sql);
 	$nest = '';
 	?>
 	<div style="width:40%">

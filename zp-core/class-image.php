@@ -1024,6 +1024,7 @@ class Image extends MediaObject {
    * @return bool
    */
   function remove() {
+		global $_zp_db;
     $result = false;
     if (parent::remove()) {
       $result = true;
@@ -1034,8 +1035,8 @@ class Image extends MediaObject {
       }
       if ($result) {
 				$this->setUpdatedDateAlbum();
-        query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
-        query("DELETE FROM " . prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
+        $_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
+        $_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
         $cachepath = SERVERCACHE . '/' . pathurlencode($this->album->name) . '/' . $this->filename;
         $cachefilestodelete = safe_glob(substr($cachepath, 0, strrpos($cachepath, '.')) . '_*');
         foreach ($cachefilestodelete as $file) {
@@ -1121,6 +1122,7 @@ class Image extends MediaObject {
 	 * @param string $newalbum the destination album
 	 */
 	function copy($newalbum) {
+		global $_zp_db;
 		if (is_string($newalbum)) {
 			$newalbum = AlbumBase::newAlbum($newalbum, false);
 		}
@@ -1146,7 +1148,7 @@ class Image extends MediaObject {
 		if ($result) {
 			if ($newID = parent::copy(array('filename' => $filename, 'albumid' => $newalbum->getID()))) {
 				storeTags(readTags($this->getID(), 'images'), $newID, 'images');
-				query('UPDATE ' . prefix('images') . ' SET `mtime`=' . filemtime($newpath) . ' WHERE `filename`="' . $filename . '" AND `albumid`=' . $newalbum->getID());
+				$_zp_db->query('UPDATE ' . $_zp_db->prefix('images') . ' SET `mtime`=' . filemtime($newpath) . ' WHERE `filename`="' . $filename . '" AND `albumid`=' . $newalbum->getID());
 				$newalbum->setUpdatedDate(); 
 				$newalbum->save();
 				$newalbum->setUpdatedDateParents();

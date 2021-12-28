@@ -302,6 +302,7 @@ class feed {
 	 * @return int
 	 */
 	protected function getID() {
+		global $_zp_db;
 		if (isset($this->options['id'])) {
 			$type = $this->getCommentFeedType();
 			$table = '';
@@ -322,7 +323,7 @@ class feed {
 				}
 				if ($table) {
 					$id = (int) $this->options['id'];
-					$result = query_single_row('SELECT `id` FROM ' . prefix($table) . ' WHERE id =' . $id);
+					$result = $_zp_db->querySingleRow('SELECT `id` FROM ' . $_zp_db->prefix($table) . ' WHERE id =' . $id);
 					if ($result) {
 						return $id;
 					}

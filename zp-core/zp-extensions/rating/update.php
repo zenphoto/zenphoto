@@ -11,7 +11,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 
 	$id = sanitize_numeric($_POST['id']);
 	$table = sanitize($_POST['table'], 3);
-	$dbtable = prefix($table);
+	$dbtable = $_zp_db->prefix($table);
 	$ip = jquery_rating::id();
 	$unique = '_' . $table . '_' . $id;
 	if (isset($_POST['star_rating-value' . $unique])) {
@@ -22,7 +22,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 			$rating = getOption('rating_stars_count');
 		}
 
-		$IPlist = query_single_row("SELECT * FROM $dbtable WHERE id= $id");
+		$IPlist = $_zp_db->querySingleRow("SELECT * FROM $dbtable WHERE id= $id");
 		if (is_array($IPlist)) {
 			$oldrating = jquery_rating::getRatingByIP($ip, $IPlist['used_ips'], $IPlist['rating']);
 		} else {
@@ -52,8 +52,8 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
 				$voting = ' total_votes=total_votes+1,';
 				$valuechange = ' total_value=total_value+' . $rating . ',';
 			}
-			$sql = "UPDATE " . $dbtable . ' SET' . $voting . $valuechange . " rating=total_value/total_votes, used_ips=" . db_quote($insertip) . " WHERE id='" . $id . "'";
-			$rslt = query($sql, false);
+			$sql = "UPDATE " . $dbtable . ' SET' . $voting . $valuechange . " rating=total_value/total_votes, used_ips=" . $_zp_db->quote($insertip) . " WHERE id='" . $id . "'";
+			$rslt = $_zp_db->query($sql, false);
 		}
 	}
 }

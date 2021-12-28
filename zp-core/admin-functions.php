@@ -23,6 +23,7 @@ if (!defined('EDITOR_SANITIZE_LEVEL'))
  * @since  1.0.0
  */
 function printAdminFooter($addl = '') {
+	global $_zp_db;
 	?>
 	<div id="footer">
 		<button type="button" class="scrollup hidden" title="<?php echo gettext('Scroll to top'); ?>"><?php echo gettext('Top'); ?></button>
@@ -40,7 +41,7 @@ function printAdminFooter($addl = '') {
 		| <?php printf(gettext('Server date: %s'), date('Y-m-d H:i:s')); ?>
 	</div>
 	<?php
-	db_close(); //	close the database as we are done
+	$_zp_db->close(); //	close the database as we are done
 }
 
 function datepickerJS() {
@@ -537,6 +538,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	define('OPTION_TYPE_RICHTEXT', 12);
 
 	function customOptions($optionHandler, $indent = "", $album = NULL, $showhide = false, $supportedOptions = NULL, $theme = false, $initial = 'none', $extension = NULL) {
+		global $_zp_db;
 		if (is_null($supportedOptions)) {
 			$supportedOptions = $optionHandler->getOptionsSupported();
 		}
@@ -590,8 +592,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if ($theme) {
 					$v = getThemeOption($key, $album, $theme);
 				} else {
-					$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($key);
-					$db = query_single_row($sql);
+					$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($key);
+					$db = $_zp_db->querySingleRow($sql);
 					if ($db) {
 						$v = $db['value'];
 					} else {
@@ -709,8 +711,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 									if ($theme) {
 										$v = getThemeOption($checkbox, $album, $theme);
 									} else {
-										$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-										$db = query_single_row($sql);
+										$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($checkbox);
+										$db = $_zp_db->querySingleRow($sql);
 										if ($db) {
 											$v = $db['value'];
 										} else {
@@ -745,8 +747,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 									if ($theme) {
 										$v = getThemeOption($checkbox, $album, $theme);
 									} else {
-										$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-										$db = query_single_row($sql);
+										$sql = "SELECT `value` FROM " . $_zp_db->prefix('options') . " WHERE `name`=" . $_zp_db->quote($checkbox);
+										$db = $_zp_db->querySingleRow($sql);
 										if ($db) {
 											$v = $db['value'];
 										} else {
@@ -3568,7 +3570,7 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
-	global $_zp_current_admin_obj;
+	global $_zp_current_admin_obj, $_zp_db;
 	if (isset($_POST['order']) && !empty($_POST['order'])) {
 		$order = processOrder(sanitize($_POST['order']));
 		$sortToID = array();
@@ -3578,7 +3580,7 @@ function postAlbumSort($parentid) {
 		}
 		foreach ($order as $item => $orderlist) {
 			$item = intval(str_replace('id_', '', $item));
-			$currentalbum = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $item);
+			$currentalbum = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $item);
 			$sortorder = array_pop($orderlist);
 			if (count($orderlist) > 0) {
 				$newparent = $sortToID[implode('-', $orderlist)];
@@ -3586,8 +3588,8 @@ function postAlbumSort($parentid) {
 				$newparent = $parentid;
 			}
 			if ($newparent == $currentalbum['parentid']) {
-				$sql = 'UPDATE ' . prefix('albums') . ' SET `sort_order`=' . db_quote($sortorder) . ' WHERE `id`=' . $item;
-				query($sql);
+				$sql = 'UPDATE ' . $_zp_db->prefix('albums') . ' SET `sort_order`=' . $_zp_db->quote($sortorder) . ' WHERE `id`=' . $item;
+				$_zp_db->query($sql);
 			} else { // have to do a move
 				$albumname = $currentalbum['folder'];
 				$album = AlbumBase::newAlbum($albumname);
@@ -3597,7 +3599,7 @@ function postAlbumSort($parentid) {
 				if (is_null($newparent)) {
 					$dest = $albumname;
 				} else {
-					$parent = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . intval($newparent));
+					$parent = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . intval($newparent));
 					if ($parent['dynamic']) {
 						return "&mcrerr=5";
 					} else {

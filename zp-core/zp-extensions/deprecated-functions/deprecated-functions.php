@@ -24,7 +24,7 @@
  * index.php script before the theme script is loaded.
  */
 function setThemeColumns() {
-	deprecated_functions::notify(gettext("This function is obsolete and has no functionality anymore."));
+	deprecationNotice(gettext("This function is obsolete and has no functionality anymore."));
 }
  
 /**
@@ -37,7 +37,7 @@ function setThemeColumns() {
  * @return string
  */
 function getMimeString($suffix) {
-	deprecated_functions::notify(gettext("Use mimeTypes::getType() instead"));
+	deprecationNotice(gettext("Use mimeTypes::getType() instead"));
 	require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
 	return mimeTypes::getType($suffix);
 }
@@ -54,7 +54,7 @@ function getMimeString($suffix) {
  * @return Album
  */
 function newAlbum($folder8, $cache = true, $quiet = false) {
-	deprecated_functions::notify(gettext("Use AlbumBase::newAlbum() instead"));
+	deprecationNotice(gettext("Use AlbumBase::newAlbum() instead"));
 	return AlbumBase::newAlbum($folder8, $cache, $quiet);
 }
 
@@ -68,7 +68,7 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
  * @return bool
  */
 function isAlbumClass($album = NULL) {
-	deprecated_functions::notify(gettext("Use AlbumBase::isAlbumClass() instead"));
+	deprecationNotice(gettext("Use AlbumBase::isAlbumClass() instead"));
 	return AlbumBase::isAlbumClass($album);
 }
 
@@ -84,7 +84,7 @@ function isAlbumClass($album = NULL) {
  * @return object
  */
 function getUrAlbum($album) {
-	deprecated_functions::notify(gettext('Use $album->getUrAlbum() instead'));
+	deprecationNotice(gettext('Use $album->getUrAlbum() instead'));
 	if (!is_object($album))
 		return NULL;
 	return $album->getUrAlbum();
@@ -102,7 +102,7 @@ function getUrAlbum($album) {
  * @return object
  */
 function newImage($album, $filename, $quiet = false) {
-	deprecated_functions::notify(gettext("Use Image::newImage() instead"));
+	deprecationNotice(gettext("Use Image::newImage() instead"));
 	return Image::newImage($album, $filename, $quiet);
 }
 
@@ -116,7 +116,7 @@ function newImage($album, $filename, $quiet = false) {
  * @return bool
  */
 function isImageClass($image = NULL) {
-	deprecated_functions::notify(gettext("Use Image::isImageClass() instead"));
+	deprecationNotice(gettext("Use Image::isImageClass() instead"));
 	return Image::isImageClass($image);
 }
 
@@ -130,6 +130,7 @@ function isImageClass($image = NULL) {
  * @return string
  */
 function search_quote($word) {
+	deprecationNotice(gettext("Use SearchEngine::getSearchQuote() instead"));
 	return SearchEngine::getSearchQuote($word);
 }
 
@@ -144,6 +145,7 @@ function search_quote($word) {
  * @return bool
  */
 function isImageVideo($image = NULL) {
+	deprecationNotice(gettext("Use Image object method isVideo() instead"));
 	if (is_null($image)) {
 		if (!in_context(ZP_IMAGE))
 			return false;
@@ -163,6 +165,7 @@ function isImageVideo($image = NULL) {
  * @return bool
  */
 function isImagePhoto($image = NULL) {
+	deprecationNotice(gettext("Use Image object method isPhoto() instead"));
 	if (is_null($image)) {
 		if (!in_context(ZP_IMAGE))
 			return false;
@@ -184,7 +187,7 @@ function isImagePhoto($image = NULL) {
  * @since Zenphoto 1.5.1
  */
 function replaceOption($oldkey, $newkey) {
-	deprecated_functions::notify(gettext("Use renameOption() instead"));
+	deprecationNotice(gettext("Use renameOption() instead"));
 	renameOption($oldkey, $newkey);
 }
 
@@ -198,7 +201,7 @@ function replaceOption($oldkey, $newkey) {
  * @return bool
  */
 function is_valid_email_zp($input_email) {
-	deprecated_functions::notify(gettext("Use the isValidEmail() instead"));
+	deprecationNotice(gettext("Use the isValidEmail() instead"));
 	return isValidEmail($input_email);
 }
 
@@ -214,7 +217,7 @@ function is_valid_email_zp($input_email) {
  */
 function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
 	global $_zp_gallery;
-	deprecated_functions::notify(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
+	deprecationNotice(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
 	$list = $_zp_gallery->getAllAlbums($curAlbum, $rights, true);
 }
 
@@ -227,7 +230,7 @@ function genAlbumList(&$list, $curAlbum = NULL, $rights = UPLOAD_RIGHTS) {
  * @return array
  */
 function getAllAlbums($album = NULL) {
-	deprecated_functions::notify(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
+	deprecationNotice(gettext("Use the gallery class method getAllAlbums() or getAllAlbumsFromDB() instead"));
 	global $_zp_current_album, $_zp_gallery;
 	if (is_null($album))
 		$album = $_zp_current_album;
@@ -243,7 +246,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printAlbumStatistisc() instead
 	 */
 	function printPopularAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = 'hitcounter', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
 		printAlbumStatistic($number, "popular", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
@@ -251,7 +254,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printAlbumStatistisc() instead
 	 */
 	function printLatestAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
-		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
 		printAlbumStatistic($number, "latest", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $collection);
 	}
 
@@ -259,7 +262,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printAlbumStatistisc() instead
 	 */
 	function printMostRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
 		printAlbumStatistic($number, "mostrated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
@@ -267,7 +270,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printAlbumStatistisc() instead
 	 */
 	function printTopRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
 		printAlbumStatistic($number, "toprated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
@@ -275,7 +278,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printAlbumStatistisc() instead
 	 */
 	function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
-		deprecated_functions::notify(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
 		printAlbumStatistic($number, "latestupdated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $collection);
 	}
 
@@ -283,7 +286,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printPopularImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "popular", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 
@@ -291,7 +294,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printTopRatedImages($number = 5, $albumfolder = "", $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "toprated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 	
@@ -299,7 +302,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printMostRatedImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "mostrated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 
@@ -307,14 +310,14 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printLatestImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "latest", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 		/**
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printLatestImagesByDate($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "latest-date", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 
@@ -322,7 +325,7 @@ if (function_exists('printImageStatistic')) {
 	 * @deprecated Zenphoto 2.0 – Use printImageStatistisc() instead
 	 */
 	function printLatestImagesByMtime($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecated_functions::notify(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistisc() instead"));
 		printImageStatistic($number, "latest-mtime", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 
@@ -339,8 +342,10 @@ if (function_exists('printImageStatistic')) {
  * @param string $source album object if this is search within the album
  */
 function filterImageQuery($result, $source) {
+	deprecationNotice(gettext("There is no replacement"));
+	global $_zp_db;
 	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$image = Image::newImage(null, $row);
 			$album = $image->album;
 			if ($album->name == $source || $album->checkAccess()) {
@@ -351,7 +356,7 @@ function filterImageQuery($result, $source) {
 				}
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 	}
 	return NULL;
 }
@@ -365,12 +370,12 @@ function filterImageQuery($result, $source) {
  * @return object
  */
 function getRandomImages($daily = false) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;;
 	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatistic() with appropiate parameters");
 	if($daily) {
 		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statistics plugin function getPictureOfTheDay()");
 	}
-	deprecated_functions::notify($deprecatednote);
+	deprecationNotice($deprecatednote);
 	if ($daily) {
 		$potd = getSerializedArray(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
@@ -386,13 +391,13 @@ function getRandomImages($daily = false) {
 	if (zp_loggedin()) {
 		$imageWhere = '';
 	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1";
+		$imageWhere = " AND " . $_zp_db->prefix('images') . ".show=1";
 	}
-	$result = query('SELECT `folder`, `filename` ' .
-					' FROM ' . prefix('images') .
-					' INNER JOIN ' . prefix('albums') . ' ON ' . prefix('images') . '.albumid = ' . prefix('albums') . '.id ' .
-					' INNER JOIN (SELECT CEIL(RAND() * (SELECT MAX(id) FROM ' . prefix('images') . ')) AS id) AS r2 ON ' . prefix('images') . '.id >= r2.id ' . 
-					' WHERE ' . prefix('albums') . '.folder!="" ' . $imageWhere . ' ORDER BY ' . prefix('images') . '.id LIMIT 1');
+	$result = $_zp_db->query('SELECT `folder`, `filename` ' .
+					' FROM ' . $_zp_db->prefix('images') .
+					' INNER JOIN ' . $_zp_db->prefix('albums') . ' ON ' . $_zp_db->prefix('images') . '.albumid = ' . $_zp_db->prefix('albums') . '.id ' .
+					' INNER JOIN (SELECT CEIL(RAND() * (SELECT MAX(id) FROM ' . $_zp_db->prefix('images') . ')) AS id) AS r2 ON ' . $_zp_db->prefix('images') . '.id >= r2.id ' . 
+					' WHERE ' . $_zp_db->prefix('albums') . '.folder!="" ' . $imageWhere . ' ORDER BY ' . $_zp_db->prefix('images') . '.id LIMIT 1');
 
 	$images = filterImageQuery($result, NULL);
 	if ($images) {
@@ -416,12 +421,12 @@ function getRandomImages($daily = false) {
  * @return object
  */
 function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
-	global $_zp_current_album, $_zp_gallery;
+	global $_zp_current_album, $_zp_gallery, $_zp_db;
 	$deprecatednote = gettext("Use the image_album_statistics plugin function getImageStatisic() with appropiate parameters");
 	if($daily) {
 		$deprecatednote .= ' ' . gettext("For picture of the day functionality use the image_album_statiscic plugin function getPictureOfTheDay()-");
 	}
-	deprecated_functions::notify($deprecatednote);
+	deprecationNotice($deprecatednote);
 	if (empty($rootAlbum) && !in_context(ZP_ALBUM)) {
 		return null;
 	}
@@ -459,31 +464,31 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 			$imageWhere = '';
 			$albumInWhere = '';
 		} else {
-			$imageWhere = " AND " . prefix('images') . ".show=1";
-			$albumInWhere = prefix('albums') . ".show=1";
+			$imageWhere = " AND " . $_zp_db->prefix('images') . ".show=1";
+			$albumInWhere = $_zp_db->prefix('albums') . ".show=1";
 		}
-		$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
+		$query = "SELECT id FROM " . $_zp_db->prefix('albums') . " WHERE ";
 		if ($albumInWhere) {
 			$query .= $albumInWhere . ' AND ';
 		}
-		$query .= "folder LIKE " . db_quote(db_LIKE_escape($albumfolder) . '%');
-		$result = query($query);
+		$query .= "folder LIKE " . $_zp_db->quote($_zp_db->likeEscape($albumfolder) . '%');
+		$result = $_zp_db->query($query);
 		if ($result) {
 			$albumids = array();
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$albumids[] = $row['id'];
 			}
 			if (empty($albumids)) {
 				$albumInWhere = ' AND ' . $albumInWhere;
 			} else {
-				$albumInWhere = ' AND ' . prefix('albums') . ".id IN (" . implode(',', $albumids) . ')';
+				$albumInWhere = ' AND ' . $_zp_db->prefix('albums') . ".id IN (" . implode(',', $albumids) . ')';
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			$sql = 'SELECT `folder`, `filename` ' .
-							' FROM ' . prefix('images') . ', ' . prefix('albums') .
-							' WHERE ' . prefix('albums') . '.folder!="" AND ' . prefix('images') . '.albumid = ' .
-							prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY RAND()';
-			$result = query($sql);
+							' FROM ' . $_zp_db->prefix('images') . ', ' . $_zp_db->prefix('albums') .
+							' WHERE ' . $_zp_db->prefix('albums') . '.folder!="" AND ' . $_zp_db->prefix('images') . '.albumid = ' .
+							$_zp_db->prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY RAND()';
+			$result = $_zp_db->query($sql);
 			$image = filterImageQuery($result, $album->name);
 		}
 	}
@@ -511,7 +516,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  */
 function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlbum = '', $width = NULL, $height = NULL, $crop = NULL, $fullimagelink = false) {
-	deprecated_functions::notify(gettext("Use the image_album_statistics plugin function getImageStatistic() with appropiate parameters. You might need to adjust your theme's CSS."));
+	deprecationNotice(gettext("Use the image_album_statistics plugin function getImageStatistic() with appropiate parameters. You might need to adjust your theme's CSS."));
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
@@ -580,7 +585,7 @@ function printRandomImages($number = 5, $class = null, $option = 'all', $rootAlb
  * @return string
  */
 function cleanHTML($html) {
-	deprecated_functions::notify(gettext("Use tidyHTML() instead"));
+	deprecationNotice(gettext("Use tidyHTML() instead"));
 	return tidyHTML($html);
 }
 
@@ -593,7 +598,7 @@ function cleanHTML($html) {
  * @return int
  */
 function getTotalImagesIn($album) {
-	deprecated_functions::notify(gettext("Use AlbumBase class method getNumAllImages() instead"));
+	deprecationNotice(gettext("Use AlbumBase class method getNumAllImages() instead"));
 	return $album->getNumAllImages();
 }
 
@@ -604,7 +609,7 @@ function getTotalImagesIn($album) {
  * @param array $row database row of the object
  */
 function checkPublishDates($row) {
-	deprecated_functions::notify(gettext("Use themeObject::checkScheduledPublishing() instead"));
+	deprecationNotice(gettext("Use themeObject::checkScheduledPublishing() instead"));
 	return themeObject::checkScheduledPublishing($row);
 }
 
@@ -623,49 +628,49 @@ class internal_deprecations {
 	 * @since 1.5
 	 */
 	static function LanguageSubdomains() {
-		deprecated_functions::notify(gettext('Use getLanguageSubdomains() instead'));
+		deprecationNotice(gettext('Use getLanguageSubdomains() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use getLanguageText() instead
 	 * @since 1.5
 	 */
 	static function getLanguageText() {
-		deprecated_functions::notify(gettext('Use getLanguageText() instead'));
+		deprecationNotice(gettext('Use getLanguageText() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use setexifvars() instead
 	 * @since 1.5
 	 */
 	static function setexifvars() {
-		deprecated_functions::notify(gettext('Use setexifvars() instead'));
+		deprecationNotice(gettext('Use setexifvars() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use hasPrimaryScripts() instead
 	 * @since 1.5
 	 */
 	static function hasPrimaryScripts() {
-		deprecated_functions::notify(gettext('Use hasPrimaryScripts() instead'));
+		deprecationNotice(gettext('Use hasPrimaryScripts() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use removeDir() instead
 	 * @since 1.5
 	 */
 	static function removeDir() {
-		deprecated_functions::notify(gettext('Use removeDir() instead'));
+		deprecationNotice(gettext('Use removeDir() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use tagURLs() instead
 	 * @since 1.5
 	 */
 	static function tagURLs() {
-		deprecated_functions::notify(gettext('Use tagURLs() instead'));
+		deprecationNotice(gettext('Use tagURLs() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use unTagURLs() instead
 	 * @since 1.5
 	 */
 	static function unTagURLs() {
-		deprecated_functions::notify(gettext('Use unTagURLs() instead'));
+		deprecationNotice(gettext('Use unTagURLs() instead'));
 	}
 
 	/**
@@ -673,14 +678,14 @@ class internal_deprecations {
 	 * @since 1.5
 	 */
 	static function updateImageProcessorLink() {
-		deprecated_functions::notify(gettext('Use updateImageProcessorLink() instead'));
+		deprecationNotice(gettext('Use updateImageProcessorLink() instead'));
 	}
 	/**
 	 * @deprecated Zenphoto 2.0 Use pluginDebug() instead
 	 * @since 1.5
 	 */
 	static function pluginDebug() {
-		deprecated_functions::notify(gettext('Use pluginDebug() instead'));
+		deprecationNotice(gettext('Use pluginDebug() instead'));
 	}
 
 	/**
@@ -688,7 +693,7 @@ class internal_deprecations {
 	 * @since 1.5
 	 */
 	static function removeTrailingSlash($string) {
-		deprecated_functions::notify(gettext('Use removeTrailingSlash() instead'));
+		deprecationNotice(gettext('Use removeTrailingSlash() instead'));
 	}
 
 	/**
@@ -696,7 +701,7 @@ class internal_deprecations {
 	 * @since 1.5
 	 */
 	static function tidyHTML() {
-		deprecated_functions::notify(gettext('Use tidyHTML() instead'));
+		deprecationNotice(gettext('Use tidyHTML() instead'));
 	}
 
 	/**
@@ -704,7 +709,7 @@ class internal_deprecations {
 	 * @since 1.4.6
 	 */
 	static function PersistentObject() {
-		deprecated_functions::notify(gettext('Use the instantiate method instead'));
+		deprecationNotice(gettext('Use the instantiate method instead'));
 	}
 
 }

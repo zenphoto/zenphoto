@@ -160,15 +160,16 @@ class PersistentObject {
 	 * A call to move is instant, it does not require a save() following it.
 	 */
 	function move($new_unique_set) {
+		global $_zp_db;
 		// Check if we have a row
-		$result = query_single_row('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+		$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix($this->table) . $_zp_db->getWhereClause($new_unique_set) . ' LIMIT 1;');
 		if (!$result || $result['id'] == $this->id) { //	we should not find an entry for the new unique set!
 			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
 				return false;
 			}
-			$sql = 'UPDATE ' . prefix($this->table) . getSetClause($new_unique_set) . ' ' . getWhereClause($this->unique_set);
-			$result = query($sql);
-			if ($result && db_affected_rows() == 1) { //	and the update should have effected just one record
+			$sql = 'UPDATE ' . $_zp_db->prefix($this->table) . $_zp_db->getSetClause($new_unique_set) . ' ' . $_zp_db->getWhereClause($this->unique_set);
+			$result = $_zp_db->query($sql);
+			if ($result && $_zp_db->getAffectedRows() == 1) { //	and the update should have effected just one record
 				$this->unique_set = $new_unique_set;
 				return true;
 			}
@@ -183,10 +184,11 @@ class PersistentObject {
 	 * A call to copy is instant, it does not require a save() following it.
 	 */
 	function copy($new_unique_set) {
+		global $_zp_db;
 		// Check if we have a row
-		$result = query('SELECT * FROM ' . prefix($this->table) . getWhereClause($new_unique_set) . ' LIMIT 1;');
+		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix($this->table) . $_zp_db->getWhereClause($new_unique_set) . ' LIMIT 1;');
 
-		if ($result && db_num_rows($result) == 0) {
+		if ($result && $_zp_db->getNumRows($result) == 0) {
 			if (!zp_apply_filter('copy_object', true, $this, $new_unique_set)) {
 				return false;
 			}
@@ -197,7 +199,7 @@ class PersistentObject {
 			if (empty($insert_data)) {
 				return true;
 			}
-			$sql = 'INSERT INTO ' . prefix($this->table) . ' (';
+			$sql = 'INSERT INTO ' . $_zp_db->prefix($this->table) . ' (';
 			$i = 0;
 			foreach (array_keys($insert_data) as $col) {
 				if ($i > 0)
@@ -213,14 +215,14 @@ class PersistentObject {
 				if (is_null($value)) {
 					$sql .= 'NULL';
 				} else {
-					$sql .= db_quote($value);
+					$sql .= $_zp_db->quote($value);
 				}
 				$i++;
 			}
 			$sql .= ');';
-			$success = query($sql);
-			if ($success && db_affected_rows() == 1) {
-				return zp_apply_filter('copy_object', db_insert_id(), $this);
+			$success = $_zp_db->query($sql);
+			if ($success && $_zp_db->getAffectedRows() == 1) {
+				return zp_apply_filter('copy_object', $_zp_db->insertID(), $this);
 			}
 		}
 		return false;
@@ -232,6 +234,7 @@ class PersistentObject {
 	 * @return bool
 	 */
 	function remove() {
+		global $_zp_db;
 		if (!zp_apply_filter('remove_object', true, $this)) {
 			return false;
 		}
@@ -241,10 +244,10 @@ class PersistentObject {
 		} else {
 			$id = '=' . $id;
 		}
-		$sql = 'DELETE FROM ' . prefix($this->table) . ' WHERE `id`' . $id;
+		$sql = 'DELETE FROM ' . $_zp_db->prefix($this->table) . ' WHERE `id`' . $id;
 		$this->loaded = false;
 		$this->transient = true;
-		return query($sql);
+		return $_zp_db->query($sql);
 	}
 
 	/**
@@ -289,16 +292,17 @@ class PersistentObject {
 	 * @return false if the record already exists, true if a new record was created.
 	 */
 	private function load($allowCreate) {
+		global $_zp_db;
 		$new = $entry = null;
 		// Set up the SQL query in case we need it...
-		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix($this->table) . $_zp_db->getWhereClause($this->unique_set) . ' LIMIT 1;';
 		// But first, try the cache.
 		if ($this->use_cache) {
 			$entry = $this->getFromCache();
 		}
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry)) {
-			$entry = query_single_row($sql, false);
+			$entry = $_zp_db->querySingleRow($sql, false);
 			// Save this entry into the cache so we get a hit next time.
 			if ($entry)
 				$this->addToCache($entry);
@@ -314,7 +318,7 @@ class PersistentObject {
 			} else {
 				$new = true;
 				$this->save();
-				$entry = query_single_row($sql);
+				$entry = $_zp_db->querySingleRow($sql);
 				// If we still don't have an entry, something went wrong...
 				if (!$entry)
 					return null;
@@ -334,6 +338,7 @@ class PersistentObject {
 	 * @param bool $checkupdates Default false. If true the internal $updates property is checked for actual changes so unnecessary saving is skipped. Applies to already existing objects only.
 	 */
 	function save($checkupdates = false) {
+		global $_zp_db;
 		if ($this->transient)
 			return false; // If this object isn't supposed to be persisted, don't save it.
 		if (!$this->unique_set) { // If we don't have a unique set, then this is incorrect. Don't attempt to save.
@@ -358,19 +363,19 @@ class PersistentObject {
 				if (is_null($value)) {
 					$vals .= "NULL";
 				} else {
-					$vals .= db_quote($value);
+					$vals .= $_zp_db->quote($value);
 				}
 				$i++;
 			}
-			$sql = 'INSERT INTO ' . prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';
-			$success = query($sql);
-			if (!$success || db_affected_rows() != 1) {
+			$sql = 'INSERT INTO ' . $_zp_db->prefix($this->table) . ' (' . $cols . ') VALUES (' . $vals . ')';
+			$success = $_zp_db->query($sql);
+			if (!$success || $_zp_db->getAffectedRows() != 1) {
 				return false;
 			}
 			foreach ($insert_data as $key => $value) { // copy over any changes
 				$this->data[$key] = $value;
 			}
-			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
+			$this->data['id'] = $this->id = (int) $_zp_db->insertID(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = null;
 			$this->tempdata = array(); 
@@ -388,7 +393,7 @@ class PersistentObject {
 						$this->setLastChangeUser('');
 					}
 				}
-				$sql = 'UPDATE ' . prefix($this->table) . ' SET';
+				$sql = 'UPDATE ' . $_zp_db->prefix($this->table) . ' SET';
 				$i = 0;
 				foreach ($this->updates as $col => $value) {
 					if ($i > 0)
@@ -396,14 +401,14 @@ class PersistentObject {
 					if (is_null($value)) {
 						$sql .= " `$col` = NULL";
 					} else {
-						$sql .= " `$col` = " . db_quote($value);
+						$sql .= " `$col` = " . $_zp_db->quote($value);
 					}
 					$this->data[$col] = $value;
 					$i++;
 				}
 				$sql .= ' WHERE id=' . $this->id . ';';
-				$success = query($sql);
-				if (!$success || db_affected_rows() != 1) {
+				$success = $_zp_db->query($sql);
+				if (!$success || $_zp_db->getAffectedRows() != 1) {
 					return false;
 				}
 				foreach ($this->updates as $key => $value) {

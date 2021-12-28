@@ -374,13 +374,13 @@ if (isset($_GET['action'])) {
 				$notify = '?switched';
 			} else {
 				if ($_POST['savethemeoptions'] == 'reset') {
-					$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($themename);
+					$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `theme`=' . $_zp_db->quote($themename);
 					if ($themealbum) {
 						$sql .= ' AND `ownerid`=' . $themealbum->getID();
 					} else {
 						$sql .= ' AND `ownerid`=0';
 					}
-					query($sql);
+					$_zp_db->query($sql);
 					$themeswitch = true;
 				} else {
 					$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
@@ -440,8 +440,8 @@ if (isset($_GET['action'])) {
 					if ($oig = getThemeOption('image_gray', $table, $themename))
 						$wmo = 99; // force cache clear
 					if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
-						$sql = 'UPDATE ' . prefix('images') . ' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
-						query($sql);
+						$sql = 'UPDATE ' . $_zp_db->prefix('images') . ' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
+						$_zp_db->query($sql);
 						$wmo = 99; // force cache clear as well.
 					}
 				}
@@ -516,7 +516,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 		$table = 'albums';
 		$targetid = 'customalbumsort';
 	}
-	$result = db_list_fields($table);
+	$result = $_zp_db->listFields($table);
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {

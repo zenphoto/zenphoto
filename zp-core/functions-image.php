@@ -536,9 +536,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
  * fill a flipped value in the tag.
  */
 function getImageRotation($imgfile) {
+	global $_zp_db;
 	$rotation = false;
 	$imgfile_db = substr(filesystemToInternal($imgfile), strlen(ALBUM_FOLDER_SERVERPATH));
-	$result = query_single_row('SELECT EXIFOrientation FROM ' . prefix('images') . ' AS i JOIN ' . prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . db_quote($imgfile_db) . ' = CONCAT(a.folder,"/",i.filename)');
+	$result = $_zp_db->querySingleRow('SELECT EXIFOrientation FROM ' . $_zp_db->prefix('images') . ' AS i JOIN ' . $_zp_db->prefix('albums') . ' as a ON i.albumid = a.id WHERE ' . $_zp_db->quote($imgfile_db) . ' = CONCAT(a.folder,"/",i.filename)');
 	if (is_null($result)) {
 		//try the file directly as this might be an image not in the database
 		if (in_array(getSuffix($imgfile), array('jpg', 'jpeg', 'tif', 'tiff'))) {

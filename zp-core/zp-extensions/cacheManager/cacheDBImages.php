@@ -78,12 +78,12 @@ printAdminHeader('overview', 'DB'); ?>
 				<?php
 			}
 			foreach ($fields as $field) {
-				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*i.php((\\.|[^\"])*)"';
-				$result = query($sql);
+				$sql = 'SELECT * FROM ' . $_zp_db->prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*i.php((\\.|[^\"])*)"';
+				$result = $_zp_db->query($sql);
 				$title = '';
 				if ($result) {
 					$imageprocessor_item = '';
-					while ($row = db_fetch_assoc($result)) {
+					while ($row = $_zp_db->fetchAssoc($result)) {
 						$title = cacheManager::getTitle($table, $row);
 						$imageprocessor_total++;
 						$imageprocessor_item++;
@@ -98,8 +98,8 @@ printAdminHeader('overview', 'DB'); ?>
 								} else {
 									$text = updateImageProcessorLink($row[$field]);
 									if ($text != $row[$field] && !$searchmode) {
-										$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($text) . ' WHERE `id`=' . $row['id'];
-										$success = query($sql);
+										$sql = 'UPDATE ' . $_zp_db->prefix($table) . ' SET `' . $field . '`=' . $_zp_db->quote($text) . ' WHERE `id`=' . $row['id'];
+										$success = $_zp_db->query($sql);
 										if($success) { 
 											echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%u image processor reference updated.', '%u image processor references updated.', $imageprocessor_item), $imageprocessor_item) . '</li>';
 										}
@@ -110,11 +110,11 @@ printAdminHeader('overview', 'DB'); ?>
 					}
 				} 
 		
-				$sql = 'SELECT * FROM ' . prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*' . CACHEFOLDER . '((\\.|[^\"])*)"';
-				$result = query($sql);
+				$sql = 'SELECT * FROM ' . $_zp_db->prefix($table) . ' WHERE `' . $field . '` REGEXP "<img.*src\s*=\s*\".*' . CACHEFOLDER . '((\\.|[^\"])*)"';
+				$result = $_zp_db->query($sql);
 
 				if ($result) {
-					while ($row = db_fetch_assoc($result)) {
+					while ($row = $_zp_db->fetchAssoc($result)) {
 						preg_match_all('~\<img.*src\s*=\s*"((\\.|[^"])*)~', $row[$field], $matches);
 						$found_item = $fixed_item = '';
 						foreach ($matches[1] as $key => $match) {
@@ -150,8 +150,8 @@ printAdminHeader('overview', 'DB'); ?>
 						}
 						if (!$searchmode) {
 							if ($updated) {
-								$sql = 'UPDATE ' . prefix($table) . ' SET `' . $field . '`=' . db_quote($row[$field]) . ' WHERE `id`=' . $row['id'];
-								$success = query($sql);
+								$sql = 'UPDATE ' . $_zp_db->prefix($table) . ' SET `' . $field . '`=' . $_zp_db->quote($row[$field]) . ' WHERE `id`=' . $row['id'];
+								$success = $_zp_db->query($sql);
 								if($success) {
 									echo '<li><strong>'. $title . '</strong> – <em>' . $field . '</em>: ' . sprintf(ngettext('%1$u of %2$u found cached image required re-caching.', '%1$u of %2$u found cached images required re-caching.', $found_item), $fixed_item, $found_item) . '</li>';
 								}

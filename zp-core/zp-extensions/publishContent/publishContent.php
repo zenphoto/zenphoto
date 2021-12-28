@@ -49,8 +49,8 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $action) {
 				$i = strrpos($action, '_');
 				$imageid = sanitize_numeric(substr($action, $i + 1));
-				$rowi = query_single_row('SELECT * FROM ' . prefix('images') . ' WHERE `id`=' . $imageid);
-				$rowa = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $rowi['albumid']);
+				$rowi = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('images') . ' WHERE `id`=' . $imageid);
+				$rowa = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $rowi['albumid']);
 				$album = AlbumBase::newAlbum($rowa['folder']);
 				$image = Image::newImage($album, $rowi['filename']);
 				switch (substr($action, 0, $i)) {
@@ -147,7 +147,7 @@ echo '</head>';
 							$albumidlist .= ' OR ';
 							$albumids .= ' OR ';
 						}
-						$albumidlist .= prefix('images') . '.albumid=' . $ID;
+						$albumidlist .= $_zp_db->prefix('images') . '.albumid=' . $ID;
 						$albumids .= '`id`=' . $ID;
 						$i++;
 					}
@@ -168,17 +168,17 @@ echo '</head>';
 				}
 
 				$mtime = dateTimeConvert($requestdate, true);
-				$sql = "SELECT `folder`, `id` FROM " . prefix('albums') . ' WHERE `show`="0"' . $albumids;
-				$result = query_full_array($sql);
+				$sql = "SELECT `folder`, `id` FROM " . $_zp_db->prefix('albums') . ' WHERE `show`="0"' . $albumids;
+				$result = $_zp_db->queryFullArray($sql);
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						$publish_albums_list[$row['folder']] = $row['id'];
 					}
 				}
-				$sql = 'SELECT `filename`, ' . prefix('images') . '.id as id, folder FROM ' . prefix('images') . ',' . prefix('albums') . ' WHERE ' .
-								prefix('images') . '.show="0" AND ' . prefix('images') . '.mtime < "' . $mtime . '" AND ' . prefix('albums') . '.id=' .
-								prefix('images') . '.albumid' . $albumidlist;
-				$result = query_full_array($sql);
+				$sql = 'SELECT `filename`, ' . $_zp_db->prefix('images') . '.id as id, folder FROM ' . $_zp_db->prefix('images') . ',' . $_zp_db->prefix('albums') . ' WHERE ' .
+								$_zp_db->prefix('images') . '.show="0" AND ' . $_zp_db->prefix('images') . '.mtime < "' . $mtime . '" AND ' . $_zp_db->prefix('albums') . '.id=' .
+								$_zp_db->prefix('images') . '.albumid' . $albumidlist;
+				$result = $_zp_db->queryFullArray($sql);
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						$publish_images_list[$row['folder']][$row['filename']] = $row['id'];

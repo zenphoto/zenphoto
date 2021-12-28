@@ -58,7 +58,7 @@ function processTags($object) {
  * @return object
  */
 function updatePage(&$reports, $newpage = false) {
-	global $_zp_zenpage, $_zp_current_admin_obj;
+	global $_zp_zenpage, $_zp_current_admin_obj, $_zp_db;
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
 	$content = updateImageProcessorLink(process_language_string_save("content", EDITOR_SANITIZE_LEVEL));
@@ -104,7 +104,7 @@ function updatePage(&$reports, $newpage = false) {
 	$id = sanitize($_POST['id']);
 	$rslt = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
-		$rslt = query('UPDATE ' . prefix('pages') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
+		$rslt = $_zp_db->query('UPDATE ' . $_zp_db->prefix('pages') . ' SET `titlelink`=' . $_zp_db->quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
 		} else {
@@ -329,7 +329,7 @@ function printPagesListTable($page, $flag) {
  * @return object
  */
 function updateArticle(&$reports, $newarticle = false) {
-	global $_zp_current_admin_obj;
+	global $_zp_current_admin_obj, $_zp_db;
 	$date = date('Y-m-d_H-i-s');
 	$title = process_language_string_save("title", 2);
 	$author = sanitize($_POST['author']);
@@ -379,7 +379,7 @@ function updateArticle(&$reports, $newarticle = false) {
 
 	$rslt = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
-		$rslt = query('UPDATE ' . prefix('news') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
+		$rslt = $_zp_db->query('UPDATE ' . $_zp_db->prefix('news') . ' SET `titlelink`=' . $_zp_db->quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$rslt) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
 		} else {
@@ -415,7 +415,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setTruncation(getcheckboxState('truncation'));
 	processTags($article);
 	$categories = array();
-	$result2 = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
+	$result2 = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY titlelink");
 	foreach ($result2 as $cat) {
 		if (isset($_POST["cat" . $cat['id']])) {
 			$categories[] = $cat['titlelink'];
@@ -515,7 +515,7 @@ function printPageArticleTags($obj) {
  * @param string $option "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  */
 function printCategorySelection($id = '', $option = '') {
-	global $_zp_zenpage;
+	global $_zp_zenpage, $_zp_db;
 
 	$selected = '';
 	echo "<ul class='zenpagechecklist'>\n";
@@ -523,7 +523,7 @@ function printCategorySelection($id = '', $option = '') {
 	foreach ($all_cats as $cats) {
 		$catobj = new ZenpageCategory($cats['titlelink']);
 		if ($option != "all") {
-			$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
+			$cat2news = $_zp_db->querySingleRow("SELECT cat_id FROM " . $_zp_db->prefix('news2cat') . " WHERE news_id = " . $id . " AND cat_id = " . $catobj->getID());
 			if (isset($cat2news['cat_id']) && !empty($cat2news['cat_id'])) {
 				$selected = "checked ='checked'";
 			}
@@ -850,7 +850,7 @@ function printAuthorDropdown() {
  *
  */
 function updateCategory(&$reports, $newcategory = false) {
-	global $_zp_zenpage, $_zp_current_admin_obj;
+	global $_zp_zenpage, $_zp_current_admin_obj, $_zp_db;
 	$date = date('Y-m-d_H-i-s');
 	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
@@ -887,7 +887,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	}
 	$titleok = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
-		$titleok = query('UPDATE ' . prefix('news_categories') . ' SET `titlelink`=' . db_quote($titlelink) . ' WHERE `id`=' . $id, false);
+		$titleok = $_zp_db->query('UPDATE ' . $_zp_db->prefix('news_categories') . ' SET `titlelink`=' . $_zp_db->quote($titlelink) . ' WHERE `id`=' . $id, false);
 		if (!$titleok) {
 			$titlelink = $oldtitlelink; // force old link so data gets saved
 		} else {
@@ -1065,9 +1065,10 @@ function printCategoryListSortableTable($cat, $flag) {
  * @param string $option "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  */
 function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') {
+	global $_zp_db;
 	$selected = '';
 	if (($option != "all") && !$cat->transient && !empty($articleid)) {
-		$cat2news = query_single_row("SELECT cat_id FROM " . prefix('news2cat') . " WHERE news_id = " . $articleid . " AND cat_id = " . $cat->getID());
+		$cat2news = $_zp_db->querySingleRow("SELECT cat_id FROM " . $_zp_db->prefix('news2cat') . " WHERE news_id = " . $articleid . " AND cat_id = " . $cat->getID());
 		$selected = "";
 		if (isset($cat2news['cat_id']) && !empty($cat2news['cat_id'])) {
 			$selected = "checked ='checked'";
@@ -1208,6 +1209,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
  * @return array
  */
 function updateItemSortorder($mode = 'pages') {
+	global $_zp_db;
 	if (!empty($_POST['order'])) { // if someone didn't sort anything there are no values!
 		$order = processOrder($_POST['order']);
 		$parents = array('NULL');
@@ -1218,14 +1220,14 @@ function updateItemSortorder($mode = 'pages') {
 			$myparent = $parents[$level - 1];
 			switch ($mode) {
 				case 'pages':
-					$dbtable = prefix('pages');
+					$dbtable = $_zp_db->prefix('pages');
 					break;
 				case 'categories':
-					$dbtable = prefix('news_categories');
+					$dbtable = $_zp_db->prefix('news_categories');
 					break;
 			}
-			$sql = "UPDATE " . $dbtable . " SET `sort_order` = " . db_quote(implode('-', $orderlist)) . ", `parentid`= " . $myparent . " WHERE `id`=" . $id;
-			query($sql);
+			$sql = "UPDATE " . $dbtable . " SET `sort_order` = " . $_zp_db->quote(implode('-', $orderlist)) . ", `parentid`= " . $myparent . " WHERE `id`=" . $id;
+			$_zp_db->query($sql);
 		}
 		return true;
 	}
@@ -1769,19 +1771,20 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * @return bool
 	 */
 	function checkTitlelinkDuplicate($titlelink, $itemtype) {
+		global $_zp_db;
 		switch ($itemtype) {
 			case 'article':
-				$table = prefix('news');
+				$table = $_zp_db->prefix('news');
 				break;
 			case 'category':
-				$table = prefix('news_categories');
+				$table = $_zp_db->prefix('news_categories');
 				break;
 			case 'page':
-				$table = prefix('pages');
+				$table = $_zp_db->prefix('pages');
 				break;
 		}
-		$sql = 'SELECT `id` FROM ' . $table . ' WHERE `titlelink`=' . db_quote($titlelink);
-		$rslt = query_single_row($sql, false);
+		$sql = 'SELECT `id` FROM ' . $table . ' WHERE `titlelink`=' . $_zp_db->quote($titlelink);
+		$rslt = $_zp_db->querySingleRow($sql, false);
 		return $rslt;
 	}
 

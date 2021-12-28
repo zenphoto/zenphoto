@@ -218,12 +218,12 @@ class cacheManager {
 	 * @param mixed $currentValue
 	 */
 	function handleOption($option, $currentValue) {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_db;
 		$currenttheme = $_zp_gallery->getCurrentTheme();
 		$custom = array();
-		$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
+		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
 		$key = 0;
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$theme = $row['aux'];
 			$data = getSerializedArray($row['data']);
 			$custom[$theme][] = $data;
@@ -349,6 +349,7 @@ class cacheManager {
 	 * @return string
 	 */
 	function handleOptionSave($themename, $themealbum) {
+		global $_zp_db;
 		$cache = array();
 		foreach ($_POST as $key => $value) {
 			preg_match('/^cacheManager_(.*)_(.*)/', $key, $matches);
@@ -356,12 +357,12 @@ class cacheManager {
 				$cache[$matches[2]][$matches[1]] = sanitize(trim($value));
 			}
 		}
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
+		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
 		foreach ($cache as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
 				$cacheimage['theme'] = preg_replace("/[\s\"\']+/", "-", $cacheimage['theme']);
-				$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($cacheimage['theme']) . ',' . db_quote(serialize($cacheimage)) . ')';
-				query($sql);
+				$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . $_zp_db->quote($cacheimage['theme']) . ',' . $_zp_db->quote(serialize($cacheimage)) . ')';
+				$_zp_db->query($sql);
 			}
 		}
 		return false;
@@ -384,6 +385,7 @@ class cacheManager {
 	 * @param bool $maxspace
 	 */
 	static function addCacheSize($owner, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark = NULL, $effects = NULL, $maxspace = false) {
+		global $_zp_db;
 		$cacheSize = serialize(array(
 				'theme' => $owner,
 				'apply' => false,
@@ -399,8 +401,8 @@ class cacheManager {
 				'gray' => $effects,
 				'maxspace' => $maxspace,
 				'valid' => 1));
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . db_quote($owner) . ',' . db_quote($cacheSize) . ')';
-		query($sql);
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . $_zp_db->quote($owner) . ',' . $_zp_db->quote($cacheSize) . ')';
+		$_zp_db->query($sql);
 	}
 
 	/**
@@ -441,9 +443,10 @@ class cacheManager {
 	 * @return string
 	 */
 	static function getTitle($table, $row) {
+		global $_zp_db;
 		switch ($table) {
 			case 'images':
-				$album = query_single_row('SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $row['albumid']);
+				$album = $_zp_db->querySingleRow('SELECT `folder` FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $row['albumid']);
 				$title = gettext('Missing album');
 				if ($album) {
 					$title = sprintf(gettext('%1$s: image %2$s'), $album['folder'], $row['filename']);
@@ -510,8 +513,9 @@ class cacheManager {
 	 * @return array
 	 */
 	static function getSizes($mode = 'all') {
-		$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
-		while ($row = db_fetch_assoc($result)) {
+		global $_zp_db;
+		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type` = "cacheManager" ORDER BY `aux`');
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$sizes[] = getSerializedArray($row['data']);
 		}
 		$sizes = sortMultiArray($sizes, array('theme', 'thumb', 'image_size', 'image_width', 'image_height'));
@@ -785,7 +789,8 @@ class cacheManager {
 	}
 
 	static function overviewbutton($buttons) {
-		if (query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
+		global $_zp_db;
+		if ($_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
 			$enable = true;
 			$title = gettext('Finds images that have not been cached and creates the cached versions.');
 		} else {
@@ -877,8 +882,9 @@ class cacheManager {
 	}
 
 	static function albumbutton($html, $object, $prefix) {
+		global $_zp_db;
 		$html .= '<hr />';
-		if (query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
+		if ($_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" LIMIT 1')) {
 			$disable = '';
 			$title = gettext('Finds images that have not been cached and creates the cached versions.');
 		} else {
@@ -894,13 +900,15 @@ class cacheManager {
 	 * @param string $owner) Owner of the cache size (theme or extension)
 	 */
 	static function deleteCacheSizes($owner) {
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux`=' . db_quote($owner));
+		global $_zp_db;
+		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux`=' . $_zp_db->quote($owner));
 	}
 
 	/**
 	 * Removes up all sizes by non existing themes and non active plugins on this install
 	 */
 	static function cleanupCacheSizes() {
+		global $_zp_db;
 		$sizes = cacheManager::getSizes('inactive');
 		$sizes_delete = array();
 		foreach ($sizes as $size) {
@@ -910,7 +918,7 @@ class cacheManager {
 		}
 		if (!empty($sizes_delete)) {
 			$delete = implode(',', $sizes_delete);
-			$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux` IN (' . $delete . ')');
+			$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux` IN (' . $delete . ')');
 		}
 	}
 

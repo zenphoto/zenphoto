@@ -297,7 +297,7 @@ class Administrator extends PersistentObject {
 	 * @param bool $checkupdates Default false. If true the internal $updates property is checked for actual changes so unnecessary saving is skipped. Applies to already existing objects only.
 	 */
 	function save($checkupdates = false) {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_db;
 		if (DEBUG_LOGIN) {
 			debugLogVar("Administrator->save()", $this);
 		}
@@ -308,8 +308,8 @@ class Administrator extends PersistentObject {
 		parent::save($checkupdates);
 		$id = $this->getID();
 		if (is_array($objects)) {
-			$sql = "DELETE FROM " . prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
-			$result = query($sql, false);
+			$sql = "DELETE FROM " . $_zp_db->prefix('admin_to_object') . ' WHERE `adminid`=' . $id;
+			$result = $_zp_db->query($sql, false);
 			foreach ($objects as $object) {
 				if (array_key_exists('edit', $object)) {
 					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW);
@@ -320,25 +320,25 @@ class Administrator extends PersistentObject {
 					case 'album':
 						$album = AlbumBase::newAlbum($object['data']);
 						$albumid = $album->getID();
-						$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
-						$result = query($sql);
+						$sql = "INSERT INTO " . $_zp_db->prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
+						$result = $_zp_db->query($sql);
 						break;
 					case 'pages':
-						$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
+						$sql = 'SELECT * FROM ' . $_zp_db->prefix('pages') . ' WHERE `titlelink`=' . $_zp_db->quote($object['data']);
+						$result = $_zp_db->querySingleRow($sql);
 						if (is_array($result)) {
 							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
-							$result = query($sql);
+							$sql = "INSERT INTO " . $_zp_db->prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
+							$result = $_zp_db->query($sql);
 						}
 						break;
 					case 'news':
-						$sql = 'SELECT * FROM ' . prefix('news_categories') . ' WHERE `titlelink`=' . db_quote($object['data']);
-						$result = query_single_row($sql);
+						$sql = 'SELECT * FROM ' . $_zp_db->prefix('news_categories') . ' WHERE `titlelink`=' . $_zp_db->quote($object['data']);
+						$result = $_zp_db->querySingleRow($sql);
 						if (is_array($result)) {
 							$objectid = $result['id'];
-							$sql = "INSERT INTO " . prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
-							$result = query($sql);
+							$sql = "INSERT INTO " . $_zp_db->prefix('admin_to_object') . " (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
+							$result = $_zp_db->query($sql);
 						}
 						break;
 				}
@@ -350,6 +350,7 @@ class Administrator extends PersistentObject {
 	 * Removes a user from the system
 	 */
 	function remove() {
+		global $_zp_db;
 		zp_apply_filter('remove_user', $this);
 		$album = $this->getAlbum();
 		$id = $this->getID();
@@ -357,8 +358,8 @@ class Administrator extends PersistentObject {
 			if (!empty($album)) { //	Remove users album as well
 				$album->remove();
 			}
-			$sql = "DELETE FROM " . prefix('admin_to_object') . " WHERE `adminid`=$id";
-			$result = query($sql);
+			$sql = "DELETE FROM " . $_zp_db->prefix('admin_to_object') . " WHERE `adminid`=$id";
+			$result = $_zp_db->query($sql);
 		} else {
 			return false;
 		}
@@ -371,8 +372,8 @@ class Administrator extends PersistentObject {
 	function getAlbum() {
 		$id = $this->get('prime_album');
 		if (!empty($id)) {
-			$sql = 'SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`=' . $id;
-			$result = query_single_row($sql);
+			$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $id;
+			$result = $_zp_db->querySingleRow($sql);
 			if ($result) {
 				$album = AlbumBase::newAlbum($result['folder']);
 				return $album;

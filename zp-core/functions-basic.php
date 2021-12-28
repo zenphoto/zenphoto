@@ -188,7 +188,15 @@ if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
 	define('LOGS_MOD', DATA_MOD);
 }
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
-	require_once(dirname(__FILE__) . '/functions-db-' . strtolower($_zp_conf_vars['db_software']) . '.php');
+	require_once SERVERPATH . '/' . ZENFOLDER . '/functions-db.php'; // legacy functions wrapper
+	require_once SERVERPATH . '/' . ZENFOLDER . '/class-dbbase.php'; // empty base db class
+	require_once SERVERPATH . '/' . ZENFOLDER . '/class-db' . strtolower($_zp_conf_vars['db_software']) . '.php'; // actual db handler
+	define('DATABASE_SOFTWARE', $_zp_conf_vars['db_software']);
+	define('DATABASE_MIN_VERSION', '5.5.3');
+	define('DATABASE_DESIRED_VERSION', '5.7.0');
+	define('DATABASE_MARIADB_MIN_VERSION', '5.5.0'); // more or less MySQL 5.5
+	define('DATABASE_MARIADB_DESIRED_VERSION', '10.1.0'); // more or less MySQL 5.7
+	$_zp_dbclass = 'db' . $_zp_conf_vars['db_software'];
 	$dbconfig_defaults = array(
 			'db_software' => $_zp_conf_vars['db_software'],
 			'mysql_user' => null,
@@ -196,14 +204,15 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 			'mysql_host' => 'localhost',
 			'mysql_database' => null,
 			'mysql_port' => 3306,
-			'mysql_prefix' => '',
+			'mysql_prefix' => 'zp_',
 			'UTF-8' => true);
-	foreach($dbconfig_defaults as $key => $value) {
+	foreach ($dbconfig_defaults as $key => $value) {
 		if (!isset($_zp_conf_vars[$key]) || ($key != 'mysql_prefix' && isset($_zp_conf_vars[$key]) && empty($_zp_conf_vars[$key]))) {
 			$_zp_conf_vars[$key] = $value;
 		}
 	}
-	$data = db_connect($_zp_conf_vars, false);
+	$_zp_db = new $_zp_dbclass($_zp_conf_vars, false);
+	$data = $_zp_db->connection;
 } else {
 	$data = false;
 }
@@ -357,12 +366,12 @@ function js_encode($this_string) {
  * @param string $key the name of the option.
  */
 function getOption($key) {
-	global $_zp_conf_vars, $_zp_options;
+	global $_zp_conf_vars, $_zp_options, $_zp_db;
 	$key = strtolower($key);
 	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
 		// option table not yet loaded, load it (but not the theme options!)
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
-		$optionlist = query_full_array($sql, false);
+		$sql = "SELECT `name`, `value` FROM " . $_zp_db->prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
+		$optionlist = $_zp_db->queryFullArray($sql, false);
 		if ($optionlist !== false) {
 			$_zp_options = array();
 			foreach ($optionlist as $option) {
@@ -387,26 +396,26 @@ function getOption($key) {
  *               "zp-core/zp-extensions/<plugin>.php" for official plugin and /plugins/<plugin>.php for user plugin options
  */
 function setOption($key, $value, $persistent = true, $creator = NULL) {
-	global $_zp_options;
+	global $_zp_options, $_zp_db;
 	if ($persistent) {
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`,`ownerid`,`theme`,`value`,`creator`) VALUES (' . db_quote($key) . ',0,"",';
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('options') . ' (`name`,`ownerid`,`theme`,`value`,`creator`) VALUES (' . $_zp_db->quote($key) . ',0,"",';
 		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
 		if (is_null($value)) {
 			$sql .= 'NULL';
 			$sqlu .= 'NULL';
 		} else {
-			$sql .= db_quote($value);
-			$sqlu .= db_quote($value);
+			$sql .= $_zp_db->quote($value);
+			$sqlu .= $_zp_db->quote($value);
 		}
   
   if (is_null($creator)) {
 			$sql .= ',NULL';
 		} else {
-			$sql .= ','.db_quote($creator);
+			$sql .= ','.$_zp_db->quote($creator);
 		}
   
 		$sql .= ') ' . $sqlu;
-		$result = query($sql, false);
+		$result = $_zp_db->query($sql, false);
 	} else {
 		$result = true;
 	}
@@ -427,7 +436,7 @@ function setOption($key, $value, $persistent = true, $creator = NULL) {
  * @param mixed $default the value to be used as the default
  */
 function setOptionDefault($key, $default) {
-	global $_zp_options;
+	global $_zp_options, $_zp_db;
 	if (!is_null($default)) {
 		$bt = debug_backtrace();
 		$b = array_shift($bt);
@@ -442,19 +451,19 @@ function setOptionDefault($key, $default) {
 			$creator = NULL;
 		}
 
-		$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . $_zp_db->quote($key) . ',';
 		if (is_null($default)) {
 			$sql .= 'NULL';
 		} else {
-			$sql .= db_quote($default);
+			$sql .= $_zp_db->quote($default);
 		}
 		$sql .= ',0,"",';
 		if (is_null($creator)) {
 			$sql .= 'NULL);';
 		} else {
-			$sql .= db_quote($creator) . ');';
+			$sql .= $_zp_db->quote($creator) . ');';
 		}
-		if (query($sql, false)) {
+		if ($_zp_db->query($sql, false)) {
 			$_zp_options[strtolower($key)] = $default;
 		}
 	}
@@ -467,10 +476,10 @@ function setOptionDefault($key, $default) {
  * @param string $theme
  */
 function loadLocalOptions($albumid, $theme) {
-	global $_zp_options;
+	global $_zp_options, $_zp_db;
 	//raw theme options
-	$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=0';
-	$optionlist = query_full_array($sql, false);
+	$sql = "SELECT `name`, `value` FROM " . $_zp_db->prefix('options') . ' WHERE `theme`=' . $_zp_db->quote($theme) . ' AND `ownerid`=0';
+	$optionlist = $_zp_db->queryFullArray($sql, false);
 	if ($optionlist !== false) {
 		foreach ($optionlist as $option) {
 			$_zp_options[strtolower($option['name'])] = $option['value'];
@@ -478,8 +487,8 @@ function loadLocalOptions($albumid, $theme) {
 	}
 	if ($albumid) {
 		//album-theme options
-		$sql = "SELECT `name`, `value` FROM " . prefix('options') . ' WHERE `theme`=' . db_quote($theme) . ' AND `ownerid`=' . $albumid;
-		$optionlist = query_full_array($sql, false);
+		$sql = "SELECT `name`, `value` FROM " . $_zp_db->prefix('options') . ' WHERE `theme`=' . $_zp_db->quote($theme) . ' AND `ownerid`=' . $albumid;
+		$optionlist = $_zp_db->queryFullArray($sql, false);
 		if ($optionlist !== false) {
 			foreach ($optionlist as $option) {
 				$_zp_options[strtolower($option['name'])] = $option['value'];
@@ -513,10 +522,10 @@ function renameOption($oldkey, $newkey) {
  * @param string $key
  */
 function purgeOption($key) {
-	global $_zp_options;
+	global $_zp_options, $_zp_db;
 	unset($_zp_options[strtolower($key)]);
-	$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `name`=' . db_quote($key);
-	query($sql, false);
+	$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`=' . $_zp_db->quote($key);
+	$_zp_db->query($sql, false);
 }
 
 /**
@@ -1503,15 +1512,16 @@ function stripSuffix($filename) {
  * @return string
  */
 function getAlbumInherited($folder, $field, &$id) {
+	global $_zp_db;
 	$folders = explode('/', filesystemToInternal($folder));
 	$album = array_shift($folders);
-	$like = ' LIKE ' . db_quote(db_LIKE_escape($album));
+	$like = ' LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
 	while (count($folders) > 0) {
 		$album .= '/' . array_shift($folders);
-		$like .= ' OR `folder` LIKE ' . db_quote(db_LIKE_escape($album));
+		$like .= ' OR `folder` LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
 	}
-	$sql = 'SELECT `id`, `' . $field . '` FROM ' . prefix('albums') . ' WHERE `folder`' . $like;
-	$result = query_full_array($sql);
+	$sql = 'SELECT `id`, `' . $field . '` FROM ' . $_zp_db->prefix('albums') . ' WHERE `folder`' . $like;
+	$result = $_zp_db->queryFullArray($sql);
 	if (!is_array($result))
 		return '';
 	while (count($result) > 0) {
@@ -1686,8 +1696,10 @@ function checkInstall() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	if (function_exists('db_close'))
-		db_close();
+	global $_zp_db;
+	if (is_object($_zp_db)) {
+		$_zp_db->close();
+	}
 	exit();
 }
 
@@ -1697,6 +1709,7 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
+	global $_zp_db;
 	$all_algos = hash_algos();
 	$algo = 'sha256';
 	if(!in_array($algo, $all_algos)) { // make sure we have the algo
@@ -1718,7 +1731,7 @@ function installSignature() {
 	} else {
 		$s = 'software unknown';
 	}
-	$dbs = db_software();
+	$dbs = $_zp_db->getSoftware();
 	$version = ZENPHOTO_VERSION;
 	$i = strpos($version, '-');
 	if ($i !== false) {
@@ -2034,4 +2047,43 @@ function callUserFunction($function, $parameter = array()) {
 		}
 	}
 	return false;
+}
+
+/**
+ * Logs a deprecated notice including traces in the debuglog
+ * 
+ * @since ZenphotoCMS 1.6 - based on deprecated_functions::notify() from the deprecated_functions plugin written by sbillard 
+ * @param string $use Additional message, e.g. what to use instead
+ * @param bool $parameter Set to true if this should notify about deprecated parameter usage (default false)
+ */
+function deprecationNotice($use, $parameter = false) {
+	$traces = @debug_backtrace();
+	$fcn = $traces[1]['function'];
+	if (empty($fcn))
+		$fcn = gettext('function');
+	if (!empty($use))
+		$use = ' ' . $use;
+	//get the container folder
+	if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
+		$script = basename(dirname($traces[0]['file']));
+	} else {
+		$script = 'unknown';
+	}
+	if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
+		$script = basename($traces[1]['file']);
+		$line = $traces[1]['line'];
+	} else {
+		$script = $line = gettext('unknown');
+	}
+	if (@$traces[1]['class']) {
+		$flag = '_method';
+	} else {
+		$flag = '';
+	}
+	if ($parameter) {
+		$message = sprintf(gettext('Parameter usage of %1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . $use;
+	} else {
+		$message = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . $use;
+	}
+	trigger_error($message, E_USER_WARNING);
 }

@@ -3562,10 +3562,11 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
  * @param string $order set to 'desc' for the list to be in descending order
  * @return array
  */
-function getAllDates($order = 'asc') {
+function getAllDates($order = 'asc') {	
+	global $_zp_db;
 	$alldates = array();
 	$cleandates = array();
-	$sql = "SELECT `date` FROM " . prefix('images');
+	$sql = "SELECT `date` FROM " . $_zp_db->prefix('images');
 	if (!zp_loggedin()) {
 		$sql .= " WHERE `show` = 1";
 	}
@@ -3581,12 +3582,12 @@ function getAllDates($order = 'asc') {
 		}
 		$sql = substr($sql, 0, -5);
 	}
-	$result = query($sql);
+	$result = $_zp_db->query($sql);
 	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$alldates[] = $row['date'];
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {

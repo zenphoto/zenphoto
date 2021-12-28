@@ -116,8 +116,9 @@ class multipleLayoutOptions {
  * @return result
  */
 function getSelectedLayout($obj, $type) {
+	global $_zp_db;
 	if ($obj && $obj->exists) {
-		$assignedlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$assignedlayout = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 		if (!$assignedlayout || empty($assignedlayout['data'])) {
 			$assignedlayout = checkParentLayouts($obj, $type);
 		}
@@ -135,6 +136,7 @@ function getSelectedLayout($obj, $type) {
  * @return result
  */
 function checkParentLayouts($obj, $type) {
+	global $_zp_db;
 	$parents = array();
 	switch ($type) {
 		case 'multiple_layouts_images':
@@ -149,7 +151,7 @@ function checkParentLayouts($obj, $type) {
 			if (count($parents) > 0) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parentobj) {
-					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
+					$parentlayouts = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
 					if ($parentlayouts && $parentlayouts['data']) {
 						return $parentlayouts;
 					}
@@ -167,7 +169,7 @@ function checkParentLayouts($obj, $type) {
 					} else {
 						$parentobj = new ZenpageCategory($parent);
 					}
-					$parentlayouts = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
+					$parentlayouts = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux`=' . $parentobj->getID() . ' AND `type` = "' . $type . '"');
 					if ($parentlayouts && $parentlayouts['data']) {
 						return $parentlayouts;
 					}
@@ -185,7 +187,8 @@ function checkParentLayouts($obj, $type) {
  * @return results
  */
 function checkLayoutUseForImages($obj) {
-	$albumimagelayout = query_single_row("SELECT id, `data` FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+	global $_zp_db;
+	$albumimagelayout = $_zp_db->querySingleRow("SELECT id, `data` FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
 	if ($albumimagelayout) {
 		return $albumimagelayout;
 	} else {
@@ -196,7 +199,7 @@ function checkLayoutUseForImages($obj) {
 		if (count($parents) > 0) {
 			$parents = array_reverse($parents);
 			foreach ($parents as $parent) {
-				$parentimagelayouts = query_full_array('SELECT id, `data` FROM ' . prefix('plugin_storage') . ' WHERE `aux`=' . $parent->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+				$parentimagelayouts = $_zp_db->queryFullArray('SELECT id, `data` FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux`=' . $parent->getID() . ' AND `type` = "multiple_layouts_albums_images"');
 				if ($parentimagelayouts && $parentimagelayouts['data']) {
 					return $parentimagelayouts;
 				}
@@ -247,7 +250,7 @@ function layoutSelector_album($html, $obj, $prefix) {
  * @param string$secondary
  */
 function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	$selectdefault = '';
 	$selected = '';
 	$files = array();
@@ -320,7 +323,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 	if ($obj->transient) {
 		$getlayout = false;
 	} else {
-		$getlayout = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$getlayout = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 	}
 	if (!$child && ($key = array_search($filesmask . '.php', $files)) !== false) {
 		unset($files[$key]);
@@ -413,27 +416,28 @@ function getLayout($path) {
  * @return string
  */
 function saveLayoutSelection($message, $obj) {
+	global $_zp_db;
 	$selectedlayout = '';
 	$type = 'multiple_layouts_' . $obj->table;
 	if (isset($_POST[$type])) {
 		$selectedlayout = sanitize($_POST[$type]);
 		$table = $obj->table;
-		$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$exists = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 		if ($selectedlayout) { // not default
 			if ($exists) {
-				$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+				$query = $_zp_db->query('UPDATE ' . $_zp_db->prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . $_zp_db->quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
 			} else {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES (' . db_quote($type) . ', ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+				$query = $_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (type,aux,data) VALUES (' . $_zp_db->quote($type) . ', ' . $obj->getID() . ', ' . $_zp_db->quote($selectedlayout) . ')');
 			}
 		} else {
 			if ($exists) { //	got to get rid of the record
-				$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
+				$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
 			} else {
 				$query = true; //	no harm, no foul
 			}
 		}
 		if (!$query) {
-			$message .= '<p class="errorbox">' . sprintf(gettext('Query failure: %s'), db_error()) . '</p>';
+			$message .= '<p class="errorbox">' . sprintf(gettext('Query failure: %s'), $_zp_db->getError()) . '</p>';
 		}
 	}
 	return $message;
@@ -446,6 +450,7 @@ function saveLayoutSelection($message, $obj) {
  * @return string
  */
 function saveZenphotoLayoutSelection($obj, $prefix) {
+	global $_zp_db;
 	$cssIDappend = '';
 	$selectedlayout = '';
 	$titlelink = '';
@@ -453,42 +458,42 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
 	$type = 'multiple_layouts_' . $table;
 	if (isset($_POST[$prefix . $type])) {
 		$selectedlayout = sanitize($_POST[$prefix . $type]);
-		$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
+		$exists = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 		if ($selectedlayout) { // not default
 			if ($exists) {
-				$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+				$query = $_zp_db->query('UPDATE ' . $_zp_db->prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . $_zp_db->quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
 			} else {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $type . '", ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+				$query = $_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $type . '", ' . $obj->getID() . ', ' . $_zp_db->quote($selectedlayout) . ')');
 			}
 		} else {
 			if ($exists) { //	got to get rid of the record
-				$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
+				$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
 			} else {
 				$query = true; //	no harm, no foul
 			}
 		}
 		if ($table == 'albums') { //	deal with the default images selection, clear image selections
 			if (isset($_POST['layout_selector_resetimagelayouts'])) {
-				$result = query_full_array('SELECT `id` FROM ' . prefix('images') . ' WHERE `albumid`=' . $obj->getID());
+				$result = $_zp_db->queryFullArray('SELECT `id` FROM ' . $_zp_db->prefix('images') . ' WHERE `albumid`=' . $obj->getID());
 				if ($result) {
 					$imagelist = '';
 					foreach ($result as $row) {
 						$imagelist .= '`aux`=' . $row['id'] . ' OR ';
 					}
-					$query = query($sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="multiple_layouts_images" AND (' . substr($imagelist, 0, -4) . ')', false);
+					$query = $_zp_db->query($sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="multiple_layouts_images" AND (' . substr($imagelist, 0, -4) . ')', false);
 				}
 			}
-			$exists = query_single_row("SELECT * FROM " . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
+			$exists = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "multiple_layouts_albums_images"');
 			$selectedlayout = isset($_POST[$prefix . 'multiple_layouts_albums_images']) ? sanitize($_POST[$prefix . 'multiple_layouts_albums_images']) : NULL;
 			if ($selectedlayout) { // not default
 				if ($exists) {
-					$query = query('UPDATE ' . prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . db_quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
+					$query = $_zp_db->query('UPDATE ' . $_zp_db->prefix('plugin_storage') . ' SET `aux`=' . $obj->getID() . ', `data`=' . $_zp_db->quote($selectedlayout) . ' WHERE `id`=' . $exists['id']);
 				} else {
-					$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $obj->getID() . ', ' . db_quote($selectedlayout) . ')');
+					$query = $_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $obj->getID() . ', ' . $_zp_db->quote($selectedlayout) . ')');
 				}
 			} else {
 				if ($exists) { //	got to get rid of the record
-					$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
+					$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $exists['id']);
 				} else {
 					$query = true; //	no harm, no foul
 				}
@@ -506,11 +511,12 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
  * @return bool
  */
 function deleteLayoutSelection($allow, $obj) {
+	global $_zp_db;
 	$type = 'multiple_layouts_' . $obj->table;
 	if (getOption($type)) {
-		$query = query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
+		$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
 		if (AlbumBase::isAlbumClass($obj)) {
-			$result = query_single_row('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
+			$result = $_zp_db->querySingleRow('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
 		}
 	}
 	return $allow;
@@ -523,16 +529,17 @@ function deleteLayoutSelection($allow, $obj) {
  * @param $obj
  */
 function copyLayoutSelection($newid, $obj) {
+	global $_zp_db;
 	$type = 'multiple_layouts_' . $obj->table;
 	if (getOption($type)) {
-		$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
+		$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "' . $type . '"', false);
 		if ($result) {
-			$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $result['type'] . '", ' . $newid . ', ' . db_quote($result['data']) . ')');
+			$query = $_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (type,aux,data) VALUES ("' . $result['type'] . '", ' . $newid . ', ' . $_zp_db->quote($result['data']) . ')');
 		}
 		if (AlbumBase::isAlbumClass($obj)) {
-			$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
+			$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND type = "multiple_layouts_albums_images"', false);
 			if ($result) {
-				$query = query('INSERT INTO ' . prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $newid . ', ' . db_quote($result['data']) . ')');
+				$query = $_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (type,aux,data) VALUES ("multiple_layouts_albums_images", ' . $newid . ', ' . $_zp_db->quote($result['data']) . ')');
 			}
 		}
 	}

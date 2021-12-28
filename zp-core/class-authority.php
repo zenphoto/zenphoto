@@ -25,13 +25,14 @@ class Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		global $_zp_db;
 		setOptionDefault('admin_lastvisit_timeframe', 600);
 		setOptionDefault('admin_lastvisit', true);
 		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
-		$sql = 'SELECT * FROM ' . prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
-		$admins = query($sql, false);
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
+		$admins = $_zp_db->query($sql, false);
 		if ($admins) {
-			while ($user = db_fetch_assoc($admins)) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
 				$this->admin_all[$user['id']] = $user;
 				switch ($user['valid']) {
 					case 1:
@@ -47,7 +48,7 @@ class Authority {
 						break;
 				}
 			}
-			db_free_result($admins);
+			$_zp_db->freeResult($admins);
 		}
 	}
 
@@ -203,16 +204,17 @@ class Authority {
 	 * @return Administrator
 	 */
 	static function getAnAdmin($criteria) {
+		global $_zp_db;
 		$selector = array();
 		foreach ($criteria as $match => $value) {
 			if (is_numeric($value)) {
 				$selector[] = $match . $value;
 			} else {
-				$selector[] = $match . db_quote($value);
+				$selector[] = $match . $_zp_db->quote($value);
 			}
 		}
-		$sql = 'SELECT * FROM ' . prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
-		$admin = query_single_row($sql, false);
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
+		$admin = $_zp_db->querySingleRow($sql, false);
 		if ($admin) {
 			return self::newAdministrator($admin['user'], $admin['valid']);
 		} else {
@@ -353,6 +355,7 @@ class Authority {
 	 * @param int $oldversion
 	 */
 	function migrateAuth($to) {
+		global $_zp_db;
 		if ($to > self::$supports_version || $to < self::$preferred_version - 1) {
 			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Authority supports only %2$s and %3$s.)'), $to, self::$supports_version, self::$preferred_version), E_USER_NOTICE);
 			return false;
@@ -361,15 +364,15 @@ class Authority {
 		$oldversion = self::getVersion();
 		setOption('libauth_version', $to);
 		$this->admin_users = array();
-		$sql = "SELECT * FROM " . prefix('administrators') . "ORDER BY `rights` DESC, `id`";
-		$admins = query($sql, false);
+		$sql = "SELECT * FROM " . $_zp_db->prefix('administrators') . "ORDER BY `rights` DESC, `id`";
+		$admins = $_zp_db->query($sql, false);
 		if ($admins) { // something to migrate
 			$oldrights = array();
 			foreach (self::getRights($oldversion) as $key => $right) {
 				$oldrights[$key] = $right['value'];
 			}
 			$currentrights = self::getRights($to);
-			while ($user = db_fetch_assoc($admins)) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
 				$update = false;
 				$rights = $user['rights'];
 				$newrights = $currentrights['NO_RIGHTS']['value'];
@@ -420,10 +423,10 @@ class Authority {
 					}
 				}
 
-				$sql = 'UPDATE ' . prefix('administrators') . ' SET `rights`=' . $newrights . ' WHERE `id`=' . $user['id'];
-				$success = $success && query($sql);
+				$sql = 'UPDATE ' . $_zp_db->prefix('administrators') . ' SET `rights`=' . $newrights . ' WHERE `id`=' . $user['id'];
+				$success = $success && $_zp_db->query($sql);
 			} // end loop
-			db_free_result($admins);
+			$_zp_db->freeResult($admins);
 		}
 		return $success;
 	}
@@ -437,6 +440,7 @@ class Authority {
 	 * @return mixed Query result
 	 */
 	static function updateAdminField($update, $value, $constraints) {
+		global $_zp_db;
 		$where = '';
 		foreach ($constraints as $field => $clause) {
 			if (!empty($where))
@@ -444,16 +448,16 @@ class Authority {
 			if (is_numeric($clause)) {
 				$where .= $field . $clause;
 			} else {
-				$where .= $field . db_quote($clause);
+				$where .= $field . $_zp_db->quote($clause);
 			}
 		}
 		if (is_null($value)) {
 			$value = 'NULL';
 		} else {
-			$value = db_quote($value);
+			$value = $_zp_db->quote($value);
 		}
-		$sql = 'UPDATE ' . prefix('administrators') . ' SET `' . $update . '`=' . $value . ' WHERE ' . $where;
-		$result = query($sql);
+		$sql = 'UPDATE ' . $_zp_db->prefix('administrators') . ' SET `' . $update . '`=' . $value . ' WHERE ' . $where;
+		$result = $_zp_db->query($sql);
 		return $result;
 	}
 

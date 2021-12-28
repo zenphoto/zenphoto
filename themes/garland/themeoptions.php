@@ -107,7 +107,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsSupported() {
-		global $personalities;
+		global $personalities, $_zp_db;
 		if (!extensionEnabled('print_album_menu') && (($m = getOption('garland_menu')) == 'garland' || $m == 'zenpage' || $m == 'garland')) {
 			$note = '<p class="notebox">' . sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'), $m) . '</p>';
 		} else {
@@ -133,7 +133,7 @@ class ThemeOptions {
 						'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.') . $note)
 		);
 		if (extensionEnabled('zenpage')) {
-			$unpublishedpages = query_full_array("SELECT title,titlelink FROM " . prefix('pages') . " WHERE `show` != 1 ORDER by `sort_order`");
+			$unpublishedpages = $_zp_db->queryFullArray("SELECT title,titlelink FROM " . $_zp_db->prefix('pages') . " WHERE `show` != 1 ORDER by `sort_order`");
 			$list = array();
 			foreach ($unpublishedpages as $page) {
 				$list[get_language_string($page['title'])] = $page['titlelink'];
@@ -171,12 +171,13 @@ class ThemeOptions {
 	}
 
 	function handleOption($option, $currentValue) {
+		global $_zp_db;
 		switch ($option) {
 			case 'garland_menu':
 				$menusets = array();
 				echo '<select id="garland_menuset" name="garland_menu"';
 				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
-					$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
+					$result = $_zp_db->queryFullArray("SELECT DISTINCT menuset FROM " . $_zp_db->prefix('menu') . " ORDER BY menuset");
 					foreach ($result as $set) {
 						$menusets[$set['menuset']] = $set['menuset'];
 					}

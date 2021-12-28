@@ -592,15 +592,16 @@ class RSS extends feed {
 	 *
 	 */
 	protected function hitcounter() {
+		global $_zp_db;
 		if (!zp_loggedin() && getOption('RSS_hitcounter')) {
 			$rssuri = $this->getCacheFilename();
 			$type = 'rsshitcounter';
-			$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
+			$checkitem = $_zp_db->querySingleRow("SELECT `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `aux` = " . $_zp_db->quote($rssuri) . " AND `type` = '" . $type . "'", true);
 			if ($checkitem) {
 				$hitcount = $checkitem['data'] + 1;
-				query("UPDATE " . prefix('plugin_storage') . " SET `data` = " . $hitcount . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
+				$_zp_db->query("UPDATE " . $_zp_db->prefix('plugin_storage') . " SET `data` = " . $hitcount . " WHERE `aux` = " . $_zp_db->quote($rssuri) . " AND `type` = '" . $type . "'", true);
 			} else {
-				query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . db_quote($rssuri) . ",1)", true);
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . $_zp_db->quote($rssuri) . ",1)", true);
 			}
 		}
 	}
@@ -622,6 +623,7 @@ class RSS extends feed {
 	 * @return array
 	 */
 	protected function getItemGallery($item) {
+		global $_zp_db;
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
@@ -631,9 +633,9 @@ class RSS extends feed {
 			$title = $albumobj->getTitle($this->locale);
 			if (true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
-				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images') . " WHERE albumid = " . $albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
+				$latestimage = $_zp_db->querySingleRow("SELECT mtime FROM " . $_zp_db->prefix('images') . " WHERE albumid = " . $albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
 				if ($latestimage && $this->sortorder == 'latestupdated') {
-					$count = db_count('images', "WHERE albumid = " . $albumobj->getID() . " AND mtime = " . $latestimage['mtime']);
+					$count = $_zp_db->count('images', "WHERE albumid = " . $albumobj->getID() . " AND mtime = " . $latestimage['mtime']);
 				} else {
 					$count = $totalimages;
 				}

@@ -142,7 +142,7 @@ echo '</head>';
 
 $messages = '';
 
-$prefix = trim(prefix(), '`');
+$prefix = trim($_zp_db->prefix(), '`');
 $prefixLen = strlen($prefix);
 
 if (isset($_REQUEST['backup'])) {
@@ -158,12 +158,12 @@ if (isset($_REQUEST['backup'])) {
 		$compression_handler = 'no';
 	}
 	$tables = array();
-	$result = db_show('tables');
+	$result = $_zp_db->show('tables');
 	if ($result) {
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$tables[] = $row;
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 	}
 	if (!empty($tables)) {
 		$folder = getBackupFolder(SERVERPATH);
@@ -190,9 +190,9 @@ if (isset($_REQUEST['backup'])) {
 				$table = array_shift($row);
 				$unprefixed_table = substr($table, strlen($prefix));
 				$sql = 'SELECT * from `' . $table . '`';
-				$result = query($sql);
+				$result = $_zp_db->query($sql);
 				if ($result) {
-					while ($tablerow = db_fetch_assoc($result)) {
+					while ($tablerow = $_zp_db->fetchAssoc($result)) {
 						extendExecution();
 						$storestring = serialize($tablerow);
 						$storestring = compressRow($storestring, $compression_level);
@@ -209,7 +209,7 @@ if (isset($_REQUEST['backup'])) {
 							$counter = 0;
 						}
 					}
-					db_free_result($result);
+					$_zp_db->freeResult($result);
 				}
 				if ($writeresult === false)
 					break;
@@ -261,13 +261,13 @@ if (isset($_REQUEST['backup'])) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$resource = db_show('tables');
+				$resource = $_zp_db->show('tables');
 				if ($resource) {
 					$result = array();
-					while ($row = db_fetch_assoc($resource)) {
+					while ($row = $_zp_db->fetchAssoc($resource)) {
 						$result[] = $row;
 					}
-					db_free_result($resource);
+					$_zp_db->freeResult($resource);
 				} else {
 					$result = false;
 				}
@@ -280,13 +280,13 @@ if (isset($_REQUEST['backup'])) {
 						$table = array_shift($row);
 						$tables[$table] = array();
 						$table_cleared[$table] = false;
-						$result2 = db_list_fields(substr($table, $prefixLen));
+						$result2 = $_zp_db->listFields(substr($table, $prefixLen));
 						if (is_array($result2)) {
 							foreach ($result2 as $row) {
 								$tables[$table][] = $row['Field'];
 							}
 						}
-						$result2 = db_show('index', $table);
+						$result2 = $_zp_db->show('index', $table);
 						if (is_array($result2)) {
 							foreach ($result2 as $row) {
 								if (is_array($row)) {
@@ -324,8 +324,8 @@ if (isset($_REQUEST['backup'])) {
 					$table = substr($string, 0, $sep);
 					if (array_key_exists($prefix . $table, $tables)) {
 						if (!$table_cleared[$prefix . $table]) {
-							if (!db_truncate_table($table)) {
-								$errors[] = gettext('Truncate table<br />') . db_error();
+							if (!$_zp_db->truncateTable($table)) {
+								$errors[] = gettext('Truncate table<br />') . $_zp_db->getError();
 							}
 							$table_cleared[$prefix . $table] = true;
 						}
@@ -348,7 +348,7 @@ if (isset($_REQUEST['backup'])) {
 								if (is_null($element)) {
 									$row[$key] = 'NULL';
 								} else {
-									$row[$key] = db_quote($element);
+									$row[$key] = $_zp_db->quote($element);
 								}
 							}
 						}
@@ -358,10 +358,10 @@ if (isset($_REQUEST['backup'])) {
 									break;
 								}
 								if ($row['theme'] == 'NULL') {
-									$row['theme'] = db_quote('');
+									$row['theme'] = $_zp_db->quote('');
 								}
 							}
-							$sql = 'INSERT INTO ' . prefix($table) . ' (`' . implode('`,`', array_keys($row)) . '`) VALUES (' . implode(',', $row) . ')';
+							$sql = 'INSERT INTO ' . $_zp_db->prefix($table) . ' (`' . implode('`,`', array_keys($row)) . '`) VALUES (' . implode(',', $row) . ')';
 							foreach ($unique[$prefix . $table] as $exclude) {
 								unset($row[$exclude]);
 							}
@@ -374,8 +374,8 @@ if (isset($_REQUEST['backup'])) {
 							} else {
 								$sqlu = '';
 							}
-							if (!query($sql . $sqlu, false)) {
-								$errors[] = $sql . $sqlu . '<br />' . db_error();
+							if (!$_zp_db->query($sql . $sqlu, false)) {
+								$errors[] = $sql . $sqlu . '<br />' . $_zp_db->getError();
 							}
 						}
 					} else {
@@ -518,8 +518,8 @@ if (isset($_GET['compression'])) {
 				?>
 				<p>
 					<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
-					<?php printf(gettext("Database name <strong>%s</strong>"), db_name()); ?><br />
-					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim(prefix(), '`')); ?>
+					<?php printf(gettext("Database name <strong>%s</strong>"), $_zp_db->getDBName()); ?><br />
+					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim($_zp_db->prefix(), '`')); ?>
 				</p>
 				<?php
 				if (!$_zp_current_admin_obj->reset) {

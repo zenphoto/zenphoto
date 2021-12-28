@@ -135,7 +135,7 @@ if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . i
 //$_zp_script_timer['theme script load'] = microtime();
 zp_apply_filter('zenphoto_information', $_zp_script, $_zp_loaded_plugins, $_index_theme);
 //$_zp_script_timer['expose information'] = microtime();
-db_close(); // close the database as we are done
+$_zp_db->close(); // close the database as we are done
 echo "\n";
 list($usec, $sec) = explode(' ', array_shift($_zp_script_timer));
 $first = $last = (float) $usec + (float) $sec;

@@ -698,9 +698,9 @@ class setup {
 	}
 
 	static function checkUnique($table, $unique) {
-		global $_zp_setup_autorun;
+		global $_zp_setup_autorun, $_zp_db;
 		$sql = 'SHOW KEYS FROM ' . $table;
-		$result = query_full_array($sql);
+		$result = $_zp_db->queryFullArray($sql);
 		foreach ($result as $key) {
 			if (!$key['Non_unique']) {
 				unset($unique[$key['Column_name']]);

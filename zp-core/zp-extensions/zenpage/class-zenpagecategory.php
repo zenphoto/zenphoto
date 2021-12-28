@@ -179,12 +179,13 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 */
 	function remove() {
+		global $_zp_db;
 		if ($success = parent::remove()) {
 			$sortorder = $this->getSortOrder();
-			$success = query("DELETE FROM " . prefix('news2cat') . " WHERE cat_id = " . $this->getID()); // the cat itself
+			$success = $_zp_db->query("DELETE FROM " . $_zp_db->prefix('news2cat') . " WHERE cat_id = " . $this->getID()); // the cat itself
 			// get Subcategories
 			$mychild = strlen($sortorder) + 4;
-			$result = query_full_array('SELECT * FROM ' . prefix('news_categories') . " WHERE `sort_order` like '" . $sortorder . "-%'");
+			$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('news_categories') . " WHERE `sort_order` like '" . $sortorder . "-%'");
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					if (strlen($row['sort_order']) == $mychild) {
@@ -305,6 +306,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
+		global $_zp_db;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
@@ -315,8 +317,8 @@ class ZenpageCategory extends ZenpageRoot {
 			if (empty($parentID)) {
 				$obj = NULL;
 			} else {
-				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
-				$result = query_single_row($sql);
+				$sql = 'SELECT `titlelink` FROM ' . $_zp_db->prefix('news_categories') . ' WHERE `id`=' . $parentID;
+				$result = $_zp_db->querySingleRow($sql);
 				$obj = new ZenpageCategory($result['titlelink']);
 				$hash = $obj->getPassword();
 			}

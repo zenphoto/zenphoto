@@ -295,33 +295,34 @@ class userDataExport {
 	 * @return array
 	 */
 	function getCommentData($field) {
+		global $_zp_db;
 		if (!in_array($field, array('name', 'lastchangeuser'))) {
 			return array();
 		}
 		$sectiontitle = gettext('Comments');
 		switch ($field) {
 			case 'name': 
-				$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE name = " . db_quote($this->username);
+				$dbquery = "SELECT * FROM " . $_zp_db->prefix('comments') . " WHERE name = " . $_zp_db->quote($this->username);
 				break;
 			case 'lastchangeuser':
-				$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE lastchangeuser = " . db_quote($this->username);
+				$dbquery = "SELECT * FROM " . $_zp_db->prefix('comments') . " WHERE lastchangeuser = " . $_zp_db->quote($this->username);
 				break;
 			case 'email':
 				if (!empty($this->usermail)) {
-					$dbquery = "SELECT * FROM " . prefix('comments') . " WHERE email = " . db_quote($this->usermail);
+					$dbquery = "SELECT * FROM " . $_zp_db->prefix('comments') . " WHERE email = " . $_zp_db->quote($this->usermail);
 				}
 				break;
 		}
-		$result = query($dbquery);
+		$result = $_zp_db->query($dbquery);
 		$tempdata = array();
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$obj = getItemByID($row['type'], $row['ownerid']);
 				$row['URL'] = SERVER_HTTP_HOST . $obj->getLink() . '#zp_comment_id_' . $row['id'];
 				$tempdata[] = $row;
 			}
 
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			if (!empty($tempdata)) {
 				return array($sectiontitle => $tempdata);
 			}
@@ -336,27 +337,28 @@ class userDataExport {
 	 * @return array
 	 */
 	function getAlbumData($field) {
+		global $_zp_db;
 		if (!in_array($field, array('owner', 'user', 'lastchangeuser'))) {
 			return array();
 		}
 		switch ($field) {
 			case 'owner':
 				$sectiontitle = gettext('Album owner');
-				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE owner = " . db_quote($this->username);
+				$dbquery = "SELECT folder FROM " . $_zp_db->prefix('albums') . " WHERE owner = " . $_zp_db->quote($this->username);
 				break;
 			case 'user':
 				$sectiontitle = gettext('Album guest user');
-				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE user = " . db_quote($this->username);
+				$dbquery = "SELECT folder FROM " . $_zp_db->prefix('albums') . " WHERE user = " . $_zp_db->quote($this->username);
 				break;
 			case 'lastchangeuser':
 				$sectiontitle = gettext('Album last change user');
-				$dbquery = "SELECT folder FROM " . prefix('albums') . " WHERE lastchangeuser = " . db_quote($this->username);
+				$dbquery = "SELECT folder FROM " . $_zp_db->prefix('albums') . " WHERE lastchangeuser = " . $_zp_db->quote($this->username);
 				break;
 		}
-		$result = query($dbquery);
+		$result = $_zp_db->query($dbquery);
 		if ($result) {
 			$tempdata = array();
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$albobj = AlbumBase::newAlbum($row['folder']);
 				$title = $albobj->getTitle();
 				if (!$albobj->isPublished()) {
@@ -367,7 +369,7 @@ class userDataExport {
 				}
 				$tempdata[$title] = SERVER_HTTP_HOST . $albobj->getLink();
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			if (!empty($tempdata)) {
 				return array($sectiontitle => $tempdata);
 			}
@@ -382,33 +384,34 @@ class userDataExport {
 	 * @return array
 	 */
 	function getImageData($field) {
+		global $_zp_db;
 		if (!in_array($field, array('owner', 'user', 'lastchangeuser'))) {
 			return array();
 		}
 		switch ($field) {
 			case 'owner':
 				$sectiontitle = gettext('Image owner');
-				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE owner = " . db_quote($this->username) . ' ORDER By albumid ASC';
+				$dbquery = "SELECT filename, albumid FROM " . $_zp_db->prefix('images') . " WHERE owner = " . $_zp_db->quote($this->username) . ' ORDER By albumid ASC';
 				break;
 			case 'user':
 				$sectiontitle = gettext('Image guest user');
-				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE user = " . db_quote($this->username) . ' ORDER By albumid ASC';
+				$dbquery = "SELECT filename, albumid FROM " . $_zp_db->prefix('images') . " WHERE user = " . $_zp_db->quote($this->username) . ' ORDER By albumid ASC';
 				break;
 			case 'lastchangeuser':
 				$sectiontitle = gettext('Image last change user');
-				$dbquery = "SELECT filename, albumid FROM " . prefix('images') . " WHERE lastchangeuser = " . db_quote($this->username) . ' ORDER By albumid ASC';
+				$dbquery = "SELECT filename, albumid FROM " . $_zp_db->prefix('images') . " WHERE lastchangeuser = " . $_zp_db->quote($this->username) . ' ORDER By albumid ASC';
 				break;
 		}
-		$result = query($dbquery);
+		$result = $_zp_db->query($dbquery);
 		$tempdata = array();
 		$imagesbyalbum = array();
 		$images = array();
 		$image_cache_suffix = getOption('image_cache_suffix');
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$imagesbyalbum[$row['albumid']][] = $row['filename'];
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			foreach ($imagesbyalbum as $albumid => $images) {
 				$albobj = getItemByID('albums', $albumid);
 				if ($albobj && !$albobj->isDynamic()) {
@@ -456,6 +459,7 @@ class userDataExport {
 	 * @return array
 	 */
 	function getZenpageData($itemtype, $field) {
+		global $_zp_db;
 		// only pages support all three fields
 		if (!in_array($itemtype, array('news', 'newscategories', 'pages')) || !in_array($field, array('author', 'lastchangeuser', 'user')) || ($itemtype == 'news' && $field == 'user') || ($itemtype == 'newscategories' && !in_array($field, array('user', 'lastchangeuser')))) {
 			return array();
@@ -463,35 +467,35 @@ class userDataExport {
 		switch ($itemtype) {
 			case 'news':
 				$sectiontitle = gettext('News articles');
-				$dbquery = "SELECT titlelink FROM " . prefix('news');
+				$dbquery = "SELECT titlelink FROM " . $_zp_db->prefix('news');
 				break;
 			case 'newscategories':
 				$sectiontitle = gettext('News categories');
-				$dbquery = "SELECT titlelink FROM " . prefix('news_categories');
+				$dbquery = "SELECT titlelink FROM " . $_zp_db->prefix('news_categories');
 				break;
 			case 'pages':
 				$sectiontitle = gettext('Pages');
-				$dbquery = "SELECT titlelink FROM " . prefix('pages');
+				$dbquery = "SELECT titlelink FROM " . $_zp_db->prefix('pages');
 				break;
 		}
 		switch ($field) {
 			case 'author':
 				$sectiontitle .= ' ' . gettext('author');
-				$dbquery .= " WHERE author = " . db_quote($this->username);
+				$dbquery .= " WHERE author = " . $_zp_db->quote($this->username);
 				break;
 			case 'lastchangeuser':
 				$sectiontitle .= ' ' . gettext('last change user');
-				$dbquery .= " WHERE lastchangeuser = " . db_quote($this->username);
+				$dbquery .= " WHERE lastchangeuser = " . $_zp_db->quote($this->username);
 				break;
 			case 'user':
 				$sectiontitle .= ' ' . gettext('guest user');
-				$dbquery .= " WHERE user = " . db_quote($this->username);
+				$dbquery .= " WHERE user = " . $_zp_db->quote($this->username);
 				break;
 		}
-		$result = query($dbquery);
+		$result = $_zp_db->query($dbquery);
 		if ($result) {
 			$tempdata = array();
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				switch ($itemtype) {
 					case 'news':
 						$obj = new ZenpageNews($row['titlelink']);
@@ -512,7 +516,7 @@ class userDataExport {
 				}
 				$tempdata[$title] = SERVER_HTTP_HOST . $obj->getLink();
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			if (!empty($tempdata)) {
 				return array($sectiontitle => $tempdata);
 			}

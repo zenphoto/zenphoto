@@ -116,7 +116,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	<div class="box" style="padding: 10px">
 		<?php
 		$id = sanitize_numeric($_GET['id']);
-		$commentarr = query_single_row("SELECT * FROM " . prefix('comments') . " WHERE id = $id LIMIT 1");
+		$commentarr = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('comments') . " WHERE id = $id LIMIT 1");
 		if ($commentarr) {
 			extract($commentarr);
 			$commentarr = array_merge($commentarr, getSerializedArray($commentarr['custom_data']));

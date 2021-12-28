@@ -716,7 +716,7 @@ if (extensionEnabled('slideshow2')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars;
+		global $_myFavorites, $_zp_conf_vars, $_zp_db;
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
@@ -772,7 +772,7 @@ if (extensionEnabled('slideshow2')) {
 				$albumobj = $_myFavorites;
 				$returnpath = $_myFavorites->getLink($pagenumber);
 			} else {
-				$albumq = query_single_row("SELECT title, folder FROM " . prefix('albums') . " WHERE id = " . $albumid);
+				$albumq = $_zp_db->querySingleRow("SELECT title, folder FROM " . $_zp_db->prefix('albums') . " WHERE id = " . $albumid);
 				$albumobj = AlbumBase::newAlbum($albumq['folder']);
 				if (empty($_POST['imagenumber'])) {
 					$returnpath = $albumobj->getLink($pagenumber);

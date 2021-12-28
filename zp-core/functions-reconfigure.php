@@ -83,13 +83,13 @@ function reconfigureAction($mandatory) {
  * Checks details of configuration change
  * 
  * @global type $_configMutex
- * @global type $_zp_DB_connection
+ * @global type $_zp_db
  * @param bool $auto
  * @return type
  */
 function checkSignature($auto) {
-	global $_configMutex, $_zp_DB_connection;
-	if (function_exists('query_full_array') && $_zp_DB_connection) {
+	global $_configMutex, $_zp_db;
+	if (is_object($_zp_db) && method_exists($_zp_db, 'queryFullArray') && $_zp_db->connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
 	} else {

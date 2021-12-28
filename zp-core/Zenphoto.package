@@ -376,6 +376,9 @@ zp-core/class-administrator.php
 zp-core/class-album.php
 zp-core/class-albumbase.php
 zp-core/class-authority.php
+zp-core/class-dbbase.php
+zp-core/class-dbmysqli.php
+zp-core/class-dbpdo_mysql.php
 zp-core/class-dynamicalbum.php
 zp-core/class-external_auth.php
 zp-core/class-feed.php
@@ -408,9 +411,7 @@ zp-core/functions-basic.php
 zp-core/functions-common.php
 zp-core/functions-config.php
 zp-core/functions-controller.php
-zp-core/functions-db_null.php
-zp-core/functions-db-mysqli.php
-zp-core/functions-db-pdo_mysql.php
+zp-core/functions-db.php
 zp-core/functions-filter.php
 zp-core/functions-graphicsgd.php
 zp-core/functions-graphicsimagick.php
@@ -433,6 +434,13 @@ zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
 zp-core/i.php
 zp-core/images
+zp-core/images_errors
+zp-core/images_errors/err-cachewrite.png
+zp-core/images_errors/err-failimage.png
+zp-core/images_errors/err-imagegeneral.png
+zp-core/images_errors/err-imagenotfound.png
+zp-core/images_errors/err-noflashplayer.png
+zp-core/images_errors/err-passwordprotected.png
 zp-core/images/action.png
 zp-core/images/add.png
 zp-core/images/admin-boxback.jpg
@@ -460,12 +468,6 @@ zp-core/images/drag_handle_flag.png
 zp-core/images/drag_handle.png
 zp-core/images/edit-delete.png
 zp-core/images/envelope.png
-zp-core/images/err-cachewrite.png
-zp-core/images/err-failimage.png
-zp-core/images/err-imagegeneral.png
-zp-core/images/err-imagenotfound.png
-zp-core/images/err-noflashplayer.png
-zp-core/images/err-passwordprotected.png
 zp-core/images/fail.png
 zp-core/images/favicon.ico
 zp-core/images/folder_picture_dn.png
@@ -1396,6 +1398,7 @@ zp-core/zp-extensions/slideshow2/jquery.cycle2.flip.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.ie-fade.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.js.map
 zp-core/zp-extensions/slideshow2/jquery.cycle2.min.js
+zp-core/zp-extensions/slideshow2/jquery.cycle2.min.js.map
 zp-core/zp-extensions/slideshow2/jquery.cycle2.scrollVert.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.shuffle.min.js
 zp-core/zp-extensions/slideshow2/jquery.cycle2.swipe.min.js
@@ -1846,4 +1849,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1848
+1851

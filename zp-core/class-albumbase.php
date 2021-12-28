@@ -630,11 +630,12 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function remove() {
+		global $_zp_db;
 		$rslt = false;
 		if (PersistentObject::remove()) {
-			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('options') . "WHERE `ownerid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
 			$rslt = true;
 			$filestoremove = safe_glob(substr($this->localpath, 0, -1) . '.*');
 			foreach ($filestoremove as $file) {
@@ -1122,6 +1123,7 @@ class AlbumBase extends MediaObject {
 	 * @return array
 	 */
 	protected function sortImageArray($images, $sorttype, $sortdirection, $mine = NULL) {
+		global $_zp_db;
 		if (is_null($mine)) {
 			$mine = $this->isMyItem(LIST_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
 		}
@@ -1140,9 +1142,9 @@ class AlbumBase extends MediaObject {
 				$order = $this->getSortDirection('image');
 			}
 		}
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey . ' ' . $sortdirection);
+		$result = $_zp_db->query($sql = "SELECT * FROM " . $_zp_db->prefix("images") . " WHERE `albumid`= " . $this->getID() . ' ORDER BY ' . $sortkey . ' ' . $sortdirection);
 		$results = array();
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$filename = $row['filename'];
 			if (($key = array_search($filename, $images)) !== false) {
 				// the image exists in the filesystem
@@ -1150,11 +1152,11 @@ class AlbumBase extends MediaObject {
 				unset($images[$key]);
 			} else { // the image no longer exists
 				$id = $row['id'];
-				query("DELETE FROM " . prefix('images') . " WHERE `id`=$id"); // delete the record
-				query("DELETE FROM " . prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('images') . " WHERE `id`=$id"); // delete the record
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 		foreach ($images as $filename) {
 			// these images are not in the database
 			$imageobj = Image::newImage($this, $filename);

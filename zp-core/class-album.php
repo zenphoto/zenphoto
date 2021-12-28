@@ -170,6 +170,7 @@ class Album extends AlbumBase {
 	 * @return bool
 	 */
 	function remove() {
+		global $_zp_db;
 		$rslt = false;
 		if (PersistentObject::remove()) {
 			foreach ($this->getImages() as $filename) {
@@ -191,9 +192,9 @@ class Album extends AlbumBase {
 			}
 			chdir($curdir);
 			clearstatcache();
-			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
-			query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('options') . "WHERE `ownerid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $this->id);
 			$success = true;
 			$filestoremove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
 			foreach ($filestoremove as $file) {
@@ -221,22 +222,23 @@ class Album extends AlbumBase {
 	 *
 	 */
 	function move($newfolder) {
+		global $_zp_db;
 		$oldfolder = $this->name;
 		$rslt = $this->_move($newfolder);
 		if (!$rslt) {
 			// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 			// Get the subalbums.
-			$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE " . db_quote(db_LIKE_escape($oldfolder) . '/%');
-			$result = query($sql);
+			$sql = "SELECT id, folder FROM " . $_zp_db->prefix('albums') . " WHERE folder LIKE " . $_zp_db->quote($_zp_db->likeEscape($oldfolder) . '/%');
+			$result = $_zp_db->query($sql);
 			if ($result) {
-				while ($subrow = db_fetch_assoc($result)) {
+				while ($subrow = $_zp_db->fetchAssoc($result)) {
 					$newsubfolder = $subrow['folder'];
 					$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-					$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newsubfolder) . " WHERE id=" . $subrow['id'];
-					query($sql);
+					$sql = "UPDATE " . $_zp_db->prefix('albums') . " SET folder=" . $_zp_db->quote($newsubfolder) . " WHERE id=" . $subrow['id'];
+					$_zp_db->query($sql);
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 			return 0;
 		}
 		return $rslt;
@@ -289,17 +291,18 @@ class Album extends AlbumBase {
 	 * @param bool $deep set to true for a thorough cleansing
 	 */
 	function garbageCollect($deep = false) {
+		global $_zp_db;
 		$set_updateddate = false;
 		if (is_null($this->images))
 			$this->getImages();
-		$result = query("SELECT `id`, `filename` FROM " . prefix('images') . " WHERE `albumid` = '" . $this->id . "'");
+		$result = $_zp_db->query("SELECT `id`, `filename` FROM " . $_zp_db->prefix('images') . " WHERE `albumid` = '" . $this->id . "'");
 		$dead = array();
 		$live = array();
 
 		$files = $this->loadFileNames();
 
 		// Does the filename from the db row match any in the files on disk?
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			if (!in_array($row['filename'], $files)) {
 				// In the database but not on disk. Kill it.
 				$dead[] = $row['id'];
@@ -311,34 +314,34 @@ class Album extends AlbumBase {
 				$live[] = $row['filename'];
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 
 		if (count($dead) > 0) {
-			$sql = "DELETE FROM " . prefix('images') . " WHERE `id` IN(" . implode(',', $dead) . ")";
-			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
-			query($sql);
-			query($sql2);
+			$sql = "DELETE FROM " . $_zp_db->prefix('images') . " WHERE `id` IN(" . implode(',', $dead) . ")";
+			$sql2 = "DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
+			$_zp_db->query($sql);
+			$_zp_db->query($sql2);
 			$set_updateddate = true;
 		}
 
 		// Get all sub-albums and make sure they exist.
-		$result = query("SELECT `id`, `folder` FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote(db_LIKE_escape($this->name) . '%'));
+		$result = $_zp_db->query("SELECT `id`, `folder` FROM " . $_zp_db->prefix('albums') . " WHERE `folder` LIKE " . $_zp_db->quote($_zp_db->likeEscape($this->name) . '%'));
 		$dead = array();
 		$live = array();
 		// Does the dirname from the db row exist on disk?
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			if (!is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) || in_array($row['folder'], $live) || substr($row['folder'], -1) == '/' || substr($row['folder'], 0, 1) == '/') {
 				$dead[] = $row['id'];
 			} else {
 				$live[] = $row['folder'];
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 		if (count($dead) > 0) {
-			$sql = "DELETE FROM " . prefix('albums') . " WHERE `id` IN(" . implode(',', $dead) . ")";
-			$sql2 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
-			query($sql);
-			query($sql2);
+			$sql = "DELETE FROM " . $_zp_db->prefix('albums') . " WHERE `id` IN(" . implode(',', $dead) . ")";
+			$sql2 = "DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN(" . implode(',', $dead) . ")";
+			$_zp_db->query($sql);
+			$_zp_db->query($sql2);
 			$set_updateddate = true;
 		}
 		if($set_updateddate) {

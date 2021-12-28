@@ -16,6 +16,7 @@ class favorites extends AlbumBase {
 	var $instance = '';
 
 	function __construct($user) {
+		global $_zp_db;
 		$this->table = 'albums';
 		$this->name = $user;
 		$this->owner = $user;
@@ -25,7 +26,7 @@ class favorites extends AlbumBase {
 		$this->albumSortDirection = getOption('favorites_album_sort_direction');
 		$this->imageSortType = getOption('favorites_image_sort_type');
 		$this->albumSortType = getOption('favorites_album_sort_type');
-		$list = query_full_array('SELECT `aux` FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . db_quote('[[:<:]]' . $user . '[[:>:]]'));
+		$list = $_zp_db->queryFullArray('SELECT `aux` FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . $_zp_db->quote('[[:<:]]' . $user . '[[:>:]]'));
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
 			if (isset($instance[1])) {
@@ -55,49 +56,54 @@ class favorites extends AlbumBase {
 	}
 
 	function addImage($img) {
+		global $_zp_db;
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
-		query($sql);
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . $_zp_db->quote($this->getInstance()) . ',' . $_zp_db->quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
+		$_zp_db->query($sql);
 		zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
 	}
 
 	function removeImage($img) {
+		global $_zp_db;
 		$folder = $img->imagefolder;
 		$filename = $img->filename;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
-		query($sql);
+		$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data`=' . $_zp_db->quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+		$_zp_db->query($sql);
 		zp_apply_filter('favoritesHandler_action', 'remove', $img, $this->name);
 	}
 
 	function addAlbum($alb) {
+		global $_zp_db;
 		$folder = $alb->name;
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . db_quote($this->getInstance()) . ',' . db_quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
-		query($sql);
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . $_zp_db->quote($this->getInstance()) . ',' . $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
+		$_zp_db->query($sql);
 		zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
 	}
 
 	function removeAlbum($alb) {
+		global $_zp_db;
 		$folder = $alb->name;
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
-		query($sql);
+		$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data`=' . $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $folder)));
+		$_zp_db->query($sql);
 		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
 	}
 
 	static function getWatchers($obj) {
+		global $_zp_db;
 		switch ($obj->table) {
 			case 'images':
 				$folder = $obj->imagefolder;
 				$filename = $obj->filename;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . $_zp_db->prefix('plugin_storage') . '  WHERE `data`=' . $_zp_db->quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 				break;
 			case 'albums':
 				$folder = $obj->name;
-				$sql = 'SELECT DISTINCT `aux` FROM ' . prefix('plugin_storage') . '  WHERE `data`=' . db_quote(serialize(array('type' => 'albums', 'id' => $folder)));
+				$sql = 'SELECT DISTINCT `aux` FROM ' . $_zp_db->prefix('plugin_storage') . '  WHERE `data`=' . $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $folder)));
 				break;
 		}
 		$watchers = array();
-		$result = query_full_array($sql);
+		$result = $_zp_db->queryFullArray($sql);
 		if ($result) {
 			foreach ($result as $watch) {
 				$watchers[] = $watch['aux'];
@@ -146,21 +152,21 @@ class favorites extends AlbumBase {
 	 * @return array
 	 */
 	function getAlbums($page = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_db;
 		if ($mine || is_null($this->subalbums) || $care && $sorttype . $sortdirection !== $this->lastsubalbumsort) {
 			$results = array();
-			$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
+			$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"albums\";%"');
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					$data = getSerializedArray($row['data']);
 					$albumobj = AlbumBase::newAlbum($data['id'], true, true);
 					if ($albumobj->exists) { // fail to instantiate?
 						$results[$data['id']] = $albumobj->getData();
 					} else {
-						query("DELETE FROM " . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
+						$_zp_db->query("DELETE FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType('album');
 				}
@@ -202,22 +208,23 @@ class favorites extends AlbumBase {
 	 * @return array
 	 */
 	function getImages($page = 0, $firstPageCount = 0, $sorttype = null, $sortdirection = null, $care = true, $mine = NULL) {
+		global $_zp_db;
 		if ($mine || is_null($this->images) || $care && $sorttype . $sortdirection !== $this->lastimagesort) {
 			$this->images = NULL;
 			$images = array();
-			$result = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . db_quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
+			$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data` LIKE "%s:4:\"type\";s:6:\"images\";%"');
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					$id = $row['id'];
 					$data = getSerializedArray($row['data']);
 					$imageObj = Image::newImage(NULL, array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), true);
 					if ($imageObj->exists) {
 						$images[] = array_merge(array('folder' => dirname($data['id']), 'filename' => basename($data['id'])), $imageObj->getData());
 					} else {
-						query("DELETE FROM " . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
+						$_zp_db->query("DELETE FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();

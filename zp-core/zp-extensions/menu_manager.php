@@ -137,24 +137,24 @@ $_menu_manager_items = array();
  * @return array
  */
 function getMenuItems($menuset, $visible) {
-	global $_menu_manager_items;
+	global $_menu_manager_items, $_zp_db;
 	if (array_key_exists($menuset, $_menu_manager_items) &&
 					array_key_exists($visible, $_menu_manager_items[$menuset])) {
 		return $_menu_manager_items[$menuset][$visible];
 	}
 	switch ($visible) {
 		case 'visible':
-			$where = " WHERE `show` = 1 AND menuset = " . db_quote($menuset);
+			$where = " WHERE `show` = 1 AND menuset = " . $_zp_db->quote($menuset);
 			break;
 		case 'hidden':
-			$where = " WHERE `show` = 0 AND menuset = " . db_quote($menuset);
+			$where = " WHERE `show` = 0 AND menuset = " . $_zp_db->quote($menuset);
 			break;
 		default:
-			$where = " WHERE menuset = " . db_quote($menuset);
+			$where = " WHERE menuset = " . $_zp_db->quote($menuset);
 			$visible = 'all';
 			break;
 	}
-	$result = query_full_array("SELECT * FROM " . prefix('menu') . $where . " ORDER BY sort_order", false);
+	$result = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('menu') . $where . " ORDER BY sort_order", false);
 	$_menu_manager_items[$menuset][$visible] = $result;
 	return $_menu_manager_items[$menuset][$visible];
 }
@@ -166,8 +166,9 @@ function getMenuItems($menuset, $visible) {
  * @return array
  */
 function getItem($id) {
+	global $_zp_db;
 	$menuset = checkChosenMenuset();
-	$result = query_single_row("SELECT * FROM " . prefix('menu') . " WHERE menuset = " . db_quote($menuset) . " AND id = " . $id);
+	$result = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('menu') . " WHERE menuset = " . $_zp_db->quote($menuset) . " AND id = " . $id);
 	return $result;
 }
 
@@ -206,7 +207,7 @@ function checkChosenItemStatus() {
  * @return array
  */
 function getItemTitleAndURL($item) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	$themename = $_zp_gallery->getCurrentTheme();
 	$array = array(
 			"title" => '', 
@@ -257,8 +258,8 @@ function getItemTitleAndURL($item) {
 			break;
 		case "zenpagepage":
 			if(class_exists('zenpage')) {
-				$sql = 'SELECT * FROM ' . prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
-				$result = query_single_row($sql);
+				$sql = 'SELECT * FROM ' . $_zp_db->prefix('pages') . ' WHERE `titlelink`="' . $item['link'] . '"';
+				$result = $_zp_db->querySingleRow($sql);
 				if (is_array($result)) {
 					$obj = new ZenpagePage($item['link']);
 					$url = $obj->getLink(0);
@@ -289,8 +290,8 @@ function getItemTitleAndURL($item) {
 			break;
 		case "zenpagecategory":
 			if(class_exists('zenpage')) {
-				$sql = "SELECT title FROM " . prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
-				$obj = query_single_row($sql, false);
+				$sql = "SELECT title FROM " . $_zp_db->prefix('news_categories') . " WHERE titlelink = '" . $item['link'] . "'";
+				$obj = $_zp_db->querySingleRow($sql, false);
 				if ($obj) {
 					$obj = new ZenpageCategory($item['link']);
 					$title = $obj->getTitle();
@@ -698,14 +699,15 @@ function printMenumanagerNextLink($text, $menuset = 'default', $title = NULL, $c
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  */
 function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset = 'default', $class = 'pagelist', $nextprev = true, $id = NULL, $firstlast = true, $navlen = 9) {
+	global $_zp_db;
 	$currentitem = getMenuFromLink(html_encode(urldecode(getRequestURI())), $menuset);
 	if (is_null($currentitem))
 		return; // we are not in menuset
 	$orders = explode('-', $currentitem['sort_order']);
 	array_pop($orders);
 	$lookfor = implode('-', $orders) . '-';
-	$sql = 'SELECT `sort_order` FROM ' . prefix('menu') . ' WHERE `sort_order` LIKE "' . $lookfor . '%" ORDER BY `sort_order` ASC';
-	$result = query_full_array($sql, false, 'sort_order');
+	$sql = 'SELECT `sort_order` FROM ' . $_zp_db->prefix('menu') . ' WHERE `sort_order` LIKE "' . $lookfor . '%" ORDER BY `sort_order` ASC';
+	$result = $_zp_db->queryFullArray($sql, false, 'sort_order');
 	if (is_array($result)) {
 		$l = strlen($lookfor) + 3;
 		foreach ($result as $key => $item) { // discard next level items
@@ -920,7 +922,8 @@ function submenuOf($link, $menuset = 'default') {
  * @param string $menuset current menuset
  */
 function createMenuIfNotExists($menuitems, $menuset = 'default') {
-	$count = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
+	global $_zp_db;
+	$count = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 	if ($count == 0) { // there was not an existing menu set
 		require_once(dirname(__FILE__) . '/menu_manager/menu_manager-admin-functions.php');
 		$success = 1;
@@ -945,13 +948,13 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 			switch ($type) {
 				case 'all_items':
 					$orders[$nesting] ++;
-					query("INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-									"VALUES ('" . gettext('Home') . "', '" . WEBPATH . '/' . "','galleryindex','1'," . db_quote($menuset) . ',' . db_quote($orders), true);
+					$_zp_db->query("INSERT INTO " . $_zp_db->prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
+									"VALUES ('" . gettext('Home') . "', '" . WEBPATH . '/' . "','galleryindex','1'," . $_zp_db->quote($menuset) . ',' . $_zp_db->quote($orders), true);
 					$orders[$nesting] = addAlbumsToDatabase($menuset, $orders);
 					if (extensionEnabled('zenpage')) {
 						$orders[$nesting] ++;
-						query("INSERT INTO " . prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','zenpagenewsindex','1'," . db_quote($menuset) . ',' . db_quote(sprintf('%03u', $base + 1)), true);
+						$_zp_db->query("INSERT INTO " . $_zp_db->prefix('menu') . " (title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
+										"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "','zenpagenewsindex','1'," . $_zp_db->quote($menuset) . ',' . $_zp_db->quote(sprintf('%03u', $base + 1)), true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders) + 1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					}
@@ -1059,14 +1062,14 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$sort_order .= sprintf('%03u', $orders[$i]) . '-';
 				}
 				$sort_order = substr($sort_order, 0, -1);
-				$sql = "INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`,`include_li`) " .
-								"VALUES (" . db_quote($result['title']) .
-								", " . db_quote($result['link']) .
-								"," . db_quote($result['type']) . "," . $result['show'] .
-								"," . db_quote($menuset) . "," . db_quote($sort_order) . ",$includeli)";
-				if (!query($sql, false)) {
+				$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`,`include_li`) " .
+								"VALUES (" . $_zp_db->quote($result['title']) .
+								", " . $_zp_db->quote($result['link']) .
+								"," . $_zp_db->quote($result['type']) . "," . $result['show'] .
+								"," . $_zp_db->quote($menuset) . "," . $_zp_db->quote($sort_order) . ",$includeli)";
+				if (!$_zp_db->query($sql, false)) {
 					$success = -2;
-					debugLog(sprintf(gettext('createMenuIfNotExists item %1$s query (%2$s) failed: %3$s.'), $key, $sql, db_error()));
+					debugLog(sprintf(gettext('createMenuIfNotExists item %1$s query (%2$s) failed: %3$s.'), $key, $sql, $_zp_db->getError()));
 				}
 			}
 		}

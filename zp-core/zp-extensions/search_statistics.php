@@ -101,10 +101,11 @@ class search_statistics {
 	 * @param int $iteration count of the filters since the search engine instantiation
 	 */
 	static function handler($search_statistics, $type, $success, $dynamic, $iteration) {
+		global $_zp_db;
 		if (!$dynamic) {	// log unique user searches
 			$store = array('type'=>$type, 'success'=>$success, 'iteration'=>$iteration, 'data'=>$search_statistics);
-			$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("search_statistics", '.db_quote(getUserIP()).','.db_quote(serialize($store)).')';
-			query($sql);
+			$sql = 'INSERT INTO '.$_zp_db->prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("search_statistics", '.$_zp_db->quote(getUserIP()).','.$_zp_db->quote(serialize($store)).')';
+			$_zp_db->query($sql);
 		}
 		return $search_statistics;
 	}

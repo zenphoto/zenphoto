@@ -192,12 +192,14 @@ class user_expiry {
 	}
 
 	static function cleanup($user) {
-		query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $user->getID());
+		global $_zp_db;
+		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`=' . $_zp_db->quote('user_expiry_usedPasswords') . ' AND `aux`=' . $user->getID());
 	}
 
 	static function passwordAllowed($msg, $pwd, $user) {
+		global $_zp_db;
 		if ($id = $user->getID() > 0) {
-			$store = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+			$store = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`=' . $_zp_db->quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
 			if ($store) {
 				$used = getSerializedArray($store['data']);
 				if (in_array($pwd, $used)) {
@@ -215,9 +217,9 @@ class user_expiry {
 			}
 			array_push($used, $pwd);
 			if ($store) {
-				query('UPDATE ' . prefix('plugin_storage') . 'SET `data`=' . db_quote(serialize($used)) . ' WHERE `type`=' . db_quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
+				$_zp_db->query('UPDATE ' . $_zp_db->prefix('plugin_storage') . 'SET `data`=' . $_zp_db->quote(serialize($used)) . ' WHERE `type`=' . $_zp_db->quote('user_expiry_usedPasswords') . ' AND `aux`=' . $id);
 			} else {
-				query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES (' . db_quote('user_expiry_usedPasswords') . ',' . $id . ',' . db_quote(serialize($used)) . ')');
+				$_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`, `data`) VALUES (' . $_zp_db->quote('user_expiry_usedPasswords') . ',' . $id . ',' . $_zp_db->quote(serialize($used)) . ')');
 			}
 		}
 		return $msg;

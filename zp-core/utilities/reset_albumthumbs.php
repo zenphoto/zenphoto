@@ -49,9 +49,9 @@ echo '</head>';
 				<?php
 				if (isset($_REQUEST['thumbtype'])) {
 					$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
-					$sql = 'UPDATE ' . prefix('albums') . ' SET `thumb`=' . $key;
+					$sql = 'UPDATE ' . $_zp_db->prefix('albums') . ' SET `thumb`=' . $key;
 					$text = $_zp_albumthumb_selector[$key]['desc'];
-					if (query($sql)) {
+					if ($_zp_db->query($sql)) {
 						?>
 						<div class="messagebox fade-message">
 							<h2>

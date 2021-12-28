@@ -41,6 +41,7 @@ class Zenpage {
 	}
 
 	static function expiry() {
+		global $_zp_db;
 		/**
 		 * Un-publishes pages/news whose expiration date has been reached
 		 *
@@ -50,7 +51,7 @@ class Zenpage {
 						' AND `expiredate`!="0000-00-00 00:00:00"' .
 						' AND `expiredate` IS NOT NULL';
 		foreach (array('news' => 'ZenpageNews', 'pages' => 'ZenpagePage') as $table => $class) {
-			$result = query_full_array('SELECT * FROM ' . prefix($table) . $sql);
+			$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix($table) . $sql);
 			if ($result) {
 				foreach ($result as $item) {
 					$obj = new $class($item['titlelink']);
@@ -68,8 +69,9 @@ class Zenpage {
 	 * @return array
 	 */
 	private function getCategoryStructure() {
+		global $_zp_db;
 		if (is_null($this->categoryStructure)) {
-			$allcategories = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER by sort_order");
+			$allcategories = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER by sort_order");
 			if ($allcategories) {
 				$this->categoryStructure = array();
 				foreach ($allcategories as $cat) {
@@ -114,7 +116,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null, $pageobj = null) {
-		global $_zp_loggedin;
+		global $_zp_loggedin, $_zp_db;
 		if(!is_null($pageobj) && get_class($pageobj) != 'ZenpagePage') {
 			$pageobj = null;
 		}
@@ -154,7 +156,7 @@ class Zenpage {
 			$show = $gettop;
 		}
 		if ($author) {
-			$show .= ' AND author = ' . db_quote($author);
+			$show .= ' AND author = ' . $_zp_db->quote($author);
 		}
 		if ($sortdirection) {
 			$sortdir = ' DESC';
@@ -192,9 +194,9 @@ class Zenpage {
 				break;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
-		$result = query('SELECT * FROM ' . prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
+		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				if ($all || $row['show']) {
 					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
@@ -207,7 +209,7 @@ class Zenpage {
 					}
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 		if ($sorttype == 'title') {
 			$all_pages = sortMultiArray($all_pages, 'title', $sortdirection, true, false, false);
@@ -268,7 +270,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $category = NULL, $author = null) {
-		global $_zp_current_category, $_zp_post_date, $_zp_news_cache;
+		global $_zp_current_category, $_zp_post_date, $_zp_news_cache, $_zp_db;
 		$getunpublished_myitems = false;
 		$cat = '';
 		if (empty($published)) {
@@ -397,7 +399,7 @@ class Zenpage {
 				} else {
 					$author_conjuction = ' WHERE ';
 				}
-				$show .= $author_conjuction . ' author = ' .db_quote($author);
+				$show .= $author_conjuction . ' author = ' .$_zp_db->quote($author);
 			}
 			$order = " ORDER BY $sticky";
 
@@ -436,20 +438,20 @@ class Zenpage {
 				$order .= $sort1;
 			}
 			if ($category) {
-				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . prefix('news') . " as news, " . prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
+				$sql = "SELECT DISTINCT news.date, news.title, news.titlelink, news.sticky FROM " . $_zp_db->prefix('news') . " as news, " . $_zp_db->prefix('news2cat') . " as cat WHERE" . $cat . $show . $order;
 			} else {
-				$sql = "SELECT date, title, titlelink, sticky FROM " . prefix('news') . $show . $datesearch . " " . $order;
+				$sql = "SELECT date, title, titlelink, sticky FROM " . $_zp_db->prefix('news') . $show . $datesearch . " " . $order;
 			}
-			$resource = query($sql);
+			$resource = $_zp_db->query($sql);
 			$result = array();
 			if ($resource) {
-				while ($item = db_fetch_assoc($resource)) {
+				while ($item = $_zp_db->fetchAssoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']); 
 					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || ($article->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS))) { //|| $article->categoryIsVisible()
 						$result[] = $item;
 					}
 				}
-				db_free_result($resource);
+				$_zp_db->freeResult($resource);
 				if ($sortorder == 'title') { // multi-lingual field!
 					$result = sortByMultilingual($result, 'title', $sortdirection);
 					if ($sticky) {
@@ -569,13 +571,14 @@ class Zenpage {
 	 * @return array
 	 */
 	function getAllArticleDates($yearsonly = false, $order = 'desc') {
+		global $_zp_db;
 		$alldates = array();
 		$cleandates = array();
-		$sql = "SELECT date FROM " . prefix('news');
+		$sql = "SELECT date FROM " . $_zp_db->prefix('news');
 		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 			$sql .= " WHERE `show` = 1";
 		}
-		$result = query_full_array($sql);
+		$result = $_zp_db->queryFullArray($sql);
 		foreach ($result as $row) {
 			$alldates[] = $row['date'];
 		}
@@ -609,10 +612,11 @@ class Zenpage {
 	 * @param $limit return only this many items
 	 */
 	private function siftResults($sql, $offset, $limit) {
-		$resource = $result = query($sql);
+		global $_zp_db;
+		$resource = $result = $_zp_db->query($sql);
 		if ($resource) {
 			$result = array();
-			while ($item = db_fetch_assoc($resource)) {
+			while ($item = $_zp_db->fetchAssoc($resource)) {
 				if ($item['type'] == 'news') {
 					$article = new ZenpageNews($item['titlelink']);
 					if (!$article->isPublic() && !zp_loggedin(ALL_NEWS_RIGHTS)) { 
@@ -627,7 +631,7 @@ class Zenpage {
 					}
 				}
 			}
-			db_free_result($resource);
+			$_zp_db->freeResult($resource);
 		}
 		return $result;
 	}
@@ -732,6 +736,7 @@ class Zenpage {
 	 * @return array
 	 */
 	static public function getAllAuthors($type = 'news') {
+		global $_zp_db;
 		$authors = array();
 		switch($type) {
 			default:
@@ -742,14 +747,14 @@ class Zenpage {
 				$table = 'pages';
 				break;
 		}
-		$sql = 'SELECT DISTINCT author FROM ' . prefix($table) . ' ORDER BY author ASC';
-		$resource = query($sql);
+		$sql = 'SELECT DISTINCT author FROM ' . $_zp_db->prefix($table) . ' ORDER BY author ASC';
+		$resource = $_zp_db->query($sql);
 		if ($resource) {
-			while ($item = db_fetch_assoc($resource)) {
+			while ($item = $_zp_db->fetchAssoc($resource)) {
 				$authors[] = $item['author'];
 			}
 		}
-		db_free_result($resource);
+		$_zp_db->freeResult($resource);
 		return $authors;
 	}
 

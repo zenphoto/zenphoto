@@ -35,8 +35,8 @@ if (isset($_GET['album'])) {
 			$orderArray = explode('&', str_replace('id[]=', '', $_POST['sortableList']));
 			if (is_array($orderArray) && !empty($orderArray)) {
 				foreach ($orderArray as $key => $id) {
-					$sql = 'UPDATE ' . prefix('images') . ' SET `sort_order`=' . db_quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
-					query($sql);
+					$sql = 'UPDATE ' . $_zp_db->prefix('images') . ' SET `sort_order`=' . $_zp_db->quote(sprintf('%03u', $key)) . ' WHERE `id`=' . sanitize_numeric($id);
+					$_zp_db->query($sql);
 				}
 				$album->setSortType("manual");
 				$album->setSortDirection(false, 'image');

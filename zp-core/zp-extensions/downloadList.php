@@ -174,10 +174,11 @@ class DownloadList {
 	 * @param bool $nocountupdate false if the downloadcount should not be increased and only the entry be added to the db if it does not already exist
 	 */
 	static function updateListItemCount($path) {
-		$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($path) . " AND `type` = 'downloadList'");
+		global $_zp_db;
+		$checkitem = $_zp_db->querySingleRow("SELECT `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `aux` = " . $_zp_db->quote($path) . " AND `type` = 'downloadList'");
 		if ($checkitem) {
 			$downloadcount = $checkitem['data'] + 1;
-			query("UPDATE " . prefix('plugin_storage') . " SET `data` = " . $downloadcount . ", `type` = 'downloadList' WHERE `aux` = " . db_quote($path) . " AND `type` = 'downloadList'");
+			$_zp_db->query("UPDATE " . $_zp_db->prefix('plugin_storage') . " SET `data` = " . $downloadcount . ", `type` = 'downloadList' WHERE `aux` = " . $_zp_db->quote($path) . " AND `type` = 'downloadList'");
 		}
 	}
 
@@ -186,9 +187,10 @@ class DownloadList {
 	 * @param string $path Path of the download item
 	 */
 	static function addListItem($path) {
-		$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($path) . " AND `type` = 'downloadList'");
+		global $_zp_db;
+		$checkitem = $_zp_db->querySingleRow("SELECT `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `aux` = " . $_zp_db->quote($path) . " AND `type` = 'downloadList'");
 		if (!$checkitem) {
-			query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('downloadList'," . db_quote($path) . ",'0')");
+			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('downloadList'," . $_zp_db->quote($path) . ",'0')");
 		}
 		zp_apply_filter('downloadlist_processdownload', $path);
 	}
@@ -198,7 +200,8 @@ class DownloadList {
 	 */
 
 	static function getListItemsFromDB() {
-		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
+		global $_zp_db;
+		$downloaditems = $_zp_db->queryFullArray("SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
 		return $downloaditems;
 	}
 
@@ -207,7 +210,8 @@ class DownloadList {
 	 */
 
 	static function getListItemFromDB($file) {
-		$downloaditem = query_single_row($sql = "SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . db_quote($file));
+		global $_zp_db;
+		$downloaditem = $_zp_db->querySingleRow($sql = "SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . $_zp_db->quote($file));
 		return $downloaditem;
 	}
 
@@ -217,7 +221,8 @@ class DownloadList {
 	 * @return bool|string
 	 */
 	static function getItemID($path) {
-		$downloaditem = query_single_row("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . db_quote($path));
+		global $_zp_db;
+		$downloaditem = $_zp_db->querySingleRow("SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . $_zp_db->quote($path));
 		if ($downloaditem) {
 			return $downloaditem['id'];
 		} else {
@@ -591,7 +596,7 @@ function printFullImageDownloadURL($linktext = null, $imageobj = null) {
  * @param bool $fromcache if true get the images from the cache
  */
 function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache = NULL) {
-	global $_zp_current_album;
+	global $_zp_current_album, $_zp_db;
 	$request = parse_url(getRequestURI());
 	if (isset($request['query'])) {
 		$query = parse_query($request['query']);
@@ -677,7 +682,7 @@ if (isset($_GET['download'])) {
 	} else {
 		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
 		$item = (int) $item;
-		$path = query_single_row("SELECT `aux` FROM " . prefix('plugin_storage') . " WHERE id=" . $item);
+		$path = $_zp_db->querySingleRow("SELECT `aux` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE id=" . $item);
 		$_zp_downloadfile = '';
 		if (isset($path['aux'])) {
 			$_zp_downloadfile = internalToFilesystem($path['aux']);

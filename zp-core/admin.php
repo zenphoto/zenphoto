@@ -470,15 +470,15 @@ if (!zp_loggedin()) {
 								<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'), INI_GET('memory_limit')); ?></li>
 								<li>
 									<?php
-									$dbsoftware = db_software();
+									$dbsoftware = $_zp_db->getSoftware();
 									printf(gettext('%1$s version: <strong>%2$s</strong>'), $dbsoftware['application'], $dbsoftware['version']);
 									?>
 
 								</li>
-								<li><?php printf(gettext('Database name: <strong>%1$s</strong>'), db_name()); ?></li>
+								<li><?php printf(gettext('Database name: <strong>%1$s</strong>'), $_zp_db->getDBName()); ?></li>
 								<li>
 									<?php
-									$prefix = trim(prefix(), '`');
+									$prefix = trim($_zp_db->prefix(), '`');
 									if (!empty($prefix)) {
 										echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'), $prefix);
 									}

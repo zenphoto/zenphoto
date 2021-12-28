@@ -255,7 +255,8 @@ class ThemeObject extends PersistentObject {
 	 * @return array
 	 */
 	function getComments($moderated = false, $private = false, $desc = false) {
-		$sql = "SELECT *, (date + 0) AS date FROM " . prefix("comments") .
+		global $_zp_db;
+		$sql = "SELECT *, (date + 0) AS date FROM " . $_zp_db->prefix("comments") .
 						" WHERE `type`='" . $this->table . "' AND `ownerid`='" . $this->getID() . "'";
 		if (!$moderated) {
 			$sql .= " AND `inmoderation`=0";
@@ -267,7 +268,7 @@ class ThemeObject extends PersistentObject {
 		if ($desc) {
 			$sql .= ' DESC';
 		}
-		$comments = query_full_array($sql);
+		$comments = $_zp_db->queryFullArray($sql);
 		$this->comments = $comments;
 		return $this->comments;
 	}
@@ -302,9 +303,10 @@ class ThemeObject extends PersistentObject {
 	 * @return int
 	 */
 	function getCommentCount() {
+		global $_zp_db;
 		if (is_null($this->commentcount)) {
 			if ($this->comments == null) {
-				$count = db_count("comments", "WHERE `type`='" . $this->table . "' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->getID());
+				$count = $_zp_db->count("comments", "WHERE `type`='" . $this->table . "' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->getID());
 				$this->commentcount = $count;
 			} else {
 				$this->commentcount = count($this->comments);

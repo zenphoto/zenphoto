@@ -814,7 +814,7 @@ class SearchEngine {
 	 * Returns an array of News article IDs belonging to the search categories
 	 */
 	protected function subsetNewsCategories() {
-		global $_zp_zenpage;
+		global $_zp_zenpage, $_zp_db;
 		if (!is_array($this->category_list))
 			return false;
 		$cat = '';
@@ -837,14 +837,14 @@ class SearchEngine {
 				$cat = ' WHERE ' . substr($cat, 0, -3);
 			}
 		}
-		$sql = 'SELECT DISTINCT `news_id` FROM ' . prefix('news2cat') . $cat;
-		$result = query($sql);
+		$sql = 'SELECT DISTINCT `news_id` FROM ' . $_zp_db->prefix('news2cat') . $cat;
+		$result = $_zp_db->query($sql);
 		$list = array();
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$list[] = $row['news_id'];
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 		return $list;
 	}
@@ -912,7 +912,7 @@ class SearchEngine {
 				$sql .= ",`desc`,`albumid`,`filename`,`location`,`city`,`state`,`country` ";
 				break;
 		}
-		$sql .= "FROM " . prefix($tbl) . " WHERE ";
+		$sql .= "FROM " . $_zp_db->prefix($tbl) . " WHERE ";
 		if (!zp_loggedin()) {
 			$sql .= "`show` = 1 AND (";
 		}
@@ -1019,7 +1019,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	protected function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_db;
 		$weights = $idlist = array();
 		$sql = $allIDs = NULL;
 		$tagPattern = $this->tagPattern;
@@ -1036,8 +1036,8 @@ class SearchEngine {
 						break;
 					}
 					unset($fields[$key]);
-					query('SET @serachfield="news_categories"');
-					$tagsql = 'SELECT @serachfield AS field, t.`title` AS name, o.`news_id` AS `objectid` FROM ' . prefix('news_categories') . ' AS t, ' . prefix('news2cat') . ' AS o WHERE t.`id`=o.`cat_id` AND (';
+					$_zp_db->query('SET @serachfield="news_categories"');
+					$tagsql = 'SELECT @serachfield AS field, t.`title` AS name, o.`news_id` AS `objectid` FROM ' . $_zp_db->prefix('news_categories') . ' AS t, ' . $_zp_db->prefix('news2cat') . ' AS o WHERE t.`id`=o.`cat_id` AND (';
 					foreach ($searchstring as $singlesearchstring) {
 						switch ($singlesearchstring) {
 							case '&':
@@ -1052,11 +1052,11 @@ class SearchEngine {
 								break;
 							default:
 								$targetfound = true;
-								$tagsql .= '`title` = ' . db_quote($singlesearchstring) . ' OR ';
+								$tagsql .= '`title` = ' . $_zp_db->quote($singlesearchstring) . ' OR ';
 						}
 					}
 					$tagsql = substr($tagsql, 0, strlen($tagsql) - 4) . ') ORDER BY t.`id`';
-					$objects = query_full_array($tagsql, false);
+					$objects = $_zp_db->queryFullArray($tagsql, false);
 					if (is_array($objects)) {
 						$tag_objects = $objects;
 					}
@@ -1065,8 +1065,8 @@ class SearchEngine {
 					$tagPattern = array('type' => '=', 'open' => '', 'close' => '');
 				case 'tags':
 					unset($fields[$key]);
-					query('SET @serachfield="tags"');
-					$tagsql = 'SELECT @serachfield AS field, t.`name`, o.`objectid` FROM ' . prefix('tags') . ' AS t, ' . prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` AND o.`type`="' . $tbl . '" AND (';
+					$_zp_db->query('SET @serachfield="tags"');
+					$tagsql = 'SELECT @serachfield AS field, t.`name`, o.`objectid` FROM ' . $_zp_db->prefix('tags') . ' AS t, ' . $_zp_db->prefix('obj_to_tag') . ' AS o WHERE t.`id`=o.`tagid` AND o.`type`="' . $tbl . '" AND (';
 					foreach ($searchstring as $singlesearchstring) {
 						switch ($singlesearchstring) {
 							case '&':
@@ -1076,22 +1076,22 @@ class SearchEngine {
 							case ')':
 								break;
 							case '*':
-								query('SET @emptyfield="*"');
+								$_zp_db->query('SET @emptyfield="*"');
 								$tagsql = str_replace('t.`name`', '@emptyfield as name', $tagsql);
 								$tagsql .= "t.`name` IS NOT NULL OR ";
 								break;
 							default:
 								$targetfound = true;
 								if ($tagPattern['type'] == 'like') {
-									$target = db_LIKE_escape($singlesearchstring);
+									$target = $_zp_db->likeEscape($singlesearchstring);
 								} else {
 									$target = $singlesearchstring;
 								}
-								$tagsql .= 't.`name` ' . strtoupper($tagPattern['type']) . ' ' . db_quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
+								$tagsql .= 't.`name` ' . strtoupper($tagPattern['type']) . ' ' . $_zp_db->quote($tagPattern['open'] . $target . $tagPattern['close']) . ' OR ';
 						}
 					}
 					$tagsql = substr($tagsql, 0, strlen($tagsql) - 4) . ') ORDER BY t.`id`';
-					$objects = query_full_array($tagsql, false);
+					$objects = $_zp_db->queryFullArray($tagsql, false);
 					if (is_array($objects)) {
 						$tag_objects = array_merge($tag_objects, $objects);
 					}
@@ -1106,7 +1106,7 @@ class SearchEngine {
 		$field_objects = array();
 		if (count($fields) > 0) {
 			$columns = array();
-			$dbfields = db_list_fields($tbl);
+			$dbfields = $_zp_db->listFields($tbl);
 			if (is_array($dbfields)) {
 				foreach ($dbfields as $row) {
 					$columns[] = strtolower($row['Field']);
@@ -1122,7 +1122,7 @@ class SearchEngine {
 						break;
 					default:
 						$targetfound = true;
-						query('SET @serachtarget=' . db_quote($singlesearchstring));
+						$_zp_db->query('SET @serachtarget=' . $_zp_db->quote($singlesearchstring));
 						foreach ($fields as $fieldname) {
 							if ($tbl == 'albums' && strtolower($fieldname) == 'filename') {
 								$fieldname = 'folder';
@@ -1130,21 +1130,21 @@ class SearchEngine {
 								$fieldname = strtolower($fieldname);
 							}
 							if ($fieldname && in_array($fieldname, $columns)) {
-								query('SET @serachfield=' . db_quote($fieldname));
+								$_zp_db->query('SET @serachfield=' . $_zp_db->quote($fieldname));
 								switch ($singlesearchstring) {
 									case '*':
-										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') != ''" . ') ORDER BY `id`';
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . $_zp_db->prefix($tbl) . ' WHERE (' . "COALESCE(`$fieldname`, '') != ''" . ') ORDER BY `id`';
 										break;
 									default:
 										if ($this->pattern['type'] == 'like') {
-											$target = db_LIKE_escape($singlesearchstring);
+											$target = $_zp_db->likeEscape($singlesearchstring);
 										} else {
 											$target = $singlesearchstring;
 										}
-										$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . db_quote($this->pattern['open'] . $target . $this->pattern['close']);
-										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
+										$fieldsql = ' `' . $fieldname . '` ' . strtoupper($this->pattern['type']) . ' ' . $_zp_db->quote($this->pattern['open'] . $target . $this->pattern['close']);
+										$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM ' . $_zp_db->prefix($tbl) . ' WHERE (' . $fieldsql . ') ORDER BY `id`';
 								}
-								$objects = query_full_array($sql, false);
+								$objects = $_zp_db->queryFullArray($sql, false);
 								if (is_array($objects)) {
 									$field_objects = array_merge($field_objects, $objects);
 								}
@@ -1236,12 +1236,12 @@ class SearchEngine {
 							case '!':
 								if (is_null($allIDs)) {
 									$allIDs = array();
-									$result = query("SELECT `id` FROM " . prefix($tbl));
+									$result = $_zp_db->query("SELECT `id` FROM " . $_zp_db->prefix($tbl));
 									if ($result) {
-										while ($row = db_fetch_assoc($result)) {
+										while ($row = $_zp_db->fetchAssoc($result)) {
 											$allIDs[] = $row['id'];
 										}
-										db_free_result($result);
+										$_zp_db->freeResult($result);
 									}
 								}
 								if (is_array($objectid)) {
@@ -1293,7 +1293,7 @@ class SearchEngine {
 						$key = trim($sorttype . $sortdirection);
 					}
 					if ($show) {
-						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
+						$show .= '`date`<=' . $_zp_db->quote(date('Y-m-d H:i:s')) . ' AND ';
 					}
 					break;
 				case 'pages':
@@ -1309,7 +1309,7 @@ class SearchEngine {
 						$key = trim($sorttype . $sortdirection);
 					}
 					if ($show) {
-						$show .= '`date`<=' . db_quote(date('Y-m-d H:i:s')) . ' AND ';
+						$show .= '`date`<=' . $_zp_db->quote(date('Y-m-d H:i:s')) . ' AND ';
 					}
 					break;
 				case 'albums':
@@ -1365,7 +1365,7 @@ class SearchEngine {
 					}
 					break;
 			}
-			$sql .= "FROM " . prefix($tbl) . " WHERE " . $show;
+			$sql .= "FROM " . $_zp_db->prefix($tbl) . " WHERE " . $show;
 			$sql .= '(' . self::compressedIDList($idlist) . ')';
 			$sql .= " ORDER BY " . $key;
 			return array($sql, $weights);
@@ -1382,6 +1382,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchAlbums($sorttype, $sortdirection, $mine = NULL) {
+		global $_zp_db;
 		if (getOption('search_no_albums') || $this->search_no_albums) {
 			return array();
 		}
@@ -1403,9 +1404,9 @@ class SearchEngine {
 			$result = $albums = array();
 			list ($search_query, $weights) = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
 			if (!empty($search_query)) {
-				$search_result = query($search_query);
+				$search_result = $_zp_db->query($search_query);
 				if ($search_result) {
-					while ($row = db_fetch_assoc($search_result)) {
+					while ($row = $_zp_db->fetchAssoc($search_result)) {
 						$albumname = $row['folder'];
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
@@ -1427,7 +1428,7 @@ class SearchEngine {
 							}
 						}
 					}
-					db_free_result($search_result);
+					$_zp_db->freeResult($search_result);
 					$sortdir = self::getSortdirBool($sortdirection);
 					if (is_null($sorttype)) {
 						$result = sortMultiArray($result, 'weight', $sortdir, true, false, false, array('weight'));
@@ -1559,6 +1560,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchImages($sorttype, $sortdirection, $mine = NULL) {
+		global $_zp_db;
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
@@ -1585,17 +1587,17 @@ class SearchEngine {
 			if (empty($search_query)) {
 				$search_result = false;
 			} else {
-				$search_result = query($search_query);
+				$search_result = $_zp_db->query($search_query);
 			}
 			$albums_seen = $images = array();
 			if ($search_result) {
-				while ($row = db_fetch_assoc($search_result)) {
+				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$albumid = $row['albumid'];
 					if (array_key_exists($albumid, $albums_seen)) {
 						$albumrow = $albums_seen[$albumid];
 					} else {
-						$query = "SELECT folder, `show` FROM " . prefix('albums') . " WHERE id = $albumid";
-						$row2 = query_single_row($query); // id is unique
+						$query = "SELECT folder, `show` FROM " . $_zp_db->prefix('albums') . " WHERE id = $albumid";
+						$row2 = $_zp_db->querySingleRow($query); // id is unique
 						if ($row2) {
 							$albumname = $row2['folder'];
 							$allow = false;
@@ -1630,7 +1632,7 @@ class SearchEngine {
 						}
 					}
 				}
-				db_free_result($search_result);
+				$_zp_db->freeResult($search_result);
 				$sortdir = self::getSortdirBool($sortdirection);
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', $sortdir, true, false, false, array('weight'));
@@ -1767,6 +1769,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchPages($sorttype, $sortdirection) {
+		global $_zp_db;
 		if (!extensionEnabled('zenpage') || getOption('search_no_pages') || $this->search_no_pages)
 			return array();
 		list($sorttype, $sortdirection) = $this->sortKey($sorttype, $sortdirection, 'title', 'pages');
@@ -1787,15 +1790,15 @@ class SearchEngine {
 				if (empty($search_query)) {
 					$search_result = false;
 				} else {
-					$search_result = query($search_query);
+					$search_result = $_zp_db->query($search_query);
 				}
 				zp_apply_filter('search_statistics', $searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
-				$search_result = query($search_query);
+				$search_result = $_zp_db->query($search_query);
 			}
 			if ($search_result) {
-				while ($row = db_fetch_assoc($search_result)) {
+				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$pageobj = new ZenpagePage($row['titlelink']);
 					if((zp_loggedin() && $pageobj->isMyItem(LIST_RIGHTS)) || ($pageobj->isPublic() || $this->search_unpublished)) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
@@ -1805,7 +1808,7 @@ class SearchEngine {
 						$result[] = $data;
 					}
 				}
-				db_free_result($search_result);
+				$_zp_db->freeResult($search_result);
 			}
 			$sortdir = self::getSortdirBool($sortdirection);
 			if (is_null($sorttype) && isset($weights)) {
@@ -1856,6 +1859,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	private function getSearchArticles($sorttype, $sortdirection) {
+		global $_zp_db;
 		if (!extensionEnabled('zenpage') || getOption('search_no_news') || $this->search_no_news) {
 			return array();
 		}
@@ -1880,11 +1884,11 @@ class SearchEngine {
 			if (empty($search_query)) {
 				$search_result = false;
 			} else {
-				$search_result = query($search_query);
+				$search_result = $_zp_db->query($search_query);
 			}
 			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
-				while ($row = db_fetch_assoc($search_result)) {
+				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$articleobj = new ZenpageNews($row['titlelink']);
 					if((zp_loggedin() && $articleobj->isMyItem(LIST_RIGHTS)) || ($articleobj->isPublic() || $this->search_unpublished)) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
@@ -1894,7 +1898,7 @@ class SearchEngine {
 						$result[] = $data;
 					}
 				}
-				db_free_result($search_result);
+				$_zp_db->freeResult($search_result);
 			}
 			$sortdir = self::getSortdirBool($sortdirection);
 			if (is_null($sorttype) && isset($weights)) {
@@ -1943,16 +1947,17 @@ class SearchEngine {
 	 * @param string $found reslts of the search
 	 */
 	private function cacheSearch($criteria, $found) {
+		global $_zp_db;
 		if (SEARCH_CACHE_DURATION) {
 			$criteria = serialize($criteria);
-			$sql = 'SELECT `id`, `data`, `date` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote($criteria);
-			$result = query_single_row($sql);
+			$sql = 'SELECT `id`, `data`, `date` FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `criteria` = ' . $_zp_db->quote($criteria);
+			$result = $_zp_db->querySingleRow($sql);
 			if ($result) {
-				$sql = 'UPDATE ' . prefix('search_cache') . ' SET `data` = ' . db_quote(serialize($found)) . ', `date` = ' . db_quote(date('Y-m-d H:m:s')) . ' WHERE `id` = ' . $result['id'];
-				query($sql);
+				$sql = 'UPDATE ' . $_zp_db->prefix('search_cache') . ' SET `data` = ' . $_zp_db->quote(serialize($found)) . ', `date` = ' . $_zp_db->quote(date('Y-m-d H:m:s')) . ' WHERE `id` = ' . $result['id'];
+				$_zp_db->query($sql);
 			} else {
-				$sql = 'INSERT INTO ' . prefix('search_cache') . ' (criteria, data, date) VALUES (' . db_quote($criteria) . ', ' . db_quote(serialize($found)) . ', ' . db_quote(date('Y-m-d H:m:s')) . ')';
-				query($sql);
+				$sql = 'INSERT INTO ' . $_zp_db->prefix('search_cache') . ' (criteria, data, date) VALUES (' . $_zp_db->quote($criteria) . ', ' . $_zp_db->quote(serialize($found)) . ', ' . $_zp_db->quote(date('Y-m-d H:m:s')) . ')';
+				$_zp_db->query($sql);
 			}
 		}
 	}
@@ -1963,12 +1968,13 @@ class SearchEngine {
 	 * @param string $criteria
 	 */
 	private function getCachedSearch($criteria) {
+		global $_zp_db;
 		if (SEARCH_CACHE_DURATION) {
-			$sql = 'SELECT `id`, `date`, `data` FROM ' . prefix('search_cache') . ' WHERE `criteria` = ' . db_quote(serialize($criteria));
-			$result = query_single_row($sql);
+			$sql = 'SELECT `id`, `date`, `data` FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `criteria` = ' . $_zp_db->quote(serialize($criteria));
+			$result = $_zp_db->querySingleRow($sql);
 			if ($result) {
 				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION * 60) {
-					query('DELETE FROM ' . prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
+					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `id` = ' . $result['id']);
 				} else {
 					if ($result = getSerializedArray($result['data'])) {
 						return $result;
@@ -1983,9 +1989,10 @@ class SearchEngine {
 	 * Clears the entire search cache table
 	 */
 	static function clearSearchCache() {
-		$check = query_single_row('SELECT id FROM ' . prefix('search_cache'). ' LIMIT 1');
+		global $_zp_db;
+		$check = $_zp_db->querySingleRow('SELECT id FROM ' . $_zp_db->prefix('search_cache'). ' LIMIT 1');
 		if($check) {
-			query('TRUNCATE TABLE ' . prefix('search_cache'));
+			$_zp_db->query('TRUNCATE TABLE ' . $_zp_db->prefix('search_cache'));
 		}
 	}
 	

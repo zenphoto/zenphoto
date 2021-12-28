@@ -37,8 +37,9 @@ class ZenpageNews extends ZenpageItems {
 	 * @return array
 	 */
 	function getCategories() {
+		global $_zp_db;
 		if (is_null($this->categories)) {
-			$this->categories = query_full_array("SELECT * FROM " . prefix('news_categories') . " as cat," . prefix('news2cat') . " as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = " . $this->getID() . " ORDER BY cat.titlelink", false, 'title');
+			$this->categories = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " as cat," . $_zp_db->prefix('news2cat') . " as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = " . $this->getID() . " ORDER BY cat.titlelink", false, 'title');
 			if (!$this->categories) {
 				$this->categories = array();
 			}
@@ -47,11 +48,12 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	function setCategories($categories) {
-		$result = query('DELETE FROM ' . prefix('news2cat') . ' WHERE `news_id`=' . $this->getID());
-		$result = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
+		global $_zp_db;
+		$result = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('news2cat') . ' WHERE `news_id`=' . $this->getID());
+		$result = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY titlelink");
 		foreach ($result as $cat) {
 			if (in_array($cat['titlelink'], $categories)) {
-				query("INSERT INTO " . prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $this->getID() . "')");
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $this->getID() . "')");
 			}
 		}
 	}
@@ -82,6 +84,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @param string $newtitle the title for the new article
 	 */
 	function copy($newtitle) {
+		global $_zp_db;
 		$newID = $newtitle;
 		$id = parent::copy(array('titlelink' => $newID));
 		if (!$id) {
@@ -99,10 +102,10 @@ class ZenpageNews extends ZenpageItems {
 			foreach ($this->getCategories() as $cat) {
 				$categories[] = $cat['cat_id'];
 			}
-			$result = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY titlelink");
+			$result = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY titlelink");
 			foreach ($result as $cat) {
 				if (in_array($cat['id'], $categories)) {
-					query("INSERT INTO " . prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $id . "')");
+					$_zp_db->query("INSERT INTO " . $_zp_db->prefix('news2cat') . " (cat_id, news_id) VALUES ('" . $cat['id'] . "', '" . $id . "')");
 				}
 			}
 			return $newobj;
@@ -115,11 +118,12 @@ class ZenpageNews extends ZenpageItems {
 	 *
 	 */
 	function remove() {
+		global $_zp_db;
 		if ($success = parent::remove()) {
 			if ($this->id) {
-				$success = query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='news' AND `objectid`=" . $this->getID());
-				$success = $success && query("DELETE FROM " . prefix('news2cat') . " WHERE news_id = " . $this->getID()); // delete the category association
-				$success = $success && query("DELETE FROM " . prefix('comments') . " WHERE ownerid = " . $this->getID() . ' AND type="news"'); // delete any comments
+				$success = $_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='news' AND `objectid`=" . $this->getID());
+				$success = $success && $_zp_db->query("DELETE FROM " . $_zp_db->prefix('news2cat') . " WHERE news_id = " . $this->getID()); // delete the category association
+				$success = $success && $_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . " WHERE ownerid = " . $this->getID() . ' AND type="news"'); // delete any comments
 			}
 		}
 		return $success;

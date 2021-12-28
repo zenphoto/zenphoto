@@ -101,38 +101,11 @@ class deprecated_functions {
 
 	/**
 	 * used to provided deprecated function notification.
+	 * @deprecated ZenphotoCMS 2.0
 	 */
 	static function notify($use) {
-		$traces = @debug_backtrace();
-		$fcn = $traces[1]['function'];
-		if (empty($fcn))
-			$fcn = gettext('function');
-		if (!empty($use))
-			$use = ' ' . $use;
-		//get the container folder
-		if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
-			$script = basename(dirname($traces[0]['file']));
-		} else {
-			$script = 'unknown';
-		}
-		if ($script == 'deprecated-functions') {
-			$plugin = 'core';
-		} else {
-			$plugin = $script;
-		}
-		if (isset($traces[1]['file']) && isset($traces[1]['line'])) {
-			$script = basename($traces[1]['file']);
-			$line = $traces[1]['line'];
-		} else {
-			$script = $line = gettext('unknown');
-		}
-
-		if (@$traces[1]['class']) {
-			$flag = '_method';
-		} else {
-			$flag = '';
-		}
-		trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'), $fcn, $script, $line) . $use, E_USER_WARNING);
+	 deprecationNotice(gettext('Use deprecationNotice() instead'));
+	 deprecationNotice($use);
 	}
 
 	static function button($buttons) {

@@ -235,8 +235,8 @@ $engines = array();
 $preferences = array('mysqli' => 1, 'pdo_mysql' => 2);
 $cur = 999999;
 $preferred = NULL;
-foreach (setup::glob('functions-db-*.php') as $key => $engineMC) {
-	$engineMC = substr($engineMC, 13, -4);
+foreach (setup::glob('class-db*.php') as $key => $engineMC) {
+	$engineMC = substr($engineMC, 8, -4);
 	$engine = strtolower($engineMC);
 	if (array_key_exists($engine, $preferences)) {
 		$order = $preferences[$engine];
@@ -255,18 +255,18 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	unset($_zp_conf_vars);
 	require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 	if (isset($_zp_conf_vars) && !isset($conf) && isset($_zp_conf_vars['special_pages'])) {
-		if(!isset($_zp_conf_vars['special_pages']['gallery'])) {
+		if (!isset($_zp_conf_vars['special_pages']['gallery'])) {
 			$updatezp_config = true;
 		}
 		if (isset($_zp_conf_vars['db_software'])) {
-			$confDB = $_zp_conf_vars['db_software'];
-			if (empty($_POST) && empty($_GET) && ($confDB === 'MySQL' || $preferred != 'MySQL')) {
+			$confDB = strtolower($_zp_conf_vars['db_software']);
+			if (empty($_POST) && empty($_GET) && ($confDB === 'mysql' || $preferred != 'mysql')) {
 				$confDB = NULL;
 			}
-			if (extension_loaded(strtolower($confDB)) && file_exists(dirname(dirname(__FILE__)) . '/functions-db-' . strtolower($confDB) . '.php')) {
-				$selected_database = strtolower($_zp_conf_vars['db_software']);
+			if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)) . '/class-db' . strtolower($confDB) . '.php')) {
+				$selected_database = $_zp_conf_vars['db_software'];
 			} else {
-				$selected_database = strtolower($preferred);
+				$selected_database = $preferred;
 				if ($preferred) {
 					$_zp_conf_vars['db_software'] = $preferred;
 					$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
@@ -284,10 +284,26 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$zp_cfg = updateConfigItem('mysql_port', 3306, $zp_cfg);
 			$updatezp_config = true;
 		}
+
+		require_once(dirname(dirname(__FILE__)) . '/functions-db.php'); // legacy function wrapper
+		require_once(dirname(dirname(__FILE__)) . '/class-dbbase.php'); // empty base db class
 		if ($selected_database) {
-			require_once(dirname(dirname(__FILE__)) . '/functions-db-' . $selected_database . '.php');
+			
+			require_once(dirname(dirname(__FILE__)) . '/class-db' . strtolower($selected_database) . '.php'); // real db handler
+			define('DATABASE_SOFTWARE', $selected_database);
+			define('DATABASE_MIN_VERSION', '5.5.3');
+			define('DATABASE_DESIRED_VERSION', '5.7.0');
+			define('DATABASE_MARIADB_MIN_VERSION', '5.5.0'); // more or less MySQL 5.5
+			define('DATABASE_MARIADB_DESIRED_VERSION', '10.1.0'); // more or less MySQL 5.7
+			$_zp_dbclass = 'db' . strtolower($_zp_conf_vars['db_software']); // global that defines the db class name to use
 		} else {
-			require_once(dirname(dirname(__FILE__)) . '/functions-db_null.php');
+			echo "Database NOT selected: " . $selected_database;
+			define('DATABASE_SOFTWARE', 'Database setup');
+			define('DATABASE_MIN_VERSION', '0.0.0');
+			define('DATABASE_DESIRED_VERSION', '0.0.0');
+			define('DATABASE_MARIADB_MIN_VERSION', '0.0.0'); 
+			define('DATABASE_MARIADB_DESIRED_VERSION', '0.0.0'); 
+			$_zp_dbclass = 'dbBase';
 		}
 	} else {
 		// There is a problem with the configuration file
@@ -306,7 +322,6 @@ if ($updatezp_config) {
 	setup::updateConfigfile($zp_cfg);
 }
 
-
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -315,36 +330,38 @@ $connection = false;
 $connectDBErr = '';
 
 if ($selected_database) {
+	$_zp_db = new $_zp_dbclass($_zp_conf_vars, false);
 	$connectDBErr = '';
-	$connection = db_connect($_zp_conf_vars, false);
+	$connection = $_zp_db->connection;
+	//$connection = db_connect($_zp_conf_vars, false);
 	if ($connection) { // got the database handler and the database itself connected
-		$result = query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'] . 'options' . " LIMIT 1", false);
+		$result = $_zp_db->query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'] . 'options' . " LIMIT 1", false);
 		if ($result) {
-			if (db_num_rows($result) > 0) {
+			if ($_zp_db->getNumRows($result) > 0) {
 				$upgrade = gettext("upgrade");
 				// apply some critical updates to the database for migration issues
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `lastloggedin` datetime', false);
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `challenge_phrase` TEXT', false);
+				$_zp_db->query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
+				$_zp_db->query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
+				$_zp_db->query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `loggedin` datetime', false);
+				$_zp_db->query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `lastloggedin` datetime', false);
+				$_zp_db->query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'] . 'administrators' . ' ADD COLUMN `challenge_phrase` TEXT', false);
 			}
 		}
 		$environ = true;
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 	} else {
-		if ($_zp_DB_connection) { // there was a connection to the database handler but not to the database.
+		if ($_zp_db->connection) { // there was a connection to the database handler but not to the database.
 			if (!empty($_zp_conf_vars['mysql_database'])) {
 				if (isset($_GET['Create_Database'])) {
-					$result = db_create();
-					if ($result && ($connection = db_connect($_zp_conf_vars, false))) {
+					$result = $_zp_db->create();
+					if ($result && ($connection = $_zp_db->connect($_zp_conf_vars, false))) {
 						$environ = true;
 						require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 					} else {
 						if ($result) {
 							$DBcreated = true;
 						} else {
-							$connectDBErr = db_error();
+							$connectDBErr = $_zp_db->getError();
 						}
 					}
 				} else {
@@ -352,7 +369,7 @@ if ($selected_database) {
 				}
 			}
 		} else {
-			$connectDBErr = db_error();
+			$connectDBErr = $_zp_db->getError();
 		}
 	}
 }
@@ -557,8 +574,8 @@ if ($c <= 0) {
 				$blindInstall = $_zp_setup_warn = false;
 
 				if ($connection && !isset($_zp_options)) {
-					$sql = "SELECT `name`, `value` FROM " . prefix('options');
-					$optionlist = query_full_array($sql, false);
+					$sql = "SELECT `name`, `value` FROM " . $_zp_db->prefix('options');
+					$optionlist = $_zp_db->queryFullArray($sql, false);
 					if ($optionlist) {
 						$_zp_options = array();
 						foreach ($optionlist as $option) {
@@ -1006,17 +1023,17 @@ if ($c <= 0) {
 									}
 								}
 							}
-							$connection = db_connect($_zp_conf_vars, false);
+							$connection = $_zp_db->connection;
 							if ($connection) {
 								if (empty($_zp_conf_vars['mysql_database'])) {
 									$connection = false;
 									$connectDBErr = gettext('No database selected');
 								}
 							} else {
-								$connectDBErr = db_error();
+								$connectDBErr = $_zp_db->getError();
 							}
-							if ($_zp_DB_connection) { // connected to DB software
-								$dbsoftware = db_software();
+							if ($_zp_db->connection) { // connected to DB software
+								$dbsoftware = $_zp_db->getSoftware();
 								$dbapp = $dbsoftware['application'];
 								$dbversion = $dbsoftware['version'];
 								$required = $dbsoftware['required'];
@@ -1046,7 +1063,7 @@ if ($c <= 0) {
 								}
 							}
 				
-							if ($_zp_DB_connection) {
+							if ($_zp_db->connection) {
 								if ($connection) {
 									if ($DBcreated) {
 										setup::checkMark(1, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']), '');
@@ -1066,11 +1083,11 @@ if ($c <= 0) {
 									}
 								}
 								if ($environ && $connection) {
-									$oldmode = db_getSQLmode();
-									$result = db_setSQLmode();
+									$oldmode = $_zp_db->getSQLmode();
+									$result = $_zp_db->setSQLmode();
 									$msg = gettext('You may need to set <code>SQL mode</code> <em>empty</em> in your Database configuration.');
 									if ($result) {
-										$mode = db_getSQLmode();
+										$mode = $_zp_db->getSQLmode();
 										if ($mode === false) {
 											setup::checkMark(-1, '', sprintf(gettext('<code>SQL mode</code> [query failed]'), $oldmode), $msg);
 										} else {
@@ -1090,7 +1107,7 @@ if ($c <= 0) {
 									}
 
 									$dbn = "`" . $_zp_conf_vars['mysql_database'] . "`.*";
-									$db_results = db_permissions();
+									$db_results = $_zp_db->getPermissions();
 
 									$access = -1;
 									$rightsfound = 'unknown';
@@ -1145,16 +1162,16 @@ if ($c <= 0) {
 									setup::checkMark($access, sprintf(gettext('Database <code>access rights</code> for <em>%s</em>'), $_zp_conf_vars['mysql_database']), sprintf(gettext('Database <code>access rights</code> for <em>%1$s</em> [%2$s]'), $_zp_conf_vars['mysql_database'], $rightsfound), sprintf(gettext("Your Database user must have %s rights."), $neededlist) . $report);
 
 
-									$result = db_show('tables');
+									$result = $_zp_db->show('tables');
 									$tableslist = '';
 									$tables = array();
 									if ($result) {
 										$check = 1;
-										while ($row = db_fetch_row($result)) {
+										while ($row = $_zp_db->fetchRow($result)) {
 											$tables[] = $row[0];
 											$tableslist .= "<code>" . $row[0] . "</code>, ";
 										}
-										db_free_result($result);
+										$_zp_db->freeResult($result);
 									} else {
 										$check = -1;
 									}
@@ -1172,7 +1189,7 @@ if ($c <= 0) {
 										$fieldlist = array();
 										foreach (array('images' => 1, 'albums' => 2) as $lookat => $add) {
 											if (in_array($_zp_conf_vars['mysql_prefix'] . $lookat, $tables)) {
-												$columns = db_list_fields('images');
+												$columns = $_zp_db->listFields('images');
 												if ($columns) {
 													foreach ($columns as $col => $utf8) {
 														if (isset($row['Collation']) && !is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
@@ -1690,19 +1707,19 @@ if ($c <= 0) {
 							$task = 'update';
 						}
 
-						if (db_connect($_zp_conf_vars) && empty($task)) {
-							$result = db_show('tables');
+						if ($_zp_db->connect($_zp_conf_vars) && empty($task)) {
+							$result = $_zp_db->show('tables');
 							$tables = array();
 							$prefix = $_zp_conf_vars['mysql_prefix'];
 							$prefixLC = strtolower($prefix);
 							$prefixUC = strtoupper($prefixLC);
 							if ($result) {
-								while ($row = db_fetch_row($result)) {
+								while ($row = $_zp_db->fetchRow($result)) {
 									$key = $row[0];
 									$key = str_replace(array($prefixLC, $prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 									$tables[$key] = 'update';
 								}
-								db_free_result($result);
+								$_zp_db->freeResult($result);
 							}
 							$expected_tables = array(
 											$_zp_conf_vars['mysql_prefix'] . 'options', 
@@ -1752,27 +1769,27 @@ if ($c <= 0) {
 						}
 
 						// Prefix the table names. These already have `backticks` around them!
-						$tbl_albums = prefix('albums');
-						$tbl_comments = prefix('comments');
-						$tbl_images = prefix('images');
-						$tbl_options = prefix('options');
-						$tbl_administrators = prefix('administrators');
-						$tbl_admin_to_object = prefix('admin_to_object');
-						$tbl_tags = prefix('tags');
-						$tbl_obj_to_tag = prefix('obj_to_tag');
-						$tbl_captcha = prefix('captcha');
-						$tbl_news = prefix('news');
-						$tbl_pages = prefix('pages');
-						$tbl_news_categories = prefix('news_categories');
-						$tbl_news2cat = prefix('news2cat');
-						$tbl_menu_manager = prefix('menu');
-						$tbl_plugin_storage = prefix('plugin_storage');
-						$tbl_searches = prefix('search_cache');
+						$tbl_albums = $_zp_db->prefix('albums');
+						$tbl_comments = $_zp_db->prefix('comments');
+						$tbl_images = $_zp_db->prefix('images');
+						$tbl_options = $_zp_db->prefix('options');
+						$tbl_administrators = $_zp_db->prefix('administrators');
+						$tbl_admin_to_object = $_zp_db->prefix('admin_to_object');
+						$tbl_tags = $_zp_db->prefix('tags');
+						$tbl_obj_to_tag = $_zp_db->prefix('obj_to_tag');
+						$tbl_captcha = $_zp_db->prefix('captcha');
+						$tbl_news = $_zp_db->prefix('news');
+						$tbl_pages = $_zp_db->prefix('pages');
+						$tbl_news_categories = $_zp_db->prefix('news_categories');
+						$tbl_news2cat = $_zp_db->prefix('news2cat');
+						$tbl_menu_manager = $_zp_db->prefix('menu');
+						$tbl_plugin_storage = $_zp_db->prefix('plugin_storage');
+						$tbl_searches = $_zp_db->prefix('search_cache');
 
 						// Prefix the constraint names:
 						$db_schema = array();
 						$sql_statements = array();
-						$collation = db_collation();
+						$collation = $_zp_db->getCollation();
 
 						/***********************************************************************************
 						  Add new fields in the upgrade section. This section should remain static except for new
@@ -1972,7 +1989,7 @@ if ($c <= 0) {
 
 						//v1.2.4
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
 		`content` longtext,
@@ -2003,7 +2020,7 @@ if ($c <= 0) {
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news_categories'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news_categories') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news_categories') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
 		`titlelink` varchar(255) NOT NULL,
@@ -2023,7 +2040,7 @@ if ($c <= 0) {
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news2cat'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('news2cat') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news2cat') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`cat_id` int(11) unsigned NOT NULL,
 		`news_id` int(11) unsigned NOT NULL,
@@ -2032,7 +2049,7 @@ if ($c <= 0) {
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'pages'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('pages') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('pages') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`title` text,
@@ -2067,7 +2084,7 @@ if ($c <= 0) {
 						}
 
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'menu'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('menu') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('menu') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`title` text,
@@ -2084,7 +2101,7 @@ if ($c <= 0) {
 						}
 						// v 1.3.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'plugin_storage'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('plugin_storage') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('plugin_storage') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`type` varchar(32) NOT NULL,
 		`aux` varchar(255),
@@ -2096,7 +2113,7 @@ if ($c <= 0) {
 						}
 						// v 1.4.2
 						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'search_cache'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . prefix('search_cache') . " (
+							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('search_cache') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
@@ -2114,10 +2131,10 @@ if ($c <= 0) {
 						 * ***************************************************************************************/
 
 						//v1.3.2
-						$sql_statements[] = "RENAME TABLE " . prefix('zenpage_news') . " TO $tbl_news," .
-										prefix('zenpage_news2cat') . " TO $tbl_news2cat," .
-										prefix('zenpage_news_categories') . " TO $tbl_news_categories," .
-										prefix('zenpage_pages') . " TO $tbl_pages";
+						$sql_statements[] = "RENAME TABLE " . $_zp_db->prefix('zenpage_news') . " TO $tbl_news," .
+										$_zp_db->prefix('zenpage_news2cat') . " TO $tbl_news2cat," .
+										$_zp_db->prefix('zenpage_news_categories') . " TO $tbl_news_categories," .
+										$_zp_db->prefix('zenpage_pages') . " TO $tbl_pages";
 
 						// v. 1.0.0b
 						$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_type` varchar(20);";
@@ -2180,10 +2197,10 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_comments CHANGE `imageid` `ownerid` int(11) UNSIGNED NOT NULL default '0';";
 						//	$sql_statements[] = "ALTER TABLE $tbl_comments DROP INDEX `imageid`;";
 						$sql = "SHOW INDEX FROM `" . $_zp_conf_vars['mysql_prefix'] . "comments`";
-						$result = query($sql, false);
+						$result = $_zp_db->query($sql, false);
 						$hasownerid = false;
 						if ($result) {
-							while ($row = db_fetch_row($result)) {
+							while ($row = $_zp_db->fetchRow($result)) {
 								if ($row[2] == 'ownerid') {
 									$hasownerid = true;
 								} else {
@@ -2192,7 +2209,7 @@ if ($c <= 0) {
 									}
 								}
 							}
-							db_free_result($result);
+							$_zp_db->freeResult($result);
 						}
 						if (!$hasownerid) {
 							$sql_statements[] = "ALTER TABLE $tbl_comments ADD INDEX (`ownerid`);";
@@ -2221,14 +2238,14 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(255) " . $collation;
 						$hastagidindex = false;
 						$sql = "SHOW INDEX FROM `" . $_zp_conf_vars['mysql_prefix'] . "obj_to_tag`";
-						$result = query($sql, false);
+						$result = $_zp_db->query($sql, false);
 						if ($result) {
-							while ($row = db_fetch_row($result)) {
+							while ($row = $_zp_db->fetchRow($result)) {
 								if ($row[2] == 'tagid') {
 									$hastagidindex = true;
 								}
 							}
-							db_free_result($result);
+							$_zp_db->freeResult($result);
 						}
 						if (!$hastagidindex) {
 							$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`tagid`)";
@@ -2295,16 +2312,16 @@ if ($c <= 0) {
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `group` varchar(64)';
 						$sql = 'SHOW INDEX FROM ' . $tbl_administrators;
-						$result = query($sql, false);
+						$result = $_zp_db->query($sql, false);
 						if ($result) {
-							while ($row = db_fetch_row($result)) {
+							while ($row = $_zp_db->fetchRow($result)) {
 								if ($row[2] == 'user') {
 									$sql_statements[] = "ALTER TABLE $tbl_administrators DROP INDEX `user`";
 									$sql_statements[] = "ALTER TABLE $tbl_administrators ADD UNIQUE (`valid`, `user`)";
 									break;
 								}
 							}
-							db_free_result($result);
+							$_zp_db->freeResult($result);
 						}
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_albums . ' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
@@ -2335,7 +2352,7 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `password_hint` text;";
 
 						//v1.3.1
-						$sql_statements[] = 'RENAME TABLE ' . prefix('admintoalbum') . ' TO ' . $tbl_admin_to_object;
+						$sql_statements[] = 'RENAME TABLE ' . $_zp_db->prefix('admintoalbum') . ' TO ' . $tbl_admin_to_object;
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_admin_to_object . ' ADD COLUMN `type` varchar(32) DEFAULT "album";';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_admin_to_object . ' CHANGE `albumid` `objectid` int(11) UNSIGNED NOT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' CHANGE `albums` `objects` varchar(64)';
@@ -2466,7 +2483,7 @@ if ($c <= 0) {
 						 * *****
 						 * ************************************************************************************* */
 						$createTables = true;
-						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && db_connect($_zp_conf_vars)) {
+						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && $_zp_db->connect($_zp_conf_vars)) {
 							if (!isset($_GET['protect_files'])) {
 								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
 									echo "<p>" . gettext("About to create database tables") . "...</p>";
@@ -2480,10 +2497,10 @@ if ($c <= 0) {
 									foreach ($db_schema as $sql) {
 										$message = '';
 										@set_time_limit(60);
-										$result = db_create_table($sql);
+										$result = $_zp_db->createTable($sql);
 										if (!$result) {
 											$createTables = false;
-											$message = sprintf(gettext('Table creation failure:<br />Query: %1$s<br />Error: %2$s'), $sql, db_error());
+											$message = sprintf(gettext('Table creation failure:<br />Query: %1$s<br />Error: %2$s'), $sql, $_zp_db->getError());
 											echo '<p class="error"><img src="'.FULLWEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt="failure">'. $message . '</p>';
 											setup::log($message);
 										} else {
@@ -2497,9 +2514,9 @@ if ($c <= 0) {
 								setup::log(gettext("Begin table updates"));
 								foreach ($sql_statements as $sql) {
 									@set_time_limit(60);
-									$result = db_table_update($sql);
+									$result = $_zp_db->tableUpdate($sql);
 									if (!$result) {
-										$error = db_error();
+										$error = $_zp_db->getError();
 										$reset = strpos($error, 'syntax');
 										$message = sprintf(gettext('Query %1$s Failed. Error: %2$s'), $sql, $error);
 										if($reset) { 
@@ -2548,22 +2565,22 @@ if ($c <= 0) {
 
 								if ($_zp_setup_debug == 'base64') {
 									// update zenpage codeblocks--remove the base64 encoding
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('news') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-									$result = query_full_array($sql, false);
+									$sql = 'SELECT `id`, `codeblock` FROM ' . $_zp_db->prefix('news') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+									$result = $_zp_db->queryFullArray($sql, false);
 									if (is_array($result)) {
 										foreach ($result as $row) {
 											$codeblock = base64_decode($row['codeblock']);
-											$sql = 'UPDATE ' . prefix('news') . ' SET `codeblock`=' . db_quote($codeblock) . ' WHERE `id`=' . $row['id'];
-											query($sql);
+											$sql = 'UPDATE ' . $_zp_db->prefix('news') . ' SET `codeblock`=' . $_zp_db->quote($codeblock) . ' WHERE `id`=' . $row['id'];
+											$_zp_db->query($sql);
 										}
 									}
-									$sql = 'SELECT `id`, `codeblock` FROM ' . prefix('pages') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
-									$result = query_full_array($sql, false);
+									$sql = 'SELECT `id`, `codeblock` FROM ' . $_zp_db->prefix('pages') . ' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
+									$result = $_zp_db->queryFullArray($sql, false);
 									if (is_array($result)) {
 										foreach ($result as $row) {
 											$codeblock = base64_decode($row['codeblock']);
-											$sql = 'UPDATE ' . prefix('pages') . ' SET `codeblock`=' . db_quote($codeblock) . ' WHERE `id`=' . $row['id'];
-											query($sql);
+											$sql = 'UPDATE ' . $_zp_db->prefix('pages') . ' SET `codeblock`=' . $_zp_db->quote($codeblock) . ' WHERE `id`=' . $row['id'];
+											$_zp_db->query($sql);
 										}
 									}
 								}
@@ -2624,7 +2641,7 @@ if ($c <= 0) {
 								</script>
 								<?php
 							}
-						} else if (db_connect($_zp_conf_vars)) {
+						} else if ($_zp_db->connect($_zp_conf_vars)) {
 							$task = '';
 							if (setup::userAuthorized() || $blindInstall) {
 								if (!empty($dbmsg)) {

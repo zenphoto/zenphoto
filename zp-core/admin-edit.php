@@ -190,8 +190,8 @@ if (isset($_GET['action'])) {
           $return .= '&tab=subalbuminfo';
         }
       }
-      query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
-      query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
+      $_zp_db->query("UPDATE " . $_zp_db->prefix('albums') . " SET `hitcounter`= 0" . $where);
+      $_zp_db->query("UPDATE " . $_zp_db->prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit' . $return . '&counters_reset');
       break;
 
@@ -470,7 +470,7 @@ if ((!isset($_GET['massedit']) && !isset($_GET['album'])) || $subtab == 'subalbu
 	printSortableHead();
 }
 if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset($_GET['massedit'])) {
-	$result = db_list_fields('albums');
+	$result = $_zp_db->listFields('albums');
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {
@@ -479,7 +479,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	}
 	sort($dbfields);
 	$albumdbfields = implode(',', $dbfields);
-	$result = db_list_fields('images');
+	$result = $_zp_db->listFields('images');
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {
@@ -640,13 +640,13 @@ echo "\n</head>";
 						if($oldalbumimagesort_status == 'unpublished') {
 							$status = ' (`show` = 0)';
 						}
-						$sql = 'SELECT * FROM ' . prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '")' . $status . ' ORDER BY `' . $oldalbumimagesort . '` ' . $direction;
-						$result = query($sql);
+						$sql = 'SELECT * FROM ' . $_zp_db->prefix('images') . ' WHERE (`albumid`=' . $album->getID() . ') AND (' . $retunNull . ' `owner`="' . $requestor . '")' . $status . ' ORDER BY `' . $oldalbumimagesort . '` ' . $direction;
+						$result = $_zp_db->query($sql);
 						if ($result) {
-							while ($row = db_fetch_assoc($result)) {
+							while ($row = $_zp_db->fetchAssoc($result)) {
 								$allimages[] = $row['filename'];
 							}
-							db_free_result($result);
+							$_zp_db->freeResult($result);
 						}
 					}
 				}

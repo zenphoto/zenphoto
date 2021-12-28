@@ -1689,7 +1689,7 @@ $_zp_zenpage_pagelist = NULL;
  * @return int
  */
 function getNumPages($total = false) {
-	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
+	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page, $_zp_db;
 	$addquery = '';
 	if (!$total) {
 		if (in_context(ZP_SEARCH)) {
@@ -1699,13 +1699,13 @@ function getNumPages($total = false) {
 			if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
 				$addquery = ' AND `show` = 1';
 			}
-			return db_count('pages', 'WHERE parentid=' . $_zp_current_zenpage_page->getID() . $addquery);
+			return $_zp_db->count('pages', 'WHERE parentid=' . $_zp_current_zenpage_page->getID() . $addquery);
 		}
 	}
 	if (!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
 		$addquery = ' WHERE `show` = 1';
 	}
-	return db_count('pages', $addquery);
+	return $_zp_db->count('pages', $addquery);
 }
 
 /**
@@ -2123,6 +2123,7 @@ function checkForPage($titlelink) {
  * @param int $itemID the ID of the element to get the comments for if $type != "all"
  */
 function getLatestZenpageComments($number, $type = "all", $itemID = "") {
+	global $_zp_db;
 	$itemID = sanitize_numeric($itemID);
 	$number = sanitize_numeric($number);
 	$checkauth = zp_loggedin();
@@ -2133,7 +2134,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$newsshow = '';
 		} else {
 			$newsshow = 'news.show=1 AND';
-			$newscheck = query_full_array("SELECT * FROM " . prefix('news') . " ORDER BY date");
+			$newscheck = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news') . " ORDER BY date");
 			foreach ($newscheck as $articlecheck) {
 				$obj = new ZenpageNews($articlecheck['titlelink']);
 				if ($obj->inProtectedCategory()) {
@@ -2153,7 +2154,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$pagesshow = '';
 		} else {
 			$pagesshow = 'pages.show=1 AND';
-			$pagescheck = query_full_array("SELECT * FROM " . prefix('pages') . " ORDER BY date");
+			$pagescheck = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('pages') . " ORDER BY date");
 			foreach ($pagescheck as $pagecheck) {
 				$obj = new ZenpagePage($pagecheck['titlelink']);
 				if ($obj->isProtected()) {
@@ -2182,14 +2183,14 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 	$comments_news = array();
 	$comments_pages = array();
 	if ($type == "all" OR $type == "news") {
-		$comments_news = query_full_array("SELECT c.id, c.name, c.type, c.website,"
-						. " c.date, c.anon, c.comment, news.title, news.titlelink FROM " . prefix('comments') . " AS c, " . prefix('news') . " AS news "
+		$comments_news = $_zp_db->queryFullArray("SELECT c.id, c.name, c.type, c.website,"
+						. " c.date, c.anon, c.comment, news.title, news.titlelink FROM " . $_zp_db->prefix('comments') . " AS c, " . $_zp_db->prefix('news') . " AS news "
 						. $whereNews
 						. " ORDER BY c.id DESC LIMIT $number");
 	}
 	if ($type == "all" OR $type == "page") {
-		$comments_pages = query_full_array($sql = "SELECT c.id, c.name, c.type, c.website,"
-						. " c.date, c.anon, c.comment, pages.title, pages.titlelink FROM " . prefix('comments') . " AS c, " . prefix('pages') . " AS pages "
+		$comments_pages = $_zp_db->queryFullArray($sql = "SELECT c.id, c.name, c.type, c.website,"
+						. " c.date, c.anon, c.comment, pages.title, pages.titlelink FROM " . $_zp_db->prefix('comments') . " AS c, " . $_zp_db->prefix('pages') . " AS pages "
 						. $wherePages
 						. " ORDER BY c.id DESC LIMIT $number");
 	}

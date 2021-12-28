@@ -394,11 +394,12 @@ class Gallery {
 	 * @return array
 	 */
 	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
+		global $_zp_db;
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
 		$sorttype = 'folder';
 		$sortdirection = ' ASC';
-		$sql = 'SELECT `folder` FROM ' . prefix('albums');
+		$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums');
 		if (AlbumBase::isAlbumClass($albumobj)) {
 			// subalbums of an album
 			$sql .= " WHERE `folder` like '" . $albumobj->name . "/%'";
@@ -425,9 +426,9 @@ class Gallery {
 			$sorttype = 'sort_order';
 		}
 		$sql .= ' ORDER BY ' . $sorttype . $sortdirection;
-		$result = query($sql);
+		$result = $_zp_db->query($sql);
 		if ($result) {
-			while ($row = db_fetch_assoc($result)) {
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$album = AlbumBase::newAlbum($row['folder']);
 				if ($album->exists && ($is_fulladmin || $album->isMyItem($rights))) {
 					if ($album->isDynamic()) {
@@ -450,7 +451,7 @@ class Gallery {
 					}
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 		return $allalbums;
 	}
@@ -478,6 +479,7 @@ class Gallery {
 	 * @return int
 	 */
 	function getNumAlbums($db = false, $publishedOnly = false) {
+		global $_zp_db;
 		$count = -1;
 		if (!$db) {
 			$this->getAlbums(0, NULL, NULL, false);
@@ -487,7 +489,7 @@ class Gallery {
 			if ($publishedOnly) {
 				$sql = 'WHERE `show`=1';
 			}
-			$count = db_count('albums', $sql);
+			$count = $_zp_db->count('albums', $sql);
 		}
 		return $count;
 	}
@@ -558,24 +560,25 @@ class Gallery {
 	 * @return int
 	 */
 	function getNumImages($what = 0) {
+		global $_zp_db;
 		switch ((int) $what) {
 			case 0:
-				return db_count('images', '');
+				return $_zp_db->count('images', '');
 				break;
 			case 1:
-				$rows = query("SELECT `id` FROM " . prefix('albums') . " WHERE `show`=0");
+				$rows = $_zp_db->query("SELECT `id` FROM " . $_zp_db->prefix('albums') . " WHERE `show`=0");
 				$idlist = array();
 				$exclude = 'WHERE `show`=1';
 				if ($rows) {
-					while ($row = db_fetch_assoc($rows)) {
+					while ($row = $_zp_db->fetchAssoc($rows)) {
 						$idlist[] = $row['id'];
 					}
 					if (!empty($idlist)) {
 						$exclude .= ' AND `albumid` NOT IN (' . implode(',', $idlist) . ')';
 					}
-					db_free_result($rows);
+					$_zp_db->freeResult($rows);
 				}
-				return db_count('images', $exclude);
+				return $_zp_db->count('images', $exclude);
 				break;
 			case 2:
 				$count = 0;
@@ -610,11 +613,12 @@ class Gallery {
 	 * @return array
 	 */
 	function getNumComments($moderated = false) {
+		global $_zp_db;
 		$sql = '';
 		if (!$moderated) {
 			$sql = "WHERE `inmoderation`=0";
 		}
-		return db_count('comments', $sql);
+		return $_zp_db->count('comments', $sql);
 	}
 
 	/** For every album in the gallery, look for its file. Delete from the database
@@ -629,15 +633,15 @@ class Gallery {
 	 * @return bool
 	 */
 	function garbageCollect($cascade = true, $complete = false, $restart = '') {
-		global $_zp_gallery;
+		global $_zp_gallery, $_zp_db;
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
-			$sql = 'DELETE FROM ' . prefix('search_cache');
+			$sql = 'DELETE FROM ' . $_zp_db->prefix('search_cache');
 			if (!$complete) {
-				$sql .= ' WHERE `date`<' . db_quote(date('Y-m-d H:m:s', time() - SEARCH_CACHE_DURATION * 60));
+				$sql .= ' WHERE `date`<' . $_zp_db->quote(date('Y-m-d H:m:s', time() - SEARCH_CACHE_DURATION * 60));
 			}
-			$result = query($sql);
+			$result = $_zp_db->query($sql);
 
 			/* clean the comments table */
 			$this->commentClean('images');
@@ -646,65 +650,65 @@ class Gallery {
 			$this->commentClean('pages');
 			// clean up obj_to_tag
 			$dead = array();
-			$result = query("SELECT `id`, `type`, `tagid`, `objectid` FROM " . prefix('obj_to_tag'));
+			$result = $_zp_db->query("SELECT `id`, `type`, `tagid`, `objectid` FROM " . $_zp_db->prefix('obj_to_tag'));
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'", false);
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('obj_to_tag') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
+				$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('obj_to_tag') . ' WHERE `id`=' . implode(' OR `id`=', $dead));
 			}
 			// clean up admin_to_object
 			$dead = array();
-			$result = query("SELECT `id`, `type`, `adminid`, `objectid` FROM " . prefix('admin_to_object'));
+			$result = $_zp_db->query("SELECT `id`, `type`, `adminid`, `objectid` FROM " . $_zp_db->prefix('admin_to_object'));
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('administrators') . " WHERE `id`='" . $row['adminid'] . "'", false);
+				while ($row = $_zp_db->fetchAssoc($result)) {
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('administrators') . " WHERE `id`='" . $row['adminid'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix($tbl) . " WHERE `id`='" . $row['objectid'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('admin_to_object') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
+				$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('admin_to_object') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
 			}
 			// clean up news2cat
 			$dead = array();
-			$result = query("SELECT `id`, `news_id`, `cat_id` FROM " . prefix('news2cat'));
+			$result = $_zp_db->query("SELECT `id`, `news_id`, `cat_id` FROM " . $_zp_db->prefix('news2cat'));
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('news') . " WHERE `id`='" . $row['news_id'] . "'", false);
+				while ($row = $_zp_db->fetchAssoc($result)) {
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('news') . " WHERE `id`='" . $row['news_id'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM " . prefix('news_categories') . " WHERE `id`='" . $row['cat_id'] . "'", false);
+					$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('news_categories') . " WHERE `id`='" . $row['cat_id'] . "'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
-				query('DELETE FROM ' . prefix('news2cat') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
+				$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('news2cat') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
 			}
 
 			// Check for the existence albums
@@ -713,15 +717,15 @@ class Gallery {
 			$live = array(''); // purge the root album if it exists
 			$deadalbumthemes = array();
 			// Load the albums from disk
-			$result = query("SELECT `id`, `folder`, `album_theme` FROM " . prefix('albums'));
-			while ($row = db_fetch_assoc($result)) {
+			$result = $_zp_db->query("SELECT `id`, `folder`, `album_theme` FROM " . $_zp_db->prefix('albums'));
+			while ($row = $_zp_db->fetchAssoc($result)) {
 				$albumpath = internalToFilesystem($row['folder']);
 				$albumpath_valid = preg_replace('~/\.*/~', '/', $albumpath);
 				$albumpath_valid = ltrim(trim($albumpath_valid, '/'), './');
 				$illegal = $albumpath != $albumpath_valid;
 				$valid = file_exists(ALBUM_FOLDER_SERVERPATH . $albumpath_valid) && (hasDynamicAlbumSuffix($albumpath_valid) || is_dir(ALBUM_FOLDER_SERVERPATH . $albumpath_valid));
 				if ($valid && $illegal) { // maybe there is only one record so we can fix it.
-					$valid = query('UPDATE ' . prefix('albums') . ' SET `folder`=' . db_quote($albumpath_valid) . ' WHERE `id`=' . $row['id'], false);
+					$valid = $_zp_db->query('UPDATE ' . $_zp_db->prefix('albums') . ' SET `folder`=' . $_zp_db->quote($albumpath_valid) . ' WHERE `id`=' . $row['id'], false);
 					debugLog(sprintf(gettext('Invalid album folder: %1$s %2$s'), $albumpath, $valid ? gettext('fixed') : gettext('discarded')));
 				}
 				if (!$valid || in_array($row['folder'], $live)) {
@@ -733,32 +737,32 @@ class Gallery {
 					$live[] = $row['folder'];
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 
 			if (count($dead) > 0) { /* delete the dead albums from the DB */
 				asort($dead);
 				$criteria = '(' . implode(',', $dead) . ')';
-				$sql1 = "DELETE FROM " . prefix('albums') . " WHERE `id` IN $criteria";
-				$n = query($sql1);
+				$sql1 = "DELETE FROM " . $_zp_db->prefix('albums') . " WHERE `id` IN $criteria";
+				$n = $_zp_db->query($sql1);
 				if (!$complete && $n && $cascade) {
-					$sql2 = "DELETE FROM " . prefix('images') . " WHERE `albumid` IN $criteria";
-					query($sql2);
-					$sql3 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN $criteria";
-					query($sql3);
-					$sql4 = "DELETE FROM " . prefix('obj_to_tag') . " WHERE `type`='albums' AND `objectid` IN $criteria";
-					query($sql4);
+					$sql2 = "DELETE FROM " . $_zp_db->prefix('images') . " WHERE `albumid` IN $criteria";
+					$_zp_db->query($sql2);
+					$sql3 = "DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN $criteria";
+					$_zp_db->query($sql3);
+					$sql4 = "DELETE FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE `type`='albums' AND `objectid` IN $criteria";
+					$_zp_db->query($sql4);
 				}
 			}
 			if (count($deadalbumthemes) > 0) { // delete the album theme options tables for dead albums
 				foreach ($deadalbumthemes as $id => $deadtable) {
-					$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `ownerid`=' . $id;
-					query($sql, false);
+					$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `ownerid`=' . $id;
+					$_zp_db->query($sql, false);
 				}
 			}
 			if (count($dead) > 0) {
 				// Set updateddate on possible parent albums of deleted ones
-				$result = query("SELECT `parentid`, `folder` FROM " . prefix('albums') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
-				while ($row = db_fetch_assoc($result)) {
+				$result = $_zp_db->query("SELECT `parentid`, `folder` FROM " . $_zp_db->prefix('albums') . ' WHERE `id` IN(' . implode(',', $dead) . ')');
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					if($row['parentid'] != 0) {
 						$parentalbum = getItemByID('albums', $row['parentid']);
 						$parentalbum->setUpdateddate();
@@ -778,9 +782,9 @@ class Gallery {
 				}
 
 				/* refresh 'metadata' albums */
-				$albumids = query("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
+				$albumids = $_zp_db->query("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . $_zp_db->prefix('albums'));
 				if ($albumids) {
-					while ($analbum = db_fetch_assoc($albumids)) {
+					while ($analbum = $_zp_db->fetchAssoc($albumids)) {
 						if (($mtime = filemtime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {
 							// refresh
 							$album = AlbumBase::newAlbum($analbum['folder']);
@@ -822,35 +826,35 @@ class Gallery {
 							zp_apply_filter('album_refresh', $album);
 						}
 					}
-					db_free_result($albumids);
+					$_zp_db->freeResult($albumids);
 				}
 
 				/* Delete all image entries that don't belong to an album at all. */
-				$albumids = query("SELECT `id` FROM " . prefix('albums')); /* all the album IDs */
+				$albumids = $_zp_db->query("SELECT `id` FROM " . $_zp_db->prefix('albums')); /* all the album IDs */
 				$idsofalbums = array();
 				if ($albumids) {
-					while ($row = db_fetch_assoc($albumids)) {
+					while ($row = $_zp_db->fetchAssoc($albumids)) {
 						$idsofalbums[] = $row['id'];
 					}
-					db_free_result($albumids);
+					$_zp_db->freeResult($albumids);
 				}
-				$imageAlbums = query("SELECT DISTINCT `albumid` FROM " . prefix('images')); /* albumids of all the images */
+				$imageAlbums = $_zp_db->query("SELECT DISTINCT `albumid` FROM " . $_zp_db->prefix('images')); /* albumids of all the images */
 				$albumidsofimages = array();
 				if ($imageAlbums) {
-					while ($row = db_fetch_assoc($imageAlbums)) {
+					while ($row = $_zp_db->fetchAssoc($imageAlbums)) {
 						$albumidsofimages[] = $row['albumid'];
 					}
-					db_free_result($imageAlbums);
+					$_zp_db->freeResult($imageAlbums);
 				}
 				$orphans = array_diff($albumidsofimages, $idsofalbums); /* albumids of images with no album */
 
 				if (count($orphans) > 0) { /* delete dead images from the DB */
 					$firstrow = array_pop($orphans);
-					$sql = "DELETE FROM " . prefix('images') . " WHERE `albumid`='" . $firstrow . "'";
+					$sql = "DELETE FROM " . $_zp_db->prefix('images') . " WHERE `albumid`='" . $firstrow . "'";
 					foreach ($orphans as $id) {
 						$sql .= " OR `albumid`='" . $id . "'";
 					}
-					query($sql);
+					$_zp_db->query($sql);
 
 					// Then go into existing albums recursively to clean them... very invasive.
 					foreach ($this->getAlbums(0) as $folder) {
@@ -881,11 +885,11 @@ class Gallery {
 				$restartwhere = ' WHERE `mtime`=0';
 			}
 			define('RECORD_LIMIT', 5);
-			$sql = 'SELECT * FROM ' . prefix('images') . $restartwhere . ' ORDER BY `id` LIMIT ' . (RECORD_LIMIT + 2);
-			$images = query($sql);
+			$sql = 'SELECT * FROM ' . $_zp_db->prefix('images') . $restartwhere . ' ORDER BY `id` LIMIT ' . (RECORD_LIMIT + 2);
+			$images = $_zp_db->query($sql);
 			if ($images) {
 				$c = 0;
-				while ($image = db_fetch_assoc($images)) {
+				while ($image = $_zp_db->fetchAssoc($images)) {
 					$albumobj = getItemByID('albums', $image['albumid']);
 					if ($albumobj->exists && file_exists($imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $albumobj->name . '/' . $image['filename']))) {
 						if ($image['mtime'] != $mtime = filemtime($imageName)) { // file has changed since we last saw it
@@ -897,53 +901,54 @@ class Gallery {
 							zp_apply_filter('image_refresh', $imageobj);
 						}
 					} else {
-						$sql = 'DELETE FROM ' . prefix('images') . ' WHERE `id`="' . $image['id'] . '";';
-						$result = query($sql);
-						$sql = 'DELETE FROM ' . prefix('comments') . ' WHERE `type` IN (' . zp_image_types('"') . ') AND `ownerid` ="' . $image['id'] . '";';
-						$result = query($sql);
+						$sql = 'DELETE FROM ' . $_zp_db->prefix('images') . ' WHERE `id`="' . $image['id'] . '";';
+						$result = $_zp_db->query($sql);
+						$sql = 'DELETE FROM ' . $_zp_db->prefix('comments') . ' WHERE `type` IN (' . zp_image_types('"') . ') AND `ownerid` ="' . $image['id'] . '";';
+						$result = $_zp_db->query($sql);
 					}
 					if (++$c >= RECORD_LIMIT) {
 						return $image['id']; // avoide excessive processing
 					}
 				}
-				db_free_result($images);
+				$_zp_db->freeResult($images);
 			}
 // cleanup the tables
-			$resource = db_show('tables');
+			$resource = $_zp_db->show('tables');
 			if ($resource) {
-				while ($row = db_fetch_assoc($resource)) {
+				while ($row = $_zp_db->fetchAssoc($resource)) {
 					$tbl = array_shift($row);
-					query('OPTIMIZE TABLE `' . $tbl . '`');
+					$_zp_db->query('OPTIMIZE TABLE `' . $tbl . '`');
 				}
-				db_free_result($resource);
+				$_zp_db->freeResult($resource);
 			}
 		}
 		return false;
 	}
 
 	function commentClean($table) {
-		$ids = query('SELECT `id` FROM ' . prefix($table)); /* all the IDs */
+		global $_zp_db;
+		$ids = $_zp_db->query('SELECT `id` FROM ' . $_zp_db->prefix($table)); /* all the IDs */
 		$idsofitems = array();
 		if ($ids) {
-			while ($row = db_fetch_assoc($ids)) {
+			while ($row = $_zp_db->fetchAssoc($ids)) {
 				$idsofitems[] = $row['id'];
 			}
-			db_free_result($ids);
+			$_zp_db->freeResult($ids);
 		}
-		$sql = "SELECT DISTINCT `ownerid` FROM " . prefix('comments') . ' WHERE `type` =' . db_quote($table);
-		$commentOwners = query($sql); /* all the comments */
+		$sql = "SELECT DISTINCT `ownerid` FROM " . $_zp_db->prefix('comments') . ' WHERE `type` =' . $_zp_db->quote($table);
+		$commentOwners = $_zp_db->query($sql); /* all the comments */
 		$idsofcomments = array();
 		if ($commentOwners) {
-			while ($row = db_fetch_assoc($commentOwners)) {
+			while ($row = $_zp_db->fetchAssoc($commentOwners)) {
 				$idsofcomments [] = $row['ownerid'];
 			}
-			db_free_result($commentOwners);
+			$_zp_db->freeResult($commentOwners);
 		}
 		$orphans = array_diff($idsofcomments, $idsofitems); /* owner ids of comments with no owner */
 
 		if (count($orphans) > 0) { /* delete dead comments from the DB */
-			$sql = "DELETE FROM " . prefix('comments') . " WHERE `type`=" . db_quote($table) . " AND (`ownerid`=" . implode(' OR `ownerid`=', $orphans) . ')';
-			query($sql);
+			$sql = "DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type`=" . $_zp_db->quote($table) . " AND (`ownerid`=" . implode(' OR `ownerid`=', $orphans) . ')';
+			$_zp_db->query($sql);
 		}
 	}
 
@@ -975,6 +980,7 @@ class Gallery {
 	 * @since 1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey = '`sort_order`', $sortdirection = NULL, $mine = NULL) {
+		global $_zp_db;
 		if (count($albums) == 0) {
 			return array();
 		}
@@ -1000,25 +1006,25 @@ class Gallery {
 				$order = $obj->getSortDirection('album');
 			}
 		}
-		$sortkey = db_quote($sortkey, false);
-		$sql = 'SELECT * FROM ' . prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey . ' ' . $sortdirection;
-		$result = query($sql);
+		$sortkey = $_zp_db->quote($sortkey, false);
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix("albums") . ' WHERE `parentid`' . $albumid . ' ORDER BY ' . $sortkey . ' ' . $sortdirection;
+		$result = $_zp_db->query($sql);
 		$results = array();
 		//	check database aganist file system
-		while ($row = db_fetch_assoc($result)) {
+		while ($row = $_zp_db->fetchAssoc($result)) {
 			$folder = $row['folder'];
 			if (($key = array_search($folder, $albums)) !== false) { // album exists in filesystem
 				$results[$row['folder']] = $row;
 				unset($albums[$key]);
 			} else { // album no longer exists
 				$id = $row['id'];
-				query("DELETE FROM " . prefix('albums') . " WHERE `id`=$id"); // delete the record
-				query("DELETE FROM " . prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
-				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $id);
-				query("DELETE FROM " . prefix('albums') . " WHERE `id` = " . $id);
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('albums') . " WHERE `id`=$id"); // delete the record
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . " WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $id);
+				$_zp_db->query("DELETE FROM " . $_zp_db->prefix('albums') . " WHERE `id` = " . $id);
 			}
 		}
-		db_free_result($result);
+		$_zp_db->freeResult($result);
 		foreach ($albums as $folder) { // these albums are not in the database
 			$albumobj = AlbumBase::newAlbum($folder);
 			if ($albumobj->exists) { // fail to instantiate?

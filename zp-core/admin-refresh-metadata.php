@@ -107,8 +107,8 @@ if (isset($_GET['refresh'])) {
 					redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 				}
 			}
-			$sql = "SELECT `id` FROM " . prefix('albums') . " WHERE `folder`=" . db_quote($folder);
-			$row = query_single_row($sql);
+			$sql = "SELECT `id` FROM " . $_zp_db->prefix('albums') . " WHERE `folder`=" . $_zp_db->quote($folder);
+			$row = $_zp_db->querySingleRow($sql);
 			$id = $row['id'];
 		}
 
@@ -163,13 +163,13 @@ printTabs();
 		} else {
 			if ($type !== 'prune&amp;') {
 				if (!empty($id)) {
-					$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
-					query($sql);
+					$sql = "UPDATE " . $_zp_db->prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
+					$_zp_db->query($sql);
 				}
-				$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";
-				query($sql);
-				$sql = "UPDATE " . prefix('images') . " SET `mtime`=0 $imagewhere;";
-				query($sql);
+				$sql = "UPDATE " . $_zp_db->prefix('albums') . " SET `mtime`=0 $albumwhere";
+				$_zp_db->query($sql);
+				$sql = "UPDATE " . $_zp_db->prefix('images') . " SET `mtime`=0 $imagewhere;";
+				$_zp_db->query($sql);
 			}
 			if (!empty($folder) && empty($id)) {
 				echo "<p> " . sprintf(gettext("<em>%s</em> not found"), $folder) . "</p>";

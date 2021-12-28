@@ -18,13 +18,13 @@ if (!defined('OFFSET_PATH')) {
 			}
 			zp_session_start();
 			XSRFdefender('hitcounter');
-			query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
-			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-			query('DELETE FROM ' . prefix('options') . ' WHERE `name` LIKE "Page-Hitcounter-%"');
-			query("DELETE FROM " . prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
+			$_zp_db->query('UPDATE ' . $_zp_db->prefix('albums') . ' SET `hitcounter`= 0');
+			$_zp_db->query('UPDATE ' . $_zp_db->prefix('images') . ' SET `hitcounter`= 0');
+			$_zp_db->query('UPDATE ' . $_zp_db->prefix('news') . ' SET `hitcounter`= 0');
+			$_zp_db->query('UPDATE ' . $_zp_db->prefix('pages') . ' SET `hitcounter`= 0');
+			$_zp_db->query('UPDATE ' . $_zp_db->prefix('news_categories') . ' SET `hitcounter`= 0');
+			$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name` LIKE "Page-Hitcounter-%"');
+			$_zp_db->query("DELETE FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'rsshitcounter'");
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg=' . gettext('All hitcounters have been set to zero.'));
 		}
 	}
@@ -273,6 +273,7 @@ function getHitcounter($obj = NULL) {
  * @return int
  */
 function getTotalHitcounter(array $items = array()) {
+	global $_zp_db;
 	$totalhitcount = 0;
 	if (!empty($items)) {
 		$items_valid = array();
@@ -286,21 +287,21 @@ function getTotalHitcounter(array $items = array()) {
 		}
 		if (!empty($items_valid)) {
 			if (count($items_valid) == 1) {
-				$query = $basequery . prefix($items_valid[0]);
+				$query = $basequery . $_zp_db->prefix($items_valid[0]);
 			} else if (count($items_valid) > 1) {
 				$unionqueries = array();
 				foreach ($items_valid as $item) {
-					$unionqueries[] = 'SELECT SUM(hitcounter) as hitcounter FROM ' . prefix($item);
+					$unionqueries[] = 'SELECT SUM(hitcounter) as hitcounter FROM ' . $_zp_db->prefix($item);
 				}
 				$query = $basequery . '(' . implode(' UNION ', $unionqueries) . ') as hitcount';
 			}
-			$result = query($query);
+			$result = $_zp_db->query($query);
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					$totalhitcount = $row['hitcounter_total'];
 				}
 			}
-			db_free_result($result);
+			$_zp_db->freeResult($result);
 		}
 	}
 	return $totalhitcount;

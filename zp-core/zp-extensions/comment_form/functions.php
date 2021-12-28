@@ -215,7 +215,7 @@ define('COMMENT_DATACONFIRMATION', 64);
  * @return object
  */
 function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null) {
-	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
+	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter, $_zp_db;
 	if ($check === false) {
 		$whattocheck = 0;
 		if (getOption('comment_email_required') == 'required')
@@ -403,10 +403,10 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 			if ($type === "images" OR $type === "albums") {
 				// mail to album admins
 				$id = $ur_album->getID();
-				$sql = 'SELECT `adminid` FROM ' . prefix('admin_to_object') . ' WHERE `objectid`=' . $id . ' AND `type` LIKE "album%"';
-				$result = query($sql);
+				$sql = 'SELECT `adminid` FROM ' . $_zp_db->prefix('admin_to_object') . ' WHERE `objectid`=' . $id . ' AND `type` LIKE "album%"';
+				$result = $_zp_db->query($sql);
 				if ($result) {
-					while ($anadmin = db_fetch_assoc($result)) {
+					while ($anadmin = $_zp_db->fetchAssoc($result)) {
 						$id = $anadmin['adminid'];
 						if (array_key_exists($id, $admin_users)) {
 							$admin = $admin_users[$id];
@@ -415,7 +415,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 							}
 						}
 					}
-					db_free_result($result);
+					$_zp_db->freeResult($result);
 				}
 			}
 			$on = gettext('Comment posted');
@@ -709,7 +709,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
  * @param int $id the record id of element to get the comments for if $type != "all"
  */
 function getLatestComments($number, $type = "all", $id = NULL) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	$albumcomment = $imagecomment = NULL;
 	$comments = array();
 	$whereclause = '';
@@ -717,10 +717,10 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 		case is_array($type):
 			$whereclause = ' AND `type` IN ("' . implode('","', $type) . '")';
 		case 'all':
-			$sql = 'SELECT * FROM ' . prefix('comments') . ' WHERE `private`=0 AND `inmoderation`=0' . $whereclause . ' ORDER BY `date` DESC';
-			$commentsearch = query($sql);
+			$sql = 'SELECT * FROM ' . $_zp_db->prefix('comments') . ' WHERE `private`=0 AND `inmoderation`=0' . $whereclause . ' ORDER BY `date` DESC';
+			$commentsearch = $_zp_db->query($sql);
 			if ($commentsearch) {
-				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
+				while ($number > 0 && $commentcheck = $_zp_db->fetchAssoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
 					if ($item && $item->checkAccess()) {
 						$number--;
@@ -745,7 +745,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 						$comments[] = $commentcheck;
 					}
 				}
-				db_free_result($commentsearch);
+				$_zp_db->freeResult($commentsearch);
 			}
 			return $comments;
 		case 'album':

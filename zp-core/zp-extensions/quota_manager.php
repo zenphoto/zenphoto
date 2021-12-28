@@ -144,12 +144,12 @@ class quota_manager {
 	 * @return int
 	 */
 	static function getCurrentUse($userobj) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_db;
 		if (is_null($userobj)) {
 			$userobj = $_zp_current_admin_obj;
 		}
-		$sql = 'SELECT sum(`filesize`) FROM ' . prefix('images') . ' WHERE `owner`="' . $userobj->getUser() . '"';
-		$result = query_single_row($sql);
+		$sql = 'SELECT sum(`filesize`) FROM ' . $_zp_db->prefix('images') . ' WHERE `owner`="' . $userobj->getUser() . '"';
+		$result = $_zp_db->querySingleRow($sql);
 		return array_shift($result) / 1024;
 	}
 

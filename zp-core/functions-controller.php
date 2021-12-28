@@ -235,7 +235,7 @@ function load_zenpage_pages($titlelink) {
  * @return object
  */
 function load_zenpage_news($request) {
-	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date;
+	global $_zp_current_zenpage_news, $_zp_current_category, $_zp_post_date, $_zp_db;
 	if (!ZP_NEWS_ENABLED) {
 		return false;
 	}
@@ -256,8 +256,8 @@ function load_zenpage_news($request) {
 	}
 	if (isset($request['title'])) {
 		$titlelink = sanitize(rtrim($request['title'], '/'));
-		$sql = 'SELECT `id` FROM ' . prefix('news') . ' WHERE `titlelink`=' . db_quote($titlelink);
-		$result = query_single_row($sql);
+		$sql = 'SELECT `id` FROM ' . $_zp_db->prefix('news') . ' WHERE `titlelink`=' . $_zp_db->quote($titlelink);
+		$result = $_zp_db->querySingleRow($sql);
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_ARTICLE | ZP_ZENPAGE_SINGLE);
 			$_zp_current_zenpage_news = new ZenpageNews($titlelink);

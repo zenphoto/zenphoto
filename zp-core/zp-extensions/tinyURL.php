@@ -135,6 +135,7 @@ class tinyURL {
 	}
 
 	static function parse($success) {
+		global $_zp_db;
 		if (isset($_GET['p']) && isset($_GET['t'])) { //	Zenphoto tiny url
 			unset($_GET['t']);
 			$tiny = sanitize_numeric($_GET['p']);
@@ -143,7 +144,7 @@ class tinyURL {
 			if (array_key_exists($tbl, self::$tableAsoc)) {
 				$tbl = self::$tableAsoc[$tbl];
 				$id = $tiny >> 3;
-				$result = query_single_row('SELECT * FROM ' . prefix($tbl) . ' WHERE `id`=' . $id);
+				$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix($tbl) . ' WHERE `id`=' . $id);
 				if ($result) {
 					switch ($tbl) {
 						case 'news':
@@ -157,7 +158,7 @@ class tinyURL {
 							break;
 						case 'images':
 							$image = $_GET['image'] = $result['filename'];
-							$result = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $result['albumid']);
+							$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $result['albumid']);
 						case 'albums':
 							$album = $_GET['album'] = $result['folder'];
 							unset($_GET['p']);
@@ -171,11 +172,11 @@ class tinyURL {
 							unset($_GET['p']);
 							$commentid = $id;
 							$type = $result['type'];
-							$result = query_single_row('SELECT * FROM ' . prefix($result['type']) . ' WHERE `id`=' . $result['ownerid']);
+							$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix($result['type']) . ' WHERE `id`=' . $result['ownerid']);
 							switch ($type) {
 								case 'images':
 									$image = $result['filename'];
-									$result = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $result['albumid']);
+									$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $result['albumid']);
 									$redirect = 'index.php?album=' . $result['folder'] . '&image=' . $image;
 									break;
 								case 'albums':
