@@ -370,6 +370,7 @@ class Administrator extends PersistentObject {
 	 * Returns the user's "prime" album. See setAlbum().
 	 */
 	function getAlbum() {
+		global $_zp_db;
 		$id = $this->get('prime_album');
 		if (!empty($id)) {
 			$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $id;
