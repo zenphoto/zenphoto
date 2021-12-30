@@ -267,7 +267,7 @@ class Image extends MediaObject {
 	 *
 	 */
 	function updateMetaData() {
-		global $_zp_exifvars, $_zp_gallery;
+		global $_zp_exifvars, $_zp_gallery, $_zp_graphics;
 		require_once(dirname(__FILE__) . '/exif/exif.php');
 		$IPTCtags = array(
 						'SKIP'								 => '2#000', //	Record Version										Size:64
@@ -346,7 +346,7 @@ class Image extends MediaObject {
 				}
 			}
 			/* check IPTC data */
-			$iptcdata = zp_imageIPTC($localpath);
+			$iptcdata = $_zp_graphics->imageIPTC($localpath);
 			if (!empty($iptcdata)) {
 				$iptc = iptcparse($iptcdata);
 				if ($iptc) {
@@ -599,11 +599,12 @@ class Image extends MediaObject {
 	 *
 	 */
 	function updateDimensions() {
+		global $_zp_graphics;
 		$discard = NULL;
-		$size = zp_imageDims($this->localpath);
+		$size = $_zp_graphics->imageDims($this->localpath);
 		$width = $size['width'];
 		$height = $size['height'];
-		if (zp_imageCanRotate()) {
+		if ($_zp_graphics->imageCanRotate()) {
 			// Swap the width and height values if the image should be rotated
 			$splits = preg_split('/!([(0-9)])/', $this->get('EXIFOrientation'));
 			$rotation = $splits[0];

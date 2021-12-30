@@ -742,7 +742,7 @@ if ($c <= 0) {
 								/* Check for graphic library and image type support. */
 								setup::primeMark(gettext('Graphics library'));
 								if (function_exists('zp_graphicsLibInfo')) {
-									$graphics_lib = zp_graphicsLibInfo();
+									$graphics_lib = $_zp_graphics->graphicsLibInfo();
 									if (array_key_exists('Library_desc', $graphics_lib)) {
 										$library = $graphics_lib['Library_desc'];
 									} else {
@@ -779,7 +779,7 @@ if ($c <= 0) {
 															"<br />" . gettext("The unsupported image types will not be viewable in your albums.") .
 															"<br />" . $mandate);
 										}
-										if (!zp_imageCanRotate()) {
+										if (!$_zp_graphics->imageCanRotate()) {
 											setup::checkMark(-1, '', gettext('Graphics Library rotation support [is not present]'), gettext('The graphics support library does not provide support for image rotation.'));
 										}
 									}

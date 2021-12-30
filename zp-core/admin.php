@@ -330,7 +330,7 @@ if (!zp_loggedin()) {
 									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('source: %s'), $source);
 								}
 
-								$graphics_lib = zp_graphicsLibInfo();
+								$graphics_lib = $_zp_graphics->graphicsLibInfo();
 								?>
 								<li>
 									<?php

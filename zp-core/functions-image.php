@@ -164,7 +164,7 @@ function iptc_make_tag($rec, $data, $value) {
  * @param string $album the album containing the image
  */
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $theme = null, $album = null) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_graphics;
 	try {
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 		// Set the config variables for convenience.
@@ -198,7 +198,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			imageError('404 Not Found', sprintf(gettext('Image %s not found or is unreadable.'), filesystemToInternal($imgfile)), 'err-imagenotfound.png');
 		}
 		$rotate = false;
-		if (zp_imageCanRotate()) {
+		if ($_zp_graphics->imageCanRotate()) {
 			$rotate = getImageRotation($imgfile);
 		}
 		$s = getSuffix($imgfile);
@@ -211,7 +211,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$big_enough = $tw >= $width && $th >= $height;
 				}
 				if ($big_enough) {
-					$im = zp_imageFromString($im);
+					$im = $_zp_graphics->imageFromString($im);
 					if (DEBUG_IMAGE && $im)
 						debugLog(sprintf(gettext('Using %1$ux%2$u %3$s thumbnail image.'), $tw, $th, image_type_to_mime_type($tt)));
 				} else {
@@ -222,7 +222,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			}
 		}
 		if (!$im) {
-			$im = zp_imageGet($imgfile);
+			$im = $_zp_graphics->imageGet($imgfile);
 		}
 		if (!$im) {
 			imageError('404 Not Found', sprintf(gettext('Image %s not renderable (imageGet).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
@@ -230,13 +230,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		if ($rotate) {
 			if (DEBUG_IMAGE)
 				debugLog("cacheImage:rotate->$rotate");
-			$im = zp_rotateImage($im, $rotate);
+			$im = $_zp_graphics->rotateImage($im, $rotate);
 			if (!$im) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not rotatable.'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
 		}
-		$w = zp_imageWidth($im);
-		$h = zp_imageHeight($im);
+		$w = $_zp_graphics->imageWidth($im);
+		$h = $_zp_graphics->imageHeight($im);
 		// Give the sizing dimension to $dim
 		$ratio_in = '';
 		$ratio_out = '';
@@ -388,19 +388,19 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
 			switch (getSuffix($newfilename)) {
 				case 'gif':
-					$newim = zp_createImage($neww, $newh, false);
+					$newim = $_zp_graphics->createImage($neww, $newh, false);
 					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
 				case 'webp':
 				default:
-					$newim = zp_createImage($neww, $newh);
+					$newim = $_zp_graphics->createImage($neww, $newh);
 					if (in_array(getSuffix($newfilename), array('png', 'webp'))) {
-						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+						$newim = $_zp_graphics->imageResizeAlpha($newim, $neww, $newh);
 					}
 					break;
 			}
-			if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
+			if (!$_zp_graphics->resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
 					imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 				}
 		} else {
@@ -427,23 +427,23 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 			switch (getSuffix($newfilename)) {
 				case 'gif':
-					$newim = zp_createImage($neww, $newh, false);
+					$newim = $_zp_graphics->createImage($neww, $newh, false);
 					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
 				case 'webp':
 				default:
-					$newim = zp_createImage($neww, $newh);
+					$newim = $_zp_graphics->createImage($neww, $newh);
 					if (in_array(getSuffix($newfilename), array('png', 'webp'))) {
-						$newim = zp_imageResizeAlpha($newim, $neww, $newh);
+						$newim = $_zp_graphics->imageResizeAlpha($newim, $neww, $newh);
 					}
 					break;
 			}
-			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
+			if (!$_zp_graphics->resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
 			if (($thumb && $sharpenthumbs) || (!$thumb && $sharpenimages)) {
-				if (!zp_imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'))) {
+				if (!$_zp_graphics->imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'))) {
 					imageError('404 Not Found', sprintf(gettext('Image %s not renderable (unsharp).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 				}
 			}
@@ -451,13 +451,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 		$imgEffects = explode(',', $effects);
 		if (in_array('gray', $imgEffects)) {
-			zp_imageGray($newim);
+			$_zp_graphics->imageGray($newim);
 		}
 		$newim = addWatermark($newim, $watermark_image, $imgfile);
 
 		// Create the cached file (with lots of compatibility)...
 		@chmod($newfile, 0777);
-		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
+		if ($_zp_graphics->imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
 			if (getOption('EmbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the embed function works only with JPEG images
 				global $_zp_extra_filetypes; //	because we are doing the require in a function!
 				if (!$_zp_extra_filetypes)
@@ -467,7 +467,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
 								'2#115'	 => $_zp_gallery->getTitle() //	source
 				);
-				$iptc_data = zp_imageIPTC($imgfile);
+				$iptc_data = $_zp_graphics->imageIPTC($imgfile);
 				if ($iptc_data) {
 					$iptc_data = iptcparse($iptc_data);
 					if ($iptc_data)
@@ -514,8 +514,8 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			imageError('404 Not Found', sprintf(gettext('cacheImage: failed to create %s'), $newfile), 'err-failimage.png', $imgfile, $album, $newfilename);
 		}
 		@chmod($newfile, FILE_MOD);
-		zp_imageKill($newim);
-		zp_imageKill($im);
+		$_zp_graphics->imageKill($newim);
+		$_zp_graphics->imageKill($im);
 	} catch (Exception $e) {
 		debugLog('cacheImage(' . $newfilename . ') exception: ' . $e->getMessage());
 		imageError('404 Not Found', sprintf(gettext('cacheImage(%1$s) exception: %2$s'), $newfilename, $e->getMessage()), 'err-failimage.png', $imgfile, $album, $newfilename);
@@ -578,18 +578,19 @@ function getImageRotation($imgfile) {
  * @return resource|object
  */
 function addWatermark($newim, $watermark_image, $imgfile = null) {
+	global $_zp_graphics;
 	if ($watermark_image) {
-		$watermark = zp_imageGet($watermark_image);
+		$watermark = $_zp_graphics->imageGet($watermark_image);
 		if (!$watermark) {
 			imageError('404 Not Found', sprintf(gettext('Watermark %s not renderable.'), $watermark_image), 'err-failimage.png');
 		}
 		$offset_h = getOption('watermark_h_offset') / 100;
 		$offset_w = getOption('watermark_w_offset') / 100;
 		$percent = getOption('watermark_scale') / 100;
-		$watermark_width = zp_imageWidth($watermark);
-		$watermark_height = zp_imageHeight($watermark);
-		$imw = zp_imageWidth($newim);
-		$imh = zp_imageHeight($newim);
+		$watermark_width = $_zp_graphics->imageWidth($watermark);
+		$watermark_height = $_zp_graphics->imageHeight($watermark);
+		$imw = $_zp_graphics->imageWidth($newim);
+		$imh = $_zp_graphics->imageHeight($newim);
 		$nw = sqrt(($imw * $imh * $percent) * ($watermark_width / $watermark_height));
 		$nh = $nw * ($watermark_height / $watermark_width);
 		$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
@@ -598,8 +599,8 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 		$nh = round($watermark_height * $r);
 		$watermark_new = false;
 		if ($nw != $watermark_width || $nh != $watermark_height) {
-			$watermark_new = zp_imageResizeAlpha($watermark, $nw, $nh);
-			if (!zp_resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
+			$watermark_new = $_zp_graphics->imageResizeAlpha($watermark, $nw, $nh);
+			if (!$_zp_graphics->resampleImage($watermark_new, $watermark, 0, 0, 0, 0, $nw, $nh, $watermark_width, $watermark_height)) {
 				imageError('404 Not Found', sprintf(gettext('Watermark %s not resizeable.'), $watermark_image), 'err-failimage.png');
 			}
 		}
@@ -614,16 +615,16 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 		if (!is_null($imgfile) && DEBUG_IMAGE) {
 			debugLog("Watermark:" . basename($imgfile) . ": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
 		}
-		if (!zp_copyCanvas($newim, $watermark_new, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
+		if (!$_zp_graphics->copyCanvas($newim, $watermark_new, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
 			imageError('404 Not Found', sprintf(gettext('Image %s not renderable (copycanvas).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, '' , '');
 		}
-		zp_imageKill($watermark);
+		$_zp_graphics->imageKill($watermark);
 		/*
 		 * GD special behaviour:
 		 * If no resizing happened killing $watermark also already kills $watermark_new being the same
 		 */
 		if (GRAPHICS_LIBRARY != 'GD' || (GRAPHICS_LIBRARY == 'GD' && isGDImage($watermark_new))) { 
-			zp_imageKill($watermark_new);
+			$_zp_graphics->imageKill($watermark_new);
 		} 
 	}
 	return $newim;

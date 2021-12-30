@@ -270,19 +270,21 @@ if (function_exists('mb_internal_encoding')) {
 }
 
 // load graphics libraries in priority order
-// once a library has concented to load, all others will
-// abdicate.
-$_zp_graphics_optionhandlers = array();
-$try = array('functions-graphicsgd.php', 'functions-graphicsnone.php');
-if (getOption('use_imagick')) {
-	array_unshift($try, 'functions-graphicsimagick.php');
-}
-while (!function_exists('zp_graphicsLibInfo')) {
-	require_once(dirname(__FILE__) . '/' . array_shift($try));
-}
-$_zp_cachefile_suffix = zp_graphicsLibInfo();
-
-
+define('IMAGICK_REQUIRED_VERSION', '3.0.0');
+define('IMAGEMAGICK_REQUIRED_VERSION', '6.3.8');
+require_once SERVERPATH . '/' . ZENFOLDER . '/functions-graphics.php'; // legacy functions
+require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsoptions.php'; // option class
+require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsbase.php'; // base class
+$_zp_graphics = new graphicsBase();
+$_zp_graphics_optionhandlers[] = new graphicsOptions(); // register option handler
+if ((getOption('use_imagick') || getOption('graphicslib_selected') == 'imagick') && $_zp_graphics->imagick_present) { // support legacy option
+	require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsimagick.php';
+	$_zp_graphics = new graphicsImagick();
+} else if ($_zp_graphics->gd_present) {
+	require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsgd.php';
+	$_zp_graphics = new graphicsGD();
+} 
+$_zp_cachefile_suffix = $_zp_graphics->info;
 define('GRAPHICS_LIBRARY', $_zp_cachefile_suffix['Library']);
 unset($_zp_cachefile_suffix['Library']);
 unset($_zp_cachefile_suffix['Library_desc']);

@@ -1993,8 +1993,6 @@ Authority::printPasswordFormJS();
 				}
 
 				if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
-					require_once(dirname(__FILE__) . '/functions-graphicsimagick.php');
-					require_once(dirname(__FILE__) . '/functions-graphicsgd.php');
 					?>
 					<div id="tab_image" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>

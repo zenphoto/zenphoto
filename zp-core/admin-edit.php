@@ -985,7 +985,7 @@ echo "\n</head>";
 									</tr>
 									<?php
 									$currentimage = 0;
-									if (zp_imageCanRotate()) {
+									if ($_zp_graphics->imageCanRotate()) {
 										$disablerotate = '';
 									} else {
 										$disablerotate = ' disabled="disabled"';

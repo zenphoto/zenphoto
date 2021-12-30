@@ -156,7 +156,7 @@ if ($force_cache = getOption('cache_full_image')) {
 }
 
 $process = $rotate = false;
-if (zp_imageCanRotate()) {
+if ($_zp_graphics->imageCanRotate()) {
 	$rotate = getImageRotation($image_path);
 	$process = $rotate;
 }
@@ -223,9 +223,9 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 		//	have to create the image
 		$iMutex = new zpMutex('i', getOption('imageProcessorConcurrency'));
 		$iMutex->lock();
-		$newim = zp_imageGet($image_path);
+		$newim = $_zp_graphics->imageGet($image_path);
 		if ($rotate) {
-			$newim = zp_rotateImage($newim, $rotate);
+			$newim = $_zp_graphics->rotateImage($newim, $rotate);
 		}
 		if ($watermark_use_image) {
 			$watermark_image = getWatermarkPath($watermark_use_image);
@@ -235,7 +235,7 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 			$newim = addWatermark($newim, $watermark_image, $image_path);
 		} 
 		$iMutex->unlock();
-		if (!zp_imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {
+		if (!$_zp_graphics->imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {
 			debugLog('full-image failed to create:' . $image);
 		} 
 	}

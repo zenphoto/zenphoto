@@ -4281,13 +4281,13 @@ function printZenphotoLink() {
  * @param string $theme The theme being used
  */
 function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
-	global $_zp_filters;
+	global $_zp_filters, $_zp_graphics;
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
 		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION;
 		if (TEST_RELEASE) {
 			echo " THEME: " . $theme . " (" . $a . ")";
-			$graphics = zp_graphicsLibInfo();
+			$graphics = $_zp_graphics->graphicsLibInfo();
 			$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);
 			echo " GRAPHICS LIB: " . $graphics . " { memory: " . INI_GET('memory_limit') . " }";
 			echo ' PLUGINS: ';

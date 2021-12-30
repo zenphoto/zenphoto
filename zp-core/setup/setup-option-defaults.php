@@ -503,6 +503,13 @@ purgeOption('thumb_select_images');
 purgeOption('album_default');
 purgeOption('image_default');
 
+if(getOption('use_imagick') && $_zp_graphics->imagick_present) {
+	setOptionDefault('graphicslib_selected', 'imagick', true);
+} else {
+	setOptionDefault('graphicslib_selected', 'gd', true);
+}
+purgeOption('use_imagick');
+
 if (TEST_RELEASE) {
 	foreach ($data as $key => $option) {
 		purgeOption($key);

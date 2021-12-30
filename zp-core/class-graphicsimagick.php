@@ -1,158 +1,55 @@
 <?php
-
+// force UTF-8 Ø
 /**
- * Library for image handling using the Imagick library of functions
+ * Class for image handling using the Imagick library
  *
  * Requires Imagick 3.0.0+ and ImageMagick 6.3.8+
- *
+ * 
+ * @since ZenphotoCMS 1.6 - reworked as class
+ * 
  * @package core
- * @subpackage graphic-handlers\lib-imagick
+ * @subpackage classes\graphics
  */
-// force UTF-8 Ø
-
-define('IMAGICK_REQUIRED_VERSION', '3.0.0');
-define('IMAGEMAGICK_REQUIRED_VERSION', '6.3.8');
-
-$_imagick_version = phpversion('imagick');
-$_imagick_version_pass = version_compare($_imagick_version, IMAGICK_REQUIRED_VERSION, '>=');
-
-$_imagemagick_version = '';
-$_imagemagick_version_pass = false;
-
-$_zp_imagick_present = extension_loaded('imagick') && $_imagick_version_pass;
-
-if ($_zp_imagick_present) {
-	@$_imagemagick_version = Imagick::getVersion();
-	preg_match('/\d+(\.\d+)*/', $_imagemagick_version['versionString'], $matches);
-
-	$_imagemagick_version['versionNumber'] = $matches[0];
-	$_imagemagick_version_pass = version_compare($_imagemagick_version['versionNumber'], IMAGEMAGICK_REQUIRED_VERSION, '>=');
-
-	$_zp_imagick_present &= $_imagick_version_pass;
-	unset($matches);
-}
-
-$_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_Options());
-
-/**
- * Option class for lib-Imagick
- */
-class lib_Imagick_Options {
-
-	public static $ignore_size = 0;
+class graphicsImagick extends graphicsBase {
 
 	function __construct() {
-		setOptionDefault('magick_max_height', self::$ignore_size);
-		setOptionDefault('magick_max_width', self::$ignore_size);
-
-		if (!sanitize_numeric(getOption('magick_max_height'))) {
-			setOption('magick_max_height', self::$ignore_size);
-		}
-
-		if (!sanitize_numeric(getOption('magick_max_width'))) {
-			setOption('magick_max_width', self::$ignore_size);
-		}
-	}
-
-	/**
-	 * Standard option interface
-	 *
-	 * @return array
-	 */
-	function getOptionsSupported() {
-		global $_zp_imagick_present, $_zp_graphics_optionhandlers;
-		if ($disabled = $this->canLoadMsg()) {
-			setOption('use_imagick', 0, true);
-		}
-		$imagickOptions = array(
-						gettext('Enable Imagick') => array(
-										'key'			 => 'use_imagick',
-										'type'		 => OPTION_TYPE_CHECKBOX,
-										'order'		 => 0,
-										'disabled' => $disabled,
-										'desc'		 => ($disabled) ? '<p class="notebox">' . $disabled . '</p>' : gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
-						)
+		$this->checkGraphicSupport();
+		//$_zp_imagick_version = phpversion('imagick');
+		//$_zp_imagemagick_version = Imagick::getVersion();
+		$this->info['Library'] = 'Imagick';
+		$this->info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $this->imagick_version, $this->imagemagick_version['versionString']);
+		$imagick_format_whitelist = array(
+				'BMP' => 'jpg',
+				'BMP2' => 'jpg',
+				'BMP3' => 'jpg',
+				'GIF' => 'gif',
+				'GIF87' => 'gif',
+				'JPG' => 'jpg',
+				'JPEG' => 'jpg',
+				'PNG' => 'png',
+				'PNG8' => 'png',
+				'PNG24' => 'png',
+				'PNG32' => 'png',
+				'TIFF' => 'jpg',
+				'TIFF64' => 'jpg',
+				'WEBP' => 'webp'
 		);
 
-		if (!$disabled) {
-			$imagickOptions += array(
-							gettext('Max height')	 => array(
-											'key'		 => 'magick_max_height',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 1,
-											'desc'	 => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
-							),
-							gettext('Max width')	 => array(
-											'key'		 => 'magick_max_width',
-											'type'	 => OPTION_TYPE_TEXTBOX,
-											'order'	 => 2,
-											'desc'	 => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
-							)
-			);
-		}
-
-		return $imagickOptions;
-	}
-
-	function canLoadMsg() {
-		global $_imagick_version_pass, $_imagemagick_version_pass;
-
-		if (extension_loaded('imagick')) {
-			if (!$_imagick_version_pass) {
-				return sprintf(gettext('The <strong><em>Imagick</em></strong> library version must be <strong>%s</strong> or later.'), IMAGICK_REQUIRED_VERSION);
+		$imagick = new Imagick();
+		$imagick_formats = $imagick->queryFormats();
+		foreach ($imagick_formats as $format) {
+			if (array_key_exists($format, $imagick_format_whitelist)) {
+				$this->info[$format] = $imagick_format_whitelist[$format];
 			}
-
-			if (!$_imagemagick_version_pass) {
-				return sprintf(gettext('The <strong><em>ImageMagick</em></strong> binary version must be <strong>%s</strong> or later.'), IMAGEMAGICK_REQUIRED_VERSION);
-			}
-		} else {
-			return gettext('The <strong><em>Imagick</em></strong> extension is not available.');
 		}
+		unset($imagick_format_whitelist);
+		unset($imagick_formats);
+		unset($imagick);
+		unset($format);
 
-		return '';
-	}
-
-}
-
-/**
- * Zenphoto image manipulation functions using the Imagick library
- */
-if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd'))) {
-	$_lib_Imagick_info = array();
-	$_lib_Imagick_info['Library'] = 'Imagick';
-	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
-
-	$_imagick_format_whitelist = array(
-			'BMP' => 'jpg',
-			'BMP2' => 'jpg',
-			'BMP3' => 'jpg',
-			'GIF' => 'gif',
-			'GIF87' => 'gif',
-			'JPG' => 'jpg',
-			'JPEG' => 'jpg',
-			'PNG' => 'png',
-			'PNG8' => 'png',
-			'PNG24' => 'png',
-			'PNG32' => 'png',
-			'TIFF' => 'jpg',
-			'TIFF64' => 'jpg',
-			'WEBP' => 'webp'
-	);
-
-	$_imagick = new Imagick();
-	$_imagick_formats = $_imagick->queryFormats();
-	foreach ($_imagick_formats as $format) {
-		if (array_key_exists($format, $_imagick_format_whitelist)) {
-			$_lib_Imagick_info[$format] = $_imagick_format_whitelist[$format];
+		if (DEBUG_IMAGE) {
+			debugLog('Loading ' . $this->info['Library']);
 		}
-	}
-	unset($_imagick_format_whitelist);
-	unset($_imagick_formats);
-	unset($_imagick);
-	unset($format);
-
-	if (DEBUG_IMAGE) {
-		debugLog('Loading ' . $_lib_Imagick_info['Library']);
 	}
 
 	/**
@@ -161,29 +58,22 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param string $imgfile the full path and filename of the image to load
 	 * @return Imagick
 	 */
-	function zp_imageGet($imgfile) {
-		global $_lib_Imagick_info;
-
-		if (array_key_exists(strtoupper(getSuffix($imgfile)), $_lib_Imagick_info)) {
+	function imageGet($imgfile) {
+		if (array_key_exists(strtoupper(getSuffix($imgfile)), $this->info)) {
 			$image = new Imagick();
-
 			$maxHeight = getOption('magick_max_height');
 			$maxWidth = getOption('magick_max_width');
-
-			if ($maxHeight > lib_Imagick_Options::$ignore_size && $maxWidth > lib_Imagick_Options::$ignore_size) {
+			if ($maxHeight > graphicsOptions::$ignore_size && $maxWidth > graphicsOptions::$ignore_size) {
 				$image->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 			}
-
 			$image->readImage(filesystemToInternal($imgfile));
 
 			//Generic CMYK to RGB conversion
 			if ($image->getImageColorspace() == Imagick::COLORSPACE_CMYK) {
 				$image->transformimagecolorspace(Imagick::COLORSPACE_SRGB);
 			}
-
 			return $image;
 		}
-
 		return false;
 	}
 
@@ -196,12 +86,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $qual
 	 * @return bool
 	 */
-	function zp_imageOutput($im, $type, $filename = NULL, $qual = 75) {
+	function imageOutput($im, $type, $filename = NULL, $qual = 75) {
 		$interlace = getOption('image_interlace');
 		$qual = max(min($qual, 100), 0);
-
 		$im->setImageFormat($type);
-
 		switch ($type) {
 			case 'gif':
 				$im->setImageCompression(Imagick::COMPRESSION_LZW);
@@ -227,15 +115,11 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 				}
 				break;
 		}
-
 		$im->optimizeImageLayers();
-
 		if ($filename == NULL) {
 			header('Content-Type: image/' . $type);
-
 			return print $im->getImagesBlob();
 		}
-
 		return $im->writeImages(filesystemToInternal($filename), true);
 	}
 
@@ -247,10 +131,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param bool $truecolor True to create a true color image, false for usage with palette images like gifs
 	 * @return Imagick
 	 */
-	function zp_createImage($w, $h, $truecolor = true) {
+	function createImage($w, $h, $truecolor = true) {
 		$im = new Imagick();
 		$im->newImage($w, $h, 'none');
-		if($truecolor) {
+		if ($truecolor) {
 			$im->setImageType(Imagick::IMGTYPE_TRUECOLORMATTE);
 		} else {
 			$imagetype = $im->getImageType();
@@ -268,9 +152,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param color $color
 	 * @return bool
 	 */
-	function zp_imageFill($image, $x, $y, $color) {
+	function imageFill($image, $x, $y, $color) {
 		$target = $image->getImagePixelColor($x, $y);
-
 		return $image->floodFillPaintImage($color, 1, $target, $x, $y, false);
 	}
 
@@ -281,7 +164,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param color $color
 	 * @return bool
 	 */
-	function zp_imageColorTransparent($image, $color) {
+	function imageColorTransparent($image, $color) {
 		return $image->transparentPaintImage($color, 0.0, 1, false);
 	}
 
@@ -298,7 +181,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $h height
 	 * @return bool
 	 */
-	function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
+	function copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 		$img->cropImage($w, $h, $src_x, $src_y);
 		$result = true;
 		foreach ($imgCanvas as $frame) {
@@ -322,7 +205,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $src_h
 	 * @return bool
 	 */
-	function zp_resampleImage($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
+	function resampleImage($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
 		foreach ($src_image->getImageProfiles() as $name => $profile) {
 			$dst_image->profileImage($name, $profile);
 		}
@@ -337,7 +220,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 			$result &= $dst_image->compositeImage($frame, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
 
 			if ($dst_image->getNumberImages() < $src_image->getNumberImages()) {
-				$result &= $dst_image->addImage(zp_createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
+				$result &= $dst_image->addImage($this->createImage($dst_image->getImageWidth(), $dst_image->getImageHeight()));
 			}
 			if (!$result) {
 				break;
@@ -355,9 +238,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $threshold the color difference threshold required for sharpening
 	 * @return Imagick
 	 */
-	function zp_imageUnsharpMask($img, $amount, $radius, $threshold) {
+	function imageUnsharpMask($img, $amount, $radius, $threshold) {
 		$img->unsharpMaskImage($radius, 0.1, $amount, $threshold);
-
 		return $img;
 	}
 
@@ -369,21 +251,21 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $h
 	 * @return Imagick
 	 */
-	function zp_imageResizeAlpha($src, $w, $h) {
+	function imageResizeAlpha($src, $w, $h) {
 		$src->scaleImage($w, $h);
 		return $src;
 	}
 	
 	/**
-	 * Uses zp_imageResizeAlpha() internally as Imagick does not make a difference
+	 * Uses imageResizeAlpha() internally as Imagick does not make a difference
 	 * 
 	 * @param type $src
 	 * @param type $w
 	 * @param type $h
 	 * @return type
 	 */
-	function zp_imageResizeTransparent($src, $w, $h) {
-		return zp_imageResizeAlpha($src, $w, $h);
+	function imageResizeTransparent($src, $w, $h) { 
+		
 	}
 
 	/**
@@ -391,7 +273,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 *
 	 * @return bool
 	 */
-	function zp_imageCanRotate() {
+	function imageCanRotate() {
 		return true;
 	}
 
@@ -402,42 +284,9 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $rotate
 	 * @return Imagick
 	 */
-	function zp_rotateImage($im, $rotate) {
+	function rotateImage($im, $rotate) {
 		$im->rotateImage('none', 360 - $rotate);
 		return $im;
-	}
-
-	/**
-	 * Returns the image height and width
-	 *
-	 * @param string $filename
-	 * @param array $imageinfo
-	 * @return array
-	 */
-	function zp_imageDims($filename) {
-		$imageinfo = NULL;
-		$rslt = getimagesize($filename, $imageinfo);
-		if (is_array($rslt)) {
-			return array('width' => $rslt[0], 'height' => $rslt[1]);
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Returns the IPTC data of an image
-	 *
-	 * @param string $filename
-	 * @return string
-	 */
-	function zp_imageIPTC($filename) {
-		$imageinfo = NULL;
-		$rslt = getimagesize($filename, $imageinfo);
-		if (is_array($rslt) && isset($imageinfo['APP13'])) {
-			return $imageinfo['APP13'];
-		} else {
-			return false;
-		}
 	}
 
 	/**
@@ -446,7 +295,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param Imagick $im
 	 * @return int
 	 */
-	function zp_imageWidth($im) {
+	function imageWidth($im) {
 		return $im->getImageWidth();
 	}
 
@@ -456,7 +305,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param Imagick $im
 	 * @return int
 	 */
-	function zp_imageHeight($im) {
+	function imageHeight($im) {
 		return $im->getImageHeight();
 	}
 
@@ -474,10 +323,9 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $pct
 	 * @return bool
 	 */
-	function zp_imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct) {
+	function imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct) {
 		$src_im->cropImage($src_w, $src_h, $src_x, $src_y);
 		$src_im->setImageOpacity($pct / 100);
-
 		return $dst_im->compositeImage($src_im, Imagick::COMPOSITE_OVER, $dst_x, $dst_y);
 	}
 
@@ -487,11 +335,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param Imagick $image The image to grayscale
 	 * @return Imagick
 	 */
-	function zp_imageGray($image) {
+	function imageGray($image) {
 		$image->setType(Imagick::IMGTYPE_GRAYSCALE);
 		$image->setImageColorspace(Imagick::COLORSPACE_GRAY);
 		$image->setImageProperty('exif:ColorSpace', Imagick::IMGTYPE_GRAYSCALE);
-
 		return $image;
 	}
 
@@ -501,7 +348,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param Imagick $im
 	 * @return bool
 	 */
-	function zp_imageKill($im) {
+	function imageKill($im) {
 		return $im->destroy();
 	}
 
@@ -514,7 +361,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param int $blue
 	 * @return ImagickPixel
 	 */
-	function zp_colorAllocate($image, $red, $green, $blue) {
+	function colorAllocate($image, $red, $green, $blue) {
 		return new ImagickPixel("rgb($red, $green, $blue)");
 	}
 
@@ -529,9 +376,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickPixel $color
 	 * @return bool
 	 */
-	function zp_writeString($image, $font, $x, $y, $string, $color) {
+	function writeString($image, $font, $x, $y, $string, $color) {
 		$font->setStrokeColor($color);
-
 		return $image->annotateImage($font, $x, $y + $image->getImageHeight() / 2, 0, $string);
 	}
 
@@ -546,19 +392,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickPixel $color
 	 * @return bool
 	 */
-	function zp_drawRectangle($image, $x1, $y1, $x2, $y2, $color) {
+	function drawRectangle($image, $x1, $y1, $x2, $y2, $color) {
 		return $image->borderImage($color, 1, 1);
-	}
-
-	/**
-	 * Returns array of graphics library info
-	 *
-	 * @return array
-	 */
-	function zp_graphicsLibInfo() {
-		global $_lib_Imagick_info;
-
-		return $_lib_Imagick_info;
 	}
 
 	/**
@@ -566,29 +401,22 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 *
 	 * @return array
 	 */
-	function zp_getFonts() {
-		global $_imagick_fontlist;
-
-		if (!is_array($_imagick_fontlist)) {
-			@$_imagick_fontlist = Imagick::queryFonts();
-			$_imagick_fontlist = array('system' => '') + array_combine($_imagick_fontlist, $_imagick_fontlist);
-
+	function getFonts() {
+		if (!is_array($this->fontlist)) {
+			@$this->fontlist = Imagick::queryFonts();
+			$this->fontlist = array('system' => '') + array_combine($this->fontlist, $this->fontlist);
 			$basefile = SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/imagick_fonts/';
-
 			if (is_dir($basefile)) {
 				chdir($basefile);
 				$filelist = safe_glob('*.ttf');
-
 				foreach ($filelist as $file) {
 					$key = filesystemToInternal(str_replace('.ttf', '', $file));
-					$_imagick_fontlist[$key] = getcwd() . '/' . $file;
+					$this->fontlist[$key] = getcwd() . '/' . $file;
 				}
 			}
-
 			chdir(dirname(__FILE__));
 		}
-
-		return $_imagick_fontlist;
+		return $this->fontlist;
 	}
 
 	/**
@@ -597,15 +425,12 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param string $font
 	 * @return ImagickDraw
 	 */
-	function zp_imageLoadFont($font = NULL, $size = 18) {
+function imageLoadFont($font = NULL, $size = 18) {
 		$draw = new ImagickDraw();
-
 		if (!empty($font)) {
 			$draw->setFont($font);
 		}
-
 		$draw->setFontSize($size);
-
 		return $draw;
 	}
 
@@ -615,11 +440,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickDraw $font
 	 * @return int
 	 */
-	function zp_imageFontWidth($font) {
+	function imageFontWidth($font) {
 		$temp = new Imagick();
 		$metrics = $temp->queryFontMetrics($font, "The quick brown fox jumps over the lazy dog");
 		$temp->destroy();
-
 		return $metrics['characterWidth'];
 	}
 
@@ -629,11 +453,10 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param ImagickDraw $font
 	 * @return int
 	 */
-	function zp_imageFontHeight($font) {
+	function imageFontHeight($font) {
 		$temp = new Imagick();
 		$metrics = $temp->queryFontMetrics($font, "The quick brown fox jumps over the lazy dog");
 		$temp->destroy();
-
 		return $metrics['characterHeight'];
 	}
 
@@ -643,20 +466,15 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @param $string
 	 * @return Imagick
 	 */
-	function zp_imageFromString($string) {
+	function imageFromString($string) {
 		$im = new Imagick();
-
 		$maxHeight = getOption('magick_max_height');
 		$maxWidth = getOption('magick_max_width');
-
-		if ($maxHeight > lib_Imagick_Options::$ignore_size && $maxWidth > lib_Imagick_Options::$ignore_size) {
+		if ($maxHeight > graphicsOptions::$ignore_size && $maxWidth > graphicsOptions::$ignore_size) {
 			$im->setOption('jpeg:size', $maxWidth . 'x' . $maxHeight);
 		}
-
 		$im->readImageBlob($string);
-
 		return $im;
 	}
 
 }
-?>

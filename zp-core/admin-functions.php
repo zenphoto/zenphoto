@@ -2961,7 +2961,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.3
 	 */
 	function copyThemeDirectory($source, $target, $newname) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_graphics;
 		$message = true;
 		$source = str_replace(array('../', './'), '', $source);
 		$target = str_replace(array('../', './'), '', $target);
@@ -3055,33 +3055,34 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 
 		// Make a slightly custom theme image
-		if (file_exists("$target/theme.png"))
+		if (file_exists("$target/theme.png")) {
 			$themeimage = "$target/theme.png";
-		else if (file_exists("$target/theme.gif"))
+		} else if (file_exists("$target/theme.gif")) {
 			$themeimage = "$target/theme.gif";
-		else if (file_exists("$target/theme.jpg"))
+		} else if (file_exists("$target/theme.jpg")) {
 			$themeimage = "$target/theme.jpg";
-		else
+		} else {
 			$themeimage = false;
+		}
 		if ($themeimage) {
-			if ($im = zp_imageGet($themeimage)) {
-				$x = zp_imageWidth($im) / 2 - 45;
-				$y = zp_imageHeight($im) / 2 - 10;
+			if ($im = $_zp_graphics->imageGet($themeimage)) {
+				$x = $_zp_graphics->imageWidth($im) / 2 - 45;
+				$y = $_zp_graphics->imageHeight($im) / 2 - 10;
 				$text = "CUSTOM COPY";
-				$font = zp_imageLoadFont();
-				$ink = zp_colorAllocate($im, 0x0ff, 0x0ff, 0x0ff);
+				$font = $_zp_graphics->imageLoadFont();
+				$ink = $_zp_graphics->colorAllocate($im, 0x0ff, 0x0ff, 0x0ff);
 				// create a blueish overlay
-				$overlay = zp_createImage(zp_imageWidth($im), zp_imageHeight($im));
-				$back = zp_colorAllocate($overlay, 0x060, 0x060, 0x090);
-				zp_imageFill($overlay, 0, 0, $back);
+				$overlay = $_zp_graphics->createImage($_zp_graphics->imageWidth($im), $_zp_graphics->imageHeight($im));
+				$back = $_zp_graphics->colorAllocate($overlay, 0x060, 0x060, 0x090);
+				$_zp_graphics->imageFill($overlay, 0, 0, $back);
 				// Merge theme image and overlay
-				zp_imageMerge($im, $overlay, 0, 0, 0, 0, zp_imageWidth($im), zp_imageHeight($im), 45);
+				$_zp_graphics->imageMerge($im, $overlay, 0, 0, 0, 0, $_zp_graphics->imageWidth($im), $_zp_graphics->imageHeight($im), 45);
 				// Add text
-				zp_writeString($im, $font, $x - 1, $y - 1, $text, $ink);
-				zp_writeString($im, $font, $x + 1, $y + 1, $text, $ink);
-				zp_writeString($im, $font, $x, $y, $text, $ink);
+				$_zp_graphics->writeString($im, $font, $x - 1, $y - 1, $text, $ink);
+				$_zp_graphics->writeString($im, $font, $x + 1, $y + 1, $text, $ink);
+				$_zp_graphics->writeString($im, $font, $x, $y, $text, $ink);
 				// Save new theme image
-				zp_imageOutput($im, 'png', $themeimage);
+				$_zp_graphics->imageOutput($im, 'png', $themeimage);
 			}
 		}
 

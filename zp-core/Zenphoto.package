@@ -383,6 +383,10 @@ zp-core/class-dynamicalbum.php
 zp-core/class-external_auth.php
 zp-core/class-feed.php
 zp-core/class-gallery.php
+zp-core/class-graphicsbase.php
+zp-core/class-graphicsgd.php
+zp-core/class-graphicsimagick.php
+zp-core/class-graphicsoptions.php
 zp-core/class-image.php
 zp-core/class-mediaobject.php
 zp-core/class-mimetypes.php
@@ -413,9 +417,7 @@ zp-core/functions-config.php
 zp-core/functions-controller.php
 zp-core/functions-db.php
 zp-core/functions-filter.php
-zp-core/functions-graphicsgd.php
-zp-core/functions-graphicsimagick.php
-zp-core/functions-graphicsnone.php
+zp-core/functions-graphics.php
 zp-core/functions-i18n.php
 zp-core/functions-image.php
 zp-core/functions-reconfigure.php
@@ -1849,4 +1851,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1851
+1853

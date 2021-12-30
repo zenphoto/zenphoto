@@ -82,7 +82,7 @@ $imageobj = Image::newImage($albumobj, $imagename);
 if ($imageobj->isPhoto()) {
 	$imgpath = $imageobj->localpath;
 	$imagepart = basename($imgpath);
-	$timg = zp_imageGet($imgpath);
+	$timg = $_zp_graphics->imageGet($imgpath);
 	$width = $imageobj->getWidth();
 	$height = $imageobj->getHeight();
 } else {
@@ -153,21 +153,21 @@ if (isset($_REQUEST['crop'])) {
 	//create a new image with the set cropping
 	$quality = getOption('full_image_quality');
 	$rotate = false;
-	if (zp_imageCanRotate()) {
+	if ($_zp_graphics->imageCanRotate()) {
 		$rotate = getImageRotation($imgpath);
 	}
 	if (DEBUG_IMAGE)
 		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=$rotate");
 
 	if ($rotate) {
-		$timg = zp_rotateImage($timg, $rotate);
+		$timg = $_zp_graphics->rotateImage($timg, $rotate);
 	}
 
-	$newim = zp_createImage($cw, $ch);
-	zp_resampleImage($newim, $timg, 0, 0, $cx, $cy, $cw, $ch, $cw, $ch, getSuffix($imagename));
+	$newim = $_zp_graphics->createImage($cw, $ch);
+	$_zp_graphics->resampleImage($newim, $timg, 0, 0, $cx, $cy, $cw, $ch, $cw, $ch, getSuffix($imagename));
 	@chmod($imgpath, 0777);
 	@unlink($imgpath);
-	if (zp_imageOutput($newim, getSuffix($imgpath), $imgpath, $quality)) {
+	if ($_zp_graphics->imageOutput($newim, getSuffix($imgpath), $imgpath, $quality)) {
 		if (DEBUG_IMAGE)
 			debugLog('image_crop Finished:' . basename($imgpath));
 	} else {
@@ -175,8 +175,8 @@ if (isset($_REQUEST['crop'])) {
 			debugLog('image_crop: failed to create ' . $imgpath);
 	}
 	@chmod($imgpath, FILE_MOD);
-	zp_imageKill($newim);
-	zp_imageKill($timg);
+	$_zp_graphics->imageKill($newim);
+	$_zp_graphics->imageKill($timg);
 	Gallery::clearCache(SERVERCACHE . '/' . $albumname);
 	// update the image data
 	$imageobj->set('EXIFOrientation', 0);
