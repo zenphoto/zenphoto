@@ -1,8 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-global $_zp_UTF8;
-$_zp_UTF8 = new utf8();
+global $_zp_utf8;
+$_zp_utf8 = new utf8();
 
 /**
  * UTF-8 friendly replacement functions - v0.2

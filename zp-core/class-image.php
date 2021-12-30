@@ -545,7 +545,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	private function prepIPTCString($iptcstring, $characterset) {
-		global $_zp_UTF8;
+		global $_zp_utf8;
 		// Remove null byte at the end of the string if it exists.
 		if (substr($iptcstring, -1) === 0x0) {
 			$iptcstring = substr($iptcstring, 0, -1);
@@ -553,7 +553,7 @@ class Image extends MediaObject {
 		$outputset = LOCAL_CHARSET;
 		if ($characterset == $outputset)
 			return $iptcstring;
-		$iptcstring = $_zp_UTF8->convert($iptcstring, $characterset, $outputset);
+		$iptcstring = $_zp_utf8->convert($iptcstring, $characterset, $outputset);
 		return trim(sanitize($iptcstring, 1));
 	}
 	

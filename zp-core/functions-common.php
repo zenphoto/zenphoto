@@ -69,8 +69,8 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
  * @return string
  */
 function filesystemToInternal($filename) {
-	global $_zp_UTF8;
-	return str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
+	global $_zp_utf8;
+	return str_replace('\\', '/', $_zp_utf8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
 }
 
 /**
@@ -80,8 +80,8 @@ function filesystemToInternal($filename) {
  * @return string
  */
 function internalToFilesystem($filename) {
-	global $_zp_UTF8;
-	return $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
+	global $_zp_utf8;
+	return $_zp_utf8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
 }
 
 /**

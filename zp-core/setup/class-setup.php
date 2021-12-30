@@ -369,10 +369,10 @@ class setup {
 	 * @param $select
 	 */
 	static function charsetSelector($select) {
-		global $_zp_UTF8;
+		global $_zp_utf8;
 		$selector = '<select id="FILESYSTEM_CHARSET" name="FILESYSTEM_CHARSET" >';
 		$selector .= '<option value ="unknown">' . gettext('Unknown') . '</option>';
-		$totalsets = $_zp_UTF8->charsets;
+		$totalsets = $_zp_utf8->charsets;
 		ksort($totalsets);
 		foreach ($totalsets as $key => $char) {
 			$selector .= '	<option value="' . $key . '"';
@@ -388,14 +388,14 @@ class setup {
 
 	/**
 	 * 
-	 * @global type $_zp_UTF8
+	 * @global type $_zp_utf8
 	 * @param type $permission_names
 	 * @param type $select
 	 * @return string
 	 */
 	static function permissionsSelector($permission_names, $select) {
 		$select = $select | 4;
-		global $_zp_UTF8;
+		global $_zp_utf8;
 		$selector = '<select id="chmod_permissions" name="chmod_permissions" >';
 		$c = 0;
 		foreach ($permission_names as $key => $permission) {

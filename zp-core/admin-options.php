@@ -910,8 +910,8 @@ Authority::printPasswordFormJS();
 									<td width="350">
 										<select id="charset" name="charset">
 											<?php
-											$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
-											$totalsets = $_zp_UTF8->charsets;
+											$sets = array_merge($_zp_utf8->iconv_sets, $_zp_utf8->mb_sets);
+											$totalsets = $_zp_utf8->charsets;
 											asort($totalsets);
 											foreach ($totalsets as $key => $char) {
 												?>
@@ -940,8 +940,8 @@ Authority::printPasswordFormJS();
 									<td width="350">
 										<select id="filesystem_charset" name="filesystem_charset">
 											<?php
-											$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
-											$totalsets = $_zp_UTF8->charsets;
+											$sets = array_merge($_zp_utf8->iconv_sets, $_zp_utf8->mb_sets);
+											$totalsets = $_zp_utf8->charsets;
 											asort($totalsets);
 											foreach ($totalsets as $key => $char) {
 												?>
@@ -2590,7 +2590,7 @@ Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								<?php
-								$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);
+								$sets = array_merge($_zp_utf8->iconv_sets, $_zp_utf8->mb_sets);
 								ksort($sets, SORT_LOCALE_STRING);
 								if (!empty($sets)) {
 									?>

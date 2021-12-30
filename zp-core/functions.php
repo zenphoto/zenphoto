@@ -297,7 +297,7 @@ function lookupSortKey($sorttype, $default, $table) {
  * @return string
  */
 function zpFormattedDate($format, $dt) {
-	global $_zp_UTF8;
+	global $_zp_utf8;
 	$fdate = strftime($format, $dt);
 	$charset = 'ISO-8859-1';
 	$outputset = LOCAL_CHARSET;
@@ -306,7 +306,7 @@ function zpFormattedDate($format, $dt) {
 			return $fdate;
 		}
 	}
-	return $_zp_UTF8->convert($fdate, $charset, $outputset);
+	return $_zp_utf8->convert($fdate, $charset, $outputset);
 }
 
 /**
@@ -349,7 +349,7 @@ function myts_date($format, $mytimestamp) {
  * @since  1.0.0
  */
 function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $bcc_addresses = NULL, $replyTo = NULL) {
-	global $_zp_authority, $_zp_gallery, $_zp_UTF8;
+	global $_zp_authority, $_zp_gallery, $_zp_utf8;
 	$result = '';
 	if ($replyTo) {
 		$t = $replyTo;
@@ -414,8 +414,8 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 
 			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
-				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
-				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
+				$subject = $_zp_utf8->convert($subject, LOCAL_CHARSET);
+				$message = $_zp_utf8->convert($message, LOCAL_CHARSET);
 			}
 
 			//	we do not support rich text

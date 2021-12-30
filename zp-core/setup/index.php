@@ -727,7 +727,7 @@ if ($c <= 0) {
 								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
 								setup::checkMark($mb, gettext("PHP <code>mbstring</code> and <code>iconv</code> packages"), sprintf(gettext('PHP <code>mbstring</code> and <code>iconv</code> packages [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
 							} else {
-								$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
+								$test = $_zp_utf8->convert('test', 'ISO-8859-1', 'UTF-8');
 								if (empty($test)) {
 									$m2 = gettext("You need to install the <code>mbstring</code> and <code>iconv</code> packages");
 									setup::checkMark(0, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"), $m2);
@@ -1397,7 +1397,7 @@ if ($c <= 0) {
 										$phi_ini_count++;
 									} else if (defined('TEST_RELEASE') && TEST_RELEASE || (strpos($extra, '/.svn') === false)) {
 										$systemlist[] = $extra;
-										$filelist[] = $_zp_UTF8->convert(str_replace($base, '', $extra), FILESYSTEM_CHARSET, 'UTF-8');
+										$filelist[] = $_zp_utf8->convert(str_replace($base, '', $extra), FILESYSTEM_CHARSET, 'UTF-8');
 									} else {
 										$svncount++;
 									}
