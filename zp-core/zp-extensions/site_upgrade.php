@@ -172,7 +172,7 @@ switch (OFFSET_PATH) {
 			$site_title2 = sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle());
 			$link = '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>';
 			$html_final = sprintf($html, $site_title, $default_logo, $site_title2, $link);
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html_fina);
+			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html_final);
 		}
 		if (isset($_REQUEST['refreshHTML']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rss.php');
