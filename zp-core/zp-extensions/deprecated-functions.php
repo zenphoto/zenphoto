@@ -76,7 +76,7 @@ class deprecated_functions {
 							'function' => $function,
 							'class' => trim($functions[1][$key]),
 							'since' => @$versions[1][$key],
-							'option' => $option,
+							'option' => '',
 							'multiple' => array_key_exists($function, $this->unique_functions));
 				}
 			}
