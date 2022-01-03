@@ -20,9 +20,9 @@ if (!OFFSET_PATH) {
 class show_not_loggedin {
 
 	static function hideAdmin() {
-		global $_zp_loggedin, $_zp_current_admin_obj, $_showNotLoggedin_real_auth;
+		global $_zp_loggedin, $_zp_current_admin_obj, $_zp_show_not_loggedin_realauth;
 		if (!OFFSET_PATH && is_object($_zp_current_admin_obj)) {
-			$_showNotLoggedin_real_auth = $_zp_current_admin_obj;
+			$_zp_show_not_loggedin_realauth = $_zp_current_admin_obj;
 			if (isset($_SESSION)) {
 				unset($_SESSION['zpcms_auth_user']);
 			}
@@ -41,8 +41,8 @@ class show_not_loggedin {
 	}
 
 	static function loginRedirect($link) {
-		global $_showNotLoggedin_real_auth;
-		if (is_object($_showNotLoggedin_real_auth)) {
+		global $_zp_show_not_loggedin_realauth;
+		if (is_object($_zp_show_not_loggedin_realauth)) {
 			$link = WEBPATH . '/' . ZENFOLDER . '/admin.php';
 			?>
 			<div class="error">

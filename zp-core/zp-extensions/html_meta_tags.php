@@ -214,7 +214,7 @@ class htmlmetatags {
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
+		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_zp_myfavorites,
 		$_zp_htmlmetatags_need_cache, $_zp_page;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize(SERVER_HTTP_HOST);
@@ -321,7 +321,7 @@ class htmlmetatags {
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
 				$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
-				if (is_object($_myFavorites)) {
+				if (is_object($_zp_myfavorites)) {
 					$standard['favorites'] = gettext('My favorites');
 				}
 				if (array_key_exists($custompage, $standard)) {

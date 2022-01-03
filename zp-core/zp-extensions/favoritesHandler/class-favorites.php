@@ -252,15 +252,15 @@ class favorites extends AlbumBase {
 	}
 
 	static function loadScript($script, $request) {
-		global $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites, $_zp_current_album, $_zp_conf_vars;
-		if ($_myFavorites && isset($_REQUEST['instance'])) {
-			$_myFavorites->instance = sanitize(rtrim($_REQUEST['instance'], '/'));
-			if ($_myFavorites->instance)
-				$_myFavorites->setTitle($_myFavorites->getTitle() . '[' . $_myFavorites->instance . ']');
+		global $_zp_current_admin_obj, $_zp_gallery_page, $_zp_myfavorites, $_zp_current_album, $_zp_conf_vars;
+		if ($_zp_myfavorites && isset($_REQUEST['instance'])) {
+			$_zp_myfavorites->instance = sanitize(rtrim($_REQUEST['instance'], '/'));
+			if ($_zp_myfavorites->instance)
+				$_zp_myfavorites->setTitle($_zp_myfavorites->getTitle() . '[' . $_zp_myfavorites->instance . ']');
 		}
 		if ($_zp_gallery_page == "favorites.php") {
 			if (zp_loggedin()) {
-				$_zp_current_album = $_myFavorites;
+				$_zp_current_album = $_zp_myfavorites;
 				add_context(ZP_ALBUM);
 				prepareAlbumPage();
 				$_zp_gallery_page = 'favorites.php';
@@ -318,7 +318,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
-		global $_myFavorites;
+		global $_zp_myfavorites;
 		$table = $obj->table;
 		if ($v) {
 			$tag = '_add';
@@ -345,7 +345,7 @@ class favorites extends AlbumBase {
 				}
 			} else {
 				?>
-				<input type="hidden" name="instance" value="<?php echo $_myFavorites->instance; ?>" />
+				<input type="hidden" name="instance" value="<?php echo $_zp_myfavorites->instance; ?>" />
 				<?php
 			}
 			?>

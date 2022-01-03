@@ -49,44 +49,44 @@ if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
 			if (!$location = Authority::handleLogout()) {
-				$__redirect = array();
+				$_zp_userlogin_redirect = array();
 				if (in_context(ZP_ALBUM)) {
-					$__redirect['album'] = $_zp_current_album->name;
+					$_zp_userlogin_redirect['album'] = $_zp_current_album->name;
 				}
 				if (in_context(ZP_IMAGE)) {
-					$__redirect['image'] = $_zp_current_image->filename;
+					$_zp_userlogin_redirect['image'] = $_zp_current_image->filename;
 				}
 				if (in_context(ZP_ZENPAGE_PAGE)) {
-					$__redirect['title'] = $_zp_current_zenpage_page->getTitlelink();
+					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_page->getTitlelink();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$__redirect['title'] = $_zp_current_zenpage_news->getTitlelink();
+					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_news->getTitlelink();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$__redirect['category'] = $_zp_current_category->getTitlelink();
+					$_zp_userlogin_redirect['category'] = $_zp_current_category->getTitlelink();
 				}
 				if (isset($_GET['p'])) {
-					$__redirect['p'] = sanitize($_GET['p']);
+					$_zp_userlogin_redirect['p'] = sanitize($_GET['p']);
 				}
 				if (isset($_GET['searchfields'])) {
-					$__redirect['searchfields'] = sanitize($_GET['searchfields']);
+					$_zp_userlogin_redirect['searchfields'] = sanitize($_GET['searchfields']);
 				}
 				if (isset($_GET['words'])) {
-					$__redirect['words'] = sanitize($_GET['words']);
+					$_zp_userlogin_redirect['words'] = sanitize($_GET['words']);
 				}
 				if (isset($_GET['date'])) {
-					$__redirect['date'] = sanitize($_GET['date']);
+					$_zp_userlogin_redirect['date'] = sanitize($_GET['date']);
 				}
 				if (isset($_GET['title'])) {
-					$__redirect['title'] = sanitize($_GET['title']);
+					$_zp_userlogin_redirect['title'] = sanitize($_GET['title']);
 				}
 				if (isset($_GET['page'])) {
-					$__redirect['page'] = sanitize($_GET['page']);
+					$_zp_userlogin_redirect['page'] = sanitize($_GET['page']);
 				}
 
 				$params = '';
-				if (!empty($__redirect)) {
-					foreach ($__redirect as $param => $value) {
+				if (!empty($_zp_userlogin_redirect)) {
+					foreach ($_zp_userlogin_redirect as $param => $value) {
 						$params .= '&' . $param . '=' . $value;
 					}
 				}
@@ -110,14 +110,14 @@ if (in_context(ZP_INDEX)) {
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {
-	global $_zp_gallery, $__redirect, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_userlogin_redirect, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
 	$excludedPages = array('password.php', 'register.php', 'favorites.php', '404.php');
 	$logintext = gettext('Login');
 	if (is_null($logouttext))
 		$logouttext = gettext("Logout");
 	$params = array("'userlog=0'");
-	if (!empty($__redirect)) {
-		foreach ($__redirect as $param => $value) {
+	if (!empty($_zp_userlogin_redirect)) {
+		foreach ($_zp_userlogin_redirect as $param => $value) {
 			$params[] .= "'" . $param . '=' . urlencode($value) . "'";
 		}
 	}

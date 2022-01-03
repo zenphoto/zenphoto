@@ -127,7 +127,7 @@ function menu_tabs($tabs) {
  *
  */
 
-$_menu_manager_items = array();
+$_zp_menu_manager_items = array();
 
 /**
  * Gets the menu items
@@ -137,10 +137,10 @@ $_menu_manager_items = array();
  * @return array
  */
 function getMenuItems($menuset, $visible) {
-	global $_menu_manager_items, $_zp_db;
-	if (array_key_exists($menuset, $_menu_manager_items) &&
-					array_key_exists($visible, $_menu_manager_items[$menuset])) {
-		return $_menu_manager_items[$menuset][$visible];
+	global $_zp_menu_manager_items, $_zp_db;
+	if (array_key_exists($menuset, $_zp_menu_manager_items) &&
+					array_key_exists($visible, $_zp_menu_manager_items[$menuset])) {
+		return $_zp_menu_manager_items[$menuset][$visible];
 	}
 	switch ($visible) {
 		case 'visible':
@@ -155,8 +155,8 @@ function getMenuItems($menuset, $visible) {
 			break;
 	}
 	$result = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('menu') . $where . " ORDER BY sort_order", false);
-	$_menu_manager_items[$menuset][$visible] = $result;
-	return $_menu_manager_items[$menuset][$visible];
+	$_zp_menu_manager_items[$menuset][$visible] = $result;
+	return $_zp_menu_manager_items[$menuset][$visible];
 }
 
 /**
@@ -386,7 +386,7 @@ function getMenuVisibility() {
  * @return int|array|string
  */
 function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
-	global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_menu_manager_items,
+	global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_menu_manager_items,
 	$_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	$currentkey = $insertpoint = NULL;
 	$newitems = array();
@@ -396,7 +396,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 				$dynamic = $_zp_current_search->getDynamicAlbum();
 				if (empty($dynamic)) { //	smple search
-					foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
+					foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $item) {
 						if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 							$insertpoint = $item['sort_order'];
 							$currentkey = $insertpoint . '-9999';
@@ -408,7 +408,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 				$name = $_zp_current_album->name;
 			}
 			if (!empty($name)) {
-				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
+				foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $item) {
 					if ($item['type'] == 'album' && $item['title'] == $name) {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
@@ -433,7 +433,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 			break;
 		case 'news.php':
 			if (in_context(ZP_SEARCH_LINKED)) {
-				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
+				foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $item) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
@@ -441,7 +441,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 					}
 				}
 			} else {
-				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
+				foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $item) {
 					if ($item['type'] == 'zenpagenewsindex') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
@@ -470,7 +470,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 			break;
 		case 'pages.php':
 			if (in_context(ZP_SEARCH_LINKED)) {
-				foreach ($_menu_manager_items[$menuset][$visibility] as $key => $item) {
+				foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $item) {
 					if ($item['type'] == 'custompage' && $item['link'] == 'search') {
 						$insertpoint = $item['sort_order'];
 						$currentkey = $insertpoint . '-9999';
@@ -493,13 +493,13 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
 			break;
 	}
 	if (!empty($currentkey)) {
-		foreach ($_menu_manager_items[$menuset][$visibility] as $key => $olditem) {
+		foreach ($_zp_menu_manager_items[$menuset][$visibility] as $key => $olditem) {
 			$newitems[$key] = $olditem;
 			if ($olditem['sort_order'] == $insertpoint) {
 				$newitems[$currentkey] = $item;
 			}
 		}
-		$_menu_manager_items[$menuset][$visibility] = $newitems;
+		$_zp_menu_manager_items[$menuset][$visibility] = $newitems;
 		switch ($field) {
 			default://individual field
 				if (isset($item[$field])) {

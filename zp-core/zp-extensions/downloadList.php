@@ -353,12 +353,12 @@ class AlbumZip {
 	 * @param int $base the length of the base album name
 	 */
 	static function AddAlbumCache($album, $base, $filebase) {
-		global $_zp_zip_list, $defaultSize;
+		global $_zp_zip_list, $_zp_downloadlist_defaultsize;
 		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
 			$image = Image::newImage($album, $imagename);		
-			$uri = $image->getSizedImage($defaultSize);
+			$uri = $image->getSizedImage($_zp_downloadlist_defaultsize);
 			if (strpos($uri, 'i.php?') === false) {
 				$f = $albumbase . $image->filename;
 				$parseurl = parse_url($albumbase . basename($uri));
@@ -404,7 +404,7 @@ class AlbumZip {
 	 * @param bool fromcache if true, images will be the "sized" image in the cache file
 	 */
 	static function create($albumname, $fromcache) {
-		global $_zp_zip_list, $_zp_gallery, $defaultSize;
+		global $_zp_zip_list, $_zp_gallery, $_zp_downloadlist_defaultsize;
 		$album = AlbumBase::newAlbum($albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
@@ -416,7 +416,7 @@ class AlbumZip {
 		if ($fromcache) {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from cached images of %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));
 			loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
-			$defaultSize = getOption('image_size');
+			$_zp_downloadlist_defaultsize = getOption('image_size');
 			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
 			$opt = array('large_file_size' => 5 * 1024 * 1024, 'comment' => sprintf(gettext('Created from images in %1$s on %2$s.'), $album->name, zpFormattedDate(DATE_FORMAT, time())));

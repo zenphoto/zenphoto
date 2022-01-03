@@ -377,11 +377,11 @@ class sitemap {
 	 * @return string
 	 */
 	static function getDBLimit($items_per_sitemap = 2) {
-		global $_sitemap_number;
-		if ($_sitemap_number < 1) {
-			$_sitemap_number = 1;
+		global $_zp_sitemap_number;
+		if ($_zp_sitemap_number < 1) {
+			$_zp_sitemap_number = 1;
 		}
-		$offset = ($_sitemap_number - 1) * $items_per_sitemap;
+		$offset = ($_zp_sitemap_number - 1) * $items_per_sitemap;
 		$limit = " LIMIT " . $offset . "," . $items_per_sitemap;
 		return $limit;
 	}
@@ -394,9 +394,9 @@ class sitemap {
 	 */
 
 	static function getIndexLinks() {
-		global $_zp_gallery, $_sitemap_number;
+		global $_zp_gallery, $_zp_sitemap_number;
 		$data = '';
-		if ($_sitemap_number < 2) {
+		if ($_zp_sitemap_number < 2) {
 			set_context(ZP_INDEX);
 			$albums_per_page = getOption('albums_per_page');
 			if (getOption('custom_index_page')) {
@@ -529,7 +529,7 @@ class sitemap {
 	 * @return string
 	 */
 	static function getAlbums() {
-		global $_zp_gallery, $_sitemap_number;
+		global $_zp_gallery, $_zp_sitemap_number;
 		$data_start = $data = '';
 		$sitemap_locales = generateLanguageList();
 		$albumchangefreq = getOption('sitemap_changefreq_albums');
@@ -539,7 +539,7 @@ class sitemap {
 		$imagelastmod = getOption('sitemap_lastmod_images');
 		$albums = array();
 		sitemap::getAlbumList($_zp_gallery, $albums);
-		$offset = ($_sitemap_number - 1);
+		$offset = ($_zp_sitemap_number - 1);
 		$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 		if (!empty($albums)) {
 			$data_start .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -614,7 +614,7 @@ class sitemap {
 	 * @return string
 	 */
 	static function getImages() {
-		global $_zp_gallery, $_sitemap_number;
+		global $_zp_gallery, $_zp_sitemap_number;
 		$data_start = $data = '';
 		$sitemap_locales = generateLanguageList();
 		$imagechangefreq = getOption('sitemap_changefreq_images');
@@ -622,7 +622,7 @@ class sitemap {
 		$limit = sitemap::getDBLimit(1);
 		$albums = array();
 		sitemap::getAlbumList($_zp_gallery, $albums);
-		$offset = ($_sitemap_number - 1);
+		$offset = ($_zp_sitemap_number - 1);
 		$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 		if ($albums) {
 			$data_start .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -765,9 +765,9 @@ class sitemap {
 	 * @return string
 	 */
 	static function getZenpagePages() {
-		global $_zp_zenpage, $_sitemap_number;
+		global $_zp_zenpage, $_zp_sitemap_number;
 		//not splitted into several sitemaps yet
-		if ($_sitemap_number == 1) {
+		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
 			$limit = sitemap::getDBLimit(2);
 			$sitemap_locales = generateLanguageList();
@@ -815,9 +815,9 @@ class sitemap {
 	 * @return string
 	 */
 	static function getZenpageNewsIndex() {
-		global $_zp_zenpage, $_sitemap_number;
+		global $_zp_zenpage, $_zp_sitemap_number;
 		//not splitted into several sitemaps yet
-		if ($_sitemap_number == 1) {
+		if ($_zp_sitemap_number == 1) {
 			$data = '';
 			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
@@ -884,9 +884,9 @@ class sitemap {
 	 * @return string
 	 */
 	static function getZenpageNewsArticles() {
-		global $_zp_zenpage, $_sitemap_number;
+		global $_zp_zenpage, $_zp_sitemap_number;
 		//not splitted into several sitemaps yet
-		if ($_sitemap_number == 1) {
+		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
 			$sitemap_locales = generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_news');
@@ -932,9 +932,9 @@ class sitemap {
 	 * @return string
 	 */
 	static function getZenpageNewsCategories() {
-		global $_zp_zenpage, $_sitemap_number;
+		global $_zp_zenpage, $_zp_sitemap_number;
 		//TODO not splitted into several sitemaps yet
-		if ($_sitemap_number == 1) {
+		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
 			$sitemap_locales = generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_newscats');

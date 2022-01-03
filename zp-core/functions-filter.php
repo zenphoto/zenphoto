@@ -42,13 +42,13 @@ $_zp_filters = array();
  * 																		the same priority are executed in the order in which they were added to the filter)
  */
 function zp_register_filter($hook, $function_name, $priority = NULL) {
-	global $_zp_filters, $_EnabledPlugins;
+	global $_zp_filters, $_zp_enabled_plugins;
 	$bt = @debug_backtrace();
 	if (is_array($bt)) {
 		$b = array_shift($bt);
 		$base = basename($b['file']);
-		if (is_null($priority) && isset($_EnabledPlugins[stripSuffix($base)])) {
-			$priority = $_EnabledPlugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
+		if (is_null($priority) && isset($_zp_enabled_plugins[stripSuffix($base)])) {
+			$priority = $_zp_enabled_plugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
 		}
 	} else {
 		$base = 'unknown';

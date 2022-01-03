@@ -639,20 +639,20 @@ function getPlugin($plugin, $inTheme = false, $webpath = false) {
  * @return array
  */
 function getEnabledPlugins() {
-	global $_EnabledPlugins;
-	if (is_array($_EnabledPlugins)) {
-		return $_EnabledPlugins;
+	global $_zp_enabled_plugins;
+	if (is_array($_zp_enabled_plugins)) {
+		return $_zp_enabled_plugins;
 	}
-	$_EnabledPlugins = array();
+	$_zp_enabled_plugins = array();
 	$sortlist = getPluginFiles('*.php');
 	foreach ($sortlist as $extension => $path) {
 		$opt = 'zp_plugin_' . $extension;
 		if ($option = getOption($opt)) {
-			$_EnabledPlugins[$extension] = array('priority' => $option, 'path' => $path);
+			$_zp_enabled_plugins[$extension] = array('priority' => $option, 'path' => $path);
 		}
 	}
-	$_EnabledPlugins = sortMultiArray($_EnabledPlugins, 'priority', true);
-	return $_EnabledPlugins;
+	$_zp_enabled_plugins = sortMultiArray($_zp_enabled_plugins, 'priority', true);
+	return $_zp_enabled_plugins;
 }
 
 /**

@@ -27,7 +27,7 @@ $option_interface = 'print_album_menu';
 define('ALBUM_MENU_COUNT', getOption('print_album_menu_count'));
 define('ALBUM_MENU_SHOWSUBS', getOption('print_album_menu_showsubs'));
 
-$_recursion_limiter = array();
+$_zp_albummenu_recursion_limiter = array();
 
 /**
  * Plugin option handling class
@@ -203,7 +203,7 @@ function printAlbumMenuList($option, $showcount = NULL, $css_id = '', $css_class
  * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, $keeptopactive, $limit = NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_recursion_limiter;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_albummenu_recursion_limiter;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -229,7 +229,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 						);
 
 		if ($process && hasDynamicAlbumSuffix($album) && !is_dir(ALBUM_FOLDER_SERVERPATH . $album)) {
-			if (in_array($album, $_recursion_limiter))
+			if (in_array($album, $_zp_albummenu_recursion_limiter))
 				$process = false; // skip already seen dynamic albums
 		}
 		$topalbum = '';
@@ -294,9 +294,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			$subalbums = $albumobj->getAlbums();
 			if (!empty($subalbums)) {
 				echo "\n".'<ul class="' . $css_class . '">'."\n";
-				array_push($_recursion_limiter, $album);
+				array_push($_zp_albummenu_recursion_limiter, $album);
 				printAlbumMenuListAlbum($subalbums, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active, $firstimagelink, false, $limit);
-				array_pop($_recursion_limiter);
+				array_pop($_zp_albummenu_recursion_limiter);
 				echo "\n</ul>\n";
 			}
 		}

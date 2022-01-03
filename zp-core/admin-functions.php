@@ -1041,7 +1041,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @param bool $showCounts set to true to get tag count displayed
 	 */
 	function tagSelector($that, $postit, $showCounts = false, $mostused = false, $addnew = true, $resizeable = false, $class = 'checkTagsAuto') {
-		global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist;
+		global $_zp_admin_ordered_taglist, $_zp_admin_lc_taglist;
 		if (is_null($_zp_admin_ordered_taglist)) {
 			if ($mostused || $showCounts) {
 				$counts = getAllTagsCount();
@@ -1055,9 +1055,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 				$them = getAllTagsUnique();
 			}
 			$_zp_admin_ordered_taglist = $them;
-			$_zp_admin_LC_taglist = array();
+			$_zp_admin_lc_taglist = array();
 			foreach ($them as $tag) {
-				$_zp_admin_LC_taglist[] = mb_strtolower($tag);
+				$_zp_admin_lc_taglist[] = mb_strtolower($tag);
 			}
 		} else {
 			$them = $_zp_admin_ordered_taglist;
@@ -1071,7 +1071,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (count($tags) > 0) {
 			foreach ($tags as $tag) {
 				$tagLC = mb_strtolower($tag);
-				$key = array_search($tagLC, $_zp_admin_LC_taglist);
+				$key = array_search($tagLC, $_zp_admin_lc_taglist);
 				if ($key !== false) {
 					unset($them[$key]);
 				}

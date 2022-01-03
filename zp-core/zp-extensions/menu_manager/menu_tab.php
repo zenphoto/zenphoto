@@ -66,7 +66,7 @@ if (isset($_GET['deletemenuset'])) {
 	XSRFdefender('delete_menu');
 	$sql = 'DELETE FROM ' . $_zp_db->prefix('menu') . ' WHERE `menuset`=' . $_zp_db->quote(sanitize($_GET['deletemenuset']));
 	$_zp_db->query($sql);
-	$_menu_manager_items = array();
+	$_zp_menu_manager_items = array();
 	$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” deleted"), html_encode(sanitize($_GET['deletemenuset']))) . "</p>";
 }
 if (isset($_GET['dupmenuset'])) {

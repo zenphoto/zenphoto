@@ -309,11 +309,11 @@ if (OFFSET_PATH) {
 				unset($_instance);
 			}
 		}
-		$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+		$_zp_myfavorites = new favorites($_zp_current_admin_obj->getUser());
 
 		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
-			global $_myFavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_myFavorites_button_count;
-			if (!zp_loggedin() || $_myFavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
+			global $_zp_myfavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_zp_myfavorites_button_count;
+			if (!zp_loggedin() || $_zp_myfavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
 				return;
 			}
 
@@ -331,15 +331,15 @@ if (OFFSET_PATH) {
 			if ($_zp_gallery_page == 'favorites.php') {
 				//	 only need one remove button since we know the instance
 				$multi = false;
-				$list = array($_myFavorites->instance);
+				$list = array($_zp_myfavorites->instance);
 			} else {
 				if ($multi = getOption('favorites_multi')) {
-					$list = $_myFavorites->list;
+					$list = $_zp_myfavorites->list;
 				} else {
 					$list = array('');
 				}
-				if (extensionEnabled('tag_suggest') && !$_myFavorites_button_count) {
-					$_myFavorites_button_count++;
+				if (extensionEnabled('tag_suggest') && !$_zp_myfavorites_button_count) {
+					$_zp_myfavorites_button_count++;
 					$favList = array_slice($list, 1);
 					?>
 					<script type="text/javascript">
@@ -358,8 +358,8 @@ if (OFFSET_PATH) {
 				case 'images':
 					$id = $obj->imagefolder . '/' . $obj->filename;
 					foreach ($list as $instance) {
-						$_myFavorites->instance = $instance;
-						$images = $_myFavorites->getImages(0);
+						$_zp_myfavorites->instance = $instance;
+						$images = $_zp_myfavorites->getImages(0);
 						$seen[$instance] = false;
 						foreach ($images as $image) {
 							if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
@@ -375,8 +375,8 @@ if (OFFSET_PATH) {
 				case 'albums':
 					$id = $obj->name;
 					foreach ($list as $instance) {
-						$_myFavorites->instance = $instance;
-						$albums = $_myFavorites->getAlbums(0);
+						$_zp_myfavorites->instance = $instance;
+						$albums = $_zp_myfavorites->getAlbums(0);
 						$seen[$instance] = false;
 						foreach ($albums as $album) {
 							if ($album == $id) {
@@ -396,27 +396,27 @@ if (OFFSET_PATH) {
 		}
 
 		function getFavoritesURL() {
-			global $_myFavorites;
-			return $_myFavorites->getLink();
+			global $_zp_myfavorites;
+			return $_zp_myfavorites->getLink();
 		}
 
 		/**
 		 * Prints links to the favorites "albums"
 		 *
-		 * @global favorites $_myFavorites
+		 * @global favorites $_zp_myfavorites
 		 * @param type $text
 		 */
 		function printFavoritesURL($text = NULL, $before = NULL, $between = NULL, $after = NULL) {
-			global $_myFavorites;
+			global $_zp_myfavorites;
 			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
-				$list = $_myFavorites->getList();
+				$list = $_zp_myfavorites->getList();
 				$betwixt = NULL;
 				echo $before;
-				foreach ($_myFavorites->getList()as $instance) {
-					$link = $_myFavorites->getLink(NULL, $instance);
+				foreach ($_zp_myfavorites->getList()as $instance) {
+					$link = $_zp_myfavorites->getLink(NULL, $instance);
 					$display = $text;
 					if ($instance) {
 						$display .= '[' . $instance . ']';

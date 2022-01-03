@@ -373,7 +373,7 @@ function printBareGalleryTitle() {
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
 function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_myFavorites;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_zp_myfavorites;
 	$mainsitetitle = html_encode(getBare(getMainSiteName()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
@@ -452,7 +452,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 					'search' => gettext('Search'), 
 					'archive' => gettext('Archive view'), 
 					'password' => gettext('Password required'));
-			if (is_object($_myFavorites)) {
+			if (is_object($_zp_myfavorites)) {
 				$standard['favorites'] = gettext('My favorites');
 			}
 			if (array_key_exists($custompage, $standard)) {

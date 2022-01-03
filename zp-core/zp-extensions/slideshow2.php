@@ -540,7 +540,7 @@ if (extensionEnabled('slideshow2')) {
 	 * @param string $linkstyle Style of Text for the link
 	 */
 	function printSlideShowLink($linktext = NULL, $linkstyle = Null) {
-		global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $slideshow_instance, $_zp_gallery_page, $_myFavorites;
+		global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $_zp_slideshow_instance, $_zp_gallery_page, $_zp_myfavorites;
 		if (is_null($linktext)) {
 			$linktext = gettext('View Slideshow');
 		}
@@ -575,7 +575,7 @@ if (extensionEnabled('slideshow2')) {
 				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow/', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
 			} else {
 				$slideshowlink = getCustomPageURL('slideshow');
-				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_myFavorites->instance . '" />';
+				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_zp_myfavorites->instance . '" />';
 			}
 		}
 		$numberofimages = getNumImages();
@@ -584,7 +584,7 @@ if (extensionEnabled('slideshow2')) {
 			case 'cycle':
 				if ($numberofimages > 1) {
 					?>
-					<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo $slideshowlink; ?>">
+					<form name="slideshow_<?php echo $_zp_slideshow_instance; ?>" method="post"	action="<?php echo $slideshowlink; ?>">
 						<?php echo $slideshowhidden; ?>
 						<input type="hidden" name="pagenr" value="<?php echo html_encode($pagenr); ?>" />
 						<input type="hidden" name="albumid" value="<?php echo $albumnr; ?>" />
@@ -592,12 +592,12 @@ if (extensionEnabled('slideshow2')) {
 						<input type="hidden" name="imagenumber" value="<?php echo $imagenumber; ?>" />
 						<input type="hidden" name="imagefile" value="<?php echo html_encode($imagefile); ?>" />
 						<?php if (!empty($linkstyle)) echo '<p style="' . $linkstyle . '">'; ?>
-						<a class="slideshowlink" id="slideshowlink_<?php echo $slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
+						<a class="slideshowlink" id="slideshowlink_<?php echo $_zp_slideshow_instance; ?>" 	href="javascript:document.slideshow_<?php echo $_zp_slideshow_instance; ?>.submit()"><?php echo $linktext; ?></a>
 						<?php if (!empty($linkstyle)) echo '</p>'; ?>
 					</form>
 					<?php
 				}
-				$slideshow_instance++;
+				$_zp_slideshow_instance++;
 				break;
 			case 'colorbox':
 				$theme = $_zp_gallery->getCurrentTheme();
@@ -716,7 +716,7 @@ if (extensionEnabled('slideshow2')) {
 	 *
 	 */
 	function printSlideShow($heading = true, $speedctl = false, $albumobj = NULL, $imageobj = NULL, $width = NULL, $height = NULL, $crop = false, $shuffle = false, $linkslides = false, $controls = true) {
-		global $_myFavorites, $_zp_conf_vars, $_zp_db;
+		global $_zp_myfavorites, $_zp_conf_vars, $_zp_db;
 		if (!isset($_POST['albumid']) AND ! is_object($albumobj)) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('Invalid linking to the slideshow page.') . '</h2></div>';
 		}
@@ -769,8 +769,8 @@ if (extensionEnabled('slideshow2')) {
 			$albumobj->images = $search->getImages(0);
 		} else {
 			if (isset($_POST['favorites_page'])) {
-				$albumobj = $_myFavorites;
-				$returnpath = $_myFavorites->getLink($pagenumber);
+				$albumobj = $_zp_myfavorites;
+				$returnpath = $_zp_myfavorites->getLink($pagenumber);
 			} else {
 				$albumq = $_zp_db->querySingleRow("SELECT title, folder FROM " . $_zp_db->prefix('albums') . " WHERE id = " . $albumid);
 				$albumobj = AlbumBase::newAlbum($albumq['folder']);
