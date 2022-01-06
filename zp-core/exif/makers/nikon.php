@@ -328,7 +328,7 @@ function formatNikonData($type, $tag, $intel, $model, $data) {
 			switch ($tag) {
 				case "0001":
 					if ($model == 1) {
-						$data = $data / 100;
+						$data = intval($data) / 100;
 					}
 					break; //Unknown (Version?)
 					break;
