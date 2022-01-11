@@ -22,7 +22,7 @@ $buttonlist[] = array(
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('HTTP header inspector') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/http_header_inspector.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('HTTP header inspector') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/http_header_inspector.php');
 printAdminHeader('overview', 'http_header_inspector');
 ?>
 </head>

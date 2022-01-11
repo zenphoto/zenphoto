@@ -21,8 +21,8 @@ if (isset($_GET['type'])) {
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
-	if (isset($zenphoto_tabs['upload']['subtabs'][0])) {
-		redirectURL($zenphoto_tabs['upload']['subtabs'][0]);
+	if (isset($_zp_admin_menu['upload']['subtabs'][0])) {
+		redirectURL($_zp_admin_menu['upload']['subtabs'][0]);
 	}
 	$handlers = array();
 }
@@ -57,7 +57,7 @@ printLogoAndLinks();
 	?>
 	<div id="content">
 		<?php
-		if (!empty($zenphoto_tabs['upload']['subtabs'])) {
+		if (!empty($_zp_admin_menu['upload']['subtabs'])) {
 			printSubtabs();
 		}
 		$albumlist = $_zp_gallery->getAllAlbumsFromDB();

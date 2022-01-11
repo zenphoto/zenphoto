@@ -2061,10 +2061,12 @@ function callUserFunction($function, $parameter = array()) {
 function deprecationNotice($use, $parameter = false) {
 	$traces = @debug_backtrace();
 	$fcn = $traces[1]['function'];
-	if (empty($fcn))
+	if (empty($fcn)) {
 		$fcn = gettext('function');
-	if (!empty($use))
+	}
+	if (!empty($use)) {
 		$use = ' ' . $use;
+	}
 	//get the container folder
 	if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
 		$script = basename(dirname($traces[0]['file']));
@@ -2087,5 +2089,5 @@ function deprecationNotice($use, $parameter = false) {
 	} else {
 		$message = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . $use;
 	}
-	trigger_error($message, E_USER_WARNING);
+	trigger_error($message, E_USER_DEPRECATED);
 }

@@ -102,7 +102,7 @@ if ($report) {
 		$report = sanitize($_GET['report']);
 	}
 }
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Content') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Content') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php');
 printAdminHeader('overview', gettext('Content'));
 datepickerJS();
 ?>

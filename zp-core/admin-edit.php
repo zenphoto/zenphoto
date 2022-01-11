@@ -19,10 +19,10 @@ if (isset($_GET['tab'])) {
 	$subtab = '';
 }
 
-$subalbum_nesting = 1;
-$album_nesting = 1;
+$_zp_admin_subalbum_nesting = 1;
+$_zp_admin_album_nesting = 1;
 define('ADMIN_IMAGES_STEP', 5); //	the step for imges per page
-$imagesTab_imageCount = 10;
+$_zp_admin_imagestab_imagecount = 10;
 processEditSelection($subtab);
 
 //check for security incursions
@@ -599,7 +599,7 @@ echo "\n</head>";
 			if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 				/** SINGLE ALBUM ******************************************************************* */
 				// one time generation of this list.
-				$mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
+				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
 				$oldalbumimagesort = getOption('albumimagesort');
 				$oldalbumimagesort_status = getOption('albumimagesort_status');
 				$direction = getOption('albumimagedirection');
@@ -607,7 +607,7 @@ echo "\n</head>";
 					$subalbums = array();
 					$allimages = array();
 				} else {
-					$subalbums = getNestedAlbumList($album, $subalbum_nesting);
+					$subalbums = getNestedAlbumList($album, $_zp_admin_subalbum_nesting);
 					$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
 					if($oldalbumimagesort_status !== 'all') {
 						$allimages_edit = array();
@@ -655,7 +655,7 @@ echo "\n</head>";
 					$target_image = urldecode(sanitize($_GET['image']));
 					$imageno = array_search($target_image, $allimages);
 					if ($imageno !== false) {
-						$pagenum = ceil(($imageno + 1) / $imagesTab_imageCount);
+						$pagenum = ceil(($imageno + 1) / $_zp_admin_imagestab_imagecount);
 					}
 				} else {
 					$target_image = '';
@@ -663,7 +663,7 @@ echo "\n</head>";
 				if (!isset($pagenum)) {
 					if (isset($_GET['subpage'])) {
 						$pagenum = max(intval($_GET['subpage']), 1);
-						if (($pagenum - 1) * $imagesTab_imageCount >= $allimagecount)
+						if (($pagenum - 1) * $_zp_admin_imagestab_imagecount >= $allimagecount)
 							$pagenum--;
 					} else {
 						if(isset($_GET['nopagination'])) {
@@ -676,7 +676,7 @@ echo "\n</head>";
 				if ($pagenum == 0 || isset($_GET['singleimage'])) {
 					$images = $allimages;
 				} else {
-					$images = array_slice($allimages, ($pagenum - 1) * $imagesTab_imageCount, $imagesTab_imageCount);
+					$images = array_slice($allimages, ($pagenum - 1) * $_zp_admin_imagestab_imagecount, $_zp_admin_imagestab_imagecount);
 				}
 				$totalimages = count($images);
 
@@ -734,7 +734,7 @@ echo "\n</head>";
 						?>
 						<div id="tab_subalbuminfo" class="tabbox">
 							<?php
-							printEditDropdown('subalbuminfo', array('1', '2', '3', '4', '5'), $subalbum_nesting);
+							printEditDropdown('subalbuminfo', array('1', '2', '3', '4', '5'), $_zp_admin_subalbum_nesting);
 							?>
 							<form class="dirty-check" action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off">
 								<?php XSRFToken('savealbumorder'); ?>
@@ -874,7 +874,7 @@ echo "\n</head>";
 						$simage = sanitize($_GET['singleimage']);
 						$imageno = array_search($simage, $images);
 						if ($imageno !== false) {
-							$pagenum = ceil(($imageno + 1) / $imagesTab_imageCount);
+							$pagenum = ceil(($imageno + 1) / $_zp_admin_imagestab_imagecount);
 						}
 						$parent .= '&amp;tab=imageinfo&amp;subpage='.$pagenum.'&amp;image='.html_encode($simage).'#IT';
 						if (array_search($simage, $images) !== false) {
@@ -896,7 +896,7 @@ echo "\n</head>";
 						}
 						consolidatedEditMessages('imageinfo');
 						if (!$singleimage) {
-							$numsteps = ceil(max($allimagecount, $imagesTab_imageCount) / ADMIN_IMAGES_STEP);
+							$numsteps = ceil(max($allimagecount, $_zp_admin_imagestab_imagecount) / ADMIN_IMAGES_STEP);
 							if ($numsteps) {
 								$steps = array();
 								for ($i = 1; $i <= $numsteps; $i++) {
@@ -904,7 +904,7 @@ echo "\n</head>";
 								}
 								?>
 								<div style="padding-bottom:10px;">
-									<?php printEditDropdown('imageinfo', $steps, $imagesTab_imageCount); ?>
+									<?php printEditDropdown('imageinfo', $steps, $_zp_admin_imagestab_imagecount); ?>
 								</div>
 								<br style='clear:both'/>
 								<?php
@@ -925,7 +925,7 @@ echo "\n</head>";
 								<input type="hidden" name="oldalbumimagesort_status" value="<?php echo html_encode($oldalbumimagesort_status); ?>" />
         				<!-- <input type="hidden" name="albumimagesort" value="" /> -->
 
-								<?php $totalpages = ceil(($allimagecount / $imagesTab_imageCount)); ?>
+								<?php $totalpages = ceil(($allimagecount / $_zp_admin_imagestab_imagecount)); ?>
 								<table class="bordered">
 									<?php
 									if (!$singleimage) {
@@ -1209,7 +1209,7 @@ echo "\n</head>";
 																	<select id="albumselectmenu-<?php echo $currentimage; ?>"
 																					name="<?php echo $currentimage; ?>-albumselect" onchange="">
 																						<?php
-																						foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+																						foreach ($_zp_admin_mcr_albumlist as $fullfolder => $albumtitle) {
 																							$singlefolder = $fullfolder;
 																							$saprefix = "";
 																							$selected = "";
@@ -1601,7 +1601,7 @@ echo "\n</head>";
 				/*				 * * MULTI-ALBUM ************************************************************************** */
 			} else if (isset($_GET['massedit'])) {
 				// one time generation of this list.
-				$mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
+				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
 				$albumdir = "";
 				if (isset($_GET['album'])) {
 					$folder = sanitize_path($_GET['album']);
@@ -1685,7 +1685,7 @@ echo "\n</head>";
 				?>
 				<h1><?php echo gettext("Edit Gallery"); ?></h1>
 				<?php
-				$albums = getNestedAlbumList(NULL, $album_nesting);
+				$albums = getNestedAlbumList(NULL, $_zp_admin_album_nesting);
 				if (count($albums) > 0) {
 					if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
 						$sorttype = strtolower($_zp_gallery->getSortType());
@@ -1723,13 +1723,13 @@ echo "\n</head>";
 
 					<?php
 					consolidatedEditMessages('');
-					printEditDropdown('', array('1', '2', '3', '4', '5'), $album_nesting);
+					printEditDropdown('', array('1', '2', '3', '4', '5'), $_zp_admin_album_nesting);
 					?>
 					<form class="dirty-check" action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();" autocomplete="off">
 									<?php XSRFToken('savealbumorder'); ?>
 						<p class="buttons">
 							<?php
-							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+							if ($_zp_admin_album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button class="serialize buttons" type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<?php
@@ -1774,7 +1774,7 @@ echo "\n</head>";
 						<input name="update" type="hidden" value="Save Order" />
 						<p class="buttons">
 							<?php
-							if ($album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+							if ($_zp_admin_album_nesting > 1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<button class="serialize buttons" type="submit"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 								<?php

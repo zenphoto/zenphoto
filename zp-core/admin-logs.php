@@ -99,10 +99,10 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($subtabs, $default) = getLogTabs();
-$zenphoto_tabs['logs'] = array('text'		 => gettext("logs"),
+list($_zp_admin_submenu, $default) = getLogTabs();
+$_zp_admin_menu['logs'] = array('text'		 => gettext("logs"),
 				'link'		 => FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php?page=logs',
-				'subtabs'	 => $subtabs,
+				'subtabs'	 => $_zp_admin_submenu,
 				'default'	 => $default);
 
 printAdminHeader('logs', $default);

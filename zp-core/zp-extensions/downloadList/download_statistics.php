@@ -20,7 +20,7 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
 printAdminHeader('overview', 'download');
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />

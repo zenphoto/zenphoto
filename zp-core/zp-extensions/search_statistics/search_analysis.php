@@ -17,7 +17,7 @@ if (isset($_GET['reset'])) {
 	$_zp_db->query($sql);
 	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 }
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 printAdminHeader('overview', 'analysis');
 echo '</head>';
 

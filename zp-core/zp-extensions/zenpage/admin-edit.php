@@ -185,7 +185,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 			$saveitem = $updateitem = gettext('Apply');
 			if (is_AdminEditPage('newsarticle')) {
 				if (!empty($page)) {
-					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
+					$_zp_admin_menu['news']['subtabs'][gettext('articles')] .= $page;
 				}
 				$subtab = printSubtabs();
 				?>

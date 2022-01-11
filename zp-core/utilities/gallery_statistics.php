@@ -33,7 +33,7 @@ admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 $_zp_gallery->garbageCollect();
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Statistics') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Statistics') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php');
 printAdminHeader('overview', 'statistics');
 
 ?>

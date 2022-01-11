@@ -59,7 +59,7 @@ if (defined('OFFSET_PATH')) {
 
 	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 	$admins = $_zp_authority->getAdministrators();
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php');
+	$_zp_admin_menu['overview']['subtabs'] = array(gettext('Mailing') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php');
 
 	printAdminHeader('overview', 'Mailing');
 	?>

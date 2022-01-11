@@ -36,10 +36,10 @@ if (extensionEnabled('zenpage')) {
 	require_once(dirname(__FILE__) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
 }
 $redirected_from = NULL;
-if (zp_loggedin() && !empty($zenphoto_tabs)) {
+if (zp_loggedin() && !empty($_zp_admin_menu)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
 		// admin access without overview rights, redirect to first tab
-		$tab = array_shift($zenphoto_tabs);
+		$tab = array_shift($_zp_admin_menu);
 		$link = $tab['link'];
 		redirectURL($link);
 	}

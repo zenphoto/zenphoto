@@ -11,7 +11,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Clone') => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Clone') => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php');
 printAdminHeader('overview', 'clone');
 
 ?>

@@ -49,7 +49,7 @@ if ($alb) {
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(
+	$_zp_admin_menu['overview']['subtabs'] = array(
 			gettext('Cache images') => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 			gettext('Cache stored images') => FULLWEBPATH .'/'. ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }

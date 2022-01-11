@@ -139,7 +139,7 @@ if (defined('OFFSET_PATH')) {
 
 	$_zp_gallery->garbageCollect();
 
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('SEO cleaner') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/seo_cleanup.php?XSRFToken=' . getXSRFToken('seo_cleanup'));
+	$_zp_admin_menu['overview']['subtabs'] = array(gettext('SEO cleaner') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/seo_cleanup.php?XSRFToken=' . getXSRFToken('seo_cleanup'));
 	printAdminHeader('overview', 'SEO cleaner');
 
 	if (isset($_GET['todo'])) {

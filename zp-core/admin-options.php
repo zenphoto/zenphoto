@@ -23,7 +23,7 @@ if (isset($_GET['subpage'])) {
 }
 
 if (!isset($_GET['page'])) {
-	if (array_key_exists('options', $zenphoto_tabs)) {
+	if (array_key_exists('options', $_zp_admin_menu)) {
 		$_GET['page'] = 'options';
 	} else {
 		$_GET['page'] = 'users'; // must be a user with no options rights
@@ -508,8 +508,8 @@ printAdminHeader($_current_tab);
 <script type="text/javascript" src="js/farbtastic.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
 <?php
-if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
-	if ($_zp_admin_subtab == 'image') {
+if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'image') {
+	if ($_zp_admin_current_subpage == 'image') {
 		$table = 'images';
 		$targetid = 'customimagesort';
 	} else {

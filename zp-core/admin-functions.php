@@ -67,32 +67,33 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab, $subtab = NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs, $_zp_rtl_css;
-	$_zp_admin_tab = $tab;
+	global $_zp_admin_current_page, $_zp_admin_current_subpage, $_zp_gallery, $_zp_admin_menu, $_zp_rtl_css;
+	handleDeprecatedMenuGlobals();
+	$_zp_admin_current_page = $tab;
 	if (isset($_GET['tab'])) {
-		$_zp_admin_subtab = sanitize($_GET['tab'], 3);
+		$_zp_admin_current_subpage = sanitize($_GET['tab'], 3);
 	} else {
-		$_zp_admin_subtab = $subtab;
+		$_zp_admin_current_subpage = $subtab;
 	}
-	$tabtext = $_zp_admin_tab;
+	$tabtext = $_zp_admin_current_page;
 	$tabrow = NULL;
-	foreach ($zenphoto_tabs as $key => $tabrow) {
-		if ($key == $_zp_admin_tab) {
+	foreach ($_zp_admin_menu as $key => $tabrow) {
+		if ($key == $_zp_admin_current_page) {
 			$tabtext = $tabrow['text'];
 			break;
 		}
 		$tabrow = NULL;
 	}
-	if (empty($_zp_admin_subtab) && $tabrow && isset($tabrow['default'])) {
-		$_zp_admin_subtab = $zenphoto_tabs[$_zp_admin_tab]['default'];
+	if (empty($_zp_admin_current_subpage) && $tabrow && isset($tabrow['default'])) {
+		$_zp_admin_current_subpage = $_zp_admin_menu[$_zp_admin_current_page]['default'];
 	}
 	$subtabtext = '';
-	if ($_zp_admin_subtab && $tabrow && array_key_exists('subtabs', $tabrow) && $tabrow['subtabs']) {
+	if ($_zp_admin_current_subpage && $tabrow && array_key_exists('subtabs', $tabrow) && $tabrow['subtabs']) {
 		foreach ($tabrow['subtabs'] as $key => $link) {
 			$i = strpos($link, '&tab=');
 			if ($i !== false) {
 				$text = substr($link, $i + 9);
-				if ($text == $_zp_admin_subtab) {
+				if ($text == $_zp_admin_current_subpage) {
 					$subtabtext = '-' . $key;
 					break;
 				}
@@ -100,15 +101,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 	if (empty($subtabtext)) {
-		if ($_zp_admin_subtab) {
-			$subtabtext = '-' . $_zp_admin_subtab;
+		if ($_zp_admin_current_subpage) {
+			$subtabtext = '-' . $_zp_admin_current_subpage;
 		}
 	}
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Cache-Control: no-cache; private; max-age=600; must-revalidate');
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	$matomo_url = '';
-	if ( extensionEnabled('matomo') && getOption('matomo_url') ) {
+	if (extensionEnabled('matomo') && getOption('matomo_url')) {
 		$matomo_url = sanitize(getOption('matomo_url')) . '/';
 	}
 	header("Content-Security-Policy: default-src " . FULLWEBPATH . "/ 'unsafe-inline' 'unsafe-eval' https://www.google.com/; img-src 'self' blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com/ https://www.gstatic.com/; frame-src 'self' data: " . $matomo_url . "");
@@ -245,16 +246,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 		 * @since  1.0.0
 		 */
 		function printLogoAndLinks() {
-			global $_zp_current_admin_obj, $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery;
-			if ($_zp_admin_subtab) {
-				$subtab = '-' . $_zp_admin_subtab;
+			global $_zp_current_admin_obj, $_zp_admin_current_page, $_zp_admin_current_subpage, $_zp_gallery;
+			handleDeprecatedMenuGlobals();
+			if ($_zp_admin_current_subpage) {
+				$subtab = '-' . $_zp_admin_current_subpage;
 			} else {
 				$subtab = '';
 			}
 			?>
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
-					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_tab), html_encode($subtab)); ?>"
+					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_current_page), html_encode($subtab)); ?>"
 					 alt="<?php echo gettext('Zenphoto Administration'); ?>" align="bottom" />
 		</span>
 		<?php
@@ -292,36 +294,37 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since  1.0.0
 	 */
 	function printTabs() {
-		global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab;
+		global $_zp_admin_submenu, $_zp_admin_menu, $_zp_admin_maintab_space, $_zp_admin_current_page;
+		handleDeprecatedMenuGlobals();
 		$chars = 0;
-		foreach ($zenphoto_tabs as $atab) {
+		foreach ($_zp_admin_menu as $atab) {
 			$chars = $chars + mb_strlen($atab['text']);
 		}
 		switch (getOption('locale')) {
 			case 'zh_CN':
 			case 'zh_TW':
 			case 'ja_JP':
-				$main_tab_space = count($zenphoto_tabs) * 3 + $chars;
+				$_zp_admin_maintab_space = count($_zp_admin_menu) * 3 + $chars;
 				break;
 			default:
-				$main_tab_space = round((count($zenphoto_tabs) * 32 + round($chars * 7.5)) / 11.5);
+				$_zp_admin_maintab_space = round((count($_zp_admin_menu) * 32 + round($chars * 7.5)) / 11.5);
 				break;
 		}
 		?>
-		<ul class="nav" style="width: <?php echo $main_tab_space; ?>em">
+		<ul class="nav" style="width: <?php echo $_zp_admin_maintab_space; ?>em">
 			<?php
-			foreach ($zenphoto_tabs as $key => $atab) {
+			foreach ($_zp_admin_menu as $key => $atab) {
 				?>
-				<li <?php if ($_zp_admin_tab == $key) echo 'class="current"' ?>>
+				<li <?php if ($_zp_admin_current_page == $key) echo 'class="current"' ?>>
 					<a href="<?php echo html_encode($atab['link']); ?>"><?php echo html_encode(ucfirst($atab['text'])); ?></a>
 					<?php
-					$subtabs = $zenphoto_tabs[$key]['subtabs'];
-					if (is_array($subtabs)) { // don't print <ul> if there is nothing
-						if ($_zp_admin_tab != $key) { // don't print sublist if already on the main tab
+					$_zp_admin_submenu = $_zp_admin_menu[$key]['subtabs'];
+					if (is_array($_zp_admin_submenu)) { // don't print <ul> if there is nothing
+						if ($_zp_admin_current_page != $key) { // don't print sublist if already on the main tab
 							?>
 							<ul class="subdropdown">
 								<?php
-								foreach ($subtabs as $key => $link) {
+								foreach ($_zp_admin_submenu as $key => $link) {
 									?>
 									<li><a href="<?php echo html_encode($link); ?>"><?php echo html_encode(ucfirst($key)); ?></a></li>
 									<?php
@@ -329,7 +332,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								?>
 							</ul>
 							<?php
-						} // if $subtabs end
+						} // if $_zp_admin_submenu end
 					} // if array
 					?>
 				</li>
@@ -342,11 +345,12 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function getSubtabs() {
-		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
-		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+		global $_zp_admin_menu, $_zp_admin_current_page, $_zp_admin_current_subpage;
+		handleDeprecatedMenuGlobals();
+		$tabs = @$_zp_admin_menu[$_zp_admin_current_page]['subtabs'];
 		if (!is_array($tabs))
-			return $_zp_admin_subtab;
-		$current = $_zp_admin_subtab;
+			return $_zp_admin_current_subpage;
+		$current = $_zp_admin_current_subpage;
 		if (isset($_GET['tab'])) {
 			$test = sanitize($_GET['tab']);
 			foreach ($tabs as $link) {
@@ -364,9 +368,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 		}
 		if (empty($current)) {
-			if (isset($zenphoto_tabs[$_zp_admin_tab]['default'])) {
-				$current = $zenphoto_tabs[$_zp_admin_tab]['default'];
-			} else if (empty($_zp_admin_subtab)) {
+			if (isset($_zp_admin_menu[$_zp_admin_current_page]['default'])) {
+				$current = $_zp_admin_menu[$_zp_admin_current_page]['default'];
+			} else if (empty($_zp_admin_current_subpage)) {
 				$current = array_shift($tabs);
 				$i = strrpos($current, 'tab=');
 				$amp = strrpos($current, '&');
@@ -379,15 +383,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$current = substr($current, $i + 4);
 				}
 			} else {
-				$current = $_zp_admin_subtab;
+				$current = $_zp_admin_current_subpage;
 			}
 		}
 		return $current;
 	}
 
 	function printSubtabs() {
-		global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
-		$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+		global $_zp_admin_menu, $_zp_admin_current_page, $_zp_admin_current_subpage;
+		handleDeprecatedMenuGlobals();
+		$tabs = @$_zp_admin_menu[$_zp_admin_current_page]['subtabs'];
 		$current = getSubtabs();
 		if (!empty($tabs)) {
 			$chars = 0;
@@ -411,7 +416,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 					$i = strrpos($link, 'tab=');
 					$amp = strrpos($link, '&');
 					if ($i === false) {
-						$tab = $_zp_admin_subtab;
+						$tab = $_zp_admin_current_subpage;
 					} else {
 						if ($amp > $i) {
 							$source = substr($link, 0, $amp);
@@ -440,43 +445,82 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	function setAlbumSubtabs($album) {
-		global $zenphoto_tabs;
+		global $_zp_admin_menu;
+		handleDeprecatedMenuGlobals();
 		$albumlink = '?page=edit&album=' . urlencode($album->name);
 		$default = NULL;
-		if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
-			$zenphoto_tabs['edit']['subtabs'] = array();
+		if (!is_array($_zp_admin_menu['edit']['subtabs'])) {
+			$_zp_admin_menu['edit']['subtabs'] = array();
 		}
 		$subrights = $album->albumSubRights();
 		if (!$album->isDynamic() && $album->getNumImages()) {
 			if ($subrights & (MANAGED_OBJECT_RIGHTS_UPLOAD || MANAGED_OBJECT_RIGHTS_EDIT)) {
-				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Images') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=imageinfo'), $zenphoto_tabs['edit']['subtabs']
+				$_zp_admin_menu['edit']['subtabs'] = array_merge(
+								array(gettext('Images') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=imageinfo'), $_zp_admin_menu['edit']['subtabs']
 				);
 				$default = 'imageinfo';
 			}
 			if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
-				$zenphoto_tabs['edit']['subtabs'] = array_merge(
-								array(gettext('Image order') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-albumsort.php' . $albumlink . '&tab=sort'), $zenphoto_tabs['edit']['subtabs']
+				$_zp_admin_menu['edit']['subtabs'] = array_merge(
+								array(gettext('Image order') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-albumsort.php' . $albumlink . '&tab=sort'), $_zp_admin_menu['edit']['subtabs']
 				);
 			}
 		}
 		if (!$album->isDynamic() && $album->getNumAlbums()) {
-			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Subalbums') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']
+			$_zp_admin_menu['edit']['subtabs'] = array_merge(
+							array(gettext('Subalbums') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=subalbuminfo'), $_zp_admin_menu['edit']['subtabs']
 			);
 			$default = 'subalbuminfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
-			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-							array(gettext('Album') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=albuminfo'), $zenphoto_tabs['edit']['subtabs']
+			$_zp_admin_menu['edit']['subtabs'] = array_merge(
+							array(gettext('Album') => FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $albumlink . '&tab=albuminfo'), $_zp_admin_menu['edit']['subtabs']
 			);
 			$default = 'albuminfo';
 		}
-		$zenphoto_tabs['edit']['default'] = $default;
+		$_zp_admin_menu['edit']['default'] = $default;
 		if (isset($_GET['tab'])) {
 			return sanitize($_GET['tab']);
 		}
 		return $default;
+	}
+	
+	/**
+	 * Roughly fixes outdated usages of old admin "tab" globals and joins them with the actual globals.
+	 * and also throws deprecation notices about this.
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @global type $_zp_admin_menu
+	 * @global type $_zp_admin_current_page
+	 * @global type $_zp_admin_current_subpage
+	 * @global type $_zp_admin_menu
+	 * @global type $_zp_admin_current_subpage
+	 * @global type $_zp_admin_subtab
+	 */
+	function handleDeprecatedMenuGlobals() {
+		global $_zp_admin_menu, $_zp_admin_submenu, $_zp_admin_current_page, $_zp_admin_current_subpage;
+
+		//The deprecated ones from  1.5.x
+		global $zenphoto_tabs, $subtabs, $_zp_admin_tab, $_zp_admin_subtab;
+
+		if (isset($zenphoto_tabs)) {
+			trigger_error(gettext('The global $zenphoto_tabs is deprecated. Use $_zp_admin_menu instead'), E_USER_DEPRECATED );
+			$_zp_admin_menu = array_merge($_zp_admin_menu, $zenphoto_tabs);
+		}
+		if (isset($subtabs)) {
+			trigger_error(gettext('The global $subtabs is deprecated. Use $_zp_admin_submenu instead'), E_USER_DEPRECATED );
+			$_zp_admin_submenu = array_merge($_zp_admin_submenu, $subtabs);
+		}
+		if (isset($_zp_admin_tab)) {
+			trigger_error(gettext('The global $_zp_admin_tab is deprecated. Use $_zp_admin_current_page instead'), E_USER_DEPRECATED );
+			$_zp_admin_current_page = $_zp_admin_current_subpage;
+
+		}
+		if (isset($_zp_admin_subtab)) {
+			trigger_error(gettext('The global $_zp_admin_subtab is deprecated. Use $_zp_admin_current_subpage instead'), E_USER_DEPRECATED );
+			$_zp_admin_current_subpage = $_zp_admin_subtab;
+		}
 	}
 
 	/**
@@ -1149,7 +1193,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * @since 1.1.3
 	 */
 	function printAlbumEditForm($index, $album, $buttons = true) {
-		global $_zp_gallery, $mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+		global $_zp_gallery, $_zp_admin_mcr_albumlist, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 		$isPrimaryAlbum = '';
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -1876,7 +1920,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<option value="" selected="selected">/</option>
 									<?php
 								}
-								foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+								foreach ($_zp_admin_mcr_albumlist as $fullfolder => $albumtitle) {
 									// don't allow copy in place or to subalbums
 									if ($fullfolder == dirname($exclude) || $fullfolder == $exclude || strpos($fullfolder, $exclude . '/') === 0) {
 										$disabled = ' disabled="disabled"';
@@ -3737,34 +3781,34 @@ function printEditDropdown($subtab, $nestinglevels, $nesting) {
 }
 
 function processEditSelection($subtab) {
-	global $subalbum_nesting, $album_nesting, $imagesTab_imageCount;
+	global $_zp_admin_subalbum_nesting, $_zp_admin_album_nesting, $_zp_admin_imagestab_imagecount;
 	if (isset($_GET['selection'])) {
 		switch ($subtab) {
 			case '':
-				$album_nesting = max(1, sanitize_numeric($_GET['selection']));
-				zp_setCookie('zpcms_admin_gallery_nesting', $album_nesting);
+				$_zp_admin_album_nesting = max(1, sanitize_numeric($_GET['selection']));
+				zp_setCookie('zpcms_admin_gallery_nesting', $_zp_admin_album_nesting);
 				break;
 			case 'subalbuminfo':
-				$subalbum_nesting = max(1, sanitize_numeric($_GET['selection']));
-				zp_setCookie('zpcms_admin_subalbum_nesting', $subalbum_nesting);
+				$_zp_admin_subalbum_nesting = max(1, sanitize_numeric($_GET['selection']));
+				zp_setCookie('zpcms_admin_subalbum_nesting', $_zp_admin_subalbum_nesting);
 				break;
 			case 'imageinfo':
-				$imagesTab_imageCount = max(ADMIN_IMAGES_STEP, sanitize_numeric($_GET['selection']));
-				zp_setCookie('zpcms_admin_imagestab_imagecount', $imagesTab_imageCount);
+				$_zp_admin_imagestab_imagecount = max(ADMIN_IMAGES_STEP, sanitize_numeric($_GET['selection']));
+				zp_setCookie('zpcms_admin_imagestab_imagecount', $_zp_admin_imagestab_imagecount);
 				break;
 		}
 	} else {
 		switch ($subtab) {
 			case '':
-				$album_nesting = zp_getCookie('zpcms_admin_gallery_nesting');
+				$_zp_admin_album_nesting = zp_getCookie('zpcms_admin_gallery_nesting');
 				break;
 			case 'subalbuminfo':
-				$subalbum_nesting = zp_getCookie('zpcms_admin_subalbum_nesting');
+				$_zp_admin_subalbum_nesting = zp_getCookie('zpcms_admin_subalbum_nesting');
 				break;
 			case 'imageinfo':
 				$count = zp_getCookie('zpcms_admin_imagestab_imagecount');
 				if ($count)
-					$imagesTab_imageCount = $count;
+					$_zp_admin_imagestab_imagecount = $count;
 				break;
 		}
 	}
@@ -3895,7 +3939,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 		<?php
 	}
 	if ($movecopy) {
-		global $mcr_albumlist, $album;
+		global $_zp_admin_mcr_albumlist, $album;
 		?>
 		<div id="mass_movecopy_copy" style="display:none;">
 			<div id="mass_movecopy_data">
@@ -3905,7 +3949,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 				?>
 				<select class="dirtyignore" id="massalbumselectmenu" name="massalbumselect" onchange="">
 					<?php
-					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+					foreach ($_zp_admin_mcr_albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
 						$saprefix = "";
 						$selected = "";

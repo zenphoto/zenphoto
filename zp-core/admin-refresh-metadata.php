@@ -125,7 +125,7 @@ if (isset($_GET['refresh'])) {
 	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Refresh') => '');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Refresh') => '');
 
 printAdminHeader($tab, 'Refresh');
 if (!empty($metaURL)) {

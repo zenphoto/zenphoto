@@ -30,7 +30,7 @@ if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Database') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Database') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php');
 printAdminHeader('overview','Database');
 
 ?>
