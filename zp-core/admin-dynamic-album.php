@@ -11,22 +11,7 @@ require_once(dirname(__FILE__) . '/template-functions.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
-$_imagelist = array();
-
-function getSubalbumImages($folder) {
-	global $_imagelist, $_zp_gallery;
-	$album = AlbumBase::newAlbum($folder);
-	if ($album->isDynamic())
-		return;
-	$images = $album->getImages();
-	foreach ($images as $image) {
-		$_imagelist[] = '/' . $folder . '/' . $image;
-	}
-	$albums = $album->getAlbums();
-	foreach ($albums as $folder) {
-		getSubalbumImages($folder);
-	}
-}
+$_zp_admin_imagelist = array();
 
 $search = new SearchEngine(true);
 if (isset($_POST['savealbum'])) {
@@ -126,7 +111,7 @@ $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
 	$filename = $image['filename'];
-	$_imagelist[] = '/' . $folder . '/' . $filename;
+	$_zp_admin_imagelist[] = '/' . $folder . '/' . $filename;
 }
 $subalbums = $search->getAlbums(0);
 foreach ($subalbums as $folder) {
@@ -195,7 +180,7 @@ while ($old != $albumname) {
 					}
 					generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
 					$showThumb = $_zp_gallery->getThumbSelectImages();
-					foreach ($_imagelist as $imagepath) {
+					foreach ($_zp_admin_imagelist as $imagepath) {
 						$pieces = explode('/', $imagepath);
 						$filename = array_pop($pieces);
 						$folder = implode('/', $pieces);

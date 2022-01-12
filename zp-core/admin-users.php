@@ -7,12 +7,6 @@
 
 define('OFFSET_PATH', 1);
 
-function markUpdated() {
-	global $updated;
-	$updated = true;
-//for finding out who did it!	debugLogBacktrace('updated');
-}
-
 require_once(dirname(__FILE__) . '/admin-globals.php');
 require_once SERVERPATH . '/' . ZENFOLDER . '/class-userdataexport.php';
 
@@ -102,7 +96,7 @@ if (isset($_GET['action'])) {
 					$nouser = true;
 					$returntab = $newuser = false;
 					for ($i = 0; $i < sanitize_numeric($_POST['totaladmins']); $i++) {
-						$updated = false;
+						$_zp_admin_user_updated = false;
 						$error = false;
 						$userobj = NULL;
 						$pass = trim(sanitize($_POST['pass' . $i]));
@@ -217,12 +211,12 @@ if (isset($_GET['action'])) {
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
-							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
+							$_zp_admin_user_updated = zp_apply_filter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
 							if (isset($_POST['createAlbum_' . $i])) {
 								$userobj->createPrimealbum();
 								markUpdated();
 							}
-							if ($updated) {
+							if ($_zp_admin_user_updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 								if (empty($msg)) {

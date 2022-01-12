@@ -5526,3 +5526,51 @@ function printUserSelector($optionname, $optionname_custom, $type = 'users', $is
 	$optionlabel_customfield = gettext('Custom');
 	printSelectorWithCustomField($optionname, $users, $optionlabel, $optionname_custom, $optionlabel_customfield, $is_galleryoption);
 }
+
+/**
+ * Helper for the theme editor
+ * @param type $file
+ * @return type
+ */
+function isTextFile($file) {
+	$ok_extensions = array('css', 'txt');
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		$ok_extensions = array('css', 'php', 'js', 'txt');
+	}
+	$path_info = pathinfo($file);
+	$ext = (isset($path_info['extension']) ? strtolower($path_info['extension']) : '');
+	return (!empty($ok_extensions) && (in_array($ext, $ok_extensions) ) );
+}
+
+/**
+ * Updates the $_zp_admin_imagelist global used on dynamic album editing
+ * 
+ * @global string $_zp_admin_imagelist
+ * @global obj $_zp_gallery
+ * @param type $folder
+ * @return type
+ */
+function getSubalbumImages($folder) {
+	global $_zp_admin_imagelist, $_zp_gallery;
+	$album = AlbumBase::newAlbum($folder);
+	if ($album->isDynamic())
+		return;
+	$images = $album->getImages();
+	foreach ($images as $image) {
+		$_zp_admin_imagelist[] = '/' . $folder . '/' . $image;
+	}
+	$albums = $album->getAlbums();
+	foreach ($albums as $folder) {
+		getSubalbumImages($folder);
+	}
+}
+
+/**
+ * Updates $_zp_admin_user_updated on user editing 
+ * @global boolean $_zp_admin_user_updated
+ */
+function markUpdated() {
+	global $_zp_admin_user_updated;
+	$_zp_admin_user_updated = true;
+//for finding out who did it!	debugLogBacktrace('updated');
+}
