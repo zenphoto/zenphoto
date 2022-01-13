@@ -834,10 +834,10 @@ class Authority {
 		}
 		if (!$star) {
 			$admins = $this->getAdministrators();
-			while (count($admins) > 0) {
-				$user = array_shift($admins);
+			foreach($admins as $user) {
 				if ($user['email']) {
 					$star = $showCaptcha;
+					break;
 				}
 			}
 		}
