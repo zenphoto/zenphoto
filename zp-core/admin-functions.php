@@ -4458,7 +4458,7 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 	return $rangeset;
 }
 
-function printPageSelector($subpage, $rangeset, $script, $queryParams) {
+function printPageSelector($pagenumber, $rangeset, $script, $queryParams) {
 	global $instances;
 	$pages = count($rangeset);
 	$jump = $query = '';
@@ -4467,37 +4467,37 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
 	}
 	$query = '?' . $query;
-	if ($subpage > 0) {
+	if (pagenumber > 0) {
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage - 1); ?>" >« <?php echo gettext('prev'); ?></a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>pagenumber=<?php echo ($pagenumber - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
 	if ($pages > 2) {
-		if ($subpage > 0) {
+		if ($pagenumber > 0) {
 			?>
 			|
 			<?php
 		}
 		?>
-		<select name="subpage" class="dirtyignore" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-				[<?php echo $jump; ?>'subpage=' + $('#subpage<?php echo $instances; ?>').val()]);" >
+		<select name="pagenumber" class="dirtyignore" id="pagenumber<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
+				[<?php echo $jump; ?>pagenumber=' + $('#pagenumber<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
-				<option value="<?php echo $page; ?>" <?php if ($page == $subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
+				<option value="<?php echo $page; ?>" <?php if ($page == $pagenumber) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
 			?>
 		</select>
 		<?php
 	}
-	if ($pages > $subpage + 1) {
+	if ($pages > $pagenumber + 1) {
 		if ($pages > 2) {
 			?>
 			|
 		<?php }
 		?>
-		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>subpage=<?php echo ($subpage + 1); ?>" ><?php echo gettext('next'); ?> »</a>
+		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>pagenumber=<?php echo ($pagenumber + 1); ?>" ><?php echo gettext('next'); ?> »</a>
 		<?php
 	}
 	$instances++;

@@ -11,13 +11,13 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 admin_securityChecks(NULL, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
-if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+if (isset($_GET['pagenumber'])) {
+	$pagenumber = sanitize_numeric($_GET['pagenumber']);
 } else {
-	if (isset($_POST['subpage'])) {
-		$subpage = sanitize_numeric($_POST['subpage']);
+	if (isset($_POST['pagenumber'])) {
+		$pagenumber = sanitize_numeric($_POST['pagenumber']);
 	} else {
-		$subpage = 0;
+		$pagenumber = 0;
 	}
 }
 
@@ -57,7 +57,7 @@ if (isset($_GET['action'])) {
 		} else {
 			$notify = '&post_error';
 		}
-		redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&subpage=" . html_encode($subpage) . $notify);
+		redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?page=plugins&tab=" . html_encode($subtab) . "&pagenumber=" . html_encode($pagenumber) . $notify);
 	}
 }
 $saved = isset($_GET['saved']);
@@ -66,7 +66,7 @@ zp_apply_filter('texteditor_config', 'zenphoto');
 
 sortArray($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);
-$filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
+$filelist = array_slice($pluginlist, $pagenumber * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 ?>
 <script type="text/javascript">
 	<!--
@@ -85,7 +85,7 @@ $filelist = array_slice($pluginlist, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PA
 	var pluginsToPage = ['<?php echo implode("','", $pluginlist); ?>'];
 	function gotoPlugin(plugin) {
 		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
-		window.location = '<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&subpage=' + i + '&show=' + plugin + '#' + plugin;
+		window.location = '<?php echo FULLWEBPATH . '/' . ZENFOLDER; ?>/admin-plugins.php?page=plugins&tab=<?php echo html_encode($subtab); ?>&pagenumber=' + i + '&show=' + plugin + '#' + plugin;
 	}
 //-->
 </script>
@@ -134,7 +134,7 @@ $subtab = printSubtabs();
 	<form class="dirty-check" id="form_plugins" action="?action=saveplugins&amp;page=plugins&amp;tab=<?php echo html_encode($subtab); ?>" method="post" autocomplete="off">
 		<?php XSRFToken('saveplugins'); ?>
 		<input type="hidden" name="saveplugins" value="yes" />
-		<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+		<input type="hidden" name="pagenumber" value="<?php echo $pagenumber; ?>" />
 		<p class="buttons">
 			<button type="submit" value="<?php echo gettext('Apply') ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<button type="reset" value="<?php echo gettext('Reset') ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -142,7 +142,7 @@ $subtab = printSubtabs();
 		<table class="bordered options">
 			<tr>
 				<th id="imagenav" colspan="3">
-					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
+					<?php printPageSelector($pagenumber, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</th>
 			</tr>
 			<tr>
@@ -406,7 +406,7 @@ $subtab = printSubtabs();
 			?>
 			<tr>
 				<td colspan="4" id="imagenavb">
-					<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
+					<?php printPageSelector($pagenumber, $rangeset, 'admin-plugins.php', array('page' => 'plugins', 'tab' => $subtab)); ?>
 				</td>
 			</tr>
 		</table>

@@ -115,8 +115,8 @@ if (isset($_GET['action'])) {
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . $folder . '&tab=subalbuminfo' . $notify);
 			break;
 		case 'sorttags':
-			if (isset($_GET['subpage'])) {
-				$pg = '&subpage=' . $_GET['subpage'];
+			if (isset($_GET['pagenumber'])) {
+				$pg = '&pagenumber=' . $_GET['pagenumber'];
 				$tab = '&tab=imageinfo';
 			} else {
 				$pg = '';
@@ -329,8 +329,8 @@ if (isset($_GET['action'])) {
       if (isset($folder) && !empty($folder)) {
         $qs_albumsuffix .= '&album=' . pathurlencode($folder);
       }
-      if (isset($_POST['subpage'])) {
-        $pg = '&subpage=' . sanitize($_POST['subpage']);
+      if (isset($_POST['pagenumber'])) {
+        $pg = '&pagenumber=' . sanitize($_POST['pagenumber']);
       } else {
         $pg = '';
       }
@@ -1527,7 +1527,7 @@ echo "\n</head>";
 														?>
 														<tr>
 															<td colspan="2" style="border-bottom:none;">
-																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename.'&subpage='.$pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
+																<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&tab=imageinfo&album=' . $album->name . '&singleimage=' . $image->filename.'&pagenumber='.$pagenum; ?>"><img src="images/options.png" /> <?php echo gettext('Edit all image data'); ?></a>
 															</td>
 														</tr>
 														<?php

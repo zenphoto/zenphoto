@@ -42,7 +42,7 @@ class crop_image {
 		}
 	}
 
-	static function edit($output, $image, $prefix, $subpage, $tagsort) {
+	static function edit($output, $image, $prefix, $pagenumber, $tagsort) {
 		if ($image->isPhoto()) {
 			if (is_array($image->filename)) {
 				$albumname = dirname($image->filename['source']);
@@ -54,7 +54,7 @@ class crop_image {
 			$output .=
 							'<div class="button buttons tooltip" title="' . gettext('Permanently crop the actual image.') . '">' . "\n" .
 							'<a href="' . WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/crop_image.php?a=' . pathurlencode($albumname) . "\n" .
-							'&amp;i=' . urlencode($imagename) . '&amp;performcrop=backend&amp;subpage=' . $subpage . '&amp;tagsort=' . html_encode($tagsort) . '">' . "\n" .
+							'&amp;i=' . urlencode($imagename) . '&amp;performcrop=backend&amp;pagenumber=' . $pagenumber . '&amp;tagsort=' . html_encode($tagsort) . '">' . "\n" .
 							'<img src="images/shape_handles.png" alt="" />' . gettext("Crop image") . '</a>' . "\n" .
 							'<br class="clearall" />' .
 							'</div>' . "\n";
@@ -188,17 +188,17 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->save();
 
 	if ($_REQUEST['performcrop'] == 'backend') {
-		$return = FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&subpage=' . sanitize($_REQUEST['subpage']) . '&tagsort=' . sanitize($_REQUEST['tagsort']) . '&tab=imageinfo';
+		$return = FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&pagenumber=' . sanitize($_REQUEST['pagenumber']) . '&tagsort=' . sanitize($_REQUEST['tagsort']) . '&tab=imageinfo';
 	} else {
 		$return = FULLWEBPATH . $imageobj->getLink();
 	}
 	redirectURL($return);
 }
-if (isset($_REQUEST['subpage'])) {
-	$subpage = sanitize($_REQUEST['subpage']);
+if (isset($_REQUEST['pagenumbere'])) {
+	$pagenumber = sanitize($_REQUEST['pagenumber']);
 	$tagsort = sanitize($_REQUEST['tagsort']);
 } else {
-	$subpage = $tagsort = '';
+	$pagenumber = $tagsort = '';
 }
 printAdminHeader('edit', gettext('crop image'));
 ?>
@@ -334,7 +334,7 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
 						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
 						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+						<input type="hidden" id="pagenumber" name="pagenumber" value="<?php echo html_encode($pagenumber); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
 						<p class="buttons">
@@ -347,7 +347,7 @@ printAdminHeader('edit', gettext('crop image'));
 							<?php
 							if ($_REQUEST['performcrop'] == 'backend') {
 								?>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&pagenumber=<?php echo $pagenumber; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
 								</button>
 								<?php

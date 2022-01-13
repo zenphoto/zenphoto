@@ -532,9 +532,9 @@ class Zenpage {
 	 * @return string
 	 */
 	static function getOffset($articles_per_page, $ignorepagination = false) {
-		global $_zp_page, $subpage;
+		global $_zp_page, $pagenumber;
 		if (OFFSET_PATH) {
-			$page = $subpage + 1;
+			$page = $pagenumber + 1;
 		} else {
 			$page = $_zp_page;
 		}

@@ -92,7 +92,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 					<?php
 					if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 						?>
-					  zp_editurl = 'admin-edit.php?page=edit&subpage=1&tab=imageinfo&album=' + encodeURIComponent($('#folderdisplay').val()) + '&uploaded=1&albumimagesort=id_desc';
+					  zp_editurl = 'admin-edit.php?page=edit&pagenumber=1&tab=imageinfo&album=' + encodeURIComponent($('#folderdisplay').val()) + '&uploaded=1&albumimagesort=id_desc';
 						//	launchScript('admin-edit.php', ['page=edit', 'subpage=1', 'tab=imageinfo', 'album=' + encodeURIComponent($('#folderdisplay').val()), 'uploaded=1', 'albumimagesort=id_desc']);
 						<?php
 					} else {

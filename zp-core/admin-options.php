@@ -12,13 +12,13 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
 define('PLUGINS_PER_PAGE', max(1, getOption('plugins_per_page')));
-if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+if (isset($_GET['pagenumber'])) {
+	$pagenumber = sanitize_numeric($_GET['pagenumber']);
 } else {
-	if (isset($_POST['subpage'])) {
-		$subpage = sanitize_numeric($_POST['subpage']);
+	if (isset($_POST['pagenumber'])) {
+		$pagenumber = sanitize_numeric($_POST['pagenumber']);
 	} else {
-		$subpage = 0;
+		$pagenumber = 0;
 	}
 }
 
@@ -454,7 +454,7 @@ if (isset($_GET['action'])) {
 				if (isset($_GET['single'])) {
 					$returntab = "&tab=plugin&single=" . sanitize($_GET['single']);
 				} else {
-					$returntab = "&tab=plugin&subpage=$subpage";
+					$returntab = "&tab=plugin&pagenumber=$pagenumber";
 				}
 			} else {
 				$notify = '?post_error';
@@ -3126,7 +3126,7 @@ Authority::printPasswordFormJS();
 						sortArray($plugins);
 					}
 					$rangeset = getPageSelector($plugins, PLUGINS_PER_PAGE);
-					$plugins = array_slice($plugins, $subpage * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
+					$plugins = array_slice($plugins, $pagenumber * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 					?>
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
@@ -3138,7 +3138,7 @@ Authority::printPasswordFormJS();
 						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . html_encode($showExtension); ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="savepluginoptions" value="yes" />
-							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+							<input type="hidden" name="pagenumber" value="<?php echo $pagenumber; ?>" />
 							<table class="bordered">
 								<tr>
 									<td colspan="3">
@@ -3155,7 +3155,7 @@ Authority::printPasswordFormJS();
 										<th style="text-align:left">
 										</th>
 										<th style="text-align:right; padding-right: 10px;">
-											<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
+											<?php printPageSelector($pagenumber, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
 										</th>
 										<th></th>
 									</tr>
@@ -3304,7 +3304,7 @@ Authority::printPasswordFormJS();
 									<tr>
 										<th></th>
 										<th style="text-align:right; padding-right: 10px;">
-											<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
+											<?php printPageSelector($pagenumber, $rangeset, 'admin-options.php', array('page' => 'options', 'tab' => 'plugin')); ?>
 										</th>
 										<th></th>
 									</tr>

@@ -175,16 +175,16 @@ datepickerJS();
 						}
 					}
 					// Basic setup for the global for the current admin page first
-					if (!isset($_GET['subpage'])) {
-						$subpage = 0;
+					if (!isset($_GET['pagenumber'])) {
+						$pagenumber = 0;
 					} else {
-						$subpage = sanitize_numeric($_GET['subpage']);
+						$pagenumber = sanitize_numeric($_GET['pagenumber']);
 					}
 					if ($articles_page) {
 						$total = ceil($articles / $articles_page);
 						//Needed check if we really have articles for page x or not otherwise we are just on page 1
-						if ($total <= $subpage) {
-							$subpage = 0;
+						if ($total <= $pagenumber) {
+							$pagenumber = 0;
 						}
 						$offset = Zenpage::getOffset($articles_page);
 						$list = array();
@@ -206,10 +206,10 @@ datepickerJS();
         <div class="news-dropdowns floatright">
 					<?php
 					printCategoryDropdown();
-					printArticleDatesDropdown($subpage);
+					printArticleDatesDropdown($pagenumber);
 					printUnpublishedDropdown();
 					printSortOrderDropdown();
-					printArticlesPerPageDropdown($subpage, $articles_page);
+					printArticlesPerPageDropdown($pagenumber, $articles_page);
 					printAuthorDropdown();
 					?>
           <span class="buttons">
@@ -231,7 +231,7 @@ datepickerJS();
           <table class="bordered">
             <tr>
               <th colspan="12" id="imagenav">
-								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
+								<?php printPageSelector($pagenumber, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>
               </th>
             </tr>
             <tr>
@@ -414,7 +414,7 @@ datepickerJS();
 						}
 						?>
             <tr>
-              <td id="imagenavb" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
+              <td id="imagenavb" colspan="11"><?php printPageSelector($pagenumber, $rangeset, PLUGIN_FOLDER . '/zenpage/admin-news-articles.php', $options); ?>	</td>
             </tr>
           </table>
 

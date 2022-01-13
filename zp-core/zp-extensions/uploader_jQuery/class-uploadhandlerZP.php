@@ -306,7 +306,7 @@ class UploadHandlerZP extends UploadHandler {
 	
 	protected function get_download_url($file_name, $version = null, $direct = false, $imageobj = null) {
 		if(!is_null($imageobj)) {
-			$link = FULLWEBPATH .'/' . ZENFOLDER .'/admin-edit.php?page=edit&tab=imageinfo&album='. sanitize_path($imageobj->album->name).'&singleimage='. html_encode($imageobj->filename).'&subpage=1';
+			$link = FULLWEBPATH .'/' . ZENFOLDER .'/admin-edit.php?page=edit&tab=imageinfo&album='. sanitize_path($imageobj->album->name).'&singleimage='. html_encode($imageobj->filename).'&pagenumber=1';
 			return $link;
 		}
 	}

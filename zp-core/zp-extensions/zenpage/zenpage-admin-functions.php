@@ -545,7 +545,7 @@ function printCategorySelection($id = '', $option = '') {
  * Prints the dropdown menu for the date archive selector for the news articles list
  *
  */
-function printArticleDatesDropdown($subpage) {
+function printArticleDatesDropdown($pagenumber) {
 	global $_zp_zenpage;
 	$datecount = $_zp_zenpage->getAllArticleDates();
 	$lastyear = "";
@@ -786,7 +786,7 @@ function printCategoryDropdown() {
  * Prints the dropdown menu for the articles per page selector for the news articles list
  *
  */
-function printArticlesPerPageDropdown($subpage, $articles_page) {
+function printArticlesPerPageDropdown($pagenumber, $articles_page) {
 	global $_zp_zenpage;
 	?>
 	<form name="articlesperpagedropdown" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;" action="#">
@@ -797,7 +797,7 @@ function printArticlesPerPageDropdown($subpage, $articles_page) {
 			sort($list);
 			foreach ($list as $count) {
 				?>
-				<option <?php if ($articles_page == $count) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page' => $count, 'subpage' => (int) ($subpage * $articles_page / $count)), $option)); ?>"><?php printf(gettext('%u per page'), $count); ?></option>
+				<option <?php if ($articles_page == $count) echo 'selected="selected"'; ?> value="admin-news-articles.php<?php echo getNewsAdminOptionPath(array_merge(array('articles_page' => $count, 'pagenumber' => (int) ($pagenumber * $articles_page / $count)), $option)); ?>"><?php printf(gettext('%u per page'), $count); ?></option>
 				<?php
 			}
 			?>

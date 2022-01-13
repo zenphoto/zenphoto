@@ -10,13 +10,13 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 define('USERS_PER_PAGE', max(1, getOption('users_per_page')));
-if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+if (isset($_GET['pagenumber'])) {
+	$pagenumber = sanitize_numeric($_GET['pagenumber']);
 } else {
-	if (isset($_POST['subpage'])) {
-		$subpage = sanitize_numeric($_POST['subpage']);
+	if (isset($_POST['pagenumber'])) {
+		$pagenumber = sanitize_numeric($_POST['pagenumber']);
 	} else {
-		$subpage = 0;
+		$pagenumber = 0;
 	}
 }
 
@@ -42,7 +42,7 @@ if (isset($_GET['action'])) {
 			$groupobj->remove();
 			// clear out existing user assignments
 			Authority::updateAdminField('group', NULL, array('`valid`>=' => '1', '`group`=' => $groupname));
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&subpage=' . $subpage);
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&pagenumber=' . $pagenumber);
 		case 'savegroups':
 			if (isset($_POST['checkForPostTruncation'])) {
 				for ($i = 0; $i < $_POST['totalgroups']; $i++) {
@@ -106,7 +106,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&post_error';
 			}
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&subpage=' . $subpage . $notify);
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&pagenumber=' . $pagenumber . $notify);
 		case 'saveauserassignments':
 			if (isset($_POST['checkForPostTruncation'])) {
 				for ($i = 0; $i < $_POST['totalusers']; $i++) {
@@ -123,7 +123,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&post_error';
 			}
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments&subpage=' . $subpage . $notify);
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments&pagenumber=' . $pagenumber . $notify);
 	}
 }
 
@@ -177,11 +177,11 @@ echo '</head>' . "\n";
 							}
 						}
 						$max = floor((count($list) - 1) / USERS_PER_PAGE);
-						if ($subpage > $max) {
-							$subpage = $max;
+						if ($pagenumber > $max) {
+							$pagenumber = $max;
 						}
 						$rangeset = getPageSelector($list, USERS_PER_PAGE);
-						$groups = array_slice($groups, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+						$groups = array_slice($groups, $pagenumber * USERS_PER_PAGE, USERS_PER_PAGE);
 						$albumlist = array();
 						foreach ($_zp_gallery->getAlbums() as $folder) {
 							$alb = AlbumBase::newAlbum($folder);
@@ -202,7 +202,7 @@ echo '</head>' . "\n";
 							</p>
 							<br class="clearall" /><br />
 							<input type="hidden" name="savegroups" value="yes" />
-							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+							<input type="hidden" name="pagenumber" value="<?php echo $pagenumber; ?>" />
 							<table class="bordered">
 								<tr>
 									<th>
@@ -213,7 +213,7 @@ echo '</head>' . "\n";
 										</span>
 									</th>
 									<th>
-										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
+										<?php printPageSelector($pagenumber, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
 									<th></th>
 								</tr>
@@ -387,7 +387,7 @@ echo '</head>' . "\n";
 										</span>
 									</th>
 									<th>
-										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
+										<?php printPageSelector($pagenumber, $rangeset, PLUGIN_FOLDER . '/user_groups/user_groups-tab.php', array('page' => 'users', 'tab' => 'groups')); ?>
 									</th>
 									<th></th>
 								</tr>

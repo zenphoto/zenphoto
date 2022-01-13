@@ -7,7 +7,7 @@ admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
-$subpage = sanitize($_REQUEST['subpage']);
+$pagenumber = sanitize($_REQUEST['pagenumber']);
 $tagsort = sanitize($_REQUEST['tagsort']);
 
 $albumobj = AlbumBase::newAlbum($albumname);
@@ -150,7 +150,7 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 	$imageobj->save();
 
-	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&pagenumber=' . html_encode(sanitize($_REQUEST['pagenumber'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
 	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . $return);
 }
 printAdminHeader('edit', 'thumbcrop');
@@ -252,7 +252,7 @@ printAdminHeader('edit', 'thumbcrop');
 						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
 						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
 						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+						<input type="hidden" id="pagenumber" name="pagenumber" value="<?php echo html_encode($pagenumber); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<?php
 						if (getOption('thumb_crop')) {
@@ -267,7 +267,7 @@ printAdminHeader('edit', 'thumbcrop');
 									<img src="images/pass.png" alt="" />
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&pagenumber=<?php echo html_encode($pagenumber); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="images/arrow_left_blue_round.png" alt="" />
 									<strong><?php echo gettext("Back"); ?></strong>
 								</button>

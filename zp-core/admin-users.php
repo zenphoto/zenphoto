@@ -37,13 +37,13 @@ if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
 }
 
 
-if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+if (isset($_GET['pagenumber'])) {
+	$pagenumber = sanitize_numeric($_GET['pagenumber']);
 } else {
-	if (isset($_POST['subpage'])) {
-		$subpage = sanitize_numeric($_POST['subpage']);
+	if (isset($_POST['pagenumber'])) {
+		$pagenumber = sanitize_numeric($_POST['pagenumber']);
 	} else {
-		$subpage = 0;
+		$pagenumber = 0;
 	}
 }
 
@@ -70,14 +70,14 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&pagenumber=" . $pagenumber . $notify);
 			break;
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
 			$adminobj = Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&pagenumber=" . $pagenumber);
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
@@ -396,10 +396,10 @@ echo $refresh;
 						}
 					}
 					$max = floor((count($admins) - 1) / USERS_PER_PAGE);
-					if ($subpage > $max) {
-						$subpage = $max;
+					if ($pagenumber > $max) {
+						$pagenumber = $max;
 					}
-					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					$userlist = array_slice($admins, $pagenumber * USERS_PER_PAGE, USERS_PER_PAGE);
 
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
@@ -456,7 +456,7 @@ echo $refresh;
 					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();">
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
-						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+						<input type="hidden" name="pagenumber" value="<?php echo $pagenumber; ?>" />
 						<?php
 						if (empty($alterrights)) {
 							?>
@@ -473,7 +473,7 @@ echo $refresh;
 
 							<tr>
 								<?php
-								if ($subpage || count($userlist) > 1) {
+								if ($pagenumber || count($userlist) > 1) {
 									?>
 									<th>
 										<span style="font-weight: normal">
@@ -505,7 +505,7 @@ echo $refresh;
 										</select>
 									</th>
 									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										<?php printPageSelector($pagenumber, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
 									</th>
 									<?php
 								} else {
@@ -642,7 +642,7 @@ echo $refresh;
 															?>
 
 															<span class="floatright">
-																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
+																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;pagenumber=<?php echo $pagenumber; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
 																	<img src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
 															</span>
@@ -826,7 +826,7 @@ echo $refresh;
 								<th></th>
 								<th></th>
 								<th>
-									<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+									<?php printPageSelector($pagenumber, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
 								</th>
 							</tr>
 						</table> <!-- main admin table end -->
