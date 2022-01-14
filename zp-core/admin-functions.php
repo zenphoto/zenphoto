@@ -4467,7 +4467,7 @@ function printPageSelector($pagenumber, $rangeset, $script, $queryParams) {
 		$jump .= "'" . html_encode($param) . "=" . html_encode($value) . "',";
 	}
 	$query = '?' . $query;
-	if (pagenumber > 0) {
+	if ($pagenumber > 0) {
 		?>
 		<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script . $query; ?>pagenumber=<?php echo ($pagenumber - 1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
