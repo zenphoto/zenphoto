@@ -52,15 +52,10 @@ class Authority {
 		if (!is_null($this->master_user)) {
 			return $this->master_user;
 		}
-		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1';
-		$admins = $_zp_db->query($sql, false);
-		$master = null;
-		if ($admins) {
-			while ($user = $_zp_db->fetchAssoc($admins)) {
-				$master = $user['user'];
-			}
+		$master = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
+		if ($master) {
+			return $this->master_user = $master['user'];
 		}
-		return $this->master_user = $master;
 	}
 
 	/**
