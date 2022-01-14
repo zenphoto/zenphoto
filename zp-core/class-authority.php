@@ -12,6 +12,7 @@ class Authority {
 	public $admin_users = NULL;
 	public $admin_groups = NULL;
 	public $admin_other = NULL;
+	public $admin_realusers = null;
 	public $admin_all = NULL;
 	public $rightsset = NULL;
 	protected $master_user = NULL;
@@ -25,39 +26,41 @@ class Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
-		global $_zp_db;
 		setOptionDefault('admin_lastvisit_timeframe', 600);
 		setOptionDefault('admin_lastvisit', true);
-		$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
-		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
-		$admins = $_zp_db->query($sql, false);
-		if ($admins) {
-			while ($user = $_zp_db->fetchAssoc($admins)) {
-				$this->admin_all[$user['id']] = $user;
-				switch ($user['valid']) {
-					case 1:
-						$this->admin_users[$user['id']] = $user;
-						if (empty($this->master_user))
-							$this->master_user = $user['user'];
-						break;
-					case 0:
-						$this->admin_groups[$user['id']] = $user;
-						break;
-					default:
-						$this->admin_other[$user['id']] = $user;
-						break;
-				}
-			}
-			$_zp_db->freeResult($admins);
-		}
 	}
 
 	function getMasterUser() {
-		return new Administrator($this->master_user, 1);
+		$master = $this->getMasterUserName();
+		return new Administrator($master, 1);
 	}
 
 	function isMasterUser($user) {
-		return $user == $this->master_user;
+		$master = $this->getMasterUserName();
+		return $user == $master;
+	}
+	/**
+	 * Gets the name of the current master user 
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @global type $_zp_db
+	 * @return type
+	 */
+	function getMasterUserName() {
+		global $_zp_db;
+		if (!is_null($this->master_user)) {
+			return $this->master_user;
+		}
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1';
+		$admins = $_zp_db->query($sql, false);
+		$master = null;
+		if ($admins) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
+				$master = $user['user'];
+			}
+		}
+		return $this->master_user = $master;
 	}
 
 	/**
@@ -186,16 +189,53 @@ class Authority {
 	 * @return array
 	 */
 	function getAdministrators($what = 'users') {
+		global $_zp_db;
 		switch ($what) {
 			case 'users':
-				return $this->admin_users;
+				if (!is_null($this->admin_users)) {
+					return $this->admin_users;
+				}
+				$where = ' WHERE `valid` = 1';
+				break;
 			case 'groups':
-				return $this->admin_groups;
+				if (!is_null($this->admin_groups)) {
+					return $this->admin_groups;
+				}
+				$where = ' WHERE `valid` = 0';
+				break;
 			case 'allusers':
-				return array_merge($this->admin_users, $this->admin_other);
+				if (!is_null($this->admin_realusers)) {
+					return $this->admin_realusers;
+				}
+				$where = ' WHERE `valid` != 0';
+				break;
 			default:
-				return $this->admin_all;
+				if (!is_null($this->admin_all)) {
+					return $this->admin_all;
+				}
+				$where = '';
+				break;
 		}
+		$users = array();
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
+		$admins = $_zp_db->query($sql, false);
+		if ($admins) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
+				$users[$user['id']] = $user;
+			}
+			$_zp_db->freeResult($admins);
+			switch ($what) {
+				case 'users':
+					return $this->admin_users = $users;
+				case 'groups':
+					return $this->admin_groups = $users;
+				case 'allusers':
+					return $this->admin_realusers = $users;
+				default:
+					return $this->admin_all = $users;
+			}
+		}
+		return array();
 	}
 
 	/**
