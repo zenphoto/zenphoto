@@ -52,7 +52,7 @@ class Authority {
 		if (!is_null($this->master_user)) {
 			return $this->master_user;
 		}
-		$master = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
+		$master = $_zp_db->querySingleRow('SELECT `user` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
 		if ($master) {
 			return $this->master_user = $master['user'];
 		}
@@ -180,10 +180,11 @@ class Authority {
 	 *
 	 * The array contains the id, hashed password, user's name, email, and admin privileges
 	 *
-	 * @param string $what: 'all' for everything, 'users' for just users 'groups' for groups and templates
+	 * @param string $what: 'allusers' for all standard users, 'users' for all valid stanndard users 'groups' for groups and templates, empty for all types of users
+	 * @param string $returnvalues 'fulldata" (backward compatible full array of the users), "basedata" (only id, user and valid columns for use with administrator class)
 	 * @return array
 	 */
-	function getAdministrators($what = 'users') {
+	function getAdministrators($what = 'users', $returnvalues = 'fulldaata') {
 		global $_zp_db;
 		switch ($what) {
 			case 'users':
@@ -212,7 +213,15 @@ class Authority {
 				break;
 		}
 		$users = array();
-		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
+		switch ($returnvalues) {
+			case 'fulldata':
+				$select = 'SELECT * FROM ';
+				break;
+			case 'basedata':
+				$select = 'SELECT id, user, valid FROM ';
+				break;
+		}
+		$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
 		$admins = $_zp_db->query($sql, false);
 		if ($admins) {
 			while ($user = $_zp_db->fetchAssoc($admins)) {
