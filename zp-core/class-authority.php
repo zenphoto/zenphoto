@@ -30,11 +30,21 @@ class Authority {
 		setOptionDefault('admin_lastvisit', true);
 	}
 
+	/**
+	 * Returns the object of the master user
+	 * @return object
+	 */
 	function getMasterUser() {
 		$master = $this->getMasterUserName();
 		return new Administrator($master, 1);
 	}
 
+	/**
+	 * Check if the user name is the master user
+	 * 
+	 * @param strung $user User name
+	 * @return bool
+	 */
 	function isMasterUser($user) {
 		$master = $this->getMasterUserName();
 		return $user == $master;
