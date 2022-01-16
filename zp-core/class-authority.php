@@ -1370,6 +1370,6 @@ class Zenphoto_Authority extends Authority {
 	
 	function __construct() {
 		parent::__construct();
-		debuglog(gettext('DEPRECATED: Use the Authority class instead'));
+		deprecationNotice(gettext('Use the Authority class instead'));
 	}
 }

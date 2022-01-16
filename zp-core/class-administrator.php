@@ -544,7 +544,7 @@ class Zenphoto_Administrator extends Administrator {
 	
 	function __construct($user, $valid) {
 		parent::__construct($user, $valid);
-		debuglog(gettext('DEPRECATED: Use the Administrator class instead'));
+		deprecationNotice(gettext('Use the Administrator class instead'));
 	}
 	
 }

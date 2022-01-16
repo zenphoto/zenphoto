@@ -115,17 +115,30 @@ class PersistentObject {
 	 * to avoid memory issues if you loop through a lot of object creations.
 	 * 
 	 * @since ZenphotoCMS 1.5.8
+	 * @since ZenphotoCMS 1.6: Method was made static
 	 * 
 	 * @global array $_zp_object_cache
-	 * @param string $classname A classname to clear the cache specifially (optional, default null)
+	 * @param string|object $classe A classname or object to clear the cache for specifially (optional, default null for full cache clearing)
 	 */
-	function clearCache($classname = null) {
+	static function clearCache($class = null) {
 		global $_zp_object_cache;
-		if (!is_null($classname) && array_key_exists($classname, $_zp_object_cache)) {
-			unset($_zp_object_cache[$classname]);
+		if (is_object($class)) {
+			$class = get_class($class);
+		}
+		if (!is_null($class) && array_key_exists($class, $_zp_object_cache)) {
+			unset($_zp_object_cache[$class]);
 		} else {
 			$_zp_object_cache = array();
 		}
+	}
+
+	/**
+	 * Shortcut to clear the cache of the current object class only
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 */
+	function clearObjectCache() {
+		$this->clearCache($this);
 	}
 
 	/**
