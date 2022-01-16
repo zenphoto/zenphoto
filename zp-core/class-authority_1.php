@@ -26,46 +26,57 @@ class Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
+		global $_zp_db;
 		setOptionDefault('admin_lastvisit_timeframe', 600);
 		setOptionDefault('admin_lastvisit', true);
+		/*$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' ORDER BY `rights` DESC, `id`';
+		$admins = $_zp_db->query($sql, false);
+		if ($admins) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
+				$this->admin_all[$user['id']] = $user;
+				switch ($user['valid']) {
+					case 1:
+						$this->admin_users[$user['id']] = $user;
+						if (empty($this->master_user))
+							$this->master_user = $user['user'];
+						break;
+					case 0:
+						$this->admin_groups[$user['id']] = $user;
+						break;
+					default:
+						$this->admin_other[$user['id']] = $user;
+						break;
+				}
+			}
+			$_zp_db->freeResult($admins);
+		} */
 	}
 
-	/**
-	 * Returns the object of the master user
-	 * @return object
-	 */
 	function getMasterUser() {
 		$master = $this->getMasterUserName();
 		return new Administrator($master, 1);
 	}
 
-	/**
-	 * Check if the user name is the master user
-	 * 
-	 * @param strung $user User name
-	 * @return bool
-	 */
 	function isMasterUser($user) {
 		$master = $this->getMasterUserName();
 		return $user == $master;
 	}
-	/**
-	 * Gets the name of the current master user 
-	 * 
-	 * @since ZenphotoCMS 1.6
-	 * 
-	 * @global type $_zp_db
-	 * @return type
-	 */
+	
 	function getMasterUserName() {
 		global $_zp_db;
 		if (!is_null($this->master_user)) {
 			return $this->master_user;
 		}
-		$master = $_zp_db->querySingleRow('SELECT `user` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
-		if ($master) {
-			return $this->master_user = $master['user'];
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1';
+		$admins = $_zp_db->query($sql, false);
+		$master = null;
+		if ($admins) {
+			while ($user = $_zp_db->fetchAssoc($admins)) {
+				$master = $user['user'];
+			}
 		}
+		return $this->master_user = $master;
 	}
 
 	/**
@@ -190,18 +201,30 @@ class Authority {
 	 *
 	 * The array contains the id, hashed password, user's name, email, and admin privileges
 	 *
-	 * @param string $what: 'allusers' for all standard users, 'users' for all valid stanndard users 'groups' for groups and templates, empty for all types of users
-	 * @param string $returnvalues 'fulldata" (backward compatible full array of the users), "basedata" (only id, user and valid columns for use with administrator class)
+	 * @param string $what: 'all' for everything, 'users' for just users 'groups' for groups and templates
 	 * @return array
 	 */
-	function getAdministrators($what = 'users', $returnvalues = 'fulldata') {
+	function getAdministratorsOLD($what = 'users') {
+		switch ($what) {
+			case 'users':
+				return $this->admin_users;
+			case 'groups':
+				return $this->admin_groups;
+			case 'allusers':
+				return array_merge($this->admin_users, $this->admin_other);
+			default:
+				return $this->admin_all;
+		}
+	}
+	
+	function getAdministrators($what = 'users') {
 		global $_zp_db;
 		switch ($what) {
 			case 'users':
 				if (!is_null($this->admin_users)) {
 					return $this->admin_users;
 				}
-				$where = ' WHERE `valid` = 1';
+				$where = ' WHERE `valide` = 1';
 				break;
 			case 'groups':
 				if (!is_null($this->admin_groups)) {
@@ -213,8 +236,7 @@ class Authority {
 				if (!is_null($this->admin_realusers)) {
 					return $this->admin_realusers;
 				}
-				$where = ' WHERE `valid` != 0';
-				break;
+				$where = ' WHERE `valid` <> 0';
 			default:
 				if (!is_null($this->admin_all)) {
 					return $this->admin_all;
@@ -223,16 +245,7 @@ class Authority {
 				break;
 		}
 		$users = array();
-		switch ($returnvalues) {
-			case 'fulldata':
-			default:
-				$select = 'SELECT * FROM ';
-				break;
-			case 'basedata':
-				$select = 'SELECT id, user, valid FROM ';
-				break;
-		}
-		$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
+		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
 		$admins = $_zp_db->query($sql, false);
 		if ($admins) {
 			while ($user = $_zp_db->fetchAssoc($admins)) {
