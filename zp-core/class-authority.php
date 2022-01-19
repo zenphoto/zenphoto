@@ -194,46 +194,53 @@ class Authority {
 	 * @param string $returnvalues 'fulldata" (backward compatible full array of the users), "basedata" (only id, user and valid columns for use with administrator class)
 	 * @return array
 	 */
-	function getAdministrators($what = 'users', $returnvalues = 'fulldata') {
+	function getAdministrators($what = 'users', $returnvalues = 'coredata') {
 		global $_zp_db;
+		$cacheindex = $returnvalues;
+		if (!in_array($returnvalues, array('basedata','coredata', 'fulldata'))) {
+			$cacheindex = 'fulldata';
+		}
 		switch ($what) {
 			case 'users':
-				if (!is_null($this->admin_users)) {
-					return $this->admin_users;
+				if (isset($this->admin_users[$cacheindex])) {
+					return $this->admin_users[$cacheindex];
 				}
 				$where = ' WHERE `valid` = 1';
 				break;
 			case 'groups':
-				if (!is_null($this->admin_groups)) {
-					return $this->admin_groups;
+				if (isset($this->admin_groups[$cacheindex])) {
+					return $this->admin_groups[$cacheindex];
 				}
 				$where = ' WHERE `valid` = 0';
 				break;
 			case 'allusers':
-				if (!is_null($this->admin_realusers)) {
-					return $this->admin_realusers;
+				if (isset($this->admin_realusers[$cacheindex])) {
+					return $this->admin_realuser[$cacheindex];
 				}
 				$where = ' WHERE `valid` != 0';
 				break;
 			default:
-				if (!is_null($this->admin_all)) {
-					return $this->admin_all;
+				if (isset($this->admin_all[$cacheindex])) {
+					return $this->admin_all[$cacheindex];
 				}
 				$where = '';
 				break;
 		}
 		$users = array();
 		switch ($returnvalues) {
+			case 'basedata':
+				$select = 'SELECT `id`, `user`, `valid` FROM ';
+				break;
+			case 'coredata':
+				$select = 'SELECT `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials` FROM ';
+				break;
 			case 'fulldata':
 			default:
 				$select = 'SELECT * FROM ';
 				break;
-			case 'basedata':
-				$select = 'SELECT id, user, valid FROM ';
-				break;
 		}
 		$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
-		$admins = $_zp_db->query($sql, false);
+		$admins = $_zp_db->query($sql, true);
 		if ($admins) {
 			while ($user = $_zp_db->fetchAssoc($admins)) {
 				$users[$user['id']] = $user;
@@ -241,16 +248,16 @@ class Authority {
 			$_zp_db->freeResult($admins);
 			switch ($what) {
 				case 'users':
-					return $this->admin_users = $users;
+					return $this->admin_users[$cacheindex] = $users;
 				case 'groups':
-					return $this->admin_groups = $users;
+					return $this->admin_groups[$cacheindex] = $users;
 				case 'allusers':
-					return $this->admin_realusers = $users;
+					return $this->admin_realusers[$cacheindex] = $users;
 				default:
-					return $this->admin_all = $users;
+					return $this->admin_all[$cacheindex] = $users;
 			}
 		}
-		return array();
+		return $this->admin_realusers[$cacheindex] = array();
 	}
 
 	/**
