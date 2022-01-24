@@ -105,7 +105,7 @@ if ($_zp_loggedin) {
 		if ($_zp_loggedin & ADMIN_RIGHTS) {
 			$_zp_admin_submenu[gettext("security")] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=security';
 		}
-		$_zp_admin_submenus[gettext("image")] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=image';
+		$_zp_admin_submenu[gettext("image")] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=image';
 	}
 	if ($_zp_loggedin & ADMIN_RIGHTS) {
 		if (empty($optiondefault))
