@@ -2449,9 +2449,6 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastvisit` datetime default NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `sort_order` `sort_order` varchar(48) DEFAULT NULL";
 
-						// this statement will fail on MySQL 5.7.4
-						$sql_statements[] = "ALTER IGNORE TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
-
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {
