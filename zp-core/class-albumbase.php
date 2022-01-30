@@ -1307,7 +1307,7 @@ class AlbumBase extends MediaObject {
 	 * @return int|float
 	 */
 	function getNumImagePages($type = 'total') {
-		$image_pages = $this->getNumImages() / $this->getImagesPerPages();
+		$image_pages = $this->getNumImages() / $this->getImagesPerPage();
 		switch ($type) {
 			case 'plain':
 				return $image_pages;

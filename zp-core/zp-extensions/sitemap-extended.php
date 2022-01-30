@@ -423,7 +423,7 @@ class sitemap {
 					}
 					break;
 				default:
-					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . "/</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					break;
 			}
 			// the extra ones if we have a custom gallery index
@@ -440,7 +440,7 @@ class sitemap {
 						}
 						break;
 					default:
-						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . $galleryindex . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . $galleryindex . "/</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 				}
 			}
@@ -560,13 +560,13 @@ class sitemap {
 						break;
 					case 2:
 						foreach ($sitemap_locales as $locale) {
-							$url = rewrite_path(pathurlencode($albumobj->linkname) . '/', '?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
+							$url = rewrite_path(pathurlencode($albumobj->linkname) . '/', 'index.php?album=' . pathurlencode($albumobj->name), dynamic_locale::fullHostPath($locale));
 							$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= sitemap::echonl("\t</url>");
 						}
 						break;
 					default:
-						$url = rewrite_path(pathurlencode($albumobj->linkname) . '/', '?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
+						$url = rewrite_path(pathurlencode($albumobj->linkname) . '/', 'index.php?album=' . pathurlencode($albumobj->name), FULLWEBPATH);
 						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= sitemap::echonl("\t</url>");
 						break;
@@ -584,13 +584,13 @@ class sitemap {
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
-									$url = rewrite_path(pathurlencode($albumobj->linkname) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
+									$url = rewrite_path(pathurlencode($albumobj->linkname) . '/' . _PAGE_ . '/' . $x . '/', 'index.php?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 									$data .= sitemap::echonl("\t</url>");
 								}
 								break;
 							default:
-								$url = rewrite_path(pathurlencode($albumobj->linkname) . '/' . _PAGE_ . '/' . $x . '/', '?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
+								$url = rewrite_path(pathurlencode($albumobj->linkname) . '/' . _PAGE_ . '/' . $x . '/', 'index.php?album=' . pathurlencode($albumobj->name) . '&amp;page=' . $x, FULLWEBPATH);
 								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $albumchangefreq . "</changefreq>\n\t\t<priority>0.8</priority>\n");
 								$data .= sitemap::echonl("\t</url>");
 								break;
@@ -655,7 +655,7 @@ class sitemap {
 								break;
 							case 2:
 								foreach ($sitemap_locales as $locale) {
-									$path = rewrite_path(pathurlencode($albumobj->linkname) . '/' . urlencode($imageobj->filename) . IM_SUFFIX, '?album=' . pathurlencode($albumobj->name) . '&amp;image=' . urlencode($imageobj->filename), dynamic_locale::fullHostPath($locale));
+									$path = rewrite_path(pathurlencode($albumobj->linkname) . '/' . urlencode($imageobj->filename) . IM_SUFFIX, 'index.php?album=' . pathurlencode($albumobj->name) . '&amp;image=' . urlencode($imageobj->filename), dynamic_locale::fullHostPath($locale));
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
 									if (GOOGLE_SITEMAP) {
 										$data .= sitemap::getGoogleImageVideoExtras($albumobj, $imageobj, $locale);
@@ -664,7 +664,7 @@ class sitemap {
 								}
 								break;
 							default:
-								$path = rewrite_path(pathurlencode($albumobj->linkname) . '/' . urlencode($imageobj->filename) . IM_SUFFIX, '?album=' . pathurlencode($albumobj->name) . '&amp;image=' . urlencode($imageobj->filename), FULLWEBPATH);
+								$path = rewrite_path(pathurlencode($albumobj->linkname) . '/' . urlencode($imageobj->filename) . IM_SUFFIX, 'index.php?album=' . pathurlencode($albumobj->name) . '&amp;image=' . urlencode($imageobj->filename), FULLWEBPATH);
 								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $path . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $imagechangefreq . "</changefreq>\n\t\t<priority>0.6</priority>\n");
 								if (GOOGLE_SITEMAP) {
 									$data .= sitemap::getGoogleImageVideoExtras($albumobj, $imageobj, NULL);
@@ -789,12 +789,12 @@ class sitemap {
 									break;
 								case 2:
 									foreach ($sitemap_locales as $locale) {
-										$url = rewrite_path(_PAGES_ . '/' . urlencode($page['titlelink']) . '/', '?p=pages&amp;title=' . urlencode($page['titlelink']), dynamic_locale::fullHostPath($locale));
+										$url = rewrite_path(_PAGES_ . '/' . urlencode($page['titlelink']) . '/', 'index.php?p=pages&amp;title=' . urlencode($page['titlelink']), dynamic_locale::fullHostPath($locale));
 										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
-									$url = rewrite_path(_PAGES_ . '/' . urlencode($page['titlelink']) . '/', '?p=pages&amp;title=' . urlencode($page['titlelink']), FULLWEBPATH);
+									$url = rewrite_path(_PAGES_ . '/' . urlencode($page['titlelink']) . '/', 'index.php?p=pages&amp;title=' . urlencode($page['titlelink']), FULLWEBPATH);
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
@@ -833,12 +833,12 @@ class sitemap {
 					Break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
-						$url = rewrite_path(_NEWS_ . '/1/', '?p=news&amp;page=1', dynamic_locale::fullHostPath($locale));
+						$url = rewrite_path(_NEWS_ . '/1/', 'index.php?p=news&amp;page=1', dynamic_locale::fullHostPath($locale));
 						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				default:
-					$url = rewrite_path(_NEWS_ . '/1/', '?p=news&amp;page=1', FULLWEBPATH);
+					$url = rewrite_path(_NEWS_ . '/1/', 'index.php?p=news&amp;page=1', FULLWEBPATH);
 					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					Break;
 			}
@@ -907,12 +907,12 @@ class sitemap {
 									break;
 								case 2:
 									foreach ($sitemap_locales as $locale) {
-										$url = rewrite_path(_NEWS_ . '/' . urlencode($articleobj->getTitlelink()) . '/', '?p=news&amp;title=' . urlencode($articleobj->getTitlelink()), dynamic_locale::fullHostPath($locale));
+										$url = rewrite_path(_NEWS_ . '/' . urlencode($articleobj->getTitlelink()) . '/', 'index.php?p=news&amp;title=' . urlencode($articleobj->getTitlelink()), dynamic_locale::fullHostPath($locale));
 										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
-									$url = rewrite_path(_NEWS_ . '/' . urlencode($articleobj->getTitlelink()) . '/', '?p=news&amp;title=' . urlencode($articleobj->getTitlelink()), FULLWEBPATH);
+									$url = rewrite_path(_NEWS_ . '/' . urlencode($articleobj->getTitlelink()) . '/', 'index.php?p=news&amp;title=' . urlencode($articleobj->getTitlelink()), FULLWEBPATH);
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
@@ -954,12 +954,12 @@ class sitemap {
 									break;
 								case 2:
 									foreach ($sitemap_locales as $locale) {
-										$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/1/', '?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=1', dynamic_locale::fullHostPath($locale));
+										$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=1', dynamic_locale::fullHostPath($locale));
 										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
-									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/1/', '?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=1', FULLWEBPATH);
+									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=1', FULLWEBPATH);
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
@@ -982,12 +982,12 @@ class sitemap {
 											break;
 										case 2:
 											foreach ($sitemap_locales as $locale) {
-												$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/' . $x . '/', '?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
+												$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/' . $x . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
 												$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 											}
 											break;
 										default:
-											$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/' . $x . '/', '?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=' . $x, FULLWEBPATH);
+											$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getTitlelink()) . '/' . $x . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getTitlelink()) . '&amp;page=' . $x, FULLWEBPATH);
 											$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 											break;
 									}

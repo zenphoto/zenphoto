@@ -46,7 +46,7 @@ if (isset($_GET['generatesitemaps'])) {
 	}
 	if (!empty($metaURL)) {
 		?>
-		<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />
+		<meta http-equiv="refresh" content="0; url=<?php echo $metaURL; ?>" />
 		<?php
 	}
 } // if(isset($_GET['generatesitemaps']) end
