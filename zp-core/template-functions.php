@@ -372,7 +372,7 @@ function printBareGalleryTitle() {
  * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
-function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparentpages = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_zp_myfavorites;
 	$mainsitetitle = html_encode(getBare(getMainSiteName()));
 	$separator = html_encode($separator);
@@ -388,9 +388,9 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 	switch ($_zp_gallery_page) {
 		case 'index.php':
 			return $gallerytitle . $mainsitetitle . $pagenumber;
-			break;
 		case 'album.php':
 		case 'image.php':
+			$albumtitle = $parentalbums = '';
 			if ($listparentalbums) {
 				$parents = getParentAlbums();
 				$parentalbums = '';
@@ -400,17 +400,16 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 						$parentalbums .= html_encode(getBare($parent->getTitle())) . $separator;
 					}
 				}
-			} else {
-				$parentalbums = '';
-			}
-			$albumtitle = html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums . $gallerytitle . $mainsitetitle;
+			} 
+			//$albumtitle = html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums . $gallerytitle . $mainsitetitle;
 			switch ($_zp_gallery_page) {
 				case 'album.php':
-					return $albumtitle;
-					break;
+					return html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums . $gallerytitle . $mainsitetitle;
 				case 'image.php':
-					return html_encode(getBareImageTitle()) . $separator . $albumtitle;
-					break;
+					if ($listparentalbums) {
+						$albumtitle = html_encode(getBareAlbumTitle()) . $pagenumber . $separator . $parentalbums;
+					} 
+					return html_encode(getBareImageTitle()) . $separator . $albumtitle . $gallerytitle . $mainsitetitle;
 			}
 			break;
 		case 'news.php':
@@ -425,6 +424,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 			}
 			break;
 		case 'pages.php':
+			$parentpages = '';
 			if ($listparentpages) {
 				$parents = $_zp_current_zenpage_page->getParents();
 				$parentpages = '';
@@ -435,14 +435,10 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
 						$parentpages .= html_encode(getBare($obj->getTitle())) . $separator;
 					}
 				}
-			} else {
-				$parentpages = '';
-			}
+			} 
 			return html_encode(getBarePageTitle()) . $pagenumber . $separator . $parentpages . $gallerytitle . $mainsitetitle;
-			break;
 		case '404.php':
 			return gettext('Object not found') . $separator . $gallerytitle . $mainsitetitle;
-			break;
 		default: // for all other possible static custom pages
 			$custompage = stripSuffix($_zp_gallery_page);
 			$standard = array(
@@ -475,7 +471,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = true, $listparentp
  * @param bool $listparentalbums If the parent albums should be printed in reversed order before the current
  * @param bool $listparentpage If the parent Zenpage pages should be printed in reversed order before the current page
  */
-function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = true) {
+function printHeadTitle($separator = ' | ', $listparentalbums = true, $listparentpages = false) {
 	echo '<title>' . getHeadTitle($separator, $listparentalbums, $listparentpages) . '</title>';
 }
 
