@@ -1331,7 +1331,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function getTotalPages($one_image_page = false) {
 		$total_pages = $this->getNumAlbumPages('total') + $this->getNumImagePages('total');
-		$first_page_images = $this->getFirstPageImages($one_image_pag);
+		$first_page_images = $this->getFirstPageImages($one_image_page);
 		if ($first_page_images == 0) {
 			return $total_pages;
 		} else {
