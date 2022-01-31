@@ -2330,7 +2330,8 @@ if ($c <= 0) {
 						$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `album_theme` `album_theme` varchar(127) DEFAULT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) NOT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
-						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`; ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
+						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`"; 
+						$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' DROP COLUMN `EXIFValid`';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `hasMetadata` int(1) default 0';
 						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // empty dates should be NULL
