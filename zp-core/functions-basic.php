@@ -1518,8 +1518,9 @@ function getAlbumInherited($folder, $field, &$id) {
 	$folders = explode('/', filesystemToInternal($folder));
 	$album = array_shift($folders);
 	$like = ' LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
-	while (count($folders) > 0) {
-		$album .= '/' . array_shift($folders);
+
+	foreach($folders as $folder) {
+		$album .= '/' . folder;
 		$like .= ' OR `folder` LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
 	}
 	$sql = 'SELECT `id`, `' . $field . '` FROM ' . $_zp_db->prefix('albums') . ' WHERE `folder`' . $like;
