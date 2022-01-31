@@ -1344,17 +1344,17 @@ Authority::printPasswordFormJS();
 									<td><?php echo gettext('Place a checkmark on any page scripts which should not be protected by the gallery password.'); ?></td>
 								</tr>
 								<tr>
-									<td><?php echo gettext("Website title:"); ?></td>
+									<td><?php echo gettext("Parent website title:"); ?></td>
 									<td>
 										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title'); ?>
 									</td>
-									<td><?php echo gettext("Your web site title."); ?></td>
+									<td><?php echo gettext("Your parent website title for use in e.g. breadcrumbs if you use Zenphoto as part of a bigger site run by another CMS. Not needed on plain Zenphoto sites."); ?></td>
 								</tr>
-								<tr>
-									<td><?php echo gettext("Website url:"); ?></td>
+								<tr>zz
+									<td><?php echo gettext("Parent website URL:"); ?></td>
 									<td><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
 														 value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
-									<td><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
+									<td><?php echo gettext("This URL is used to link back to your parent website in e.g. breadcrumbs, but your theme must support it. Not needed on plain Zenphoto sites."); ?></td>
 								</tr>
 								<tr>
 									<td><?php echo gettext("Album thumbnails:"); ?></td>
