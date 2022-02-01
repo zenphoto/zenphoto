@@ -36,6 +36,7 @@ header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 
 require_once(dirname(__FILE__) . '/class-setup.php');
 require_once(dirname(__FILE__) . '/class-setupmutex.php');
+require_once(dirname(dirname(__FILE__)) . '/class-maintenancemode.php');
 //allow only one setup to run
 $setupMutex = new setupMutex();
 $setupMutex->lock();
@@ -592,6 +593,11 @@ if ($c <= 0) {
 					<p>
 						<?php printf(gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."), ZENPHOTO_VERSION); ?>
 					</p>
+					<?php 
+						maintenanceMode::setState('closed'); 
+						maintenanceMode::restorePlaceholderFiles();
+					?>
+					<p class="warning"><?php echo maintenanceMode::getStateNote('closed'); ?></p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
 					/*****************************************************************************

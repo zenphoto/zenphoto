@@ -253,7 +253,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 			} else {
 				$subtab = '';
 			}
+			maintenancemode::printStateNotice();
 			?>
+					
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_current_page), html_encode($subtab)); ?>"
@@ -5083,39 +5085,61 @@ function getSortByOptions($type) {
 			gettext('Date') => 'date',
 			gettext('Published') => 'show',
 			gettext('Last change date') => 'lastchange',
-			gettext('Last change user') => 'lastchangeuser'
+			gettext('Last change user') => 'lastchangeuser',
+			gettext('Expire date') => 'expiredate',
+			gettext('Top rated') => '(total_value/total_votes)',
+			gettext('Most rated') => 'total_votes',
+			gettext('Popular') => 'hitcounter',
 	);
 	switch ($type) {
 		case 'albums':
 		case 'albums-dynamic':
 		case 'images':
-			$orders[gettext('Filename')] = 'filename';
 			$orders[gettext('Filemtime')] = 'mtime';
+			$orders[gettext('Scheduled publish date')] = 'publishdate';
 			$orders[gettext('Owner')] = 'owner';
 			$orders[gettext('Custom')] = 'custom';
-			if ($type == 'albums') {
-				$orders[gettext('Last updated date')] = 'updateddate';
+			switch ($type) {
+				case 'albums':
+					$orders[gettext('Folder')] = 'folder';
+					$orders[gettext('Last updated date')] = 'updateddate';
+					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+					$orders = zp_apply_filter('admin_sortbyoptions_albums', $orders);
+					break;
+				case 'albums-dynamic':
+					$orders = zp_apply_filter('admin_sortbyoptions_albumsdynamic', $orders);
+					break;
+				case 'images':
+					$orders[gettext('Filename')] = 'filename';
+					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+					$orders = zp_apply_filter('admin_sortbyoptions_images', $orders);
+					break;
 			}
-			// manual naturally never has descending extra option
-			if ($type != 'albums-dynamic') {
-				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
-			}
-			return $orders;
+			break;
 		case 'images-edit':
+			$orders[gettext('Filemtime')] = 'mtime';
+			$orders[gettext('Publish date')] = 'publishdate';
+			$orders[gettext('Owner')] = 'owner';
 			foreach ($orders as $key => $value) {
 				$orders[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
 			}
 			$orders[gettext('Manual')] = 'manual';
-			return $orders;
+			$orders = zp_apply_filter('admin_sortbyoptions_imagesedit', $orders);
+			break;
 		case 'pages':
 		case 'news':
 			$orders[gettext('TitleLink')] = 'titlelink';
 			$orders[gettext('Author')] = 'author';
 			if ($type == 'pages') {
 				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+				$orders = zp_apply_filter('admin_sortbyoptions_pages', $orders);
 			}
-			return $orders;
+			if ($type == 'news') {
+				$orders = zp_apply_filter('admin_sortbyoptions_news', $orders);
+			}
+			break;
 	}
+	return $orders;
 }
 
 /**

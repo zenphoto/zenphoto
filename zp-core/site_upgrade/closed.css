@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="refresh" content="600;url=%5$s">
-			<meta charset="UTF-8" />
-			<title>%1$s</title>
-			<style>
-				#outer {
+#outer {
 					width: 100%;
 					padding-top: 20px;
 					margin-top: 20px;
@@ -33,15 +26,3 @@
 				#closed a {
 					color: #4D76CF;
 				}
-			</style>
-	</head>
-	<body>
-		<div id="outer">
-			<div id="closed">
-				<img src="%2$s" alt="">
-				<p>%3$s</p>
-				<p>%4$s</p>
-			</div>
-		</div>
-	</body>
-</html>
