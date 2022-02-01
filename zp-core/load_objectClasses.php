@@ -30,6 +30,7 @@ require_once(dirname(__FILE__) . '/class-dynamicalbum.php');
 require_once(dirname(__FILE__) . '/class-image.php');
 require_once(dirname(__FILE__) . '/class-transientimage.php');
 require_once(dirname(__FILE__) . '/class-searchengine.php');
+require_once(dirname(__FILE__) . '/class-maintenancemode.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins
@@ -65,6 +66,8 @@ if (OFFSET_PATH != 2) { // setup does not need (and might have problems with) pl
 } else {
 	require_once(dirname(__FILE__) . '/auth.php'); // setup needs this!
 }
+
+maintenanceMode::redirectRoot();
 
 if (GALLERY_SESSION || zp_loggedin()) {
 	zp_session_start();
