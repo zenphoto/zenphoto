@@ -514,9 +514,8 @@ class AlbumBase extends MediaObject {
 			}
 			$mine = $this->isMyItem(LIST_RIGHTS);
 			$other = NULL;
-			while (count($thumbs) > 0) {
+			foreach($thumbs as $thumb) {
 				// first check for images
-				$thumb = array_shift($thumbs);
 				$thumb = Image::newImage($this, $thumb);
 				if ($mine || $thumb->isPublished()) {
 					if ($thumb->isPhoto()) {

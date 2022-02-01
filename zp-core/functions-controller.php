@@ -382,7 +382,7 @@ function prepareCustomPage() {
 						$albums[$parent->getID()] = $parent;
 					}
 					if (count($albums) == 1) { // there is only one parent album for the search
-						$album = array_shift($albums);
+						$album = reset($albums);
 					}
 				}
 				break;

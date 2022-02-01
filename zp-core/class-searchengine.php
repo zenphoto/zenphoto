@@ -1171,8 +1171,8 @@ class SearchEngine {
 			$op = '';
 			$idstack = array();
 			$opstack = array();
-			while (count($searchstring) > 0) {
-				$singlesearchstring = array_shift($searchstring);
+
+			foreach($searchstring as $singlesearchstring) {
 				switch ($singlesearchstring) {
 					case '&':
 					case '!':
