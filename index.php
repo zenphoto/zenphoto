@@ -30,7 +30,9 @@ if (isset($_zp_conf_vars)) {
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
 			header("HTTP/1.1 503 Service Unavailable");
 			header("Status: 503 Service Unavailable");
-			header("Retry-After: 3600");
+			header('Pragma: no-cache');
+			header('Retry-After: 3600');
+			header('Cache-Control: no-cache, must-revalidate, max-age=0');
 			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
 				include (dirname($_zp_script) . '/plugins/site_upgrade/closed.php');
 			} else {

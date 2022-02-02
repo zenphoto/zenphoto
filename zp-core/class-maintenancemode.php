@@ -11,11 +11,11 @@
 class maintenanceMode {
 
 	/**
-	 * Redirects on root level if site is closed
+	 * Loads the placeholder page if the site is in test mode
 	 * 
 	 * @global type $_zp_conf_vars
 	 */
-	static function redirectRoot() {
+	static function loadPlaceholderPage() {
 		global $_zp_conf_vars;
 		if (OFFSET_PATH == 0) {
 			//$state = @$_zp_conf_vars['site_upgrade_state'];
@@ -27,7 +27,13 @@ class maintenanceMode {
 					$page = 'page';
 				}
 				if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
-					redirectURL(WEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php', '302');
+					header("HTTP/1.1 503 Service Unavailable");
+					header("Status: 503 Service Unavailable");
+					header('Pragma: no-cache');
+					header('Retry-After: 3600');
+					header('Cache-Control: no-cache, must-revalidate, max-age=0');
+					include SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php';
+					exitZP();
 				}
 			}
 		}

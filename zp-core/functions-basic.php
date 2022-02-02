@@ -1520,7 +1520,7 @@ function getAlbumInherited($folder, $field, &$id) {
 	$like = ' LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
 
 	foreach($folders as $folder) {
-		$album .= '/' . folder;
+		$album .= '/' . $folder;
 		$like .= ' OR `folder` LIKE ' . $_zp_db->quote($_zp_db->likeEscape($album));
 	}
 	$sql = 'SELECT `id`, `' . $field . '` FROM ' . $_zp_db->prefix('albums') . ' WHERE `folder`' . $like;

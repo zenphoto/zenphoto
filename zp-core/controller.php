@@ -6,6 +6,7 @@
  */
 
 // force UTF-8 Ø
+maintenanceMode::loadPlaceholderPage();
 redirectionHandler();
 
 /*** Request Handler **********************
