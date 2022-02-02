@@ -1562,12 +1562,12 @@ if ($c <= 0) {
 									$b = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
 								}
 								// upgrade the site closed rewrite rules
-								preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.php|', $ht, $matches);
+								preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed\.htm|', $ht, $matches);
 								$siteupdate = false;
 								foreach ($matches[0] as $match) {
 									if (strpos($match, 'index\.php$') !== false) {
 										$match1 = str_replace('index\.php$', 'index\.php(.*)$', $match);
-										$match1 = str_replace('closed.php', 'closed.php%1', $match1);
+										$match1 = str_replace('closed.htm', 'closed.htm%1', $match1);
 										$ht = str_replace($match, $match1, $ht);
 										$siteupdate = $save = true;
 									}

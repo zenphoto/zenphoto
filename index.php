@@ -33,22 +33,44 @@ if (isset($_zp_conf_vars)) {
 			header('Pragma: no-cache');
 			header('Retry-After: 3600');
 			header('Cache-Control: no-cache, must-revalidate, max-age=0');
-			if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.php')) {
-				include (dirname($_zp_script) . '/plugins/site_upgrade/closed.php');
+			if (isset($_GET['rss'])) {
+				if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/rss-closed.xml')) {
+					header('Content-Type: application/xml');
+					include (dirname($_zp_script) . '/plugins/site_upgrade/rss-closed.xml');
+				} else {
+					?>
+					<?xml version="1.0" encoding="utf-8"?>
+					<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+						<channel>
+							<title><![CDATA[RSS temprarily suspended for maintenance]]></title>
+							<link><?php echo $_SERVER['REQUEST_URI']; ?></link>
+							<description></description>
+							<item>
+								<title><![CDATA[Closed for maintenance]]></title>
+								<description><![CDATA[The site is currently undergoing an upgrade]]></description>
+							</item>
+						</channel>
+					</rss>
+					<?php
+				}
 			} else {
-				?>
-				<!DOCTYPE html>
-				<html>
-					<head>
-						<meta charset="UTF-8" />
-						<title>Site closed for upgrade</title>
-					</head>
-					<body>
-						<p>The site is undergoing an upgrade.</p>
-						<p>Please return later.</p>
-					</body>
-				</html>
-				<?php
+				if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.htm')) {
+					include (dirname($_zp_script) . '/plugins/site_upgrade/closed.htm');
+				} else {
+					?>
+					<!DOCTYPE html>
+					<html>
+						<head>
+							<meta charset="UTF-8" />
+							<title>Site closed for upgrade</title>
+						</head>
+						<body>
+							<p>The site is undergoing an upgrade.</p>
+							<p>Please return later.</p>
+						</body>
+					</html>
+					<?php
+				}
 			}
 			exit();
 		}

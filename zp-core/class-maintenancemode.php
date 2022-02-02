@@ -27,12 +27,38 @@ class maintenanceMode {
 					$page = 'page';
 				}
 				if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
-					header("HTTP/1.1 503 Service Unavailable");
-					header("Status: 503 Service Unavailable");
-					header('Pragma: no-cache');
-					header('Retry-After: 3600');
-					header('Cache-Control: no-cache, must-revalidate, max-age=0');
-					include SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php';
+					if (isset($_GET['rss'])) {
+						header('Content-Type: application/xml');
+						if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml')) {
+							header('Content-Type: application/xml');
+							include SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml';
+						} else {
+							echo maintenanceMode::getPlaceHolderRSS();
+						}
+					} else {
+						header("HTTP/1.1 503 Service Unavailable");
+						header("Status: 503 Service Unavailable");
+						header('Pragma: no-cache');
+						header('Retry-After: 3600');
+						header('Cache-Control: no-cache, must-revalidate, max-age=0');
+						if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
+							include SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm';
+						} else {
+							?>
+							<!DOCTYPE html>
+							<html>
+								<head>
+									<meta charset="UTF-8" />
+									<title>Site closed for upgrade</title>
+								</head>
+								<body>
+									<p>The site is undergoing an upgrade.</p>
+									<p>Please return later.</p>
+								</body>
+							</html>
+							<?php
+						}
+					}
 					exitZP();
 				}
 			}
@@ -123,7 +149,7 @@ class maintenanceMode {
 	static function restorePlaceholderFiles() {
 		global $_zp_gallery;
 		mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
-		copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
+		//copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
 			$html = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.htm');
 			$site_title = sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle());
@@ -137,20 +163,28 @@ class maintenanceMode {
 			copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.css', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css');
 		}
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
-			$xml = '<?xml version="1.0" encoding="utf-8"?>
+			$xml = maintenanceMode::getPlaceHolderRSS();
+			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml', $xml);
+		}
+	}
+	
+	/**
+	 * Gets the placeholder RSS feed
+	 * @return type
+	 */
+	static function getPlaceHolderRSS() {
+		return $xml = '<?xml version="1.0" encoding="utf-8"?>
 				<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 					<channel>
-						<title>' . html_encode(gettext('RSS temprarily suspended for maintenance')) . '</title>
+						<title><![CDATA[' . html_encode(gettext('RSS temprarily suspended for maintenance')) . ']]></title>
 						<link>' . FULLWEBPATH . '</link>
 						<description></description>
 						<item>
-							<title>' . html_encode(gettext('Closed for maintenance')) . '</title>
-							<description>' . html_encode(gettext('The site is currently undergoing an upgrade')) . '</description>
+							<title><![CDATA[' . html_encode(gettext('Closed for maintenance')) . ']]></title>
+							<description><![CDATA[' . html_encode(gettext('The site is currently undergoing an upgrade')) . ']]></description>
 						</item>
 					</channel>
 				</rss>';
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml', $xml);
-		}
 	}
 
 }
