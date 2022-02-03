@@ -508,7 +508,9 @@ function printBareGalleryDesc() {
 /**
  * Returns the name of the parent website as set by the "Website Title" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
- *
+ * 
+ * œsince ZenphotoCMS 1.6
+ * 
  * @return string
  */
 function getParenttSiteTitle() {
@@ -517,33 +519,16 @@ function getParenttSiteTitle() {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0: Use getParentSiteTitle() instead
- *
- * @return string
- */
-function getMainSiteName() {
-	deprecationNotice(gettext('Use getParentSiteTitle() instead'));
-	return getPartentSiteTitle();
-}
-
-/**
  * Returns the URL of the main website as set by the "Website URL" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
- *
+ * 
+ * œsince ZenphotoCMS 1.6
+ * 
  * @return string
  */
 function getParentSiteURL() {
 	global $_zp_gallery;
 	return $_zp_gallery->getParentSiteURL();
-}
-
-/**
- * @deprecated ZenphotoCMS 2.0: Use getParentSiteURL() instead
- * @return string
- */
-function getMainSiteURL() {
-	deprecationNotice(gettext('Use getParentSiteURL() instead'));
-	return getParentSiteURL();
 }
 
 /**
