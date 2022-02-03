@@ -1069,11 +1069,14 @@ class Gallery {
 		$this->set('hitcounter', $this->get('hitcounter') + 1);
 		$this->save();
 	}
-
+	
 	/**
-	 * Title to be used for the home (not Zenphoto gallery) WEBsite
+	 *  Title to be used for a parent website if Zenphoto is used as a part of it
+	 * 
+	 * @param string $locale
+	 * @return string
 	 */
-	function getWebsiteTitle($locale = NULL) {
+	function getParentSiteTitle($locale = NULL) {
 		$text = $this->get('website_title');
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
@@ -1081,20 +1084,74 @@ class Gallery {
 		$text = unTagURLs($text);
 		return $text;
 	}
+		
+	/**
+	 * Title to be used for a parent website if Zenphoto is used as a part of it
+	 * 
+	 * @deprecated ZenphotoCMS 2.0: Use the method getParentSiteTitle() instead
+	 * 
+	 * @param string $locale
+	 * @return string
+	 */
+	function getWebsiteTitle($locale = NULL) {
+		deprecationNotice(gettext('Use the method getParentSiteTitle() instead'));
+		return $this->getParentSiteTitle($locale);
+	}
 
-	function setWebsiteTitle($value) {
+	/**
+	 * Set the title to be used for a parent website if Zenphoto is used as a part of it
+	 */
+	function setParentSiteTitle($value) {
 		$this->set('website_title', tagURLs($value));
 	}
 
 	/**
-	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 * Set the title to be used for a parent website if Zenphoto is used as a part of it
+	 * @deprecated ZenphotoCMS 2.0: Use the method setParentSiteTitle() instead
+	 * @param type $value
 	 */
-	function getWebsiteURL() {
+	function setWebsiteTitle($value) {
+		deprecationNotice(gettext('Use the method setParentSiteTitle() instead'));
+		$this->setParentSiteTitle($value);
+	}
+	
+	/**
+	 * URL to be used for a parent website if Zenphoto is used as a part of it
+	 * @return string
+	 */
+	function getParentSiteURL() {
 		return $this->get('website_url');
 	}
 
-	function setWebsiteURL($value) {
+	/**
+	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 * @deprecated ZenphotoCMS 2.0: Use the method getParentSiteURL() instead
+	 * 
+	 * @return string
+	 */
+	function getWebsiteURL() {
+		deprecationNotice(gettext('Use the method getParentSiteURL() instead'));
+		return $this->getParentSiteURL();
+	}
+
+	/**
+	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 * 
+	 * @return string
+	 */
+	function setParentSiteURL($value) {
 		$this->set('website_url', $value);
+	}
+	
+	/**
+	 * Set URL of the home (not Zenphoto gallery) WEBsite
+	 * @deprecated ZenphotoCMS 2.0: Use the method setParentSiteURL() instead
+	 * 
+	 * @return string
+	 */
+	function setWebsiteURL($value) {
+		deprecationNotice(gettext('Use the method setParentSiteURL() instead'));
+		$this->setParentSiteURL($value);
 	}
 
 	/**

@@ -441,10 +441,10 @@ class RSS extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getParentSiteTitle($this->locale));
 				break;
 			case 'both':
-				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
+				$website_title = $_zp_gallery->getParentSiteTitle($this->locale);
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				if (!empty($website_title)) {
 					$this->channel_title = $website_title . ' - ' . $this->channel_title;

@@ -374,7 +374,7 @@ function printBareGalleryTitle() {
  */
 function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparentpages = false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_current_category, $_zp_page, $_zp_myfavorites;
-	$mainsitetitle = html_encode(getBare(getMainSiteName()));
+	$mainsitetitle = html_encode(getBare(getParentSiteTitle()));
 	$separator = html_encode($separator);
 	if ($mainsitetitle) {
 		$mainsitetitle = $separator . $mainsitetitle;
@@ -506,14 +506,24 @@ function printBareGalleryDesc() {
 }
 
 /**
- * Returns the name of the main website as set by the "Website Title" option
+ * Returns the name of the parent website as set by the "Website Title" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
  *
  * @return string
  */
-function getMainSiteName() {
+function getParenttSiteTitle() {
 	global $_zp_gallery;
-	return $_zp_gallery->getWebsiteTitle();
+	return $_zp_gallery->getParentSiteTitle();
+}
+
+/**
+ * @deprecated ZenphotoCMS 2.0: Use getParentSiteTitle() instead
+ *
+ * @return string
+ */
+function getMainSiteName() {
+	deprecationNotice(gettext('Use getParentSiteTitle() instead'));
+	return getPartentSiteTitle();
 }
 
 /**
@@ -522,9 +532,18 @@ function getMainSiteName() {
  *
  * @return string
  */
-function getMainSiteURL() {
+function getParentSiteURL() {
 	global $_zp_gallery;
-	return $_zp_gallery->getWebsiteURL();
+	return $_zp_gallery->getParentSiteURL();
+}
+
+/**
+ * @deprecated ZenphotoCMS 2.0: Use getParentSiteURL() instead
+ * @return string
+ */
+function getMainSiteURL() {
+	deprecationNotice(gettext('Use getParentSiteURL() instead'));
+	return getParentSiteURL();
 }
 
 /**
@@ -1534,9 +1553,9 @@ function printParentBreadcrumb($before = NULL, $between = NULL, $after = NULL, $
  *  */
 function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, $id = NULL) {
 	global $_zp_gallery;
-	$site = rtrim($_zp_gallery->getWebsiteURL(), '/');
+	$site = rtrim($_zp_gallery->getParentSiteURL(), '/');
 	if (!empty($site)) {
-		$name = $_zp_gallery->getWebsiteTitle();
+		$name = $_zp_gallery->getParentSiteTitle();
 		if (empty($name)) {
 			$name = gettext('Home');
 		}

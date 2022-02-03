@@ -150,9 +150,9 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->set('copyright_site_rightsholder_custom', sanitize($_POST['copyright_site_rightsholder_custom'], 3));
 			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
 			
-			$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
+			$_zp_gallery->setParentSiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'], 3);
-			$_zp_gallery->setWebsiteURL($web);
+			$_zp_gallery->setParentSiteURL($web);
 			$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
 			$st = strtolower(sanitize($_POST['gallery_sorttype'], 3));
 			if ($st == 'custom')
@@ -1346,14 +1346,14 @@ Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Parent website title:"); ?></td>
 									<td>
-										<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title'); ?>
+										<?php print_language_string_list($_zp_gallery->getParentSiteTitle('all'), 'website_title'); ?>
 									</td>
 									<td><?php echo gettext("Your parent website title for use in e.g. breadcrumbs if you use Zenphoto as part of a bigger site run by another CMS. Not needed on plain Zenphoto sites."); ?></td>
 								</tr>
 								<tr>zz
 									<td><?php echo gettext("Parent website URL:"); ?></td>
 									<td><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
-														 value="<?php echo html_encode($_zp_gallery->getWebsiteURL()); ?>" /></td>
+														 value="<?php echo html_encode($_zp_gallery->getParentSiteURL()); ?>" /></td>
 									<td><?php echo gettext("This URL is used to link back to your parent website in e.g. breadcrumbs, but your theme must support it. Not needed on plain Zenphoto sites."); ?></td>
 								</tr>
 								<tr>
