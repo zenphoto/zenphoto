@@ -802,7 +802,6 @@ zp-core/pluginDoc.php
 zp-core/setup.php
 zp-core/site_upgrade
 zp-core/site_upgrade/closed.css
-zp-core/site_upgrade/closed.htm
 zp-core/template-filters.php
 zp-core/template-functions.php
 zp-core/utilities
@@ -1851,4 +1850,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1853
+1852

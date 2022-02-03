@@ -44,19 +44,7 @@ class maintenanceMode {
 						if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
 							include SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm';
 						} else {
-							?>
-							<!DOCTYPE html>
-							<html>
-								<head>
-									<meta charset="UTF-8" />
-									<title>Site closed for upgrade</title>
-								</head>
-								<body>
-									<p>The site is undergoing an upgrade.</p>
-									<p>Please return later.</p>
-								</body>
-							</html>
-							<?php
+							echo maintenanceMode::getPlaceholderHTML(true);
 						}
 					}
 					exitZP();
@@ -151,13 +139,8 @@ class maintenanceMode {
 		mkdir_recursive(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/', FOLDER_MOD);
 		//copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.php', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.php');
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm')) {
-			$html = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.htm');
-			$site_title = sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle());
-			$default_logo = FULLWEBPATH . '/' . ZENFOLDER . '/images/zen-logo.png';
-			$site_title2 = sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle());
-			$link = '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>';
-			$html_final = sprintf($html, $site_title, $default_logo, $site_title2, $link);
-			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html_final);
+			$html = maintenanceMode::getPlaceholderHTML();
+			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html);
 		}
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css')) {
 			copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.css', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css');
@@ -169,14 +152,49 @@ class maintenanceMode {
 	}
 	
 	/**
+	 * Gets the placeholder HTML page
+	 * @return string
+	 */
+	static function getPlaceholderHTML($corecss = false) {
+		global $_zp_gallery;
+		$site_title = sprintf(gettext('%s upgrade'), $_zp_gallery->getTitle());
+		$default_logo = FULLWEBPATH . '/' . ZENFOLDER . '/images/zen-logo.png';
+		$site_title2 = sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle());
+		$link = '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>';
+		if ($corecss) {
+			$css_link = FULLWEBPATH . '/' . ZENFOLDER . '/site_upgrade/closed.css';
+		} else {
+			$css_link = FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css';
+		}
+		echo "Placeholder HTML";
+		return '<!DOCTYPE html>
+			<html>
+				<head>
+						<meta charset="UTF-8" />
+						<title>' . $site_title . '</title>
+						<link rel="stylesheet" href="'. $css_link. '" type="text/css" />
+				</head>
+				<body>
+					<div id="outer">
+						<div id="closed">
+							<img src="' . $default_logo . '" alt="">
+							<p>' . $site_title2 . '</p>
+							<p>' . $link . '</p>
+						</div>
+					</div>
+				</body>
+			</html>';
+	}
+
+	/**
 	 * Gets the placeholder RSS feed
-	 * @return type
+	 * @return string
 	 */
 	static function getPlaceHolderRSS() {
-		return $xml = '<?xml version="1.0" encoding="utf-8"?>
+		return '<?xml version="1.0" encoding="utf-8"?>
 				<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 					<channel>
-						<title><![CDATA[' . html_encode(gettext('RSS temprarily suspended for maintenance')) . ']]></title>
+						<title><![CDATA[' . html_encode(gettext('RSS temporarily suspended for maintenance')) . ']]></title>
 						<link>' . FULLWEBPATH . '</link>
 						<description></description>
 						<item>
