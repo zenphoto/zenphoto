@@ -513,7 +513,7 @@ function printBareGalleryDesc() {
  * 
  * @return string
  */
-function getParenttSiteTitle() {
+function getParentSiteTitle() {
 	global $_zp_gallery;
 	return $_zp_gallery->getParentSiteTitle();
 }
