@@ -17,7 +17,7 @@ $buttonlist[] = $button = array(
 		'formname' => 'maintenance_mode.php',
 		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/maintenance_mode.php',
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/options.png',
-		'title' => gettext('Enable the maintenance mode to close your site when performing updates.'),
+		'title' => '',
 		'alt' => gettext('Maintenance mode'),
 		'hidden' => '',
 		'rights' => ADMIN_RIGHTS
@@ -74,7 +74,7 @@ printAdminHeader('overview');
 	<?php
 	if (!MOD_REWRITE) { 
 		echo '<p class="warningbox">';
-		echo gettext('<em>mod_rewrite</em> is not enabled. The plugin works best if <var>mod_rewrite</var> is active and the <var>htaccess</var> file exists. If this is not the case the plugin will still work in most cases. However if the release you are upgrading to has significant changes involving  plugin loading of the front-end site there may be PHP failures due if the site is accessed while the files being uploaded are in a mixed release state.');
+		echo gettext('<em>mod_rewrite</em> is not enabled. The plugin works best if <var>mod_rewrite</var> is active and the <var>htaccess</var> file exists. If this is not the case the plugin will still work in most cases. However if the release you are upgrading to has significant changes involving plugin loading of the front-end site there may be PHP failures due if the site is accessed while the files being uploaded are in a mixed release state.');
 		echo '</p>';
 	}
 	?>
@@ -96,14 +96,14 @@ printAdminHeader('overview');
 	<ol>
 		<li><?php echo gettext('<strong>Closing</strong> the site will cause links to the site <code>front end</code> to be redirected to a script in the folder <code>plugins/site_upgrade</code>. Access to the admin pages remains available. You should close the site while you are uploading a new Zenphoto release or doing other significant updates be it code or content wise so that users will not catch the site in an unstable state. Running setup will always close the site automatically.'); ?></li>
 
-		<li><?php echo gettext('After you have uploaded the new release and run Setup you place the site in <strong>test mode</strong>. In this mode only logged in <i>Administrators</i> can access the <i>front end</i>. You can then, as the administrator, view the site to be sure that all your changes are as you wish them to be.'); ?></li>
+		<li><?php echo gettext('After you have uploaded the new release and ran Setup you place the site in <strong>test mode</strong>. In this mode only logged in <i>Administrators</i> can access the <i>front end</i>. You can then, as the administrator, view the site to be sure that all your changes are as you wish them to be.'); ?></li>
 
 		<li><?php echo gettext('Once your testing is completed you <strong>open</strong> your site to all visitors.'); ?></li>
 	</ol>
  
 <h2><?php echo gettext('Custom placeholder files'); ?></h2>	
 <p><?php echo gettext('Change the files in <code>plugins/site_upgrade</code> to meet your needs.'); ?></p>
-<p class="warningbox"><?php echo gettext('<strong>Note</strong> these files will
+<p class="warningbox"><?php echo gettext('<strong>Note:</strong> these files will
  be copied to that folder during setup the first time you do an install. Setup will not overrite any existing
  versions of these files, so if a change is made to the Zenphoto versions of the files you will have to update
  your copies either by removing them before running setup or by manually applying the Zenphoto changes to your
