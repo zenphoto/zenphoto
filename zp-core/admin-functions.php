@@ -4482,7 +4482,7 @@ function printPageSelector($pagenumber, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="pagenumber" class="dirtyignore" id="pagenumber<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-				[<?php echo $jump; ?>pagenumber=' + $('#pagenumber<?php echo $instances; ?>').val()]);" >
+				[<?php echo $jump; ?>'pagenumber=' + $('#pagenumber<?php echo $instances; ?>').val()]);" >
 							<?php
 							foreach ($rangeset as $page => $range) {
 								?>
