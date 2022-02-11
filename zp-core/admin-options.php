@@ -1350,7 +1350,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("Your parent website title for use in e.g. breadcrumbs if you use Zenphoto as part of a bigger site run by another CMS. Not needed on plain Zenphoto sites."); ?></td>
 								</tr>
-								<tr>zz
+								<tr>
 									<td><?php echo gettext("Parent website URL:"); ?></td>
 									<td><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
 														 value="<?php echo html_encode($_zp_gallery->getParentSiteURL()); ?>" /></td>
