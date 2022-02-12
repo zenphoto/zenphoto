@@ -1373,14 +1373,13 @@ class Image extends MediaObject {
 	 */
 	function getIndex($use_realalbum = false) {
 		global $_zp_current_search, $_zp_current_album;
-		$use_realalbum = true;
 		if ($this->index == NULL) {
 			if ($use_realalbum) {
 				$album = $this->getAlbum();
 			} else {
 				$album = $this->albumnamealbum;
 			}
-			if (!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED) || $album->isDynamic()) {
+			if ((!is_null($_zp_current_search) && !in_context(ZP_ALBUM_LINKED)) || $album->isDynamic()) {
 				if ($album->isDynamic()) {
 					$images = $album->getImages();
 					for ($i = 0; $i < count($images); $i++) {
