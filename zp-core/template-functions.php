@@ -1775,9 +1775,9 @@ function getPasswordProtectImage($extra = '') {
 	$image = '';
 	$themedir = SERVERPATH . '/themes/' . basename($_zp_themeroot);
 	if (file_exists(internalToFilesystem($themedir . '/images_errors/err-passwordprotected.png'))) {
-		$image = $_zp_themeroot . '/images/err-passwordprotected.png';
+		$image = $_zp_themeroot . '/images_errors/err-passwordprotected.png';
 	} else if (file_exists(internalToFilesystem($themedir . '/images_errors/err-passwordprotected.gif'))) {
-		$image = $_zp_themeroot . '/images/err-passwordprotected.gif';
+		$image = $_zp_themeroot . '/images_errors/err-passwordprotected.gif';
 	} else {
 		$image = WEBPATH . '/' . ZENFOLDER . '/images_errors/err-passwordprotected.png';
 	}
