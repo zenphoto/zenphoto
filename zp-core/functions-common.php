@@ -389,7 +389,7 @@ function zp_getCookie($name) {
     } else {
       $sessionv = '';
     }
-    debugLog(zp_getCookie($name) . '=::' . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . sanitize($sessionv) . ", COOKIE=" . sanitize($cookiev));
+    debugLog($name . '=::' . 'album_session=' . GALLERY_SESSION . "; SESSION[" . session_id() . "]=" . sanitize($sessionv) . ", COOKIE=" . sanitize($cookiev));
   }
   if (!empty($cookiev) && (defined('GALLERY_SESSION') && !GALLERY_SESSION)) {
     return zp_cookieEncode($cookiev);
