@@ -1401,7 +1401,7 @@ class Gallery {
 	}
 	
 	/**
-	 * Gets the number of images if the thumb transintion page for sharing thunbs on the last album and the first image page
+	 * Gets the number of images if the thumb transintion page for sharing thumbs on the last album and the first image page
 	 * 
 	 * @since ZenphotoCMS 1.6
 	 * @param obj $obj Album object (or child class object) or searchengine object
@@ -1410,7 +1410,7 @@ class Gallery {
 	 */
 	static function getFirstPageImages($obj = null, $one_image_page = false) {
 		$first_page_images = 0;
-		if (get_class($obj) == 'searchengine' || is_subclass_of($obj, 'albumbase')) {
+		if (get_class($obj) == 'SearchEngine' || is_subclass_of($obj, 'albumbase')) {
 			$total_albums = $obj->getNumAlbums();
 			$total_images = $obj->getNumImages();
 			$albums_per_page = $obj->getAlbumsPerPage();
