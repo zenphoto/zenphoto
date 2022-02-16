@@ -898,7 +898,7 @@ class SearchEngine {
 	 * @since 1.1.3
 	 */
 	function searchDate($searchstring, $searchdate, $tbl, $sorttype, $sortdirection, $whichdate = 'date') {
-		global $_zp_current_album, $_zp_gallery;
+		global $_zp_current_album, $_zp_gallery, $_zp_db;
 		$sql = 'SELECT DISTINCT `id`, `show`,`title`';
 		switch ($tbl) {
 			case 'pages':
