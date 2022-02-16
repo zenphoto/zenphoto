@@ -2875,24 +2875,28 @@ Authority::printPasswordFormJS();
 											$transition_enabled  = '';
 										}
 												?>
-												<label><input type="checkbox" name="thumb_transition" value="1"<?php echo $transition_enabled; ?> /> <?php echo gettext('Enable transition page'); ?></label>
+												<label><input type="checkbox" name="thumb_transition" value="1"<?php echo $transition_enabled . $disable; ?> /> <?php echo gettext('Enable transition page'); ?></label>
 			<?php
-			if (!in_array('thumb_transition_min', $unsupportedOptions)) {
-				?>
-				<p>
-					<label><input type="text" size="3" name="thumb_transition_min" value="<?php echo getThemeOption('thumb_transition_min', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Minimum number of image thumbs'); ?></label>
-				</p>
-				<?php
+			if (in_array('thumb_transition_min', $unsupportedOptions)) {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
 			}
-			if (!in_array('thumb_transition_max', $unsupportedOptions)) {
-				?>
-				<p>
-					<label><input type="text" size="3" name="thumb_transition_max" value="<?php echo getThemeOption('thumb_transition_max', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Maximum number of image thumbs'); ?></label>
-				</p>
-				<?php
-			} 
 			?>
-											</span>
+			<p>
+				<label><input type="text" size="3" name="thumb_transition_min" value="<?php echo getThemeOption('thumb_transition_min', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Minimum number of image thumbs'); ?></label>
+			</p>
+			<?php
+			if (in_array('thumb_transition_max', $unsupportedOptions)) {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
+			<p>
+				<label><input type="text" size="3" name="thumb_transition_max" value="<?php echo getThemeOption('thumb_transition_max', $album, $themename); ?>"<?php echo $disable; ?> /> <?php echo gettext('Maximum number of image thumbs'); ?></label>
+			</p>
+										</span>
 										</td>
 										<td><?php echo gettext('If the last page with albums has less albums than the albums per page value, image thumbs share the page with the album thumbs. Their number is calculated from their image per page value and their total number. So if the albums use 30&percnt; of their albums per page value, the image number used is 70&percnt; of their images per page value. The minimum and maximum can be defined. Set both options to the same value to always get a fixed value.'); ?></td>
 									</tr>
