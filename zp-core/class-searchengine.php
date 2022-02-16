@@ -34,7 +34,7 @@ class SearchEngine {
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
 	protected $firstpageimages = null;
-	protected $firstpageimage_oneimagepage = null;
+	protected $firstpageimages_oneimagepage = null;
 	
 //	mimic album object
 	public $loaded = false;
