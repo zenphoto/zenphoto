@@ -799,7 +799,7 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
  * @return int
  */
 function getTotalPages($one_image_page = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_first_page_images, $_zp_gallery_page, $_zp_zenpage, $_zp_current_category;
+	global $_zp_gallery, $_zp_zenpage, $_zp_current_category;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		if ($one_image_page === true) {
 			return 1;
@@ -2124,7 +2124,7 @@ function getFirstPageImages($one_image_page = false) {
  * @return bool
  */
 function next_image($all = false, $firstPageCount = NULL, $mine = NULL) {
-	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_gallery, $_zp_first_page_images;
+	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore, $_zp_current_search, $_zp_first_page_images;
 	if (is_null($firstPageCount)) {
 		$firstPageCount = getFirstPageImages();
 	}

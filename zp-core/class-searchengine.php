@@ -33,6 +33,9 @@ class SearchEngine {
 	protected $category_list = NULL; // list of categories for a news search
 	protected $searches = NULL; // remember the criteria for past searches
 	protected $extraparams = array(); // allow plugins to add to search parameters
+	protected $firstpageimages = null;
+	protected $firstpageimage_oneimagepage = null;
+	
 //	mimic album object
 	public $loaded = false;
 	public $table = 'albums';
@@ -2152,7 +2155,17 @@ class SearchEngine {
 	 * @return int
 	 */
 	function getFirstPageImages($one_image_page = false) {
-		return Gallery::getFirstPageImages($this, $one_image_page);
+		if ($one_image_page) {
+			if (!is_null($this->firstpageimages_oneimagepage)) {
+				return $this->firstpageimages_oneimagepage;
+			}
+			return $this->firstpageimages_oneimagepage = Gallery::getFirstPageImages($this, $one_image_page);
+		} else {
+			if (!is_null($this->firstpageimages)) {
+				return $this->firstpageimages;
+			}
+			return $this->firstpageimages = Gallery::getFirstPageImages($this, $one_image_page);
+		}
 	}
 
 }

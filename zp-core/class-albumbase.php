@@ -27,6 +27,8 @@ class AlbumBase extends MediaObject {
 	protected $num_allalbums = null; // count of all subalbums of all sublevels
 	protected $num_allimages = null; // count of all images of all sublevels
 	protected $is_public = null;
+	protected $firstpageimages = null;
+	protected $firstpageimages_oneimagepage = null;
 
 	function __construct($folder8, $cache = true) {
 		$this->linkname = $this->name = $folder8;
@@ -1367,8 +1369,17 @@ class AlbumBase extends MediaObject {
 	 * @return int
 	 */
 	function getFirstPageImages($one_image_page = false) {
-		return Gallery::getFirstPageImages($this, $one_image_page);
+		if ($one_image_page) {
+			if (!is_null($this->firstpageimages_oneimagepage)) {
+				return $this->firstpageimages_oneimagepage;
+			}
+			return $this->firstpageimages_oneimagepage = Gallery::getFirstPageImages($this, $one_image_page);
+		} else {
+			if (!is_null($this->firstpageimages)) {
+				return $this->firstpageimages;
+			}
+			return $this->firstpageimages = Gallery::getFirstPageImages($this, $one_image_page);
+		}
 	}
 
-	
 }
