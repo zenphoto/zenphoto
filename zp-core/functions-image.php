@@ -389,7 +389,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			switch (getSuffix($newfilename)) {
 				case 'gif':
 					$newim = $_zp_graphics->createImage($neww, $newh, false);
-					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
+					$newim = $_zp_graphics->imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
 				case 'webp':
@@ -428,7 +428,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			switch (getSuffix($newfilename)) {
 				case 'gif':
 					$newim = $_zp_graphics->createImage($neww, $newh, false);
-					$newim = zp_imageResizeTransparent($newim, $neww, $newh);
+					$newim = $_zp_graphics->imageResizeTransparent($newim, $neww, $newh);
 					break;
 				case 'png':
 				case 'webp':
