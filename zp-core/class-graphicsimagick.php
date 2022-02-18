@@ -265,7 +265,7 @@ class graphicsImagick extends graphicsBase {
 	 * @return type
 	 */
 	function imageResizeTransparent($src, $w, $h) { 
-		
+		return $this->imageResizeAlpha($src, $w, $h);
 	}
 
 	/**
