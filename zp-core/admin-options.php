@@ -148,7 +148,7 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setCopyrightNotice(process_language_string_save('copyright_site_notice', EDITOR_SANITIZE_LEVEL));
 			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
 			$_zp_gallery->set('copyright_site_url_custom', sanitize($_POST['copyright_site_url_custom'], 3));
-			setOption((int) isset($_POST['display_copyright_notice']));
+			setOption('display_copyright_notice', (int) isset($_POST['display_copyright_notice']));
 			$_zp_gallery->set('copyright_site_rightsholder', sanitize($_POST['copyright_site_rightsholder'], 3));
 			$_zp_gallery->set('copyright_site_rightsholder_custom', sanitize($_POST['copyright_site_rightsholder_custom'], 3));
 		
