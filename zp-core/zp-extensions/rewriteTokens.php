@@ -29,8 +29,8 @@ class rewriteTokens {
 	private $plugin_vars = array();
 
 	function __construct() {
-		global $_zp_config_mutex, $_zp_conf_vars;
-		$_zp_config_mutex->lock();
+		global $_zp_mutex, $_zp_conf_vars;
+		$_zp_mutex->lock();
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
@@ -70,8 +70,8 @@ class rewriteTokens {
 	}
 
 	function __destruct() {
-		global $_zp_config_mutex;
-		$_zp_config_mutex->unlock();
+		global $_zp_mutex;
+		$_zp_mutex->unlock();
 	}
 
 	protected static function anOption($page, $element, &$_definitions) {

@@ -471,11 +471,11 @@ if (isset($_GET['action'])) {
 			}
 			if (getOption('server_protocol') != $protocol) {
 				setOption('server_protocol', $protocol);
-				$_zp_config_mutex->lock();
+				$_zp_mutex->lock();
 				$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 				$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
 				storeConfig($zp_cfg);
-				$_zp_config_mutex->unlock();
+				$_zp_mutex->unlock();
 			}
 
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));

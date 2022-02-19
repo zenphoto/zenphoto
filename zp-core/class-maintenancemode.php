@@ -59,13 +59,13 @@ class maintenanceMode {
 	 * @param string $state
 	 */
 	static function setState($state) {
-		global $_zp_config_mutex;
+		global $_zp_mutex;
 		if (in_array($state, array('open', 'closed', 'closed_for_test'))) {
-			$_zp_config_mutex->lock();
+			$_zp_mutex->lock();
 			$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 			$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
 			storeConfig($zp_cfg);
-			$_zp_config_mutex->unlock();
+			$_zp_mutex->unlock();
 		}
 	}
 

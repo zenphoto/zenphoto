@@ -82,13 +82,13 @@ function reconfigureAction($mandatory) {
 /**
  * Checks details of configuration change
  * 
- * @global type $_zp_config_mutex
+ * @global type $_zp_mutex
  * @global type $_zp_db
  * @param bool $auto
  * @return type
  */
 function checkSignature($auto) {
-	global $_zp_config_mutex, $_zp_db;
+	global $_zp_mutex, $_zp_db;
 	if (is_object($_zp_db) && method_exists($_zp_db, 'queryFullArray') && $_zp_db->connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
@@ -114,7 +114,7 @@ function checkSignature($auto) {
 		$needs[] = rtrim(trim($need), ":*");
 	}
 	// serialize the following
-	$_zp_config_mutex->lock();
+	$_zp_mutex->lock();
 	if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/setup/')) {
 		$found = isSetupProtected();
 		if (!empty($found) && $auto && (defined('ADMIN_RIGHTS') && zp_loggedin(ADMIN_RIGHTS))) {
@@ -123,7 +123,7 @@ function checkSignature($auto) {
 		$found = safe_glob('*.*');
 		$needs = array_diff($needs, $found);
 	}
-	$_zp_config_mutex->unlock();
+	$_zp_mutex->unlock();
 
 	return array($diff, $needs);
 }

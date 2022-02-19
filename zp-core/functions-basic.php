@@ -108,7 +108,7 @@ if (TEST_RELEASE) {
 } 
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-$_zp_config_mutex = new zpMutex('cF');
+$_zp_mutex = new zpMutex('cF');
 
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
