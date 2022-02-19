@@ -4601,20 +4601,68 @@ function printUserURL($username, $resulttype = 'all', $linktext = null, $class =
 }
 
 /**
- * Display the site copyright notice if defined and display is enabled
+ * Display the site or image copyright notice if defined and display is enabled
  * 
  * @since ZenphotoCMS 1.5.8
+ * @since ZenphotoCMS 1.6 Also handles the image copyright notice
  * 
  * @global obj $_zp_gallery
  * @param string $before Text to print before it
  * @param string $after Text to print after it
+ * œparam bool $linked Default true to use the copyright URL if defined
  */
-function printCopyrightNotice($before = '', $after = '') {
-	global $_zp_gallery;
-	$copyright_notice = $_zp_gallery->getCopyrightNotice();
-	if(!empty($copyright_notice) && getOption('display_copyright_notice')) {
-		echo $before . $copyright_notice . $after;
+function printCopyrightNotice($before = '', $after = '', $linked = true, $type = 'gallery' ) {
+	global $_zp_gallery, $_zp_current_image;
+	switch($type) {
+		default:
+		case 'gallery': 
+			$copyright_notice = $_zp_gallery->getCopyrightNotice();
+			$copyrigth_url = $_zp_gallery->getCopyrightURL();
+			$copyright_notice_enabled = getOption('display_copyright_notice');
+			break;
+		case 'image':
+			if (!in_context(ZP_IMAGE)) {
+				return false;
+			}
+			$copyright_notice = $_zp_current_image->getCopyrightNotice();
+			$copyrigth_url = $_zp_current_image->getCopyrightURL();
+			$copyright_notice_enabled = true; 
+			break;
 	}
+	if (!empty($copyright_notice) && $copyright_notice_enabled) {
+		$notice = $before . $copyright_notice . $after;
+		if ($linked && !empty($copyrigth_url)) {
+			printLinkHTML($copyrigth_url, $notice, $notice);
+		} else {
+			echo $notice;
+		}
+	}
+}
+
+/**
+ * Display the site copyright notice if defined and display is enabled
+ * 
+ * @since ZenphotoCMS 1.6 - Added as shortcut to the general printCopyRightNotice
+ * 
+ * @param string $before Text to print before it
+ * @param string $after Text to print after it
+ * œparam bool $linked Default true to use the copyright URL if defined
+ */
+function printGalleryCopyrightNotice($before = '', $after = '', $linked = true) {
+	printCopyrightNotice($before, $after, $linked, 'gallery' );
+}
+
+/**
+ * Display the image copyright notice if defined and display iss enabled
+ * 
+ * @since ZenphotoCMS 1.6 - Added as shortcut to the general printCopyRightNotice
+ * 
+ * @param string $before Text to print before it
+ * @param string $after Text to print after it
+ * œparam bool $linked Default true to use the copyright URL if defined
+ */
+function printImageCopyrightNotice($before = '', $after = '', $linked = true) {
+	printCopyrightNotice($before, $after, $linked, 'image' );
 }
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');

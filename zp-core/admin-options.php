@@ -146,10 +146,12 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
 			
 			$_zp_gallery->setCopyrightNotice(process_language_string_save('copyright_site_notice', EDITOR_SANITIZE_LEVEL));
+			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
+			$_zp_gallery->set('copyright_site_url_custom', sanitize($_POST['copyright_site_url_custom'], 3));
+			setOption((int) isset($_POST['display_copyright_notice']));
 			$_zp_gallery->set('copyright_site_rightsholder', sanitize($_POST['copyright_site_rightsholder'], 3));
 			$_zp_gallery->set('copyright_site_rightsholder_custom', sanitize($_POST['copyright_site_rightsholder_custom'], 3));
-			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
-			
+		
 			$_zp_gallery->setParentSiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'], 3);
 			$_zp_gallery->setParentSiteURL($web);
@@ -270,10 +272,11 @@ if (isset($_GET['action'])) {
 			setOption('EmbedIPTC', (int) isset($_POST['EmbedIPTC']));
 			
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
-			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
-			setOption('copyright_image_rightsholder_custom', sanitize($_POST['copyright_image_rightsholder_custom']));
+			setOption('display_copyright_image_notice', (int) isset($_POST['display_copyright_image_notice']));
 			setOption('copyright_image_url', sanitize($_POST['copyright_image_url']));
 			setOption('copyright_image_url_custom', sanitize($_POST['copyright_image_url_custom']));
+			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
+			setOption('copyright_image_rightsholder_custom', sanitize($_POST['copyright_image_rightsholder_custom']));
 			
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
@@ -430,7 +433,6 @@ if (isset($_GET['action'])) {
 					
 					if (isset($_POST['custom_index_page']))
 						setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
-					setThemeOption('display_copyright_notice',isset($_POST['display_copyright_notice']), $table, $themename);
 					$otg = getThemeOption('thumb_gray', $table, $themename);
 					setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 					if ($otg = getThemeOption('thumb_gray', $table, $themename))
@@ -1171,6 +1173,24 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
 									</td>
 								</tr>
+		
+								<tr>
+									<td><?php echo gettext('Site copyright URL'); ?></td>
+									<td>
+									<?php printZenpagePageSelector('copyright_site_url', 'copyright_site_url_custom', false, true); ?>
+									</td>
+									<td>
+										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext("Coypright notice"); ?></td>
+									<td>
+										<label><input type="checkbox" name="display_copyright_notice" id="display_copyright_notice" value="1" <?php checked('1', getOption('display_copyright_notice')); ?> /> <?php echo gettext('Enable'); ?></label>
+									</td>
+									<td><?php echo gettext("Enable to display the copyright notice defined on Options > Gallery. This may usually be in the theme footer but is up to the theme."); ?></td>
+								</tr>
 								
 								<tr>
 									<td><?php echo gettext('Site copyright rightsholder'); ?></td>
@@ -1179,16 +1199,6 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> the image metadata fields "copyright" or "owner" are used as fallbacks, if available.'); ?></p>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><?php echo gettext('Site copyright URL'); ?></td>
-									<td>
-									<?php printZenpagePageSelector('copyright_site_url', 'copyright_site_url_custom', false, true); ?>
-									</td>
-									<td>
-										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
 									</td>
 								</tr>
 								
@@ -2624,6 +2634,23 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
 									</td>
 								</tr>
+								<tr>
+									<td><?php echo gettext('Image Copyright URL'); ?></td>
+									<td>
+									<?php printZenpagePageSelector('copyright_image_url', 'copyright_image_url_custom', false); ?>
+									</td>
+									<td>
+										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
+									</td>
+								</tr>
+								
+								<tr>
+									<td><?php echo gettext("Display Image coypright notice"); ?></td>
+									<td>
+										<label><input type="checkbox" name="display_copyright_image_notice" id="display_copyright_image_notice" value="1" <?php checked('1', getOption('display_copyright_image_notice')); ?> /> <?php echo gettext('Enable'); ?></label>
+									</td>
+									<td><?php echo gettext("Enable to display the image copyright notice. This may usually be in the theme below the image but is up to the theme where and if used at all.."); ?></td>
+								</tr>
 								
 								<tr>
 									<td><?php echo gettext('Image copyright rightsholder'); ?></td>
@@ -2635,15 +2662,7 @@ Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								
-								<tr>
-									<td><?php echo gettext('Image Copyright URL'); ?></td>
-									<td>
-									<?php printZenpagePageSelector('copyright_image_url', 'copyright_image_url_custom', false); ?>
-									</td>
-									<td>
-										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
-									</td>
-								</tr>
+								
 								
 								<tr>
 									<?php
@@ -3063,14 +3082,7 @@ Authority::printPasswordFormJS();
 											</td>
 											<td><?php echo gettext("If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."); ?></td>
 										</tr>
-										
-										<tr>
-											<td><?php echo gettext("Coypright notice"); ?></td>
-											<td>
-												<label><input type="checkbox" name="display_copyright_notice" id="display_copyright_notice" value="1" <?php checked('1', getThemeOption('display_copyright_notice', $album, $themename)); ?> /> <?php echo gettext('Enable'); ?></label>
-											</td>
-											<td><?php echo gettext("Enable to display the copyright notice defined on Options > Gallery. This may usually be in the theme footer but is up to the theme."); ?></td>
-										</tr>
+						
 										<?php
 									}
 									if (count($supportedOptions) > 0) {

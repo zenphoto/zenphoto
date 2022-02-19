@@ -502,6 +502,8 @@ purgeOption('album_use_new_image_date');
 purgeOption('thumb_select_images');
 purgeOption('album_default');
 purgeOption('image_default');
+purgeThemeOption('display_copyright_notice');// cleanup current theme one as the option is now global
+setOptionDefault('display_copyright_notice', 1); // enable new global one by default
 
 if(getOption('use_imagick') && $_zp_graphics->imagick_present) {
 	setOptionDefault('graphicslib_selected', 'imagick', true);
