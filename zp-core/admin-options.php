@@ -1185,11 +1185,11 @@ Authority::printPasswordFormJS();
 								</tr>
 								
 								<tr>
-									<td><?php echo gettext("Coypright notice"); ?></td>
+									<td><?php echo gettext("Display coypright notice"); ?></td>
 									<td>
 										<label><input type="checkbox" name="display_copyright_notice" id="display_copyright_notice" value="1" <?php checked('1', getOption('display_copyright_notice')); ?> /> <?php echo gettext('Enable'); ?></label>
 									</td>
-									<td><?php echo gettext("Enable to display the copyright notice defined on Options > Gallery. This may usually be in the theme footer but is up to the theme."); ?></td>
+									<td><?php echo gettext("Enable to display the copyright notice. This may usually be in the theme footer but is up to the theme."); ?></td>
 								</tr>
 								
 								<tr>
