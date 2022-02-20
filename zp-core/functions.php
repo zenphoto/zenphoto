@@ -2069,14 +2069,14 @@ function replaceThemeOption($oldkey, $newkey) {
 }
 
 /**
- * Deletes an option from the database 
+ * Deletes an theme option for a specific or the current theme from the database 
  * 
  * @global array $_zp_options
  * @param string $key
  * 
  * @since Zenphoto 1.5.1
  */
-function purgeThemeOption($key, $album = NULL, $theme = NULL) {
+function purgeThemeOption($key, $album = NULL, $theme = NULL, $allthemes = false) {
 	global $_set_theme_album, $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
 		$album = $_set_theme_album;
@@ -2091,6 +2091,20 @@ function purgeThemeOption($key, $album = NULL, $theme = NULL) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`=' . $_zp_db->quote($key) . ' AND `ownerid`=' . $id . ' AND `theme`=' . $_zp_db->quote($theme);
+	$_zp_db->query($sql, false);
+}
+
+/**
+ * Deletes a theme option for all themes present or not
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @global obj $_zp_db
+ * @param string $key
+ */
+function purgeThemeOptionTotal($key) {
+	global $_zp_db;
+	$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`=' . $_zp_db->quote($key) . ' AND `theme`IS NOT NULL';
 	$_zp_db->query($sql, false);
 }
 
