@@ -1467,6 +1467,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$cvt = $type = strtolower($album->get('subalbum_sort_type'));
 										if ($type && !in_array($type, $sort)) {
 											$cv = array('custom');
+											$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 										} else {
 											$cv = array($type);
 										}
@@ -1497,13 +1498,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$dsp = 'block';
 								}
 								?>
-								<span id="album_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-									<br />
-									<?php echo gettext('custom fields:') ?>
-									<span class="tagSuggestContainer">
-										<input id="customalbumsort<?php echo $suffix; ?>" class="customalbumsort" name="<?php echo $prefix; ?>customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
-									</span>
-								</span>
 							</td>
 						</tr>
 
@@ -1525,6 +1519,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										$cvt = $type = strtolower($album->get('sort_type'));
 										if ($type && !in_array($type, $sort)) {
 											$cv = array('custom');
+											$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 										} else {
 											$cv = array($type);
 										}
@@ -1556,13 +1551,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 									$dsp = 'block';
 								}
 								?>
-								<span id="image_custom_div<?php echo $suffix; ?>" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-									<br />
-									<?php echo gettext('custom fields:') ?>
-									<span class="tagSuggestContainer">
-										<input id="customimagesort<?php echo $suffix; ?>" class="customimagesort" name="<?php echo $prefix; ?>customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
-									</span>
-								</span>
 							</td>
 						</tr>
 
@@ -5096,23 +5084,17 @@ function getSortByOptions($type) {
 		case 'albums-dynamic':
 		case 'images':
 			$orders[gettext('Filemtime')] = 'mtime';
-			$orders[gettext('Scheduled publish date')] = 'publishdate';
+			$orders[gettext('Scheduled Publish date')] = 'publishdate';
 			$orders[gettext('Owner')] = 'owner';
-			$orders[gettext('Custom')] = 'custom';
 			switch ($type) {
 				case 'albums':
 					$orders[gettext('Folder')] = 'folder';
 					$orders[gettext('Last updated date')] = 'updateddate';
 					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
-					$orders = zp_apply_filter('admin_sortbyoptions_albums', $orders);
-					break;
-				case 'albums-dynamic':
-					$orders = zp_apply_filter('admin_sortbyoptions_albumsdynamic', $orders);
 					break;
 				case 'images':
 					$orders[gettext('Filename')] = 'filename';
 					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
-					$orders = zp_apply_filter('admin_sortbyoptions_images', $orders);
 					break;
 			}
 			break;
@@ -5124,22 +5106,19 @@ function getSortByOptions($type) {
 				$orders[sprintf(gettext('%s (descending)'), $key)] = $value . '_desc';
 			}
 			$orders[gettext('Manual')] = 'manual';
-			$orders = zp_apply_filter('admin_sortbyoptions_imagesedit', $orders);
 			break;
 		case 'pages':
 		case 'news':
 			$orders[gettext('TitleLink')] = 'titlelink';
 			$orders[gettext('Author')] = 'author';
+			$orders[gettext('TitleLink')] = 'titlelink';
+			$orders[gettext('Author')] = 'author';
 			if ($type == 'pages') {
 				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
-				$orders = zp_apply_filter('admin_sortbyoptions_pages', $orders);
-			}
-			if ($type == 'news') {
-				$orders = zp_apply_filter('admin_sortbyoptions_news', $orders);
 			}
 			break;
 	}
-	return $orders;
+	return zp_apply_filter('admin_sortbyoptions', $orders, $type);
 }
 
 /**

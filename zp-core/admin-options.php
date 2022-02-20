@@ -1413,8 +1413,10 @@ Authority::printPasswordFormJS();
 												<td>
 													<select id="gallerysortselect" name="gallery_sorttype" onchange="update_direction(this, 'gallery_sortdirection', 'customTextBox2')">
 														<?php
-														if (array_search($cv, $sort) === false)
+														if (array_search($cv, $sort) === false) {
 															$cv = 'custom';
+															$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
+														}
 														generateListFromArray(array($cv), $sort, false, true);
 														?>
 													</select>
@@ -1428,16 +1430,7 @@ Authority::printPasswordFormJS();
 													</span>
 												</td>
 											</tr>
-											<tr>
-												<td colspan="2">
-													<span id="customTextBox2" class="customText" style="display:<?php echo $dspc; ?>">
-														<?php echo gettext('custom fields:') ?>
-														<span class="tagSuggestContainer">
-															<input id="customalbumsort" name="customalbumsort" type="text" value="<?php echo html_encode($cvt); ?>" />
-														</span>
-													</span>
-												</td>
-											</tr>
+
 										</table>
 									</td>
 									<td>
@@ -1784,6 +1777,7 @@ Authority::printPasswordFormJS();
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
+													$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 												} else {
 													$cv = array($type);
 												}
@@ -1815,13 +1809,7 @@ Authority::printPasswordFormJS();
 											$dsp = 'block';
 										}
 										?>
-										<span id="album_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-											<br />
-											<?php echo gettext('custom fields:') ?>
-											<span class="tagSuggestContainer">
-												<input id="custom_album_sort" class="custom_album_sort" name="custom_album_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
-											</span>
-										</span>
+										
 									</td>
 
 								</tr>
@@ -1837,6 +1825,7 @@ Authority::printPasswordFormJS();
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
+													$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 												} else {
 													$cv = array($type);
 												}
@@ -1868,13 +1857,7 @@ Authority::printPasswordFormJS();
 											$dsp = 'block';
 										}
 										?>
-										<span id="image_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-											<br />
-											<?php echo gettext('custom fields:') ?>
-											<span class="tagSuggestContainer">
-												<input id="custom_image_sort" class="custom_image_sort" name="custom_image_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
-											</span>
-										</span>
+										
 									</td>
 								</tr>
 								<?php
@@ -1890,6 +1873,7 @@ Authority::printPasswordFormJS();
 													$cvt = $type = strtolower(getOption('search_newsarticle_sort_type'));
 													if ($type && !in_array($type, $zenpage_sort_news)) {
 														$cv = array('custom');
+														$zenpage_sort_news[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 													} else {
 														$cv = array($type);
 													}
@@ -1921,13 +1905,7 @@ Authority::printPasswordFormJS();
 												$dsp = 'block';
 											}
 											?>
-											<span id="newsarticle_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-												<br />
-												<?php echo gettext('custom fields:') ?>
-												<span class="tagSuggestContainer">
-													<input id="custom_newsarticle_sort" class="custom_newsarticle_sort" name="custom_newsarticle_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
-												</span>
-											</span>
+											
 										</td>
 									</tr>
 								<?php 
@@ -1945,6 +1923,7 @@ Authority::printPasswordFormJS();
 													$cvt = $type = strtolower(getOption('search_page_sort_type'));
 													if ($type && !in_array($type, $zenpage_sort_pages)) {
 														$cv = array('custom');
+														$zenpage_sort_pages[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
 													} else {
 														$cv = array($type);
 													}
@@ -1976,13 +1955,7 @@ Authority::printPasswordFormJS();
 												$dsp = 'block';
 											}
 											?>
-											<span id="page_custom_div" class="customText" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
-												<br />
-												<?php echo gettext('custom fields:') ?>
-												<span class="tagSuggestContainer">
-													<input id="custom_page_sort" class="custom_page_sort" name="custom_page_sort" type="text" value="<?php echo html_encode($cvt); ?>" />
-												</span>
-											</span>
+											
 										</td>
 									</tr>
 								<?php } ?>
@@ -2054,8 +2027,10 @@ Authority::printPasswordFormJS();
 										<span class="nowrap">
 											<select id="imagesortselect" name="image_sorttype" onchange="update_direction(this, 'image_sortdirection', 'customTextBox3')">
 												<?php
-												if (array_search($cv, $sort) === false)
+												if (array_search($cv, $sort) === false) {
 													$cv = 'custom';
+													$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
+												}
 												generateListFromArray(array($cv), $sort, false, true);
 												?>
 											</select>
@@ -2063,14 +2038,6 @@ Authority::printPasswordFormJS();
 												<input type="checkbox" name="image_sortdirection"	value="1" <?php checked('1', getOption('image_sortdirection')); ?> />
 												<?php echo gettext("Descending"); ?>
 											</label>
-										</span>
-
-										<span id="customTextBox3" class="customText" style="display:<?php echo $dspc; ?>">
-											<br />
-											<?php echo gettext('custom fields:') ?>
-											<span class="tagSuggestContainer">
-												<input id="customimagesort" name="customimagesort" type="text" value="<?php echo html_encode($cvt); ?>" />
-											</span>
 										</span>
 
 									</td>
