@@ -1356,20 +1356,21 @@ class Authority {
 	 * @return boolean
 	 */
 	function checkUniqueMailaddress($email_to_check, $current_user) {
-		if (!empty($email_to_check) && isValidEmail($email_to_check)) {
-			$all_users = $this->getAdministrators('users');
-			foreach ($all_users as $user) {
-				if ($user['user'] != $current_user && !empty($user['email']) && $user['email'] == $email_to_check) {
-					return false;
-				}
+		global $_zp_db;
+		$checkmail = trim($email_to_check);
+		if (!empty($checkmail) && isValidEmail($checkmail)) {
+			$sql = 'SELECT `user`, `email` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `email` = ' .  $_zp_db->quote($checkmail);
+			$exists = $_zp_db->querySingleRow($sql);
+			if ($exists && $exists['user'] != $current_user && !empty($exists['email']) && $exists['email'] == $checkmail) {
+				return false;
 			}
 			return true;
 		} else {
 			return false;
 		}
 	}
-
 }
+
 /**
  * @deprecated ZenphotoCMS 2.0 - Use the class Authority instead
  */
