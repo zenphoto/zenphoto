@@ -5082,19 +5082,33 @@ function getSortByOptions($type) {
 	switch ($type) {
 		case 'albums':
 		case 'albums-dynamic':
+		case 'albums-search':
 		case 'images':
+		case 'images-search':
 			$orders[gettext('Filemtime')] = 'mtime';
 			$orders[gettext('Scheduled Publish date')] = 'publishdate';
 			$orders[gettext('Owner')] = 'owner';
 			switch ($type) {
 				case 'albums':
+				case 'albums-dynamic':
+				case 'albums-search':
 					$orders[gettext('Folder')] = 'folder';
 					$orders[gettext('Last updated date')] = 'updateddate';
-					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+					$orders[gettext('Manual')] = 'manual'; 
+					if ($type == 'albums-search') {
+						$orders[gettext('Manual')] = 'sort_order';
+						$orders[gettext('Nonsense')] = 'nonsense';
+					}
 					break;
 				case 'images':
+				case 'images-search':
 					$orders[gettext('Filename')] = 'filename';
-					$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+					if ($type == 'images') {
+						$orders[gettext('Manual')] = 'manual'; 
+					}
+					if ($type == 'images-search') {
+						$orders[gettext('Manual')] = 'sort_order';
+					}
 					break;
 			}
 			break;
@@ -5108,6 +5122,7 @@ function getSortByOptions($type) {
 			$orders[gettext('Manual')] = 'manual';
 			break;
 		case 'pages':
+		case 'pages-search':
 		case 'news':
 			$orders[gettext('TitleLink')] = 'titlelink';
 			$orders[gettext('Author')] = 'author';
@@ -5115,6 +5130,9 @@ function getSortByOptions($type) {
 			$orders[gettext('Author')] = 'author';
 			if ($type == 'pages') {
 				$orders[gettext('Manual')] = 'manual'; // note for search orders this must be changed to "sort_order"
+			}
+			if ($type == 'pages-search') {
+				$orders[gettext('Manual')] = 'sort_order';
 			}
 			break;
 	}

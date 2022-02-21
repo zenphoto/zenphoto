@@ -1772,8 +1772,7 @@ Authority::printPasswordFormJS();
 										<span class="nowrap">
 											<select id="album_sort_select" name="search_album_sort_type" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 												<?php
-												$sort = getSortByOptions('albums'); 
-												$sort[gettext('Manual')] = 'sort_order'; 
+												$sort = getSortByOptions('albums-search'); 
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1820,8 +1819,7 @@ Authority::printPasswordFormJS();
 										<span class="nowrap">
 											<select id="image_sort_select" name="search_image_sort_type" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 												<?php
-												$sort = getSortByOptions('images'); 
-												$sort[gettext('Manual')] = 'sort_order'; 
+												$sort = getSortByOptions('images-search'); 
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1911,8 +1909,7 @@ Authority::printPasswordFormJS();
 								<?php 
 								} 
 								if (ZP_PAGES_ENABLED) {
-									$zenpage_sort_pages = getSortByOptions('pages');
-									$zenpage_sort_pages[gettext('Manual')] = 'sort_order';
+									$zenpage_sort_pages = getSortByOptions('pages-search');
 								?>
 									<tr>
 										<td class="leftcolumn"><?php echo gettext("Sort pages by"); ?> </td>
