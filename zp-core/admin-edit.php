@@ -244,7 +244,6 @@ if (isset($_GET['action'])) {
         $album = AlbumBase::newAlbum($folder);
         $notify = '';
         $returnalbum = NULL;
-
         if (isset($_GET['singleimage'])) {
           $filename = sanitize($_POST["0-filename"]);
           // The file might no longer exist
@@ -265,8 +264,9 @@ if (isset($_GET['action'])) {
 							$returntab = '&tagsort=' . $tagsort . '&tab=imageinfo';
 							$oldsort = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort'], 3));
 							$oldsort_status = checkAlbumimagesort(sanitize($_POST['oldalbumimagesort_status'], 3), 'albumimagesort_status');
-							if (getOption('albumimagedirection'))
+							if (getOption('albumimagedirection')) {
 								$oldsort = $oldsort . '_desc';
+							}
 							$newsort = checkAlbumimagesort(sanitize($_POST['albumimagesort'], 3));
 							$newsort_status = checkAlbumimagesort(sanitize($_POST['albumimagesort_status'], 3), 'albumimagesort_status');
 							if ($oldsort == $newsort && $oldsort_status == $newsort_status) {
@@ -275,7 +275,7 @@ if (isset($_GET['action'])) {
 									// The file might no longer exist
 									$image = Image::newImage($album, $filename);
 									if ($image->exists) {
-										processImageEdit($image, $i);
+										$notify .= processImageEdit($image, $i);
 									} // if image exists
 								}
 							} else {
@@ -305,7 +305,7 @@ if (isset($_GET['action'])) {
         }
         /** SAVE MULTIPLE ALBUMS ***************************************************** */
       } else if ($_POST['totalalbums']) {
-        $notify = '';
+        $notify = $rslt = '';
         for ($i = 1; $i <= sanitize_numeric($_POST['totalalbums']); $i++) {
           if ($i > 0) {
             $prefix = $i . "-";
@@ -315,7 +315,7 @@ if (isset($_GET['action'])) {
           $f = sanitize_path(trim(sanitize($_POST[$prefix . 'folder'])));
           $album = AlbumBase::newAlbum($f);
           $returnalbum = '';
-          $rslt = processAlbumEdit($i, $album, $returnalbum);
+          $rslt .= processAlbumEdit($i, $album, $returnalbum);
           if (!empty($rslt)) {
             $notify = $rslt;
           }

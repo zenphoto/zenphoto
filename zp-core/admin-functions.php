@@ -2336,8 +2336,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$album->setTags($tags);
 		$album->setDateTime(sanitize($_POST[$prefix . "albumdate"]));
 		$album->setLocation(process_language_string_save($prefix . 'albumlocation', 3));
-		if (isset($_POST[$prefix . 'thumb']))
+		if (isset($_POST[$prefix . 'thumb'])) {
 			$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
+		}
 		$album->setShow((int) isset($_POST[$prefix . 'Published']));
 		$album->setCommentsAllowed(isset($_POST[$prefix . 'allowcomments']));
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'sortby'], 3));
@@ -2390,8 +2391,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
 			$album->setCodeblock(processCodeblockSave((int) $prefix));
 		}
-		if (isset($_POST[$prefix . 'owner']))
+		if (isset($_POST[$prefix . 'owner'])) {
 			$album->setOwner(sanitize($_POST[$prefix . 'owner']));
+		}
 
 		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
@@ -2400,19 +2402,20 @@ function printAdminHeader($tab, $subtab = NULL) {
 		$album->save(true);
 
 		// Move/Copy/Rename the album after saving.
+		$mcrerr = array();
 		$movecopyrename_action = '';
 		if (isset($_POST['a-' . $prefix . 'MoveCopyRename'])) {
 			$movecopyrename_action = sanitize($_POST['a-' . $prefix . 'MoveCopyRename'], 3);
 		}
-
 		if ($movecopyrename_action == 'delete') {
 			$dest = dirname($album->name);
 			if ($album->remove()) {
-				if ($dest == '/' || $dest == '.')
+				if ($dest == '/' || $dest == '.') {
 					$dest = '';
+				}
 				$redirectto = $dest;
 			} else {
-				$notify = "&mcrerr=7";
+				$mcrerr['mcrerr'][7][$index] = $album->getID();
 			}
 		}
 		if ($movecopyrename_action == 'move') {
@@ -2426,25 +2429,25 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 				}
 				if ($e = $album->move($dest)) {
-					$notify = "&mcrerr=" . $e;
+					$mcrerr['mcrerr'][$e][$index] = $album->getID();
 					SearchEngine::clearSearchCache();
 				} else {
 					$redirectto = $dest;
 				}
 			} else {
 				// Cannot move album to same album.
-				$notify = "&mcrerr=3";
+				$mcrerr['mcrerr'][3][$index] = $album->getID();
 			}
 		} else if ($movecopyrename_action == 'copy') {
 			$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
 			if ($dest && $dest != $album->name) {
 				if ($e = $album->copy($dest)) {
-					$notify = "&mcrerr=" . $e;
+					$mcrerr['mcrerr'][$e][$index] = $album->getID();
 				}
 			} else {
 				// Cannot copy album to existing album.
 				// Or, copy with rename?
-				$notify = '&mcrerr=3';
+				$mcrerr['mcrerr'][3][$index] = $album->getID();
 			}
 		} else if ($movecopyrename_action == 'rename') {
 			$renameto = sanitize_path($_POST['a' . $prefix . '-renameto']);
@@ -2459,149 +2462,161 @@ function printAdminHeader($tab, $subtab = NULL) {
 					}
 				}
 				if ($e = $album->rename($renameto)) {
-					$notify = "&mcrerr=" . $e;
+					$mcrerr['mcrerr'][$e][$index] = $album->getID();
 				} else {
 					$redirectto = $renameto;
 				}
 			} else {
-				$notify = "&mcrerr=3";
+				$mcrerr['mcrerr'][3][$index] = $album->getID();
 			}
+		}
+		if (!empty($mcrerr)) {
+			$notify = '&' . http_build_query($mcrerr);
 		}
 		return $notify;
 	}
 
 	/**
-	 * Process the image edit form posted
-	 * @param obj $image Image object
-	 * @param type $index Index of the image if within the images list or 0 if single image edit
-	 * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
-	 */
-	function processImageEdit($image, $index, $massedit = true) {
-		global $_zp_current_admin_obj;
-		$notify = '';
-		if (isset($_POST[$index . '-MoveCopyRename'])) {
-			$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
-		} else {
-			$movecopyrename_action = '';
-		}
-		if ($movecopyrename_action == 'delete') {
-			$image->remove();
-		} else {
-			if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
-				$talbum = AlbumBase::newAlbum($thumbnail);
-				if ($image->imagefolder == $thumbnail) {
-					$talbum->setThumb($image->filename);
-				} else {
-					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
-				}
-				$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
-				$talbum->save();
-			}
-			if (isset($_POST[$index . '-reset_rating'])) {
-				$image->set('total_value', 0);
-				$image->set('total_votes', 0);
-				$image->set('used_ips', 0);
-			}
-			$image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
-			$image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
-			$image->setTitle(process_language_string_save("$index-title", 2));
-			$image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
-			if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
-				$oldrotation = (int) $_POST[$index . '-oldrotation'];
-				$rotation = (int) $_POST[$index . '-rotation'];
-				if ($rotation != $oldrotation) {
-					$image->set('EXIFOrientation', $rotation);
-					$image->updateDimensions();
-					$album = $image->getAlbum();
-					Gallery::clearCache(SERVERCACHE . '/' . $album->name);
-				}
-			}
-			if (!$massedit) {
-				$image->setLocation(process_language_string_save("$index-location", 3));
-				$image->setCity(process_language_string_save("$index-city", 3));
-				$image->setState(process_language_string_save("$index-state", 3));
-				$image->setCountry(process_language_string_save("$index-country", 3));
-				$image->setCredit(process_language_string_save("$index-credit", 1));
-				$image->setCopyright(process_language_string_save("$index-copyright", 1));
-				$tagsprefix = 'tags_' . $index . '-';
-				$tags = array();
-				$l = strlen($tagsprefix);
-				foreach ($_POST as $key => $value) {
-					$key = postIndexDecode($key);
-					if (substr($key, 0, $l) == $tagsprefix) {
-						if ($value) {
-							$tags[] = sanitize(substr($key, $l));
-						}
-					}
-				}
-				$tags = array_unique($tags);
-				$image->setTags($tags);
-				if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-					$image->setCodeblock(processCodeblockSave($index));
-				}
-				$custom = process_language_string_save("$index-custom_data", 1);
-				$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
-			}
-			$image->setDateTime(sanitize($_POST["$index-date"]));
-			$image->setShow(isset($_POST["$index-Visible"]));
-			$image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
-			if (isset($_POST["reset_hitcounter$index"])) {
-				$image->set('hitcounter', 0);
-			}
-			$wmt = sanitize($_POST["$index-image_watermark"], 3);
-			$image->setWatermark($wmt);
-			$wmuse = 0;
-			if (isset($_POST['wm_image-' . $index]))
-				$wmuse = $wmuse | WATERMARK_IMAGE;
-			if (isset($_POST['wm_thumb-' . $index]))
-				$wmuse = $wmuse | WATERMARK_THUMB;
-			if (isset($_POST['wm_full-' . $index]))
-				$wmuse = $wmuse | WATERMARK_FULL;
-			$image->setWMUse($wmuse);
-
-			if (isset($_POST[$index . '-owner']))
-				$image->setOwner(sanitize($_POST[$index . '-owner']));
-			$image->set('filesize', filesize($image->localpath));
-			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
-			zp_apply_filter('save_image_utilities_data', $image, $index);
-			$image->save(true);
-
-			// Process move/copy/rename
-			$folder = $image->getAlbumName();
-			if ($movecopyrename_action == 'move') {
-				$dest = sanitize_path($_POST[$index . '-albumselect']);
-				if ($dest && $dest != $folder) {
-					if ($e = $image->move($dest)) {
-						SearchEngine::clearSearchCache();
-						$notify = "&mcrerr=" . $e;
-					}
-				} else {
-					// Cannot move image to same album.
-					$notify = "&mcrerr=2";
-				}
-			} else if ($movecopyrename_action == 'copy') {
-				$dest = sanitize_path($_POST[$index . '-albumselect']);
-				if ($dest && $dest != $folder) {
-					if ($e = $image->copy($dest)) {
-						$notify = "&mcrerr=" . $e;
-					}
-				} else {
-					// Cannot copy image to existing album.
-					// Or, copy with rename?
-					$notify = "&mcrerr=2";
-				}
-			} else if ($movecopyrename_action == 'rename') {
-				$renameto = sanitize_path($_POST[$index . '-renameto']);
-				if ($e = $image->rename($renameto)) {
-					SearchEngine::clearSearchCache();
-					$notify = "&mcrerr=" . $e;
-				}
-			}
-		}
-		return $notify;
+ * Process the image edit form posted
+ * @param obj $image Image object
+ * @param type $index Index of the image if within the images list or 0 if single image edit
+ * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
+ */
+function processImageEdit($image, $index, $massedit = true) {
+	global $_zp_current_admin_obj;
+	$notify = '';
+	if (isset($_POST[$index . '-MoveCopyRename'])) {
+		$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
+	} else {
+		$movecopyrename_action = '';
 	}
+	if ($movecopyrename_action == 'delete') {
+		$image->remove();
+	} else {
+		if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
+			$talbum = AlbumBase::newAlbum($thumbnail);
+			if ($image->imagefolder == $thumbnail) {
+				$talbum->setThumb($image->filename);
+			} else {
+				$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+			}
+			$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
+			$talbum->save();
+		}
+		if (isset($_POST[$index . '-reset_rating'])) {
+			$image->set('total_value', 0);
+			$image->set('total_votes', 0);
+			$image->set('used_ips', 0);
+		}
+		$image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
+		$image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
+		$image->setTitle(process_language_string_save("$index-title", 2));
+		$image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
+		if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
+			$oldrotation = (int) $_POST[$index . '-oldrotation'];
+			$rotation = (int) $_POST[$index . '-rotation'];
+			if ($rotation != $oldrotation) {
+				$image->set('EXIFOrientation', $rotation);
+				$image->updateDimensions();
+				$album = $image->getAlbum();
+				Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+			}
+		}
+		if (!$massedit) {
+			$image->setLocation(process_language_string_save("$index-location", 3));
+			$image->setCity(process_language_string_save("$index-city", 3));
+			$image->setState(process_language_string_save("$index-state", 3));
+			$image->setCountry(process_language_string_save("$index-country", 3));
+			$image->setCredit(process_language_string_save("$index-credit", 1));
+			$image->setCopyright(process_language_string_save("$index-copyright", 1));
+			$tagsprefix = 'tags_' . $index . '-';
+			$tags = array();
+			$l = strlen($tagsprefix);
+			foreach ($_POST as $key => $value) {
+				$key = postIndexDecode($key);
+				if (substr($key, 0, $l) == $tagsprefix) {
+					if ($value) {
+						$tags[] = sanitize(substr($key, $l));
+					}
+				}
+			}
+			$tags = array_unique($tags);
+			$image->setTags($tags);
+			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+				$image->setCodeblock(processCodeblockSave($index));
+			}
+			$custom = process_language_string_save("$index-custom_data", 1);
+			$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
+		}
+		$image->setDateTime(sanitize($_POST["$index-date"]));
+		$image->setShow(isset($_POST["$index-Visible"]));
+		$image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
+		if (isset($_POST["reset_hitcounter$index"])) {
+			$image->set('hitcounter', 0);
+		}
+		$wmt = sanitize($_POST["$index-image_watermark"], 3);
+		$image->setWatermark($wmt);
+		$wmuse = 0;
+		if (isset($_POST['wm_image-' . $index])) {
+			$wmuse = $wmuse | WATERMARK_IMAGE;
+		}
+		if (isset($_POST['wm_thumb-' . $index])) {
+			$wmuse = $wmuse | WATERMARK_THUMB;
+		}
+		if (isset($_POST['wm_full-' . $index])) {
+			$wmuse = $wmuse | WATERMARK_FULL;
+		}
+		$image->setWMUse($wmuse);
 
-	function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
+		if (isset($_POST[$index . '-owner'])) {
+			$image->setOwner(sanitize($_POST[$index . '-owner']));
+		}
+		$image->set('filesize', filesize($image->localpath));
+		$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+		zp_apply_filter('save_image_utilities_data', $image, $index);
+		$image->save(true);
+
+		// Process move/copy/rename
+		$mcrerr = array();
+		$folder = $image->getAlbumName();
+		if ($movecopyrename_action == 'move') {
+			$dest = sanitize_path($_POST[$index . '-albumselect']);
+			if ($dest && $dest != $folder) {
+				if ($e = $image->move($dest)) {
+					SearchEngine::clearSearchCache();
+					$mcrerr['mcrerr'][$e][$index] = $image->getID();
+				}
+			} else {
+				// Cannot move image to same album.
+				$mcrerr['mcrerr'][2][$index] = $image->getID();
+			}
+		} else if ($movecopyrename_action == 'copy') {
+
+			$dest = sanitize_path($_POST[$index . '-albumselect']);
+			if ($dest && $dest != $folder) {
+				if ($e = $image->copy($dest)) {
+					$mcrerr['mcrerr'][$e][$index] = $image->getID();
+				}
+			} else {
+				// Cannot copy image to existing album.
+				// Or, copy with rename?
+				$mcrerr['mcrerr'][2][$index] = $image->getID();
+			}
+		} else if ($movecopyrename_action == 'rename') {
+			$renameto = sanitize_path($_POST[$index . '-renameto']);
+			if ($e = $image->rename($renameto)) {
+				SearchEngine::clearSearchCache();
+				$mcrerr['mcrerr'][$e][$index] = $image->getID();
+			}
+		}
+	}
+	if (!empty($mcrerr)) {
+		$notify = '&' . http_build_query($mcrerr);
+	}
+	return $notify;
+}
+
+function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		if (empty($parms)) {
 			$url = '?';
 		} else {
@@ -4081,6 +4096,7 @@ function processAlbumBulkActions() {
  */
 function processImageBulkActions($album) {
 	global $_zp_current_admin_obj;
+	$mcrerr = array();
 	$action = sanitize($_POST['checkallaction']);
 	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
@@ -4132,13 +4148,12 @@ function processImageBulkActions($album) {
 						break;
 					case 'copyimages':
 						if ($e = $imageobj->copy($dest)) {
-							return "&mcrerr=" . $e;
+							$mcrerr['mcrerr'][$e][] = $imageobj->getID();
 						}
 						break;
 					case 'moveimages':
 						if ($e = $imageobj->move($dest)) {
-							SearchEngine::clearSearchCache();
-							return "&mcrerr=" . $e;
+							$mcrerr['mcrerr'][$e][] = $imageobj->getID();
 						}
 						break;
 					case 'changeowner':
@@ -4151,6 +4166,9 @@ function processImageBulkActions($album) {
 				$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
 				$imageobj->save(true);
 			}
+		}
+		if (!empty($mcrerr)) {
+			$action .= '&' . http_build_query($mcrerr);
 		}
 		return $action;
 	}
@@ -4882,28 +4900,56 @@ function consolidatedEditMessages($subtab) {
 		}
 	}
 	if (isset($_GET['mcrerr'])) {
-		switch (sanitize_numeric($_GET['mcrerr'])) {
-			case 2:
-				$errorbox[] = gettext("Image already exists.");
-				break;
-			case 3:
-				$errorbox[] = gettext("Album already exists.");
-				break;
-			case 4:
-				$errorbox[] = gettext("Cannot move, copy, or rename to a subalbum of this album.");
-				break;
-			case 5:
-				$errorbox[] = gettext("Cannot move, copy, or rename to a dynamic album.");
-				break;
-			case 6:
-				$errorbox[] = gettext('Cannot rename an image to a different suffix');
-				break;
-			case 7:
-				$errorbox[] = gettext('Album delete failed');
-				break;
-			default:
-				$errorbox[] = sprintf(gettext("There was an error #%d with a move, copy, or rename operation."), sanitize_numeric($_GET['mcrerr']));
-				break;
+		// move/copy error messages
+		$mcrerr_messages = array(
+				1 => gettext("There was an error #%d with a move, copy, or rename operation."), // default message if 2-7 don't apply us with sprintf
+				2 => gettext("Cannot move, copy, or rename. Image already exists."),
+				3 => gettext("Cannot move, copy, or rename. Album already exists."),
+				4 => gettext("Cannot move, copy, or rename to a subalbum of this album."),
+				5 => gettext("Cannot move, copy, or rename to a dynamic album."),
+				6 => gettext('Cannot rename an image to a different suffix'),
+				7 => gettext('Album delete failed')
+		);
+		if (is_array($_GET['mcrerr'])) {
+			// action move/copy error messages
+			$mcrerr = sanitize($_GET['mcrerr']);
+			foreach ($mcrerr as $errno => $ids) {
+				$errornumber = sanitize_numeric($errno);
+				if ($errornumber) {
+					if ($errornumber < 1 || $errornumber > 8) {
+						$errorbox[] = sprintf($mcrerr_messages[1], sanitize_numeric($errornumber));
+					} else {
+						$errorbox[] = $mcrerr_messages[$errornumber];
+					}
+					$list = '';
+					foreach ($ids as $id) {
+						$itemid = sanitize_numeric($id);
+						if ($itemid) {
+							// item id might be an image or album id, we don't know so we test…
+							$obj = getItemByID('images', $itemid);
+							if ($obj) {
+								$list .= '<li>' . html_encode($obj->getTitle()) . ' (' . $obj->filename . ')</li>';
+							} else {
+								$obj = getItemByID('albums', $itemid);
+								if ($obj) {
+									$list .= '<li>' . html_encode($obj->getTitle()) . ' (' . $obj->name . ')</li>';
+								}
+							}
+						}
+					}
+					if (!empty($list)) {
+						$errorbox[] = '<ul>' . $list . '</ul>';
+					}
+				}
+			}
+		} else {
+			// legacy -  move/copy error message
+			$mcrerr = sanitize_numeric($_GET['mcrerr']);
+			if ($mcrerr < 2 || $mcrerr > 7) {
+				$errorbox[] = sprintf($mcrerr_messages[1], sanitize_numeric($_GET['mcrerr']));
+			} else {
+				$errorbox[] = $mcrerr_messages[$mcrerr];
+			}
 		}
 	}
 	if (!empty($errorbox)) {
