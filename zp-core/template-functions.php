@@ -1704,6 +1704,9 @@ function getAlbumPage($album = NULL) {
 	if (is_null($album)) {
 		$album = $_zp_current_album;
 	}
+	if (!$_zp_first_page_images) {
+		$_zp_first_page_images = getFirstPageImages();
+	}
 	$use_realalbum = false;
 	if (!$album->isDynamic()) {
 		$use_realalbum = true;
