@@ -5143,7 +5143,6 @@ function getSortByOptions($type) {
 					$orders[gettext('Manual')] = 'manual'; 
 					if ($type == 'albums-search') {
 						$orders[gettext('Manual')] = 'sort_order';
-						$orders[gettext('Nonsense')] = 'nonsense';
 					}
 					break;
 				case 'images':
