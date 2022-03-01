@@ -40,6 +40,7 @@ function getLanguageArray() {
 					'bn_BD'	 => gettext('Bengali'),
 					'bg_BG'	 => gettext('Bulgarian'),
 					'ca_ES'	 => gettext('Catalan'),
+					'zh_CN'	 => gettext('Chinese (Simplified)'),
 					'zh_Hans_CN'	 => gettext('Chinese (People’s Republic of China)'),
 					'zh_Hans_HK'	 => gettext('Chinese (Hong Kong)'),
 					'zh_Hant_TW'	 => gettext('Chinese (Taiwan)'),
