@@ -747,7 +747,7 @@ if ($c <= 0) {
 							if ($environ) {
 								/* Check for graphic library and image type support. */
 								setup::primeMark(gettext('Graphics library'));
-								if (function_exists('zp_graphicsLibInfo')) {
+								if ($_zp_graphics->info['Library'] != 'none') {
 									$graphics_lib = $_zp_graphics->graphicsLibInfo();
 									if (array_key_exists('Library_desc', $graphics_lib)) {
 										$library = $graphics_lib['Library_desc'];
