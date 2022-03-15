@@ -107,6 +107,10 @@ class graphicsBase {
 	function rotateImage($im, $rotate) {
 		return false;
 	}
+	
+	function flipImage($im, $direction) {
+		return false;
+	}
 
 	function imageDims($filename) {
 		$imageinfo = NULL;

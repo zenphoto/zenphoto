@@ -343,6 +343,25 @@ class graphicsGD extends graphicsBase {
 		imagedestroy($im);
 		return $newim_rot;
 	}
+	
+	/**
+	 * Flips (mirrors) an image
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param image $im 
+	 * @param string $mode "horizontal" (default) or "vertical"
+	 * @return object
+	 */
+	function flipImage($im, $mode = 'horizontal') {
+		switch ($mode) {
+			default:
+			case 'horizontal':
+				return imageflip($im, IMG_FLIP_HORIZONTAL);
+			case 'vertical';
+				return imageflip($im, IMG_FLIP_VERTICAL);
+		}
+	}
 
 	/**
 	 * Returns the width of an image resource

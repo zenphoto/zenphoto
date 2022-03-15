@@ -288,6 +288,25 @@ class graphicsImagick extends graphicsBase {
 		$im->rotateImage('none', 360 - $rotate);
 		return $im;
 	}
+	
+	/**
+	 * Flips (mirrors) an image
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param image $im 
+	 * @param string $mode "horizontal" (default) or "vertical" 
+	 * @return object
+	 */
+	function flipImage($im, $mode = 'horizontal') {
+		switch ($mode) {
+			default:
+			case 'horizontal':
+				return $im->flopImage();
+			case 'vertical';
+				return $im->flipImage();
+		}
+	}
 
 	/**
 	 * Returns the width of an image resource
