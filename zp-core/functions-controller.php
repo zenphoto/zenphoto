@@ -107,7 +107,8 @@ function fix_path_redirect() {
 		$searchfields = $_zp_current_search->getSearchFields(true);
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $_zp_page, array('albums' => $_zp_current_search->getAlbumList()));
 		$request_uri = getRequestURI();
-		if ($request_uri != $searchpagepath) { // prevent endless redirection loop
+		// prevent endless redirection loop
+		if ($request_uri !=  urldecode($searchpagepath)) { //urldecode needed as request_uri is and searchpath is not!
 			redirectURL($searchpagepath, '301');
 		}
 	} 
