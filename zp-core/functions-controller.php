@@ -99,6 +99,18 @@ function zpRewriteURL($query) {
  * If so it will redirects to the rewritten URL with a 301 Moved Permanently.
  */
 function fix_path_redirect() {
+	global $_zp_current_search;
+	if (in_context(ZP_SEARCH) && is_object($_zp_current_search)) {
+		//include search words in inital search page url
+		$searchwords = $_zp_current_search->codifySearchString();
+		$searchdate = $_zp_current_search->getSearchDate();
+		$searchfields = $_zp_current_search->getSearchFields(true);
+		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, 1, array('albums' => $_zp_current_search->getAlbumList()));
+		$request_uri = getRequestURI();
+		if ($request_uri != $searchpagepath) { // prevent endless redirection loop
+			redirectURL($searchpagepath, '301');
+		}
+	}
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
