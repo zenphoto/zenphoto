@@ -1245,7 +1245,7 @@ echo "\n</head>";
 																if ($image->isPhoto()) {
 																	?>
 																	<hr />
-																	<?php echo gettext("Rotation:"); ?>
+																	<strong><?php echo gettext("Rotation:"); ?></strong>
 																	<br />
 																	<?php
 																	$splits = preg_split('/!([(0-9)])/', $image->get('EXIFOrientation'));
@@ -1283,6 +1283,33 @@ echo "\n</head>";
 																		?> />
 																					 <?php echo gettext('270 degrees'); ?>
 																	</label>
+																	<br class="clearall">
+																	<p ><strong><?php echo gettext("Flipping:"); ?></strong></p>
+													
+																			<label class="checkboxlabel">
+																				<input type="radio" id="flipping_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="none" checked="checked" />
+																				<?php echo gettext('none'); ?>
+																			</label>
+																
+																			<label class="checkboxlabel">
+																				<input type="radio" id="flipping_horizontal-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="horizontal" />
+																				<?php echo gettext('horizontal'); ?>
+																			</label>
+																	
+																			<label class="checkboxlabel">
+																				<input type="radio" id="flipping_vertical--<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="vertical" />
+																	<?php echo gettext('vertical'); ?>
+																			</label>
+																	<br>
+																	<?php 
+																	$warning = gettext('Flipping modifies the original image!');
+																	if (GRAPHICS_LIBRARY == 'GD') {
+																		$warning .= '<strong>' .gettext('Caution: Your graphics library is the GDlibrary. Using this function will remove any metadata from the file. If your server supports use Imagick instead.').'</strong>';
+																	}
+																	echo '<p class="warningbox clearall">' . $warning . '</p>';
+																	?>
+																	
+																	
 																	<?php
 																}
 																?>

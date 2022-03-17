@@ -2483,7 +2483,7 @@ function printAdminHeader($tab, $subtab = NULL) {
  * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
  */
 function processImageEdit($image, $index, $massedit = true) {
-	global $_zp_current_admin_obj;
+	global $_zp_current_admin_obj, $_zp_graphics;
 	$notify = '';
 	if (isset($_POST[$index . '-MoveCopyRename'])) {
 		$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
@@ -2512,6 +2512,7 @@ function processImageEdit($image, $index, $massedit = true) {
 		$image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
 		$image->setTitle(process_language_string_save("$index-title", 2));
 		$image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
+		
 		if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
 			$oldrotation = (int) $_POST[$index . '-oldrotation'];
 			$rotation = (int) $_POST[$index . '-rotation'];
@@ -2522,6 +2523,33 @@ function processImageEdit($image, $index, $massedit = true) {
 				Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 			}
 		}
+		
+		if (isset($_POST[$index . '-flipping'])) {
+			$flipping = sanitize($_POST[$index . '-flipping']);
+			if ($flipping != 'none') {
+				$fullimage = $image->getFullimage(SERVERPATH);
+				$album = $image->getAlbum();
+				$im = $_zp_graphics->imageGet($fullimage);
+				$success = false;
+				switch ($flipping) {
+					case 'horizontal':
+						$success = $_zp_graphics->flipImage($im, 'horizontal');
+						break;
+					case 'vertical':
+						$success = $_zp_graphics->flipImage($im, 'vertical');
+						break;
+				}
+				if ($success) {
+					$suffix = getSuffix($image->getFilename());
+					$success_final = $_zp_graphics->imageOutput($im, $suffix, $fullimage);
+					if($success_final) {
+						Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+					}
+					$_zp_graphics->imageKill($im);
+				} 
+			}
+		}
+		
 		if (!$massedit) {
 			$image->setLocation(process_language_string_save("$index-location", 3));
 			$image->setCity(process_language_string_save("$index-city", 3));
