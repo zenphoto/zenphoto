@@ -1304,7 +1304,7 @@ echo "\n</head>";
 																	<?php 
 																	$warning = gettext('Flipping modifies the original image!');
 																	if (GRAPHICS_LIBRARY == 'GD') {
-																		$warning .= '<strong>' .gettext('Caution: Your graphics library is the <code>GDlibrary</code>. Using this function will remove any metadata from the file. If your server supports it use <code>Imagick</code> instead.').'</strong>';
+																		$warning .= '<strong>' .gettext(' Caution: This will remove any metadata from the file due to your graphics handler (<code>GDlibrary</code>) limitation. Use <code>Imagick</code> instead if supported.').'</strong>';
 																	}
 																	echo '<p class="warningbox clearall">' . $warning . '</p>';
 																	?>
