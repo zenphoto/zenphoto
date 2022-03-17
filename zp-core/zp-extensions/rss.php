@@ -253,7 +253,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'albumname' => $album->getFileName());
+				$link = array('rss' => 'gallery', 'albumname' => $album->getName());
 				break;
 			}
 		case 'collection':
@@ -263,7 +263,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'folder' => $album->getFileName());
+				$link = array('rss' => 'gallery', 'folder' => $album->getName());
 			}
 			break;
 		case 'comments':
@@ -288,7 +288,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			break;
 		case 'albumsrsscollection':
 			if (getOption('RSS_album_image')) {
-				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getFileName(), 'albumsmode' => '');
+				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getName(), 'albumsmode' => '');
 			}
 			break;
 		case 'pages':

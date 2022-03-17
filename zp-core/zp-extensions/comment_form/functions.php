@@ -728,7 +728,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 						$commentcheck['title'] = $item->getTitle('all');
 						switch ($item->table) {
 							case 'albums':
-								$commentcheck['folder'] = $item->getFileName();
+								$commentcheck['folder'] = $item->getName();
 								$commentcheck['albumtitle'] = $commentcheck['title'];
 								break;
 							case 'images':

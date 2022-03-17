@@ -1256,7 +1256,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getName())); ?>">
 						<img src="images/view.png" alt="" />
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2011,7 +2011,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 					?>
-					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getFileName())); ?>">
+					<a href="<?php echo WEBPATH . "/index.php?album=" . html_encode(pathurlencode($album->getName())); ?>">
 						<img src="images/view.png" alt="" />
 						<strong><?php echo gettext('View Album'); ?></strong>
 					</a>
@@ -2200,7 +2200,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						if ($album->getCommentsAllowed()) {
 							if ($enableEdit) {
 								?>
-								<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
+								<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Disable comments'); ?>">
 									<?php
 								}
 								?>
@@ -2214,7 +2214,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						} else {
 							if ($enableEdit) {
 								?>
-								<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFileName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
+								<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getName()); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit') ?>" title="<?php echo gettext('Enable comments'); ?>">
 									<?php
 								}
 								?>
@@ -2291,7 +2291,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				if ($enableEdit) {
 					?>
 					<div class="page-list_icon">
-						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
+						<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
 					</div>
 					<?php
 				}
@@ -2540,7 +2540,7 @@ function processImageEdit($image, $index, $massedit = true) {
 						break;
 				}
 				if ($success) {
-					$suffix = getSuffix($image->getFilename());
+					$suffix = getSuffix($image->getName());
 					$success_final = $_zp_graphics->imageOutput($im, $suffix, $fullimage);
 					if($success_final) {
 						Gallery::clearCache(SERVERCACHE . '/' . $album->name);

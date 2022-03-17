@@ -402,7 +402,7 @@ function getRandomImages($daily = false) {
 	$images = filterImageQuery($result, NULL);
 	if ($images) {
 		if ($daily) {
-			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getName());
 			setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 		return $image;
@@ -459,7 +459,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 			}
 		}
 	} else {
-		$albumfolder = $album->getFileName();
+		$albumfolder = $album->getName();
 		if ($album->isMyItem(LIST_RIGHTS)) {
 			$imageWhere = '';
 			$albumInWhere = '';
@@ -494,7 +494,7 @@ function getRandomImagesAlbum($rootAlbum = NULL, $daily = false) {
 	}
 	if ($image) {
 		if ($daily) {
-			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getName());
 			setThemeOption('picture_of_the_day:' . $album->name, serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 	}

@@ -624,7 +624,7 @@ function getPictureOfTheDay($albumfolder = '', $collection = false) {
 	}
 	$randomimage = getImageStatistic(1, 'random', $albumfolder, $collection);
 	if ($randomimage) {
-		$potd = array('day' => time(), 'folder' => $randomimage[0]->getAlbumName(), 'filename' => $randomimage[0]->getFileName());
+		$potd = array('day' => time(), 'folder' => $randomimage[0]->getAlbumName(), 'filename' => $randomimage[0]->getName());
 		setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		return $randomimage[0];
 	}

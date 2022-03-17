@@ -1342,7 +1342,7 @@ echo "\n</head>";
 															if (!$singleimage) {
 																?>
 																<div class = "page-list_icon">
-																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getFileName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
+																	<input class = "checkbox" type = "checkbox" name = "ids[]" value = "<?php echo $image->getName(); ?>" onclick = "triggerAllBox(this.form, 'ids[]', this.for
 																																			m.allbox);" />
 																</div>
 																<?php

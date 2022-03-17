@@ -367,16 +367,16 @@ class Gallery {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
 							if ($includetitles) {
-								$allalbums[$album->getFileName()] = $album->getTitle();
+								$allalbums[$album->getName()] = $album->getTitle();
 							} else {
-								$allalbums[] = $album->getFileName();
+								$allalbums[] = $album->getName();
 							}
 						}
 					} else {
 						if ($includetitles) {
-							$allalbums[$album->getFileName()] = $album->getTitle();
+							$allalbums[$album->getName()] = $album->getTitle();
 						} else {
-							$allalbums[] = $album->getFileName();
+							$allalbums[] = $album->getName();
 						}
 						$allalbums = array_merge($allalbums, $this->getAllAlbums($album, $rights));
 					}
@@ -448,16 +448,16 @@ class Gallery {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
 							if ($includetitles) {
-								$allalbums[$album->getFileName()] = $album->getTitle();
+								$allalbums[$album->getName()] = $album->getTitle();
 							} else {
-								$allalbums[] = $album->getFileName();
+								$allalbums[] = $album->getName();
 							}
 						}
 					} else {
 						if ($includetitles) {
-							$allalbums[$album->getFileName()] = $album->getTitle();
+							$allalbums[$album->getName()] = $album->getTitle();
 						} else {
-							$allalbums[] = $album->getFileName();
+							$allalbums[] = $album->getName();
 						}
 						if ($keeplevel_sortorder) {
 							$allalbums = array_merge($allalbums, $this->getAllAlbumsFromDB($keeplevel_sortorder, $album, $rights, $includetitles));

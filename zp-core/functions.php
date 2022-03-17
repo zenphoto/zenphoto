@@ -876,7 +876,7 @@ function getAllSubAlbumIDs($albumfolder = '') {
 	global $_zp_current_album, $_zp_db;
 	if (empty($albumfolder)) {
 		if (isset($_zp_current_album)) {
-			$albumfolder = $_zp_current_album->getFileName();
+			$albumfolder = $_zp_current_album->getName();
 		} else {
 			return null;
 		}

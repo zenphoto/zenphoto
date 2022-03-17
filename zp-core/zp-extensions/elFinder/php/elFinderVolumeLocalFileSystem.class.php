@@ -1367,7 +1367,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
                     break;
                 }
                 if ($node->isDir()) {
-                    if ($this->stripos($node->getFilename(), $q) !== false) {
+                    if ($this->stripos($node->getName(), $q) !== false) {
                         $match[] = $key;
                     }
                 } else {
@@ -1422,7 +1422,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
     {
         /* @var FilesystemIterator $file */
         /* @var RecursiveDirectoryIterator $iterator */
-        $name = $file->getFilename();
+        $name = $file->getName();
         if ($this->doSearchCurrentQuery['excludes']) {
             foreach ($this->doSearchCurrentQuery['excludes'] as $exclude) {
                 if ($this->stripos($name, $exclude) !== false) {

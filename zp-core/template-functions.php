@@ -1255,7 +1255,7 @@ function printBareAlbumTitle() {
  */
 function albumNumber() {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
-	$name = $_zp_current_album->getFileName();
+	$name = $_zp_current_album->getName();
 	if (in_context(ZP_SEARCH)) {
 		$albums = $_zp_current_search->getAlbums();
 	} else if (in_context(ZP_ALBUM)) {
@@ -2248,7 +2248,7 @@ function printBareImageTitle() {
  */
 function imageNumber() {
 	global $_zp_current_image, $_zp_current_search, $_zp_current_album;
-	$name = $_zp_current_image->getFileName();
+	$name = $_zp_current_image->getName();
 	if (in_context(ZP_SEARCH) || (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED))) {
 		$folder = $_zp_current_image->imagefolder;
 		$images = $_zp_current_search->getImages();
