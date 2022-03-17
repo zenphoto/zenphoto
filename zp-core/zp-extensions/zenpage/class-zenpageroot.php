@@ -29,19 +29,47 @@ class ZenpageRoot extends ThemeObject {
 	}
 
 	/**
-	 * Returns the titlelink
+	 * Returns the name (titlelink)
 	 *
+	 * @since ZenphotoCMS 1.6
+	 * 
 	 * @return string
 	 */
-	function getTitlelink() {
+	function getName() {
 		return $this->get("titlelink");
 	}
 
 	/**
+	 * sets the name (title link)
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param $v
+	 */
+	function setName($v) {
+		$this->set("titlelink", $v);
+	}
+
+	/**
+	 * Returns the titlelink
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 - use getName() instead
+	 * 
+	 * @return string
+	 */
+	function getTitlelink() {
+		deprecationNotice(gettext('Use getName() instead.'));
+		return $this->getName();
+	}
+
+	/**
 	 * sets the title link
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 - use setName() instead
 	 * @param $v
 	 */
 	function setTitlelink($v) {
+		deprecationNotice(gettext('Use setName() instead.'));
 		$this->set("titlelink", $v);
 	}
 	
