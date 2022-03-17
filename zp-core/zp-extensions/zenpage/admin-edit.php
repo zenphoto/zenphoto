@@ -297,7 +297,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								}
 								?>
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
-								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
+								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getName()); ?>" />
 								<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
 								<?php
 								if (is_AdminEditPage("newsarticle")) {
@@ -357,9 +357,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (!$result->transient) {
 											if (is_AdminEditPage("newscategory")) {
 												?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 											<?php } else { ?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 												<?php
 											}
 										}
@@ -730,7 +730,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													echo gettext("A search engine friendly <em>titlelink</em> (aka slug) without special characters to be used in URLs is generated from the title of the currently chosen language automatically. You can edit it manually later after saving if necessary.");
 												} else {
 													?>
-													<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
+													<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getName(); ?>" disabled="disabled" />
 													<?php
 												}
 												?>
@@ -817,11 +817,11 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												} else {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												}
 											}

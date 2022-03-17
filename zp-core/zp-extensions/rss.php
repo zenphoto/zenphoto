@@ -304,7 +304,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 		case 'category':
 			if (getOption('RSS_articles')) {
 				if (empty($addl) && !is_null($_zp_current_category)) {
-					$addl = $_zp_current_category->getTitlelink();
+					$addl = $_zp_current_category->getName();
 				}
 				if (empty($addl)) {
 					$link = array('rss' => 'news');

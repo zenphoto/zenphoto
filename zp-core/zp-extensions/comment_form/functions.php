@@ -359,19 +359,19 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				}
 				break;
 			case "news":
-				$url = "p=news&title=" . urlencode($receiver->getTitlelink());
+				$url = "p=news&title=" . urlencode($receiver->getName());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your article “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your article “%1$s”.'), $receiver->getName());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your article “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your article “%1$s”.'), $receiver->getName());
 				}
 				break;
 			case "pages":
-				$url = "p=pages&title=" . urlencode($receiver->getTitlelink());
+				$url = "p=pages&title=" . urlencode($receiver->getName());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your page “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your page “%1$s”.'), $receiver->getName());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your page “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your page “%1$s”.'), $receiver->getName());
 				}
 				break;
 			default: // all image types
@@ -485,10 +485,10 @@ function comment_form_handle_comment() {
 			$redirectTo = $_zp_current_album->getLink();
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 			$commentobject = $_zp_current_zenpage_news;
-			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();
+			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getName();
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			$commentobject = $_zp_current_zenpage_page;
-			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getTitlelink();
+			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getName();
 		} else {
 			$commentobject = NULL;
 			$error = gettext('Comment posted on unknown page!');
@@ -738,7 +738,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 								break;
 							case 'news':
 							case 'pages':
-								$commentcheck['titlelink'] = $item->getTitlelink();
+								$commentcheck['titlelink'] = $item->getName();
 								break;
 						}
 						$commentcheck['pubdate'] = $commentcheck['date']; //	for RSS
@@ -786,7 +786,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				// add the other stuff people want
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
-					$comment['titlelink'] = $item->getTitlelink();
+					$comment['titlelink'] = $item->getName();
 					$comment['title'] = $item->getTitle('all');
 					$comments[$key] = $comment;
 				}
@@ -800,7 +800,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				// add the other stuff people want
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
-					$comment['titlelink'] = $item->getTitlelink();
+					$comment['titlelink'] = $item->getName();
 					$comment['title'] = $item->getTitle('all');
 					$comments[$key] = $comment;
 				}

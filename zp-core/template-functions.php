@@ -4200,7 +4200,7 @@ function getPageRedirect() {
     case 'news.php':
       $action = '/index.php?userlog=1&p=news';
       if (!is_null($_zp_current_zenpage_news)) {
-        $action .= '&title=' . urlencode($_zp_current_zenpage_news->getTitlelink());
+        $action .= '&title=' . urlencode($_zp_current_zenpage_news->getName());
       }
       break;
     case 'password.php':

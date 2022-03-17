@@ -949,7 +949,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_zenpage_page)) {
 			$pages = $_zp_current_search->getPages();
 			if (!empty($pages)) {
-				$tltlelink = $_zp_current_zenpage_page->getTitlelink();
+				$tltlelink = $_zp_current_zenpage_page->getName();
 				foreach ($pages as $apage) {
 					if ($apage == $tltlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
@@ -961,7 +961,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_zenpage_news)) {
 			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
-				$tltlelink = $_zp_current_zenpage_news->getTitlelink();
+				$tltlelink = $_zp_current_zenpage_news->getName();
 				foreach ($news as $anews) {
 					if ($anews['titlelink'] == $tltlelink) {
 						$context = $context | ZP_SEARCH_LINKED;

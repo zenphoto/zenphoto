@@ -301,7 +301,7 @@ class Zenpage {
 		}
 		$newsCacheIndex = "$sortorder-$sortdirection-$published" . (bool) $sticky;
 		if ($category) {
-			$newsCacheIndex .= '-' . $category->getTitlelink();
+			$newsCacheIndex .= '-' . $category->getName();
 		}
 		if($author) {
 			$newsCacheIndex .= '-' . $author;
@@ -311,7 +311,7 @@ class Zenpage {
 		} else {
 			$show = $currentcategory = false;
 			if ($category) {
-				$currentcategory = $category->getTitlelink();
+				$currentcategory = $category->getName();
 				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();

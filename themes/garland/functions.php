@@ -109,7 +109,7 @@ function footer() {
 					break;
 				case 'news.php':
 					if (is_NewsCategory()) {
-						printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getTitlelink());
+						printRSSLink('Category', '', 'RSS', '', true, null, '', NULL, $_zp_current_category->getName());
 					} else {
 						printRSSLink('News', '', 'RSS', '');
 					}

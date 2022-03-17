@@ -857,7 +857,7 @@ function printZenpagePagesSelector($current) {
 			for ($count = 1; $count <= $level; $count++) {
 				$arrow .= "» ";
 			}
-			echo "<option value = '" . html_encode($pageobj->getTitlelink()) . "'" . $selected . '>';
+			echo "<option value = '" . html_encode($pageobj->getName()) . "'" . $selected . '>';
 			echo $arrow . $pageobj->getTitle() . unpublishedZenphotoItemCheck($pageobj) . "</option>";
 		}
 		?>
@@ -893,7 +893,7 @@ function printZenpageNewsCategorySelector($current) {
 			foreach ($getparents as $parent) {
 				$levelmark .= '» ';
 			}
-			echo "<option value = '" . html_encode($catobj->getTitlelink()) . "'" . $selected . '>';
+			echo "<option value = '" . html_encode($catobj->getName()) . "'" . $selected . '>';
 			echo $levelmark . $catobj->getTitle() . "</option>"
 
 			;

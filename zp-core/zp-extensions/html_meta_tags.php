@@ -295,7 +295,7 @@ class htmlmetatags {
 						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
 						$author = $_zp_current_zenpage_news->getAuthor(true);
 					} else if (is_NewsCategory()) {
-						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
+						$pagetitle = $_zp_current_category->getName() . " - ";
 						$date = strftime(DATE_FORMAT);
 						$desc = trim(getBare($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
@@ -465,16 +465,16 @@ class htmlmetatags {
 								case 'news.php':
 									if (function_exists("is_NewsArticle")) {
 										if (is_NewsArticle()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getTitlelink()) . '/';
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getName()) . '/';
 										} else if (is_NewsCategory()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink()) . '/';
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getName()) . '/';
 										} else {
 											$altlink .= '/' . _NEWS_ . '/';
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink()) . '/';
+									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getName()) . '/';
 									break;
 								case 'archive.php':
 									$altlink .= '/' . _ARCHIVE_ . '/';

@@ -327,8 +327,8 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getTitlelink() . "','','','" . $newsobj->getTitlelink() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
-					echo " <a href='zoom.php?news=" . urlencode($newsobj->getTitlelink()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getName() . "','','','" . $newsobj->getName() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
+					echo " <a href='zoom.php?news=" . urlencode($newsobj->getName()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
 					$count = '';
@@ -509,7 +509,7 @@ function printAllNestedList() {
 					break;
 			}
 			$itemsortorder = $obj->getSortOrder();
-			$itemtitlelink = $obj->getTitlelink();
+			$itemtitlelink = $obj->getName();
 			$itemtitle = $obj->getTitle();
 			$itemid = $obj->getID();
 			$order = explode('-', $itemsortorder);
@@ -655,10 +655,10 @@ function printTinyZenpageCategorySelector($currentpage = '') {
 				}
 				$title = $catobj->getTitle();
 				if (empty($title)) {
-					$title = '*' . $catobj->getTitlelink() . '*';
+					$title = '*' . $catobj->getName() . '*';
 				}
 				if ($count != " (0)") {
-					echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "&amp;category=" . $catobj->getTitlelink() . "'>" . $levelmark . $title . $count . "</option>\n";
+					echo "<option $selected value='tinyzenpage.php?zenpage=articles&amp;page=" . $currentpage . "&amp;category=" . $catobj->getName() . "'>" . $levelmark . $title . $count . "</option>\n";
 				}
 			}
 			?>

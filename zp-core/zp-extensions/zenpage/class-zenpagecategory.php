@@ -292,7 +292,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$parents = array();
 			$cat = $this;
 			while (!is_null($cat = $cat->getParent())) {
-				array_unshift($parents, $cat->getTitlelink());
+				array_unshift($parents, $cat->getName());
 			}
 			return $this->parents = $parents;
 		} else {
@@ -389,7 +389,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				$allowed = $this->getParents();
-				array_unshift($allowed, $this->getTitlelink());
+				array_unshift($allowed, $this->getName());
 				$overlap = array_intersect($mycategories, $allowed);
 				if (!empty($overlap)) {
 					return true;
@@ -467,7 +467,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
-				if ($this->getTitlelink() == $article['titlelink']) {
+				if ($this->getName() == $article['titlelink']) {
 					$this->index = $i;
 					break;
 				}
@@ -515,7 +515,7 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getName() . '/' . $pager, "/index.php?p=news&category=" . $this->getName() . $page), $this, NULL);
 	}
 
 }

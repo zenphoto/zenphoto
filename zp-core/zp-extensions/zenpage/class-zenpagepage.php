@@ -226,7 +226,7 @@ class ZenpagePage extends ZenpageItems {
 			$parents = array();
 			$page = $this;
 			while (!is_null($page = $page->getParent())) {
-				array_unshift($parents, $page->getTitlelink());
+				array_unshift($parents, $page->getName());
 			}
 			return $this->parents = $parents;
 		} else {
@@ -340,7 +340,7 @@ class ZenpagePage extends ZenpageItems {
 			}
 			$mypages = $_zp_current_admin_obj->getObjects('pages');
 			if (!empty($mypages)) {
-				if (array_search($this->getTitlelink(), $mypages) !== false) {
+				if (array_search($this->getName(), $mypages) !== false) {
 					return true;
 				}
 			}
@@ -354,7 +354,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink() . '/', '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getName() . '/', '/index.php?p=pages&title=' . $this->getName()), $this, NULL);
 	}
 
 }

@@ -57,13 +57,13 @@ if (in_context(ZP_INDEX)) {
 					$_zp_userlogin_redirect['image'] = $_zp_current_image->filename;
 				}
 				if (in_context(ZP_ZENPAGE_PAGE)) {
-					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_page->getTitlelink();
+					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_page->getName();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_news->getTitlelink();
+					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_news->getName();
 				}
 				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$_zp_userlogin_redirect['category'] = $_zp_current_category->getTitlelink();
+					$_zp_userlogin_redirect['category'] = $_zp_current_category->getName();
 				}
 				if (isset($_GET['p'])) {
 					$_zp_userlogin_redirect['p'] = sanitize($_GET['p']);

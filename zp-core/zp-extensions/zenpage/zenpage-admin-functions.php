@@ -215,7 +215,7 @@ function printPagesListTable($page, $flag) {
 		<div class="page-list_title">
 			<?php
 			if (checkIfLockedPage($page)) {
-				echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getTitlelink()) . "'> ";
+				echo "<a href='admin-edit.php?page&amp;titlelink=" . urlencode($page->getName()) . "'> ";
 				checkForEmptyTitle($page->getTitle(), "page");
 				echo "</a>" . checkHitcounterDisplay($page->getHitcounter());
 			} else {
@@ -253,13 +253,13 @@ function printPagesListTable($page, $flag) {
 						<?php
 							if ($page->getCommentsAllowed()) {
 								?>
-								<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
+								<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Disable comments'); ?>">
 									<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 								</a>
 								<?php
 							} else {
 								?>
-								<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
+								<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo gettext('Enable comments'); ?>">
 									<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 								</a>
 								<?php
@@ -277,7 +277,7 @@ function printPagesListTable($page, $flag) {
 			<?php } ?>
 
 			<div class="page-list_icon">
-				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()); ?>" title="<?php echo gettext("View page"); ?>">
+				<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getName()); ?>" title="<?php echo gettext("View page"); ?>">
 					<img src="images/view.png" alt="" title="<?php echo gettext("view"); ?>" />
 				</a>
 			</div>
@@ -287,18 +287,18 @@ function printPagesListTable($page, $flag) {
 				if (extensionEnabled('hitcounter')) {
 					?>
 					<div class="page-list_icon">
-						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
+						<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getName()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter') ?>" title="<?php echo gettext("Reset hitcounter"); ?>">
 							<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
 					</div>
 					<?php
 				}
 				?>
 				<div class="page-list_icon">
-					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
+					<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getName(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete') ?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
 						<img src="../../images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
 				</div>
 				<div class="page-list_icon">
-					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 				</div>
 			<?php } else { ?>
 				<div class="page-list_icon">
@@ -529,7 +529,7 @@ function printCategorySelection($id = '', $option = '') {
 			}
 		}
 		$catname = $catobj->getTitle();
-		$catlink = $catobj->getTitlelink();
+		$catlink = $catobj->getName();
 		if ($catobj->getPassword()) {
 			$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" alt="' . gettext('password protected') . '" />';
 		} else {
@@ -770,10 +770,10 @@ function printCategoryDropdown() {
 				}
 				$title = $catobj->getTitle();
 				if (empty($title)) {
-					$title = '*' . $catobj->getTitlelink() . '*';
+					$title = '*' . $catobj->getName() . '*';
 				}
 				if ($count != " (0)") {
-					echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('category' => $catobj->getTitlelink()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
+					echo "<option $selected value='admin-news-articles.php" . getNewsAdminOptionPath(array_merge(array('category' => $catobj->getName()), $option)) . "'>" . $levelmark . $title . $count . "</option>\n";
 				}
 			}
 			?>
@@ -984,12 +984,12 @@ function printCategoryListSortableTable($cat, $flag) {
 	if ($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
-		$cattitle = "<span style='color:red; font-weight: bold'> <strong>*</strong>" . $cat->getTitlelink() . "*</span>";
+		$cattitle = "<span style='color:red; font-weight: bold'> <strong>*</strong>" . $cat->getName() . "*</span>";
 	}
 	?>
 	<div class='page-list_row'>
 		<div class='page-list_title' >
-			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getTitlelink() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
+			<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=" . $cat->getName() . "' title='" . gettext('Edit this category') . "'>" . $cattitle . "</a>" . checkHitcounterDisplay($cat->getHitcounter()); ?>
 		</div>
 		<div class="page-list_extra">
 			<?php echo $count; ?>
@@ -1009,13 +1009,13 @@ function printCategoryListSortableTable($cat, $flag) {
 				if ($cat->isPublished()) {
 					$title = gettext("Un-publish");
 					?>
-					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
+					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
 						<img src="../../images/pass.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				} else {
 					$title = gettext("Publish");
 					?>
-					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
+					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
 						<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
 					<?php
 				}
@@ -1027,7 +1027,7 @@ function printCategoryListSortableTable($cat, $flag) {
 					<?php
 				} else {
 					?>
-					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getTitlelink()); ?>" title="<?php echo gettext("View category"); ?>">
+					<a href="../../../index.php?p=news&amp;category=<?php echo js_encode($cat->getName()); ?>" title="<?php echo gettext("View category"); ?>">
 						<img src="images/view.png" alt="view" />
 					</a>
 				<?php } ?>
@@ -1045,12 +1045,12 @@ function printCategoryListSortableTable($cat, $flag) {
 			}
 			?>
 			<div class="page-list_icon"><a
-					href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
+					href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getName()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category') ?>',deleteCategory)"
 					title="<?php echo gettext("Delete Category"); ?>"><img
 						src="../../images/fail.png" alt="<?php echo gettext("Delete"); ?>"
 						title="<?php echo gettext("Delete Category"); ?>" /></a>
 			</div>
-			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getTitlelink(); ?>"
+			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $cat->getName(); ?>"
 																				 onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 			</div>
 		</div>
@@ -1075,7 +1075,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 		}
 	}
 	$catname = $cat->getTitle();
-	$catlink = $cat->getTitlelink();
+	$catlink = $cat->getName();
 	if ($cat->getPassword()) {
 		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" alt="' . gettext('password protected') . '" />';
 	} else {
@@ -1524,7 +1524,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 		}
 	}
 	?>
-	<a href="<?php echo $action; ?>&amp;titlelink=<?php echo html_encode($object->getTitlelink()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+	<a href="<?php echo $action; ?>&amp;titlelink=<?php echo html_encode($object->getName()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
 		<img src="<?php echo $icon; ?>" alt="<?php echo $alt; ?>" title= "<?php echo $title; ?>" />
 	</a>
 	<?php

@@ -123,7 +123,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'news':
-				if (get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
+				if (get_class($current) != 'ZenpageNews' || $current->getName() != $item['titlelink']) {
 
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
@@ -132,7 +132,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'pages':
-				if (get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
+				if (get_class($current) != 'ZenpagePage' || $current->getName() != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;

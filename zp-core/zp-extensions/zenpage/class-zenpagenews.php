@@ -334,7 +334,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getTitlelink() . '/', '/index.php?p=news&title=' . $this->getTitlelink()), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getName() . '/', '/index.php?p=news&title=' . $this->getName()), $this, NULL);
 	}
 
 	/**
@@ -348,7 +348,7 @@ class ZenpageNews extends ZenpageItems {
 			$articles = $_zp_zenpage->getArticles(0, NULL, true);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
-				if ($this->getTitlelink() == $article['titlelink']) {
+				if ($this->getName() == $article['titlelink']) {
 					$this->index = $i;
 					break;
 				}
