@@ -227,11 +227,24 @@ class Image extends MediaObject {
 
 	/**
 	 * Returns the image filename
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @return string
+	 */
+	function getName() {
+		return $this->filename;
+	}
+
+	/**
+	 * Returns the image filename
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 - User getName() instead
 	 *
 	 * @return string
 	 */
 	function getFileName() {
-		return $this->filename;
+		deprecationNotice(gettext('Use geName() instead'));
+		return $this->getName();
 	}
 
 	/**
