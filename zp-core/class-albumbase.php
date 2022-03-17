@@ -103,23 +103,39 @@ class AlbumBase extends MediaObject {
 		$this->set('title', sanitize($title, 2));
 		return true;
 	}
-
+	
 	/**
 	 * Returns the folder on the filesystem
-	 *
+	 * 
+	 * @since ZenphotoCMS 1.6
 	 * @return string
 	 */
-	function getFileName() {
+	function getName() {
 		return $this->name;
 	}
 
 	/**
 	 * Returns the folder on the filesystem
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 – Use getName() instead
 	 *
 	 * @return string
 	 */
+	function getFileName() {
+		deprecationNotice(gettext('Use getName() instead'));
+		return $this->getName();
+	}
+
+	/**
+	 * Returns the folder on the filesystem
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 – Use getName() instead
+	 * 
+	 * @return string
+	 */
 	function getFolder() {
-		return $this->name;
+		deprecationNotice(gettext('Use getName() instead'));
+		return $this->getName();
 	}
 
 	/**
