@@ -572,7 +572,7 @@ if (extensionEnabled('slideshow2')) {
 				$albumnr = $_zp_current_album->getID();
 			}
 			if ($albumnr) {
-				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder()) . '/' . _PAGE_ . '/slideshow/', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getFolder()));
+				$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getName()) . '/' . _PAGE_ . '/slideshow/', "index.php?p=slideshow&amp;album=" . urlencode($_zp_current_album->getName()));
 			} else {
 				$slideshowlink = getCustomPageURL('slideshow');
 				$slideshowhidden = '<input type="hidden" name="favorites_page" value="1" />' . "\n" . '<input type="hidden" name="title" value="' . $_zp_myfavorites->instance . '" />';
