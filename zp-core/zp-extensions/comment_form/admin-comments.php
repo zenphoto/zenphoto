@@ -16,14 +16,17 @@ if (isset($_GET['page'])) {
 	$page = '';
 }
 
-if (isset($_GET['fulltext']) && $_GET['fulltext'])
+if (isset($_GET['fulltext']) && $_GET['fulltext']) {
 	$fulltext = true;
-else
+} else {
 	$fulltext = false;
-if (isset($_GET['viewall']))
+}
+
+if (isset($_GET['viewall'])) {
 	$viewall = true;
-else
+} else {
 	$viewall = false;
+}
 
 /* handle posts */
 if (isset($_GET['action'])) {
@@ -311,16 +314,6 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 
 	<p><?php echo gettext("You can edit or delete comments."); ?></p>
 
-	<?php
-	if ($totalpages > 1) {
-		?>
-		<div align="center">
-			<?php adminPageNav($pagenum, $totalpages, '  admin-comments.php ', $fulltexturl); ?>
-		</div>
-		<?php
-	}
-	?>
-
 	<form class="dirty-check" name="comments" id="form_commentlist" action="?action=applycomments" method="post" onsubmit="return confirmAction();" autocomplete="off">
 		<?php XSRFToken('applycomments'); ?>
 		<input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
@@ -345,6 +338,19 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		</p>
 		<br class="clearall" /><br />
 		<table class="bordered">
+			
+				<?php
+				if ($totalpages > 1) {
+					?>
+					<tr>
+						<td id="imagenav" class="bordered" colspan="11">
+							<?php adminPageNav($pagenum, $totalpages, '  admin-comments.php ', $fulltexturl); ?>
+						</td>
+					</tr>
+					<?php
+				}
+			?>
+				
 			<tr>
 				<th colspan="11"><?php echo gettext("Edit this comment"); ?>
 					<?php
@@ -463,10 +469,20 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 																						onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" /></td>
 				</tr>
 			<?php } ?>
-
-
+			<?php
+				if ($totalpages > 1) {
+					?>
+					<tr>
+						<td  id="imagenavb" class="bordered" colspan="11">
+							<?php adminPageNav($pagenum, $totalpages, '  admin-comments.php ', $fulltexturl); ?>
+						</td>
+					</tr>
+					<?php
+				}
+			?>
 
 		</table>
+		
 		<p class="buttons"><button type="submit"><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 		<ul class="iconlegend">
 			<li><img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Private message"); ?></li>
@@ -478,6 +494,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		</ul>
 
 	</form>
+	
 
 	<?php
 }
