@@ -253,7 +253,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 		$fulltext = false;
 		$fulltexturl = '';
 	}
-	$allcomments = fetchComments(NULL);
+	$allcomments = getComments(NULL);
 
 	$pagenum = max((int) @$_GET['subpage'], 1);
 

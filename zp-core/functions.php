@@ -686,91 +686,6 @@ function disableExtension($extension, $persistent = true) {
 }
 
 /**
- * Gets an array of comments for the current admin
- *
- * @param int $number how many comments desired
- * @return array
- */
-function fetchComments($number) {
-	global $_zp_db;
-	if ($number) {
-		$limit = " LIMIT $number";
-	} else {
-		$limit = '';
-	}
-
-	$comments = array();
-	if (zp_loggedin(ADMIN_RIGHTS | COMMENT_RIGHTS)) {
-		if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-			$sql = "SELECT *, (date + 0) AS date FROM " . $_zp_db->prefix('comments') . " ORDER BY id DESC$limit";
-			$comments = $_zp_db->queryFullArray($sql);
-		} else {
-			$albumlist = getManagedAlbumList();
-			$albumIDs = array();
-			foreach ($albumlist as $albumname) {
-				$subalbums = getAllSubAlbumIDs($albumname);
-				foreach ($subalbums as $ID) {
-					$albumIDs[] = $ID['id'];
-				}
-			}
-			if (count($albumIDs) > 0) {
-				$sql = "SELECT  *, (`date` + 0) AS date FROM " . $_zp_db->prefix('comments') . " WHERE ";
-
-				$sql .= " (`type`='albums' AND (";
-				$i = 0;
-				foreach ($albumIDs as $ID) {
-					if ($i > 0) {
-						$sql .= " OR ";
-					}
-					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=$ID)";
-					$i++;
-				}
-				$sql .= ")) ";
-				$sql .= " ORDER BY id DESC$limit";
-				$albumcomments = $_zp_db->query($sql);
-				if ($albumcomments) {
-					while ($comment = $_zp_db->fetchAssoc($albumcomments)) {
-						$comments[$comment['id']] = $comment;
-					}
-					$_zp_db->freeResult($albumcomments);
-				}
-				$sql = "SELECT *, " . $_zp_db->prefix('comments') . ".id as id, " .
-								$_zp_db->prefix('comments') . ".name as name, (" . $_zp_db->prefix('comments') . ".date + 0) AS date, " .
-								$_zp_db->prefix('images') . ".`albumid` as albumid," .
-								$_zp_db->prefix('images') . ".`id` as imageid" .
-								" FROM " . $_zp_db->prefix('comments') . "," . $_zp_db->prefix('images') . " WHERE ";
-
-				$sql .= "(`type` IN (" . zp_image_types("'") . ") AND (";
-				$i = 0;
-				foreach ($albumIDs as $ID) {
-					if ($i > 0) {
-						$sql .= " OR ";
-					}
-					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=" . $_zp_db->prefix('images') . ".id AND " . $_zp_db->prefix('images') . ".albumid=$ID)";
-					$i++;
-				}
-				$sql .= "))";
-				$sql .= " ORDER BY " . $_zp_db->prefix('images') . ".`id` DESC$limit";
-				$imagecomments = $_zp_db->query($sql);
-				if ($imagecomments) {
-					while ($comment = $_zp_db->fetchAssoc($imagecomments)) {
-						$comments[$comment['id']] = $comment;
-					}
-					$_zp_db->freeResult($imagecomments);
-				}
-				krsort($comments);
-				if ($number) {
-					if ($number < count($comments)) {
-						$comments = array_slice($comments, 0, $number);
-					}
-				}
-			}
-		}
-	}
-	return $comments;
-}
-
-/**
  * Populates and returns the $_zp_admin_album_list array
  * @return array
  */
@@ -2161,16 +2076,6 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 		}
 	}
 	return $db['value'];
-}
-
-/**
- * Returns true if all the right conditions are set to allow comments for the $type
- *
- * @param string $type Which comments
- * @return bool
- */
-function commentsAllowed($type) {
-	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
 }
 
 /**
