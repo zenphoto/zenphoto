@@ -136,8 +136,8 @@ if (isset($_REQUEST['logout'])) {
 		if (isset($_GET['searchfields'])) {
 			$redirect .= "&searchfields=" . sanitize($_GET['searchfields']);
 		}
-		if (isset($_GET['words'])) {
-			$redirect .= "&words=" . sanitize($_GET['words']);
+		if (isset($_GET['search'])) {
+			$redirect .= "&search=" . sanitize($_GET['search']);
 		}
 		if (isset($_GET['date'])) {
 			$redirect .= "&date=" . sanitize($_GET['date']);

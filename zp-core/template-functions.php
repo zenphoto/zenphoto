@@ -3869,7 +3869,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 			<?php echo $prevtext; ?>
 			<div>
 				<span class="tagSuggestContainer">
-					<input type="text" name="words" value="" id="search_input" size="10" />
+					<input type="text" name="search" value="" id="search_input" size="10" />
 				</span>
 				<?php if (count($fields) > 1 || $searchwords) { ?>
 					<a class="toggle_searchextrashow" href="#"><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>

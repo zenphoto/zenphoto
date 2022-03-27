@@ -119,8 +119,8 @@ class SearchEngine {
 			}
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
-		if (isset($_REQUEST['words'])) {
-			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['words'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
+		if (isset($_REQUEST['search'])) {
+			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['search'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
@@ -283,7 +283,7 @@ class SearchEngine {
 		$r = '';
 		$w = urlencode(trim($this->codifySearchString()));
 		if (!empty($w)) {
-			$r .= '&words=' . $w;
+			$r .= '&search=' . $w;
 		}
 		$d = trim($this->dates);
 		if (!empty($d)) {
@@ -414,7 +414,7 @@ class SearchEngine {
 			$p = substr($param, 0, $e);
 			$v = substr($param, $e + 1);
 			switch ($p) {
-				case 'words':
+				case 'search':
 					$this->words = urldecode($v);
 					break;
 				case 'date':
@@ -2229,7 +2229,7 @@ class SearchEngine {
 			if ($rewrite) {
 				$url .= urlencode($words) . '/';
 			} else {
-				$url .= "&words=" . urlencode($words);
+				$url .= "&search=" . urlencode($words);
 			}
 		}
 		if (!empty($dates)) {

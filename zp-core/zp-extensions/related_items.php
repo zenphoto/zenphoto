@@ -26,7 +26,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
 			}
 			$searchstring .= $bool . $tag;
 		}
-		$paramstr = urlencode('words') . '=' . $searchstring . '&searchfields=tags';
+		$paramstr = urlencode('search') . '=' . $searchstring . '&searchfields=tags';
 		if (!is_null($album)) {
 			$paramstr = '&albumname=' . urlencode($album);
 		}

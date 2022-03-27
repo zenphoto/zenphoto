@@ -64,7 +64,7 @@ if (isset($_POST['savealbum'])) {
 				$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
 			}
 		}
-		$words = sanitize($_POST['words']);
+		$words = sanitize($_POST['search']);
 
 	}
 	if (isset($_POST['thumb'])) {
@@ -205,7 +205,7 @@ while ($old != $albumname) {
 		<tr>
 			<td><?php echo gettext("Search criteria:"); ?></td>
 			<td>
-				<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
+				<input type="text" size="60" name="search" value="<?php echo html_encode($words); ?>" />
 				<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"' ?> /><?php echo gettext('Return albums found') ?></label>
 				<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"' ?> /><?php echo gettext('Return images found') ?></label>
 				<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items') ?></label>

@@ -71,8 +71,8 @@ if (in_context(ZP_INDEX)) {
 				if (isset($_GET['searchfields'])) {
 					$_zp_userlogin_redirect['searchfields'] = sanitize($_GET['searchfields']);
 				}
-				if (isset($_GET['words'])) {
-					$_zp_userlogin_redirect['words'] = sanitize($_GET['words']);
+				if (isset($_GET['search'])) {
+					$_zp_userlogin_redirect['search'] = sanitize($_GET['search']);
 				}
 				if (isset($_GET['date'])) {
 					$_zp_userlogin_redirect['date'] = sanitize($_GET['date']);

@@ -96,7 +96,7 @@ if (!defined('WEBPATH'))
 										<?php
 									} else {
 										echo "<p>" . gettext('Sorry, no matches for your search.') . "</p>";
-										$_zp_current_search->setSearchParams('words=');
+										$_zp_current_search->setSearchParams('search=');
 									}
 									?>
 									<?php

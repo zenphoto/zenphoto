@@ -58,9 +58,9 @@ function zpRewriteURL($query) {
 					$redirectURL = _TAGS_;
 					unset($query['searchfields']);
 				}
-				if (isset($query['words'])) {
-					$redirectURL .= '/' . $query['words'];
-					unset($query['words']);
+				if (isset($query['search'])) {
+					$redirectURL .= '/' . $query['search'];
+					unset($query['search']);
 				}
 				break;
 			default:
