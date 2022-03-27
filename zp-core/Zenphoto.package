@@ -431,7 +431,6 @@ zp-core/gd_fonts/automatic.gdf
 zp-core/gd_fonts/azimov.gdf
 zp-core/gd_fonts/bubblebath.gdf
 zp-core/gd_fonts/cry.gdf
-zp-core/githead
 zp-core/global-definitions.php
 zp-core/gpl-2.0-standalone.htm
 zp-core/htaccess
@@ -785,6 +784,11 @@ zp-core/locale/tr_TR/flag.png
 zp-core/locale/tr_TR/LC_MESSAGES
 zp-core/locale/tr_TR/LC_MESSAGES/zenphoto.mo
 zp-core/locale/tr_TR/LC_MESSAGES/zenphoto.po
+zp-core/locale/zh_CN
+zp-core/locale/zh_CN/flag.png
+zp-core/locale/zh_CN/LC_MESSAGES
+zp-core/locale/zh_CN/LC_MESSAGES/zenphoto.mo
+zp-core/locale/zh_CN/LC_MESSAGES/zenphoto.po
 zp-core/locale/zh_Hans_CN
 zp-core/locale/zh_Hans_CN/flag.png
 zp-core/locale/zh_Hans_CN/LC_MESSAGES
@@ -799,6 +803,7 @@ zp-core/no_uploader.php
 zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pluginDoc.php
+zp-core/rewrite-rules.txt
 zp-core/setup.php
 zp-core/site_upgrade
 zp-core/site_upgrade/closed.css
@@ -822,7 +827,6 @@ zp-core/watermarks/watermark-text.png
 zp-core/watermarks/watermark-video.png
 zp-core/watermarks/watermark.png
 zp-core/zenphoto_cfg.txt
-zp-core/zenphoto-rewrite.txt
 zp-core/Zenphoto.package
 zp-core/zp-extensions
 zp-core/zp-extensions/admin-approval.php
@@ -1772,14 +1776,9 @@ zp-core/zp-extensions/uploader_jQuery/js/vendor/jquery.ui.widget.js
 zp-core/zp-extensions/uploader_jQuery/upload_form.php
 zp-core/zp-extensions/uploader_jQuery/uploader.php
 zp-core/zp-extensions/uploader_jQuery/wdio
-zp-core/zp-extensions/uploader_jQuery/wdio/.eslintrc.js
-zp-core/zp-extensions/uploader_jQuery/wdio/.prettierrc.js
 zp-core/zp-extensions/uploader_jQuery/wdio/assets
 zp-core/zp-extensions/uploader_jQuery/wdio/assets/black+white-3x2.jpg
 zp-core/zp-extensions/uploader_jQuery/wdio/assets/black+white-60x40.gif
-zp-core/zp-extensions/uploader_jQuery/wdio/bin
-zp-core/zp-extensions/uploader_jQuery/wdio/bin/forward-ports.sh
-zp-core/zp-extensions/uploader_jQuery/wdio/bin/safaridriver.sh
 zp-core/zp-extensions/uploader_jQuery/wdio/conf
 zp-core/zp-extensions/uploader_jQuery/wdio/conf/chrome.js
 zp-core/zp-extensions/uploader_jQuery/wdio/conf/edge.js
@@ -1850,4 +1849,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1852
+1851

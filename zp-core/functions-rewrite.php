@@ -3,13 +3,13 @@
 /**
  * "Rewrite" handling for Zenphoto
  *
- * The basic rules are found in the zenphoto-rewrite.txt file. Additional rules can be provided by plugins. But
+ * The basic rules are found in the rewrite-rules.txt file. Additional rules can be provided by plugins. But
  * for the plugin to load in time for the rules to be seen it must be either a CLASS_PLUGIN or a FEATURE_PLUGIN.
  * Plugins add rules by inserting them into the $_zp_conf_vars['special_pages'] array. Each "rule" is an array
  * of three elements: <var>define</var>, <var>rewrite</var>, and (optionally) <var>rule</rule>.
  *
  * Elemments which have a <var>define</var> and no <var>rule</rule> are processed by rewrite rules in the
- * zenphoto-rewrite.txt file and the <var>define</var> is used internally to Zenphoto to reference
+ * rewrite-rules.txt file and the <var>define</var> is used internally to Zenphoto to reference
  * the rewrite text when building links.
  *
  * Elements with a <var>rule</rule> defined are processed after Search, Pages, and News rewrite rules and before
@@ -107,7 +107,7 @@ function rewriteHandler() {
 function getRules() {
 	global $_zp_conf_vars;
 	//	load rewrite rules
-	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto-rewrite.txt'));
+	$rules = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/rewrite-rules.txt'));
 
 	$definitions = $specialPageRules = array();
 	foreach ($_zp_conf_vars['special_pages'] as $special) {
