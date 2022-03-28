@@ -18,8 +18,8 @@
 	RewriteRule ^%ARCHIVE%/(.*)/?$     										index.php?p=search&date=$1 [L,QSA]
 	RewriteRule ^%TAGS%/(.*)/([0-9]+)/?$ 									index.php?p=search&searchfields=tags&search=$1&page=$2 [L,QSA]
 	RewriteRule ^%TAGS%/(.*)/?$ 													index.php?p=search&searchfields=tags&search=$1 [L,QSA]
-	RewriteRule ^%SEARCH%/(.*)/([0-9]+)/?$    						index.php?p=search&search=$1&page=$2 [L,QSA]
-	RewriteRule ^%SEARCH%/(.*)/?$     										index.php?p=search&search=$1 [L,QSA]
+	#RewriteRule ^%SEARCH%/([0-9]+)/?$											index.php?p=search&page=$1 [L,QSA]
+	#RewriteRule ^%SEARCH%/?$															index.php?p=search [L,QSA]
 
 	#### Rules created by plugins
 	_SPECIAL_
