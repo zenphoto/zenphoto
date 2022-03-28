@@ -849,7 +849,7 @@ function getPageNumURL($page, $total = null) {
 		$searchwords = $_zp_current_search->codifySearchString();
 		$searchdate = $_zp_current_search->getSearchDate();
 		$searchfields = $_zp_current_search->getSearchFields(true);
-		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $_zp_current_search->getAlbumList()));
+		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else if (in_context(ZP_ALBUM)) {
 		return $_zp_current_album->getLink($page);
@@ -1430,7 +1430,7 @@ function getParentBreadcrumb() {
 		if (!is_array($search_album_list)) {
 			$search_album_list = array();
 		}
-		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $search_album_list));
+		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $search_album_list));
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			if (empty($searchdate)) {
@@ -3451,7 +3451,7 @@ function printTags($option = 'links', $preText = NULL, $class = NULL, $separator
 				$separator = "";
 			}
 			if ($option === "links") {
-				$links1 = "<a href=\"" . html_encode(getSearchURL(SearchEngine::getSearchQuote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
+				$links1 = "<a href=\"" . html_encode(SearchEngine::getSearchURL(SearchEngine::getSearchQuote($atag), '', 'tags', 0, array('albums' => $albumlist))) . "\" title=\"" . html_encode($atag) . "\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -3536,7 +3536,7 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
 						} else {
 							$albumlist = NULL;
 						}
-						$link = getSearchURL(SearchEngine::getSearchQuote($key), '', 'tags', 0, array('albums' => $albumlist));
+						$link = SearchEngine::getSearchURL(SearchEngine::getSearchQuote($key), '', 'tags', 0, array('albums' => $albumlist));
 						?>
 						<li>
 							<a href="<?php echo html_encode($link); ?>"<?php echo $size; ?>><?php echo $key . $counter; ?></a>
@@ -3666,7 +3666,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		} else {
 			$cl = '';
 		}
-		echo '<li' . $cl . '><a href="' . html_encode(getSearchURL('', $datekey, '', 0, array('albums' => $albumlist))) . '">' . $month . ' (' . $val . ')</a></li>' . "\n";
+		echo '<li' . $cl . '><a href="' . html_encode(SearchEngine::getSearchURL('', $datekey, '', 0, array('albums' => $albumlist))) . '">' . $month . ' (' . $val . ')</a></li>' . "\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }
@@ -4491,7 +4491,7 @@ function getUserURL($username, $resulttype = 'all') {
 			$fields = array('author');
 			break;
 	}
-	return getSearchURL(SearchEngine::getSearchQuote($username), '', $fields, 1, null);
+	return SearchEngine::getSearchURL(SearchEngine::getSearchQuote($username), '', $fields, 1, null);
 }
 
 /**

@@ -763,7 +763,7 @@ if (extensionEnabled('slideshow2')) {
 			$searchdate = $search->getSearchDate();
 			$searchfields = $search->getSearchFields(true);
 			$page = $search->page;
-			$returnpath = getSearchURL($searchwords, $searchdate, $searchfields, $page);
+			$returnpath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page);
 			$albumobj = new AlbumBase(NULL, false);
 			$albumobj->setTitle(gettext('Search'));
 			$albumobj->images = $search->getImages(0);
