@@ -21,7 +21,9 @@ class dynamicAlbum extends AlbumBase {
 		if (!is_dir(stripSuffix($this->localpath))) {
 			$this->linkname = stripSuffix($folder8);
 		}
-		$new = !$this->get('search_params');
+
+		$new = !$this->getSearchParams();
+		debuglog("Search params: " . $this->getSearchParams());
 		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
 			$constraints = '';
 			$data = file_get_contents($this->localpath);
@@ -61,7 +63,7 @@ class dynamicAlbum extends AlbumBase {
 				$this->save();
 				zp_apply_filter('new_album', $this);
 			}
-		}
+		} 
 		zp_apply_filter('album_instantiate', $this);
 	}
 
@@ -132,7 +134,8 @@ class dynamicAlbum extends AlbumBase {
 	 * @return string
 	 */
 	function getSearchParams() {
-		return $this->get('search_params');
+		$searchparams = str_replace('words=', 'search=', $this->get('search_params'));
+		return $searchparams;
 	}
 
 	/**
@@ -153,7 +156,7 @@ class dynamicAlbum extends AlbumBase {
 		if (!is_null($this->searchengine))
 			return $this->searchengine;
 		$this->searchengine = new SearchEngine(true);
-		$params = $this->get('search_params');
+		$params = $this->getSearchParams();
 		$params .= '&albumname=' . $this->name;
 		$this->searchengine->setSearchParams($params);
 		return $this->searchengine;
