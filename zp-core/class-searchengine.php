@@ -2214,10 +2214,12 @@ class SearchEngine {
 				$fields = explode(',', $fields);
 			}
 			$temp = $fields;
-			if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
-				$baseurl = SEO_WEBPATH . '/' . _TAGS_ . '/';
-				$is_tags = true;
-				$is_search = false;
+			if ($rewrite) {
+				if (count($fields) == 1 && array_shift($temp) == 'tags') {
+					$baseurl = SEO_WEBPATH . '/' . _TAGS_ . '/';
+					$is_tags = true;
+					$is_search = false;
+				}
 			} else {
 				$search = new SearchEngine();
 				$searchfiekds = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -2233,7 +2235,7 @@ class SearchEngine {
 			$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
 			$query['search'] = urlencode($words);
 		}
-		if (!empty($dates)) {
+		if ($is_archive) {
 			if (is_array($dates)) {
 				$dates = implode(',', $dates);
 			}
