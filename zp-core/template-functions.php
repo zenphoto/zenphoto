@@ -3779,7 +3779,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	if (empty($buttontext)) {
 		$buttontext = gettext("Search");
 	}
-	$zf = WEBPATH . "/" . ZENFOLDER;
 	$searchwords = $engine->codifySearchString();
 	if (substr($searchwords, -1, 1) == ',') {
 		$searchwords = substr($searchwords, 0, -1);
@@ -3812,11 +3811,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL,
 	if (empty($iconsource)) {
 		$iconsource = WEBPATH . '/' . ZENFOLDER . '/images/searchfields_icon.png';
 	}
-	if (MOD_REWRITE) {
-		$searchurl = SEO_WEBPATH . '/' . _SEARCH_ . '/';
-	} else {
-		$searchurl = WEBPATH . "/index.php?p=search";
-	}
+	$searchurl = SearchEngine::getSearchURL();
 	if (!$within) {
 		$engine->clearSearchWords();
 	}

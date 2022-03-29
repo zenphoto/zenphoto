@@ -103,9 +103,7 @@ function fix_path_redirect() {
 	if (in_context(ZP_SEARCH) && is_object($_zp_current_search)) {
 		//include search words in inital search page url
 		$searchwords = $_zp_current_search->codifySearchString();
-		$searchdate = $_zp_current_search->getSearchDate();
-		$searchfields = $_zp_current_search->getSearchFields(true);
-		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $_zp_page, array('albums' => $_zp_current_search->getAlbumList()));
+		$searchpagepath = SearchEngine::getSearchURL($searchwords, '', '', $_zp_page);
 		$request_uri = getRequestURI();
 		// prevent endless redirection loop
 		if ($request_uri !=  urldecode($searchpagepath)) { //urldecode needed as request_uri is and searchpath is not!

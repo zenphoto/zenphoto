@@ -2181,110 +2181,9 @@ class SearchEngine {
 	 * @param array $object_list the list of objects to search
 	 * @return string
 	 */
-	static function getSearchURL_OLD($words, $dates, $fields, $page, $object_list = NULL) {
-		$urls = '';
-		$rewrite = false;
-		if (MOD_REWRITE) {
-			$rewrite = true;
-			if (is_array($object_list)) {
-				foreach ($object_list as $obj) {
-					if ($obj) {
-						$rewrite = false;
-						break;
-					}
-				}
-			}
-		}
-
-		if ($rewrite) {
-			if (empty($dates)) {
-				$url = SEO_WEBPATH . '/' . _SEARCH_ . '/';
-			} else {
-				$url = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
-			}
-		} else {
-			$url = SEO_WEBPATH . "/index.php?p=search";
-		}
-		if (!empty($fields) && empty($dates)) {
-			if (!is_array($fields)) {
-				$fields = explode(',', $fields);
-			}
-			$temp = $fields;
-			if ($rewrite && count($fields) == 1 && array_shift($temp) == 'tags') {
-				$url = SEO_WEBPATH . '/' . _TAGS_ . '/';
-			} else {
-				$search = new SearchEngine();
-				$urls = $search->getSearchFieldsText($fields, 'searchfields=');
-			}
-		}
-
-		if (!empty($words)) {
-			if (is_array($words)) {
-				foreach ($words as $key => $word) {
-					$words[$key] = SearchEngine::getSearchQuote($word);
-				}
-				$words = implode(',', $words);
-			}
-			$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
-			if ($rewrite) {
-				$url .= urlencode($words) . '/';
-			} else {
-				$url .= "&search=" . urlencode($words);
-			}
-		}
-		if (!empty($dates)) {
-			if (is_array($dates)) {
-				$dates = implode(',', $dates);
-			}
-			if ($rewrite) {
-				$url .= $dates . '/';
-			} else {
-				$url .= "&date=$dates";
-			}
-		}
-		if ($page > 1) {
-			if ($rewrite) {
-				$url .= "$page/";
-			} else {
-				if ($urls) {
-					$urls .= '&';
-				}
-				$urls .= "page=$page";
-			}
-		}
-		if (!empty($urls)) {
-			if ($rewrite) {
-				$url .= '?' . $urls;
-			} else {
-				$url .= '&' . $urls;
-			}
-		}
-		if (is_array($object_list)) {
-			foreach ($object_list as $key => $list) {
-				if (!empty($list)) {
-					$url .= '&in' . $key . '=' . html_encode(implode(',', $list));
-				}
-			}
-		}
-		return $url;
-	}
-	
-	/**
-	 * Returns a search URL
-	 * 
-	 * @since 1.1.3
-	 * @since ZenphotoCMS 1.6 - Move to SearchEngine class as static method
-	 *
-	 * @param mixed $words the search words target
-	 * @param mixed $dates the dates that limit the search
-	 * @param mixed $fields the fields on which to search
-	 * @param int $page the page number for the URL
-	 * @param array $object_list the list of objects to search
-	 * @return string
-	 */
-	static function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
+	static function getSearchURL($words = '', $dates = '', $fields = '', $page = '', $object_list = NULL) {
 		$baseurl = '';
-		$query = array();
+		$query = array('search' => '');
 		$searchfiekds = '';
 		$rewrite = $is_search = $is_archive = $is_tags = false;
 		if (MOD_REWRITE) {
@@ -2352,7 +2251,7 @@ class SearchEngine {
 			}
 		}
 		if ($rewrite) {
-			if ($is_search) {
+			if ($is_search && isset( $query['search'])) {
 				$searchwords = $query['search'];
 				unset($query['search']);
 				$url = $baseurl . implode('/', $query);

@@ -23,7 +23,6 @@ class dynamicAlbum extends AlbumBase {
 		}
 
 		$new = !$this->getSearchParams();
-		debuglog("Search params: " . $this->getSearchParams());
 		if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
 			$constraints = '';
 			$data = file_get_contents($this->localpath);
