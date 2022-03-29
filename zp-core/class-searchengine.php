@@ -2263,7 +2263,7 @@ class SearchEngine {
 				$url = $baseurl . implode('/', $query) . '/';
 			}
 		} else {
-			$url = $baseurl . '&' . http_build_query($query);
+			$url = $baseurl . '&' . urldecode(http_build_query($query));
 		}
 		if (!empty($searchfiekds)) {
 			$url .= '&' . $searchfiekds;
