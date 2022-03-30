@@ -2185,7 +2185,7 @@ class SearchEngine {
 		$baseurl = '';
 		$query = array('search' => '');
 		$searchfiekds = '';
-		$rewrite = $is_search = $is_archive = $is_tags = false;
+		$rewrite = $searchurl_mode = '';;
 		if (MOD_REWRITE) {
 			$rewrite = true;
 			if (is_array($object_list)) {
@@ -2197,33 +2197,41 @@ class SearchEngine {
 				}
 			}
 		}
-		//$rewrite = false;
-		if ($rewrite) {
-			if (empty($dates)) {
-				$baseurl = SEO_WEBPATH . '/' . _SEARCH_ . '/';
-				$is_search = true;
-			} else {
-				$baseurl = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
-				$is_archive = true;
-			}
+		if (!is_array($fields)) {
+			$fields = explode(',', $fields);
+		}
+		
+		//setuü search url mode
+		if (empty($dates)) {
+			$searchurl_mode = 'search';
 		} else {
-			$baseurl = SEO_WEBPATH . "/index.php?p=search";
+			$searchurl_mode = 'archive';
 		}
 		if (!empty($fields) && empty($dates)) {
-			if (!is_array($fields)) {
-				$fields = explode(',', $fields);
-			}
 			$temp = $fields;
-			if ($rewrite) {
-				if (count($fields) == 1 && array_shift($temp) == 'tags') {
-					$baseurl = SEO_WEBPATH . '/' . _TAGS_ . '/';
-					$is_tags = true;
-					$is_search = false;
-				}
-			} else {
-				$search = new SearchEngine();
-				$searchfiekds = $search->getSearchFieldsText($fields, 'searchfields=');
+			if (count($fields) == 1 && array_shift($temp) == 'tags') {
+				$searchurl_mode = 'tags';
 			}
+		}
+
+		//$rewrite = false;
+		if ($rewrite) {
+			switch($searchurl_mode) {
+				default:
+				case 'search':
+					$baseurl = SEO_WEBPATH . '/' . _SEARCH_ . '/';
+					break;
+				case 'archive':
+					$baseurl = SEO_WEBPATH . '/' . _ARCHIVE_ . '/';
+					break;
+				case 'tags':
+					$baseurl = SEO_WEBPATH . '/' . _TAGS_ . '/';
+					break;
+			}			
+		} else {
+			$baseurl = SEO_WEBPATH . "/index.php?p=search";
+			$search = new SearchEngine();
+			$searchfields = $search->getSearchFieldsText($fields, 'searchfields=');
 		}
 		if (!empty($words)) {
 			if (is_array($words)) {
@@ -2235,7 +2243,7 @@ class SearchEngine {
 			$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
 			$query['search'] = urlencode($words);
 		}
-		if ($is_archive) {
+		if ($searchurl_mode == 'archive') {
 			if (is_array($dates)) {
 				$dates = implode(',', $dates);
 			}
@@ -2253,16 +2261,22 @@ class SearchEngine {
 			}
 		}
 		if ($rewrite) {
-			if ($is_search && isset( $query['search'])) {
-				$searchwords = $query['search'];
-				unset($query['search']);
-				$url = $baseurl . implode('/', $query);
-				if ($page > 1) {
-					$url .= '/'; 
-				} 
-				$url .= '?search='.$searchwords;
-			} else if ($is_archive || $is_tags) {
-				$url = $baseurl . implode('/', $query) . '/';
+			switch ($searchurl_mode) {
+				case 'search':
+					if (isset($query['search'])) {
+						$searchwords = $query['search'];
+						unset($query['search']);
+						$url = $baseurl . implode('/', $query);
+						if ($page > 1) {
+							$url .= '/';
+						}
+						$url .= '?search=' . $searchwords;
+					}
+					break;
+				case 'archive':
+				case 'tags':
+					$url = $baseurl . implode('/', $query) . '/';
+					break;
 			}
 		} else {
 			$url = $baseurl . '&' . urldecode(http_build_query($query));
@@ -2274,5 +2288,3 @@ class SearchEngine {
 	}
 
 }
-
-

@@ -104,7 +104,7 @@ function fix_path_redirect() {
 		//include search words in inital search page url
 		$searchwords = $_zp_current_search->codifySearchString();
 		$searchdates = $_zp_current_search->getSearchDate();
-		$searchfields = $_zp_current_search->getSearchFields(true);
+		$searchfields = $_zp_current_search->getSearchFields();
 		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdates, $searchfields, $_zp_page);
 		$request_uri = getRequestURI();
 		// prevent endless redirection loop
