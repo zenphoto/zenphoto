@@ -2184,7 +2184,7 @@ class SearchEngine {
 	static function getSearchURL($words = '', $dates = '', $fields = '', $page = '', $object_list = NULL) {
 		$baseurl = '';
 		$query = array('search' => '');
-		$rewrite = $searchurl_mode = 	$searchfields = '';;
+		$rewrite = $searchurl_mode = 	$searchfields = '';
 		if (MOD_REWRITE) {
 			$rewrite = true;
 			if (is_array($object_list)) {
