@@ -2184,8 +2184,7 @@ class SearchEngine {
 	static function getSearchURL($words = '', $dates = '', $fields = '', $page = '', $object_list = NULL) {
 		$baseurl = '';
 		$query = array('search' => '');
-		$searchfiekds = '';
-		$rewrite = $searchurl_mode = '';;
+		$rewrite = $searchurl_mode = 	$searchfields = '';;
 		if (MOD_REWRITE) {
 			$rewrite = true;
 			if (is_array($object_list)) {
@@ -2281,8 +2280,8 @@ class SearchEngine {
 		} else {
 			$url = $baseurl . '&' . urldecode(http_build_query($query));
 		}
-		if (!empty($searchfiekds)) {
-			$url .= '&' . $searchfiekds;
+		if (!empty($searchfields)) {
+			$url .= '&' . $searchfields;
 		}
 		return $url;
 	}
