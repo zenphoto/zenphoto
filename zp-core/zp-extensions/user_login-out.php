@@ -33,9 +33,15 @@ class user_logout_options {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Login form') => array('key'			 => 'user_logout_login_form', 'type'		 => OPTION_TYPE_RADIO,
-										'buttons'	 => array(gettext('None') => 0, gettext('Form') => 1, gettext('Colorbox') => 2),
-										'desc'		 => gettext('If the user is not logged-in display an <em>in-line</em> logon form or a link to a modal <em>Colorbox</em> form.'))
+		return array(gettext(
+								'Login form') => array(
+						'key' => 'user_logout_login_form',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('None') => 0,
+								gettext('Form') => 1,
+								gettext('Colorbox') => 2),
+						'desc' => gettext('If the user is not logged-in display an <em>in-line</em> logon form or a link to a modal <em>Colorbox</em> form.'))
 		);
 	}
 
@@ -45,57 +51,6 @@ class user_logout_options {
 
 }
 
-if (in_context(ZP_INDEX)) {
-	if (isset($_GET['userlog'])) { // process the logout.
-		if ($_GET['userlog'] == 0) {
-			if (!$location = Authority::handleLogout()) {
-				$_zp_userlogin_redirect = array();
-				if (in_context(ZP_ALBUM)) {
-					$_zp_userlogin_redirect['album'] = $_zp_current_album->name;
-				}
-				if (in_context(ZP_IMAGE)) {
-					$_zp_userlogin_redirect['image'] = $_zp_current_image->filename;
-				}
-				if (in_context(ZP_ZENPAGE_PAGE)) {
-					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_page->getName();
-				}
-				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$_zp_userlogin_redirect['title'] = $_zp_current_zenpage_news->getName();
-				}
-				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-					$_zp_userlogin_redirect['category'] = $_zp_current_category->getName();
-				}
-				if (isset($_GET['p'])) {
-					$_zp_userlogin_redirect['p'] = sanitize($_GET['p']);
-				}
-				if (isset($_GET['searchfields'])) {
-					$_zp_userlogin_redirect['searchfields'] = sanitize($_GET['searchfields']);
-				}
-				if (isset($_GET['search'])) {
-					$_zp_userlogin_redirect['search'] = sanitize($_GET['search']);
-				}
-				if (isset($_GET['date'])) {
-					$_zp_userlogin_redirect['date'] = sanitize($_GET['date']);
-				}
-				if (isset($_GET['title'])) {
-					$_zp_userlogin_redirect['title'] = sanitize($_GET['title']);
-				}
-				if (isset($_GET['page'])) {
-					$_zp_userlogin_redirect['page'] = sanitize($_GET['page']);
-				}
-
-				$params = '';
-				if (!empty($_zp_userlogin_redirect)) {
-					foreach ($_zp_userlogin_redirect as $param => $value) {
-						$params .= '&' . $param . '=' . $value;
-					}
-				}
-				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
-			}
-			redirectURL($location);
-		}
-	}
-}
 
 /**
  * Prints the logout link if the user is logged in.
@@ -110,16 +65,12 @@ if (in_context(ZP_INDEX)) {
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {
-	global $_zp_gallery, $_zp_userlogin_redirect, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
+	debuglogVar($_zp_userlogin_redirect);
 	$excludedPages = array('password.php', 'register.php', 'favorites.php', '404.php');
 	$logintext = gettext('Login');
-	if (is_null($logouttext))
+	if (is_null($logouttext)) {
 		$logouttext = gettext("Logout");
-	$params = array("'userlog=0'");
-	if (!empty($_zp_userlogin_redirect)) {
-		foreach ($_zp_userlogin_redirect as $param => $value) {
-			$params[] .= "'" . $param . '=' . urlencode($value) . "'";
-		}
 	}
 	if (is_null($showLoginForm)) {
 		$showLoginForm = getOption('user_logout_login_form');
@@ -174,11 +125,94 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 			}
 		}
 	} else {
-		if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; }
-		$logoutlink = "javascript:launchScript('" . FULLWEBPATH . "/',[" . implode(',', $params) . "]);";
+		if ($before) { 
+			echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
+		}
+		if (MOD_REWRITE) {
+			$logoutlink = '?userlog=0';
+		} else {
+			$params = '?userlog=0';
+			$page_params = getCurrentPageParams();
+			if (!empty($page_params)) {
+				foreach ($page_params as $param => $value) {
+					$params .= '&' . $param . '=' . $value;
+				}
+			}
+			$logoutlink = FULLWEBPATH . $params;
+		}
 		?>
 		<a class="logoutlink" href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
-		<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }
+		<?php 
+		if ($after) { 
+			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; 
+		}
 	}
 }
-?>
+
+/**
+ * Gets the current page params to generate a logout link of the current page if not using modrewrite
+ * 
+ * @global type $_zp_current_image
+ * @global type $_zp_current_album
+ * @global type $_zp_current_zenpage_news
+ * @global type $_zp_current_zenpage_page
+ * @global type $_zp_current_zenpage_news
+ * @global type $_zp_current_category
+ * @return type
+ */
+function getCurrentPageParams() {
+	global $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
+	$page_params = array();
+	if (in_context(ZP_ALBUM)) {
+		$page_params['album'] = $_zp_current_album->name;
+	}
+	if (in_context(ZP_IMAGE)) {
+		$page_params['image'] = $_zp_current_image->filename;
+	}
+	if (in_context(ZP_ZENPAGE_PAGE)) {
+		$page_params['title'] = $_zp_current_zenpage_page->getName();
+	}
+	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+		$page_params['title'] = $_zp_current_zenpage_news->getName();
+	}
+	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		$page_params['category'] = $_zp_current_category->getName();
+	}
+	if (isset($_GET['p'])) {
+		$page_params['p'] = sanitize($_GET['p']);
+	}
+	if (isset($_GET['searchfields'])) {
+		$page_params['searchfields'] = sanitize($_GET['searchfields']);
+	}
+	if (isset($_GET['search'])) {
+		$page_params['search'] = sanitize($_GET['search']);
+	}
+	if (isset($_GET['date'])) {
+		$page_params['date'] = sanitize($_GET['date']);
+	}
+	if (isset($_GET['title'])) {
+		$page_params['title'] = sanitize($_GET['title']);
+	}
+	if (isset($_GET['page'])) {
+		$page_params['page'] = sanitize($_GET['page']);
+	}
+	return $page_params;
+}
+
+if (in_context(ZP_INDEX)) {
+	if (isset($_GET['userlog'])) { // process the logout.
+		if ($_GET['userlog'] == 0) {
+			if (!$location = Authority::handleLogout()) {
+				$page_params = getCurrentPageParams();
+				$params = '';
+				if (!empty($_zp_userlogin_redirect)) {
+					foreach ($_zp_userlogin_redirect as $param => $value) {
+						$params .= '&' . $param . '=' . $value;
+					}
+				}
+				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
+			}
+			redirectURL($location);
+		}
+	}
+}
