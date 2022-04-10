@@ -202,17 +202,7 @@ function getCurrentPageParams() {
 if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
-			if (!$location = Authority::handleLogout()) {
-				$page_params = getCurrentPageParams();
-				$params = '';
-				if (!empty($_zp_userlogin_redirect)) {
-					foreach ($_zp_userlogin_redirect as $param => $value) {
-						$params .= '&' . $param . '=' . $value;
-					}
-				}
-				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
-			}
-			redirectURL($location);
+			Authority::handleLogout();
 		}
 	}
 }
