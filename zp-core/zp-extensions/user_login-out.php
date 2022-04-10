@@ -66,7 +66,6 @@ class user_logout_options {
  */
 function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $logouttext = NULL) {
 	global $_zp_gallery, $_zp_current_admin_obj, $_zp_login_error, $_zp_gallery_page;
-	debuglogVar($_zp_userlogin_redirect);
 	$excludedPages = array('password.php', 'register.php', 'favorites.php', '404.php');
 	$logintext = gettext('Login');
 	if (is_null($logouttext)) {
