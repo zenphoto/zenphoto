@@ -202,6 +202,14 @@ if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
 			Authority::handleLogout();
+			$page_params = getCurrentPageParams();
+			if (!empty($page_params)) {
+				foreach ($page_params as $param => $value) {
+					$params .= '&' . $param . '=' . $value;
+				}
+			}
+			$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
+			redirectURL($location);
 		}
 	}
 }
