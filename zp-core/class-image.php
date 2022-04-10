@@ -243,7 +243,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	function getFileName() {
-		deprecationNotice(gettext('Use geName() instead'));
+		deprecationNotice(gettext('Use getName() instead'));
 		return $this->getName();
 	}
 
