@@ -127,90 +127,12 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 		if ($before) { 
 			echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>';
 		}
-		if (MOD_REWRITE) {
-			$logoutlink = '?userlog=0';
-		} else {
-			$params = '?userlog=0';
-			$page_params = getCurrentPageParams();
-			if (!empty($page_params)) {
-				foreach ($page_params as $param => $value) {
-					$params .= '&' . $param . '=' . $value;
-				}
-			}
-			$logoutlink = FULLWEBPATH . $params;
-		}
+		$logoutlink = Authority::getLogoutURL('frontend');
 		?>
 		<a class="logoutlink" href="<?php echo $logoutlink; ?>" title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?></a>
 		<?php 
 		if ($after) { 
 			echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; 
-		}
-	}
-}
-
-/**
- * Gets the current page params to generate a logout link of the current page if not using modrewrite
- * 
- * @global type $_zp_current_image
- * @global type $_zp_current_album
- * @global type $_zp_current_zenpage_news
- * @global type $_zp_current_zenpage_page
- * @global type $_zp_current_zenpage_news
- * @global type $_zp_current_category
- * @return type
- */
-function getCurrentPageParams() {
-	global $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
-	$page_params = array();
-	if (in_context(ZP_ALBUM)) {
-		$page_params['album'] = $_zp_current_album->name;
-	}
-	if (in_context(ZP_IMAGE)) {
-		$page_params['image'] = $_zp_current_image->filename;
-	}
-	if (in_context(ZP_ZENPAGE_PAGE)) {
-		$page_params['title'] = $_zp_current_zenpage_page->getName();
-	}
-	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-		$page_params['title'] = $_zp_current_zenpage_news->getName();
-	}
-	if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		$page_params['category'] = $_zp_current_category->getName();
-	}
-	if (isset($_GET['p'])) {
-		$page_params['p'] = sanitize($_GET['p']);
-	}
-	if (isset($_GET['searchfields'])) {
-		$page_params['searchfields'] = sanitize($_GET['searchfields']);
-	}
-	if (isset($_GET['search'])) {
-		$page_params['search'] = sanitize($_GET['search']);
-	}
-	if (isset($_GET['date'])) {
-		$page_params['date'] = sanitize($_GET['date']);
-	}
-	if (isset($_GET['title'])) {
-		$page_params['title'] = sanitize($_GET['title']);
-	}
-	if (isset($_GET['page'])) {
-		$page_params['page'] = sanitize($_GET['page']);
-	}
-	return $page_params;
-}
-
-if (in_context(ZP_INDEX)) {
-	if (isset($_GET['userlog'])) { // process the logout.
-		if ($_GET['userlog'] == 0) {
-			if (!Authority::handleLogout()) {
-				$page_params = getCurrentPageParams();
-				if (!empty($page_params)) {
-					foreach ($page_params as $param => $value) {
-						$params .= '&' . $param . '=' . $value;
-					}
-				}
-				$location = FULLWEBPATH . '/index.php?fromlogout' . $params;
-				redirectURL($location);
-			}
 		}
 	}
 }

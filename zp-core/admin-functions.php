@@ -265,7 +265,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 		echo "\n<div id=\"links\">";
 		echo "\n  ";
 		if (!is_null($_zp_current_admin_obj)) {
-			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
 			$last = $_zp_current_admin_obj->getLastlogon();
 			if (empty($last)) {
 				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
@@ -273,7 +272,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
 			}
 			if ($_zp_current_admin_obj->logout_link) {
-				$link = WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
+				$link = Authority::getLogoutURL('backend');
 				echo " &nbsp; | &nbsp; <a href=\"" . $link . "\">" . gettext("Log Out") . "</a> &nbsp; | &nbsp; ";
 			}
 		}

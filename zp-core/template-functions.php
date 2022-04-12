@@ -187,10 +187,10 @@ function adminToolbox() {
 						if ($_zp_gallery_page == 'index.php') {
 							$redirect = '';
 						} else {
-							$redirect = "&amp;p=" . urlencode(stripSuffix($_zp_gallery_page));
+							$redirect = "&p=" . urlencode(stripSuffix($_zp_gallery_page));
 						}
 						if ($page > 1) {
-							$redirect .= "&amp;page=$page";
+							$redirect .= "&page=$page";
 						}
 						zp_apply_filter('admin_toolbox_gallery', $zf);
 						break;
@@ -268,12 +268,12 @@ function adminToolbox() {
 								// set return to this image page
 								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
 							}
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname)) . "&amp;image=" . urlencode($imagename);
+							$redirect = "&album=" . html_encode(pathurlencode($albumname)) . "&image=" . urlencode($imagename);
 						} else {
 							// set the return to this album/page
-							$redirect = "&amp;album=" . html_encode(pathurlencode($albumname));
+							$redirect = "&album=" . html_encode(pathurlencode($albumname));
 							if ($page > 1) {
-								$redirect .= "&amp;page=$page";
+								$redirect .= "&page=$page";
 							}
 						}
 						break;
@@ -292,23 +292,21 @@ function adminToolbox() {
 							}
 							zp_apply_filter('admin_toolbox_search', $zf);
 						}
-						$redirect = "&amp;p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
+						$redirect = "&p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
 						break;
 					default:
 						// arbitrary custom page
 						$gal = stripSuffix($_zp_gallery_page);
-						$redirect = "&amp;p=" . urlencode($gal);
+						$redirect = "&p=" . urlencode($gal);
 						if ($page > 1) {
-							$redirect .= "&amp;page=$page";
+							$redirect .= "&page=$page";
 						}
 						$redirect = zp_apply_filter('admin_toolbox_' . $gal, $redirect, $zf);
 						break;
 				}
 				$redirect = zp_apply_filter('admin_toolbox_close', $redirect, $zf);
 				if ($_zp_current_admin_obj->logout_link) {
-					// logout link
-					$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
-					$link = SEO_FULLWEBPATH . '/index.php?logout=' . $sec . $redirect;
+					$link = Authority::getLogoutURL('frontend', $redirect);
 					?>
 					<li>
 						<?php printLinkHTML($link, gettext("Logout"), gettext("Logout"), null, null); ?>

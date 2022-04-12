@@ -1369,6 +1369,92 @@ class Authority {
 			return false;
 		}
 	}
+	
+	/**
+	 * Gets the current page params to generate a logout link of the current page if not using modrewrite
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $returnvalue 'string' for a ready to use string for an logout url or 'array' for an indexed array 
+* @return array|string
+	 */
+	static function getLogoutURLPageParams($returnvalue = 'string') {
+		$page_params = array();
+		if (isset($_GET['album'])) {
+			$page_params['album'] = sanitize($_GET['album']);
+		}
+		if (isset($_GET['image'])) {
+			$page_params['image'] = sanitize($_GET['image']);
+		}
+		if (isset($_GET['title'])) {
+			$page_params['title'] = sanitize($_GET['title']);
+		}		
+		if (isset($_GET['category'])) {
+			$page_params['category'] = sanitize($_GET['category']);
+		}		
+		if (isset($_GET['p'])) {
+			$page_params['p'] = sanitize($_GET['p']);
+		}
+		if (isset($_GET['searchfields'])) {
+			$page_params['searchfields'] = sanitize($_GET['searchfields']);
+		}
+		if (isset($_GET['search'])) {
+			$page_params['search'] = sanitize($_GET['search']);
+		}
+		if (isset($_GET['date'])) {
+			$page_params['date'] = sanitize($_GET['date']);
+		}
+		if (isset($_GET['title'])) {
+			$page_params['title'] = sanitize($_GET['title']);
+		}
+		if (isset($_GET['page'])) {
+			$page_params['page'] = sanitize($_GET['page']);
+		}
+		switch ($returnvalue) {
+			case 'array':
+				return $page_params;
+			case 'string':
+				$params = '';
+				if (!empty($page_params)) {
+					foreach ($page_params as $param => $value) {
+						$params .= '&' . $param . '=' . $value;
+					}
+				}
+				return $params;
+		}
+	}
+
+	/**
+	 * Gets the logout link for backend or frontend if the visitor is a logged in user
+	 * 
+	 * If in front end mode this will keep the user on the same page after logout (even if that may not be public)
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @global type $_zp_current_admin_obj
+	 * @param string $mode "backend" (default) for the main backend logout link, 
+	 *								or "frontend" for theme usages like the user-loginout plugin 
+	 * @param string $redirect non rewritten page query string to redirect to another frontend page than the current if in "frontend" mode
+	 * @return string
+	 */
+	static function getLogoutURL($mode = 'backend', $redirect = '') {
+		global $_zp_current_admin_obj;
+		if (!is_null($_zp_current_admin_obj)) {
+			$sec = (int) ((SERVER_PROTOCOL == 'https') & true);
+			switch ($mode) {
+				case 'backend':
+					return WEBPATH . "/" . ZENFOLDER . "/admin.php?logout=" . $sec;
+				case 'frontend':
+					if (empty($redirect)) {
+						$params = Authority::getLogoutURLPageParams('string');
+					} else {
+						$params = $redirect;
+					}
+					return SEO_FULLWEBPATH . '/index.php?logout=' . $sec . $params;
+			}
+		}
+	}
+
 }
 
 /**
