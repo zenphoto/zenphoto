@@ -18,6 +18,9 @@ function getRelatedItems($type = 'news', $album = NULL) {
 		$searchstring = '';
 		$count = '';
 		foreach ($tags as $tag) {
+			if (strpos($tag, " ") !== false) {
+				$tag = '"' . $tag . '"';
+			}
 			$count++;
 			if ($count == 1) {
 				$bool = '';
