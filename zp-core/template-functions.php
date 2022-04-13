@@ -42,9 +42,13 @@ function printZenJavascripts() {
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.min.js"></script>
 	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
 	<?php
-	if(zp_loggedin()) {
-		?>
+	if (zp_loggedin() || extensionEnabled('tag_suggest')) {
+			?>
 		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zp_general.js"></script>
+		<?php
+	}
+	if (zp_loggedin()) {
+				?>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admintoolbox.css" type="text/css" />
 		<?php
 	}
