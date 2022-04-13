@@ -414,7 +414,7 @@ class zenpagecms {
 			<?php
 			echo '<li><a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?page&amp;add">' . gettext('New Page') . '</a></li>';
 		}
-		return $redirect . '&amp;title=' . urlencode(getPageTitlelink());
+		return $redirect . '&title=' . urlencode(getPageTitlelink());
 	}
 
 	static function admin_toolbox_news($redirect, $zf) {
@@ -431,7 +431,7 @@ class zenpagecms {
 				<?php
 				echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newsarticle&amp;add">' . gettext('New Article') . '</a></li>';
 			}
-			$redirect .= '&amp;title=' . urlencode($_zp_current_zenpage_news->getName());
+			$redirect .= '&title=' . urlencode($_zp_current_zenpage_news->getName());
 		} else {
 			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
 				$delete_category = gettext("Are you sure you want to delete this category? THIS CANNOT BE UNDONE!");
@@ -443,7 +443,7 @@ class zenpagecms {
 						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-categories.php?delete=<?php echo html_encode($_zp_current_category->getName()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category'); ?>', '<?php echo $delete_category; ?>')" title="<?php echo gettext('Delete Category'); ?>"><?php echo gettext('Delete Category'); ?></a>
 					</li>
 					<?php
-					$redirect .= '&amp;category=' . $_zp_current_category->getName();
+					$redirect .= '&category=' . $_zp_current_category->getName();
 				}
 			}
 		}
