@@ -132,5 +132,6 @@ if (isset($_REQUEST['logout'])) {
 		$redirect = '?fromlogout' . Authority::getLogoutURLPageParams();
 		$location = FULLWEBPATH . '/index.php' . $redirect;
 	}
+	header('Cache-Control: no-cache, must-revalidate, max-age=0');
 	redirectURL($location);
 }
