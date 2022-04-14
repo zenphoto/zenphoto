@@ -16,7 +16,7 @@ redirectionHandler();
 // the context. All that is done in functions-controller.php.
 
 zp_load_gallery();	//	load the gallery and set the context to be on the front-end
-$zp_request = zp_load_request();
+$_zp_request = zp_load_request();
 // handle any passwords that might have been posted
 if (!zp_loggedin()) {
 	zp_handle_password();

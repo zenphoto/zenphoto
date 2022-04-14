@@ -809,12 +809,12 @@ function getAllSubAlbumIDs($albumfolder = '') {
  * @param string $image Name of the image
  */
 function handleSearchParms($what, $album = NULL, $image = NULL) {
-	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
+	global $_zp_current_search, $_zp_request, $_zp_last_album, $_zp_current_album,
 	$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin, $_zp_gallery_page;
 	$_zp_last_album = zp_getCookie('zpcms_search_lastalbum');
-	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') { //	we are are on a search
+	if (is_object($_zp_request) && get_class($_zp_request) == 'SearchEngine') { //	we are are on a search
 		zp_setCookie('zpcms_search_parent', 'searchresults');
-		return $zp_request->getAlbumList();
+		return $_zp_request->getAlbumList();
 	}
 	$params = zp_getCookie('zpcms_search_params');
 	if (!empty($params)) {

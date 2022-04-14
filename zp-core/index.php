@@ -64,7 +64,7 @@ if (isset($_GET['p'])) {
 }
 
 //$_zp_script_timer['theme setup'] = microtime();
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $_zp_request);
 
 $custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
 if (file_exists($custom)) {
@@ -96,19 +96,19 @@ if (!preg_match('~' . ZENFOLDER . '~', $_zp_script)) {
 }
 
 //	HTML caching?
-if ($zp_request) {
+if ($_zp_request) {
 	$_zp_html_cache->startHTMLCache();
 }
 
 //check for valid page number (may be theme dependent!)
 if ($_zp_page < 0) {
-	$zp_request = false;
-} else if ($zp_request && $_zp_page > 1) {
-	$zp_request = $_zp_page_check($zp_request, $_zp_gallery_page, $_zp_page);
+	$_zp_request = false;
+} else if ($_zp_request && $_zp_page > 1) {
+	$_zp_request = $_zp_page_check($_zp_request, $_zp_gallery_page, $_zp_page);
 }
 
 //$_zp_script_timer['theme scripts'] = microtime();
-if ($zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
+if ($_zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 	} else {
 		//	don't cache the logon page or you can never see the real one
