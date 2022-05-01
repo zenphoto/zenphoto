@@ -90,13 +90,23 @@ class multipleLayoutOptions {
 	}
 
 	function getOptionsSupported() {
-		$checkboxes = array(gettext('Albums') => 'multiple_layouts_albums', gettext('Images') => 'multiple_layouts_images');
+		$checkboxes = array(
+				gettext('Albums') => 'multiple_layouts_albums',
+				gettext('Images') => 'multiple_layouts_images'
+		);
 		if (extensionEnabled('zenpage')) {
-			$checkboxes = array_merge($checkboxes, array(gettext('Pages') => 'multiple_layouts_pages', gettext('News') => 'multiple_layouts_news', gettext('News categories') => 'multiple_layouts_news_categories'));
+			$checkboxes = array_merge($checkboxes, array(
+					gettext('Pages') => 'multiple_layouts_pages',
+					gettext('News') => 'multiple_layouts_news',
+					gettext('News categories') => 'multiple_layouts_news_categories')
+			);
 		}
-		$options = array(gettext('Enable multiple layouts for') => array('key'				 => 'multiple_layouts_allowed', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'checkboxes' => $checkboxes,
-										'desc'			 => '')
+		$options = array(
+				gettext('Enable multiple layouts for') => array(
+						'key' => 'multiple_layouts_allowed',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'checkboxes' => $checkboxes,
+						'desc' => '')
 		);
 		return $options;
 	}
@@ -111,7 +121,7 @@ class multipleLayoutOptions {
  * Gets the selected layout page for this item. Returns false if nothing is selected.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums", "multiple_layouts_images"
+ * @param string $type For Zenphoto gallery items "multiple_layouts_albums", 'multiple_layouts_albums_images', 'multiple_layouts_images'
  * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
@@ -131,7 +141,7 @@ function getSelectedLayout($obj, $type) {
  * Checks if there is a layout inherited from a parent items (album, page or category) and returns it. Returns false otherwise.
  *
  * @param object $obj the object being selected
- * @param string $type For Zenphoto gallery items "multiple_layouts_albums"
+ * @param string $type For Zenphoto gallery items "multiple_layouts_albums", 'multiple_layouts_albums_images', 'multiple_layouts_images'
  * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
  * @return result
  */
@@ -228,8 +238,9 @@ function layoutSelector($html, $obj, $prefix = '') {
  *
  * @param $string $html
  * @param object $obj
+ * @parem string $prefix
  */
-function layoutSelector_album($html, $obj, $prefix) {
+function layoutSelector_album($html, $obj, $prefix = '') {
 	if (getOption('multiple_layouts_albums')) {
 		$albumhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>' . gettext('Select album layout:') . '</p>', $prefix);
 		$imagehtml = getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>' . gettext('Select default album image layout:') . '</p>', $prefix, true);
@@ -247,7 +258,8 @@ function layoutSelector_album($html, $obj, $prefix) {
  * @param object $obj
  * @param string $type
  * @param string $text
- * @param string$secondary
+ * @param string $prefix Default empty
+ * @param bool $secondary Default false
  */
 function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false) {
 	global $_zp_gallery, $_zp_db;
@@ -358,7 +370,6 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
  *
  * @param string $path Path of the layout file
  * @return string
- * @return string
  */
 function getLayout($path) {
 	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
@@ -412,7 +423,6 @@ function getLayout($path) {
  *
  * @param string $message Message (not used)
  * @param object $obj Object of the item to assign the layout
- * @param string $oldtitlelink Name of the item before an update (only on updates)
  * @return string
  */
 function saveLayoutSelection($message, $obj) {
@@ -447,6 +457,7 @@ function saveLayoutSelection($message, $obj) {
  * Saves the layout page assignment via filter on the backend for images and albums
  *
  * @param object $obj Object of the item to assign the layout
+ * @param string $prefix
  * @return string
  */
 function saveZenphotoLayoutSelection($obj, $prefix) {
@@ -456,7 +467,7 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
 	$titlelink = '';
 	$table = $obj->table;
 	$type = 'multiple_layouts_' . $table;
-	if (isset($_POST[$prefix . $type])) {
+	if (isset($_POST[$prefix . $type]) || isset($_POST[$prefix . 'multiple_layouts_albums_images'])) {
 		$selectedlayout = sanitize($_POST[$prefix . $type]);
 		$exists = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 		if ($selectedlayout) { // not default
@@ -524,9 +535,10 @@ function deleteLayoutSelection($allow, $obj) {
 
 /**
  *
- * Enter description here ...
- * @param $allow
- * @param $obj
+ * Copies the layout selection
+ * 
+ * @param int $newid ID of the item to copy to
+ * @param obj $obj Object of the  original item
  */
 function copyLayoutSelection($newid, $obj) {
 	global $_zp_db;
