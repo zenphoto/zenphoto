@@ -123,7 +123,7 @@ class multipleLayoutOptions {
  * @param object $obj the object being selected
  * @param string $type For Zenphoto gallery items "multiple_layouts_albums", 'multiple_layouts_albums_images', 'multiple_layouts_images'
  * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
- * @return result
+ * @return string|false
  */
 function getSelectedLayout($obj, $type) {
 	global $_zp_db;
@@ -143,7 +143,7 @@ function getSelectedLayout($obj, $type) {
  * @param object $obj the object being selected
  * @param string $type For Zenphoto gallery items "multiple_layouts_albums", 'multiple_layouts_albums_images', 'multiple_layouts_images'
  * 										 For Zenpage CMS items , "multiple_layouts_pages", , "multiple_layouts_news" , "multiple_layouts_news_categories"
- * @return result
+ * @return array|false
  */
 function checkParentLayouts($obj, $type) {
 	global $_zp_db;
@@ -194,7 +194,7 @@ function checkParentLayouts($obj, $type) {
  * Gets the selected layout page for images if the album option to use the equivalent of their album layout is seleted.
  *
  * @param object $obj the album
- * @return results
+ * @return array|false
  */
 function checkLayoutUseForImages($obj) {
 	global $_zp_db;
@@ -224,6 +224,7 @@ function checkLayoutUseForImages($obj) {
  *
  * @param $string $html
  * @param object $obj
+ * @return string
  */
 function layoutSelector($html, $obj, $prefix = '') {
 	$type = 'multiple_layouts_' . $obj->table;
@@ -239,6 +240,7 @@ function layoutSelector($html, $obj, $prefix = '') {
  * @param $string $html
  * @param object $obj
  * @parem string $prefix
+ * @return string
  */
 function layoutSelector_album($html, $obj, $prefix = '') {
 	if (getOption('multiple_layouts_albums')) {
@@ -260,6 +262,7 @@ function layoutSelector_album($html, $obj, $prefix = '') {
  * @param string $text
  * @param string $prefix Default empty
  * @param bool $secondary Default false
+ * @return string
  */
 function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false) {
 	global $_zp_gallery, $_zp_db;
@@ -534,11 +537,11 @@ function deleteLayoutSelection($allow, $obj) {
 }
 
 /**
- *
  * Copies the layout selection
  * 
  * @param int $newid ID of the item to copy to
  * @param obj $obj Object of the  original item
+ * return int
  */
 function copyLayoutSelection($newid, $obj) {
 	global $_zp_db;
@@ -557,5 +560,3 @@ function copyLayoutSelection($newid, $obj) {
 	}
 	return $newid;
 }
-
-?>
