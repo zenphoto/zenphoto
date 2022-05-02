@@ -377,7 +377,6 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 function getLayout($path) {
 	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
 	if ($path) {
-		debuglog('$_zp_gallery_page: ' . $_zp_gallery_page);
 		$themepath = THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/';
 		$getlayout = false;
 		switch ($_zp_gallery_page) {
