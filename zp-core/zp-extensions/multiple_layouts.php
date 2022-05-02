@@ -377,6 +377,7 @@ function getLayoutSelector($obj, $type, $text, $prefix = '', $secondary = false)
 function getLayout($path) {
 	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_search;
 	if ($path) {
+		debuglog('$_zp_gallery_page: ' . $_zp_gallery_page);
 		$themepath = THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/';
 		$getlayout = false;
 		switch ($_zp_gallery_page) {
@@ -387,13 +388,12 @@ function getLayout($path) {
 				break;
 			case 'image.php':
 				if (getOption('multiple_layouts_images')) {
-					$currentalbumname = $_zp_current_album->name;
+					$getlayout = getSelectedLayout($_zp_current_image, 'multiple_layouts_images');
 					if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 						if (!$album = $_zp_current_search->getDynamicAlbum()) {
 							$album = $_zp_current_album;
 						}
 					} else {
-						$getlayout = getSelectedLayout($_zp_current_image, 'multiple_layouts_images');
 						$album = $_zp_current_album;
 					}
 					if ($album && !$getlayout) {
