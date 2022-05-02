@@ -471,7 +471,11 @@ function saveZenphotoLayoutSelection($obj, $prefix) {
 	$table = $obj->table;
 	$type = 'multiple_layouts_' . $table;
 	if (isset($_POST[$prefix . $type]) || isset($_POST[$prefix . 'multiple_layouts_albums_images'])) {
-		$selectedlayout = sanitize($_POST[$prefix . $type]);
+		if (isset($_POST[$prefix . $type])) {
+			$selectedlayout = sanitize($_POST[$prefix . $type]);
+		} else if (isset($_POST[$prefix . 'multiple_layouts_albums_images'])) {
+			$selectedlayout = sanitize($_POST[$prefix . 'multiple_layouts_albums_images']);
+		}
 		$exists = $_zp_db->querySingleRow("SELECT * FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `aux` = ' . $obj->getID() . ' AND `type` = "' . $type . '"');
 		if ($selectedlayout) { // not default
 			if ($exists) {
