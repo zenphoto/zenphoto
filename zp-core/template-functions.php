@@ -1823,7 +1823,7 @@ function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
 	}
 	$attr['class'] = trim($attr['class']);
 	$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $thumbobj);
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd) || zp_getCookie('zpcms_auth_album_' . $_zp_current_album->getID())) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
@@ -1910,7 +1910,7 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 		$attr['src']= html_pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy));
 	}
 	$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd) || zp_getCookie('zpcms_auth_album_' . $_zp_current_album->getID())) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
