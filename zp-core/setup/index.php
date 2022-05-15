@@ -1192,7 +1192,7 @@ if ($c <= 0) {
 										$fieldlist = array();
 										foreach (array('images' => 1, 'albums' => 2) as $lookat => $add) {
 											if (in_array($_zp_conf_vars['mysql_prefix'] . $lookat, $tables)) {
-												$columns = $_zp_db->listFields('images');
+												$columns = $_zp_db->getFields('images');
 												if ($columns) {
 													foreach ($columns as $col => $utf8) {
 														if (isset($row['Collation']) && !is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
