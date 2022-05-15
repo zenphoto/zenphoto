@@ -470,7 +470,7 @@ if ((!isset($_GET['massedit']) && !isset($_GET['album'])) || $subtab == 'subalbu
 	printSortableHead();
 }
 if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset($_GET['massedit'])) {
-	$result = $_zp_db->listFields('albums');
+	$result = $_zp_db->getFields('albums');
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {
@@ -479,7 +479,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	}
 	sort($dbfields);
 	$albumdbfields = implode(',', $dbfields);
-	$result = $_zp_db->listFields('images');
+	$result = $_zp_db->getFields('images');
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {

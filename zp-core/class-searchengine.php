@@ -1109,7 +1109,7 @@ class SearchEngine {
 		$field_objects = array();
 		if (count($fields) > 0) {
 			$columns = array();
-			$dbfields = $_zp_db->listFields($tbl);
+			$dbfields = $_zp_db->getFields($tbl);
 			if (is_array($dbfields)) {
 				foreach ($dbfields as $row) {
 					$columns[] = strtolower($row['Field']);

@@ -285,8 +285,8 @@ function db_show($what, $aux = '') {
  */
 function db_list_fields($table) {
 	global $_zp_db;
-	deprecationNotice(gettext('Use the global object $_zp_db and the class method listFields() instead.'));
-	return $_zp_db->listFields($table);
+	deprecationNotice(gettext('Use the global object $_zp_db and the class method getFields() instead.'));
+	return $_zp_db->getFields($table);
 }
 
 /**

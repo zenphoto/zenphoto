@@ -157,14 +157,7 @@ if (isset($_REQUEST['backup'])) {
 	} else {
 		$compression_handler = 'no';
 	}
-	$tables = array();
-	$result = $_zp_db->show('tables');
-	if ($result) {
-		while ($row = $_zp_db->fetchAssoc($result)) {
-			$tables[] = $row;
-		}
-		$_zp_db->freeResult($result);
-	}
+	$tables = $_zp_db->getTables();
 	if (!empty($tables)) {
 		$folder = getBackupFolder(SERVERPATH);
 		$randomkey = bin2hex(random_bytes(5));
@@ -186,8 +179,7 @@ if (isset($_REQUEST['backup'])) {
 
 			$counter = 0;
 			$writeresult = true;
-			foreach ($tables as $row) {
-				$table = array_shift($row);
+			foreach ($tables as $table) {
 				$unprefixed_table = substr($table, strlen($prefix));
 				$sql = 'SELECT * from `' . $table . '`';
 				$result = $_zp_db->query($sql);
@@ -261,26 +253,15 @@ if (isset($_REQUEST['backup'])) {
 		if (file_exists($filename)) {
 			$handle = fopen($filename, 'r');
 			if ($handle !== false) {
-				$resource = $_zp_db->show('tables');
-				if ($resource) {
-					$result = array();
-					while ($row = $_zp_db->fetchAssoc($resource)) {
-						$result[] = $row;
-					}
-					$_zp_db->freeResult($resource);
-				} else {
-					$result = false;
-				}
-
+				$alltables = $_zp_db->getTables();
 				$unique = $tables = array();
 				$table_cleared = array();
-				if (is_array($result)) {
-					foreach ($result as $row) {
+				if ($alltables) {
+					foreach ($alltables as $table) {
 						extendExecution();
-						$table = array_shift($row);
 						$tables[$table] = array();
 						$table_cleared[$table] = false;
-						$result2 = $_zp_db->listFields(substr($table, $prefixLen));
+						$result2 = $_zp_db->getFields(substr($table, $prefixLen));
 						if (is_array($result2)) {
 							foreach ($result2 as $row) {
 								$tables[$table][] = $row['Field'];

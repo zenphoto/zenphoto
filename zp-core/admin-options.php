@@ -518,7 +518,7 @@ if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'im
 		$table = 'albums';
 		$targetid = 'customalbumsort';
 	}
-	$result = $_zp_db->listFields($table);
+	$result = $_zp_db->getFields($table);
 	$dbfields = array();
 	if ($result) {
 		foreach ($result as $row) {

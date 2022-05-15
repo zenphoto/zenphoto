@@ -269,7 +269,7 @@ function lookupSortKey($sorttype, $default, $table) {
 			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
 				$dbfields = $_zp_fieldLists[$table];
 			} else {
-				$result = $_zp_db->listFields($table);
+				$result = $_zp_db->getFields($table);
 				$dbfields = array();
 				if ($result) {
 					foreach ($result as $row) {

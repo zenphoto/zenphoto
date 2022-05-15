@@ -927,13 +927,11 @@ class Gallery {
 				$_zp_db->freeResult($images);
 			}
 // cleanup the tables
-			$resource = $_zp_db->show('tables');
-			if ($resource) {
-				while ($row = $_zp_db->fetchAssoc($resource)) {
-					$tbl = array_shift($row);
+			$tables = $_zp_db->getTables();
+			if ($tables) {
+				foreach($tables as $tbl) {
 					$_zp_db->query('OPTIMIZE TABLE `' . $tbl . '`');
 				}
-				$_zp_db->freeResult($resource);
 			}
 		}
 		return false;

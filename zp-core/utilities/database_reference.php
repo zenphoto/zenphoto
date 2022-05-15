@@ -77,23 +77,7 @@ h2 {
 <?php
 $database_name = $_zp_db->getDBName();
 $prefix = trim($_zp_db->prefix(),'`');
-$resource = $_zp_db->show('tables');
-if ($resource) {
-	$result = array();
-	while ($row = $_zp_db->fetchAssoc($resource)) {
-		$result[] = $row;
-	}
-	$_zp_db->freeResult($resource);
-} else {
-	$result = false;
-}
-$tables = array();
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$tables[] = array_shift($row);
-	}
-}
-//echo "<pre>"; print_r($tables); echo "</pre>";
+$tables = $_zp_db->getTables();
 ?>
 <hr />
 <ul>
@@ -162,7 +146,7 @@ foreach($tables as $table) {
 	<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
 		<tr>
 			<?php
-			$cols = $tablecols = $_zp_db->listFields($table);
+			$cols = $tablecols = $_zp_db->getFields($table);
 			$cols = array_shift($cols);
 			foreach ($cols as $col=>$value) {
 				 ?>

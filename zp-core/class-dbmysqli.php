@@ -304,13 +304,33 @@ class dbMySQLi extends dbBase {
 	}
 
 	/**
-	 * Lists the columns (fields) info of a table
-	 * @param stringe $table 
-	 * @return boolean
+	 * Returns an array with the tables names of the database
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @return array
 	 */
-	function listFields($table) {
+	function getTables() {
+		$resource = $this->show('tables');
+		$tables = array();
+		if ($resource) {
+			while ($row = $this->fetchAssoc($resource)) {
+				$tables[] = array_shift($row);
+			}
+			$this->freeResult($resource);
+		}
+		return $tables;
+	}
+	
+	/**
+	 * Gets the detail info of all fields in a table
+	 * 
+	 * @since ZenphotoCMS 1.6 
+	 * @param string $table Name of the table to get the fields info of
+	 * @return array|false
+	 */
+	function getFields($table) {
 		$result = $this->show('columns', $table);
-		if (is_object($result)) {
+		if ($result) {
 			$fields = array();
 			while ($row = $this->fetchAssoc($result)) {
 				$fields[] = $row;
@@ -319,6 +339,18 @@ class dbMySQLi extends dbBase {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Lists the columns (fields) info of a table
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 - Use the method getFields() instead
+	 * @param stringe $table 
+	 * @return boolean
+	 */
+	function listFields($table) {
+		deprecationNotice('Use the method getFields() instead');
+		return $this->getFields($table);
 	}
 
 	/**

@@ -32,7 +32,7 @@ class dbBase {
 	function connect() {
 		return $this->connection;
 	}
-	
+
 	/**
 	 * The main query function. Runs the SQL on the connection and handles errors.
 	 * @param string $sql sql code
@@ -196,8 +196,74 @@ class dbBase {
 		return false;
 	}
 
-	function listFields($table) {
+	/**
+	 * @since ZenphotoCMS 1.6
+	 */
+	function getTables() {
+		return array();
+	}
+	
+	/**
+	 * Gets the names of the tables expected to exist in a Zenphoto database
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @param string $prefix Null is default to use the prefix set in the current connection. 
+	 * 												In setup environment here pass the mysql prefix set in $_zp_conf_vars for further checks
+	 * @return array
+	 */
+	function getExpectedTables($prefix = null) {
+		if (!is_null($prefix)) {
+			$mysql_prefix = $prefix;
+		} else {
+			$mysql_prefix = $this->details['mysql_prefix'];
+		}
+		return array($mysql_prefix . 'options',
+				$mysql_prefix . 'albums',
+				$mysql_prefix . 'images',
+				$mysql_prefix . 'comments',
+				$mysql_prefix . 'administrators',
+				$mysql_prefix . 'admin_to_object',
+				$mysql_prefix . 'tags',
+				$mysql_prefix . 'obj_to_tag',
+				$mysql_prefix . 'captcha',
+				$mysql_prefix . 'pages',
+				$mysql_prefix . 'news2cat',
+				$mysql_prefix . 'news_categories',
+				$mysql_prefix . 'news',
+				$mysql_prefix . 'menu',
+				$mysql_prefix . 'plugin_storage',
+				$mysql_prefix . 'search_cache'
+		);
+	}
+	
+	/**
+	 * Checks if a table exists in the database
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @param string $table Table name without the prefix
+	 * @return boolean
+	 */
+	function hasTable($table) {
+		$tables = $this->getTables();
+		if (in_array(prefix($table), $tables)) {
+			return true;
+		}
 		return false;
+	}
+
+	/**
+	 * @since ZenphotoCMS 1.6 
+	 */
+	function getFields($table) {
+		return false;
+	}
+
+	/**
+	 * @deprecated ZenphotoCMS 2.0 - Use the method getFields() instead
+	 */
+	function listFields($table) {
+		deprecationNotice('Use the method getFields() instead');
+		return $this->getFields($table);
 	}
 
 	function truncateTable($table) {

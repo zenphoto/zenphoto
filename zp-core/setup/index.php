@@ -1168,16 +1168,13 @@ if ($c <= 0) {
 									setup::checkMark($access, sprintf(gettext('Database <code>access rights</code> for <em>%s</em>'), $_zp_conf_vars['mysql_database']), sprintf(gettext('Database <code>access rights</code> for <em>%1$s</em> [%2$s]'), $_zp_conf_vars['mysql_database'], $rightsfound), sprintf(gettext("Your Database user must have %s rights."), $neededlist) . $report);
 
 
-									$result = $_zp_db->show('tables');
+									$tables = $_zp_db->getTables();
 									$tableslist = '';
-									$tables = array();
 									if ($result) {
 										$check = 1;
-										while ($row = $_zp_db->fetchRow($result)) {
-											$tables[] = $row[0];
-											$tableslist .= "<code>" . $row[0] . "</code>, ";
+										foreach($tables as $table) {
+											$tableslist .= "<code>" . $table . "</code>, ";
 										}
-										$_zp_db->freeResult($result);
 									} else {
 										$check = -1;
 									}
@@ -1714,37 +1711,17 @@ if ($c <= 0) {
 						}
 
 						if ($_zp_db->connect($_zp_conf_vars) && empty($task)) {
-							$result = $_zp_db->show('tables');
+							$alltables = $_zp_db->getTables();
 							$tables = array();
-							$prefix = $_zp_conf_vars['mysql_prefix'];
-							$prefixLC = strtolower($prefix);
+							$prefixLC = strtolower($_zp_conf_vars['mysql_prefix']);
 							$prefixUC = strtoupper($prefixLC);
 							if ($result) {
-								while ($row = $_zp_db->fetchRow($result)) {
-									$key = $row[0];
+								foreach($alltables as $key) {
 									$key = str_replace(array($prefixLC, $prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 									$tables[$key] = 'update';
 								}
-								$_zp_db->freeResult($result);
 							}
-							$expected_tables = array(
-											$_zp_conf_vars['mysql_prefix'] . 'options', 
-											$_zp_conf_vars['mysql_prefix'] . 'albums',
-											$_zp_conf_vars['mysql_prefix'] . 'images', 
-											$_zp_conf_vars['mysql_prefix'] . 'comments',
-											$_zp_conf_vars['mysql_prefix'] . 'administrators', 
-											$_zp_conf_vars['mysql_prefix'] . 'admin_to_object',
-											$_zp_conf_vars['mysql_prefix'] . 'tags', 
-											$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag',
-											$_zp_conf_vars['mysql_prefix'] . 'captcha',
-											$_zp_conf_vars['mysql_prefix'] . 'pages', 
-											$_zp_conf_vars['mysql_prefix'] . 'news2cat',
-											$_zp_conf_vars['mysql_prefix'] . 'news_categories', 
-											$_zp_conf_vars['mysql_prefix'] . 'news',
-											$_zp_conf_vars['mysql_prefix'] . 'menu', 
-											$_zp_conf_vars['mysql_prefix'] . 'plugin_storage',
-											$_zp_conf_vars['mysql_prefix'] . 'search_cache'
-							);
+							$expected_tables = $_zp_db->getExpectedTables($_zp_conf_vars['mysql_prefix']);
 
 							// v1.3.2 handle zenpage table name change transition:
 							//				if the old table exists it gets updated instead of a new one being created
