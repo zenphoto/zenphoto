@@ -70,7 +70,7 @@ function zpRewriteURL($query) {
 		unset($query['p']);
 		$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $redirectURL);
 		if (isset($query['page'])) {
-			$redirectURL.='/' . $query['page'];
+			$redirectURL.='/' . sanitize_numeric($query['page']);
 			unset($query['page']);
 		}
 		$q = http_build_query($query);
@@ -128,10 +128,9 @@ function fix_path_redirect() {
 function zp_load_page($pagenum = NULL) {
 	global $_zp_page;
 	if (!is_numeric($pagenum)) {
-		$_zp_page = isset($_GET['page']) ? $_GET['page'] : 1;
-	} else {
-		$_zp_page = round($pagenum);
+		$pagenum = isset($_GET['page']) ? intval($_GET['page']) : 1;
 	}
+	$_zp_page = sanitize_numeric($pagenum);
 }
 
 /**
