@@ -663,7 +663,7 @@ function getLanguageSubdomains() {
 function getLanguageText($loc = NULL, $separator = NULL) {
 	global $_zp_locale_subdomains;
 	if (is_null($loc)) {
-		$text = @$_zp_locale_subdomains[zp_getCookie('zpcms_locale')];
+		$text = @$_zp_locale_subdomains[sanitize(zp_getCookie('zpcms_locale'))];
 	} else {
 		$text = @$_zp_locale_subdomains[$loc];
 		//en_US always is always empty here so so urls in dynamic locale or html_meta_tags are wrong (Quickfix)
