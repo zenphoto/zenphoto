@@ -7,6 +7,17 @@ if(!defined('SITE_LOCALE')) {
 	}
 }
 
+if (function_exists('date_default_timezone_set')) { // insure a correct time zone
+	$tz = getOption('time_zone');
+	if (!empty($tz)) {
+		$err = error_reporting(0);
+		date_default_timezone_set($tz);
+		@ini_set('date.timezone', $tz);
+		error_reporting($err);
+	}
+	unset($tz);
+}
+
 /**
  * functions-i18n.php -- support functions for internationalization
  * @package core
@@ -677,17 +688,6 @@ function getLanguageText($loc = NULL, $separator = NULL) {
 	return $text;
 }
 
-if (function_exists('date_default_timezone_set')) { // insure a correct time zone
-	$tz = getOption('time_zone');
-	if (!empty($tz)) {
-		$err = error_reporting(0);
-		date_default_timezone_set($tz);
-		@ini_set('date.timezone', $tz);
-		error_reporting($err);
-	}
-	unset($tz);
-}
-
 /**
  * Gets all locales suppported on the current server as a multidimensional array
  * 
@@ -744,7 +744,7 @@ function getLanguageDisplayName($locale) {
  * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
  */
 function printLangAttribute($locale = null) {
-	echo ' lang="' . getLangAttributeLocale($locale) . '"';
+	echo ' lang="' . sanitize(getLangAttributeLocale($locale)) . '"';
 }
 
 $_zp_locale_subdomains = getLanguageSubdomains();
