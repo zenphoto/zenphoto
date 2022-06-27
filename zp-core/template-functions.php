@@ -4545,7 +4545,7 @@ function printCopyrightNotice($before = '', $after = '', $linked = true, $type =
 			}
 			$copyright_notice = $_zp_current_image->getCopyrightNotice();
 			$copyrigth_url = $_zp_current_image->getCopyrightURL();
-			$copyright_notice_enabled = true; 
+			$copyright_notice_enabled = getOption('display_copyright_image_notice');
 			break;
 	}
 	if (!empty($copyright_notice) && $copyright_notice_enabled) {
