@@ -441,11 +441,9 @@ class setup {
 	}
 
 	/**
-	 * 
-	 * @global type $_zp_setup_xsrftoken
+	 * prints the language selector
 	 */
 	static function languageSelector() {
-		global $_zp_setup_xsrftoken;
 		$languages = generateLanguageList();
 		if (isset($_REQUEST['locale'])) {
 			$locale = sanitize($_REQUEST['locale']);
@@ -500,14 +498,24 @@ class setup {
 		</ul>
 		<?php
 	}
+	
+	/**
+	 * Generates an XSRFtoken
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return string
+	 */
+	static function getXSRFToken() {
+		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+		return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
+	}
 
 	/**
-	 * 
-	 * @global type $_zp_setup_xsrftoken
+	 * Validates an XSRFtoken
 	 */
 	static function XSRFDefender() {
-		global $_zp_setup_xsrftoken;
-		if (!isset($_REQUEST['xsrfToken']) || $_zp_setup_xsrftoken != $_REQUEST['xsrfToken']) {
+		if (!isset($_REQUEST['xsrfToken']) || setup::getXSRFToken() != $_REQUEST['xsrfToken']) {
 			?>
 			<p class="errorbox" >
 				<?php echo gettext('An attempt at cross site reference forgery has been blocked.') ?>
@@ -632,8 +640,8 @@ class setup {
 	}
 
 	static function acknowledge($value) {
-		global $_zp_setup_xsrftoken, $_zp_conf_vars;
-		$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . $_zp_setup_xsrftoken;
+		global $_zp_conf_vars;
+		$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . setup::getXSRFToken();
 		return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 	}
 
@@ -675,7 +683,6 @@ class setup {
 	}
 
 	static function updateConfigfile($zp_cfg) {
-		global $_zp_setup_xsrftoken;
 		$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
 		$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
 
@@ -693,8 +700,6 @@ class setup {
 			clearstatcache();
 		}
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
-		$str = setup::configMod();
-		$_zp_setup_xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $str . session_id());
 	}
 
 	static function checkUnique($table, $unique) {

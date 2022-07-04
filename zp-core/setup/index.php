@@ -122,7 +122,6 @@ if (isset($_GET['mod_rewrite'])) {
 }
 
 $zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-$_zp_setup_xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
 
 $updatezp_config = false;
 
@@ -808,7 +807,7 @@ if ($c <= 0) {
 							$good = setup::checkMark($cfg, sprintf(gettext('<em>%1$s</em> file'), CONFIGFILE), sprintf(gettext('<em>%1$s</em> file [does not exist]'), CONFIGFILE), sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto_cfg.txt</code> file to <code>%2$s/%3$s</code> then edit it as indicated in the file’s comments.'), ZENFOLDER, DATA_FOLDER, CONFIGFILE)) && $good;
 							if ($cfg) {
 								setup::primeMark(gettext('File permissions'));
-								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . $_zp_setup_xsrftoken . '" />' .
+								$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="' . setup::getXSRFToken() . '" />' .
 												'<p>' . sprintf(gettext('Set File permissions to %s.'), setup::permissionsSelector($_zp_setup_permission_names, $_zp_setup_chmod)) .
 												'</p></form>';
 								if (array_key_exists($_zp_setup_chmod | 4, $_zp_setup_permission_names)) {
@@ -881,7 +880,7 @@ if ($c <= 0) {
 													break;
 											}
 											$msg2 = '<p>' . sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects.'), $charset_defined) . '</p>' .
-															'<form action="#"><input type="hidden" name="xsrfToken" value="' . $_zp_setup_xsrftoken . '" /><input type="hidden" name="charset_attempts" value="' . $tries . '" /><p>' .
+															'<form action="#"><input type="hidden" name="xsrfToken" value="' . setup::getXSRFToken() . '" /><input type="hidden" name="charset_attempts" value="' . $tries . '" /><p>' .
 															gettext('Change the filesystem character set define to %1$s') .
 															'</p></form><br class="clearall" />';
 
@@ -2702,7 +2701,7 @@ if ($c <= 0) {
 								<div class="warning" id="dbrestructure">
 									<p><?php echo gettext('<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding.'); ?></p>
 									<form>
-										<input type="hidden" name="xsrfToken" value="<?php echo $_zp_setup_xsrftoken ?>" />
+										<input type="hidden" name="xsrfToken" value="<?php echo setup::getXSRFToken(); ?>" />
 										<p><?php printf(gettext('%s I acknowledge that proceeding will restructure my database.'), '<input type="checkbox" id="agree" value="0" onclick="javascript:$(\'#setup\').show();$(\'#agree\').attr(\'checked\',\'checked\')" />')
 								?></p>
 									</form>
@@ -2750,7 +2749,7 @@ if ($c <= 0) {
 								echo $task . $mod;
 								?>" method="post"<?php echo $hideGoButton; ?> >
 									<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
-									<input type="hidden" name="xsrfToken" value="<?php echo $_zp_setup_xsrftoken ?>" />
+									<input type="hidden" name="xsrfToken" value="<?php echo setup::getXSRFToken(); ?>" />
 									<?php
 									if (isset($_REQUEST['autorun'])) {
 										if (!empty($_REQUEST['autorun'])) {

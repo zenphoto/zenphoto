@@ -114,11 +114,13 @@ if (isset($_POST['login'])) { //	Handle the login form.
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
 	}
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
-	if ($_zp_loggedin) {
+	if ($_zp_loggedin && is_object($_zp_current_admin_obj)) {
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) { //	set his prefered language
 			setupCurrentLocale($locale);
 		}
+	} else {
+		$locale = 'en_US';
 	}
 }
 if (!$_zp_loggedin) { //	Clear the ssl cookie

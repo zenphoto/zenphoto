@@ -59,12 +59,14 @@ class Authority {
 	 */
 	function getMasterUserName() {
 		global $_zp_db;
-		if (!is_null($this->master_user)) {
-			return $this->master_user;
-		}
-		$master = $_zp_db->querySingleRow('SELECT `user` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
-		if ($master) {
-			return $this->master_user = $master['user'];
+		if ($this->hasAdminTable()) {
+			if (!is_null($this->master_user)) {
+				return $this->master_user;
+			}
+			$master = $_zp_db->querySingleRow('SELECT `user` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
+			if ($master) {
+				return $this->master_user = $master['user'];
+			}
 		}
 	}
 
@@ -226,38 +228,55 @@ class Authority {
 				$where = '';
 				break;
 		}
-		$users = array();
-		switch ($returnvalues) {
-			case 'basedata':
-				$select = 'SELECT `id`, `user`, `valid` FROM ';
-				break;
-			case 'coredata':
-				$select = 'SELECT `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials` FROM ';
-				break;
-			case 'fulldata':
-			default:
-				$select = 'SELECT * FROM ';
-				break;
-		}
-		$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
-		$admins = $_zp_db->query($sql, true);
-		if ($admins) {
-			while ($user = $_zp_db->fetchAssoc($admins)) {
-				$users[$user['id']] = $user;
-			}
-			$_zp_db->freeResult($admins);
-			switch ($what) {
-				case 'users':
-					return $this->admin_users[$cacheindex] = $users;
-				case 'groups':
-					return $this->admin_groups[$cacheindex] = $users;
-				case 'allusers':
-					return $this->admin_realusers[$cacheindex] = $users;
+		if ($this->hasAdminTable()) {
+			$users = array();
+			switch ($returnvalues) {
+				case 'basedata':
+					$select = 'SELECT `id`, `user`, `valid` FROM ';
+					break;
+				case 'coredata':
+					$select = 'SELECT `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials` FROM ';
+					break;
+				case 'fulldata':
 				default:
-					return $this->admin_all[$cacheindex] = $users;
+					$select = 'SELECT * FROM ';
+					break;
 			}
+			$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
+			$admins = $_zp_db->query($sql, true);
+			if ($admins) {
+				while ($user = $_zp_db->fetchAssoc($admins)) {
+					$users[$user['id']] = $user;
+				}
+				$_zp_db->freeResult($admins);
+				switch ($what) {
+					case 'users':
+						return $this->admin_users[$cacheindex] = $users;
+					case 'groups':
+						return $this->admin_groups[$cacheindex] = $users;
+					case 'allusers':
+						return $this->admin_realusers[$cacheindex] = $users;
+					default:
+						return $this->admin_all[$cacheindex] = $users;
+				}
+			}
+			return $this->admin_realusers[$cacheindex] = array();
 		}
-		return $this->admin_realusers[$cacheindex] = array();
+		return array();
+	}
+
+	/**
+	 * Checks if the administrator table and actual admins exist
+	 * 
+	 * @global obj $_zp_db
+	 * @return boolean
+	 */
+	function hasAdminTable() {
+		global $_zp_db;
+		if (!is_null($_zp_db->connection) && $_zp_db->hasTable('administrators') && !$_zp_db->isEmptyTable('administrators')) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -294,12 +313,10 @@ class Authority {
 	 * @return bit
 	 */
 	function checkAuthorization($authCode, $id) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_db;
 		if (DEBUG_LOGIN) {
 			debugLogBacktrace("checkAuthorization($authCode, $id)");
 		}
-
-
 		$admins = $this->getAdministrators();
 		if (count($admins) == 0) {
 			if (DEBUG_LOGIN) {
@@ -562,23 +579,23 @@ class Authority {
 								'ADMIN_RIGHTS'						 => array('value' => 65536, 'name' => gettext('Full admin rights'), 'set' => '', 'display' => true, 'hint' => ''));
 				break;
 			case 2:
-				$rightsset = array('NO_RIGHTS'								 => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
-								'OVERVIEW_RIGHTS'					 => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
-								'VIEW_ALL_RIGHTS'					 => array('value' => pow(2, 4), 'name' => gettext('View all'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
-								'UPLOAD_RIGHTS'						 => array('value' => pow(2, 6), 'name' => gettext('Upload'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
-								'POST_COMMENT_RIGHTS'			 => array('value' => pow(2, 8), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-								'COMMENT_RIGHTS'					 => array('value' => pow(2, 10), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
-								'ALBUM_RIGHTS'						 => array('value' => pow(2, 12), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
-								'ZENPAGE_PAGES_RIGHTS'		 => array('value' => pow(2, 14), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
-								'ZENPAGE_NEWS_RIGHTS'			 => array('value' => pow(2, 16), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-								'FILES_RIGHTS'						 => array('value' => pow(2, 18), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
-								'MANAGE_ALL_PAGES_RIGHTS'	 => array('value' => pow(2, 20), 'name' => gettext('Manage all pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-								'MANAGE_ALL_NEWS_RIGHTS'	 => array('value' => pow(2, 22), 'name' => gettext('Manage all news'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-								'MANAGE_ALL_ALBUM_RIGHTS'	 => array('value' => pow(2, 24), 'name' => gettext('Manage all albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-								'THEMES_RIGHTS'						 => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-								'TAGS_RIGHTS'							 => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
-								'OPTIONS_RIGHTS'					 => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
-								'ADMIN_RIGHTS'						 => array('value' => pow(2, 30), 'name' => gettext('Full admin rights'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				$rightsset = array('NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+						'OVERVIEW_RIGHTS' => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
+						'VIEW_ALL_RIGHTS' => array('value' => pow(2, 4), 'name' => gettext('View all'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
+						'UPLOAD_RIGHTS' => array('value' => pow(2, 6), 'name' => gettext('Upload'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),
+						'POST_COMMENT_RIGHTS' => array('value' => pow(2, 8), 'name' => gettext('Post comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+						'COMMENT_RIGHTS' => array('value' => pow(2, 10), 'name' => gettext('Comments'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make comments tab changes.')),
+						'ALBUM_RIGHTS' => array('value' => pow(2, 12), 'name' => gettext('Albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users with this right may access the “albums” tab to make changes.')),
+						'ZENPAGE_PAGES_RIGHTS' => array('value' => pow(2, 14), 'name' => gettext('Pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage pages.')),
+						'ZENPAGE_NEWS_RIGHTS' => array('value' => pow(2, 16), 'name' => gettext('News'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+						'FILES_RIGHTS' => array('value' => pow(2, 18), 'name' => gettext('Files'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Allows the user access to the “filemanager” located on the upload: files sub-tab.')),
+						'MANAGE_ALL_PAGES_RIGHTS' => array('value' => pow(2, 20), 'name' => gettext('Manage all pages'), 'set' => gettext('Pages'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+						'MANAGE_ALL_NEWS_RIGHTS' => array('value' => pow(2, 22), 'name' => gettext('Manage all news'), 'set' => gettext('News'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+						'MANAGE_ALL_ALBUM_RIGHTS' => array('value' => pow(2, 24), 'name' => gettext('Manage all albums'), 'set' => gettext('Albums'), 'display' => true, 'hint' => gettext('Users who do not have “Admin” rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+						'THEMES_RIGHTS' => array('value' => pow(2, 26), 'name' => gettext('Themes'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+						'TAGS_RIGHTS' => array('value' => pow(2, 28), 'name' => gettext('Tags'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make additions and changes to the set of tags.')),
+						'OPTIONS_RIGHTS' => array('value' => pow(2, 29), 'name' => gettext('Options'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('Users with this right may make changes on the options tabs.')),
+						'ADMIN_RIGHTS' => array('value' => pow(2, 30), 'name' => gettext('Full admin rights'), 'set' => gettext('General'), 'display' => true, 'hint' => gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
 				break;
 			case 3:
 				$rightsset = array('NO_RIGHTS'								 => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),

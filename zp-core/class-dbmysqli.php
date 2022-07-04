@@ -322,6 +322,21 @@ class dbMySQLi extends dbBase {
 	}
 	
 	/**
+	 * Checks if a table has content. Note: Does not check if the table actually exists!
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Table name without the prefix
+	 * @return boolean
+	 */
+	function isEmptyTable($table) {
+		$not_empty = $this->query('SELECT NULL FROM ' .  $this->prefix($table) . ' LIMIT 1', true);
+		if ($not_empty) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Gets the detail info of all fields in a table
 	 * 
 	 * @since ZenphotoCMS 1.6 

@@ -245,12 +245,22 @@ class dbBase {
 	 */
 	function hasTable($table) {
 		$tables = $this->getTables();
-		if (in_array(prefix($table), $tables)) {
+		if (in_array($this->getPrefix() . $table, $tables)) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Checks if a table has content. Note: Does not check if the table actually exists!
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Table name without the prefix
+	 * @return boolean
+	 */
+	function isEmptyTable($table) {
+		return true;
+	}
 	/**
 	 * @since ZenphotoCMS 1.6 
 	 */
@@ -280,19 +290,30 @@ class dbBase {
 	
 	
 	/**
-	 * Prefix a table name with a user-defined string to avoid conflicts.
+	 * Prefix a table name with a user-defined string to avoid conflicts and enclosed all in backticks
 	 * This MUST be used in all database queries.
 	 * @param string $tablename name of the table
 	 * @return prefixed table name
 	 * @since 0.6
 	 */
 	function prefix($tablename = NULL) {
-		if (defined('DATABASE_PREFIX')) {
-			$prefix = DATABASE_PREFIX;
-		} else {
-			$prefix = 'zp_'; // use default in case this constant is not set in setup primitive environments
-		}
+		$prefix = $this->getPrefix();
 		return '`' . $prefix . $tablename . '`';
+	}
+	
+	/**
+	 * Gets the plain database table prefix
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return string
+	 */
+	function getPrefix() {
+		if (defined('DATABASE_PREFIX')) {
+			return DATABASE_PREFIX;
+		} else {
+			return 'zp_'; // use default in case this constant is not set in setup primitive environments
+		}
 	}
 
 	/**
