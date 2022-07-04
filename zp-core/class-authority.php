@@ -59,10 +59,10 @@ class Authority {
 	 */
 	function getMasterUserName() {
 		global $_zp_db;
+		if (!is_null($this->master_user)) {
+			return $this->master_user;
+		}
 		if ($this->hasAdminTable()) {
-			if (!is_null($this->master_user)) {
-				return $this->master_user;
-			}
 			$master = $_zp_db->querySingleRow('SELECT `user` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid` = 1 ORDER BY `rights` DESC, `id` LIMIT 1');
 			if ($master) {
 				return $this->master_user = $master['user'];
@@ -267,6 +267,8 @@ class Authority {
 
 	/**
 	 * Checks if the administrator table and actual admins exist
+	 * 
+	 * @since ZenphotoCMS 1.6
 	 * 
 	 * @global obj $_zp_db
 	 * @return boolean
@@ -579,7 +581,8 @@ class Authority {
 								'ADMIN_RIGHTS'						 => array('value' => 65536, 'name' => gettext('Full admin rights'), 'set' => '', 'display' => true, 'hint' => ''));
 				break;
 			case 2:
-				$rightsset = array('NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
+				$rightsset = array(
+						'NO_RIGHTS' => array('value' => 1, 'name' => gettext('No rights'), 'set' => '', 'display' => false, 'hint' => ''),
 						'OVERVIEW_RIGHTS' => array('value' => pow(2, 2), 'name' => gettext('Overview'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view the admin overview page.')),
 						'VIEW_ALL_RIGHTS' => array('value' => pow(2, 4), 'name' => gettext('View all'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
 						'UPLOAD_RIGHTS' => array('value' => pow(2, 6), 'name' => gettext('Upload'), 'set' => gettext('Gallery'), 'display' => true, 'hint' => gettext('Users with this right may upload to the albums for which they have management rights.')),

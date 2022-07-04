@@ -261,6 +261,7 @@ class dbBase {
 	function isEmptyTable($table) {
 		return true;
 	}
+	
 	/**
 	 * @since ZenphotoCMS 1.6 
 	 */
@@ -297,8 +298,7 @@ class dbBase {
 	 * @since 0.6
 	 */
 	function prefix($tablename = NULL) {
-		$prefix = $this->getPrefix();
-		return '`' . $prefix . $tablename . '`';
+		return '`' . $this->getPrefix() . $tablename . '`';
 	}
 	
 	/**
