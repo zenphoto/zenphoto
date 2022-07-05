@@ -260,14 +260,14 @@ class register_user {
 		}
 		$user = trim(sanitize($_POST['user']));
 		if (getOption('register_user_email_is_id')) {
-			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($user, $user);
+			$mail_duplicate = $_zp_authority->isUniqueMailaddress($user, $user);
 			if (!$mail_duplicate) {
 				$_notify = 'exists';
 			}
 		} 
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
-			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
+			$mail_duplicate = $_zp_authority->isUniqueMailaddress($admin_e, $user);
 			if(!$mail_duplicate) {
 				$_notify = 'duplicateemail';
 			}

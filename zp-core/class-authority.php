@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provides the methods used for user authorization and management
  * store an instantiation of this class in `$_zp_authority`.
@@ -1375,7 +1374,7 @@ class Authority {
 	 * @param type $current_user user id of the user trying to set this email address
 	 * @return boolean
 	 */
-	function checkUniqueMailaddress($email_to_check, $current_user) {
+	function isUniqueMailaddress($email_to_check, $current_user) {
 		global $_zp_db;
 		$checkmail = trim($email_to_check);
 		if (!empty($checkmail) && isValidEmail($checkmail)) {
@@ -1388,6 +1387,21 @@ class Authority {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Checks if the email address being set is already used by another user
+	 * Returns true if it is, false if not
+	 * 
+	 * @deprecated Zenphoto 2.0 – Use the method isUniqueMailaddress() instead
+	 *
+	 * @param string $email_to_check email address to check
+	 * @param type $current_user user id of the user trying to set this email address
+	 * @return boolean
+	 */
+	function checkUniqueMailaddress($email_to_check, $current_user) {
+		deprecationNotice(gettext('Use the method isUniqueMailaddress() instead'));
+		return $this->isUniqueMailaddress($email_to_check, $current_user);
 	}
 	
 	/**
