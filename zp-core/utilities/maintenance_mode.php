@@ -32,13 +32,18 @@ if (isset($_POST['maintenance_mode'])) {
 			maintenanceMode::setState('closed_for_test');
 			break;
 	}
+	if (isset($_POST['maintenance_mode_auto-open'])) {
+		setOption('maintenance_mode_auto-open', 1);
+	} else {
+		setOption('maintenance_mode_auto-open', 0);
+	}
 	if(isset($_POST['maintenance_mode_restorefiles'])) {
 		maintenanceMode::restorePlaceholderFiles();
 		$message .= ' ' . gettext('site_upgrade files restored to original.');
 	}
 	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/utilities/maintenance_mode.php?report=' . $message);
 }
-
+$auto_open = getOption('maintenance_mode_auto-open');
 $sitestate = maintenanceMode::getState();
 $_zp_admin_menu['overview']['subtabs'] = array(gettext('Maintenance mode') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/maintenance_mode.php');
 printAdminHeader('overview');
@@ -76,7 +81,9 @@ printAdminHeader('overview');
 				<label><input type="radio" name="maintenance_mode" value="closed"<?php checked('closed', $sitestate); ?>><strong><?php echo gettext('Close the site'); ?></strong></label>
 			</li>
 			<li><label><input type="radio" name="maintenance_mode" value="closed_for_test"<?php checked('closed_for_test', $sitestate); ?>><strong><?php echo gettext('Test mode'); ?></strong></label></li>
+			
 		</ul>
+		<p><label><input type="checkbox" name="maintenance_mode_auto-open" value="1""<?php checked(1, $auto_open); ?>><?php echo gettext('Open the site automatically after running setup (not recommended)'); ?></label>
 		<p><label><input type="checkbox" name="maintenance_mode_restorefiles" value="restorefiles"><?php echo gettext('Restore the files in the <code>plugins/site_upgrade</code> folder to their default state. <strong>Note: this will overwrite any custom edits you may have made.</strong>'); ?></label>
 	</p>
 	<p class="buttons clearfix"><button type="submit"> <img src="../images/pass.png" alt=""> <strong><?php echo gettext('Apply'); ?></strong></button></p>

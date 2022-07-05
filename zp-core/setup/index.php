@@ -2592,6 +2592,9 @@ if ($c <= 0) {
 									$link = sprintf(gettext('You can now <a href="%1$s">administer your gallery</a>.'), WEBPATH . '/' . ZENFOLDER . '/admin.php');
 								}
 								setOption('setup_unprotected_by_adminrequest', 0, true, null);
+								if (getOption('maintenance_mode_auto-open')) {
+									maintenanceMode::setState('open');
+								}
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>
 								<?php
