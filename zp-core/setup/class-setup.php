@@ -201,6 +201,7 @@ class setup {
 		if (!is_dir($path) && $class == 'std') {
 			mkdir_recursive($path, $chmod);
 		}
+		$append = '';
 		switch ($class) {
 			case 'std':
 				$append = trim(str_replace($_zp_setup_serverpath, '', $path), '/');
