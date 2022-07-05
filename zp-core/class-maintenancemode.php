@@ -125,7 +125,18 @@ class maintenanceMode {
 	static function printStateNotice() {
 		$status = maintenanceMode::getState();
 		if ($status != 'open') {
-			echo '<p class="warningbox" style="margin: 0">' . maintenanceMode::getStateNote() . '</p>';
+			$link = maintenanceMode::getUtilityLinkHTML();
+			echo '<p class="warningbox" style="margin: 0">' . maintenanceMode::getStateNote() . $link . '</p>';
+		}
+	}
+	
+	/**
+	 * Gets a link element with a link to the utiltiy if the current user has admin rights
+	 */
+	static function getUtilityLinkHTML() {
+		$button = maintenanceMode::getButtonDefinition();
+		if (zp_loggedin($button['rights'])) {
+			return ' <a href="' . html_encode($button['action']) . '?XSRFToken=' . getXSRFToken($button['XSRFTag']) . '">' . gettext('Change mode') . '</a>';
 		}
 	}
 
@@ -203,6 +214,26 @@ class maintenanceMode {
 						</item>
 					</channel>
 				</rss>';
+	}
+	
+	/**
+	 * Gets the utility button definition
+	 * @return array
+	 */
+	static function getButtonDefinition() {
+		return array(
+				'XSRFTag' => 'maintenance_mode',
+				'category' => gettext('Admin'),
+				'enable' => true,
+				'button_text' => gettext('Maintenance mode'),
+				'formname' => 'maintenance_mode.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/maintenance_mode.php',
+				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/options.png',
+				'title' => '',
+				'alt' => gettext('Maintenance mode'),
+				'hidden' => '',
+				'rights' => ADMIN_RIGHTS
+		);
 	}
 
 }

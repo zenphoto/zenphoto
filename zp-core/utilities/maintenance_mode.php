@@ -10,19 +10,7 @@ define ('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
 
-$buttonlist[] = $button = array(
-		'XSRFTag'			 => 'maintenance_mode',
-		'category' => gettext('Admin'),
-		'enable' => true,
-		'button_text' => gettext('Maintenance mode'),
-		'formname' => 'maintenance_mode.php',
-		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/maintenance_mode.php',
-		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/options.png',
-		'title' => '',
-		'alt' => gettext('Maintenance mode'),
-		'hidden' => '',
-		'rights' => ADMIN_RIGHTS
-);
+$buttonlist[] = $button = maintenanceMode::getButtonDefinition();
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 

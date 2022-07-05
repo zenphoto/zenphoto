@@ -83,8 +83,9 @@ function adminToolbox() {
 				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?>
 					<?php
 					if(array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
-						if($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {
-							echo ' | <span class="zp_sitestatus">' . gettext('Test mode') . '</span>';
+						if ($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {
+							$maintenance_link = maintenanceMode::getUtilityLinkHTML();
+							echo ' | <span class="zp_sitestatus">' . gettext('Test mode') . $maintenance_link . '</span>';
 						}
 					}
 					?>
