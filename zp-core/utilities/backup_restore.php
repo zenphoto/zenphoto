@@ -142,7 +142,7 @@ echo '</head>';
 
 $messages = '';
 
-$prefix = trim($_zp_db->prefix(), '`');
+$prefix = $_zp_db->getPrefix();
 $prefixLen = strlen($prefix);
 
 if (isset($_REQUEST['backup'])) {
@@ -500,7 +500,7 @@ if (isset($_GET['compression'])) {
 				<p>
 					<?php printf(gettext("Database software <strong>%s</strong>"), DATABASE_SOFTWARE); ?><br />
 					<?php printf(gettext("Database name <strong>%s</strong>"), $_zp_db->getDBName()); ?><br />
-					<?php printf(gettext("Tables prefix <strong>%s</strong>"), trim($_zp_db->prefix(), '`')); ?>
+					<?php printf(gettext("Tables prefix <strong>%s</strong>"), $_zp_db->getPrefix()); ?>
 				</p>
 				<?php
 				if (!$_zp_current_admin_obj->reset) {

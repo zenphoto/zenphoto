@@ -76,7 +76,7 @@ h2 {
 </p>
 <?php
 $database_name = $_zp_db->getDBName();
-$prefix = trim($_zp_db->prefix(),'`');
+$prefix = $_zp_db->getPrefix();
 $tables = $_zp_db->getTables();
 ?>
 <hr />
