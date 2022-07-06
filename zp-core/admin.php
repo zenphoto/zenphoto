@@ -468,22 +468,11 @@ if (!zp_loggedin()) {
 									?>
 								</li>
 								<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'), INI_GET('memory_limit')); ?></li>
-								<li>
-									<?php
-									$dbsoftware = $_zp_db->getSoftware();
-									printf(gettext('%1$s version: <strong>%2$s</strong>'), $dbsoftware['application'], $dbsoftware['version']);
-									?>
-
-								</li>
+								<li><?php printf(gettext('Database: <strong>%1$s %2$s</strong>'), $_zp_db->getType(), $_zp_db->getVersion()); ?></li>
+								<li><?php printf(gettext('Database handler: <strong>%1$s</strong>'), DATABASE_SOFTWARE); ?></li>
+								<li><?php printf(gettext('Database client: <strong>%1$s</strong>'), $_zp_db->getClientInfo()); ?></li>									
 								<li><?php printf(gettext('Database name: <strong>%1$s</strong>'), $_zp_db->getDBName()); ?></li>
-								<li>
-									<?php
-									$prefix = trim($_zp_db->prefix(), '`');
-									if (!empty($prefix)) {
-										echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'), $prefix);
-									}
-									?>
-								</li>
+								<li><?php echo sprintf(gettext('Database table prefix: <strong>%1$s</strong>'), $_zp_db->getPrefix()); ?></li>
 								<li>
 									<?php
 									if (isset($_zp_spamFilter)) {
