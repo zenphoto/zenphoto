@@ -18,9 +18,13 @@ class dbMySQLi extends dbBase {
 	 */
 	function __construct($config, $errorstop = true) {
 		$this->details = unserialize(DB_NOT_CONNECTED);
+		$socket = null;
+		if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
+			$socket = $config['mysql_socket'];
+		}
 		if (function_exists('mysqli_connect')) {
 			try {
-				$this->connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port']);
+				$this->connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
 			} catch (mysqli_sql_exception $e) {
 				$this->connection = NULL;
 				$connection_error = gettext('MySQLi Error: Zenphoto could not instantiate a connection.') . PHP_EOL;
@@ -33,6 +37,7 @@ class dbMySQLi extends dbBase {
 			}
 		}
 		$this->details['mysql_host'] = $config['mysql_host'];
+		$this->details['mysql_socket'] = $config['mysql_socket'];
 		if (!is_object($this->connection)) {
 			return false;
 		}

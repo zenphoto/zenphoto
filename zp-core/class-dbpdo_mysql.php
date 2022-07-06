@@ -30,8 +30,12 @@ class dbPDO_MySQL extends dbBase {
 			$username = $config['mysql_user'];
 			$password = $config['mysql_pass'];
 			$port = $config['mysql_port'];
+			$socket = '';
+			if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
+				$socket = ';unix_socket=' . $config['mysql_socket'];
+			}
 			if (class_exists('PDO')) {
-				$this->connection = new PDO("mysql:host=$hostname;dbname=$db$utf8;port=$port", $username, $password);
+				$this->connection = new PDO('mysql:host=' . $hostname . ';dbname=' . $db . $utf8 . ';port=' . $port . $socket, $username, $password);
 			}
 		} catch (PDOException $e) {
 			$this->last_result = $e;

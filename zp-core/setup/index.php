@@ -168,9 +168,14 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_prefix'])))), $zp_cfg);
 	}
 	if (isset($_POST['db_port'])) {
-		$zp_cfg = updateConfigItem('mysql_port', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_port'])))), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_port', addslashes(trim(intval($_POST['db_port']))), $zp_cfg);
 	} else {
-		$zp_cfg = updateConfigItem('mysql_port', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', "3306"), $zp_cfg);
+		$zp_cfg = updateConfigItem('mysql_port', "3306", $zp_cfg);
+	}
+	if (isset($_POST['db_socket'])) {
+		$zp_cfg = updateConfigItem('mysql_socket', addslashes(trim(intval($_POST['db_socket']))), $zp_cfg);
+	} else {
+		$zp_cfg = updateConfigItem('mysql_socket', '', $zp_cfg);
 	}
 }
 
@@ -284,6 +289,11 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$zp_cfg = updateConfigItem('mysql_port', 3306, $zp_cfg);
 			$updatezp_config = true;
 		}
+		if (!isset($_zp_conf_vars['mysql_socket'])) { 
+			$_zp_conf_vars['mysql_socket'] = '';
+			$zp_cfg = updateConfigItem('mysql_socket', '', $zp_cfg);
+			$updatezp_config = true;
+		}
 
 		require_once(dirname(dirname(__FILE__)) . '/functions-db.php'); // legacy function wrapper
 		require_once(dirname(dirname(__FILE__)) . '/class-dbbase.php'); // empty base db class
@@ -354,7 +364,7 @@ if ($selected_database) {
 			if (!empty($_zp_conf_vars['mysql_database'])) {
 				if (isset($_GET['Create_Database'])) {
 					$result = $_zp_db->create();
-					if ($result && ($connection = $_zp_db->connect($_zp_conf_vars, false))) {
+					if ($result && ($connection = $_zp_db->connect())) {
 						$environ = true;
 						require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 					} else {

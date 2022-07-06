@@ -30,9 +30,9 @@ $conf['mysql_user'] = '';           // Supply your Database user id.
 $conf['mysql_pass'] = '';           // Supply your Database password.
 $conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
 $conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
-// If you're sharing the database with other tables, use a prefix to be safe.
-$conf['mysql_prefix'] = 'zp_';
+$conf['mysql_prefix'] = 'zp_'; // If you're sharing the database with other tables, use a prefix to be safe.
 $conf['mysql_port'] = "3306"; // Change if your server uses a different port
+$conf['mysql_socket'] = null; // Change if you need to set a specific socket
 
 // If you are having problems with displaying some characters you may have to change
 // the following:
