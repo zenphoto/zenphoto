@@ -265,7 +265,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		}
 		if (isset($_zp_conf_vars['db_software'])) {
 			$confDB = strtolower($_zp_conf_vars['db_software']);
-			if (empty($_POST) && empty($_GET) && ($confDB === 'mysql' || $preferred != 'mysql')) {
+			if (empty($_POST) && empty($_GET) && ($confDB === 'mysql' || $preferred != 'mysqli')) {
 				$confDB = NULL;
 			}
 			if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)) . '/class-db' . strtolower($confDB) . '.php')) {
@@ -298,7 +298,6 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 		require_once(dirname(dirname(__FILE__)) . '/functions-db.php'); // legacy function wrapper
 		require_once(dirname(dirname(__FILE__)) . '/class-dbbase.php'); // empty base db class
 		if ($selected_database) {
-			
 			require_once(dirname(dirname(__FILE__)) . '/class-db' . strtolower($selected_database) . '.php'); // real db handler
 			define('DATABASE_SOFTWARE', $selected_database);
 			define('DATABASE_MIN_VERSION', '5.5.3');
@@ -729,7 +728,7 @@ if ($c <= 0) {
 							
 							setup::checkmark(extension_loaded('ctype') ? 1 : 0, gettext('PHP <code>Ctype</code> support'), gettext('PHP <code>Ctype</code> support [is not present]'), gettext('<code>Ctype</code> support is required for internal character type checking e.g. for shortening text content.'));
 							setup::checkmark(extension_loaded('filter') ? 1 : 0, gettext('PHP <code>filter</code> support'), gettext('PHP <code>filter</code> support [is not present]'), gettext('<code>filter</code> support is required for filtering and clearing content.'));
-							setup::checkmark(extension_loaded('sessions') ? 1 : 0, gettext('PHP <code>fsessions</code> support'), gettext('PHP <code>sessions</code> support [is not present]'), gettext('<code>sessions</code> support is required session handling.'));
+							setup::checkmark(extension_loaded('session') ? 1 : 0, gettext('PHP <code>session</code> support'), gettext('PHP <code>session</code> support [is not present]'), gettext('<code>session</code> support is required session handling.'));
 							
 							
 							if ($_zp_setupCurrentLocale_result === false) {
@@ -753,7 +752,6 @@ if ($c <= 0) {
 								} else {
 									$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
 									setup::checkMark(-1, '', gettext("PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"), $m2);
-									
 								}
 							}
 
@@ -1011,11 +1009,6 @@ if ($c <= 0) {
 								}
 							}
 							setup::primeMark(gettext('Database'));
-							if($_zp_conf_vars['db_software'] == 'MySQL') {		
-								?>
-								<li class="warning"><?php echo gettext('Your chosen database handler <code>MySQL</code> is deprececated and already removed in PHP 7. It will also be removed in future Zenphoto versions. Use <code>MySQLi</code> or <code>PDO_MySQL</code> instead.'); ?>
-								<?php
-							}
 							foreach ($engines as $engine) {
 								$handler = $engine['engine'];
 								if ($handler == $confDB && $engine['enabled']) {
