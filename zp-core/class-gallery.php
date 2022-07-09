@@ -155,7 +155,7 @@ class Gallery {
 		$url = $this->get('copyright_site_url');
 		if ($url) {
 			if ($url == 'custom') {
-				return getOption('copyright_site_url_custom');
+				return $this->get('copyright_site_url_custom');
 			} else if ($url == 'none') {
 				return null;
 			} else {
