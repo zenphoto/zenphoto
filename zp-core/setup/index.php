@@ -1778,7 +1778,7 @@ if ($c <= 0) {
 						// Prefix the constraint names:
 						$db_schema = array();
 						$sql_statements = array();
-						$collation = $_zp_db->getCollation();
+						$collation = $_zp_db->getCollationSetClause();
 
 						/***********************************************************************************
 						  Add new fields in the upgrade section. This section should remain static except for new

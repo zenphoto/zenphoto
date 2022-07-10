@@ -212,7 +212,7 @@ class dbPDO_MySQL extends dbBase {
 	 * create the database
 	 */
 	function create() {
-		$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->details['mysql_database'] . '`' . $this->getCollation();
+		$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->details['mysql_database'] . '`' . $this->getCollationSetClause();
 		return $this->query($sql, false);
 	}
 

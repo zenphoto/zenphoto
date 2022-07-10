@@ -245,8 +245,8 @@ function db_getSQLmode() {
  */
 function db_collation() {
 	global $_zp_db;
-	deprecationNotice(gettext('Use the global object $_zp_db and the class method getCollation() instead.'));
-	return $_zp_db->getCollation();
+	deprecationNotice(gettext('Use the global object $_zp_db and the class method getCollationSetClause() instead.'));
+	return $_zp_db->getCollationSetClause();
 }
 
 /**

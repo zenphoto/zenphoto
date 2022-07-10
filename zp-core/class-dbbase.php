@@ -174,7 +174,12 @@ class dbBase {
 		return false;
 	}
 
-	function getCollation() {
+	/**
+	 * Gets the set clause to set the collation for tables to create
+	 * 
+	 * @return string
+	 */
+	function getCollationSetClause() {
 		if ($this->hasUtf8mb4Support('utf8mb4_520')) { // MySQL 5.6+ 
 			return ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci';
 		} else if ($this->hasUtf8mb4Support('utf8mb4')) { // MySQL 5.5.3+
