@@ -114,7 +114,7 @@ function printLanguageSelector($flags = NULL) {
 							<?php
 						}
 						?>
-						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+						<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" width="24" height="16" />
 						<?php
 						if ($lang != $localeOption) {
 							?>
