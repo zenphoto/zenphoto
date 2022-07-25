@@ -311,7 +311,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
-		global $_zp_db, $hint, $show;
+		global $_zp_db;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
