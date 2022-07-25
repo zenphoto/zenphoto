@@ -161,8 +161,13 @@ class ZenpageCategory extends ZenpageRoot {
 		$this->set('password', $pwd);
 	}
 
-	function getPasswordHint() {
-		return $this->get('password_hint');
+	function getPasswordHint($locale = NULL) {
+		$text = $this->get('password_hint');
+		if ($locale !== 'all') {
+			$text = get_language_string($text, $locale);
+		}
+		$text = unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -306,12 +311,12 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
-		global $_zp_db;
+		global $_zp_db, $hint, $show;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
 		$obj = $this;
-		$hash = $this->getPassword();
+		$hash = $obj->getPassword();
 		while (empty($hash) && !is_null($obj)) {
 			$parentID = $obj->getParentID();
 			if (empty($parentID)) {
@@ -326,14 +331,13 @@ class ZenpageCategory extends ZenpageRoot {
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_category_auth_" . $this->getID();
+			$authType = "zpcms_auth_category_" . $this->getID();
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
 			} else {
 				$user = $this->getUser();
-				if (!empty($user))
-					$show = true;
+				$show = (!empty($user));
 				$hint = $this->getPasswordHint();
 				return false;
 			}

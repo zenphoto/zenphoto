@@ -255,7 +255,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
-		global $_zp_db;
+		global $_zp_db, $hint, $show;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
@@ -275,7 +275,7 @@ class ZenpagePage extends ZenpageItems {
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_page_auth_" . $pageobj->getID();
+			$authType = "zpcms_auth_page_" . $pageobj->getID();
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
