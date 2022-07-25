@@ -336,6 +336,22 @@ class zenpagecms {
 // zenpage filters
 
 	/**
+	 * Handles password checks
+	 * @param string $auth
+	 */
+	static function checkForGuest($auth) {
+		global $_zp_current_zenpage_page, $_zp_current_category;
+		if (!is_null($_zp_current_zenpage_page)) { // zenpage page
+			$authType = $_zp_current_zenpage_page->checkforGuest();
+			return $authType;
+		} else if (!is_null($_zp_current_category)) {
+			$authType = $_zp_current_category->checkforGuest();
+			return $authType;
+		}
+		return $auth;
+	}
+
+	/**
 	 * Handles item ownership
 	 * returns true for allowed access, false for denyed, returns original parameter if not my gallery page
 	 * @param bool $fail
