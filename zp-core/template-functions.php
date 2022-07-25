@@ -3997,14 +3997,14 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		return $authType;
 	if (in_context(ZP_SEARCH)) { // search page
 		$hash = getOption('search_password');
-		if (getOption('search_user') != '')
-			$show = true;
+		$user = getOption('search_user');
+		$show = (!empty($user));
 		$hint = get_language_string(getOption('search_hint'));
 		$authType = 'zpcms_auth_search';
 		if (empty($hash)) {
 			$hash = $_zp_gallery->getPassword();
-			if ($_zp_gallery->getUser() != '')
-				$show = true;
+			$user = $_zp_gallery->getUser();
+			$show = (!empty($user));
 			$hint = $_zp_gallery->getPasswordHint();
 			$authType = 'zpcms_auth_gallery';
 		}
@@ -4014,20 +4014,26 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 	} else if (!is_null($_zp_current_zenpage_news)) {
 		$authType = $_zp_current_zenpage_news->checkAccess($hint, $show);
 		return $authType;
+	} else if (!is_null($_zp_current_category)) {
+		$authType = $_zp_current_category->checkforGuest($hint, $show);
+		return $authType;
+	} else if (!is_null($_zp_current_zenpage_page)) {
+		$authType = $_zp_current_zenpage_page->checkforGuest($hint, $show);
+		return $authType;
 	} else if (isset($_GET['album'])) { // album page
 		list($album, $image) = rewrite_get_album_image('album', 'image');
 		if ($authType = checkAlbumPassword($album, $hint)) {
 			return $authType;
 		} else {
 			$alb = AlbumBase::newAlbum($album);
-			if ($alb->getUser() != '')
-				$show = true;
+			$user = $alb->getUser();
+			$show = (!empty($user));
 			return false;
 		}
 	} else { // other page
 		$hash = $_zp_gallery->getPassword();
-		if ($_zp_gallery->getUser() != '')
-			$show = true;
+		$user = $_zp_gallery->getUser();
+		$show = (!empty($user));
 		$hint = $_zp_gallery->getPasswordHint();
 		if (!empty($hash) && zp_getCookie('zpcms_auth_gallery') == $hash) {
 			return 'zpcms_auth_gallery';

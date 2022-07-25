@@ -122,7 +122,6 @@ $_zp_conf_vars['special_pages'][] = array(
 		'rewrite' => '^%NEWS%/*$',
 		'rule' => '%REWRITE% index.php?p=news [L,QSA]');
 
-zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
 zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
 zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
@@ -335,22 +334,6 @@ class zenpagecms {
 	}
 
 // zenpage filters
-
-	/**
-	 * Handles password checks
-	 * @param string $auth
-	 */
-	static function checkForGuest($auth) {
-		global $_zp_current_zenpage_page, $_zp_current_category;
-		if (!is_null($_zp_current_zenpage_page)) { // zenpage page
-			$authType = $_zp_current_zenpage_page->checkforGuest();
-			return $authType;
-		} else if (!is_null($_zp_current_category)) {
-			$authType = $_zp_current_category->checkforGuest();
-			return $authType;
-		}
-		return $auth;
-	}
 
 	/**
 	 * Handles item ownership
