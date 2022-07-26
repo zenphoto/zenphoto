@@ -337,10 +337,12 @@ class zenpagecms {
 
 	/**
 	 * Handles password checks
+	 * @deprecated ZenphotoCMS 2.0 - Use the checkForGuest() template function instead
 	 * @param string $auth
 	 */
 	static function checkForGuest($auth) {
 		global $_zp_current_zenpage_page, $_zp_current_category;
+		deprecationNotice(gettext('Use the checkForGuest() template function instead'));
 		if (!is_null($_zp_current_zenpage_page)) { // zenpage page
 			$authType = $_zp_current_zenpage_page->checkforGuest();
 			return $authType;

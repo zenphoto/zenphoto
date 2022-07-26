@@ -3991,10 +3991,11 @@ function getSearchDate($format = '%B %Y') {
  * @return string
  */
 function checkForGuest(&$hint = NULL, &$show = NULL) {
-	global $_zp_gallery, $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news;
+	global $_zp_gallery, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news;
 	$authType = zp_apply_filter('checkForGuest', NULL);
-	if (!is_null($authType))
+	if (!is_null($authType)) {
 		return $authType;
+	}
 	if (in_context(ZP_SEARCH)) { // search page
 		$hash = getOption('search_password');
 		$user = getOption('search_user');
@@ -4039,8 +4040,9 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 			return 'zpcms_auth_gallery';
 		}
 	}
-	if (empty($hash))
+	if (empty($hash)) {
 		return 'zp_public_access';
+	}
 	return false;
 }
 
