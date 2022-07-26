@@ -1857,6 +1857,7 @@ function zp_handle_password($authType = NULL, $check_auth = NULL, $check_user = 
  * @return bool
  */
 function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_user = NULL) {
+	global $_zp_login_error;
 	// Handle the login form.
 	if (DEBUG_LOGIN)
 		debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
@@ -1880,6 +1881,7 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 		}
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
+			$_zp_login_error = 0;
 			// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN)
 				debugLog("zp_handle_password: valid credentials");

@@ -122,7 +122,6 @@ $_zp_conf_vars['special_pages'][] = array(
 		'rewrite' => '^%NEWS%/*$',
 		'rule' => '%REWRITE% index.php?p=news [L,QSA]');
 
-zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
 zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
 zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
 zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
