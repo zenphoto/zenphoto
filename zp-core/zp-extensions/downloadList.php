@@ -284,15 +284,66 @@ class DownloadList {
 		} else {
 			$file = basename($_zp_downloadfile);
 		}
+
+		$back_url = preg_replace('/[&|?]download=.+/', '', $_SERVER["REQUEST_URI"]);
+
+		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+		header("HTTP/1.0 404 Not Found");
+		header("Status: 404 Not Found");
+		zp_apply_filter('theme_headers');
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			window.onload = function () {
-				alert('<?php printf(gettext('File “%s” was not found.'), $file); ?>');
-			}
-			// ]]> -->
-		</script>
+		<!DOCTYPE html>
+		<html<?php printLangAttribute(); ?>>
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta charset="<?php echo LOCAL_CHARSET; ?>">
+				<meta name="ROBOTS" content="NOINDEX, FOLLOW">
+				<title><?php echo gettext("Object not found") . ': ' . $file . ' | ' . html_encode(getBareGalleryTitle()) ?></title>
+				<style>
+				body {
+					background: white;
+				}
+				div {
+					text-align: center;
+					background: url(<?php echo WEBPATH . '/' . ZENFOLDER ?>/images/zen-logo.png) 50% calc(30vh - 70px) no-repeat;
+					padding: 30vh 1em 0;
+					color: #f56a6a;
+					text-transform: uppercase;
+				}
+				a {
+					color: #718086;
+					margin: 0 .5em;
+				}
+				</style>
+			</head>
+			<body>
+				<div>
+					<?php $file = sprintf(gettext('File “%s” was not found.'), $file); ?>
+					<h3><?php echo $file ?></h3>
+					<a href="<?php echo $back_url; ?>"><?php echo gettext('Back') ?></a>
+					<a href="<?php echo WEBPATH; ?>/"><?php echo gettext('Home') ?></a>
+				</div>
+			</body>
+		</html>
 		<?php
+		exitZP();
+	}
+
+	static function checkAccess(&$hint = NULL, &$show = NULL) {
+		$hash = getOption('downloadList_password');
+		if (GALLERY_SECURITY != 'public' || $hash) {
+			//	credentials required to download
+			if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
+				$user = getOption('downloadList_user');
+				zp_handle_password('zpcms_auth_download', $hash, $user);
+				if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
+					$show = (!empty($user));
+					$hint = get_language_string(getOption('downloadList_hint'));
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }
@@ -405,12 +456,12 @@ class AlbumZip {
 	 */
 	static function create($albumname, $fromcache) {
 		global $_zp_zip_list, $_zp_gallery, $_zp_downloadlist_defaultsize;
+		if (!file_exists(ALBUM_FOLDER_SERVERPATH . $albumname)) {
+			self::pageError(404, gettext('Album not found'));
+		}
 		$album = AlbumBase::newAlbum($albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
-		}
-		if (!$album->exists) {
-			self::pageError(404, gettext('Album not found'));
 		}
 		$_zp_zip_list = array();
 		if ($fromcache) {
@@ -424,6 +475,7 @@ class AlbumZip {
 		}
 		if(!empty($_zp_zip_list)) {
 			$zip = new ZipStream($albumname . '.zip', $opt);
+			zp_setCookie('zpcms_albumzip_ready', 1, 1, null, secureServer());
 			foreach ($_zp_zip_list as $path => $file) {
 				@set_time_limit(6000);
 				$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
@@ -582,7 +634,7 @@ function printFullImageDownloadURL($linktext = null, $imageobj = null) {
 		$imageobj = $_zp_current_image;
 	}
 	if (!is_null($imageobj)) {
-		printDownloadURL($imageobj->getFullImageURL(SERVERPATH), $linktext);
+		printDownloadURL($imageobj->getFullImage(SERVERPATH), $linktext);
 	}
 }
 
@@ -638,7 +690,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  */
 if (isset($_GET['download'])) {
 	$item = sanitize($_GET['download']);
-	if (empty($item) || !extensionEnabled('downloadList')) {
+	if (empty($item)) {
 		if (TEST_RELEASE) {
 			zp_error(gettext('Forbidden'));
 		} else {
@@ -647,25 +699,8 @@ if (isset($_GET['download'])) {
 			exitZP(); //	terminate the script with no output
 		}
 	}
-	$hash = getOption('downloadList_password');
-	if (GALLERY_SECURITY != 'public' || $hash) {
-		//	credentials required to download
-		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
-			$user = getOption('downloadList_user');
-			zp_handle_password('zpcms_auth_download', $hash, $user);
-			if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
-				$show = ($user) ? true : NULL;
-				$hint = '';
-				if (!empty($hash)) {
-					$hint = get_language_string(getOption('downloadList_hint'));
-				}
-				if (isset($_GET['albumzip'])) {
-					$item .= '&albumzip';
-				}
-				printPasswordForm($hint, true, $show, '?download=' . $item);
-				exitZP();
-			}
-		}
+	if (!DownloadList::checkAccess($hint, $show)) {
+		return;
 	}
 	if (isset($_GET['albumzip'])) {
 		DownloadList::updateListItemCount($item . '.zip');
@@ -676,8 +711,9 @@ if (isset($_GET['download'])) {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
 		$success = AlbumZip::create($item, $fromcache);
-		if($success) {
-			exitZP();
+		if(!$success) {
+			$_zp_downloadfile = $item . '.zip';
+			DownloadList::noFile();
 		}
 	} else {
 		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
@@ -703,7 +739,7 @@ if (isset($_GET['download'])) {
 			readfile($_zp_downloadfile);
 			exitZP();
 		} else {
-			zp_register_filter('theme_body_open', 'DownloadList::noFile');
+			DownloadList::noFile();
 		}
 	}
 }
