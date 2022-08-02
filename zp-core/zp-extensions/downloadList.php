@@ -480,8 +480,8 @@ class AlbumZip {
 				@set_time_limit(6000);
 				$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
 			}
-			$zip->finish(); 
-			return true;
+			$zip->finish();
+			exitZP();
 		}
 		return false;
 	}
