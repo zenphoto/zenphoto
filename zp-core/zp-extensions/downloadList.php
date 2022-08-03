@@ -474,6 +474,7 @@ class AlbumZip {
 			self::AddAlbum($album, strlen($albumname), $album->localpath);
 		}
 		if(!empty($_zp_zip_list)) {
+			DownloadList::updateListItemCount($albumname . '.zip');
 			$zip = new ZipStream($albumname . '.zip', $opt);
 			zp_setCookie('zpcms_albumzip_ready', 1, 1, null, secureServer());
 			foreach ($_zp_zip_list as $path => $file) {
@@ -703,7 +704,6 @@ if (isset($_GET['download'])) {
 		return;
 	}
 	if (isset($_GET['albumzip'])) {
-		DownloadList::updateListItemCount($item . '.zip');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize(isset($_GET['fromcache']));
