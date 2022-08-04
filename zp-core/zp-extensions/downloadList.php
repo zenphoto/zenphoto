@@ -775,3 +775,6 @@ if (isset($_GET['download'])) {
 		}
 	}
 }
+// TODO:
+// 1) Include dynamic albums as well
+// 2) Handle properly album_name.zip files in download statistic, as for now they result missing even if the album is present. Statistics for album download get erased by pressing the "Clear outdated downloads from database".
