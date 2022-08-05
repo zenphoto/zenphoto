@@ -58,7 +58,7 @@ class DownloadList {
 		setOptionDefault('downloadList_hint', NULL);
 		setOptionDefault('downloadList_rights', NULL);
 		setOptionDefault('downloadList_zipFromCache', 0);
-		setOptionDefault('downloadList_subalbums', 0);
+		setOptionDefault('downloadList_subalbums', 'none');
 	}
 
 	function getOptionsSupported() {
@@ -95,7 +95,7 @@ class DownloadList {
 						'key' => 'downloadList_subalbums',
 						'type' => OPTION_TYPE_RADIO,
 						'order' => 7,
-						'buttons' => array(gettext('None') => 0, gettext('Direct subalbums') => 1, gettext('All subalbums') => 2),
+						'buttons' => array(gettext('None') => "none", gettext('Direct subalbums') => "direct", gettext('All subalbums') => "all"),
 						'desc' => gettext('Subalbums whose images are to be included in the album zip.')),
 				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 1,
@@ -361,12 +361,39 @@ class DownloadList {
 class AlbumZip {
 
 	/**
+	 * Used to store the subalbum option once handled
+	 * @var null
+	 */
+	static $levels = null;
+
+	/**
+	 * Handles the subalbum option only the first time it is requested and
+	 * stores it to make it at once available in any subsequent cycle.
+	 * @return int
+	 */
+	static function subalbumsOption() {
+		if (is_null(self::$levels)) {
+			switch (getOption('downloadList_subalbums')) {
+				case 'direct':
+					self::$levels = 1;
+					break;
+				case 'all':
+					self::$levels = 2;
+					break;
+				default:
+					self::$levels = 0;
+			}
+		}
+		return self::$levels;
+	}
+
+	/**
 	 * generates an array of filenames to zip
 	 * recurses into the albums subalbums
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
-	 * @param int $level initial value is 0, recurses into subalbums set it to 1
+	 * @param int $level initial value is 0, recursing into subalbums sets it to 1
 	 */
 	static function AddAlbum($album, $base, $filebase, $level = 0) {
 		global $_zp_zip_list;
@@ -398,7 +425,7 @@ class AlbumZip {
 				}
 			}
 		}
-		if ((int) getOption('downloadList_subalbums') > $level) { // false but "All subalbums" option (2)
+		if (self::subalbumsOption() > $level) { // false after first recursion but for "all" option
 			$albums = $album->getAlbums();
 			foreach ($albums as $albumname) {
 				$subalbum = AlbumBase::newAlbum($albumname);
@@ -418,7 +445,7 @@ class AlbumZip {
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
-	 * @param int $level initial value is 0, recurses into subalbums set it to 1
+	 * @param int $level initial value is 0, recursing into subalbums sets it to 1
 	 */
 	static function AddAlbumCache($album, $base, $filebase, $level = 0) {
 		global $_zp_zip_list, $_zp_downloadlist_defaultsize;
@@ -444,7 +471,7 @@ class AlbumZip {
 				}
 			}
 		}
-		if ((int) getOption('downloadList_subalbums') > $level) { // false but for "All subalbums" option (2)
+		if (self::subalbumsOption() > $level) { // false after first recursion but for "all" option
 			$albums = $album->getAlbums();
 			foreach ($albums as $albumname) {
 				$subalbum = AlbumBase::newAlbum($albumname);
@@ -778,3 +805,4 @@ if (isset($_GET['download'])) {
 // TODO:
 // 1) Include dynamic albums as well
 // 2) Handle properly album_name.zip files in download statistic, as for now they result missing even if the album is present. Statistics for album download get erased by pressing the "Clear outdated downloads from database".
+// 3) Merge the old error page [pageError()] with the new one [noFile()]
