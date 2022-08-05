@@ -58,6 +58,7 @@ class DownloadList {
 		setOptionDefault('downloadList_hint', NULL);
 		setOptionDefault('downloadList_rights', NULL);
 		setOptionDefault('downloadList_zipFromCache', 0);
+		setOptionDefault('downloadList_subalbums', 0);
 	}
 
 	function getOptionsSupported() {
@@ -85,8 +86,17 @@ class DownloadList {
 						'key' => 'downloadList_zipFromCache',
 						'type' => OPTION_TYPE_RADIO,
 						'order' => 6,
-						'buttons' => array(gettext('From album') => 0, gettext('From Cache') => 1),
-						'desc' => gettext('Make the album zip from the album folder or from the sized images in the cache.')),
+						'buttons' => array(gettext('Full images') => 0, gettext('Resized images') => 1),
+						'desc' => gettext('Make the album zip using full images from the album folder or from the sized images <strong>already existing</strong> in the cache.')
+						. "<p class='notebox'>"
+		        . gettext("<strong>Notice:</strong>  If you select <em>Resized images</em>, make sure that you have already cached all of the default size images for the albums to be downloaded. If some images are not cached when the download is requested, the plugin will try to cache them “on the fly” using cURL (if available), which may take a long time to process, resulting in a long wait time for users or, in the worst case, a fatal time-out error by the server.")
+		        . "</p>"),
+				gettext('Add images from subalbums') => array(
+						'key' => 'downloadList_subalbums',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 7,
+						'buttons' => array(gettext('None') => 0, gettext('Direct subalbums') => 1, gettext('All subalbums') => 2),
+						'desc' => gettext('Subalbums whose images are to be included in the album zip.')),
 				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 1,
 						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
@@ -284,15 +294,66 @@ class DownloadList {
 		} else {
 			$file = basename($_zp_downloadfile);
 		}
+
+		$back_url = preg_replace('/[&|?]download=.+/', '', $_SERVER["REQUEST_URI"]);
+
+		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+		header("HTTP/1.0 404 Not Found");
+		header("Status: 404 Not Found");
+		zp_apply_filter('theme_headers');
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			window.onload = function () {
-				alert('<?php printf(gettext('File “%s” was not found.'), $file); ?>');
-			}
-			// ]]> -->
-		</script>
+		<!DOCTYPE html>
+		<html<?php printLangAttribute(); ?>>
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta charset="<?php echo LOCAL_CHARSET; ?>">
+				<meta name="ROBOTS" content="NOINDEX, FOLLOW">
+				<title><?php echo gettext("Object not found") . ': ' . $file . ' | ' . html_encode(getBareGalleryTitle()) ?></title>
+				<style>
+				body {
+					background: white;
+				}
+				div {
+					text-align: center;
+					background: url(<?php echo WEBPATH . '/' . ZENFOLDER ?>/images/zen-logo.png) 50% calc(30vh - 70px) no-repeat;
+					padding: 30vh 1em 0;
+					color: #f56a6a;
+					text-transform: uppercase;
+				}
+				a {
+					color: #718086;
+					margin: 0 .5em;
+				}
+				</style>
+			</head>
+			<body>
+				<div>
+					<?php $file = sprintf(gettext('File “%s” was not found.'), $file); ?>
+					<h3><?php echo $file ?></h3>
+					<a href="<?php echo $back_url; ?>"><?php echo gettext('Back') ?></a>
+					<a href="<?php echo WEBPATH; ?>/"><?php echo gettext('Home') ?></a>
+				</div>
+			</body>
+		</html>
 		<?php
+		exitZP();
+	}
+
+	static function checkAccess(&$hint = NULL, &$show = NULL) {
+		$hash = getOption('downloadList_password');
+		if (GALLERY_SECURITY != 'public' || $hash) {
+			//	credentials required to download
+			if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
+				$user = getOption('downloadList_user');
+				zp_handle_password('zpcms_auth_download', $hash, $user);
+				if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
+					$show = (!empty($user));
+					$hint = get_language_string(getOption('downloadList_hint'));
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }
@@ -305,8 +366,9 @@ class AlbumZip {
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
+	 * @param int $level initial value is 0, recurses into subalbums set it to 1
 	 */
-	static function AddAlbum($album, $base, $filebase) {
+	static function AddAlbum($album, $base, $filebase, $level = 0) {
 		global $_zp_zip_list;
 		$albumbase = substr($album->name, $base) . '/';
 		$album_sidecars = $album->sidecars;
@@ -336,11 +398,16 @@ class AlbumZip {
 				}
 			}
 		}
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
-			$subalbum = AlbumBase::newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
-				self::AddAlbum($subalbum, $base, $filebase);
+		if ((int) getOption('downloadList_subalbums') > $level) { // false but "All subalbums" option (2)
+			$albums = $album->getAlbums();
+			foreach ($albums as $albumname) {
+				$subalbum = AlbumBase::newAlbum($albumname);
+				if (!$subalbum->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($subalbum)) {
+					continue; // Skip not accessible albums
+				}
+				if ($subalbum->exists && !$album->isDynamic()) {
+					self::AddAlbum($subalbum, $base, $filebase, 1);
+				}
 			}
 		}
 	}
@@ -351,28 +418,44 @@ class AlbumZip {
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
+	 * @param int $level initial value is 0, recurses into subalbums set it to 1
 	 */
-	static function AddAlbumCache($album, $base, $filebase) {
+	static function AddAlbumCache($album, $base, $filebase, $level = 0) {
 		global $_zp_zip_list, $_zp_downloadlist_defaultsize;
 		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
+		$cache_fail = false;
 		foreach ($images as $imagename) {
-			$image = Image::newImage($album, $imagename);		
+			$image = Image::newImage($album, $imagename);
 			$uri = $image->getSizedImage($_zp_downloadlist_defaultsize);
-			if (strpos($uri, 'i.php?') === false) {
-				$f = $albumbase . $image->filename;
+			if (strpos($uri, 'i.php?') === false) { // images already cached
 				$parseurl = parse_url($albumbase . basename($uri));
 				$c = $parseurl['path'];
 				$_zp_zip_list[$filebase . $c] = $c;
+			} else if (function_exists('curl_init') && generateImageCacheFile($uri)) { // images to be cached
+				$uri = $image->getSizedImage($_zp_downloadlist_defaultsize);
+				$parseurl = parse_url($albumbase . basename($uri));
+				$c = $parseurl['path'];
+				$_zp_zip_list[$filebase . $c] = $c;
+			} else if (!$cache_fail) { // caching failed, write once on the error log
+				$cache_fail = true;
+				if (DEBUG_ERROR) {
+					debugLog(sprintf(gettext('WARNING: Some images from %1$s were not added to %2$s by %3$s as not cached'), $album->name, str_replace("/", "_", $album->name) . ".zip", 'downloadList.php -> AlbumZip::AddAlbumCache()'));
+				}
 			}
 		}
-		$albums = $album->getAlbums();
-		foreach ($albums as $albumname) {
-			$subalbum = AlbumBase::newAlbum($albumname);
-			if ($subalbum->exists && !$album->isDynamic()) {
-				self::AddAlbumCache($subalbum, $base, $filebase);
+		if ((int) getOption('downloadList_subalbums') > $level) { // false but for "All subalbums" option (2)
+			$albums = $album->getAlbums();
+			foreach ($albums as $albumname) {
+				$subalbum = AlbumBase::newAlbum($albumname);
+				if (!$subalbum->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($subalbum)) {
+					continue; // Skip not accessible albums
+				}
+				if ($subalbum->exists && !$album->isDynamic()) {
+					self::AddAlbumCache($subalbum, $base, $filebase, 1);
+				}
 			}
-		} 
+		}
 	}
 
 	/**
@@ -405,12 +488,12 @@ class AlbumZip {
 	 */
 	static function create($albumname, $fromcache) {
 		global $_zp_zip_list, $_zp_gallery, $_zp_downloadlist_defaultsize;
+		if (!file_exists(ALBUM_FOLDER_SERVERPATH . $albumname)) {
+			self::pageError(404, gettext('Album not found'));
+		}
 		$album = AlbumBase::newAlbum($albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
-		}
-		if (!$album->exists) {
-			self::pageError(404, gettext('Album not found'));
 		}
 		$_zp_zip_list = array();
 		if ($fromcache) {
@@ -423,13 +506,15 @@ class AlbumZip {
 			self::AddAlbum($album, strlen($albumname), $album->localpath);
 		}
 		if(!empty($_zp_zip_list)) {
+			DownloadList::updateListItemCount($albumname . '.zip');
 			$zip = new ZipStream($albumname . '.zip', $opt);
+			zp_setCookie('zpcms_albumzip_ready', 1, 1, null, secureServer());
 			foreach ($_zp_zip_list as $path => $file) {
 				@set_time_limit(6000);
 				$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
 			}
-			$zip->finish(); 
-			return true;
+			$zip->finish();
+			exitZP();
 		}
 		return false;
 	}
@@ -582,7 +667,7 @@ function printFullImageDownloadURL($linktext = null, $imageobj = null) {
 		$imageobj = $_zp_current_image;
 	}
 	if (!is_null($imageobj)) {
-		printDownloadURL($imageobj->getFullImageURL(SERVERPATH), $linktext);
+		printDownloadURL($imageobj->getFullImage(SERVERPATH), $linktext);
 	}
 }
 
@@ -638,7 +723,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
  */
 if (isset($_GET['download'])) {
 	$item = sanitize($_GET['download']);
-	if (empty($item) || !extensionEnabled('downloadList')) {
+	if (empty($item)) {
 		if (TEST_RELEASE) {
 			zp_error(gettext('Forbidden'));
 		} else {
@@ -647,28 +732,10 @@ if (isset($_GET['download'])) {
 			exitZP(); //	terminate the script with no output
 		}
 	}
-	$hash = getOption('downloadList_password');
-	if (GALLERY_SECURITY != 'public' || $hash) {
-		//	credentials required to download
-		if (!zp_loggedin((getOption('downloadList_rights')) ? FILES_RIGHTS : ALL_RIGHTS)) {
-			$user = getOption('downloadList_user');
-			zp_handle_password('zpcms_auth_download', $hash, $user);
-			if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
-				$show = ($user) ? true : NULL;
-				$hint = '';
-				if (!empty($hash)) {
-					$hint = get_language_string(getOption('downloadList_hint'));
-				}
-				if (isset($_GET['albumzip'])) {
-					$item .= '&albumzip';
-				}
-				printPasswordForm($hint, true, $show, '?download=' . $item);
-				exitZP();
-			}
-		}
+	if (!DownloadList::checkAccess($hint, $show)) {
+		return;
 	}
 	if (isset($_GET['albumzip'])) {
-		DownloadList::updateListItemCount($item . '.zip');
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize(isset($_GET['fromcache']));
@@ -676,8 +743,9 @@ if (isset($_GET['download'])) {
 			$fromcache = getOption('downloadList_zipFromCache');
 		}
 		$success = AlbumZip::create($item, $fromcache);
-		if($success) {
-			exitZP();
+		if(!$success) {
+			$_zp_downloadfile = $item . '.zip';
+			DownloadList::noFile();
 		}
 	} else {
 		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
@@ -703,7 +771,10 @@ if (isset($_GET['download'])) {
 			readfile($_zp_downloadfile);
 			exitZP();
 		} else {
-			zp_register_filter('theme_body_open', 'DownloadList::noFile');
+			DownloadList::noFile();
 		}
 	}
 }
+// TODO:
+// 1) Include dynamic albums as well
+// 2) Handle properly album_name.zip files in download statistic, as for now they result missing even if the album is present. Statistics for album download get erased by pressing the "Clear outdated downloads from database".

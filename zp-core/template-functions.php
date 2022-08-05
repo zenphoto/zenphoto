@@ -4063,6 +4063,9 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 function checkAccess(&$hint = NULL, &$show = NULL) {
 	global $_zp_current_album, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 	$_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	if (isset($_GET['download']) && extensionEnabled('downloadList')) {
+		return false; // Handled by downloadList extension
+	}
 	if (GALLERY_SECURITY != 'public') // only registered users allowed
 		$show = true; //	therefore they will need to supply their user id is something fails below
 
