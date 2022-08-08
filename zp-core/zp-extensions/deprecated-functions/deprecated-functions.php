@@ -405,7 +405,7 @@ function getRandomImages($daily = false) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getName());
 			setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
-		return $image;
+		return $images;
 	}
 	return NULL;
 }
