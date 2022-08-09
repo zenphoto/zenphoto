@@ -402,7 +402,7 @@ function getRandomImages($daily = false) {
 	$images = filterImageQuery($result, NULL);
 	if ($images) {
 		if ($daily) {
-			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getName());
+			$potd = array('day' => time(), 'folder' => $images->getAlbumName(), 'filename' => $images->getName());
 			setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 		return $images;
