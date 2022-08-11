@@ -364,7 +364,7 @@ class AlbumZip {
 	 * Used to store the subalbum option once handled
 	 * @var null
 	 */
-	static $levels = null;
+	private static $levels = null;
 
 	/**
 	 * Handles the subalbum option only the first time it is requested and
@@ -389,39 +389,55 @@ class AlbumZip {
 
 	/**
 	 * generates an array of filenames to zip
-	 * recurses into the albums subalbums
+	 * recurses into the albums subalbums on option
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
+	 * @param string $filebase the server directory of the album
 	 * @param int $level initial value is 0, recursing into subalbums sets it to 1
+	 * @param string $root_folder allows parent album's sidecars in the same folder of album
 	 */
-	static function AddAlbum($album, $base, $filebase, $level = 0) {
+	static function AddAlbum($album, $base, $filebase, $level = 0, $root_folder = "") {
 		global $_zp_zip_list;
-		$albumbase = substr($album->name, $base) . '/';
-		$album_sidecars = $album->sidecars;
-		foreach ($album->sidecars as $album_sidecar) {
-			$album_sidecars[] = strtoupper($album_sidecar);
+		if ($level == 0) {
+			$root_folder = basename($album->name);
 		}
-		foreach ($album_sidecars as $suffix) {
-			$f = $albumbase . $album->name . '.' . $suffix;
-			if (file_exists($album->localpath . internalToFilesystem($f))) {
-				$_zp_zip_list[$filebase . $f] = $f;
+		foreach ($album->sidecars as $suffix) {
+			if ($level == 0) { // parent album sidecars
+				$file_name = basename($album->name) . '.' . $suffix;
+				$path = dirname($filebase) . '/' . internalToFilesystem($file_name);
+				if (file_exists($path)) {
+					$_zp_zip_list[$path] = $file_name;
+				}
+			} else { // childern albums sidecars
+				$file_name = substr($album->name, $base) . '.' . $suffix;
+				$path = $filebase . internalToFilesystem($file_name);
+				if (file_exists($path)) {
+					$_zp_zip_list[$path] = $root_folder . $file_name;
+				}
 			}
 		}
+		$albumbase = substr($album->name, $base) . '/';
 		$images = $album->getImages();
 		foreach ($images as $imagename) {
 			$image = Image::newImage($album, $imagename);
-			$f = $albumbase . $image->filename;
-			$_zp_zip_list[$filebase . internalToFilesystem($f)] = $f;
-			$imagebase = stripSuffix($image->filename);
-			$image_sidecars = $image->sidecars;
-			foreach ($image->sidecars as $image_sidecar) {
-				$image_sidecars[] = strtoupper($image_sidecar);
+			$dyn_fold = "";
+			if ($album->isDynamic()) {
+				$filebase = $image->album->localpath;
+				$albumbase = '/';
+				if ($level > 0) { // dynamic subalbums need a dedicated subfolder 
+					$dyn_fold = substr($album->name, $base);
+				}
 			}
-			foreach ($image_sidecars as $suffix) {
-				$f = $imagebase . '.' . $suffix;
-				if (file_exists($album->localpath . $f)) {
-					$_zp_zip_list[$album->localpath . internalToFilesystem($f)] = $f;
+			$file_name = $albumbase . $image->filename;
+			$path = $filebase . internalToFilesystem($file_name);
+			$_zp_zip_list[$path] = $root_folder . $dyn_fold . $file_name;
+			$imagebase = stripSuffix($image->filename);
+			foreach ($image->sidecars as $suffix) {
+				$file_name = $albumbase . $imagebase . '.' . $suffix;
+				$path = $filebase . internalToFilesystem($file_name);
+				if (file_exists($path)) {
+					$_zp_zip_list[$path] = $root_folder . $dyn_fold . $file_name;
 				}
 			}
 		}
@@ -432,8 +448,8 @@ class AlbumZip {
 				if (!$subalbum->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($subalbum)) {
 					continue; // Skip not accessible albums
 				}
-				if ($subalbum->exists && !$album->isDynamic()) {
-					self::AddAlbum($subalbum, $base, $filebase, 1);
+				if ($subalbum->exists) {
+					self::AddAlbum($subalbum, $base, $filebase, 1, $root_folder);
 				}
 			}
 		}
@@ -441,10 +457,11 @@ class AlbumZip {
 
 	/**
 	 * generates an array of cachefilenames to zip
-	 * recurses into the albums subalbums
+	 * recurses into the albums subalbums on option
 	 *
 	 * @param object $album album object to add
 	 * @param int $base the length of the base album name
+	 * @param string $filebase the server directory of the album
 	 * @param int $level initial value is 0, recursing into subalbums sets it to 1
 	 */
 	static function AddAlbumCache($album, $base, $filebase, $level = 0) {
@@ -454,16 +471,24 @@ class AlbumZip {
 		$cache_fail = false;
 		foreach ($images as $imagename) {
 			$image = Image::newImage($album, $imagename);
+			$dyn_fold = "";
+			if ($album->isDynamic()) {
+				$filebase = str_replace("albums", "cache", $image->album->localpath);
+				$albumbase = '/';
+				if ($level > 0) { // dynamic subalbums need a dedicated subfolder 
+					$dyn_fold = substr($album->name, $base);
+				}
+			}
 			$uri = $image->getSizedImage($_zp_downloadlist_defaultsize);
 			if (strpos($uri, 'i.php?') === false) { // images already cached
 				$parseurl = parse_url($albumbase . basename($uri));
-				$c = $parseurl['path'];
-				$_zp_zip_list[$filebase . $c] = $c;
+				$file_name = $parseurl['path'];
+				$_zp_zip_list[$filebase . $file_name] = $dyn_fold . $file_name;
 			} else if (function_exists('curl_init') && generateImageCacheFile($uri)) { // images to be cached
 				$uri = $image->getSizedImage($_zp_downloadlist_defaultsize);
 				$parseurl = parse_url($albumbase . basename($uri));
-				$c = $parseurl['path'];
-				$_zp_zip_list[$filebase . $c] = $c;
+				$file_name = $parseurl['path'];
+				$_zp_zip_list[$filebase . $file_name] = $dyn_fold . $file_name;
 			} else if (!$cache_fail) { // caching failed, write once on the error log
 				$cache_fail = true;
 				if (DEBUG_ERROR) {
@@ -478,7 +503,7 @@ class AlbumZip {
 				if (!$subalbum->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($subalbum)) {
 					continue; // Skip not accessible albums
 				}
-				if ($subalbum->exists && !$album->isDynamic()) {
+				if ($subalbum->exists) {
 					self::AddAlbumCache($subalbum, $base, $filebase, 1);
 				}
 			}
@@ -718,7 +743,7 @@ function printDownloadAlbumZipURL($linktext = NULL, $albumobj = NULL, $fromcache
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
-	if (!is_null($albumobj) && !$albumobj->isDynamic()) {
+	if (!is_null($albumobj)) {
 		$file = $albumobj->name . '.zip';
 		DownloadList::addListItem($file);
 		if (getOption('downloadList_showdownloadcounter')) {
@@ -803,6 +828,6 @@ if (isset($_GET['download'])) {
 	}
 }
 // TODO:
-// 1) Include dynamic albums as well
+// 1) Include dynamic albums as well [done]
 // 2) Handle properly album_name.zip files in download statistic, as for now they result missing even if the album is present. Statistics for album download get erased by pressing the "Clear outdated downloads from database".
 // 3) Merge the old error page [pageError()] with the new one [noFile()]
