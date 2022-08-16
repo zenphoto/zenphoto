@@ -492,7 +492,7 @@ class AlbumZip {
 			} else if (!$cache_fail) { // caching failed, write once on the error log
 				$cache_fail = true;
 				if (DEBUG_ERROR) {
-					debugLog(sprintf(gettext('WARNING: Some images from %1$s were not added to %2$s by %3$s as not cached'), $album->name, str_replace("/", "_", $album->name) . ".zip", 'downloadList.php -> AlbumZip::AddAlbumCache()'));
+					debugLog(sprintf(gettext('WARNING: Some images from %1$s were not added to %2$s by %3$s as they were not cached'), $album->name, str_replace("/", "_", $album->name) . ".zip", 'downloadList.php -> AlbumZip::AddAlbumCache()'));
 				}
 			}
 		}
