@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.5.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-16 08:16+0200\n"
+"POT-Creation-Date: 2022-08-16 10:43+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -6435,19 +6435,16 @@ msgstr ""
 
 #: zp-core/admin.php:471
 #, php-format
-#| msgid "Database name: <strong>%1$s</strong>"
 msgid "Database: <strong>%1$s %2$s</strong>"
 msgstr "Database: <strong>%1$s %2$s</strong>"
 
 #: zp-core/admin.php:472
 #, php-format
-#| msgid "Database name: <strong>%1$s</strong>"
 msgid "Database handler: <strong>%1$s</strong>"
 msgstr "Database handler: <strong>%1$s</strong>"
 
 #: zp-core/admin.php:473
 #, php-format
-#| msgid "Database name: <strong>%1$s</strong>"
 msgid "Database client: <strong>%1$s</strong>"
 msgstr "Database client: <strong>%1$s</strong>"
 
@@ -6458,7 +6455,6 @@ msgstr "Database naam <strong>%s</strong>"
 
 #: zp-core/admin.php:475
 #, php-format
-#| msgid "Table prefix: <strong>%1$s</strong>"
 msgid "Database table prefix: <strong>%1$s</strong>"
 msgstr "Database table prefix: <strong>%1$s</strong>"
 
@@ -16949,7 +16945,8 @@ msgstr "Bestand “%s” niet gevonden."
 #: zp-core/zp-extensions/downloadList.php:495
 #, php-format
 msgid ""
-"WARNING: Some images from %1$s were not added to %2$s by %3$s as not cached"
+"WARNING: Some images from %1$s were not added to %2$s by %3$s as they were "
+"not cached"
 msgstr ""
 "WAARSCHUWING: Sommige afbeeldingen uit %1$s zijn niet toegevoegd aan %2$s "
 "door %3$s omat ze niet gecached zijn."
