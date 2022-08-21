@@ -33,7 +33,7 @@ class Administrator extends PersistentObject {
 		}
 		if ($valid) {
 			$rights = $this->getRights();
-			$new_rights = USER_RIGHTS;
+			$new_rights = 0;
 			if ($_zp_authority->isMasterUser($user)) {
 				$new_rights = ALL_RIGHTS;
 				$this->master = true;
