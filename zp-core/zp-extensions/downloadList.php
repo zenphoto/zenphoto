@@ -205,20 +205,18 @@ class DownloadList {
 		zp_apply_filter('downloadlist_processdownload', $path);
 	}
 
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadList functions.
+	/** Gets the download items from all download items from the database. For internal use in the downloadList functions.
 	 * @return array
 	 */
-
 	static function getListItemsFromDB() {
 		global $_zp_db;
 		$downloaditems = $_zp_db->queryFullArray("SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList'");
 		return $downloaditems;
 	}
 
-	/*	 * Gets the download items from all download items from the database. For internal use in the downloadlink functions.
+	/** Gets the download items from all download items from the database. For internal use in the downloadlink functions.
 	 * @return array
 	 */
-
 	static function getListItemFromDB($file) {
 		global $_zp_db;
 		$downloaditem = $_zp_db->querySingleRow($sql = "SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `aux` = " . $_zp_db->quote($file));
@@ -286,7 +284,12 @@ class DownloadList {
 		);
 		return $buttons;
 	}
-
+	
+	/**
+	 * Handles missing files
+	 * 
+	 * @global string $_zp_downloadfile
+	 */
 	static function noFile() {
 		global $_zp_downloadfile;
 		if (TEST_RELEASE) {
