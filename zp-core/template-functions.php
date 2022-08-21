@@ -4066,11 +4066,12 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 	if (isset($_GET['download']) && extensionEnabled('downloadList')) {
 		return false; // Handled by downloadList extension
 	}
-	if (GALLERY_SECURITY != 'public') // only registered users allowed
+	if (GALLERY_SECURITY != 'public') {// only registered users allowed
 		$show = true; //	therefore they will need to supply their user id is something fails below
-
-	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page)))
+	}
+	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page))) {
 		return true;
+	}
 	if (zp_loggedin()) {
 		$fail = zp_apply_filter('isMyItemToView', NULL);
 		if (!is_null($fail)) { //	filter had something to say about access, honor it
