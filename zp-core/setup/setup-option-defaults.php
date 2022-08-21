@@ -286,7 +286,7 @@ if (!in_array('administrators', $groupsdefined)) {
 if (!in_array('viewers', $groupsdefined)) {
 	$groupobj = Authority::newAdministrator('viewers', 0);
 	$groupobj->setName('group');
-	$groupobj->setRights(NO_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
+	$groupobj->setRights(NO_RIGHTS | USER_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Users allowed only to view zenphoto objects'));
 	$groupobj->setValid(0);
 	$groupobj->save();
@@ -304,7 +304,7 @@ if (!in_array('blocked', $groupsdefined)) {
 if (!in_array('album managers', $groupsdefined)) {
 	$groupobj = Authority::newAdministrator('album managers', 0);
 	$groupobj->setName('template');
-	$groupobj->setRights(NO_RIGHTS | OVERVIEW_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS | UPLOAD_RIGHTS | COMMENT_RIGHTS | ALBUM_RIGHTS | THEMES_RIGHTS);
+	$groupobj->setRights(NO_RIGHTS | OVERVIEW_RIGHTS | USER_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS | UPLOAD_RIGHTS | COMMENT_RIGHTS | ALBUM_RIGHTS | THEMES_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Managers of one or more albums'));
 	$groupobj->setValid(0);
 	$groupobj->save();
@@ -322,7 +322,7 @@ if (!in_array('default', $groupsdefined)) {
 if (!in_array('newuser', $groupsdefined)) {
 	$groupobj = Authority::newAdministrator('newuser', 0);
 	$groupobj->setName('template');
-	$groupobj->setRights(NO_RIGHTS);
+	$groupobj->setRights(USER_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Newly registered and verified users'));
 	$groupobj->setValid(0);
 	$groupobj->save();

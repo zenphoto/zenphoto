@@ -658,7 +658,7 @@ class Authority {
 			$allrights = $allrights | $right['value'];
 		}
 		$rightsset['ALL_RIGHTS'] = array('value' => $allrights, 'name' => gettext('All rights'), 'display' => false);
-		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'display' => false);
+		$rightsset['DEFAULT_RIGHTS'] = array('value' => $rightsset['OVERVIEW_RIGHTS']['value'] + $rightsset['USER_RIGHTS']['value'] + $rightsset['POST_COMMENT_RIGHTS']['value'], 'name' => gettext('Default rights'), 'display' => false);
 		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {		
 			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value'] | $rightsset['VIEW_ALL_RIGHTS']['value'];
 		} else {
