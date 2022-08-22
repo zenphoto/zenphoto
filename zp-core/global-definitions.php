@@ -35,7 +35,7 @@ define('THEME_PLUGIN', 1024);
 define('PLUGIN_PRIORITY', 1023);
 
 define('SYMLINK', function_exists('symlink') && strpos(@ini_get("suhosin.executor.func.blacklist"), 'symlink') === false);
-define('CASE_INSENSITIVE', file_exists(dirname(__FILE__) . strtoupper('/version.php')));
+define('CASE_INSENSITIVE', file_exists(dirname(__FILE__) . '/VERSION.PHP'));
 
 /**
  * Enables test release mode, supports the markRelease plugin
