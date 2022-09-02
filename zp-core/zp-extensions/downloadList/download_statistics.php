@@ -64,7 +64,7 @@ function printBarGraph() {
 				$countlines++;
 			}
 			$outdated = '';
-			if (!file_exists(internalToFilesystem($item['aux']))) {
+			if (!file_exists(internalToFilesystem($item['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($item['aux']))) {
 				$outdated = ' class="unpublished_item"';
 			}
 			?>
@@ -74,7 +74,13 @@ function printBarGraph() {
 				</td>
 				<td class="statistic_title" <?php echo $style; ?>>
 					<strong<?php echo $outdated; ?>>
-						<?php echo html_encode($item['aux']); ?>
+					<?php
+					$album = "";
+					if (strpos($item['aux'], SERVERPATH) === false) { // it's an album
+						$album = " [" . gettext('Album') . "]";
+					}
+					echo html_encode($item['aux'] . $album);
+					?>
 					</strong>
 				</td>
 				<td class="statistic_graphwrap" <?php echo $style; ?>>
@@ -109,7 +115,7 @@ echo '</head>';
 					$result = $_zp_db->queryFullArray($sql);
 					if ($result) {
 						foreach ($result as $row) {
-							if (!file_exists(internalToFilesystem($row['aux']))) {
+							if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($row['aux']))) {
 								$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 							}
 						}
