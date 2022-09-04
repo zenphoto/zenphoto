@@ -28,13 +28,12 @@ if (isset($_zp_conf_vars)) {
 			$page = 'page';
 		}
 		if (!preg_match('~' . preg_quote($page) . '/setup_set-mod_rewrite\?z=setup$~', $_SERVER['REQUEST_URI'])) {
-			
 			if (isset($_GET['rss'])) {
 				header('Content-Type: application/xml');
 				if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/rss-closed.xml')) {	
 					include (dirname($_zp_script) . '/plugins/site_upgrade/rss-closed.xml');
 				} else {
-					?><?xml version="1.0" encoding="utf-8"?>
+					echo '<?xml version="1.0" encoding="utf-8"?>
 					<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 						<channel>
 							<title><![CDATA[RSS temporarily suspended for maintenance]]></title>
@@ -46,7 +45,7 @@ if (isset($_zp_conf_vars)) {
 							</item>
 						</channel>
 					</rss>
-					<?php
+					';
 				}
 			} else {
 				header("HTTP/1.1 503 Service Unavailable");
@@ -57,7 +56,7 @@ if (isset($_zp_conf_vars)) {
 				if (file_exists(dirname($_zp_script) . '/plugins/site_upgrade/closed.htm')) {
 					include (dirname($_zp_script) . '/plugins/site_upgrade/closed.htm');
 				} else {
-					?>
+					echo '
 					<!DOCTYPE html>
 					<html>
 						<head>
@@ -69,7 +68,7 @@ if (isset($_zp_conf_vars)) {
 							<p>Please return later.</p>
 						</body>
 					</html>
-					<?php
+					';
 				}
 			}
 			exit();
