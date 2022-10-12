@@ -39,25 +39,25 @@ class dbPDO_MySQL extends dbBase {
 			}
 		} catch (PDOException $e) {
 			$this->last_result = $e;
-			if ($errorstop) {
-				zp_error(sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage()));
-			}
+			$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage());
+			dbbase::logConnectionError($error_msg, $errorstop);
 			$this->connection = NULL;
-			return false;
 		}
 		$this->details = $config;
-		if ($utf8 && version_compare(PHP_VERSION, '5.3.6', '<')) {
-			try {
-				$this->connection->query("SET NAMES 'utf8'");
-			} catch (PDOException $e) {
-				//	:(
+		if ($this->connection) {
+			if ($utf8) {
+				try {
+					$this->connection->query("SET NAMES 'utf8'");
+				} catch (PDOException $e) {
+					//	:(
+				}
 			}
-		}
-		// set the sql_mode to relaxed (if possible)
-		try {
-			$this->connection->query('SET SESSION sql_mode="";');
-		} catch (PDOException $e) {
-			//	What can we do :(
+			// set the sql_mode to relaxed (if possible)
+			try {
+				$this->connection->query('SET SESSION sql_mode="";');
+			} catch (PDOException $e) {
+				//	What can we do :(
+			}
 		}
 	}
 
@@ -70,15 +70,17 @@ class dbPDO_MySQL extends dbBase {
 	 */
 	function query($sql, $errorstop = true) {
 		$this->last_result = false;
-		try {
-			$this->last_result = $this->connection->query($sql);
-		} catch (PDOException $e) {
-			$this->last_result = false;
-		}
-		if (!$this->last_result && $errorstop) {
-			$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-			$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
-			trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
+		if ($this->connection) {
+			try {
+				$this->last_result = $this->connection->query($sql);
+			} catch (PDOException $e) {
+				$this->last_result = false;
+			}
+			if (!$this->last_result && $errorstop) {
+				$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
+				$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
+				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
+			}
 		}
 		return $this->last_result;
 	}
@@ -137,14 +139,19 @@ class dbPDO_MySQL extends dbBase {
 	 * @return string
 	 */
 	function quote($string, $addquote = true) {
-		return $this->connection->quote($string);
+		if ($this->connection) {
+			return $this->connection->quote($string);
+		}
+		return $string;
 	}
 
 	/*
 	 * returns the insert id of the last database insert
 	 */
 	function insertID() {
-		return $this->connection->lastInsertId();
+		if ($this->connection) {
+			return $this->connection->lastInsertId();
+		}
 	}
 
 	/*
@@ -392,7 +399,9 @@ class dbPDO_MySQL extends dbBase {
 	 * @return string
 	 */
 	function getClientInfo() {
-		return $this->connection->getAttribute(PDO::ATTR_CLIENT_VERSION);
+		if ($this->connection) {
+			return $this->connection->getAttribute(PDO::ATTR_CLIENT_VERSION);
+		}
 	}
 
 }

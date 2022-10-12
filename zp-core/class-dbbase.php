@@ -18,7 +18,6 @@ class dbBase {
 	 * Connect to the database server and select the database.
 	 * @param array $config the db configuration parameters
 	 * @param bool $errorstop set to false to omit error messages
-	 * @return true if successful connection
 	 */
 	function __construct($config, $errorstop = true) {
 		$this->details = unserialize(DB_NOT_CONNECTED);
@@ -26,11 +25,32 @@ class dbBase {
 		if ($errorstop) {
 			zp_error(gettext('MySQL Error: Zenphoto could not instantiate a connection.'));
 		}
-		return false;
 	}
 	
 	function connect() {
 		return $this->connection;
+	}
+	
+	/**
+	 * Handles logging of connection errors within the db handler class constructors
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * @param string $error_msg The error message
+	 * @param bool $errorstop set to false to omit error messages
+	 */
+	static function logConnectionError($error_msg, $errorstop = false) {
+		if (function_exists('debugLogBacktrace')) { // not available if primitive setup
+				debugLogBacktrace($error_msg);
+			} else if (class_exists('setup')) {
+				setup::Log($error_msg, true);
+			}
+			if ($errorstop) {
+				if (function_exists('zp_error')) { // not available if primitive setup
+					zp_error($error_msg);
+				} else {
+					trigger_error($error_msg, E_USER_ERROR);
+				}
+			}
 	}
 
 	/**

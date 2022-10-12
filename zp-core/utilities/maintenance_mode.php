@@ -21,15 +21,15 @@ if (isset($_POST['maintenance_mode'])) {
 		default:
 		case 'open':
 			$message = gettext('Site is open.');
-			maintenanceMode::setState('open');
+			maintenanceMode::setState('open', $_zp_mutex);
 			break;
 		case 'closed':
 			$message = gettext('Site is now closed for upgrade.');
-			maintenanceMode::setState('closed');
+			maintenanceMode::setState('closed', $_zp_mutex);
 			break;
 		case 'closed_for_test':
 			$message = gettext('Site is now closed for testing only.');
-			maintenanceMode::setState('closed_for_test');
+			maintenanceMode::setState('closed_for_test', $_zp_mutex);
 			break;
 	}
 	if (isset($_POST['maintenance_mode_auto-open'])) {

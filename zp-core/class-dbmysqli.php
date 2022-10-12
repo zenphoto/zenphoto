@@ -22,38 +22,22 @@ class dbMySQLi extends dbBase {
 		if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
 			$socket = $config['mysql_socket'];
 		}
-		if (function_exists('mysqli_connect')) {
-			try {
-				$this->connection = mysqli_connect($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
-			} catch (mysqli_sql_exception $e) {
-				$this->connection = NULL;
-				$connection_error = gettext('MySQLi Error: Zenphoto could not instantiate a connection.') . PHP_EOL;
-				$connection_error .= $e->getMessage();
-				debugLogBacktrace($connection_error);
-				if ($errorstop) {
-					zp_error($connection_error);
-				} 
-				return false;
-			}
+		$this->connection = new mysqli($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
+		if ($this->connection->connect_error) {
+			$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $this->connection->connect_error);
+			dbbase::logConnectionError($error_msg, $errorstop);
+			$this->connection = null;
 		}
 		$this->details['mysql_host'] = $config['mysql_host'];
 		$this->details['mysql_socket'] = $config['mysql_socket'];
-		if (!is_object($this->connection)) {
-			return false;
-		}
-		if (!$this->connection->select_db($config['mysql_database'])) {
-			if ($errorstop) {
-				zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'), $this->connection->error, $config['mysql_database']));
+		if ($this->connection) {
+			$this->details = $config;
+			if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
+				$this->connection->set_charset("utf8");
 			}
-			return false;
+			// set the sql_mode to relaxed (if possible)
+			@$this->connection->query('SET SESSION sql_mode="";');
 		}
-		$this->details = $config;
-		if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-			$this->connection->set_charset("utf8");
-		}
-		// set the sql_mode to relaxed (if possible)
-		@$this->connection->query('SET SESSION sql_mode="";');
-		//return $this->connection;
 	}
 
 	/**
@@ -64,33 +48,35 @@ class dbMySQLi extends dbBase {
 	 * @since 0.6
 	 */
 	function query($sql, $errorstop = true) {
-		if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
-			$result = $this->connection->query('EXPLAIN ' . $sql);
-			if ($result) {
-				$explaination = array();
-				while ($row = $result->fetch_assoc()) {
-					$explaination[] = $row;
+		if ($this->connection) {
+			if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
+				$result = $this->connection->query('EXPLAIN ' . $sql);
+				if ($result) {
+					$explaination = array();
+					while ($row = $result->fetch_assoc()) {
+						$explaination[] = $row;
+					}
+				}
+				debugLogVar("EXPLAIN $sql", $explaination);
+			}
+			$last_result = false;
+			if (is_object($this->connection)) {
+				try {
+					$last_result = $this->connection->query($sql);
+				} catch (mysqli_sql_exception $e) {
+					$last_result = false;
 				}
 			}
-			debugLogVar("EXPLAIN $sql", $explaination);
-		}
-		$last_result = false;
-		if (is_object($this->connection)) {
-			try {
-				$last_result = $this->connection->query($sql);
-			} catch (mysqli_sql_exception $e) {
-				$last_result = false;
+			/* if ($result = @$this->connection->query($sql)) {
+				return $result;
+			} */
+			if (!$last_result && $errorstop) {
+				$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
+				$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
+				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
 			}
+			return $last_result;
 		}
-		/* if ($result = @$this->connection->query($sql)) {
-			return $result;
-		} */
-		if (!$last_result && $errorstop) {
-			$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-			$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
-			trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
-		}
-		return $last_result;
 	}
 
 	/**
@@ -147,19 +133,24 @@ class dbMySQLi extends dbBase {
 	 * @return string
 	 */
 	function quote($string, $addquotes = true) {
-		$escaped = $this->connection->real_escape_string($string);
-		if ($addquotes) {
-			return "'" . $escaped . "'";
-		} else {
-			return $escaped;
+		if ($this->connection) {
+			$escaped = $this->connection->real_escape_string($string);
+			if ($addquotes) {
+				return "'" . $escaped . "'";
+			} else {
+				return $escaped;
+			}
 		}
+		return $string;
 	}
 
 	/*
 	 * returns the insert id of the last database insert
 	 */
 	function insertID() {
-		return $this->connection->insert_id;
+		if ($this->connection) {
+			return $this->connection->insert_id;
+		}
 	}
 
 	/*
@@ -176,7 +167,7 @@ class dbMySQLi extends dbBase {
 	 * Returns the text of the error message from previous operation
 	 */
 	function getError() {
-		if (is_object($this->connection)) {
+		if ($this->connection) {
 			return mysqli_error($this->connection);
 		}
 		if (!$msg = mysqli_connect_error())
@@ -188,7 +179,9 @@ class dbMySQLi extends dbBase {
 	 * Get number of affected rows in previous operation
 	 */
 	function getAffectedRows() {
-		return $this->connection->affected_rows;
+		if ($this->connection) {
+			return $this->connection->affected_rows;
+		}
 	}
 
 	/*
@@ -405,7 +398,9 @@ class dbMySQLi extends dbBase {
 	 * @return string
 	 */
 	function getClientInfo() {
-		return $this->connection->get_client_info();
+		if ($this->connection) {
+			return $this->connection->get_client_info();
+		}
 	}
 
 	

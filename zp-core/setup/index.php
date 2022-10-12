@@ -359,27 +359,8 @@ if ($selected_database) {
 		$environ = true;
 		require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
 	} else {
-		if ($_zp_db->connection) { // there was a connection to the database handler but not to the database.
-			if (!empty($_zp_conf_vars['mysql_database'])) {
-				if (isset($_GET['Create_Database'])) {
-					$result = $_zp_db->create();
-					if ($result && ($connection = $_zp_db->connect())) {
-						$environ = true;
-						require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
-					} else {
-						if ($result) {
-							$DBcreated = true;
-						} else {
-							$connectDBErr = $_zp_db->getError();
-						}
-					}
-				} else {
-					$oktocreate = true;
-				}
-			}
-		} else {
-			$connectDBErr = $_zp_db->getError();
-		}
+		$connectDBErr = $_zp_db->getError();
+		$connection = false;
 	}
 }
 
@@ -601,10 +582,7 @@ if ($c <= 0) {
 					<p>
 						<?php printf(gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."), ZENPHOTO_VERSION); ?>
 					</p>
-					<?php 
-						maintenanceMode::setState('closed'); 
-						maintenanceMode::restorePlaceholderFiles();
-					?>
+					<?php maintenanceMode::setState('closed', $setupMutex); ?>
 					<p class="warning"><?php echo maintenanceMode::getStateNote('closed'); ?></p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
 					<?php
@@ -690,7 +668,7 @@ if ($c <= 0) {
 									$good = setup::checkMark($issue, '', gettext('<code>Suhosin</code> module [is enabled]'), sprintf(gettext('The following PHP functions are blocked: %s. Flagged functions are required by Zenphoto. Other functions in the list may be used by Zenphoto, possibly causing reduced functionality or Zenphoto failures.'), '<code>' . implode('</code>, <code>', $blacklist) . '</code>'), $abort) && $good;
 								}
 							}
-							
+		
 							switch (strtolower(@ini_get('display_errors'))) {
 								case 0:
 								case 'off':
@@ -1075,25 +1053,7 @@ if ($c <= 0) {
 								}
 							}
 				
-							if ($_zp_db->connection) {
-								if ($connection) {
-									if ($DBcreated) {
-										setup::checkMark(1, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']), '');
-									}
-								} else {
-									$good = 0;
-									if ($oktocreate) {
-										?>
-										<li class="note">
-											<div class="notebox">
-												<p><?php echo sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'), $_zp_conf_vars['mysql_database']); ?></p>
-											</div>
-										</li>
-										<?php
-									} else if (!empty($_zp_conf_vars['mysql_database'])) {
-										setup::checkMark(0, '', sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']), $connectDBErr);
-									}
-								}
+							
 								if ($environ && $connection) {
 									$oldmode = $_zp_db->getSQLmode();
 									$result = $_zp_db->setSQLmode();
@@ -1235,7 +1195,6 @@ if ($c <= 0) {
 										setup::checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings.'));
 									}
 								}
-							}
 							if(!$good) {
 								setup::printFooter();
 								exit();
@@ -2600,7 +2559,7 @@ if ($c <= 0) {
 								}
 								setOption('setup_unprotected_by_adminrequest', 0, true, null);
 								if (getOption('maintenance_mode_auto-open')) {
-									maintenanceMode::setState('open');
+									maintenanceMode::setState('open', $setupMutex);
 								}
 								?>
 								<p id="golink" class="delayshow" style="display:none;"><?php echo $link; ?></p>

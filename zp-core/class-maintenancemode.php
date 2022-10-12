@@ -56,16 +56,23 @@ class maintenanceMode {
 	/**
 	 * Updates the site state
 	 * 
-	 * @param string $state
+	 * @param string $state 'open', 'closed', 'closed_for_test'
+	 * @param obj $mutexobj A mutex object either from zpMutex or setupMutex classes
 	 */
-	static function setState($state) {
-		global $_zp_mutex;
+	static function setState($state, $mutexobj = null) {
 		if (in_array($state, array('open', 'closed', 'closed_for_test'))) {
-			$_zp_mutex->lock();
+			require_once SERVERPATH . '/' . ZENFOLDER . '/functions-config.php';
+			if (is_object($mutexobj)) {
+				$mutexobj->lock();
+			}
 			$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-			$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
-			storeConfig($zp_cfg);
-			$_zp_mutex->unlock();
+			if ($zp_cfg) {
+				$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
+				storeConfig($zp_cfg);
+			}
+			if (is_object($mutexobj)) {
+				$mutexob->unlock();
+			}
 		}
 	}
 
@@ -159,7 +166,7 @@ class maintenanceMode {
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
 			$xml = maintenanceMode::getPlaceHolderRSS();
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml', $xml);
-		}
+		} 
 	}
 	
 	/**
@@ -177,7 +184,6 @@ class maintenanceMode {
 		} else {
 			$css_link = FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css';
 		}
-		echo "Placeholder HTML";
 		return '<!DOCTYPE html>
 			<html>
 				<head>
