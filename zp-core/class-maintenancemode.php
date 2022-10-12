@@ -71,7 +71,7 @@ class maintenanceMode {
 				storeConfig($zp_cfg);
 			}
 			if (is_object($mutexobj)) {
-				$mutexob->unlock();
+				$mutexobj->unlock();
 			}
 		}
 	}
