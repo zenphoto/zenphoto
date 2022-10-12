@@ -803,9 +803,9 @@ class Gallery {
 							// refresh
 							$album = AlbumBase::newAlbum($analbum['folder']);
 							$album->set('mtime', $mtime);
-							if ($this->getAlbumUseImagedate()) {
-								$album->setDateTime(NULL);
-							}
+							if (empty($album->getDateTime())) {
+								$album->setDateTime(date('Y-m-d H:i:s', $mtime));
+							} 
 							if ($album->isDynamic()) {
 								$data = file_get_contents($album->localpath);
 								$thumb = getOption('AlbumThumbSelect');
@@ -874,9 +874,15 @@ class Gallery {
 					foreach ($this->getAlbums(0) as $folder) {
 						$album = AlbumBase::newAlbum($folder);
 						if (!$album->isDynamic()) {
-							if (is_null($album->getDateTime())) { // see if we can get one from an image
+							if ($this->getAlbumUseImagedate()) { // see if we can get one from an image
 								$images = $album->getImages(0, 0);
-								if (count($images) > 0) {
+								if (count($images) == 0) {
+									$mtime = $album->get('mtime');
+									if (!$mtime) { // in case not stored in db somehow…
+										$mtime = filemtime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($album->getName()));
+									}
+									$album->setDateTime(date('Y-m-d H:i:s', $mtime));
+								} else {
 									$image = Image::newImage($album, array_shift($images));
 									$album->setDateTime($image->getDateTime());
 								}
