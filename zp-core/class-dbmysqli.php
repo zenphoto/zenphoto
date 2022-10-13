@@ -22,11 +22,15 @@ class dbMySQLi extends dbBase {
 		if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
 			$socket = $config['mysql_socket'];
 		}
-		$this->connection = new mysqli($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
-		if ($this->connection->connect_error) {
-			$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $this->connection->connect_error);
-			dbbase::logConnectionError($error_msg, $errorstop);
+		if (empty($config['mysql_user']) || empty($config['mysql_pass'])) {
 			$this->connection = null;
+		} else {
+			$this->connection = new mysqli($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
+			if ($this->connection->connect_error) {
+				$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $this->connection->connect_error);
+				dbbase::logConnectionError($error_msg, $errorstop);
+				$this->connection = null;
+			}
 		}
 		$this->details['mysql_host'] = $config['mysql_host'];
 		$this->details['mysql_socket'] = $config['mysql_socket'];
