@@ -21,9 +21,9 @@ function upload_form($uploadlimit, $passedalbum) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		window.totalinputs = 5;
-		function addUploadBoxes(placeholderid, copyfromid, num) {
+		function addUploadBoxes(num) {
 			for (i = 0; i < num; i++) {
-				jQuery('#' + copyfromid).clone().removeAttr('id').insertBefore('#' + placeholderid);
+				jQuery('#uploadboxes').append('<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>');
 				window.totalinputs++;
 				if (window.totalinputs >= 50) {
 					jQuery('#addUploadBoxes').toggle('slow');
@@ -32,9 +32,8 @@ function upload_form($uploadlimit, $passedalbum) {
 			}
 		}
 		function resetBoxes() {
-			window.totalinputs = 5;
-			$('#uploadboxes').html('<div id="place" style="display: none;"></div>');
-			addUploadBoxes('place', 'filetemplate', 5);
+			$('#uploadboxes').empty();
+			addUploadBoxes(5);
 		}
 		// ]]> -->
 	</script>
@@ -52,16 +51,9 @@ function upload_form($uploadlimit, $passedalbum) {
 		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
 		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
 		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-
-		<div id="place" style="display: none;"></div>
-		<!-- New boxes get inserted before this -->
-
 	</div>
-	<div style="display:none">
-		<!-- This is the template that others are copied from -->
-		<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
-	</div>
-	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Does not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
+	
+	<p id="addUploadBoxes"><a href="javascript:addUploadBoxes(5)" title="<?php echo gettext("Does not reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
 			<?php echo gettext("(will not reload the page, but remember your upload limits!)"); ?></small></p>
 
 	<p id="fileUploadbuttons" class="buttons" style="display: none;">
