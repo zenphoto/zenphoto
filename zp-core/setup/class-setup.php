@@ -69,17 +69,17 @@ class setup {
 	}
 
 	/**
-	 * Prints an icon for success of failure of an action
-	 * @global boolean $_zp_setup_warn
+	 * Prints an icon for success of failure of an action (it also returns the check level!)
+	 * @global boolean $_zp_setup_warn 
 	 * @global type $_zp_setup_moreid
 	 * @global type $_zp_setup_primeid
 	 * @global boolean $_zp_setup_autorun
-	 * @param int $check 
-	 * @param type $text
-	 * @param type $text2
-	 * @param type $msg
-	 * @param bool $stopAutorun
-	 * @return type
+	 * @param int $check 0 = fail, -1,-3 = warning, 1 or -2 = pass 
+	 * @param type $text Success text
+	 * @param type $text2 Warning text
+	 * @param type $msg Detailed message
+	 * @param bool $stopAutorun True if a show (setup) stopping issue
+	 * @return int
 	 */
 	static function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
 		global $_zp_setup_warn, $_zp_setup_moreid, $_zp_setup_primeid, $_zp_setup_autorun;
