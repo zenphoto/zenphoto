@@ -29,10 +29,23 @@ class dbBase {
 		return false;
 	}
 	
+	/**
+	 * @deprecated ZenphotoCMS 2.0 - Use the class property $connection instead
+	 * @return object|false
+	 */
 	function connect() {
+		deprecationNotice(gettext('Use the class property $connection instead'));
 		return $this->connection;
 	}
 	
+	/**
+	 * Logs an database error to the php error_log in case the ZPCMS own debuglog functions are not yet available
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $error_msg
+	 * @param bool $errorstop
+	 */
 	static function logConnectionError($error_msg, $errorstop = false) {
 		if (function_exists('debugLogBacktrace')) { // not available if setup problems
 			debugLogBacktrace($error_msg);
@@ -165,6 +178,10 @@ class dbBase {
 	 * create the database
 	 */
 	function create() {
+		if ($this->connection) {
+			$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->details['mysql_database'] . '`' . $this->getCollationSetClause();
+			return $this->query($sql, false);
+		}
 		return false;
 	}
 
@@ -172,6 +189,22 @@ class dbBase {
 	 * Returns user's permissions on the database
 	 */
 	function getPermissions() {
+		if ($this->connection) {
+			$sql = "SHOW GRANTS FOR " . $this->details['mysql_user'] . ";";
+			$result = $this->query($sql, false);
+			if (!$result) {
+				$result = $this->query("SHOW GRANTS;", false);
+			}
+			if (is_object($result)) {
+				$db_results = array();
+				while ($onerow = $this->fetchRow($result)) {
+					$db_results[] = $onerow[0];
+				}
+				return $db_results;
+			} else {
+				return false;
+			}
+		}
 		return false;
 	}
 
@@ -179,13 +212,18 @@ class dbBase {
 	 * Sets the SQL session mode to empty
 	 */
 	function setSQLmode() {
-		return false;
+		return $this->query('SET SESSION sql_mode=""', false);
 	}
 
 	/**
 	 * Queries the SQL session mode
 	 */
 	function getSQLmode() {
+		$result = $this->query('SELECT @@SESSION.sql_mode;', false);
+		if (is_object($result)) {
+			$row = $this->fetchRow($result);
+			return $row[0];
+		}
 		return false;
 	}
 
@@ -204,25 +242,69 @@ class dbBase {
 		}
 	}
 
+ /**
+  * @param string $sql
+  * @return array
+  */
 	function createTable(&$sql) {
-		return false;
+		return $this->query($sql, false);
 	}
 
+	/**
+	 * @param string $sql
+	 * @return array
+	 */
 	function tableUpdate(&$sql) {
-		return false;
+		return $this->query($sql, false);
 	}
 
+	/**
+	 * Wrapper method for various SHOW queries
+	 * 
+	 * @param string $what "table", "columns", "variables", "index"
+	 * @param string $aux
+	 * @return array
+	 */
 	function show($what, $aux = '') {
+		if ($this->connection) {
+			switch ($what) {
+				case 'tables':
+					$sql = "SHOW TABLES FROM `" . $this->details['mysql_database'] . "` LIKE '" . $this->likeEscape($this->details['mysql_prefix']) . "%'";
+					return $this->query($sql, false);
+				case 'columns':
+					$sql = 'SHOW FULL COLUMNS FROM `' . $this->details['mysql_prefix'] . $aux . '`';
+					return $this->query($sql, true);
+				case 'variables':
+					$sql = "SHOW VARIABLES LIKE '$aux'";
+					return $this->queryFullArray($sql);
+				case 'index':
+					$sql = "SHOW INDEX FROM `" . $this->details['mysql_database'] . '`.' . $aux;
+					return $this->queryFullArray($sql);
+			}
+		}
 		return false;
 	}
 
 	/**
+	 * Returns an array with the tables names of the database
+	 * 
 	 * @since ZenphotoCMS 1.6
+	 * @return array
 	 */
 	function getTables() {
-		return array();
+		$tables = array();
+		if ($this->connection) {
+			$resource = $this->show('tables');
+			if ($resource) {
+				while ($row = $this->fetchAssoc($resource)) {
+					$tables[] = array_shift($row);
+				}
+				$this->freeResult($resource);
+			}
+		}
+		return $tables;
 	}
-	
+
 	/**
 	 * Gets the names of the tables expected to exist in a Zenphoto database
 	 * 
@@ -265,7 +347,7 @@ class dbBase {
 	 */
 	function hasTable($table) {
 		$tables = $this->getTables();
-		if (in_array($this->getPrefix() . $table, $tables)) {
+		if ($tables && in_array($this->getPrefix() . $table, $tables)) {
 			return true;
 		}
 		return false;
@@ -279,14 +361,34 @@ class dbBase {
 	 * @return boolean
 	 */
 	function isEmptyTable($table) {
+		if ($this->connection) {
+			$not_empty = $this->query('SELECT NULL FROM ' . $this->prefix($table) . ' LIMIT 1', true);
+			if ($not_empty) {
+				return false;
+			}
+			return true;
+		}
 		return true;
 	}
-	
+
 	/**
+	 * Gets the detail info of all fields in a table
+	 * 
 	 * @since ZenphotoCMS 1.6 
+	 * @param string $table Name of the table to get the fields info of
+	 * @return array|false
 	 */
 	function getFields($table) {
-		return false;
+		$result = $this->show('columns', $table);
+		if ($result) {
+			$fields = array();
+			while ($row = $this->fetchAssoc($result)) {
+				$fields[] = $row;
+			}
+			return $fields;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -296,11 +398,25 @@ class dbBase {
 		deprecationNotice('Use the method getFields() instead');
 		return $this->getFields($table);
 	}
-
+	
+	/**
+	 * Deletes the content of a table
+	 * @param string $table
+	 * @return mixed
+	 */
 	function truncateTable($table) {
+		if ($this->connection) {
+			$sql = 'TRUNCATE ' . $this->details['mysql_prefix'] . $table;
+			return $this->query($sql, false);
+		}
 		return false;
 	}
 
+	/**
+	 * Escapes LIKE statements
+	 * @param string $str
+	 * @return string
+	 */
 	function likeEscape($str) {
 		return strtr($str, array('_' => '\\_', '%' => '\\%'));
 	}
@@ -475,7 +591,7 @@ class dbBase {
 	 */
 	function isMariaDB() {
 		$db_version = $this->getVersionComplete();
-		if (stristr($db_version, 'mariadb')) { // version includes note if mariadb
+		if ($db_version && stristr($db_version, 'mariadb')) { // version includes note if mariadb
 			return true;
 		}
 		return false;

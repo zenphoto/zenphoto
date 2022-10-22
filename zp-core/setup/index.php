@@ -1047,7 +1047,7 @@ if ($c <= 0) {
 								
 								$dbtext = gettext('utf8mb4 encoding support');
 								$dbtext2 = gettext('utf8mb4 encoding support [is not available|');
-								$dbmsg = gettext('You need to update your database to MySQL 5.5.3+ (better 5.6+) or MariaDB 10.6+ for full unicode support.'); 
+								$dbmsg = gettext('You need to update your database to MySQL 5.5.3+ (better 5.6+) / MariaDB 5.5+ for full unicode support.'); 
 								if($_zp_db->hasUtf8mb4Support('utf8mb4_520') || $_zp_db->hasUtf8mb4Support('utf8mb4')) {
 									$utf8mb4check = true;
 								} else {

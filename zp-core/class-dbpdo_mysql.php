@@ -43,15 +43,16 @@ class dbPDO_MySQL extends dbBase {
 			dbbase::logConnectionError($error_msg, $errorstop);
 			$this->connection = NULL;
 		}
-		$this->details = $config;
 		if ($this->connection) {
-			if ($utf8) {
+			$this->details = $config;
+			// according to docs needee for PHP 5.3 and older so charset above should be sufficient
+			/*if ($utf8) {
 				try {
 					$this->connection->query("SET NAMES 'utf8'");
 				} catch (PDOException $e) {
 					//	:(
 				}
-			}
+			} */
 			// set the sql_mode to relaxed (if possible)
 			try {
 				$this->connection->query('SET SESSION sql_mode="";');
@@ -213,177 +214,6 @@ class dbPDO_MySQL extends dbBase {
 	function close() {
 		$this->connection = NULL;
 		return true;
-	}
-
-	/**
-	 * create the database
-	 */
-	function create() {
-		$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->details['mysql_database'] . '`' . $this->getCollationSetClause();
-		return $this->query($sql, false);
-	}
-
-	/**
-	 * Returns user's permissions on the database
-	 */
-	function getPermissions() {
-		$sql = "SHOW GRANTS FOR " . $this->details['mysql_user'] . ";";
-		$result = $this->query($sql, false);
-		if (!$result) {
-			$result = $this->query("SHOW GRANTS;", false);
-		}
-		if ($result) {
-			$db_results = array();
-			while ($onerow = $this->fetchRow($result)) {
-				$db_results[] = $onerow[0];
-			}
-			return $db_results;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Sets the SQL session mode to empty
-	 */
-	function setSQLmode() {
-		return $this->query('SET SESSION sql_mode=""', false);
-	}
-
-	/**
-	 * Queries the SQL session mode
-	 */
-	function getSQLmode() {
-		$result = $this->query('SELECT @@SESSION.sql_mode;', false);
-		if ($result) {
-			$row = $this->fetchRow($result);
-			return $row[0];
-		}
-		return false;
-	}
-	
- /**
-  * @param string $sql
-  * @return array
-  */
-	function createTable(&$sql) {
-		return $this->query($sql, false);
-	}
-	
-	/**
-	 * @param string $sql
-	 * @return array
-	 */
-	function tableUpdate(&$sql) {
-		return $this->query($sql, false);
-	}
-
-	/**
-	 * Wrapper method for various SHOW queries
-	 * 
-	 * @param string $what "table", "columns", "variables", "index"
-	 * @param string $aux
-	 * @return array
-	 */
-	function show($what, $aux = '') {
-		switch ($what) {
-			case 'tables':
-				$sql = "SHOW TABLES FROM `" . $this->details['mysql_database'] . "` LIKE '" . $this->likeEscape($this->details['mysql_prefix']) . "%'";
-				return $this->query($sql, false);
-			case 'columns':
-				$sql = 'SHOW FULL COLUMNS FROM `' . $this->details['mysql_prefix'] . $aux . '`';
-				return $this->query($sql, false);
-			case 'variables':
-				$sql = "SHOW VARIABLES LIKE '$aux'";
-				return $this->queryFullArray($sql);
-			case 'index':
-				$sql = "SHOW INDEX FROM `" . $this->details['mysql_database'] . '`.' . $aux;
-				return $this->queryFullArray($sql);
-		}
-	}
-	
-	/**
-	 * Returns an array with the tables names of the database
-	 * 
-	 * @since ZenphotoCMS 1.6
-	 * @return array
-	 */
-	function getTables() {
-		$resource = $this->show('tables');
-		$tables = array();
-		if ($resource) {
-			while ($row = $this->fetchAssoc($resource)) {
-				$tables[] = array_shift($row);
-			}
-			$this->freeResult($resource);
-		}
-		return $tables;
-	}
-
-	/**
-	 * Checks if a table has content. Note: Does not check if the table actually exists!
-	 * @since ZenphotoCMS 1.6
-	 * 
-	 * @param string $table Table name without the prefix
-	 * @return boolean
-	 */
-	function isEmptyTable($table) {
-		$not_empty = $this->query('SELECT NULL FROM ' .  $this->prefix($table) . ' LIMIT 1', true);
-		if ($not_empty) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Gets the detail info of all fields in a table
-	 * 
-	 * @since ZenphotoCMS 1.6 
-	 * @param string $table Name of the table to get the fields info of
-	 * @return array|false
-	 */
-	function getFields($table) {
-		$result = $this->show('columns', $table);
-		if ($result) {
-			$fields = array();
-			while ($row = $this->fetchAssoc($result)) {
-				$fields[] = $row;
-			}
-			return $fields;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Lists the columns (fields) info of a table
-	 * 
-	 * @deprecated ZenphotoCMS 2.0 - Use the method getFields() instead
-	 * @param stringe $table 
-	 * @return boolean
-	 */
-	function listFields($table) {
-		deprecationNotice('Use the method getFields() instead');
-		return $this->getFields($table);
-	}
-	
-	/**
-	 * Deletes the content of a table
-	 * @param string $table
-	 * @return mixed
-	 */
-	function truncateTable($table) {
-		$sql = 'TRUNCATE ' . $this->details['mysql_prefix'] . $table;
-		return $this->query($sql, false);
-	}
-	
-	/**
-	 * Escapes LIKE statements
-	 * @param string $str
-	 * @return string
-	 */
-	function likeEscape($str) {
-		return strtr($str, array('_' => '\\_', '%' => '\\%'));
 	}
 	
 	/**
