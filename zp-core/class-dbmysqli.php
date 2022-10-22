@@ -35,7 +35,12 @@ class dbMySQLi extends dbBase {
 		if ($this->connection) {
 			$this->details = $config;
 			if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-				$this->connection->set_charset("utf8");
+				if ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520')) {
+					$charset = 'utf8mb4';
+				} else {
+					$charset = 'utf8';
+				}
+				$this->connection->set_charset($charset);
 			}
 			// set the sql_mode to relaxed (if possible)
 			@$this->connection->query('SET SESSION sql_mode="";');

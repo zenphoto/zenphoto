@@ -20,9 +20,13 @@ class dbPDO_MySQL extends dbBase {
 		$this->details = unserialize(DB_NOT_CONNECTED);
 		$this->connection = $this->last_result = NULL;
 		if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-			$utf8 = ';charset=utf8';
+			if ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520')) {
+				$charset = ';charset=utf8mb4';
+			} else {
+				$charset = ';charset=utf8';
+			}
 		} else {
-			$utf8 = false;
+			$charset = false;
 		}
 		try {
 			$db = $config['mysql_database'];
@@ -35,7 +39,7 @@ class dbPDO_MySQL extends dbBase {
 				$socket = ';unix_socket=' . $config['mysql_socket'];
 			}
 			if (class_exists('PDO')) {
-				$this->connection = new PDO('mysql:host=' . $hostname . ';dbname=' . $db . $utf8 . ';port=' . $port . $socket, $username, $password);
+				$this->connection = new PDO('mysql:host=' . $hostname . ';dbname=' . $db . $charset . ';port=' . $port . $socket, $username, $password);
 			}
 		} catch (PDOException $e) {
 			$this->last_result = $e;
