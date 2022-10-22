@@ -5,6 +5,7 @@
  * @package core
  * @subpackage functions\functions-config
  */
+ 
 /**
  * Updates an item in the configuration file
  * @param unknown_type $item
@@ -45,5 +46,3 @@ function storeConfig($zp_cfg) {
 	file_put_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $zp_cfg);
 	@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod); 
 }
-
-?>

@@ -1,7 +1,8 @@
 <?php
 /**
  * install routine for zenphoto
- * @package setup
+ * @package admin
+ * @subpackage setup
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '7.0.0');
@@ -306,7 +307,6 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			define('DATABASE_MARIADB_DESIRED_VERSION', '10.1.0'); // more or less MySQL 5.7
 			$_zp_dbclass = 'db' . strtolower($_zp_conf_vars['db_software']); // global that defines the db class name to use
 		} else {
-			echo "Database NOT selected: " . $selected_database;
 			define('DATABASE_SOFTWARE', 'Database setup');
 			define('DATABASE_MIN_VERSION', '0.0.0');
 			define('DATABASE_DESIRED_VERSION', '0.0.0');
@@ -640,8 +640,8 @@ if ($c <= 0) {
 								setup::checkMark(-1, '', $_SERVER['SERVER_SOFTWARE'], gettext('Server seems not to be <em>Apache</em>, <em>Nginx</em> or <em>compatible</em>. Zenphoto may not work correctly.'));
 							} 
 							
-							$err = setup::versionCheck('5.6.0', PHP_DESIRED_VERSION, PHP_VERSION);
-							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you encounter any issues below 5.6. Please contact your webhost about a PHP upgrade on your server.'), '5.6.0', PHP_DESIRED_VERSION), false) && $good;
+							$err = setup::versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
+							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you encounter any issues below 5.6. Please contact your webhost about a PHP upgrade on your server.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 							
 							if ($session && session_id()) {
 								setup::checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
@@ -743,16 +743,24 @@ if ($c <= 0) {
 									} else {
 										$library = '';
 									}
-									$good = setup::checkMark(!empty($library), sprintf(gettext("Graphics support: <code>%s</code>"), $library), gettext('Graphics support [is not installed]'), gettext('You need to install a graphics support library such as the <em>GD library</em> in your PHP')) && $good;
+									$general_graphicsinfo = gettext('Graphics support:') . "<br>";
+									foreach ($_zp_graphics->generalinfo as $key => $value) { // check all available and mark currently selected
+										if ($key == $_zp_graphics->info['Library']) {
+											$general_graphicsinfo .= $value . ' ' . gettext('[enabled]') . "<br>";
+										} else {
+											$general_graphicsinfo .= $value . ' ' . gettext('[available]') . "<br>";
+										}
+									}
+									/*$good = */setup::checkMark(!empty($library), $general_graphicsinfo, gettext('Graphics support [is not installed]'), gettext('You need to install a graphics support library such as the <em>GD library</em> in your PHP')) && $good;
 									if (!empty($library)) {
 										$missing = array();
-										if (!isset($graphics_lib['JPG'])) {
+										if (!isset($_zp_graphics->info['JPG'])) {
 											$missing[] = 'JPEG';
 										}
-										if (!(isset($graphics_lib['GIF']))) {
+										if (!(isset($_zp_graphics->info['GIF']))) {
 											$missing[] = 'GIF';
 										}
-										if (!(isset($graphics_lib['PNG']))) {
+										if (!(isset($_zp_graphics->info['PNG']))) {
 											$missing[] = 'PNG';
 										}
 										if (count($missing) > 0) {
@@ -767,7 +775,7 @@ if ($c <= 0) {
 											} else {
 												$imgmissing = sprintf(gettext('Your PHP graphics library does not support %1$s, %2$s, or %3$s'), $missing[0], $missing[1], $missing[2]);
 												$err = 0;
-												$good = false;
+												//$good = false;
 												$mandate = gettext("To correct this you need to install GD with appropriate image support in your PHP");
 											}
 											setup::checkMark($err, gettext("PHP graphics image support"), '', $imgmissing .
@@ -1028,8 +1036,24 @@ if ($c <= 0) {
 								$dbversion = $dbsoftware['version'];
 								$required = $dbsoftware['required'];
 								$desired = $dbsoftware['desired'];
-								$sqlv = setup::versionCheck($required, $desired, $dbversion);
+								$required_mariadb = $dbsoftware['required_mariadb'];
+								$desired_mariadb = $dbsoftware['desired_mariadb'];
+								if($_zp_db->isMariaDB()) {
+									$sqlv = setup::versionCheck($required_mariadb, $desired_mariadb, $dbversion);
+								} else {
+									$sqlv = setup::versionCheck($required, $desired, $dbversion);
+								}
 								$good = setup::checkMark($sqlv, sprintf(gettext('%1$s version %2$s'), $dbapp, $dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'), $dbapp, $required, $desired), false) && $good;
+								
+								$dbtext = gettext('utf8mb4 encoding support');
+								$dbtext2 = gettext('utf8mb4 encoding support [is not available|');
+								$dbmsg = gettext('You need to update your database to MySQL 5.5.3 + or better 5.6+ for full unicode support.'); 
+								if($_zp_db->hasUtf8mb4Support('utf8mb4_520') || $_zp_db->hasUtf8mb4Support('utf8mb4')) {
+									$utf8mb4check = true;
+								} else {
+									$utf8mb4check = false;
+								}
+								setup::checkMark($utf8mb4check, $dbtext, $dbtext2, $dbmsg, false);
 							}
 							setup::primeMark(gettext('Database connection'));
 
@@ -1133,10 +1157,9 @@ if ($c <= 0) {
 									}
 									setup::checkMark($access, sprintf(gettext('Database <code>access rights</code> for <em>%s</em>'), $_zp_conf_vars['mysql_database']), sprintf(gettext('Database <code>access rights</code> for <em>%1$s</em> [%2$s]'), $_zp_conf_vars['mysql_database'], $rightsfound), sprintf(gettext("Your Database user must have %s rights."), $neededlist) . $report);
 
-
 									$tables = $_zp_db->getTables();
 									$tableslist = '';
-									if ($result) {
+									if ($tables) {
 										$check = 1;
 										foreach($tables as $table) {
 											$tableslist .= "<code>" . $table . "</code>, ";
@@ -1462,7 +1485,6 @@ if ($c <= 0) {
 										if ($closed) {
 											$ht = setup::closeSite($ht);
 										}
-
 										$htu = strtoupper($ht);
 										@chmod($htfile, 0777);
 										@unlink($htfile);
@@ -1675,12 +1697,12 @@ if ($c <= 0) {
 							$task = 'update';
 						}
 
-						if ($_zp_db->connect($_zp_conf_vars) && empty($task)) {
+						if ($_zp_db->connection && empty($task)) {
 							$alltables = $_zp_db->getTables();
 							$tables = array();
 							$prefixLC = strtolower($_zp_conf_vars['mysql_prefix']);
 							$prefixUC = strtoupper($prefixLC);
-							if ($result) {
+							if ($alltables) {
 								foreach($alltables as $key) {
 									$key = str_replace(array($prefixLC, $prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 									$tables[$key] = 'update';
@@ -2431,7 +2453,7 @@ if ($c <= 0) {
 						 * *****
 						 * ************************************************************************************* */
 						$createTables = true;
-						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && $_zp_db->connect($_zp_conf_vars)) {
+						if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['protect_files']) && $_zp_db->connection) {
 							if (!isset($_GET['protect_files'])) {
 								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
 									echo "<p>" . gettext("About to create database tables") . "...</p>";
@@ -2592,7 +2614,7 @@ if ($c <= 0) {
 								</script>
 								<?php
 							}
-						} else if ($_zp_db->connect($_zp_conf_vars)) {
+						} else if ($_zp_db->connection) {
 							$task = '';
 							if (setup::userAuthorized() || $blindInstall) {
 								if (!empty($dbmsg)) {
