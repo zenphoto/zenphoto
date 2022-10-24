@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.59 (2021-06-14)
+ * Version 2.1.61 (2.1-src Nightly: 1733024) (2022-03-15)
  * http://elfinder.org
  * 
- * Copyright 2009-2021, Studio 42
+ * Copyright 2009-2022, Studio 42
  * Licensed under a 3-clauses BSD license
  */
 (function(root, factory) {
@@ -845,6 +845,14 @@ var elFinder = function(elm, opts, bootCallback) {
 	this.i18nBaseUrl = '';
 
 	/**
+	 * Base URL of worker js files
+	 * baseUrl + "js/worker/" when empty value
+	 * 
+	 * @type String
+	 */
+	this.workerBaseUrl = '';
+
+	/**
 	 * Is elFinder CSS loaded
 	 * 
 	 * @type Boolean
@@ -1163,6 +1171,7 @@ var elFinder = function(elm, opts, bootCallback) {
 	})();
 	
 	this.i18nBaseUrl = (this.options.i18nBaseUrl || this.baseUrl + 'js/i18n').replace(/\/$/, '') + '/';
+	this.workerBaseUrl = (this.options.workerBaseUrl || this.baseUrl + 'js/worker').replace(/\/$/, '') + '/';
 
 	this.options.maxErrorDialogs = Math.max(1, parseInt(this.options.maxErrorDialogs || 5));
 
@@ -8968,6 +8977,11 @@ elFinder.prototype = {
 			} else {
 				kind = this.kinds[mime];
 			}
+		} else if (this.mimeTypes[mime]) {
+			kind = this.mimeTypes[mime].toUpperCase();
+			if (!this.messages['kind'+kind]) {
+				kind = null;
+			}
 		}
 		if (! kind) {
 			if (mime.indexOf('text') === 0) {
@@ -10199,7 +10213,7 @@ elFinder.prototype = {
 	 * @return     {<type>}  The worker url.
 	 */
 	getWorkerUrl : function(filename) {
-		return this.convAbsUrl(this.baseUrl + 'js/worker/' + filename);
+		return this.convAbsUrl(this.workerBaseUrl + filename);
 	},
 
 	/**
@@ -10716,7 +10730,7 @@ if (!window.cancelAnimationFrame) {
  *
  * @type String
  **/
-elFinder.prototype.version = '2.1.59';
+elFinder.prototype.version = '2.1.61 (2.1-src Nightly: 1733024)';
 
 
 
@@ -11202,27 +11216,27 @@ elFinder.prototype._options = {
 	 */
 	cdns : {
 		// for editor etc.
-		ace        : 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12',
-		codemirror : 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.1',
-		ckeditor   : 'https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.16.1',
-		ckeditor5  : 'https://cdn.ckeditor.com/ckeditor5/28.0.0',
-		tinymce    : 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1',
+		ace        : 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14',
+		codemirror : 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2',
+		ckeditor   : 'https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.17.2',
+		ckeditor5  : 'https://cdn.ckeditor.com/ckeditor5/33.0.0',
+		tinymce    : 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.0',
 		simplemde  : 'https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2',
 		fabric     : 'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.2.0',
 		fabric16   : 'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7',
 		tui        : 'https://uicdn.toast.com',
 		// for quicklook etc.
-		hls        : 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.2/hls.min.js',
-		dash       : 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/3.2.2/dash.all.min.js',
-		flv        : 'https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js',
-		videojs    : 'https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.1',
+		hls        : 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.1.5/hls.min.js',
+		dash       : 'https://cdnjs.cloudflare.com/ajax/libs/dashjs/4.3.0/dash.all.min.js',
+		flv        : 'https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js',
+		videojs    : 'https://cdnjs.cloudflare.com/ajax/libs/video.js/7.18.1',
 		prettify   : 'https://cdn.jsdelivr.net/gh/google/code-prettify@f1c3473acd1e8ea8c8c1a60c56e89f5cdd06f915/loader/run_prettify.js',
-		psd        : 'https://cdnjs.cloudflare.com/ajax/libs/psd.js/3.2.0/psd.min.js',
+		psd        : 'https://cdnjs.cloudflare.com/ajax/libs/psd.js/3.4.0/psd.min.js',
 		rar        : 'https://cdn.jsdelivr.net/gh/nao-pon/rar.js@6cef13ec66dd67992fc7f3ea22f132d770ebaf8b/rar.min.js',
 		zlibUnzip  : 'https://cdn.jsdelivr.net/gh/imaya/zlib.js@0.3.1/bin/unzip.min.js', // need check unzipFiles() in quicklook.plugins.js when update
 		zlibGunzip : 'https://cdn.jsdelivr.net/gh/imaya/zlib.js@0.3.1/bin/gunzip.min.js',
 		bzip2      : 'https://cdn.jsdelivr.net/gh/nao-pon/bzip2.js@0.8.0/bzip2.js',
-		marked     : 'https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.3/marked.min.js',
+		marked     : 'https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js',
 		sparkmd5   : 'https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js',
 		jssha      : 'https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.min.js',
 		amr        : 'https://cdn.jsdelivr.net/gh/yxl/opencore-amr-js@dcf3d2b5f384a1d9ded2a54e4c137a81747b222b/js/amrnb.js',
@@ -11401,6 +11415,15 @@ elFinder.prototype._options = {
 	 * @default ""
 	 */
 	i18nBaseUrl : '',
+
+	/**
+	 * Base URL of worker js files
+	 * baseUrl + "js/worker/" when empty value
+	 * 
+	 * @type String
+	 * @default ""
+	 */
+	 workerBaseUrl : '',
 	
 	/**
 	 * Auto load required CSS
@@ -22425,11 +22448,11 @@ $.fn.elfindertree = function(fm, opts) {
 					arrow.data('dfrd', dfrd);
 				})
 				.on('contextmenu', selNavdir, function(e) {
+					e.stopPropagation();
 					var self = $(this);
 					
 					// now dirname editing
 					if (self.find('input:text').length) {
-						e.stopPropagation();
 						return;
 					}
 					
@@ -25877,7 +25900,7 @@ elFinder.prototype.commands.fullscreen = function() {
 			html.push('<div class="'+prim+'">'+fm.i18n('team')+'</div>');
 			
 			html.push(atpl[r](author, 'Dmitry "dio" Levashov &lt;dio@std42.ru&gt;')[r](work, fm.i18n('chiefdev')));
-			html.push(atpl[r](author, 'Naoki Sawada &lt;hypweb+elfinder@gmail.com&gt;')[r](work, fm.i18n('developer')));
+			html.push(atpl[r](author, 'Naoki Sawada (nao-pon)&lt;hypweb+elfinder@gmail.com&gt;')[r](work, fm.i18n('developer')));
 			html.push(atpl[r](author, 'Troex Nevelin &lt;troex@fury.scancode.ru&gt;')[r](work, fm.i18n('maintainer')));
 			html.push(atpl[r](author, 'Alexey Sukhotin &lt;strogg@yandex.ru&gt;')[r](work, fm.i18n('contributor')));
 			
@@ -25894,7 +25917,7 @@ elFinder.prototype.commands.fullscreen = function() {
 			
 			html.push(sep);
 			html.push('<div class="'+lic+'">Licence: 3-clauses BSD Licence</div>');
-			html.push('<div class="'+lic+'">Copyright © 2009-2021, Studio 42</div>');
+			html.push('<div class="'+lic+'">Copyright © 2009-2022, Studio 42 / nao-pon</div>');
 			html.push('<div class="'+lic+'">„ …'+fm.i18n('dontforget')+' ”</div>');
 			html.push('</div>');
 		},
@@ -30088,7 +30111,7 @@ elFinder.prototype.commands.quicklook.plugins = [
 				ql.hideinfo();
 				var doc = $('<iframe class="elfinder-quicklook-preview-html"></iframe>').appendTo(preview)[0].contentWindow.document;
 				doc.open();
-				doc.write(marked(data.content));
+				doc.write((marked.parse || marked)(data.content));
 				doc.close();
 				loading.remove();
 			},
@@ -34679,35 +34702,43 @@ elFinder.prototype.commands.rm = function() {
 	this.value = 'rm';
 	
 	this.init = function() {
-		// re-assign for extended command
-		self = this;
-		fm = this.fm;
-		// bind function of change
-		self.change(function() {
+		var update = function(origin) {
 			var targets;
 			delete self.extra;
 			self.title = fm.i18n('cmd' + self.value);
 			self.className = self.value;
 			self.button && self.button.children('span.elfinder-button-icon')[self.value === 'trash'? 'addClass' : 'removeClass']('elfinder-button-icon-trash');
-			if (self.value === 'trash') {
-				self.extra = {
-					icon: 'rm',
-					node: $('<span></span>')
-						.attr({title: fm.i18n('cmdrm')})
-						.on('ready', function(e, data) {
-							targets = data.targets;
-						})
-						.on('click touchstart', function(e){
-							if (e.type === 'touchstart' && e.originalEvent.touches.length > 1) {
-								return;
-							}
-							e.stopPropagation();
-							e.preventDefault();
-							fm.getUI().trigger('click'); // to close the context menu immediately
-							fm.exec('rm', targets, {_userAction: true, forceRm : true});
-						})
-				};
+			if (origin && origin !== 'cwd' && (self.state > -1 || origin === 'navbar')) {
+				if (self.value === 'trash') {
+					self.extra = {
+						icon: 'rm',
+						node: $('<span></span>')
+							.attr({title: fm.i18n('cmdrm')})
+							.on('ready', function(e, data) {
+								targets = data.targets;
+							})
+							.on('click touchstart', function(e){
+								if (e.type === 'touchstart' && e.originalEvent.touches.length > 1) {
+									return;
+								}
+								e.stopPropagation();
+								e.preventDefault();
+								fm.getUI().trigger('click'); // to close the context menu immediately
+								fm.exec('rm', targets, {_userAction: true, forceRm : true});
+							})
+					};
+				}
 			}
+		};
+		// re-assign for extended command
+		self = this;
+		fm = this.fm;
+		// bind function of change
+		self.change(function() {
+			update();
+		});
+		fm.bind('contextmenucreate', function(e) {
+			update(e.data.type);
 		});
 	};
 	

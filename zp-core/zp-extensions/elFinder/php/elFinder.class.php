@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 59;
+    protected static $ApiRevision = 61;
 
     /**
      * Storages (root dirs)
@@ -764,6 +764,25 @@ class elFinder
         // set utf8Encoder
         if (isset($opts['utf8Encoder']) && is_callable($opts['utf8Encoder'])) {
             $this->utf8Encoder = $opts['utf8Encoder'];
+        }
+
+        // for LocalFileSystem driver on Windows server
+        if (DIRECTORY_SEPARATOR !== '/') {
+            if (empty($opts['bind'])) {
+                $opts['bind'] = array();
+            }
+
+            $_key = 'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre';
+            if (!isset($opts['bind'][$_key])) {
+                $opts['bind'][$_key] = array();
+            }
+            array_push($opts['bind'][$_key], 'Plugin.WinRemoveTailDots.cmdPreprocess');
+
+            $_key = 'upload.presave paste.copyfrom';
+            if (!isset($opts['bind'][$_key])) {
+                $opts['bind'][$_key] = array();
+            }
+            array_push($opts['bind'][$_key], 'Plugin.WinRemoveTailDots.onUpLoadPreSave');
         }
 
         // bind events listeners
@@ -2694,7 +2713,7 @@ class elFinder
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($ch, CURLOPT_USERAGENT, $ua);
-        curl_setopt($ch, CURLOPT_RESOLVE, [$info['host'] . ':' . $info['port'] . ':' . $info['ip']]);
+        curl_setopt($ch, CURLOPT_RESOLVE, array($info['host'] . ':' . $info['port'] . ':' . $info['ip']));
         $result = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($http_code == 301 || $http_code == 302) {
@@ -4240,7 +4259,14 @@ var go = function() {
             return $proc;
         }
 
-        $errfile = str_replace($base, '', $errfile);
+        // Do not report real path
+        if (strpos($errfile, $base) === 0) {
+            $errfile = str_replace($base, '', $errfile);
+        } else if ($pos = strrpos($errfile, '/vendor/')) {
+            $errfile = substr($errfile, $pos + 1);
+        } else {
+            $errfile = basename($errfile);
+        }
 
         switch ($errno) {
             case E_WARNING:

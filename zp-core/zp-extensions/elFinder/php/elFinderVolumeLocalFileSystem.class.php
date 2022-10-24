@@ -81,6 +81,13 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         $this->options['keepTimestamp'] = array('copy', 'move'); // keep timestamp at inner filesystem allowed 'copy', 'move' and 'upload'
         $this->options['substituteImg'] = true;       // support substitute image with dim command
         $this->options['statCorrector'] = null;       // callable to correct stat data `function(&$stat, $path, $statOwner, $volumeDriveInstance){}`
+        if (DIRECTORY_SEPARATOR === '/') {
+            // Linux
+            $this->options['acceptedName'] = '/^[^\.\/\x00][^\/\x00]*$/';
+        } else {
+            // Windows
+            $this->options['acceptedName'] = '/^[^\.\/\x00\\\:*?"<>|][^\/\x00\\\:*?"<>|]*$/';
+        }
     }
 
     /*********************************************************************/
@@ -258,6 +265,14 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         }
 
         $this->statOwner = (!empty($this->options['statOwner']));
+
+        // enable WinRemoveTailDots plugin on Windows server
+        if (DIRECTORY_SEPARATOR !== '/') {
+            if (!isset($this->options['plugin'])) {
+                $this->options['plugin'] = array();
+            }
+            $this->options['plugin']['WinRemoveTailDots'] = array('enable' => true);
+        }
     }
 
     /**
@@ -470,6 +485,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         if ($path === DIRECTORY_SEPARATOR) {
             return $this->root;
         } else {
+            $path = $this->_normpath($path);
             if (strpos($path, $this->systemRoot) === 0) {
                 return $path;
             } else if (DIRECTORY_SEPARATOR !== '/' && preg_match('/^[a-zA-Z]:' . preg_quote(DIRECTORY_SEPARATOR, '/') . '/', $path)) {
@@ -1367,7 +1383,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
                     break;
                 }
                 if ($node->isDir()) {
-                    if ($this->stripos($node->getName(), $q) !== false) {
+                    if ($this->stripos($node->getFilename(), $q) !== false) {
                         $match[] = $key;
                     }
                 } else {
@@ -1422,7 +1438,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
     {
         /* @var FilesystemIterator $file */
         /* @var RecursiveDirectoryIterator $iterator */
-        $name = $file->getName();
+        $name = $file->getFilename();
         if ($this->doSearchCurrentQuery['excludes']) {
             foreach ($this->doSearchCurrentQuery['excludes'] as $exclude) {
                 if ($this->stripos($name, $exclude) !== false) {
