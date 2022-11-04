@@ -9,9 +9,9 @@
 
 
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
-require_once(dirname(dirname(__FILE__)).'/functions-common.php');
+require_once(dirname(dirname(__FILE__)).'/functions/functions-common.php');
 
-require_once(dirname(dirname(__FILE__)).'/lib-kses.php');
+require_once(dirname(dirname(__FILE__)).'/libs/functions-kses.php');
 
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $_zp_setup_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));

@@ -7,7 +7,7 @@
 
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
@@ -318,7 +318,7 @@ if (isset($_GET['action'])) {
 			setOption('secure_image_processor', (int) isset($_POST['secure_image_processor']));
 			if (isset($_POST['protected_image_cache'])) {
 				setOption('protected_image_cache', 1);
-				copy(SERVERPATH . '/' . ZENFOLDER . '/cacheprotect', SERVERPATH . '/' . CACHEFOLDER . '/.htaccess');
+				copy(SERVERPATH . '/' . ZENFOLDER . '/file-templates/cacheprotect', SERVERPATH . '/' . CACHEFOLDER . '/.htaccess');
 				@chmod(SERVERPATH . '/' . CACHEFOLDER . '/.htaccess', 0444);
 			} else {
 				@chmod(SERVERPATH . '/' . CACHEFOLDER . '/.htaccess', 0777);

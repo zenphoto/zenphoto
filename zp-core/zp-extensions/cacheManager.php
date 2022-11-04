@@ -88,7 +88,7 @@ $plugin_category = gettext('Admin');
 
 $option_interface = 'cacheManager';
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-feed.php');
 
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);

@@ -14,23 +14,23 @@ define('EXACT_TAG_MATCH', getOption('exact_tag_match'));
 define('SEARCH_DURATION', 3000);
 define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
-require_once(dirname(__FILE__) . '/class-persistentobject.php');
-require_once(dirname(__FILE__) . '/class-themeobject.php');
-require_once(dirname(__FILE__) . '/class-mediaobject.php');
-require_once(dirname(__FILE__) . '/class-gallery.php');
+require_once(dirname(__FILE__) . '/classes/class-persistentobject.php');
+require_once(dirname(__FILE__) . '/classes/class-themeobject.php');
+require_once(dirname(__FILE__) . '/classes/class-mediaobject.php');
+require_once(dirname(__FILE__) . '/classes/class-gallery.php');
 
 $_zp_gallery = new Gallery();
 define('IMAGE_SORT_DIRECTION', getOption('image_sortdirection'));
 define('IMAGE_SORT_TYPE', getOption('image_sorttype'));
 Gallery::addAlbumHandler('alb', 'dynamicAlbum');
 
-require_once(dirname(__FILE__) . '/class-albumbase.php');
-require_once(dirname(__FILE__) . '/class-album.php');
-require_once(dirname(__FILE__) . '/class-dynamicalbum.php');
-require_once(dirname(__FILE__) . '/class-image.php');
-require_once(dirname(__FILE__) . '/class-transientimage.php');
-require_once(dirname(__FILE__) . '/class-searchengine.php');
-require_once(dirname(__FILE__) . '/class-maintenancemode.php');
+require_once(dirname(__FILE__) . '/classes/class-albumbase.php');
+require_once(dirname(__FILE__) . '/classes/class-album.php');
+require_once(dirname(__FILE__) . '/classes/class-dynamicalbum.php');
+require_once(dirname(__FILE__) . '/classes/class-image.php');
+require_once(dirname(__FILE__) . '/classes/class-transientimage.php');
+require_once(dirname(__FILE__) . '/classes/class-searchengine.php');
+require_once(dirname(__FILE__) . '/classes/class-maintenancemode.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins

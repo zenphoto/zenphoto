@@ -9,7 +9,7 @@
 define('UPLOAD_ERR_QUOTA', -1);
 define('UPLOAD_ERR_BLOCKED', -2);
 
-require_once(dirname(__FILE__) . '/functions-basic.php');
+require_once(dirname(__FILE__) . '/functions/functions-basic.php');
 
 zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
@@ -17,7 +17,7 @@ httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zpcms_auth_user']; //	Allow "unprotected" i.php if the request came from an admin session
 $_zp_admin_menu = array();
 
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-rewrite.php');
 
 if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__) . '/license.php');

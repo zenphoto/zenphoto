@@ -10,7 +10,7 @@ Define('PHP_DESIRED_VERSION', '7.4.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
-	require_once(dirname(dirname(__FILE__)) . '/lib-gettext/gettext.php');
+	require_once(dirname(dirname(__FILE__)) . '/libs/functions-gettext.php');
 	$noxlate = -1;
 } else {
 	$noxlate = 1;
@@ -37,7 +37,7 @@ header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 
 require_once(dirname(__FILE__) . '/class-setup.php');
 require_once(dirname(__FILE__) . '/class-setupmutex.php');
-require_once(dirname(dirname(__FILE__)) . '/class-maintenancemode.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/class-maintenancemode.php');
 //allow only one setup to run
 $setupMutex = new setupMutex();
 $setupMutex->lock();
@@ -51,7 +51,12 @@ if ($_zp_setup_debug = isset($_REQUEST['debug'])) {
 $setup_checked = isset($_GET['checked']);
 $upgrade = false;
 
-require_once(dirname(dirname(__FILE__)) . '/lib-utf8.php');
+require_once(dirname(dirname(__FILE__)) . '/libs/class-utf8.php');
+if (!function_exists('mb_internal_encoding')) {
+	require_once(dirname(dirname(__FILE__)) . '/libs/functions-utf8.php');
+}
+global $_zp_utf8;
+$_zp_utf8 = new utf8();
 
 if (isset($_REQUEST['autorun'])) {
 	if (!empty($_REQUEST['autorun'])) {
@@ -105,12 +110,12 @@ if (file_exists($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE))
 	setup::configMod();
 } else {
 	$newconfig = true;
-	@copy(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+	@copy(dirname(dirname(__FILE__)) . '/file-templates/zenphoto_cfg.txt', SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 }
 
 $zptime = filemtime($oldconfig = SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-@copy(dirname(dirname(__FILE__)) . '/dataaccess', $_zp_setup_serverpath . '/' . DATA_FOLDER . '/.htaccess');
-@copy(dirname(dirname(__FILE__)) . '/dataaccess', $_zp_setup_serverpath . '/' . BACKUPFOLDER . '/.htaccess'); 
+@copy(dirname(dirname(__FILE__)) . '/file-templates/dataaccess', $_zp_setup_serverpath . '/' . DATA_FOLDER . '/.htaccess');
+@copy(dirname(dirname(__FILE__)) . '/file-templates/dataaccess', $_zp_setup_serverpath . '/' . BACKUPFOLDER . '/.htaccess'); 
 @chmod($_zp_setup_serverpath . '/' . DATA_FOLDER . '/.htaccess', 0444);
 
 if (session_id() == '') {
@@ -127,7 +132,7 @@ $zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 $updatezp_config = false;
 
 if (strpos($zp_cfg, "\$conf['special_pages']") === false) {
-	$template = file_get_contents(dirname(dirname(__FILE__)) . '/zenphoto_cfg.txt');
+	$template = file_get_contents(dirname(dirname(__FILE__)) . '/file-templates/zenphoto_cfg.txt');
 	$i = strpos($template, "\$conf['special_pages']");
 	$j = strpos($template, '//', $i);
 	$k = strpos($zp_cfg, '/** Do not edit below this line. **/');
@@ -269,7 +274,7 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			if (empty($_POST) && empty($_GET) && ($confDB === 'mysql' || $preferred != 'mysqli')) {
 				$confDB = NULL;
 			}
-			if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)) . '/class-db' . strtolower($confDB) . '.php')) {
+			if (extension_loaded($confDB) && file_exists(dirname(dirname(__FILE__)) . '/classes/class-db' . strtolower($confDB) . '.php')) {
 				$selected_database = $_zp_conf_vars['db_software'];
 			} else {
 				$selected_database = $preferred;
@@ -296,10 +301,10 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$updatezp_config = true;
 		}
 
-		require_once(dirname(dirname(__FILE__)) . '/functions-db.php'); // legacy function wrapper
-		require_once(dirname(dirname(__FILE__)) . '/class-dbbase.php'); // empty base db class
+		require_once(dirname(dirname(__FILE__)) . '/deprecated/functions-db.php'); // legacy function wrapper
+		require_once(dirname(dirname(__FILE__)) . '/classes/class-dbbase.php'); // empty base db class
 		if ($selected_database) {
-			require_once(dirname(dirname(__FILE__)) . '/class-db' . strtolower($selected_database) . '.php'); // real db handler
+			require_once(dirname(dirname(__FILE__)) . '/classes/class-db' . strtolower($selected_database) . '.php'); // real db handler
 			define('DATABASE_SOFTWARE', $selected_database);
 			define('DATABASE_MIN_VERSION', '5.5.3');
 			define('DATABASE_DESIRED_VERSION', '5.7.0');
@@ -373,15 +378,15 @@ if (function_exists('setOption')) {
 } else { // setup a primitive environment
 	$environ = false;
 	require_once(dirname(__FILE__) . '/setup-primitive.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-filter.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-i18n.php');
+	require_once(dirname(dirname(__FILE__)) . '/functions/functions-filter.php');
+	require_once(dirname(dirname(__FILE__)) . '/functions/functions-i18n.php');
 }
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists($_zp_setup_serverpath . '/.htaccess') || setup::userAuthorized()) {
 		@chmod($_zp_setup_serverpath . '/.htaccess', 0777);
 		$ht = @file_get_contents(SERVERPATH . '/.htaccess');
-		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess');
+		$newht = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/htaccess');
 		if (setup::siteClosed($ht)) {
 			$newht = setup::closeSite($newht);
 		}
@@ -694,7 +699,7 @@ if ($c <= 0) {
 							setup::checkmark(extension_loaded('curl') ? 1 : -1, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('<code>cURL</code> support is not critical but strongely recommended.'), false);
 							setup::checkmark(extension_loaded('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));		
 							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));		
-							setup::checkmark(extension_loaded('json') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but may become so in the future.'));					
+							setup::checkmark(extension_loaded('json') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but will become so in the future.'));					
 							setup::checkmark(extension_loaded('exif') ? 1 : -1, gettext('PHP <code>exif</code> support'), gettext('PHP <code>exif</code> support [is not present]'), gettext('<code>exif</code> support is not critical but strongely recommended for properly handling exif data of images'));					
 							setup::checkmark(extension_loaded('bz2') ? 1 : -1, gettext('PHP <code>bz2</code> support'), gettext('PHP <code>bz2</code> support [is not present]'), gettext('<code>bz2</code> support is not critical but recommended for some optional bzcompression functionalty'));					
 							setup::checkmark(extension_loaded('fileinfo') ? 1 : -1, gettext('PHP <code>fileinfo</code> support'), gettext('PHP <code>fileinfo</code> support [is not present]'), gettext('<code>fileinfo</code> support is not critical but strongely recommended for file system functionality'));						
@@ -720,7 +725,7 @@ if ($c <= 0) {
 								} else {
 									$mb = -1;
 								}
-								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
+								$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is strongely recommended to insure accented and multi-byte characters function properly.');
 								setup::checkMark($mb, gettext("PHP <code>mbstring</code> and <code>iconv</code> packages"), sprintf(gettext('PHP <code>mbstring</code> and <code>iconv</code> packages [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
 							} else {
 								$test = $_zp_utf8->convert('test', 'ISO-8859-1', 'UTF-8');
@@ -1470,7 +1475,7 @@ if ($c <= 0) {
 								$d = rtrim(str_replace('\\', '/', dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))), '/') . '/';
 								$d = str_replace(' ', '%20', $d); //	apache appears to trip out if there is a space in the rewrite base
 								if (!$ch) { // wrong version
-									$oht = trim(@file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/oldhtaccess'));
+									$oht = trim(@file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/oldhtaccess'));
 									//fix the rewritebase
 									$i = strpos($oht, 'RewriteBase /zenphoto');
 									$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i + 21);
@@ -1479,7 +1484,7 @@ if ($c <= 0) {
 									}
 									$oht = trim($oht);
 									if ($oht == $ht) { // an unmodified .htaccess file, we can just replace it
-										$ht = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/htaccess'));
+										$ht = trim(file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/htaccess'));
 										$i = strpos($ht, 'RewriteBase /zenphoto');
 										$ht = substr($ht, 0, $i) . "RewriteBase $d" . substr($ht, $i + 21);
 										if ($closed) {
@@ -1574,7 +1579,7 @@ if ($c <= 0) {
 								}
 							}
 							//robots.txt file
-							$robots = file_get_contents(dirname(dirname(__FILE__)) . '/example_robots.txt');
+							$robots = file_get_contents(dirname(dirname(__FILE__)) . '/file-templates/example_robots.txt');
 							if ($robots === false) {
 								setup::checkmark(-1, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup could not find the  <em>example_robots.txt</em> file.'));
 							} else {

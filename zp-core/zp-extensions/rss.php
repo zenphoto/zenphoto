@@ -399,8 +399,8 @@ function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
 	PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]) . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-feed.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php');
 
 class RSS extends feed {
 

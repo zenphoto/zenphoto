@@ -11,7 +11,7 @@ if (!defined('OFFSET_PATH'))
 $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 require_once(dirname(__FILE__) . '/global-definitions.php');
-require_once(dirname(__FILE__) . '/functions.php');
+require_once(dirname(__FILE__) . '/functions/functions.php');
 zp_apply_filter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');
@@ -31,7 +31,7 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 	}
 }
 
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-rewrite.php');
 require_once(dirname(__FILE__) . '/template-functions.php');
 checkInstall();
 if (MOD_REWRITE || isset($_GET['z']))
@@ -41,7 +41,7 @@ if (MOD_REWRITE || isset($_GET['z']))
 /**
  * Invoke the controller to handle requests
  */
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-controller.php');
 require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';

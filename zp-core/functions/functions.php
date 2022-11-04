@@ -10,17 +10,12 @@
 
 global $_zp_current_context_stack, $_zp_html_cache;
 
-if (!function_exists("json_encode")) {
-	// load the drop-in replacement library
-	require_once(dirname(__FILE__) . '/lib-json.php');
-}
-
 require_once(dirname(__FILE__) . '/functions-basic.php');
 require_once(dirname(__FILE__) . '/functions-filter.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-kses.php');
-require_once dirname(__FILE__) . '/lib-htmLawed.php';
-require_once(dirname(__FILE__) . '/class-_zp_captcha.php');
-require_once(dirname(__FILE__) . '/class-_zp_html_cache.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/functions-kses.php');
+require_once SERVERPATH . '/' . ZENFOLDER . '/libs/functions-htmlawed.php';
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-_zp_captcha.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-_zp_html_cache.php');
 
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_html_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
@@ -33,7 +28,7 @@ if (GALLERY_SESSION) {
 
 define('ZENPHOTO_LOCALE', setMainDomain());
 
-require_once(dirname(__FILE__) . '/load_objectClasses.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/load_objectClasses.php');
 
 $_zp_current_context_stack = array();
 

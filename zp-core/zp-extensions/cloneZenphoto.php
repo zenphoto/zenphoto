@@ -26,7 +26,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 $plugin_disable = (SYMLINK)?(hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.'):gettext('Your server does not support symbolic linking.');
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/functions-reconfigure.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions/functions-reconfigure.php');
 if (!$plugin_disable) {
 	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
 }

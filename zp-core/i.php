@@ -32,8 +32,8 @@
 
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__) . '/functions-basic.php');
-require_once(dirname(__FILE__) . '/functions-image.php');
+require_once(dirname(__FILE__) . '/functions/functions-basic.php');
+require_once(dirname(__FILE__) . '/functions/functions-image.php');
 
 $debug = isset($_GET['debug']);
 $returnmode = isset($_GET['returnmode']);

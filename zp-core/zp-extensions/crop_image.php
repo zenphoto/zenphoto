@@ -13,7 +13,7 @@ if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))
 		define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-image.php');
+	require_once(dirname(dirname(__FILE__)) . '/functions/functions-image.php');
 	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 } else {
 	zp_register_filter('admin_toolbox_image', 'crop_image::toolbox');

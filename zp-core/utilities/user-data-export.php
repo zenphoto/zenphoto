@@ -24,7 +24,7 @@ $buttonlist[] = $mybutton = array(
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-require_once SERVERPATH . '/' . ZENFOLDER . '/class-userdataexport.php';
+require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-userdataexport.php';
 $username = '';
 $usermail = '';
 $error = '';

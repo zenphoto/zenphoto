@@ -61,7 +61,7 @@ class maintenanceMode {
 	 */
 	static function setState($state, $mutexobj = null) {
 		if (in_array($state, array('open', 'closed', 'closed_for_test'))) {
-			require_once SERVERPATH . '/' . ZENFOLDER . '/functions-config.php';
+			require_once SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php';
 			if (is_object($mutexobj)) {
 				$mutexobj->lock();
 			}
@@ -161,7 +161,7 @@ class maintenanceMode {
 			file_put_contents(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.htm', $html);
 		}
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css')) {
-			copy(SERVERPATH . '/' . ZENFOLDER . '/site_upgrade/closed.css', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css');
+			copy(SERVERPATH . '/' . ZENFOLDER . '/file-templates/closed.css', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css');
 		}
 		if (isset($_POST['maintenance_mode_restorefiles']) || !file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss_closed.xml')) {
 			$xml = maintenanceMode::getPlaceHolderRSS();
@@ -180,7 +180,7 @@ class maintenanceMode {
 		$site_title2 = sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'), $_zp_gallery->getTitle());
 		$link = '<a href="' . FULLWEBPATH . '/index.php">' . gettext('Please return later') . '</a>';
 		if ($corecss) {
-			$css_link = FULLWEBPATH . '/' . ZENFOLDER . '/site_upgrade/closed.css';
+			$css_link = FULLWEBPATH . '/' . ZENFOLDER . '/file-templates/closed.css';
 		} else {
 			$css_link = FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/closed.css';
 		}

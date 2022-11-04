@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
 							unlink($zipname);
 							exit;
 						} else {
-							include_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+							include_once(SERVERPATH . '/' . ZENFOLDER . '/libs/class-zipstream.php');
 							$zip = new ZipStream($zipname);
 							$zip->add_file_from_path(internalToFilesystem(basename($file)), internalToFilesystem($file));
 							$zip->finish();

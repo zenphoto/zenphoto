@@ -9,7 +9,7 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-reconfigure.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
 
 ignoreSetupRunRequest();
 

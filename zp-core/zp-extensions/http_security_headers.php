@@ -475,7 +475,7 @@ class securityheadersOptions {
 	 * @return array
 	 */
 	static function getContentSecuritytPolicyPluginTypes($suffix_as_key = false) {
-		require_once SERVERPATH.'/'.ZENFOLDER.'/class-mimetypes.php';
+		require_once SERVERPATH.'/'.ZENFOLDER.'/classes/class-mimetypes.php';
 		$plugintypes = array();
 		foreach (mimeTypes::$mime_types as $key => $val) {
 			if($suffix_as_key) {
@@ -511,7 +511,7 @@ class securityHeaders {
 	 * Sets the Content-Security-Policy header
 	 */
 	static function setContentSecurityPolicy() {
-		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php';
 		if (getOption('securityheaders_csp')) {
 			$reportonly = '';
 			if (getOption('securityheaders_csp_reportonly')) {

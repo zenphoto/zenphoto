@@ -7,8 +7,8 @@
 // force UTF-8 Ø
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 1);
-require_once(dirname(__FILE__) . "/functions.php");
-require_once(dirname(__FILE__) . "/functions-image.php");
+require_once(dirname(__FILE__) . "/functions/functions.php");
+require_once(dirname(__FILE__) . "/functions/functions-image.php");
 
 $returnmode = isset($_GET['returnmode']);
 
@@ -92,7 +92,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
-		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions-controller.php');
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-controller.php');
 		zp_load_gallery();
 		$theme = setupTheme($albumobj);
 		$custom = $_zp_themeroot . '/functions.php';
@@ -130,7 +130,7 @@ switch ($suffix) {
 		break;
 	default:
 		if ($disposal == 'download') {
-			require_once(dirname(__FILE__) . '/class-mimetypes.php');
+			require_once(dirname(__FILE__) . '/classes/class-mimetypes.php');
 			$mimetype = mimeTypes::getType($suffix);
 			header('Content-Disposition: attachment; filename="' . $image . '"'); // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
@@ -246,7 +246,7 @@ if (!is_null($cache_path)) {
 		echo FULLWEBPATH . '/' . CACHEFOLDER . pathurlencode(imgSrcURI($cache_file));
 	} else {
 		if ($disposal == 'download' || !OPEN_IMAGE_CACHE) {
-			require_once(dirname(__FILE__) . '/class-mimetypes.php');
+			require_once(dirname(__FILE__) . '/classes/class-mimetypes.php');
 			$mimetype = mimeTypes::getType($suffix);
 			$fp = fopen($cache_path, 'rb');
 			// send the right headers

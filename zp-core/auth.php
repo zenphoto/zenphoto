@@ -57,8 +57,8 @@ if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/auth.php')) {
 } else if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/lib-auth.php')) {
 	require_once(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/lib-auth.php');
 } else {
-	require_once(dirname(__FILE__) . '/class-authority.php');
-	require_once(dirname(__FILE__) . '/class-administrator.php');
+	require_once(dirname(__FILE__) . '/classes/class-authority.php');
+	require_once(dirname(__FILE__) . '/classes/class-administrator.php');
 	$_zp_authority = new Authority();
 }
 

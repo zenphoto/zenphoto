@@ -19,7 +19,7 @@ if (OFFSET_PATH == 2) {
 }
 zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php');
 
 class rewriteTokens {
 
@@ -145,7 +145,7 @@ class rewriteTokens {
 		if (getOption('rewriteTokens_restore')) {
 			$updated = false;
 			purgeOption('rewriteTokens_restore');
-			$template = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
+			$template = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/zenphoto_cfg.txt');
 			$i = strpos($template, "\$conf['special_pages']");
 			$j = strpos($template, '//', $i);
 			$newtext = substr($template, $i, $j - $i);

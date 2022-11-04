@@ -9,9 +9,9 @@
  *
  */
 // force UTF-8 Ø
-require_once(dirname(__FILE__) . '/global-definitions.php');
+require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
-require_once(dirname(__FILE__) . '/class-zpmutex.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/class-zpmutex.php');
 
 /**
  * OFFSET_PATH definitions:
@@ -170,11 +170,16 @@ define('DATABASE_PREFIX', $mysql_prefix);
 $_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
-	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-reconfigure.php');
 	reconfigureAction(2);
 }
 
-require_once(dirname(__FILE__) . '/lib-utf8.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/class-utf8.php');
+if (!function_exists('mb_internal_encoding')) {
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/functions-utf8.php');
+}
+global $_zp_utf8;
+$_zp_utf8 = new utf8();
 
 if (!defined('CHMOD_VALUE')) {
 	define('CHMOD_VALUE', fileperms(dirname(__FILE__)) & 0666);
@@ -188,9 +193,9 @@ if(file_exists(SERVERPATH . '/' . DATA_FOLDER . '/setup.log')) {
 	define('LOGS_MOD', DATA_MOD);
 }
 if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars['db_software']))) {
-	require_once SERVERPATH . '/' . ZENFOLDER . '/functions-db.php'; // legacy functions wrapper
-	require_once SERVERPATH . '/' . ZENFOLDER . '/class-dbbase.php'; // empty base db class
-	require_once SERVERPATH . '/' . ZENFOLDER . '/class-db' . strtolower($_zp_conf_vars['db_software']) . '.php'; // actual db handler
+	require_once SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-db.php'; // legacy functions wrapper
+	require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-dbbase.php'; // empty base db class
+	require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-db' . strtolower($_zp_conf_vars['db_software']) . '.php'; // actual db handler
 	define('DATABASE_SOFTWARE', $_zp_conf_vars['db_software']);
 	define('DATABASE_MIN_VERSION', '5.5.3');
 	define('DATABASE_DESIRED_VERSION', '5.7.0');
@@ -273,16 +278,16 @@ if (function_exists('mb_internal_encoding')) {
 // load graphics libraries in priority order
 define('IMAGICK_REQUIRED_VERSION', '3.0.0');
 define('IMAGEMAGICK_REQUIRED_VERSION', '6.3.8');
-require_once SERVERPATH . '/' . ZENFOLDER . '/functions-graphics.php'; // legacy functions
-require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsoptions.php'; // option class
-require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsbase.php'; // base class
+require_once SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-graphics.php'; // legacy functions
+require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsoptions.php'; // option class
+require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsbase.php'; // base class
 $_zp_graphics = new graphicsBase();
 $_zp_graphics_optionhandlers[] = new graphicsOptions(); // register option handler
 if ((getOption('use_imagick') || getOption('graphicslib_selected') == 'imagick') && $_zp_graphics->imagick_present) { // support legacy option
-	require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsimagick.php';
+	require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsimagick.php';
 	$_zp_graphics = new graphicsImagick();
 } else if ($_zp_graphics->gd_present) {
-	require_once SERVERPATH . '/' . ZENFOLDER . '/class-graphicsgd.php';
+	require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsgd.php';
 	$_zp_graphics = new graphicsGD();
 } 
 $_zp_cachefile_suffix = $_zp_graphics->info;
@@ -296,7 +301,7 @@ foreach ($_zp_cachefile_suffix as $key => $type) {
 	}
 }
 
-require_once(dirname(__FILE__) . '/lib-encryption.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/functions-encryption.php');
 
 if (!defined('COOKIE_PERSISTENCE')) {
 	$persistence = getOption('cookie_persistence');
@@ -1689,7 +1694,7 @@ function checkInstall() {
 		$install = array('ZENPHOTO' => '0.0.0');
 	}
 	if ($install['ZENPHOTO'] && $install['ZENPHOTO'] != ZENPHOTO_VERSION || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(dirname(__FILE__) . '/functions-reconfigure.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
 		reconfigureAction(0);
 	}
 }
@@ -1721,14 +1726,14 @@ function installSignature() {
 	}
 	$testFiles = array(
 			'template-functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-			'functions-filter.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-filter.php'),
-			'class-authority.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/class-authority.php'),
-			'class-administrator.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/class-administrator.php'),
-			'lib-utf8.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/lib-utf8.php'),
-			'functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions.php'),
-			'functions-basic.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-basic.php'),
-			'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-controller.php'),
-			'functions-image.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions-image.php'));
+			'functions-filter.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-filter.php'),
+			'class-authority.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-authority.php'),
+			'class-administrator.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-administrator.php'),
+			'lib-utf8.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/libs/class-utf8.php'),
+			'functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions.php'),
+			'functions-basic.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-basic.php'),
+			'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-controller.php'),
+			'functions-image.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-image.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
@@ -1795,7 +1800,7 @@ function zp_session_destroy() {
 function getDefaultRewriteTokens($token = null) {
 	global $_zp_default_rewritetokens; 
 	if(!is_array($_zp_default_rewritetokens)) {
-		$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/zenphoto_cfg.txt');
+		$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/zenphoto_cfg.txt');
 		$i = strpos($zp_cfg, "\$conf['special_pages']");
 		$j = strpos($zp_cfg, '//', $i);
 		eval(substr($zp_cfg, $i, $j - $i));

@@ -791,7 +791,7 @@ if (isset($_GET['download'])) {
 		return;
 	}
 	if (isset($_GET['albumzip'])) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-zipStream.php');
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/class-zipstream.php');
 		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize(isset($_GET['fromcache']));
 		} else {
@@ -803,7 +803,7 @@ if (isset($_GET['download'])) {
 			DownloadList::noFile();
 		}
 	} else {
-		require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
+		require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php';
 		$item = (int) $item;
 		$path = $_zp_db->querySingleRow("SELECT `aux` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE id=" . $item);
 		$_zp_downloadfile = '';

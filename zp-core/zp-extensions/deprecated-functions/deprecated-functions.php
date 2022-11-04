@@ -38,7 +38,7 @@ function setThemeColumns() {
  */
 function getMimeString($suffix) {
 	deprecationNotice(gettext("Use mimeTypes::getType() instead"));
-	require_once SERVERPATH . '/' . ZENFOLDER . '/class-mimetypes.php';
+	require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php';
 	return mimeTypes::getType($suffix);
 }
 
