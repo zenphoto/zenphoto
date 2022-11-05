@@ -246,8 +246,8 @@ $engines = array();
 $preferences = array('mysqli' => 1, 'pdo_mysql' => 2);
 $cur = 999999;
 $preferred = NULL;
-foreach (setup::glob('class-db*.php') as $key => $engineMC) {
-	$engineMC = substr($engineMC, 8, -4);
+foreach (setup::glob('classes/class-db*.php') as $key => $engineMC) {
+	$engineMC = substr($engineMC, 16, -4);
 	$engine = strtolower($engineMC);
 	if (array_key_exists($engine, $preferences)) {
 		$order = $preferences[$engine];
@@ -259,6 +259,7 @@ foreach (setup::glob('class-db*.php') as $key => $engineMC) {
 		$engines[$order] = array('user' => true, 'pass' => true, 'host' => true, 'database' => true, 'prefix' => true, 'engine' => $engineMC, 'enabled' => $enabled);
 	}
 }
+
 ksort($engines);
 chdir($curdir);
 
@@ -301,7 +302,6 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 			$updatezp_config = true;
 		}
 
-		require_once(dirname(dirname(__FILE__)) . '/deprecated/functions-db.php'); // legacy function wrapper
 		require_once(dirname(dirname(__FILE__)) . '/classes/class-dbbase.php'); // empty base db class
 		if ($selected_database) {
 			require_once(dirname(dirname(__FILE__)) . '/classes/class-db' . strtolower($selected_database) . '.php'); // real db handler
@@ -367,6 +367,8 @@ if ($selected_database) {
 		$connectDBErr = $_zp_db->getError();
 		$connection = false;
 	}
+} else {
+	$_zp_db = new dbBase($_zp_conf_vars, false);
 }
 
 if (defined('CHMOD_VALUE')) {
@@ -1689,7 +1691,7 @@ if ($c <= 0) {
 					if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 
 						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-						require_once(dirname(dirname(__FILE__)) . '/functions.php');
+						require_once(dirname(dirname(__FILE__)) . '/functions/functions.php');
 						
 						echo '<p>'. gettext('Checking the database') . '</p>';
 						
