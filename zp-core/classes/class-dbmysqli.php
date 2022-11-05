@@ -17,25 +17,22 @@ class dbMySQLi extends dbBase {
 	 * @return true if successful connection
 	 */
 	function __construct($config, $errorstop = true) {
-		$this->details = unserialize(DB_NOT_CONNECTED);
-		$socket = null;
-		if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
-			$socket = $config['mysql_socket'];
-		}
-		if (empty($config['mysql_user']) || empty($config['mysql_pass'])) {
-			$this->connection = null;
-		} else {
-			$this->connection = new mysqli($config['mysql_host'], $config['mysql_user'], $config['mysql_pass'], $config['mysql_database'], $config['mysql_port'], $socket);
+		$this->setConfig($config);
+		if ($this->config_valid) {
+			$socket = null;
+			if (!empty($this->mysql_socket)) {
+				$socket = $this->mysql_socket;
+			}
+			$this->connection = new mysqli($this->mysql_host, $this->mysql_user, $this->mysql_pass, $this->mysql_database, $this->mysql_port, $socket);
 			if ($this->connection->connect_error) {
 				$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $this->connection->connect_error);
 				dbbase::logConnectionError($error_msg, $errorstop);
 				$this->connection = null;
 			}
-		}
+		} 
 		if ($this->connection) {
-			$this->details = $config;
-			if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-				if ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520')) {
+			if ($this->use_utf8) {
+				if ($this->hasUtf8mb4Support('general')) {
 					$charset = 'utf8mb4';
 				} else {
 					$charset = 'utf8';
@@ -78,8 +75,8 @@ class dbMySQLi extends dbBase {
 				return $result;
 			} */
 			if (!$last_result && $errorstop) {
-				$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-				$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
+				$sql = str_replace('`' . $this->mysql_prefix, '`[' . gettext('prefix') . ']', $sql);
+				$sql = str_replace($this->mysql_database, '[' . gettext('DB') . ']', $sql);
 				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
 			}
 			return $last_result;

@@ -90,7 +90,3 @@ define('EXPLAIN_SELECTS', isset($_zp_conf_vars['explain_selects']) && $_zp_conf_
  * used for examining language selection problems
  */
 define('DEBUG_LOCALE', isset($_zp_conf_vars['debug_locale']) && $_zp_conf_vars['debug_locale']); 
-
-define('DB_NOT_CONNECTED', serialize(array('mysql_host' => gettext('not connected'), 'mysql_database' => gettext('not connected'), 'mysql_prefix' => gettext('not connected'), 'mysql_user' => '', 'mysql_pass' => '', 'mysql_port' => '')));
-$_zp_DB_details = unserialize(DB_NOT_CONNECTED);
-?>

@@ -10,10 +10,19 @@
  */
 class dbBase {
 	
-	public $connection;
-	public $details;
+	public $connection = null;
 	public $last_result;
-
+	
+	public $mysql_host = '';
+	public $mysql_database = '';
+	public $mysql_prefix = '';
+	public $mysql_user = ''; 
+	public $mysql_pass = '';
+	public $mysql_port = 3306;
+	public $mysql_socket = null;
+	public $use_utf8 = false;
+	public $config_valid = false;
+	
 	/**
 	 * Connect to the database server and select the database.
 	 * @param array $config the db configuration parameters
@@ -21,12 +30,55 @@ class dbBase {
 	 * @return true if successful connection
 	 */
 	function __construct($config, $errorstop = true) {
-		$this->details = unserialize(DB_NOT_CONNECTED);
+		$this->setConfig($config);
 		$this->connection = NULL;
 		if ($errorstop) {
 			zp_error(gettext('MySQL Error: Zenphoto could not instantiate a connection.'));
 		}
-		return false;
+	}
+	
+	/**
+	 * Checks and sets properties for the database credentials
+	 * 
+	 * @param array $config The config array containing database credentials
+	 */
+	function setConfig($config) {
+		if (isset($config['UTF-8']) && $config['UTF-8']) {
+			$this->use_utf8 = true;
+		}
+		$config_valid = false;
+		
+		// required credentials
+		if (isset($config['mysql_host']) && !empty($config['mysql_host'])) {
+			$this->mysql_host = $config['mysql_host'];
+			$config_valid += 1;
+		}
+		if (isset($config['mysql_database']) && !empty($config['mysql_database'])) {
+			$this->mysql_database = $config['mysql_database'];
+			$config_valid += 1;
+		}
+		if (isset($config['mysql_user']) && !empty($config['mysql_user'])) {
+			$this->mysql_user = $config['mysql_user'];
+			$config_valid += 1;
+		}
+		if (isset($config['mysql_pass']) && !empty($config['mysql_pass'])) {
+			$this->mysql_pass = $config['mysql_pass'];
+			$config_valid += 1;
+		}
+		if ($config_valid == 4) {
+			$this->config_valid = true;
+		}
+		
+		// not strictly required credentials
+		if (isset($config['mysql_port']) && (!empty($config['mysql_port']) && is_int($config['mysql_port']))) {
+			$this->mysql_port = $config['mysql_port'];
+		}
+		if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
+			$this->mysql_socket = $config['mysql_socket'];
+		}
+		if (isset($config['mysql_prefix']) && !empty($config['mysql_prefix'])) {
+			$this->mysql_prefix = $config['mysql_prefix'];
+		}
 	}
 	
 	/**
@@ -179,7 +231,7 @@ class dbBase {
 	 */
 	function create() {
 		if ($this->connection) {
-			$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->details['mysql_database'] . '`' . $this->getCollationSetClause();
+			$sql = 'CREATE DATABASE IF NOT EXISTS ' . '`' . $this->mysql_database . '`' . $this->getCollationSetClause();
 			return $this->query($sql, false);
 		}
 		return false;
@@ -190,7 +242,7 @@ class dbBase {
 	 */
 	function getPermissions() {
 		if ($this->connection) {
-			$sql = "SHOW GRANTS FOR " . $this->details['mysql_user'] . ";";
+			$sql = "SHOW GRANTS FOR " . $this->mysql_user . ";";
 			$result = $this->query($sql, false);
 			if (!$result) {
 				$result = $this->query("SHOW GRANTS;", false);
@@ -269,16 +321,16 @@ class dbBase {
 		if ($this->connection) {
 			switch ($what) {
 				case 'tables':
-					$sql = "SHOW TABLES FROM `" . $this->details['mysql_database'] . "` LIKE '" . $this->likeEscape($this->details['mysql_prefix']) . "%'";
+					$sql = "SHOW TABLES FROM `" . $this->mysql_database . "` LIKE '" . $this->likeEscape($this->mysql_prefix) . "%'";
 					return $this->query($sql, false);
 				case 'columns':
-					$sql = 'SHOW FULL COLUMNS FROM `' . $this->details['mysql_prefix'] . $aux . '`';
+					$sql = 'SHOW FULL COLUMNS FROM `' . $this->mysql_prefix . $aux . '`';
 					return $this->query($sql, true);
 				case 'variables':
 					$sql = "SHOW VARIABLES LIKE '$aux'";
 					return $this->queryFullArray($sql);
 				case 'index':
-					$sql = "SHOW INDEX FROM `" . $this->details['mysql_database'] . '`.' . $aux;
+					$sql = "SHOW INDEX FROM `" . $this->mysql_database . '`.' . $aux;
 					return $this->queryFullArray($sql);
 			}
 		}
@@ -317,7 +369,7 @@ class dbBase {
 		if (!is_null($prefix)) {
 			$mysql_prefix = $prefix;
 		} else {
-			$mysql_prefix = $this->details['mysql_prefix'];
+			$mysql_prefix = $this->mysql_prefix;
 		}
 		return array($mysql_prefix . 'options',
 				$mysql_prefix . 'albums',
@@ -406,7 +458,7 @@ class dbBase {
 	 */
 	function truncateTable($table) {
 		if ($this->connection) {
-			$sql = 'TRUNCATE ' . $this->details['mysql_prefix'] . $table;
+			$sql = 'TRUNCATE ' . $this->mysql_prefix . $table;
 			return $this->query($sql, false);
 		}
 		return false;
@@ -602,7 +654,7 @@ class dbBase {
 	 * 
 	 * Adapted from WordPress' wpdp::has_cap() 
 	 *
-	 * @param string $which 'utf8mb4' or 'utf8mb4_520' (default)
+	 * @param string $which 'utf8mb4' or 'utf8mb4_520' (default) or 'general' to check for any
 	 * @return boolean
 	 */
 	function hasUtf8mb4Support($which = 'utf8mb4_520') {
@@ -624,13 +676,13 @@ class dbBase {
 					} else {
 						return version_compare($client_version, '5.5.3', '>=');
 					}
-				case 'utf8mb4_520': 
+				case 'utf8mb4_520':
 					return version_compare($db_version, '5.6', '>=');
+				case 'general':
+					return ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520'));
 			}
 		}
 		return false;
 	}
-	
-	
 
 }

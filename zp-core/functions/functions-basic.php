@@ -376,7 +376,7 @@ function js_encode($this_string) {
 function getOption($key) {
 	global $_zp_conf_vars, $_zp_options, $_zp_db;
 	$key = strtolower($key);
-	if (is_null($_zp_options) && function_exists('query_full_array')) { // may be too early to use database!
+	if (is_null($_zp_options) && is_object($_zp_db)) { // may be too early to use database!
 		// option table not yet loaded, load it (but not the theme options!)
 		$sql = "SELECT `name`, `value` FROM " . $_zp_db->prefix('options') . ' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 		$optionlist = $_zp_db->queryFullArray($sql, false);

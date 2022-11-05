@@ -17,38 +17,36 @@ class dbPDO_MySQL extends dbBase {
 	 * @return true if successful connection
 	 */
 	function __construct($config, $errorstop = true) {
-		$this->details = unserialize(DB_NOT_CONNECTED);
+		$this->setConfig($config);
 		$this->connection = $this->last_result = NULL;
-		if (array_key_exists('UTF-8', $config) && $config['UTF-8']) {
-			if ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520')) {
-				$charset = ';charset=utf8mb4';
+		if ($this->config_valid) {
+			if ($this->use_utf8) {
+				if ($this->hasUtf8mb4Support('general')) {
+					$charset = ';charset=utf8mb4';
+				} else {
+					$charset = ';charset=utf8';
+				}
 			} else {
-				$charset = ';charset=utf8';
+				$charset = '';
 			}
-		} else {
-			$charset = false;
-		}
-		try {
-			$db = $config['mysql_database'];
-			$hostname = $config['mysql_host'];
-			$username = $config['mysql_user'];
-			$password = $config['mysql_pass'];
-			$port = $config['mysql_port'];
-			$socket = '';
-			if (isset($config['mysql_socket']) && !empty($config['mysql_socket'])) {
-				$socket = ';unix_socket=' . $config['mysql_socket'];
+			try {
+				$socket = '';
+				if (!empty($this->mysql_socket)) {
+					$socket = ';unix_socket=' . $this->mysql_socket;
+				}
+				$port = '';
+				if (!empty($this->mysql_port)) {
+					$port = ';port=' . $this->mysql_port;
+				}
+				$this->connection = new PDO('mysql:host=' . $this->mysql_host . ';dbname=' . $this->mysql_database . $charset . $port . $socket, $this->mysql_user, $this->mysql_pass);
+			} catch (PDOException $e) {
+				$this->last_result = $e;
+				$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage());
+				dbbase::logConnectionError($error_msg, $errorstop);
+				$this->connection = NULL;
 			}
-			if (class_exists('PDO')) {
-				$this->connection = new PDO('mysql:host=' . $hostname . ';dbname=' . $db . $charset . ';port=' . $port . $socket, $username, $password);
-			}
-		} catch (PDOException $e) {
-			$this->last_result = $e;
-			$error_msg = sprintf(gettext('MySql Error: Zenphoto received the error %s when connecting to the database server.'), $e->getMessage());
-			dbbase::logConnectionError($error_msg, $errorstop);
-			$this->connection = NULL;
 		}
 		if ($this->connection) {
-			$this->details = $config;
 			// according to docs needee for PHP 5.3 and older so charset above should be sufficient
 			/*if ($utf8) {
 				try {
@@ -82,8 +80,8 @@ class dbPDO_MySQL extends dbBase {
 				$this->last_result = false;
 			}
 			if (!$this->last_result && $errorstop) {
-				$sql = str_replace('`' . $this->details['mysql_prefix'], '`[' . gettext('prefix') . ']', $sql);
-				$sql = str_replace($this->details['mysql_database'], '[' . gettext('DB') . ']', $sql);
+				$sql = str_replace('`' . $this->mysql_prefix, '`[' . gettext('prefix') . ']', $sql);
+				$sql = str_replace($this->mysql_database, '[' . gettext('DB') . ']', $sql);
 				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
 			}
 		}
