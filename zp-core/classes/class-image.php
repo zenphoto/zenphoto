@@ -281,7 +281,7 @@ class Image extends MediaObject {
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars, $_zp_gallery, $_zp_graphics;
-		require_once(dirname(__FILE__) . '/exif/exif.php');
+		require_once SERVERPATH .'/' . ZENFOLDER . '/libs/exif/exif.php';
 		$IPTCtags = array(
 						'SKIP'								 => '2#000', //	Record Version										Size:64
 						'ObjectType'					 => '2#003', //	Object Type	Ref										Size:67
