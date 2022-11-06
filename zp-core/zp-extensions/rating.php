@@ -16,7 +16,7 @@
  */
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)) . '/functions.php');
+	require_once(dirname(dirname(__FILE__)) . '/functions/functions.php');
 
 	if (isset($_GET['action']) && $_GET['action'] == 'clear_rating') {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {

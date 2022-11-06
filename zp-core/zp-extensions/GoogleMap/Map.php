@@ -8,7 +8,7 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(dirname(__FILE__))) . '/functions.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/functions/functions.php');
 if (getOption('gmap_sessions')) {
 	zp_session_start();
 }

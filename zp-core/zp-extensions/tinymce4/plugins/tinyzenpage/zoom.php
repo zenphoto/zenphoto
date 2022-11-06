@@ -1,6 +1,6 @@
 <?php
 define('OFFSET_PATH', 3);
-require_once("../../../../functions.php");
+require_once("../../../../functions/functions.php");
 ?>
 <!DOCTYPE html>
 <html<?php printLangAttribute(); ?>>

@@ -5,7 +5,7 @@
  * @package plugins
  */
 
-require_once("../../functions.php");
+require_once("../../functions/functions.php");
 
 $album_name = sanitize($_GET["album"]);
 $img_name = sanitize($_GET["img"]);
