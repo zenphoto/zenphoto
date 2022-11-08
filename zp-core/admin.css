@@ -435,7 +435,7 @@ ul.nav li:hover > ul {
 .messagebox {
 	background-color: #C0FFA8;
 	padding: 10px 15px 10px 15px;
-	border-width: 1px 1px 2px 1px;
+	border-width: 1px 1px 1px 1px;
 	border-color: #8BD37C;
 	border-style: solid;
 	margin-bottom: 10px;
@@ -478,7 +478,7 @@ ul.nav li:hover > ul {
 /* Warning Messages
 ------------------------------ */
 .warningbox {
-	padding: 5px 10px 5px 10px;
+	padding: 10px 15px 10px 15px;
 	background-color: #FFEFB7;
 	border-color: #FFDEB5;
 	color:black;
@@ -505,7 +505,7 @@ ul.nav li:hover > ul {
 /* box for important notes
 ------------------------------ */
 .notebox {
-	padding: 5px 10px 5px 10px;
+	padding: 10px 15px 10px 15px;
 	background-color:#d9edf7;
 	border-color:#bce8f1;
 	color: black;

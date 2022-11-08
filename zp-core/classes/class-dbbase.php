@@ -659,7 +659,7 @@ class dbBase {
 	 * 
 	 * @since ZenphotoCMS 1.6
 	 * 
-	 * @param string $what 'charsets' (db charsets used), 'collations' (db collations used), 'supported_charsets' (of the db server)
+	 * @param string $what 'charsets' (db/server charsets used), 'collations' (db/server collations used)
 	 * @return array
 	 */
 	function getDBInfo($what) {
@@ -749,26 +749,30 @@ class dbBase {
 	}
 	
 	/**
-	 * Checks if the database and the server fully use UTF8 or UTF8MB4 charsets and collations 
+	 * Checks if the database character set and the collation are using UTF8
 	 * 
 	 * @since ZenphotoCMS 1.6
-	 * 
+	 * @param $what 'database' or "server"
 	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
 	 * @return boolean
 	 */
-	function isUtf8Database($check_charset = 'utf8') {
+	function isUtf8System($what = 'database', $check_charset = 'any') {
 		if ($this->connection) {
 			$charsets = $this->getDBInfo('charsets');
 			$collations = $this->getDBInfo('collations');
 			$checkinfo = array_merge($charsets, $collations);
 			foreach ($checkinfo as $val) {
-				//echo '<pre>'; print_r($val); echo '</pre>';
-				$excluded = array('character_set_filesystem', 'character_sets_dir'); // either "binary" or a path"
-				if (!in_array($val['Variable_name'], $excluded)) {
-					list( $charset ) = explode('_', $val['Value']);
-					$charset = strtolower($charset);
-					if (dbbase::isUf8CharsetType($charset, $check_charset)) {
-						return true;
+				if (!in_array($val['Variable_name'], array('character_sets_dir', 'character_set_filesystem'))) {
+					if (($what == 'database' && stristr($val['Variable_name'], '_database') !== false) || ($what == 'server' && stristr($val['Variable_name'], '_database') === false)) {
+						if (stristr($val['Value'], '_') !== false) {
+							list( $charset ) = explode('_', $val['Value']);
+						} else {
+							$charset = $val['Value'];
+						}
+						$charset = strtolower($charset);
+						if (!dbbase::isUf8CharsetType($charset, $check_charset)) {
+							return false;
+						}
 					}
 				}
 			}
@@ -797,7 +801,7 @@ class dbBase {
 	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
 	 * @return boolean
 	 */
-	function isTableWithUtf8Fields($table, $check_charset = 'utf8') {
+	function isTableWithUtf8Fields($table, $check_charset = 'any') {
 		if ($this->connection) {
 			$columns = $this->getFieldsNotUtf8($table, $check_charset);
 			if ($columns === false) {
@@ -821,7 +825,7 @@ class dbBase {
 	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
 	 * @return boolean|array
 	 */
-	function getFieldsNotUtf8($table, $check_charset = 'utf8') {
+	function getFieldsNotUtf8($table, $check_charset = 'any') {
 		if ($this->connection) {
 			$non_utf8_fields = array();
 			$columns = $this->getFields(substr($table, strlen($this->mysql_prefix)));

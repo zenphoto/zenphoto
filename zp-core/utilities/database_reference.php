@@ -98,6 +98,18 @@ if(empty($prefix)) {
 ?>
 </li>
 </ul>
+<?php 
+if ($_zp_db->isUtf8System('database', 'any')) {
+	echo '<p class="messagebox">' . gettext('The database is UTF-8') . '</p>';
+} else {
+	echo '<p class="warningbox">' . gettext('The database is not UTF-8') . '</p>';
+}
+if ($_zp_db->isUtf8System('server', 'any')) {
+	echo '<p class="messagebox">' . gettext('The database server is UTF-8</p>') . '</p>';
+} else {
+	echo '<p class="warningbox">' . gettext('The database server is not UTF-8</p>') . '</p>';
+}
+?>
 <ul>
 <?php
 $result = $_zp_db->getDBInfo('charsets');
@@ -108,7 +120,7 @@ if ($result) {
 	<?php
 	}
 }
-//echo "<pre>"; print_r($result); echo "</pre>";
+
 ?>
 </ul>
 <ul>
@@ -121,9 +133,28 @@ if ($result) {
 	<?php
 	}
 }
-//echo "<pre>"; print_r($result); echo "</pre>";
 ?>
 </ul>
+<?php
+if ($tables) {
+	$non_utf8_tables = array();
+	foreach ($tables as $table) {
+		if (!$_zp_db->isUTF8Table($table, 'any', true)) {
+			$non_utf8_tables[] = $table;
+		}
+	}
+	if ($non_utf8_tables) {
+		echo '<div class="warningbox">';
+		echo '<p>' . gettext('The following tables are not UTF-8.') . '</p>';
+		echo '<ul>';
+		foreach ($non_utf8_tables as $non_utf8_table) {
+			echo '<li>' . $non_utf8_table . '</li>';
+		}
+		echo '</ul>';
+		echo '</div>';
+	}
+}
+?>
 <hr />
 <script type="text/javascript">
 function toggleRow(id) {
