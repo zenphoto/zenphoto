@@ -274,7 +274,7 @@ class Authority {
 	 */
 	function hasAdminTable() {
 		global $_zp_db;
-		if (!is_null($_zp_db->connection) && $_zp_db->hasTable('administrators') && !$_zp_db->isEmptyTable('administrators')) {
+		if (!is_null($_zp_db->connection) && !$_zp_db->isEmptyTable('administrators')) {
 			return true;
 		}
 		return false;

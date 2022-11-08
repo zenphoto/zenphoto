@@ -227,6 +227,11 @@ if (!$data && OFFSET_PATH != 2) {
 	reconfigureAction(3);
 }
 
+if($data && $_zp_db->isEmptyTable('administrators')) {
+	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
+	reconfigureAction(4);
+}
+
 if (!defined('FILESYSTEM_CHARSET')) {
 	if (isset($_zp_conf_vars['FILESYSTEM_CHARSET']) && $_zp_conf_vars['FILESYSTEM_CHARSET'] != 'unknown') {
 		define('FILESYSTEM_CHARSET', $_zp_conf_vars['FILESYSTEM_CHARSET']);

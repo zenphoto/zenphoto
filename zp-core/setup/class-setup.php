@@ -676,7 +676,8 @@ class setup {
 	}
 
 	static function userAuthorized() {
-		if (function_exists('zp_loggedin')) {
+		global $_zp_db;
+		if (is_object($_zp_db) && $_zp_db->hasTable('administrators') && function_exists('zp_loggedin')) {
 			return zp_loggedin(ADMIN_RIGHTS);
 		} else {
 			return true; //	in a primitive environment

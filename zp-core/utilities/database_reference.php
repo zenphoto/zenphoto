@@ -100,8 +100,8 @@ if(empty($prefix)) {
 </ul>
 <ul>
 <?php
-$result = $_zp_db->show('variables','character_set%');
-if (is_array($result)) {
+$result = $_zp_db->getDBInfo('charsets');
+if ($result) {
 	foreach ($result as $row) {
 	?>
 	<li><?php echo $row['Variable_name']; ?>: <strong><?php echo $row['Value']; ?></strong></li>
@@ -113,8 +113,8 @@ if (is_array($result)) {
 </ul>
 <ul>
 <?php
-$result = $_zp_db->show('variables','collation%');
-if (is_array($result)) {
+$result = $_zp_db->getDBInfo('collations');
+if ($result) {
 	foreach ($result as $row) {
 	?>
 	<li><?php echo $row['Variable_name']; ?>: <strong><?php echo $row['Value']; ?></strong></li>

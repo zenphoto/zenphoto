@@ -56,6 +56,11 @@ function reconfigureAction($mandatory) {
 					$show_errorpage = true;
 					debuglog(gettext('ZenphotoCMS database credentials are incomplete or wrong.') . ' ' . gettext('Check your config file settings and re-run setup.'));
 					break;
+				case 4:
+					$setup_autorun = true;
+					// we assume a fresh install 
+					debuglog(gettext('ZenphotoCMS database has no administrators table or it is empty.') . ' ' . gettext('Setup run required.'));
+					break;
 			}
 			if ($setup_autorun) { //mandatory level 1
 				unprotectSetupFiles();

@@ -406,7 +406,7 @@ class dbBase {
 	}
 
 	/**
-	 * Checks if a table has content. Note: Does not check if the table actually exists!
+	 * Checks if a table has no content and/or does not exist
 	 * @since ZenphotoCMS 1.6
 	 * 
 	 * @param string $table Table name without the prefix
@@ -414,6 +414,9 @@ class dbBase {
 	 */
 	function isEmptyTable($table) {
 		if ($this->connection) {
+			if (!$this->hasTable($table)) {
+				return true;
+			}
 			$not_empty = $this->query('SELECT NULL FROM ' . $this->prefix($table) . ' LIMIT 1', true);
 			if ($not_empty) {
 				return false;
@@ -648,11 +651,43 @@ class dbBase {
 		}
 		return false;
 	}
+	
+	/**
+	 * Gets an array of database infos
+	 * 
+	 * Uses the show method but always returns an array instead of false.
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $what 'charsets' (db charsets used), 'collations' (db collations used), 'supported_charsets' (of the db server)
+	 * @return array
+	 */
+	function getDBInfo($what) {
+		if ($this->connection) {
+			$result = array();
+			switch ($what) {
+				default:
+				case 'charsets':
+					$result = $this->show('variables', 'character_set%');
+					break;
+				case 'collations':
+					$result = $this->show('variables', 'collation%');
+					break;
+			}
+			if (is_array($result)) {
+				return $result;
+			}
+		}
+		return array();
+	}
+	
 
 	/**
 	 * Checks if the database support utf8mb4 or ut8mb4_520 encodings
 	 * 
 	 * Adapted from WordPress' wpdp::has_cap() 
+	 * 
+	 * @since ZenphotoCMS 1.6
 	 *
 	 * @param string $which 'utf8mb4' or 'utf8mb4_520' (default) or 'general' to check for any
 	 * @return boolean
@@ -662,7 +697,9 @@ class dbBase {
 		if ($db_version) { // if not set no db functions available
 			switch ($which) {
 				case 'utf8mb4':
-					if (version_compare($db_version, '5.5.3', '<')) {
+					if ($this->isMariaDB() && version_compare($db_version, '5.5.0', '<')) {
+						return false;
+					} else if (version_compare($db_version, '5.5.3', '<')) {
 						return false;
 					}
 					$client_version = $this->getClientInfo();
@@ -680,6 +717,189 @@ class dbBase {
 					return version_compare($db_version, '5.6', '>=');
 				case 'general':
 					return ($this->hasUtf8mb4Support('utf8mb4') || $this->hasUtf8mb4Support('utf8mb4_520'));
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Helper method that returns it a charset matches a general charset category.
+	 * 
+	 * @param string $charset Charset to check against
+	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
+	 * @return array
+	 */
+	static function isUf8CharsetType($charset = '', $check_charset = 'any') {
+		switch ($check_charset) {
+			default:
+			case 'any':
+				$charsets = array('utf8', 'utf8mb4', 'utf8mb3');
+				break;
+			case 'utf8';
+				$charsets = array('utf8');
+				break;
+			case 'utf8mb4':
+				$charsets = array('utf8mb4');
+				break;
+		}
+		if (in_array($charset, $charsets)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks if the database and the server fully use UTF8 or UTF8MB4 charsets and collations 
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
+	 * @return boolean
+	 */
+	function isUtf8Database($check_charset = 'utf8') {
+		if ($this->connection) {
+			$charsets = $this->getDBInfo('charsets');
+			$collations = $this->getDBInfo('collations');
+			$checkinfo = array_merge($charsets, $collations);
+			foreach ($checkinfo as $val) {
+				//echo '<pre>'; print_r($val); echo '</pre>';
+				$excluded = array('character_set_filesystem', 'character_sets_dir'); // either "binary" or a path"
+				if (!in_array($val['Variable_name'], $excluded)) {
+					list( $charset ) = explode('_', $val['Value']);
+					$charset = strtolower($charset);
+					if (dbbase::isUf8CharsetType($charset, $check_charset)) {
+						return true;
+					}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Converts a database to utf8mb4
+	 * 
+	 * @param bool $force_conversion default false so only tables that have no non utf8* columns are converted
+	 */
+	function convertDatabaseToUtf8mb4($force_conversion = false) {
+		return false; // not yet implemented
+	}
+	
+	/**
+	 * Checks if all columns of a table are utf8
+	 * 
+	 * Partly adapted from WordPress' maybe_convert_table_to_utf8mb4()
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Tablename including prefix
+	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
+	 * @return boolean
+	 */
+	function isTableWithUtf8Fields($table, $check_charset = 'utf8') {
+		if ($this->connection) {
+			$columns = $this->getFieldsNotUtf8($table, $check_charset);
+			if ($columns === false) {
+				return false;
+			}
+			if (empty($columns)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Gets all columns of a table are not utf8.
+	 * 
+	 * Returns false if no columns could be fetched, otherwise an array even if empty
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Tablename including prefix
+	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
+	 * @return boolean|array
+	 */
+	function getFieldsNotUtf8($table, $check_charset = 'utf8') {
+		if ($this->connection) {
+			$non_utf8_fields = array();
+			$columns = $this->getFields(substr($table, strlen($this->mysql_prefix)));
+			if (!$columns) {
+				return false;
+			}
+			foreach ($columns as $column) {
+				if ($column['Collation']) {
+					list( $charset ) = explode('_', $column['Collation']);
+					$charset = strtolower($charset);
+					//echo $charset .' vs ' . $check_utf8 . '<br>';
+					if (!dbbase::isUf8CharsetType($charset, $check_charset)) {
+						$non_utf8_fields[] = $column['Field'];
+					}
+				}
+			}
+			return $non_utf8_fields;
+		}
+		return array();
+	}
+
+	/**
+	 * Checks if a table itself uses an utf8 collation
+	 * 
+	 * Partly adapted from WordPress' maybe_convert_table_to_utf8mb4()
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Tablename including prefix
+	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
+	 * @param boolean $fieldcheck Default false, set to true if all fields matching should also the condition
+	 * @return boolean
+	 */
+	function isUTF8Table($table, $check_charset = 'any', $fieldcheck = false) {
+		if ($this->connection) {
+			$table_details = $this->querySingleRow('SHOW TABLE STATUS LIKE ' . $this->quote($table));
+			if (!$table_details) {
+				return false;
+			}
+			if ($fieldcheck && !$this->isTableWithUtf8Fields($table, $check_charset)) {
+				return false;
+			}
+			list( $table_charset ) = explode('_', $table_details['Collation']);
+			$charset = strtolower($table_charset);
+			if (dbbase::isUf8CharsetType($charset, $check_charset)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Converts tables to utf8mb4 if it is alreay 
+	 * 
+	 * Partly adapted from WordPress' maybe_convert_table_to_utf8mb4()
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @param string $table Table name including prefix
+	 * @param bool $force_conversion default false so only tables that have no non utf8* columns are converted
+	 * @return boolean
+	 */
+	function convertTableToUtf8mb4($table, $force_conversion = false) {
+		if ($this->connection) {
+			if ($this->isUTF8Table($table, 'utf8mb4')) {
+				return true;
+			} else if ($this->isUTF8Table($table, 'any')) {
+				$collation = 'utf8mb4_unicode_ci';
+				if ($this->hasUtf8mb4Support('utf8mb4_520')) {
+					$collation = 'utf8mb4_unicode_520_ci';
+				}
+				// convert table
+				//$converted = $this->query( 'ALTER TABLE ' . $table . ' CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
+				// 
+				// repair and optimize
+			} else {
+				// not utf8
+				return false; 
 			}
 		}
 		return false;

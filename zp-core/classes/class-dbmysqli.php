@@ -232,9 +232,7 @@ class dbMySQLi extends dbBase {
 	 * @return string
 	 */
 	function getClientInfo() {
-		if ($this->connection) {
-			return $this->connection->get_client_info();
-		}
+		return mysqli_get_client_info();
 	}
 
 	

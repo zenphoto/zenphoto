@@ -592,7 +592,10 @@ if ($c <= 0) {
 					<?php maintenanceMode::setState('closed', $setupMutex); ?>
 					<p class="warning"><?php echo maintenanceMode::getStateNote('closed'); ?></p>
 					<h2><?php echo gettext("Systems Check:"); ?></h2>
+					<?php if($upgrade) { ?>
+						<p class="warning"><?php echo gettext('Backup your database before proceeding!'); ?></p>
 					<?php
+					}
 					/*****************************************************************************
 					 *                                                                           *
 					 *                             SYSTEMS CHECK                                 *
@@ -1052,15 +1055,6 @@ if ($c <= 0) {
 								}
 								$good = setup::checkMark($sqlv, sprintf(gettext('%1$s version %2$s'), $dbapp, $dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'), $dbapp, $required, $desired), false) && $good;
 								
-								$dbtext = gettext('utf8mb4 encoding support');
-								$dbtext2 = gettext('utf8mb4 encoding support [is not available|');
-								$dbmsg = gettext('You need to update your database to MySQL 5.5.3+ (better 5.6+) / MariaDB 5.5+ for full unicode support.'); 
-								if($_zp_db->hasUtf8mb4Support('utf8mb4_520') || $_zp_db->hasUtf8mb4Support('utf8mb4')) {
-									$utf8mb4check = true;
-								} else {
-									$utf8mb4check = -1;
-								}
-								setup::checkMark($utf8mb4check, $dbtext, $dbtext2, $dbmsg, false);
 							}
 							setup::primeMark(gettext('Database connection'));
 
@@ -1184,46 +1178,51 @@ if ($c <= 0) {
 									setup::checkMark($check, $msg, gettext("<em>SHOW TABLES</em> [Failed]"), sprintf(gettext("The database did not return a list of the database tables for <code>%s</code>."), $_zp_conf_vars['mysql_database']) .
 													"<br />" . gettext("<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."));
 									if (isset($_zp_conf_vars['UTF-8']) && $_zp_conf_vars['UTF-8']) {
-										$fields = 0;
-										$fieldlist = array();
-										foreach (array('images' => 1, 'albums' => 2) as $lookat => $add) {
-											if (in_array($_zp_conf_vars['mysql_prefix'] . $lookat, $tables)) {
-												$columns = $_zp_db->getFields('images');
-												if ($columns) {
-													foreach ($columns as $col => $utf8) {
-														if (isset($row['Collation']) && !is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
-															$fields = $fields | $add;
-															$fieldlist[] = '<code>' . $lookat . '->' . $col . '</code>';
-														}
-													}
+										$dbtext = gettext('UTF8MB4 collation support');
+										$dbtext2 = gettext('UTF8MB4 collation support [is not available|');
+										$dbmsg = gettext('You should update your database to MySQL 5.5.3+ or better 5.6+ / MariaDB 5.5+ for full unicode support.');
+										if ($_zp_db->hasUtf8mb4Support('utf8mb4_520') || $_zp_db->hasUtf8mb4Support('utf8mb4')) {
+											$utf8mb4check = true;
+										} else {
+											$utf8mb4check = -1;
+										}
+										setup::checkMark($utf8mb4check, $dbtext, $dbtext2, $dbmsg, false);
+
+										if ($tables) {
+											$utf8_any_tables = $utf8_tables = $utf8mb4_tables = $non_utf8mb4_tables = $non_utf8_tables = array();
+											foreach($tables as $table) {
+												if ($_zp_db->isUTF8Table($table, 'any', true)) {
+													$utf8_any_tables[] = $table; // covers utf8/ut8mb4 mixed tables
+													if ($_zp_db->isUTF8Table($table, 'utf8mb4', true)) {
+														$utf8mb4_tables[] = $table;
+													} 
 												} else {
-													$fields = 4;
+													$non_utf8_tables[] = $table;
 												}
 											}
+												//gettext('Database <code>table and/or field collations</code>
+											$db_collations_msg = gettext('Database table and/or its field collations');
+											if ($non_utf8_tables) {
+												$non_utf8_htmllist = setup::getFilelist($non_utf8_tables);
+												$db_collations_msg2 = $db_collations_msg . gettext(' [not using any utf8 collations]');
+												$db_collations_details  = sprintf(gettext('The following tables are not or not completely UTF-8: %s'), $non_utf8_htmllist);
+												$db_collations_dateils .=  ' ' . gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> or better <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code>');
+												setup::checkmark(-1, $db_collations_msg, $db_collations_msg2, $db_collations_details);
+											}
+											if ($utf8_any_tables) {
+												if (count($utf8_any_tables) > count($utf8mb4_tables)) {
+													$non_utf8mb4_tables = array_diff($utf8_any_tables, $utf8mb4_tables);
+													$non_utf8mb4_htmllist = setup::getFilelist($non_utf8mb4_tables);
+													$db_collations_msg2 = $db_collations_msg . gettext(' [not completely using utf8mb4_* collations]');
+													$db_collations_details = sprintf(gettext('The following tables use UTF-8 but not or not completely full UTF-8 (utf8mb4): %s  Since they are UTF-8 Zenphoto will attempt to convert the table and field collations to <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code>'), $non_utf8mb4_htmllist);
+													setup::checkmark(-2, $db_collations_msg, $db_collations_msg2, $db_collations_details); 
+												} 
+											}
 										}
-										$err = -1;
-										switch ($fields) {
-											case 0: // all is well
-												$msg2 = '';
-												$err = 1;
-												break;
-											case 1:
-												$msg2 = gettext('Database <code>field collations</code> [Image table]');
-												break;
-											case 2:
-												$msg2 = gettext('Database <code>field collations</code> [Album table]');
-												break;
-											case 3:
-												$msg2 = gettext('Database <code>field collations</code> [Image and Album tables]');
-												break;
-											default:
-												$msg2 = gettext('Database <code>field collations</code> [SHOW COLUMNS query failed]');
-												break;
-										}
-										setup::checkmark($err, gettext('Database <code>field collations</code>'), $msg2, sprintf(ngettext('%s is not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>', '%s are not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>', count($fieldlist)), implode(', ', $fieldlist)));
 									} else {
-										setup::checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings.'));
+										setup::checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> or better <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings.'));
 									}
+						
 								}
 							if(!$good) {
 								setup::printFooter();
@@ -1662,11 +1661,12 @@ if ($c <= 0) {
 								?>
 								<div class="error">
 									<?php
-									if (zp_loggedin()) {
-										echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
-									} else {
-										echo gettext('You must be logged in to run setup.');
-									}
+										echo "administrator table exists…";
+										if (zp_loggedin()) {
+											echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
+										} else {
+											echo gettext('You must be logged in to run setup.');
+										}
 									?>
 								</div>
 								<?php

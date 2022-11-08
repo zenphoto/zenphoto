@@ -235,7 +235,21 @@ li {
 	list-style-type:none;
 	margin-top:0;
 	margin-bottom: 5px;
+} 
+
+
+ul.setup_filelist {
+	height: 250px;
+	display: block;
+	overflow: auto;
+	resize: vertical;
 }
+
+ul.setup_filelist li {
+	list-style-type: disc;
+	margin-left: 25px;
+}
+
 .dbwindow {
 	padding: 5px;
 	margin-right: -5px;
@@ -322,15 +336,4 @@ li {
 #sdrop {
 	clear: both;
 	text-align: right;
-}
-
-.setup_filelist {
-	height: 250px;
-	display: block;
-	overflow: auto;
-	resize: vertical;
-}
-
-.setup_filelist li {
-	list-style: decimal;
 }
