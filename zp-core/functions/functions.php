@@ -1987,9 +1987,9 @@ function replaceThemeOption($oldkey, $newkey) {
  * @since Zenphoto 1.5.1
  */
 function purgeThemeOption($key, $album = NULL, $theme = NULL, $allthemes = false) {
-	global $_set_theme_album, $_zp_gallery, $_zp_db;
+	global $_zp_set_theme_album, $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
-		$album = $_set_theme_album;
+		$album = $_zp_set_theme_album;
 	}
 	if (is_null($album)) {
 		$id = 0;
@@ -2040,9 +2040,9 @@ function setThemeOptionDefault($key, $value) {
  * @return mixed
  */
 function getThemeOption($option, $album = NULL, $theme = NULL) {
-	global $_set_theme_album, $_zp_gallery, $_zp_db;
+	global $_zp_set_theme_album, $_zp_gallery, $_zp_db;
 	if (is_null($album)) {
-		$album = $_set_theme_album;
+		$album = $_zp_set_theme_album;
 	}
 
 	if (is_null($album) || !is_object($album)) {

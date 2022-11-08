@@ -25,12 +25,12 @@ if (isset($_GET['action'])) {
 				if (empty($alb)) {
 					$_zp_gallery->setCurrentTheme($newtheme);
 					$_zp_gallery->save();
-					$_set_theme_album = NULL;
+					$_zp_set_theme_album = NULL;
 				} else {
-					$_set_theme_album = AlbumBase::newAlbum($alb);
-					$oldtheme = $_set_theme_album->getAlbumTheme();
-					$_set_theme_album->setAlbumTheme($newtheme);
-					$_set_theme_album->save();
+					$_zp_set_theme_album = AlbumBase::newAlbum($alb);
+					$oldtheme = $_zp_set_theme_album->getAlbumTheme();
+					$_zp_set_theme_album->setAlbumTheme($newtheme);
+					$_zp_set_theme_album->save();
 				}
 				$opthandler = SERVERPATH . '/' . THEMEFOLDER . '/' . $newtheme . '/themeoptions.php';
 				if (file_exists($opthandler)) {
@@ -38,7 +38,7 @@ if (isset($_GET['action'])) {
 					$opt = new ThemeOptions(); //	prime the default options!
 				}
 				/* set any "standard" options that may not have been covered by the theme */
-				standardThemeOptions($newtheme, $_set_theme_album);
+				standardThemeOptions($newtheme, $_zp_set_theme_album);
 				redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=" . sanitize($_GET['themealbum']));
 			}
 			break;
