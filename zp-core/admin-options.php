@@ -3174,6 +3174,9 @@ Authority::printPasswordFormJS();
 											$plugin_deprecated = '';
 										} else {
 											$plugin_deprecated = processExtensionVariable($plugin_deprecated);
+											if (empty($plugin_deprecated)) {
+												$plugin_deprecated = gettext('This plugin will be removed in future versions.');
+											}
 										}
 									} 
 									$plugin_date = '';

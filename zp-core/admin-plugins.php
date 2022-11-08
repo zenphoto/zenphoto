@@ -183,6 +183,9 @@ $subtab = printSubtabs();
 						$plugin_deprecated = gettext('<strong>Error parsing <em>plugin_deprecated</em> string!</strong>');
 					} else {
 						$plugin_deprecated  = processExtensionVariable($plugin_deprecated);
+						if (empty($plugin_deprecated)) {
+							$plugin_deprecated = gettext('This plugin will be removed in future versions.');
+						}
 					}
 				} 
 				$plugin_notice = '';
@@ -371,8 +374,7 @@ $subtab = printSubtabs();
 					<td colspan="2">
 						<?php
 						echo $plugin_description;
-						
-						if($plugin_deprecated) {
+						if ($plugin_deprecated) {
 							echo '<p class="warningbox"><strong>' . gettext('Deprecated').  ':</strong> ' . $plugin_deprecated . '</p>';
 						}
 						if ($plugin_disable) {

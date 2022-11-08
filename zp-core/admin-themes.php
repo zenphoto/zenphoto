@@ -251,7 +251,11 @@ foreach($themes as $theme => $themeinfo) {
 			<?php 
 			echo processExtensionVariable($themeinfo['desc']); 
 			if(array_key_exists('deprecated', $themeinfo)) {
-				echo '<div class="warningbox"><strong>' . gettext('Deprecated') . ':</strong> ' . processExtensionVariable($themeinfo['deprecated']) . '</div>';
+				$theme_deprecated = processExtensionVariable($themeinfo['deprecated']);
+				if (empty($theme_deprecated)) {
+					$theme_deprecated = gettext('This theme will be removed in future versions.');
+				}
+				echo '<div class="warningbox"><strong>' . gettext('Deprecated') . ':</strong> ' . $theme_deprecated . '</div>';
 			}
 			$disable = false;
 			if(array_key_exists('disable', $themeinfo)) {
