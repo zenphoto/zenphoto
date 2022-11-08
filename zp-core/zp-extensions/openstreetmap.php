@@ -29,16 +29,16 @@ class openStreetMapOptions {
 	function __construct() {
 		renameOption('osmap_controlpos', 'osmap_zoomcontrolpos');
 		renameOption('osmap_maptiles', 'osmap_defaultlayer');
-		
+
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
 		setOptionDefault('osmap_height', '300px');
 		setOptionDefault('osmap_zoom', 4);
 		setOptionDefault('osmap_minzoom', 2);
 		setOptionDefault('osmap_maxzoom', 18);
-		
+
 		setOptionDefault('osmap_zoomcontrolpos', 'topleft');
 		setOptionDefault('osmap_defaultlayer', 'OpenStreetMap.Mapnik');
-		
+
 		setOptionDefault('osmap_clusterradius', 40);
 		setOptionDefault('osmap_markerpopup', 1);
 		setOptionDefault('osmap_markerpopup_title', 1);
@@ -706,9 +706,9 @@ class openStreetMap {
 			$this->center = ''; // not null as we don't need to re-do if there is nothing
 		}
 		// fallback if geodata was somehow wrong
-		if(empty($this->center[0]) || empty($this->center[1])) {
+		if (empty($this->center[0]) || empty($this->center[1])) {
 			$this->center = '';
-		} 
+		}
 		return $this->center;
 	}
 
@@ -759,52 +759,51 @@ class openStreetMap {
 			<div id="osm_map<?php echo $this->mapnumber; ?>"<?php echo $class; ?> style="width:<?php echo $this->width; ?>; height:<?php echo $this->height; ?>;"></div>
 			<script>
 				var geodata = new Array();
-				<?php echo $geodataJS; ?>
+			<?php echo $geodataJS; ?>
 				var map = L.map('osm_map<?php echo $this->mapnumber; ?>', {
 					center: [<?php echo $this->center[0]; ?>, <?php echo $this->center[1]; ?>],
 					zoom: <?php echo $this->zoom; ?>, //option
 					zoomControl: false, // disable so we can position it below
 					minZoom: <?php echo $this->minzoom; ?>,
-					<?php if (!empty($this->maxzoom)) { ?>
+			<?php if (!empty($this->maxzoom)) { ?>
 						maxZoom: <?php echo $this->maxzoom; ?>
-					<?php } ?>
+			<?php } ?>
 				});
 
-				<?php
-				if (!$this->showlayerscontrol) {
-					$this->layer = $this->defaultlayer;
-					echo $this->getTileLayerJS() . '.addTo(map);';
-
-				} else {
-					$defaultlayer = $this->defaultlayer;
-					$layerslist = $this->layerslist;
-					$layerslist[$defaultlayer] = $defaultlayer;
-					ksort($layerslist);	// order layers list including default layer
-					$baselayers = "";
-					foreach ($layerslist as $layer) {
-						if ($layer == $defaultlayer) {
-							$baselayers = $baselayers . "'" . $defaultlayer . "': defaultLayer,\n";
-						} else {
-							$this->layer = $layer;
-							$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS() . ",\n";
-						}
+			<?php
+			if (!$this->showlayerscontrol) {
+				$this->layer = $this->defaultlayer;
+				echo $this->getTileLayerJS() . '.addTo(map);';
+			} else {
+				$defaultlayer = $this->defaultlayer;
+				$layerslist = $this->layerslist;
+				$layerslist[$defaultlayer] = $defaultlayer;
+				ksort($layerslist); // order layers list including default layer
+				$baselayers = "";
+				foreach ($layerslist as $layer) {
+					if ($layer == $defaultlayer) {
+						$baselayers = $baselayers . "'" . $defaultlayer . "': defaultLayer,\n";
+					} else {
+						$this->layer = $layer;
+						$baselayers = $baselayers . "'" . $layer . "': " . $this->getTileLayerJS() . ",\n";
 					}
+				}
 				?>
-					var defaultLayer = <?php $this->layer = $this->defaultlayer; echo $this->getTileLayerJS(); ?>.addTo(map);
+					var defaultLayer = <?php $this->layer = $this->defaultlayer;
+				echo $this->getTileLayerJS(); ?>.addTo(map);
 					var baseLayers = {
-						<?php echo $baselayers; ?>
-						};
+				<?php echo $baselayers; ?>
+					};
 
 					L.control.layers(baseLayers, null, {position: '<?php echo $this->layerscontrolpos; ?>'}).addTo(map);
 				<?php
-				}
-				if ($this->mode == 'cluster' && $this->fitbounds) {
+			}
+			if ($this->mode == 'cluster' && $this->fitbounds) {
 				?>
 					map.fitBounds([<?php echo $this->fitbounds; ?>]);
 				<?php
-
-				}
-				if ($this->showminimap) {
+			}
+			if ($this->showminimap) {
 				?>
 					var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 					var osm2 = new L.TileLayer(osmUrl);
@@ -815,46 +814,44 @@ class openStreetMap {
 						height: <?php echo $this->minimap_height; ?>
 					}).addTo(map);
 				<?php
-
-				}
-				if ($this->showscale) {
+			}
+			if ($this->showscale) {
 				?>
 					L.control.scale().addTo(map);
-				<?php } ?>
+			<?php } ?>
 
 				L.control.zoom({position: '<?php echo $this->zoomcontrolpos; ?>'}).addTo(map);
-				<?php if ($this->showcursorpos) { ?>
+			<?php if ($this->showcursorpos) { ?>
 					L.control.mousePosition().addTo(map);
 				<?php
-
-				}
-				if ($this->showmarkers) {
-					switch ($this->mode) {
-						case 'single':
-							?>
+			}
+			if ($this->showmarkers) {
+				switch ($this->mode) {
+					case 'single':
+						?>
 							var marker = L.marker([geodata[0]['lat'], geodata[0]['long']]).addTo(map); // from image
-							<?php
-							break;
-						case 'single-cluster':
-						case 'cluster':
-							?>
+						<?php
+						break;
+					case 'single-cluster':
+					case 'cluster':
+						?>
 							var markers_cluster = new L.MarkerClusterGroup({
 								maxClusterRadius: <?php echo $this->clusterradius; ?>,
 								showCoverageOnHover: <?php echo $this->cluster_showcoverage_on_hover; ?>
 							}); //radius > Option
 							$.each(geodata, function (index, value) {
 								var text = '';
-								<?php if ($this->markerpopup) { ?>
-									<?php if ($this->markerpopup_title) { ?>
+						<?php if ($this->markerpopup) { ?>
+							<?php if ($this->markerpopup_title) { ?>
 										text = value.title;
-									<?php } ?>
-									<?php if ($this->markerpopup_thumb) { ?>
+							<?php } ?>
+							<?php if ($this->markerpopup_thumb) { ?>
 										text += value.thumb;
-									<?php } ?>
-									<?php if ($this->markerpopup_desc) { ?>
+							<?php } ?>
+							<?php if ($this->markerpopup_desc) { ?>
 										text += value.desc;
-									<?php } ?>
-								<?php } ?>
+							<?php } ?>
+						<?php } ?>
 								if (text === '') {
 									markers_cluster.addLayer(L.marker([value.lat, value.long]));
 								} else {
@@ -862,11 +859,11 @@ class openStreetMap {
 								}
 							});
 							map.addLayer(markers_cluster);
-							<?php
-							break;
-					}
+						<?php
+						break;
 				}
-				?>
+			}
+			?>
 			</script>
 			<?php
 		}
@@ -991,7 +988,62 @@ class openStreetMap {
 		);
 	}
 
+	/**
+	 * Template function wrapper for the openStreetMap class to show a map with geodata markers 
+	 * for the current image or collected the images of an album.
+	 * 
+	 * For more flexibility use the class directly.
+	 * 
+	 * The map is not shown if there is no geodata available.
+	 * 
+	 * @global obj $_zp_current_album
+	 * @global obj $_zp_current_image
+	 * @global string $_zp_gallery_page
+	 * @param array $geodata Array of the geodata to create and display markers. See the constructor of the openStreetMap Class for the require structure
+	 * @param string $width Width with unit, e.g. 100%, 100px, 100em
+	 * @param string $height Height with unit, e.g. 100px, 100em
+	 * @param array $mapcenter geodata array(lat,lng);
+	 * @param int $zoom Number of the zoom 0 - 
+	 * @param array $fitbounds geodata array('min' => array(lat,lng), 'max => array(lat,lng))
+	 * @param string $class Class name to attach to the map element
+	 * @param int $mapnumber If calling more than one map per page an unique number is required
+	 * @param obj $obj Image or album object to skip current image or album and also $geodata
+	 * @param bool $minimap True to show the minimap in the lower right corner
+	 */
+	static function printOpenStreetMap($geodata = NULL, $width = NULL, $height = NULL, $mapcenter = NULL, $zoom = NULL, $fitbounds = NULL, $class = '', $mapnumber = NULL, $obj = NULL, $minimap = false) {
+		if (!empty($class)) {
+			$class = ' class="' . $class . '"';
+		}
+		$map = new openStreetMap($geodata, $obj);
+		if (!is_null($width)) {
+			$map->width = $width;
+		}
+		if (!is_null($height)) {
+			$map->height = $height;
+		}
+		if (!is_null($mapcenter)) {
+			$map->center = $mapcenter;
+		}
+		if (!is_null($zoom)) {
+			$map->zoom = $zoom;
+		}
+		if (!is_null($fitbounds)) {
+			$map->fitbounds = $fitbounds;
+		}
+		if (!is_null($class)) {
+			$map->class = $class;
+		}
+		if (!is_null($mapnumber)) {
+			$map->mapnumber = $mapnumber;
+		}
+		if ($minimap) {
+			$map->showminimap = true;
+		}
+		$map->printMap();
+	}
+
 }
+
 // osm class end
 
 /**
@@ -1001,6 +1053,8 @@ class openStreetMap {
  * For more flexibility use the class directly.
  * 
  * The map is not shown if there is no geodata available.
+ * 
+ * @deprecated ZenphotoCMS 2.0 – Use openStreetMap::printOpenStreetMap() instead
  * 
  * @global obj $_zp_current_album
  * @global obj $_zp_current_image
@@ -1017,33 +1071,6 @@ class openStreetMap {
  * @param bool $minimap True to show the minimap in the lower right corner
  */
 function printOpenStreetMap($geodata = NULL, $width = NULL, $height = NULL, $mapcenter = NULL, $zoom = NULL, $fitbounds = NULL, $class = '', $mapnumber = NULL, $obj = NULL, $minimap = false) {
-	if (!empty($class)) {
-		$class = ' class="' . $class . '"';
-	}
-	$map = new openStreetMap($geodata, $obj);
-	if (!is_null($width)) {
-		$map->width = $width;
-	}
-	if (!is_null($height)) {
-		$map->height = $height;
-	}
-	if (!is_null($mapcenter)) {
-		$map->center = $mapcenter;
-	}
-	if (!is_null($zoom)) {
-		$map->zoom = $zoom;
-	}
-	if (!is_null($fitbounds)) {
-		$map->fitbounds = $fitbounds;
-	}
-	if (!is_null($class)) {
-		$map->class = $class;
-	}
-	if (!is_null($mapnumber)) {
-		$map->mapnumber = $mapnumber;
-	}
-	if ($minimap) {
-		$map->showminimap = true;
-	}
-	$map->printMap();
+	deprecationNotice(gettext('Use openStreetMap::printOpenStreetMap() instead'));
+	openStreetMap::printOpenStreetMap($geodata, $width, $height, $mapcenter, $zoom , $fitbounds, $class, $mapnumber, $obj, $minimap);
 }

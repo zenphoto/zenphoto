@@ -114,19 +114,23 @@ class ThemeObject extends PersistentObject {
 
 	/**
 	 * Returns true published
-	 *
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 – Use isPublished() instead
 	 * @return bool
 	 */
 	function getShow() {
+		deprecationNotice(gettext('Use isPublished() instead'));
 		return $this->isPublished();
 	}
 
 	/**
 	 * Stores the published value
-	 *
+	 * 
+	 * @deprecated ZenphotoCMS 2.0 – Use setPublished() instead
 	 * @param bool $show True if the album is published
 	 */
 	function setShow($show) {
+		deprecationNotice(gettext('Use isPublished() instead'));
 		$this->setPublished($show);
 	}
 
@@ -321,7 +325,7 @@ class ThemeObject extends PersistentObject {
 	 */
 	function isMyItem($action) {
 		if (!$this->checkPublishDates()) {
-			$this->setShow(0);
+			$this->setPublished(0);
 		}
 		if (zp_loggedin($this->manage_rights)) {
 			return true;

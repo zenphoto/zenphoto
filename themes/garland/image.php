@@ -93,7 +93,7 @@ if (!defined('WEBPATH'))
 										?>
 									</div>
 									<?php
-									callUserFunction('printOpenStreetMap');
+									callUserFunction('openStreetMap::printOpenStreetMap');
 									If (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_image);
 									callUserFunction('printRating');

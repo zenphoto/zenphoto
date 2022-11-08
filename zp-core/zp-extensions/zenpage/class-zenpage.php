@@ -55,7 +55,7 @@ class Zenpage {
 			if ($result) {
 				foreach ($result as $item) {
 					$obj = new $class($item['titlelink']);
-					$obj->setShow(0);
+					$obj->setPublished(0);
 					$obj->save();
 				}
 			}

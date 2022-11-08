@@ -96,7 +96,7 @@ class AlbumBase extends MediaObject {
 		}
 // Set default data for a new Album (title and parent_id)
 		$parentalbum = NULL;
-		$this->setShow($_zp_gallery->getAlbumPublish());
+		$this->setPublished($_zp_gallery->getAlbumPublish());
 		$this->set('mtime', time());
 		$this->setLastChange();
 		$title = trim($this->name);
@@ -1188,7 +1188,7 @@ class AlbumBase extends MediaObject {
 			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
 					$imageobj = Image::newImage($this, $row['filename']);
-					$imageobj->setShow(0);
+					$imageobj->setPublished(0);
 					$imageobj->save();
 				case 2:
 					$row['show'] = 0;

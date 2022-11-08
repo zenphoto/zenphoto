@@ -224,7 +224,7 @@ class galleryArticles {
       $desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
     }
     $article->setContent($desc);
-    $article->setShow(true);
+    $article->setPublished(true);
     $date = $obj->getPublishDate();
     if (!$date) {
       $date = date('Y-m-d H:i:s');

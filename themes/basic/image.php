@@ -106,7 +106,7 @@ if (!defined('WEBPATH'))
 				<br class="clearall" />
 
 				<?php
-				callUserFunction('printOpenStreetMap');
+				callUserFunction('openStreetMap::printOpenStreetMap');
 				callUserFunction('printGoogleMap');
 				callUserFunction('printRating');
 				callUserFunction('printCommentForm');

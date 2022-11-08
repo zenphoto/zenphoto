@@ -158,7 +158,7 @@ if (isset($_GET['action'])) {
     case "publish":
       XSRFdefender('albumedit');
       $album = AlbumBase::newAlbum($folder);
-      $album->setShow(sanitize_numeric($_GET['value']));
+      $album->setPublished(sanitize_numeric($_GET['value']));
 			if($album->hasPublishSchedule()) {
 				$album->setPublishdate(date('Y-m-d H:i:s'));
 			} else if($album->hasExpiration() || $album->hasExpired()) {

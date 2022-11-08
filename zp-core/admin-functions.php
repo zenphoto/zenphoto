@@ -2338,7 +2338,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (isset($_POST[$prefix . 'thumb'])) {
 			$album->setThumb(sanitize($_POST[$prefix . 'thumb']));
 		}
-		$album->setShow((int) isset($_POST[$prefix . 'Published']));
+		$album->setPublished((int) isset($_POST[$prefix . 'Published']));
 		$album->setCommentsAllowed(isset($_POST[$prefix . 'allowcomments']));
 		$sorttype = strtolower(sanitize($_POST[$prefix . 'sortby'], 3));
 		if ($sorttype == 'custom') {
@@ -2576,7 +2576,7 @@ function processImageEdit($image, $index, $massedit = true) {
 			$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
 		}
 		$image->setDateTime(sanitize($_POST["$index-date"]));
-		$image->setShow(isset($_POST["$index-Visible"]));
+		$image->setPublished(isset($_POST["$index-Visible"]));
 		$image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
 		if (isset($_POST["reset_hitcounter$index"])) {
 			$image->set('hitcounter', 0);
@@ -4061,10 +4061,10 @@ function processAlbumBulkActions() {
 						SearchEngine::clearSearchCache();
 						break;
 					case 'showall':
-						$albumobj->setShow(1);
+						$albumobj->setPublished(1);
 						break;
 					case 'hideall':
-						$albumobj->setShow(0);
+						$albumobj->setPublished(0);
 						break;
 					case 'commentson':
 						$albumobj->setCommentsAllowed(1);

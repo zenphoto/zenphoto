@@ -57,7 +57,7 @@ if (isset($_GET['album'])) {
 				XSRFdefender('imageedit');
 				$album = AlbumBase::newAlbum($folder);
 				$image = Image::newImage($album, $filename);
-				$image->setShow(sanitize_numeric($_GET['value']));
+				$image->setPublished(sanitize_numeric($_GET['value']));
 				if ($image->hasPublishSchedule()) {
 					$image->setPublishdate(date('Y-m-d H:i:s'));
 				} else if ($image->hasExpiration() || $image->hasExpired()) {

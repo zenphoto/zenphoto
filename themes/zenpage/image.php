@@ -123,7 +123,7 @@ if (!defined('WEBPATH'))
 							printAddToFavorites($_zp_current_image);
 						callUserFunction('printRating');
 						callUserFunction('printGoogleMap');
-						callUserFunction('printOpenStreetMap');
+						callUserFunction('openStreetMap::printOpenStreetMap');
 						if (class_exists('ScriptlessSocialSharing')) {
 							ScriptlessSocialSharing::printButtons();
 						}

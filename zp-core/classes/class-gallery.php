@@ -1058,7 +1058,7 @@ class Gallery {
 			$album = AlbumBase::newAlbum($folder);
 			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
-					$album->setShow(0);
+					$album->setPublished(0);
 					$album->save();
 				case 2:
 					$row['show'] = 0;

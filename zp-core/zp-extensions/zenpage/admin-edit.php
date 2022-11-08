@@ -117,7 +117,7 @@ if (is_AdminEditPage('newscategory')) {
 		$result = updateCategory($reports);
 	} else {
 		$result = new ZenpageCategory('');
-		$result->setShow(1);
+		$result->setPublished(1);
 	}
 }
 

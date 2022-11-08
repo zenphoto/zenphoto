@@ -66,7 +66,7 @@ if (isset($_POST['processed'])) {
 					$album->setTitle($title);
 				}
 				if ($new) {
-					$album->setShow((int) !empty($_POST['publishalbum']));
+					$album->setPublished((int) !empty($_POST['publishalbum']));
 					$album->setOwner($_zp_current_admin_obj->getUser());
 				}
 				$album->setLastChangeUser($_zp_current_admin_obj->getUser());

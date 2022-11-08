@@ -119,7 +119,7 @@ function updatePage(&$reports, $newpage = false) {
 	$page->setContent($content);
 	$page->setExtracontent($extracontent);
 	$page->setCustomData(zp_apply_filter('save_page_custom_data', $custom, $page));
-	$page->setShow($show);
+	$page->setPublished($show);
 	$page->setDateTime($date);
 	$page->setLastChange($date);
 	$page->setCommentsAllowed($commentson);
@@ -392,7 +392,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
 	$article->setCustomData(zp_apply_filter('save_article_custom_data', $custom, $article));
-	$article->setShow($show);
+	$article->setPublished($show);
 	$article->setDateTime($date);
 	$article->setLastChange($date);
 	$article->setCommentsAllowed($commentson);
@@ -903,7 +903,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->setDesc($desc);
 	$cat->setLastChange();
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom, $cat));
-	$cat->setShow($show);
+	$cat->setPublished($show);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter', 0);
 	}
@@ -1272,7 +1272,7 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
  */
 function zenpagePublish($obj, $show) {
 	global $_zp_current_admin_obj;
-	$obj->setShow((int) ($show && 1));
+	$obj->setPublished((int) ($show && 1));
 	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
 	$obj->save();
 }
@@ -1291,11 +1291,11 @@ function skipScheduledPublishing($obj, $type = 'futuredate') {
 	switch ($type) {
 		case 'futuredate':
 			$obj->setDateTime(date('Y-m-d H:i:s'));
-			$obj->setShow(1);
+			$obj->setPublished(1);
 			break;
 		case 'expiredate':
 			$obj->setExpiredate(null);
-			$obj->setShow(1);
+			$obj->setPublished(1);
 			break;
 	}
 	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());

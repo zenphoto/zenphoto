@@ -73,7 +73,7 @@ if (!defined('WEBPATH')) die(); ?>
 				printSlideShowLink();
 				echo '</span>';
 			}
-			callUserFunction('printOpenStreetMap');
+			callUserFunction('openStreetMap::printOpenStreetMap');
 			if (function_exists('printAddToFavorites')) {
 				echo "<br />";
 				printAddToFavorites($_zp_current_album);

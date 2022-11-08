@@ -80,7 +80,7 @@ if (!defined('WEBPATH'))
 						printGoogleMap();
 						echo '</p>';
 					}
-					callUserFunction('printOpenStreetMap');
+					callUserFunction('openStreetMap::printOpenStreetMap');
 					
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();
