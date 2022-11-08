@@ -667,7 +667,7 @@ class setup {
 		</div><!-- main -->
 		<div id="footer">
 			<a href="https://www.zenphoto.org" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('ZenphotoCMS - The simpler media website CMS'); ?>">zen<strong>photo</strong></a>
-			| <a href="https://www.zenphoto.org/support" target="_blank" rel="noopener noreferrer" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
+			| <a href="https://forum.zenphoto.org/" target="_blank" rel="noopener noreferrer" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
 			| <a href="https://github.com/zenphoto/zenphoto/issues" target="_blank" rel="noopener noreferrer" title="Bugtracker">Bugtracker </a> | <a href="https://www.zenphoto.org/news/category/changelog" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('View Change log'); ?></a>
 		</div>
 		</body>

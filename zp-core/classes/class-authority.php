@@ -750,7 +750,7 @@ class Authority {
 					break;
 				case 'captcha':
 					if (is_null($_zp_captcha->name) || $_zp_captcha->checkCaptcha(trim(@$_POST['code']), sanitize(@$_POST['code_h'], 3))) {
-						require_once(dirname(__FILE__) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
+						require_once(dirname(dirname(__FILE__)) . '/load_objectClasses.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
 							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
 						} else {

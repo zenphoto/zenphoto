@@ -12,7 +12,7 @@ require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 $buttonlist[] = $mybutton = array(
 		'category' => gettext('Info'),
 		'enable' => true,
-		'button_text' => gettext('Database quick reference'),
+		'button_text' => gettext('Database info'),
 		'formname' => 'database_reference.php',
 		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php',
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',

@@ -538,6 +538,7 @@ if ($c <= 0) {
 	<head>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
@@ -651,7 +652,7 @@ if ($c <= 0) {
 							} 
 							
 							$err = setup::versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
-							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 7.1+ and in any case not tested below 5.6. There will be no fixes if you encounter any issues below 5.6. Please contact your webhost about a PHP upgrade on your server.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
+							$good = setup::checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk. Zenphoto is developed on PHP 8+ and in any case not tested below 7.4. There will be no fixes if you encounter any issues below 7.4. Please contact your webhost about a PHP upgrade on your server.'), PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 							
 							if ($session && session_id()) {
 								setup::checkmark(true, gettext('PHP <code>Sessions</code>.'), gettext('PHP <code>Sessions</code> [appear to not be working].'), '', true);
@@ -702,23 +703,21 @@ if ($c <= 0) {
 							setup::checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !TEST_RELEASE);
 							setup::checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));						
 							setup::checkmark(extension_loaded('curl') ? 1 : -1, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('<code>cURL</code> support is not critical but strongely recommended.'), false);
-							setup::checkmark(extension_loaded('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));		
-							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));		
-							setup::checkmark(extension_loaded('json') ? 1 : -1, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is not yet critical but will become so in the future.'));					
-							setup::checkmark(extension_loaded('exif') ? 1 : -1, gettext('PHP <code>exif</code> support'), gettext('PHP <code>exif</code> support [is not present]'), gettext('<code>exif</code> support is not critical but strongely recommended for properly handling exif data of images'));					
-							setup::checkmark(extension_loaded('bz2') ? 1 : -1, gettext('PHP <code>bz2</code> support'), gettext('PHP <code>bz2</code> support [is not present]'), gettext('<code>bz2</code> support is not critical but recommended for some optional bzcompression functionalty'));					
-							setup::checkmark(extension_loaded('fileinfo') ? 1 : -1, gettext('PHP <code>fileinfo</code> support'), gettext('PHP <code>fileinfo</code> support [is not present]'), gettext('<code>fileinfo</code> support is not critical but strongely recommended for file system functionality'));						
-							setup::checkmark(extension_loaded('intl') ? 1 : -1, gettext('PHP <code>intl</code> support'), gettext('PHP <code>intl</code> support [is not present]'), gettext('<code>intl</code> support is strongely recommended for using locale-aware functionality.'));				
-							setup::checkmark(extension_loaded('xml') ? 1 : -1, gettext('PHP <code>xml</code> support'), gettext('PHP <code>xml</code> support [is not present]'), gettext('<code>xml</code> support is not criticaly but strongely recommended for some functionality for parsing XML contents like RSS feeds.'));				
-							setup::checkmark(extension_loaded('dom') ? 1 : -1, gettext('PHP <code>dom</code> support'), gettext('PHP <code>dom</code> support [is not present]'), gettext('<code>dom</code> support is not criticaly but recommended for some functionality processing and modifying HTML contents.'));				
+							setup::checkmark(extension_loaded('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));
+							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));							
+							$good =	setup::checkmark(extension_loaded('json') ? 1 : 0, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is critical and required for some functionalty.')) && $good;						
+							setup::checkmark(extension_loaded('exif') ? 1 : -1, gettext('PHP <code>exif</code> support'), gettext('PHP <code>exif</code> support [is not present]'), gettext('<code>exif</code> support is not critical but strongely recommended for properly handling exif data of images'));
+							setup::checkmark(extension_loaded('bz2') ? 1 : -1, gettext('PHP <code>bz2</code> support'), gettext('PHP <code>bz2</code> support [is not present]'), gettext('<code>bz2</code> support is not critical but recommended for some optional bzcompression functionalty'));
+							setup::checkmark(extension_loaded('fileinfo') ? 1 : -1, gettext('PHP <code>fileinfo</code> support'), gettext('PHP <code>fileinfo</code> support [is not present]'), gettext('<code>fileinfo</code> support is not critical but strongely recommended for file system functionality'));
+							setup::checkmark(extension_loaded('intl') ? 1 : -1, gettext('PHP <code>intl</code> support'), gettext('PHP <code>intl</code> support [is not present]'), gettext('<code>intl</code> support is strongely recommended for using locale-aware functionality.'));
+							setup::checkmark(extension_loaded('xml') ? 1 : -1, gettext('PHP <code>xml</code> support'), gettext('PHP <code>xml</code> support [is not present]'), gettext('<code>xml</code> support is not criticaly but strongely recommended for some functionality for parsing XML contents like RSS feeds.'));
+							setup::checkmark(extension_loaded('dom') ? 1 : -1, gettext('PHP <code>dom</code> support'), gettext('PHP <code>dom</code> support [is not present]'), gettext('<code>dom</code> support is not criticaly but strongely recommended for some functionality processing and modifying HTML contents.'));
 							setup::checkmark(extension_loaded('simplexml') ? 1 : -1, gettext('PHP <code>simplexml</code> support'), gettext('PHP <code>simplexml</code> support [is not present]'), gettext('<code>simplexml</code> support is not criticaly but strongely recommended for some functionality processing XML contents like RSS feeds.'));
 							setup::checkmark(extension_loaded('reflection') ? 1 : -1, gettext('PHP <code>Reflection</code> support'), gettext('PHP <code>Reflection</code> support [is not present]'), gettext('<code>Reflection</code> support is not criticaly but strongely recommended for some internal functionality.'));
-							
 							setup::checkmark(extension_loaded('ctype') ? 1 : 0, gettext('PHP <code>Ctype</code> support'), gettext('PHP <code>Ctype</code> support [is not present]'), gettext('<code>Ctype</code> support is required for internal character type checking e.g. for shortening text content.'));
 							setup::checkmark(extension_loaded('filter') ? 1 : 0, gettext('PHP <code>filter</code> support'), gettext('PHP <code>filter</code> support [is not present]'), gettext('<code>filter</code> support is required for filtering and clearing content.'));
 							setup::checkmark(extension_loaded('session') ? 1 : 0, gettext('PHP <code>session</code> support'), gettext('PHP <code>session</code> support [is not present]'), gettext('<code>session</code> support is required session handling.'));
-							
-							
+
 							if ($_zp_setupCurrentLocale_result === false) {
 								setup::checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' ' . gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.") . '<br />' . gettext('See the <a  href="https://www.zenphoto.org/news/problems-with-languages">user guide</a> on zenphoto.org for details.'));
 							}
@@ -1077,8 +1076,7 @@ if ($c <= 0) {
 									$good = setup::checkMark((bool) $connection, sprintf(gettext('Connect to %s'), DATABASE_SOFTWARE), gettext("Connect to Database [<code>CONNECT</code> query failed]"), $connectDBErr) && $good;
 								}
 							}
-				
-							
+
 								if ($environ && $connection) {
 									$oldmode = $_zp_db->getSQLmode();
 									$result = $_zp_db->setSQLmode();
@@ -1222,7 +1220,6 @@ if ($c <= 0) {
 									} else {
 										setup::checkmark(-1, '', gettext('Database <code>$conf["UTF-8"]</code> [is not set <em>true</em>]'), gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> or better <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings.'));
 									}
-						
 								}
 							if(!$good) {
 								setup::printFooter();
@@ -1661,7 +1658,6 @@ if ($c <= 0) {
 								?>
 								<div class="error">
 									<?php
-										echo "administrator table exists…";
 										if (zp_loggedin()) {
 											echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
 										} else {
@@ -1692,9 +1688,7 @@ if ($c <= 0) {
 
 						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 						require_once(dirname(dirname(__FILE__)) . '/functions/functions.php');
-						
-						echo '<p>'. gettext('Checking the database') . '</p>';
-						
+						echo '<p>' . gettext('Checking the database') . '</p>';
 						$task = '';
 						if (isset($_GET['create'])) {
 							$task = 'create';

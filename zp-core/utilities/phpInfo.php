@@ -11,7 +11,7 @@ require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 $buttonlist[] = array(
 		'category' => gettext('Info'),
 		'enable' => true,
-		'button_text' => gettext('Show PHP Information'),
+		'button_text' => gettext('PHP Info'),
 		'formname' => 'cloneZenphoto',
 		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php',
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',

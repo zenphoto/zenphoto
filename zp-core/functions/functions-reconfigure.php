@@ -1,7 +1,9 @@
 <?php
 /**
  * handles reconfiguration when the install signature has changed
+ * 
  * @package core
+ * @subpackage functions\functions-reconfigure
  */
 
 /**
@@ -12,7 +14,6 @@
 function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature($mandatory);
 	$diffkeys = array_keys($diff);
-	
 	if (($mandatory || in_array('ZENPHOTO', $diffkeys) || in_array('FOLDER', $diffkeys))) {
 		if (isset($_GET['rss'])) {
 			if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/site_upgrade/rss-closed.xml')) {
@@ -111,7 +112,6 @@ function checkSignature($auto) {
 			$diff[$key] = array('old' => @$old[$key], 'new' => @$new[$key]);
 		}
 	}
-
 	$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');
 	preg_match_all('|' . ZENFOLDER . '/setup/(.*)|', $package, $matches);
 	$needs = array();
@@ -129,7 +129,6 @@ function checkSignature($auto) {
 		$needs = array_diff($needs, $found);
 	}
 	$_zp_mutex->unlock();
-
 	return array($diff, $needs);
 }
 

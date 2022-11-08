@@ -1623,8 +1623,6 @@ function zp_image_types($quote) {
 	return substr($typelist, 0, -1);
 }
 
-
-
 /**
  * Copies a directory recursively
  * @param string $srcdir the source directory.
@@ -2046,7 +2044,8 @@ function getThemeOption($option, $album = NULL, $theme = NULL) {
 	if (is_null($album)) {
 		$album = $_set_theme_album;
 	}
-	if (is_null($album)) {
+
+	if (is_null($album) || !is_object($album)) {
 		$id = 0;
 	} else {
 		$id = $album->getID();
@@ -2285,7 +2284,7 @@ function getXSRFToken($action) {
  */
 function XSRFToken($action) {
 	?>
-	<input type="hidden" name="XSRFToken" id="XSRFToken" value="<?php echo getXSRFToken($action); ?>" />
+	<input type="hidden" name="XSRFToken" id="XSRFToken<?php echo $action; ?>" value="<?php echo getXSRFToken($action); ?>" />
 	<?php
 }
 
