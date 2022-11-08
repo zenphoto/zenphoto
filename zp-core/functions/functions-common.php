@@ -172,12 +172,14 @@ function ksesProcess($input_string, $allowed_tags) {
  * @return type
  */
 function getBare($content) {
-  $content = preg_replace('~<script.*?/script>~is', '', $content);
-  $content = preg_replace('~<style.*?/style>~is', '', $content);
-  $content = preg_replace('~<!--.*?-->~is', '', $content);
-  $content = strip_tags($content);
-  $content = str_replace('&nbsp;', ' ', $content);
-  return $content;
+	if (is_string($content)) {
+		$content = preg_replace('~<script.*?/script>~is', '', $content);
+		$content = preg_replace('~<style.*?/style>~is', '', $content);
+		$content = preg_replace('~<!--.*?-->~is', '', $content);
+		$content = strip_tags($content);
+		$content = str_replace('&nbsp;', ' ', $content);
+	}
+	return $content;
 }
 
 /** returns a sanitized string for the sanitize function
@@ -235,7 +237,7 @@ function html_decode($string) {
  * @return string
  */
 function html_encode($str) {
-	return htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET);
+	return htmlspecialchars(strval($str), ENT_FLAGS, LOCAL_CHARSET);
 }
 
 /**
@@ -486,6 +488,9 @@ function zp_clearCookie($name, $path = NULl, $secure = false, $httponly = false)
  * @return array
  */
 function getSerializedArray($string, $disallow_classes = false) {
+	if (is_null($string)) {
+		return array();
+	}
 	if (is_array($string)) {
 		return $string;
 	}

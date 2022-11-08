@@ -1234,7 +1234,7 @@ function build_url($parts) {
  * @return string
  */
 function pathurlencode($path) {
-	$parts = parse_url($path);
+	$parts = parse_url(strval($path));
 	if (isset($parts['query'])) {
 		//	some kind of query link
 		$pairs = parse_query($parts['query']);

@@ -549,7 +549,7 @@ class SearchEngine {
 		if ($this->processed_search) {
 			return $this->processed_search;
 		}
-		$searchstring = trim($this->words);
+		$searchstring = trim(strval($this->words));
 		$space_is = getOption('search_space_is');
 		$opChars = array('&' => 1, '|' => 1, '!' => 1, ',' => 1, '(' => 2);
 		if ($space_is) {
@@ -1418,7 +1418,7 @@ class SearchEngine {
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
-										$album->setShow(0);
+										$album->setPublished(0);
 										$album->save();
 									case 2:
 										$row['show'] = 0;
@@ -1610,7 +1610,7 @@ class SearchEngine {
 							switch (themeObject::checkScheduledPublishing($row)) {
 								case 1:
 									$imageobj = Image::newImage($album, $row['filename']);
-									$imageobj->setShow(0);
+									$imageobj->setPublished(0);
 									$imageobj->save();
 								case 2:
 									$row['show'] = 0;

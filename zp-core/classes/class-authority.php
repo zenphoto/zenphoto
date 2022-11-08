@@ -1349,7 +1349,7 @@ class Authority {
 	 *  @return string derived key
 	 */
 	static function pbkdf2($p, $s, $c = 1000, $kl = 32, $a = 'sha256') {
-		$hl = strlen(hash($a, null, true)); # Hash length
+		$hl = strlen(hash($a, '', true)); # Hash length
 		$kb = ceil($kl / $hl); # Key blocks to compute
 		$dk = ''; # Derived key
 		# Create key

@@ -205,6 +205,7 @@ function setMainDomain() {
 
 /**
  * Gettext replacement function for separate translations of third party themes.
+ * 
  * @param string $string The string to be translated
  * @param string $theme The name of the plugin. Only required for strings on the 'theme_description.php' file like the general theme description. If the theme is the current theme the function sets it automatically.
  * @return string
@@ -215,17 +216,16 @@ function gettext_th($string, $theme = Null) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	setupDomain($theme, 'theme');
-	$translation = gettext($string);
-	setupDomain();
-	return $translation;
+	return dgettext($theme, $string);
 }
 
 /**
  * ngettext replacement function for separate translations of third party themes.
+ * 
  * @param string $msgid1
  * @param string $msgid2
  * @param int $n
- * @param string $plugin
+ * @param string $theme
  * @return string
  */
 function ngettext_th($msgid1, $msgid2, $n, $theme = NULL) {
@@ -234,26 +234,24 @@ function ngettext_th($msgid1, $msgid2, $n, $theme = NULL) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	setupDomain($theme, 'theme');
-	$translation = ngettext($msgid1, $msgid2, $n);
-	setupDomain();
-	return $translation;
+	return dngettext($theme, $msgid1, $msgid2, $n);
 }
 
 /**
  * Gettext replacement function for separate translations of third party plugins within the root plugins folder.
+ * 
  * @param string $string The string to be translated
  * @param string $plugin The name of the plugin. Required.
  * @return string
  */
 function gettext_pl($string, $plugin) {
 	setupDomain($plugin, 'plugin');
-	$translation = gettext($string);
-	setupDomain();
-	return $translation;
+	return dgettext($plugin, $string);
 }
 
 /**
  * ngettext replacement function for separate translations of third party plugins within the root plugins folder.
+ * 
  * @param string $msgid1
  * @param string $msgid2
  * @param int $n
@@ -262,9 +260,7 @@ function gettext_pl($string, $plugin) {
  */
 function ngettext_pl($msgid1, $msgid2, $n, $plugin) {
 	setupDomain($plugin, 'plugin');
-	$translation = ngettext($msgid1, $msgid2, $n);
-	setupDomain();
-	return $translation;
+	return dngettext($plugin, $msgid1, $msgid2, $n);
 }
 
 /**
@@ -302,12 +298,15 @@ function i18nSetLocale($locale) {
  */
 function setupDomain($domain = NULL, $type = NULL) {
 	global $_zp_active_languages, $_zp_all_languages;
+	$set_maindomain = true;
 	switch ($type) {
 		case "plugin":
 			$domainpath = getPlugin($domain . "/locale/");
+			$set_maindomain = false;
 			break;
 		case "theme":
 			$domainpath = SERVERPATH . "/" . THEMEFOLDER . "/" . $domain . "/locale/";
+			$set_maindomain = false;
 			break;
 		default:
 			$domain = 'zenphoto';
@@ -315,11 +314,11 @@ function setupDomain($domain = NULL, $type = NULL) {
 			break;
 	}
 	bindtextdomain($domain, $domainpath);
-	// function only since php 4.2.0
-	if (function_exists('bind_textdomain_codeset')) {
-		bind_textdomain_codeset($domain, 'UTF-8');
+	bind_textdomain_codeset($domain, 'UTF-8');
+	if ($set_maindomain) {
+		// this is the main zenphoto domain only and must not be set for plugins/themes!
+		textdomain($domain);
 	}
-	textdomain($domain);
 	//invalidate because the locale was not setup until now
 	$_zp_active_languages = $_zp_all_languages = NULL;
 }
@@ -573,8 +572,9 @@ function getTimezones() {
 				 * Only get timezones explicitely not part of "Others" except UTC
 				 * @see http://www.php.net/manual/en/timezones.others.php
 				 */
-				if ($zone['timezone_id'] == 'UTC' || preg_match('/^(Africa|America|Antarctica|Arctic|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//', $zone['timezone_id'])) {
-					$cities[] = $zone['timezone_id'];
+				$timezone_id = strval($zone['timezone_id']);
+				if ($timezone_id == 'UTC' || preg_match('/^(Africa|America|Antarctica|Arctic|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//', $timezone_id)) {
+					$cities[] = $timezone_id;
 				}
 			}
 		}
