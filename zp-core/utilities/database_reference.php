@@ -139,7 +139,7 @@ if ($result) {
 if ($tables) {
 	$non_utf8_tables = array();
 	foreach ($tables as $table) {
-		if (!$_zp_db->isUTF8Table($table, 'any', true)) {
+		if (!$_zp_db->isUTF8Table($table, 'any')) {
 			$non_utf8_tables[] = $table;
 		}
 	}

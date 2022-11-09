@@ -1189,9 +1189,9 @@ if ($c <= 0) {
 										if ($tables) {
 											$utf8_any_tables = $utf8_tables = $utf8mb4_tables = $non_utf8mb4_tables = $non_utf8_tables = array();
 											foreach($tables as $table) {
-												if ($_zp_db->isUTF8Table($table, 'any', true)) {
+												if ($_zp_db->isUTF8Table($table, 'any')) {
 													$utf8_any_tables[] = $table; // covers utf8/ut8mb4 mixed tables
-													if ($_zp_db->isUTF8Table($table, 'utf8mb4', true)) {
+													if ($_zp_db->isUTF8Table($table, 'utf8mb4')) {
 														$utf8mb4_tables[] = $table;
 													} 
 												} else {
@@ -1768,17 +1768,17 @@ if ($c <= 0) {
 						 *********************************************************************************** */
 
 						//v1.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'captcha'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_captcha (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'captcha'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_captcha (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`ptime` int(32) UNSIGNED NOT NULL,
 		`hash` varchar(255) NOT NULL,
 		PRIMARY KEY (`id`)
 		)	$collation;";
-						}
-						//v1.1.7
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'options'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
+	}
+	//v1.1.7
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'options'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
 		`name` varchar(191) NOT NULL,
@@ -1788,28 +1788,28 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE (`name`, `ownerid`, `theme`)
 		)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'tags'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_tags (
+	}
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'tags'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_tags (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`name` varchar(255) NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`name`)
 		)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_obj_to_tag (
+	}
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_obj_to_tag (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`tagid` int(11) UNSIGNED NOT NULL,
 		`type` tinytext,
 		`objectid` int(11) UNSIGNED NOT NULL,
 		PRIMARY KEY (`id`)
 		)	$collation;";
-						}
+	}
 
-						// v. 1.1.5
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'administrators'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_administrators (
+	// v. 1.1.5
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'administrators'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_administrators (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`user` varchar(64) NOT NULL,
 		`pass` varchar(64) NOT NULL,
@@ -1832,9 +1832,9 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE (`user`,`valid`)
 		)	$collation;";
-						}
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_admin_to_object (
+	}
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_admin_to_object (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`adminid` int(11) UNSIGNED NOT NULL,
 		`objectid` int(11) UNSIGNED NOT NULL,
@@ -1842,12 +1842,12 @@ if ($c <= 0) {
 		`edit` int(11) DEFAULT 32767,
 		PRIMARY KEY (`id`)
 		)	$collation;";
-						}
+	}
 
 
-						// base implementation
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'albums'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_albums (
+	// base implementation
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'albums'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_albums (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`folder` varchar(255) NOT NULL default '',
@@ -1888,10 +1888,10 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE `folder` (`folder`)
 		)	$collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'comments'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_comments (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'comments'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_comments (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`ownerid` int(11) unsigned NOT NULL default '0',
 		`name` varchar(255) NOT NULL default '',
@@ -1908,10 +1908,10 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		KEY `ownerid` (`ownerid`)
 		)	$collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'images'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_images (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'images'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_images (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 				`albumid` int(11) unsigned NOT NULL default '0',
 		`filename` varchar(255) NOT NULL default '',
@@ -1956,11 +1956,11 @@ if ($c <= 0) {
 		KEY (`albumid`),
 		UNIQUE `filename` (`filename`,`albumid`)
 		)	$collation;";
-						}
+	}
 
-						//v1.2.4
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news') . " (
+	//v1.2.4
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
 		`content` longtext,
@@ -1988,10 +1988,10 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE (`titlelink`)
 		) $collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news_categories'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news_categories') . " (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news_categories'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news_categories') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
 		`titlelink` varchar(255) NOT NULL,
@@ -2008,19 +2008,19 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE (`titlelink`)
 		) $collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news2cat'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news2cat') . " (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'news2cat'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('news2cat') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`cat_id` int(11) unsigned NOT NULL,
 		`news_id` int(11) unsigned NOT NULL,
 		PRIMARY KEY (`id`)
 		) $collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'pages'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('pages') . " (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'pages'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('pages') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`title` text,
@@ -2052,10 +2052,10 @@ if ($c <= 0) {
 		PRIMARY KEY (`id`),
 		UNIQUE (`titlelink`)
 		) $collation;";
-						}
+	}
 
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'menu'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('menu') . " (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'menu'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('menu') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`parentid` int(11) unsigned default NULL,
 		`title` text,
@@ -2069,10 +2069,10 @@ if ($c <= 0) {
 		`span_id` varchar(32) default NULL,
 		PRIMARY KEY (`id`)
 		) $collation;";
-						}
-						// v 1.3.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'plugin_storage'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('plugin_storage') . " (
+	}
+	// v 1.3.2
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'plugin_storage'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('plugin_storage') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`type` varchar(32) NOT NULL,
 		`aux` varchar(255),
@@ -2081,10 +2081,10 @@ if ($c <= 0) {
 		KEY `type` (`type`),
 		KEY `aux` (`aux`)
 		) $collation;";
-						}
-						// v 1.4.2
-						if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'search_cache'])) {
-							$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('search_cache') . " (
+	}
+	// v 1.4.2
+	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'search_cache'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS " . $_zp_db->prefix('search_cache') . " (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
@@ -2092,9 +2092,9 @@ if ($c <= 0) {
 		KEY (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
-						}
+	}
 
-						/****************************************************************************************
+	/****************************************************************************************
 						 * *****                             UPGRADE SECTION                                ******
 						 * *****                                                                            ******
 						 * *****                          Add all new fields below                          ******
@@ -2420,7 +2420,17 @@ if ($c <= 0) {
 						//1.5.8
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastvisit` datetime default NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `sort_order` `sort_order` varchar(48) DEFAULT NULL";
-
+						
+						//1.6
+						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX folder, ADD INDEX folder(folder(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX filename, ADD INDEX filename(filename(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_news DROP INDEX titlelink, ADD INDEX titlelink(titlelink(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_news_categories DROP INDEX titlelink, ADD INDEX titlelink(titlelink(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_pages DROP INDEX titlelink, ADD INDEX titlelink(titlelink(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_search_cache DROP INDEX criteria, ADD INDEX criteria(criteria(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD INDEX name(name(191))";
+						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {

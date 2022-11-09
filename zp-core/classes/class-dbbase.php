@@ -681,7 +681,6 @@ class dbBase {
 		return array();
 	}
 	
-
 	/**
 	 * Checks if the database support utf8mb4 or ut8mb4_520 encodings
 	 * 
@@ -782,14 +781,21 @@ class dbBase {
 	}
 
 	/**
-	 * Converts a database to utf8mb4
+	 * Converts ab utf8 database to utf8mb4
 	 * 
 	 * @param bool $force_conversion default false so only tables that have no non utf8* columns are converted
 	 */
 	function convertDatabaseToUtf8mb4($force_conversion = false) {
-		return false; // not yet implemented
+		if (($force_conversion || $this->isUtf8System('database', 'any')) && $this->hasUtf8mb4Support('general')) {
+			$collation = 'utf8mb4_unicode_ci';
+			if ($this->hasUtf8mb4Support('utf8mb4_520')) {
+				$collation = 'utf8mb4_unicode_520_ci';
+			}
+			//return $this->query('ALTER DATABASE '. $this->mysql_database .' CHARACTER SET = utf8mb4 COLLATE = ' . $collation);
+		}
+		return false; 
 	}
-	
+
 	/**
 	 * Checks if all columns of a table are utf8
 	 * 
@@ -856,10 +862,10 @@ class dbBase {
 	 * 
 	 * @param string $table Tablename including prefix
 	 * @param string $check_charset 'utf8', 'utf8mb4' or "any" for any utf8*
-	 * @param boolean $fieldcheck Default false, set to true if all fields matching should also the condition
+	 * @param boolean $fieldcheck Default true Table counts as utf8 if all text fields use some utf8 collation, otherwise only the table itself
 	 * @return boolean
 	 */
-	function isUTF8Table($table, $check_charset = 'any', $fieldcheck = false) {
+	function isUTF8Table($table, $check_charset = 'any', $fieldcheck = true) {
 		if ($this->connection) {
 			$table_details = $this->querySingleRow('SHOW TABLE STATUS LIKE ' . $this->quote($table));
 			if (!$table_details) {
@@ -878,7 +884,7 @@ class dbBase {
 	}
 
 	/**
-	 * Converts tables to utf8mb4 if it is alreay 
+	 * Converts a utf8 table to utf8mb4 collation
 	 * 
 	 * Partly adapted from WordPress' maybe_convert_table_to_utf8mb4()
 	 * 
@@ -892,18 +898,33 @@ class dbBase {
 		if ($this->connection) {
 			if ($this->isUTF8Table($table, 'utf8mb4')) {
 				return true;
-			} else if ($this->isUTF8Table($table, 'any')) {
+			} else if (($this->isUTF8Table($table, 'any') || $force_conversion) && $this->hasUtf8mb4Support('general')) {
 				$collation = 'utf8mb4_unicode_ci';
 				if ($this->hasUtf8mb4Support('utf8mb4_520')) {
 					$collation = 'utf8mb4_unicode_520_ci';
 				}
 				// convert table
-				//$converted = $this->query( 'ALTER TABLE ' . $table . ' CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
-				// 
-				// repair and optimize
+				$table_converted = $this->query('ALTER TABLE ' . $table . ' CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
+				if ($table_converted) {
+					// convert text fields
+					$columns = $this->getFields(substr($table, strlen($this->mysql_prefix)));
+					if ($columns) {
+						foreach ($columns as $column) {
+							if ($column['Collation']) {
+								$query = 'ALTER TABLE ' . $table . ' CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . ' CHARACTER SET utf8mb4 COLLATE ' . $collation;
+								$this->query($query);
+							}
+						}
+					}
+					$this->query('REPAIR TABLE ' . $table);
+					$this->query('OPTIMIZE TABLE ' . $table);
+					return true;
+				} else {
+					debuglog(sprintf(gettext('The table %1$s could not be concerted to %2$s collation'), $table, $collation));
+					return false;
+				}
 			} else {
-				// not utf8
-				return false; 
+				debuglog(sprintf(gettext('The table %s could not be concerted utf8mb4 collation because it is not using any utf8_* collation'), $table));
 			}
 		}
 		return false;
