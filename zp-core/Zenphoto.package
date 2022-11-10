@@ -80,7 +80,6 @@ themes/garland/themeoptions.php
 themes/garland/zen.css
 themes/zenpage
 themes/zenpage/404.php
-themes/zenpage/album-special.php
 themes/zenpage/album.php
 themes/zenpage/archive.php
 themes/zenpage/contact.php
@@ -88,7 +87,6 @@ themes/zenpage/favorites.php
 themes/zenpage/footer.php
 themes/zenpage/functions.php
 themes/zenpage/gallery.php
-themes/zenpage/image-special.php
 themes/zenpage/image.php
 themes/zenpage/images
 themes/zenpage/images/50percent.png
@@ -685,7 +683,7 @@ zp-core/libs/functions-encryption.php
 zp-core/libs/functions-gettext.php
 zp-core/libs/functions-htmlawed.php
 zp-core/libs/functions-kses.php
-zp-core/libs/functions-utf8-multibyte.php
+zp-core/libs/functions-utf8.php
 zp-core/license.php
 zp-core/load_objectClasses.php
 zp-core/locale
@@ -813,7 +811,6 @@ zp-core/password.php
 zp-core/pluginDoc.php
 zp-core/rewrite-rules.txt
 zp-core/setup.php
-zp-core/site_upgrade
 zp-core/template-filters.php
 zp-core/template-functions.php
 zp-core/utilities
@@ -1849,4 +1846,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1851
+1848
