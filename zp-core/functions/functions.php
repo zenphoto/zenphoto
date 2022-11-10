@@ -1544,7 +1544,7 @@ function getNotViewableImages() {
 	}
 	$hidealbums = getNotViewableAlbums();
 	$where = '';
-	if (!is_null($hidealbums)) {
+	if ($hidealbums) {
 		$where = ' OR `albumid` in (' . implode(',', $hidealbums) . ')';
 	}
 	if (is_null($_zp_not_viewable_image_list)) {
