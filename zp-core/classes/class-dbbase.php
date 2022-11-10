@@ -924,7 +924,7 @@ class dbBase {
 					return false;
 				}
 			} else {
-				debuglog(sprintf(gettext('The table %s could not be converted utf8mb4 collation because it is not using any utf8_* collation'), $table));
+				debuglog(sprintf(gettext('The table %s could not be converted to utf8mb4 collation because it is not using any utf8_* collation'), $table));
 			}
 		}
 		return false;
