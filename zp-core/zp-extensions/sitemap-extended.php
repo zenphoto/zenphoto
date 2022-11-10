@@ -357,9 +357,7 @@ class sitemap {
 				if ($timestamp == 0) {
 					$date = $obj->getDatetime();
 				} else {
-					return gmstrftime('%Y-%m-%dT%H:%M:%SZ', $timestamp);
-					// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
-					// return gmstrftime(DATE_ISO8601, $timestamp);
+					return gmdate(DATE_ISO8601, $timestamp);
 				}
 				break;
 			case 'lastchange':
@@ -367,8 +365,6 @@ class sitemap {
 				break;
 		}
 		return sitemap::getISO8601Date($date);
-		// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
-		// return gmstrftime(DATE_ISO8601, strtotime($date));
 	}
 
 	/**
@@ -1032,18 +1028,14 @@ class sitemap {
 
 	/**
 	 * Returns an ISO-8601 compliant date/time string for the given date/time.
-	 * While PHP5 can use the date format constant DATE_ISO8601, this function is designed to allow PHP4 use as well.
-	 * Eventually it can be deprecated, by:
-	 *   1. Replacing parameterless references to this function with date(DATE_ISO8601)
-	 *   2. Replacing references to this function in sitemap_getDateformat as documented there
-	 *
 	 */
 	static function getISO8601Date($date = '') {
 		if (empty($date)) {
-			return gmstrftime('%Y-%m-%dT%H:%M:%SZ');
+			$datetime = new DateTimeImmutable();
 		} else {
-			return gmstrftime('%Y-%m-%dT%H:%M:%SZ', strtotime($date));
+			$datetime = new DateTimeImmutable(strtotime($date));
 		}
+		return $datetime->format(DateTimeInterface::ATOM );
 	}
 
 	static function printAvailableSitemaps() {
