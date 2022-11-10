@@ -920,11 +920,11 @@ class dbBase {
 					$this->query('OPTIMIZE TABLE ' . $table);
 					return true;
 				} else {
-					debuglog(sprintf(gettext('The table %1$s could not be concerted to %2$s collation'), $table, $collation));
+					debuglog(sprintf(gettext('The table %1$s could not be converted to %2$s collation'), $table, $collation));
 					return false;
 				}
 			} else {
-				debuglog(sprintf(gettext('The table %s could not be concerted utf8mb4 collation because it is not using any utf8_* collation'), $table));
+				debuglog(sprintf(gettext('The table %s could not be converted utf8mb4 collation because it is not using any utf8_* collation'), $table));
 			}
 		}
 		return false;
