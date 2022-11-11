@@ -754,19 +754,19 @@ function printLangAttribute($locale = null) {
  * @since ZenphotoCMS 1.6
  * 
  * @param string $format A compatible date format string like Y-m-d (also default)
- * @param string $datetime A date following the same date formats. Convert timestamps via strtotime() first, If empty default is "now"
+ * @param string $datetime A date string following the same date formats. Convert timestamps via strtotime() first, If empty default is "now"
  * @return string
  */
 function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	if (empty($datetime)) {
-		$datestring = 'now';
+		$datetime = 'now';
 	}
 	if (extension_loaded('intl')) {
 		$date = new DateTimeImmutable($datetime);
-		return $date->format($format);
 	} else {
-		return date($format, $datetime);
+		$date = new DateTime($datetime);
 	}
+	return $date->format($format);
 }
 
 $_zp_locale_subdomains = getLanguageSubdomains();
