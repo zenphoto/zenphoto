@@ -683,8 +683,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		$archivedate = $_zp_post_date;
 		if ($mode == "formatted") {
-			$date = new DateTimeImmutable(strtotime($archivedate));
-			$archivedate = $date->format($format);
+			$archivedate = getFormattedLocaleDate($format, strtotime($archivedate));
 		}
 		return $archivedate;
 	}

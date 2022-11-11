@@ -1031,11 +1031,11 @@ class sitemap {
 	 */
 	static function getISO8601Date($date = '') {
 		if (empty($date)) {
-			$datetime = new DateTimeImmutable();
+			$datetime = 'now';
 		} else {
-			$datetime = new DateTimeImmutable(strtotime($date));
+			$datetime = strtotime($date);
 		}
-		return $datetime->format(DateTimeInterface::ATOM );
+		return getFormattedLocaleDate(DateTimeInterface::ATOM, $datetime);
 	}
 
 	static function printAvailableSitemaps() {

@@ -747,4 +747,26 @@ function printLangAttribute($locale = null) {
 	echo ' lang="' . sanitize(getLangAttributeLocale($locale)) . '"';
 }
 
+/**
+ * Returns a locale aware - e.g. translated day and month names -  formatted date if the native PHP extension intl is available.
+ * Otherwise returns standard formatted date.
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $format A compatible date format string like Y-m-d (also default)
+ * @param string $datetime A date following the same date formats. Convert timestamps via strtotime() first, If empty default is "now"
+ * @return string
+ */
+function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
+	if (empty($datetime)) {
+		$datestring = 'now';
+	}
+	if (extension_loaded('intl')) {
+		$date = new DateTimeImmutable($datetime);
+		return $date->format($format);
+	} else {
+		return date($format, $datetime);
+	}
+}
+
 $_zp_locale_subdomains = getLanguageSubdomains();
