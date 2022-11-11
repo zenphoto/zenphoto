@@ -567,8 +567,8 @@ function printArticleDatesDropdown($pagenumber) {
 					$year = "no date";
 					$month = "";
 				} else {
-					$year = getFormattedLocaleDate('Y', strtotime($key));
-					$month = getFormattedLocaleDate('F', strtotime($key));
+					$year = getFormattedLocaleDate('Y', $key);
+					$month = getFormattedLocaleDate('F', $key);
 				}
 				if (isset($_GET['category'])) {
 					$catlink = "&amp;category=" . sanitize($_GET['category']);

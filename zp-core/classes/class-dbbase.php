@@ -906,16 +906,6 @@ class dbBase {
 				// convert table
 				$table_converted = $this->query('ALTER TABLE ' . $table . ' CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
 				if ($table_converted) {
-					// convert text fields
-					$columns = $this->getFields(substr($table, strlen($this->mysql_prefix)));
-					if ($columns) {
-						foreach ($columns as $column) {
-							if ($column['Collation']) {
-								$query = 'ALTER TABLE ' . $table . ' CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . ' CHARACTER SET utf8mb4 COLLATE ' . $collation;
-								$this->query($query);
-							}
-						}
-					}
 					$this->query('REPAIR TABLE ' . $table);
 					$this->query('OPTIMIZE TABLE ' . $table);
 					return true;

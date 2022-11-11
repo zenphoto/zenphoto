@@ -683,7 +683,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		$archivedate = $_zp_post_date;
 		if ($mode == "formatted") {
-			$archivedate = getFormattedLocaleDate($format, strtotime($archivedate));
+			$archivedate = getFormattedLocaleDate( $format, $archivedate);
 		}
 		return $archivedate;
 	}
@@ -698,7 +698,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
  * @param string $format If $mode="formatted" how the date should be printed (see PHP's date() function for the requirements)
  * @return string
  */
-function printCurrentNewsArchive($before = '', $mode = 'formatted', $format = '%B %Y') {
+function printCurrentNewsArchive($before = '', $mode = 'formatted', $format = 'F Y') {
 	if ($date = getCurrentNewsArchive($mode, $format)) {
 		if ($before) {
 			echo '<span class="beforetext">' . html_encode($before) . '</span>';

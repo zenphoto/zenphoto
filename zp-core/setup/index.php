@@ -2508,6 +2508,22 @@ if ($c <= 0) {
 										setup::log(sprintf(gettext('Query ( %s ) Success.'), $sql));
 									}
 								}
+								echo '<p>'.gettext("Begin converting UTF-8 tables to utf8mb4 collation").'</p>';
+								$alltables = $_zp_db->getTables();
+								if($alltables) {
+									foreach($alltables as $table) {
+										$success = $_zp_db->convertTableToUtf8mb4($table);
+										$convert_error = $_zp_db->getError();
+										if ($success) {
+											echo '<img src="'.FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="">';
+											setup::log(sprintf(gettext('UTF-8 Table %s and its columns converted to utf8mb4 collation.'), $table));
+										} else if ($convert_error) {
+											echo '<img src="'.FULLWEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt="">';
+											setup::log(sprintf(gettext('ERROR: UTF-8 Table %1$s and/or its columns coulnd not be converted to utf8mb4 collation: %2$s'), $table, $error));
+										}
+									}
+								}
+								
 								echo "<p>";
 								if ($taskDisplay[substr($task, 0, 8)] == 'create') {
 									if ($createTables) {

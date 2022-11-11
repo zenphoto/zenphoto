@@ -3646,8 +3646,8 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 			$year = "no date";
 			$month = "";
 		} else {
-			$year = getFormattedLocaleDate('Y', strtotime($key));
-			$month = getFormattedLocaleDate('F', strtotime($key));
+			$year = getFormattedLocaleDate('Y', $key);
+			$month = getFormattedLocaleDate('F', $key);
 		}
 
 		if ($lastyear != $year) {
