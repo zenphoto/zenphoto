@@ -2856,7 +2856,7 @@ function unTagURLs($text) {
 		if ($serial) {
 			$text = serialize($text);
 		}
-	} else {
+	} else if (is_string($text)) {
 		$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
 	}
 	return $text;

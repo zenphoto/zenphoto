@@ -1903,7 +1903,9 @@ function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, 
 	if (!empty($pwd)) {
 		$attr['class'] .= " password_protected";
 	}
-	$attr['class'] = trim($attr['class']);
+	if (is_string($attr['class'])) {
+		$attr['class'] = trim($attr['class']);
+	}
 	if ($maxspace) {
 		$attr['src']= html_pathurlencode(getCustomAlbumThumb(null, $width, $height, null, null, null, null));
 	} else {

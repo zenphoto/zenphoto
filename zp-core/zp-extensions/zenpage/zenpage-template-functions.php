@@ -1418,7 +1418,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$currentitem_id = $_zp_current_category->getID();
 				$currentitem_parentid = $_zp_current_category->getParentID();
 			} else {
-				$currentitem_sortorder = NULL;
+				$currentitem_sortorder = '';
 				$currentitem_id = NULL;
 				$currentitem_parentid = NULL;
 			}
