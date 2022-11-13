@@ -3125,16 +3125,4 @@ function getCookieInfoMacro($macros) {
 }
 
 
-
-/**
- * Checks if a value is a timestamp
- * 
- * @since ZenphotoCMS 1.6
- *
- * from https://stackoverflow.com/questions/37324140/laravel-check-if-a-string-is-a-valid-timestamp-string
- */
-function isValidTimestamp($timestamp) {
-	return ((string) (int) $timestamp === $timestamp) && ($timestamp <= PHP_INT_MAX) && ($timestamp >= ~PHP_INT_MAX);
-}
-
 setexifvars();
