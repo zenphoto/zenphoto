@@ -2067,8 +2067,9 @@ function callUserFunction($function, $parameter = array()) {
  * Logs a deprecated notice including traces in the debuglog
  * 
  * @since ZenphotoCMS 1.6 - based on deprecated_functions::notify() from the deprecated_functions plugin written by sbillard 
+ * 
  * @param string $use Additional message, e.g. what to use instead
- * @param bool $parameter Set to true if this should notify about deprecated parameter usage (default false)
+ * @param bool|string $parameter Set to true if this should notify about deprecated parameter usage (default false), You can also set the name of the parameter if you want to notify about a specific parameter change only
  */
 function deprecationNotice($use, $parameter = false) {
 	$traces = @debug_backtrace();
