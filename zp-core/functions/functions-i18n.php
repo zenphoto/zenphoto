@@ -769,11 +769,11 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	// Check if timestamp
 	if (is_int($datetime)) { 
 		if (extension_loaded('intl')) {
-			$date_temp = new DateTimeImmutable();
+			$date = new DateTimeImmutable();
 		} else {
-			$date_temp = new DateTime();
+			$date = new DateTime();
 		}
-		$date = $date_temp->setTimestamp($datetime);
+		$date->setTimestamp($datetime);
 	} else {
 		if (extension_loaded('intl')) {
 			$date = new DateTimeImmutable($datetime);
@@ -787,10 +787,9 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	);
 	if (in_array($format_converted, $locale_preferred)) {
 		if (extension_loaded('intl')) {
-			$dateObj = new DateTimeImmutable($datetime);
 			$formatter = new IntlDateFormatter(getOption('locale'),
 							IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
-			$fdate = $formatter->format($dateObj);
+			$fdate = $formatter->format($date);
 		} else {
 			//fallback internation Y-m-d
 			$fdate = $date->format('Y-m-d');
