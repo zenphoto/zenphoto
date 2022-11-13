@@ -754,7 +754,7 @@ function printLangAttribute($locale = null) {
  * @since ZenphotoCMS 1.6
  * 
  * @param string $format A compatible date format string like Y-m-d (default)
- * @param string|int $datetime A date string following the same date formats or a timestamp. If empty "now" is used
+ * @param string|int $datetime A date() compatible string or a timestamp. If empty "now" is used
  * @return string
  */
 function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {

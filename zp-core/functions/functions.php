@@ -288,7 +288,7 @@ function lookupSortKey($sorttype, $default, $table) {
  * Returns a formated date for output
  *
  * @param string $format the "strftime" format string 
- * @param string|int $dt the date to be output. Can be a date format string or a timestamp
+ * @param string|int $dt the date to be output. Can be a date string or a timestamp
  * @return string
  */
 function zpFormattedDate($format, $dt) {
