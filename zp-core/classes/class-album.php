@@ -69,7 +69,8 @@ class Album extends AlbumBase {
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
 		if (!$_zp_gallery->getAlbumUseImagedate()) {
-			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
+			$date = getFormattedLocaleDate('Y-m-d H:i:s', $this->get('mtime'));
+			$this->setDateTime($date);
 		}
 		$title = trim($this->name);
 		if (!is_null($parentalbum)) {

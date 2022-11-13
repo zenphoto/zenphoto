@@ -287,13 +287,13 @@ function lookupSortKey($sorttype, $default, $table) {
 /**
  * Returns a formated date for output
  *
- * @param string $format the "strftime" format string
- * @param date $dt the date to be output
+ * @param string $format the "strftime" format string 
+ * @param string|int $dt the date to be output. Can be a date format string or a timestamp
  * @return string
  */
 function zpFormattedDate($format, $dt) {
 	global $_zp_utf8;
-	$fdate = strftime($format, $dt);
+	$fdate = getFormattedLocaleDate($format, $dt);
 	$charset = 'ISO-8859-1';
 	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
@@ -3122,6 +3122,19 @@ function getCookieInfoMacro($macros) {
 			'desc' => gettext('Set %1 to the section to get, set %2 to the h2-h6 for the headline element to use.')
 	);
 	return $macros;
+}
+
+
+
+/**
+ * Checks if a value is a timestamp
+ * 
+ * @since ZenphotoCMS 1.6
+ *
+ * from https://stackoverflow.com/questions/37324140/laravel-check-if-a-string-is-a-valid-timestamp-string
+ */
+function isValidTimestamp($timestamp) {
+	return ((string) (int) $timestamp === $timestamp) && ($timestamp <= PHP_INT_MAX) && ($timestamp >= ~PHP_INT_MAX);
 }
 
 setexifvars();

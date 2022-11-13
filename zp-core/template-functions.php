@@ -1400,8 +1400,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 		echo "</a>";
 		echo '<span class="betweentext">' . html_encode($between) . '</span>';
 		if ($format) {
-			$d = strtotime($d);
-			$d = strftime($format, $d);
+			$d = getFormattedLocaleDate($format, $d);
 		}
 		echo $d;
 	} else {

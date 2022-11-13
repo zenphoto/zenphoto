@@ -220,7 +220,8 @@ class Image extends MediaObject {
 		$this->imagetype = strtolower(get_class($this)) . 's';
 		$date = $this->get('date');
 		if (empty($date)) {
-			$this->set('date', strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
+			$dateformatted = getFormattedLocaleDate('Y-m-d H:i:s', $this->filemtime);
+			$this->set('date', $dateformatted);
 		}
 		return true;
 	}
@@ -491,7 +492,8 @@ class Image extends MediaObject {
 		$this->setCopyright($this->get('IPTCCopyright'));
 
 		if (empty($xdate)) {
-			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
+			$dateformatted = getFormattedLocaleDate('Y-m-d H:i:s', $this->filemtime);
+			$this->setDateTime($dateformatted);
 		}
 		$alb = $this->album;
 		if (!is_null($alb)) {

@@ -340,7 +340,7 @@ define('THUMB_WATERMARK', getOption('Image_watermark'));
 define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
 define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 
-define('DATE_FORMAT', getOption('date_format'));
+define('DATE_FORMAT', convertStrftimeFormat(getOption('date_format')));
 
 define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));
 define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
@@ -2096,10 +2096,84 @@ function deprecationNotice($use, $parameter = false) {
 	} else {
 		$flag = '';
 	}
-	if ($parameter) {
+	if ($parameter === true) {
 		$message = sprintf(gettext('Parameter usage of %1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . $use;
+	} else if(is_string($parameter)) {
+		$message = sprintf(gettext('Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation.'), $parameter, $fcn, $script, $line) . $use;
 	} else {
 		$message = sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated.'), $fcn, $script, $line) . $use;
 	}
 	trigger_error($message, E_USER_DEPRECATED);
+}
+
+/**
+ * Basic conversion for a (deprecated) strftime date format string
+ * 
+ * Returns a date format string compatible with date() / the datetime class
+ * 
+ * Note: There are two exceptions that return a non date format string value because there is no equivalent
+ * 
+ * - %X => 'locale_preferreddate_time'
+ * -'%x' => 'locale_preferreddate_notime'
+ * 
+ * zpFormattedDate() can handle these internally
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $format strftime date format string
+ * @return string
+ */
+function convertStrftimeFormat($format) {
+	$catalogue = array(
+//day
+			'%a' => 'D',
+			'%A' => 'l',
+			'%d' => 'd',
+			'%e' => 'j',
+			'%j' => 'z',
+			'%u' => 'N',
+			'%w' => 'w',
+//week
+			'%U' => 'W', // fallback no equivalent
+			'%V' => '', // no equivalent
+			'%W' => 'W',
+//month
+			'%b' => 'M',
+			'%B' => 'F',
+			'%h' => 'M',
+			'%m' => 'm',
+//year
+			'%C' => '', // no equivalent
+			'%g' => 'o',
+			'%G' => 'o', //fallback, no equivalent
+			'%y' => 'y',
+			'%Y' => 'Y',
+//time
+			'%H' => 'H',
+			'%k' => 'G',
+			'%I' => 'h',
+			'%l' => 'g',
+			'%M' => 'i',
+			'%p' => 'A',
+			'%P' => 'a',
+			'%r' => 'h:i:s A',
+			'%R' => 'H:i',
+			'%S' => 's',
+			'%T' => 'H:i:s',
+			'%X' => 'locale_preferreddate_time',  // function needs to handle display internally
+			'%z' => 'Z',
+			'%Z' => 'T',
+//time and date stamps
+			'%c' => 'D M j H:i:s Y',
+			'%D' => 'm/d/Y',
+			'%F' => 'Y-m-d',
+			'%s' => 'U',
+			'%x' => 'locale_preferreddate_notime', // function needs to handle display internally
+// misc just skipped…
+			'%n' => '', 
+			'%t' => '', 
+			'%%' => '' 
+	);
+	$oldformat = array_keys($catalogue);
+	return str_replace($oldformat, $catalogue, $format);
 }

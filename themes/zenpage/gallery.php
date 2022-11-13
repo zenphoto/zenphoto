@@ -35,6 +35,10 @@ if (!defined('WEBPATH'))
 				</div>
 				<div id="content-left">
 					<?php
+					$date = '%x';
+					echo 'oldformat: '. $date . "<br>";
+					echo 'newformat: '. convertStrftimeFormat($date) . "<br>";
+					
 					if (!extensionEnabled('zenpage') || ($_zp_gallery_page == 'gallery.php' || ($_zp_gallery_page == 'index.php' && !getOption("zenpage_zp_index_news")))) {
 						?>
 						<?php printGalleryDesc(); ?>

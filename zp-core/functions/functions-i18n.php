@@ -748,25 +748,57 @@ function printLangAttribute($locale = null) {
 }
 
 /**
- * Returns a locale aware - e.g. translated day and month names -  formatted date if the native PHP extension intl is available.
+ * Returns a locale aware - e.g. translated day and month names -  formatted date. Requires the PHP intl extension to work properly
  * Otherwise returns standard formatted date.
  * 
  * @since ZenphotoCMS 1.6
  * 
- * @param string $format A compatible date format string like Y-m-d (also default)
- * @param string $datetime A date string following the same date formats. Convert timestamps via strtotime() first, If empty default is "now"
+ * @param string $format A compatible date format string like Y-m-d (default)
+ * @param string|int $datetime A date string following the same date formats or a timestamp. If empty "now" is used
  * @return string
  */
 function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	if (empty($datetime)) {
 		$datetime = 'now';
 	}
-	if (extension_loaded('intl')) {
-		$date = new DateTimeImmutable($datetime);
-	} else {
-		$date = new DateTime($datetime);
+	// Fallback for deprecated strftime format
+	$format_converted = convertStrftimeFormat($format);
+	if ($format_converted != $format) {
+		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use stanadard date() compatible formatting or a timestamp instead.'), true);
 	}
-	return $date->format($format);
+	// Check if timestamp
+	if (is_int($datetime)) { 
+		if (extension_loaded('intl')) {
+			$date_temp = new DateTimeImmutable();
+		} else {
+			$date_temp = new DateTime();
+		}
+		$date = $date_temp->setTimestamp($datetime);
+	} else {
+		if (extension_loaded('intl')) {
+			$date = new DateTimeImmutable($datetime);
+		} else {
+			$date = new DateTime($datetime);
+		}
+	}
+	$locale_preferred = array(
+			'locale_preferreddate_time',
+			'locale_preferreddate_notime'	
+	);
+	if (in_array($format_converted, $locale_preferred)) {
+		if (extension_loaded('intl')) {
+			$dateObj = new DateTimeImmutable($format_converted);
+			$formatter = new IntlDateFormatter(getOption('locale'),
+							IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+			$fdate = $formatter->format($dateObj);
+		} else {
+			//fallback internation Y-m-d
+			$fdate = $date->format('Y-m-d');
+		}
+	} else {
+		$fdate = $date->format($format_converted);
+	}
+	return $fdate;
 }
 
 $_zp_locale_subdomains = getLanguageSubdomains();
