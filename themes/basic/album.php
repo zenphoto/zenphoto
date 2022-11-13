@@ -27,7 +27,7 @@ if (!defined('WEBPATH'))
 					<span>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb(); ?>
 					</span>
-					<?php printAlbumTitle(); ?>
+					<?php printAlbumTitle(); printCurrentPageAppendix(); ?>
 				</h2>
 			</div>
 			<div id="padbox">

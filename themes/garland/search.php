@@ -82,7 +82,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printSearchBreadcrumb(' » '); ?>
+										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printSearchBreadcrumb(' » '); printCurrentPageAppendix(); ?>
 									</h2>
 
 									<?php

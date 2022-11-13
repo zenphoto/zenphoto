@@ -18,11 +18,11 @@ if (!defined('WEBPATH')) die();
 
 <div data-role="page" id="mainpage">
 
-		<?php jqm_printMainHeaderNav(); ?>
+	<?php jqm_printMainHeaderNav(); ?>
 	
 	<div class="ui-content" role="main">	
 		<div class="content-primary">
-		<h2>Gallery</h2>
+		<h2>Gallery<?php printCurrentPageAppendix(); ?></h2>
 		<?php printGalleryDesc(); ?>
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 		<ul data-role="listview" data-inset="true">

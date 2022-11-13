@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 					<span>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); ?></a>
 					</span>
-					<?php printSearchBreadcrumb(' | '); ?>
+					<?php printSearchBreadcrumb(' | ');  printCurrentPageAppendix(); ?>
 				</h2>
 			</div>
 			<div id="padbox">

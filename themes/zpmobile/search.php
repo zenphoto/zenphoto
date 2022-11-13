@@ -23,7 +23,7 @@ if (!defined('WEBPATH'))
 			<div class="ui-content" role="main">
 				<div class="content-primary">
 
-					<h2><?php printSearchBreadcrumb(); ?></h2>
+					<h2><?php printSearchBreadcrumb(); printCurrentPageAppendix(); ?></h2>
 					<?php
 					$zenpage = extensionEnabled('zenpage');
 					$numimages = getNumImages();

@@ -4595,5 +4595,30 @@ function printImageCopyrightNotice($before = '', $after = '', $linked = true) {
 	printCopyrightNotice($before, $after, $linked, 'image' );
 }
 
+/**
+ * Gets the current page number if it is larger than 1 for use on paginated pages for SEO reason to avoid duplicate titles
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $before Text to add before the page number. Default ' (';
+ * @param string $after Text to add ager the page number. Default ')';
+ * @return string
+ */
+function getCurrentPageAppendix($before = ' (', $after =')') {
+	if(getCurrentPage() > 1) {
+		return $before . getCurrentPage() . $after;
+	}
+}
+/**
+ * Prints the current page number if it is larger than 1 for use on paginated pages for SEO reason to avoid duplicate titles
+ * 
+ * @since ZenphotoCMS 1.6
+ * 
+ * @param string $before Text to add before the page number. Default ' (';
+ * @param string $after Text to add ager the page number. Default ')';
+ */
+function printCurrentPageAppendix($before = ' (', $after =')') {
+	echo getCurrentPageAppendix($before, $after);
+}
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');
-?>

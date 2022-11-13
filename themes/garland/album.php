@@ -42,7 +42,7 @@ $map = function_exists('printGoogleMap');
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); echo html_encode(getAlbumTitle()); ?>
+										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); echo html_encode(getAlbumTitle()); printCurrentPageAppendix(); ?>
 									</h2>
 									<?php printAlbumDesc(); ?>
 									<?php printCodeblock(1); ?>

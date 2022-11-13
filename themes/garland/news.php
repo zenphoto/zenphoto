@@ -46,6 +46,7 @@ if (!defined('WEBPATH'))
 											printCurrentNewsCategory(" » ");
 											printNewsTitle(" » ");
 											printCurrentNewsArchive(" » ");
+											printCurrentPageAppendix(); 
 											?>
 										</h2>
 										<?php

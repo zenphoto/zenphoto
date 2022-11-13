@@ -24,7 +24,7 @@ if (!defined('WEBPATH')) die(); ?>
 
 	<div class="ui-content" role="main">
 		<div class="content-primary">
-		<h2 class="breadcrumb"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a> <?php printParentBreadcrumb('','',''); ?> <?php printAlbumTitle();?></h2>
+		<h2 class="breadcrumb"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a> <?php printParentBreadcrumb('','',''); ?> <?php printAlbumTitle(); printCurrentPageAppendix(); ?></h2>
 		<?php printAlbumDesc(); ?>
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 		<ul data-role="listview" data-inset="true">
