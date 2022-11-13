@@ -787,7 +787,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	);
 	if (in_array($format_converted, $locale_preferred)) {
 		if (extension_loaded('intl')) {
-			$dateObj = new DateTimeImmutable($format_converted);
+			$dateObj = new DateTimeImmutable($datetime);
 			$formatter = new IntlDateFormatter(getOption('locale'),
 							IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
 			$fdate = $formatter->format($dateObj);
