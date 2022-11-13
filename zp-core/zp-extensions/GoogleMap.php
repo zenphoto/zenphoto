@@ -28,6 +28,7 @@ $plugin_notice = array(
 );
 				
 $plugin_author = 'Stephen Billard (sbillard), Vincent Bourganel (vincent3569)';
+$plugin_deprecated = true;
 $plugin_category = gettext('Misc');
 
 

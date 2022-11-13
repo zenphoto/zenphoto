@@ -73,6 +73,7 @@ $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia extens
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = ((getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : extensionEnabled('class-video')) ? false : gettext('The class-video plugin must be enabled for video support.');
 $plugin_category = gettext('Media');
+$plugin_deprecated = true;
 $option_interface = 'jplayer_options';
 
 if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {

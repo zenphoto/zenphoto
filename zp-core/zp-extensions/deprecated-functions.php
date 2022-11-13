@@ -33,6 +33,7 @@ $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
 $plugin_category = gettext('Development');
+$plugin_deprecated = true;
 $plugin_is_filter = 900 | CLASS_PLUGIN;
 
 if (OFFSET_PATH == 2)

@@ -252,7 +252,7 @@ foreach($themes as $theme => $themeinfo) {
 			echo processExtensionVariable($themeinfo['desc']); 
 			if(array_key_exists('deprecated', $themeinfo)) {
 				$theme_deprecated = processExtensionVariable($themeinfo['deprecated']);
-				if (empty($theme_deprecated)) {
+				if (is_bool($theme_deprecated) || empty($theme_deprecated)) {
 					$theme_deprecated = gettext('This theme will be removed in future versions.');
 				}
 				echo '<div class="warningbox"><strong>' . gettext('Deprecated') . ':</strong> ' . $theme_deprecated . '</div>';

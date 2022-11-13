@@ -16,6 +16,7 @@ $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
 $plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
 $plugin_category = gettext('Media');
+$plugin_deprecated = true;
 $option_interface = 'bxslider';
 
 /**

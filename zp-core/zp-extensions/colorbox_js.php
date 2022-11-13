@@ -25,6 +25,7 @@ $plugin_is_filter = 800 | THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
 $plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself.');
 $plugin_author = 'Stephen Billard (sbillard)';
+$plugin_deprecated = true;
 $plugin_category = gettext('Media');
 $option_interface = 'colorbox';
 
