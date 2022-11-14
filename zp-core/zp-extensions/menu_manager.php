@@ -46,14 +46,14 @@ class menu_manager {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
+		global $_zp_common_truncate_handler;
 
 		$options = array(
 				gettext('Truncate indicator*') => array(
 						'key' => 'menu_truncate_indicator',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 2,
-						'disabled' => $_common_truncate_handler,
+						'disabled' => $_zp_common_truncate_handler,
 						'desc' => gettext('Append this string to truncated titles.')),
 				gettext('Truncate titles*') => array(
 						'key' => 'menu_truncate_string',
@@ -61,14 +61,14 @@ class menu_manager {
 						'order' => 1,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
-		if ($_common_truncate_handler) {
+		if ($_zp_common_truncate_handler) {
 			$options['note'] = array(
 					'key' => 'menu_truncate_note',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 8,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+					'desc' => '<p class="notebox">' . $_zp_common_truncate_handler . '</p>');
 		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
+			$_zp_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
 			$options['note'] = array(
 					'key' => 'menu_truncate_note',
 					'type' => OPTION_TYPE_NOTE,

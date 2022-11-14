@@ -1092,40 +1092,40 @@ function getImageURI($args, $album, $image, $mtime) {
  * @param string $which either 'allowed_tags' or 'style_tags' depending on which is wanted.
  */
 function getAllowedTags($which) {
-	global $_user_tags, $_style_tags, $_default_tags;
+	global $_zp_user_tags, $_zp_style_tags, $_zp_default_tags;
 	switch ($which) {
 		case 'allowed_tags':
-			if (is_null($_user_tags)) {
+			if (is_null($_zp_user_tags)) {
 				$user_tags = "(" . getOption('allowed_tags') . ")";
 				$allowed_tags = parseAllowedTags($user_tags);
 				if ($allowed_tags === false) { // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
-				$_user_tags = $allowed_tags;
+				$_zp_user_tags = $allowed_tags;
 			}
-			return $_user_tags;
+			return $_zp_user_tags;
 			break;
 		case 'style_tags':
-			if (is_null($_style_tags)) {
+			if (is_null($_zp_style_tags)) {
 				$style_tags = "(" . getOption('style_tags') . ")";
 				$allowed_tags = parseAllowedTags($style_tags);
 				if ($allowed_tags === false) { // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
-				$_style_tags = $allowed_tags;
+				$_zp_style_tags = $allowed_tags;
 			}
-			return $_style_tags;
+			return $_zp_style_tags;
 			break;
 		case 'allowed_tags_default':
-			if (is_null($_default_tags)) {
+			if (is_null($_zp_default_tags)) {
 				$default_tags = "(" . getOption('allowed_tags_default') . ")";
 				$allowed_tags = parseAllowedTags($default_tags);
 				if ($allowed_tags === false) { // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
 					$allowed_tags = array();
 				}
-				$_default_tags = $allowed_tags;
+				$_zp_default_tags = $allowed_tags;
 			}
-			return $_default_tags;
+			return $_zp_default_tags;
 			break;
 	}
 	return array();

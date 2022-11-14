@@ -162,7 +162,7 @@ class zenpagecms {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
+		global $_zp_common_truncate_handler;
 		$options = array(
 				gettext('Enabled Zenpage items') => array(
 						'key' => 'enabled-zenpage-items',
@@ -231,25 +231,25 @@ class zenpagecms {
 				gettext('Truncate titles*') => array(
 						'key' => 'menu_truncate_string',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'disabled' => $_common_truncate_handler,
+						'disabled' => $_zp_common_truncate_handler,
 						'order' => 23,
 						'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
 				gettext('Truncate indicator*') => array(
 						'key' => 'menu_truncate_indicator',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'disabled' => $_common_truncate_handler,
+						'disabled' => $_zp_common_truncate_handler,
 						'order' => 24,
 						'desc' => gettext('Append this string to truncated titles.')),
 				
 		);
-		if ($_common_truncate_handler) {
+		if ($_zp_common_truncate_handler) {
 			$options['note'] = array(
 					'key' => 'menu_truncate_note',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 25,
-					'desc' => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+					'desc' => '<p class="notebox">' . $_zp_common_truncate_handler . '</p>');
 		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
+			$_zp_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
 			$options['note'] = array(
 					'key' => 'menu_truncate_note',
 					'type' => OPTION_TYPE_NOTE,

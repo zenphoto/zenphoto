@@ -70,9 +70,9 @@ class sitemapOptions {
 	}
 
 	function getOptionsSupported() {
-		global $_common_locale_type;
+		global $_zp_common_locale_type;
 		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
-		if (!$_common_locale_type) {
+		if (!$_zp_common_locale_type) {
 			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
 		$options = array(
@@ -203,17 +203,17 @@ class sitemapOptions {
 						'key' => 'dynamic_locale_subdomain',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14,
-						'disabled' => $_common_locale_type,
+						'disabled' => $_zp_common_locale_type,
 						'desc' => $localdesc)
 		);
-		if ($_common_locale_type) {
+		if ($_zp_common_locale_type) {
 			$options['note'] = array(
 					'key' => 'sitemap_locale_type',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 15,
-					'desc' => '<p class="notebox">' . $_common_locale_type . '</p>');
+					'desc' => '<p class="notebox">' . $_zp_common_locale_type . '</p>');
 		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
+			$_zp_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
 			$options['note'] = array(
 					'key' => 'sitemap_locale_type',
 					'type' => OPTION_TYPE_NOTE,

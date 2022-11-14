@@ -41,7 +41,7 @@ class print_album_menu {
 	}
 
 	function getOptionsSupported() {
-		global $_common_truncate_handler;
+		global $_zp_common_truncate_handler;
 		$options = array(gettext('"List" subalbum level') => array('key'		 => 'print_album_menu_showsubs', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 0,
 										'desc'	 => gettext('The depth of subalbum levels shown with the <code>printAlbumMenu</code> and <code>printAlbumMenuList</code> “List” option. Note: themes may override this default.')),
@@ -49,20 +49,20 @@ class print_album_menu {
 										'order'	 => 1,
 										'desc'	 => gettext('If checked, image and album counts will be included in the list. Note: Themes may override this option.')),
 						gettext('Truncate titles*')			 => array('key'			 => 'menu_truncate_string', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
+										'disabled' => $_zp_common_truncate_handler,
 										'order'		 => 6,
 										'desc'		 => gettext('Limit titles to this many characters. Zero means no limit.')),
 						gettext('Truncate indicator*')	 => array('key'			 => 'menu_truncate_indicator', 'type'		 => OPTION_TYPE_TEXTBOX,
-										'disabled' => $_common_truncate_handler,
+										'disabled' => $_zp_common_truncate_handler,
 										'order'		 => 7,
 										'desc'		 => gettext('Append this string to truncated titles.'))
 		);
-		if ($_common_truncate_handler) {
+		if ($_zp_common_truncate_handler) {
 			$options['note'] = array('key'		 => 'menu_truncate_note', 'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,
-							'desc'	 => '<p class="notebox">' . $_common_truncate_handler . '</p>');
+							'desc'	 => '<p class="notebox">' . $_zp_common_truncate_handler . '</p>');
 		} else {
-			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
+			$_zp_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
 			$options['note'] = array('key'		 => 'menu_truncate_note',
 							'type'	 => OPTION_TYPE_NOTE,
 							'order'	 => 8,

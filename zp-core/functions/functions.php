@@ -176,7 +176,7 @@ function tidyHTML($html) {
  * @return string
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
-	global $_user_tags;
+	global $_zp_user_tags;
 	$articlecontent = strval($articlecontent);
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
