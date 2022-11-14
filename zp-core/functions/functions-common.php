@@ -249,7 +249,7 @@ function html_encode($str) {
  */
 function html_encodeTagged($original, $allowScript = true) {
 	$tags = array();
-	$str = $original;
+	$str = strval($original);
 	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);

@@ -1797,7 +1797,7 @@ function getPasswordProtectImage($extra = '') {
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  * @param string $title option title attribute
  *  */
-function printAlbumThumbImage($alt, $class = NULL, $id = NULL , $title = null) {
+function printAlbumThumbImage($alt, $class = '', $id = '' , $title = '') {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeDefaultThumb($thumbobj);

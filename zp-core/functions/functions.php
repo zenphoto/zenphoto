@@ -177,6 +177,7 @@ function tidyHTML($html) {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator = false) {
 	global $_user_tags;
+	$articlecontent = strval($articlecontent);
 	if ($shorten && ($forceindicator || (mb_strlen($articlecontent) > $shorten))) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		$articlecontent = html_decode($articlecontent);
@@ -2454,6 +2455,7 @@ function reveal($content, $visible = false) {
  * @return string
  */
 function applyMacros($text) {
+	$text = strval($text);
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
 	foreach ($instances[0] as $instance => $macro_instance) {

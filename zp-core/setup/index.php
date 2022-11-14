@@ -546,7 +546,6 @@ $upgrade = $versioncheck['upgrade_text'];
 						?>
 						<ul>
 							<?php
-							
 							setup::checkmark($check, $release, $release, $release_message);
 						} else {
 							?>
