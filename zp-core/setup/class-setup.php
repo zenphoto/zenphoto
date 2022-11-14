@@ -81,7 +81,7 @@ class setup {
 	 * @param bool $stopAutorun True if a show (setup) stopping issue
 	 * @return int
 	 */
-	static function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
+	static function checkMark($check, $text, $text2, $msg, $stopAutorun = true, $display_success = false) {
 		global $_zp_setup_warn, $_zp_setup_moreid, $_zp_setup_primeid, $_zp_setup_autorun;
 		$classes = array(
 				'fail' => gettext('Fail: '),
@@ -873,6 +873,186 @@ class setup {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Checks if we are updating from an earlier version or reinstalling and returns an array with various info for the checkmark box
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return array
+	 */
+	static function checkPreviousVersion() {
+		$zp_versions = setup::getVersions();
+		$installsignature = getOption('zenphoto_install');
+		if ($installsignature) {
+			$install = unserialize($installsignature);
+			$prev_version = $install['ZENPHOTO'];
+		} else {
+			$prev_version = '';
+		}
+		$release_message = '';
+		if (empty($prev_version)) {
+			// pre 1.4.2 release, compute the version
+			$install = unserialize(getOption('zenphoto_release'));
+			$prev_version = $install['ZENPHOTO'];
+			if (empty($prev_version)) {
+				$release_text = gettext('Upgrade from before Zenphoto v1.2');
+				$prev_version = '1.x';
+				$skipped_releases = count($zp_versions);
+				$check = -1;
+			} 
+		} else {
+			preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
+			$current_version = $matches[0];
+			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
+			$prev_version = $matches2[0];
+		}
+		$skipped_releases = 0;
+		if (version_compare($current_version, $prev_version, '==')) {
+			// same version
+			$skipped_releases = 0;
+			$check = -2;
+			$release_text = gettext('Reinstalling current Zenphoto release');
+			$upgrade_text = gettext('reinstall');
+		} else if(version_compare($current_version, $prev_version, '>')) {
+			// previous version
+			$skipped_releases = 0;
+			$zp_versions = array_reverse($zp_versions);
+			foreach ($zp_versions as $zp_version) {
+				if (version_compare($prev_version, $zp_version, '==')) {
+					break;
+				} else {
+					$skipped_releases++;
+				}
+			}
+			$release_text_extra = '';
+			if ($skipped_releases) {
+				$check = -1;
+				$release_text_extra = ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $skipped_releases), $skipped_releases);
+				$release_message = gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.');
+			} else{
+				$check = -2;
+			}
+			$release_text = sprintf(gettext('Upgrade from Zenphoto v%s'), $prev_version) . $release_text_extra;
+			$upgrade_text = gettext('Update');
+		} else if(version_compare($current_version, $prev_version, '<')) {
+			// just in case we really catch a downgrade…
+			$check = 0; // fail!
+			$release_text = sprintf(gettext('Downgrade to Zenphoto v%s'), $current_version);
+			$release_message = gettext('Downgrades are not recommended and supported and can have serious unwanted side effects especially regarding database changes in newer versions.');
+			$upgrade_text = gettext('Downgrade');
+		}
+		return array(
+				'check' => $check,
+				'previous_version' => $prev_version,
+				'current_version' => $current_version,
+				'release_text' => $release_text,
+				'message_text' => $release_message,
+				'upgrade_text' => $upgrade_text,
+				'skipped_release' => $skipped_releases
+		);
+	}
+
+	/**
+	 * Returns am array with all release versions since 1.2
+	 * 
+	 * Note: THis needs to be kept current and updated with the previous version with every release
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return array
+	 */
+	static function getVersions() {
+		return array(
+				'1.2.0',
+				'1.2.1',
+				'1.2.2',
+				'1.2.3',
+				'1.2.4',
+				'1.2.5_RC1',
+				'1.2.5_RC2',
+				'1.2.5',
+				'1.2.6_RC1',
+				'1.2.6_RC2',
+				'1.2.6',
+				'1.2.7',
+				'1.2.8_RC1',
+				'1.2.8',
+				'1.2.9',
+				'1.3.0',
+				'1.3.1',
+				'1.3.1.1',
+				'1.3.1.2',
+				'1.4.0',
+				'1.4.0.1',
+				'1.4.0.2',
+				'1.4.0.3',
+				'1.4.0.4',
+				'1.4.1.1',
+				'1.4.1.2',
+				'1.4.1.3',
+				'1.4.1.4',
+				'1.4.1.5',
+				'1.4.1.6',
+				'1.4.1',
+				'1.4.2',
+				'1.4.2.1',
+				'1.4.2.2',
+				'1.4.2.3',
+				'1.4.2.4',
+				'1.4.3',
+				'1.4.3.1',
+				'1.4.3.2',
+				'1.4.3.3',
+				'1.4.3.4',
+				'1.4.3.5',
+				'1.4.4b',
+				'1.4.4',
+				'1.4.4.1',
+				'1.4.4.1a',
+				'1.4.4.1b',
+				'1.4.4.2',
+				'1.4.4.3',
+				'1.4.4.4',
+				'1.4.4.5',
+				'1.4.4.6',
+				'1.4.4.7',
+				'1.4.4.8',
+				'1.4.4.9',
+				'1.4.5',
+				'1.4.5.1',
+				'1.4.5.2',
+				'1.4.5.3',
+				'1.4.5.4',
+				'1.4.5.5',
+				'1.4.5.6',
+				'1.4.5.7',
+				'1.4.5.8',
+				'1.4.5.9',
+				'1.4.5.10',
+				'1.4.6-RC1',
+				'1.4.6-RC2',
+				'1.4.6',
+				'1.4.7',
+				'1.4.8',
+				'1.4.9',
+				'1.4.10',
+				'1.4.11',
+				'1.4.12',
+				'1.4.13',
+				'1.4.14',
+				'1.5',
+				'1.5.1',
+				'1.5.2',
+				'1.5.3',
+				'1.5.4',
+				'1.5.5',
+				'1.5.6',
+				'1.5.7',
+				'1.5.8',
+				'1.5.9'
+		);
 	}
 
 }

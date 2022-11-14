@@ -452,83 +452,12 @@ $taskDisplay = array(
 		'create' => gettext("create"),
 		'update' => gettext("update")
 );
-if ($i = getOption('zenphoto_install')) {
-	$install = unserialize($i);
-	$prevRel = $install['ZENPHOTO'];
-} else {
-	$prevRel = '';
-}
 
-if (empty($prevRel)) {
-	// pre 1.4.2 release, compute the version
-	$prevRel = getOption('zenphoto_release');
-	$zp_versions = array(
-			'1.2' => '2213',
-			'1.2.1' => '2635',
-			'1.2.2' => '2983',
-			'1.2.3' => '3427',
-			'1.2.4' => '3716',
-			'1.2.5' => '4022',
-			'1.2.6' => '4335',
-			'1.2.7' => '4741',
-			'1.2.8' => '4881',
-			'1.2.9' => '5088',
-			'1.3.0' => '5088',
-			'1.3.1' => '5736',
-			'1.4' => '6454',
-			'1.4.1' => '6506',
-			'x.x.x' => '99999999');
-	if (empty($prevRel)) {
-		$release = gettext('Upgrade from before Zenphoto v1.2');
-		$prevRel = '1.x';
-		$c = count($zp_versions);
-		$check = -1;
-	} else {
-		$c = 0;
-		foreach ($zp_versions as $rel => $build) {
-			if ($build > $prevRel) {
-				break;
-			} else {
-				$c++;
-				$release = sprintf(gettext('Upgrade from Zenphoto v%s'), $rel);
-			}
-		}
-		if ($c == count($zp_versions) - 1) {
-			$check = 1;
-			$release = gettext('Reinstalling current Zenphoto release');
-			$upgrade = gettext('reinstall');
-		} else {
-			$check = -1;
-			$c = count($zp_versions) - 1 - $c;
-		}
-	}
-} else {
-	preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
-	$rel = explode('.', $matches[0] . '.0');
-	preg_match('/[0-9,\.]*/', $prevRel, $matches);
-	$prevRel = explode('.', $matches[0] . '.0');
-	$release = sprintf(gettext('Upgrade from Zenphoto v%s'), $matches[0]);
-	$c = ($rel[0] - $prevRel[0]) * 100 + ($rel[1] - $prevRel[1]) * 10 + ($rel[1] - $prevRel[1]);
-	if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
-		$c = $c - 8; // there were only two 1.3.x releases
-	}
-	if ($prevRel[0] == 1 && $prevRel[1] <= 4) {
-		$c = $c - 10; // there were 14 1.4.x releases
-	} 
-	switch ($c) {
-		case 1:
-			$check = 1;
-			break;
-		default:
-			$check = -1;
-			break;
-	}
-}
-if ($c <= 0) {
-	$check = 1;
-	$release = gettext('Reinstalling current Zenphoto release');
-	$upgrade = gettext('reinstall');
-}
+$versioncheck = setup::checkPreviousVersion();
+$check = $versioncheck['check'];
+$release = $versioncheck['release_text'];
+$release_message = $versioncheck['message_text'];
+$upgrade = $versioncheck['upgrade_text'];
 ?>
 
 <!DOCTYPE html>
@@ -617,7 +546,8 @@ if ($c <= 0) {
 						?>
 						<ul>
 							<?php
-							setup::checkmark($check, $release, $release . ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $c), $c), gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
+							
+							setup::checkmark($check, $release, $release, $release_message);
 						} else {
 							?>
 							<ul>
