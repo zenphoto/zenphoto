@@ -2350,7 +2350,7 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_administrators ADD COLUMN `lastvisit` datetime default NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `sort_order` `sort_order` varchar(48) DEFAULT NULL";
 						
-						//1.6
+						//1.6 - utf8mb4 index limitation on some db configs
 						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX folder, ADD UNIQUE INDEX folder(folder(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX filename, ADD UNIQUE INDEX filename(filename(191), albumid)";
 						$sql_statements[] = "ALTER TABLE $tbl_news DROP INDEX titlelink, ADD UNIQUE INDEX titlelink(titlelink(191))";
@@ -2359,6 +2359,7 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`, ADD UNIQUE `unique_option` (name(95), `ownerid`, theme(95))";
+						$sql_statements[] = "ALTER TABLE $tbl_searches DROP INDEX criteria, ADD UNIQUE INDEX criteria(criteria(191))";
 						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
