@@ -85,7 +85,8 @@ class Video extends Image {
 			}
 			return;
 		}
-		$alts = explode(',', extensionEnabled('class-video_videoalt'));
+
+		$alts = explode(',', strval(getOption('class-video_videoalt'))); //extensionEnabled() must have been a mistake…
 		foreach ($alts as $alt) {
 			$this->videoalt[] = trim(strtolower($alt));
 		}

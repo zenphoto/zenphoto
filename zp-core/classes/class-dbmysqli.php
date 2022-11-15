@@ -137,7 +137,7 @@ class dbMySQLi extends dbBase {
 	 * @return string
 	 */
 	function quote($string, $addquotes = true) {
-		if ($this->connection) {
+		if ($this->connection && !is_null($string)) {
 			$escaped = $this->connection->real_escape_string($string);
 			if ($addquotes) {
 				return "'" . $escaped . "'";

@@ -1519,7 +1519,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				break;
 		}
 		if ($catcount) {
-			$level = max(1, count(explode('-', $itemsortorder)));
+			$level = max(1, count(explode('-', strval($itemsortorder))));
 			$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 							|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
 							|| (($option == 'list' || ($option == 'omit-top' && $level > 1)) && (($itemid == $currentitem_id) // current page

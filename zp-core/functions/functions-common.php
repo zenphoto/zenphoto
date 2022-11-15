@@ -505,7 +505,7 @@ function getSerializedArray($string, $disallow_classes = false) {
 		} else {
 			return array();
 		}
-	} else if (strlen($string) == 0 && !is_bool($string)) {
+	} else if (!is_bool($string) && strlen($string) == 0) {
 		return array();
 	} else {
 		return array($string);

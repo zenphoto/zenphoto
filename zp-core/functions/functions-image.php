@@ -448,10 +448,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				}
 			}
 		}
-
-		$imgEffects = explode(',', $effects);
-		if (in_array('gray', $imgEffects)) {
-			$_zp_graphics->imageGray($newim);
+		if (is_string($effects)) {
+			$imgEffects = explode(',', $effects);
+			if (in_array('gray', $imgEffects)) {
+				$_zp_graphics->imageGray($newim);
+			}
 		}
 		$newim = addWatermark($newim, $watermark_image, $imgfile);
 
@@ -548,7 +549,7 @@ function getImageRotation($imgfile) {
 				$rotation = $result['Orientation'];
 			}
 		}
-	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
+	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result) && is_string($result['EXIFOrientation'])) {
 		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
 		$rotation = $splits[0];
 	}

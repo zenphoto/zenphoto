@@ -20,7 +20,7 @@ global $_zp_rtl_css;
 		selector: "textarea.texteditor,textarea.content,textarea.desc,textarea.extracontent,textarea.texteditor",
 		language: "<?php echo $locale; ?>",
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
-		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
+		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
 		<?php } ?>	
 		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
