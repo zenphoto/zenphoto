@@ -953,10 +953,8 @@ class Image extends MediaObject {
 	 * @return string|null
 	 */
 	function getCopyrightNotice($locale = null) {
-		$copyright = trim($this->getCopyright($locale));
-		if (!empty($copyright)) {
-			$notice = $copyright;
-		} else {
+		$notice = trim($this->getCopyright($locale));
+		if (empty($notice)) {
 			$metadata = $this->getMetaData();
 			if (isset($metadata['IPTCCopyright']) && !empty($metadata['IPTCCopyright'])) {
 				$notice = $metadata['IPTCCopyright'];
@@ -966,7 +964,7 @@ class Image extends MediaObject {
 				$option = trim(getOption('copyright_image_notice'));
 				if (!empty($option)) {
 					$notice = $option;
-				} 
+				}
 			}
 		}
 		if (!empty(trim($notice))) {
@@ -974,7 +972,7 @@ class Image extends MediaObject {
 		}
 		return $notice;
 	}
-	
+
 	/**
 	 * Gets the general option "copyright_image_rightsholder" respectively "copyright_image_rightsholder_custom"
 	 * If set to "none" the following fallbacks are tried.

@@ -173,7 +173,7 @@ class ThemeObject extends PersistentObject {
 	 * @return int
 	 */
 	function getDateTime() {
-		return $this->get('date');
+		return strval($this->get('date'));
 	}
 
 	/**
