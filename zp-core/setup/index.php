@@ -2358,6 +2358,7 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_pages DROP INDEX titlelink, ADD UNIQUE INDEX titlelink(titlelink(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
+						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`, ADD UNIQUE `unique_option` (name(95), `ownerid`, theme(95))";
 						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
