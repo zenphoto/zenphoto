@@ -870,7 +870,7 @@ Authority::printPasswordFormJS();
 															gettext('25. Feb. 08 15:30')						 => 'd. M y H:i', //'%d. %b %y %H:%M',
 															gettext('25. Feb. 08')									 => 'd. M y', //'%d. %b %y',
 															gettext('25. February 2008 15:30')			 => 'd. F Y H:i', //'%d. %B %Y %H:%M',
-															gettext('25. February 2008')						 => 'd. M Y', //'%d. %B %Y',
+															gettext('25. February 2008')						 => 'd. F Y', //'%d. %B %Y',
 															gettext('25.02.08 15:30')								 => 'd.m.y H:i', //'%d.%m.%y %H:%M',
 															gettext('25.02.08')											 => 'd.m.y', //'%d.%m.%y',
 															gettext('25.02.2008 15:30')							 => 'd.m.Y H:i', //'%d.%m.%Y %H:%M',
