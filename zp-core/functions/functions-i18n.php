@@ -773,7 +773,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 		} else {
 			$date = new DateTime();
 		}
-		$date->setTimestamp($datetime);
+		$date = $date->setTimestamp($datetime);
 	} else {
 		if (extension_loaded('intl')) {
 			$date = new DateTimeImmutable($datetime);
@@ -795,7 +795,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 			$fdate = $date->format('Y-m-d');
 		}
 	} else {
-		$fdate = $date->format($format_converted);
+		$fdate = $date->format($format_converted); 
 	}
 	return $fdate;
 }
