@@ -4428,8 +4428,8 @@ function fullText($string1, $string2) {
  */
 function dateDiff($date1, $date2) {
 	$separators = array('', '-', '-', ' ', ':', ':');
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
-	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', strval($date1), $matches1);
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', strval($date2), $matches2);
 	if (empty($matches1)) {
 		$matches1 = array(0, 0, 0, 0, 0, 0, 0);
 	}
