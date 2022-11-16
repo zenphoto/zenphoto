@@ -122,14 +122,14 @@ class SearchEngine {
 		if (isset($_REQUEST['search'])) {
 			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['search'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
-			$this->words = NULL;
+			$this->words = '';
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
 				$this->dates = removeTrailingSlash(sanitize($_REQUEST['date'], 3));
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}
 			} else {
-				$this->dates = NULL;
+				$this->dates = '';
 			}
 		}
 		$this->fieldList = $this->parseQueryFields();
@@ -285,10 +285,10 @@ class SearchEngine {
 		if (!empty($w)) {
 			$r .= '&search=' . $w;
 		}
-		$d = trim($this->dates);
+		$d = trim(strval($this->dates));
 		if (!empty($d)) {
 			$r .= '&date=' . $d;
-			$d = trim($this->whichdates);
+			$d = trim(strval($this->whichdates));
 			if ($d != 'date') {
 				$r.= '&whichdates=' . $d;
 			}

@@ -3767,7 +3767,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
  * @param string $within set to true to search within current results, false to search fresh
  * @since 1.1.3
  */
-function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = NULL, $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL) {
+function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL) {
 	global $_zp_adminJS_loaded, $_zp_current_search;
 	$engine = new SearchEngine();
 	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {

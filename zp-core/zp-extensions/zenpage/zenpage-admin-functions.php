@@ -1143,7 +1143,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 		$itemsortorder = $itemobj->getSortOrder();
 		$itemid = $itemobj->getID();
 		if ($ismypage) {
-			$order = explode('-', $itemsortorder);
+			$order = explode('-', strval($itemsortorder));
 			$level = max(1, count($order));
 			if ($toodeep = $level > 1 && $order[$level - 1] === '') {
 				$rslt = true;

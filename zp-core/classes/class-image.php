@@ -921,7 +921,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	function getCopyright($locale = NULL) {
-		$text = $this->get('copyright');
+		$text = strval($this->get('copyright'));
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
