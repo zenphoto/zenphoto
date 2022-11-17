@@ -883,6 +883,8 @@ class setup {
 	 * @return array
 	 */
 	static function checkPreviousVersion() {
+		preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
+		$current_version = $matches[0];
 		$zp_versions = setup::getVersions();
 		$installsignature = getOption('zenphoto_install');
 		if ($installsignature) {
@@ -894,8 +896,15 @@ class setup {
 		$release_message = '';
 		if (empty($prev_version)) {
 			// pre 1.4.2 release, compute the version
-			$install = unserialize(getOption('zenphoto_release'));
-			$prev_version = $install['ZENPHOTO'];
+			$zenphoto_release = getOption('zenphoto_release');
+			if (!is_null($zenphoto_release)) {
+				$install = unserialize(getOption('zenphoto_release'));
+				if (is_array($install)) {
+					$prev_version = $install['ZENPHOTO'];
+				}
+			} else {
+				$prev_version = '';
+			}
 			if (empty($prev_version)) {
 				$release_text = gettext('Upgrade from before Zenphoto v1.2');
 				$prev_version = '1.x';
@@ -903,13 +912,16 @@ class setup {
 				$check = -1;
 			} 
 		} else {
-			preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
-			$current_version = $matches[0];
 			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
 			$prev_version = $matches2[0];
 		}
 		$skipped_releases = 0;
-		if (version_compare($current_version, $prev_version, '==')) {
+		if (empty($prev_version)) { // must be fresh install
+			$check = -2;
+			$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
+			$release_message = '';
+			$upgrade_text = false;
+		} else if (version_compare($current_version, $prev_version, '==')) {
 			// same version
 			$skipped_releases = 0;
 			$check = -2;
@@ -942,7 +954,7 @@ class setup {
 			$release_text = sprintf(gettext('Downgrade to Zenphoto v%s'), $current_version);
 			$release_message = gettext('Downgrades are not recommended and supported and can have serious unwanted side effects especially regarding database changes in newer versions.');
 			$upgrade_text = gettext('Downgrade');
-		}
+		} 
 		return array(
 				'check' => $check,
 				'previous_version' => $prev_version,
