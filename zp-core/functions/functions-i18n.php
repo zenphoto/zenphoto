@@ -757,6 +757,7 @@ function printLangAttribute($locale = null) {
  * @return string
  */
 function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
+	global $_zp_server_timezone;
 	if (empty($datetime)) {
 		$datetime = 'now';
 	}
@@ -786,15 +787,47 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	);
 	if (in_array($format_converted, $locale_preferred)) {
 		if (extension_loaded('intl')) {
-			$formatter = new IntlDateFormatter(getOption('locale'),
-							IntlDateFormatter::SHORT, IntlDateFormatter::SHORT);
+			switch($format_converted) {
+				case 'locale_preferreddate_time':
+					$formatter = new IntlDateFormatter(
+							SITE_LOCALE,
+							IntlDateFormatter::SHORT, 
+							IntlDateFormatter::SHORT);
+					break;
+				case 'locale_preferreddate_notime':
+					$formatter = new IntlDateFormatter(
+							SITE_LOCALE,
+							IntlDateFormatter::SHORT, 
+							IntlDateFormatter::NONE);
+					break;
+			}
 			$fdate = $formatter->format($date);
 		} else {
-			//fallback internation Y-m-d
+			//fallback international date Y-m-d
 			$fdate = $date->format('Y-m-d');
 		}
 	} else {
-		$fdate = $date->format($format_converted); 
+		if (extension_loaded('intl')) {
+			$catalogue = array(
+					'M' => 'MMM', // Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
+					'D' => 'EEE', // An abbreviated textual representation of the day	Sun through Sat
+					'l' => 'EEEE', // A full textual representation of the day	Sunday through Saturday
+					'F' => 'MMMM', // Full month name, based on the locale	January through December
+			);
+			$catalogue_old = array_keys($catalogue);
+			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
+			$dateformat = new IntlDateFormatter(
+    		SITE_LOCALE,
+    		IntlDateFormatter::FULL,
+    		IntlDateFormatter::FULL,
+   	 		$_zp_server_timezone,
+    		IntlDateFormatter::GREGORIAN,
+    		$format_intl
+			);
+			$fdate = $dateformat->format($datetime);
+		} else {
+			$fdate = $date->format($format_converted); 
+		}
 	}
 	return $fdate;
 }
