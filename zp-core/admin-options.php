@@ -658,7 +658,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php printf(gettext('Your server reports its time zone as: <code>%s</code>.'), $_zp_server_timezone); ?></p>
-										<p><?php printf(ngettext('Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here.', 'Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here.', $offset), $offset); ?></p>
+										<p><?php printf(gettext('Your time zone offset in hours is: %d. If your time zone is different from the servers, select the correct time zone here.'), $offset); ?></p>
 									</td>
 								</tr>
 								<tr>
