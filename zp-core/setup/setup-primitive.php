@@ -35,13 +35,11 @@ set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 
 // insure a correct timezone
-if (function_exists('date_default_timezone_set')) {
-	$level = error_reporting(0);
-	$_zp_server_timezone = date_default_timezone_get();
-	date_default_timezone_set($_zp_server_timezone);
-	@ini_set('date.timezone', $_zp_server_timezone);
-	error_reporting($level);
-}
+$level = error_reporting(0);
+$_zp_server_timezone = date_default_timezone_get();
+date_default_timezone_set($_zp_server_timezone);
+@ini_set('date.timezone', $_zp_server_timezone);
+error_reporting($level);
 
 $_options = array();
 function getOption($key) {

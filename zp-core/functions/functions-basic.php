@@ -261,13 +261,11 @@ define('GALLERY_SECURITY', @$data['gallery_security']);
 unset($data);
 
 // insure a correct timezone
-if (function_exists('date_default_timezone_set')) {
-	$level = error_reporting(0);
-	$_zp_server_timezone = date_default_timezone_get();
-	date_default_timezone_set($_zp_server_timezone);
-	@ini_set('date.timezone', $_zp_server_timezone);
-	error_reporting($level);
-}
+$level = error_reporting(0);
+$_zp_server_timezone = date_default_timezone_get();
+date_default_timezone_set($_zp_server_timezone);
+@ini_set('date.timezone', $_zp_server_timezone);
+error_reporting($level);
 
 // Set the memory limit higher just in case -- suppress errors if user doesn't have control.
 // 100663296 bytes = 96M

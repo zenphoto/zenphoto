@@ -643,38 +643,23 @@ Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								<tr>
-									<?php
-									if (function_exists('date_default_timezone_get')) {
-										$offset = timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
-										?>
-										<td width="175"><?php echo gettext("Time zone:"); ?></td>
-										<td width="350">
-											<?php
-											$zones = getTimezones();
-											?>
-											<select id="time_zone" name="time_zone">
-												<option value="" style="background-color:LightGray"><?php echo gettext('*not specified'); ?></option>
-												<?php generateListFromArray(array($tz), $zones, false, false); ?>
-											</select>
-										</td>
-										<td>
-											<p><?php printf(gettext('Your server reports its time zone as: <code>%s</code>.'), $_zp_server_timezone); ?></p>
-											<p><?php printf(ngettext('Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here.', 'Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here.', $offset), $offset); ?></p>
-										</td>
-										<?php
-									} else {
-										$offset = getOption('time_offset');
-										?>
-										<td width="175"><?php echo gettext("Time offset (hours):"); ?></td>
-										<td width="350">
-											<input type="text" size="3" name="time_offset" value="<?php echo html_encode($offset); ?>" />
-										</td>
-										<td>
-											<p><?php echo gettext("If you are in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."); ?></p>
-										</td>
-										<?php
-									}
+								<?php
+									$offset = timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
 									?>
+									<td width="175"><?php echo gettext("Time zone:"); ?></td>
+									<td width="350">
+										<?php
+										$zones = getTimezones();
+										?>
+										<select id="time_zone" name="time_zone">
+											<option value="" style="background-color:LightGray"><?php echo gettext('*not specified'); ?></option>
+											<?php generateListFromArray(array($tz), $zones, false, false); ?>
+										</select>
+									</td>
+									<td>
+										<p><?php printf(gettext('Your server reports its time zone as: <code>%s</code>.'), $_zp_server_timezone); ?></p>
+										<p><?php printf(ngettext('Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here.', 'Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here.', $offset), $offset); ?></p>
+									</td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("URL options:"); ?></td>
