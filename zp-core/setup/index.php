@@ -2450,7 +2450,7 @@ $upgrade = $versioncheck['upgrade_text'];
 											setup::log(sprintf(gettext('UTF-8 Table %s and its columns converted to utf8mb4 collation.'), $table));
 										} else if ($convert_error) {
 											echo '<img src="'.FULLWEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt="">';
-											setup::log(sprintf(gettext('ERROR: UTF-8 Table %1$s and/or its columns coulnd not be converted to utf8mb4 collation: %2$s'), $table, $error));
+											setup::log(sprintf(gettext('ERROR: UTF-8 Table %1$s and/or its columns coulnd not be converted to utf8mb4 collation: %2$s'), $table, $convert_error));
 										}
 									}
 								}
