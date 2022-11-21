@@ -512,7 +512,7 @@ function printBareGalleryDesc() {
  * Returns the name of the parent website as set by the "Website Title" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
  * 
- * œsince ZenphotoCMS 1.6
+ * @since ZenphotoCMS 1.6
  * 
  * @return string
  */
@@ -525,7 +525,7 @@ function getParentSiteTitle() {
  * Returns the URL of the main website as set by the "Website URL" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
  * 
- * œsince ZenphotoCMS 1.6
+ * @since ZenphotoCMS 1.6
  * 
  * @return string
  */
