@@ -786,7 +786,6 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'	
 	);
-	echo "Format: ". $format_converted . ' - ';
 	if (in_array($format_converted, $locale_preferred)) {
 		if (extension_loaded('intl')) {
 			switch($format_converted) {
@@ -821,7 +820,6 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
 			if ($format_intl != $format_converted) {
-				echo "Format-intl: " . $format_intl . ' – ';
 				$dateformat = new IntlDateFormatter(
 					$locale,
 					IntlDateFormatter::FULL,
