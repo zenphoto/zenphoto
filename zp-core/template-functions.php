@@ -535,6 +535,24 @@ function getParentSiteURL() {
 }
 
 /**
+ * @deprecated ZenphotoCMS 2.0: Use getParentSiteTitle() instead
+ * @return string
+ */
+function getMainSiteName() {
+	deprecationNotice(gettext('Use getParentSiteTitle() instead'));
+	return getParentSiteTitle();
+}
+
+/**
+ * @deprecated ZenphotoCMS 2.0: Use getParentSiteURL() instead
+ * @return string
+ */
+function getMainSiteURL() {
+	deprecationNotice(gettext('Use getParentSiteURL() instead'));
+	return getParentSiteURL();
+}
+
+/**
  * Returns the URL of the main gallery index page. If a custom index page is set this returns that page.
  * So this is not necessarily the home page of the site!
  * @return string
