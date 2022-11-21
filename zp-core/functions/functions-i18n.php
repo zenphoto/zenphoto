@@ -815,7 +815,8 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 					'l' => 'EEEE', // A full textual representation of the day	Sunday through Saturday
 					'F' => 'MMMM', // Full month name, based on the locale	January through December
 					'i' => 'mm', // Minute in hour…
-					'j' => 'M', // Minute in hour…
+					'd' => 'dd', // Month day number with leading zero
+					'j' => 'd' // Month day number without leading zero	
 			);
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
