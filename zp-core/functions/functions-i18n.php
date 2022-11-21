@@ -758,6 +758,7 @@ function printLangAttribute($locale = null) {
  */
 function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	global $_zp_server_timezone;
+	$locale = getUserLocale();
 	if (empty($datetime)) {
 		$datetime = 'now';
 	}
@@ -790,13 +791,13 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 			switch($format_converted) {
 				case 'locale_preferreddate_time':
 					$formatter = new IntlDateFormatter(
-							SITE_LOCALE,
+							$locale,
 							IntlDateFormatter::SHORT, 
 							IntlDateFormatter::SHORT);
 					break;
 				case 'locale_preferreddate_notime':
 					$formatter = new IntlDateFormatter(
-							SITE_LOCALE,
+							$locale,
 							IntlDateFormatter::SHORT, 
 							IntlDateFormatter::NONE);
 					break;
@@ -817,7 +818,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
 			$dateformat = new IntlDateFormatter(
-    		SITE_LOCALE,
+    		$locale,
     		IntlDateFormatter::FULL,
     		IntlDateFormatter::FULL,
    	 		$_zp_server_timezone,
