@@ -910,51 +910,51 @@ class setup {
 				$prev_version = '1.x';
 				$skipped_releases = count($zp_versions);
 				$check = -1;
-			} 
+			}
 		} else {
 			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
 			$prev_version = $matches2[0];
-		}
-		$skipped_releases = 0;
-		if (empty($prev_version)) { // must be fresh install
-			$check = -2;
-			$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
-			$release_message = '';
-			$upgrade_text = false;
-		} else if (version_compare($current_version, $prev_version, '==')) {
-			// same version
 			$skipped_releases = 0;
-			$check = -2;
-			$release_text = gettext('Reinstalling current Zenphoto release');
-			$upgrade_text = gettext('reinstall');
-		} else if(version_compare($current_version, $prev_version, '>')) {
-			// previous version
-			$skipped_releases = 0;
-			$zp_versions = array_reverse($zp_versions);
-			foreach ($zp_versions as $zp_version) {
-				if (version_compare($prev_version, $zp_version, '==')) {
-					break;
-				} else {
-					$skipped_releases++;
-				}
-			}
-			$release_text_extra = '';
-			if ($skipped_releases) {
-				$check = -1;
-				$release_text_extra = ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $skipped_releases), $skipped_releases);
-				$release_message = gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.');
-			} else{
+			if (empty($prev_version)) { // must be fresh install
 				$check = -2;
+				$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
+				$release_message = '';
+				$upgrade_text = false;
+			} else if (version_compare($current_version, $prev_version, '==')) {
+				// same version
+				$skipped_releases = 0;
+				$check = -2;
+				$release_text = gettext('Reinstalling current Zenphoto release');
+				$upgrade_text = gettext('reinstall');
+			} else if (version_compare($current_version, $prev_version, '>')) {
+				// previous version
+				$skipped_releases = 0;
+				$zp_versions = array_reverse($zp_versions);
+				foreach ($zp_versions as $zp_version) {
+					if (version_compare($prev_version, $zp_version, '==')) {
+						break;
+					} else {
+						$skipped_releases++;
+					}
+				}
+				$release_text_extra = '';
+				if ($skipped_releases) {
+					$check = -1;
+					$release_text_extra = ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $skipped_releases), $skipped_releases);
+					$release_message = gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.');
+				} else {
+					$check = -2;
+				}
+				$release_text = sprintf(gettext('Upgrade from Zenphoto v%s'), $prev_version) . $release_text_extra;
+				$upgrade_text = gettext('Update');
+			} else if (version_compare($current_version, $prev_version, '<')) {
+				// just in case we really catch a downgrade…
+				$check = 0; // fail!
+				$release_text = sprintf(gettext('Downgrade to Zenphoto v%s'), $current_version);
+				$release_message = gettext('Downgrades are not recommended and supported and can have serious unwanted side effects especially regarding database changes in newer versions.');
+				$upgrade_text = gettext('Downgrade');
 			}
-			$release_text = sprintf(gettext('Upgrade from Zenphoto v%s'), $prev_version) . $release_text_extra;
-			$upgrade_text = gettext('Update');
-		} else if(version_compare($current_version, $prev_version, '<')) {
-			// just in case we really catch a downgrade…
-			$check = 0; // fail!
-			$release_text = sprintf(gettext('Downgrade to Zenphoto v%s'), $current_version);
-			$release_message = gettext('Downgrades are not recommended and supported and can have serious unwanted side effects especially regarding database changes in newer versions.');
-			$upgrade_text = gettext('Downgrade');
-		} 
+		}
 		return array(
 				'check' => $check,
 				'previous_version' => $prev_version,
