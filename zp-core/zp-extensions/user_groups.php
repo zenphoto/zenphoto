@@ -103,10 +103,10 @@ class user_groups {
 
 	static function groupList($userobj, $i, $background, $current, $template) {
 		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
-		$group = $userobj->getGroup();
+		$group = strval($userobj->getGroup());
 		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();
-		$hisgroups = explode(',', $userobj->getGroup());
+		$hisgroups = explode(',', $group);
 		$admins = sortMultiArray($admins, 'user');
 		foreach ($admins as $user) {
 			if ($template || $user['name'] != 'template') {

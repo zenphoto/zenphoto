@@ -506,7 +506,8 @@ class Image extends MediaObject {
 				$alb->setUpdatedDateParents();
 				$save = true;
 			}
-			if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
+			$albdate = $alb->getDateTime();
+			if (is_null($albdate) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
 				$alb->setDateTime($this->getDateTime()); //  not necessarily the right one, but will do. Can be changed in Admin
 				$save = true;
 			}
