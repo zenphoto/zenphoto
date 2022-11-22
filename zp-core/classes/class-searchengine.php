@@ -2048,7 +2048,7 @@ class SearchEngine {
 	 * @param string $format formatting of the date, default 'F Y'
 	 * @return string
 	 */
-	function getSearchDateFormatted($format = '%B %Y') {
+	function getSearchDateFormatted($format = 'F Y') {
 		$date = $this->getSearchDate();
 		if (empty($date)) {
 			return "";

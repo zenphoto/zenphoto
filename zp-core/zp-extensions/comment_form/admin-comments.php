@@ -413,7 +413,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 						}
 						break;
 				}
-				$date = myts_date('%m/%d/%Y %I:%M %p', $comment['date']);
+				$date = myts_date('m/d/Y h:i A', $comment['date']);
 				$website = $comment['website'];
 				$fullcomment = sanitize($comment['comment'], 2);
 				$shortcomment = truncate_string(getBare($fullcomment), 123);

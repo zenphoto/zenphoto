@@ -4475,12 +4475,12 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 	if ($pages > 1) {
 		$ranges = array();
 		for ($page = 0; $page < $pages; $page++) {
-			$ranges[$page]['start'] = strtolower(get_language_string($list[$page * $itmes_per_page]));
+			$ranges[$page]['start'] = strtolower(strval(get_language_string($list[$page * $itmes_per_page])));
 			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
 			if (array_key_exists($last, $list)) {
-				$ranges[$page]['end'] = strtolower(get_language_string($list[$last]));
+				$ranges[$page]['end'] = strtolower(strval(get_language_string($list[$last])));
 			} else {
-				$ranges[$page]['end'] = strtolower(get_language_string(@array_pop($list)));
+				$ranges[$page]['end'] = strtolower(strval(get_language_string(@array_pop($list))));
 			}
 		}
 		$last = '';

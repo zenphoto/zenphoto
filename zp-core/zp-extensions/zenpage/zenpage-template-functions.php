@@ -1472,11 +1472,11 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				break;
 		}
 	}
-	$baseindent = max(1, count(explode("-", $currentitem_sortorder)));
+	$baseindent = max(1, count(explode("-", strval($currentitem_sortorder))));
 	$indent = 1;
 	$open = array($indent => 0);
 	$parents = array(NULL);
-	$order = explode('-', $currentitem_sortorder);
+	$order = explode('-', strval($currentitem_sortorder));
 	$mylevel = count($order);
 	$myparentsort = array_shift($order);
 	for ($c = 0; $c <= $mylevel; $c++) {

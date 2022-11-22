@@ -345,7 +345,7 @@ define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS', getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
-define("CACHE_HASH_LENGTH", strlen(sha1(HASH_SEED))); //Zenphoto 1.5.1 moved from cacheManager/functions.php 
+define("CACHE_HASH_LENGTH", strlen(sha1(strval(HASH_SEED)))); //Zenphoto 1.5.1 moved from cacheManager/functions.php 
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 
 define('MENU_TRUNCATE_STRING', getOption('menu_truncate_string'));

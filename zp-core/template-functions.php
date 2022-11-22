@@ -1397,7 +1397,7 @@ function printAlbumBreadcrumb($before = '', $after = '', $title = NULL) {
  * @param string $archive text for an archive page title
  * @param string $format data format for archive page crumb
  */
-function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $archive = NULL, $format = '%B %Y') {
+function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $archive = NULL, $format = 'F Y') {
 	global $_zp_current_search;
 	if (is_null($between)) {
 		$between = ' | ';
@@ -3816,7 +3816,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 	if ($within) {
 		$hint = gettext('%s within previous results');
 	}
-	if (preg_match('!\/(.*)[\.png|\.jpg|\.jpeg|\.gif]$!', $buttonSource)) {
+	if (preg_match('!\/(.*)[\.png|\.jpg|\.jpeg|\.gif]$!', strval($buttonSource))) {
 		$buttonSource = 'src="' . $buttonSource . '" alt="' . $buttontext . '"';
 		$button = 'title="' . sprintf($hint, $buttontext) . '"';
 		$type = 'image';

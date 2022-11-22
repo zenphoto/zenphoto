@@ -307,7 +307,7 @@ function zp_load_request() {
 					break;
 				case 'pages':
 					if (extensionEnabled('zenpage')) {
-						return load_zenpage_pages(sanitize(rtrim(@$_GET['title'], '/')));
+						return load_zenpage_pages(sanitize(rtrim(strval(@$_GET['title']), '/')));
 					}
 					break;
 				case 'news':
