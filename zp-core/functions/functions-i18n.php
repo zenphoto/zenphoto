@@ -765,7 +765,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	// Fallback for deprecated strftime format
 	$format_converted = convertStrftimeFormat($format);
 	if ($format_converted != $format) {
-		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use stanadard date() compatible formatting or a timestamp instead.'), true);
+		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
 	}
 	// Check if timestamp
 	if (is_int($datetime)) { 
