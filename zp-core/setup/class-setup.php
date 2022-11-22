@@ -893,6 +893,7 @@ class setup {
 		} else {
 			$prev_version = '';
 		}
+		
 		$release_message = '';
 		if (empty($prev_version)) {
 			// pre 1.4.2 release, compute the version
@@ -911,6 +912,7 @@ class setup {
 				$skipped_releases = count($zp_versions);
 				$check = -1;
 			}
+			$upgrade_text = gettext('Update');
 		} else {
 			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
 			$prev_version = $matches2[0];
