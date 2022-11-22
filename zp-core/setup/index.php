@@ -1103,7 +1103,7 @@ $upgrade = $versioncheck['upgrade_text'];
 										$msg2 = '';
 									}
 									setup::checkMark($check, $msg, gettext("<em>SHOW TABLES</em> [Failed]"), sprintf(gettext("The database did not return a list of the database tables for <code>%s</code>."), $_zp_conf_vars['mysql_database']) .
-													"<br />" . gettext("<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."));
+													"<br />" . gettext("<strong>Setup</strong> will attempt to create all tables. This will not overwrite any existing tables."));
 									if (isset($_zp_conf_vars['UTF-8']) && $_zp_conf_vars['UTF-8']) {
 										$dbtext = gettext('UTF8MB4 collation support');
 										$dbtext2 = gettext('UTF8MB4 collation support [is not available|');
