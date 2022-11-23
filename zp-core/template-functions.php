@@ -3645,7 +3645,7 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 		$class = 'class="' . $class . '"';
 	}
 	if ($_zp_gallery_page == 'search.php') {
-		$activedate = getSearchDate('%Y-%m');
+		$activedate = getSearchDate('Y-m');
 	} else {
 		$activedate = '';
 	}
@@ -3989,7 +3989,7 @@ function getSearchWords() {
  * @return string
  * @since 1.1
  */
-function getSearchDate($format = '%B %Y') {
+function getSearchDate($format = 'F Y') {
 	if (in_context(ZP_SEARCH)) {
 		global $_zp_current_search;
 		return $_zp_current_search->getSearchDateFormatted($format);
