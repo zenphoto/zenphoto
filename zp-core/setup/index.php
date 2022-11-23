@@ -1715,7 +1715,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`theme` varchar (127) NOT NULL,
 		`creator` varchar (255) DEFAULT NULL,
 		PRIMARY KEY (`id`),
-		UNIQUE (`name`, `ownerid`, `theme`)
+		UNIQUE KEY (name(95), `ownerid`, theme(95))
 		)	$collation;";
 	}
 	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'tags'])) {
@@ -1723,7 +1723,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`name` varchar(255) NOT NULL,
 		PRIMARY KEY (`id`),
-		UNIQUE (`name`)
+		UNIQUE KEY (name(191))
 		)	$collation;";
 	}
 	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'obj_to_tag'])) {
@@ -1759,7 +1759,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`other_credentials` TEXT,
 		`challenge_phrase` TEXT,
 		PRIMARY KEY (`id`),
-		UNIQUE (`user`,`valid`)
+		UNIQUE KEY (`user`,`valid`)
 		)	$collation;";
 	}
 	if (isset($create[$_zp_conf_vars['mysql_prefix'] . 'admin_to_object'])) {
@@ -1815,7 +1815,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`owner` varchar(64) DEFAULT NULL,
 		`codeblock` text,
 		PRIMARY KEY (`id`),
-		UNIQUE `folder` (`folder`)
+		UNIQUE KEY (folder(191))
 		)	$collation;";
 	}
 
@@ -1883,7 +1883,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`password_hint` text,
 		PRIMARY KEY (`id`),
 		KEY (`albumid`),
-		UNIQUE `filename` (`filename`,`albumid`)
+		UNIQUE KEY (filename(191), albumid)
 		)	$collation;";
 	}
 
@@ -1915,7 +1915,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`custom_data` text,
 		`truncation` int(1) unsigned default 0,
 		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
+		UNIQUE KEY (titlelink(191))
 		) $collation;";
 	}
 
@@ -1935,7 +1935,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`custom_data` text,
 		`show` int(1) unsigned NOT NULL default '1',
 		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
+		UNIQUE KEY (titlelink(191))
 		) $collation;";
 	}
 
@@ -1979,7 +1979,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`custom_data` text,
 		`truncation` int(1) unsigned default 0,
 		PRIMARY KEY (`id`),
-		UNIQUE (`titlelink`)
+		UNIQUE KEY titlelink(titlelink(191))
 		) $collation;";
 	}
 
@@ -2008,7 +2008,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`data` longtext,
 		PRIMARY KEY (`id`),
 		KEY `type` (`type`),
-		KEY `aux` (`aux`)
+		KEY aux(aux(191))
 		) $collation;";
 	}
 	// v 1.4.2
@@ -2018,7 +2018,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`criteria` TEXT,
 		`date` datetime default NULL,
 		`data` longtext,
-		KEY (`criteria`(255)),
+		KEY (`criteria`(191)),
 		PRIMARY KEY (`id`)
 		) $collation;";
 	}

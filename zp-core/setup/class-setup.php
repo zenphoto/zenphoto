@@ -893,30 +893,34 @@ class setup {
 		} else {
 			$prev_version = '';
 		}
-		
-		$release_message = '';
+		$skipped_releases = 0;
+		$release_message = $release_text ='';
 		if (empty($prev_version)) {
-			// pre 1.4.2 release, compute the version
 			$zenphoto_release = getOption('zenphoto_release');
-			if (!is_null($zenphoto_release)) {
+			if (is_null($zenphoto_release)) { // freshinstall
+				$prev_version = '';
+				$check = -2;
+				$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
+				$release_message = '';
+				$upgrade_text = false;
+			} else {
+				// pre 1.4.2 release, compute the version
 				$install = unserialize(getOption('zenphoto_release'));
 				if (is_array($install)) {
 					$prev_version = $install['ZENPHOTO'];
 				}
-			} else {
-				$prev_version = '';
+				if (empty($prev_version)) {
+					$release_text = gettext('Upgrade from before Zenphoto v1.2');
+					$prev_version = '1.x';
+					$skipped_releases = count($zp_versions);
+					$check = -1;
+					$upgrade_text = gettext('Update');
+				}
 			}
-			if (empty($prev_version)) {
-				$release_text = gettext('Upgrade from before Zenphoto v1.2');
-				$prev_version = '1.x';
-				$skipped_releases = count($zp_versions);
-				$check = -1;
-			}
-			$upgrade_text = gettext('Update');
 		} else {
 			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
 			$prev_version = $matches2[0];
-			$skipped_releases = 0;
+			
 			if (empty($prev_version)) { // must be fresh install
 				$check = -2;
 				$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
