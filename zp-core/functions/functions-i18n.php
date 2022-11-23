@@ -466,8 +466,9 @@ function validateLocale($userlocale, $source) {
 function getUserLocale() {
 	global $_zp_current_admin_obj, $_zp_current_locale;
 	if (!$_zp_current_locale) {
-		if (DEBUG_LOCALE)
+		if (DEBUG_LOCALE) {
 			debugLogBackTrace("getUserLocale()");
+		}
 		if (isset($_REQUEST['locale'])) {
 			if (isset($_POST['locale'])) {
 				$_zp_current_locale = validateLocale(sanitize($_POST['locale']), 'POST');
@@ -477,8 +478,9 @@ function getUserLocale() {
 			if ($_zp_current_locale) {
 				zp_setCookie('zpcms_locale', $_zp_current_locale);
 			}
-			if (DEBUG_LOCALE)
+			if (DEBUG_LOCALE) {
 				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_zp_current_locale");
+			}
 		} else {
 			$matches = explode('.', @$_SERVER['HTTP_HOST']);
 			if ($_zp_current_locale = validateLocale($matches[0], 'HTTP_HOST')) {
@@ -488,24 +490,26 @@ function getUserLocale() {
 
 		if (!$_zp_current_locale && is_object($_zp_current_admin_obj)) {
 			$_zp_current_locale = $_zp_current_admin_obj->getLanguage();
-			if (DEBUG_LOCALE)
+			if (DEBUG_LOCALE) {
 				debugLog("locale from user: " . $_zp_current_locale);
+			}
 		}
 
 		if (!$_zp_current_locale) {
 			$localeOption = getOption('locale');
 			$_zp_current_locale = zp_getCookie('zpcms_locale');
-
-			if (DEBUG_LOCALE)
+			if (DEBUG_LOCALE) {
 				debugLog("locale from option: " . $localeOption . '; dynamic locale=' . $_zp_current_locale);
+			}
 			if (empty($localeOption) && empty($_zp_current_locale)) { // if one is not set, see if there is a match from 'HTTP_ACCEPT_LANGUAGE'
 				$languageSupport = generateLanguageList();
 				$userLang = parseHttpAcceptLanguage();
 				foreach ($userLang as $lang) {
 					$l = strtoupper($lang['fullcode']);
 					$_zp_current_locale = validateLocale($l, 'HTTP Accept Language');
-					if ($_zp_current_locale)
+					if ($_zp_current_locale) {
 						break;
+					}
 				}
 			} else {
 				if (empty($_zp_current_locale)) {
@@ -525,8 +529,9 @@ function getUserLocale() {
 		} else {
 			setOption('locale', $_zp_current_locale, false);
 		}
-		if (DEBUG_LOCALE)
+		if (DEBUG_LOCALE) {
 			debugLog("getUserLocale Returning locale: " . $_zp_current_locale);
+		}
 	}
 	return $_zp_current_locale;
 }

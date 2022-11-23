@@ -115,7 +115,13 @@ if (isset($_POST['login'])) { //	Handle the login form.
 	}
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if ($_zp_loggedin && is_object($_zp_current_admin_obj)) {
-		$locale = $_zp_current_admin_obj->getLanguage();
+		$userlocale = getUserLocale();
+		$adminlocale = $_zp_current_admin_obj->getLanguage();
+		if (OFFSET_PATH == 0 && $userlocale) {
+			$locale = $userlocale;
+		} else {
+			$locale = $adminlocale;
+		}
 		if (!empty($locale)) { //	set his prefered language
 			setupCurrentLocale($locale);
 		}
