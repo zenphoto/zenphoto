@@ -496,14 +496,16 @@ class Administrator extends PersistentObject {
 	 */
 	function updateLastVisit() {
 		if (getOption('admin_lastvisit')) {
-			$lastvisit = strtotime($this->getLastVisit());
-			$lastvisit_timeframe = getOption('admin_lastvisit_timeframe');
-			if (empty($lastvisit_timeframe)) {
-				$lastvisit_timeframe = 600;
-			}
-			if (empty($lastvisit) || (time() - $lastvisit) > $lastvisit_timeframe) {
-				$this->setLastVisit();
-				$this->save();
+			$lastvisit = strtotime(strval($this->getLastVisit()));
+			if ($lastvisit) {
+				$lastvisit_timeframe = getOption('admin_lastvisit_timeframe');
+				if (empty($lastvisit_timeframe)) {
+					$lastvisit_timeframe = 600;
+				}
+				if (empty($lastvisit) || (time() - $lastvisit) > $lastvisit_timeframe) {
+					$this->setLastVisit();
+					$this->save();
+				}
 			}
 		}
 	}

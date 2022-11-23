@@ -2123,7 +2123,7 @@ function deprecationNotice($use, $parameter = false) {
  * @param string $format strftime date format string
  * @return string
  */
-function convertStrftimeFormat($format) {
+function convertStrftimeFormat($format = '') {
 	$catalogue = array(
 //day
 			'%a' => 'D',
@@ -2175,5 +2175,5 @@ function convertStrftimeFormat($format) {
 			'%%' => '' 
 	);
 	$oldformat = array_keys($catalogue);
-	return str_replace($oldformat, $catalogue, $format);
+	return str_replace($oldformat, $catalogue, strval($format));
 }
