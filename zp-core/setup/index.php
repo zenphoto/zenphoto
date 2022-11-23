@@ -1979,7 +1979,7 @@ $upgrade = $versioncheck['upgrade_text'];
 		`custom_data` text,
 		`truncation` int(1) unsigned default 0,
 		PRIMARY KEY (`id`),
-		UNIQUE KEY titlelink(titlelink(191))
+		UNIQUE KEY (titlelink(191))
 		) $collation;";
 	}
 
