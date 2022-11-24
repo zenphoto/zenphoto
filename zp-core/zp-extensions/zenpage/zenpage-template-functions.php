@@ -636,8 +636,8 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 			$year = "no date";
 			$month = "";
 		} else {
-			$year = date('Y', strtotime($key)); 
-			$month = date('F', strtotime($key));
+			$year = getFormattedLocaleDate('Y', $key);
+			$month = getFormattedLocaleDate('F', $key);
 		}
 		if ($lastyear != $year) {
 			$lastyear = $year;
@@ -683,7 +683,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		$archivedate = $_zp_post_date;
 		if ($mode == "formatted") {
-			$archivedate = getFormattedLocaleDate( $format, $archivedate);
+			$archivedate = getFormattedLocaleDate($format, $archivedate);
 		}
 		return $archivedate;
 	}

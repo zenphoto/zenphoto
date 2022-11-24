@@ -834,12 +834,13 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 					IntlDateFormatter::GREGORIAN,
 					$format_intl
 				);
-				$fdate = $dateformat->format($datetime);
+				$fdate = $dateformat->format($date);
 			} else {
 				$fdate = $date->format($format_converted); 
 			}
 		} else {
 			$fdate = $date->format($format_converted); 
+			
 		}
 	}
 	return $fdate;
