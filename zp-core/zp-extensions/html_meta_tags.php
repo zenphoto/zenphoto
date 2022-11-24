@@ -284,7 +284,7 @@ class htmlmetatags {
 				}
 				$author = $_zp_current_image->getCopyrightRightsholder();
 				$copyright_notice = trim(getBare($_zp_current_image->getCopyrightNotice()));
-				$copyright_url = trim($_zp_current_image->getCopyrightURL());
+				$copyright_url = trim(strval($_zp_current_image->getCopyrightURL()));
 				break;
 			case 'news.php':
 				if (function_exists("is_NewsArticle")) {

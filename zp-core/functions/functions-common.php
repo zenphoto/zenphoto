@@ -179,7 +179,7 @@ function getBare($content) {
 		$content = strip_tags($content);
 		$content = str_replace('&nbsp;', ' ', $content);
 	}
-	return $content;
+	return strval($content);
 }
 
 /** returns a sanitized string for the sanitize function
