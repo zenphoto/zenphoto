@@ -651,7 +651,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 		if ($yearsonly) {
 			$datetosearch = $key;
 		} else {
-			$datetosearch = date('Y-B', strtotime($key));
+			$datetosearch = getFormattedLocaleDate('Y-F', $key);
 		}
 		if (getCurrentNewsArchive('plain') == $datetosearch) {
 			$active = $activeclass;
