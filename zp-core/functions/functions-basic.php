@@ -2107,9 +2107,9 @@ function deprecationNotice($use, $parameter = false) {
 }
 
 /**
- * Basic conversion for a (deprecated) strftime date format string
+ * Basic conversion for a (deprecated) strftime() date format string
  * 
- * Returns a date format string compatible with date() / the datetime class
+ * Returns a date format string compatible with date() / the DateTime class
  * 
  * Note: There are two exceptions that return a non date format string value because there is no equivalent
  * 
@@ -2120,7 +2120,7 @@ function deprecationNotice($use, $parameter = false) {
  * 
  * @since ZenphotoCMS 1.6
  * 
- * @param string $format strftime date format string
+ * @param string $format strftime() date format string
  * @return string
  */
 function convertStrftimeFormat($format = '') {

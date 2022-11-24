@@ -652,7 +652,7 @@ function printCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
  * Uses the "date_format" option for the formatting unless
  * a format string is passed.
  *
- * @param string $format 'strftime' date/time format
+ * @param string $format a date() compatible format
  * @return string
  */
 function getCommentDateTime($format = NULL) {

@@ -767,7 +767,7 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	if (empty($datetime)) {
 		$datetime = 'now';
 	}
-	// Fallback for deprecated strftime format
+	// Fallback for deprecated strftime() format
 	$format_converted = convertStrftimeFormat($format);
 	if ($format_converted != $format) {
 		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
