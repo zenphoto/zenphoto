@@ -52,7 +52,7 @@ zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
 require_once SERVERPATH .'/' . ZENFOLDER . '/libs/exif/exif.php';
 
-define('XMP_EXTENSION', strtolower(getOption('xmpMetadata_suffix')));
+define('XMP_EXTENSION', strtolower(strval(getOption('xmpMetadata_suffix'))));
 
 /**
  * Plugin option handling class

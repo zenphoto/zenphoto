@@ -2958,7 +2958,7 @@ function getDataUsageNotice() {
 	$array = array('notice' => '', 'url' => '', 'linktext' => '');
 	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
 	$array['notice'] = get_language_string(getOption('dataprivacy_policy_notice'));
-	$custompage = trim(getOption('dataprivacy_policy_custompage'));
+	$custompage = trim(strval(getOption('dataprivacy_policy_custompage')));
 	$zenpage_page = '';
 	if (empty($array['notice'])) {
 		$array['notice'] = gettext('By using this form you agree with the storage and handling of your data by this website.');

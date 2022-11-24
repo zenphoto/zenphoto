@@ -133,7 +133,7 @@ class dynamicAlbum extends AlbumBase {
 	 * @return string
 	 */
 	function getSearchParams() {
-		$searchparams = str_replace('words=', 'search=', $this->get('search_params'));
+		$searchparams = str_replace('words=', 'search=', strval($this->get('search_params')));
 		return $searchparams;
 	}
 

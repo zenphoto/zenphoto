@@ -922,7 +922,7 @@ class Image extends MediaObject {
 	 * @return string
 	 */
 	function getCopyright($locale = NULL) {
-		$text = strval($this->get('copyright'));
+		$text = $this->get('copyright');
 		if ($locale !== 'all') {
 			$text = get_language_string($text, $locale);
 		}
@@ -954,7 +954,7 @@ class Image extends MediaObject {
 	 * @return string|null
 	 */
 	function getCopyrightNotice($locale = null) {
-		$notice = trim($this->getCopyright($locale));
+		$notice = trim(strval($this->getCopyright($locale)));
 		if (empty($notice)) {
 			$metadata = $this->getMetaData();
 			if (isset($metadata['IPTCCopyright']) && !empty($metadata['IPTCCopyright'])) {
