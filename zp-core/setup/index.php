@@ -2165,12 +2165,12 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `thumbH` int(10) UNSIGNED default NULL;";
 
 						//v1.2.4
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD UNIQUE (`titlelink`);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD UNIQUE (`titlelink`);';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' DROP INDEX `titlelink`;';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD UNIQUE (`titlelink`);';
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `titlelink`;'; 
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD UNIQUE INDEX titlelink(titlelink(191));'; // utf8mb4 limit added as required for utf8mb4 in v1.6
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' DROP INDEX `titlelink`;'; 
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' ADD UNIQUE INDEX titlelink(titlelink(191));'; // utf8mb4 limit added as required for utf8mb4 in v1.6
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' DROP INDEX `titlelink`;'; 
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_pages . ' ADD UNIQUE INDEX titlelink(titlelink(191));'; // utf8mb4 limit added as required for utf8mb4 in v1.6
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_comments . ' CHANGE `comment` `comment` TEXT;';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news . ' CHANGE `title` `title` TEXT;';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `titlelink` `titlelink` varchar(255);';
@@ -2231,7 +2231,7 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) NOT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
 						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`"; 
-						$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
+						$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (name(95), `ownerid`, theme(95))"; // utf8mb4 limit added as required for utf8mb4 in v1.6
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' DROP COLUMN `EXIFValid`';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_images . ' ADD COLUMN `hasMetadata` int(1) default 0';
 						$sql_statements[] = 'UPDATE ' . $tbl_images . ' SET `date`=NULL WHERE `date`="0000-00-00 00:00:00"'; // empty dates should be NULL
@@ -2294,7 +2294,6 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `title`';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `titlelink` `titlelink` VARCHAR(255) NOT NULL';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' CHANGE `title` `title` TEXT';
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' ADD UNIQUE `titlelink` (`titlelink`)';
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `show` int(1) unsigned NOT NULL default '1'";
 						//v1.4.2
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `challenge_phrase` TEXT';
@@ -2322,10 +2321,10 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_news ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 						$sql_statements[] = "ALTER TABLE $tbl_pages ADD COLUMN `truncation` int(1) unsigned NOT NULL default '0'";
 						$sql_statements[] = "CREATE INDEX `albumid` ON $tbl_images (`albumid`)";
-						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX `folder`";
-						$sql_statements[] = "ALTER TABLE $tbl_albums ADD UNIQUE `folder` (`folder`)";
-						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`";
-						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE `filename` (`filename`, `albumid`)";
+						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX `folder`"; 
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD UNIQUE INDEX folder(folder(191))"; // utf8mb4 limit added as required for utf8mb4 in v1.6
+						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX `filename`"; 
+						$sql_statements[] = "ALTER TABLE $tbl_images ADD UNIQUE INDEX filename(filename(191), albumid)"; // utf8mb4 limit added as required for utf8mb4 in v1.6
 			
 						//1.5.2
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `lastchange` datetime default NULL";
@@ -2351,14 +2350,9 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_pages CHANGE `sort_order` `sort_order` varchar(48) DEFAULT NULL";
 						
 						//1.6 - utf8mb4 index limitation on some db configs
-						$sql_statements[] = "ALTER TABLE $tbl_albums DROP INDEX folder, ADD UNIQUE INDEX folder(folder(191))";
-						$sql_statements[] = "ALTER TABLE $tbl_images DROP INDEX filename, ADD UNIQUE INDEX filename(filename(191), albumid)";
-						$sql_statements[] = "ALTER TABLE $tbl_news DROP INDEX titlelink, ADD UNIQUE INDEX titlelink(titlelink(191))";
-						$sql_statements[] = "ALTER TABLE $tbl_news_categories DROP INDEX titlelink, ADD UNIQUE INDEX titlelink(titlelink(191))";
-						$sql_statements[] = "ALTER TABLE $tbl_pages DROP INDEX titlelink, ADD UNIQUE INDEX titlelink(titlelink(191))";
+						//Note: More 1.6 changes required had to be incorporated in earlier update queries above
 						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
-						$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`, ADD UNIQUE `unique_option` (name(95), `ownerid`, theme(95))";
 						$sql_statements[] = "ALTER TABLE $tbl_searches DROP INDEX criteria, ADD UNIQUE INDEX criteria(criteria(191))";
 						
 						// do this last incase there are any field changes of like names!
