@@ -904,7 +904,7 @@ class dbBase {
 					$collation = 'utf8mb4_unicode_520_ci';
 				}
 				// convert table
-				$table_converted = $this->query('ALTER TABLE ' . $table . ' CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
+				$table_converted = $this->query('ALTER TABLE `' . $table . '` CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
 				if ($table_converted) {
 					$this->query('REPAIR TABLE ' . $table);
 					$this->query('OPTIMIZE TABLE ' . $table);
