@@ -773,20 +773,21 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
 	}
 	// Check if timestamp
-	if (is_int($datetime)) { 
-		if (extension_loaded('intl')) {
-			$date = new DateTimeImmutable();
-		} else {
-			$date = new DateTime();
-		}
-		$date = $date->setTimestamp($datetime);
-	} else {
+	if (strtotime($datetime)) {
 		if (extension_loaded('intl')) {
 			$date = new DateTimeImmutable($datetime);
 		} else {
 			$date = new DateTime($datetime);
 		}
-	}
+	} else {
+		$timestamp = intval($datetime);
+		if (extension_loaded('intl')) {
+			$date = new DateTimeImmutable();
+		} else {
+			$date = new DateTime();
+		}
+		$date = $date->setTimestamp($timestamp);
+	} 
 	$locale_preferred = array(
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'	
