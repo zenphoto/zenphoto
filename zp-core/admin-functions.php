@@ -1463,7 +1463,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 											$globalsort = gettext("*parent album subalbum sort order");
 										}
 										echo "\n<option value =''>$globalsort</option>";
-										$cvt = $type = strtolower($album->get('subalbum_sort_type'));
+										$cvt = $type = strtolower(strval($album->get('subalbum_sort_type')));
 										if ($type && !in_array($type, $sort)) {
 											$cv = array('custom');
 											$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';
@@ -1515,7 +1515,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										?>
 										<option value =""><?php echo $globalsort; ?></option>
 										<?php
-										$cvt = $type = strtolower($album->get('sort_type'));
+										$cvt = $type = strtolower(strval($album->get('sort_type')));
 										if ($type && !in_array($type, $sort)) {
 											$cv = array('custom');
 											$sort[sprintf(gettext("Custom (%s)"), $type)] = 'custom';

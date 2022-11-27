@@ -1248,7 +1248,7 @@ echo "\n</head>";
 																	<strong><?php echo gettext("Rotation:"); ?></strong>
 																	<br />
 																	<?php
-																	$splits = preg_split('/!([(0-9)])/', $image->get('EXIFOrientation'));
+																	$splits = preg_split('/!([(0-9)])/', strval($image->get('EXIFOrientation')));
 																	$rotation = $splits[0];
 																	if (!in_array($rotation, array(3, 6, 8))) {
 																		$rotation = 0;
