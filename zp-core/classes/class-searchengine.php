@@ -1203,14 +1203,18 @@ class SearchEngine {
 							case '!':
 								break; // Paren followed by NOT is nonsensical?
 							case '&!':
-								if (is_array($objectid)) {
+								if (is_array($objectid) && is_array($idlist)) {
 									$idlist = array_diff($idlist, $objectid);
+								} else {
+									$idlist = array();
 								}
 								break;
 							case '';
 							case '|':
-								if (is_array($objectid)) {
+								if (is_array($objectid) && is_array($idlist)) {
 									$idlist = array_merge($idlist, $objectid);
+								} else {
+									$idlist = array();
 								}
 								break;
 						}
