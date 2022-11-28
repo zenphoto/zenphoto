@@ -1155,7 +1155,7 @@ $upgrade = $versioncheck['upgrade_text'];
 								exit();
 							}
 							setup::primeMark(gettext('Zenphoto files'));
-							@set_time_limit(120);
+							@set_time_limit(180);
 							$lcFilesystem = file_exists(strtoupper(__FILE__));
 							$base = $_zp_setup_serverpath . '/';
 							setup::getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
@@ -2401,7 +2401,7 @@ $upgrade = $versioncheck['upgrade_text'];
 									setup::log($message);
 									foreach ($db_schema as $sql) {
 										$message = '';
-										@set_time_limit(60);
+										@set_time_limit(180);
 										$result = $_zp_db->createTable($sql);
 										if (!$result) {
 											$createTables = false;
@@ -2418,7 +2418,7 @@ $upgrade = $versioncheck['upgrade_text'];
 								echo '<p>'.gettext("Begin table updates").'</p>';
 								setup::log(gettext("Begin table updates"));
 								foreach ($sql_statements as $sql) {
-									@set_time_limit(60);
+									@set_time_limit(180);
 									$result = $_zp_db->tableUpdate($sql);
 									if (!$result) {
 										$error = $_zp_db->getError();
