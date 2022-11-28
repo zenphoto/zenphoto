@@ -52,7 +52,7 @@ class UploadHandlerZP extends UploadHandler {
 				'duplicate' => gettext('File not uploaded. Duplicates are not allowed')
 		);
 		$this->options = array(
-				'script_url' => $this->get_full_url() . '/' . $this->basename($this->get_server_var('SCRIPT_NAME')),
+				'script_url' => $this->get_full_url() . '/' . $this->basename(strval($this->get_server_var('SCRIPT_NAME'))),
 				'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')) . '/files/',
 				'upload_url' => $this->get_full_url() . '/files/',
 				'param_name' => 'files',

@@ -136,10 +136,14 @@ echo '</head>' . "\n";
 								$checked_delete = $checked_disable = $checked_renew = $dup = '';
 								$expires = strtotime($user['date']) + $subscription;
 								$expires_display = date('Y-m-d', $expires);
-								if (isset($user['loggedin']) && empty($user['loggedin'])) {
-									$loggedin = gettext('never');
+								if (isset($user['loggedin'])) {
+									if (empty($user['loggedin'])) {
+										$loggedin = gettext('never');
+									} else {
+										$loggedin = date('Y-m-d', strtotime($user['loggedin']));
+									}
 								} else {
-									$loggedin = date('Y-m-d', strtotime($user['loggedin']));
+									$loggedin = gettext('never');
 								}
 								if ($subscription) {
 									if ($expires < $now) {

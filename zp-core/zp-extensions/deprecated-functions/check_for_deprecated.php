@@ -91,7 +91,7 @@ echo '</head>' . "\n";
 								listUses(getPHPFiles($path, array()), $path, $pattern);
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
-									$output || listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
+									listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
 								}
 								break;
 							case 4:

@@ -1337,7 +1337,7 @@ class UploadHandler {
 		$this->response = $content;
 		if ($print_response) {
 			$json = json_encode($content);
-			$redirect = stripslashes($this->get_post_param('redirect'));
+			$redirect = stripslashes(strval($this->get_post_param('redirect')));
 			if ($redirect && preg_match($this->options['redirect_allow_target'], $redirect)) {
 				return $this->header('Location: ' . sprintf($redirect, rawurlencode($json)));
 			}
