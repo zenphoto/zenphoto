@@ -270,7 +270,7 @@ class jPlayer {
 
 	static function headJS() {
 		$skin = @array_shift(getPluginFiles('*.css', 'jplayer/skin/' . getOption('jplayer_skin')));
-		if (file_exists($skin)) {
+		if (is_string($skin) && file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {
 			$skin = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/skin/zenphotolight/jplayer.zenphotolight.css';

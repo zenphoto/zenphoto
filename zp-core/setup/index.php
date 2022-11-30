@@ -1133,7 +1133,7 @@ $upgrade = $versioncheck['upgrade_text'];
 												$non_utf8_htmllist = setup::getFilelist($non_utf8_tables);
 												$db_collations_msg2 = $db_collations_msg . gettext(' [not using any utf8 collations]');
 												$db_collations_details  = sprintf(gettext('The following tables are not or not completely UTF-8: %s'), $non_utf8_htmllist);
-												$db_collations_dateils .=  ' ' . gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> or better <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code>');
+												$db_collations_details .=  ' ' . gettext('You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> or better <code>utf8mb4_unicode_ci</code> respectively <code>utf8mb4_unicode_520_ci</code>');
 												setup::checkmark(-1, $db_collations_msg, $db_collations_msg2, $db_collations_details);
 											}
 											if ($utf8_any_tables) {
@@ -2351,9 +2351,12 @@ $upgrade = $versioncheck['upgrade_text'];
 						
 						//1.6 - utf8mb4 index limitation on some db configs
 						//Note: More 1.6 changes required had to be incorporated in earlier update queries above
+					
 						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_searches DROP INDEX criteria, ADD UNIQUE INDEX criteria(criteria(191))";
+						//this one may exist as a leftover from old times and apparently was forgotten to be removed properly
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `cat_link`;'; 
 						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
