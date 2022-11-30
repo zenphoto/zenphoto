@@ -2270,6 +2270,7 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `password_hint` text;";
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_name` `title` TEXT";
 						$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_link` `titlelink` varchar(255) NOT NULL";
+						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `cat_link`;'; 
 						$sql_statements[] = 'UPDATE ' . $tbl_obj_to_tag . ' SET `type`="news" WHERE `type`="zenpage_news"';
 						$sql_statements[] = 'UPDATE ' . $tbl_obj_to_tag . ' SET `type`="pages" WHERE `type`="zenpage_pages"';
 						$sql_statements[] = 'ALTER TABLE ' . $tbl_administrators . ' ADD COLUMN `language` VARCHAR(5)';
@@ -2355,8 +2356,6 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_plugin_storage DROP INDEX aux, ADD INDEX aux(aux(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_searches DROP INDEX criteria, ADD UNIQUE INDEX criteria(criteria(191))";
-						//this one may exist as a leftover from old times and apparently was forgotten to be removed properly
-						$sql_statements[] = 'ALTER TABLE ' . $tbl_news_categories . ' DROP INDEX `cat_link`;'; 
 						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
