@@ -30,7 +30,7 @@
  * @param string $album
  * @param string $newfilename
  */
-function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png', $image = '', $album='', $newfilename = '') {
+function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.png', $image = '', $album = '', $newfilename = '') {
 	//global $newfilename, $album, $image; // sometime these globals need to be properly named…
 	$debug = isset($_GET['debug']);
 	$debuglog_errors = isset($_GET['returnmode']);
@@ -40,7 +40,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
 		$debugnote .= '<br />PHP_SELF: [ <code>' . html_encode($_SERVER['PHP_SELF']) . '</code> ]';
 		$debugnote .= (empty($newfilename) ? '' : '<br />' . sprintf(gettext('Cache: [<code>%s</code>]'), '/' . CACHEFOLDER . '/' . html_encode(sanitize($newfilename, 3))) . ' ');
 		$debugnote .= (empty($image) || empty($album) ? '' : ' <br />' . sprintf(gettext('Image: [<code>%s</code>]'), html_encode(sanitize($album . '/' . $image, 3))) . ' <br />');
-		if($debuglog_errors) {
+		if ($debuglog_errors) {
 			debugLog($debugnote);
 		} else {
 			echo $debugnote;
@@ -49,7 +49,7 @@ function imageError($status_text, $errormessage, $errorimg = 'err-imagegeneral.p
 		if (DEBUG_IMAGE_ERR) {
 			trigger_error($errormessage, E_USER_NOTICE);
 		}
-		if(!$debuglog_errors) {
+		if (!$debuglog_errors) {
 			header("HTTP/1.0 $status_text");
 			header("Status: $status_text");
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/images_errors/' . $errorimg);
@@ -131,8 +131,9 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 			$neww = $wprop; // width is not supplied, use the proportional
 		}
 	}
-	if (DEBUG_IMAGE)
+	if (DEBUG_IMAGE) {
 		debugLog("propSizes(\$size=$size, \$width=$width, \$height=$height, \$w=$w, \$h=$h, \$thumb=$thumb, \$image_use_side=$image_use_side, \$dim=$dim):: \$wprop=$wprop; \$hprop=$hprop; \$neww=$neww; \$newh=$newh");
+	}
 	return array($neww, $newh);
 }
 
@@ -191,8 +192,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		}
 		$newfile = SERVERCACHE . $newfilename;
 		mkdir_recursive(dirname($newfile), FOLDER_MOD);
-		if (DEBUG_IMAGE)
+		if (DEBUG_IMAGE) {
 			debugLog("cacheImage(\$imgfile=" . basename($imgfile) . ", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=" . (is_null($cx) ? 'NULL' : $cx) . ", \$cy=" . (is_null($cy) ? 'NULL' : $cy) . ", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale);");
+		}
 		// Check for the source image.
 		if (!file_exists($imgfile) || !is_readable($imgfile)) {
 			imageError('404 Not Found', sprintf(gettext('Image %s not found or is unreadable.'), filesystemToInternal($imgfile)), 'err-imagenotfound.png');
@@ -228,8 +230,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			imageError('404 Not Found', sprintf(gettext('Image %s not renderable (imageGet).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 		}
 		if ($rotate) {
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog("cacheImage:rotate->$rotate");
+			}
 			$im = $_zp_graphics->rotateImage($im, $rotate);
 			if (!$im) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not rotatable.'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
@@ -245,10 +248,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			$dim = $size;
 			if ($crop) {
 				$dim = $size;
-				if (!$ch)
+				if (!$ch) {
 					$ch = $size;
-				if (!$cw)
+				}
+				if (!$cw) {
 					$cw = $size;
+				}
 				$width = $cw;
 				$height = $ch;
 				$size = false;
@@ -261,12 +266,14 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if ($ratio_in > $ratio_out) { // image is taller than desired, $height is the determining factor
 				$thumb = true;
 				$dim = $width;
-				if (!$ch)
+				if (!$ch) {
 					$ch = $height;
+				}
 			} else { // image is wider than desired, $width is the determining factor
 				$dim = $height;
-				if (!$cw)
+				if (!$cw) {
 					$cw = $width;
+				}
 			}
 		} else if (!empty($width)) {
 			$dim = $width;
@@ -282,11 +289,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
 		list($neww, $newh) = $sizes;
 
-		if (DEBUG_IMAGE)
+		if (DEBUG_IMAGE) {
 			debugLog("cacheImage:" . basename($imgfile) . ": \$size=$size, \$width=$width, \$height=$height, \$w=$w; \$h=$h; \$cw=$cw, " .
 							"\$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$newh=$newh, \$neww=$neww, \$dim=$dim, " .
 							"\$ratio_in=$ratio_in, \$ratio_out=$ratio_out \$upscale=$upscale \$rotate=$rotate \$effects=$effects");
-
+		}
 		if (!$upscale && $newh >= $h && $neww >= $w) { // image is the same size or smaller than the request
 			$neww = $w;
 			$newh = $h;
@@ -299,8 +306,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$height = $newh;
 				}
 			}
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog("cacheImage:no upscale " . basename($imgfile) . ":  \$newh=$newh, \$neww=$neww, \$crop=$crop, \$thumb=$thumb, \$rotate=$rotate, watermark=" . $watermark_use_image);
+			}
 		}
 
 		$watermark_image = false;
@@ -351,10 +359,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if (is_null($cx) && is_null($cy)) { // scale crop to max of image
 				// set crop scale factor
 				$cf = 1;
-				if ($cw)
+				if ($cw) {
 					$cf = min($cf, $cw / $neww);
-				if ($ch)
+				}
+				if ($ch) {
 					$cf = min($cf, $ch / $newh);
+				}
 				//	set the image area of the crop (use the most image possible, rule of thirds positioning)
 				if (!$cw || $w / $cw * $ch > $h) {
 					$cw = round($h / $ch * $cw * $cf);
@@ -366,26 +376,31 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					$cy = round(($h - $ch) / 3);
 				}
 			} else { // custom crop
-				if (!$cw || $cw > $w)
+				if (!$cw || $cw > $w) {
 					$cw = $w;
-				if (!$ch || $ch > $h)
+				}
+				if (!$ch || $ch > $h) {
 					$ch = $h;
+				}
 			}
 			// force the crop to be within the image
-			if ($cw + $cx > $w)
+			if ($cw + $cx > $w) {
 				$cx = $w - $cw;
+			}
 			if ($cx < 0) {
 				$cw = $cw + $cx;
 				$cx = 0;
 			}
-			if ($ch + $cy > $h)
+			if ($ch + $cy > $h) {
 				$cy = $h - $ch;
+			}
 			if ($cy < 0) {
 				$ch = $ch + $cy;
 				$cy = 0;
 			}
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
+			}
 			switch (getSuffix($newfilename)) {
 				case 'gif':
 					$newim = $_zp_graphics->createImage($neww, $newh, false);
@@ -400,20 +415,22 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					}
 					break;
 			}
-			if (!$_zp_graphics->resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
+			if (!$_zp_graphics->resampleImage($newim, $im, 0, 0, intval($cx), intval($cy), $neww, $newh, $cw, $ch)) {
 					imageError('404 Not Found', sprintf(gettext('Image %s not renderable (resample).'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 				}
 		} else {
 			if ($newh >= $h && $neww >= $w && !$rotate && !$effects && !$watermark_image && (!$upscale || $newh == $h && $neww == $w)) {
 				// we can just use the original!
 				if (SYMLINK && @symlink($imgfile, $newfile)) {
-					if (DEBUG_IMAGE)
+					if (DEBUG_IMAGE) {
 						debugLog("cacheImage:symlink original " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
+					}
 					clearstatcache();
 					return true;
 				} else if (@copy($imgfile, $newfile)) {
-					if (DEBUG_IMAGE)
+					if (DEBUG_IMAGE) {
 						debugLog("cacheImage:copy original " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
+					}
 					clearstatcache();
 					return true;
 				}
@@ -422,9 +439,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
 				list($neww, $newh) = $sizes;
 			}
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog("cacheImage:no crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
-
+			}
 			switch (getSuffix($newfilename)) {
 				case 'gif':
 					$newim = $_zp_graphics->createImage($neww, $newh, false);
@@ -461,8 +478,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		if ($_zp_graphics->imageOutput($newim, getSuffix($newfile), $newfile, $quality)) { //	successful save of cached image
 			if (getOption('EmbedIPTC') && getSuffix($newfilename) == 'jpg' && GRAPHICS_LIBRARY != 'Imagick') { // the embed function works only with JPEG images
 				global $_zp_extra_filetypes; //	because we are doing the require in a function!
-				if (!$_zp_extra_filetypes)
+				if (!$_zp_extra_filetypes) {
 					$_zp_extra_filetypes = array();
+				}
 				require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
 				$iptc = array(
 								'1#090'	 => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
@@ -471,8 +489,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				$iptc_data = $_zp_graphics->imageIPTC($imgfile);
 				if ($iptc_data) {
 					$iptc_data = iptcparse($iptc_data);
-					if ($iptc_data)
+					if ($iptc_data) {
 						$iptc = array_merge($iptc_data, $iptc);
+					}
 				}
 				$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 				$imagename = basename($imgfile);
@@ -507,11 +526,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				clearstatcache();
 			}
 			@chmod($newfile, FILE_MOD);
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog('Finished:' . basename($imgfile));
+			}
 		} else {
-			if (DEBUG_IMAGE)
+			if (DEBUG_IMAGE) {
 				debugLog('cacheImage: failed to create ' . $newfile);
+			}
 			imageError('404 Not Found', sprintf(gettext('cacheImage: failed to create %s'), $newfile), 'err-failimage.png', $imgfile, $album, $newfilename);
 		}
 		@chmod($newfile, FILE_MOD);
