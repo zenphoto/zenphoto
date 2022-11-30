@@ -3868,9 +3868,9 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 						newsearch = newsearch.substr(0, newsearch.length - 1);
 					}
 					if (newsearch.length > 0) {
-						$('#search_input').val('(<?php echo $searchwords; ?>) AND (' + newsearch + ')');
+						$('#search_input').val('(<?php echo js_encode($searchwords); ?>) AND (' + newsearch + ')');
 					} else {
-						$('#search_input').val('<?php echo $searchwords; ?>');
+						$('#search_input').val('<?php echo js_encode($searchwords); ?>');
 					}
 				}
 				return true;
