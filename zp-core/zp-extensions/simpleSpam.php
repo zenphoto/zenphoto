@@ -154,6 +154,7 @@ class zpSimpleSpam {
 	}
 
 	function getWords($text, $notUnique = false) {
+		$text = strval($text);
 		if ($notUnique) {
 			return preg_split("/[\W]+/", strtolower(strip_tags($text)));
 		} else {

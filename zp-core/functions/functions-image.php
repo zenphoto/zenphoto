@@ -550,7 +550,7 @@ function getImageRotation($imgfile) {
 			}
 		}
 	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result) && is_string($result['EXIFOrientation'])) {
-		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
+		$splits = preg_split('/!([(0-9)])/', strval($result['EXIFOrientation']));
 		$rotation = $splits[0];
 	}
 	if ($rotation) {
