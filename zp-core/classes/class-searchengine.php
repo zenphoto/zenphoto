@@ -994,7 +994,7 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$key = $thie->album->getImageSortKey();
+						$key = $this->album->getImageSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($this->album->getSortDirection('image')) {
 								$key .= " DESC";
