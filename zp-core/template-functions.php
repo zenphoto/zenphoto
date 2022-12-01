@@ -2693,7 +2693,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 					echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
 					switch ($_zp_exifvars[$field][6]) {
 						case 'time':
-							echo zpFormattedDate(DATE_FORMAT, strtotime($value));
+							echo zpFormattedDate(DATE_FORMAT, $value);
 							break;
 						default:
 							echo html_encode($value);

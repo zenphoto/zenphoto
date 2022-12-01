@@ -295,7 +295,7 @@ function lookupSortKey($sorttype, $default, $table) {
 function zpFormattedDate($format, $dt) {
 	global $_zp_utf8;
 	$fdate = getFormattedLocaleDate($format, $dt);
-	$charset = 'ISO-8859-1';
+	$charset = 'UTF-8';
 	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
 		if (($charset = mb_internal_encoding()) == $outputset) {
