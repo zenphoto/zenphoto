@@ -250,6 +250,7 @@ class user_expiry {
 	 * @return string
 	 */
 	static function reverify($path) {
+		global $_zp_current_admin_obj;
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = sanitize(unserialize(pack("H*", trim($_GET['user_expiry_reverify']), '.'), ['allowed_classes' => false]));

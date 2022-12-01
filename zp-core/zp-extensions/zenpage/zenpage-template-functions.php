@@ -1215,7 +1215,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 		if ($mode == 'random') {
 			shuffle($stats);
 		} else {
-			$stats = sortMultiArray($stats, $mode, $sortdir);
+			$stats = sortMultiArray($stats, $mode, $sortdirection);
 		}
 	}
 	return $stats;

@@ -2267,7 +2267,7 @@ function XSRFdefender($action) {
 
 /**
  * returns an XSRF token
- * @param striong $action
+ * @param string $action
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj, $_zp_db;
