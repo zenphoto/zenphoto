@@ -2059,9 +2059,8 @@ class SearchEngine {
 		}
 		if ($date == '0000-00') {
 			return gettext("no date");
-		};
-		$dt = strtotime($date . "-01");
-		return zpFormattedDate($format, $dt);
+		}
+		return getFormattedLocaleDate($format, $dt);
 	}
 	
 	/**
