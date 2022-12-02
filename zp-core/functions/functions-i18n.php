@@ -772,15 +772,16 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	if ($format_converted != $format) {
 		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
 	}
-	// Check if timestamp
-	if (strtotime($datetime)) {
+	
+	// Check if datetime string or timstamp integer (to cover if passed as a string)
+	if (is_string($datetime) && strtotime($datetime) !== false) {
 		if (extension_loaded('intl')) {
 			$date = new DateTimeImmutable($datetime);
 		} else {
 			$date = new DateTime($datetime);
 		}
 	} else {
-		$timestamp = intval($datetime);
+		$timestamp = intval($datetime); // to be sure…
 		if (extension_loaded('intl')) {
 			$date = new DateTimeImmutable();
 		} else {
