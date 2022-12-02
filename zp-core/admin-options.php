@@ -1479,10 +1479,7 @@ Authority::printPasswordFormJS();
 												<?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?>
 											</p>
 											<p class="notebox">
-												<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.'); ?>
-											</p>
-											<p class="notebox">
-												<?php echo gettext('<strong>NOTE</strong>: Be sure to refresh image metadata for this option to have effect.'); ?>
+												<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.<br>Be sure to refresh image metadata for this option to have effect.'); ?>
 											</p>
 										</div>
 
