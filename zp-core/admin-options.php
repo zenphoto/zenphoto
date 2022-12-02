@@ -1481,6 +1481,9 @@ Authority::printPasswordFormJS();
 											<p class="notebox">
 												<?php echo gettext('<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album.'); ?>
 											</p>
+											<p class="notebox">
+												<?php echo gettext('<strong>NOTE</strong>: Be sure to refresh image metadata for this option to have effect.'); ?>
+											</p>
 										</div>
 
 										<p><?php echo gettext("<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"); ?></p>
