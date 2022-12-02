@@ -2820,7 +2820,6 @@ function removeDir($path, $within = false) {
  * @param string $text
  */
 function tagURLs($text) {
-	$text = strval($text);
 	if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 		$text = getSerializedArray($text);
 		$serial = true;
@@ -2842,11 +2841,10 @@ function tagURLs($text) {
 
 /**
  * reverses tagURLs()
- * @param string $text
+ * @param string|array $text
  * @return string
  */
 function unTagURLs($text) {
-	$text = strval($text);
 	if (is_string($text) && preg_match('/^a:[0-9]+:{/', $text)) { //	serialized array
 		$text = getSerializedArray($text);
 		$serial = true;
