@@ -130,8 +130,9 @@ class maintenanceMode {
 	 * Prins the site state notice on the backend
 	 */
 	static function printStateNotice() {
+		global $_zp_current_admin_obj;
 		$status = maintenanceMode::getState();
-		if ($status != 'open') {
+		if ($status != 'open' && (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->transient)) {
 			$link = maintenanceMode::getUtilityLinkHTML();
 			echo '<p class="warningbox" style="margin: 0">' . maintenanceMode::getStateNote() . $link . '</p>';
 		}
