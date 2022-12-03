@@ -827,7 +827,9 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 					'i' => 'mm', // Minute in hour…
 					'd' => 'dd', // Month day number with leading zero
 					'j' => 'd', // Month day number without leading zero	
-					'g' => 'h' // Hour 0-12 without leading zero
+					'g' => 'h', // Hour 0-12 without leading zero
+					'y' => 'yy', // Year two digits
+					
 			);
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
