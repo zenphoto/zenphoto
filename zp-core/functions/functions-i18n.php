@@ -772,7 +772,6 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 	if ($format_converted != $format) {
 		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
 	}
-	
 	// Check if datetime string or timstamp integer (to cover if passed as a string)
 	if (is_string($datetime) && strtotime($datetime) !== false) {
 		if (extension_loaded('intl')) {
@@ -789,6 +788,9 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 		}
 		$date = $date->setTimestamp($timestamp);
 	} 
+	if (DEBUG_LOCALE) {
+		debuglog('Datetime object: ' . print_r($date, true));
+	}
 	$locale_preferred = array(
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'	
@@ -821,12 +823,18 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 					'D' => 'EEE', // An abbreviated textual representation of the day	Sun through Sat
 					'l' => 'EEEE', // A full textual representation of the day	Sunday through Saturday
 					'F' => 'MMMM', // Full month name, based on the locale	January through December
+					'h' => 'hh', // Hour 0-12 with leading zero
 					'i' => 'mm', // Minute in hour…
 					'd' => 'dd', // Month day number with leading zero
-					'j' => 'd' // Month day number without leading zero	
+					'j' => 'd', // Month day number without leading zero	
+					'g' => 'h' // Hour 0-12 without leading zero
 			);
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
+			if (DEBUG_LOCALE) {
+				debuglog('format standard (intl extension): ' . $format_converted);
+				debuglog('Format converted locale aware (intl extension): ' . $format_intl);
+			}
 			if ($format_intl != $format_converted) {
 				$dateformat = new IntlDateFormatter(
 					$locale,
