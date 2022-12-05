@@ -690,7 +690,7 @@ class securityHeaders {
 			$policy = '';
 			if (getOption($option)) {
 				if ($source == 'nonce-') {
-					$policies[] .= $source . getXSRFToken('security_http_headers');
+					$policies[] = $source . getXSRFToken('security_http_headers');
 				} else {
 					$policies[] = trim($source);
 				}

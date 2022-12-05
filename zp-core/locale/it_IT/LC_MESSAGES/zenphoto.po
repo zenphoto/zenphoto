@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-22 09:37+0100\n"
-"PO-Revision-Date: 2022-11-22 09:38+0100\n"
+"POT-Creation-Date: 2022-12-05 14:33+0100\n"
+"PO-Revision-Date: 2022-12-05 14:33+0100\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Bookmarks: 4009,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
@@ -117,7 +117,7 @@ msgstr "Contattaci"
 #: themes/garland/favorites.php:62 themes/garland/favorites.php:80
 #: themes/zenpage/favorites.php:52 themes/zenpage/favorites.php:63
 #: themes/zpmobile/favorites.php:40 themes/zpmobile/favorites.php:52
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:201
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:205
 msgid "Remove"
 msgstr "Rimuovi"
 
@@ -1173,7 +1173,7 @@ msgstr "Indietro"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:385
 #: zp-core/zp-extensions/publishContent/publishContent.php:214
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:122
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:218
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:222
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:200
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:396
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:458
@@ -1454,7 +1454,7 @@ msgstr "Fare clic sull’immagine per modificare il ritaglio della miniatura."
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:386
 #: zp-core/zp-extensions/rewriteTokens.php:119
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:123
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:219
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:223
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:201
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:397
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:459
@@ -1818,8 +1818,8 @@ msgid ""
 "strong></a> version %1$s"
 msgstr ""
 "<a href=\"https://www.zenphoto.org\" target=\"_blank\" rel=\"noopener "
-"noreferrer\" title=\"Il più semplice CMS per siti multimediali"
-"\">Zen<strong>photo</strong></a> versione %1$s"
+"noreferrer\" title=\"Il più semplice CMS per siti "
+"multimediali\">Zen<strong>photo</strong></a> versione %1$s"
 
 #: zp-core/admin-functions.php:36
 msgid "Zenphoto licence"
@@ -2503,7 +2503,7 @@ msgid "All"
 msgstr "Tutti"
 
 #: zp-core/admin-functions.php:4639 zp-core/admin.php:247 zp-core/admin.php:262
-#: zp-core/admin.php:278 zp-core/classes/class-maintenancemode.php:232
+#: zp-core/admin.php:278 zp-core/classes/class-maintenancemode.php:233
 #: zp-core/template-functions.php:95 zp-core/utilities/backup_restore.php:22
 #: zp-core/zp-extensions/admin-approval.php:15
 #: zp-core/zp-extensions/auto_backup.php:27
@@ -3612,14 +3612,14 @@ msgstr "Rappresentazione data preferita"
 #: zp-core/admin-options.php:896
 msgid ""
 "Format for dates. Select from the list or set to <code>custom</code> and "
-"provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php"
-"\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string "
-"in the text box."
+"provide a <a href=\"https://www.php.net/manual/en/function.date.php\"><span "
+"class=\"nowrap\"><code>date()</code></span></a> format string in the text "
+"box."
 msgstr ""
 "Formato per le date. Selezionarne uno dalla lista o impostare su "
-"<code>personalizzato</code> e inserire una stringa in formato <a href="
-"\"http://us2.php.net/manual/it/function.strftime.php\"><span class=\"nowrap"
-"\"><code>strftime()</code></span></a> nella casella di testo."
+"<code>personalizzato</code> e inserire una stringa in formato <a "
+"href=\"http://us2.php.net/manual/it/function.strftime.php\"><span "
+"class=\"nowrap\"><code>strftime()</code></span></a> nella casella di testo."
 
 # Verificare
 #: zp-core/admin-options.php:899
@@ -3857,7 +3857,7 @@ msgstr "Visualizza avviso di coypright"
 
 #: zp-core/admin-options.php:1178 zp-core/admin-options.php:2602
 #: zp-core/zp-extensions/http_security_headers.php:346
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:203
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:207
 msgid "Enable"
 msgstr "Abilita"
 
@@ -4081,10 +4081,13 @@ msgstr ""
 #: zp-core/admin-options.php:1482
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
-"is discovered which is newer than the current date of the album."
+"is discovered which is newer than the current date of the album.<br>Be sure "
+"to refresh image metadata for this option to have effect."
 msgstr ""
 "<strong>NOTA</strong>: Zenphoto aggiornerà la data dell’album solo se viene "
-"rilevata un’immagine che ha una data posteriore a quella dell’album."
+"rilevata un’immagine che ha una data più recente di quella dell’album.<br> "
+"Assicurati di aggiornare i metadati dellְ’immagine affinché questa opzione "
+"abbia effetto."
 
 #: zp-core/admin-options.php:1486
 msgid ""
@@ -5171,8 +5174,8 @@ msgstr "Questo plugin sarà rimosso nelle versioni future."
 #: zp-core/admin-options.php:3181 zp-core/admin-plugins.php:265
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
-"may cause performance issues. You should instead set <code>"
-"$option_interface</code> to the name of the class as a string."
+"may cause performance issues. You should instead set "
+"<code>$option_interface</code> to the name of the class as a string."
 msgstr ""
 "<strong>Nota:</strong> creare un’istanza dell’opzione di interfaccia "
 "all’interno del plugin può causare problemi di prestazioni. Si dovrebbe "
@@ -5241,9 +5244,9 @@ msgstr ""
 "sicura</em> il server <strong>DEVE</strong> supportare <em>https</em>. Se "
 "imposti una di queste opzioni su un server che non supporta <em>https</em> "
 "non potrai più accedere alle pagine di <code>amministrazione</code> per "
-"modificarla! L’unica possibilità sarà quella di impostare o aggiungere <code>"
-"$conf[\"server_protocol\"] = \"http\";</code> al tuo file <code>zenphoto.cfg."
-"php</code>."
+"modificarla! L’unica possibilità sarà quella di impostare o aggiungere "
+"<code>$conf[\"server_protocol\"] = \"http\";</code> al tuo file "
+"<code>zenphoto.cfg.php</code>."
 
 #: zp-core/admin-options.php:3341
 msgid "Cookie security"
@@ -6043,8 +6046,9 @@ msgstr ""
 
 #: zp-core/admin-upload.php:136
 msgid ""
-"Don’t forget, you can also use <acronym title=\"File Transfer Protocol"
-"\">FTP</acronym> to upload folders of images into the albums directory!"
+"Don’t forget, you can also use <acronym title=\"File Transfer "
+"Protocol\">FTP</acronym> to upload folders of images into the albums "
+"directory!"
 msgstr ""
 "Non dimenticare che è possibile usare anche <acronym title=\"File Transfer "
 "Protocol\">FTP</acronym> per caricare le cartelle di immagini nella cartella "
@@ -6616,7 +6620,7 @@ msgstr ""
 msgid "No captcha handler is enabled."
 msgstr "Nessun gestore di captcha abilitato."
 
-#: zp-core/classes/class-administrator.php:547
+#: zp-core/classes/class-administrator.php:549
 msgid "Use the Administrator class instead"
 msgstr "Utilizza invece la classe Administrator"
 
@@ -7589,38 +7593,38 @@ msgstr "<strong>Modalità manutenzione:</strong> Il sito è chiuso!"
 msgid "<strong>Maintenance Mode:</strong> The site is in test mode!"
 msgstr "<strong>Modalità manutenzione:</strong> Il sito è in modalità test!"
 
-#: zp-core/classes/class-maintenancemode.php:146
+#: zp-core/classes/class-maintenancemode.php:147
 msgid "Change mode"
 msgstr "Cambia modalità"
 
-#: zp-core/classes/class-maintenancemode.php:178
+#: zp-core/classes/class-maintenancemode.php:179
 #, php-format
 msgid "%s upgrade"
 msgstr "aggiornamento %s"
 
-#: zp-core/classes/class-maintenancemode.php:180
+#: zp-core/classes/class-maintenancemode.php:181
 #, php-format
 msgid "<strong><em>%s</em></strong> is undergoing an upgrade"
 msgstr "<strong><em>%s</em></strong> è in aggiornamento"
 
-#: zp-core/classes/class-maintenancemode.php:181
+#: zp-core/classes/class-maintenancemode.php:182
 msgid "Please return later"
 msgstr "Provare più tardi"
 
-#: zp-core/classes/class-maintenancemode.php:214
+#: zp-core/classes/class-maintenancemode.php:215
 msgid "RSS temporarily suspended for maintenance"
 msgstr "RSS temporaneamente sospesi per manutenzione"
 
-#: zp-core/classes/class-maintenancemode.php:218
+#: zp-core/classes/class-maintenancemode.php:219
 msgid "Closed for maintenance"
 msgstr "Chiuso per manutenzione"
 
-#: zp-core/classes/class-maintenancemode.php:219
+#: zp-core/classes/class-maintenancemode.php:220
 msgid "The site is currently undergoing an upgrade"
 msgstr "Il sito è attualmente in fase di aggiornamento"
 
-#: zp-core/classes/class-maintenancemode.php:234
-#: zp-core/classes/class-maintenancemode.php:239
+#: zp-core/classes/class-maintenancemode.php:235
+#: zp-core/classes/class-maintenancemode.php:240
 #: zp-core/utilities/maintenance_mode.php:48
 msgid "Maintenance mode"
 msgstr "Modalità di manutenzione"
@@ -7686,7 +7690,7 @@ msgstr "Contenuto extra"
 msgid "Categories"
 msgstr "Categorie"
 
-#: zp-core/classes/class-searchengine.php:2057
+#: zp-core/classes/class-searchengine.php:2061
 msgid "no date"
 msgstr "nessuna data"
 
@@ -8653,9 +8657,9 @@ msgstr "Vietnamita"
 msgid "Welsh"
 msgstr "Gallese"
 
-#: zp-core/functions/functions-i18n.php:768
+#: zp-core/functions/functions-i18n.php:773
 msgid ""
-"Using strftime() based date formats strings is deprecated. Use stanadard "
+"Using strftime() based date formats strings is deprecated. Use standard "
 "date() compatible formatting or a timestamp instead."
 msgstr ""
 "L’uso di date formattate con strftime() è deprecato. Utilizzare invece una "
@@ -8729,68 +8733,68 @@ msgstr "miniatura ="
 msgid "crop ="
 msgstr "taglia ="
 
-#: zp-core/functions/functions-image.php:198
+#: zp-core/functions/functions-image.php:200
 #, php-format
 msgid "Image %s not found or is unreadable."
 msgstr "Immagine %s non trovata o illegibile."
 
 # verificare
-#: zp-core/functions/functions-image.php:216
+#: zp-core/functions/functions-image.php:218
 #, php-format
 msgid "Using %1$ux%2$u %3$s thumbnail image."
 msgstr "Sto usando un’immagine %3$s %1$ux%2$u per la miniatura."
 
-#: zp-core/functions/functions-image.php:228
+#: zp-core/functions/functions-image.php:230
 #, php-format
 msgid "Image %s not renderable (imageGet)."
 msgstr "Impossibile il rendering dell’immagine %s (imageGet)."
 
-#: zp-core/functions/functions-image.php:235
+#: zp-core/functions/functions-image.php:238
 #, php-format
 msgid "Image %s not rotatable."
 msgstr "Immagine %s non ruotabile."
 
-#: zp-core/functions/functions-image.php:279
+#: zp-core/functions/functions-image.php:286
 #, php-format
 msgid ""
-"Unknown error processing %s! Please report to the developers at <a href="
-"\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
+"Unknown error processing %s! Please report to the developers at <a "
+"href=\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
 msgstr ""
-"Errore sconosciuto%s! Per favore, riportarlo agli sviluppatori su <a href="
-"\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
+"Errore sconosciuto%s! Per favore, riportarlo agli sviluppatori su <a "
+"href=\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
 
-#: zp-core/functions/functions-image.php:404
-#: zp-core/functions/functions-image.php:443
+#: zp-core/functions/functions-image.php:419
+#: zp-core/functions/functions-image.php:460
 #, php-format
 msgid "Image %s not renderable (resample)."
 msgstr "Impossibile il rendering dell’immagine %s (ricampionamento)."
 
-#: zp-core/functions/functions-image.php:447
+#: zp-core/functions/functions-image.php:464
 #, php-format
 msgid "Image %s not renderable (unsharp)."
 msgstr "Impossibile il rendering dell’immagine %s (nitidezza)."
 
-#: zp-core/functions/functions-image.php:515
+#: zp-core/functions/functions-image.php:536
 #, php-format
 msgid "cacheImage: failed to create %s"
 msgstr "cacheImage: creazione di %s fallita"
 
-#: zp-core/functions/functions-image.php:522
+#: zp-core/functions/functions-image.php:543
 #, php-format
 msgid "cacheImage(%1$s) exception: %2$s"
 msgstr "Eccezione cacheImage(%1$s): %2$s"
 
-#: zp-core/functions/functions-image.php:586
+#: zp-core/functions/functions-image.php:607
 #, php-format
 msgid "Watermark %s not renderable."
 msgstr "Impossibile il rendering della filigrana %s."
 
-#: zp-core/functions/functions-image.php:605
+#: zp-core/functions/functions-image.php:626
 #, php-format
 msgid "Watermark %s not resizeable."
 msgstr "Filigrana %s non ridimensionabile."
 
-#: zp-core/functions/functions-image.php:620
+#: zp-core/functions/functions-image.php:641
 #, php-format
 msgid "Image %s not renderable (copycanvas)."
 msgstr "Impossibile il rendering dell’immagine %s (copycanvas)."
@@ -11100,31 +11104,37 @@ msgstr ""
 "ripristinando la tabella dal backup. Notare, comunque, che le voci duplicate "
 "andranno perdute."
 
-#: zp-core/setup/class-setup.php:909
-msgid "Upgrade from before Zenphoto v1.2"
-msgstr "Aggiornamento da una versione di Zenphoto precedente alla 1.2"
-
-#: zp-core/setup/class-setup.php:920 zp-core/setup/index.php:555
+#: zp-core/setup/class-setup.php:903 zp-core/setup/class-setup.php:926
+#: zp-core/setup/index.php:555
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Installazione di Zenphoto v. %s"
 
-#: zp-core/setup/class-setup.php:927
+#: zp-core/setup/class-setup.php:913
+msgid "Upgrade from before Zenphoto v1.2"
+msgstr "Aggiornamento da una versione di Zenphoto precedente alla 1.2"
+
+#: zp-core/setup/class-setup.php:917 zp-core/setup/class-setup.php:955
+#: zp-core/setup/index.php:1043
+msgid "Update"
+msgstr "Update"
+
+#: zp-core/setup/class-setup.php:933
 msgid "Reinstalling current Zenphoto release"
 msgstr "Sto reinstallando la versione corrente di Zenphoto"
 
-#: zp-core/setup/class-setup.php:928
+#: zp-core/setup/class-setup.php:934
 msgid "reinstall"
 msgstr "reinstalla"
 
-#: zp-core/setup/class-setup.php:943
+#: zp-core/setup/class-setup.php:949
 #, php-format
 msgid "[%u release skipped]"
 msgid_plural "[%u releases skipped]"
 msgstr[0] "[%u release saltata]"
 msgstr[1] "[%u release saltate]"
 
-#: zp-core/setup/class-setup.php:944
+#: zp-core/setup/class-setup.php:950
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
@@ -11132,21 +11142,17 @@ msgstr ""
 "Gli aggiornamenti che saltano delle release non vengono testati. Si "
 "raccomanda di aggiornare in sequenza."
 
-#: zp-core/setup/class-setup.php:948
+#: zp-core/setup/class-setup.php:954
 #, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Aggiorna da Zenphoto v%s"
 
-#: zp-core/setup/class-setup.php:949 zp-core/setup/index.php:1043
-msgid "Update"
-msgstr "Update"
-
-#: zp-core/setup/class-setup.php:953
+#: zp-core/setup/class-setup.php:959
 #, php-format
 msgid "Downgrade to Zenphoto v%s"
 msgstr "Downgrade a Zenphoto v%s"
 
-#: zp-core/setup/class-setup.php:954
+#: zp-core/setup/class-setup.php:960
 msgid ""
 "Downgrades are not recommended and supported and can have serious unwanted "
 "side effects especially regarding database changes in newer versions."
@@ -11155,7 +11161,7 @@ msgstr ""
 "collaterali indesiderati, soprattutto per quanto riguarda le modifiche al "
 "database nelle versioni più recenti."
 
-#: zp-core/setup/class-setup.php:955
+#: zp-core/setup/class-setup.php:961
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -11290,12 +11296,12 @@ msgstr "<em>%s</em> sicurezza [compromessa]"
 #, php-format
 msgid ""
 "Zenphoto suggests you make the sensitive files in the %1$s folder accessable "
-"by <em>owner</em> only (permissions = 0600). The file permissions for <em>"
-"%2$s</em> are %3$04o which may allow unauthorized access."
+"by <em>owner</em> only (permissions = 0600). The file permissions for "
+"<em>%2$s</em> are %3$04o which may allow unauthorized access."
 msgstr ""
 "Zenphoto suggerisce di rendere i file sensibili nel folder %1$s accessibili "
-"solo al <em>proprietario</em>(permessi = 0600). I permessi dei file per <em>"
-"%2$s</em> sono %3$04o e possono consentire accessi non autorizzati."
+"solo al <em>proprietario</em>(permessi = 0600). I permessi dei file per "
+"<em>%2$s</em> sono %3$04o e possono consentire accessi non autorizzati."
 
 #: zp-core/setup/index.php:575
 msgid "<em>SSL</em> connection"
@@ -11658,11 +11664,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:651
 msgid ""
-"See the <a  href=\"https://www.zenphoto.org/news/problems-with-languages"
-"\">user guide</a> on zenphoto.org for details."
+"See the <a  href=\"https://www.zenphoto.org/news/problems-with-"
+"languages\">user guide</a> on zenphoto.org for details."
 msgstr ""
-"Leggere la <a  href=\"https://www.zenphoto.org/news/problems-with-languages"
-"\">user guide</a>(in inglese) su zenphoto.org per maggiori dettagli."
+"Leggere la <a  href=\"https://www.zenphoto.org/news/problems-with-"
+"languages\">user guide</a>(in inglese) su zenphoto.org per maggiori dettagli."
 
 #: zp-core/setup/index.php:653
 msgid "mb_strings"
@@ -12144,16 +12150,16 @@ msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr ""
-"Il database non ha restituito una lista di tabelle del database per <code>"
-"%s</code>."
+"Il database non ha restituito una lista di tabelle del database per "
+"<code>%s</code>."
 
 #: zp-core/setup/index.php:1106
 msgid ""
-"<strong>Setup</strong> will attempt to create all tables. This will not over "
-"write any existing tables."
+"<strong>Setup</strong> will attempt to create all tables. This will not "
+"overwrite any existing tables."
 msgstr ""
-"<strong>Setup</strong> proverà a creare tutte le tabelle. Questa operazione "
-"non sovrascriverà alcuna tabella esistente."
+"<strong>Il setup</strong> proverà a creare tutte le tabelle. Questa "
+"operazione non sovrascriverà nessuna tabella esistente."
 
 #: zp-core/setup/index.php:1108
 msgid "UTF8MB4 collation support"
@@ -12332,15 +12338,15 @@ msgstr "Permessi file fondamentali di Zenphoto [non corretti]"
 #: zp-core/setup/index.php:1364
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
-"level. You will have to set the permissions manually. See the <a href="
-"\"https://www.zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
-"\">Troubleshooting guide</a> for details on Zenphoto permissions "
+"level. You will have to set the permissions manually. See the <a "
+"href=\"https://www.zenphoto.org/news/permissions-for-zenphoto-files-and-"
+"folders\">Troubleshooting guide</a> for details on Zenphoto permissions "
 "requirements."
 msgstr ""
 "Il setup non ha potuto impostare i permessi selezionati per uno o più "
-"componenti. Si dovranno impostare i permessi manualmente. Vedere la <a href="
-"\"https://www.zenphoto.org/news/permissions-for-zenphoto-files-and-folders"
-"\">Troubleshooting guide</a> (in inglese) per dettagli sui permessi "
+"componenti. Si dovranno impostare i permessi manualmente. Vedere la <a "
+"href=\"https://www.zenphoto.org/news/permissions-for-zenphoto-files-and-"
+"folders\">Troubleshooting guide</a> (in inglese) per dettagli sui permessi "
 "richiesti da Zenphoto."
 
 #: zp-core/setup/index.php:1367
@@ -12381,8 +12387,8 @@ msgstr "Il server sembra essrer <em>nginx</em>"
 
 #: zp-core/setup/index.php:1388
 msgid ""
-"If you wish to create cruft-free URLs, you will need to configuring <a href="
-"\"https://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
+"If you wish to create cruft-free URLs, you will need to configuring <a "
+"href=\"https://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
 "rewriting for NGINX servers</em></a>."
 msgstr ""
 "Se si vogliono URL pulite, si deve configurare <a href=\"https://www."
@@ -12426,8 +12432,8 @@ msgid ""
 "><br />"
 msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Sostituire il file <em>."
-"htaccess</em> esistente con la versione attuale</a></p><br style=\"clear:both"
-"\" /><br />"
+"htaccess</em> esistente con la versione attuale</a></p><br style=\"clear:"
+"both\" /><br />"
 
 #: zp-core/setup/index.php:1437
 msgid "<em>.htaccess</em> file [wrong version]"
@@ -12585,11 +12591,11 @@ msgstr ""
 msgid "Setup failed."
 msgstr "Setup fallito."
 
-#: zp-core/setup/index.php:1591 zp-core/setup/index.php:2681
+#: zp-core/setup/index.php:1591 zp-core/setup/index.php:2677
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Sono necessari i permessi <em>USER ADMIN</em> per lanciare il setup."
 
-#: zp-core/setup/index.php:1593 zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:1593 zp-core/setup/index.php:2679
 msgid "You must be logged in to run setup."
 msgstr "È necessario essere autenticati per lanciare il setup."
 
@@ -12601,123 +12607,123 @@ msgstr "database connesso"
 msgid "Checking the database"
 msgstr "Verifica del database"
 
-#: zp-core/setup/index.php:2400
+#: zp-core/setup/index.php:2396
 msgid "About to create database tables"
 msgstr "Sto per creare le tabelle del database"
 
-#: zp-core/setup/index.php:2402
+#: zp-core/setup/index.php:2398
 msgid "About to update database tables"
 msgstr "Sto per aggiornare le tabelle del database"
 
-#: zp-core/setup/index.php:2405
+#: zp-core/setup/index.php:2401
 msgid "Begin database table creation"
 msgstr "Inizio creazione tabelle database"
 
-#: zp-core/setup/index.php:2414
+#: zp-core/setup/index.php:2410
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Creazione tabella fallita:<br />Query: %1$s<br />Errore: %2$s"
 
-#: zp-core/setup/index.php:2419 zp-core/setup/index.php:2439
+#: zp-core/setup/index.php:2415 zp-core/setup/index.php:2435
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Query ( %s ) eseguita con successo."
 
-#: zp-core/setup/index.php:2424 zp-core/setup/index.php:2425
+#: zp-core/setup/index.php:2420 zp-core/setup/index.php:2421
 msgid "Begin table updates"
 msgstr "Inizio aggiornamento tabella"
 
-#: zp-core/setup/index.php:2432 zp-core/setup/index.php:2436
+#: zp-core/setup/index.php:2428 zp-core/setup/index.php:2432
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Query %1$s fallita. Errore: %2$s"
 
-#: zp-core/setup/index.php:2442
+#: zp-core/setup/index.php:2438
 msgid "Begin converting UTF-8 tables to utf8mb4 collation"
 msgstr "Inizia la conversione delle tabelle UTF-8 alla collation utf8mb4"
 
-#: zp-core/setup/index.php:2450
+#: zp-core/setup/index.php:2446
 #, php-format
 msgid "UTF-8 Table %s and its columns converted to utf8mb4 collation."
 msgstr ""
 "UTF-8 La tabella %s e le sue colonne sono state convertite in collation "
 "utf8mb4."
 
-#: zp-core/setup/index.php:2453
+#: zp-core/setup/index.php:2449
 #, php-format
 msgid ""
-"ERROR: UTF-8 Table %1$s and/or its columns coulnd not be converted to "
-"utf8mb4 collation: %2$s"
+"ERROR: UTF-8 table %1$s and/or its columns could not be converted to utf8mb4 "
+"collation: %2$s"
 msgstr ""
 "ERRORE: La tabella UTF-8 %1$s e/o le sue colonne non possono essere "
-"convertite in utf8mb4 collation: %2$s"
+"convertite nella collation utf8mb4: %2$s"
 
-#: zp-core/setup/index.php:2461
+#: zp-core/setup/index.php:2457
 msgid "Done with table create!"
 msgstr "Creazione tabella completata!"
 
-#: zp-core/setup/index.php:2463
+#: zp-core/setup/index.php:2459
 msgid "Done with table create with errors!"
 msgstr "Creazione tabella completata con errori!"
 
-#: zp-core/setup/index.php:2467
+#: zp-core/setup/index.php:2463
 msgid "Done with table update"
 msgstr "Aggiornamento tabella completato"
 
-#: zp-core/setup/index.php:2469
+#: zp-core/setup/index.php:2465
 msgid "Done with table update with errors"
 msgstr "Aggiornamento tabella completato con errori"
 
-#: zp-core/setup/index.php:2474
+#: zp-core/setup/index.php:2470
 msgid "Checking table specifications"
 msgstr "Controllo specifiche della tabella"
 
-#: zp-core/setup/index.php:2485
+#: zp-core/setup/index.php:2481
 msgid "Done with database creation and update"
 msgstr "Creazione database e aggiornamento tabella completati"
 
-#: zp-core/setup/index.php:2487
+#: zp-core/setup/index.php:2483
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La versione precedente era la %s"
 
-#: zp-core/setup/index.php:2490
+#: zp-core/setup/index.php:2486
 msgid "Setting default options"
 msgstr "Impostazione opzioni predefinite"
 
-#: zp-core/setup/index.php:2528
+#: zp-core/setup/index.php:2524
 #, php-format
 msgid ""
-"You may <a href=\"%1$s\">set your admin user and password</a> or <a href="
-"\"%2$s\">run backup-restore</a>"
+"You may <a href=\"%1$s\">set your admin user and password</a> or <a "
+"href=\"%2$s\">run backup-restore</a>"
 msgstr ""
 "È necessario <a href=\"%1$s\">impostare il nome utente e la password "
 "dell’amministratore</a> o <a href=\"%2$s\">lanciare il ripristino di un "
 "backup</a>"
 
-#: zp-core/setup/index.php:2531
+#: zp-core/setup/index.php:2527
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "È necessario <a href=\"%1$s\">impostare il nome utente e la password "
 "dell’amministratore</a>"
 
-#: zp-core/setup/index.php:2537
+#: zp-core/setup/index.php:2533
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr "È ora possibile <a href=\"%1$s\">amministrare la galleria</a>."
 
-#: zp-core/setup/index.php:2601
+#: zp-core/setup/index.php:2597
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tabelle del database da creare: %s"
 
-#: zp-core/setup/index.php:2621
+#: zp-core/setup/index.php:2617
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tabelle del database da aggiornare: %s"
 
-#: zp-core/setup/index.php:2650
+#: zp-core/setup/index.php:2646
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -12727,12 +12733,12 @@ msgstr ""
 "alla struttura del database che non sono facilmente revertibili. Assicurarsi "
 "di avere un backup del database prima di procedere."
 
-#: zp-core/setup/index.php:2653
+#: zp-core/setup/index.php:2649
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Sono consapevole che procedendo il database verrà ristrutturato."
 
-#: zp-core/setup/index.php:2713
+#: zp-core/setup/index.php:2709
 msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as "
 "the process may take some time."
@@ -12740,23 +12746,23 @@ msgstr ""
 "Congratulazioni, siamo pronti per installare Zenphoto. Un po&apos; di "
 "pazienza per favore, il processo potrebbe richiedere del tempo."
 
-#: zp-core/setup/index.php:2714
+#: zp-core/setup/index.php:2710
 msgid "run setup"
 msgstr "esegui il setup"
 
-#: zp-core/setup/index.php:2714
+#: zp-core/setup/index.php:2710
 msgid "Go"
 msgstr "Vai"
 
-#: zp-core/setup/index.php:2730
+#: zp-core/setup/index.php:2726
 msgid "database did not connect"
 msgstr "il database non si è connesso"
 
-#: zp-core/setup/index.php:2732
+#: zp-core/setup/index.php:2728
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr "Se non si è già creato il database, ora è il momento giusto per farlo."
 
-#: zp-core/setup/index.php:2741
+#: zp-core/setup/index.php:2737
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Il file %1$s non esiste."
@@ -13103,8 +13109,8 @@ msgstr "Utilizza invece SearchEngine::getSearchURL()"
 
 #: zp-core/template-functions.php:3796
 msgid ""
-"printSearchForm $album_list parameter is deprecated. Pass array(\"albums"
-"\"=>array(album, album, ...)) instead."
+"printSearchForm $album_list parameter is deprecated. Pass "
+"array(\"albums\"=>array(album, album, ...)) instead."
 msgstr ""
 "Il parametro printSearchForm $album_list parameter è deprecato. Passare "
 "invece array(\"albums\"=>array(album, album, ...))."
@@ -13149,8 +13155,9 @@ msgstr "accesso"
 
 #: zp-core/template-functions.php:4223
 msgid ""
-"Powered by <a href=\"https://www.zenphoto.org\" target=\"_blank\" rel="
-"\"noopener noreferrer\" title=\"The simpler media website CMS\">Zenphoto</a>"
+"Powered by <a href=\"https://www.zenphoto.org\" target=\"_blank\" "
+"rel=\"noopener noreferrer\" title=\"The simpler media website "
+"CMS\">Zenphoto</a>"
 msgstr ""
 "Basato su<a href=\"https://www.zenphoto.org\" title=\"Il più semplice CMS "
 "per siti multimediali\">Zenphoto</a>"
@@ -13796,8 +13803,8 @@ msgid ""
 "ResourceBundle</a> is not available on your system. We suggest you contact "
 "your host about this."
 msgstr ""
-"Spiacenti, le localizzazioni non possono essere elencate perché la <a href="
-"\"%s\">classe PHP ResourceBundle</a> non è disponibile nel sistema. Ti "
+"Spiacenti, le localizzazioni non possono essere elencate perché la <a "
+"href=\"%s\">classe PHP ResourceBundle</a> non è disponibile nel sistema. Ti "
 "suggeriamo di contattare il tuo host in merito."
 
 #: zp-core/utilities/maintenance_mode.php:23
@@ -14118,13 +14125,13 @@ msgstr "È necessaria la API key di Google Maps."
 #: zp-core/zp-extensions/GoogleMap.php:26
 #, php-format
 msgid ""
-"<strong>Note</strong>: Google does place limits on the use of its <a href="
-"\"%s\"><em>Maps API</em></a>. Please review these to be sure your site is in "
-"compliance."
+"<strong>Note</strong>: Google does place limits on the use of its <a "
+"href=\"%s\"><em>Maps API</em></a>. Please review these to be sure your site "
+"is in compliance."
 msgstr ""
-"<strong>Nota</strong>: Google pone dei limiti per l’uso delle <a href=\"%s"
-"\"><em>Maps API</em></a>. Controllarli per essere sicuri che il proprio sito "
-"li rispetti."
+"<strong>Nota</strong>: Google pone dei limiti per l’uso delle <a "
+"href=\"%s\"><em>Maps API</em></a>. Controllarli per essere sicuri che il "
+"proprio sito li rispetti."
 
 #: zp-core/zp-extensions/GoogleMap.php:27
 #: zp-core/zp-extensions/class-WEBdocs.php:18
@@ -14238,8 +14245,8 @@ msgstr ""
 "delle mappe per l’opzione di visualizzazione <em>colorbox</em>. Se l’opzione "
 "non è abilitata i dati verranno forniti come parte del collegamento e "
 "potrebbero superare le dimensioni permesse da alcuni browser, oltre ad "
-"esporre a potenziali attacchi del tipo \"reference forgery security attacks"
-"\"."
+"esporre a potenziali attacchi del tipo \"reference forgery security "
+"attacks\"."
 
 #: zp-core/zp-extensions/GoogleMap.php:144
 msgid "API key"
@@ -14469,8 +14476,8 @@ msgid ""
 "Only one Carousel plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"Solo un plugin Carousel alla volta può essere abilitato. <a href=\"#%1$s"
-"\"><code>%1$s</code></a> è già abilitato."
+"Solo un plugin Carousel alla volta può essere abilitato. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> è già abilitato."
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:54
 msgid "Minimum items"
@@ -17540,8 +17547,8 @@ msgid ""
 "* This option may be set via the <a onclick=\"gotoName('dynamic-locale');"
 "\"><em>dynamic-locale</em></a> plugin options."
 msgstr ""
-"* Questa opzione può essere impostata nelle preferenze del plugin <a onclick="
-"\"gotoName('dynamic-locale');\"><em>dynamic-locale</em></a>."
+"* Questa opzione può essere impostata nelle preferenze del plugin <a "
+"onclick=\"gotoName('dynamic-locale');\"><em>dynamic-locale</em></a>."
 
 #: zp-core/zp-extensions/dynamic-locale.php:182
 #: zp-core/zp-extensions/html_meta_tags.php:197
@@ -17710,8 +17717,8 @@ msgid ""
 "(<code>%1</code>) and a custom page (<code>%2</code>)."
 msgstr ""
 "Fornisce il testo per un link alla pagina di uno script \"personalizzato\" "
-"indicato da un linktext (<code>%1</code>) e una pagina personalizzata (<code>"
-"%2</code>)."
+"indicato da un linktext (<code>%1</code>) e una pagina personalizzata "
+"(<code>%2</code>)."
 
 # verificare
 #: zp-core/zp-extensions/exampleMacros.php:58
@@ -17969,8 +17976,8 @@ msgstr "Titolo immagine"
 #, php-format
 msgid ""
 "This text will be used as the <em>title</em> of the article. The album title "
-"will be substituted for <code>%2$s</code> and the image title for <code>"
-"%1$s</code>."
+"will be substituted for <code>%2$s</code> and the image title for "
+"<code>%1$s</code>."
 msgstr ""
 "Questo testo verrà usato come <em>titolo</em> dell’articolo. Il titolo "
 "dell’album verrà inserito al posto di <code>%2$s</code> e il titolo "
@@ -18178,8 +18185,8 @@ msgid ""
 "This adds a link element to the head of each page with a <em>canonical url</"
 "em>. If the <code>seo_locale</code> plugin is enabled or <code>use "
 "subdomains</code> is checked it also generates alternate links for other "
-"languages (<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</code>...<code>"
-"\" href=\"</code>...<code>\" /&gt;</code>)."
+"languages (<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</code>..."
+"<code>\" href=\"</code>...<code>\" /&gt;</code>)."
 msgstr ""
 "Aggiunge un elemento link all’head di ogni pagina con una<em>url canonica</"
 "em>. Se è abilitato il plugin <code>seo_locale</code>o è "
@@ -18276,8 +18283,8 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:"
 "gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
 msgstr ""
-"* Questa opzione può essere impostata tramite le opzioni del plugin <a href="
-"\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a>."
+"* Questa opzione può essere impostata tramite le opzioni del plugin <a "
+"href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:23
 msgid ""
@@ -18298,10 +18305,10 @@ msgid ""
 "Content-Security-Policy</a>."
 msgstr ""
 "L'header Content-Security-Policy permette di controllare quali risorse siano "
-"rese disponibili ai browser. Per informazioni dettagliate si veda <a href="
-"\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-"
-"Policy\" target=\"_blank\">https://developer.mozilla.org/en-US/docs/Web/HTTP/"
-"Headers/Content-Security-Policy</a>."
+"rese disponibili ai browser. Per informazioni dettagliate si veda <a "
+"href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-"
+"Security-Policy\" target=\"_blank\">https://developer.mozilla.org/en-US/docs/"
+"Web/HTTP/Headers/Content-Security-Policy</a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:54
 msgid ""
@@ -18374,8 +18381,8 @@ msgid ""
 "Applets, Flash videos etc.) if the object-src directive is set to \"none\"."
 msgstr ""
 "Limita specifici tipi di plugin che un browser può caricare (es. Applet "
-"Java, video Flash, ecc.) quando la direttiva object-src è impostata su \"none"
-"\"."
+"Java, video Flash, ecc.) quando la direttiva object-src è impostata su "
+"\"none\"."
 
 #: zp-core/zp-extensions/http_security_headers.php:240
 msgid "Enables sandbox for the requested source."
@@ -18473,8 +18480,8 @@ msgstr ""
 msgid ""
 "For detailed info please see <a href=\"%1$s\" target=\"_blank\">%2$s</a>."
 msgstr ""
-"Per informazioni dettagliate si veda <a href=\"%1$s\" target=\"_blank\">"
-"%2$s</a>."
+"Per informazioni dettagliate si veda <a href=\"%1$s\" "
+"target=\"_blank\">%2$s</a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:422
 msgid ""
@@ -18820,8 +18827,8 @@ msgstr "Aggiornamento richiesto"
 #: zp-core/zp-extensions/jplayer.php:513
 msgid ""
 "To play the media you will need to either update your browser to a recent "
-"version or update your <a href=\"http://get.adobe.com/flashplayer/\" target="
-"\"_blank\">Flash plugin</a>."
+"version or update your <a href=\"http://get.adobe.com/flashplayer/\" "
+"target=\"_blank\">Flash plugin</a>."
 msgstr ""
 "Per eseguire il file multimediale è necessario aggiornare il browser a una "
 "versione più recente o aggiornare il <a href=\"http://get.adobe.com/"
@@ -19150,8 +19157,8 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:"
 "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
 msgstr ""
-"* Queste opzioni possono essere impostate dalle opzioni del plugin <a href="
-"\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
+"* Queste opzioni possono essere impostate dalle opzioni del plugin <a "
+"href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
 
 #: zp-core/zp-extensions/menu_manager.php:76
 #: zp-core/zp-extensions/zenpage.php:257
@@ -19285,7 +19292,7 @@ msgid "Ok to delete %s? This cannot be undone."
 msgstr "Eliminare %s? Non si potrà tornare indietro."
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:148
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:178
 #: zp-core/zp-extensions/zenpage/admin-edit.php:551
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:298
 msgid "delete"
@@ -20298,9 +20305,9 @@ msgid ""
 "<code>printAlbumMenuList</code> “List” option. Note: themes may override "
 "this default."
 msgstr ""
-"La profondità di livelli di sub-album da mostrare con le opzioni di \"Lista"
-"\" <code>printAlbumMenu</code> e <code>printAlbumMenuList</code>. Nota: i "
-"temi possono sovrascrivere questa impostazione."
+"La profondità di livelli di sub-album da mostrare con le opzioni di "
+"\"Lista\" <code>printAlbumMenu</code> e <code>printAlbumMenuList</code>. "
+"Nota: i temi possono sovrascrivere questa impostazione."
 
 #: zp-core/zp-extensions/print_album_menu.php:48
 msgid "Show counts"
@@ -20319,8 +20326,9 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:"
 "gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
 msgstr ""
-"* Queste opzioni possono essere impostate dalle opzioni del plugin <a href="
-"\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a>."
+"* Queste opzioni possono essere impostate dalle opzioni del plugin <a "
+"href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></"
+"a>."
 
 #: zp-core/zp-extensions/print_album_menu.php:69
 msgid ""
@@ -20365,8 +20373,8 @@ msgstr ""
 msgid ""
 "The number of un-published items does <strong>not</strong> include items "
 "that are un-published by <a href=\"https://www.zenphoto.org/news/an-overview-"
-"of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj"
-"\">inheritance</a>."
+"of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
+"obj\">inheritance</a>."
 msgstr ""
 "Il numero di elementi non pubblicati <strong>non</strong> tiene conto degli "
 "elementi che sono non pubblicati per <a href=\"https://www.zenphoto.org/news/"
@@ -20819,8 +20827,8 @@ msgstr "Gestore di Google reCaptcha v2."
 #: zp-core/zp-extensions/reCaptcha.php:19
 #, php-format
 msgid ""
-"Only one Captcha handler plugin may be enabled. <a href=\"#%1$s\"><code>"
-"%1$s</code></a> is already enabled."
+"Only one Captcha handler plugin may be enabled. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
 msgstr ""
 "Può essere abilitato un solo plugin alla volta per la gestione del Captcha. "
 "<a href=\"#%1$s\"><code>%1$s</code></a> è già abilitato."
@@ -20839,8 +20847,8 @@ msgid ""
 "the Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
 msgstr ""
 "Inserire la propria chiave pubblica di <em>reCaptcha v2</em>. È possibile "
-"ottenere questa chiave dal sito web <a href=\"http://www.google.com/recaptcha"
-"\">reCaptcha</a> di Google"
+"ottenere questa chiave dal sito web <a href=\"http://www.google.com/"
+"recaptcha\">reCaptcha</a> di Google"
 
 #: zp-core/zp-extensions/reCaptcha.php:55
 msgid "Private key"
@@ -20896,9 +20904,9 @@ msgid ""
 "google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
 "reCaptcha keys."
 msgstr ""
-"Le chiavi reCAPTCHA v2 non sono configurate correttamente. Visitare <a href="
-"\"https://www.google.com/recaptcha/intro/index.html\">questo link</a> per "
-"ottenere le proprie chiavi reCaptcha."
+"Le chiavi reCAPTCHA v2 non sono configurate correttamente. Visitare <a "
+"href=\"https://www.google.com/recaptcha/intro/index.html\">questo link</a> "
+"per ottenere le proprie chiavi reCaptcha."
 
 #: zp-core/zp-extensions/redirector.php:34
 msgid ""
@@ -21045,8 +21053,8 @@ msgid ""
 "* The option may be set via the <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a> plugin options."
 msgstr ""
-"* Questa opzione può essere impostata dalle opzioni del plugin <a href="
-"\"javascript:gotoName('register_user');\"><em>register_user</em></a>."
+"* Questa opzione può essere impostata dalle opzioni del plugin <a "
+"href=\"javascript:gotoName('register_user');\"><em>register_user</em></a>."
 
 #: zp-core/zp-extensions/register_user.php:148
 msgid ""
@@ -21891,11 +21899,11 @@ msgstr "Controllo cookie di autorizzazione"
 
 #: zp-core/zp-extensions/security-logger.php:186
 msgid ""
-"date\trequestor’s IP\ttype\tuser ID\tuser name\toutcome\tauthority"
-"\tadditional information\n"
+"date\trequestor’s IP\ttype\tuser ID\tuser "
+"name\toutcome\tauthority\tadditional information\n"
 msgstr ""
-"data\tIP richiedente\ttipo\tID utente\tnome utente\tuscita\tautorità"
-"\tinformazioni aggiuntive\n"
+"data\tIP richiedente\ttipo\tID utente\tnome "
+"utente\tuscita\tautorità\tinformazioni aggiuntive\n"
 
 #: zp-core/zp-extensions/security-logger.php:195
 #: zp-core/zp-extensions/security-logger.php:224
@@ -22044,8 +22052,8 @@ msgid ""
 "Only one SEO filter plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"Può essere abilitato un solo plugin per il filtro SEO alla volta. <a href=\"#"
-"%1$s\"><code>%1$s</code></a> è già abilitato."
+"Può essere abilitato un solo plugin per il filtro SEO alla volta. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> è già abilitato."
 
 #: zp-core/zp-extensions/seo_zenphoto.php:11
 msgid ""
@@ -22101,11 +22109,11 @@ msgstr "Modelli da bloccare"
 
 #: zp-core/zp-extensions/simpleSpam.php:62
 msgid ""
-"SPAM blacklist <a href=\"http://en.wikipedia.org/wiki/Regular_expression"
-"\">regular expressions</a> (separate with spaces)"
+"SPAM blacklist <a href=\"http://en.wikipedia.org/wiki/"
+"Regular_expression\">regular expressions</a> (separate with spaces)"
 msgstr ""
-"Lista di <a href=\"http://it.wikipedia.org/wiki/Espressione_regolare"
-"\">espressioni regolari</a> spam (separare con spazi)"
+"Lista di <a href=\"http://it.wikipedia.org/wiki/"
+"Espressione_regolare\">espressioni regolari</a> spam (separare con spazi)"
 
 #: zp-core/zp-extensions/simpleSpam.php:63
 msgid "Excessive URL count"
@@ -22150,8 +22158,9 @@ msgid ""
 msgstr ""
 "<strong>Nota:</strong> i collegamenti della pagina indice potrebbero non "
 "corrispondere se si usa l’opzione di Zenpage \"Notizie nella pagina indice\" "
-"che qualche tema fornisce. Non \"conosce\" neanche le \"pagine personalizzate"
-"\" fuori da Zenpage o qualsiasi configurazione speciale del tema!"
+"che qualche tema fornisce. Non \"conosce\" neanche le \"pagine "
+"personalizzate\" fuori da Zenpage o qualsiasi configurazione speciale del "
+"tema!"
 
 #: zp-core/zp-extensions/sitemap-extended.php:34
 msgid ""
@@ -22253,7 +22262,8 @@ msgstr "annualmente"
 #: zp-core/zp-extensions/sitemap-extended.php:155
 #: zp-core/zp-extensions/sitemap-extended.php:167
 #: zp-core/zp-extensions/sitemap-extended.php:179
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:140
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:141
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:146
 msgid "never"
 msgstr "mai"
 
@@ -22355,8 +22365,9 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
 "extended');\"><em>sitemap-extended</em></a> plugin options."
 msgstr ""
-"* Queste opzioni possono essere impostate dalle opzioni del plugin <a href="
-"\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a>."
+"* Queste opzioni possono essere impostate dalle opzioni del plugin <a "
+"href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></"
+"a>."
 
 #: zp-core/zp-extensions/sitemap-extended.php:255
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:85
@@ -22458,8 +22469,8 @@ msgid ""
 "Only one slideshow plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
-"Può essere abilitato un solo plugin alla volta per la presentazione. <a href="
-"\"#%1$s\"><code>%1$s</code></a> è già abilitato."
+"Può essere abilitato un solo plugin alla volta per la presentazione. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> è già abilitato."
 
 #: zp-core/zp-extensions/slideshow2.php:87
 msgid "Slideshow: Mode"
@@ -23014,13 +23025,13 @@ msgstr "Entità HTML"
 
 #: zp-core/zp-extensions/tinymce4.php:101
 msgid ""
-"You can adjust how entities are processed. More info on the <a href="
-"\"https://www.tinymce.com/docs/configure/content-filtering/#entities"
-"\">tinyMCE docs</a>."
+"You can adjust how entities are processed. More info on the <a "
+"href=\"https://www.tinymce.com/docs/configure/content-filtering/"
+"#entities\">tinyMCE docs</a>."
 msgstr ""
-"Puoi regolare il modo in cui le entità sono elaborate. Altre info in <a href="
-"\"https://www.tinymce.com/docs/configure/content-filtering/#entities"
-"\">tinyMCE docs</a>."
+"Puoi regolare il modo in cui le entità sono elaborate. Altre info in <a "
+"href=\"https://www.tinymce.com/docs/configure/content-filtering/"
+"#entities\">tinyMCE docs</a>."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
@@ -23741,21 +23752,21 @@ msgstr ""
 "Questa password è stata usata di recente. Per favore scegliere una password "
 "diversa."
 
-#: zp-core/zp-extensions/user-expiry.php:291
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
+#: zp-core/zp-extensions/user-expiry.php:292
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:156
 msgid "Expires soon"
 msgstr "Scadrà presto"
 
-#: zp-core/zp-extensions/user-expiry.php:293
+#: zp-core/zp-extensions/user-expiry.php:294
 #, php-format
 msgid "Your subscription expires on %s"
 msgstr "La propria sottoscrizione scadrà il %s"
 
-#: zp-core/zp-extensions/user-expiry.php:307
+#: zp-core/zp-extensions/user-expiry.php:308
 msgid "You must change your password."
 msgstr "È necessario cambiare la password."
 
-#: zp-core/zp-extensions/user-expiry.php:310
+#: zp-core/zp-extensions/user-expiry.php:311
 msgid "You have users whose credentials have expired."
 msgstr "Ci sono utenti le cui credenziali sono scadute."
 
@@ -23781,56 +23792,56 @@ msgstr "Processato"
 msgid "Manage user expiry."
 msgstr "Gestisci la scadenza utente."
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:149
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:153
 #, php-format
 msgid "Expired:%s; "
 msgstr "Scaduto:%s; "
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:154
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:156
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:158
 #, php-format
 msgid "Expires:%s; "
 msgstr "Scadenza:%s; "
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:170
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "User id has been preempted"
 msgstr "Questo id utente è stato già preso mentre era inattivo"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:176
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:180
 msgid "enable"
 msgstr "abilita"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:178
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:182
 msgid "disable"
 msgstr "disabilita"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:181
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:185
 msgid "renew"
 msgstr "rinnova"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:185
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:189
 msgid "Email renewal"
 msgstr "E-mail di rinnovo"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:188
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:207
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:192
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:211
 msgid "Force password renewal"
 msgstr "Richiesta di reimpostazione password"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:194
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:198
 #, php-format
 msgid "%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)"
 msgstr "%1$s <strong>%2$s</strong> (%3$s; ultimo accesso: %4$s)"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:202
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:206
 msgid "Disable"
 msgstr "Disabilita"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:212
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:216
 msgid "Renew"
 msgstr "Rinnova"
 
-#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:213
+#: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:217
 msgid "Email renewal link"
 msgstr "Collegamento e-mail di rinnovo"
 
@@ -24301,8 +24312,8 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
 msgstr ""
-"* Queste opzioni possono essere impostate dalle opzioni del plugin <a href="
-"\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a>."
+"* Queste opzioni possono essere impostate dalle opzioni del plugin <a "
+"href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a>."
 
 #: zp-core/zp-extensions/zenpage.php:307
 msgid "Enable Zenpage CMS plugin"
@@ -25506,8 +25517,8 @@ msgstr ""
 #~ "Queste specificano il <a title=\"Guarda la pagina dell’album e conta il "
 #~ "numero di miniature delle immagini che vengono mostrate in una riga. "
 #~ "Questo è il valore da impostare per questa opzione.\">numero determinato "
-#~ "dal CSS</a> di miniature di immagini del tema che entreranno in una \"riga"
-#~ "\" e il numero di miniature di immagini che si vogliono per pagina."
+#~ "dal CSS</a> di miniature di immagini del tema che entreranno in una "
+#~ "\"riga\" e il numero di miniature di immagini che si vogliono per pagina."
 
 #~ msgid "separate"
 #~ msgstr "separate"
@@ -26250,13 +26261,13 @@ msgstr ""
 #~ msgstr "IP anonimo"
 
 #~ msgid ""
-#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album"
-#~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></"
-#~ "a>"
+#~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
+#~ "album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</"
+#~ "span></a>"
 #~ msgstr ""
 #~ "Basato su <a href=\"http://www.zenphoto.org\" title=\"Un semplice album "
-#~ "di foto sul web\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a>"
+#~ "di foto sul web\"><span id=\"zen-part\">zen</span><span id=\"photo-"
+#~ "part\">PHOTO</span></a>"
 
 #~ msgid "Use the getContent() method."
 #~ msgstr "Usa il metodo getContent()."
@@ -26634,8 +26645,9 @@ msgstr ""
 #~ "* The option may be set via the <a href=\"javascript:"
 #~ "gotoName('federated_logon');\"><em>register_user</em></a> plugin options."
 #~ msgstr ""
-#~ "* Questa opzione può essere impostata dalle opzioni del plug-in <a href="
-#~ "\"javascript:gotoName('federated_logon');\"><em>register_user</em></a>."
+#~ "* Questa opzione può essere impostata dalle opzioni del plug-in <a "
+#~ "href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></"
+#~ "a>."
 
 #~ msgid ""
 #~ "*<strong>Note:</strong> The setting of this option is shared with other "
@@ -27854,8 +27866,9 @@ msgstr ""
 #~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
 #~ "locale');\"><em>dynamic-locale</em></a> plugin options."
 #~ msgstr ""
-#~ "* Queste opzioni possono essere impostate da quelle del plug-in  <a href="
-#~ "\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a>."
+#~ "* Queste opzioni possono essere impostate da quelle del plug-in  <a "
+#~ "href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></"
+#~ "a>."
 
 #~ msgid "Search within album"
 #~ msgstr "Cerca all'interno dell'album"
@@ -27926,11 +27939,12 @@ msgstr ""
 #~ "This enables or disables the admin tabs for pages and/or news articles. "
 #~ "To hide news and/or pages content on the front end as well, themes must "
 #~ "be setup to use <br><code>if(extensionEnabled(\"zenpage\") && "
-#~ "ZP_NEWS_ENABLED) { … }</code> or <br><code>if(extensionEnabled(\"zenpage"
-#~ "\") && ZP_PAGES_ENABLED) { … }</code> in appropiate places. Same if "
-#~ "disabled items should blocked as they otherwise still can be accessed via "
-#~ "direct links. <p class=\"notebox\"><strong>NOTE:</strong> This does not "
-#~ "delete content and is not related to management rights.</p>"
+#~ "ZP_NEWS_ENABLED) { … }</code> or "
+#~ "<br><code>if(extensionEnabled(\"zenpage\") && ZP_PAGES_ENABLED) { … }</"
+#~ "code> in appropiate places. Same if disabled items should blocked as they "
+#~ "otherwise still can be accessed via direct links. <p "
+#~ "class=\"notebox\"><strong>NOTE:</strong> This does not delete content and "
+#~ "is not related to management rights.</p>"
 #~ msgstr ""
 #~ "Abilita o disabilita le schede di amministrazione per le pagine e/o gli "
 #~ "articoli di notizie. Per nascondere notizie e/o pagine anche nel front "
@@ -27981,8 +27995,8 @@ msgstr ""
 #~ msgstr "RSS ultime immagini"
 
 #~ msgid ""
-#~ "getSearchURL $album_list parameter is deprecated. Pass array(\"albums"
-#~ "\"=>array(album, album, ...)) instead."
+#~ "getSearchURL $album_list parameter is deprecated. Pass "
+#~ "array(\"albums\"=>array(album, album, ...)) instead."
 #~ msgstr ""
 #~ "Il parametro getSearchURL $album_list è deprecato. Passare invece "
 #~ "array(\"albums\"=>array(album, album, ...))."
@@ -27994,8 +28008,8 @@ msgstr ""
 #~ msgstr "Filtro Imagick"
 
 #~ msgid ""
-#~ "The type of filter used when resampling an image. The default is <strong>"
-#~ "%s</strong>."
+#~ "The type of filter used when resampling an image. The default is "
+#~ "<strong>%s</strong>."
 #~ msgstr ""
 #~ "Il tipo di filtro da usare per ridimensionare un'immagine. Il filtro "
 #~ "predefinito è <strong>%s</strong>."
@@ -28357,8 +28371,8 @@ msgstr ""
 #~ msgstr "Album da pulire:"
 
 #~ msgid ""
-#~ "If this script does not complete, <a href=\"javascript:reStart();\" title="
-#~ "\"restart\">click here</a>"
+#~ "If this script does not complete, <a href=\"javascript:reStart();\" "
+#~ "title=\"restart\">click here</a>"
 #~ msgstr ""
 #~ "Se questo script non viene completato, <a href=\"javascript:reStart();\" "
 #~ "title=\"restart\">fare clic qui</a>"
@@ -30109,8 +30123,8 @@ msgstr ""
 #~ "MySQL Query ( <em>%1$s</em> ) failed. MySQL returned the error <em>%2$s</"
 #~ "em>"
 #~ msgstr ""
-#~ "Query MySQL (<em>%1$s</em>) fallita. MySQL ha riportato l'errore <em>"
-#~ "%2$s</em>"
+#~ "Query MySQL (<em>%1$s</em>) fallita. MySQL ha riportato l'errore "
+#~ "<em>%2$s</em>"
 
 #~ msgid "Unknown author"
 #~ msgstr "Autore sconosciuto"
@@ -30343,8 +30357,8 @@ msgstr ""
 #~ "alt=\"\"/> over thumbnails of <em>un-published</em> albums  images,\n"
 #~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t <img src=\"%1$s/new.png\" "
 #~ "alt=\"\"/> over thumbnails of <em>\"new\"</em> images and albums,\n"
-#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t and <img src=\"%1$s/GPS.png"
-#~ "\" alt=\"\"/> over thumbnails of <em>geocoded</em> images"
+#~ "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t and <img src=\"%1$s/GPS."
+#~ "png\" alt=\"\"/> over thumbnails of <em>geocoded</em> images"
 #~ msgstr ""
 #~ "Applica <img src=\"%1$s/lock.png\" alt=\"\"/> sopra le miniature di album "
 #~ "e immagini <em>protetti da password</em>,\n"
@@ -30505,14 +30519,15 @@ msgstr ""
 #~ msgstr "SVN"
 
 #~ msgid ""
-#~ "Text for the body of the email sent to the user. <p class=\"notebox"
-#~ "\"><strong>Note:</strong> You must include <code>%s</code> in your "
-#~ "message where you wish the registration completion link to appear.</p>"
+#~ "Text for the body of the email sent to the user. <p "
+#~ "class=\"notebox\"><strong>Note:</strong> You must include <code>%s</code> "
+#~ "in your message where you wish the registration completion link to appear."
+#~ "</p>"
 #~ msgstr ""
-#~ "Testo del corpo dell'e-mail da spedire all'utente. <p class=\"notebox"
-#~ "\"><strong>Nota:</strong> bisogna includere <code>%s</code> nel messaggio "
-#~ "nella posizione in cui si vuole appaia il collegamento per il "
-#~ "completamento della registrazione.</p>"
+#~ "Testo del corpo dell'e-mail da spedire all'utente. <p "
+#~ "class=\"notebox\"><strong>Nota:</strong> bisogna includere <code>%s</"
+#~ "code> nel messaggio nella posizione in cui si vuole appaia il "
+#~ "collegamento per il completamento della registrazione.</p>"
 
 #~ msgid "Deleting files failed!"
 #~ msgstr "Eliminazione dei file fallita."
@@ -31391,8 +31406,8 @@ msgstr ""
 #~ "code> and you create album or image filenames names containing characters "
 #~ "with diacritical marks you may have problems displaying the names."
 #~ msgstr ""
-#~ "Se il set di caratteri del filesystem del server differisce da <code>"
-#~ "%1$s</code> e si creano album o nomi di file immagine contenenti "
+#~ "Se il set di caratteri del filesystem del server differisce da "
+#~ "<code>%1$s</code> e si creano album o nomi di file immagine contenenti "
 #~ "caratteri accentati si potrebbero verificare problemi nella "
 #~ "visualizzazione del nome."
 
@@ -31837,28 +31852,28 @@ msgstr ""
 #~ "multimediali. <strong>Nessun file del lettore <em>FLVPlayer</em> è "
 #~ "incluso in questo plug-in a causa di problemi con la licenza.</strong> "
 #~ "Scaricare questi file dal sito <a href=\"http://www.longtailvideo.com/"
-#~ "players/jw-flv-player/\">Longtail Video</a>. Estrarre i file \"player*.swf"
-#~ "\" e \"swobjects.js\" in <code>/%s/flvplayer/</code>. <br />IMPORTANTE: "
-#~ "può essere abilitato un solo plug-in che fornisce un lettore multimediale "
-#~ "alla volta. Il plug-in class-video deve essere abilitato."
+#~ "players/jw-flv-player/\">Longtail Video</a>. Estrarre i file \"player*."
+#~ "swf\" e \"swobjects.js\" in <code>/%s/flvplayer/</code>. <br /"
+#~ ">IMPORTANTE: può essere abilitato un solo plug-in che fornisce un lettore "
+#~ "multimediale alla volta. Il plug-in class-video deve essere abilitato."
 
 #~ msgid "No FLV Player"
 #~ msgstr "Nessun lettore FLV"
 
 #~ msgid ""
 #~ "No <em>FLVPlayer</em> player files are included with this plugin due to "
-#~ "licensing considerations. Please download these files from the <a href="
-#~ "\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail Video</"
-#~ "a> site. Extract the files and place the files \"player*.swf\" and "
+#~ "licensing considerations. Please download these files from the <a "
+#~ "href=\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail "
+#~ "Video</a> site. Extract the files and place the files \"player*.swf\" and "
 #~ "\"swobjects.js\" in a folder named <code>flvplayer</code> in the global "
 #~ "plugins folder."
 #~ msgstr ""
 #~ "Nessun file del lettore <em>FLVPlayer</em> è incluso in questo plug-in a "
-#~ "causa di problemi con la licenza. Scaricare questi file dal sito <a href="
-#~ "\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail Video</"
-#~ "a>. Estrarre i file e mettere i file \"player*.swf\" e \"swobjects.js\" "
-#~ "nella cartella di nome <code>flvplayer</code> contenuta nella cartella "
-#~ "globale dei plug-in."
+#~ "causa di problemi con la licenza. Scaricare questi file dal sito <a "
+#~ "href=\"http://www.longtailvideo.com/players/jw-flv-player/\">Longtail "
+#~ "Video</a>. Estrarre i file e mettere i file \"player*.swf\" e \"swobjects."
+#~ "js\" nella cartella di nome <code>flvplayer</code> contenuta nella "
+#~ "cartella globale dei plug-in."
 
 #~ msgid "flv player width"
 #~ msgstr "larghezza lettore flv"
@@ -32176,15 +32191,15 @@ msgstr ""
 
 #~ msgid ""
 #~ "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web "
-#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
+#~ "photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-"
+#~ "part\">PHOTO</span></a> <span id=\"IE-clear-part\">with</span> <a "
+#~ "href=\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
 #~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
 #~ msgstr ""
 #~ "Basato su <a href=\"http://www.zenphoto.org\" title=\"Un semplice album "
-#~ "di foto sul web\"><span id=\"zen-part\">zen</span><span id=\"photo-part"
-#~ "\">PHOTO</span></a> <span id=\"IE-clear-part\">con</span> <a href="
-#~ "\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
+#~ "di foto sul web\"><span id=\"zen-part\">zen</span><span id=\"photo-"
+#~ "part\">PHOTO</span></a> <span id=\"IE-clear-part\">con</span> <a "
+#~ "href=\"http://www.zenphoto.org/2009/03/zenpage-a-cms-plugin-for-zenphoto/"
 #~ "\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PAGE</span></a>"
 
 #~ msgid "Get Adobe Flash."
@@ -33379,9 +33394,9 @@ msgstr ""
 #~ "Black\" size=\"1\">photo</font></span></a>"
 #~ msgstr ""
 #~ "Basato su <a href=\"http://www.zenphoto.org\" title=\"A simpler web photo "
-#~ "album\"><font face=\"Arial Narrow\" size=\"4\">zen</font><span style="
-#~ "\"font-variant: small-caps; font-weight: 700\"><font face=\"Arial Black\" "
-#~ "size=\"1\">photo</font></span></a>"
+#~ "album\"><font face=\"Arial Narrow\" size=\"4\">zen</font><span "
+#~ "style=\"font-variant: small-caps; font-weight: 700\"><font face=\"Arial "
+#~ "Black\" size=\"1\">photo</font></span></a>"
 
 #~ msgid ""
 #~ "If <em>Use longest side</em> is checked the longest side of the image "
