@@ -253,7 +253,7 @@ function getReconfigureNote($diff, $needs, $mandatory) {
 				$notice['notes'][] = sprintf(gettext('Your database software has changed from %1$s to %2$s.'), $rslt['old'], $rslt['new']);
 				break;
 			case 'ZENPHOTO':
-				$notice['notes'][] .= sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION, $rslt['old']);
+				$notice['notes'][] = sprintf(gettext('Zenphoto %1$s has been copied over %2$s.'), ZENPHOTO_VERSION, $rslt['old']);
 				break;
 			case 'FOLDER':
 				$notice['notes'][] = sprintf(gettext('Your installation has moved from %1$s to %2$s.'), $rslt['old'], $rslt['new']);
