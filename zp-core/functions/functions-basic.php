@@ -568,7 +568,7 @@ function hasDynamicAlbumSuffix($path) {
  * checks if there is a file with the prefix and one of the
  * handled suffixes. Returns the found suffix
  *
- * @param type $path SERVER path to be tested
+ * @param string $path SERVER path to be tested
  * @return string
  */
 function isHandledAlbum($path) {
@@ -682,7 +682,7 @@ function getImageCacheFilename($album8, $image8, $args) {
  * Returns an i.php "image name" for an image not within the albums structure
  *
  * @param string $image Path to the image
- * @return string
+ * @return array
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
@@ -700,9 +700,9 @@ define('NO_WATERMARK', '!');
  * Note: this should be used for "real" images only since thumbnail handling for Video and TextObjects is special
  * and the "album" thumbnail is not appropriate for the "default" images for those
  *
- * @param $image image object in question
- * @param $use what the watermark use is
- * @return string
+ * @param object $image image object in question
+ * @param integer $use what the watermark use is
+ * @return string|integer
  */
 function getWatermarkParam($image, $use) {
 	$watermark_use_image = $image->getWatermark();
@@ -1036,7 +1036,7 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 			}
 		}
 		if (!isset($set['w']) && !isset($set['h']) && !isset($set['s'])) {
-			if (!isset($set['wm']) && in_array($check, $watermarks)) {
+			if (!isset($set['wmk']) && in_array($check, $watermarks)) {
 				$set['wmk'] = $check;
 			} else if ($check == 'thumb') {
 				$set['t'] = true;
@@ -1273,7 +1273,7 @@ function pathurlencode($path) {
  * Returns the fully qualified path to the album folders
  *
  * @param string $root the base from whence the path dereives
- * @return sting
+ * @return string
  */
 function getAlbumFolder($root = SERVERPATH) {
 	return getRootFolder('albumfolder', $root);
@@ -1285,7 +1285,7 @@ function getAlbumFolder($root = SERVERPATH) {
  * @since ZenphotoCMS 1.6
  * 
  * @param string $root the base from whence the path dereives
- * @return sting
+ * @return string
  */
 function getBackupFolder($root = SERVERPATH) {
 	return getRootFolder('backupfolder', $root);
@@ -1296,9 +1296,9 @@ function getBackupFolder($root = SERVERPATH) {
  * 
  * @since ZenphotoCMS 1.6
  * 
- * @param stringn $folder The folder path to get: "albumfolder" or "backupfolder"
+ * @param string $folder The folder path to get: "albumfolder" or "backupfolder"
  * @param string $root the base from whence the path dereives
- * @return sting
+ * @return string
  */
 function getRootFolder($folder = 'albumfolder', $root = SERVERPATH) {
 	global $_zp_album_folder, $_zp_backup_folder, $_zp_conf_vars;
@@ -1508,8 +1508,8 @@ function getSuffix($filename) {
 /**
  * returns a file name sans the suffix
  *
- * @param unknown_type $filename
- * @return unknown
+ * @param string $filename
+ * @return string
  */
 function stripSuffix($filename) {
 	return str_replace(strrchr($filename, "."), '', $filename);
@@ -1719,7 +1719,7 @@ function exitZP() {
 /**
  *
  * Computes the "installation signature" of the Zenphoto install
- * @return string
+ * @return array
  */
 function installSignature() {
 	global $_zp_db;
@@ -2007,7 +2007,7 @@ function sanitizeRedirect($redirectTo) {
  * 
  * @since ZenphotoCMS 1.6
  *
- * @param strng|array $function A function name, static class method calls like classname::methodname, an array with a class name and static method name or a cass object and a non static class name
+ * @param string|array $function A function name, static class method calls like classname::methodname, an array with a class name and static method name or a cass object and a non static class name
  * @param array $parameter Parameters of the function/method as one dimensional array
  */
 function callUserFunction($function, $parameter = array()) {
