@@ -3786,7 +3786,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
  * @since 1.1.3
  */
 function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL) {
-	global $_zp_adminJS_loaded, $_zp_current_search;
+	global $_zp_adminjs_loaded, $_zp_current_search;
 	$engine = new SearchEngine();
 	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {
 		$engine->clearSearchWords();
@@ -3838,8 +3838,8 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 	}
 
 	$fields = $engine->allowedSearchFields();
-	if (!$_zp_adminJS_loaded) {
-		$_zp_adminJS_loaded = true;
+	if (!$_zp_adminjs_loaded) {
+		$_zp_adminjs_loaded = true;
 		?>
 		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js"></script>
 		<?php
