@@ -682,7 +682,7 @@ function getImageCacheFilename($album8, $image8, $args) {
  * Returns an i.php "image name" for an image not within the albums structure
  *
  * @param string $image Path to the image
- * @return string
+ * @return array
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
@@ -702,7 +702,7 @@ define('NO_WATERMARK', '!');
  *
  * @param object $image image object in question
  * @param bool $use what the watermark use is
- * @return string
+ * @return integer
  */
 function getWatermarkParam($image, $use) {
 	$watermark_use_image = $image->getWatermark();
