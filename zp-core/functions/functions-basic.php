@@ -682,7 +682,7 @@ function getImageCacheFilename($album8, $image8, $args) {
  * Returns an i.php "image name" for an image not within the albums structure
  *
  * @param string $image Path to the image
- * @return array
+ * @return string
  */
 function makeSpecialImageName($image) {
 	$filename = basename($image);
@@ -701,8 +701,8 @@ define('NO_WATERMARK', '!');
  * and the "album" thumbnail is not appropriate for the "default" images for those
  *
  * @param object $image image object in question
- * @param integer $use what the watermark use is
- * @return string|integer
+ * @param bool $use what the watermark use is
+ * @return string
  */
 function getWatermarkParam($image, $use) {
 	$watermark_use_image = $image->getWatermark();
@@ -1742,7 +1742,7 @@ function installSignature() {
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
 	} else {
-		$s = 'software unknown';
+		$s = gettext('Server software unknown');
 	}
 	$dbs = $_zp_db->getSoftware();
 	$version = ZENPHOTO_VERSION;
