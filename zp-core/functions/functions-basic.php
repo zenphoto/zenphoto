@@ -701,7 +701,7 @@ define('NO_WATERMARK', '!');
  * and the "album" thumbnail is not appropriate for the "default" images for those
  *
  * @param object $image image object in question
- * @param bool $use what the watermark use is
+ * @param integer $use what the watermark use is
  * @return integer
  */
 function getWatermarkParam($image, $use) {
