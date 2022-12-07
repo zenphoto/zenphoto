@@ -6,7 +6,7 @@
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '7.0.0');
-Define('PHP_DESIRED_VERSION', '7.4.0');
+Define('PHP_DESIRED_VERSION', '8.0.0');
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if (!function_exists("gettext")) {
