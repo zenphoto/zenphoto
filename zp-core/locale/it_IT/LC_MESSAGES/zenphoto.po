@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 14:33+0100\n"
-"PO-Revision-Date: 2022-12-05 14:33+0100\n"
+"POT-Creation-Date: 2022-12-08 10:26+0100\n"
+"PO-Revision-Date: 2022-12-08 10:27+0100\n"
 "Last-Translator: Antonio <ranesi@tiscali.it>\n"
 "Language-Team: Antonio Ranesi [bic]\n"
 "Language: it_IT\n"
@@ -8056,6 +8056,10 @@ msgstr ""
 "Il %1$s log ha superato la sua dimensione massima ed è stato rinominato in "
 "%2$s."
 
+#: zp-core/functions/functions-basic.php:1745
+msgid "Server software unknown"
+msgstr "Software del server sconosciuto"
+
 #: zp-core/functions/functions-basic.php:1866
 msgid "ERROR: cURL request failed: "
 msgstr "ERRORE: richiesta cURL fallita: "
@@ -13402,7 +13406,7 @@ msgstr "Ripristina il database"
 #: zp-core/utilities/list_locales.php:10 zp-core/utilities/phpInfo.php:12
 #: zp-core/utilities/user-data-export.php:13
 #: zp-core/zp-extensions/downloadList.php:274
-#: zp-core/zp-extensions/matomo.php:221
+#: zp-core/zp-extensions/matomo.php:222
 #: zp-core/zp-extensions/search_statistics.php:80
 msgid "Info"
 msgstr "Info"
@@ -19101,16 +19105,16 @@ msgstr ""
 "Abilita affinché Matomo chieda il consenso agli utenti per la raccolta delle "
 "statistiche. *richiede cookie."
 
-#: zp-core/zp-extensions/matomo.php:223
+#: zp-core/zp-extensions/matomo.php:224
 #: zp-core/zp-extensions/matomo/matomo_tab.php:21
 msgid "Matomo statistics"
 msgstr "Statistiche Matomo"
 
-#: zp-core/zp-extensions/matomo.php:227
+#: zp-core/zp-extensions/matomo.php:228
 msgid "View Matomo statisics of your site"
 msgstr "Vedi le statistiche Matomo del sito"
 
-#: zp-core/zp-extensions/matomo.php:257
+#: zp-core/zp-extensions/matomo.php:259
 msgid ""
 "Inserts the iframe with the opt-out cookie code as entered on the related "
 "plugin option."
