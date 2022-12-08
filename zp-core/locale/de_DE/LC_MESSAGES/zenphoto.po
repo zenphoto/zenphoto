@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 15:13+0100\n"
-"PO-Revision-Date: 2022-12-05 15:15+0100\n"
+"POT-Creation-Date: 2022-12-08 12:17+0100\n"
+"PO-Revision-Date: 2022-12-08 12:18+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -8082,6 +8082,10 @@ msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
 "Die Protokolldatei %1$s hat das Größenlimit überschritten und wurde "
 "umbenannt in %2$s."
+
+#: zp-core/functions/functions-basic.php:1745
+msgid "Server software unknown"
+msgstr "Serversoftware unbekannt"
 
 #: zp-core/functions/functions-basic.php:1866
 msgid "ERROR: cURL request failed: "
