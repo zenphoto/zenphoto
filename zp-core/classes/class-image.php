@@ -501,7 +501,7 @@ class Image extends MediaObject {
 				$this->setOwner($alb->getOwner());
 			}
 			$save = false;
-			if (strtotime($alb->getUpdatedDate()) < strtotime(date('Y-m-d H:i:s'))) {
+			if (strtotime(strval($alb->getUpdatedDate())) < strtotime(date('Y-m-d H:i:s'))) {
 				$alb->setUpdatedDate();
 				$alb->setUpdatedDateParents();
 				$save = true;

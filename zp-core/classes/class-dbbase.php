@@ -906,8 +906,8 @@ class dbBase {
 				// convert table
 				$table_converted = $this->query('ALTER TABLE `' . $table . '` CONVERT TO CHARACTER SET utf8mb4 COLLATE ' . $collation);
 				if ($table_converted) {
-					$this->query('REPAIR TABLE ' . $table);
-					$this->query('OPTIMIZE TABLE ' . $table);
+					$this->query('REPAIR TABLE `' . $table . '`');
+					$this->query('OPTIMIZE TABLE `' . $table . '`');
 					return true;
 				} else {
 					debuglog(sprintf(gettext('The table %1$s could not be converted to %2$s collation'), $table, $collation));
