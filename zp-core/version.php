@@ -1,1 +1,1 @@
-<?php define('ZENPHOTO_VERSION', '1.6RC');
+<?php define('ZENPHOTO_VERSION', '1.6');
