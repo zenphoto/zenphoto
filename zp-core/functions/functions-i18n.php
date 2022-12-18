@@ -820,16 +820,26 @@ function getFormattedLocaleDate($format = 'Y-m-d', $datetime = '') {
 		if (extension_loaded('intl')) {
 			$catalogue = array(
 					'M' => 'MMM', // Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
+					'm' => 'MM', // Numeric representation of a month, with leading zeros
+					'n' => 'M', // Numeric representation of a month, without leading zeros
+					'A' => 'a', // Uppercase AM and PM
+					'w' => 'e', // Numeric representation of the day of the week. 0 (for Sunday) through 6 (for Saturday)
+					'N' => 'e', // Numeric representation of the day of the week. 1 (for Monday) through 7 (for Sunday)
 					'D' => 'EEE', // An abbreviated textual representation of the day	Sun through Sat
+					'z' => 'D', // The day of the year (starting from 0)
+					'e' => 'z', // Timezone identifier Examples: UTC, GMT.
+					'W' => 'w', // Week number of year, weeks starting on Monday
 					'l' => 'EEEE', // A full textual representation of the day	Sunday through Saturday
 					'F' => 'MMMM', // Full month name, based on the locale	January through December
 					'h' => 'hh', // Hour 0-12 with leading zero
 					'i' => 'mm', // Minute in hour…
+					's' => 'ss',
 					'd' => 'dd', // Month day number with leading zero
 					'j' => 'd', // Month day number without leading zero	
 					'g' => 'h', // Hour 0-12 without leading zero
 					'y' => 'yy', // Year two digits
-					
+					'o' => 'yyyy', // Year four digits. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead.				
+					'P' => 'xxx' // Difference to Greenwich time (GMT) with colon between hours and minutes
 			);
 			$catalogue_old = array_keys($catalogue);
 			$format_intl = str_replace($catalogue_old, $catalogue, $format_converted);
