@@ -2320,14 +2320,12 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 		$_zp_html_cache->abortHTMLCache();
 		?>
 		<script>
-			// <!-- <![CDATA[
 			$.ajax({
 				type: 'POST',
 				cache: false,
 				data: '<?php echo $paramlist; ?>',
 				url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/cron_runner.php'
 			});
-			// ]]> -->
 		</script>
 		<?php
 	}

@@ -492,7 +492,6 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	<script src="js/encoder.js"></script>
 	<script src="js/tag.js"></script>
 	<script>
-						//<!-- <![CDATA[
 						var albumdbfields = [<?php echo $albumdbfields; ?>];
 						$(function() {
 						$('.customalbumsort').tagSuggest({
@@ -505,13 +504,11 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 						tags: imagedbfields
 						});
 						});
-						// ]]> -->
 	</script>
 	<?php
 }
 ?>
 <script>
-					//<!-- <![CDATA[
 					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
 					function newAlbum(folder, albumtab) {
@@ -539,7 +536,6 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
     return true;
   }
 	}
-	// ]]> -->
 </script>
 
 <?php
@@ -1121,7 +1117,6 @@ echo "\n</head>";
 																$expirationdate = $image->getExpireDate();
 																?>
 																<script>
-																					// <!-- <![CDATA[
 																					$(function() {
 																					$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
 																					dateFormat: 'yy-mm-dd',
@@ -1149,7 +1144,6 @@ echo "\n</head>";
 																					}
 																					});
 																					});
-																					// ]]> -->
 																</script>
 																<br class="clearall" />
 																<hr />
@@ -1381,7 +1375,6 @@ echo "\n</head>";
 														<td valign="top"><?php echo gettext("Date:"); ?></td>
 														<td>
 															<script>
-																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#datepicker_<?php echo $currentimage; ?>").datepicker({
 																								dateFormat: 'yy-mm-dd',
@@ -1391,7 +1384,6 @@ echo "\n</head>";
 																												buttonImageOnly: true
 																								});
 																								});
-																								// ]]> -->
 															</script>
 															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
 																		 value="<?php
@@ -1600,9 +1592,7 @@ echo "\n</head>";
 									if (!empty($target_image)) {
 										?>
 										<script>
-																							// <!-- <![CDATA[
 																							toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
-																							// ]]> -->
 										</script>
 										<?php
 									}

@@ -66,7 +66,6 @@ function adminToolbox() {
 		ob_start();
 		?>
 		<script>
-			// <!-- <![CDATA[
 			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this item?"); ?>";
 			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely positively sure you want to delete this item? THIS CANNOT BE UNDONE!"); ?>";
 			function newAlbum(folder, albumtab) {
@@ -75,7 +74,6 @@ function adminToolbox() {
 					launchScript('<?php echo $zf; ?>/admin-edit.php', ['action=newalbum', 'folder=' + encodeURIComponent(folder), 'name=' + encodeURIComponent(album), 'albumtab=' + albumtab, 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
 				}
 			}
-			// ]]> -->
 		</script>
 		<div id="zp__admin_module">
 			<div id="zp__admin_info">
@@ -2650,7 +2648,6 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	 	$modal_class = ' colorbox';
 	 	?>
 	 	<script>
-	 	// <!-- <![CDATA[
 		$(document).ready(function () {
 			$(".colorbox").colorbox({
 				inline: true,
@@ -2658,7 +2655,6 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				close: '<?php echo gettext("close"); ?>'
 			});
 		});
-		// ]]> -->
 		</script>
 		<?php
 	 } else {
@@ -2666,13 +2662,11 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 			// we only need this eventhanlder if there is no colorbox! 
 			?> 
  			<script> 
- 			// <!-- <![CDATA[
 			$(document).ready(function () {
  				$(".metadata_toggle").click(function(event) { 
  					event.preventDefault(); $("#<?php echo $dataid; ?>").toggle(); 
  				}); 
 			});
-			// ]]> -->				
  			</script> 
  			<?php
 		}
@@ -3849,7 +3843,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script>
-			// <!-- <![CDATA[
 			var within = <?php echo (int) $within; ?>;
 			function search_(way) {
 				within = way;
@@ -3880,7 +3873,6 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
         $("#searchextrashow :checkbox").prop("checked", $("#checkall_searchfields").prop("checked") );
       });
     });
-			// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
 			<div>

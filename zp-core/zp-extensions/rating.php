@@ -141,9 +141,7 @@ class jquery_rating {
 		?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
 		<script>
-			// <!-- <![CDATA[
 			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>'};
-			// ]]> -->
 		</script>
 		<?php
 	}
@@ -370,7 +368,6 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		<?php echo $msg; ?>
 	</span>
 	<script>
-		// <!-- <![CDATA[
 		var recast<?php echo $unique; ?> = <?php printf('%u', $recast && $oldrating); ?>;
 		$(document).ready(function() {
 			$('#star_rating<?php echo $unique; ?> :radio.star').rating('select', '<?php echo $starselector; ?>');
@@ -412,7 +409,6 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 				$('#vote<?php echo $unique; ?>').html('<?php echo gettext('nothing to submit'); ?>');
 			}
 		}
-		// ]]> -->
 	</script>
 	<?php
 }

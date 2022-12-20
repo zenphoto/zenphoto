@@ -207,7 +207,6 @@ printAdminHeader('edit', gettext('crop image'));
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
 <script>
-	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function() {
 
@@ -289,8 +288,6 @@ printAdminHeader('edit', gettext('crop image'));
 	function checkCoords() {
 		return true;
 	}
-
-	// ]]> -->
 </script>
 </head>
 <body>

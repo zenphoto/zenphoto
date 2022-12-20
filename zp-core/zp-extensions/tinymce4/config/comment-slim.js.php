@@ -9,7 +9,6 @@ global $_zp_rtl_css;
 
 <script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script>
-// <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
@@ -29,5 +28,4 @@ global $_zp_rtl_css;
 		content_css: "<?php echo getPlugin('tinymce4/config/content.css', true, FULLWEBPATH); ?>",
 		toolbar: "bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code | ltr rtl"
 	});
-// ]]> -->
 </script>

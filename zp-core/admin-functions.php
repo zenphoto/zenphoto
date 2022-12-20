@@ -141,7 +141,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js"></script>
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js"></script>
 			<script>
-				// <!-- <![CDATA[
 
 				$(document).ready(function () {
 	<?php
@@ -198,7 +197,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 				jQuery(function ($) {
 					$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 				})
-				// ]]> -->
 			</script>
 			<?php
 			zp_apply_filter('admin_head');
@@ -209,7 +207,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<!--Nested Sortables-->
 			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.mjs.nestedSortable.js"></script>
 			<script>
-				//<!-- <![CDATA[
 				$(document).ready(function () {
 
 					$('ul.page-list').nestedSortable({
@@ -233,7 +230,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 					})
 					var original_order = $('ul.page-list').nestedSortable('serialize');
 				});
-				// ]]> -->
 			</script>
 			<!--Nested Sortables End-->
 			<?php
@@ -811,12 +807,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true, 'all_' . $key); ?>
 								</ul>
 								<script>
-									// <!-- <![CDATA[
 									function <?php echo $key; ?>_all() {
 										var check = $('#all_<?php echo $key; ?>').prop('checked');
 										$('.all_<?php echo $key; ?>').prop('checked', check);
 									}
-									// ]]> -->
 								</script>
 								<label>
 									<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" class="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
@@ -832,11 +826,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td width="350" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $key; ?>" value="1" />
 								<script>
-									// <!-- <![CDATA[
 									$(document).ready(function () {
 										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
 									});
-									// ]]> -->
 								</script>
 								<table style="margin:0; padding:0" >
 									<tr>
@@ -1412,7 +1404,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
 								<script>
-									// <!-- <![CDATA[
 									$(function () {
 										$("#datepicker<?php echo $suffix; ?>").datepicker({
 											dateFormat: 'yy-mm-dd',
@@ -1422,7 +1413,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 											buttonImageOnly: true
 										});
 									});
-									// ]]> -->
 								</script>
 								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
 							</td>
@@ -1641,9 +1631,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									if ($showThumb) {
 										?>
 										<script>
-											// <!-- <![CDATA[
 											updateThumbPreview(document.getElementById('thumbselect'));
-											// ]]> -->
 										</script>
 										<?php
 									}
@@ -1794,7 +1782,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$expirationdate = $album->getExpireDate();
 						?>
 						<script>
-							// <!-- <![CDATA[
 							$(function () {
 								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
 									dateFormat: 'yy-mm-dd',
@@ -1822,7 +1809,6 @@ function printAdminHeader($tab, $subtab = NULL) {
 									}
 								});
 							});
-							// ]]> -->
 						</script>
 						<br class="clearall" />
 						<hr />
@@ -3859,7 +3845,6 @@ function printBulkActions($checkarray, $checkAll = false) {
 	if ($tags || $movecopy || $categories || $changeowner) {
 		?>
 		<script>
-			//<!-- <![CDATA[
 			function checkFor(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
 		<?php
@@ -3913,7 +3898,6 @@ function printBulkActions($checkarray, $checkAll = false) {
 		}
 		?>
 			}
-			// ]]> -->
 		</script>
 		<?php
 	}
@@ -4247,7 +4231,6 @@ function processCommentBulkActions() {
 function codeblocktabsJS() {
 	?>
 	<script charset="utf-8">
-		// <!-- <![CDATA[
 		$(function () {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
@@ -4270,7 +4253,6 @@ function codeblocktabsJS() {
 							'</div>');
 			cbclick(num, id);
 		}
-		// ]]> -->
 	</script>
 	<?php
 }

@@ -327,7 +327,6 @@ class jPlayer {
 		}
 		$playerconfig = '
 		<script>
-			//<![CDATA[
 		$(document).ready(function(){
 			$("#jquery_jplayer_' . $count . '").jPlayer({
 				ready: function (event) {
@@ -366,7 +365,6 @@ class jPlayer {
 			toggleDuration: true
 			});
 		});
-	//]]>
 	</script>';
 
 		// I am really too lazy to figure everything out to optimize this quite complex html nesting so I generalized only parts.
@@ -664,7 +662,6 @@ class jPlayer {
 			}
 			?>
 			<script>
-								//<![CDATA[
 								$(document).ready(function(){
 				new jPlayerPlaylist({
 				jPlayer: "#jquery_jplayer_<?php echo $id; ?>",
@@ -746,7 +743,6 @@ class jPlayer {
 				toggleDuration: true
 				});
 				});
-								//]]>
 			</script>
 			<?php
 			if ($option == 'playlist') {

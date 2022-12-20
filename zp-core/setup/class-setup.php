@@ -249,14 +249,12 @@ class setup {
 						if ($recurse) {
 							?>
 							<script>
-								// <!-- <![CDATA[
 								$.ajax({
 									type: 'POST',
 									cache: false,
 									url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/setup/setup_permissions_changer.php',
 									data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)); ?>'
 								});
-								// ]]> -->
 							</script>
 							<?php
 						}

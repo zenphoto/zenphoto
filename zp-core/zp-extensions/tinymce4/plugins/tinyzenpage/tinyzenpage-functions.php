@@ -664,12 +664,10 @@ function printTinyZenpageCategorySelector($currentpage = '') {
 			?>
 		</select>
 		<script>
-			// <!-- <![CDATA[
 			function gotoLink(form) {
 				var OptionIndex = form.ListBoxURL.selectedIndex;
 				this.location = form.ListBoxURL.options[OptionIndex].value;
 			}
-			// ]]> -->
 		</script>
 	</form>
 	<br />

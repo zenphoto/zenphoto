@@ -93,7 +93,6 @@ printAdminHeader('comments');
 zp_apply_filter('texteditor_config', 'comments');
 ?>
 <script>
-	//<!-- <![CDATA[
 	function confirmAction() {
 		if ($('#checkallaction').val() == 'deleteall') {
 			return confirm('<?php echo js_encode(gettext("Are you sure you want to delete the checked items?")); ?>');
@@ -101,7 +100,6 @@ zp_apply_filter('texteditor_config', 'comments');
 			return true;
 		}
 	}
-	// ]]> -->
 </script>
 <?php
 zp_apply_filter('texteditor_config', 'zenphoto');

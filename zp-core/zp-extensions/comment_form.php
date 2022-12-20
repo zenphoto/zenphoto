@@ -301,7 +301,6 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 					?>
 					<div id="comment_toggle"><!-- place holder for toggle button --></div>
 					<script>
-						// <!-- <![CDATA[
 						function toggleComments(hide) {
 							if (hide) {
 								$('div.comment').hide();
@@ -316,7 +315,6 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						$(document).ready(function() {
 							toggleComments(window.location.hash.search(/#zp_comment_id_/));
 						});
-						// ]]> -->
 					</script>
 					<?php
 					$display = ' style="display:none"';

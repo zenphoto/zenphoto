@@ -45,7 +45,6 @@ function switcher_head($ignore) {
 	}
 	?>
 	<script>
-		// <!-- <![CDATA[
 		window.onload = function() {
 			$('#themeSwitcher_zenpage').html('');
 		}
@@ -53,7 +52,6 @@ function switcher_head($ignore) {
 			personality = $('#themeColor').val();
 			window.location = '?themeColor=' + personality;
 		}
-		// ]]> -->
 	</script>
 	<?php
 	return $ignore;

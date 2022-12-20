@@ -1113,7 +1113,6 @@ class Googlemaps {
 		if ($this->jsfile=="") {
 			$this->output_js .= '
 			<script>
-			//<![CDATA[
 			';
 		}
 
@@ -2089,7 +2088,6 @@ class Googlemaps {
 
 		if ($this->jsfile=="") {
 			$this->output_js .= '
-			//]]>
 			</script>';
 		}
 

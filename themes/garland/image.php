@@ -11,7 +11,6 @@ if (!defined('WEBPATH'))
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
 			<script>
-				// <!-- <![CDATA[
 				$(document).ready(function() {
 	<?php
 	$disposal = getOption('protect_full_image');
@@ -30,7 +29,6 @@ if (!defined('WEBPATH'))
 	}
 	?>
 				});
-				// ]]> -->
 			</script>
 		<?php } ?>
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', gettext('Gallery RSS')); ?>

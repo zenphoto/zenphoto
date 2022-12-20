@@ -877,7 +877,6 @@ echo $refresh;
 					}
 					?>
 					<script>
-						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
 							var newuserid = <?php echo ($id - 1); ?>;
@@ -896,7 +895,6 @@ echo $refresh;
 							}
 							return true;
 						}
-						// ]]> -->
 					</script>
 
 					<br class="clearall" />

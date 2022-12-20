@@ -85,12 +85,10 @@ function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
    }
    ?>
 	<script>
-		// <!-- <![CDATA[
 		var _tagList = [<?php echo $list; ?>];
 		$(function() {
 			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
 		});
-		// ]]> -->
 	</script>
 	<?php
 }

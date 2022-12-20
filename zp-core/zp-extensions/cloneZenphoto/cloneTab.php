@@ -100,7 +100,6 @@ printAdminHeader('overview', 'clone');
 
 	?>
 		<script>
-			// <!-- <![CDATA[
 			var prime = '<?php echo SERVERPATH; ?>/';
 			function buttonAction(data) {
 				$('#newDir').val(data);
@@ -120,7 +119,6 @@ printAdminHeader('overview', 'clone');
 			window.onload = function() {
 				folderChange();
 			}
-			// ]]> -->
 		</script>
 		<form name="changeDir" id="changeDir" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php'; ?>" method="post">
 			<input type="hidden" name="path" id="newDir" value = "" />

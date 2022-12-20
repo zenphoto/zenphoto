@@ -90,7 +90,6 @@ function elFinder_tinymce($discard) {
 	$file = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/elfinder.php?XSRFToken=' . getXSRFToken('elFinder');
 	?>
 	<script>
-		// <!-- <![CDATA[
 		function elFinderBrowser(field_name, url, type, win) {
 			tinymce.activeEditor.windowManager.open({
 				file: '<?php echo $file; ?>', // use an absolute path!
@@ -108,7 +107,6 @@ function elFinder_tinymce($discard) {
 			});
 			return false;
 		}
-		// ]]> -->
 	</script>
 
 	<?php

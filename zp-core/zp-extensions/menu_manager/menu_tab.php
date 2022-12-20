@@ -107,7 +107,6 @@ printSortableHead();
 			$count = $_zp_db->count('menu', NULL, 'DISTINCT `menuset`');
 			?>
 			<script>
-				//<!-- <![CDATA[
 				function newMenuSet() {
 					var new_menuset = prompt("<?php echo gettext('Name for new menu:'); ?>", "<?php echo 'menu_' . $count; ?>");
 					if (new_menuset) {
@@ -137,7 +136,6 @@ printSortableHead();
 						return true;
 					}
 				}
-				// ]]> -->
 			</script>
 			<h1><?php
 				echo gettext("Menu Manager") . "<small>";

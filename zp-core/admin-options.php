@@ -530,7 +530,6 @@ if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'im
 	<script src="js/encoder.js"></script>
 	<script src="js/tag.js"></script>
 	<script>
-						// <!-- <![CDATA[
 						$(function () {
 						$('#<?php echo $targetid; ?>').tagSuggest({
 						tags: [
@@ -538,7 +537,6 @@ if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'im
 						]
 						});
 						});
-						// ]]> -->
 	</script>
 	<?php
 }
@@ -963,7 +961,6 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<script>
-																			// <!-- <![CDATA[
 																							function resetallowedtags() {
 																							$('#allowed_tags').val(<?php
 									$t = getOption('allowed_tags_default');
@@ -984,7 +981,6 @@ Authority::printPasswordFormJS();
 	}
 	?>);
 																							}
-																			// ]]> -->
 										</script>
 										<p><?php echo gettext("Tags and attributes allowed in comments, descriptions, and other fields."); ?><p>
 										<p><?php echo gettext("Follow the form: <em>tag</em> =&gt; (<em>attribute</em> =&gt;() <em>attribute</em>=&gt;() <em>attribute</em> =&gt;()....etc.)"); ?></p>
@@ -2044,7 +2040,6 @@ Authority::printPasswordFormJS();
 										<p class="nowrap">
 											<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality'); ?>" />
 											<script>
-																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-imagequality").slider({
 	<?php $v = getOption('image_quality'); ?>
@@ -2058,14 +2053,12 @@ Authority::printPasswordFormJS();
 																								});
 																												$("#imagequality").val($("#slider-imagequality").slider("value"));
 																								});
-																								// ]]> -->
 											</script>
 										<div id="slider-imagequality"></div>
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('<em>full</em> Image'); ?>&nbsp;<input type="text" size="3" id="fullimagequality" name="full_image_quality" value="<?php echo getOption('full_image_quality'); ?>" />
 											<script>
-																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-fullimagequality").slider({
 	<?php $v = getOption('full_image_quality'); ?>
@@ -2079,14 +2072,12 @@ Authority::printPasswordFormJS();
 																								});
 																												$("#fullimagequality").val($("#slider-fullimagequality").slider("value"));
 																								});
-																								// ]]> -->
 											</script>
 										<div id="slider-fullimagequality"></div>
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality'); ?>" />
 											<script>
-																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-thumbquality").slider({
 	<?php $v = getOption('thumb_quality'); ?>
@@ -2100,7 +2091,6 @@ Authority::printPasswordFormJS();
 																								});
 																												$("#thumbquality").val($("#slider-thumbquality").slider("value"));
 																								});
-																								// ]]> -->
 											</script>
 										<div id="slider-thumbquality"></div>
 										</p>
@@ -2158,7 +2148,6 @@ Authority::printPasswordFormJS();
 										<p class="nowrap">
 											<?php echo gettext('Amount'); ?>&nbsp;<input type="text" id="sharpenamount" name="sharpen_amount" size="3" value="<?php echo getOption('sharpen_amount'); ?>" />
 											<script>
-																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-sharpenamount").slider({
 	<?php $v = getOption('sharpen_amount'); ?>
@@ -2172,7 +2161,6 @@ Authority::printPasswordFormJS();
 																								});
 																												$("#sharpenamount").val($("#slider-sharpenamount").slider("value"));
 																								});
-																								// ]]> -->
 											</script>
 										<div id="slider-sharpenamount"></div>
 										</p>
@@ -2293,7 +2281,6 @@ Authority::printPasswordFormJS();
 									<td><?php echo gettext("Caching concurrency:"); ?></td>
 									<td>
 										<script>
-																							// <!-- <![CDATA[
 																							$(function() {
 																							$("#slider-workers").slider({
 	<?php $v = getOption('imageProcessorConcurrency'); ?>
@@ -2309,7 +2296,6 @@ Authority::printPasswordFormJS();
 																											$("#cache-workers").val($("#slider-workers").slider("value"));
 																											$("#cache_processes").html($("#cache-workers").val());
 																							});
-																							// ]]> -->
 										</script>
 										<div id="slider-workers"></div>
 										<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency'); ?>" />
@@ -3099,9 +3085,7 @@ Authority::printPasswordFormJS();
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
 						<script>
-																							// <!-- <![CDATA[
 																							var optionholder = new Array();
-																							// ]]> -->
 						</script>
 						<form class="dirty-check" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . html_encode($showExtension); ?>" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>

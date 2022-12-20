@@ -451,7 +451,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 			$map->create_map();
 			?>
 			<script>
-				//<![CDATA[
 			<?php
 			echo $map->output_js_contents;
 			echo omsAdditions();
@@ -460,7 +459,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				function image(album, image) {
 					window.location = '<?php echo WEBPATH ?>/index.php?album=' + album + '&image=' + image;
 				}
-				//]]>
 			</script>
 			<div id="<?php echo $id_data; ?>">
 				<?php echo $map->output_html; ?>
@@ -471,7 +469,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 			$map->create_map();
 			?>
 			<script>
-				//<![CDATA[
 			<?php
 			echo $map->output_js_contents;
 			echo omsAdditions();
@@ -494,7 +491,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}
 				}
-				//]]>
 			</script>
 			<a id="<?php echo $id_toggle; ?>" href="javascript:toggle_<?php echo $id_data; ?>();" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
 				<?php echo $text; ?>
@@ -527,7 +523,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 					<?php echo $text; ?>
 				</a>
 				<script>
-					//<![CDATA[
 					$(document).ready(function() {
 						$(".google_map").colorbox({
 							iframe: true,
@@ -539,7 +534,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 							}
 						});
 					});
-					//]]>
 				</script>
 				<?php
 			}

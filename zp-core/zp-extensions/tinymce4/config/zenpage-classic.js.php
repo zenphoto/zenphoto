@@ -15,7 +15,6 @@ global $_zp_rtl_css;
 ?>
 <script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script>
-// <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.content,textarea.desc,textarea.extracontent,textarea.texteditor",
 		language: "<?php echo $locale; ?>",
@@ -51,5 +50,4 @@ if ($filehandler) {
 			});
 		}
 	});
-// ]]> -->
 </script>

@@ -864,7 +864,6 @@ $upgrade = $versioncheck['upgrade_text'];
 												$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
 												?>
 												<script>
-													// <!-- <![CDATA[
 													function uri(enable) {
 														var text;
 														if (enable) {
@@ -914,7 +913,6 @@ $upgrade = $versioncheck['upgrade_text'];
 
 
 													});
-													// ]]> -->
 												</script>
 												<li id="UTF8_uri" class="pass"><span id="UTF8_uri_text">
 														<?php echo $req_UTF8; ?> </span>

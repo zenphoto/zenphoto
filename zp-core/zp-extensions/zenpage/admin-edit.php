@@ -128,7 +128,6 @@ datepickerJS();
 codeblocktabsJS();
 ?>
 <script>
-	//<!-- <![CDATA[
 	var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 	var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
 	var deleteCategory = "<?php echo gettext("Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"); ?>";
@@ -163,7 +162,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 	<?php
 }
 ?>
-	// ]]> -->
 </script>
 <?php Authority::printPasswordFormJS(); ?>
 </head>
@@ -578,7 +576,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<p>
 
 															<script>
-																// <!-- <![CDATA[
 																$(function() {
 																	$("#date").datepicker({
 																		dateFormat: 'yy-mm-dd',
@@ -588,7 +585,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																		buttonImageOnly: true
 																	});
 																});
-																// ]]> -->
 															</script>
 															<?php
 															$date = $result->getDatetime();
@@ -606,7 +602,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<hr />
 														<p>
 															<script>
-																// <!-- <![CDATA[
 																$(function() {
 																	$("#expiredate").datepicker({
 																		dateFormat: 'yy-mm-dd',
@@ -616,7 +611,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																		buttonImageOnly: true
 																	});
 																});
-																// ]]> -->
 															</script>
 
 															<?php

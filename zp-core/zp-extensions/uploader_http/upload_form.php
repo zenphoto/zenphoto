@@ -19,7 +19,6 @@ function upload_form($uploadlimit, $passedalbum) {
 	XSRFToken('upload');
 	?>
 	<script>
-		// <!-- <![CDATA[
 		window.totalinputs = 5;
 		function addUploadBoxes(num) {
 			for (i = 0; i < num; i++) {
@@ -35,7 +34,6 @@ function upload_form($uploadlimit, $passedalbum) {
 			$('#uploadboxes').empty();
 			addUploadBoxes(5);
 		}
-		// ]]> -->
 	</script>
 
 	<input type="hidden" name="existingfolder" id="existingfolder" value="false" />

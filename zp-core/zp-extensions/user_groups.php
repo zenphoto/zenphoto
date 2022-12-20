@@ -117,7 +117,6 @@ class user_groups {
 			return gettext('no groups established'); // no groups setup yet
 		$grouppart = '
 		<script>
-			// <!-- <![CDATA[
 			function groupchange' . $i . '(type) {
 				switch (type) {
 				case 0:	//	none
@@ -138,7 +137,6 @@ class user_groups {
 					break;
 			}
 		}
-		//]]> -->
 	</script>' . "\n";
 
 		$grouppart .= '<ul class="customchecklist">' . "\n";

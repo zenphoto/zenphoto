@@ -114,7 +114,6 @@ class Authority {
 				?>
 				<input type="hidden" size="3" id="password_strength" name="password_strength" value="<?php echo getOption('password_strength'); ?>" />
 				<script>
-					// <!-- <![CDATA[
 					function sliderColor(strength) {
 						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
 						$('#slider-password_strength').css('background-image', url);
@@ -137,7 +136,6 @@ class Authority {
 						$('#password_strength_display').html(strength);
 						sliderColor(strength);
 					});
-					// ]]> -->
 				</script>
 				<div id="slider-password_strength"></div>
 				<?php
@@ -1081,7 +1079,6 @@ class Authority {
 					} else {
 						?>
 						<script>
-							// <!-- <![CDATA[
 							var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
@@ -1105,7 +1102,6 @@ class Authority {
 								var script = handler.shift();
 								window.location = script+'?'+handler.join('&');
 							}
-							// ]]> -->
 						</script>
 						<?php
 					}
@@ -1167,7 +1163,6 @@ class Authority {
 	static function printPasswordFormJS() {
 		?>
 		<script>
-			// <!-- <![CDATA[
 			function passwordStrength(id) {
 				var inputa = '#pass' + id;
 				var inputb = '#pass_r' + id;
@@ -1298,7 +1293,6 @@ class Authority {
 					}
 				});
 			}
-			// ]]> -->
 		</script>
 		<?php
 	}

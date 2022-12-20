@@ -158,7 +158,6 @@ printAdminHeader('edit', 'thumbcrop');
 <script src="js/jcrop/js/jquery.Jcrop.min.js"></script>
 <link rel="stylesheet" href="js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
 <script>
-	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function() {
 		initJcrop();
@@ -213,8 +212,6 @@ printAdminHeader('edit', 'thumbcrop');
 	function checkCoords() {
 		return true;
 	}
-	;
-	// ]]> -->
 </script>
 </head>
 <body>
@@ -291,14 +288,12 @@ printAdminHeader('edit', 'thumbcrop');
 
 				<!-- set the initial view for the preview -->
 				<script>
-					// <!-- <![CDATA[
 					jQuery('#preview').css({
 						width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
 						height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
 						marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
 						marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
 					});
-					// ]]> -->
 				</script>
 				<br style="clear: both" />
 			</div><!-- block -->

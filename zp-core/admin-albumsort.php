@@ -77,11 +77,9 @@ printAdminHeader('edit', 'sort');
 
 ?>
 <script>
-	//<!-- <![CDATA[
 	$(function() {
 		$('#images').sortable();
 	});
-	// ]]> -->
 </script>
 <?php
 echo "\n</head>";
@@ -158,12 +156,10 @@ echo "\n</head>";
 						<?php XSRFToken('save_sort'); ?>
 						<?php printBulkActions($checkarray_images, true); ?>
 						<script>
-							// <!-- <![CDATA[
 							function postSort(form) {
 								$('#sortableList').val($('#images').sortable('serialize'));
 								form.submit();
 							}
-							// ]]> -->
 						</script>
 
 						<p class="buttons">

@@ -69,7 +69,6 @@ printLogoAndLinks();
 		}
 		?>
 		<script>
-			// <!-- <![CDATA[
 			// Array of album names for javascript functions.
 			var albumArray = new Array(
 <?php
@@ -79,7 +78,6 @@ foreach ($albumlist as $key => $value) {
 	$separator = ", ";
 }
 ?>);
-			// ]]> -->
 		</script>
 
 		<div class="tabbox">
@@ -164,7 +162,6 @@ foreach ($albumlist as $key => $value) {
 				}
 				?>
 				<script>
-					// <!-- <![CDATA[
 	<?php seoFriendlyJS(); ?>
 					function buttonstate(good) {
 						$('#albumtitleslot').val($('#albumtitle').val());
@@ -207,7 +204,6 @@ foreach ($albumlist as $key => $value) {
 						var state = albumSwitch(sel, true, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 						buttonstate(state);
 					}
-					// ]]> -->
 				</script>
 				<div id="albumselect">
 
@@ -303,7 +299,6 @@ foreach ($albumlist as $key => $value) {
 					</div><!-- upload action -->
 
 					<script>
-						//<!-- <![CDATA[
 	<?php
 	echo zp_apply_filter('upload_helper_js', '') . "\n";
 	if ($passedalbum) {
@@ -344,7 +339,6 @@ foreach ($albumlist as $key => $value) {
 	}
 	?>
 						buttonstate($('#folderdisplay').val() != '');
-						// ]]> -->
 					</script>
 					<?php
 				} else {

@@ -73,7 +73,6 @@ printAdminHeader('themes');
 
 <script src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 <script>
-	//<!-- <![CDATA[
 	function copyClick(source) {
 		var targetname = prompt('<?php echo gettext('New theme name?'); ?>', sprintf('<?php echo gettext('Copy of %s');?>',source));
 		if (targetname) {
@@ -85,7 +84,6 @@ printAdminHeader('themes');
 		}
 		return false;
 	}
-	// ]]> -->
 </script>
 
 <?php

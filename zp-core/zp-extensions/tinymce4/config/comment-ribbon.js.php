@@ -8,7 +8,6 @@
 ?>
 <script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
 <script>
-// <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.textarea_inputbox,textarea.texteditor_comments",
 		language: "<?php echo $locale; ?>",
@@ -29,5 +28,4 @@
 		statusbar: false,
 		content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
 	});
-// ]]> -->
 </script>

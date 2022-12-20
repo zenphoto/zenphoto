@@ -46,12 +46,10 @@ if (!OFFSET_PATH) {
 function switcher_head($ignore) {
 	?>
 	<script>
-		// <!-- <![CDATA[
 		function switchPersonality() {
 			personality = $('#themePersonality').val();
 			window.location = '?themePersonality=' + personality;
 		}
-		// ]]> -->
 	</script>
 	<?php
 	return $ignore;

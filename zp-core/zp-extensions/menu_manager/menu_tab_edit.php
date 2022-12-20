@@ -49,7 +49,6 @@ $menuset = checkChosenMenuset();
 			}
 			?>
 			<script>
-				// <!-- <![CDATA[
 				function handleSelectorChange(type) {
 					$('#add,#titlelabel,#link_row,#link,#link_label,#visible_row,#show_visible,#span_row').show();
 					$('#include_li_label').hide();
@@ -182,10 +181,8 @@ $menuset = checkChosenMenuset();
 							break;
 					}
 				}
-				//]]> -->
 			</script>
 			<script>
-				//<!-- <![CDATA[
 				$(document).ready(function() {
 <?php
 if (is_array($result)) {
@@ -204,7 +201,6 @@ if (is_array($result)) {
 						handleSelectorChange($(this).val());
 					});
 				});
-				//]]> -->
 			</script>
 			<h1>
 				<?php

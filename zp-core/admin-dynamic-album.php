@@ -213,7 +213,6 @@ while ($old != $albumname) {
 		</tr>
 
 		<script>
-			// <!-- <![CDATA[
 			function setTagged(state) {
 				if (state) {
 					$('#album_tag').removeAttr('disabled');
@@ -223,7 +222,6 @@ while ($old != $albumname) {
 					$('#album_tag').attr('disabled', 'disabled');
 				}
 			}
-			// ]]> -->
 		</script>
 
 		<tr>

@@ -170,7 +170,6 @@ printAdminHeader('overview');
 ?>
 <script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
 <script>
-	// <!-- <![CDATA[
 	$(function() {
 		$('#overviewboxes').masonry({
 			// options
@@ -178,7 +177,6 @@ printAdminHeader('overview');
 			columnWidth: 520
 		});
 	});
-	// ]]> -->
 </script>
 <?php
 echo "\n</head>";

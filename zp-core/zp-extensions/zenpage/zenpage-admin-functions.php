@@ -1402,13 +1402,11 @@ function zenpageJSCSS() {
 	?>
 	<link rel="stylesheet" href="zenpage.css" type="text/css" />
 	<script>
-		// <!-- <![CDATA[
 		$(document).ready(function() {
 			$("#tip a").click(function() {
 				$("#tips").toggle("slow");
 			});
 		});
-		// ]]> -->
 	</script>
 	<?php
 }

@@ -400,7 +400,6 @@ echo '</head>' . "\n";
 							<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
 						<script>
-							//<!-- <![CDATA[
 							function checkSubmit() {
 								newgroupid = <?php echo ($id - 1); ?>;
 								var c = 0;
@@ -434,7 +433,6 @@ echo '</head>' . "\n";
 								}
 								return true;
 							}
-							// ]]> -->
 						</script>
 						<br class="clearall" />
 						<?php

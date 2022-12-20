@@ -124,11 +124,9 @@ class themeSwitcher {
 		}
 		?>
 		<script>
-			// <!-- <![CDATA[
 			function switchTheme(reloc) {
 				window.location = reloc.replace(/%t/, $('#themeSwitcher').val());
 			}
-			// ]]> -->
 		</script>
 		<?php
 		$_zp_themeswitcher_themelist = zp_apply_filter('themeSwitcher_head', $_zp_themeswitcher_themelist);
