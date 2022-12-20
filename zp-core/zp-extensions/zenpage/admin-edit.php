@@ -127,7 +127,7 @@ zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
 ?>
-<script type="text/javascript">
+<script>
 	//<!-- <![CDATA[
 	var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 	var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
@@ -577,7 +577,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													<div class="box-edit">
 														<p>
 
-															<script type="text/javascript">
+															<script>
 																// <!-- <![CDATA[
 																$(function() {
 																	$("#date").datepicker({
@@ -605,7 +605,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</p>
 														<hr />
 														<p>
-															<script type="text/javascript">
+															<script>
 																// <!-- <![CDATA[
 																$(function() {
 																	$("#expiredate").datepicker({

@@ -663,7 +663,7 @@ function printTinyZenpageCategorySelector($currentpage = '') {
 			}
 			?>
 		</select>
-		<script type="text/javascript" >
+		<script>
 			// <!-- <![CDATA[
 			function gotoLink(form) {
 				var OptionIndex = form.ListBoxURL.selectedIndex;

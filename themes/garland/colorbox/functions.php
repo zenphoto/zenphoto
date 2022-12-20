@@ -22,7 +22,7 @@ class ga_colorbox {
 
 	function theme_head($_zp_themeroot) {
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			$(document).ready(function() {
 				$("a.thickbox").colorbox({

@@ -39,12 +39,12 @@ function printVersion() {
 function printZenJavascripts() {
 	global $_zp_current_album;
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.min.js"></script>
-	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
+	<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.min.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js"></script>
 	<?php
 	if (zp_loggedin() || extensionEnabled('tag_suggest')) {
 			?>
-		<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zp_general.js"></script>
+		<script src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zp_general.js"></script>
 		<?php
 	}
 	if (zp_loggedin()) {
@@ -65,7 +65,7 @@ function adminToolbox() {
 		$page = getCurrentPage();
 		ob_start();
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this item?"); ?>";
 			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely positively sure you want to delete this item? THIS CANNOT BE UNDONE!"); ?>";
@@ -3841,14 +3841,14 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 	if (!$_zp_adminjs_loaded) {
 		$_zp_adminjs_loaded = true;
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js"></script>
 		<?php
 	}
 	?>
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
-			<script type="text/javascript">
+			<script>
 			// <!-- <![CDATA[
 			var within = <?php echo (int) $within; ?>;
 			function search_(way) {

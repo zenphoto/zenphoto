@@ -136,7 +136,7 @@ class ipBlocker {
 					<?php
 				}
 				?>
-				<script type="text/javascript">
+				<script>
 					<!--
 					function clearips() {
 				<?php

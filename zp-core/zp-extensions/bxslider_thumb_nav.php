@@ -115,7 +115,7 @@ class bxslider {
 		}
 		?>
 
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
 		<?php
 	}
@@ -260,7 +260,7 @@ if (!$plugin_disable && !OFFSET_PATH) {
 			}
 			?>
 			</ul>
-			<script type="text/javascript">
+			<script>
 				$(document).ready(function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;

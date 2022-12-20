@@ -61,7 +61,7 @@ class setup {
 	static function primeMark($text) {
 		global $_zp_setup_primeid;
 		?>
-		<script type="text/javascript">
+		<script>
 			$("#prime<?php echo $_zp_setup_primeid; ?>").remove();
 		</script>
 		<div id="prime<?php echo ++$_zp_setup_primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
@@ -88,7 +88,7 @@ class setup {
 				'warn' => gettext('Warn: '),
 				'pass' => gettext('Pass: '));
 		?>
-		<script type="text/javascript">
+		<script>
 			$("#prime<?php echo $_zp_setup_primeid; ?>").remove();
 		</script>
 		<?php
@@ -248,7 +248,7 @@ class setup {
 					} else {
 						if ($recurse) {
 							?>
-							<script type="text/javascript">
+							<script>
 								// <!-- <![CDATA[
 								$.ajax({
 									type: 'POST',

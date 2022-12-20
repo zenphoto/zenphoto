@@ -13,8 +13,8 @@
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 global $_zp_rtl_css;
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
-<script type="text/javascript">
+<script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
+<script>
 // <!-- <![CDATA[
 	tinymce.init({
 		selector: "textarea.texteditor,textarea.content,textarea.desc,textarea.extracontent,textarea.texteditor",

@@ -471,10 +471,10 @@ $upgrade = $versioncheck['upgrade_text'];
 		<title><?php printf('Zenphoto %s', $upgrade ? $upgrade : gettext('install')); ?></title>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js" type="text/javascript"></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_general.js" type="text/javascript" ></script>
-		<script type="text/javascript">
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" ></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_general.js" ></script>
+		<script>
 			var imageErr = false;
 			function toggle_visibility(id) {
 				var e = document.getElementById(id);
@@ -863,7 +863,7 @@ $upgrade = $versioncheck['upgrade_text'];
 												$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
 												$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
 												?>
-												<script type="text/javascript">
+												<script>
 													// <!-- <![CDATA[
 													function uri(enable) {
 														var text;
@@ -2550,7 +2550,7 @@ $upgrade = $versioncheck['upgrade_text'];
 										break;
 								}
 								?>
-								<script type="text/javascript">
+								<script>
 									window.onload = function() {
 										$('.delayshow').show();
 			<?php
@@ -2714,7 +2714,7 @@ $upgrade = $versioncheck['upgrade_text'];
 							}
 							if ($_zp_setup_autorun) {
 								?>
-								<script type="text/javascript">
+								<script>
 									$('#submitbutton').hide();
 									$('#setup').submit();
 								</script>

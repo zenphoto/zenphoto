@@ -42,7 +42,7 @@ $_GET['page'] = 'upload';
 
 printAdminHeader('upload', 'albums');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_upload.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_upload.js"></script>
 <?php
 //	load the uploader specific header stuff
 $formAction = upload_head();
@@ -68,7 +68,7 @@ printLogoAndLinks();
 			}
 		}
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			// Array of album names for javascript functions.
 			var albumArray = new Array(
@@ -163,7 +163,7 @@ foreach ($albumlist as $key => $value) {
 					$checked = '';
 				}
 				?>
-				<script type="text/javascript">
+				<script>
 					// <!-- <![CDATA[
 	<?php seoFriendlyJS(); ?>
 					function buttonstate(good) {
@@ -302,7 +302,7 @@ foreach ($albumlist as $key => $value) {
 						?>
 					</div><!-- upload action -->
 
-					<script type="text/javascript">
+					<script>
 						//<!-- <![CDATA[
 	<?php
 	echo zp_apply_filter('upload_helper_js', '') . "\n";

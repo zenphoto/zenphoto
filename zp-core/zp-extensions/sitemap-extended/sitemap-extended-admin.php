@@ -52,7 +52,7 @@ if (isset($_GET['generatesitemaps'])) {
 } // if(isset($_GET['generatesitemaps']) end
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
-<script type="text/javascript">
+<script>
 	// <!-- <![CDATA[
 	$(document).ready(function() {
 		/*	$(".colorbox").colorbox({
@@ -133,7 +133,7 @@ echo '</head>';
 					} else {
 						sitemap::generateIndexCacheFile();
 						?>
-						<script type="text/javascript">
+						<script>
 							// <!-- <![CDATA[
 							$(document).ready(function() {
 								window.location = "<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/sitemap-extended/sitemap-extended-admin.php";

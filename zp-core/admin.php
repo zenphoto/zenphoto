@@ -168,8 +168,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 // Print our header
 printAdminHeader('overview');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
-<script type="text/javascript">
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
+<script>
 	// <!-- <![CDATA[
 	$(function() {
 		$('#overviewboxes').masonry({

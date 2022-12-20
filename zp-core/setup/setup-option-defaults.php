@@ -77,7 +77,7 @@ setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	if (!function_exists('curl_init')) {
 		?>
-		<script type="text/javascript">
+		<script>
 			$(function() {
 				$('img').error(function() {
 					var link = $(this).attr('src');

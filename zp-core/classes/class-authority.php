@@ -113,7 +113,7 @@ class Authority {
 			case 'password_strength':
 				?>
 				<input type="hidden" size="3" id="password_strength" name="password_strength" value="<?php echo getOption('password_strength'); ?>" />
-				<script type="text/javascript">
+				<script>
 					// <!-- <![CDATA[
 					function sliderColor(strength) {
 						var url = 'url(<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/strengths/strength' + strength + '.png)';
@@ -1080,7 +1080,7 @@ class Authority {
 						$legend = gettext('Login');
 					} else {
 						?>
-						<script type="text/javascript">
+						<script>
 							// <!-- <![CDATA[
 							var handlers = [];
 					<?php
@@ -1166,7 +1166,7 @@ class Authority {
 	 */
 	static function printPasswordFormJS() {
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function passwordStrength(id) {
 				var inputa = '#pass' + id;

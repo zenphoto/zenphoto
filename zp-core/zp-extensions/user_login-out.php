@@ -92,7 +92,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 					break;
 				case 2:
 					if ((getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) && (zp_has_filter('theme_head', 'colorbox::css'))) { ?>
-					<script type="text/javascript">
+					<script>
 						// <!-- <![CDATA[
 						$(document).ready(function() {
 							$(".logonlink").colorbox({

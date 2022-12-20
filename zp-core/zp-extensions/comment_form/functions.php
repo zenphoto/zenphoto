@@ -9,8 +9,8 @@ $_zp_comment_stored = array();
 
 function comment_form_PaginationJS() {
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
-	<script type="text/javascript">
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
+	<script>
 		function pageselectCallback(page_index, jq) {
 			var items_per_page = <?php echo max(1, COMMENTS_PER_PAGE); ?>;
 			var max_elem = Math.min((page_index + 1) * items_per_page, $('#comments div.comment').length);

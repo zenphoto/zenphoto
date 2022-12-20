@@ -507,7 +507,7 @@ if (isset($_GET['action'])) {
 }
 printAdminHeader($_current_tab);
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
+<script src="js/farbtastic.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
 <?php
 if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'image') {
@@ -527,9 +527,9 @@ if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'im
 		sort($dbfields);
 	}
 	?>
-	<script type="text/javascript" src="js/encoder.js"></script>
-	<script type="text/javascript" src="js/tag.js"></script>
-	<script type="text/javascript">
+	<script src="js/encoder.js"></script>
+	<script src="js/tag.js"></script>
+	<script>
 						// <!-- <![CDATA[
 						$(function () {
 						$('#<?php echo $targetid; ?>').tagSuggest({
@@ -791,7 +791,7 @@ Authority::printPasswordFormJS();
 											}
 											?>
 										</ul>
-										<script type="text/javascript">
+										<script>
 																			var oldselect = '<?php echo $currentValue; ?>';
 																			function radio_click(id) {
 																			if ($('#r_' + id).prop('checked')) {
@@ -962,7 +962,7 @@ Authority::printPasswordFormJS();
 										<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea></p>
 									</td>
 									<td>
-										<script type="text/javascript">
+										<script>
 																			// <!-- <![CDATA[
 																							function resetallowedtags() {
 																							$('#allowed_tags').val(<?php
@@ -2043,7 +2043,7 @@ Authority::printPasswordFormJS();
 									<td width="350">
 										<p class="nowrap">
 											<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality'); ?>" />
-											<script type="text/javascript">
+											<script>
 																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-imagequality").slider({
@@ -2064,7 +2064,7 @@ Authority::printPasswordFormJS();
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('<em>full</em> Image'); ?>&nbsp;<input type="text" size="3" id="fullimagequality" name="full_image_quality" value="<?php echo getOption('full_image_quality'); ?>" />
-											<script type="text/javascript">
+											<script>
 																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-fullimagequality").slider({
@@ -2085,7 +2085,7 @@ Authority::printPasswordFormJS();
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality'); ?>" />
-											<script type="text/javascript">
+											<script>
 																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-thumbquality").slider({
@@ -2157,7 +2157,7 @@ Authority::printPasswordFormJS();
 										</p>
 										<p class="nowrap">
 											<?php echo gettext('Amount'); ?>&nbsp;<input type="text" id="sharpenamount" name="sharpen_amount" size="3" value="<?php echo getOption('sharpen_amount'); ?>" />
-											<script type="text/javascript">
+											<script>
 																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#slider-sharpenamount").slider({
@@ -2292,7 +2292,7 @@ Authority::printPasswordFormJS();
 								<tr>
 									<td><?php echo gettext("Caching concurrency:"); ?></td>
 									<td>
-										<script type="text/javascript">
+										<script>
 																							// <!-- <![CDATA[
 																							$(function() {
 																							$("#slider-workers").slider({
@@ -3098,7 +3098,7 @@ Authority::printPasswordFormJS();
 					?>
 					<div id="tab_plugin" class="tabbox">
 						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
-						<script type="text/javascript">
+						<script>
 																							// <!-- <![CDATA[
 																							var optionholder = new Array();
 																							// ]]> -->

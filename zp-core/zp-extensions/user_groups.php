@@ -116,7 +116,7 @@ class user_groups {
 		if (empty($groups))
 			return gettext('no groups established'); // no groups setup yet
 		$grouppart = '
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function groupchange' . $i . '(type) {
 				switch (type) {

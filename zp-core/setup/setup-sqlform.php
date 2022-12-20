@@ -11,7 +11,7 @@
 			<?php
 		}
 		?>
-	<script type="text/javascript">
+	<script>
 		function showFields() {
 			switch ($('#dbselect').val()) {
 			<?php

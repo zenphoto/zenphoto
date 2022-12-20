@@ -68,7 +68,7 @@ sortArray($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);
 $filelist = array_slice($pluginlist, $pagenumber * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 ?>
-<script type="text/javascript">
+<script>
 	<!--
 	function toggleDetails(plugin) {
 		toggle(plugin + '_show');

@@ -515,7 +515,7 @@ class htmlmetatags {
 
 		} // if canonical
 		if (!empty($_zp_htmlmetatags_need_cache)) {
-  			$meta .= '<script type="text/javascript">' . "\n";
+  			$meta .= '<script>' . "\n";
   			$meta .= '
     				window.onload = function() {
       				var caches = ["' . implode(",", $_zp_htmlmetatags_need_cache) . '"];

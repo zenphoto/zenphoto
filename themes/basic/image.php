@@ -13,7 +13,7 @@ if (!defined('WEBPATH'))
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
-			<script type="text/javascript">
+			<script>
 				// <!-- <![CDATA[
 				$(document).ready(function() {
 					$(".fullimage").colorbox({

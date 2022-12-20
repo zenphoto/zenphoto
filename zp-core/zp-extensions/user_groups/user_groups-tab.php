@@ -130,7 +130,7 @@ if (isset($_GET['action'])) {
 printAdminHeader('users');
 $background = '';
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 <?php
 echo '</head>' . "\n";
 ?>
@@ -399,7 +399,7 @@ echo '</head>' . "\n";
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 							<input type="hidden" name="checkForPostTruncation" value="1" />
 						</form>
-						<script type="text/javascript">
+						<script>
 							//<!-- <![CDATA[
 							function checkSubmit() {
 								newgroupid = <?php echo ($id - 1); ?>;

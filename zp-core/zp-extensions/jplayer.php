@@ -277,13 +277,13 @@ class jPlayer {
 		}
 		?>
 		<link href="<?php echo $skin; ?>" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
 		<?php
 	}
 
 	static function playlistJS() {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
 		<?php
 	}
 
@@ -326,7 +326,7 @@ class jPlayer {
 			$videoThumb = ',poster:"' . $movie->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
 		}
 		$playerconfig = '
-		<script type="text/javascript">
+		<script>
 			//<![CDATA[
 		$(document).ready(function(){
 			$("#jquery_jplayer_' . $count . '").jPlayer({
@@ -663,7 +663,7 @@ class jPlayer {
 				$id = $albumobj->getID();
 			}
 			?>
-			<script type="text/javascript">
+			<script>
 								//<![CDATA[
 								$(document).ready(function(){
 				new jPlayerPlaylist({

@@ -92,7 +92,7 @@ if (isset($_GET['action'])) {
 printAdminHeader('comments');
 zp_apply_filter('texteditor_config', 'comments');
 ?>
-<script type="text/javascript">
+<script>
 	//<!-- <![CDATA[
 	function confirmAction() {
 		if ($('#checkallaction').val() == 'deleteall') {

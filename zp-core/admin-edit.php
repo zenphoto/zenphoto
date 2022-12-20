@@ -489,9 +489,9 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	sort($dbfields);
 	$imagedbfields = implode(',', $dbfields);
 	?>
-	<script type="text/javascript" src="js/encoder.js"></script>
-	<script type="text/javascript" src="js/tag.js"></script>
-	<script type="text/javascript">
+	<script src="js/encoder.js"></script>
+	<script src="js/tag.js"></script>
+	<script>
 						//<!-- <![CDATA[
 						var albumdbfields = [<?php echo $albumdbfields; ?>];
 						$(function() {
@@ -510,7 +510,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 	<?php
 }
 ?>
-<script type="text/javascript">
+<script>
 					//<!-- <![CDATA[
 					var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
 					var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
@@ -1120,7 +1120,7 @@ echo "\n</head>";
 																$publishdate = $image->getPublishDate();
 																$expirationdate = $image->getExpireDate();
 																?>
-																<script type="text/javascript">
+																<script>
 																					// <!-- <![CDATA[
 																					$(function() {
 																					$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
@@ -1380,7 +1380,7 @@ echo "\n</head>";
 													<tr align="left" valign="top">
 														<td valign="top"><?php echo gettext("Date:"); ?></td>
 														<td>
-															<script type="text/javascript">
+															<script>
 																								// <!-- <![CDATA[
 																								$(function() {
 																								$("#datepicker_<?php echo $currentimage; ?>").datepicker({
@@ -1599,7 +1599,7 @@ echo "\n</head>";
 									}
 									if (!empty($target_image)) {
 										?>
-										<script type="text/javascript" >
+										<script>
 																							// <!-- <![CDATA[
 																							toggleExtraInfo('<?php echo $target_image_nr; ?>', 'image', true);
 																							// ]]> -->

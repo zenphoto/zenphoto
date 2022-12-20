@@ -264,10 +264,10 @@ if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
 printAdminHeader($_current_tab);
 echo $refresh;
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+<script src="js/farbtastic.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
-<script type='text/javascript'>
+<script>
 	var visible = false;
 	function getVisible(id, category, show, hide) {
 		prefix = '#' + category + '-' + id + ' ';
@@ -440,7 +440,7 @@ echo $refresh;
 						echo '</div>';
 					}
 					?>
-					<script type="text/javascript">
+					<script>
 						function languageChange(id, lang) {
 							var oldid = '#' + $('#admin_language_' + id).val() + '_' + id;
 							var newid = '#' + lang + '_' + id;
@@ -876,7 +876,7 @@ echo $refresh;
 						}
 					}
 					?>
-					<script type="text/javascript">
+					<script>
 						//<!-- <![CDATA[
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {

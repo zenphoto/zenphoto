@@ -284,7 +284,7 @@ class zenpagecms {
 
 	static function switcher_head($list) {
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function switchCMS(checked) {
 				window.location = '?cmsSwitch=' + checked;

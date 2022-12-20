@@ -14,7 +14,7 @@ if (!defined('WEBPATH'))
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function toggleExtraElements(category, show) {
 				if (show) {

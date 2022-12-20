@@ -175,9 +175,9 @@ class GoogleMap {
 			$url_appendix = implode('&amp;', $parameters);
 		}
 		?>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
 		<?php
 	}
@@ -450,7 +450,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		case 'show':
 			$map->create_map();
 			?>
-			<script type="text/javascript">
+			<script>
 				//<![CDATA[
 			<?php
 			echo $map->output_js_contents;
@@ -470,7 +470,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		case 'hide':
 			$map->create_map();
 			?>
-			<script type="text/javascript">
+			<script>
 				//<![CDATA[
 			<?php
 			echo $map->output_js_contents;
@@ -526,7 +526,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/GoogleMap/Map.php' . $param ?>" title="<?php echo $text; ?>" class="google_map">
 					<?php echo $text; ?>
 				</a>
-				<script type="text/javascript">
+				<script>
 					//<![CDATA[
 					$(document).ready(function() {
 						$(".google_map").colorbox({

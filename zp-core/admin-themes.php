@@ -71,8 +71,8 @@ printAdminHeader('themes');
 // Script for the "Duplicate theme" feature
 ?>
 
-<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
-<script type="text/javascript">
+<script src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
+<script>
 	//<!-- <![CDATA[
 	function copyClick(source) {
 		var targetname = prompt('<?php echo gettext('New theme name?'); ?>', sprintf('<?php echo gettext('Copy of %s');?>',source));

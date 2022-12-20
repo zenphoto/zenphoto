@@ -318,7 +318,7 @@ class cacheManager {
 
 	static function printJS() {
 		?>
-		<script type="text/javascript">
+		<script>
 			function checkTheme(theme) {
 				$('.' + theme).prop('checked', $('#' + theme).prop('checked'));
 			}

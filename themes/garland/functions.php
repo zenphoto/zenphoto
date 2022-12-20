@@ -45,7 +45,7 @@ if (!OFFSET_PATH) {
 
 function switcher_head($ignore) {
 	?>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		function switchPersonality() {
 			personality = $('#themePersonality').val();

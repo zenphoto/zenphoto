@@ -311,7 +311,7 @@ echo '</head>';
 				</fieldset>
 				<br class="clearall" />
 
-				<script type="text/javascript">
+				<script>
 					//<!-- <![CDATA[
 					$(function() {
 						$("#publish_date").datepicker({
@@ -359,7 +359,7 @@ echo '</head>';
 						}
 						if ($c > 0) {
 							?>
-							<script type="text/javascript">
+							<script>
 								// <!-- <![CDATA[
 								function confirmdel(obj, id, msg) {
 									if (msg) {

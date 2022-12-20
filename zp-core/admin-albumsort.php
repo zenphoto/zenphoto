@@ -76,7 +76,7 @@ setAlbumSubtabs($album);
 printAdminHeader('edit', 'sort');
 
 ?>
-<script type="text/javascript">
+<script>
 	//<!-- <![CDATA[
 	$(function() {
 		$('#images').sortable();
@@ -157,7 +157,7 @@ echo "\n</head>";
 					<form class="dirty-check" action="?page=edit&amp;album=<?php echo $album->getName(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm" autocomplete="off">
 						<?php XSRFToken('save_sort'); ?>
 						<?php printBulkActions($checkarray_images, true); ?>
-						<script type="text/javascript">
+						<script>
 							// <!-- <![CDATA[
 							function postSort(form) {
 								$('#sortableList').val($('#images').sortable('serialize'));

@@ -15,7 +15,7 @@ $_zp_admin_menu['overview']['subtabs'] = array(gettext('Clone') => WEBPATH . '/'
 printAdminHeader('overview', 'clone');
 
 ?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 </head>
 <body>
 <?php printLogoAndLinks(); ?>
@@ -99,7 +99,7 @@ printAdminHeader('overview', 'clone');
 	}
 
 	?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			var prime = '<?php echo SERVERPATH; ?>/';
 			function buttonAction(data) {

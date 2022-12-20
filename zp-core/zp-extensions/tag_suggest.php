@@ -53,8 +53,8 @@ function tagSuggestJS_frontend() {
 function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
 	// the scripts needed
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
 	<?php
 	$css = getPlugin('tag_suggest/tag.css', true, true);
 	?>
@@ -84,7 +84,7 @@ function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
      $tagseparator = ',';
    }
    ?>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		var _tagList = [<?php echo $list; ?>];
 		$(function() {

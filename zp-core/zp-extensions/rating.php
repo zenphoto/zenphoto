@@ -134,13 +134,13 @@ class jquery_rating {
 	static function ratingJS() {
 		$ME = substr(basename(__FILE__), 0, -4);
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.MetaData.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.MetaData.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/' . $ME; ?>/jquery.rating.js"></script>
 		<?php
 		$css = getPlugin('rating/jquery.rating.css', true, true);
 		?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			$.fn.rating.options = {cancel: '<?php echo gettext('retract'); ?>'};
 			// ]]> -->
@@ -369,7 +369,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 	<span class="vote" id="vote<?php echo $unique; ?>" <?php if (!$text) echo 'style="display:none;"'; ?>>
 		<?php echo $msg; ?>
 	</span>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		var recast<?php echo $unique; ?> = <?php printf('%u', $recast && $oldrating); ?>;
 		$(document).ready(function() {

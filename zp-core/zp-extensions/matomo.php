@@ -173,7 +173,7 @@ class matomoStats {
 			}
 			?>
 			<!-- Matomo -->
-			<script type="text/javascript">
+			<script>
 				var _paq = _paq || [];
 				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);	
 				<?php if ($sitedomain) { ?>

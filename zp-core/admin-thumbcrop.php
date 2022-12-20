@@ -155,9 +155,9 @@ if (isset($_REQUEST['crop'])) {
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jcrop/js/jquery.Jcrop.min.js" type="text/javascript"></script>
+<script src="js/jcrop/js/jquery.Jcrop.min.js"></script>
 <link rel="stylesheet" href="js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
-<script type="text/javascript" >
+<script>
 	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function() {
@@ -290,7 +290,7 @@ printAdminHeader('edit', 'thumbcrop');
 				</div>
 
 				<!-- set the initial view for the preview -->
-				<script type="text/javascript" >
+				<script>
 					// <!-- <![CDATA[
 					jQuery('#preview').css({
 						width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',

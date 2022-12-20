@@ -4,7 +4,7 @@ function upload_head() {
 	$myfolder = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/uploader_http';
 	?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $myfolder; ?>/httpupload.css">
-	<script type="text/javascript" src="<?php echo $myfolder; ?>/httpupload.js"></script>
+	<script src="<?php echo $myfolder; ?>/httpupload.js"></script>
 	<?php
 	return $myfolder . '/uploader.php';
 }
@@ -18,7 +18,7 @@ function upload_form($uploadlimit, $passedalbum) {
 
 	XSRFToken('upload');
 	?>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		window.totalinputs = 5;
 		function addUploadBoxes(num) {

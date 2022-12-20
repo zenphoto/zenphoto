@@ -18,12 +18,12 @@ printAdminHeader('upload', 'files');
 ?>
 
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/theme.css">
 <?php
 if ($locale != 'en') {
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
 	<?php
 }
 echo "\n</head>";
@@ -41,7 +41,7 @@ echo "\n</head>";
 				<div class="tabbox">
 					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
 					<h1><?php echo gettext('File Manager'); ?></h1>
-					<script type="text/javascript">
+					<script>
 						$().ready(function() {
 							var elf = $('#elfinder').elfinder({
 								lang: '<?php echo $locale; ?>', // language (OPTIONAL)

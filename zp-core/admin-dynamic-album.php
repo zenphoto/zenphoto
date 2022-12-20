@@ -212,7 +212,7 @@ while ($old != $albumname) {
 			</td>
 		</tr>
 
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function setTagged(state) {
 				if (state) {

@@ -123,7 +123,7 @@ class themeSwitcher {
 			<?php
 		}
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			function switchTheme(reloc) {
 				window.location = reloc.replace(/%t/, $('#themeSwitcher').val());

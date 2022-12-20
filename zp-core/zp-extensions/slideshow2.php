@@ -454,36 +454,36 @@ class cycle {
 	static function cycleJS() {
 		global $_zp_gallery;
 		?>
-		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js" type="text/javascript"></script>
-		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js" type="text/javascript"></script>
+		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.min.js"></script>
+		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.center.min.js"></script>
 		<!-- effect plugins -->
 
 		<?php if (getOption('cycle-slideshow_effect') == 'flipHorz' || getOption('cycle-slideshow_effect') == 'flipVert') { ?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.flip.min.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.flip.min.js"></script>
 		<?php } ?>
 
 		<!--[if lt IE 9]>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.ie-fade.min.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.ie-fade.min.js"></script>
 		<![endif]-->
 
 		<?php if (getOption('cycle-slideshow_effect') == 'shuffle') { ?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.shuffle.min.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.shuffle.min.js"></script>
 		<?php } ?>
 
 		<?php if (getOption('cycle-slideshow_effect') == 'tileSlide' || getOption('cycle-slideshow_effect') == 'tileBlind') { ?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.tile.min.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.tile.min.js"></script>
 		<?php } ?>
 
 		<?php if (getOption('cycle-slideshow_effect') == 'scrollVert') { ?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.scrollVert.min.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.scrollVert.min.js"></script>
 		<?php } ?>
 
-		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.carousel.min.js" type="text/javascript"></script>
+		<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.carousel.min.js"></script>
 
 		<!--  swipe with iOS fix -->
 		<?php if (getOption('cycle-slideshow_swipe')) { ?>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js" type="text/javascript"></script>
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/jquery.cycle2.swipe.min.js"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/ios6fix.js"></script>
 			<?php
 		}
 		$theme = $_zp_gallery->getCurrentTheme();
@@ -497,7 +497,7 @@ class cycle {
 		<link rel="stylesheet" type="text/css" href="<?php echo $css ?>" />
 		<!--[if lte IE 7]>
 			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.css" />
-			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.js" type="text/javascript"></script>
+			<script	src="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/slideshow2/fonts/ie7.js"></script>
 		<![endif]-->
 		<?php
 	}
@@ -619,7 +619,7 @@ if (extensionEnabled('slideshow2')) {
 					}
 					$count = '';
 					?>
-					<script type="text/javascript">
+					<script>
 						$(document).ready(function () {
 							$("a[rel='slideshow']").colorbox({
 								slideshow: true,

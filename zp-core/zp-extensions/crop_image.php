@@ -203,10 +203,10 @@ if (isset($_REQUEST['pagenumbere'])) {
 printAdminHeader('edit', gettext('crop image'));
 ?>
 
-<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/js/jquery.Jcrop.min.js" type="text/javascript"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/js/jquery.Jcrop.min.js"></script>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
-<script type="text/javascript" >
+<script>
 	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function() {

@@ -48,7 +48,7 @@ $menuset = checkChosenMenuset();
 				echo $report;
 			}
 			?>
-			<script type="text/javascript">
+			<script>
 				// <!-- <![CDATA[
 				function handleSelectorChange(type) {
 					$('#add,#titlelabel,#link_row,#link,#link_label,#visible_row,#show_visible,#span_row').show();
@@ -184,7 +184,7 @@ $menuset = checkChosenMenuset();
 				}
 				//]]> -->
 			</script>
-			<script type="text/javascript">
+			<script>
 				//<!-- <![CDATA[
 				$(document).ready(function() {
 <?php

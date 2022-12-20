@@ -12,7 +12,7 @@ if (!defined('WEBPATH'))
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
-			<script type="text/javascript">
+			<script>
 				// <!-- <![CDATA[
 				$(document).ready(function () {
 					$("a.thickbox").colorbox({

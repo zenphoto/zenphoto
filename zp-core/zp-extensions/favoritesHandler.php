@@ -342,7 +342,7 @@ if (OFFSET_PATH) {
 					$_zp_myfavorites_button_count++;
 					$favList = array_slice($list, 1);
 					?>
-					<script type="text/javascript">
+					<script>
 						// <!-- <![CDATA[
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
 						$(function() {

@@ -54,7 +54,7 @@ function datepickerJS() {
 	}
 	if (!empty($lang)) {
 		?>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js" type="text/javascript"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/i18n/jquery.ui.datepicker-<?php echo $lang; ?>.js"></script>
 		<?php
 	}
 }
@@ -133,14 +133,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'), html_encode($_zp_gallery->getTitle()), gettext('admin'), html_encode($tabtext), html_encode($subtabtext)); ?></title>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_general.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js" type="text/javascript" ></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js" type="text/javascript"></script>
-			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js" type="text/javascript"></script>
-			<script type="text/javascript">
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" ></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jqueryui/jquery-ui.min.js"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_general.js" ></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_admin.js" ></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.scrollTo.min.js"></script>
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.dirtyforms.min.js"></script>
+			<script>
 				// <!-- <![CDATA[
 
 				$(document).ready(function () {
@@ -207,8 +207,8 @@ function printAdminHeader($tab, $subtab = NULL) {
 		function printSortableHead() {
 			?>
 			<!--Nested Sortables-->
-			<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.mjs.nestedSortable.js"></script>
-			<script type="text/javascript">
+			<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.mjs.nestedSortable.js"></script>
+			<script>
 				//<!-- <![CDATA[
 				$(document).ready(function () {
 
@@ -810,7 +810,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<ul class="customchecklist">
 									<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true, 'all_' . $key); ?>
 								</ul>
-								<script type="text/javascript">
+								<script>
 									// <!-- <![CDATA[
 									function <?php echo $key; ?>_all() {
 										var check = $('#all_<?php echo $key; ?>').prop('checked');
@@ -831,7 +831,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 							?>
 							<td width="350" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $key; ?>" value="1" />
-								<script type="text/javascript">
+								<script>
 									// <!-- <![CDATA[
 									$(document).ready(function () {
 										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
@@ -1411,7 +1411,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
-								<script type="text/javascript">
+								<script>
 									// <!-- <![CDATA[
 									$(function () {
 										$("#datepicker<?php echo $suffix; ?>").datepicker({
@@ -1640,7 +1640,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 									<?php
 									if ($showThumb) {
 										?>
-										<script type="text/javascript">
+										<script>
 											// <!-- <![CDATA[
 											updateThumbPreview(document.getElementById('thumbselect'));
 											// ]]> -->
@@ -1793,7 +1793,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 						$publishdate = $album->getPublishDate();
 						$expirationdate = $album->getExpireDate();
 						?>
-						<script type="text/javascript">
+						<script>
 							// <!-- <![CDATA[
 							$(function () {
 								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
@@ -3858,7 +3858,7 @@ function printBulkActions($checkarray, $checkAll = false) {
 	$changeowner = in_array('changeowner', $checkarray);
 	if ($tags || $movecopy || $categories || $changeowner) {
 		?>
-		<script type="text/javascript">
+		<script>
 			//<!-- <![CDATA[
 			function checkFor(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
@@ -4246,7 +4246,7 @@ function processCommentBulkActions() {
  */
 function codeblocktabsJS() {
 	?>
-	<script type="text/javascript" charset="utf-8">
+	<script charset="utf-8">
 		// <!-- <![CDATA[
 		$(function () {
 			var tabContainers = $('div.tabs > div');

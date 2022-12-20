@@ -44,7 +44,7 @@ function switcher_head($ignore) {
 		}
 	}
 	?>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		window.onload = function() {
 			$('#themeSwitcher_zenpage').html('');

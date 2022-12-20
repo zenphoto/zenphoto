@@ -10,8 +10,8 @@ function jqm_loadScripts() {
 	global $_zp_themeroot;
 	?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
-	<script type="text/javascript">
+	<script src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+	<script>
 		$(document).ready(function() {
 			$("#zp__admin_data a, a.downloadlist_link").attr('data-ajax','false');
 		});
@@ -219,7 +219,7 @@ function jqm_printImageAlbumCount() {
  */
 function printZDSearchToggleJS() {
 	?>
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		function toggleExtraElements(category, show) {
 			if (show) {

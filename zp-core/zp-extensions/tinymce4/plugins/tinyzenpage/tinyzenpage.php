@@ -18,14 +18,14 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	<head>
 		<title>tinyZenpage</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" type="text/javascript" ></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" ></script>
 
 		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
-		<script language="javascript" type="text/javascript">
+		<script language="javascript">
 			$(document).ready(function() {
 				$("a[rel='colorbox']").colorbox({
 					iframe: true,

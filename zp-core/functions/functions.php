@@ -2319,7 +2319,7 @@ function cron_starter($script, $params, $offsetPath, $inline = false) {
 		$paramlist .= '&auth=' . $auth . '&offsetPath=' . $offsetPath;
 		$_zp_html_cache->abortHTMLCache();
 		?>
-		<script type="text/javascript">
+		<script>
 			// <!-- <![CDATA[
 			$.ajax({
 				type: 'POST',

@@ -1401,7 +1401,7 @@ function printCategoriesStatistic() {
 function zenpageJSCSS() {
 	?>
 	<link rel="stylesheet" href="zenpage.css" type="text/css" />
-	<script type="text/javascript">
+	<script>
 		// <!-- <![CDATA[
 		$(document).ready(function() {
 			$("#tip a").click(function() {
