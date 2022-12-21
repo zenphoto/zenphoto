@@ -25,7 +25,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
-		<script language="javascript">
+		<script>
 			$(document).ready(function() {
 				$("a[rel='colorbox']").colorbox({
 					iframe: true,

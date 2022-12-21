@@ -1,4 +1,4 @@
-<script language="javascript" type="text/javascript">
+<script>
 /* tinyMCEPopup.requireLangPack(); */
 
 /* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
