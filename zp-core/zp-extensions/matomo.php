@@ -153,8 +153,7 @@ class matomoStats {
 			$url = getOption('matomo_url');
 			$url = strval($url);
 			$id = getOption('matomo_id');
-			$sitedomain = trim(getOption('matomo_sitedomain'));
-			$sitedomain = strval($sitedomain);
+			$sitedomain = trim(strval(getOption('matomo_sitedomain')));
 			$requireconsent = getOption('matomo_requireconsent');
 			switch($requireconsent) {
 				case 'no-consent':
