@@ -11,6 +11,12 @@ admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 $_zp_admin_menu['overview']['subtabs'] = array(gettext('Matomo') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/matomo/matomo_tab.php');
 printAdminHeader('overview', 'matomo');
 ?>
+<style>
+/* Matomo iframe */
+iframe  {
+	border: 0;
+}
+</style>
 </head>
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -19,7 +25,7 @@ printAdminHeader('overview', 'matomo');
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-				<div id="container" class="matomo_container">
+				<div id="container" style="height: 640px; height: 70vh; padding-bottom: 60px;">
 					<h1><?php echo gettext('Matomo statistics'); ?></h1>
 					<?php echo getOption('matomo_widgets_code'); ?>
 				</div>
