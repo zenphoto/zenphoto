@@ -1011,6 +1011,17 @@ input.tags {
 	font-size: 100%;
 }
 
+/* for Matomo iframe */
+.matomo_container {
+	height: 640px;
+	height: 70vh;
+	padding-bottom: 60px;
+}
+
+.matomo_container iframe  {
+	border: 0;
+}
+
 
 #albumselect {
 	padding: 10px;

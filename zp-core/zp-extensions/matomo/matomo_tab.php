@@ -8,6 +8,7 @@
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Matomo') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/matomo/matomo_tab.php');
 printAdminHeader('overview', 'matomo');
 ?>
 </head>
@@ -16,15 +17,16 @@ printAdminHeader('overview', 'matomo');
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<div id="container">
-				<?php printSubtabs(); ?>
+			<?php printSubtabs(); ?>
+			<div class="tabbox">
+				<div id="container" class="matomo_container">
 					<h1><?php echo gettext('Matomo statistics'); ?></h1>
 					<?php echo getOption('matomo_widgets_code'); ?>
-			</div>
-		</div>
+				</div>
+			</div><!-- tabbox -->
+		</div><!-- content -->
 		<br class="clearall" />
-	</div>
-	
+	</div><!-- main -->
 	<?php printAdminFooter(); ?>
 </body>
 </html>
