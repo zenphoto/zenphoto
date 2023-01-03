@@ -201,7 +201,7 @@ class matomoStats {
 				(function () {
 					var u = "//<?php echo str_replace(array('http://', 'https://'), '', $url); ?>/";
 					_paq.push(['setTrackerUrl', u + 'matomo.php']);
-					_paq.push(['setSiteId', <?php echo $id; ?>]);
+					_paq.push(['setSiteId', '<?php echo $id; ?>']);
 					var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
 					g.type = 'text/javascript';
 					g.defer = true;
