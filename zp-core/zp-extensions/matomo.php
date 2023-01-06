@@ -234,16 +234,27 @@ class matomoStats {
 
 	/**
 	 * Gets the iframe for the optout cookie required by privacy laws of several countries.
+	 * @since ZenphotoCMS 1.6.1
 	 * @return string
 	 */
-	static function getOptOutiFrame() {
+	static function getOptOutForm() {
 		$userlocale = substr(getUserLocale(), 0, 2);
-		$url = getOption('matomo_url');
-		$url = strval($url);
-		$src = $url . '/index.php?module=CoreAdminHome&action=optOut&language=' . $userlocale;
-		return '<iframe style="border: 0; height: 200px; width: 100%;" src="' . $src . '"></iframe>';
+		$url = strval(getOption('matomo_url'));
+		if (!empty($url)) {
+			$src = $url . '/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=' . $userlocale . '&showIntro=1';
+			$html = '<div id="matomo-opt-out"></div>';
+			$html .= '<script src="' . $src . '"></script>';
+			return $html;
+		}
 	}
-	
+
+	/**
+	 * @deprecated ZenphotoCMS 2.0 - Use matomoStats::getOptOutForm()
+	 */
+	static function getOptOutiFrame() {
+		return matomoStats::getOptOutForm();
+	}
+
 	/**
 	 * The macro button for the utility page
 	 * @param type $macros
@@ -253,9 +264,9 @@ class matomoStats {
 		$macros['MATOMO_OPTOUT'] = array(
 				'class' => 'function',
 				'params' => array(),
-				'value' => 'matomoStats::getOptOutiFrame',
+				'value' => 'matomoStats::getOptOutForm',
 				'owner' => 'matomoStats',
-				'desc' => gettext('Inserts the iframe with the opt-out cookie code as entered on the related plugin option.')
+				'desc' => gettext('Inserts the the opt-out cookie code as entered on the related plugin option.')
 		);
 		return $macros;
 	}
