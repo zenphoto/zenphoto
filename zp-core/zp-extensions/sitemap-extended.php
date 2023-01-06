@@ -356,7 +356,7 @@ class sitemap {
 				if ($timestamp == 0) {
 					$date = $obj->getDatetime();
 				} else {
-					return gmdate(DATE_ISO8601, $timestamp);
+					return gmdate(DateTimeInterface::ATOM, $timestamp);
 				}
 				break;
 			case 'lastchange':
@@ -1030,11 +1030,11 @@ class sitemap {
 	 */
 	static function getISO8601Date($date = '') {
 		if (empty($date)) {
-			$datetime = 'now';
+			$datetime = time();
 		} else {
 			$datetime = strtotime($date);
 		}
-		return getFormattedLocaleDate(DateTimeInterface::ATOM, $datetime);
+		return date(DateTimeInterface::ATOM, $datetime);
 	}
 
 	static function printAvailableSitemaps() {
