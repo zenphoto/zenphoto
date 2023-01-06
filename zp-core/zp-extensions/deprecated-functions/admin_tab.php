@@ -2,8 +2,8 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package core\plugins\dprecatedfunctions
+ * @deprecated ZenphotoCMS 1.6
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');

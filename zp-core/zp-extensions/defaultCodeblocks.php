@@ -3,10 +3,8 @@
 /**
  * Supply default codeblocks to theme pages.
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage defaultcodeblocks
+ * @package core\plugins\defaultcodeblocks
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');

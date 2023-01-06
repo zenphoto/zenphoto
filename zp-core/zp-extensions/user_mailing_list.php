@@ -6,8 +6,7 @@
  * Note this is not meant to be used as a newsletter system but rather for a small group of users!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage user-mailing-list
+ * @package core\plugins\usermailinglist
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;

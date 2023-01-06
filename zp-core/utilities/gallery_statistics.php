@@ -4,7 +4,7 @@
  *
  * This plugin shows statistical graphs and info about your gallery\'s images and albums
  *
- * @package admin
+ * @package core\admin\utilities
  */
 define('OFFSET_PATH', 3);
 

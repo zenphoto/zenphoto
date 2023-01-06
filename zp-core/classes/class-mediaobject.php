@@ -2,6 +2,7 @@
 
 /**
  * Root class for images and albums
+ * @package core\classes\objects
  */
 class MediaObject extends ThemeObject {
 

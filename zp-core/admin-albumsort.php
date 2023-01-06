@@ -1,8 +1,7 @@
 <?php
 /**
  * used in sorting the images within and album
- * @package admin
- *
+ * @package core\admin
  */
 // force UTF-8 Ø
 

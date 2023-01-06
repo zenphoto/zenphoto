@@ -64,8 +64,7 @@
  * <b>NOTE:</b> This player does not support external albums!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage jplayer
+ * @package core\plugins\jplayer
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");

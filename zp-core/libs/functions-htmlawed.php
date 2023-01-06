@@ -16,7 +16,7 @@
  * @dependency None
  * @license    LGPL 3 and GPL 2+ dual license
  * @link       https://bioinformatics.org/phplabware/internal_utilities/htmLawed
- * @package    htmLawed
+ * @package		 core\libs
  * @php        >=4.4
  * @time       2022-06-06
  * @version    1.2.8

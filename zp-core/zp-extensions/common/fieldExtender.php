@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This  is the root class for use by plugins to extend the Zenphoto database
  * table fields. The administrative tabs for the objects will have input items
  * for these new fields. They will be placed in the proximate location of the
@@ -35,11 +35,9 @@
  * it adds the fields, if not it removes any previously added fields.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage fieldextender
- *
+ * @package core\plugins\fieldextender
+ * @deprecated ZenphotoCMS 1.6
  */
-
 class fieldExtender {
 
 	/**

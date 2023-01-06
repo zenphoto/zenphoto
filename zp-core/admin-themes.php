@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Themes tab of admin
- * @package admin
+ * @package core\admin
  */
 
 // force UTF-8 Ø

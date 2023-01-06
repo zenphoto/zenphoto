@@ -1,8 +1,7 @@
 <?php
 /**
  * Menu manager admin functions
- * @package plugins
- * @subpackage menu-manager
+ * @package core\plugins\menumanager
  */
 
 /**

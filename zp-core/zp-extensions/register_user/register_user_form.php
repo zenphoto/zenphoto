@@ -2,8 +2,7 @@
 /**
  * Form for registering users
  *
- * @package plugins
- * @subpackage users
+ * @package core\plugins\registeruserform
  */
 Authority::printPasswordFormJS();
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());

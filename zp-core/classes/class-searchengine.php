@@ -1,8 +1,7 @@
 <?php
 /**
  * search class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class SearchEngine {
 

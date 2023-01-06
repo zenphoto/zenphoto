@@ -1,8 +1,7 @@
 <?php
 /**
  * Album Class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class Album extends AlbumBase {
 

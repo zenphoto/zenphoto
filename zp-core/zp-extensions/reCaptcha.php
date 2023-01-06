@@ -9,8 +9,7 @@
  * Note this plugin embeds the external reCaptcha JavaScript library from Google's servers
  *
  * @author Ben Feather (Epsilon), Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage recaptcha
+ * @package core\plugins\recaptcha
  */
 // force UTF-8 Ø
 $plugin_is_filter = 5 | CLASS_PLUGIN;

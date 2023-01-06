@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Plugins tab of admin
- * @package admin
+ * @package core\admin
  */
 // force UTF-8 Ø
 

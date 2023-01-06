@@ -5,8 +5,7 @@
  * Activate the plugin and the feature is available on the theme's search field.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's jQuery Tag Suggestion
- * @package plugins
- * @subpackage tag-suggest
+ * @package core\plugins\tagsuggest
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");

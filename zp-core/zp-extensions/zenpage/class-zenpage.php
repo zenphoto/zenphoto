@@ -15,8 +15,7 @@ define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
 /**
  * Zenpage root classes
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package core\plugins\zenpage\classes
  */
 class Zenpage {
 

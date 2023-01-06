@@ -3,7 +3,7 @@
  *
  * Zenphoto site cloner
  *
- * @package admin
+ * @package core\plugins\clonezenphoto
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');

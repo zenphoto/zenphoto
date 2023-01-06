@@ -18,8 +18,7 @@
  * to use a custom Colorbox theme.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage colorbox-js
+ * @package core\plugins\colorboxjs
  */
 $plugin_is_filter = 800 | THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');

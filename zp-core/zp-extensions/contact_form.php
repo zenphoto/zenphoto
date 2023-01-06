@@ -11,8 +11,7 @@
  * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage contact-form
+ * @package core\plugins\contactform
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");

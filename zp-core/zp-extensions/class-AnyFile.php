@@ -9,8 +9,7 @@
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-anyfile
+ * @package core\plugins\classanyfile
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;

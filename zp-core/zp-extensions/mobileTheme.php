@@ -72,8 +72,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage mobiletheme
+ * @package core\plugins\mobiletheme
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;

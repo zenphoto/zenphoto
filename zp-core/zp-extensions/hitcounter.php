@@ -2,8 +2,7 @@
 /**
  * Provides automatic hitcounter counting for Zenphoto objects
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage hitcounter
+ * @package core\plugins\hitcounter
  */
 /** Reset hitcounters ********************************************************** */
 /* * ***************************************************************************** */

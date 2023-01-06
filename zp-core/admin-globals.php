@@ -2,7 +2,7 @@
 
 /**
  * Initialize globals for Admin
- * @package admin
+ * @package core\admin
  */
 // force UTF-8 Ø
 

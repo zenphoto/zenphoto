@@ -5,7 +5,7 @@
  * This plugin provides a means to make backups of your ZenPhoto database content and
  * at a later time restore the database to the contents of one of these backups.
  *
- * @package admin
+ * @package core\admin\utilities
  */
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 3);

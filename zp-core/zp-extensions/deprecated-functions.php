@@ -26,8 +26,7 @@
  * Use it to be proactive in replacing or changing these items.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage deprecated-functions
+ * @package core\plugins\deprecatedfunctions
  */
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
 $plugin_author = "Stephen Billard (sbillard)";

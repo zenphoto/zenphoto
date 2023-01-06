@@ -3,8 +3,7 @@
  * The basic ThemeObject class. Extends PersistentObject, is extended by various Theme related objects.
  * Provides some basic methods that all use.
  * 
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class ThemeObject extends PersistentObject {
 

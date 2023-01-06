@@ -2,8 +2,7 @@
 /**
  * handles reconfiguration when the install signature has changed
  * 
- * @package core
- * @subpackage functions\functions-reconfigure
+ * @package core\functions\reconfig
  */
 
 /**

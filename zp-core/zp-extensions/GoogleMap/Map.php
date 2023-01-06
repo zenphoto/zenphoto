@@ -2,7 +2,7 @@
 /*
  * google_maps -- map server
  *
- * @package plugins
+ * @package core\plugins\googlemap
  */
 
 // force UTF-8 Ø

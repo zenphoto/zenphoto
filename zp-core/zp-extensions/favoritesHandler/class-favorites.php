@@ -2,8 +2,7 @@
 
 /**
  * This is the class declaration
- * @package plugins
- * @subpackage favoriteshandler
+ * @package core\plugins\favoriteshandler
  */
 class favorites extends AlbumBase {
 

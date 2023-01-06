@@ -1,9 +1,8 @@
 <?php
-
-/*
+/**
  * These are the Zenpage functions which have been deprecated
+ * @package core\plugins\zenpage\deprecated
  */
-
 class Zenpage_internal_deprecations {
 	
 	/**

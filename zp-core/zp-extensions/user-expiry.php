@@ -22,8 +22,7 @@
  * <b>NOTE:</b> This plugin does not expire users with <var>ADMIN_RIGHTS</var>!
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage user-expiry
+ * @package core\plugins\userexpiry
  */
 // force UTF-8 Ø
 

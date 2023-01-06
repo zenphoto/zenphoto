@@ -1,7 +1,6 @@
 <?php
 /**
- * @package plugins
- * @subpackage publishcontent
+ * @package core\plugins\publishcontent
  */
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");

@@ -1,7 +1,6 @@
 <?php
 /**
- * @package plugins
- * @subpackage comment-form
+ * @package core\plugins\commentform
  */
 define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 

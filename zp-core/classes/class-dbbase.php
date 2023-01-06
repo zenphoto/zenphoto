@@ -3,8 +3,7 @@
 /**
  * Database base class if no supported database is configured in PHP
  *
- * @package core
- * @subpackage classes\database
+ * @package core\classes\database
  * 
  * @since ZenphotoCMS 1.6 - reworked as class
  */

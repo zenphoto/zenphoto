@@ -5,7 +5,7 @@
  * This script is accessed via a /page/setup_set-mod_rewrite?z=setup.
  * It will not be found unless mod_rewrite is working.
  *
- * @package setup
+ * @package core\setup
  *
  */
 require_once(dirname(dirname(__FILE__)) . '/functions/functions-basic.php');

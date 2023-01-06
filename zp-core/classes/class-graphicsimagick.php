@@ -7,8 +7,7 @@
  * 
  * @since ZenphotoCMS 1.6 - reworked as class
  * 
- * @package core
- * @subpackage classes\graphics
+ * @package core\classes\graphics
  */
 class graphicsImagick extends graphicsBase {
 

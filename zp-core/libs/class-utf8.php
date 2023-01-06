@@ -26,8 +26,7 @@
  * - utf8::encode_javascript()
  * - utf8::encode_numericentity()
  *
- * @package core
- * @subpackage libraries
+ * @package core\libs
  */
 class utf8 {
 

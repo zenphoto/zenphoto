@@ -3,7 +3,7 @@
 
 /**
  * stores all the default values for options
- * @package setup
+ * @package core\setup
  */
 setup::Log(gettext('Set Zenphoto default options'), true);
 

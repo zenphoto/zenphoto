@@ -18,8 +18,7 @@
  * Backups are run under the master administrator authority.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage auto-backup
+ * @package core\plugins\auto-backup
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Periodically backup the Zenphoto database content.");

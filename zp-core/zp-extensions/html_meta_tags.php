@@ -13,8 +13,7 @@
  * Use the plugin's options to choose which tags you want printed.
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage html-meta-tags
+ * @package core\plugins\htmlmetatags
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");

@@ -2,7 +2,8 @@
 /**
  * Check for use of deprecated functions
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package core\plugins\dprecatedfunctions
+ * @deprecated ZenphotoCMS 1.6
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

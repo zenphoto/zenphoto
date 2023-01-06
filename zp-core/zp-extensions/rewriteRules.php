@@ -8,8 +8,7 @@
  * is shown in the state in which it is applied.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage rewriterules
+ * @package core\plugins\rewriterules
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -19,6 +18,9 @@ $plugin_category = gettext('Development');
 
 zp_register_filter('admin_tabs', 'rewriteRules::tabs');
 
+/**
+ * @package core\plugins\rewriterules
+ */
 class rewriteRules {
 
 	static function tabs($tabs) {

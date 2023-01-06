@@ -1,8 +1,7 @@
 <?php
 /**
  * support functions for Admin
- * @package admin
- * @subpackage admin-functions
+ * @package core\admin\functions
  */
 // force UTF-8 Ø
 

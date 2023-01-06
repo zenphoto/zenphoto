@@ -12,7 +12,7 @@
  * There are several options to tune what the plugin will do.
  *
  * @author Stephen Billard (sbillard)
- * @package comment-form
+ * @package core\plugins\commentform
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides a unified comment handling facility.");

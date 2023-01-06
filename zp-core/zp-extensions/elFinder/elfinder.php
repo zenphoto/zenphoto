@@ -1,4 +1,8 @@
 <?php
+/**
+ *  @package core\plugins\elfinder
+ */
+
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 zp_session_start();
 admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
@@ -35,6 +39,7 @@ if (empty($locale))
 		}
 		?>
 
+			
 		<!-- elFinder initialization (REQUIRED) -->
 		<script charset="utf-8">
 							var FileBrowserDialogue = {

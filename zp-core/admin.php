@@ -1,7 +1,7 @@
 <?php
 /**
  * admin.php is the main script for administrative functions.
- * @package admin
+ * @package core\admin
  */
 // force UTF-8 Ø
 

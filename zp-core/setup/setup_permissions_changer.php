@@ -3,7 +3,7 @@
 /**
  * Used for changing permissions on a mass basis
  *
- * @package setup
+ * @package core\setup
  *
  */
 define('OFFSET_PATH', 2);

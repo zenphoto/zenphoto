@@ -23,8 +23,7 @@
  * to users with upload limits.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage quota-manager
+ * @package core\plugins\quotamanager
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.");

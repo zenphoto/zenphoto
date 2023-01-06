@@ -2,8 +2,7 @@
 /**
  * Clone Zenphoto tab
  *
- *
- * @package admin
+ * @package core\plugins\clonezenphoto
  */
 
 if (!defined('OFFSET_PATH')) define ('OFFSET_PATH', 4);

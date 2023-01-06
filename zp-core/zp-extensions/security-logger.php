@@ -13,8 +13,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage security-logger
+ * @package core\plugins\securitylogger
  */
 $plugin_is_filter = 100 | CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');

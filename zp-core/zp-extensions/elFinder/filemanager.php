@@ -2,8 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage elfinder
+ * @package core\plugins\elfinder
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if(!extensionEnabled('elFinder')) {

@@ -1,8 +1,7 @@
 <?php
 /**
  * Image Class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class Image extends MediaObject {
 

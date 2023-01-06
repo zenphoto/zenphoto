@@ -4,8 +4,7 @@
  * zenpage news category class
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package core\plugins\zenpage\classes
  */
 class ZenpageCategory extends ZenpageRoot {
 

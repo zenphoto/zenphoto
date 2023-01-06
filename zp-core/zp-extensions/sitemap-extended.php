@@ -16,8 +16,7 @@
  * <b>IMPORTANT:</b> A multilingual sitemap requires the <var>dynamic-locale</var> plugin and either the <var>seo_locale</var> plugin or <i>language subdomains</i>.
  *
  * @author Malte Müller (acrylian), Jeppe Toustrup (Tenzer), timo, Blue Dragonfly and Francois Marechal (frankm)
- * @package plugins
- * @subpackage sitemap-extended
+ * @package core\plugins\sitemapextended
  */
 $plugin_is_filter = 0 | CLASS_PLUGIN;
 $plugin_description = gettext('Generates sitemap.org compatible XML files for use with Google and other search engines.');

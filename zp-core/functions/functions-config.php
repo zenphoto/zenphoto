@@ -2,8 +2,7 @@
 /**
  * Config functions
  * 
- * @package core
- * @subpackage functions\functions-config
+ * @package core\functions\config
  */
  
 /**

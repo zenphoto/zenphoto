@@ -10,8 +10,7 @@
  * obscure the information that they might convey.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage tinyurl
+ * @package core\plugins\tinyurl
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides short URLs to Zenphoto objects.');
@@ -44,6 +43,9 @@ $_zp_conf_vars['special_pages'][] = array('define'	 => false, 'rewrite'	 => '^%T
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '^%TINY%([0-9]+)/([0-9]+)/?$', 'rule' => '%REWRITE% index.php?p=$1&page=$2&t [L,QSA]');
 $_zp_conf_vars['special_pages'][] = array('definition' => '%TINY%', 'rewrite' => '_TINY_');
 
+/**
+ * @package core\plugins\tinyurl
+ */
 class tinyURL {
 
 	const albums = 1;

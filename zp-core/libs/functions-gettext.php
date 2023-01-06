@@ -6,8 +6,7 @@
  * 
  * Only include if the native PHP extension gettext is not available!
  * 
- * @package core
- * @subpackage libraries
+ * @package core\libs
  */
 // force UTF-8 Ø
 function bindtextdomain($domain, $path) {

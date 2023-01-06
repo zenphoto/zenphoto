@@ -2,8 +2,7 @@
 /**
  * Base class from which all Zenpage classes derive
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package core\plugins\zenpage\classes
  */
 class ZenpageRoot extends ThemeObject {
 

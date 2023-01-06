@@ -57,8 +57,7 @@
  * plugin folder.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-textobject
+ * @package core\plugins\classtextobject
  *
  */
 class TextObject extends Image {

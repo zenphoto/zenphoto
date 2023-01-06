@@ -1,8 +1,7 @@
 <?php
 /**
  * Transient image class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class Transientimage extends Image {
 

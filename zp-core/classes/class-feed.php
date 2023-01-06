@@ -58,8 +58,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
  * </ul>
  *
  *
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class feed {
 

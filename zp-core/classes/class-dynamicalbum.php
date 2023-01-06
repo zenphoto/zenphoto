@@ -1,8 +1,7 @@
 <?php
 /**
  * Dynamic Album Class for "saved searches"
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class dynamicAlbum extends AlbumBase {
 

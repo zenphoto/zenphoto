@@ -5,8 +5,7 @@
  * a "debug" release and a normal release.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage markrelease
+ * @package core\plugins\markrelease
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

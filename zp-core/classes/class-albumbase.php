@@ -1,8 +1,7 @@
 <?php
 /**
  * Album Base Class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class AlbumBase extends MediaObject {
 

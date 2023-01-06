@@ -19,8 +19,7 @@
  * Note: This is a persistable model that does not save automatically. You MUST
  * call $this->save(); explicitly to persist the data in child classes. 
  * 
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class PersistentObject {
 

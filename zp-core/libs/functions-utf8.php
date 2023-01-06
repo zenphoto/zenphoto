@@ -4,8 +4,7 @@
  * Wrappers used as a drop in replacement for multibye/icon functions in case not present on the system
  * Include this right after class-utf8.php obly if the multibyte amd iconv extension is not available
  * 
- * @package core
- * @subpackage libraries
+ * @package core\libs
  */
 
 function mb_strtolower($str) {

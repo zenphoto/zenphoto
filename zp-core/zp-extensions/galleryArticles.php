@@ -3,9 +3,8 @@
 /**
  * Create news articles when a gallery item is published.
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage galleryarticles
+ * @package core\plugins\galleryarticles
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');

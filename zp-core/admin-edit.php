@@ -1,7 +1,7 @@
 <?php
 /**
  * admin-edit.php editing of albums.
- * @package admin
+ * @package core\admin
  */
 // force UTF-8 Ø
 

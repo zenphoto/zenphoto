@@ -2,8 +2,7 @@
 /**
  * The Matomo statistis page if widgets are defined
  *
- * @package plugins
- * @subpackage Matomo
+ * @package core\plugins\matomo
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

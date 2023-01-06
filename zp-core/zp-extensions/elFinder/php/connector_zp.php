@@ -1,4 +1,7 @@
 <?php
+/**
+ *  @package core\plugins\elfinder
+ */
 
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/admin-globals.php');
 XSRFdefender('elFinder');

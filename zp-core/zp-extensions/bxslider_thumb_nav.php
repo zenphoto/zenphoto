@@ -9,8 +9,7 @@
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
- * @package plugins
- * @subpackage bxslider-thumb-nav
+ * @package core\plugins\bxsliderthumbnav
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";

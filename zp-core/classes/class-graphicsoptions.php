@@ -4,8 +4,7 @@
  * 
  * @since ZenphotoCMS 1.6
  * 
- * @package core
- * @subpackage classes\graphics
+ * @package core\classes\graphics
  */
 class graphicsOptions {
 

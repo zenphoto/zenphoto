@@ -4,7 +4,7 @@
  * Collects and analyzes searches
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package core\plugins\searchstatistics
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

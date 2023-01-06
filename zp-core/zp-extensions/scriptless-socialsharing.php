@@ -40,8 +40,7 @@
  * @author Malte Müller (acrylian)
  * @copyright 2018 Malte Müller
  * @license GPL v3 or later
- * @package plugins
- * @subpackage scriptless-socialsharing
+ * @package core\plugins\scriptlesssocialsharing
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext('A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No share counts because of that!).');

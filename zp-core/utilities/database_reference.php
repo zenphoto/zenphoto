@@ -2,7 +2,7 @@
 /**
  * Database quick reference
  *
- * @package admin
+ * @package core\admin\utilities
  */
 
 define('OFFSET_PATH', 3);

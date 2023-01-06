@@ -1,6 +1,8 @@
 <?php
 /**
  * Standins for when no captcha is enabled
+ * 
+ * @package core\classes\helpers
  */
 class _zp_captcha {
 

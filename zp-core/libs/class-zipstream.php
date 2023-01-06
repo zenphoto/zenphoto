@@ -2,8 +2,7 @@
 /**
  * ZipStream
  * 
- * @package core
- * @subpackage libraries\lib-zipstream
+ * @package core\libs
  */
 error_reporting(0);
 ##########################################################################

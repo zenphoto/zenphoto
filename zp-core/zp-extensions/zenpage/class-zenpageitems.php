@@ -2,8 +2,7 @@
 /**
  * Base class from which Zenpage news articles and pages derive
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package core\plugins\zenpage\classes
  */
 class ZenpageItems extends ZenpageRoot {
 

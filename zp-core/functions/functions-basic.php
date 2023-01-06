@@ -4,8 +4,7 @@
  * basic functions used by zenphoto i.php
  * Keep this file to the minimum to allow the largest available memory for processing images!
  * Headers not sent yet!
- * @package core
- * @subpackage functions\functions-basic
+ * @package core\functions\basic
  *
  */
 // force UTF-8 Ø

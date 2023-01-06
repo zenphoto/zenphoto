@@ -40,8 +40,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage favoriteshandler
+ * @package core\plugins\favoriteshandler
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext('Support for <em>favorites</em> handling.');

@@ -1,8 +1,7 @@
 <?php
 /**
  * encryption support functions
- * @package core
- * @subpackage libraries\lib-encryption
+ * @package core\libs
  */
 
 // force UTF-8 Ø

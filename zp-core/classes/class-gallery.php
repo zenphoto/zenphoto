@@ -1,8 +1,7 @@
 <?php
 /**
  * Gallery Class
- * @package core
- * @subpackage classes\objects
+ * @package core\classes\objects
  */
 class Gallery {
 

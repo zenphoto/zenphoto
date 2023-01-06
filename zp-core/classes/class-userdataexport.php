@@ -1,13 +1,11 @@
 <?php
-
 /**
  * Class for exporting possible privacy related user data
  * 
  * @author Malte Müller (acrylian)
  * @since ZenphotoCMS 1.5
  * 
- * @package core
- * @subpackage classes\helpers
+ * @package core\classes\admin
  */
 class userDataExport {
 

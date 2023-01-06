@@ -3,8 +3,7 @@
  * zenpage admin-news-articles.php
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package core\plugins\zenpage
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

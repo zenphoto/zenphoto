@@ -12,8 +12,7 @@
  * Licensed under the MIT license:
  * https://opensource.org/licenses/MIT
  * 
-  * @package plugins
- * @subpackage uploader-jquery
+ * @package core\plugins\uploaderjquery
  */
 
 class UploadHandlerZP extends UploadHandler {

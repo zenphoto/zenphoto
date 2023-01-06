@@ -1,8 +1,7 @@
 <?php
 /**
  * Functions used to display content in themes.
- * @package functions
- * @subpackage template-functions
+ * @package core\functions\template
  */
 // force UTF-8 Ø
 

@@ -21,8 +21,7 @@
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage static-html-cache
+ * @package core\plugins\statichtmlcache
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");

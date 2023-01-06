@@ -3,8 +3,7 @@
  * Provides a donation button to solicit contributions to Zenphoto
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenphotodonate
+ * @package core\plugins\zenphotodonate
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Adds a Zenphoto donations block to the admin overview page.');

@@ -1,8 +1,7 @@
 <?php
 /**
  * image processing functions
- * @package core
- * @subpackage functions\functions-image
+ * @package core\functions\image
  *
  */
 // force UTF-8 Ø

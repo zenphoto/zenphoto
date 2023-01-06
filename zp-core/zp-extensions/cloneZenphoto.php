@@ -16,8 +16,7 @@
  * remove the setup scripts until you have cloned and installed all desired destinations.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage clonezenphoto
+ * @package core\plugins\clonezenphoto
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;

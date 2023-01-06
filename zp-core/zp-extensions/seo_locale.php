@@ -28,8 +28,7 @@
  * instead for better performance.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage seo-locale
+ * @package core\plugins\seolocale
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Allows setting language locale through the URI.");

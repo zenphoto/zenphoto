@@ -8,8 +8,7 @@
  * Note: Clicking the button causes this process to execute. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage seo-cleanup
+ * @package core\plugins\seocleanup
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
