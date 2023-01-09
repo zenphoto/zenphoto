@@ -4,7 +4,7 @@
  * An adaption of RSS Extractor and Displayer	(c) 2007-2009  Scriptol.com - License Mozilla 1.1.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package core\plugins\zenphotonews
+ * @package zpcore\plugins\zenphotonews
  */
 $plugin_is_filter = 7 | ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");

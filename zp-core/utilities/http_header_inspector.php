@@ -2,7 +2,7 @@
 /**
  * Displays which HTTP headers your site sends
  * @author Malte Müller (acrylian>
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');

@@ -5,7 +5,7 @@
  *
  * NOTE: one should use the Authority::newAdministrator() method rather than directly instantiating
  * an administrator object
- * @package core\classes\authorization
+ * @package zpcore\classes\authorization
  */
 class Administrator extends PersistentObject {
 
@@ -540,7 +540,7 @@ class Administrator extends PersistentObject {
 
 /**
  * 
- * @package core\classes\deprecated
+ * @package zpcore\classes\deprecated
  * @deprecated ZenphotoCMS 2.0 - Use the class Administrator instead
  */
 class Zenphoto_Administrator extends Administrator {

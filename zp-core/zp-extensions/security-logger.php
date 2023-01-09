@@ -13,7 +13,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\securitylogger
+ * @package zpcore\plugins\securitylogger
  */
 $plugin_is_filter = 100 | CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');

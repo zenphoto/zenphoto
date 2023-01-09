@@ -4,7 +4,7 @@
  * Supply default codeblocks to theme pages.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\defaultcodeblocks
+ * @package zpcore\plugins\defaultcodeblocks
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');

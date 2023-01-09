@@ -27,7 +27,7 @@
  * You can upload several and enable the one to use on the plugin options.
  * 
  * @author Malte Müller (acrylian)
- * @package core\plugins\redirector
+ * @package zpcore\plugins\redirector
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('A plugin to redirect internal URLs. Primarily intended for URLs that otherwise would cause 404 not found errors.');

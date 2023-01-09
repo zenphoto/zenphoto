@@ -13,7 +13,7 @@
  *
  * This API is heavily inspired by the plugin API used in WordPress.
  *
- * @package core\functions\filter
+ * @package zpcore\functions\filter
  * @author Ozh
  * @since 1.3
  */

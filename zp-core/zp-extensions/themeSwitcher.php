@@ -16,7 +16,7 @@
  * the control links.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\themeswitcher
+ * @package zpcore\plugins\themeswitcher
  */
 $plugin_is_filter = 500 | CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');

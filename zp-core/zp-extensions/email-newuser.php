@@ -5,7 +5,7 @@
  * It contains a link allowing him to do a password reset.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\emailnewuser
+ * @package zpcore\plugins\emailnewuser
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Emails a password reset request to a newly created user.");

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package core\plugins\commentform
+ * @package zpcore\plugins\commentform
  */
 define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 

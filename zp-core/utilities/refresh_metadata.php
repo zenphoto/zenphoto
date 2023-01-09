@@ -2,7 +2,7 @@
 /**
  * Displays database info
  * 
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 
 $buttonlist[] = array(

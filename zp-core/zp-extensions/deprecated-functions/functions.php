@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @package core\plugins\dprecatedfunctions
+ * @package zpcore\plugins\dprecatedfunctions
  * @deprecated ZenphotoCMS 1.6
  */
 

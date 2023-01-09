@@ -140,7 +140,7 @@
  * - More logical fraction calculation for shutter speed.
  * 
  * 2009: For all further changes, see the Zenphoto change logs.
- * @package core\libs\exifer
+ * @package zpcore\libs\exifer
  */
 
 /**

@@ -12,7 +12,7 @@
  * 
  * @author Malte Müller (acrylian), Fred Sondaar (fretzl), gjr, Vincent Bourganel (vincent3569)
  * @licence GPL v3 or later
- * @package core\plugins\openstreetmap
+ * @package zpcore\plugins\openstreetmap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS for images or images from albums with embeded geodata.");

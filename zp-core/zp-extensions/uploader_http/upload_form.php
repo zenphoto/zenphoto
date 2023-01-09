@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @package core\plugins\uploaderhttp
+ * @package zpcore\plugins\uploaderhttp
  */
 
 function upload_head() {

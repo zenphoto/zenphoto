@@ -2,7 +2,7 @@
 /**
  * basic functions used by zenphoto
  *
- * @package core\functions\functions
+ * @package zpcore\functions\functions
  *
  */
 // force UTF-8 Ø

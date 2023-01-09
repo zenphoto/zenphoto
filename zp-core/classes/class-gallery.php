@@ -1,7 +1,7 @@
 <?php
 /**
  * Gallery Class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class Gallery {
 

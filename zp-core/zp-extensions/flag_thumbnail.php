@@ -18,7 +18,7 @@
  * Additional icons can be used by placing them in the <var>%USER_PLUGIN_FOLDER%/flag_thumbnail</var> folder.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package core\plugins\flagthumbnail
+ * @package zpcore\plugins\flagthumbnail
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";

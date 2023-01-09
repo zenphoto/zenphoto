@@ -3,7 +3,7 @@
 /**
  * Used for setting theme/plugin default options
  *
- * @package core\setup
+ * @package zpcore\setup
  *
  */
 define('OFFSET_PATH', 2);

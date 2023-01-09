@@ -2,7 +2,7 @@
 /**
  * The version number within @deprecated indicates the version these will be removed completely
  * 
- * @package core\plugins\dprecatedfunctions
+ * @package zpcore\plugins\dprecatedfunctions
  * @deprecated ZenphotoCMS 1.6
  */
 
@@ -615,7 +615,7 @@ function checkPublishDates($row) {
 
 /**
  * Zenphoto general deprecated functions
- * @package core\plugins\deprecatedfunctions
+ * @package zpcore\plugins\deprecatedfunctions
  */
 class internal_deprecations {
 

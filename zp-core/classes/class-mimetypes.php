@@ -3,7 +3,7 @@
  * Library for mimetypes
  * 
  * @since ZenphotoCMS 1.6 - Replaces lib-MimeTypes.php
- * @package core\classes\helpers
+ * @package zpcore\classes\helpers
  */
 class mimeTypes {
 

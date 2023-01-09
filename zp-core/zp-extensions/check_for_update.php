@@ -3,7 +3,7 @@
  * Provides a check for more recent Zenphoto Versions.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\checkforupdate
+ * @package zpcore\plugins\checkforupdate
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Checks if there is a Zenphoto versions that is newer than the installed version.");

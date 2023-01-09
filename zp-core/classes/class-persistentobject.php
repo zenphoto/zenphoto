@@ -19,7 +19,7 @@
  * Note: This is a persistable model that does not save automatically. You MUST
  * call $this->save(); explicitly to persist the data in child classes. 
  * 
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class PersistentObject {
 

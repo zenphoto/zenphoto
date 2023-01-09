@@ -20,7 +20,7 @@ require_once(dirname(dirname(__FILE__)) . '/functions/functions-config.php');
 
 /**
  * setup support class
- * @package core\setup
+ * @package zpcore\setup
  */
 class setup {
 

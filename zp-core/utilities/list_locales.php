@@ -1,7 +1,7 @@
 <?php
 /**
  * Displays locale information of the system
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');

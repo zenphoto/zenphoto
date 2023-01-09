@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Options tab of admin
- * @package core\admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 

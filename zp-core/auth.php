@@ -2,7 +2,7 @@
 
 /**
  * processes the authorization (or login) of admin users
- * @package core\admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 

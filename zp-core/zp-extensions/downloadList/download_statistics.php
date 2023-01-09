@@ -6,7 +6,7 @@
  *
  * This plugin is dependent on the css of the gallery_statistics utility plugin!
  *
- * @package core\plugins\downloadlist
+ * @package zpcore\plugins\downloadlist
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

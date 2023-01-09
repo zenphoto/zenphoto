@@ -72,7 +72,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\mobiletheme
+ * @package zpcore\plugins\mobiletheme
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;

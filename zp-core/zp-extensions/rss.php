@@ -3,7 +3,7 @@
  * This plugin handles <i>RSS</i> feeds:
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\rss
+ * @package zpcore\plugins\rss
  */
 // force UTF-8 Ø
 

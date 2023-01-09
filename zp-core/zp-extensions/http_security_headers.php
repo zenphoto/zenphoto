@@ -15,7 +15,7 @@
  * <ul>
  * 
  * @author Malte Müller (acrylian)
- * @package core\plugins\httpsecurityheaders
+ * @package zpcore\plugins\httpsecurityheaders
  * 
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;

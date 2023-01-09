@@ -19,7 +19,7 @@ unset($tz);
 
 /**
  * functions-i18n.php -- support functions for internationalization
- * @package core\functions\i18n
+ * @package zpcore\functions\i18n
  */
 // force UTF-8 Ø
 function getLanguageArray() {

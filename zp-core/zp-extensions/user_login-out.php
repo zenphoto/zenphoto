@@ -5,7 +5,7 @@
  * Place a call on <var>printUserLogin_out()</var> where you want the link or form to appear.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\userloginout
+ * @package zpcore\plugins\userloginout
  */
 $plugin_is_filter = 900 | THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for users to login/out from your theme pages.");

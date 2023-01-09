@@ -42,7 +42,7 @@
  *
  * [kses strips evil scripts!]
  * 
- * @package core\libs
+ * @package zpcore\libs
  */
 
 /**

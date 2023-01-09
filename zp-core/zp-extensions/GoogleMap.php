@@ -16,7 +16,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard), Vincent Bourganel (vincent3569)
- * @package core\plugins\googlemap
+ * @package zpcore\plugins\googlemap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images.');

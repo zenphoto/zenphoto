@@ -4,7 +4,7 @@
  * Create news articles when a gallery item is published.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\galleryarticles
+ * @package zpcore\plugins\galleryarticles
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');

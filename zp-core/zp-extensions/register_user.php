@@ -19,7 +19,7 @@
  * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\registeruser
+ * @package zpcore\plugins\registeruser
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");

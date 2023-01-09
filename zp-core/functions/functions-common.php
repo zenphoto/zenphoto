@@ -3,7 +3,7 @@
 /**
  * functions common to both the Zenphoto core and setup's basic environment
  *
- * @package core\functions\common
+ * @package zpcore\functions\common
  */
 
 /**

@@ -1,6 +1,6 @@
 <?php
 /**
- *  @package core\plugins\elfinder
+ *  @package zpcore\plugins\elfinder
  */
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');

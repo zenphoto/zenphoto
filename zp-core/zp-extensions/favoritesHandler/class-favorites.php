@@ -2,7 +2,7 @@
 
 /**
  * This is the class declaration
- * @package core\plugins\favoriteshandler
+ * @package zpcore\plugins\favoriteshandler
  */
 class favorites extends AlbumBase {
 

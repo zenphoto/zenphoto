@@ -2,7 +2,7 @@
 /**
  * Refreshes the database with the albmums on the filesystems 
  * 
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 
 $buttonlist[] = array(

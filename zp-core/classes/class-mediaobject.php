@@ -2,7 +2,7 @@
 
 /**
  * Root class for images and albums
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class MediaObject extends ThemeObject {
 

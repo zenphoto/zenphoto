@@ -9,7 +9,7 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\useraddressfields
+ * @package zpcore\plugins\useraddressfields
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Adds user address fields');
@@ -20,7 +20,7 @@ $plugin_deprecated = true;
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
 /**
- * @package core\plugins\useraddressfields
+ * @package zpcore\plugins\useraddressfields
  */
 class userAddressFields extends fieldExtender {
 

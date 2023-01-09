@@ -18,7 +18,7 @@
  *
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\elfinder
+ * @package zpcore\plugins\elfinder
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');

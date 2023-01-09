@@ -1,7 +1,7 @@
 <?php
 /**
  * Transient image class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class Transientimage extends Image {
 

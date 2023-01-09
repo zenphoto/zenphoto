@@ -10,7 +10,7 @@ if (!defined('NEWS_POSITION_NORMAL')) { // No idea why this is needed, but clone
  * zenpage news class
  *
  * @author Malte Müller (acrylian)
- * @package core\plugins\zenpage\classes
+ * @package zpcore\plugins\zenpage\classes
  */
 class ZenpageNews extends ZenpageItems {
 

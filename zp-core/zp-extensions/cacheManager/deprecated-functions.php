@@ -1,6 +1,6 @@
 <?php
 /**
- * @package core\plugins\cachemanager
+ * @package zpcore\plugins\cachemanager
  * @deprecated
  */
 class cachemanager_internal_deprecations {

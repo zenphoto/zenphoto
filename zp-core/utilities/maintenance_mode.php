@@ -3,7 +3,7 @@
  * Maintenance mode utility based on the former site_upgrade plugin 
  * 
  * @author Stephen Billard (sbillard), adapted by Malte Müller (acrylian)
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 
 define ('OFFSET_PATH', 3);

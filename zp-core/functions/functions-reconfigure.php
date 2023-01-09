@@ -2,7 +2,7 @@
 /**
  * handles reconfiguration when the install signature has changed
  * 
- * @package core\functions\reconfig
+ * @package zpcore\functions\reconfig
  */
 
 /**

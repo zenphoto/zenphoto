@@ -9,7 +9,7 @@
  * PHP 5.3 or greater is required by the encorporated software.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\uploaderjquery
+ * @package zpcore\plugins\uploaderjquery
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('<em>jQuery</em> image upload handler.');

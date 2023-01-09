@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Comments tab of admin
- * @package core\plugins\commentform
+ * @package zpcore\plugins\commentform
  */
 // force UTF-8 Ø
 

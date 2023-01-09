@@ -4,7 +4,7 @@
  *
  * Tool to generate sitemaps
  *
- * @package core\plugins\sitemapextended
+ * @package zpcore\plugins\sitemapextended
  */
 define('OFFSET_PATH', 3);
 

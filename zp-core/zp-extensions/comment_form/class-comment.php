@@ -1,7 +1,7 @@
 <?php
 /**
  * Comment Class
- * @package core\plugins\commentform
+ * @package zpcore\plugins\commentform
  */
 // force UTF-8 Ø
 

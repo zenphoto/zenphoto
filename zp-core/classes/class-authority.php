@@ -3,7 +3,7 @@
  * Provides the methods used for user authorization and management
  * store an instantiation of this class in `$_zp_authority`.
  *
- * @package core\classes\authorization
+ * @package zpcore\classes\authorization
  */
 class Authority {
 
@@ -1483,7 +1483,7 @@ class Authority {
 
 /**
  * 
- * @package core\classes\deprecated
+ * @package zpcore\classes\deprecated
  * @deprecated ZenphotoCMS 2.0 - Use the class Authority instead
  */
 class Zenphoto_Authority extends Authority {

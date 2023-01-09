@@ -1,7 +1,7 @@
 <?php
 /**
  * Image Class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class Image extends MediaObject {
 

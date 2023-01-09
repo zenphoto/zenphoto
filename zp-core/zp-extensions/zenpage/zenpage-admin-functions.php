@@ -3,7 +3,7 @@
  * zenpage admin functions
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package core\plugins\zenpage\admin
+ * @package zpcore\plugins\zenpage\admin
  */
 global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 Zenpage::expiry();

@@ -5,7 +5,7 @@
  * @author Malte Müller (acrylian)
  * @since ZenphotoCMS 1.5
  * 
- * @package core\classes\admin
+ * @package zpcore\classes\admin
  */
 class userDataExport {
 

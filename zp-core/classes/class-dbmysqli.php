@@ -3,7 +3,7 @@
 /**
  * Database core class for the MySQLi library
  *
- * @package core\classes\database
+ * @package zpcore\classes\database
  * 
  * @since ZenphotoCMS 1.6 - reworked as class
  */

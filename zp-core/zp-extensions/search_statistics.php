@@ -18,7 +18,7 @@
  *   Zenpage results were not enabled.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\searchstatistics
+ * @package zpcore\plugins\searchstatistics
  */
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");

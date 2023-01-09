@@ -1,6 +1,6 @@
 <?php
 /**
- * @package core\plugins\galleryarticles
+ * @package zpcore\plugins\galleryarticles
  */
 class Combi extends Zenpage {
 

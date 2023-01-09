@@ -1,7 +1,7 @@
 <?php
 /**
  * search class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class SearchEngine {
 

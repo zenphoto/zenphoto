@@ -2,7 +2,7 @@
 /**
  * Config functions
  * 
- * @package core\functions\config
+ * @package zpcore\functions\config
  */
  
 /**

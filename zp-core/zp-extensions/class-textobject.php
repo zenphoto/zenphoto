@@ -49,7 +49,7 @@
  * plugin folder.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\classtextobject
+ * @package zpcore\plugins\classtextobject
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;

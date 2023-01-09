@@ -3,7 +3,7 @@
 /**
  * Zenphoto Mutex class
  * @author Stephen
- * @package core\setup
+ * @package zpcore\setup
  *
  */
 class setupMutex {

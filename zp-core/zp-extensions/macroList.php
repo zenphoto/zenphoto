@@ -60,7 +60,7 @@
  * <b>Note</b> the <var>spaces<var> after the <var>[<var> and before the <var>]<var> square brackets. They are used in these examples to prevent the code from actually executing. They should not be present in your real code.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\macrolist
+ * @package zpcore\plugins\macrolist
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');

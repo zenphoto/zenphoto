@@ -24,7 +24,7 @@
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
 
  * @author Stephen Billard (sbillard)
- * @package core\plugins\ipblocker
+ * @package zpcore\plugins\ipblocker
  */
 $plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");

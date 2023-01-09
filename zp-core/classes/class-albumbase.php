@@ -1,7 +1,7 @@
 <?php
 /**
  * Album Base Class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class AlbumBase extends MediaObject {
 

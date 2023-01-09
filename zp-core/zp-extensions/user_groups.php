@@ -8,7 +8,7 @@
  * simply sets the user <i>rights</i> one time. Afterwards the user is independent from the <i>template</i>.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\usergroups
+ * @package zpcore\plugins\usergroups
  */
 // force UTF-8 Ø
 

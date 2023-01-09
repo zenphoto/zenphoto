@@ -3,7 +3,7 @@
  * zenpage template functions
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package core\plugins\zenpage\template
+ * @package zpcore\plugins\zenpage\template
  */
 /* * ********************************************* */
 /* ZENPAGE TEMPLATE FUNCTIONS

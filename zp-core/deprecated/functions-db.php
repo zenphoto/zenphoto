@@ -6,7 +6,7 @@
  * 
  * Within main object classes like album, image etc. the db handler object is generally also available via `$this->db`.
  *
- * @package core\functions\deprecated
+ * @package zpcore\functions\deprecated
  * 
  * @deprecated ZenphotoCMS 2.0 Use the global database object variable $_zp_db and the class methods instead
  * @since ZenphotoCMS 1.6

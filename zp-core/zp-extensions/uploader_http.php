@@ -5,7 +5,7 @@
  * This plugin provides an HTTP based image upload handler for the <i>upload/images</i> admin tab.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\uploaderhttp
+ * @package zpcore\plugins\uploaderhttp
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

@@ -22,7 +22,7 @@
  * carry over to the admin pages. As will using <i>subdomains</i>.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\dynamiclocale
+ * @package zpcore\plugins\dynamiclocale
  */
 $plugin_is_filter = 10 | CLASS_PLUGIN;
 $plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");

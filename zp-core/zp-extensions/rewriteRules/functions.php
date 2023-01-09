@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @package core\plugins\rewriterules
+ * @package zpcore\plugins\rewriterules
  */
 
 /**

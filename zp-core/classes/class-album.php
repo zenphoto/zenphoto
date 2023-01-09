@@ -1,7 +1,7 @@
 <?php
 /**
  * Album Class
- * @package core\classes\objects
+ * @package zpcore\classes\objects
  */
 class Album extends AlbumBase {
 

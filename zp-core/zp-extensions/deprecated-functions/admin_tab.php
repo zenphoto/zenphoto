@@ -2,7 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package core\plugins\dprecatedfunctions
+ * @package zpcore\plugins\dprecatedfunctions
  * @deprecated ZenphotoCMS 1.6
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

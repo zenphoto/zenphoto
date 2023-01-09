@@ -2,7 +2,8 @@
 
 /**
  * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
- * insure that database backups are done on a regular basis. 
+ * insure that 
+ * database backups are done on a regular basis. 
  * 
  * Note that this is not a backup of the database itself but the contents only.
  * 
@@ -18,7 +19,7 @@
  * Backups are run under the master administrator authority.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\auto-backup
+ * @package zpcore\plugins\autobackup
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext("Periodically backup the Zenphoto database content.");

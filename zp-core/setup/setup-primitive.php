@@ -2,7 +2,7 @@
 /**
  * These are the functions that setup needs before the database can be accessed (so it can't include
  * functions.php because that will cause a database connect error.)
- * @package core\setup
+ * @package zpcore\setup
  */
 
 // force UTF-8 Ø

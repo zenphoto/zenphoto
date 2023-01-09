@@ -2,7 +2,7 @@
 /**
  * user_groups plugin--tabs
  * @author Stephen Billard (sbillard)
- * @package core\plugins\usergroups
+ * @package zpcore\plugins\usergroups
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

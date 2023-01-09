@@ -2,7 +2,7 @@
 
 /**
  * Initialize globals for Admin
- * @package core\admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 

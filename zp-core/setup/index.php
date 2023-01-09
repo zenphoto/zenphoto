@@ -1,7 +1,7 @@
 <?php
 /**
  * install routine for zenphoto
- * @package core\setup
+ * @package zpcore\setup
  */
 // force UTF-8 Ø
 Define('PHP_MIN_VERSION', '7.0.0');

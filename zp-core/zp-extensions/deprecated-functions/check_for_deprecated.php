@@ -2,7 +2,7 @@
 /**
  * Check for use of deprecated functions
  * @author Stephen Billard (sbillard)
- * @package core\plugins\dprecatedfunctions
+ * @package zpcore\plugins\dprecatedfunctions
  * @deprecated ZenphotoCMS 1.6
  */
 define('OFFSET_PATH', 4);

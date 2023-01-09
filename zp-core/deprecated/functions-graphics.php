@@ -4,7 +4,7 @@
  *
  * Use the global object `$_zp_graphics` and its methods of the same name instead of these functions.
  *
- * @package core\functions\deprecated
+ * @package zpcore\functions\deprecated
  *
  * @deprecated ZenphotoCMS 2.0 Use the global object varible $_zp_graphics and its class methods instead
  * @since ZenphotoCMS 1.6

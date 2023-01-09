@@ -77,7 +77,7 @@
  * </ul>
  *
  *
- * @package core\plugins\cachemanager
+ * @package zpcore\plugins\cachemanager
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;

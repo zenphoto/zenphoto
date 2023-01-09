@@ -8,7 +8,7 @@
  * according to the player enabled.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package core\plugins\classvideo
+ * @package zpcore\plugins\classvideo
  */
 // force UTF-8 Ø
 

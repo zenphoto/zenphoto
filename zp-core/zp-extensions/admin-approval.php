@@ -6,7 +6,7 @@
  * mark an object published.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\adminapproval
+ * @package zpcore\plugins\adminapproval
  */
 $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');

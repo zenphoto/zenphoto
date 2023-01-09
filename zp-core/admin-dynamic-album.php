@@ -1,7 +1,7 @@
 <?php
 /**
  * This script is used to create dynamic albums from a search.
- * @package core\admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 

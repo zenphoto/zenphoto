@@ -8,7 +8,7 @@
  * It additionally adds a no-script fallback and supports native lazyloading in very modern browsers by adding the loading="lazy" if not existing. 
  * 
  * @author Malte Müller (acrylian)
- * @package core\plugins\lazyload
+ * @package zpcore\plugins\lazyload
  */
 
 $plugin_is_filter = 800 | THEME_PLUGIN | ADMIN_PLUGIN;
@@ -45,7 +45,7 @@ zp_register_filter('adminthumb_html', 'lazyload::addNoscriptImgHTML');
  *
  * @author Malte Müller (acrylian)
  * 
- * @package core\plugins\lazyload
+ * @package zpcore\plugins\lazyload
  */
 class lazyload {
 	

@@ -1,6 +1,6 @@
 <?php
 /**
- *  @package core\plugins\uploaderjquery
+ *  @package zpcore\plugins\uploaderjquery
  */
 
 zp_register_filter('admin_headers', 'jQueryUpload_headers', 0);

@@ -6,7 +6,7 @@
  * @since ZenphotoCMS 1.6
  * 
  * @author Stephen Billard (sbillard), adapted by Malte Müller (acrylian)
- * @package core\classes\admin
+ * @package zpcore\classes\admin
  */
 class maintenanceMode {
 

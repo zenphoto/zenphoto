@@ -1,7 +1,7 @@
 <?php
 /**
  * Functions used to display content in themes.
- * @package core\functions\template
+ * @package zpcore\functions\template
  */
 // force UTF-8 Ø
 

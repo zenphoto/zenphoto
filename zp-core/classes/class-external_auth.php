@@ -4,7 +4,7 @@
  * Root class for external authorizaton plugins
  *
  * @author Stephen Billard (sbillard)
- * @package core\classes\authorization
+ * @package zpcore\classes\authorization
  */
 
 class external_auth {

@@ -2,7 +2,7 @@
 /**
  * Database quick reference
  *
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 
 define('OFFSET_PATH', 3);

@@ -35,7 +35,7 @@
  * it adds the fields, if not it removes any previously added fields.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\fieldextender
+ * @package zpcore\plugins\fieldextender
  * @deprecated ZenphotoCMS 1.6
  */
 class fieldExtender {

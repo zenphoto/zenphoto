@@ -2,7 +2,7 @@
 /**
  * ZipStream
  * 
- * @package core\libs
+ * @package zpcore\libs
  */
 error_reporting(0);
 ##########################################################################

@@ -1,7 +1,7 @@
 <?php
 /**
  * image processing functions
- * @package core\functions\image
+ * @package zpcore\functions\image
  *
  */
 // force UTF-8 Ø

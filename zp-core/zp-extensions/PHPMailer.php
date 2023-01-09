@@ -5,7 +5,7 @@
  * Configure the plugin options as necessary for your e-mail server.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\phpmailer
+ * @package zpcore\plugins\phpmailer
  */
 $plugin_is_filter = 800 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");

@@ -5,7 +5,7 @@
  * It uses a word black list and checks for excessive URLs
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\simplespam
+ * @package zpcore\plugins\simplespam
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");

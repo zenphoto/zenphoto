@@ -24,7 +24,7 @@
  * Image URIs are also processed. Use the appropriate Zenphoto definition tokens to cause the URI to point
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
- * @package core\admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 

@@ -2,7 +2,7 @@
 /**
  * This is the "rewrite rules" tab
  *
- * @package core\plugins\rewriterules
+ * @package zpcore\plugins\rewriterules
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

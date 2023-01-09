@@ -6,7 +6,7 @@
  * 
  * @since ZenphotoCMS 1.6 - reworked as class
  * 
- * @package core\classes\graphics
+ * @package zpcore\classes\graphics
  */
 class graphicsBase {
 	

@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @package core\plugins\uploaderjquery
+ * @package zpcore\plugins\uploaderjquery
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');

@@ -3,7 +3,7 @@
  * GDPR data export tool
  *
  * @author Malte Müller (acrylian)
- * @package core\admin\utilities
+ * @package zpcore\admin\utilities
  */
 define('OFFSET_PATH', 3);
 

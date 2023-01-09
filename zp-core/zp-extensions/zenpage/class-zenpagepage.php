@@ -4,7 +4,7 @@
  * zenpage page class
  *
  * @author Malte Müller (acrylian)
- * @package core\plugins\zenpage\classes
+ * @package zpcore\plugins\zenpage\classes
  */
 class ZenpagePage extends ZenpageItems {
 

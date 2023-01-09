@@ -6,7 +6,7 @@
  * <b>Note:</b> this plugin permanently changes the image. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\cropimage
+ * @package zpcore\plugins\cropimage
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))

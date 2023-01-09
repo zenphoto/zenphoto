@@ -2,7 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package core\plugins\elfinder
+ * @package zpcore\plugins\elfinder
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if(!extensionEnabled('elFinder')) {

@@ -2,7 +2,7 @@
 /**
  * Form for registering users
  *
- * @package core\plugins\registeruserform
+ * @package zpcore\plugins\registeruserform
  */
 Authority::printPasswordFormJS();
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());

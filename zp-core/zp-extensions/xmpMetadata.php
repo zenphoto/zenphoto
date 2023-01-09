@@ -28,7 +28,7 @@
  * The plugin does not present any theme interface.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\xmpmetadata
+ * @package zpcore\plugins\xmpmetadata
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');

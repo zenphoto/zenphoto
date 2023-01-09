@@ -13,7 +13,7 @@
  * But be aware that hijacking content from sites that are not your own may be a violation of applicable laws!
  *
  * @author Malte Müller (acrylian)
- * @package core\plugins\mergedrss
+ * @package zpcore\plugins\mergedrss
  */
 $plugin_description = gettext("Merges several RSS feeds into one.");
 $plugin_author = "Malte Müller (acrylian)";

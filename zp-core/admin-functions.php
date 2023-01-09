@@ -1,7 +1,7 @@
 <?php
 /**
  * support functions for Admin
- * @package core\admin\functions
+ * @package zpcore\admin\functions
  */
 // force UTF-8 Ø
 

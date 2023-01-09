@@ -57,7 +57,7 @@
  * plugin folder.
  *
  * @author Stephen Billard (sbillard)
- * @package core\plugins\classtextobject
+ * @package zpcore\plugins\classtextobject
  *
  */
 class TextObject extends Image {

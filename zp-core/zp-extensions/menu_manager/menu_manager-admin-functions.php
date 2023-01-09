@@ -1,7 +1,7 @@
 <?php
 /**
  * Menu manager admin functions
- * @package core\plugins\menumanager
+ * @package zpcore\plugins\menumanager
  */
 
 /**

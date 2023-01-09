@@ -11,7 +11,7 @@
  * <b>Legal note:</b> Use the <i>Disguise IP</i> option if your country considers IP tracking a privacy violation.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package core\plugins\rating
+ * @package zpcore\plugins\rating
  */
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);

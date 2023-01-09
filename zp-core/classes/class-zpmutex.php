@@ -3,7 +3,7 @@
  * Zenphoto Mutex class
  * @author Stephen Billard (sbillard)
  * 
- * @package core\classes\helpers
+ * @package zpcore\classes\helpers
  */
 class zpMutex {
 
