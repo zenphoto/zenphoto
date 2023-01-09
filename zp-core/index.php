@@ -2,7 +2,7 @@
 
 /**
  * root script for Zenphoto
- * @package core
+ * @package zpcore
  *
  */
 if (!defined('OFFSET_PATH'))

@@ -25,7 +25,7 @@
  * - If more than one of s, h, or w are specified, s takes priority, then w+h:
  * - If none of s, h, or w are specified, the original image is returned.
  * ******************************************************************************
- * @package core
+ * @package zpcore
  */
 // force UTF-8 Ø
 

@@ -2,7 +2,7 @@
 
 /**
  * handles the watermarking and protecting of the full image link
- * @package core
+ * @package zpcore
  */
 // force UTF-8 Ø
 if (!defined('OFFSET_PATH'))

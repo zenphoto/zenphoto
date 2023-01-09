@@ -2,7 +2,7 @@
 /**
  * Global defintions of constants
  * 
- * @package core
+ * @package zpcore
  */
 if (!isset($_SERVER['HTTP_HOST'])) {
 	die();

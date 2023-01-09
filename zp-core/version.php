@@ -1,6 +1,6 @@
 <?php 
 /**
  * Defines the Zenphoto version
- * @package core
+ * @package zpcore
  */
 define('ZENPHOTO_VERSION', '1.6.1a');

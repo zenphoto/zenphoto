@@ -3,7 +3,7 @@
 /**
  *
  * Zenphoto cron task handler
- * @package core
+ * @package zpcore
  */
 if (isset($_GET['offsetPath'])) {
 	define('OFFSET_PATH', (int) $_GET['offsetPath']);

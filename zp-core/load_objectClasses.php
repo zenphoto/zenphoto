@@ -2,7 +2,7 @@
 /**
  * Load the base classes (Image, Album, Gallery, etc.)
  * 
- * @package core
+ * @package zpcore
  */
 $_zp_extra_filetypes = array(); // contains file extensions and the handler class for alternate images
 $_zp_object_cache = array();

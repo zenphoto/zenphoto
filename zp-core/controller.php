@@ -2,7 +2,7 @@
 
 /**
  * Root-level include that handles all user requests.
- * @package core
+ * @package zpcore
  */
 
 // force UTF-8 Ø
