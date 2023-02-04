@@ -57,7 +57,7 @@ $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
-	require_once(dirname(__FILE__) . '/functions.php');
+	require_once(dirname(__FILE__) . '/functions/functions.php');
 	$albumobj = AlbumBase::newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden(1)"), 'err-imagegeneral.png', $image, $album);
