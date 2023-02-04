@@ -2347,7 +2347,7 @@ function getImageCity() {
 	if (!in_context(ZP_IMAGE))
 		return false;
 	global $_zp_current_image;
-	return $_zp_current_image->getcity();
+	return $_zp_current_image->getCity();
 }
 
 /**
