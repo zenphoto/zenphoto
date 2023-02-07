@@ -345,9 +345,7 @@ class graphicsGD extends graphicsBase {
 	
 	/**
 	 * Flips (mirrors) an image
-	 * 
 	 * @since ZenphotoCMS 1.6
-	 * 
 	 * @param image $im 
 	 * @param string $mode "horizontal" (default) or "vertical"
 	 * @return object
@@ -356,10 +354,32 @@ class graphicsGD extends graphicsBase {
 		switch ($mode) {
 			default:
 			case 'horizontal':
-				return imageflip($im, IMG_FLIP_HORIZONTAL);
+				imageflip($im, IMG_FLIP_HORIZONTAL);
+				break;
 			case 'vertical';
-				return imageflip($im, IMG_FLIP_VERTICAL);
+				imageflip($im, IMG_FLIP_VERTICAL);
+				break;
 		}
+		return $im;
+	}
+
+	/**
+	 * Rotates and/or flips an image based on by using rotateImage() and flipImage() methods
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param object $im GDImage or imagick image object
+	 * @param array $rotate Two dimensional array with rotate and flip indexes as returned be getImageRotation()
+	 * @return object
+	 */
+	function flipRotateImage($im, $rotate) {
+		if ($rotate['rotate']) {
+			$im = $this->rotateImage($im, $rotate['rotate']);
+		}
+		if ($rotate['flip']) {
+			$im = $this->flipImage($im, $rotate['flip']);
+		}
+		return $im;
 	}
 
 	/**

@@ -30,7 +30,40 @@ if (!defined('WEBPATH'))
 					?></h2>
 			</div>
 			<div id="padbox">
+				<?php
+				$rotations = array(
+						null,
+						'0', // undefined
+						'1: Normal (0 deg)',
+						'2: Mirrored',
+						'3: Upside-down ',
+						'4: Upside-down Mirrored',
+						'5: 90 deg CW Mirrored',
+						'6: 90 deg CCW',
+						'7: 90 deg CCW Mirrored',
+						'8: 90 deg CW',
+						'9' //undefined
+				);
+				echo '<ul>';
+				foreach ($rotations as $value) {
+					//$splits = preg_split('/!([(0-9)])/', strval($value));
+					//$rotation = $splits[0];
+					$rotation = intval(substr(strval($value), 0, 1));
+					echo '<li>';
+					if (is_null($value)) {
+						echo 'NULL';
+					} else {
+						echo $value;
+					}
+					echo ' => ' . $rotation;
+					echo '</li>';
+				}
+				echo '</ul>';
+				?>
+				
 				<?php printGalleryDesc(); ?>
+				
+				
 				<div id="albums">
 					<?php while (next_album()): ?>
 						<div class="album">

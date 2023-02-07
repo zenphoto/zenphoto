@@ -301,10 +301,13 @@ class graphicsImagick extends graphicsBase {
 		switch ($mode) {
 			default:
 			case 'horizontal':
-				return $im->flopImage();
+				$im->flopImage();
+				break;
 			case 'vertical';
-				return $im->flipImage();
+				$im->flipImage();
+				break;
 		}
+		return $im;
 	}
 
 	/**

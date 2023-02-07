@@ -230,9 +230,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 		}
 		if ($rotate) {
 			if (DEBUG_IMAGE) {
-				debugLog("cacheImage:rotate->$rotate");
+				debugLog('cacheImage:flip_rotate: '. print_r($rotate, true));
 			}
-			$im = $_zp_graphics->rotateImage($im, $rotate);
+			$im = $_zp_graphics->flipRotateImage($im, $rotate);
 			if (!$im) {
 				imageError('404 Not Found', sprintf(gettext('Image %s not rotatable.'), filesystemToInternal($imgfile)), 'err-failimage.png', $imgfile, $album, $newfilename);
 			}
@@ -548,13 +548,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 
 /* Determines the rotation of the image looking EXIF information.
  *
+ * @since 1.6.1 Return value changed, may be an array with two indexes "rotate" (= degree to rotate) and "flip" ("horizontal" or "vertical") 
+ *								or false if nothing applies
  * @param string $imgfile the image name
- * @return false when the image should not be rotated, or the degrees the
- *         image should be rotated otherwise.
- *
- * PHP GD do not support flips so when a flip is needed we make a
- * rotation that get close to that flip. But I don't think any camera will
- * fill a flipped value in the tag.
+ * @return array|false
  */
 function getImageRotation($imgfile) {
 	global $_zp_db;
@@ -570,22 +567,61 @@ function getImageRotation($imgfile) {
 			}
 		}
 	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result) && is_string($result['EXIFOrientation'])) {
-		$splits = preg_split('/!([(0-9)])/', strval($result['EXIFOrientation']));
-		$rotation = $splits[0];
+		//$splits = preg_split('/!([(0-9)])/', strval($result['EXIFOrientation']));
+		//$rotation = $splits[0];
+		$rotation = intval(substr(strval($result['EXIFOrientation']), 0, 1));
 	}
+	$flip_rotate = array(
+			'rotate' => false,
+			'flip' => false
+	);
 	if ($rotation) {
 		switch ($rotation) {
-			case 1 : return false; // none
-			case 2 : return false; // mirrored
-			case 3 : return 180; // upside-down (not 180 but close)
-			case 4 : return 180; // upside-down mirrored
-			case 5 : return 270; // 90 CW mirrored (not 270 but close)
-			case 6 : return 270; // 90 CCW
-			case 7 : return 90; // 90 CCW mirrored (not 90 but close)
-			case 8 : return 90; // 90 CW
+			case 0:
+			case 1:
+			case 9:
+				// none or not set - nothing to do here
+				return false;
+			case 2:
+				// mirrored
+				$flip_rotate['flip'] = 'horizontal';
+				break;
+			case 3:
+				// upside-down (not 180 but close)
+				$flip_rotate['rotate'] = 180;
+				//return 180;
+				break;
+			case 4:
+				// upside-down mirrored
+				$flip_rotate['rotate'] = 180;
+				$flip_rotate['flip'] = 'horizontal';
+				//return 180;
+				break;
+			case 5:
+				// 90 CW mirrored (not 270 but close)
+				$flip_rotate['rotate'] = 270;
+				$flip_rotate['flip'] = 'horizontal';
+				//return 270;
+				break;
+			case 6:
+				// 90 CCW
+				$flip_rotate['rotate'] = 270;
+				//return 270;
+				break;
+			case 7:
+				// 90 CCW mirrored (not 90 but close)
+				$flip_rotate['rotate'] = 90;
+				$flip_rotate['flip'] = 'horizontal';
+				//return 90;
+				break;
+			case 8:
+				// 90 CW
+				$flip_rotate['rotate'] = 270;
+				//return 90;
+				break;
 		}
 	}
-	return false;
+	return $flip_rotate;
 }
 
 /**

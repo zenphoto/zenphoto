@@ -155,11 +155,12 @@ if (isset($_REQUEST['crop'])) {
 	if ($_zp_graphics->imageCanRotate()) {
 		$rotate = getImageRotation($imgpath);
 	}
-	if (DEBUG_IMAGE)
-		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=$rotate");
+	if (DEBUG_IMAGE) {
+		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=" . print_r($rotate, true));
+	}
 
 	if ($rotate) {
-		$timg = $_zp_graphics->rotateImage($timg, $rotate);
+		$timg = $_zp_graphics->flipRotateImage($timg, $rotate);
 	}
 
 	$newim = $_zp_graphics->createImage($cw, $ch);
