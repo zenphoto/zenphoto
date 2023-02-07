@@ -598,7 +598,7 @@ function getImageRotation($imgfile) {
 				//return 180;
 				break;
 			case 5:
-				// 90 CW mirrored (not 270 but close)
+				// 90 CCW mirrored (not 270 but close)
 				$flip_rotate['rotate'] = 270;
 				$flip_rotate['flip'] = 'horizontal';
 				//return 270;
@@ -609,14 +609,14 @@ function getImageRotation($imgfile) {
 				//return 270;
 				break;
 			case 7:
-				// 90 CCW mirrored (not 90 but close)
+				// 90 CW mirrored (not 90 but close)
 				$flip_rotate['rotate'] = 90;
 				$flip_rotate['flip'] = 'horizontal';
 				//return 90;
 				break;
 			case 8:
 				// 90 CW
-				$flip_rotate['rotate'] = 270;
+				$flip_rotate['rotate'] = 90;
 				//return 90;
 				break;
 		}
