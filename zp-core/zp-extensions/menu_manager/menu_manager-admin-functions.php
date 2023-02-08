@@ -510,7 +510,7 @@ function addItem(&$reports) {
 			break;
 		case 'homepage':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -519,7 +519,7 @@ function addItem(&$reports) {
 			break;
 		case 'galleryindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -527,7 +527,7 @@ function addItem(&$reports) {
 			$successmsg = sprintf(gettext("Gallery index menu item <em>%s</em> added"), $result['link']);
 			break;
 		case 'zenpagepage':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -537,7 +537,7 @@ function addItem(&$reports) {
 			break;
 		case 'zenpagenewsindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -545,7 +545,7 @@ function addItem(&$reports) {
 			$successmsg = sprintf(gettext("Zenpage news index menu item <em>%s</em> added"), $result['link']);
 			break;
 		case 'zenpagecategory':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -577,7 +577,7 @@ function addItem(&$reports) {
 			break;
 		case 'menulabel':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -615,13 +615,20 @@ function addItem(&$reports) {
 	}
 	$count = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 	$order = sprintf('%03u', $count);
+	debuglog(print_r($result, true));
 	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
-					"VALUES (" . $_zp_db->quote($result['title']) .
-					", " . $_zp_db->quote($result['link']) .
-					", " . $_zp_db->quote($result['type']) . ", " . $result['show'] .
-					", " . $_zp_db->quote($menuset) . ", " . $_zp_db->quote($order) . ", " . $result['include_li'] .
-					", " . $_zp_db->quote($result['span_id']) . ", " . $_zp_db->quote($result['span_class']) .
+					"VALUES (" 
+					. $_zp_db->quote($result['title']) . ", " 
+					. $_zp_db->quote($result['link']) . ", " 
+					. $_zp_db->quote($result['type']) . ", " 
+					. $_zp_db->quote($result['show']) . ", " 
+					. $_zp_db->quote($menuset) . ", " 
+					. $_zp_db->quote($order) . ", " 
+					. $result['include_li'] . ", " 
+					. $_zp_db->quote($result['span_id']) . ", " 
+					. $_zp_db->quote($result['span_class']) .
 					")";
+	debuglog(print_r($sql, true));
 	if ($_zp_db->query($sql, true)) {
 		$reports[] = "<p class = 'messagebox fade-message'>" . $successmsg . "</p>";
 		//echo "<pre>"; print_r($result); echo "</pre>";
@@ -667,7 +674,7 @@ function updateMenuItem(&$reports) {
 			break;
 		case 'homepage':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -675,7 +682,7 @@ function updateMenuItem(&$reports) {
 			break;
 		case 'galleryindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -691,14 +698,14 @@ function updateMenuItem(&$reports) {
 			break;
 		case 'zenpagenewsindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
 			break;
 		case 'zenpagecategory':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -727,7 +734,7 @@ function updateMenuItem(&$reports) {
 			break;
 		case 'menulabel':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -1002,10 +1009,10 @@ function processMenuBulkActions() {
 				}
 				$_zp_db->query($sql);
 			}
-			if (!is_null($message))
+			if (!is_null($message)) {
 				$report = "<p class = 'messagebox fade-message'>" . $message . "</p>";
+			}
 		}
 	}
 	return $report;
 }
-?>

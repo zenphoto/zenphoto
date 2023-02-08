@@ -58,7 +58,7 @@ $menuset = checkChosenMenuset();
 					$('#type').val(type);
 					$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 					$('#titlelabel').html('<?php echo js_encode(gettext('Title')); ?>');
-					$('#XSRFToken').val('<?php echo getXSRFToken('update_menu'); ?>');
+					$('#XSRFTokenupdate_menu').val('<?php echo getXSRFToken('update_menu'); ?>');
 					switch (type) {
 						case 'all_items':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
