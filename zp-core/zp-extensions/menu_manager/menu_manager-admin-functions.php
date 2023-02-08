@@ -615,7 +615,6 @@ function addItem(&$reports) {
 	}
 	$count = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 	$order = sprintf('%03u', $count);
-	debuglog(print_r($result, true));
 	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
 					"VALUES (" 
 					. $_zp_db->quote($result['title']) . ", " 
