@@ -274,13 +274,12 @@ if (is_array($result)) {
 				} else {
 					$add = '&amp;update';
 				}
+				if ($menuset) {
+					$add .= '&amp;menuset=' . $menuset; 
+				}
 				?>
-				<form class="dirty-check" method="post" id="add" name="add" autocomplete="off" action="menu_tab_edit.php?save<?php
-				echo $add;
-				if ($menuset)
-					echo '&amp;menuset=' . $menuset;
-				?>" style="display: none">
-							<?php XSRFToken('update_menu'); ?>
+				<form class="dirty-check" method="post" id="add" name="add" action="menu_tab_edit.php?save<?php echo $add; ?>" style="display: none" autocomplete="off">
+					<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
 					<input type="hidden" name="link-old" id="link-old" value="<?php echo html_encode($link); ?>" />
