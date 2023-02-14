@@ -622,8 +622,7 @@ class Image extends MediaObject {
 		if ($_zp_graphics->imageCanRotate()) {
 			// Swap the width and height values if the image should be rotated
 			if (is_string($this->get('EXIFOrientation'))) {
-				$splits = preg_split('/!([(0-9)])/', strval($this->get('EXIFOrientation')));
-				$rotation = $splits[0];
+				$rotation = intval(substr(strval($this->get('EXIFOrientation')), 0, 1));
 				switch ($rotation) {
 					case 5:
 					case 6:

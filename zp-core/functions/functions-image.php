@@ -546,7 +546,8 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 	return true;
 }
 
-/* Determines the rotation of the image looking EXIF information.
+/**
+ *  Determines the rotation of the image looking EXIF information.
  *
  * @since 1.6.1 Return value changed, may be an array with two indexes "rotate" (= degree to rotate) and "flip" ("horizontal" or "vertical") 
  *								or false if nothing applies
@@ -567,8 +568,6 @@ function getImageRotation($imgfile) {
 			}
 		}
 	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result) && is_string($result['EXIFOrientation'])) {
-		//$splits = preg_split('/!([(0-9)])/', strval($result['EXIFOrientation']));
-		//$rotation = $splits[0];
 		$rotation = intval(substr(strval($result['EXIFOrientation']), 0, 1));
 	}
 	$flip_rotate = array(
@@ -589,35 +588,29 @@ function getImageRotation($imgfile) {
 			case 3:
 				// upside-down (not 180 but close)
 				$flip_rotate['rotate'] = 180;
-				//return 180;
 				break;
 			case 4:
 				// upside-down mirrored
 				$flip_rotate['rotate'] = 180;
 				$flip_rotate['flip'] = 'horizontal';
-				//return 180;
 				break;
 			case 5:
 				// 90 CCW mirrored (not 270 but close)
 				$flip_rotate['rotate'] = 270;
 				$flip_rotate['flip'] = 'horizontal';
-				//return 270;
 				break;
 			case 6:
 				// 90 CCW
 				$flip_rotate['rotate'] = 270;
-				//return 270;
 				break;
 			case 7:
 				// 90 CW mirrored (not 90 but close)
 				$flip_rotate['rotate'] = 90;
 				$flip_rotate['flip'] = 'horizontal';
-				//return 90;
 				break;
 			case 8:
 				// 90 CW
 				$flip_rotate['rotate'] = 90;
-				//return 90;
 				break;
 		}
 	}
