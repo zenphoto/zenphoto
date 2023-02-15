@@ -547,10 +547,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 }
 
 /**
- *  Determines the rotation of the image looking EXIF information.
+ * Determines the rotation of the image by looking at EXIF information.
+ * 
+ * Returns an array with two indexes "rotate" (= degree to rotate) and "flip" ("horizontal" or "vertical") 
+ * or false if nothing applies
  *
- * @since 1.6.1 Return value changed, may be an array with two indexes "rotate" (= degree to rotate) and "flip" ("horizontal" or "vertical") 
- *								or false if nothing applies
+ * @since 1.6.1 Return values changed from string|false to array|false
+ * 
  * @param string $imgfile the image name
  * @return array|false
  */
@@ -567,54 +570,10 @@ function getImageRotation($imgfile) {
 				$rotation = $result['Orientation'];
 			}
 		}
-	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result) && is_string($result['EXIFOrientation'])) {
-		$rotation = intval(substr(strval($result['EXIFOrientation']), 0, 1));
+	} else if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
+		$rotation = extractImageExifOrientation($result['EXIFOrientation']); 
 	}
-	$flip_rotate = array(
-			'rotate' => false,
-			'flip' => false
-	);
-	if ($rotation) {
-		switch ($rotation) {
-			case 0:
-			case 1:
-			case 9:
-				// none or not set - nothing to do here
-				return false;
-			case 2:
-				// mirrored
-				$flip_rotate['flip'] = 'horizontal';
-				break;
-			case 3:
-				// upside-down (not 180 but close)
-				$flip_rotate['rotate'] = 180;
-				break;
-			case 4:
-				// upside-down mirrored
-				$flip_rotate['rotate'] = 180;
-				$flip_rotate['flip'] = 'horizontal';
-				break;
-			case 5:
-				// 90 CCW mirrored (not 270 but close)
-				$flip_rotate['rotate'] = 270;
-				$flip_rotate['flip'] = 'horizontal';
-				break;
-			case 6:
-				// 90 CCW
-				$flip_rotate['rotate'] = 270;
-				break;
-			case 7:
-				// 90 CW mirrored (not 90 but close)
-				$flip_rotate['rotate'] = 90;
-				$flip_rotate['flip'] = 'horizontal';
-				break;
-			case 8:
-				// 90 CW
-				$flip_rotate['rotate'] = 90;
-				break;
-		}
-	}
-	return $flip_rotate;
+	return getImageFlipRotate($rotation);
 }
 
 /**

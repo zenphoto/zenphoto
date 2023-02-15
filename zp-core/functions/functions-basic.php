@@ -1085,6 +1085,81 @@ function getImageURI($args, $album, $image, $mtime) {
 }
 
 /**
+ * Extracts integer value (1-9) from the exifOrientation value stored (e.g. '7: 90 deg CCW Mirrored') in the database for images
+ * 
+ * Returns 0 if not a string.
+ * 
+ * @since 1.6.1
+ * 
+ * @param string $exiforientation String value as stored in the db (e.g. '7: 90 deg CCW Mirrored')
+ * @return int
+ */
+function extractImageExifOrientation($exiforientation = '') {
+	if (is_string($exiforientation)) {
+		return intval(substr($exiforientation, 0, 1));
+	}
+	return 0;
+}
+
+/**
+ * Returns an array with two indexes "rotate" (= degree to rotate) and "flip" ("horizontal" or "vertical") 
+ * or false if nothing applies
+ * 
+ * @since 1.6.1
+ * 
+ * @param integer $orientation The exif rotation value 0-9
+ * @return boolean|array
+ */
+function getImageFlipRotate($rotation) {
+	$flip_rotate = array(
+			'rotate' => false,
+			'flip' => false
+	);
+	if ($rotation) {
+		switch ($rotation) {
+			default:
+			case 0:
+			case 1:
+			case 9:
+				// none or not set - nothing to do here
+				return false;
+			case 2:
+				// mirrored
+				$flip_rotate['flip'] = 'horizontal';
+				break;
+			case 3:
+				// upside-down (not 180 but close)
+				$flip_rotate['rotate'] = 180;
+				break;
+			case 4:
+				// upside-down mirrored
+				$flip_rotate['rotate'] = 180;
+				$flip_rotate['flip'] = 'horizontal';
+				break;
+			case 5:
+				// 90 CCW mirrored (not 270 but close)
+				$flip_rotate['rotate'] = 270;
+				$flip_rotate['flip'] = 'horizontal';
+				break;
+			case 6:
+				// 90 CCW
+				$flip_rotate['rotate'] = 270;
+				break;
+			case 7:
+				// 90 CW mirrored (not 90 but close)
+				$flip_rotate['rotate'] = 90;
+				$flip_rotate['flip'] = 'horizontal';
+				break;
+			case 8:
+				// 90 CW
+				$flip_rotate['rotate'] = 90;
+				break;
+		}
+	}
+	return $flip_rotate;
+}
+
+/**
  *
  * Returns an array of html tags allowed
  * @param string $which either 'allowed_tags' or 'style_tags' depending on which is wanted.

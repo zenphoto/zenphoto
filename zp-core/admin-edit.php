@@ -1242,11 +1242,11 @@ echo "\n</head>";
 																	<strong><?php echo gettext("Rotation:"); ?></strong>
 																	<br />
 																	<?php
-																	$splits = preg_split('/!([(0-9)])/', strval($image->get('EXIFOrientation')));
-																	$rotation = $splits[0];
+																	$rotation = extractImageExifOrientation($image->get('EXIFOrientation'));
+																	$fliprotate = getImageFlipRotate($rotation);
 																	if (!in_array($rotation, array(3, 6, 8))) {
 																		$rotation = 0;
-																	}
+																	} 
 																	?>
 																	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 																	<label class="checkboxlabel">
@@ -1261,7 +1261,7 @@ echo "\n</head>";
 																		checked(6, $rotation);
 																		echo $disablerotate
 																		?> />
-																					 <?php echo gettext('90 degrees'); ?>
+																					 <?php echo gettext('270 degrees'); ?>
 																	</label>
 																	<label class="checkboxlabel">
 																		<input type="radio" id="rotation_180-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-rotation" value="3" <?php
@@ -1275,23 +1275,35 @@ echo "\n</head>";
 																		checked(8, $rotation);
 																		echo $disablerotate
 																		?> />
-																					 <?php echo gettext('270 degrees'); ?>
+																					 <?php echo gettext('90 degrees'); ?>
 																	</label>
 																	<br class="clearall">
+																	<?php 
+																		$flipped = false;
+																		if (is_array($fliprotate)) {
+																			$flipped = $fliprotate['flip'];
+																		}
+																	?>
 																	<p ><strong><?php echo gettext("Flipping:"); ?></strong></p>
 													
 																			<label class="checkboxlabel">
-																				<input type="radio" id="flipping_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="none" checked="checked" />
+																				<input type="radio" id="flipping_none-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="none" <?php
+																		checked(false, $flipped);
+																		echo $disablerotate; ?> />
 																				<?php echo gettext('none'); ?>
 																			</label>
 																
 																			<label class="checkboxlabel">
-																				<input type="radio" id="flipping_horizontal-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="horizontal" />
+																				<input type="radio" id="flipping_horizontal-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="horizontal" <?php
+																		checked('horizontal', $flipped);
+																		echo $disablerotate;  ?> />
 																				<?php echo gettext('horizontal'); ?>
 																			</label>
 																	
 																			<label class="checkboxlabel">
-																				<input type="radio" id="flipping_vertical--<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="vertical" />
+																				<input type="radio" id="flipping_vertical-<?php echo $currentimage; ?>"	name="<?php echo $currentimage; ?>-flipping" value="vertical" <?php
+																		checked('vertical', $flipped);
+																		echo $disablerotate;  ?>/>
 																	<?php echo gettext('vertical'); ?>
 																			</label>
 																	<br>
