@@ -1128,7 +1128,7 @@ function getImageFlipRotate($rotation) {
 				$flip_rotate['flip'] = 'horizontal';
 				break;
 			case 3:
-				// upside-down (not 180 but close)
+				// upside-down
 				$flip_rotate['rotate'] = 180;
 				break;
 			case 4:
@@ -1137,7 +1137,7 @@ function getImageFlipRotate($rotation) {
 				$flip_rotate['flip'] = 'horizontal';
 				break;
 			case 5:
-				// 90 CCW mirrored (not 270 but close)
+				// 90 CCW mirrored
 				$flip_rotate['rotate'] = 270;
 				$flip_rotate['flip'] = 'horizontal';
 				break;
@@ -1146,7 +1146,7 @@ function getImageFlipRotate($rotation) {
 				$flip_rotate['rotate'] = 270;
 				break;
 			case 7:
-				// 90 CW mirrored (not 90 but close)
+				// 90 CW mirrored
 				$flip_rotate['rotate'] = 90;
 				$flip_rotate['flip'] = 'horizontal';
 				break;
