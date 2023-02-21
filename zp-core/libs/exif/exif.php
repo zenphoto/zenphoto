@@ -976,6 +976,7 @@ function formatData($type, $tag, $intel, $data) {
  */
 function formatExposure($data) {
 	if (strpos($data, '/') === false) {
+		$data = floatval($data);
 		if ($data >= 1) {
 			return round($data, 2) . ' sec';
 		} else {
