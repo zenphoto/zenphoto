@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the TAGS tab of admin
- * @package admin
+ * @package zpcore\admin
  */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
@@ -24,9 +24,9 @@ if (count($_POST) > 0) {
 		foreach ($_POST as $value) {
 			if (!empty($value)) {
 				$value = html_decode(sanitize($value, 3));
-				$result = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($value));
+				$result = $_zp_db->querySingleRow('SELECT `id` FROM ' . $_zp_db->prefix('tags') . ' WHERE `name`=' . $_zp_db->quote($value));
 				if (!is_array($result)) { // it really is a new tag
-					query('INSERT INTO ' . prefix('tags') . ' (`name`) VALUES (' . db_quote($value) . ')');
+					$_zp_db->query('INSERT INTO ' . $_zp_db->prefix('tags') . ' (`name`) VALUES (' . $_zp_db->quote($value) . ')');
 				}
 			}
 		}
@@ -40,23 +40,23 @@ if (count($_POST) > 0) {
 			$kill[] = mb_strtolower($key);
 		}
 		if (count($kill) > 0) {
-			$sql = "SELECT `id` FROM " . prefix('tags') . " WHERE ";
+			$sql = "SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE ";
 			foreach ($kill as $tag) {
-				$sql .= "`name`=" . (db_quote($tag)) . " OR ";
+				$sql .= "`name`=" . ($_zp_db->quote($tag)) . " OR ";
 			}
 			$sql = substr($sql, 0, strlen($sql) - 4);
-			$dbtags = query_full_array($sql);
+			$dbtags = $_zp_db->queryFullArray($sql);
 			if (is_array($dbtags) && count($dbtags) > 0) {
-				$sqltags = "DELETE FROM " . prefix('tags') . " WHERE ";
-				$sqlobjects = "DELETE FROM " . prefix('obj_to_tag') . " WHERE ";
+				$sqltags = "DELETE FROM " . $_zp_db->prefix('tags') . " WHERE ";
+				$sqlobjects = "DELETE FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE ";
 				foreach ($dbtags as $tag) {
 					$sqltags .= "`id`='" . $tag['id'] . "' OR ";
 					$sqlobjects .= "`tagid`='" . $tag['id'] . "' OR ";
 				}
 				$sqltags = substr($sqltags, 0, strlen($sqltags) - 4);
-				query($sqltags);
+				$_zp_db->query($sqltags);
 				$sqlobjects = substr($sqlobjects, 0, strlen($sqlobjects) - 4);
-				query($sqlobjects);
+				$_zp_db->query($sqlobjects);
 			}
 		}
 		$action = gettext('Checked tags deleted');
@@ -69,18 +69,18 @@ if (count($_POST) > 0) {
 				$newName = sanitize($newName, 3);
 				$key = postIndexDecode($key);
 				$key = substr($key, 2); // strip off the 'R_'
-				$newtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($newName));
-				$oldtag = query_single_row('SELECT `id` FROM ' . prefix('tags') . ' WHERE `name`=' . db_quote($key));
+				$newtag = $_zp_db->querySingleRow('SELECT `id` FROM ' . $_zp_db->prefix('tags') . ' WHERE `name`=' . $_zp_db->quote($newName));
+				$oldtag = $_zp_db->querySingleRow('SELECT `id` FROM ' . $_zp_db->prefix('tags') . ' WHERE `name`=' . $_zp_db->quote($key));
 				if (is_array($newtag)) { // there is an existing tag of the same name
 					$existing = $newtag['id'] != $oldtag['id']; // but maybe it is actually the original in a different case.
 				} else {
 					$existing = false;
 				}
 				if ($existing) {
-					query('DELETE FROM ' . prefix('tags') . ' WHERE `id`=' . $oldtag['id']);
-					query('UPDATE ' . prefix('obj_to_tag') . ' SET `tagid`=' . $newtag['id'] . ' WHERE `tagid`=' . $oldtag['id']);
+					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('tags') . ' WHERE `id`=' . $oldtag['id']);
+					$_zp_db->query('UPDATE ' . $_zp_db->prefix('obj_to_tag') . ' SET `tagid`=' . $newtag['id'] . ' WHERE `tagid`=' . $oldtag['id']);
 				} else {
-					query('UPDATE ' . prefix('tags') . ' SET `name`=' . db_quote($newName) . ' WHERE `id`=' . $oldtag['id']);
+					$_zp_db->query('UPDATE ' . $_zp_db->prefix('tags') . ' SET `name`=' . $_zp_db->quote($newName) . ' WHERE `id`=' . $oldtag['id']);
 				}
 			}
 		}

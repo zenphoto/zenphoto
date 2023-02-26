@@ -2,8 +2,8 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package zpcore\plugins\dprecatedfunctions
+ * @deprecated ZenphotoCMS 1.6
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');
@@ -65,7 +65,7 @@ echo "\n</head>";
 											<h2><?php echo $plugin; ?></h2>
 											<ul style="list-style-type: none;">
 												<?php
-												natcasesort($functions);
+												sortArray($functions);
 												foreach ($functions as $function) {
 													?>
 													<li>

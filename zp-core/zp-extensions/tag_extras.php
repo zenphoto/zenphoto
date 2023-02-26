@@ -7,8 +7,7 @@
  * Note: The optional counter prints the total number of the tag used, not just for the select items (as clicking on it will return all anyway.)
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage tag-extras
+ * @package zpcore\plugins\tagextras
  */
 $plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
@@ -23,7 +22,7 @@ $plugin_category = gettext('Misc');
  * @return array
  */
 function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	$passwordcheck = '';
 	$imageWhere = '';
 	$tagWhere = "";
@@ -31,14 +30,14 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 	if (empty($albumname)) {
 		return FALSE;
 	}
-	$albumobj = newAlbum($albumname);
+	$albumobj = AlbumBase::newAlbum($albumname);
 	if (!$albumobj->exists) {
 		return FALSE;
 	}
 	if (zp_loggedin()) {
 		$albumWhere = "WHERE `dynamic`=0";
 	} else {
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums') . " ORDER BY title");
+		$albumscheck = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('albums') . " ORDER BY title");
 		foreach ($albumscheck as $albumcheck) {
 			if (!checkAlbumPassword($albumcheck['folder'])) {
 				$albumpasswordcheck = " AND id != " . $albumcheck['id'];
@@ -48,11 +47,11 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 		$albumWhere = "WHERE `dynamic`=0 AND `show`=1" . $passwordcheck;
 	}
 	if ($subalbums) {
-		$albumWhere .= " AND `folder` LIKE " . db_quote(db_LIKE_escape($albumname) . "%");
+		$albumWhere .= " AND `folder` LIKE " . $_zp_db->quote($_zp_db->likeEscape($albumname) . "%");
 	} else {
-		$albumWhere .= " AND `folder` = " . db_quote($albumname);
+		$albumWhere .= " AND `folder` = " . $_zp_db->quote($albumname);
 	}
-	$albumids = query_full_array("SELECT id, folder FROM " . prefix('albums') . $albumWhere);
+	$albumids = $_zp_db->queryFullArray("SELECT id, folder FROM " . $_zp_db->prefix('albums') . $albumWhere);
 	switch ($mode) {
 		case "images":
 			if (count($albumids) == 0) {
@@ -67,7 +66,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 						$imageWhere .= " OR ";
 				}
 			}
-			$imageids = query_full_array("SELECT id, albumid FROM " . prefix('images') . $imageWhere);
+			$imageids = $_zp_db->queryFullArray("SELECT id, albumid FROM " . $_zp_db->prefix('images') . $imageWhere);
 			// if the album has no direct images and $subalbums is set to false
 			if (count($imageids) == 0) {
 				return FALSE;
@@ -84,7 +83,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+				return $_zp_db->queryFullArray("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE tagid = t.id AND type = 'images') AS count FROM  " . $_zp_db->prefix('obj_to_tag') . " AS o," . $_zp_db->prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 		case "albums":
@@ -103,11 +102,10 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 			if (empty($tagWhere)) {
 				return FALSE;
 			} else {
-				$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = 'albums') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+				return $_zp_db->queryFullArray("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = 'albums') AS count FROM " . $_zp_db->prefix('obj_to_tag') . " AS o," . $_zp_db->prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 			}
 			break;
 	}
-	return $tags;
 }
 
 /**
@@ -116,7 +114,7 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
  *
  */
 function getAllTagsFromZenpage($mode = 'news') {
-	global $_zp_gallery, $_zp_zenpage;
+	global $_zp_gallery, $_zp_zenpage, $_zp_db;
 	if (!extensionEnabled('zenpage')) {
 		return FALSE;
 	}
@@ -167,9 +165,8 @@ function getAllTagsFromZenpage($mode = 'news') {
 	if (empty($tagWhere)) {
 		return FALSE;
 	} else {
-		$tags = query_full_array("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . prefix('obj_to_tag') . " AS o," . prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
+		return $_zp_db->queryFullArray("SELECT DISTINCT t.name, t.id, (SELECT DISTINCT COUNT(*) FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE tagid = t.id AND o.type = '" . $type . "') AS count FROM " . $_zp_db->prefix('obj_to_tag') . " AS o," . $_zp_db->prefix('tags') . " AS t" . $tagWhere . " ORDER BY t.name");
 	}
-	return $tags;
 }
 
 /**
@@ -276,7 +273,7 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 			}
 			if ($loopcount == $tagcount)
 				$separator = '';
-			echo "<li><a class=\"tagLink\" href=\"" . html_encode(getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . ">" . $tname . $counter . "</a>" . $separator . "</li>\n";
+			echo "<li><a class=\"tagLink\" href=\"" . html_encode(SearchEngine::getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . ">" . $tname . $counter . "</a>" . $separator . "</li>\n";
 		}
 	}
 	echo "</ul>\n";

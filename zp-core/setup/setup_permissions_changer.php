@@ -3,11 +3,11 @@
 /**
  * Used for changing permissions on a mass basis
  *
- * @package setup
+ * @package zpcore\setup
  *
  */
 define('OFFSET_PATH', 2);
-require_once(dirname(dirname(__FILE__)) . '/functions.php');
+require_once(dirname(dirname(__FILE__)) . '/functions/functions.php');
 require_once(dirname(__FILE__) . '/class-setup.php');
 if (!isset($_POST['folder'])) {
 	exit();

@@ -1,0 +1,98 @@
+<?php
+global $_zp_conf_vars;
+$conf = array();
+
+/** Do not edit above this line. **/
+/**********************************/
+
+/*//////////   zenPHOTO Configuration Variables   ///////////////////////////////
+
+For most installations Setup will copy this source and make the necessary changes to it.
+Unless this fails you most likely have no need even to read this file.
+
+If for some reason setup.php is not able to edit the configuration file and you cannot
+fix the file/folder permissions so that it can then you may have copy the
+source file to the zp-data folder and make changes here manually.
+
+Advanced installations may wish to modify the album folder definitions below.
+
+Also on some servers zenphoto has problems correctly determining the WEB path and
+SERVER path. For these cases you will need to implement the path overrides below.
+///////////////////////////////////////////////////////////////////////////////*/
+
+////////////////////////////////////////////////////////////////////////////////
+// Database Information
+////////////////////////////////////////////////////////////////////////////////
+$conf['db_software'] = 'MySQLi';		// preferred database
+/** for historical reasons these fields reference mysql even though the database **
+ ** might be a different software                                                **/
+$conf['mysql_user'] = '';           // Supply your Database user id.
+$conf['mysql_pass'] = '';           // Supply your Database password.
+$conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
+$conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
+$conf['mysql_prefix'] = 'zp_'; // If you're sharing the database with other tables, use a prefix to be safe.
+$conf['mysql_port'] = "3306"; // Change if your server uses a different port
+$conf['mysql_socket'] = null; // Change if you need to set a specific socket
+
+// If you are having problems with displaying some characters you may have to change
+// the following:
+$conf['UTF-8'] = true;
+
+////////////////////////////////////////////////////////////////////////////////
+// Required options
+////////////////////////////////////////////////////////////////////////////////
+
+// location of album folder.
+// 'album_folder' is the name of the folder for the zenphoto albums.
+// 'album_folder_class' determines how to interpret 'album_folder':
+//    'std'         --	the folder must be a simple name. It resides in the root
+//                      of the zenphoto installation.
+//    'in_webpath'  --	the folder must be the full path of the album folder from
+//                      the WEB root of the zenphoto installation. The WEB root of
+//											your installation is the folder where your browser looks
+//											if the link is just your domain (no folders).
+//    'external'    --	the folder must be a full server path to the album folder.
+//                      Images within an external folder are not visible to web
+//                      browsers, so certain features such as flash players cannot
+//                      display them
+$conf['album_folder'] = '/albums/';
+$conf['album_folder_class'] = 'std';
+
+// Server Protocol
+
+$conf['server_protocol'] = "http";
+
+// Change this to "https" if you use an HTTPS server (a "https://..." url)
+// Otherwise you should leave it at "http"
+//
+////////////////////////////////////////////////////////////////////////////////
+// Zenphoto special URL rule definitions
+//
+// for further documentation see the functions-rewrite.php doc block
+//
+$conf['special_pages'] = array(
+														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),
+														'search'=>			array('define'=>'_SEARCH_',				'rewrite'=>'_PAGE_/search'),
+														'archive'=>			array('define'=>'_ARCHIVE_',			'rewrite'=>'_PAGE_/archive'),
+														'tags'=>				array('define'=>'_TAGS_',					'rewrite'=>'_SEARCH_/tags'),
+														'gallery'=>			array('define'=>'_GALLERY_INDEX_','rewrite'=>'_PAGE_/gallery')
+												);
+//
+////////////////////////////////////////////////////////////////////////////////
+// Path Overrides
+////////////////////////////////////////////////////////////////////////////////
+// Uncomment the following two lines ONLY IF YOU'RE HAVING PROBLEMS,
+// like "file not found" or "not readable" errors.
+// These allow you to override Zenphoto's detection of the correct paths
+// on your server, which might work better on some setups.
+////////////////////////////////////////////////////////////////////////////////
+
+// define('WEBPATH', '/zenphoto');
+// define('SERVERPATH', '/full/server/path/to/zenphoto');
+
+////////////////////////////////////////////////////////////////////////////////
+/** Do not edit below this line. **/
+/**********************************/
+$_zp_conf_vars = $conf;
+unset($conf);
+?>

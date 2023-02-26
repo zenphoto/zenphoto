@@ -1,20 +1,14 @@
 <?php
 /**
  * provides the Options tab of admin
- * @package admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
 
-function markUpdated() {
-	global $updated;
-	$updated = true;
-//for finding out who did it!	debugLogBacktrace('updated');
-}
-
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once SERVERPATH . '/' . ZENFOLDER . '/class-userdataexport.php';
+require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-userdataexport.php';
 
 define('USERS_PER_PAGE', max(1, getOption('users_per_page')));
 
@@ -43,13 +37,13 @@ if (isset($_REQUEST['show']) && is_array($_REQUEST['show'])) {
 }
 
 
-if (isset($_GET['subpage'])) {
-	$subpage = sanitize_numeric($_GET['subpage']);
+if (isset($_GET['pagenumber'])) {
+	$pagenumber = sanitize_numeric($_GET['pagenumber']);
 } else {
-	if (isset($_POST['subpage'])) {
-		$subpage = sanitize_numeric($_POST['subpage']);
+	if (isset($_POST['pagenumber'])) {
+		$pagenumber = sanitize_numeric($_POST['pagenumber']);
 	} else {
-		$subpage = 0;
+		$pagenumber = 0;
 	}
 }
 
@@ -69,23 +63,21 @@ if (isset($_GET['action'])) {
 			if (isset($_GET['revert'])) {
 				$v = getOption('libauth_version') - 1;
 			} else {
-				$v = Zenphoto_Authority::$supports_version;
+				$v = Authority::$supports_version;
 			}
 			if ($_zp_authority->migrateAuth($v)) {
 				$notify = '';
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=" . $subpage . $notify);
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&pagenumber=" . $pagenumber . $notify);
 			break;
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
-			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
+			$adminobj = Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=" . $subpage);
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&pagenumber=" . $pagenumber);
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
@@ -104,7 +96,7 @@ if (isset($_GET['action'])) {
 					$nouser = true;
 					$returntab = $newuser = false;
 					for ($i = 0; $i < sanitize_numeric($_POST['totaladmins']); $i++) {
-						$updated = false;
+						$_zp_admin_user_updated = false;
 						$error = false;
 						$userobj = NULL;
 						$pass = trim(sanitize($_POST['pass' . $i]));
@@ -116,19 +108,20 @@ if (isset($_GET['action'])) {
 							$nouser = false;
 							if (isset($_POST[$i . '-newuser'])) {
 								$newuser = $user;
-								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								$userobj = Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
 									$notify = '?exists';
 									break;
 								} else {
 									$what = 'new';
-									$userobj = Zenphoto_Authority::newAdministrator('');
+									$userobj = Authority::newAdministrator('');
 									$userobj->setUser($user);
+									$userobj->setLastChange();
 									markUpdated();
 								}
 							} else {
 								$what = 'update';
-								$userobj = Zenphoto_Authority::newAdministrator($user);
+								$userobj = Authority::newAdministrator($user);
 								markUpdated();
 							}
 
@@ -141,15 +134,17 @@ if (isset($_GET['action'])) {
 							}
 							if (isset($_POST[$i . '-admin_email'])) {
 								$admin_e = trim(sanitize($_POST[$i . '-admin_email']));
-								$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-								if($mail_duplicate) {
-									$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
-								} else {
-									if ($admin_e != $userobj->getEmail()) {
-										markUpdated();
-										$userobj->setEmail($admin_e);
+								if(!empty($admin_e) && isValidEmail($admin_e)) {				
+									$mail_unique = $_zp_authority->isUniqueMailaddress($admin_e, $user);
+									if($mail_unique) {
+										if ($admin_e != $userobj->getEmail()) {
+											markUpdated();
+											$userobj->setEmail($admin_e);
+										}
+									} else {
+										$msg = sprintf(gettext('%s email is already used by another user!'), $admin_n);
 									}
-								}
+								} 
 							}
 							if (empty($pass)) {
 								if ($newuser || @$_POST['passrequired' . $i]) {
@@ -216,18 +211,19 @@ if (isset($_GET['action'])) {
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
-							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
+							$_zp_admin_user_updated = zp_apply_filter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
 							if (isset($_POST['createAlbum_' . $i])) {
 								$userobj->createPrimealbum();
 								markUpdated();
 							}
-							if ($updated) {
+							if ($_zp_admin_user_updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 								if (empty($msg)) {
 									if (!$notify)
 										$userobj->transient = false;
-									$userobj->save();
+									$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+									$userobj->save(true);
 								} else {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
 									$error = true;
@@ -251,8 +247,7 @@ if (isset($_GET['action'])) {
 	if (empty($notify)) {
 		$notify = '?saved';
 	}
-	header("Location: " . $notify . $returntab . $ticket);
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php' . $notify . $returntab . $ticket);
 }
 $refresh = false;
 
@@ -263,19 +258,16 @@ if ($_zp_current_admin_obj->reset) {
 }
 
 if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
-	header("HTTP/1.0 302 Found");
-	header("Status: 302 Found");
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php','302');
 }
 
 printAdminHeader($_current_tab);
 echo $refresh;
 ?>
-<script type="text/javascript" src="js/farbtastic.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+<script src="js/farbtastic.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
-<script type='text/javascript'>
+<script>
 	var visible = false;
 	function getVisible(id, category, show, hide) {
 		prefix = '#' + category + '-' + id + ' ';
@@ -288,7 +280,7 @@ echo $refresh;
 		return v;
 	}
 </script>
-<?php Zenphoto_Authority::printPasswordFormJS(); ?>
+<?php Authority::printPasswordFormJS(); ?>
 </head>
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -404,10 +396,10 @@ echo $refresh;
 						}
 					}
 					$max = floor((count($admins) - 1) / USERS_PER_PAGE);
-					if ($subpage > $max) {
-						$subpage = $max;
+					if ($pagenumber > $max) {
+						$pagenumber = $max;
 					}
-					$userlist = array_slice($admins, $subpage * USERS_PER_PAGE, USERS_PER_PAGE);
+					$userlist = array_slice($admins, $pagenumber * USERS_PER_PAGE, USERS_PER_PAGE);
 
 					if (isset($_GET['deleted'])) {
 						echo '<div class="messagebox fade-message">';
@@ -448,7 +440,7 @@ echo $refresh;
 						echo '</div>';
 					}
 					?>
-					<script type="text/javascript">
+					<script>
 						function languageChange(id, lang) {
 							var oldid = '#' + $('#admin_language_' + id).val() + '_' + id;
 							var newid = '#' + lang + '_' + id;
@@ -464,7 +456,7 @@ echo $refresh;
 					<form class="dirty-check" action="?action=saveoptions<?php echo str_replace('&', '&amp;', $ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();">
 						<?php XSRFToken('saveadmin'); ?>
 						<input type="hidden" name="saveadminoptions" value="yes" />
-						<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
+						<input type="hidden" name="pagenumber" value="<?php echo $pagenumber; ?>" />
 						<?php
 						if (empty($alterrights)) {
 							?>
@@ -481,7 +473,7 @@ echo $refresh;
 
 							<tr>
 								<?php
-								if ($subpage || count($userlist) > 1) {
+								if ($pagenumber || count($userlist) > 1) {
 									?>
 									<th>
 										<span style="font-weight: normal">
@@ -513,7 +505,7 @@ echo $refresh;
 										</select>
 									</th>
 									<th>
-										<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+										<?php printPageSelector($pagenumber, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
 									</th>
 									<?php
 								} else {
@@ -527,7 +519,7 @@ echo $refresh;
 							$id = 0;
 							$albumlist = array();
 							foreach ($_zp_gallery->getAlbums() as $folder) {
-								$alb = newAlbum($folder);
+								$alb = AlbumBase::newAlbum($folder);
 								$name = $alb->getTitle();
 								$albumlist[$name] = $folder;
 							}
@@ -545,7 +537,7 @@ echo $refresh;
 								if ($userid == $_zp_current_admin_obj->getuser()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
-									$userobj = Zenphoto_Authority::newAdministrator($userid);
+									$userobj = Authority::newAdministrator($userid);
 								}
 								if (empty($userid)) {
 									$userobj->setGroup($user['group']);
@@ -650,7 +642,7 @@ echo $refresh;
 															?>
 
 															<span class="floatright">
-																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
+																<a href="javascript:if(confirm(<?php echo "'" . js_encode($msg) . "'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;pagenumber=<?php echo $pagenumber; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin') ?>'; }"
 																	 title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
 																	<img src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
 															</span>
@@ -698,7 +690,7 @@ echo $refresh;
 														} else {
 															$password_disable = '';
 														}
-														Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
+														Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
 														?>
 													</p>
 													<?php
@@ -778,7 +770,10 @@ echo $refresh;
 														}
 														?>
 													</ul>
-													<?php	userDataExport::printUserAccountExportLinks($userobj); ?>
+													<?php	
+														printLastChangeInfo($userobj);
+														userDataExport::printUserAccountExportLinks($userobj); 
+													?>
 												</td>
 
 												<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>
@@ -831,7 +826,7 @@ echo $refresh;
 								<th></th>
 								<th></th>
 								<th>
-									<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
+									<?php printPageSelector($pagenumber, $rangeset, 'admin-users.php', array('page' => 'users')); ?>
 								</th>
 							</tr>
 						</table> <!-- main admin table end -->
@@ -852,11 +847,11 @@ echo $refresh;
 					</form>
 					<?php
 					if (zp_loggedin(ADMIN_RIGHTS)) {
-						if (Zenphoto_Authority::getVersion() < Zenphoto_Authority::$supports_version) {
+						if (Authority::getVersion() < Authority::$supports_version) {
 							?>
 							<br class="clearall" />
 							<p class="notebox">
-								<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Zenphoto_Authority::getVersion(), Zenphoto_Authority::$supports_version); ?>
+								<?php printf(gettext('The <em>Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'), Authority::getVersion(), Authority::$supports_version); ?>
 								<br class="clearall" />
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Migrate rights'); ?></a>
@@ -865,11 +860,11 @@ echo $refresh;
 							</p>
 							<br class="clearall" />
 							<?php
-						} else if (Zenphoto_Authority::getVersion() > Zenphoto_Authority::$preferred_version) {
+						} else if (Authority::getVersion() > Authority::$preferred_version) {
 							?>
 							<br class="clearall" />
 							<p class="notebox">
-								<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior Zenphoto releases.'), Zenphoto_Authority::getVersion() - 1); ?>
+								<?php printf(gettext('You may wish to revert the <em>Authority</em> user rights to version %s for backwards compatibility with prior Zenphoto releases.'), Authority::getVersion() - 1); ?>
 								<br class="clearall" />
 								<span class="buttons">
 									<a onclick="launchScript('', ['action=migrate_rights', 'revert=true', 'XSRFToken=<?php echo getXSRFToken('migrate_rights') ?>']);"><?php echo gettext('Revert rights'); ?></a>
@@ -881,8 +876,7 @@ echo $refresh;
 						}
 					}
 					?>
-					<script type="text/javascript">
-						//<!-- <![CDATA[
+					<script>
 						var admins = ["<?php echo implode('","', $alladmins); ?>"];
 						function checkNewuser() {
 							var newuserid = <?php echo ($id - 1); ?>;
@@ -901,7 +895,6 @@ echo $refresh;
 							}
 							return true;
 						}
-						// ]]> -->
 					</script>
 
 					<br class="clearall" />

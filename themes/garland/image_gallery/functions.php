@@ -18,14 +18,14 @@ class imagegallery {
 	function theme_head($_zp_themeroot) {
 		?>
 		<link rel="stylesheet" type="text/css" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.css">
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER; ?>/adGallery/jquery.ad-gallery.min.js"></script>
 		<?php
 	}
 
 	function theme_bodyopen($_zp_themeroot) {
 		$location = getOption('garland_caption_location');
 		?>
-		<script type="text/javascript">
+		<script>
 			$(function() {
 				var galleries = $('.ad-gallery').adGallery({
 					width: 520, // Width of the image, set to false and it will read the CSS width
@@ -117,7 +117,7 @@ class imagegallery {
 												$points[] = $coord;
 											}
 										}
-										if (isImagePhoto()) {
+										if ($_zp_current_image->isPhoto()) {
 											// does not do video
 											if (is_null($firstImage)) {
 												$lastImage = imageNumber();
@@ -130,7 +130,7 @@ class imagegallery {
 												<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
 													<img src="<?php echo html_encode(pathurlencode(getImageThumb())); ?>"
 															 class="image<?php echo $lastImage; ?>"
-															 alt="<?php echo html_encode(getImageDesc()); ?>">
+															 alt="<?php echo html_encode(getImageDesc()); ?>" loading="lazy">
 												</a>
 											</li>
 											<?php

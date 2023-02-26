@@ -16,8 +16,7 @@
  * the control links.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage themeswitcher
+ * @package zpcore\plugins\themeswitcher
  */
 $plugin_is_filter = 500 | CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
@@ -98,7 +97,7 @@ class themeSwitcher {
 	 */
 	static function theme($theme) {
 		global $_zp_gallery;
-		$new = zp_getCookie('themeSwitcher_theme');
+		$new = zp_getCookie('zpcms_themeswitcher_theme');
 		if ($new) {
 			if (array_key_exists($new, $_zp_gallery->getThemes())) {
 				$theme = $new;
@@ -108,7 +107,7 @@ class themeSwitcher {
 	}
 
 	static function head($css) {
-		global $_themeSwitcherThemelist;
+		global $_zp_themeswitcher_themelist;
 		if (getOption('themeSwitcher_css')) {
 			?>
 			<style type="text/css">
@@ -123,15 +122,13 @@ class themeSwitcher {
 			<?php
 		}
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			function switchTheme(reloc) {
 				window.location = reloc.replace(/%t/, $('#themeSwitcher').val());
 			}
-			// ]]> -->
 		</script>
 		<?php
-		$_themeSwitcherThemelist = zp_apply_filter('themeSwitcher_head', $_themeSwitcherThemelist);
+		$_zp_themeswitcher_themelist = zp_apply_filter('themeSwitcher_head', $_zp_themeswitcher_themelist);
 		return $css;
 	}
 
@@ -141,11 +138,11 @@ class themeSwitcher {
 	 * @param string $text link text
 	 */
 	static function controlLink($textIn = NULL) {
-		global $_zp_gallery, $_themeSwitcherThemelist, $_zp_gallery_page;
+		global $_zp_gallery, $_zp_themeswitcher_themelist, $_zp_gallery_page;
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme => $details) {
-				if ($_themeSwitcherThemelist[$theme]) {
+				if ($_zp_themeswitcher_themelist[$theme]) {
 					if (getPlugin($_zp_gallery_page, $theme)) {
 						$themes[$details['name']] = $theme;
 					}
@@ -178,9 +175,9 @@ class themeSwitcher {
 	}
 
 	static function active() {
-		global $_showNotLoggedin_real_auth;
-		if (is_object($_showNotLoggedin_real_auth)) {
-			$loggedin = $_showNotLoggedin_real_auth->getRights();
+		global $_zp_show_not_loggedin_realauth;
+		if (is_object($_zp_show_not_loggedin_realauth)) {
+			$loggedin = $_zp_show_not_loggedin_realauth->getRights();
 		} else {
 			$loggedin = zp_loggedin();
 		}
@@ -189,20 +186,20 @@ class themeSwitcher {
 
 }
 
-$_themeSwitcherThemelist = array();
+$_zp_themeswitcher_themelist = array();
 foreach ($_zp_gallery->getThemes() as $__key => $__theme) {
 	$set = getOption('themeSwitcher_theme_' . $__key);
 	if (is_null($set)) //newly arrived theme?
 		$set = 1;
-	$_themeSwitcherThemelist[$__key] = $set;
+	$_zp_themeswitcher_themelist[$__key] = $set;
 }
 unset($__key);
 unset($__theme);
 if (isset($_GET['themeSwitcher'])) {
-	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
+	zp_setCookie('zpcms_themeswitcher_theme', sanitize($_GET['themeSwitcher']), getOption('themeSwitcher_timeout') * 60);
 }
 
-if (zp_getCookie('themeSwitcher_theme')) {
+if (zp_getCookie('zpcms_themeswitcher_theme')) {
 	zp_register_filter('setupTheme', 'themeSwitcher::theme');
 }
 zp_register_filter('theme_head', 'themeSwitcher::head', 999);

@@ -2,7 +2,7 @@
 /**
  * Use this utility to reset your album thumbnails to either "random" or from an ordered field query
  *
- * @package admin
+ * @package zpcore\admin\utilities
  */
 define('OFFSET_PATH', 3);
 
@@ -31,7 +31,7 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 $buffer = '';
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Thumbs') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/reset_albumthumbs.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Thumbs') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/reset_albumthumbs.php');
 printAdminHeader('overview', 'thumbs');
 
 echo '</head>';
@@ -49,9 +49,9 @@ echo '</head>';
 				<?php
 				if (isset($_REQUEST['thumbtype'])) {
 					$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
-					$sql = 'UPDATE ' . prefix('albums') . ' SET `thumb`=' . $key;
+					$sql = 'UPDATE ' . $_zp_db->prefix('albums') . ' SET `thumb`=' . $key;
 					$text = $_zp_albumthumb_selector[$key]['desc'];
-					if (query($sql)) {
+					if ($_zp_db->query($sql)) {
 						?>
 						<div class="messagebox fade-message">
 							<h2>

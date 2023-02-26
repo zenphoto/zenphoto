@@ -1,6 +1,6 @@
 <?php if (!defined('WEBPATH')) die(); ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<title><?php echo gettext("Password required"); ?></title>

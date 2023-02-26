@@ -6,8 +6,7 @@
  *
  * This plugin is dependent on the css of the gallery_statistics utility plugin!
  *
- * @package plugins
- * @subpackage downloadlist
+ * @package zpcore\plugins\downloadlist
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
@@ -15,13 +14,12 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 }
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
 printAdminHeader('overview', 'download');
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
@@ -31,10 +29,11 @@ printAdminHeader('overview', 'download');
  * Prints a table with a bar graph of the values.
  */
 function printBarGraph() {
+	global $_zp_db;
 	//$limit = $from_number.",".$to_number;
 	$bargraphmaxsize = 90;
 	$maxvalue = 0;
-	$items = query_full_array("SELECT `aux`,`data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
+	$items = $_zp_db->queryFullArray("SELECT `aux`,`data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
 	$items = sortMultiArray($items, 'data', true, true, false, false);
 	if ($items) {
 		$maxvalue = $items[0]['data'];
@@ -64,7 +63,7 @@ function printBarGraph() {
 				$countlines++;
 			}
 			$outdated = '';
-			if (!file_exists(internalToFilesystem($item['aux']))) {
+			if (!file_exists(internalToFilesystem($item['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($item['aux']))) {
 				$outdated = ' class="unpublished_item"';
 			}
 			?>
@@ -74,7 +73,13 @@ function printBarGraph() {
 				</td>
 				<td class="statistic_title" <?php echo $style; ?>>
 					<strong<?php echo $outdated; ?>>
-						<?php echo html_encode($item['aux']); ?>
+					<?php
+					$album = "";
+					if (strpos($item['aux'], SERVERPATH) === false) { // it's an album
+						$album = " [" . gettext('Album') . "]";
+					}
+					echo html_encode($item['aux'] . $album);
+					?>
 					</strong>
 				</td>
 				<td class="statistic_graphwrap" <?php echo $style; ?>>
@@ -105,12 +110,12 @@ echo '</head>';
 				<?php
 				if (isset($_GET['removeoutdateddownloads'])) {
 					XSRFdefender('removeoutdateddownloads');
-					$sql = "SELECT * FROM " . prefix('plugin_storage') . " WHERE `type`='downloadList'";
-					$result = query_full_array($sql);
+					$sql = "SELECT * FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type`='downloadList'";
+					$result = $_zp_db->queryFullArray($sql);
 					if ($result) {
 						foreach ($result as $row) {
-							if (!file_exists(internalToFilesystem($row['aux']))) {
-								query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
+							if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($row['aux']))) {
+								$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 							}
 						}
 					}
@@ -118,8 +123,8 @@ echo '</head>';
 				}
 				if (isset($_GET['removealldownloads'])) {
 					XSRFdefender('removealldownloads');
-					$sql = "DELETE FROM " . prefix('plugin_storage') . ' WHERE `type`="downloadList"';
-					query($sql);
+					$sql = "DELETE FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="downloadList"';
+					$_zp_db->query($sql);
 					echo '<p class="messagebox fade-message">' . gettext('All download file entries cleared from the database') . '</p>';
 				}
 				?>

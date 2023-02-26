@@ -2,10 +2,9 @@
 /**
  * Form for registering users
  *
- * @package plugins
- * @subpackage users
+ * @package zpcore\plugins\registeruserform
  */
-Zenphoto_Authority::printPasswordFormJS();
+Authority::printPasswordFormJS();
 $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 ?>
 <div id="registration_form">
@@ -42,7 +41,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			<?php
 		}
 		if (extensionEnabled('userAddressFields')) {
-			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'));
+			$address = getSerializedArray(zp_getCookie('reister_user_form_addresses'), true);
 			if (empty($address)) {
 				$address = array('street' => '', 'city' => '', 'state' => '', 'country' => '', 'postal' => '', 'website' => '');
 			}

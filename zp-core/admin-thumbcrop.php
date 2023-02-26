@@ -1,27 +1,29 @@
 <?php
+/**
+ * @package zpcore\admin
+ */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(dirname(__FILE__) . '/functions-image.php');
+require_once(dirname(__FILE__) . '/functions/functions-image.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
-$subpage = sanitize($_REQUEST['subpage']);
+$pagenumber = sanitize($_REQUEST['pagenumber']);
 $tagsort = sanitize($_REQUEST['tagsort']);
 
-$albumobj = newAlbum($albumname);
+$albumobj = AlbumBase::newAlbum($albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	}
 }
 
 // get what image side is being used for resizing
 $use_side = getOption('image_use_side');
 // get full width and height
-$imageobj = newImage($albumobj, $imagename);
+$imageobj = Image::newImage($albumobj, $imagename);
 $currentthumbimage = $imageobj->getThumb();
 setOption('image_use_side', 'longest', false);
 $cropwidth = getOption("thumb_crop_width");
@@ -29,28 +31,28 @@ $cropheight = getOption("thumb_crop_height");
 $imagepart = $imagename;
 
 
-if (isImagePhoto($imageobj)) {
+if ($imageobj->isPhoto()) {
 	$width = $imageobj->getWidth();
 	$height = $imageobj->getHeight();
 } else {
 	$imgpath = $imageobj->getThumbImageFile();
 	$imagepart = basename($imgpath);
-	$timg = zp_imageGet($imgpath);
-	$width = zp_imageWidth($timg);
-	$height = zp_imageHeight($timg);
+	$timg = $_zp_graphics->imageGet($imgpath);
+	$width = $_zp_graphics->imageWidth($timg);
+	$height = $_zp_graphics->imageHeight($timg);
 }
 if (getOption('thumb_crop')) {
 	$thumbcropwidth = $cropwidth;
 	$thumbcropheight = $cropheight;
 } else {
-	if (isImagePhoto($imageobj)) {
+	if ($imageobj->isPhoto(j)) {
 		$thumbcropwidth = $imageobj->getWidth();
 		$thumbcropheight = $imageobj->getHeight();
 	} else {
 		$imgpath = $imageobj->getThumbImageFile();
 		$imagepart = basename($imgpath);
-		$thumbcropwidth = zp_imageWidth($timg);
-		$thumbcropheight = zp_imageHeight($timg);
+		$thumbcropwidth = $_zp_graphics->imageWidth($timg);
+		$thumbcropheight = $_zp_graphics->imageHeight($timg);
 	}
 	$tsize = getOption('thumb_size');
 	$max = max($thumbcropwidth, $thumbcropheight);
@@ -148,18 +150,17 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->set('thumbY', $cy);
 	$imageobj->set('thumbW', $cw);
 	$imageobj->set('thumbH', $ch);
+	$imageobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 	$imageobj->save();
 
-	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&subpage=' . html_encode(sanitize($_REQUEST['subpage'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
-	exitZP();
+	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&pagenumber=' . html_encode(sanitize($_REQUEST['pagenumber'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . $return);
 }
 printAdminHeader('edit', 'thumbcrop');
 ?>
-<script src="js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
-<script type="text/javascript" >
-	//<!-- <![CDATA[
+<script src="js/jcrop/js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
+<script>
 	var jcrop_api;
 	jQuery(window).load(function() {
 		initJcrop();
@@ -214,8 +215,6 @@ printAdminHeader('edit', 'thumbcrop');
 	function checkCoords() {
 		return true;
 	}
-	;
-	// ]]> -->
 </script>
 </head>
 <body>
@@ -227,7 +226,7 @@ printAdminHeader('edit', 'thumbcrop');
 			<h1><?php echo gettext("Custom thumbnail cropping") . ": <em>" . $albumobj->name . " (" . $albumobj->getTitle() . ") /" . $imageobj->filename . " (" . $imageobj->getTitle() . ")</em>"; ?></h1>
 			<p><?php echo gettext("You can change the portion of your image which is shown in thumbnails by cropping it here."); ?></p>
 			<div style="display:block">
-				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px;  margin-bottom: 10px;">
+				<div style="float: left; width:<?php echo $thumbcropwidth; ?>px; text-align: center;margin-right: 18px; margin-bottom: 10px;">
 					<img src="<?php echo html_encode(pathurlencode($currentthumbimage)); ?>" style="width:<?php echo $thumbcropwidth; ?>px;height:<?php echo $thumbcropheight; ?>px; border: 4px solid gray; float: left"/>
 					<?php echo gettext("current thumbnail"); ?>
 				</div>
@@ -247,18 +246,18 @@ printAdminHeader('edit', 'thumbcrop');
 						<input type="hidden" size="4" id="x2" name="x2" value="<?php echo $iX + $iW ?>" />
 						<input type="hidden" size="4" id="y2" name="y2" value="<?php echo $iY + $iH ?>" />
 						<input type="hidden" size="4" id="w" name="w" value="<?php echo $iW ?>" />
-						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>"  />
+						<input type="hidden" size="4" id="h" name="h" value="<?php echo $iH ?>" />
 						<input type="hidden" id="cropw" name="cropw" value="<?php echo $cropwidth; ?>" />
 						<input type="hidden" id="croph" name="croph" value="<?php echo $cropheight; ?>" />
 						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
 						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
 						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+						<input type="hidden" id="pagenumber" name="pagenumber" value="<?php echo html_encode($pagenumber); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<?php
 						if (getOption('thumb_crop')) {
 							?>
-							<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
+							<input name="clear_crop" id="clear_crop" type="checkbox" value="1" onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping"); ?><br />
 							<br />
 							<p class="buttons">
 								<button type="button" onclick="resetBoundingBox();" >
@@ -268,7 +267,7 @@ printAdminHeader('edit', 'thumbcrop');
 									<img src="images/pass.png" alt="" />
 									<strong><?php echo gettext("Apply"); ?></strong>
 								</button>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = 'admin-edit.php?page=edit&album=<?php echo html_encode(pathurlencode($albumname)); ?>&pagenumber=<?php echo html_encode($pagenumber); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="images/arrow_left_blue_round.png" alt="" />
 									<strong><?php echo gettext("Back"); ?></strong>
 								</button>
@@ -291,15 +290,13 @@ printAdminHeader('edit', 'thumbcrop');
 				</div>
 
 				<!-- set the initial view for the preview -->
-				<script type="text/javascript" >
-					// <!-- <![CDATA[
+				<script>
 					jQuery('#preview').css({
 						width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',
 						height: '<?php echo round($cropheight / $iH * $sizedheight); ?>px',
 						marginLeft: '-<?php echo round($cropwidth / $iW * $iX); ?>px',
 						marginTop: '-<?php echo round($cropheight / $iH * $iY); ?>px'
 					});
-					// ]]> -->
 				</script>
 				<br style="clear: both" />
 			</div><!-- block -->

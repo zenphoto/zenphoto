@@ -5,8 +5,7 @@
  * for more robust SPAM filters.
  * 
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage trivialspam
+ * @package zpcore\plugins\trivialspam
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Trivial SPAM filter.");

@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -27,7 +27,7 @@ if (!defined('WEBPATH'))
 					<span>
 						<?php printHomeLink('', ' | '); printGalleryIndexURL(' | ', getGalleryTitle()); printParentBreadcrumb(); ?>
 					</span>
-					<?php printAlbumTitle(); ?>
+					<?php printAlbumTitle(); printCurrentPageAppendix(); ?>
 				</h2>
 			</div>
 			<div id="padbox">
@@ -64,11 +64,11 @@ if (!defined('WEBPATH'))
 					printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");
 					if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
 					printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
-					@call_user_func('printOpenStreetMap');
-					@call_user_func('printGoogleMap');
-					@call_user_func('printSlideShowLink');
-					@call_user_func('printRating');
-					@call_user_func('printCommentForm');
+					callUserFunction('openStreetMap::printOpenStreetMap');
+					callUserFunction('printGoogleMap');
+					callUserFunction('printSlideShowLink');
+					callUserFunction('printRating');
+					callUserFunction('printCommentForm');
 				?>
 			</div>
 		</div>

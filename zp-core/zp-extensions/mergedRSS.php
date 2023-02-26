@@ -13,8 +13,7 @@
  * But be aware that hijacking content from sites that are not your own may be a violation of applicable laws!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage mergedrss
+ * @package zpcore\plugins\mergedrss
  */
 $plugin_description = gettext("Merges several RSS feeds into one.");
 $plugin_author = "Malte Müller (acrylian)";
@@ -162,14 +161,14 @@ class MergedRSS {
       $xml .= "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n";
       $xml .= "<channel>\n";
       if (isset($this->myTitle)) {
-        $xml .= "\t<title>" . $this->myTitle . "</title>\n";
+        $xml .= "\t<title>" . html_encode($this->myTitle) . "</title>\n";
       }
       $xml .= "\t<atom:link href=\"" . PROTOCOL . ':/' . WEBPATH . '/index.php?mergedrss' . "\" rel=\"self\" type=\"application/rss+xml\" />\n";
       if (isset($this->myLink)) {
         $xml .= "\t<link>" . $this->myLink . "</link>\n";
       }
       if (isset($this->myDescription)) {
-        $xml .= "\t<description>" . $this->myDescription . "</description>\n";
+        $xml .= "\t<description>" . html_encode($this->myDescription) . "</description>\n";
       }
       if (isset($this->myPubDate)) {
         $xml .= "\t<pubDate>" . $this->myPubDate . "</pubDate>\n";

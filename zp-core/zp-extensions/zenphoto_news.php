@@ -4,13 +4,13 @@
  * An adaption of RSS Extractor and Displayer	(c) 2007-2009  Scriptol.com - License Mozilla 1.1.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenphoto-news
+ * @package zpcore\plugins\zenphotonews
  */
 $plugin_is_filter = 7 | ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
+$plugin_notice = gettext('Privacy note: This plugin performs external checks for new releases using the RSS feed from zenphoto.org. No data from your install is submitted or collected.');
 $plugin_category = gettext('Admin');
 $option_interface = 'zenphoto_org_news';
 
@@ -38,7 +38,7 @@ function printNews() {
 		if (is_connected()) {
 			require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-			$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&withimages");
+			$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&withimages");
 			if ($recents) {
 				$opened = false;
 				$recents = array_slice($recents, 1, 5);
@@ -97,7 +97,7 @@ function printNews() {
 		} else {
 			?>
 			<ul>
-				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'), 'http://www.zenphoto.org/index.php?rss=news&withimages'); ?></li>
+				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'), 'https://www.zenphoto.org/index.php?rss=news&withimages'); ?></li>
 			</ul>
 			<?php
 		}

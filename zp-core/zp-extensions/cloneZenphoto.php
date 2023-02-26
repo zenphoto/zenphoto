@@ -16,8 +16,7 @@
  * remove the setup scripts until you have cloned and installed all desired destinations.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage clonezenphoto
+ * @package zpcore\plugins\clonezenphoto
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
@@ -26,7 +25,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 $plugin_disable = (SYMLINK)?(hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.'):gettext('Your server does not support symbolic linking.');
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/functions/functions-reconfigure.php');
 if (!$plugin_disable) {
 	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
 }

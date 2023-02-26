@@ -15,14 +15,16 @@
 	if (!zp_loggedin() && function_exists('printRegisterURL')) {
 		printRegisterURL(gettext('Register for this site'), '', ' | ');
 	}
-	@call_user_func('printUserLogin_out', '', ' | ');
-	printPrivacyPageLink(' | ', ' | '); 
+	callUserFunction('printUserLogin_out', '', ' | ');
+	
+	printPrivacyPageLink(' | ', ' | ');
 	printZenphotoLink(); 
+	printCopyrightNotice(' | ', '');
 	?>
 </div>
 <?php 
 
-@call_user_func('mobileTheme::controlLink'); 
-@call_user_func('printLanguageSelector'); 
+callUserFunction('mobileTheme::controlLink'); 
+callUserFunction('printLanguageSelector'); 
 zp_apply_filter('theme_body_close'); 
 ?>

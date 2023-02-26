@@ -2,7 +2,7 @@
 /**
  * Database quick reference
  *
- * @package admin
+ * @package zpcore\admin\utilities
  */
 
 define('OFFSET_PATH', 3);
@@ -12,7 +12,7 @@ require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
 $buttonlist[] = $mybutton = array(
 		'category' => gettext('Info'),
 		'enable' => true,
-		'button_text' => gettext('Database quick reference'),
+		'button_text' => gettext('Database info'),
 		'formname' => 'database_reference.php',
 		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php',
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',
@@ -30,7 +30,7 @@ if (isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Database') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Database') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/database_reference.php');
 printAdminHeader('overview','Database');
 
 ?>
@@ -75,31 +75,15 @@ h2 {
 	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like phpMyAdmin."); ?>
 </p>
 <?php
-$database_name = db_name();
-$prefix = trim(prefix(),'`');
-$resource = db_show('tables');
-if ($resource) {
-	$result = array();
-	while ($row = db_fetch_assoc($resource)) {
-		$result[] = $row;
-	}
-	db_free_result($resource);
-} else {
-	$result = false;
-}
-$tables = array();
-if (is_array($result)) {
-	foreach ($result as $row) {
-		$tables[] = array_shift($row);
-	}
-}
-//echo "<pre>"; print_r($tables); echo "</pre>";
+$database_name = $_zp_db->getDBName();
+$prefix = $_zp_db->getPrefix();
+$tables = $_zp_db->getTables();
 ?>
 <hr />
 <ul>
 <li>
 <?php
-$dbsoftware = db_software();
+$dbsoftware = $_zp_db->getSoftware();
 printf(gettext('%1$s version: <strong>%2$s</strong>'),$dbsoftware['application'],$dbsoftware['version']);
 ?>
 </li>
@@ -114,34 +98,65 @@ if(empty($prefix)) {
 ?>
 </li>
 </ul>
+<?php 
+if ($_zp_db->isUtf8System('database', 'any')) {
+	echo '<p class="messagebox">' . gettext('The database is UTF-8') . '</p>';
+} else {
+	echo '<p class="warningbox">' . gettext('The database is not UTF-8') . '</p>';
+}
+if ($_zp_db->isUtf8System('server', 'any')) {
+	echo '<p class="messagebox">' . gettext('The database server is UTF-8</p>') . '</p>';
+} else {
+	echo '<p class="warningbox">' . gettext('The database server is not UTF-8</p>') . '</p>';
+}
+?>
 <ul>
 <?php
-$result = db_show('variables','character_set%');
-if (is_array($result)) {
+$result = $_zp_db->getDBInfo('charsets');
+if ($result) {
 	foreach ($result as $row) {
 	?>
 	<li><?php echo $row['Variable_name']; ?>: <strong><?php echo $row['Value']; ?></strong></li>
 	<?php
 	}
 }
-//echo "<pre>"; print_r($result); echo "</pre>";
+
 ?>
 </ul>
 <ul>
 <?php
-$result = db_show('variables','collation%');
-if (is_array($result)) {
+$result = $_zp_db->getDBInfo('collations');
+if ($result) {
 	foreach ($result as $row) {
 	?>
 	<li><?php echo $row['Variable_name']; ?>: <strong><?php echo $row['Value']; ?></strong></li>
 	<?php
 	}
 }
-//echo "<pre>"; print_r($result); echo "</pre>";
 ?>
 </ul>
+<?php
+if ($tables) {
+	$non_utf8_tables = array();
+	foreach ($tables as $table) {
+		if (!$_zp_db->isUTF8Table($table, 'any')) {
+			$non_utf8_tables[] = $table;
+		}
+	}
+	if ($non_utf8_tables) {
+		echo '<div class="warningbox">';
+		echo '<p>' . gettext('The following tables are not UTF-8.') . '</p>';
+		echo '<ul>';
+		foreach ($non_utf8_tables as $non_utf8_table) {
+			echo '<li>' . $non_utf8_table . '</li>';
+		}
+		echo '</ul>';
+		echo '</div>';
+	}
+}
+?>
 <hr />
-<script type="text/javascript">
+<script>
 function toggleRow(id) {
 	if ($('#'+id).is(":visible")) {
 		$('#'+id+'_k').hide();
@@ -162,7 +177,7 @@ foreach($tables as $table) {
 	<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
 		<tr>
 			<?php
-			$cols = $tablecols = db_list_fields($table);
+			$cols = $tablecols = $_zp_db->getFields($table);
 			$cols = array_shift($cols);
 			foreach ($cols as $col=>$value) {
 				 ?>
@@ -201,8 +216,8 @@ foreach($tables as $table) {
 	 ?>
  </table>
 	<?php
-	$sql = 'SHOW KEYS FROM '.prefix($table);
-	$result = query_full_array($sql);
+	$sql = 'SHOW KEYS FROM '.$_zp_db->prefix($table);
+	$result = $_zp_db->queryFullArray($sql);
 	$nest = '';
 	?>
 	<div style="width:40%">

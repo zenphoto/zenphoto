@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package zpcore\plugins\menumanager
+ */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 if (extensionEnabled('zenpage')) {
@@ -48,25 +51,32 @@ $menuset = checkChosenMenuset();
 				echo $report;
 			}
 			?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
+			<script>
 				function handleSelectorChange(type) {
 					$('#add,#titlelabel,#link_row,#link,#link_label,#visible_row,#show_visible,#span_row').show();
 					$('#include_li_label').hide();
 					$('#type').val(type);
 					$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 					$('#titlelabel').html('<?php echo js_encode(gettext('Title')); ?>');
-					$('#XSRFToken').val('<?php echo getXSRFToken('update_menu'); ?>');
+					$('#XSRFTokenupdate_menu').val('<?php echo getXSRFToken('update_menu'); ?>');
 					switch (type) {
 						case 'all_items':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All menu items")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('This adds menu items for all Zenphoto objects. (It creates a "default" menuset.)')); ?>');
 							break;
+						case "homepage":
+							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
+							$('#selector').html('<?php echo js_encode(gettext("Home page")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto home page. This may also be the gallery index if you have no separate gallery index page defined.")); ?>');
+							$('#link').attr('disabled', true);
+							$('#titleinput').show();
+							$('#link').val('<?php echo WEBPATH; ?>/');
+							break;	
 						case "galleryindex":
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Gallery index")); ?>');
-							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page.")); ?>');
+							$('#description').html('<?php echo js_encode(gettext("This is the normal Zenphoto gallery Index page. It may also be the home page if you have no separate gallery index page defined.")); ?>');
 							$('#link').attr('disabled', true);
 							$('#titleinput').show();
 							$('#link').val('<?php echo WEBPATH; ?>/');
@@ -128,7 +138,7 @@ $menuset = checkChosenMenuset();
 							});
 							break;
 						case 'custompage':
-							$('#albumselector,#pageselector,#categoryselector,#link,').hide();
+							$('#albumselector,#pageselector,#categoryselector, #link').hide();
 							$('#custompageselector').show();
 							$('#selector').html('<?php echo js_encode(gettext("Custom page")); ?>');
 							$('#description').html('<?php echo js_encode(gettext('Creates a link to a custom theme page as described in the theming tutorial.')); ?>');
@@ -147,6 +157,7 @@ $menuset = checkChosenMenuset();
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("Label")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("Creates a <em>label</em> to use in menu structures).")); ?>');
+							$("#link").attr('disabled', true);
 							$('#titleinput').show();
 							break;
 						case 'menufunction':
@@ -173,10 +184,8 @@ $menuset = checkChosenMenuset();
 							break;
 					}
 				}
-				//]]> -->
 			</script>
-			<script type="text/javascript">
-				//<!-- <![CDATA[
+			<script>
 				$(document).ready(function() {
 <?php
 if (is_array($result)) {
@@ -195,7 +204,6 @@ if (is_array($result)) {
 						handleSelectorChange($(this).val());
 					});
 				});
-				//]]> -->
 			</script>
 			<h1>
 				<?php
@@ -241,6 +249,7 @@ if (is_array($result)) {
 					<select id="typeselector" name="typeselector">
 						<option value=""><?php echo gettext("*Select the type of the menus item you wish to add*"); ?></option>
 						<option value="all_items"><?php echo gettext("All menu items"); ?></option>
+						<option value="homepage"><?php echo gettext("Home page"); ?></option>
 						<option value="galleryindex"><?php echo gettext("Gallery index"); ?></option>
 						<option value="all_albums"><?php echo gettext("All Albums"); ?></option>
 						<option value="album"><?php echo gettext("Album"); ?></option>
@@ -265,13 +274,12 @@ if (is_array($result)) {
 				} else {
 					$add = '&amp;update';
 				}
+				if ($menuset) {
+					$add .= '&amp;menuset=' . $menuset; 
+				}
 				?>
-				<form class="dirty-check" method="post" id="add" name="add" autocomplete="off" action="menu_tab_edit.php?save<?php
-				echo $add;
-				if ($menuset)
-					echo '&amp;menuset=' . $menuset;
-				?>" style="display: none">
-							<?php XSRFToken('update_menu'); ?>
+				<form class="dirty-check" method="post" id="add" name="add" action="menu_tab_edit.php?save<?php echo $add; ?>" style="display: none" autocomplete="off">
+					<?php XSRFToken('update_menu'); ?>
 					<input type="hidden" name="update" id="update" value="<?php echo html_encode($action); ?>" />
 					<input type="hidden" name="id" id="id" value="<?php echo $id; ?>" />
 					<input type="hidden" name="link-old" id="link-old" value="<?php echo html_encode($link); ?>" />

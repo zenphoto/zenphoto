@@ -5,8 +5,7 @@
  * It uses a word black list and checks for excessive URLs
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage simplespam
+ * @package zpcore\plugins\simplespam
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Simple SPAM filter.");
@@ -154,6 +153,7 @@ class zpSimpleSpam {
 	}
 
 	function getWords($text, $notUnique = false) {
+		$text = strval($text);
 		if ($notUnique) {
 			return preg_split("/[\W]+/", strtolower(strip_tags($text)));
 		} else {

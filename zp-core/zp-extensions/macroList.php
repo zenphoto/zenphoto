@@ -60,8 +60,7 @@
  * <b>Note</b> the <var>spaces<var> after the <var>[<var> and before the <var>]<var> square brackets. They are used in these examples to prevent the code from actually executing. They should not be present in your real code.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage macrolist
+ * @package zpcore\plugins\macrolist
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('View available <code>content macros</code>.');
@@ -92,7 +91,7 @@ function macro_admin_tabs($tabs) {
 		}
 		$tabs['development']['subtabs'][gettext("macros")] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList/macroList_tab.php?page=macros&tab=' . gettext('macros');
 		$named = array_flip($tabs['development']['subtabs']);
-		natcasesort($named);
+		sortArray($named);
 		$tabs['development']['subtabs'] = $named = array_flip($named);
 		$tabs['development']['link'] = array_shift($named);
 		return $tabs;

@@ -1,4 +1,4 @@
-<script language="javascript" type="text/javascript">
+<script>
 /* tinyMCEPopup.requireLangPack(); */
 
 /* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
@@ -140,11 +140,11 @@ var ZenpageDialog = {
 		// getting the include type checkbox values
 		if($('#image').prop('checked')) {
 			if($('#fullimage').prop('checked')) {
-				includetype = '<img src=\''+fullimage+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+				includetype = '<img src=\''+fullimage+'\' alt=\''+imgtitle+'\' '+textwrap+' loading=\'lazy\' />';
 			} else if ($('#thumbnail').prop('checked')) {
-				includetype = '<img src=\''+thumburl+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+				includetype = '<img src=\''+thumburl+'\' alt=\''+imgtitle+'\' '+textwrap+' loading=\'lazy\' />';
 			} else {
-				includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+				includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' loading=\'lazy\' />';
 			}
 			if($('#showtitle').prop('checked') || $('#imagedesc').prop('checked') || $('#albumdesc').prop('checked')) {
 				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';

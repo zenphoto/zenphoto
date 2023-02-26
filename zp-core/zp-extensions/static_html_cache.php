@@ -21,14 +21,13 @@
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage static-html-cache
+ * @package zpcore\plugins\statichtmlcache
  */
 $plugin_is_filter = 400 | CLASS_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
-$option_interface = 'static_html_cache';
+$option_interface = 'staticHTMLCacheOptions';
 
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";
 if (!file_exists($cache_path)) {
@@ -50,8 +49,35 @@ if (OFFSET_PATH == 2) { //	clear the cache upon upgrade
 	static_html_cache::clearHTMLCache();
 }
 
-$_zp_HTML_cache = new static_html_cache();
+$_zp_html_cache = new static_html_cache();
 zp_register_filter('image_processor_uri', 'static_html_cache::_disable');
+
+class staticHTMLCacheOptions {
+
+	function __construct() {
+		setOptionDefault('static_cache_expire', 86400);
+		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
+	}
+
+	function getOptionsSupported() {
+		return array(
+				gettext('Static HTML cache expire') => array(
+						'key' => 'static_cache_expire',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
+				gettext('Excluded pages') => array(
+						'key' => 'static_cache_excludedpages',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.<br />") .
+						'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>')
+		);
+	}
+
+	function handleOption($option, $currentValue) {
+		
+	}
+
+}
 
 class static_html_cache {
 
@@ -85,16 +111,16 @@ class static_html_cache {
 				break;
 			case 'pages.php':
 				$obj = $_zp_current_zenpage_page;
-				$title = $_zp_current_zenpage_page->getTitlelink();
+				$title = $_zp_current_zenpage_page->getName();
 				break;
 			case 'news.php':
 				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 					$obj = $_zp_current_zenpage_news;
-					$title = $obj->getTitlelink();
+					$title = $obj->getName();
 				} else {
 					if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 						$obj = $_zp_current_category;
-						$title = $obj->getTitlelink();
+						$title = $obj->getName();
 					} else {
 						$obj = NULL;
 						$title = NULL;
@@ -116,7 +142,7 @@ class static_html_cache {
 		$accessType = checkAccess();
 		if ($accessType) {
 			if (is_numeric($accessType)) {
-				$accessType = 'zp_user_auth';
+				$accessType = 'zpcms_auth_user';
 			} else if ($accessType == 'zp_public_access' && count($_zp_authority->getAuthCookies()) > 0) {
 				$accessType .= '1'; // logged in some sense
 			}
@@ -266,20 +292,20 @@ class static_html_cache {
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
-				$cachefilepath .= 'page-' . $_zp_current_zenpage_page->getTitlelink();
+				$cachefilepath .= 'page-' . $_zp_current_zenpage_page->getName();
 				break;
 			case 'news.php':
 				$cachesubfolder = "news";
 				$cachefilepath .= 'news';
 				if (is_object($_zp_current_zenpage_news)) {
-					$title = "-" . $_zp_current_zenpage_news->getTitlelink();
+					$title = "-" . $_zp_current_zenpage_news->getName();
 				} 
 				if (!is_object($_zp_current_category) && !is_object($_zp_current_zenpage_news)) {
 					$cachefilepath .= '_sortype-' . $_zp_zenpage->getSortType();
 					$cachefilepath .= '_sortdir-' . $_zp_zenpage->getSortDirection();
 				}
 				if (is_object($_zp_current_category)) {
-					$category = "_cat-" . $_zp_current_category->getTitlelink();
+					$category = "_cat-" . $_zp_current_category->getName();
 					$category .= '_catsortype-' . $_zp_current_category->getSortType();
 					$category .= '_catsortdir-' . $_zp_current_category->getSortDirection();
 				} 
@@ -334,26 +360,11 @@ class static_html_cache {
 	 * call to disable caching a page
 	 */
 	static function disable() {
-		global $_zp_HTML_cache;
-		$_zp_HTML_cache->enabled = false;
+		global $_zp_html_cache;
+		$_zp_html_cache->enabled = false;
 	}
 
-	function static_html_cache_options() {
-		setOptionDefault('static_cache_expire', 86400);
-		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
-	}
-
-	function getOptionsSupported() {
-		return array(gettext('Static HTML cache expire')	 => array('key'	 => 'static_cache_expire', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).")),
-						gettext('Excluded pages')						 => array('key'	 => 'static_cache_excludedpages', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.")),
-		);
-	}
-
-	function handleOption($option, $currentValue) {
-
-	}
+	
 
 	/**
 	 * used to disable cashing when the uri is an image processor uri
@@ -361,8 +372,8 @@ class static_html_cache {
 	 * @return string
 	 */
 	static function _disable($uri) {
-		global $_zp_HTML_cache;
-		$_zp_HTML_cache->disable();
+		global $_zp_html_cache;
+		$_zp_html_cache->disable();
 		return $uri;
 	}
 

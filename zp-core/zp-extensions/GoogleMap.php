@@ -16,13 +16,18 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard), Vincent Bourganel (vincent3569)
- * @package plugins
- * @subpackage googlemap
+ * @package zpcore\plugins\googlemap
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> metadata in the images.');
-$plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'), 'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html');
+$plugin_notice = array(
+		gettext('Google Maps API key required.'),
+		sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'), 'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html'),
+		gettext('Privacy note: This plugin uses external third party sources')
+);
+				
 $plugin_author = 'Stephen Billard (sbillard), Vincent Bourganel (vincent3569)';
+$plugin_deprecated = true;
 $plugin_category = gettext('Misc');
 
 
@@ -81,45 +86,65 @@ class GoogleMap {
 		}
 
 		return array(
-						gettext('Allowed maps')									 => array('key'				 => 'gmap_allowed_maps', 'type'			 => OPTION_TYPE_CHECKBOX_ARRAY,
-										'order'			 => 1,
-										'checkboxes' => array(gettext('Hybrid')		 => 'gmap_map_hybrid',
-														gettext('Map')			 => 'gmap_map_roadmap',
-														gettext('Satellite') => 'gmap_map_satellite',
-														gettext('Terrain')	 => 'gmap_map_terrain'),
-										'desc'			 => gettext('Select the map types that are allowed.')),
-						gettext('Initial map display selection') => array('key'				 => 'gmap_starting_map', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 2,
-										'selections' => $MapTypes,
-										'desc'			 => gettext('Select the initial type of map to display.')),
-						gettext('Map display')									 => array('key'				 => 'gmap_display', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3,
-										'selections' => array(gettext('show')			 => 'show',
-														gettext('hide')			 => 'hide',
-														gettext('colorbox')	 => 'colorbox'),
-										'desc'			 => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
-						gettext('Map controls')									 => array('key'			 => 'gmap_control_type', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4,
-										'buttons'	 => array(gettext('None')				 => 'none',
-														gettext('Default')		 => 'DEFAULT',
-														gettext('Dropdown')		 => 'DROPDOWN_MENU',
-														gettext('Horizontal')	 => 'HORIZONTAL_BAR'),
-										'desc'		 => gettext('Display options for the Map type control.')),
-						gettext('Zoom controls')								 => array('key'			 => 'gmap_zoom_size', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 5,
-										'buttons'	 => array(gettext('Small')	 => 'SMALL',
-														gettext('Default') => 'DEFAULT',
-														gettext('Large')	 => 'LARGE'),
-										'desc'		 => gettext('Display options for the Zoom control.')),
-						gettext('Max zoom level')								 => array('key'		 => 'gmap_cluster_max_zoom', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('The max zoom level for clustering pictures on map.')),
-						gettext('Map sessions')									 => array('key'		 => 'gmap_sessions', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 9,
-										'desc'	 => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
-						gettext('API key')									 => array('key'		 => 'gmap_api_key', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 10,
-										'desc'	 => gettext('Enter your API key. You can get one <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#key">here</a>.'))
+				gettext('Allowed maps') => array(
+						'key' => 'gmap_allowed_maps', 
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 1,
+						'checkboxes' => array(
+								gettext('Hybrid') => 'gmap_map_hybrid',
+								gettext('Map') => 'gmap_map_roadmap',
+								gettext('Satellite') => 'gmap_map_satellite',
+								gettext('Terrain') => 'gmap_map_terrain'),
+						'desc' => gettext('Select the map types that are allowed.')),
+				gettext('Initial map display selection') => array(
+						'key' => 'gmap_starting_map', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 2,
+						'selections' => $MapTypes,
+						'desc' => gettext('Select the initial type of map to display.')),
+				gettext('Map display') => array(
+						'key' => 'gmap_display', 
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3,
+						'selections' => array(
+								gettext('show') => 'show',
+								gettext('hide') => 'hide',
+								gettext('colorbox') => 'colorbox'),
+						'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
+				gettext('Map controls') => array(
+						'key' => 'gmap_control_type', 
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 4,
+						'buttons' => array(
+								gettext('None') => 'none',
+								gettext('Default') => 'DEFAULT',
+								gettext('Dropdown') => 'DROPDOWN_MENU',
+								gettext('Horizontal') => 'HORIZONTAL_BAR'),
+						'desc' => gettext('Display options for the Map type control.')),
+				gettext('Zoom controls') => array(
+						'key' => 'gmap_zoom_size', 
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 5,
+						'buttons' => array(
+								gettext('Small') => 'SMALL',
+								gettext('Default') => 'DEFAULT',
+								gettext('Large') => 'LARGE'),
+						'desc' => gettext('Display options for the Zoom control.')),
+				gettext('Max zoom level') => array(
+						'key' => 'gmap_cluster_max_zoom', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 6,
+						'desc' => gettext('The max zoom level for clustering pictures on map.')),
+				gettext('Map sessions') => array(
+						'key' => 'gmap_sessions', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceeding the allowed by some browsers.')),
+				gettext('API key') => array(
+						'key' => 'gmap_api_key', 
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 10,
+						'desc' => gettext('Enter your API key. You can get one <a href="https://developers.google.com/maps/documentation/javascript/get-api-key#key">here</a>.'))
 		);
 	}
 
@@ -149,9 +174,9 @@ class GoogleMap {
 			$url_appendix = implode('&amp;', $parameters);
 		}
 		?>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?<?php echo $url_appendix; ?>"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/markerClustererPlus/markerclusterer.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/overlappingMarkerSpiderfier/oms.min.js"></script>
 		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/GoogleMap/googleMap.css" type="text/css" media="screen"/>
 		<?php
 	}
@@ -211,28 +236,18 @@ function omsAdditions() {
 function getGeoCoord($image) {
 	global $_zp_current_image;
 	$result = false;
-	if (isImageClass($image)) {
-		$_zp_current_image = $image;
-		$exif = $_zp_current_image->getMetaData();
-		if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
-			$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
-			$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLatitudeRef']{0}) == 'S') {
-				$lat_f = -$lat_f;
-			}
-
-			$long_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLongitude']) . '.0');
-			$long_f = round((float) abs($long_c[0]) + ($long_c[1] / pow(10, strlen($long_c[1]))), 12);
-			if (strtoupper(@$exif['EXIFGPSLongitudeRef']{0}) == 'W') {
-				$long_f = -$long_f;
-			}
-
-			$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" /></a>';
-
-			$result = array('lat' => $lat_f, 'long' => $long_f, 'title' => $_zp_current_image->getTitle(), 'desc' => $_zp_current_image->getDesc(), 'thumb' => $thumb);
-		}
+	$_zp_current_image = $image;
+	$gps = $_zp_current_image->getGeodata();
+	if ($gps) {
+		$thumb = '<a href="javascript:image(\'' . $_zp_current_image->albumname . '\',\'' . $_zp_current_image->filename . '\');"><img src="' . getCustomImageURL(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . '" loading="lazy"/></a>';
+		$result = array(
+				'lat' => $gps['lat'],
+				'long' => $gps['long'],
+				'title' => $_zp_current_image->getTitle(),
+				'desc' => $_zp_current_image->getDesc(),
+				'thumb' => $thumb
+		);
 	}
-
 	return $result;
 }
 
@@ -294,7 +309,7 @@ function getAlbumGeodata($album, $map) {
 	$result = false;
 	$images = $album->getImages(0, 0, null, null, false);
 	foreach ($images as $an_image) {
-		$image = newImage($album, $an_image);
+		$image = Image::newImage($album, $an_image);
 		$coord = getGeoCoord($image);
 		if ($coord) {
 			$result = true; // at least one image has geodata
@@ -420,7 +435,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 	}
 
 	if (!is_null($callback)) {
-		call_user_func($callback, $map);
+		callUserFunction($callback, $map);
 	}
 
 	/* map display */
@@ -434,8 +449,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		case 'show':
 			$map->create_map();
 			?>
-			<script type="text/javascript">
-				//<![CDATA[
+			<script>
 			<?php
 			echo $map->output_js_contents;
 			echo omsAdditions();
@@ -444,7 +458,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				function image(album, image) {
 					window.location = '<?php echo WEBPATH ?>/index.php?album=' + album + '&image=' + image;
 				}
-				//]]>
 			</script>
 			<div id="<?php echo $id_data; ?>">
 				<?php echo $map->output_html; ?>
@@ -454,8 +467,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 		case 'hide':
 			$map->create_map();
 			?>
-			<script type="text/javascript">
-				//<![CDATA[
+			<script>
 			<?php
 			echo $map->output_js_contents;
 			echo omsAdditions();
@@ -471,12 +483,13 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 						var center = map.getCenter();
 						google.maps.event.trigger(map, "resize");
 						map.setCenter(center);
+    				<?php if ( $map->zoom == 'auto' ) { ?>
     					fitMapToBounds();
+    				<?php } ?>
 					} else {
 						$('#<?php echo $id_data; ?>').addClass('hidden_map');
 					}
 				}
-				//]]>
 			</script>
 			<a id="<?php echo $id_toggle; ?>" href="javascript:toggle_<?php echo $id_data; ?>();" title="<?php echo gettext('Display or hide the Google Map.'); ?>">
 				<?php echo $text; ?>
@@ -508,8 +521,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/GoogleMap/Map.php' . $param ?>" title="<?php echo $text; ?>" class="google_map">
 					<?php echo $text; ?>
 				</a>
-				<script type="text/javascript">
-					//<![CDATA[
+				<script>
 					$(document).ready(function() {
 						$(".google_map").colorbox({
 							iframe: true,
@@ -521,7 +533,6 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 							}
 						});
 					});
-					//]]>
 				</script>
 				<?php
 			}

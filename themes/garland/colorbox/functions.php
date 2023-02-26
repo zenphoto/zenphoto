@@ -22,8 +22,7 @@ class ga_colorbox {
 
 	function theme_head($_zp_themeroot) {
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			$(document).ready(function() {
 				$("a.thickbox").colorbox({
 					maxWidth: "98%",
@@ -32,7 +31,6 @@ class ga_colorbox {
 					close: '<?php echo gettext("close"); ?>'
 				});
 			});
-			// ]]> -->
 		</script>
 		<?php
 	}
@@ -59,7 +57,7 @@ class ga_colorbox {
 				<div class="image">
 					<div class="imagethumb">
 						<?php
-						if (isImagePhoto()) {
+						if ($_zp_current_image->isPhoto()) {
 							// colorbox is only for real images
 							$link = html_encode(getDefaultSizedImage()) . '" class="thickbox"';
 						} else {
@@ -76,7 +74,7 @@ class ga_colorbox {
 		</div>
 		<br class="clearall" />
 		<?php
-		@call_user_func('printSlideShowLink');
+		callUserFunction('printSlideShowLink');
 	}
 
 }

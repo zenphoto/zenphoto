@@ -4,7 +4,7 @@ if (!defined('WEBPATH'))
 if (class_exists('favorites')) {
 	?>
 	<!DOCTYPE html>
-	<html>
+	<html<?php printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php zp_apply_filter('theme_head'); ?>
@@ -48,12 +48,12 @@ if (class_exists('favorites')) {
 											while (next_album()) {
 												?>
 												<div class="album">
-													<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+													<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
 														<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
 													</a>
 													<div class="albumdesc">
 														<h3>
-															<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+															<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
 																<?php printAlbumTitle(); ?>
 															</a>
 														</h3>
@@ -85,10 +85,10 @@ if (class_exists('favorites')) {
 											?>
 										</div>
 										<br class="clearall" />
-										<?php @call_user_func('printSlideShowLink'); ?>
+										<?php callUserFunction('printSlideShowLink'); ?>
 										<?php
-										if ((getNumAlbums() != 0) || !$_oneImagePage) {
-											printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
+										if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
+											printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);
 										}
 										?>
 										<?php
@@ -114,7 +114,7 @@ if (class_exists('favorites')) {
 								if ($nextalbum) {
 									?>
 									<div id="nextalbum" class="slides">
-										<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getThumb())); ?>" /></a>
+										<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode(pathurlencode($nextalbum->getThumb())); ?>" loading="lazy" /></a>
 									</div>
 									<br />
 									<?php
@@ -122,7 +122,7 @@ if (class_exists('favorites')) {
 								if ($prevalbum) {
 									?>
 									<div id="prevalbum" class="slides">
-										<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getThumb())); ?>" /></a>
+										<a href="<?php echo html_encode(getPrevAlbumURL()); ?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode(pathurlencode($prevalbum->getThumb())); ?>" loading="lazy" /></a>
 									</div>
 									<?php
 								}

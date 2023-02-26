@@ -2,8 +2,7 @@
 /**
  * user_groups plugin--tabs
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage users
+ * @package zpcore\plugins\userexpiry
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
@@ -31,7 +30,7 @@ if (isset($_GET['action'])) {
 	if ($action == 'expiry') {
 		foreach ($_POST as $key => $action) {
 			if (strpos($key, 'r_') === 0) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => str_replace('r_', '', postIndexDecode($key))));
+				$userobj = Authority::getAnAdmin(array('`id`=' => str_replace('r_', '', postIndexDecode($key))));
 				if ($userobj) {
 					switch ($action) {
 						case 'delete':
@@ -39,10 +38,12 @@ if (isset($_GET['action'])) {
 							break;
 						case 'disable':
 							$userobj->setValid(2);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'enable':
 							$userobj->setValid(1);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'renew':
@@ -52,10 +53,12 @@ if (isset($_GET['action'])) {
 							}
 							$userobj->setDateTime(date('Y-m-d H:i:s', $newdate));
 							$userobj->setValid(1);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'force':
 							$userobj->set('passupdate', NULL);
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 							$userobj->save();
 							break;
 						case 'revalidate':
@@ -71,8 +74,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied=' . $msg);
-		exitZP();
+		redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied=' . $msg);
 	}
 }
 
@@ -133,11 +135,14 @@ echo '</head>' . "\n";
 								$checked_delete = $checked_disable = $checked_renew = $dup = '';
 								$expires = strtotime($user['date']) + $subscription;
 								$expires_display = date('Y-m-d', $expires);
-								$loggedin = $user['loggedin'];
-								if (empty($loggedin)) {
-									$loggedin = gettext('never');
+								if (isset($user['loggedin'])) {
+									if (empty($user['loggedin'])) {
+										$loggedin = gettext('never');
+									} else {
+										$loggedin = date('Y-m-d', strtotime($user['loggedin']));
+									}
 								} else {
-									$loggedin = date('Y-m-d', strtotime($loggedin));
+									$loggedin = gettext('never');
 								}
 								if ($subscription) {
 									if ($expires < $now) {

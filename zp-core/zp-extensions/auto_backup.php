@@ -2,7 +2,10 @@
 
 /**
  * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
- * insure that database backups are done on a regular basis.
+ * insure that 
+ * database backups are done on a regular basis. 
+ * 
+ * Note that this is not a backup of the database itself but the contents only.
  * 
  * The backups are stored within the /backup folder in the root of your install.
  *
@@ -16,11 +19,10 @@
  * Backups are run under the master administrator authority.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage auto-backup
+ * @package zpcore\plugins\autobackup
  */
 $plugin_is_filter = 2 | ADMIN_PLUGIN | THEME_PLUGIN;
-$plugin_description = gettext("Periodically backup the Zenphoto database.");
+$plugin_description = gettext("Periodically backup the Zenphoto database content.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 
@@ -85,7 +87,7 @@ class auto_backup {
 	 */
 	static function timer_handler($discard) {
 		$curdir = getcwd();
-		$folder = SERVERPATH . "/" . BACKUPFOLDER;
+		$folder = getBackupFolder(SERVERPATH);
 		if (!is_dir($folder)) {
 			mkdir($folder, FOLDER_MOD);
 		}
@@ -101,8 +103,10 @@ class auto_backup {
 		$keep = getOption('backups_to_keep');
 		while (count($list) >= $keep) {
 			$file = array_shift($list);
-			@chmod(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file, 0777);
-			unlink(SERVERPATH . "/" . BACKUPFOLDER . '/' . $file);
+			@chmod(getBackupFolder(SERVERPATH) . $file, 0777);
+			if (file_exists(getBackupFolder(SERVERPATH) . $file)) {
+				unlink(getBackupFolder(SERVERPATH) . $file);
+			}
 		}
 		cron_starter(SERVERPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/backup_restore.php', array('backup' => 1, 'autobackup' => 1, 'compress' => sprintf('%u', getOption('backup_compression')), 'XSRFTag' => 'backup'), 3
 		);

@@ -3,8 +3,7 @@
  * Declares example macros
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage examplemacros
+ * @package zpcore\plugins\examplemacros
  */
 $plugin_is_filter = 5 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext("Adds example macros.");

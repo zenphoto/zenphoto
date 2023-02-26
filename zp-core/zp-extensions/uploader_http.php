@@ -5,8 +5,7 @@
  * This plugin provides an HTTP based image upload handler for the <i>upload/images</i> admin tab.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage uploader-http
+ * @package zpcore\plugins\uploaderhttp
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -37,7 +36,7 @@ function httpUploadHandler_admin_tabs($tabs) {
 				'subtabs' => NULL);
 	}
 	$tabs['upload']['subtabs'][$me] = $mylink;
-	if (zp_getcookie('uploadtype') == 'http')
+	if (zp_getcookie('zpcms_admin_uploadtype') == 'http')
 		$tabs['upload']['link'] = $mylink;
 	return $tabs;
 }

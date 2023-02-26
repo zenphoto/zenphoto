@@ -2,10 +2,12 @@
 
 /**
  * Root-level include that handles all user requests.
- * @package core
+ * @package zpcore
  */
 
 // force UTF-8 Ø
+maintenanceMode::loadPlaceholderPage();
+redirectionHandler();
 
 /*** Request Handler **********************
  ******************************************/
@@ -14,7 +16,7 @@
 // the context. All that is done in functions-controller.php.
 
 zp_load_gallery();	//	load the gallery and set the context to be on the front-end
-$zp_request = zp_load_request();
+$_zp_request = zp_load_request();
 // handle any passwords that might have been posted
 if (!zp_loggedin()) {
 	zp_handle_password();
@@ -30,5 +32,4 @@ $_zp_comment_error = zp_apply_filter('handle_comment', false);
 // This is mostly helpful for SEO, but also for users. Consistent URLs are a Good Thing.
 
 fix_path_redirect();
-
-?>
+httpsRedirect('frontend');

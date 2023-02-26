@@ -1,7 +1,7 @@
 <?php
 /**
  * This script is used to create dynamic albums from a search.
- * @package core
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
@@ -11,29 +11,14 @@ require_once(dirname(__FILE__) . '/template-functions.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
-$imagelist = array();
-
-function getSubalbumImages($folder) {
-	global $imagelist, $_zp_gallery;
-	$album = newAlbum($folder);
-	if ($album->isDynamic())
-		return;
-	$images = $album->getImages();
-	foreach ($images as $image) {
-		$imagelist[] = '/' . $folder . '/' . $image;
-	}
-	$albums = $album->getAlbums();
-	foreach ($albums as $folder) {
-		getSubalbumImages($folder);
-	}
-}
+$_zp_admin_imagelist = array();
 
 $search = new SearchEngine(true);
 if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	if ($album = sanitize($_POST['albumselect'])) {
-		$albumobj = newAlbum($album);
+		$albumobj = AlbumBase::newAlbum($album);
 		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
 	} else {
 		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
@@ -44,18 +29,18 @@ if (isset($_POST['savealbum'])) {
 		}
 	}
 	if ($_POST['create_tagged'] == 'static') {
-		$unpublished = isset($_POST['return_unpublished']);
-		$_POST['return_unpublished'] = true; //	state is frozen at this point, so unpublishing should not impact
+		$return_unpublished = isset($_POST['return_unpublished']);
 		$words = sanitize($_POST['album_tag']);
 		$searchfields[] = 'tags_exact';
 		// now tag each element
 		if (isset($_POST['return_albums'])) {
 			$subalbums = $search->getAlbums(0);
 			foreach ($subalbums as $analbum) {
-				$albumobj = newAlbum($analbum);
-				if ($unpublished || $albumobj->getShow()) {
+				$albumobj = AlbumBase::newAlbum($analbum);
+				if ($return_unpublished || $albumobj->isPublished()) { 
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
+					$albumobj->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$albumobj->save();
 				}
 			}
@@ -63,10 +48,11 @@ if (isset($_POST['savealbum'])) {
 		if (isset($_POST['return_images'])) {
 			$images = $search->getImages();
 			foreach ($images as $animage) {
-				$image = newImage(newAlbum($animage['folder']), $animage['filename']);
-				if ($unpublished || $image->getShow()) {
+				$image = Image::newImage(AlbumBase::newAlbum($animage['folder']), $animage['filename']);
+				if ($return_unpublished || $image->isPublished()) { 
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
+					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 					$image->save();
 				}
 			}
@@ -78,7 +64,7 @@ if (isset($_POST['savealbum'])) {
 				$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
 			}
 		}
-		$words = sanitize($_POST['words']);
+		$words = sanitize($_POST['search']);
 
 	}
 	if (isset($_POST['thumb'])) {
@@ -96,8 +82,7 @@ if (isset($_POST['savealbum'])) {
 			fclose($f);
 			clearstatcache();
 			// redirct to edit of this album
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
-			exitZP();
+			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
 		}
 	}
 }
@@ -118,8 +103,7 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 	echo "</div>\n";
 }
 
-$albumlist = array();
-genAlbumList($albumlist);
+$albumlist = $_zp_gallery->getAllAlbumsFromDB();
 $fields = $search->fieldList;
 $albumname = $search->getSearchWords();
 $words = $search->codifySearchString();
@@ -127,7 +111,7 @@ $images = $search->getImages(0);
 foreach ($images as $image) {
 	$folder = $image['folder'];
 	$filename = $image['filename'];
-	$imagelist[] = '/' . $folder . '/' . $filename;
+	$_zp_admin_imagelist[] = '/' . $folder . '/' . $filename;
 }
 $subalbums = $search->getAlbums(0);
 foreach ($subalbums as $folder) {
@@ -165,7 +149,6 @@ while ($old != $albumname) {
     	if(isset($_GET['folder'])) {
      		$parentalbum = sanitize($_GET['folder']);
      }
-					$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 					foreach ($albumlist as $fullfolder => $albumtitle) {
 						$singlefolder = $fullfolder;
 						$saprefix = "";
@@ -173,7 +156,7 @@ while ($old != $albumname) {
 						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 						while (strstr($singlefolder, '/') !== false) {
 							$singlefolder = substr(strstr($singlefolder, '/'), 1);
-							$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
+							$saprefix = "–&nbsp;" . $saprefix;
 							$salevel++;
 						}
       $selected = '';
@@ -197,13 +180,13 @@ while ($old != $albumname) {
 					}
 					generateListFromArray(array(getOption('AlbumThumbSelect')), $selections, false, true);
 					$showThumb = $_zp_gallery->getThumbSelectImages();
-					foreach ($imagelist as $imagepath) {
+					foreach ($_zp_admin_imagelist as $imagepath) {
 						$pieces = explode('/', $imagepath);
 						$filename = array_pop($pieces);
 						$folder = implode('/', $pieces);
-						$albumx = newAlbum($folder);
-						$image = newImage($albumx, $filename);
-						if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
+						$albumx = AlbumBase::newAlbum($folder);
+						$image = Image::newImage($albumx, $filename);
+						if ($image->isPhoto() || !is_null($image->objectsThumb)) {
 							echo "\n<option class=\"thumboption\"";
 							if ($showThumb) {
 								echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .
@@ -222,15 +205,14 @@ while ($old != $albumname) {
 		<tr>
 			<td><?php echo gettext("Search criteria:"); ?></td>
 			<td>
-				<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
+				<input type="text" size="60" name="search" value="<?php echo html_encode($words); ?>" />
 				<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"' ?> /><?php echo gettext('Return albums found') ?></label>
 				<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"' ?> /><?php echo gettext('Return images found') ?></label>
 				<label><input type="checkbox" name="return_unpublished" value="1" /><?php echo gettext('Return unpublished items') ?></label>
 			</td>
 		</tr>
 
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			function setTagged(state) {
 				if (state) {
 					$('#album_tag').removeAttr('disabled');
@@ -240,7 +222,6 @@ while ($old != $albumname) {
 					$('#album_tag').attr('disabled', 'disabled');
 				}
 			}
-			// ]]> -->
 		</script>
 
 		<tr>

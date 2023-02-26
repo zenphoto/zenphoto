@@ -9,8 +9,7 @@
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-anyfile
+ * @package zpcore\plugins\classanyfile
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
@@ -143,7 +142,7 @@ class AnyFile extends TextObject {
 		 * just return the thumbnail as we do not know how to
 		 * render the file.
 		 */
-		return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '">';
+		return '<img src="' . html_encode(pathurlencode($this->getThumb())) . '" loading="lazy">';
 	}
 
 }

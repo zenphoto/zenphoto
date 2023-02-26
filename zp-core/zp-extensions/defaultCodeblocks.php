@@ -3,10 +3,8 @@
 /**
  * Supply default codeblocks to theme pages.
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage defaultcodeblocks
+ * @package zpcore\plugins\defaultcodeblocks
  */
 $plugin_is_filter = 500 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Create default codeblocks.');
@@ -21,17 +19,18 @@ class defaultCodeblocks {
 	var $codeblocks;
 
 	function __construct() {
-		$blocks = query_single_row("SELECT id, `aux`, `data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
+		global $_zp_db;
+		$blocks = $_zp_db->querySingleRow("SELECT id, `aux`, `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'defaultCodeblocks'");
 		if ($blocks) {
 			$this->codeblocks = $blocks['data'];
 		} else {
 			$this->codeblocks = serialize(array());
-			$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("defaultCodeblocks","",' . db_quote($this->codeblocks) . ')';
-			query($sql);
+			$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("defaultCodeblocks","",' . $_zp_db->quote($this->codeblocks) . ')';
+			$_zp_db->query($sql);
 		}
 	}
 
-	static function getOptionsSupported() {
+	function getOptionsSupported() {
 		$list = array(gettext('Gallery') => 'defaultCodeblocks_object_gallery', gettext('Album') => 'defaultCodeblocks_object_albums', gettext('Image') => 'defaultCodeblocks_object_images');
 		if (extensionEnabled('zenpage')) {
 			$list = array_merge($list, array(gettext('News category') => 'defaultCodeblocks_object_news_categories', gettext('News') => 'defaultCodeblocks_object_news', gettext('Page') => 'defaultCodeblocks_object_pages'));
@@ -73,9 +72,10 @@ class defaultCodeblocks {
 	 *
 	 */
 	function setCodeblock($cb) {
+		global $_zp_db;
 		$this->codeblocks = tagURLs($cb);
-		$sql = 'UPDATE ' . prefix('plugin_storage') . ' SET `data`=' . db_quote($this->codeblocks) . ' WHERE `type`="defaultCodeblocks"';
-		query($sql);
+		$sql = 'UPDATE ' . $_zp_db->prefix('plugin_storage') . ' SET `data`=' . $_zp_db->quote($this->codeblocks) . ' WHERE `type`="defaultCodeblocks"';
+		$_zp_db->query($sql);
 	}
 
 }

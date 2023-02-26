@@ -4,7 +4,7 @@
  * Collects and analyzes searches
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package zpcore\plugins\searchstatistics
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
@@ -13,24 +13,23 @@ admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 if (isset($_GET['reset'])) {
 	admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 	XSRFdefender('search_statistics');
-	$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
-	query($sql);
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
-	exitZP();
+	$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
+	$_zp_db->query($sql);
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 }
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 printAdminHeader('overview', 'analysis');
 echo '</head>';
 
-$sql = 'SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
-$data = query($sql);
+$sql = 'SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="search_statistics"';
+$data = $_zp_db->query($sql);
 $ip_maxvalue = $criteria_maxvalue = $criteria_maxvalue_f = $terms_maxvalue = 1;
 $results_f = $results = $terms = $sites = array();
 $bargraphmaxsize = 400;
 $maxiterations = array();
 $opChars = array('(', ')', '&', '|', '!', ',');
 if ($data) {
-	while ($datum = db_fetch_assoc($data)) {
+	while ($datum = $_zp_db->fetchAssoc($data)) {
 		$element = getSerializedArray($datum['data']);
 		$ip = $datum['aux'];
 		if (array_key_exists($ip, $sites)) {
@@ -80,7 +79,7 @@ if ($data) {
 			}
 		}
 	}
-	db_free_result($data);
+	$_zp_db->freeResult($data);
 }
 foreach ($results_f as $key => $failed) {
 	if (array_key_exists($key, $results)) { // really a successful search

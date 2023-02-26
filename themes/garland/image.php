@@ -3,24 +3,18 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
+			<script>
 				$(document).ready(function() {
-					$(".colorbox").colorbox({
-						inline: true,
-						href: "#imagemetadata",
-						close: '<?php echo gettext("close"); ?>'
-					});
 	<?php
 	$disposal = getOption('protect_full_image');
-	if ($disposal == 'Unprotected' || $disposal == 'Protected view') {
+	if ($disposal == 'unprotected' || $disposal == 'protected') {
 		?>
 						$("a.thickbox").colorbox({
 							maxWidth: "98%",
@@ -35,7 +29,6 @@ if (!defined('WEBPATH'))
 	}
 	?>
 				});
-				// ]]> -->
 			</script>
 		<?php } ?>
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', gettext('Gallery RSS')); ?>
@@ -79,7 +72,7 @@ if (!defined('WEBPATH'))
 									<?php printCodeblock(1); ?>
 									<div id="image_container">
 										<?php
-										if (isImagePhoto()) {
+										if ($_zp_current_image->isPhoto()) {
 											$fullimage = getFullImageURL();
 										} else {
 											$fullimage = NULL;
@@ -98,11 +91,11 @@ if (!defined('WEBPATH'))
 										?>
 									</div>
 									<?php
-									@call_user_func('printOpenStreetMap');
+									callUserFunction('openStreetMap::printOpenStreetMap');
 									If (function_exists('printAddToFavorites'))
 										printAddToFavorites($_zp_current_image);
-									@call_user_func('printRating');
-									@call_user_func('printCommentForm');
+									callUserFunction('printRating');
+									callUserFunction('printCommentForm');
 									printCodeblock(2);
 									footer();
 									?>
@@ -121,7 +114,7 @@ if (!defined('WEBPATH'))
 							<div id="nextalbum" class="slides">
 								<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>">
 									<h2><?php echo gettext('Next »'); ?></h2>
-									<img src="<?php echo html_encode(pathurlencode(getNextImageThumb())); ?>" />
+									<img src="<?php echo html_encode(pathurlencode(getNextImageThumb())); ?>" loading="lazy" />
 								</a>
 							</div>
 							<?php
@@ -131,7 +124,7 @@ if (!defined('WEBPATH'))
 							<div id="prevalbum" class="slides">
 								<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>">
 									<h2><?php echo gettext('« Previous'); ?></h2>
-									<img src="<?php echo html_encode(pathurlencode(getPrevImageThumb())); ?>" />
+									<img src="<?php echo html_encode(pathurlencode(getPrevImageThumb())); ?>" loading="lazy" />
 								</a>
 							</div>
 							<?php
@@ -141,7 +134,7 @@ if (!defined('WEBPATH'))
 						<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
 						<?php
 						if (getImageMetaData()) {
-							printImageMetadata(NULL, 'colorbox');
+							printImageMetadata();
 							?>
 							<br class="clearall" />
 							<?php

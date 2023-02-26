@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -26,10 +26,11 @@ if (!defined('WEBPATH'))
 				<h2><?php
 					printHomeLink('', ' | ');
 					printGalleryTitle();
+					printCurrentPageAppendix(); 
 					?></h2>
 			</div>
 			<div id="padbox">
-				<?php printGalleryDesc(); ?>
+				<?php printGalleryDesc(); ?>				
 				<div id="albums">
 					<?php while (next_album()): ?>
 						<div class="album">

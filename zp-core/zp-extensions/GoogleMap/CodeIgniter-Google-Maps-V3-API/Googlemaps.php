@@ -1103,17 +1103,16 @@ class Googlemaps {
 		if ($this->drawing) { array_push($libraries, 'drawing'); }
 		if (count($libraries)) { $apiLocation .= '&libraries='.implode(",", $libraries); }
 		$this->output_js .= '
-		<script type="text/javascript" src="'.$apiLocation.'"></script>';
+		<script src="'.$apiLocation.'"></script>';
 		if ($this->center=="auto" || $this->directionsStart=="auto") { $this->output_js .= '
-		<script type="text/javascript" src="http://code.google.com/apis/gears/gears_init.js"></script>
+		<script src="http://code.google.com/apis/gears/gears_init.js"></script>
 		'; } // Script not hosted on Google anymore !
 		if ($this->cluster) { $this->output_js .= '
-		<script type="text/javascript" src="' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/GoogleMap-plugins/markerclusterer.js"></script>
+		<script src="' . WEBPATH . '/' . USER_PLUGIN_FOLDER . '/GoogleMap-plugins/markerclusterer.js"></script>
 		'; } // Script not hosted on Google anymore !
 		if ($this->jsfile=="") {
 			$this->output_js .= '
-			<script type="text/javascript">
-			//<![CDATA[
+			<script>
 			';
 		}
 
@@ -2082,14 +2081,13 @@ class Googlemaps {
 					$this->output_js .= $this->output_js_contents;
 				}else{
 					$this->output_js .= '
-					<script src="'.$this->jsfile.'" type="text/javascript"></script>';
+					<script src="'.$this->jsfile.'"></script>';
 				}
 			}
 		}
 
 		if ($this->jsfile=="") {
 			$this->output_js .= '
-			//]]>
 			</script>';
 		}
 

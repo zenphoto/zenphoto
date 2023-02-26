@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package zpcore\plugins\menumanager
+ */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(dirname(dirname(dirname(__FILE__))) . '/template-functions.php');
@@ -13,10 +16,19 @@ $page = 'edit';
 
 $menuset = checkChosenMenuset('');
 if (empty($menuset)) { //	setup default menuset
-	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu'));
+	$result = $_zp_db->queryFullArray("SELECT DISTINCT menuset FROM " . $_zp_db->prefix('menu'));
 	if (is_array($result)) { // default to the first one
-		$set = array_shift($result);
-		$menuset = $set['menuset'];
+		$currenttheme = $_zp_gallery->getCurrentTheme();
+		foreach($result as $key => $val) {
+			if($val['menuset'] == $currenttheme) {
+				$menuset = $currenttheme;
+				break;
+			} 
+		}
+		if(empty($menuset)) {
+			$set = array_shift($result);
+			$menuset = $set['menuset'];
+		}
 	} else {
 		$menuset = 'default';
 	}
@@ -40,31 +52,31 @@ if (isset($_POST['update'])) {
 
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete_menu');
-	$sql = 'SELECT * FROM ' . prefix('menu') . ' WHERE `id`=' . sanitize_numeric($_GET['id']);
-	$result = query_single_row($sql);
+	$sql = 'SELECT * FROM ' . $_zp_db->prefix('menu') . ' WHERE `id`=' . sanitize_numeric($_GET['id']);
+	$result = $_zp_db->querySingleRow($sql);
 	if (empty($result)) {
 		$reports[] = "<p class='errorbox' >" . gettext('Menu item deleted failed') . "</p>";
 	} else {
 		$_GET['menuset'] = $menuset = $result['menuset'];
-		$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `id`=' . $result['id'];
-		query($sql);
-		$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `menuset`="' . $menuset . '" AND `sort_order` LIKE "' . $result['sort_order'] . '-%"';
-		query($sql);
+		$sql = 'DELETE FROM ' . $_zp_db->prefix('menu') . ' WHERE `id`=' . $result['id'];
+		$_zp_db->query($sql);
+		$sql = 'DELETE FROM ' . $_zp_db->prefix('menu') . ' WHERE `menuset`="' . $menuset . '" AND `sort_order` LIKE "' . $result['sort_order'] . '-%"';
+		$_zp_db->query($sql);
 		$reports[] = "<p class='messagebox fade-message'>" . gettext('Menu item deleted') . "</p>";
 	}
 }
 if (isset($_GET['deletemenuset'])) {
 	XSRFdefender('delete_menu');
-	$sql = 'DELETE FROM ' . prefix('menu') . ' WHERE `menuset`=' . db_quote(sanitize($_GET['deletemenuset']));
-	query($sql);
-	$_menu_manager_items = array();
+	$sql = 'DELETE FROM ' . $_zp_db->prefix('menu') . ' WHERE `menuset`=' . $_zp_db->quote(sanitize($_GET['deletemenuset']));
+	$_zp_db->query($sql);
+	$_zp_menu_manager_items = array();
 	$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Menu “%s” deleted"), html_encode(sanitize($_GET['deletemenuset']))) . "</p>";
 }
 if (isset($_GET['dupmenuset'])) {
 	XSRFdefender('dup_menu');
 	$oldmenuset = sanitize($_GET['dupmenuset']);
 	$_GET['menuset'] = $menuset = sanitize($_GET['targetname']);
-	$menuitems = query_full_array('SELECT * FROM ' . prefix('menu') . ' WHERE `menuset`=' . db_quote($oldmenuset) . ' ORDER BY `sort_order`');
+	$menuitems = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('menu') . ' WHERE `menuset`=' . $_zp_db->quote($oldmenuset) . ' ORDER BY `sort_order`');
 	foreach ($menuitems as $key => $item) {
 		$order = count(explode('-', $item['sort_order'])) - 1;
 		$menuitems[$key]['nesting'] = $order;
@@ -95,10 +107,9 @@ printSortableHead();
 			<?php
 			zp_apply_filter('admin_note', 'menu', '');
 
-			$count = db_count('menu', NULL, 'DISTINCT `menuset`');
+			$count = $_zp_db->count('menu', NULL, 'DISTINCT `menuset`');
 			?>
-			<script type="text/javascript">
-				//<!-- <![CDATA[
+			<script>
 				function newMenuSet() {
 					var new_menuset = prompt("<?php echo gettext('Name for new menu:'); ?>", "<?php echo 'menu_' . $count; ?>");
 					if (new_menuset) {
@@ -128,7 +139,6 @@ printSortableHead();
 						return true;
 					}
 				}
-				// ]]> -->
 			</script>
 			<h1><?php
 				echo gettext("Menu Manager") . "<small>";
@@ -160,7 +170,7 @@ printSortableHead();
 						<a href="javascript:newMenuSet();">
 							<img src="../../images/add.png" alt="" /> <strong><?php echo gettext("New Menu"); ?></strong>
 						</a>
-						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-menu_manager#menu_manager">
+						<a href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-options.php?page=options&tab=plugin&single=menu_manager">
 							<img src="../../images/options.png" alt="" /> <strong><?php echo gettext('Options') ?></strong>
 						</a>
 					</div>

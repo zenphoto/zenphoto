@@ -4,14 +4,16 @@
  * zenpage page class
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package zpcore\plugins\zenpage\classes
  */
 class ZenpagePage extends ZenpageItems {
 
-	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
-	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
-	var $view_rights = ALL_PAGES_RIGHTS;
+	public $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
+	public $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
+	public $view_rights = ALL_PAGES_RIGHTS;
+	public $parent = null;
+	public $parents = null;
+	protected $is_public = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -37,6 +39,43 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function setSortOrder($sortorder) {
 		$this->set('sort_order', $sortorder);
+	}
+	
+	/**
+	 * Sets a default sortorder for a page.
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function setDefaultSortorder() {
+		$default = $this->getDefaultSortorder();
+		$this->setSortorder($default);
+	}
+	
+	/**
+	 * Gets a default sortorder for a page.
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @global obj $_zp_zenpage  
+	 * @return string
+	 */
+	function getDefaultSortorder() {
+		global $_zp_zenpage;
+		return $_zp_zenpage->getItemDefaultSortorder('page', $this->getParentID());
 	}
 
 	/**
@@ -119,7 +158,7 @@ class ZenpagePage extends ZenpageItems {
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags());
 			$newobj->setDateTime(date('Y-m-d H:i:s'));
-			$newobj->setShow(0);
+			$newobj->setPublished(0);
 			$newobj->save();
 			return $newobj;
 		}
@@ -131,14 +170,15 @@ class ZenpagePage extends ZenpageItems {
 	 *
 	 */
 	function remove() {
+		global $_zp_db;
 		if ($success = parent::remove()) {
 			$sortorder = $this->getSortOrder();
 			if ($this->id) {
-				$success = $success && query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='pages' AND `objectid`=" . $this->id);
-				$success = $success && query("DELETE FROM " . prefix('comments') . " WHERE ownerid = " . $this->getID() . ' AND type="pages"'); // delete any comments
+				$success = $success && $_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='pages' AND `objectid`=" . $this->id);
+				$success = $success && $_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . " WHERE ownerid = " . $this->getID() . ' AND type="pages"'); // delete any comments
 				//	remove subpages
 				$mychild = strlen($sortorder) + 4;
-				$result = query_full_array('SELECT * FROM ' . prefix('pages') . " WHERE `sort_order` like '" . $sortorder . "-%'");
+				$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('pages') . " WHERE `sort_order` like '" . $sortorder . "-%'");
 				if (is_array($result)) {
 					foreach ($result as $row) {
 						if (strlen($row['sort_order']) == $mychild) {
@@ -151,59 +191,61 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return $success;
 	}
+	
+	/**
+	 * Gets the parent page object based on the parentid set
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return obj|null
+	 */
+	function getParent() {
+		if (is_null($this->parent)) {
+			$parentid = $this->getParentID();
+			$obj = getItembyID('pages', $parentid);
+			if ($obj) {
+				return $obj;
+			}
+		} else {
+			return $this->parent;
+		}
+		return null;
+	}
 
 	/**
-	 * Gets the parent pages recursivly to the page whose parentid is passed or the current object
+	 * Gets the parent pages' titlelinks recursivly to the page
 	 *
-	 * @param int $parentid The parentid of the page to get the parents of
-	 * @param bool $initparents
 	 * @return array
 	 */
-	function getParents(&$parentid = '', $initparents = true) {
-		global $parentpages, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getPages();
-		if ($initparents) {
-			$parentpages = array();
+	function getParents() {
+		if (func_num_args() != 0) {
+			debuglog(gettext('class ZenpagePage getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
 		}
-		if (empty($parentid)) {
-			$currentparentid = $this->getParentID();
-		} else {
-			$currentparentid = $parentid;
-		}
-		foreach ($allitems as $item) {
-			$obj = new ZenpagePage($item['titlelink']);
-			$itemtitlelink = $obj->getTitlelink();
-			$itemid = $obj->getID();
-			$itemparentid = $obj->getParentID();
-			if ($itemid == $currentparentid) {
-				array_unshift($parentpages, $itemtitlelink);
-				$obj->getParents($itemparentid, false);
+		if (is_null($this->parents)) {
+			$parents = array();
+			$page = $this;
+			while (!is_null($page = $page->getParent())) {
+				array_unshift($parents, $page->getName());
 			}
+			return $this->parents = $parents;
+		} else {
+			return $this->parents;
 		}
-		return $parentpages;
 	}
 
 	/**
 	 * Gets the sub pages of a page
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
-	 * @param bool $toplevel ignored, left for parameter compatibility
+	 * @param bool $directchilds Default true to get only the direct sub level pages, set to false to get all levels
 	 * @param int $number number of pages to get (NULL by default for all)
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular", "mostrated", "toprated", "random"
 	 * @param string $sortdirection false for ascending, true for descending
 	 * @param string $author Optional author name to get the pages of
 	 * @return array
 	 */
-	function getPages($published = NULL, $toplevel = false, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
+	function getPages($published = NULL, $directchilds = true, $number = NULL, $sorttype = NULL, $sortdirection = NULL, $author = null) {
 		global $_zp_zenpage;
-		$subpages = array();
-		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages($published, false, $number, $sorttype, $sortdirection, $author);
-		foreach ($pages as $page) {
-			if ($page['parentid'] == $this->getID() && $page['sort_order'] != $sortorder) { // exclude the page itself!
-				array_push($subpages, $page);
-			}
-		}
-		return $subpages;
+		return $_zp_zenpage->getPages($published, $directchilds, $number, $sorttype, $sortdirection, $author, $this);
 	}
 
 	/**
@@ -212,6 +254,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
+		global $_zp_db;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
@@ -222,8 +265,8 @@ class ZenpagePage extends ZenpageItems {
 			if (empty($parentID)) {
 				$pageobj = NULL;
 			} else {
-				$sql = 'SELECT `titlelink` FROM ' . prefix('pages') . ' WHERE `id`=' . $parentID;
-				$result = query_single_row($sql);
+				$sql = 'SELECT `titlelink` FROM ' . $_zp_db->prefix('pages') . ' WHERE `id`=' . $parentID;
+				$result = $_zp_db->querySingleRow($sql);
 				$pageobj = new ZenpagePage($result['titlelink']);
 				$hash = $pageobj->getPassword();
 			}
@@ -231,7 +274,7 @@ class ZenpagePage extends ZenpageItems {
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_page_auth_" . $pageobj->getID();
+			$authType = "zpcms_auth_page_" . $pageobj->getID();
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
@@ -253,6 +296,28 @@ class ZenpagePage extends ZenpageItems {
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
+	
+	/**
+	 * Returns true if this page is published and also all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->isPublished()) {
+				return $this->is_public = false;
+			}
+			$parent = $this->getParent();
+			if($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			} 
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
+	}
 
 	/**
 	 * Checks if user is author of page
@@ -266,7 +331,7 @@ class ZenpagePage extends ZenpageItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
@@ -274,7 +339,7 @@ class ZenpagePage extends ZenpageItems {
 			}
 			$mypages = $_zp_current_admin_obj->getObjects('pages');
 			if (!empty($mypages)) {
-				if (array_search($this->getTitlelink(), $mypages) !== false) {
+				if (array_search($this->getName(), $mypages) !== false) {
 					return true;
 				}
 			}
@@ -288,7 +353,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getTitlelink() . '/', '/index.php?p=pages&title=' . $this->getTitlelink()), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/' . $this->getName() . '/', '/index.php?p=pages&title=' . $this->getName()), $this, NULL);
 	}
 
 }

@@ -3,13 +3,12 @@
  * This template is used to generate cache images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
  * Passing clear=on will purge the designated cache before generating cache images
- * @package plugins
- * @subpackage cachemanager
+ * @package zpcore\plugins\cachemanager
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions-image.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-image.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
 
@@ -26,8 +25,7 @@ if (isset($_GET['action'])) {
 		XSRFdefender('CleanupCacheSizes');
 		cacheManager::cleanupCacheSizes();
 		$report = gettext('Image cache sizes cleaned up.');
-		header('location:' . FULLWEBPATH .'/'. ZENFOLDER. '/admin.php?action=external&msg=' . $report);
-		exitZP();
+		redirectURL(FULLWEBPATH .'/'. ZENFOLDER. '/admin.php?action=external&msg=' . $report);
 	}
 }
 
@@ -42,16 +40,15 @@ if ($alb) {
 	$folder = sanitize_path($alb);
 	$object = $folder;
 	$tab = 'edit';
-	$album = newAlbum($folder);
+	$album = AlbumBase::newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-			exitZP();
+			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 	}
 } else {
 	$object = '<em>' . gettext('Gallery') . '</em>';
-	$zenphoto_tabs['overview']['subtabs'] = array(
+	$_zp_admin_menu['overview']['subtabs'] = array(
 			gettext('Cache images') => FULLWEBPATH .'/'. ZENFOLDER .'/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?page=overview&tab=images',
 			gettext('Cache stored images') => FULLWEBPATH .'/'. ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheDBImages.php?page=overview&tab=DB&XSRFToken=' . getXSRFToken('cacheDBImages'));
 }
@@ -242,7 +239,7 @@ printAdminHeader('overview', 'images'); ?>
 				
 				// general counts
 				if ($alb) {
-					$albobj = newAlbum($alb);
+					$albobj = AlbumBase::newAlbum($alb);
 					$images_total = $albobj->getNumAllImages();
 					$imagesizes_total = $images_total * $cachesizes;
 					$albums_total = $albobj->getNumAllAlbums() + 1; // the album itself counts, too ;)
@@ -264,8 +261,8 @@ printAdminHeader('overview', 'images'); ?>
 					</div>
 					<img class="imagecaching_loader" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/ajax-loader.gif" alt="">
 					<ul>	
-						<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
-						<?php if (function_exists('curl_init')) { ?>
+						<?php if (function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') { ?>
+							<li><?php echo gettext('Image cache sizes generated: '); ?><span class="imagecaching_imagesizes"><?php echo cacheManager::$imagesizes_cached; ?></li>
 							<li><?php echo gettext('Image cache sizes failed: '); ?><span class="imagecaching_imagesizes_failed">0</span></li>
 						<?php } ?>
 						<li><?php echo gettext('Images processed: '); ?><span class="imagecaching_imagecount">0</span>/<span><?php echo $images_total; ?></span></li>
@@ -283,8 +280,8 @@ printAdminHeader('overview', 'images'); ?>
 				<?php
 				@set_time_limit(3000);
 				foreach ($allalbums as $album) {
-					$albumobj = newAlbum($album);
-					if (!$albumobj->isDynamic()) {
+					$albumobj = AlbumBase::newAlbum($album);
+					if (!$albumobj->isDynamic() || count($allalbums) == 1) {
 						cacheManager::loadAlbums($albumobj);
 					}
 				} 

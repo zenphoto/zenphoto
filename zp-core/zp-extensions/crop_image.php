@@ -6,14 +6,13 @@
  * <b>Note:</b> this plugin permanently changes the image. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage crop-image
+ * @package zpcore\plugins\cropimage
  */
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH'))
 		define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)) . '/admin-globals.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions-image.php');
+	require_once(dirname(dirname(__FILE__)) . '/functions/functions-image.php');
 	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 } else {
 	zp_register_filter('admin_toolbox_image', 'crop_image::toolbox');
@@ -28,10 +27,10 @@ if (isset($_REQUEST['performcrop'])) {
 class crop_image {
 
 	static function toolbox($albumname, $imagename) {
-		$album = newAlbum($albumname);
+		$album = AlbumBase::newAlbum($albumname);
 		if ($album->isMyItem(ALBUM_RIGHTS)) {
-			$image = newimage($album, $imagename);
-			if (isImagePhoto($image)) {
+			$image = Image::newimage($album, $imagename);
+			if ($image->isPhoto()) {
 				?>
 				<li>
 					<a href="<?php echo WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/crop_image.php?a=<?php echo pathurlencode($albumname); ?>
@@ -42,8 +41,8 @@ class crop_image {
 		}
 	}
 
-	static function edit($output, $image, $prefix, $subpage, $tagsort) {
-		if (isImagePhoto($image)) {
+	static function edit($output, $image, $prefix, $pagenumber, $tagsort) {
+		if ($image->isPhoto()) {
 			if (is_array($image->filename)) {
 				$albumname = dirname($image->filename['source']);
 				$imagename = basename($image->filename['source']);
@@ -54,7 +53,7 @@ class crop_image {
 			$output .=
 							'<div class="button buttons tooltip" title="' . gettext('Permanently crop the actual image.') . '">' . "\n" .
 							'<a href="' . WEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/crop_image.php?a=' . pathurlencode($albumname) . "\n" .
-							'&amp;i=' . urlencode($imagename) . '&amp;performcrop=backend&amp;subpage=' . $subpage . '&amp;tagsort=' . html_encode($tagsort) . '">' . "\n" .
+							'&amp;i=' . urlencode($imagename) . '&amp;performcrop=backend&amp;pagenumber=' . $pagenumber . '&amp;tagsort=' . html_encode($tagsort) . '">' . "\n" .
 							'<img src="images/shape_handles.png" alt="" />' . gettext("Crop image") . '</a>' . "\n" .
 							'<br class="clearall" />' .
 							'</div>' . "\n";
@@ -66,24 +65,23 @@ class crop_image {
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);
-$album = newAlbum($albumname);
+$album = AlbumBase::newAlbum($albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exitZP();
+		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	}
 }
 
 // get what image side is being used for resizing
 $use_side = getOption('image_use_side');
 // get full width and height
-$albumobj = newAlbum($albumname);
-$imageobj = newImage($albumobj, $imagename);
+$albumobj = AlbumBase::newAlbum($albumname);
+$imageobj = Image::newImage($albumobj, $imagename);
 
-if (isImagePhoto($imageobj)) {
+if ($imageobj->isPhoto()) {
 	$imgpath = $imageobj->localpath;
 	$imagepart = basename($imgpath);
-	$timg = zp_imageGet($imgpath);
+	$timg = $_zp_graphics->imageGet($imgpath);
 	$width = $imageobj->getWidth();
 	$height = $imageobj->getHeight();
 } else {
@@ -154,21 +152,22 @@ if (isset($_REQUEST['crop'])) {
 	//create a new image with the set cropping
 	$quality = getOption('full_image_quality');
 	$rotate = false;
-	if (zp_imageCanRotate()) {
+	if ($_zp_graphics->imageCanRotate()) {
 		$rotate = getImageRotation($imgpath);
 	}
-	if (DEBUG_IMAGE)
-		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=$rotate");
-
-	if ($rotate) {
-		$timg = zp_rotateImage($timg, $rotate);
+	if (DEBUG_IMAGE) {
+		debugLog("image_crop: crop " . basename($imgpath) . ":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=" . print_r($rotate, true));
 	}
 
-	$newim = zp_createImage($cw, $ch);
-	zp_resampleImage($newim, $timg, 0, 0, $cx, $cy, $cw, $ch, $cw, $ch, getSuffix($imagename));
+	if ($rotate) {
+		$timg = $_zp_graphics->flipRotateImage($timg, $rotate);
+	}
+
+	$newim = $_zp_graphics->createImage($cw, $ch);
+	$_zp_graphics->resampleImage($newim, $timg, 0, 0, $cx, $cy, $cw, $ch, $cw, $ch, getSuffix($imagename));
 	@chmod($imgpath, 0777);
 	@unlink($imgpath);
-	if (zp_imageOutput($newim, getSuffix($imgpath), $imgpath, $quality)) {
+	if ($_zp_graphics->imageOutput($newim, getSuffix($imgpath), $imgpath, $quality)) {
 		if (DEBUG_IMAGE)
 			debugLog('image_crop Finished:' . basename($imgpath));
 	} else {
@@ -176,8 +175,8 @@ if (isset($_REQUEST['crop'])) {
 			debugLog('image_crop: failed to create ' . $imgpath);
 	}
 	@chmod($imgpath, FILE_MOD);
-	zp_imageKill($newim);
-	zp_imageKill($timg);
+	$_zp_graphics->imageKill($newim);
+	$_zp_graphics->imageKill($timg);
 	Gallery::clearCache(SERVERCACHE . '/' . $albumname);
 	// update the image data
 	$imageobj->set('EXIFOrientation', 0);
@@ -189,28 +188,25 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->save();
 
 	if ($_REQUEST['performcrop'] == 'backend') {
-		$return = FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&subpage=' . sanitize($_REQUEST['subpage']) . '&tagsort=' . sanitize($_REQUEST['tagsort']) . '&tab=imageinfo';
+		$return = FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&saved&pagenumber=' . sanitize($_REQUEST['pagenumber']) . '&tagsort=' . sanitize($_REQUEST['tagsort']) . '&tab=imageinfo';
 	} else {
 		$return = FULLWEBPATH . $imageobj->getLink();
 	}
-
-	header('Location: ' . $return);
-	exitZP();
+	redirectURL($return);
 }
-if (isset($_REQUEST['subpage'])) {
-	$subpage = sanitize($_REQUEST['subpage']);
+if (isset($_REQUEST['pagenumbere'])) {
+	$pagenumber = sanitize($_REQUEST['pagenumber']);
 	$tagsort = sanitize($_REQUEST['tagsort']);
 } else {
-	$subpage = $tagsort = '';
+	$pagenumber = $tagsort = '';
 }
 printAdminHeader('edit', gettext('crop image'));
 ?>
 
-<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jquery.Jcrop.css" type="text/css" />
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER ?>/js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
-<script type="text/javascript" >
-	//<!-- <![CDATA[
+<script>
 	var jcrop_api;
 	jQuery(window).load(function() {
 
@@ -292,8 +288,6 @@ printAdminHeader('edit', gettext('crop image'));
 	function checkCoords() {
 		return true;
 	}
-
-	// ]]> -->
 </script>
 </head>
 <body>
@@ -337,7 +331,7 @@ printAdminHeader('edit', gettext('crop image'));
 						<input type="hidden" id="a" name="a" value="<?php echo html_encode($albumname); ?>" />
 						<input type="hidden" id="i" name="i" value="<?php echo html_encode($imagename); ?>" />
 						<input type="hidden" id="tagsort" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-						<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
+						<input type="hidden" id="pagenumber" name="pagenumber" value="<?php echo html_encode($pagenumber); ?>" />
 						<input type="hidden" id="crop" name="crop" value="crop" />
 						<input type="hidden" id="performcrop" name="performcrop" value="<?php echo html_encode(sanitize($_REQUEST['performcrop'])); ?>" />
 						<p class="buttons">
@@ -350,7 +344,7 @@ printAdminHeader('edit', gettext('crop image'));
 							<?php
 							if ($_REQUEST['performcrop'] == 'backend') {
 								?>
-								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" onclick="window.location = '../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&pagenumber=<?php echo $pagenumber; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
 								</button>
 								<?php

@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -13,14 +13,8 @@ if (!defined('WEBPATH'))
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				$(document).ready(function () {
-					$(".colorbox").colorbox({
-						inline: true,
-						href: "#imagemetadata",
-						close: '<?php echo gettext("close"); ?>'
-					});
+			<script>
+				$(document).ready(function() {
 					$(".fullimage").colorbox({
 						maxWidth: "98%",
 						maxHeight: "98%",
@@ -31,7 +25,6 @@ if (!defined('WEBPATH'))
 						}
 					});
 				});
-				// ]]> -->
 			</script>
 		<?php } ?>
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
@@ -69,7 +62,7 @@ if (!defined('WEBPATH'))
 			<div id="image">
 				<strong>
 					<?php
-					if (isImagePhoto()) {
+					if ($_zp_current_image->isPhoto()) {
 						$fullimage = getFullImageURL();
 					} else {
 						$fullimage = NULL;
@@ -79,7 +72,7 @@ if (!defined('WEBPATH'))
 						<a href="<?php echo html_encode(pathurlencode($fullimage)); ?>" title="<?php printBareImageTitle(); ?>" class="fullimage">
 							<?php
 						}
-						if (function_exists('printUserSizeImage') && isImagePhoto()) {
+						if (function_exists('printUserSizeImage') && $_zp_current_image->isPhoto()) {
 							printUserSizeImage(getImageTitle());
 						} else {
 							printDefaultSizedImage(getImageTitle());
@@ -98,10 +91,10 @@ if (!defined('WEBPATH'))
 				<?php
 				If (function_exists('printAddToFavorites'))
 					printAddToFavorites($_zp_current_image);
-				@call_user_func('printSlideShowLink');
+				callUserFunction('printSlideShowLink');
 
 				if (getImageMetaData()) {
-					printImageMetadata(NULL, 'colorbox_meta');
+					printImageMetadata();
 					?>
 					<br class="clearall" />
 					<?php
@@ -111,10 +104,10 @@ if (!defined('WEBPATH'))
 				<br class="clearall" />
 
 				<?php
-				@call_user_func('printOpenStreetMap');
-				@call_user_func('printGoogleMap');
-				@call_user_func('printRating');
-				@call_user_func('printCommentForm');
+				callUserFunction('openStreetMap::printOpenStreetMap');
+				callUserFunction('printGoogleMap');
+				callUserFunction('printRating');
+				callUserFunction('printCommentForm');
 				?>
 			</div>
 		</div>

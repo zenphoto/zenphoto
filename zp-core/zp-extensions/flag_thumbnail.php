@@ -18,8 +18,7 @@
  * Additional icons can be used by placing them in the <var>%USER_PLUGIN_FOLDER%/flag_thumbnail</var> folder.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage flag-thumbnail
+ * @package zpcore\plugins\flagthumbnail
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
@@ -62,68 +61,114 @@ class flag_thumbnail {
 			$icon = str_replace(SERVERPATH, WEBPATH, $icon);
 			$buttons['  <img src="' . $icon . '" />'] = basename($icon);
 		}
-		return array('» ' . gettext('Criteria')						 => array('key'				 => 'flag_thumbnail_date', 'type'			 => OPTION_TYPE_SELECTOR,
-										'order'			 => 3.6,
-										'selections' => array(gettext('date') => "date", gettext('mtime') => "mtime"),
-										'desc'			 => gettext("Select the basis for considering if an image is new.")),
-						'» ' . gettext('Icon') . chr(0) . '3'	 => array('key'			 => 'flag_thumbnail_new_icon', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 3.1,
-										'buttons'	 => $buttons, 'behind'	 => true,
-										'desc'		 => gettext('Select the icon that will show for “new” images.')),
-						'» ' . gettext('Icon') . chr(0) . '2'	 => array('key'			 => 'flag_thumbnail_unpublished_icon', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 2.1,
-										'buttons'	 => $buttons, 'behind'	 => true,
-										'desc'		 => gettext('Select the icon that will show for “un-published” images.')),
-						'» ' . gettext('Icon') . chr(0) . '4'	 => array('key'			 => 'flag_thumbnail_locked_icon', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 4.1,
-										'buttons'	 => $buttons, 'behind'	 => true,
-										'desc'		 => gettext('Select the icon that will show for “Protected” images.')),
-						'» ' . gettext('Icon') . chr(0) . '5'	 => array('key'			 => 'flag_thumbnail_geodata_icon', 'type'		 => OPTION_TYPE_RADIO,
-										'order'		 => 5.1,
-										'buttons'	 => $buttons, 'behind'	 => true,
-										'desc'		 => gettext('Select the icon that will show for images tagged with geodata.')),
-						gettext('Un-published')								 => array('key'		 => 'flag_thumbnail_flag_unpublished', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 2,
-										'desc'	 => gettext('Thumbnails for images which are not <em>published</em> will be marked.')),
-						gettext('Protected')									 => array('key'		 => 'flag_thumbnail_flag_locked', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 4,
-										'desc'	 => gettext('Thumbnails for images which are password protected or in password protected albums will be marked.')),
-						gettext('New')												 => array('key'		 => 'flag_thumbnail_flag_new', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 3,
-										'desc'	 => gettext('Thumbnails for images which have recently been added to the gallery will be marked.')),
-						gettext('Geotagged')									 => array('key'		 => 'flag_thumbnail_flag_geodata', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 5,
-										'desc'	 => gettext('Thumbnails for images which are geodata tagged will be marked.')),
-						'» ' . gettext('Text') . chr(0) . '5'	 => array('key'		 => 'flag_thumbnail_geodata_text', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 5.5,
-										'desc'	 => gettext("Text flag for <em>geodata tagged</em> images.")),
-						5																			 => array('type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 5.9,
-										'desc'	 => '<hr />'),
-						'» ' . gettext('Aging')								 => array('key'		 => 'flag_thumbnail_range', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 3.7,
-										'desc'	 => gettext("The range in days until images are no longer flagged as new.")),
-						'» ' . gettext('Text') . chr(0) . '3'	 => array('key'		 => 'flag_thumbnail_new_text', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 3.5,
-										'desc'	 => gettext("Text flag for <em>new</em> images.")),
-						3																			 => array('type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 3.9,
-										'desc'	 => '<hr />'),
-						'» ' . gettext('Text') . chr(0) . '2'	 => array('key'		 => 'flag_thumbnail_unpublished_text', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 2.5,
-										'desc'	 => gettext("Text flag for <em>un-published</em> images.")),
-						2																			 => array('type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 2.9,
-										'desc'	 => '<hr />'),
-						'» ' . gettext('Text') . chr(0) . '4'	 => array('key'		 => 'flag_thumbnail_locked_text', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 4.5,
-										'desc'	 => gettext("Text flag for <em>protected</em> images.")),
-						4																			 => array('type'	 => OPTION_TYPE_NOTE,
-										'order'	 => 4.9,
-										'desc'	 => '<hr />'),
-						gettext('Use text')										 => array('key'		 => 'flag_thumbnail_use_text', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 8,
-										'desc'	 => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class <code>textasnewflag</code> for styling "text" overlays.)'))
+		return array(
+				'» ' . gettext('Criteria') => array(
+						'key' => 'flag_thumbnail_date',
+						'type' => OPTION_TYPE_SELECTOR,
+						'order' => 3.6,
+						'selections' => array(
+								gettext('date') => "date",
+								gettext('mtime') => "mtime"
+						),
+						'desc' => gettext("Select the basis for considering if an image is new.")),
+				'» ' . gettext('Icon') . chr(0) . '3' => array(
+						'key' => 'flag_thumbnail_new_icon',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 3.1,
+						'buttons' => $buttons,
+						'behind' => true,
+						'desc' => gettext('Select the icon that will show for “new” images.')),
+				'» ' . gettext('Icon') . chr(0) . '2' => array(
+						'key' => 'flag_thumbnail_unpublished_icon',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 2.1,
+						'buttons' => $buttons,
+						'behind' => true,
+						'desc' => gettext('Select the icon that will show for “un-published” images.')),
+				'» ' . gettext('Icon') . chr(0) . '4' => array(
+						'key' => 'flag_thumbnail_locked_icon',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 4.1,
+						'buttons' => $buttons,
+						'behind' => true,
+						'desc' => gettext('Select the icon that will show for “Protected” images.')),
+				'» ' . gettext('Icon') . chr(0) . '5' => array(
+						'key' => 'flag_thumbnail_geodata_icon',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 5.1,
+						'buttons' => $buttons,
+						'behind' => true,
+						'desc' => gettext('Select the icon that will show for images tagged with geodata.')),
+				gettext('Un-published') => array(
+						'key' => 'flag_thumbnail_flag_unpublished',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 2,
+						'desc' => gettext('Thumbnails for images which are not <em>published</em> will be marked.')),
+				gettext('Protected') => array(
+						'key' => 'flag_thumbnail_flag_locked',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('Thumbnails for images which are password protected or in password protected albums will be marked.')),
+				gettext('New') => array(
+						'key' => 'flag_thumbnail_flag_new',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => gettext('Thumbnails for images which have recently been added to the gallery will be marked.')),
+				gettext('Geotagged') => array(
+						'key' => 'flag_thumbnail_flag_geodata',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('Thumbnails for images which are geodata tagged will be marked.')),
+				'» ' . gettext('Text') . chr(0) . '5' => array(
+						'key' => 'flag_thumbnail_geodata_text',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 5.5,
+						'desc' => gettext("Text flag for <em>geodata tagged</em> images.")),
+				5 => array(
+						'type' => OPTION_TYPE_NOTE,
+						'key' => 'flag_thumbnail_note',
+						'order' => 5.9,
+						'desc' => '<hr />'),
+				'» ' . gettext('Aging') => array(
+						'key' => 'flag_thumbnail_range',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 3.7,
+						'desc' => gettext("The range in days until images are no longer flagged as new.")),
+				'» ' . gettext('Text') . chr(0) . '3' => array(
+						'key' => 'flag_thumbnail_new_text',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 3.5,
+						'desc' => gettext("Text flag for <em>new</em> images.")),
+				3 => array(
+						'type' => OPTION_TYPE_NOTE,
+						'key' => 'flag_thumbnail_note',
+						'order' => 3.9,
+						'desc' => '<hr />'),
+				'» ' . gettext('Text') . chr(0) . '2' => array(
+						'key' => 'flag_thumbnail_unpublished_text', ''
+						. 'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 2.5,
+						'desc' => gettext("Text flag for <em>un-published</em> images.")),
+				2 => array(
+						'type' => OPTION_TYPE_NOTE,
+						'key' => 'flag_thumbnail_note',
+						'order' => 2.9,
+						'desc' => '<hr />'),
+				'» ' . gettext('Text') . chr(0) . '4' => array(
+						'key' => 'flag_thumbnail_locked_text',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 4.5,
+						'desc' => gettext("Text flag for <em>protected</em> images.")),
+				4 => array(
+						'type' => OPTION_TYPE_NOTE,
+						'key' => 'flag_thumbnail_note',
+						'order' => 4.9,
+						'desc' => '<hr />'),
+				gettext('Use text') => array(
+						'key' => 'flag_thumbnail_use_text',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 8,
+						'desc' => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class <code>textasnewflag</code> for styling "text" overlays.)'))
 		);
 	}
 
@@ -157,7 +202,7 @@ class flag_thumbnail {
 			}
 		}
 		if (getOption('flag_thumbnail_flag_geodata')) {
-			if (isAlbumClass($obj)) {
+			if (AlbumBase::isAlbumClass($obj)) {
 				$obj = $obj->getAlbumThumbImage();
 			}
 			if (is_object($obj) && get_class($obj) == 'Image') {

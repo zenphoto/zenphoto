@@ -1,7 +1,6 @@
 <?php
 /**
- * @package plugins
- * @subpackage zenphoto-news
+ * @package zpcore\plugins\zenphotonews
  */
 
 

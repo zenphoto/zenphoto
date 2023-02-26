@@ -8,8 +8,7 @@
  * is shown in the state in which it is applied.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage rewriterules
+ * @package zpcore\plugins\rewriterules
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -19,6 +18,9 @@ $plugin_category = gettext('Development');
 
 zp_register_filter('admin_tabs', 'rewriteRules::tabs');
 
+/**
+ * @package zpcore\plugins\rewriterules
+ */
 class rewriteRules {
 
 	static function tabs($tabs) {
@@ -30,7 +32,7 @@ class rewriteRules {
 			}
 			$tabs['development']['subtabs'][gettext("rewrite")] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/rewriteRules/admin_tab.php?page=development&amp;tab=' . gettext('rewrite');
 			$named = array_flip($tabs['development']['subtabs']);
-			natcasesort($named);
+			sortArray($named);
 			$tabs['development']['subtabs'] = $named = array_flip($named);
 			$tabs['development']['link'] = array_shift($named);
 			return $tabs;

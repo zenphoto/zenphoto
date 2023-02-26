@@ -4,8 +4,7 @@
  * the assigned to the current object.
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage related-items
+ * @package zpcore\plugins\relateditems
  */
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
 $plugin_author = "Malte Müller (acrylian)";
@@ -18,6 +17,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
 		$searchstring = '';
 		$count = '';
 		foreach ($tags as $tag) {
+			$tag = '"' . $tag . '"';
 			$count++;
 			if ($count == 1) {
 				$bool = '';
@@ -26,7 +26,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
 			}
 			$searchstring .= $bool . $tag;
 		}
-		$paramstr = urlencode('words') . '=' . $searchstring . '&searchfields=tags';
+		$paramstr = urlencode('search') . '=' . $searchstring . '&searchfields=tags';
 		if (!is_null($album)) {
 			$paramstr = '&albumname=' . urlencode($album);
 		}
@@ -113,17 +113,17 @@ function createRelatedItemsResultArray($result, $type) {
 	foreach ($result as $item) {
 		switch ($type) {
 			case 'albums':
-				if (!isAlbumClass($current) || $current->name != $item) {
+				if (!AlbumBase::isAlbumClass($current) || $current->name != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
 			case 'images':
-				if (!isImageClass($current) || $current->filename != $item['filename']) {
+				if (!Image::isImageClass($current) || $current->filename != $item['filename']) {
 					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight']));
 				}
 				break;
 			case 'news':
-				if (get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
+				if (get_class($current) != 'ZenpageNews' || $current->getName() != $item['titlelink']) {
 
 					if (!isset($item['weight']))
 						$item['weight'] = 13; //	there are circumstances where weights are not generated.
@@ -132,7 +132,7 @@ function createRelatedItemsResultArray($result, $type) {
 				}
 				break;
 			case 'pages':
-				if (get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
+				if (get_class($current) != 'ZenpagePage' || $current->getName() != $item) {
 					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
 				}
 				break;
@@ -171,14 +171,14 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 					$category = '';
 					switch ($item['type']) {
 						case 'albums':
-							$obj = newAlbum($item['name']);
+							$obj = AlbumBase::newAlbum($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Album');
 							break;
 						case 'images':
-							$alb = newAlbum($item['album']);
-							$obj = newImage($alb, $item['name']);
+							$alb = AlbumBase::newAlbum($item['album']);
+							$obj = Image::newImage($alb, $item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							$category = gettext('Image');

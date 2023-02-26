@@ -3,9 +3,8 @@
 /**
  * Create news articles when a gallery item is published.
  *
- * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage galleryarticles
+ * @package zpcore\plugins\galleryarticles
  */
 $plugin_is_filter = 600 | THEME_PLUGIN | ADMIN_PLUGIN;
 $plugin_description = gettext('Create news articles when a gallery item is published.');
@@ -137,18 +136,19 @@ class galleryArticles {
 	 * @param object $obj
 	 */
 	private static function publishArticlesWithCheck($obj) {
+		global $_zp_db;
 		$type = $obj->table;
 		if (getOption('galleryArticles_' . $type)) {
-			if ($obj->getShow()) {
+			if ($obj->isPublic()) {
 				if (getOption('galleryArticles_protected') || !$obj->isProtected()) {
 					switch ($type = $obj->table) {
 
 						case 'albums':
 							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
-								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_albums" AND `data`=' . db_quote($obj->name));
+								$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_albums" AND `data`=' . $_zp_db->quote($obj->name));
 								if (!$result) {
-									query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_albums",' . db_quote($obj->name) . ')');
+									$_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_albums",' . $_zp_db->quote($obj->name) . ')');
 								}
 							} else {
 								self::publishArticle($obj);
@@ -157,9 +157,9 @@ class galleryArticles {
 						case 'images':
 							$dt = $obj->getPublishDate();
 							if ($dt > date('Y-m-d H:i:s')) {
-								$result = query_single_row('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_images" AND `data`=' . db_quote($obj->imagefolder . '/' . $obj->filename));
+								$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="galleryArticles" AND `aux`="pending_images" AND `data`=' . $_zp_db->quote($obj->imagefolder . '/' . $obj->filename));
 								if (!$result) {
-									query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_images",' . db_quote($obj->imagefolder . '/' . $obj->filename) . ')');
+									$_zp_db->query('INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`,`aux`,`data`) VALUES ("galleryArticles","pending_images",' . $_zp_db->quote($obj->imagefolder . '/' . $obj->filename) . ')');
 								}
 							} else {
 								self::publishArticle($obj);
@@ -214,16 +214,16 @@ class galleryArticles {
     $article->setTitle($text);
     $imglink = $img->getCustomImage(getOption('galleryArticles_size'), NULL, NULL, NULL, NULL, NULL, NULL, -1);
     if (getOption('multi_lingual')) {
-      $desc = '';
+      $desc_temp = array();
       foreach ($option_text as $key => $val) {
-        $desc[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
+        $desc_temp[$key] = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc($key) . '</p>';
       }
-      $desc = serialize($desc);
+      $desc = serialize($desc_temp);
     } else {
       $desc = '<p><a class="' . $class . '" href="' . $obj->getLink() . '"><img src="' . $imglink . '"></a></p><p>' . $obj->getDesc() . '</p>';
     }
     $article->setContent($desc);
-    $article->setShow(true);
+    $article->setPublished(true);
     $date = $obj->getPublishDate();
     if (!$date) {
       $date = date('Y-m-d H:i:s');
@@ -256,23 +256,24 @@ class galleryArticles {
 	 * @return string
 	 */
 	static function scan($script, $valid = true) {
+		global $_zp_db;
 		if ($script && $valid) {
 
-			$result = query_full_array('SELECT * FROM ' . prefix('albums') . ' AS album,' . prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= ' . db_quote(date('Y-m-d H:i:s')));
+			$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('albums') . ' AS album,' . $_zp_db->prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= ' . $_zp_db->quote(date('Y-m-d H:i:s')));
 			if ($result) {
 				foreach ($result as $album) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $album['id']);
-					$album = newAlbum($album['folder']);
+					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $album['id']);
+					$album = AlbumBase::newAlbum($album['folder']);
 					self::publishArticle($album);
 				}
 			}
-			$result = query_full_array('SELECT * FROM ' . prefix('images') . ' AS image,' . prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= ' . db_quote(date('Y-m-d H:i:s')));
+			$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('images') . ' AS image,' . $_zp_db->prefix('plugin_storage') . ' AS store WHERE store.type="galleryArticles" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= ' . $_zp_db->quote(date('Y-m-d H:i:s')));
 			if ($result) {
 				foreach ($result as $image) {
-					query('DELETE FROM ' . prefix('plugin_storage') . ' WHERE `id`=' . $image['id']);
-					$album = query_single_row('SELECT * FROM ' . prefix('albums') . ' WHERE `id`=' . $image['albumid']);
-					$album = newAlbum($album['folder']);
-					$image = newImage($album, $image['filename']);
+					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $image['id']);
+					$album = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $image['albumid']);
+					$album = AlbumBase::newAlbum($album['folder']);
+					$image = Image::newImage($album, $image['filename']);
 					self::publishArticle($image);
 				}
 			}

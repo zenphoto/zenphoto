@@ -1,0 +1,28 @@
+#outer {
+					width: 100%;
+					padding-top: 20px;
+					margin-top: 20px;
+				}
+				#closed {
+					padding: 30px 20px 20px 20px;
+					max-width: 500px;
+					border: 1px solid lightgray;
+					-webkit-border-radius: 10px;
+					-moz-border-radius: 10px;
+					-o-border-radius: 10px;
+					border-radius: 10px;
+					margin: 0 auto;
+				}
+				#closed p {
+					font-size: 16px;
+					font-family: "Helvetica", sans-serif;
+					text-align: center;
+				}
+				#closed img {
+					display: block;
+					margin: 0 auto;
+				}
+				
+				#closed a {
+					color: #4D76CF;
+				}

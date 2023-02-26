@@ -1,9 +1,9 @@
 <?php
 define('OFFSET_PATH', 3);
-require_once("../../../../functions.php");
+require_once("../../../../functions/functions.php");
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 <head>
 <title>TinyZenpage</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -18,10 +18,10 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 	$partialpath = strpos(FULLWEBPATH, '/'.ZENFOLDER);
 	$webpath = substr(FULLWEBPATH,0,$partialpath);
 	$ext = strtolower(strrchr($imagename, "."));
-	$albumobj = newAlbum($albumname);
-	$imageobj = newImage($albumobj,$imagename);
+	$albumobj = AlbumBase::newAlbum($albumname);
+	$imageobj = Image::newImage($albumobj,$imagename);
 	echo $imageobj->getTitle()."<br />";
-	if(isImageVideo($imageobj)) {
+	if($imageobj->isVideo()) {
 		switch($ext) {
 			case '.flv':
 			case '.mp4':

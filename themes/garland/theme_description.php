@@ -8,4 +8,5 @@ $theme_description['author'] = 'Mark Galeassi (aitf311) updated by Stephen Billa
 $theme_description['version'] = true;
 $theme_description['date'] = true;
 $theme_description['desc'] = gettext('Modded Wordpress theme from, <a href="http://garlandtheme.blogspot.com/">garland</a>');
+$theme_description['deprecated'] = true;
 ?>

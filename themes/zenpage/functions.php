@@ -7,8 +7,7 @@
  */
 function printZDSearchToggleJS() {
 	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
+	<script>
 		function toggleExtraElements(category, show) {
 			if (show) {
 				jQuery('.' + category + '_showless').show();
@@ -20,7 +19,6 @@ function printZDSearchToggleJS() {
 				jQuery('.' + category + '_extrashow').hide();
 			}
 		}
-		// ]]> -->
 	</script>
 	<?php
 }
@@ -82,6 +80,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 		case 'news.php':
 		case 'album.php':
 		case 'search.php':
+		case 'favorites.php':
 			break;
 		default:
 			if ($page != 1) {
@@ -101,9 +100,9 @@ function newsOnIndex($link, $obj, $page) {
 	if (is_string($obj) && $obj == 'news.php') {
 		if (MOD_REWRITE) {
 			if (preg_match('~' . _NEWS_ . '[/\d/]*$~', $link)) {
-				$link = WEBPATH;
+				$link = WEBPATH . '/';
 				if ($page > 1)
-					$link .= '/' . _PAGE_ . '/' . $page;
+					$link .=  _PAGE_ . '/' . $page;
 			}
 		} else {
 			if (strpos($link, 'category=') === false && strpos($link, 'title=') === false) {

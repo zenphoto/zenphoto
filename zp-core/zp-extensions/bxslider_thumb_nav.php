@@ -9,13 +9,13 @@
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)
- * @package plugins
- * @subpackage bxslider-thumb-nav
+ * @package zpcore\plugins\bxsliderthumbnav
  */
 $plugin_description = gettext("Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider.com'>http://bxslider.com</a>");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Fred Sondaar (fretzl)";
 $plugin_disable = (extensionEnabled('jcarousel_thumb_nav')) ? sprintf(gettext('Only one Carousel plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'jcarousel_thumb_nav') : '';
 $plugin_category = gettext('Media');
+$plugin_deprecated = true;
 $option_interface = 'bxslider';
 
 /**
@@ -114,7 +114,7 @@ class bxslider {
 		}
 		?>
 
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/bxslider_thumb_nav/jquery.bxslider.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo html_encode($css); ?>" />
 		<?php
 	}
@@ -208,13 +208,13 @@ if (!$plugin_disable && !OFFSET_PATH) {
 				foreach ($bxslider_items as $item) {
 					if (is_array($item)) {
 						if (in_context(ZP_SEARCH_LINKED)) {
-							$albumobj = newAlbum($item['folder']);
+							$albumobj = AlbumBase::newAlbum($item['folder']);
 						} else {
 							$albumobj = $_zp_current_album;
 						}
-						$imgobj = newImage($albumobj, $item['filename']);
+						$imgobj = Image::newImage($albumobj, $item['filename']);
 					} else {
-						$imgobj = newImage($_zp_current_album, $item);
+						$imgobj = Image::newImage($_zp_current_album, $item);
 					}
 					if ($fullimagelink) {
 						$link = $imgobj->getFullImageURL();
@@ -259,7 +259,7 @@ if (!$plugin_disable && !OFFSET_PATH) {
 			}
 			?>
 			</ul>
-			<script type="text/javascript">
+			<script>
 				$(document).ready(function () {
 					var index = $('.bxslider<?php echo $albumid; ?> li.activeimg').index();
 					index = ++index;

@@ -1,7 +1,7 @@
 <?php
 /**
  * provides the Upload tab of admin
- * @package admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
@@ -13,17 +13,16 @@ admin_securityChecks(UPLOAD_RIGHTS | FILES_RIGHTS, $return = currentRelativeURL(
 
 if (isset($_GET['type'])) {
 	$uploadtype = sanitize($_GET['tab']);
-	zp_setCookie('uploadtype', $uploadtype);
+	zp_setCookie('zpcms_admin_uploadtype', $uploadtype);
 } else {
-	$uploadtype = zp_getcookie('uploadtype');
+	$uploadtype = zp_getcookie('zpcms_admin_uploadtype');
 	$_GET['tab'] = $uploadtype;
 }
 $handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
-	if (isset($zenphoto_tabs['upload']['subtabs'][0])) {
-		header('location: ' . $zenphoto_tabs['upload']['subtabs'][0]);
-		exitZP();
+	if (isset($_zp_admin_menu['upload']['subtabs'][0])) {
+		redirectURL($_zp_admin_menu['upload']['subtabs'][0]);
 	}
 	$handlers = array();
 }
@@ -34,7 +33,6 @@ if (count($handlers) > 0) {
 	}
 	require_once($uploadHandlers[$uploadtype] . '/upload_form.php');
 } else {
-
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/no_uploader.php');
 	exitZP();
 }
@@ -44,7 +42,7 @@ $_GET['page'] = 'upload';
 
 printAdminHeader('upload', 'albums');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/upload.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/zp_upload.js"></script>
 <?php
 //	load the uploader specific header stuff
 $formAction = upload_head();
@@ -59,11 +57,10 @@ printLogoAndLinks();
 	?>
 	<div id="content">
 		<?php
-		if (!empty($zenphoto_tabs['upload']['subtabs'])) {
+		if (!empty($_zp_admin_menu['upload']['subtabs'])) {
 			printSubtabs();
 		}
-		$albumlist = array();
-		genAlbumList($albumlist);
+		$albumlist = $_zp_gallery->getAllAlbumsFromDB();
 		//	remove dynamic albums--can't upload to them
 		foreach ($albumlist as $key => $albumname) {
 			if (hasDynamicAlbumSuffix($key) && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
@@ -71,8 +68,7 @@ printLogoAndLinks();
 			}
 		}
 		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			// Array of album names for javascript functions.
 			var albumArray = new Array(
 <?php
@@ -82,7 +78,6 @@ foreach ($albumlist as $key => $value) {
 	$separator = ", ";
 }
 ?>);
-			// ]]> -->
 		</script>
 
 		<div class="tabbox">
@@ -90,12 +85,14 @@ foreach ($albumlist as $key => $value) {
 			<h1><?php echo gettext("Upload Images"); ?></h1>
 			<p>
 				<?php
-				natcasesort($_zp_supported_images);
+				sortArray($_zp_supported_images);
 				$types = array_keys($_zp_extra_filetypes);
 				$types = array_merge($_zp_supported_images, $types);
-				$types[] = 'ZIP';
+				if (function_exists('zip_open')) {
+					$types[] = 'ZIP';
+				}
 				$types = zp_apply_filter('upload_filetypes', $types);
-				natcasesort($types);
+				sortArray($types);
 				$upload_extensions = $types;
 				$last = strtoupper(array_pop($types));
 				$s1 = strtoupper(implode(', ', $types));
@@ -155,14 +152,6 @@ foreach ($albumlist as $key => $value) {
 				</div>
 				<?php
 			}
-			if (SAFE_MODE) {
-				?>
-				<div class="warningbox fade-message">
-					<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
-					<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
-				</div>
-				<?php
-			}
 			$rootrights = zp_apply_filter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
 			if ($rootrights || !empty($albumlist)) {
 				echo gettext("Upload to:");
@@ -172,8 +161,7 @@ foreach ($albumlist as $key => $value) {
 					$checked = '';
 				}
 				?>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
+				<script>
 	<?php seoFriendlyJS(); ?>
 					function buttonstate(good) {
 						$('#albumtitleslot').val($('#albumtitle').val());
@@ -190,6 +178,12 @@ foreach ($albumlist as $key => $value) {
 							$('#fileUploadbuttons').show();
 						} else {
 							$('#fileUploadbuttons').hide();
+						}
+						
+						if(good) {
+							$('#upload_action').show();
+						} else {
+							$('#upload_action').hide();
 						}
 					}
 
@@ -210,7 +204,6 @@ foreach ($albumlist as $key => $value) {
 						var state = albumSwitch(sel, true, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>');
 						buttonstate(state);
 					}
-					// ]]> -->
 				</script>
 				<div id="albumselect">
 
@@ -223,7 +216,6 @@ foreach ($albumlist as $key => $value) {
 								<option value="" selected="selected" style="font-weight: bold;">/</option>
 								<?php
 							}
-							$bglevels = array('#fff', '#f8f8f8', '#efefef', '#e8e8e8', '#dfdfdf', '#d8d8d8', '#cfcfcf', '#c8c8c8');
 							if (isset($_GET['album'])) {
 								$passedalbum = sanitize($_GET['album']);
 							} else {
@@ -237,7 +229,6 @@ foreach ($albumlist as $key => $value) {
 							foreach ($albumlist as $fullfolder => $albumtitle) {
 								$singlefolder = $fullfolder;
 								$saprefix = "";
-								$salevel = 0;
 								if (!is_null($passedalbum) && ($passedalbum == $fullfolder)) {
 									$selected = " selected=\"selected\" ";
 								} else {
@@ -246,11 +237,9 @@ foreach ($albumlist as $key => $value) {
 								// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
 								while (strstr($singlefolder, '/') !== false) {
 									$singlefolder = substr(strstr($singlefolder, '/'), 1);
-									$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
-									$salevel++;
+									$saprefix = "–&nbsp;" . $saprefix;
 								}
-								echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: ' . $bglevels[$salevel] . '; border-bottom: 1px dotted #ccc;"' : '')
-								. "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
+								echo '<option value="' . $fullfolder . '"' . "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
 							}
 							if (isset($_GET['publishalbum'])) {
 								$publishchecked = ' checked="checked"';
@@ -268,7 +257,7 @@ foreach ($albumlist as $key => $value) {
 						if (empty($passedalbum)) {
 							$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
 						} else {
-							$rightsalbum = newAlbum($passedalbum);
+							$rightsalbum = AlbumBase::newAlbum($passedalbum);
 							$modified_rights = $rightsalbum->albumSubRights();
 						}
 						if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) { //	he has edit rights, allow new album creation
@@ -278,31 +267,26 @@ foreach ($albumlist as $key => $value) {
 						}
 						?>
 						<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
-							<div>
-								<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" />
-								<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
-							</div>
-							<div id="publishtext"><?php echo gettext("and"); ?>
-								<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" />
-								<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-							</div>
+							<p>
+								<label><input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect, false, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>')" /> <?php echo gettext("Create a new album"); ?></label>
+							</p>
+							<p id="publishtext">
+								<label><input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> onchange="publishCheck();" /> <?php echo gettext("Publish the album."); ?></label>
+							</p>
 						</div>
 						<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
-							<?php echo gettext("titled:"); ?>
-							<input type="text" name="albumtitle" id="albumtitle" size="42"
-										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
+							<p><label><input type="text" name="albumtitle" id="albumtitle"
+										 onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen', '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" /> <?php echo gettext('Title'); ?>
+								</label></p>
 
-							<div style="position: relative; margin-top: 4px;">
-								<?php echo gettext("with the folder name:"); ?>
-								<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
-								<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
+								<p id="foldererror" class="errorbox" style="display: none;"></p>
+								<p><label><input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
 											 onkeyup="buttonstate(validateFolder(this, '<?php echo addslashes(gettext('That name is already used.')); ?>', '<?php echo addslashes(gettext('This upload has to have a folder. Type a title or folder name to continue...')); ?>'));" />
-								<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+									<?php echo gettext('Folder name'); ?></label></p>
+								<p><label for="autogen"><input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
 											 onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-								<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-								<br />
-								<br />
-							</div>
+									<?php echo gettext('Auto-generate'); ?></label></p>
+			
 						</div>
 						<hr />
 						<?php upload_form($uploadlimit, $passedalbum); ?>
@@ -314,8 +298,7 @@ foreach ($albumlist as $key => $value) {
 						?>
 					</div><!-- upload action -->
 
-					<script type="text/javascript">
-						//<!-- <![CDATA[
+					<script>
 	<?php
 	echo zp_apply_filter('upload_helper_js', '') . "\n";
 	if ($passedalbum) {
@@ -356,7 +339,6 @@ foreach ($albumlist as $key => $value) {
 	}
 	?>
 						buttonstate($('#folderdisplay').val() != '');
-						// ]]> -->
 					</script>
 					<?php
 				} else {

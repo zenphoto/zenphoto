@@ -9,38 +9,40 @@
  * contained in the fields will be discarded.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage useraddressfields
- *
+ * @package zpcore\plugins\useraddressfields
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext('Adds user address fields');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Users');
+$plugin_deprecated = true;
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
 
+/**
+ * @package zpcore\plugins\useraddressfields
+ */
 class userAddressFields extends fieldExtender {
 
 	function __construct() {
-		global $_userAddressFields;
+		global $_userAddressFields, $_zp_db;
 		$firstTime = extensionEnabled('userAddressFields') && is_null(getOption('userAddressFields_addedFields'));
 		parent::constructor('userAddressFields', self::fields());
 		if ($firstTime) { //	migrate the custom data user data
-			$result = query('SELECT * FROM ' . prefix('administrators') . ' WHERE `valid`!=0');
+			$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE `valid`!=0');
 			if ($result) {
-				while ($row = db_fetch_assoc($result)) {
+				while ($row = $_zp_db->fetchAssoc($result)) {
 					$custom = getSerializedArray($row['custom_data']);
 					if (!empty($custom)) {
-						$sql = 'UPDATE ' . prefix('administrators') . ' SET ';
+						$sql = 'UPDATE ' . $_zp_db->prefix('administrators') . ' SET ';
 						foreach ($custom as $field => $val) {
-							$sql.= '`' . $field . '`=' . db_quote($val) . ',';
+							$sql.= '`' . $field . '`=' . $_zp_db->quote($val) . ',';
 						}
 						$sql .= '`custom_data`=NULL WHERE `id`=' . $row['id'];
-						query($sql);
+						$_zp_db->query($sql);
 					}
 				}
-				db_free_result($result);
+				$_zp_db->freeResult($result);
 			}
 		}
 	}

@@ -2,7 +2,8 @@
 /**
  * Check for use of deprecated functions
  * @author Stephen Billard (sbillard)
- * @package plugins
+ * @package zpcore\plugins\dprecatedfunctions
+ * @deprecated ZenphotoCMS 1.6
  */
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
@@ -27,7 +28,7 @@ if (isset($_GET['action'])) {
 	$selected = sanitize_numeric($_POST['target']);
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Deprecated') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Deprecated') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php');
 printAdminHeader('overview', 'deprecated');
 ?>
 <?php
@@ -91,7 +92,7 @@ echo '</head>' . "\n";
 								listUses(getPHPFiles($path, array()), $path, $pattern);
 								foreach ($zplist as $theme) {
 									$path = SERVERPATH . '/' . THEMEFOLDER . '/' . $theme;
-									$output || listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
+									listUses(getPHPFiles($path, array()), SERVERPATH, $pattern);
 								}
 								break;
 							case 4:

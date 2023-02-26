@@ -1,4 +1,9 @@
 <?php
+/**
+ * Displays database info
+ * 
+ * @package zpcore\admin\utilities
+ */
 
 $buttonlist[] = array(
 		'XSRFTag' => 'refresh',

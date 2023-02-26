@@ -2,7 +2,7 @@
 /**
  * This template is used to reload metadata from images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
- * @package admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
@@ -80,11 +80,10 @@ if (isset($_REQUEST['album'])) {
 		$folder = sanitize_path($_GET['album']);
 	}
 	if (!empty($folder)) {
-		$album = newAlbum($folder);
+		$album = AlbumBase::newAlbum($folder);
 		if (!$album->isMyItem(ALBUM_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-				exitZP();
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}
 	}
@@ -102,15 +101,14 @@ if (isset($_GET['refresh'])) {
 } else {
 	if ($type !== 'prune&amp;') {
 		if (!empty($folder)) {
-			$album = newAlbum($folder);
+			$album = AlbumBase::newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
-					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-					exitZP();
+					redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 				}
 			}
-			$sql = "SELECT `id` FROM " . prefix('albums') . " WHERE `folder`=" . db_quote($folder);
-			$row = query_single_row($sql);
+			$sql = "SELECT `id` FROM " . $_zp_db->prefix('albums') . " WHERE `folder`=" . $_zp_db->quote($folder);
+			$row = $_zp_db->querySingleRow($sql);
 			$id = $row['id'];
 		}
 
@@ -127,7 +125,7 @@ if (isset($_GET['refresh'])) {
 	$metaURL = $starturl = '?' . $type . 'refresh=start' . $albumparm . '&amp;XSRFToken=' . getXSRFToken('refresh') . $ret;
 }
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Refresh') => '');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Refresh') => '');
 
 printAdminHeader($tab, 'Refresh');
 if (!empty($metaURL)) {
@@ -165,13 +163,13 @@ printTabs();
 		} else {
 			if ($type !== 'prune&amp;') {
 				if (!empty($id)) {
-					$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
-					query($sql);
+					$sql = "UPDATE " . $_zp_db->prefix('albums') . " SET `mtime`=0" . ($_zp_gallery->getAlbumUseImagedate() ? ", `date`=NULL" : '') . " WHERE `id`=$id";
+					$_zp_db->query($sql);
 				}
-				$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";
-				query($sql);
-				$sql = "UPDATE " . prefix('images') . " SET `mtime`=0 $imagewhere;";
-				query($sql);
+				$sql = "UPDATE " . $_zp_db->prefix('albums') . " SET `mtime`=0 $albumwhere";
+				$_zp_db->query($sql);
+				$sql = "UPDATE " . $_zp_db->prefix('images') . " SET `mtime`=0 $imagewhere;";
+				$_zp_db->query($sql);
 			}
 			if (!empty($folder) && empty($id)) {
 				echo "<p> " . sprintf(gettext("<em>%s</em> not found"), $folder) . "</p>";

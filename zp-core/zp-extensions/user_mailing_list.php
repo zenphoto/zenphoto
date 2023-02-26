@@ -6,8 +6,7 @@
  * Note this is not meant to be used as a newsletter system but rather for a small group of users!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage user-mailing-list
+ * @package zpcore\plugins\usermailinglist
  */
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -59,7 +58,7 @@ if (defined('OFFSET_PATH')) {
 
 	$webpath = WEBPATH . '/' . ZENFOLDER . '/';
 	$admins = $_zp_authority->getAdministrators();
-	$zenphoto_tabs['overview']['subtabs'] = array(gettext('Mailing') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php');
+	$_zp_admin_menu['overview']['subtabs'] = array(gettext('Mailing') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_mailing_list.php');
 
 	printAdminHeader('overview', 'Mailing');
 	?>

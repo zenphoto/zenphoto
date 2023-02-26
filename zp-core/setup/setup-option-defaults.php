@@ -3,7 +3,7 @@
 
 /**
  * stores all the default values for options
- * @package setup
+ * @package zpcore\setup
  */
 setup::Log(gettext('Set Zenphoto default options'), true);
 
@@ -13,11 +13,11 @@ zp_apply_filter('log_setup', true, 'install', '');
 
 /* fix for NULL theme name */
 $active = getOptionList();
-$sql = "SELECT * FROM " . prefix('options') . ' WHERE `theme` IS NULL';
-$optionlist = query_full_array($sql);
+$sql = "SELECT * FROM " . $_zp_db->prefix('options') . ' WHERE `theme` IS NULL';
+$optionlist = $_zp_db->queryFullArray($sql);
 if ($optionlist) {
 	foreach ($optionlist as $option) {
-		query('DELETE FROM ' . prefix('options') . ' WHERE `id`=' . $option['id']);
+		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `id`=' . $option['id']);
 		setOption($option['name'], $active[$option['name']]);
 	}
 }
@@ -26,7 +26,7 @@ $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*
 $list = range(0, strlen($salt) - 1);
 shuffle($list);
 for ($i = 0; $i < 30; $i++) {
-	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
+	$lib_auth_extratext = $lib_auth_extratext . $salt[$list[$i]];
 }
 
 purgeOption('zenphoto_release');
@@ -35,15 +35,15 @@ purgeOption('zenphoto_install');
 setOption('zenphoto_install', serialize(installSignature()));
 setOptionDefault('setup_unprotected_by_adminrequest', 0);
 
-if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
+if (Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 	if (empty($oldv)) {
 		//	The password hash of these old versions did not have the extra text.
 		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 		purgeOption('extra_auth_hash_text');
 		setOptionDefault('extra_auth_hash_text', '');
 	}
-	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
-	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
+	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Authority::$preferred_version);
+	if (!$_zp_authority->migrateAuth(Authority::$preferred_version)) {
 		$msg .= ': ' . gettext('failed');
 	}
 	echo $msg;
@@ -77,7 +77,7 @@ setOption('mod_rewrite_detected', 0);
 if (isset($_GET['mod_rewrite'])) {
 	if (!function_exists('curl_init')) {
 		?>
-		<script type="text/javascript">
+		<script>
 			$(function() {
 				$('img').error(function() {
 					var link = $(this).attr('src');
@@ -113,7 +113,7 @@ if (getOption('perform_watermark')) {
 setOptionDefault('watermark_h_offset', 90);
 setOptionDefault('watermark_w_offset', 90);
 setOptionDefault('watermark_scale', 5);
-setOptionDefault('watermark_allow_upscale', 1);
+purgeOption('watermark_allow_upscale');
 setOptionDefault('perform_video_watermark', 0);
 
 if (getOption('perform_video_watermark')) {
@@ -127,63 +127,96 @@ setOptionDefault('hotlink_protection', '1');
 
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
-$a = "a => (href =>() title =>() target=>() class=>() id=>() rel=>())\n" .
-				"abbr =>(class=>() id=>() title =>())\n" .
-				"acronym =>(class=>() id=>() title =>())\n" .
-				"b => (class=>() id=>() )\n" .
-				"blockquote =>(class=>() id=>() cite =>())\n" .
+$style_tags = "abbr =>(class=>() id=>() title =>() lang=>())\n" .
+				"acronym =>(class=>() id=>() title =>() lang=>())\n" .
+				"b => (class=>() id=>() lang=>())\n" .
+				"blockquote =>(class=>() id=>() cite =>() lang=>())\n" .
 				"br => (class=>() id=>())\n" .
-				"code => (class=>() id=>())\n" .
-				"em => (class=>() id=>())\n" .
-				"i => (class=>() id=>()) \n" .
-				"strike => (class=>() id=>())\n" .
-				"strong => (class=>() id=>())\n" .
-				"ul => (class=>() id=>())\n" .
-				"ol => (class=>() id=>())\n" .
-				"li => (class=>() id=>())\n" .
-				"p => (class=>() id=>() style=>())\n" .
-				"h1=>(class=>() id=>() style=>())\n" .
-				"h2=>(class=>() id=>() style=>())\n" .
-				"h3=>(class=>() id=>() style=>())\n" .
-				"h4=>(class=>() id=>() style=>())\n" .
-				"h5=>(class=>() id=>() style=>())\n" .
-				"h6=>(class=>() id=>() style=>())\n" .
-				"pre=>(class=>() id=>() style=>())\n" .
-				"address=>(class=>() id=>() style=>())\n" .
-				"span=>(class=>() id=>() style=>())\n" .
-				"div=>(class=>() id=>() style=>())\n" .
-				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>())\n" .
-				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>())\n"
-;
-setOption('allowed_tags_default', $a);
-setOptionDefault('allowed_tags', $a);
-setOptionDefault('style_tags', "abbr => (title => ())\n" .
-				"acronym => (title => ())\n" .
-				"b => ()\n" .
-				"em => ()\n" .
-				"i => () \n" .
-				"strike => ()\n" .
-				"strong => ()\n");
-//	insure tags are in lower case!
-setOption('allowed_tags', strtolower(getOption('allowed_tags')));
+				"code => (class=>() id=>() lang=>())\n" .
+				"em => (class=>() id=>() lang=>())\n" .
+				"i => (class=>() id=>() lang=>())\n" .
+				"strike => (class=>() id=>() lang=>())\n" .
+				"strong => (class=>() id=>() lang=>())\n" .
+				"sup => (class=>() id=>() lang=>())\n" .
+				"sub => (class=>() id=>() lang=>())\n" .
+				"del => (class=>() id=>() lang=>())\n";
+
+$general_tags = "a => (href =>() title =>() target=>() class=>() id=>() rel=>() lang=>())\n" .
+				"ul =>(class=>() id=>() lang=>())\n" .
+				"ol =>(class=>() id=>() lang=>())\n" .
+				"li =>(class=>() id=>() lang=>())\n" .
+				"dl =>(class=>() id=>() lang=>())\n" .
+				"dt =>(class=>() id=>() lang=>())\n" .
+				"dd =>(class=>() id=>() lang=>())\n" .
+				"p => (class=>() id=>() style=>() lang=>())\n" .
+				"h1=>(class=>() id=>() style=>() lang=>())\n" .
+				"h2=>(class=>() id=>() style=>() lang=>())\n" .
+				"h3=>(class=>() id=>() style=>() lang=>())\n" .
+				"h4=>(class=>() id=>() style=>() lang=>())\n" .
+				"h5=>(class=>() id=>() style=>() lang=>())\n" .
+				"h6=>(class=>() id=>() style=>() lang=>())\n" .
+				"pre=>(class=>() id=>() style=>() lang=>())\n" .
+				"address=>(class=>() id=>() style=>() lang=>())\n" .
+				"span=>(class=>() id=>() style=>() lang=>())\n" .
+				"div=>(class=>() id=>() style=>() lang=>())\n" .
+				"img=>(class=>() id=>() style=>() src=>() title=>() alt=>() width=>() height=>() sizes=>() srcset=>() loading=>() lang=>())\n" .
+				"iframe=>(class=>() id=>() style=>() src=>() title=>() width=>() height=>() loading=>() lang=>())\n" .
+				"figure=>(class=>() id=>() style=>() lang=>())\n" .
+				"figcaption=>(class=>() id=>() style=>() lang=>())\n" .
+				"article=>(class=>() id=>() style=>() lang=>())\n" .
+				"section => (class=>() id=>() style=>() lang=>())\n" .
+				"nav => (class=>() id=>() style=>() lang=>())\n" .
+				"video => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() poster=>() lang=>())\n" .
+				"audio => (class=>() id=>() style=>() src=>() controls=>() autoplay=>() buffered=>() height=>() width=>() loop=>() muted=>() preload=>() volume=>() lang=>())\n" .
+				"picture=>(class=>() id=>() lang=>())\n" .
+				"source=>(src=>() scrset=>() size=>() type=>() media=>() lang=>())\n" .
+				"track=>(src=>() kind=>() srclang=>() label=>() default=>() lang=>())\n" .
+				"table => (class=>() id=>() lang=>())\n" .
+				"caption => (class=>() id=>() lang=>())\n" .
+				"th => (class=>() id=>() lang=>())\n" .
+				"tr => (class=>() id=>() lang=>())\n" .
+				"td => (class=>() id=>() colspan=>() lang=>())\n" .
+				"thead => (class=>() id=>() lang=>())\n" .
+				"tbody => (class=>() id=>() lang=>())\n" .
+				"tfoot => (class=>() id=>() lang=>())\n" .
+				"colgroup => (class=>() id=>() lang=>())\n" .
+				"col => (class=>() id=>() lang=>())\n" .
+				"form => (action=>() method=>() accept-charset=>() id=>() class=>() title=>() name=>() target=>() lang=>())\n";
+
+setOption('allowed_tags_default', $style_tags . $general_tags);
+setOptionDefault('allowed_tags', $style_tags . $general_tags);
+setOptionDefault('style_tags', strtolower($style_tags));
 
 setOptionDefault('full_image_quality', 75);
 
-if (getOption('protect_full_image') === '0') {
-	$protection = 'Unprotected';
-} else if (getOption('protect_full_image') === '1') {
-	if (getOption('full_image_download')) {
-		$protection = 'Download';
-	} else {
-		$protection = 'Protected view';
-	}
-} else {
-	$protection = false;
+$protectfullimage = getOption('protect_full_image');
+//Update outdated values
+switch($protectfullimage) {
+	default: // option not set yet
+		$protection = false;
+		break;
+	case 'Protected view':
+	case '1': // outdated legady value
+		$protection = 'protected';
+		break;
+	case 'Unprotected':
+	case '0': // outdated legady value
+		$protection = 'unprotected';
+		break;
+	case 'No access':
+		$protection = 'no-access';
+		break;
+	case 'Download':
+		$protection = 'download';
+		break;
 }
 if ($protection) {
+	if (getOption('full_image_download')) { // outdated legady option
+		$protection = 'download';
+	}
 	setOption('protect_full_image', $protection);
 } else {
-	setOptionDefault('protect_full_image', 'Protected view');
+	setOptionDefault('protect_full_image', 'protected');
 }
 
 setOptionDefault('locale', '');
@@ -195,6 +228,7 @@ setOptionDefault('multi_lingual', 0);
 setOptionDefault('tagsort', 0);
 setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
+setOptionDefault('albumimagesort_status', 'all');
 setOptionDefault('cache_full_image', 0);
 setOptionDefault('custom_index_page', '');
 setOptionDefault('picture_of_the_day', serialize(array('day' => NULL, 'folder' => NULL, 'filename' => NULL)));
@@ -216,6 +250,7 @@ foreach ($_zp_exifvars as $key => $item) {
 }
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 setOptionDefault('IPTC_convert_linebreaks', 0);
+renameOption('ImbedIPTC', 'EmbedIPTC');
 
 setOptionDefault('UTF8_image_URI', 0);
 
@@ -230,8 +265,8 @@ setOptionDefault('search_no_albums', 0);
 $admins = $_zp_authority->getAdministrators('groups');
 foreach ($admins as $group) {
 	if (is_null($group['other_credentials'])) {
-		$sql = 'UPDATE ' . prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . db_quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
-		query($sql);
+		$sql = 'UPDATE ' . $_zp_db->prefix('administrators') . ' SET `custom_data` = NULL, `other_credentials`=' . $_zp_db->quote($group['custom_data']) . ' WHERE `id`=' . $group['id'];
+		$_zp_db->query($sql);
 	}
 }
 
@@ -240,7 +275,7 @@ if (!is_array($groupsdefined)) {
 	$groupsdefined = array();
 }
 if (!in_array('administrators', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('administrators', 0);
+	$groupobj = Authority::newAdministrator('administrators', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(ALL_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Users with full privileges'));
@@ -249,7 +284,7 @@ if (!in_array('administrators', $groupsdefined)) {
 	$groupsdefined[] = 'administrators';
 }
 if (!in_array('viewers', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('viewers', 0);
+	$groupobj = Authority::newAdministrator('viewers', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(NO_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Users allowed only to view zenphoto objects'));
@@ -258,7 +293,7 @@ if (!in_array('viewers', $groupsdefined)) {
 	$groupsdefined[] = 'viewers';
 }
 if (!in_array('blocked', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('blocked', 0);
+	$groupobj = Authority::newAdministrator('blocked', 0);
 	$groupobj->setName('group');
 	$groupobj->setRights(0);
 	$groupobj->set('other_credentials', gettext('Banned users'));
@@ -267,7 +302,7 @@ if (!in_array('blocked', $groupsdefined)) {
 	$groupsdefined[] = 'blocked';
 }
 if (!in_array('album managers', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('album managers', 0);
+	$groupobj = Authority::newAdministrator('album managers', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS | OVERVIEW_RIGHTS | POST_COMMENT_RIGHTS | VIEW_ALL_RIGHTS | UPLOAD_RIGHTS | COMMENT_RIGHTS | ALBUM_RIGHTS | THEMES_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Managers of one or more albums'));
@@ -276,7 +311,7 @@ if (!in_array('album managers', $groupsdefined)) {
 	$groupsdefined[] = 'album managers';
 }
 if (!in_array('default', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('default', 0);
+	$groupobj = Authority::newAdministrator('default', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(DEFAULT_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Default user settings'));
@@ -285,7 +320,7 @@ if (!in_array('default', $groupsdefined)) {
 	$groupsdefined[] = 'default';
 }
 if (!in_array('newuser', $groupsdefined)) {
-	$groupobj = Zenphoto_Authority::newAdministrator('newuser', 0);
+	$groupobj = Authority::newAdministrator('newuser', 0);
 	$groupobj->setName('template');
 	$groupobj->setRights(NO_RIGHTS);
 	$groupobj->set('other_credentials', gettext('Newly registered and verified users'));
@@ -295,18 +330,9 @@ if (!in_array('newuser', $groupsdefined)) {
 }
 setOption('defined_groups', serialize($groupsdefined)); // record that these have been set once (and never again)
 
-setOptionDefault('RSS_album_image', 1);
-setOptionDefault('RSS_comments', 1);
-setOptionDefault('RSS_articles', 1);
-setOptionDefault('RSS_pages', 1);
-setOptionDefault('RSS_article_comments', 1);
-
 setOptionDefault('AlbumThumbSelect', 1);
 purgeOption('AlbumThumbSelectField');
 purgeOption('AlbumThumbSelectDirection');
-
-setOptionDefault('menu_truncate_string', 0);
-setOptionDefault('menu_truncate_indicator', '');
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'Zenphoto');
@@ -322,7 +348,7 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 ?>
 <p>
 	<?php
-	natcasesort($themes);
+	sortArray($themes);
 	echo '<p>' . gettext('Setting theme default options') . '</p>';
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 		setup::defaultOptionsRequest($theme, 'theme');
@@ -335,26 +361,16 @@ if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 if (getOption('search_space_is_OR')) {
 	setOption('search_space_is', '|');
 }
-query('DELETE FROM ' . prefix('options') . ' WHERE `name`="search_space_is_OR"', false);
+$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `name`="search_space_is_OR"', false);
 
 if (!file_exists(SERVERPATH . '/favicon.ico')) {
 	@copy(SERVERPATH . '/' . ZENFOLDER . '/images/favicon.ico', SERVERPATH . '/favicon.ico');
 }
 
-setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
-
-if (getOption('comment_name_required') == 1) {
-	setOption('comment_name_required', 'required');
-}
-if (getOption('comment_email_required') == 1) {
-	setOption('comment_email_required', 'required');
-}
-if (getOption('comment_web_required') == 1) {
-	setOption('comment_web_required', 'required');
-}
+renameOption('default_copyright', 'copyright_image_notice');
+setOptionDefault('copyright_image_notice', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'), $_SERVER["HTTP_HOST"]));
 
 setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
-
 
 $data = getOption('gallery_data');
 if ($data) {
@@ -405,7 +421,7 @@ if (!isset($data['hitcounter']))
 if (!isset($data['current_theme'])) {
 	$data['current_theme'] = getOption('current_theme');
 	if (is_null($data['current_theme'])) {
-		$data['current_theme'] = 'default';
+		$data['current_theme'] = 'basic';
 	}
 }
 if (!isset($data['website_title']))
@@ -457,32 +473,45 @@ setOption('gallery_data', serialize($data));
 
 $_zp_gallery = new Gallery(); // insure we have the proper options instantiated
 
-/* TODO:enable on the 1.4.7 release
+/*
  *
-  The following options have been relocated to methods of the gallery object. They will be purged form installations
-  on the Zenphoto 1.5 release.
-
-  gallery_page_unprotected_xxx
-  gallery_sortdirection
-  gallery_sorttype
-  gallery_title
-  Gallery_description
-  gallery_password
-  gallery_user
-  gallery_hint
-  current_theme
-  website_title
-  website_url
-  gallery_security
-  login_user_field
-  album_use_new_image_date
-  thumb_select_images
-  album_default
-  image_default
-
- * these may have been used in third party themes. Themes should cease using these options and instead use the
-  appropriate gallery methods.
+ * The following options have been relocated in 1.4.7 to methods of the gallery object. They will be purged form installations
+ * on the Zenphoto 1.5 release.
+ * 
+ * these may have been used in third party themes. Themes should cease using these options and instead use the appropriate gallery methods.
  */
+$unprotectedpages = $_zp_db->queryFullArray("SELECT name FROM " . $_zp_db->prefix('options') . " WHERE name LIKE 'gallery_page_unprotected_%' ");
+if ($unprotectedpages) {
+	foreach ($unprotectedpages as $unprotectedpage) {
+		purgeOption($unprotectedpage['name']);
+	}
+}
+purgeOption('gallery_sortdirection');
+purgeOption('gallery_sorttype');
+purgeOption('gallery_title');
+purgeOption('Gallery_description');
+purgeOption('gallery_password');
+purgeOption('gallery_user');
+purgeOption('gallery_hint');
+purgeOption('current_theme');
+purgeOption('website_title');
+purgeOption('website_url');
+purgeOption('gallery_security');
+purgeOption('login_user_field');
+purgeOption('album_use_new_image_date');
+purgeOption('thumb_select_images');
+purgeOption('album_default');
+purgeOption('image_default');
+purgeThemeOptionTotal('display_copyright_notice');
+setOptionDefault('display_copyright_notice', 1); // enable new global one by default
+
+if(getOption('use_imagick') && $_zp_graphics->imagick_present) {
+	setOptionDefault('graphicslib_selected', 'imagick', true);
+} else {
+	setOptionDefault('graphicslib_selected', 'gd', true);
+}
+purgeOption('use_imagick');
+
 if (TEST_RELEASE) {
 	foreach ($data as $key => $option) {
 		purgeOption($key);
@@ -495,14 +524,14 @@ if (TEST_RELEASE) {
 }
 
 //	cleanup options for missing elements
-$sql = 'SELECT DISTINCT `creator` FROM ' . prefix('options') . ' WHERE `creator` IS NOT NULL';
-$result = query_full_array($sql);
+$sql = 'SELECT DISTINCT `creator` FROM ' . $_zp_db->prefix('options') . ' WHERE `creator` IS NOT NULL';
+$result = $_zp_db->queryFullArray($sql);
 if (is_array($result)) {
 	foreach ($result as $row) {
 		$filename = $row['creator'];
 		if (!file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `creator`=' . db_quote($filename);
-			query($sql);
+			$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `creator`=' . $_zp_db->quote($filename);
+			$_zp_db->query($sql);
 			if (strpos($filename, PLUGIN_FOLDER) !== false || strpos($filename, USER_PLUGIN_FOLDER) !== false) {
 				purgeOption('zp_plugin_' . stripSuffix(basename($filename)));
 			}
@@ -510,14 +539,14 @@ if (is_array($result)) {
 	}
 }
 // missing themes
-$sql = 'SELECT DISTINCT `theme` FROM ' . prefix('options') . ' WHERE `theme` IS NOT NULL';
-$result = query_full_array($sql);
+$sql = 'SELECT DISTINCT `theme` FROM ' . $_zp_db->prefix('options') . ' WHERE `theme` IS NOT NULL';
+$result = $_zp_db->queryFullArray($sql);
 if (is_array($result)) {
 	foreach ($result as $row) {
 		$filename = THEMEFOLDER . '/' . $row['theme'];
 		if ($filename && !file_exists(SERVERPATH . '/' . $filename)) {
-			$sql = 'DELETE FROM ' . prefix('options') . ' WHERE `theme`=' . db_quote($row['theme']);
-			query($sql);
+			$sql = 'DELETE FROM ' . $_zp_db->prefix('options') . ' WHERE `theme`=' . $_zp_db->quote($row['theme']);
+			$_zp_db->query($sql);
 		}
 	}
 }
@@ -529,7 +558,7 @@ setOption('last_update_check', 30);
 $autoRotate = getOption('auto_rotate');
 if (!is_null($autoRotate)) {
 	if (!$autoRotate) {
-		query('UPDATE ' . prefix('images') . ' SET `EXIFOrientation`=NULL');
+		$_zp_db->query('UPDATE ' . $_zp_db->prefix('images') . ' SET `EXIFOrientation`=NULL');
 		setOption('EXIFOrientation', 0);
 		setOption('EXIFOrientation-disabled', 1);
 	}
@@ -566,8 +595,8 @@ setOptionDefault('search_page_sort_direction', '');
 
 purgeOption('zp_plugin_releaseUpdater');
 
-query('UPDATE ' . prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
-query('UPDATE ' . prefix('administrators') . ' SET `passupdate`=' . db_quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
+$_zp_db->query('UPDATE ' . $_zp_db->prefix('administrators') . ' SET `passhash`=' . ((int) getOption('strong_hash')) . ' WHERE `valid`>=1 AND `passhash` IS NULL');
+$_zp_db->query('UPDATE ' . $_zp_db->prefix('administrators') . ' SET `passupdate`=' . $_zp_db->quote(date('Y-m-d H:i:s')) . ' WHERE `valid`>=1 AND `passupdate` IS NULL');
 setOptionDefault('image_processor_flooding_protection', 1);
 setOptionDefault('codeblock_first_tab', 1);
 setOptionDefault('GD_FreeType_Path', SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/gd_fonts');
@@ -613,7 +642,7 @@ $plugins = getPluginFiles('*.php');
 <p>
 	<?php
 	$plugins = array_keys($plugins);
-	natcasesort($plugins);
+	sortArray($plugins);
 	echo '<p>' . gettext('Plugin setup:') . '</p>';
 	foreach ($plugins as $extension) {
 		setup::defaultOptionsRequest($extension, 'plugin');

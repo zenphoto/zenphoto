@@ -3,8 +3,7 @@
  * This plugin handles <i>RSS</i> feeds:
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage rss
+ * @package zpcore\plugins\rss
  */
 // force UTF-8 Ø
 
@@ -38,7 +37,6 @@ class rss_options {
 			setOptionDefault('RSS_truncate_length', getOption('zenpage_rss_length'));
 			setOptionDefault('RSS_zenpage_items', getOption('zenpage_rss_items'));
 
-
 			purgeOption('feed_items');
 			purgeOption('feed_imagesize');
 			purgeOption('feed_sortorder');
@@ -53,7 +51,12 @@ class rss_options {
 			purgeOption('feed_title');
 			purgeOption('zenpage_rss_length');
 			purgeOption('zenpage_rss_items');
-
+			
+			setOptionDefault('RSS_album_image', 1);
+			setOptionDefault('RSS_comments', 1);
+			setOptionDefault('RSS_articles', 1);
+			setOptionDefault('RSS_pages', 1);
+			setOptionDefault('RSS_article_comments', 1);
 			setOptionDefault('RSS_truncate_length', '100');
 			setOptionDefault('RSS_zenpage_items', '10');
 			setOptionDefault('RSS_items', 10); // options for standard images rss
@@ -249,7 +252,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'albumname' => $album->getFileName());
+				$link = array('rss' => 'gallery', 'albumname' => $album->getName());
 				break;
 			}
 		case 'collection':
@@ -259,7 +262,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				} else {
 					$album = $_zp_current_album;
 				}
-				$link = array('rss' => 'gallery', 'folder' => $album->getFileName());
+				$link = array('rss' => 'gallery', 'folder' => $album->getName());
 			}
 			break;
 		case 'comments':
@@ -284,7 +287,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			break;
 		case 'albumsrsscollection':
 			if (getOption('RSS_album_image')) {
-				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getFileName(), 'albumsmode' => '');
+				$link = array('rss' => 'gallery', 'folder' => $_zp_current_album->getName(), 'albumsmode' => '');
 			}
 			break;
 		case 'pages':
@@ -300,7 +303,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 		case 'category':
 			if (getOption('RSS_articles')) {
 				if (empty($addl) && !is_null($_zp_current_category)) {
-					$addl = $_zp_current_category->getTitlelink();
+					$addl = $_zp_current_category->getName();
 				}
 				if (empty($addl)) {
 					$link = array('rss' => 'news');
@@ -339,7 +342,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 		$link['lang'] = $lang;
 		if (zp_loggedin() && getOption('RSS_portable_link')) {
 			$link['user'] = (string) $_zp_current_admin_obj->getID();
-			$link['token'] = Zenphoto_Authority::passwordHash(serialize($link), '');
+			$link['token'] = RSS::generateToken($link);
 		}
 		$uri = WEBPATH . '/index.php?' . str_replace('=&', '&', http_build_query($link));
 		return $uri;
@@ -395,8 +398,8 @@ function printRSSHeaderLink($option, $linktext, $lang = '', $addl = NULL) {
 	PROTOCOL . '://' . html_encode($_SERVER["HTTP_HOST"]) . html_encode(getRSSLink($option, $lang, $addl)) . "\" />\n";
 }
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/class-feed.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/lib-MimeTypes.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-feed.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php');
 
 class RSS extends feed {
 
@@ -418,9 +421,9 @@ class RSS extends feed {
 //	The link camed from a logged in user, see if it is valid
 			$link = $options;
 			unset($link['token']);
-			$token = Zenphoto_Authority::passwordHash(serialize($link), '');
+			$token = RSS::generateToken($link);
 			if ($token == $options['token']) {
-				$adminobj = Zenphoto_Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
+				$adminobj = Authority::getAnAdmin(array('`id`=' => (int) $link['user']));
 				if ($adminobj) {
 					$_zp_current_admin_obj = $adminobj;
 					$_zp_loggedin = $_zp_current_admin_obj->getRights();
@@ -437,10 +440,10 @@ class RSS extends feed {
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				break;
 			case 'website':
-				$this->channel_title = getBare($_zp_gallery->getWebsiteTitle($this->locale));
+				$this->channel_title = getBare($_zp_gallery->getParentSiteTitle($this->locale));
 				break;
 			case 'both':
-				$website_title = $_zp_gallery->getWebsiteTitle($this->locale);
+				$website_title = $_zp_gallery->getParentSiteTitle($this->locale);
 				$this->channel_title = $_zp_gallery->getBareTitle($this->locale);
 				if (!empty($website_title)) {
 					$this->channel_title = $website_title . ' - ' . $this->channel_title;
@@ -456,7 +459,7 @@ class RSS extends feed {
 				}
 				$albumname = $this->getChannelTitleExtra();
 				if ($this->albumfolder) {
-					$alb = newAlbum($this->albumfolder, true, true);
+					$alb = AlbumBase::newAlbum($this->albumfolder, true, true);
 					if ($alb->exists) {
 						$albumtitle = $alb->getTitle();
 						$albumname = ' - ' . html_encode($albumtitle) . $this->getChannelTitleExtra();
@@ -505,7 +508,11 @@ class RSS extends feed {
 						}
 						break;
 				}
-				$this->channel_title = html_encode($this->channel_title . $this->cattitle . $titleappendix);
+				$cattitle = "";
+				if ($this->cattitle) {
+					$cattitle = " - " . $this->cattitle;
+				}
+				$this->channel_title = html_encode($this->channel_title . $cattitle . $titleappendix);
 				$this->itemnumber = getOption("RSS_zenpage_items"); // # of Items displayed on the feed
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
 				require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
@@ -584,17 +591,28 @@ class RSS extends feed {
 	 *
 	 */
 	protected function hitcounter() {
+		global $_zp_db;
 		if (!zp_loggedin() && getOption('RSS_hitcounter')) {
 			$rssuri = $this->getCacheFilename();
 			$type = 'rsshitcounter';
-			$checkitem = query_single_row("SELECT `data` FROM " . prefix('plugin_storage') . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
+			$checkitem = $_zp_db->querySingleRow("SELECT `data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `aux` = " . $_zp_db->quote($rssuri) . " AND `type` = '" . $type . "'", true);
 			if ($checkitem) {
 				$hitcount = $checkitem['data'] + 1;
-				query("UPDATE " . prefix('plugin_storage') . " SET `data` = " . $hitcount . " WHERE `aux` = " . db_quote($rssuri) . " AND `type` = '" . $type . "'", true);
+				$_zp_db->query("UPDATE " . $_zp_db->prefix('plugin_storage') . " SET `data` = " . $hitcount . " WHERE `aux` = " . $_zp_db->quote($rssuri) . " AND `type` = '" . $type . "'", true);
 			} else {
-				query("INSERT INTO " . prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . db_quote($rssuri) . ",1)", true);
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('" . $type . "'," . $_zp_db->quote($rssuri) . ",1)", true);
 			}
 		}
+	}
+	
+	/**
+	 * Generates the token based on the RSS link passed for pprtable RSS usage
+	 * 
+	 * @param string $link
+	 * @return string
+	 */
+	static function generateToken($link) {
+		return Authority::passwordHash(serialize($link), '');
 	}
 
 	/**
@@ -604,6 +622,7 @@ class RSS extends feed {
 	 * @return array
 	 */
 	protected function getItemGallery($item) {
+		global $_zp_db;
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
@@ -613,9 +632,9 @@ class RSS extends feed {
 			$title = $albumobj->getTitle($this->locale);
 			if (true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
-				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images') . " WHERE albumid = " . $albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
+				$latestimage = $_zp_db->querySingleRow("SELECT mtime FROM " . $_zp_db->prefix('images') . " WHERE albumid = " . $albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
 				if ($latestimage && $this->sortorder == 'latestupdated') {
-					$count = db_count('images', "WHERE albumid = " . $albumobj->getID() . " AND mtime = " . $latestimage['mtime']);
+					$count = $_zp_db->count('images', "WHERE albumid = " . $albumobj->getID() . " AND mtime = " . $latestimage['mtime']);
 				} else {
 					$count = $totalimages;
 				}
@@ -660,7 +679,7 @@ class RSS extends feed {
 // enclosure
 		$feeditem['enclosure'] = '';
 		if (getOption("RSS_enclosure") AND $this->mode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . getMimeString($ext) . '" length="' . filesize($item->localpath) . '" />';
+			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
 		}
 //category
 		if ($this->mode != "albums") {
@@ -681,7 +700,11 @@ class RSS extends feed {
 		} else {
 			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
 		}
-		return $feeditem;
+		if ($this->mode == "albums") {
+			return zp_apply_filter('feed_album', $feeditem, $item);
+		} else {
+			return zp_apply_filter('feed_image', $feeditem, $item);
+		}
 	}
 
 	/**
@@ -714,8 +737,7 @@ class RSS extends feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($item['date']));
-
-		return $feeditem;
+		return zp_apply_filter('feed_news', $feeditem, $obj);
 	}
 
 	/**

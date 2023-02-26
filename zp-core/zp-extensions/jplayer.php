@@ -64,15 +64,15 @@
  * <b>NOTE:</b> This player does not support external albums!
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage jplayer
+ * @package zpcore\plugins\jplayer
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia extension plugin can be enabled at the time and the class-video plugin must be enabled, too.") . '<br /><br />' . gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_disable = (getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : extensionEnabled('class-video') ? false : gettext('The class-video plugin must be enabled for video support.');
+$plugin_disable = ((getOption('album_folder_class') === 'external') ? gettext('This player does not support <em>External Albums</em>.') : extensionEnabled('class-video')) ? false : gettext('The class-video plugin must be enabled for video support.');
 $plugin_category = gettext('Media');
+$plugin_deprecated = true;
 $option_interface = 'jplayer_options';
 
 if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
@@ -248,7 +248,7 @@ class jPlayer {
 
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
-		$movie = newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
+		$movie = Image::newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
 		if ($movie->exists) {
 			return $_zp_multimedia_extension->getPlayerConfig($movie, NULL, (int) $count);
 		} else {
@@ -269,20 +269,20 @@ class jPlayer {
 
 	static function headJS() {
 		$skin = @array_shift(getPluginFiles('*.css', 'jplayer/skin/' . getOption('jplayer_skin')));
-		if (file_exists($skin)) {
+		if (is_string($skin) && file_exists($skin)) {
 			$skin = str_replace(SERVERPATH, WEBPATH, $skin); //replace SERVERPATH as that does not work as a CSS link
 		} else {
 			$skin = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/skin/zenphotolight/jplayer.zenphotolight.css';
 		}
 		?>
 		<link href="<?php echo $skin; ?>" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jquery.jplayer.min.js"></script>
 		<?php
 	}
 
 	static function playlistJS() {
 		?>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/jplayer/js/jplayer.playlist.min.js"></script>
 		<?php
 	}
 
@@ -325,8 +325,7 @@ class jPlayer {
 			$videoThumb = ',poster:"' . $movie->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true) . '"';
 		}
 		$playerconfig = '
-		<script type="text/javascript">
-			//<![CDATA[
+		<script>
 		$(document).ready(function(){
 			$("#jquery_jplayer_' . $count . '").jPlayer({
 				ready: function (event) {
@@ -365,7 +364,6 @@ class jPlayer {
 			toggleDuration: true
 			});
 		});
-	//]]>
 	</script>';
 
 		// I am really too lazy to figure everything out to optimize this quite complex html nesting so I generalized only parts.
@@ -641,7 +639,7 @@ class jPlayer {
 				$albumobj = $_zp_current_album;
 			}
 		} else {
-			$albumobj = newAlbum($albumfolder);
+			$albumobj = AlbumBase::newAlbum($albumfolder);
 		}
 		$entries = $albumobj->getImages(0);
 		if (($numimages = count($entries)) != 0) {
@@ -662,8 +660,7 @@ class jPlayer {
 				$id = $albumobj->getID();
 			}
 			?>
-			<script type="text/javascript">
-								//<![CDATA[
+			<script>
 								$(document).ready(function(){
 				new jPlayerPlaylist({
 				jPlayer: "#jquery_jplayer_<?php echo $id; ?>",
@@ -687,10 +684,10 @@ class jPlayer {
 						$numbering = '<span>' . $number . '</span>';
 					}
 					if (is_array($entry)) {
-						$albumobj = newAlbum($entry['folder']);
-						$video = newImage($albumobj, $entry['filename']);
+						$albumobj = AlbumBase::newAlbum($entry['folder']);
+						$video = Image::newImage($albumobj, $entry['filename']);
 					} else {
-						$video = newImage($albumobj, $entry);
+						$video = Image::newImage($albumobj, $entry);
 					}
 					$videoThumb = '';
 					$this->setModeAndSuppliedFormat($ext);
@@ -745,7 +742,6 @@ class jPlayer {
 				toggleDuration: true
 				});
 				});
-								//]]>
 			</script>
 			<?php
 			if ($option == 'playlist') {

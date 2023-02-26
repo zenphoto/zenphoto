@@ -4,8 +4,7 @@
  * Changes <i>white space</i> characters to hyphens.
  * 
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage seo-null
+ * @package zpcore\plugins\seonull
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('SEO <em>Null</em> filter.');

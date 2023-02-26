@@ -24,8 +24,7 @@
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
 
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage ipblocker
+ * @package zpcore\plugins\ipblocker
  */
 $plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");
@@ -136,7 +135,7 @@ class ipBlocker {
 					<?php
 				}
 				?>
-				<script type="text/javascript">
+				<script>
 					<!--
 					function clearips() {
 				<?php
@@ -158,7 +157,7 @@ class ipBlocker {
 		}
 	}
 
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		$notify = '';
 		$list = array();
 		foreach ($_POST as $key => $param) {
@@ -311,14 +310,15 @@ class ipBlocker {
 	 * @param string $page ignored
 	 */
 	static function adminGate($allow, $page) {
+		global $_zp_db;
 		//	clean out expired attempts
-		$sql = 'DELETE FROM ' . prefix('plugin_storage') . ' WHERE `type`="ipBlocker" AND `aux` < "' . (time() - getOption('ipBlocker_timeout') * 60) . '"';
-		query($sql);
+		$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="ipBlocker" AND `aux` < "' . (time() - getOption('ipBlocker_timeout') * 60) . '"';
+		$_zp_db->query($sql);
 		//	add this attempt
-		$sql = 'INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("ipBlocker", "' . time() . '","' . getUserIP() . '")';
-		query($sql);
+		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("ipBlocker", "' . time() . '","' . getUserIP() . '")';
+		$_zp_db->query($sql);
 		//	check how many times this has happened recently
-		$count = db_count('plugin_storage', 'WHERE `type`="ipBlocker" AND `data`="' . getUserIP() . '"');
+		$count = $_zp_db->count('plugin_storage', 'WHERE `type`="ipBlocker" AND `data`="' . getUserIP() . '"');
 		if ($count >= getOption('ipBlocker_threshold')) {
 			$block = getOption('ipBlocker_forbidden');
 			if ($block) {

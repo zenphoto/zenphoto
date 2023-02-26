@@ -12,7 +12,7 @@
  * There are several options to tune what the plugin will do.
  *
  * @author Stephen Billard (sbillard)
- * @package comment-form
+ * @package zpcore\plugins\commentform
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Provides a unified comment handling facility.");
@@ -51,7 +51,7 @@ class comment_form {
 		setOptionDefault('email_new_comments', 1);
 		setOptionDefault('comment_name_required', 'required');
 		setOptionDefault('comment_email_required', 'required');
-		setOptionDefault('comment_web_required', 'show');
+		setOptionDefault('comment_web_required', 1);
 		setOptionDefault('Use_Captcha', false);
 		setOptionDefault('comment_form_addresses', 0);
 		setOptionDefault('comment_form_require_addresses', 0);
@@ -130,6 +130,7 @@ class comment_form {
 								gettext('Omit') => 0,
 								gettext('For guests') => 2,
 								gettext('Require') => 1),
+						'disabled' => ($_zp_captcha->name) ? false : true,
 						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
 				gettext('Address fields') => array(
 						'key' => 'comment_form_addresses',
@@ -247,7 +248,7 @@ class comment_form {
  * @param bool $desc_order default false, set to true to change the comment order to descending ( = newst to oldest)
  */
 function printCommentForm($showcomments = true, $addcommenttext = NULL, $addheader = true, $comment_commententry_mod = '', $desc_order = false) {
-	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_HTML_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha, $_zp_authority, $_zp_html_cache, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 
 	if (getOption('email_new_comments')) {
 		$email_list = $_zp_authority->getAdminEmail();
@@ -299,8 +300,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				if (getOption('comment_form_toggle')) {
 					?>
 					<div id="comment_toggle"><!-- place holder for toggle button --></div>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
+					<script>
 						function toggleComments(hide) {
 							if (hide) {
 								$('div.comment').hide();
@@ -315,7 +315,6 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						$(document).ready(function() {
 							toggleComments(window.location.hash.search(/#zp_comment_id_/));
 						});
-						// ]]> -->
 					</script>
 					<?php
 					$display = ' style="display:none"';
@@ -419,7 +418,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				foreach ($data as $check) {
 					foreach ($check as $v) {
 						if ($v) {
-							$_zp_HTML_cache->disable(); //	shouldn't cache partially filled in pages
+							$_zp_html_cache->disable(); //	shouldn't cache partially filled in pages
 							break 2;
 						}
 					}
@@ -437,6 +436,27 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 					?>
 				</div><!-- id="commententry" -->
 				<?php
+				if (getOption('comment_form_rss') && getOption('RSS_comments')) {
+					?>
+					<br class="clearall" />
+					<?php
+					if (class_exists('RSS')) {
+						switch ($_zp_gallery_page) {
+							case "image.php":
+								printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
+								break;
+							case "album.php":
+								printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
+								break;
+							case "news.php":
+								printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
+								break;
+							case "pages.php":
+								printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
+								break;
+						}
+					}
+				}
 			}
 		} else {
 			?>
@@ -447,30 +467,6 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 		}
 		?>
 	</div><!-- id="commentcontent" -->
-	<?php
-	if (getOption('comment_form_rss') && getOption('RSS_comments')) {
-		?>
-		<br class="clearall" />
-		<?php
-		if (class_exists('RSS')) {
-			switch ($_zp_gallery_page) {
-				case "image.php":
-					printRSSLink("Comments-image", "", gettext("Subscribe to comments"), "");
-					break;
-				case "album.php":
-					printRSSLink("Comments-album", "", gettext("Subscribe to comments"), "");
-					break;
-				case "news.php":
-					printRSSLink("Comments-news", "", gettext("Subscribe to comments"), "");
-					break;
-				case "pages.php":
-					printRSSLink("Comments-page", "", gettext("Subscribe to comments"), "");
-					break;
-			}
-		}
-	}
-	?>
-	<!-- end printCommentForm -->
 	<?php
 }
 ?>

@@ -1,10 +1,8 @@
 <?php
 /**
- *Comment Class
- * @package plugins
- * @subpackage comment-form
+ * Comment Class
+ * @package zpcore\plugins\commentform
  */
-
 // force UTF-8 Ø
 
 class Comment extends PersistentObject {

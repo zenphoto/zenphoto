@@ -2,12 +2,14 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage elfinder
+ * @package zpcore\plugins\elfinder
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+if(!extensionEnabled('elFinder')) {
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+}
 admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
-zp_setCookie('uploadtype', 'elFinder');
+zp_setCookie('zpcms_admin_uploadtype', 'elFinder');
 $locale = substr(getOption("locale"), 0, 2);
 if (empty($locale))
 	$locale = 'en';
@@ -15,12 +17,12 @@ printAdminHeader('upload', 'files');
 ?>
 
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/elfinder.min.css">
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/elfinder.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>css/theme.css">
 <?php
 if ($locale != 'en') {
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/elFinder/'; ?>js/i18n/elfinder.<?php echo $locale; ?>.js"></script>
 	<?php
 }
 echo "\n</head>";
@@ -38,13 +40,13 @@ echo "\n</head>";
 				<div class="tabbox">
 					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
 					<h1><?php echo gettext('File Manager'); ?></h1>
-					<script type="text/javascript">
+					<script>
 						$().ready(function() {
 							var elf = $('#elfinder').elfinder({
 								lang: '<?php echo $locale; ?>', // language (OPTIONAL)
 								customData: {
 									'XSRFToken': '<?php echo getXSRFToken('elFinder'); ?>',
-									'zp_user_auth': '<?php echo zp_getCookie('zp_user_auth'); ?>',
+									'zp_user_auth': '<?php echo zp_getCookie('zpcms_auth_user'); ?>',
 									'origin': 'upload'
 								},
 								url: '<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/elFinder/php/connector_zp.php'  				// connector URL (REQUIRED)

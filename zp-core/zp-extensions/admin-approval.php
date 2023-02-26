@@ -6,8 +6,7 @@
  * mark an object published.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage admin-approval
+ * @package zpcore\plugins\adminapproval
  */
 $plugin_is_filter = 980 | ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');
@@ -34,8 +33,8 @@ class admin_approval {
 			} else {
 				$show = 0;
 			}
-			$newshow = $object->getShow();
-			$object->setShow($show);
+			$newshow = $object->isPublished();
+			$object->setPublished($show);
 			if ($newshow != $show) {
 				$msg = gettext('You do not have rights to change the <em>publish</em> state.');
 			}

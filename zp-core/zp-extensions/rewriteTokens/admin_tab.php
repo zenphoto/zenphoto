@@ -2,8 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package zpcore\plugins\rewritetokens
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions.php');

@@ -4,8 +4,7 @@
  * Translates characters with diacritical marks to simple equivalents
  * 
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage seo-zenphoto
+ * @package zpcore\plugins\seozenphoto
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("SEO filter to translate extended characters into their basic alpha-numeric equivalents.");

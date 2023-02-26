@@ -2,13 +2,13 @@
 /*
  * google_maps -- map server
  *
- * @package plugins
+ * @package zpcore\plugins\googlemap
  */
 
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(dirname(__FILE__))) . '/functions.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/functions/functions.php');
 if (getOption('gmap_sessions')) {
 	zp_session_start();
 }
@@ -16,7 +16,7 @@ require_once(dirname(dirname(__FILE__)) . '/GoogleMap.php');
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 		<?php GoogleMap::js(); ?>
@@ -33,7 +33,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 				} else {
 					$data = gzuncompress($param);
 				}
-				$map_data = sanitize(unserialize($data), 4);
+				$map_data = sanitize(unserialize($data, ['allowed_classes' => false]), 4);
 			}
 		}
 
@@ -79,8 +79,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			$map->output_html = $map_data["output_html"];
 			?>
 			<div class="googlemap">
-				<script type="text/javascript">
-					//<![CDATA[
+				<script>
 	<?php
 	echo $map->output_js_contents;
 	echo omsAdditions();
@@ -89,7 +88,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					function image(album, image) {
 						window.parent.location = '<?php echo WEBPATH; ?>/index.php?album=' + album + '&image=' + image;
 					}
-					//]]>
 				</script>
 				<div id="googlemap_data">
 					<?php echo $map->output_html; ?>

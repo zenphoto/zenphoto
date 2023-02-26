@@ -1,8 +1,7 @@
 <?php
 /**
  * 
- * @package plugins
- * @subpackage rewriterules
+ * @package zpcore\plugins\rewriterules
  */
 
 /**
@@ -19,7 +18,7 @@ function rulesList() {
 	//process the rules
 	foreach ($rules as $rule) {
 		if ($rule = trim($rule)) {
-			if ($rule{0} == '#') {
+			if ($rule[0] == '#') {
 				if (trim(ltrim($rule, '#')) == 'Quick links') {
 					foreach ($pluginDefinitions as $def => $v) {
 						$list[] = array('Define ', $def, $v);

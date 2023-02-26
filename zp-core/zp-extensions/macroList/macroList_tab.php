@@ -2,8 +2,7 @@
 /**
  * This is the "files" upload tab
  *
- * @package plugins
- * @subpackage admin
+ * @package zpcore\plugins\macrolist
  */
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 printAdminHeader('development', gettext('macros'));

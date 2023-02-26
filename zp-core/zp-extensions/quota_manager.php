@@ -23,8 +23,7 @@
  * to users with upload limits.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage quota-manager
+ * @package zpcore\plugins\quotamanager
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.");
@@ -144,12 +143,12 @@ class quota_manager {
 	 * @return int
 	 */
 	static function getCurrentUse($userobj) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_db;
 		if (is_null($userobj)) {
 			$userobj = $_zp_current_admin_obj;
 		}
-		$sql = 'SELECT sum(`filesize`) FROM ' . prefix('images') . ' WHERE `owner`="' . $userobj->getUser() . '"';
-		$result = query_single_row($sql);
+		$sql = 'SELECT sum(`filesize`) FROM ' . $_zp_db->prefix('images') . ' WHERE `owner`="' . $userobj->getUser() . '"';
+		$result = $_zp_db->querySingleRow($sql);
 		return array_shift($result) / 1024;
 	}
 
@@ -164,6 +163,7 @@ class quota_manager {
 			$image->set('owner', $_zp_current_admin_obj->getUser());
 		}
 		$image->set('filesize', filesize($image->localpath));
+		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 		$image->save();
 		return $image;
 	}
@@ -174,7 +174,9 @@ class quota_manager {
 	 * @return object
 	 */
 	static function image_refresh($image) {
+		global $_zp_current_admin_obj;
 		$image->set('filesize', filesize($image->localpath));
+		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
 		$image->save();
 		return $image;
 	}

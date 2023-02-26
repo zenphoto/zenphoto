@@ -4,7 +4,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
@@ -14,8 +14,7 @@ if (!defined('WEBPATH'))
 		<?php $handler->theme_head($_zp_themeroot); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', gettext('Gallery RSS')); ?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			function toggleExtraElements(category, show) {
 				if (show) {
 					jQuery('.' + category + '_showless').show();
@@ -27,7 +26,6 @@ if (!defined('WEBPATH'))
 					jQuery('.' + category + '_extrashow').hide();
 				}
 			}
-			// ]]> -->
 		</script>
 	</head>
 	<body class="sidebars">
@@ -82,7 +80,7 @@ if (!defined('WEBPATH'))
 								<!-- begin content -->
 								<div class="main section" id="main">
 									<h2 id="gallerytitle">
-										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printSearchBreadcrumb(' » '); ?>
+										<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printSearchBreadcrumb(' » '); printCurrentPageAppendix(); ?>
 									</h2>
 
 									<?php
@@ -96,7 +94,7 @@ if (!defined('WEBPATH'))
 										<?php
 									} else {
 										echo "<p>" . gettext('Sorry, no matches for your search.') . "</p>";
-										$_zp_current_search->setSearchParams('words=');
+										$_zp_current_search->setSearchParams('search=');
 									}
 									?>
 									<?php
@@ -200,12 +198,12 @@ if (!defined('WEBPATH'))
 										while (next_album()) {
 											?>
 											<div class="album">
-												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
-													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
+												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
+													<?php printCustomAlbumThumbImage(getAlbumTitle(), null, 85, 85, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
 													<h3>
-														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
 															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>
@@ -221,8 +219,8 @@ if (!defined('WEBPATH'))
 									<p style="clear: both; "></p>
 									<?php $handler->theme_content(NULL); ?>
 									<?php
-									if ((getNumAlbums() != 0) || !$_oneImagePage) {
-										printPageListWithNav(gettext("« prev"), gettext("next »"), $_oneImagePage);
+									if ((getNumAlbums() != 0) || !$_zp_one_image_page) {
+										printPageListWithNav(gettext("« prev"), gettext("next »"), $_zp_one_image_page);
 									}
 									footer();
 									?>

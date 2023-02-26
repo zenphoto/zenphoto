@@ -387,33 +387,6 @@ ul.language_string_list {
 	padding: 0;
 }
 
-
-/* scheduled publishing
---------------------------*/
-.scheduledpublishing, .expire {
-	color: red;
-	font-weight: normal;
-}
-
-.scheduledate {
-	color: #FF8A00;
-	font-weight: normal;
-}
-
-.inactivescheduledate {
-	color: red;
-	font-weight: bold;
-}
-
-.expiredate {
-	color:#0080C0;
-	font-weight: normal;
-}
-.expired {
-	color: red;
-	font-weight: bold;
-}
-
 div.floatright form {
 	margin-left: 0px;
 	margin-right: 0px;

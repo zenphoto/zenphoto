@@ -19,8 +19,7 @@
  * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage register-user
+ * @package zpcore\plugins\registeruser
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
@@ -195,10 +194,10 @@ class register_user {
 		}
 	}
 
-	static function handleOptionSave($themename, $themealbum) {
+	function handleOptionSave($themename, $themealbum) {
 		if (!class_exists('user_groups')) {
 			$saved_rights = NO_RIGHTS;
-			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
+			$rightslist = sortMultiArray(Authority::getRights(), array('set', 'value'));
 			foreach ($rightslist as $rightselement => $right) {
 				if (isset($_POST['register_user-' . $rightselement])) {
 					$saved_rights = $saved_rights | $_POST['register_user-' . $rightselement];
@@ -260,21 +259,21 @@ class register_user {
 		}
 		$user = trim(sanitize($_POST['user']));
 		if (getOption('register_user_email_is_id')) {
-			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($user, $user);
-			if ($mail_duplicate) {
+			$mail_duplicate = $_zp_authority->isUniqueMailaddress($user, $user);
+			if (!$mail_duplicate) {
 				$_notify = 'exists';
 			}
 		} 
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
-			$mail_duplicate = $_zp_authority->checkUniqueMailaddress($admin_e, $user);
-			if($mail_duplicate) {
+			$mail_duplicate = $_zp_authority->isUniqueMailaddress($admin_e, $user);
+			if(!$mail_duplicate) {
 				$_notify = 'duplicateemail';
 			}
 		} else {
 			$admin_e = $user;
 		}
-		if (!is_valid_email_zp($admin_e)) {
+		if (!isValidEmail($admin_e)) {
 			$_notify = 'invalidemail';
 		}
 		if(getOption('register_user_dataconfirmation') && !isset($_POST['admin_dataconfirmation'])) {
@@ -285,12 +284,12 @@ class register_user {
 			$_notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
-				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				$currentadmin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$_notify = 'exists';
 				}
 				if (empty($_notify)) {
-					$userobj = Zenphoto_Authority::newAdministrator('');
+					$userobj = Authority::newAdministrator('');
 					$userobj->transient = false;
 					$userobj->setUser($user);
 					$userobj->setPass($pass);
@@ -374,7 +373,7 @@ function printRegistrationForm($thanks = NULL) {
 	// handle any postings
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
-		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']), '.')));
+		$params = sanitize(unserialize(pack("H*", trim($_GET['verify']), '.'), ['allowed_classes' => false]));
 		// expung the verify query string as it will cause us to come back here if login fails.
 		unset($_GET['verify']);
 		$_link = explode('?', getRequestURI());
@@ -393,14 +392,14 @@ function printRegistrationForm($thanks = NULL) {
 			$_SERVER['REQUEST_URI'] .= '?' . implode('&', $p);
 		}
 
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
+		$userobj = Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj && $userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered', 'user', 'email'));
 				$rights = getOption('register_user_user_rights');
 				$group = NULL;
 				if (!is_numeric($rights)) { //  a group or template
-					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
+					$admin = Authority::getAnAdmin(array('`user`=' => $rights, '`valid`=' => 0));
 					if ($admin) {
 						$userobj->setObjects($admin->getObjects());
 						if ($admin->getName() != 'template') {

@@ -3,7 +3,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -36,19 +36,19 @@ if (!defined('WEBPATH'))
 						<div class="right-corner">
 							<div class="left-corner"><!-- begin content -->
 								<div class="main section" id="main">
-									<h3 id="gallerytitle"><?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); ?></h3>
+									<h3 id="gallerytitle"><?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); printCurrentPageAppendix(); ?></h3>
 									<?php printCodeblock(1); ?>
 									<div id="albums">
 										<?php
 										while (next_album()) {
 											?>
 											<div class="album">
-												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
-													<?php printCustomAlbumThumbImage(getAlbumTitle(), 85, NULL, NULL, 85, 85); ?>
+												<a class="albumthumb" href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
+													<?php printCustomAlbumThumbImage(getAlbumTitle(), null, 85, 85, 85, 85); ?>
 												</a>
 												<div class="albumdesc">
 													<h3>
-														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album:  %s'), getBareAlbumTitle()); ?>">
+														<a href="<?php echo getAlbumURL(); ?>" title="<?php printf(gettext('View album: %s'), getBareAlbumTitle()); ?>">
 															<?php printAlbumTitle(); ?>
 														</a>
 													</h3>
@@ -75,11 +75,11 @@ if (!defined('WEBPATH'))
 				<div class="sidebar">
 					<div id="rightsidebar">
 						<?php
-						if (function_exists('printLatestImages')) {
+						if (function_exists('printImageStatistic')) {
 							?>
 							<h2><?php echo gettext('Latest Images'); ?></h2>
 							<?php
-							printLatestImages(7);
+							printImageStatistic(7, "latest");
 						}
 						?>
 					</div><!-- right sidebar -->

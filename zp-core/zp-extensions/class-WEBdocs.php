@@ -8,13 +8,14 @@
  * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage class-webdocs
+ * @package zpcore\plugins\classwebdocs
  *
  */
 $plugin_is_filter = 990 | CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing documents using <em>WEBdocs</em> for the document rendering.');
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_notice = gettext('Privacy note: This plugin uses external third party sources');
+$plugin_deprecated = true;
 $plugin_category = gettext('Media');
 
 $option_interface = 'WEBdocs_Options';

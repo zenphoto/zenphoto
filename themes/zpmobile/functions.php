@@ -10,8 +10,8 @@ function jqm_loadScripts() {
 	global $_zp_themeroot;
 	?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.css" />
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
-	<script type="text/javascript">
+	<script src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+	<script>
 		$(document).ready(function() {
 			$("#zp__admin_data a, a.downloadlist_link").attr('data-ajax','false');
 		});
@@ -90,10 +90,11 @@ function jqm_printFooterNav() {
 	?>
 	<div id="footer" data-role="footer">
 		<?php
-		@call_user_func('printLanguageSelector');
+		callUserFunction('printLanguageSelector');
 		?>
 		<ul id="footerlist">
-			<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
+			<?php printCopyrightNotice('<li>', '</l>'); ?>
+			<li><?php echo gettext('Powered by'); ?> <a href="https://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 			<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 		</ul>
 		<?php
@@ -218,8 +219,7 @@ function jqm_printImageAlbumCount() {
  */
 function printZDSearchToggleJS() {
 	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
+	<script>
 		function toggleExtraElements(category, show) {
 			if (show) {
 				jQuery('.' + category + '_showless').show();
@@ -231,7 +231,6 @@ function printZDSearchToggleJS() {
 				jQuery('.' + category + '_extrashow').hide();
 			}
 		}
-		// ]]> -->
 	</script>
 	<?php
 }
@@ -282,6 +281,7 @@ function my_checkPageValidity($request, $gallery_page, $page) {
 		case 'news.php':
 		case 'album.php':
 		case 'search.php':
+		case 'favorites.php':
 			break;
 		default:
 			if ($page != 1) {

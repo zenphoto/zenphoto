@@ -1,0 +1,38 @@
+	#### Definitions
+	Define %ZENFOLDER%			=>	ZENFOLDER
+	Define %PAGE%						=>	_PAGE_
+	Define %SEARCH%					=>	_SEARCH_
+	Define %ARCHIVE%				=>	_ARCHIVE_
+	Define %TAGS%						=>	_TAGS_
+	Define %GALLERY_INDEX%		=>  _GALLERY_INDEX_
+
+	#### Quick links
+	RewriteRule ^$                     										index.php [L,QSA]
+	RewriteRule ^index\.php$                     					index.php [L,QSA]
+	RewriteRule ^admin/*$																	%ZENFOLDER%/admin.php [L,QSA]
+
+	#### Rewrite rules for search
+	RewriteRule ^%SEARCH%/*$															index.php?p=search [L,QSA]
+	RewriteRule ^%ARCHIVE%/*$															index.php?p=archive [L,QSA]
+	RewriteRule ^%ARCHIVE%/(.*)/([0-9]+)/?$     					index.php?p=search&date=$1&page=$2 [L,QSA]
+	RewriteRule ^%ARCHIVE%/(.*)/?$     										index.php?p=search&date=$1 [L,QSA]
+	RewriteRule ^%TAGS%/(.*)/([0-9]+)/?$ 									index.php?p=search&searchfields=tags&search=$1&page=$2 [L,QSA]
+	RewriteRule ^%TAGS%/(.*)/?$ 													index.php?p=search&searchfields=tags&search=$1 [L,QSA]
+	#RewriteRule ^%SEARCH%/([0-9]+)/?$											index.php?p=search&page=$1 [L,QSA]
+	#RewriteRule ^%SEARCH%/?$															index.php?p=search [L,QSA]
+
+	#### Rules created by plugins
+	_SPECIAL_
+
+	### gallery page 
+	RewriteRule ^%GALLERY_INDEX%/*$											index.php?p=gallery [L,QSA]
+	RewriteRule ^%GALLERY_INDEX%/([0-9]+)/?$						index.php?p=gallery&page=$1 [L,QSA]
+
+	#### image and album page references
+	RewriteRule ^%PAGE%/([0-9]+)/?$               			index.php?page=$1 [L,QSA]
+	RewriteRule ^%PAGE%/([A-Za-z0-9_\-]+)/?$      			index.php?p=$1 [L,QSA]
+	RewriteRule ^%PAGE%/([A-Za-z0-9_\-]+)/([0-9]+)/?$   index.php?p=$1&page=$2 [L,QSA]
+	RewriteRule ^(.*)/%PAGE%/([0-9]+)/?$          			index.php?album=$1&page=$2 [L,QSA]
+	RewriteRule ^(.*)/%PAGE%/([A-Za-z0-9_\-]+)/?$     	index.php?album=$1&p=$2 [L,QSA]
+
+	

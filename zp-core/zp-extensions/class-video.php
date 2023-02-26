@@ -8,8 +8,7 @@
  * according to the player enabled.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage class-video
+ * @package zpcore\plugins\classvideo
  */
 // force UTF-8 Ø
 
@@ -85,7 +84,8 @@ class Video extends Image {
 			}
 			return;
 		}
-		$alts = explode(',', extensionEnabled('class-video_videoalt'));
+
+		$alts = explode(',', strval(getOption('class-video_videoalt'))); //extensionEnabled() must have been a mistake…
 		foreach ($alts as $alt) {
 			$this->videoalt[] = trim(strtolower($alt));
 		}
@@ -198,6 +198,28 @@ class Video extends Image {
 		$args = getImageParameters(array($ts, $sw, $sh, $cw, $ch, $cx, $cy, null, true, $crop, true, $wmt, NULL, NULL), $this->album->name);
 		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
+	
+	/**
+	 * Returns an array with widht and height the sidecar thumb image
+	 * 
+	 * @since ZephotoCMS 1.5.8
+	 * 
+	 * @return array
+	 */
+	function getThumbDimensions() {
+		global $_zp_graphics;
+		if (!is_null($this->thumbdimensions)) {
+			return $this->thumbdimensions;
+		}
+		$imgfile = $this->getThumbImageFile();
+		$image = $_zp_graphics->imageGet($imgfile);
+		$width = $_zp_graphics->imageWidth($image);
+		$height = $_zp_graphics->imageHeight($image);
+		return $this->thumbdimensions = array(
+				'width' => $width,
+				'height' => $height
+		);
+	}
 
 	/**
 	 *  Get a custom sized version of this image based on the parameters.
@@ -269,7 +291,7 @@ class Video extends Image {
 	function getFullImageURL() {
 		// Search for a high quality version of the video
 		if ($vid = parent::getFullImageURL()) {
-			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getFileName());
+			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getName());
 			$video = stripSuffix($this->filename);
 			$curdir = getcwd();
 			chdir($folder);
@@ -329,62 +351,61 @@ class Video extends Image {
 	function updateMetaData() {
 		global $_zp_exifvars;
 		parent::updateMetaData();
-		if (!SAFE_MODE) {
-			//see if there are any "enabled" VIDEO fields
-			$process = array();
-			foreach ($_zp_exifvars as $field => $exifvar) {
-				if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
-					$process[$field] = $exifvar;
-				}
+		//see if there are any "enabled" VIDEO fields
+		$process = array();
+		foreach ($_zp_exifvars as $field => $exifvar) {
+			if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
+				$process[$field] = $exifvar;
 			}
-			if (!empty($process)) {
-				$ThisFileInfo = $this->getMetaDataID3();
-				if (is_array($ThisFileInfo)) {
-					foreach ($ThisFileInfo as $key => $info) {
-						if (is_array($info)) {
-							switch ($key) {
-								case 'comments':
-									foreach ($info as $key1 => $data) {
-										$ThisFileInfo[$key1] = array_shift($data);
-									}
-									break;
-								case 'audio':
-								case 'video':
-									foreach ($info as $key1 => $data) {
-										$ThisFileInfo[$key1] = $data;
-									}
-									break;
-								case 'error':
-									$msg = sprintf(gettext('getid3 exceptions for %1$s::%2$s'), $this->album->name, $this->filename);
-									foreach ($info as $data) {
-										$msg .= "\n" . $data;
-									}
-									debugLog($msg);
-									break;
-								default:
-									//discard, not used
-									break;
-							}
-							unset($ThisFileInfo[$key]);
+		}
+		if (!empty($process)) {
+			$ThisFileInfo = $this->getMetaDataID3();
+			if (is_array($ThisFileInfo)) {
+				foreach ($ThisFileInfo as $key => $info) {
+					if (is_array($info)) {
+						switch ($key) {
+							case 'comments':
+								foreach ($info as $key1 => $data) {
+									$ThisFileInfo[$key1] = array_shift($data);
+								}
+								break;
+							case 'audio':
+							case 'video':
+								foreach ($info as $key1 => $data) {
+									$ThisFileInfo[$key1] = $data;
+								}
+								break;
+							case 'error':
+								$msg = sprintf(gettext('getid3 exceptions for %1$s::%2$s'), $this->album->name, $this->filename);
+								foreach ($info as $data) {
+									$msg .= "\n" . $data;
+								}
+								debugLog($msg);
+								break;
+							default:
+								//discard, not used
+								break;
+						}
+						unset($ThisFileInfo[$key]);
+					}
+				}
+				foreach ($process as $field => $exifvar) {
+					if (isset($ThisFileInfo[$exifvar[1]])) {
+						$data = $ThisFileInfo[$exifvar[1]];
+						if (!empty($data)) {
+							$this->set($field, $data);
+							$this->set('hasMetadata', 1);
 						}
 					}
-					foreach ($process as $field => $exifvar) {
-						if (isset($ThisFileInfo[$exifvar[1]])) {
-							$data = $ThisFileInfo[$exifvar[1]];
-							if (!empty($data)) {
-								$this->set($field, $data);
-								$this->set('hasMetadata', 1);
-							}
-						}
-					}
-					$title = $this->get('VideoTitle');
-					if (!empty($title)) {
-						$this->setTitle($title);
-					}
+				}
+				$title = $this->get('VideoTitle');
+				if (!empty($title)) {
+					$this->setTitle($title);
 				}
 			}
 		}
 	}
+
 
 }
 
@@ -410,19 +431,19 @@ class pseudoPlayer {
 		switch ($suffix) {
 			case 'mp4':
 			case 'm4v':
-				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="' . $this->width . '" height="' . $this->height . '">';
-				$content .= '<p>' . gettext('Your browser sadly does not support this video format.') . '</p>';
+				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="100%">';
+				$content .= gettext('Your browser sadly does not support this video format.');
 				$content .= '</video>';
 				break;
 			case 'm4a':
 			case 'mp3':
 				$content = '<audio src="' . html_encode($movie) . '" controls>';
-				$content .= '<p>' . gettext('Your browser sadly does not support this audio format.') . '</p>';
+				$content .= gettext('Your browser sadly does not support this audio format.');
 				$content .= '</audio>';
 				break;
 		}
 		if (empty($content)) {
-			return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="' . gettext('No multimedia extension installed for this format.') . '" />';
+			return '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images_errors/err-noflashplayer.png" alt="' . gettext('No multimedia extension installed for this format.') . '" />';
 		}
 		return $content;
 	}

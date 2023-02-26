@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -38,14 +38,14 @@ if (!defined('WEBPATH'))
 					<div id="image">
 
 						<?php
-						if (isImagePhoto()) {
+						if ($_zp_current_image->isPhoto()) {
 							?>
 							<img src="<?php echo html_encode(pathurlencode(getDefaultSizedImage())); ?>" alt="<?php printBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
 							<?php
 						} else {
 							printDefaultSizedImage(getImageTitle());
 						}
-						if (isImageVideo() && getOption('zpmobile_mediadirectlink')) {
+						if ($_zp_current_image->isVideo() && getOption('zpmobile_mediadirectlink')) {
 							?>
 							<p><a href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo gettext('Direct link'); ?>" rel="external"><?php echo gettext('Direct link'); ?></a></p>
 							<?php
@@ -66,7 +66,7 @@ if (!defined('WEBPATH'))
 						?>
 						<div data-role="collapsible">
 							<h3><?php echo gettext('View meta data'); ?></h3>
-							<?php printImageMetadata(NULL, ''); ?>
+							<?php printImageMetadata(NULL, false); ?>
 						</div>
 						<?php
 					}
@@ -84,7 +84,7 @@ if (!defined('WEBPATH'))
 						printRating();
 						echo '</div>';
 					}
-					@call_user_func('printOpenStreetMap');
+					callUserFunction('openStreetMap::printOpenStreetMap');
 					if (function_exists('printGoogleMap')) printGoogleMap();
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();

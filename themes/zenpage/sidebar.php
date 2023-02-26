@@ -37,7 +37,7 @@ if (function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
 				<h3><?php echo gettext("Gallery"); ?></h3>
 				<?php
 			}
-			printAlbumMenu("list", "count", "", "menu-active", "submenu", "menu-active", '');
+			printAlbumMenu("list", true, "", "menu-active", "submenu", "menu-active", '');
 			?>
 		</div>
 	<?php } ?>
@@ -153,4 +153,4 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exist
 	<?php
 }
 ?>
-<?php @call_user_func('printLanguageSelector'); ?>
+<?php callUserFunction('printLanguageSelector'); ?>

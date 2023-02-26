@@ -2,8 +2,7 @@
 /**
  * Base class from which Zenpage news articles and pages derive
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package zpcore\plugins\zenpage\classes
  */
 class ZenpageItems extends ZenpageRoot {
 
@@ -17,10 +16,15 @@ class ZenpageItems extends ZenpageRoot {
 	/**
 	 * Returns the author
 	 *
+	 * @param bool $fullname Set to true to get the full name (if the author is a vaild user of the site and has the full name defined)
 	 * @return string
 	 */
-	function getAuthor() {
-		return $this->get("author");
+	function getAuthor($fullname = false) {
+		$author = $this->get("author");
+		if ($fullname) {
+			return Administrator::getNameByUser($author);
+		}
+		return $author;
 	}
 
 	/**
@@ -45,7 +49,7 @@ class ZenpageItems extends ZenpageRoot {
 			return applyMacros(unTagURLs(get_language_string($text, $locale)));
 		}
 	}
-
+	
 	/**
 	 *
 	 * Set the content datum
@@ -55,48 +59,7 @@ class ZenpageItems extends ZenpageRoot {
 		$c = tagURLs($c);
 		$this->set("content", $c);
 	}
-
-	/**
-	 * Returns the last change date
-	 *
-	 * @return string
-	 */
-	function getLastchange() {
-		return $this->get("lastchange");
-	}
-
-	/**
-	 *
-	 * sets the last change date
-	 */
-	function setLastchange($d) {
-		if ($d) {
-			$newtime = dateTimeConvert($d);
-			if ($newtime === false)
-				return;
-			$this->set('lastchange', $newtime);
-		} else {
-			$this->set('lastchange', NULL);
-		}
-	}
-
-	/**
-	 * Returns the last change author
-	 *
-	 * @return string
-	 */
-	function getLastchangeAuthor() {
-		return $this->get("lastchangeauthor");
-	}
-
-	/**
-	 *
-	 * stores the last change author
-	 */
-	function setLastchangeAuthor($a) {
-		$this->set("lastchangeauthor", $a);
-	}
-
+	
 	/**
 	 * Returns the locked status , "1" if locked (only used on the admin)
 	 *

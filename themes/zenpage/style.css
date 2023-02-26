@@ -1440,3 +1440,9 @@ clear: right !important;
 .bx-wrapper{
 	margin: 0 auto;
 }
+
+/* reCaptcha
+------------------------------ */
+.g-recaptcha {
+	display: inline-block;
+}

@@ -13,8 +13,7 @@
  * Use the plugin's options to choose which tags you want printed.
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage html-meta-tags
+ * @package zpcore\plugins\htmlmetatags
  */
 $plugin_is_filter = 5 | THEME_PLUGIN;
 $plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site’s pages.");
@@ -35,9 +34,9 @@ if (in_context(ZP_INDEX)) {
 class htmlmetatags {
 
 	function __construct() {
-		replaceOption('google-site-verification','htmlmeta_google-site-verification');
+		renameOption('google-site-verification','htmlmeta_google-site-verification');
+		purgeOption('htmlmeta_pragma');
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
-		setOptionDefault('htmlmeta_pragma', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
 		setOptionDefault('htmlmeta_expires', '43200');
@@ -86,9 +85,9 @@ class htmlmetatags {
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
-		global $_common_locale_type;
+		global $_zp_common_locale_type;
 		$localdesc = '<p>' . gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.') . '</p>';
-		if (!$_common_locale_type) {
+		if (!$_zp_common_locale_type) {
 			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
 		$options = array(
@@ -101,13 +100,6 @@ class htmlmetatags {
 								'private' => "private",
 								'no-store' => "no-store"),
 						'desc' => gettext("If the browser cache should be used.")),
-				gettext('Pragma') => array(
-						'key' => 'htmlmeta_pragma',
-						'type' => OPTION_TYPE_SELECTOR,
-						'selections' => array(
-								'no-cache' => "no-cache",
-								'cache' => "cache"),
-						'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
 				gettext('Robots') => array(
 						'key' => 'htmlmeta_robots',
 						'type' => OPTION_TYPE_SELECTOR,
@@ -133,7 +125,7 @@ class htmlmetatags {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 11,
 						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
-				gettext('Verification content') => array(
+				gettext('Google site verification') => array(
 						'key' => 'htmlmeta_google-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
@@ -186,17 +178,17 @@ class htmlmetatags {
 						'key' => 'dynamic_locale_subdomain',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 12,
-						'disabled' => $_common_locale_type,
+						'disabled' => $_zp_common_locale_type,
 						'desc' => $localdesc)
 		);
-		if ($_common_locale_type) {
+		if ($_zp_common_locale_type) {
 			$options['note'] = array(
 					'key' => 'html_meta_tags_locale_type',
 					'type' => OPTION_TYPE_NOTE,
 					'order' => 13,
-					'desc' => '<p class="notebox">' . $_common_locale_type . '</p>');
+					'desc' => '<p class="notebox">' . $_zp_common_locale_type . '</p>');
 		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
+			$_zp_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
 			$options['note'] = array(
 					'key' => 'html_meta_tags_locale_type',
 					'type' => OPTION_TYPE_NOTE,
@@ -221,7 +213,7 @@ class htmlmetatags {
 	 */
 	static function getHTMLMetaData() {
 		global $_zp_gallery, $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
-		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_myFavorites,
+		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_zp_myfavorites,
 		$_zp_htmlmetatags_need_cache, $_zp_page;
 		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize(SERVER_HTTP_HOST);
@@ -232,7 +224,7 @@ class htmlmetatags {
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
-		$date = strftime(DATE_FORMAT); // if we don't have a item date use current date
+		$date = getFormattedLocaleDate(DATE_FORMAT, ''); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 		$thumb = '';
 		if (getOption('htmlmeta_sitelogo')) {
@@ -249,6 +241,9 @@ class htmlmetatags {
 			}
 			$twittercard_type = 'summary';
 		}
+		$author = $_zp_gallery->getCopyrightRightsholder();
+		$copyright_notice = $_zp_gallery->getCopyrightNotice();
+		$copyright_url = $_zp_gallery->getCopyrightURL();
 		$type = 'article';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
@@ -275,6 +270,7 @@ class htmlmetatags {
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 					$twittercard_type = 'summary_large_image';
 				}
+				$author = $_zp_current_album->getOwner(true);
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
@@ -282,9 +278,12 @@ class htmlmetatags {
 				$desc = getBareImageDesc();
 				$canonicalurl = $host . getImageURL();
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
 				}
+				$author = $_zp_current_image->getCopyrightRightsholder();
+				$copyright_notice = trim(getBare($_zp_current_image->getCopyrightNotice()));
+				$copyright_url = trim(strval($_zp_current_image->getCopyrightURL()));
 				break;
 			case 'news.php':
 				if (function_exists("is_NewsArticle")) {
@@ -293,9 +292,10 @@ class htmlmetatags {
 						$date = getNewsDate();
 						$desc = trim(getBare(getNewsContent()));
 						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
+						$author = $_zp_current_zenpage_news->getAuthor(true);
 					} else if (is_NewsCategory()) {
-						$pagetitle = $_zp_current_category->getTitlelink() . " - ";
-						$date = strftime(DATE_FORMAT);
+						$pagetitle = $_zp_current_category->getName() . " - ";
+						$date = getFormattedLocaleDate(DATE_FORMAT, '');
 						$desc = trim(getBare($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$type = 'category';
@@ -306,7 +306,7 @@ class htmlmetatags {
 						$type = 'website';
 					}
 					if ($_zp_page != 1) {
-						$canonicalurl .= '/' . $_zp_page;
+						$canonicalurl .= $_zp_page . '/';
 					}
 				}
 				break;
@@ -315,11 +315,12 @@ class htmlmetatags {
 				$date = getPageDate();
 				$desc = trim(getBare(getPageContent()));
 				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
+				$author = $_zp_current_zenpage_page->getAuthor(true);
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
 				$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
-				if (is_object($_myFavorites)) {
+				if (is_object($_zp_myfavorites)) {
 					$standard['favorites'] = gettext('My favorites');
 				}
 				if (array_key_exists($custompage, $standard)) {
@@ -330,7 +331,7 @@ class htmlmetatags {
 				$desc = '';
 				$canonicalurl = $host . getCustomPageURL($custompage);
 				if ($_zp_page != 1) {
-					$canonicalurl .= '/'. $_zp_page;
+					$canonicalurl .= $_zp_page . '/';
 				}
 				break;
 
@@ -338,15 +339,18 @@ class htmlmetatags {
 		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
-		// get master admin
-		$admin = $_zp_authority->getMasterUser();
-		$author = $admin->getName();
+		if(empty($copyright_notice)) {
+			$copyright_notice = '(c) ' . FULLWEBPATH . ' - ' . $author;
+		}
+		if(empty($copyright_url)) {
+			$copyright_url = FULLWEBPATH;
+		}
 		$meta = '';
 		if (getOption('htmlmeta_http-equiv-cache-control')) {
 			$meta .= '<meta http-equiv="Cache-control" content="' . getOption("htmlmeta_cache_control") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_http-equiv-pragma')) {
-			$meta .= '<meta http-equiv="pragma" content="' . getOption("htmlmeta_pragma") . '">' . "\n";
+			$meta .= '<meta http-equiv="pragma" content="no-cache">' . "\n";
 		}
 		if (getOption('htmlmeta_name-keywords')) {
 			$meta .= '<meta name="keywords" content="' . htmlmetatags::getMetaKeywords() . '">' . "\n";
@@ -361,22 +365,22 @@ class htmlmetatags {
 			$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-publisher')) {
-			$meta .= '<meta name="publisher" content="' . FULLWEBPATH . '">' . "\n";
+			$meta .= '<meta name="publisher" content="' .  html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-creator')) {
-			$meta .= '<meta name="creator" content="' . FULLWEBPATH . '">' . "\n";
+			$meta .= '<meta name="creator" content="' .  html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-author')) {
-			$meta .= '<meta name="author" content="' . $author . '">' . "\n";
+			$meta .= '<meta name="author" content="' . html_encode($author) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-copyright')) {
-			$meta .= '<meta name="copyright" content=" (c) ' . FULLWEBPATH . ' - ' . $author . '">' . "\n";
+			$meta .= '<meta name="copyright" content="' . html_encode($copyright_notice)  . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-rights')) {
-			$meta .= '<meta name="rights" content="' . $author . '">' . "\n";
+			$meta .= '<meta name="rights" content="' . html_encode($author) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-generator')) {
-			$meta .= '<meta name="generator" content="Zenphoto ' . ZENPHOTO_VERSION . '">' . "\n";
+			$meta .= '<meta name="generator" content="ZenphotoCMS ' . ZENPHOTO_VERSION . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-revisit-after')) {
 			$meta .= '<meta name="revisit-after" content="' . getOption("htmlmeta_revisit_after") . '">' . "\n";
@@ -460,19 +464,19 @@ class htmlmetatags {
 								case 'news.php':
 									if (function_exists("is_NewsArticle")) {
 										if (is_NewsArticle()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_zenpage_news->getName()) . '/';
 										} else if (is_NewsCategory()) {
-											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getTitlelink());
+											$altlink .= '/' . _NEWS_ . '/' . html_encode($_zp_current_category->getName()) . '/';
 										} else {
-											$altlink .= '/' . _NEWS_;
+											$altlink .= '/' . _NEWS_ . '/';
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/' . _PAGES_ . '/' . html_encode($_zp_current_zenpage_page->getName()) . '/';
 									break;
 								case 'archive.php':
-									$altlink .= '/' . _ARCHIVE_ ;
+									$altlink .= '/' . _ARCHIVE_ . '/';
 									break;
 								case 'search.php':
 									$altlink .= '/' . _SEARCH_ . '/';
@@ -481,7 +485,7 @@ class htmlmetatags {
 									$altlink .= '/' . _CONTACT_ . '/';
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle);
+									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle) . '/';
 									break;
 							} // switch
 
@@ -495,7 +499,7 @@ class htmlmetatags {
 									break;
 								case 'news.php':
 									if ($_zp_page != 1) {
-										$altlink .= '/' . $_zp_page;
+										$altlink .= $_zp_page . '/';
 									}
 									break;
 							}
@@ -510,7 +514,7 @@ class htmlmetatags {
 
 		} // if canonical
 		if (!empty($_zp_htmlmetatags_need_cache)) {
-  			$meta .= '<script type="text/javascript">' . "\n";
+  			$meta .= '<script>' . "\n";
   			$meta .= '
     				window.onload = function() {
       				var caches = ["' . implode(",", $_zp_htmlmetatags_need_cache) . '"];
@@ -534,6 +538,10 @@ class htmlmetatags {
 
 	/**
 	 * Helper function to list tags/categories as keywords separated by comma.
+	 * 
+	 * Note keywords do not have an SEO meaning anymore
+	 * 
+	 * @deprecated ZenphotoCMS 2.0
 	 *
 	 * @param array $array the array of the tags or categories to list
 	 */

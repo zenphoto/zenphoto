@@ -1,7 +1,7 @@
 <?php
 /**
  * Theme file editor
- * @package admin
+ * @package zpcore\admin
  * @author Ozh
  */
 // force UTF-8 �
@@ -12,16 +12,13 @@ require_once(dirname(__FILE__) . '/admin-globals.php');
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL());
 
 if (!isset($_GET['theme'])) {
-	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php");
-	exitZP();
+	redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php");
 }
 
-function isTextFile($file, $ok_extensions = array('css', 'php', 'js', 'txt', 'inc')) {
-	$path_info = pathinfo($file);
-	$ext = (isset($path_info['extension']) ? strtolower($path_info['extension']) : '');
-	return (!empty($ok_extensions) && (in_array($ext, $ok_extensions) ) );
+$ok_extensions = array('css', 'txt');
+if (zp_loggedin(ADMIN_RIGHTS)) {
+	$ok_extensions = array('css', 'php', 'js', 'txt');
 }
-
 $message = $file_to_edit = $file_content = null;
 $themes = $_zp_gallery->getThemes();
 $theme = sanitize($_GET['theme']);

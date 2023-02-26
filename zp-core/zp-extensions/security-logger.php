@@ -13,8 +13,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage security-logger
+ * @package zpcore\plugins\securitylogger
  */
 $plugin_is_filter = 100 | CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');
@@ -102,11 +101,13 @@ class security_logger {
 		$ip = sanitize($_SERVER['REMOTE_ADDR']);
 		if (!preg_match($pattern, $ip)) {
 			$ip = NULL;
+		} else {
+			$ip = getAnonymIP($ip);
 		}
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			$forwardedIP = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
 			if (preg_match($pattern, $forwardedIP)) {
-				$ip .= ' {' . $forwardedIP . '}';
+				$ip .= ' {' . getAnonymIP($forwardedIP) . '}';
 			}
 		}
 		$admin = $_zp_authority->getMasterUser();
@@ -267,7 +268,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
@@ -315,7 +316,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = ''; // mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();

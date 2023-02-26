@@ -1,7 +1,7 @@
 <?php
 /**
  * admin.php is the main script for administrative functions.
- * @package admin
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
@@ -9,7 +9,9 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/reconfigure.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
+
+ignoreSetupRunRequest();
 
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
@@ -34,13 +36,12 @@ if (extensionEnabled('zenpage')) {
 	require_once(dirname(__FILE__) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
 }
 $redirected_from = NULL;
-if (zp_loggedin() && !empty($zenphoto_tabs)) {
+if (zp_loggedin() && !empty($_zp_admin_menu)) {
 	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
 		// admin access without overview rights, redirect to first tab
-		$tab = array_shift($zenphoto_tabs);
+		$tab = array_shift($_zp_admin_menu);
 		$link = $tab['link'];
-		header('location:' . $link);
-		exitZP();
+		redirectURL($link);
 	}
 } else {
 	if (isset($_GET['from'])) {
@@ -167,9 +168,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 // Print our header
 printAdminHeader('overview');
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
-<script type="text/javascript">
-	// <!-- <![CDATA[
+<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
+<script>
 	$(function() {
 		$('#overviewboxes').masonry({
 			// options
@@ -177,7 +177,6 @@ printAdminHeader('overview');
 			columnWidth: 520
 		});
 	});
-	// ]]> -->
 </script>
 <?php
 echo "\n</head>";
@@ -216,7 +215,7 @@ if (!zp_loggedin()) {
 			$curdir = getcwd();
 			chdir(SERVERPATH . "/" . ZENFOLDER . '/' . UTILITIES_FOLDER . '/');
 			$filelist = safe_glob('*' . 'php');
-			natcasesort($filelist);
+			sortArray($filelist);
 			foreach ($filelist as $utility) {
 				$utilityStream = file_get_contents($utility);
 				$s = strpos($utilityStream, '$buttonlist');
@@ -295,7 +294,7 @@ if (!zp_loggedin()) {
 					?>
 					<div class="warningbox">
 							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>
-							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>. '); ?>
+							<?php echo gettext('The Setup environment is not totally secure, you should protect the scripts to thwart hackers. Use the <strong>Setup » protect scripts</strong> button in the <em>Admin</em> section of the <em>Utility functions</em>.'); ?>
 						</div>
 					<?php 
 				} ?>
@@ -329,7 +328,7 @@ if (!zp_loggedin()) {
 									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('source: %s'), $source);
 								}
 
-								$graphics_lib = zp_graphicsLibInfo();
+								$graphics_lib = $_zp_graphics->graphicsLibInfo();
 								?>
 								<li>
 									<?php
@@ -338,7 +337,7 @@ if (!zp_loggedin()) {
 									if (extensionEnabled('check_for_update') && TEST_RELEASE) {
 										if (is_connected() && class_exists('DOMDocument')) {
 											require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenphoto_news/rsslib.php');
-											$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&category=changelog");
+											$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&category=changelog");
 											if ($recents) {
 												array_shift($recents);
 												$article = array_shift($recents); //	most recent changelog article
@@ -348,7 +347,7 @@ if (!zp_loggedin()) {
 												if ($v && version_compare($c, $v, '>')) {
 													?>
 													<p class="notebox">
-														<a href="http://www.zenphoto.org/news/zenphoto-<?php echo $c; ?>">
+														<a href="https://www.zenphoto.org/news/zenphoto-<?php echo $c; ?>">
 															<?php printf(gettext('Preview the release notes for Zenphoto %s'), $c); ?>
 														</a>
 													</p>
@@ -387,6 +386,7 @@ if (!zp_loggedin()) {
 									printf(gettext('Current gallery theme: <strong>%1$s</strong>'), $currenttheme);
 									?>
 								</li>
+								<li><?php printf(gettext('Server software: <strong>%1$s</strong>'), html_encode($_SERVER['SERVER_SOFTWARE'])); ?></li>
 								<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'), phpversion()); ?></li>
 								<?php
 								if (TEST_RELEASE) {
@@ -466,22 +466,11 @@ if (!zp_loggedin()) {
 									?>
 								</li>
 								<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'), INI_GET('memory_limit')); ?></li>
-								<li>
-									<?php
-									$dbsoftware = db_software();
-									printf(gettext('%1$s version: <strong>%2$s</strong>'), $dbsoftware['application'], $dbsoftware['version']);
-									?>
-
-								</li>
-								<li><?php printf(gettext('Database name: <strong>%1$s</strong>'), db_name()); ?></li>
-								<li>
-									<?php
-									$prefix = trim(prefix(), '`');
-									if (!empty($prefix)) {
-										echo sprintf(gettext('Table prefix: <strong>%1$s</strong>'), $prefix);
-									}
-									?>
-								</li>
+								<li><?php printf(gettext('Database: <strong>%1$s %2$s</strong>'), $_zp_db->getType(), $_zp_db->getVersion()); ?></li>
+								<li><?php printf(gettext('Database handler: <strong>%1$s</strong>'), DATABASE_SOFTWARE); ?></li>
+								<li><?php printf(gettext('Database client: <strong>%1$s</strong>'), $_zp_db->getClientInfo()); ?></li>									
+								<li><?php printf(gettext('Database name: <strong>%1$s</strong>'), $_zp_db->getDBName()); ?></li>
+								<li><?php echo sprintf(gettext('Database table prefix: <strong>%1$s</strong>'), $_zp_db->getPrefix()); ?></li>
 								<li>
 									<?php
 									if (isset($_zp_spamFilter)) {
@@ -518,7 +507,7 @@ if (!zp_loggedin()) {
 								<ul class="plugins">
 									<?php
 									if ($c > 0) {
-										natcasesort($plugins);
+										sortArray($plugins);
 										foreach ($plugins as $extension) {
 											$pluginStream = file_get_contents(getPlugin($extension . '.php'));
 											$plugin_version = '';
@@ -671,18 +660,20 @@ if (!zp_loggedin()) {
 								}
 								?>
 							</li>
-							<li>
-								<?php
-								$t = $_zp_gallery->getNumComments(true);
-								$c = $t - $_zp_gallery->getNumComments(false);
-								if ($c > 0) {
-									printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)', '<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)', $t), $t, $c);
-								} else {
-									printf(ngettext('<strong>%u</strong> Comment', '<strong>%u</strong> Comments', $t), $t);
-								}
-								?>
-							</li>
+							<?php if(extensionEnabled('comment_form')) { ?>
+								<li>
+									<?php
+									$t = $_zp_gallery->getNumComments(true);
+									$c = $t - $_zp_gallery->getNumComments(false);
+									if ($c > 0) {
+										printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)', '<strong>%1$u</strong> Comments (<strong>%2$u</strong> in moderation)', $t), $t, $c);
+									} else {
+										printf(ngettext('<strong>%u</strong> Comment', '<strong>%u</strong> Comments', $t), $t);
+									}
+									?>
+								</li>
 							<?php
+							}
 							if (extensionEnabled('zenpage')) {
 								?>
 								<li>

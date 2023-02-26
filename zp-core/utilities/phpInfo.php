@@ -2,7 +2,7 @@
 /**
  * Displays the PHP configuration information
  * @author Stephen Billard (sbillard)
- * @package admin
+ * @package zpcore\admin\utilities
  */
 
 define ('OFFSET_PATH', 3);
@@ -11,7 +11,7 @@ require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 $buttonlist[] = array(
 		'category' => gettext('Info'),
 		'enable' => true,
-		'button_text' => gettext('Show PHP Information'),
+		'button_text' => gettext('PHP Info'),
 		'formname' => 'cloneZenphoto',
 		'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php',
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/info.png',
@@ -23,7 +23,7 @@ $buttonlist[] = array(
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('PHP Info') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('PHP Info') => FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/phpInfo.php');
 printAdminHeader('overview','phpInfo');
 
 ?>

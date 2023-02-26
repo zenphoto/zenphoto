@@ -28,14 +28,13 @@
  * instead for better performance.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage seo-locale
+ * @package zpcore\plugins\seolocale
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Allows setting language locale through the URI.");
 $plugin_notice = gettext('<strong>Note:</strong> This plugin is not activated for <em>back&#8209;end</em> (administrative) URLs. However, once activated, the language is remembered, even for the <em>back&#8209;end</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (!MOD_REWRITE) ? gettext('<em>mod_rewrite</em> must be enabled for this plugin to function.') : (getOption('dynamic_locale_subdomain') && extensionEnabled('dynamic-locale')) ? gettext('This plugin is not compatible with the <code>dynamic locale</code> <em>Use subdomains</em> option') : false;
+$plugin_disable = ((!MOD_REWRITE) ? gettext('<em>mod_rewrite</em> must be enabled for this plugin to function.') : (getOption('dynamic_locale_subdomain') && extensionEnabled('dynamic-locale'))) ? gettext('This plugin is not compatible with the <code>dynamic locale</code> <em>Use subdomains</em> option') : false;
 $plugin_category = gettext('SEO');
 
 if ($plugin_disable) {
@@ -77,10 +76,7 @@ class seo_locale {
 			if (isset($parts[1])) {
 				$uri .= '?' . $parts[1];
 			}
-			header("HTTP/1.0 302 Found");
-			header("Status: 302 Found");
-			header('Location: ' . $uri);
-			exitZP();
+			redirectURL($uri, '302');
 		}
 		return $allow;
 	}

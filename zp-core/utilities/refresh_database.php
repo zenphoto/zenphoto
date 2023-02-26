@@ -1,4 +1,9 @@
 <?php
+/**
+ * Refreshes the database with the albmums on the filesystems 
+ * 
+ * @package zpcore\admin\utilities
+ */
 
 $buttonlist[] = array(
 		'XSRFTag' => 'refresh',

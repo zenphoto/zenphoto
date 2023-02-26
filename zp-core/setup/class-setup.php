@@ -16,11 +16,11 @@ define('SETUPLOG', $_zp_setup_serverpath . '/' . DATA_FOLDER . '/setup.log');
 if (!defined('SERVERPATH'))
 	define('SERVERPATH', $_zp_setup_serverpath);
 
-require_once(dirname(dirname(__FILE__)) . '/functions-config.php');
+require_once(dirname(dirname(__FILE__)) . '/functions/functions-config.php');
 
 /**
  * setup support class
- * @package setup
+ * @package zpcore\setup
  */
 class setup {
 
@@ -61,7 +61,7 @@ class setup {
 	static function primeMark($text) {
 		global $_zp_setup_primeid;
 		?>
-		<script type="text/javascript">
+		<script>
 			$("#prime<?php echo $_zp_setup_primeid; ?>").remove();
 		</script>
 		<div id="prime<?php echo ++$_zp_setup_primeid; ?>" class="error"><?php printf(gettext('Testing %s.'), $text); ?></div>
@@ -69,26 +69,26 @@ class setup {
 	}
 
 	/**
-	 * Prints an icon for success of failure of an action
-	 * @global boolean $_zp_setup_warn
+	 * Prints an icon for success of failure of an action (it also returns the check level!)
+	 * @global boolean $_zp_setup_warn 
 	 * @global type $_zp_setup_moreid
 	 * @global type $_zp_setup_primeid
 	 * @global boolean $_zp_setup_autorun
-	 * @param int $check 
-	 * @param type $text
-	 * @param type $text2
-	 * @param type $msg
-	 * @param bool $stopAutorun
-	 * @return type
+	 * @param int $check 0 = fail, -1,-3 = warning, 1 or -2 = pass 
+	 * @param type $text Success text
+	 * @param type $text2 Warning text
+	 * @param type $msg Detailed message
+	 * @param bool $stopAutorun True if a show (setup) stopping issue
+	 * @return int
 	 */
-	static function checkMark($check, $text, $text2, $msg, $stopAutorun = true) {
+	static function checkMark($check, $text, $text2, $msg, $stopAutorun = true, $display_success = false) {
 		global $_zp_setup_warn, $_zp_setup_moreid, $_zp_setup_primeid, $_zp_setup_autorun;
 		$classes = array(
 				'fail' => gettext('Fail: '),
 				'warn' => gettext('Warn: '),
 				'pass' => gettext('Pass: '));
 		?>
-		<script type="text/javascript">
+		<script>
 			$("#prime<?php echo $_zp_setup_primeid; ?>").remove();
 		</script>
 		<?php
@@ -153,18 +153,12 @@ class setup {
 							<?php
 							if ($check == -3) {
 								?>
-								<a href="javascript:toggle_visibility('more<?php echo $_zp_setup_moreid; ?>');">
-									<?php echo gettext('<strong>Warning!</strong> click for details'); ?>
-								</a>
-								<div class="warning" id="more<?php echo $_zp_setup_moreid; ?>" style="display: none">
+								<div class="warning" id="more<?php echo $_zp_setup_moreid; ?>">
 									<h1><?php echo gettext('Warning!'); ?></h1>
 									<?php
 								} else {
 									?>
-									<a href="javascript:toggle_visibility('more<?php echo $_zp_setup_moreid; ?>');">
-										<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
-									</a>
-									<div class="notice" id="more<?php echo $_zp_setup_moreid; ?>" style="display: none">
+									<div class="notice" id="more<?php echo $_zp_setup_moreid; ?>">
 										<h1><?php echo gettext('Notice!'); ?></h1>
 										<?php
 									}
@@ -180,10 +174,8 @@ class setup {
 			</li>
 			<?php
 		} else {
+			$anyway = 1; // we want to log success as well
 			$dsp = $text;
-			?>
-			<li class="<?php echo $cls; ?>"><?php echo $text; ?></li>
-			<?php
 		}
 		if ($anyway == 2) {
 			$stopped = '(' . gettext('Autorun aborted') . ') ';
@@ -209,6 +201,7 @@ class setup {
 		if (!is_dir($path) && $class == 'std') {
 			mkdir_recursive($path, $chmod);
 		}
+		$append = '';
 		switch ($class) {
 			case 'std':
 				$append = trim(str_replace($_zp_setup_serverpath, '', $path), '/');
@@ -251,19 +244,17 @@ class setup {
 						} else {
 							$chmod_class = gettext('unknown');
 						}
-						return setup::checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
+						return setup::checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'), $which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="https://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'), $perms_class, $perms, $chmod_class, $chmod));
 					} else {
 						if ($recurse) {
 							?>
-							<script type="text/javascript">
-								// <!-- <![CDATA[
+							<script>
 								$.ajax({
 									type: 'POST',
 									cache: false,
 									url: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/setup/setup_permissions_changer.php',
 									data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) . file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)); ?>'
 								});
-								// ]]> -->
 							</script>
 							<?php
 						}
@@ -356,8 +347,8 @@ class setup {
 			return array();
 		}
 	}
-	
-		/**
+
+	/**
 	 * pattern match function in case it is not included in PHP
 	 *
 	 * @param string $pattern pattern
@@ -377,10 +368,10 @@ class setup {
 	 * @param $select
 	 */
 	static function charsetSelector($select) {
-		global $_zp_UTF8;
+		global $_zp_utf8;
 		$selector = '<select id="FILESYSTEM_CHARSET" name="FILESYSTEM_CHARSET" >';
 		$selector .= '<option value ="unknown">' . gettext('Unknown') . '</option>';
-		$totalsets = $_zp_UTF8->charsets;
+		$totalsets = $_zp_utf8->charsets;
 		ksort($totalsets);
 		foreach ($totalsets as $key => $char) {
 			$selector .= '	<option value="' . $key . '"';
@@ -396,14 +387,14 @@ class setup {
 
 	/**
 	 * 
-	 * @global type $_zp_UTF8
+	 * @global type $_zp_utf8
 	 * @param type $permission_names
 	 * @param type $select
 	 * @return string
 	 */
 	static function permissionsSelector($permission_names, $select) {
 		$select = $select | 4;
-		global $_zp_UTF8;
+		global $_zp_utf8;
 		$selector = '<select id="chmod_permissions" name="chmod_permissions" >';
 		$c = 0;
 		foreach ($permission_names as $key => $permission) {
@@ -449,11 +440,9 @@ class setup {
 	}
 
 	/**
-	 * 
-	 * @global type $_zp_setup_xsrftoken
+	 * prints the language selector
 	 */
 	static function languageSelector() {
-		global $_zp_setup_xsrftoken;
 		$languages = generateLanguageList();
 		if (isset($_REQUEST['locale'])) {
 			$locale = sanitize($_REQUEST['locale']);
@@ -464,7 +453,7 @@ class setup {
 						<?php printf(gettext('<em>%s</em> is not available.'), html_encode($languages[$locale])); ?>
 						<?php printf(gettext('The locale %s is not supported on your server.'), html_encode($locale)); ?>
 						<br />
-						<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
+						<?php echo gettext('See the <a href="https://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
 					</h2>
 				</div>
 				<?php
@@ -474,7 +463,7 @@ class setup {
 		<ul class="sflags">
 			<?php
 			$_languages = generateLanguageList();
-			krsort($_languages, SORT_LOCALE_STRING);
+			ksort($_languages, SORT_LOCALE_STRING);
 			$currentValue = getOption('locale');
 			foreach ($_languages as $text => $lang) {
 				if (setup::locale($lang)) {
@@ -508,14 +497,24 @@ class setup {
 		</ul>
 		<?php
 	}
+	
+	/**
+	 * Generates an XSRFtoken
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return string
+	 */
+	static function getXSRFToken() {
+		$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
+		return sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $zp_cfg . session_id());
+	}
 
 	/**
-	 * 
-	 * @global type $_zp_setup_xsrftoken
+	 * Validates an XSRFtoken
 	 */
 	static function XSRFDefender() {
-		global $_zp_setup_xsrftoken;
-		if (!isset($_REQUEST['xsrfToken']) || $_zp_setup_xsrftoken != $_REQUEST['xsrfToken']) {
+		if (!isset($_REQUEST['xsrfToken']) || setup::getXSRFToken() != $_REQUEST['xsrfToken']) {
 			?>
 			<p class="errorbox" >
 				<?php echo gettext('An attempt at cross site reference forgery has been blocked.') ?>
@@ -550,8 +549,6 @@ class setup {
 	 * @return type
 	 */
 	static function sanitize_string($input_string, $sanitize_level) {
-		if (get_magic_quotes_gpc())
-			$input_string = stripslashes($input_string);
 		if ($sanitize_level === 0) {
 			$input_string = str_replace(chr(0), " ", $input_string);
 		} else {
@@ -583,7 +580,7 @@ class setup {
 			return ($actual & 0770) == ($expected & 0770); //	We do not care about the execute permissions
 		}
 	}
-	
+
 	static function folderPermissions($folder) {
 		$files = array();
 		if (($dir = opendir($folder)) !== false) {
@@ -642,8 +639,8 @@ class setup {
 	}
 
 	static function acknowledge($value) {
-		global $_zp_setup_xsrftoken, $_zp_conf_vars;
-		$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . $_zp_setup_xsrftoken;
+		global $_zp_conf_vars;
+		$link = WEBPATH . '/' . ZENFOLDER . '/setup/index.php?security_ack=' . ((isset($_zp_conf_vars['security_ack']) ? $_zp_conf_vars['security_ack'] : NULL) | $value) . '&amp;xsrfToken=' . setup::getXSRFToken();
 		return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'), $link);
 	}
 
@@ -662,13 +659,23 @@ class setup {
 	}
 
 	static function printFooter() {
-		echo "<div id=\"footer\">";
-		echo "\n  <a href=\"http://www.zenphoto.org\" title=\"" . gettext('The simpler media website CMS') . "\">zen<strong>photo</strong></a>";
-		echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"" . gettext('Forum') . '">' . gettext('Forum') . "</a> | <a href=\"https://github.com/zenphoto/zenphoto/issues\" title=\"Bugtracker\">Bugtracker </a> | <a href=\"http://www.zenphoto.org/news/category/changelog\" title=\"" . gettext('View Change log') . "\">" . gettext('Change log') . "</a>\n</div>";
+		?>
+		<br class="clearall" />
+		</div><!-- content -->
+		</div><!-- main -->
+		<div id="footer">
+			<a href="https://www.zenphoto.org" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('ZenphotoCMS - The simpler media website CMS'); ?>">zen<strong>photo</strong></a>
+			| <a href="https://forum.zenphoto.org/" target="_blank" rel="noopener noreferrer" title=" <?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
+			| <a href="https://github.com/zenphoto/zenphoto/issues" target="_blank" rel="noopener noreferrer" title="Bugtracker">Bugtracker </a> | <a href="https://www.zenphoto.org/news/category/changelog" target="_blank" rel="noopener noreferrer" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('View Change log'); ?></a>
+		</div>
+		</body>
+		</html>
+		<?php
 	}
 
 	static function userAuthorized() {
-		if (function_exists('zp_loggedin')) {
+		global $_zp_db;
+		if (is_object($_zp_db) && $_zp_db->hasTable('administrators') && function_exists('zp_loggedin')) {
 			return zp_loggedin(ADMIN_RIGHTS);
 		} else {
 			return true; //	in a primitive environment
@@ -676,7 +683,6 @@ class setup {
 	}
 
 	static function updateConfigfile($zp_cfg) {
-		global $_zp_setup_xsrftoken;
 		$mod1 = fileperms(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE) & 0777;
 		$mod2 = fileperms(SERVERPATH . '/' . DATA_FOLDER) & 0777;
 
@@ -694,14 +700,12 @@ class setup {
 			clearstatcache();
 		}
 		@chmod(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE, $mod2);
-		$str = setup::configMod();
-		$_zp_setup_xsrftoken = sha1(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE . $str . session_id());
 	}
 
 	static function checkUnique($table, $unique) {
-		global $_zp_setup_autorun;
+		global $_zp_setup_autorun, $_zp_db;
 		$sql = 'SHOW KEYS FROM ' . $table;
-		$result = query_full_array($sql);
+		$result = $_zp_db->queryFullArray($sql);
 		foreach ($result as $key) {
 			if (!$key['Non_unique']) {
 				unset($unique[$key['Column_name']]);
@@ -729,7 +733,7 @@ class setup {
 	}
 
 	static function locale($locale) {
-		global $_zp_RTL_css;
+		global $_zp_rtl_css;
 		$en1 = LOCAL_CHARSET;
 		$en2 = str_replace('ISO-', 'ISO', $en1);
 		$simple = str_replace('_', '-', $locale);
@@ -743,15 +747,22 @@ class setup {
 		$try[$simple[0]] = $simple[0];
 		$try['NULL'] = NULL;
 		$rslt = setlocale(LC_ALL, $try);
-		$_zp_RTL_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
+		$_zp_rtl_css = in_array(substr($rslt, 0, 2), array('fa', 'ar', 'he', 'hi', 'ur'));
 		return $rslt;
 	}
 
 	static function defaultOptionsRequest($name, $type = 'plugin') {
 		global $_zp_conf_vars;
+		$curloptions = array();
 		switch ($type) {
 			case 'modrewrite':
 				$uri = FULLWEBPATH . '/' . $_zp_conf_vars['special_pages']['page']['rewrite'] . '/setup_set-mod_rewrite?z=setup';
+				$curloptions = array(
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_TIMEOUT => 2000,
+						CURLOPT_FOLLOWLOCATION => true,
+						CURLOPT_POSTREDIR => 3
+				);
 				break;
 			case 'plugin':
 				$uri = FULLWEBPATH . '/' . ZENFOLDER . '/setup/setup_pluginOptions.php?plugin=' . $name;
@@ -762,7 +773,7 @@ class setup {
 		}
 		if (function_exists('curl_init')) {
 			$uri .= '&returnmode';
-			$success = curlRequest($uri);
+			$success = curlRequest($uri, $curloptions);
 			if ($success) {
 				$image = FULLWEBPATH . '/' . ZENFOLDER . '/images/pass.png';
 			} else {
@@ -788,6 +799,276 @@ class setup {
 			</span>
 			<?php
 		}
+	}
+	
+	/**
+	 * Checks if the server software is Apache or Nginx 
+	 * 
+	 * @since ZenphotoCMS 1.5.7
+	 * @return boolean
+	 */
+	static function checkServerSoftware() {
+		$serversoftware = setup::getServerSoftware();
+		if(in_array($serversoftware, array('apache', 'nginx'))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Returns either "apache" or "nginx" for supported server software or the full $_SERVER['SERVER_SOFTWARE'] info
+	 * 
+	 * @since ZenphotoCMS 1.5.7 
+	 * @return string
+	 */
+	static function getServerSoftware() {
+		if(stristr($_SERVER['SERVER_SOFTWARE'], "apache")) {
+			return 'apache';
+		} else if(stristr($_SERVER['SERVER_SOFTWARE'], "nginx")) {
+			return 'nginx';
+		} else {
+			return $_SERVER['SERVER_SOFTWARE'];
+		}
+	}
+	
+	/**
+	 * Returns a <ul> list with list entry containing <code> enclosed text
+	 * @param array $array One dimensional array
+	 */
+	static function getFileList($array) {
+		$list = '';
+		if ($array) {
+			$list .= '<ul class="setup_filelist">';
+			foreach ($array as $entry) {
+				$list .= '<li><code>' . $entry . '</code></li>';
+			}
+			$list .= '</ul>';
+		}
+		return $list;
+	}
+	
+	/**
+	 * Checks to see if access was through a secure protocol
+	 * 
+	 * @since Zenphoto 1.5.8 Doubles the function of the same name in functions-basic.php as not available on fresh installs
+	 * 
+	 * @return bool
+	 */
+	static function secureServer() {
+		if (isset($_SERVER['HTTPS'])) {
+			if ('on' == strtolower($_SERVER['HTTPS'])) {
+				return true;
+			}
+			if ('1' == $_SERVER['HTTPS']) {
+				return true;
+			}
+		} elseif (isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] )) {
+			return true;
+		} elseif (isset($_SERVER['HTTP_FORWARDED']) && preg_match("/^(.+[,;])?\s*proto=https\s*([,;].*)$/", strtolower($_SERVER['HTTP_FORWARDED']))) {
+			return true;
+		} elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('https' == strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']))) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks if we are updating from an earlier version or reinstalling and returns an array with various info for the checkmark box
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return array
+	 */
+	static function checkPreviousVersion() {
+		preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
+		$current_version = $matches[0];
+		$zp_versions = setup::getVersions();
+		$installsignature = getOption('zenphoto_install');
+		if ($installsignature) {
+			$install = unserialize($installsignature);
+			$prev_version = $install['ZENPHOTO'];
+		} else {
+			$prev_version = '';
+		}
+		$skipped_releases = 0;
+		$release_message = $release_text ='';
+		if (empty($prev_version)) {
+			$zenphoto_release = getOption('zenphoto_release');
+			if (is_null($zenphoto_release)) { // freshinstall
+				$prev_version = '';
+				$check = -2;
+				$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
+				$release_message = '';
+				$upgrade_text = false;
+			} else {
+				// pre 1.4.2 release, compute the version
+				$install = unserialize(getOption('zenphoto_release'));
+				if (is_array($install)) {
+					$prev_version = $install['ZENPHOTO'];
+				}
+				if (empty($prev_version)) {
+					$release_text = gettext('Upgrade from before Zenphoto v1.2');
+					$prev_version = '1.x';
+					$skipped_releases = count($zp_versions);
+					$check = -1;
+					$upgrade_text = gettext('Update');
+				}
+			}
+		} else {
+			preg_match('/[0-9,\.]*/', $prev_version, $matches2); // catch old version with extra info in brackets
+			$prev_version = $matches2[0];
+			
+			if (empty($prev_version)) { // must be fresh install
+				$check = -2;
+				$release_text = sprintf(gettext('Installing Zenphoto v%s'), $current_version);
+				$release_message = '';
+				$upgrade_text = false;
+			} else if (version_compare($current_version, $prev_version, '==')) {
+				// same version
+				$skipped_releases = 0;
+				$check = -2;
+				$release_text = gettext('Reinstalling current Zenphoto release');
+				$upgrade_text = gettext('reinstall');
+			} else if (version_compare($current_version, $prev_version, '>')) {
+				// previous version
+				$skipped_releases = 0;
+				$zp_versions = array_reverse($zp_versions);
+				foreach ($zp_versions as $zp_version) {
+					if (version_compare($prev_version, $zp_version, '==')) {
+						break;
+					} else {
+						$skipped_releases++;
+					}
+				}
+				$release_text_extra = '';
+				if ($skipped_releases) {
+					$check = -1;
+					$release_text_extra = ' ' . sprintf(ngettext('[%u release skipped]', '[%u releases skipped]', $skipped_releases), $skipped_releases);
+					$release_message = gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.');
+				} else {
+					$check = -2;
+				}
+				$release_text = sprintf(gettext('Upgrade from Zenphoto v%s'), $prev_version) . $release_text_extra;
+				$upgrade_text = gettext('Update');
+			} else if (version_compare($current_version, $prev_version, '<')) {
+				// just in case we really catch a downgrade…
+				$check = 0; // fail!
+				$release_text = sprintf(gettext('Downgrade to Zenphoto v%s'), $current_version);
+				$release_message = gettext('Downgrades are not recommended and supported and can have serious unwanted side effects especially regarding database changes in newer versions.');
+				$upgrade_text = gettext('Downgrade');
+			}
+		}
+		return array(
+				'check' => $check,
+				'previous_version' => $prev_version,
+				'current_version' => $current_version,
+				'release_text' => $release_text,
+				'message_text' => $release_message,
+				'upgrade_text' => $upgrade_text,
+				'skipped_release' => $skipped_releases
+		);
+	}
+
+	/**
+	 * Returns am array with all release versions since 1.2
+	 * 
+	 * Note: THis needs to be kept current and updated with the previous version with every release
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 * 
+	 * @return array
+	 */
+	static function getVersions() {
+		return array(
+				'1.2.0',
+				'1.2.1',
+				'1.2.2',
+				'1.2.3',
+				'1.2.4',
+				'1.2.5_RC1',
+				'1.2.5_RC2',
+				'1.2.5',
+				'1.2.6_RC1',
+				'1.2.6_RC2',
+				'1.2.6',
+				'1.2.7',
+				'1.2.8_RC1',
+				'1.2.8',
+				'1.2.9',
+				'1.3.0',
+				'1.3.1',
+				'1.3.1.1',
+				'1.3.1.2',
+				'1.4.0',
+				'1.4.0.1',
+				'1.4.0.2',
+				'1.4.0.3',
+				'1.4.0.4',
+				'1.4.1.1',
+				'1.4.1.2',
+				'1.4.1.3',
+				'1.4.1.4',
+				'1.4.1.5',
+				'1.4.1.6',
+				'1.4.1',
+				'1.4.2',
+				'1.4.2.1',
+				'1.4.2.2',
+				'1.4.2.3',
+				'1.4.2.4',
+				'1.4.3',
+				'1.4.3.1',
+				'1.4.3.2',
+				'1.4.3.3',
+				'1.4.3.4',
+				'1.4.3.5',
+				'1.4.4b',
+				'1.4.4',
+				'1.4.4.1',
+				'1.4.4.1a',
+				'1.4.4.1b',
+				'1.4.4.2',
+				'1.4.4.3',
+				'1.4.4.4',
+				'1.4.4.5',
+				'1.4.4.6',
+				'1.4.4.7',
+				'1.4.4.8',
+				'1.4.4.9',
+				'1.4.5',
+				'1.4.5.1',
+				'1.4.5.2',
+				'1.4.5.3',
+				'1.4.5.4',
+				'1.4.5.5',
+				'1.4.5.6',
+				'1.4.5.7',
+				'1.4.5.8',
+				'1.4.5.9',
+				'1.4.5.10',
+				'1.4.6-RC1',
+				'1.4.6-RC2',
+				'1.4.6',
+				'1.4.7',
+				'1.4.8',
+				'1.4.9',
+				'1.4.10',
+				'1.4.11',
+				'1.4.12',
+				'1.4.13',
+				'1.4.14',
+				'1.5',
+				'1.5.1',
+				'1.5.2',
+				'1.5.3',
+				'1.5.4',
+				'1.5.5',
+				'1.5.6',
+				'1.5.7',
+				'1.5.8',
+				'1.5.9'
+		);
 	}
 
 }

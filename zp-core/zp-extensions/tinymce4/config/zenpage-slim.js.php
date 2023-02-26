@@ -11,19 +11,18 @@
  * @subpackage zenpage
  */
 $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
-global $_zp_RTL_css;
+global $_zp_rtl_css;
 ?>
-<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
-<script type="text/javascript">
-// <!-- <![CDATA[
+<script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
+<script>
 	tinymce.init({
 		selector: "textarea.texteditor,textarea.content,textarea.desc,textarea.extracontent,textarea.texteditor",
 		language: "<?php echo $locale; ?>",
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
-		<?php if(!empty(trim(getOption('tinymce4_entities')))) { ?>
+		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
 		<?php } ?>	
-		directionality: "<?php echo $_zp_RTL_css ? 'rtl' : 'ltr'; ?>",
+		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
 		image_advtab: true,
@@ -48,5 +47,4 @@ if ($filehandler) {
 			});
 		}
 	});
-// ]]> -->
 </script>

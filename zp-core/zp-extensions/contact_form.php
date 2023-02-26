@@ -11,8 +11,7 @@
  * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
- * @package plugins
- * @subpackage contact-form
+ * @package zpcore\plugins\contactform
  */
 $plugin_is_filter = 5 | FEATURE_PLUGIN;
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
@@ -185,8 +184,9 @@ class contactformOptions {
 				gettext('CAPTCHA') => array(
 						'key' => 'contactform_captcha',
 						'type' => OPTION_TYPE_CHECKBOX,
+						'disabled' =>  ($_zp_captcha->name) ? false : true,
 						'order' => 9,
-						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="warningbox">' . gettext('No captcha handler is enabled.') . '</span>'),
 				gettext('Phone') => array(
 						'key' => 'contactform_phone',
 						'type' => OPTION_TYPE_RADIO,
@@ -235,7 +235,7 @@ function getField($field, $level = 3) {
  * @param string $subject_override set to override the subject.
  */
 function printContactForm($subject_override = '') {
-	global $_zp_UTF8, $_zp_captcha, $_processing_post, $_zp_current_admin_obj;
+	global $_zp_utf8, $_zp_captcha, $_processing_post, $_zp_current_admin_obj;
 	$error = array();
 	$error_dataconfirmation = null;
 	if (isset($_POST['sendmail'])) {
@@ -273,19 +273,19 @@ function printContactForm($subject_override = '') {
 			$error[5] = gettext("a city");
 		}
 		if (getOption('contactform_state') == "required" && empty($mailcontent['state'])) {
-			$error[5] = gettext("a state");
-		}
-		if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) {
-			$error[5] = gettext("a postal code");
+			$error[6] = gettext("a state");
 		}
 		if (getOption('contactform_country') == "required" && empty($mailcontent['country'])) {
-			$error[6] = gettext("a country");
+			$error[7] = gettext("a country");
 		}
-		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !is_valid_email_zp($mailcontent['email']))) {
-			$error[7] = gettext("a valid email address");
+		if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) {
+			$error[8] = gettext("a postal code");
+		}
+		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !isValidEmail($mailcontent['email']))) {
+			$error[9] = gettext("a valid email address");
 		}
 		if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {
-			$error[8] = gettext('a website');
+			$error[10] = gettext('a website');
 		} else {
 			if (!empty($mailcontent['website'])) {
 				if (substr($mailcontent['website'], 0, 7) != "http://" || substr($mailcontent['website'], 0, 8) != "https://") {
@@ -294,25 +294,25 @@ function printContactForm($subject_override = '') {
 			}
 		}
 		if (getOption("contactform_phone") == "required" && empty($mailcontent['phone'])) {
-			$error[9] = gettext("a phone number");
+			$error[11] = gettext("a phone number");
 		}
 		if (empty($mailcontent['subject'])) {
-			$error[10] = gettext("a subject");
+			$error[12] = gettext("a subject");
 		}
 		if (empty($mailcontent['message'])) {
-			$error[11] = gettext("a message");
+			$error[13] = gettext("a message");
 		}
 		// CAPTCHA start
-		if (getOption("contactform_captcha")) {
+		if ($_zp_captcha->name && getOption("contactform_captcha")) {
 			$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
 			$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : NULL));
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
-				$error[5] = gettext("the correct CAPTCHA verification code");
+				$error[14] = gettext("the correct CAPTCHA verification code");
 			} // no ticket
 		}
 		// CAPTCHA end
 		if (getOption('contactform_dataconfirmation') && empty($mailcontent['dataconfirmation'])) {
-			$error_dataconfirmation = $error[13] = gettext('Please agree to storage and handling of your data by this website.');
+			$error_dataconfirmation = $error[15] = gettext('Please agree to storage and handling of your data by this website.');
 		}
 		// If required fields are empty or not valide print note
 		if (count($error) != 0) {
@@ -323,7 +323,7 @@ function printContactForm($subject_override = '') {
 					if($error_dataconfirmation) { 
 						echo '<p>' . $error_dataconfirmation . '</p>';
 						// remove data confirmation error so we re-print it with the wrong generic text below
-						unset($err[13]);
+						unset($err[15]);
 					}
 					switch (count($err)) {
 						case 1:
@@ -400,6 +400,7 @@ function printContactForm($subject_override = '') {
 					<?PHP
 					$_processing_post = true;
 					include(getPlugin('contact_form/form.php', true));
+					$message = str_replace("\n", '<br>', $message);
 					?>
 					<form id="confirm" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8" style="float: left">
 						<input type="hidden" id="confirm" name="confirm" value="confirm" />
@@ -429,7 +430,7 @@ function printContactForm($subject_override = '') {
 	}
 	if (isset($_POST['confirm'])) {
 		$subject = sanitize($_POST['subject']);
-		$message = sanitize($_POST['message'], 1);
+		$message = str_replace('<br>', "\n", sanitize($_POST['message'], 1));
 		$mailaddress = sanitize($_POST['mailaddress']);
 		$honeypot = sanitize($_POST['username']);
 		$name = sanitize($_POST['name']);
@@ -445,9 +446,12 @@ function printContactForm($subject_override = '') {
 			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 		}
 		if ($err_msg) {
-			$msgs = explode('.', $err_msg);
-			unset($msgs[0]); //	the "mail send failed" text
-			unset($msgs[count($msgs)]); //	a trailing empty one
+			$msgs = explode('. ', $err_msg);
+			foreach ($msgs as $key => $line) {
+				if (empty($line) || $line == gettext('Mail send failed') || strpos($line, 'github')) {
+					unset($msgs[$key]);
+				}
+			}
 			?>
 			<div class="errorbox">
 				<strong><?php echo ngettext('Error sending mail:', 'Errors sending mail:', count($msgs)); ?></strong>

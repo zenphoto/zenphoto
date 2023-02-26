@@ -1,7 +1,6 @@
 <?php
 /**
- * @package plugins
- * @subpackage comment-form
+ * @package zpcore\plugins\commentform
  */
 define('COMMENTS_PER_PAGE', max(1, getOption('comment_form_comments_per_page')));
 
@@ -9,8 +8,8 @@ $_zp_comment_stored = array();
 
 function comment_form_PaginationJS() {
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
-	<script type="text/javascript">
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.pagination.js"></script>
+	<script>
 		function pageselectCallback(page_index, jq) {
 			var items_per_page = <?php echo max(1, COMMENTS_PER_PAGE); ?>;
 			var max_elem = Math.min((page_index + 1) * items_per_page, $('#comments div.comment').length);
@@ -70,7 +69,7 @@ function comment_form_print10Most() {
 		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
 		<ul>
 			<?php
-			$comments = fetchComments(10);
+			$comments = getComments(10);
 			foreach ($comments as $comment) {
 				$id = $comment['id'];
 				$author = $comment['name'];
@@ -163,15 +162,15 @@ function printCommentErrors() {
 		$s = trim($_zp_comment_error);
 	}
 	if ($s) {
-		$lines = explode('.', $s);
+		$lines = explode('. ', $s);
 		foreach ($lines as $key => $line) {
-			if (empty($line) || $line == gettext('Mail send failed')) {
+			if (empty($line) || $line == gettext('Mail send failed') || strpos($line, 'github')) {
 				unset($lines[$key]);
 			}
 		}
 		?>
 		<div class="errorbox">
-			<h2><?php echo ngettext('Error posting comment:', 'Errors posting comment:', count($lines)); ?></h2>
+			<strong><?php echo ngettext('Error posting comment:', 'Errors posting comment:', count($lines)); ?></strong>
 			<ul class="errorlist">
 				<?php
 				foreach ($lines as $line) {
@@ -215,7 +214,7 @@ define('COMMENT_DATACONFIRMATION', 64);
  * @return object
  */
 function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null) {
-	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter;
+	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter, $_zp_db;
 	if ($check === false) {
 		$whattocheck = 0;
 		if (getOption('comment_email_required') == 'required')
@@ -246,9 +245,9 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	}
 	$type = $receiver->table;
 	$receiver->getComments();
-	$name = trim($name);
-	$email = trim($email);
-	$website = trim($website);
+	$name = trim(strval($name));
+	$email = trim(strval($email));
+	$website = trim(strval($website));
 // Let the comment have trailing line breaks and space? Nah...
 // Also (in)validate HTML here, and in $name.
 	$comment = trim($comment);
@@ -276,7 +275,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setInModeration(0);
 	$commentobj->setCustomData($customdata);
 	$commentobj->dataconfirmation = $dataconfirmation;
-	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !is_valid_email_zp($email))) {
+	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !isValidEmail($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");
 		$goodMessage = false;
@@ -291,7 +290,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply a WEB page URL.");
 		$goodMessage = false;
 	}
-	if (($whattocheck & USE_CAPTCHA)) {
+	if ($_zp_captcha->name && ($whattocheck & USE_CAPTCHA )) {
 		if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
 			$commentobj->setInModeration(-5);
 			$commentobj->comment_error_text .= ' ' . gettext("CAPTCHA verification failed.");
@@ -300,7 +299,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	}
 	if (($whattocheck & COMMENT_BODY_REQUIRED) && empty($comment)) {
 		$commentobj->setInModeration(-6);
-		$commentobj->comment_error_text .= ' ' . gettext("You must enter something in the comment text.");
+		$commentobj->comment_error_text .= ' ' . gettext("You must enter some text in the comment field.");
 		$goodMessage = false;
 	}
 	if (($whattocheck & COMMENT_DATACONFIRMATION) && empty($dataconfirmation)) {
@@ -351,7 +350,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		switch ($type) {
 			case "albums":
 				$url = "album=" . pathurlencode($receiver->name);
-				$ur_album = getUrAlbum($receiver);
+				$ur_album = $receiver->getUrAlbum();
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your album “%1$s”.'), $receiver->name);
 				} else {
@@ -359,25 +358,25 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				}
 				break;
 			case "news":
-				$url = "p=news&title=" . urlencode($receiver->getTitlelink());
+				$url = "p=news&title=" . urlencode($receiver->getName());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your article “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your article “%1$s”.'), $receiver->getName());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your article “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your article “%1$s”.'), $receiver->getName());
 				}
 				break;
 			case "pages":
-				$url = "p=pages&title=" . urlencode($receiver->getTitlelink());
+				$url = "p=pages&title=" . urlencode($receiver->getName());
 				if ($moderate) {
-					$action = sprintf(gettext('A comment has been placed in moderation on your page “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been placed in moderation on your page “%1$s”.'), $receiver->getName());
 				} else {
-					$action = sprintf(gettext('A comment has been posted on your page “%1$s”.'), $receiver->getTitlelink());
+					$action = sprintf(gettext('A comment has been posted on your page “%1$s”.'), $receiver->getName());
 				}
 				break;
 			default: // all image types
 				$album = $receiver->getAlbum();
 				$url = "album=" . pathurlencode($album->name) . "&image=" . urlencode($receiver->filename);
-				$ur_album = getUrAlbum($album);
+				$ur_album = $album->getUrAlbum();
 				if ($moderate) {
 					$action = sprintf(gettext('A comment has been placed in moderation on your image “%1$s” in the album “%2$s”.'), $receiver->getTitle(), $album->name);
 				} else {
@@ -403,10 +402,10 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 			if ($type === "images" OR $type === "albums") {
 				// mail to album admins
 				$id = $ur_album->getID();
-				$sql = 'SELECT `adminid` FROM ' . prefix('admin_to_object') . ' WHERE `objectid`=' . $id . ' AND `type` LIKE "album%"';
-				$result = query($sql);
+				$sql = 'SELECT `adminid` FROM ' . $_zp_db->prefix('admin_to_object') . ' WHERE `objectid`=' . $id . ' AND `type` LIKE "album%"';
+				$result = $_zp_db->query($sql);
 				if ($result) {
-					while ($anadmin = db_fetch_assoc($result)) {
+					while ($anadmin = $_zp_db->fetchAssoc($result)) {
 						$id = $anadmin['adminid'];
 						if (array_key_exists($id, $admin_users)) {
 							$admin = $admin_users[$id];
@@ -415,7 +414,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 							}
 						}
 					}
-					db_free_result($result);
+					$_zp_db->freeResult($result);
 				}
 			}
 			$on = gettext('Comment posted');
@@ -467,16 +466,16 @@ function comment_form_postcomment($error) {
  * @return NULL|boolean
  */
 function comment_form_handle_comment() {
-	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_HTML_cache;
+	global $_zp_current_image, $_zp_current_album, $_zp_comment_stored, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_html_cache;
 	$comment_error = 0;
-	$cookie = zp_getCookie('zenphoto_comment');
+	$cookie = zp_getCookie('zpcms_comment');
 	if (isset($_POST['comment']) && (!isset($_POST['username']) || empty($_POST['username']))) { // 'username' is a honey-pot trap
 		/*
 		 * do not save the post page in the cache
 		 * Also the cache should be cleared so that a new page is saved at the first non-comment posting viewing.
 		 * But this has to wait until processing is finished to avoid race conditions.
 		 */
-		$_zp_HTML_cache->disable();
+		$_zp_html_cache->disable();
 		if (in_context(ZP_IMAGE)) {
 			$commentobject = $_zp_current_image;
 			$redirectTo = $_zp_current_image->getLink();
@@ -485,10 +484,10 @@ function comment_form_handle_comment() {
 			$redirectTo = $_zp_current_album->getLink();
 		} else if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 			$commentobject = $_zp_current_zenpage_news;
-			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getTitlelink();
+			$redirectTo = FULLWEBPATH . '/index.php?p=news&title=' . $_zp_current_zenpage_news->getName();
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 			$commentobject = $_zp_current_zenpage_page;
-			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getTitlelink();
+			$redirectTo = FULLWEBPATH . '/index.php?p=pages&title=' . $_zp_current_zenpage_page->getName();
 		} else {
 			$commentobject = NULL;
 			$error = gettext('Comment posted on unknown page!');
@@ -501,7 +500,7 @@ function comment_form_handle_comment() {
 			}
 			if (isset($_POST['email'])) {
 				$p_email = sanitize($_POST['email'], 3);
-				if (!is_valid_email_zp($p_email)) {
+				if (!isValidEmail($p_email)) {
 					$p_email = NULL;
 				}
 			} else {
@@ -553,27 +552,26 @@ function comment_form_handle_comment() {
 				$error = $commentadded->comment_error_text;
 				$comment_error++;
 			} else {
-				$_zp_HTML_cache->clearHtmlCache();
+				$_zp_html_cache->clearHtmlCache();
 				$error = NULL;
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
 					$_zp_comment_stored['comment'] = ''; // clear the comment itself
-					zp_setCookie('zenphoto_comment', serialize($_zp_comment_stored));
+					zp_setCookie('zpcms_comment', serialize($_zp_comment_stored));
 				} else {
-					zp_clearCookie('zenphoto_comment');
+					zp_clearCookie('zpcms_comment');
 				}
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
 					// but not for Microsoft IIS because that server fails if we redirect!
-					header('Location: ' . $redirectTo . '#zp_comment_id_' . $commentadded->getId());
-					exitZP();
+					redirectURL($redirectTo . '#zp_comment_id_' . $commentadded->getId());
 				}
 			}
 		}
 		return $error;
 	} else {
 		if (!empty($cookie)) {
-			$cookiedata = getSerializedArray($cookie);
+			$cookiedata = getSerializedArray($cookie, true);
 			if (count($cookiedata) > 1) {
 				$_zp_comment_stored = $cookiedata;
 			}
@@ -653,7 +651,7 @@ function printCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
  * Uses the "date_format" option for the formatting unless
  * a format string is passed.
  *
- * @param string $format 'strftime' date/time format
+ * @param string $format a date() compatible format
  * @return string
  */
 function getCommentDateTime($format = NULL) {
@@ -710,7 +708,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
  * @param int $id the record id of element to get the comments for if $type != "all"
  */
 function getLatestComments($number, $type = "all", $id = NULL) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	$albumcomment = $imagecomment = NULL;
 	$comments = array();
 	$whereclause = '';
@@ -718,10 +716,10 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 		case is_array($type):
 			$whereclause = ' AND `type` IN ("' . implode('","', $type) . '")';
 		case 'all':
-			$sql = 'SELECT * FROM ' . prefix('comments') . ' WHERE `private`=0 AND `inmoderation`=0' . $whereclause . ' ORDER BY `date` DESC';
-			$commentsearch = query($sql);
+			$sql = 'SELECT * FROM ' . $_zp_db->prefix('comments') . ' WHERE `private`=0 AND `inmoderation`=0' . $whereclause . ' ORDER BY `date` DESC';
+			$commentsearch = $_zp_db->query($sql);
 			if ($commentsearch) {
-				while ($number > 0 && $commentcheck = db_fetch_assoc($commentsearch)) {
+				while ($number > 0 && $commentcheck = $_zp_db->fetchAssoc($commentsearch)) {
 					$item = getItemByID($commentcheck['type'], $commentcheck['ownerid']);
 					if ($item && $item->checkAccess()) {
 						$number--;
@@ -729,7 +727,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 						$commentcheck['title'] = $item->getTitle('all');
 						switch ($item->table) {
 							case 'albums':
-								$commentcheck['folder'] = $item->getFileName();
+								$commentcheck['folder'] = $item->getName();
 								$commentcheck['albumtitle'] = $commentcheck['title'];
 								break;
 							case 'images':
@@ -739,14 +737,14 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 								break;
 							case 'news':
 							case 'pages':
-								$commentcheck['titlelink'] = $item->getTitlelink();
+								$commentcheck['titlelink'] = $item->getName();
 								break;
 						}
 						$commentcheck['pubdate'] = $commentcheck['date']; //	for RSS
 						$comments[] = $commentcheck;
 					}
 				}
-				db_free_result($commentsearch);
+				$_zp_db->freeResult($commentsearch);
 			}
 			return $comments;
 		case 'album':
@@ -787,7 +785,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				// add the other stuff people want
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
-					$comment['titlelink'] = $item->getTitlelink();
+					$comment['titlelink'] = $item->getName();
 					$comment['title'] = $item->getTitle('all');
 					$comments[$key] = $comment;
 				}
@@ -801,7 +799,7 @@ function getLatestComments($number, $type = "all", $id = NULL) {
 				// add the other stuff people want
 				foreach ($comments as $key => $comment) {
 					$comment['pubdate'] = $comment['date'];
-					$comment['titlelink'] = $item->getTitlelink();
+					$comment['titlelink'] = $item->getName();
 					$comment['title'] = $item->getTitle('all');
 					$comments[$key] = $comment;
 				}
@@ -986,4 +984,112 @@ function getCommentStored($numeric = false) {
     return $message;
   }
 }
-?>
+
+/**
+ * Returns true if all the right conditions are set to allow comments for the $type
+ * 
+ * @param string $type Which comments
+ * @return bool
+ */
+function commentsAllowed($type) {
+	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
+}
+
+/**
+ * Gets an array of comments for the current admin
+ * 
+ * @since ZenphotoCMS 1.6 - Renamed from fetchComments()
+ *
+ * @param int $number how many comments desired
+ * @return array
+ */
+function getComments($number) {
+	global $_zp_db;
+	if ($number) {
+		$limit = " LIMIT $number";
+	} else {
+		$limit = '';
+	}
+	$comments = array();
+	if (zp_loggedin(ADMIN_RIGHTS | COMMENT_RIGHTS)) {
+		if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+			$sql = "SELECT *, (date + 0) AS date FROM " . $_zp_db->prefix('comments') . " ORDER BY id DESC$limit";
+			$comments = $_zp_db->queryFullArray($sql);
+		} else {
+			$albumlist = getManagedAlbumList();
+			$albumIDs = array();
+			foreach ($albumlist as $albumname) {
+				$subalbums = getAllSubAlbumIDs($albumname);
+				foreach ($subalbums as $ID) {
+					$albumIDs[] = $ID['id'];
+				}
+			}
+			if (count($albumIDs) > 0) {
+				$sql = "SELECT  *, (`date` + 0) AS date FROM " . $_zp_db->prefix('comments') . " WHERE ";
+
+				$sql .= " (`type`='albums' AND (";
+				$i = 0;
+				foreach ($albumIDs as $ID) {
+					if ($i > 0) {
+						$sql .= " OR ";
+					}
+					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=$ID)";
+					$i++;
+				}
+				$sql .= ")) ";
+				$sql .= " ORDER BY id DESC$limit";
+				$albumcomments = $_zp_db->query($sql);
+				if ($albumcomments) {
+					while ($comment = $_zp_db->fetchAssoc($albumcomments)) {
+						$comments[$comment['id']] = $comment;
+					}
+					$_zp_db->freeResult($albumcomments);
+				}
+				$sql = "SELECT *, " . $_zp_db->prefix('comments') . ".id as id, " .
+								$_zp_db->prefix('comments') . ".name as name, (" . $_zp_db->prefix('comments') . ".date + 0) AS date, " .
+								$_zp_db->prefix('images') . ".`albumid` as albumid," .
+								$_zp_db->prefix('images') . ".`id` as imageid" .
+								" FROM " . $_zp_db->prefix('comments') . "," . $_zp_db->prefix('images') . " WHERE ";
+
+				$sql .= "(`type` IN (" . zp_image_types("'") . ") AND (";
+				$i = 0;
+				foreach ($albumIDs as $ID) {
+					if ($i > 0) {
+						$sql .= " OR ";
+					}
+					$sql .= "(" . $_zp_db->prefix('comments') . ".ownerid=" . $_zp_db->prefix('images') . ".id AND " . $_zp_db->prefix('images') . ".albumid=$ID)";
+					$i++;
+				}
+				$sql .= "))";
+				$sql .= " ORDER BY " . $_zp_db->prefix('images') . ".`id` DESC$limit";
+				$imagecomments = $_zp_db->query($sql);
+				if ($imagecomments) {
+					while ($comment = $_zp_db->fetchAssoc($imagecomments)) {
+						$comments[$comment['id']] = $comment;
+					}
+					$_zp_db->freeResult($imagecomments);
+				}
+				krsort($comments);
+				if ($number) {
+					if ($number < count($comments)) {
+						$comments = array_slice($comments, 0, $number);
+					}
+				}
+			}
+		}
+	}
+	return $comments;
+}
+
+/**
+ * Gets an array of comments for the current admin
+ * 
+ * @deprecated ZenphotoCMS 2.0 - Use getComments() instead
+ *
+ * @param int $number how many comments desired
+ * @return array
+ */
+function fetchComments($number) {
+	deprecationNotice(gettext('Use getComments() instead.'));
+	return getComments($number);
+}

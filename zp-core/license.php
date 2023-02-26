@@ -17,11 +17,10 @@ if (isset($_GET['licenseAccept'])) {
 		$return_to = $_SESSION['license_return'];
 		unset($_SESSION['license_return']);
 	} else {
-		$return_to = 'admin.php';
+		$return_to = FULLWEBPATH . '/' . ZENFOLDER . '/admin.php';
 	}
 	setOption('license_accepted', ZENPHOTO_VERSION );
-	header('Location: '.$return_to);
-	exitZP();
+	redirectURL($return_to);
 }
 
 printAdminHeader('license');

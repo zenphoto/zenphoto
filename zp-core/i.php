@@ -25,15 +25,15 @@
  * - If more than one of s, h, or w are specified, s takes priority, then w+h:
  * - If none of s, h, or w are specified, the original image is returned.
  * ******************************************************************************
- * @package core
+ * @package zpcore
  */
 // force UTF-8 Ø
 
 
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__) . '/functions-basic.php');
-require_once(dirname(__FILE__) . '/functions-image.php');
+require_once(dirname(__FILE__) . '/functions/functions-basic.php');
+require_once(dirname(__FILE__) . '/functions/functions-image.php');
 
 $debug = isset($_GET['debug']);
 $returnmode = isset($_GET['returnmode']);
@@ -57,8 +57,8 @@ $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
-	require_once(dirname(__FILE__) . '/functions.php');
-	$albumobj = newAlbum(filesystemToInternal($album));
+	require_once(dirname(__FILE__) . '/functions/functions.php');
+	$albumobj = AlbumBase::newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden(1)"), 'err-imagegeneral.png', $image, $album);
 	}
@@ -70,14 +70,13 @@ $adminrequest = $args[12];
 if ($forbidden = getOption('image_processor_flooding_protection') && (!isset($_GET['check']) || $_GET['check'] != sha1(HASH_SEED . serialize($args)))) {
 	// maybe it was from the tinyZenpage javascript which does not know better!
 	zp_session_start();
-	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zp_user_auth'];
+	$forbidden = !isset($_SESSION['adminRequest']) || $_SESSION['adminRequest'] != @$_COOKIE['zpcms_auth_user'];
 }
 
 if (!isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
 	if (getOption('album_folder_class') !== 'external') {
-		header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
-		return;
+		redirectURL(getAlbumFolder(FULLWEBPATH) . pathurlencode(filesystemToInternal($album)) . "/" . rawurlencode(filesystemToInternal($image)));
 	}
 }
 
@@ -132,20 +131,6 @@ if (!file_exists($imgfile)) {
 }
 
 // Make the directories for the albums in the cache, recursively.
-// Skip this for safe_mode, where we can't write to directories we create!
-if (!SAFE_MODE) {
-	$albumdirs = getAlbumArray($album, true);
-	foreach ($albumdirs as $dir) {
-		$dir = internalToFilesystem($dir);
-		$dir = SERVERCACHE . '/' . $dir;
-		if (!is_dir($dir)) {
-			@mkdir($dir, FOLDER_MOD);
-			@chmod($dir, FOLDER_MOD);
-		} else if (!is_writable($dir)) {
-			@chmod($dir, FOLDER_MOD);
-		}
-	}
-}
 $process = true;
 // If the file exists, check its modification time and update as needed.
 $fmt = filemtime($imgfile);
@@ -192,6 +177,7 @@ if ($returnmode) {
 			case 'png':
 			case 'gif':
 			case 'jpeg':
+			case 'webp':
 				break;
 			default:
 				imageError('405 Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"), filesystemToInternal(basename($newfilename))), 'err-imagegeneral.png', $image, $album, $newfilename);

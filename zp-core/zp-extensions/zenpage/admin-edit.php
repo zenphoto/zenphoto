@@ -3,8 +3,7 @@
  * zenpage admin-edit.php
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package zpcore\plugins\zenpage
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
@@ -117,7 +116,7 @@ if (is_AdminEditPage('newscategory')) {
 		$result = updateCategory($reports);
 	} else {
 		$result = new ZenpageCategory('');
-		$result->setShow(1);
+		$result->setPublished(1);
 	}
 }
 
@@ -127,8 +126,7 @@ zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
 ?>
-<script type="text/javascript">
-	//<!-- <![CDATA[
+<script>
 	var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 	var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
 	var deleteCategory = "<?php echo gettext("Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"); ?>";
@@ -148,7 +146,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 			var today = new Date();
 			var pub = $('#date').datepicker('getDate');
 			if (pub.getTime() > today.getTime()) {
-				$(".scheduledpublishing").html('<?php echo addslashes(gettext('Future publishing date:')); ?>');
+				$(".scheduledpublishing").html('<?php echo addslashes(gettext('Future publishing date')); ?>');
 			} else {
 				$(".scheduledpublishing").html('');
 			}
@@ -163,9 +161,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 	<?php
 }
 ?>
-	// ]]> -->
 </script>
-<?php Zenphoto_Authority::printPasswordFormJS(); ?>
+<?php Authority::printPasswordFormJS(); ?>
 </head>
 <body>
 	<?php
@@ -185,7 +182,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 			$saveitem = $updateitem = gettext('Apply');
 			if (is_AdminEditPage('newsarticle')) {
 				if (!empty($page)) {
-					$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
+					$_zp_admin_menu['news']['subtabs'][gettext('articles')] .= $page;
 				}
 				$subtab = printSubtabs();
 				?>
@@ -263,12 +260,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'news', false); ?></em></h1>
 							<?php
-							if ($result->getDatetime() >= date('Y-m-d H:i:s')) {
-								echo '<small><strong id="scheduldedpublishing">' . gettext('(Article scheduled for publishing)') . '</strong></small>';
-								if ($result->getShow() != 1) {
-									echo '<p class="scheduledate"><small>' . gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>') . '</small></p>';
-								}
-							}
+							printScheduledPublishingNotes($result);
 							if ($result->inProtectedCategory()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This article belongs to a password protected category.') . '</p>';
 							}
@@ -282,12 +274,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'page', false); ?></em></h1>
 							<?php
-							if ($result->getDatetime() >= date('Y-m-d H:i:s')) {
-								echo ' <small><strong id="scheduldedpublishing">' . gettext('(Page scheduled for publishing)') . '</strong></small>';
-								if ($result->getShow() != 1) {
-									echo '<p class="scheduledate"><small>' . gettext('Note: Scheduled publishing is not active unless the page is also set to <em>published</em>') . '</small></p>';
-								}
-							}
+							printScheduledPublishingNotes($result);
 							if ($result->getPassword()) {
 								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This page is password protected.') . '</p>';
 							}
@@ -307,11 +294,8 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								}
 								?>
 								<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
-								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
-								<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
-								<input type="hidden" name="lastchangeauthor" id="lastchangeauthor" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
+								<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getName()); ?>" />
 								<input type="hidden" name="hitcounter" id="hitcounter" value="<?php echo $result->getHitcounter(); ?>" />
-
 								<?php
 								if (is_AdminEditPage("newsarticle")) {
 									$backurl = 'admin-news-articles.php?' . $page;
@@ -370,9 +354,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 										if (!$result->transient) {
 											if (is_AdminEditPage("newscategory")) {
 												?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 											<?php } else { ?>
-												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+												<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 												<?php
 											}
 										}
@@ -438,7 +422,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<label for="permalink"><?php echo gettext("Enable permaTitlelink"); ?></label>
 													</p>
 													<p class="checkbox">
-														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow()); ?> />
+														<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->isPublished()); ?> />
 														<label for="show"><?php echo gettext("Published"); ?></label>
 													</p>
 													<?php
@@ -546,6 +530,9 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 														}
 													}
+													if (is_AdminEditPage("newscategory")) {
+														printLastChangeInfo($result);
+													}
 													if (!$result->transient && !is_AdminEditPage('newscategory')) {
 														?>
 														<label class="checkboxlabel">
@@ -587,8 +574,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													<div class="box-edit">
 														<p>
 
-															<script type="text/javascript">
-																// <!-- <![CDATA[
+															<script>
 																$(function() {
 																	$("#date").datepicker({
 																		dateFormat: 'yy-mm-dd',
@@ -598,7 +584,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																		buttonImageOnly: true
 																	});
 																});
-																// ]]> -->
 															</script>
 															<?php
 															$date = $result->getDatetime();
@@ -607,16 +592,15 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<strong class='scheduledpublishing'>
 																<?php
-																if ($date > date('Y-m-d H:i:s')) {
-																	echo addslashes(gettext('Future publishing date:'));
+																if ($result->hasPublishSchedule()) {
+																	echo addslashes(gettext('Future publishing date'));
 																}
 																?>
 															</strong>
 														</p>
 														<hr />
 														<p>
-															<script type="text/javascript">
-																// <!-- <![CDATA[
+															<script>
 																$(function() {
 																	$("#expiredate").datepicker({
 																		dateFormat: 'yy-mm-dd',
@@ -626,7 +610,6 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 																		buttonImageOnly: true
 																	});
 																});
-																// ]]> -->
 															</script>
 
 															<?php
@@ -636,32 +619,28 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<br />
 															<input name="expiredate" type="text" id="expiredate" value="<?php echo $date; ?>" onchange="checkFutureExpiry();" />
 															<br />
-															<strong class='expire'>
+															<strong>
 																<?php
-																if (!empty($date) && ($date <= date('Y-m-d H:i:s'))) {
-																	echo '<br />' . gettext('This is not a future date!');
-																}
+																	if($result->hasExpired()) {
+																		echo '<span class="expired">' . gettext('Expired!') . '</span>';
+																	} else if($result->hasExpiration() || $result->hasInactiveExpiration()) {
+																		echo '<span class="expiredate">' . gettext('Expiration date set!') . '</span>';
+																	} 
 																?>
 															</strong>
 														</p>
-														<?php
-														if ($result->getLastchangeAuthor() != "") {
-															?>
-															<hr /><p><?php printf(gettext('Last change:<br />%1$s<br />by %2$s'), $result->getLastchange(), $result->getLastchangeauthor()); ?>
-															</p>
-															<?php
-														}
-														?>
+														<?php printLastChangeInfo($result);	?>
 													</div>
 
 													<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 													<div class="box-edit">
-
-														<p class="checkbox">
-															<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
-															<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
-														</p>
+														<?php if(extensionEnabled('comment_form')) { ?>	
+															<p class="checkbox">
+																<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed()); ?> />
+																<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
+															</p>
 														<?php
+														}
 														if (!$result->transient && extensionEnabled('hitcounter')) {
 															$hc = $result->getHitcounter();
 															?>
@@ -744,7 +723,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													echo gettext("A search engine friendly <em>titlelink</em> (aka slug) without special characters to be used in URLs is generated from the title of the currently chosen language automatically. You can edit it manually later after saving if necessary.");
 												} else {
 													?>
-													<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
+													<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getName(); ?>" disabled="disabled" />
 													<?php
 												}
 												?>
@@ -831,11 +810,11 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 											if (!$result->transient) {
 												if (is_AdminEditPage("newscategory")) {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												} else {
 													?>
-													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
+													<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getName(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 													<?php
 												}
 											}

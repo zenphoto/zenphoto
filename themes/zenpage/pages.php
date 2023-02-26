@@ -4,7 +4,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php printHeadTitle(); ?>
@@ -55,8 +55,8 @@ if (!defined('WEBPATH'))
 					if (class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();
 					}
-					@call_user_func('printRating');
-					@call_user_func('printCommentForm');
+					callUserFunction('printRating');
+					callUserFunction('printCommentForm');
 					?>
 				</div><!-- content left-->
 

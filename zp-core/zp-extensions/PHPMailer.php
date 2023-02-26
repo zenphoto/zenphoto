@@ -5,8 +5,7 @@
  * Configure the plugin options as necessary for your e-mail server.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage phpmailer
+ * @package zpcore\plugins\phpmailer
  */
 $plugin_is_filter = 800 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
@@ -89,21 +88,21 @@ class zp_PHPMailer {
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\POP3;
 use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
 	require_once(dirname(__FILE__) . '/PHPMailer/PHPMailer.php');
 	require_once(dirname(__FILE__) . '/PHPMailer/POP3.php');
 	require_once(dirname(__FILE__) . '/PHPMailer/SMTP.php');
 	require_once(dirname(__FILE__) . '/PHPMailer/Exception.php');
+
 	switch (getOption('PHPMailer_mail_protocol')) {
 		case 'pop3':
 			$pop = new POP3();
 			$authorized = $pop->authorise(getOption('PHPMailer_server'), getOption('PHPMailer_pop_port'), 30, getOption('PHPMailer_user'), getOption('PHPMailer_password'), 0);
 			$mail = new PHPMailer();
 			$mail->isSMTP();
-			$mail->Port = getOption('PHPMailer_smtp_port');
 			$mail->Host = getOption('PHPMailer_server');
+			$mail->Port = getOption('PHPMailer_smtp_port');
 			break;
 		case 'smtp':
 			$mail = new PHPMailer();
@@ -119,8 +118,21 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 			$mail->isSendmail();
 			break;
 	}
-	$mail->SMTPSecure = getOption('PHPMailer_secure');
-	$mail->CharSet = 'UTF-8';
+
+	switch (getOption('PHPMailer_secure')) {
+		case 'ssl':
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+			break;
+		case 'tls':
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			break;
+		case 0:
+			$mail->SMTPSecure = '';
+			break;
+	}
+
+	$mail->SMTPAutoTLS = false;
+	$mail->CharSet = PHPMailer::CHARSET_UTF8;
 	$mail->From = $from_mail;
 	$mail->FromName = $from_name;
 	$mail->Subject = $subject;
@@ -144,10 +156,10 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 		$names = array_keys($replyTo);
 		$mail->addReplyTo(array_shift($replyTo), array_shift($names));
 	}
-	if (!$mail->Send()) {
+	if (!$mail->send()) {
 		if (!empty($msg))
 			$msg .= '<br />';
-		$msg .= sprintf(gettext('<code>PHPMailer</code> failed to send <em>%1$s</em>. ErrorInfo:%2$s'), $subject, $mail->ErrorInfo);
+		$msg .= sprintf(gettext('Error info: %1$s'), $mail->ErrorInfo);
 	}
 	return $msg;
 }

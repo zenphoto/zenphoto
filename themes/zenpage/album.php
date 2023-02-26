@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 			<div id="content">
 
 				<div id="breadcrumb">
-					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ?></strong></h2>
+					<h2><?php printGalleryIndexURL(' » '); printParentBreadcrumb("", " » ", " » "); ?><strong><?php printAlbumTitle(); ; printCurrentPageAppendix(); ?></strong></h2>
 				</div>
 
 				<div id="content-left">
@@ -80,7 +80,7 @@ if (!defined('WEBPATH'))
 						printGoogleMap();
 						echo '</p>';
 					}
-					@call_user_func('printOpenStreetMap');
+					callUserFunction('openStreetMap::printOpenStreetMap');
 					
 					if(class_exists('ScriptlessSocialSharing')) {
 						ScriptlessSocialSharing::printButtons();
@@ -95,8 +95,8 @@ if (!defined('WEBPATH'))
 					<br style="clear:both;" />
 					<?php
       if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
-      @call_user_func('printRating');
-      @call_user_func('printCommentForm');
+			callUserFunction('printRating');
+      callUserFunction('printCommentForm');
      ?>
 				</div><!-- content left-->
 

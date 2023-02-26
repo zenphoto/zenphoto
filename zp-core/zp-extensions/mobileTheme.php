@@ -72,8 +72,7 @@
  * </ul>
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage mobiletheme
+ * @package zpcore\plugins\mobiletheme
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
@@ -146,7 +145,7 @@ class mobileTheme {
 	static function controlLink($text=NULL, $before=NULL, $after=Null) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
-			if (zp_getCookie('mobileTheme_disable')) {
+			if (zp_getCookie('zpcms_mobiletheme')) {
 				if (is_null($text)) {
 					$text = gettext('View the mobile gallery');
 				}
@@ -163,7 +162,7 @@ class mobileTheme {
 			if (MOD_REWRITE) {
 				$link = '?mobileTheme=' . $enable;
 			} else {
-				global $_zp_gallery_page, $_zp_current_images, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page;
+				global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_category, $_zp_current_zenpage_page;
 				switch ($_zp_gallery_page) {
 					case 'index.php':
 						$link = 'index.php?mobileTheme=' . $enable;
@@ -245,15 +244,15 @@ class mobile extends Mobile_Detect {
 if (isset($_GET['mobileTheme'])) {
 	switch ($_GET['mobileTheme']) {
 		case 'on':
-			zp_setCookie('mobileTheme_disable', 0);
+			zp_setCookie('zpcms_mobiletheme', 0);
 			break;
 		case 'off':
-			zp_setCookie('mobileTheme_disable', 1);
+			zp_setCookie('zpcms_mobiletheme', 1);
 			break;
 	}
 }
 
-if (!zp_getCookie('mobileTheme_disable')) {
+if (!zp_getCookie('zpcms_mobiletheme')) {
 	zp_register_filter('setupTheme', 'mobileTheme::theme');
 }
 

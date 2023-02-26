@@ -5,8 +5,7 @@
  * a "debug" release and a normal release.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage markrelease
+ * @package zpcore\plugins\markrelease
  *
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
@@ -38,9 +37,7 @@ if (isset($_REQUEST['markRelease'])) {
 	}
 	$v = preg_replace("~define\('ZENPHOTO_VERSION.*\n~", $version . "\n", $v);
 	file_put_contents(SERVERPATH . '/' . ZENFOLDER . '/version.php', $v);
-	header('location:' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-
-	exitZP();
+	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 }
 
 function markRelease_button($buttons) {

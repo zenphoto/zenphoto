@@ -9,14 +9,17 @@
  * Note this plugin embeds the external reCaptcha JavaScript library from Google's servers
  *
  * @author Ben Feather (Epsilon), Stephen Billard (sbillard), Malte Müller (acrylian)
- * @package plugins
- * @subpackage recaptcha
+ * @package zpcore\plugins\recaptcha
  */
 // force UTF-8 Ø
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Google reCaptcha v2 handler.");
 $plugin_author = "Ben Feather (Epsilon), Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_disable = ($_zp_captcha->name && $_zp_captcha->name != 'reCaptcha') ? sprintf(gettext('Only one Captcha handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), $_zp_captcha->name) : '';
+$plugin_notice = array(
+		gettext('Google account and reCaptcha key required.'),
+		gettext('Privacy note: This plugin uses external third party sources')
+);
 $option_interface = 'reCaptcha';
 $plugin_category = gettext('Spam');
 
@@ -97,7 +100,7 @@ class reCaptcha extends _zp_captcha {
 	 * @return type
 	 */
 	function getCaptchaHTML($publicKey, $theme, $type, $size) {
-		return '<span class="g-recaptcha" data-sitekey="' . $publicKey . '" data-theme="' . $theme . '" data-type="' . $type . '" data-size="' . $size . '"></span>
+		return '<div class="g-recaptcha" data-sitekey="' . $publicKey . '" data-theme="' . $theme . '" data-type="' . $type . '" data-size="' . $size . '"></div>
 				<script src="https://www.google.com/recaptcha/api.js"></script>';
 	}
 

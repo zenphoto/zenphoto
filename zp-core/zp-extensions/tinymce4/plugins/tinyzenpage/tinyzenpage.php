@@ -14,17 +14,18 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		 inspired by Alessandro "Simbul" Morandi's  ZenphotoPress (http://simbul.bzaar.net/zenphotopress)
 		 License: GPL v2 or later http://www.gnu.org/licenses/gpl.html -->
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<title>tinyZenpage</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" ></script>
 
 		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
-		<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
+		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
-		<script language="javascript" type="text/javascript">
+		<script>
 			$(document).ready(function() {
 				$("a[rel='colorbox']").colorbox({
 					iframe: true,
@@ -211,7 +212,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 												<?php echo gettext("<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into the text. This generates a video or audio player on the front end if any suitable multimedia player plugin for the file type is enabled and also has registered to the macro."); ?>
 											</li>
 											<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
-											<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>
+											<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!"); ?></li>
 										</ul>
 										<p>
 											<?php echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type."); ?>

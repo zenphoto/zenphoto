@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This  is the root class for use by plugins to extend the Zenphoto database
  * table fields. The administrative tabs for the objects will have input items
  * for these new fields. They will be placed in the proximate location of the
@@ -35,11 +35,9 @@
  * it adds the fields, if not it removes any previously added fields.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage fieldextender
- *
+ * @package zpcore\plugins\fieldextender
+ * @deprecated ZenphotoCMS 1.6
  */
-
 class fieldExtender {
 
 	/**
@@ -52,6 +50,7 @@ class fieldExtender {
 	 * @param array $newfields
 	 */
 	function constructor($me, $newfields) {
+		global $_zp_db;
 		$previous = getSerializedArray(getOption(get_class($this) . '_addedFields'));
 		$current = $fields = array();
 		if (extensionEnabled($me)) { //need to update the database tables.
@@ -67,8 +66,8 @@ class fieldExtender {
 						$dbType = strtoupper($newfield['type']) . '(' . min(255, $newfield['size']) . ')';
 						break;
 				}
-				$sql = 'ALTER TABLE ' . prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
-				if (query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
+				$sql = 'ALTER TABLE ' . $_zp_db->prefix($newfield['table']) . ' ADD COLUMN `' . $newfield['name'] . '` ' . $dbType;
+				if ($_zp_db->query($sql, false) && in_array($newfield['table'], array('albums', 'images', 'news', 'news_categories', 'pages')))
 					$fields[] = strtolower($newfield['name']);
 			}
 			setOption(get_class($this) . '_addedFields', serialize($current));
@@ -80,8 +79,8 @@ class fieldExtender {
 		foreach ($previous as $table => $orpahed) { //drop fields no longer defined
 			foreach ($orpahed as $field => $v) {
 				unset($set_fields[$field]);
-				$sql = 'ALTER TABLE ' . prefix($table) . ' DROP `' . $field . '`';
-				query($sql, false);
+				$sql = 'ALTER TABLE ' . $_zp_db->prefix($table) . ' DROP `' . $field . '`';
+				$_zp_db->query($sql, false);
 			}
 		}
 		$set_fields = array_unique(array_merge($fields, array_flip($set_fields)));

@@ -3,7 +3,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -55,7 +55,7 @@ if (!defined('WEBPATH'))
 							?>
 							<h2><?php echo gettext('Latest Images'); ?></h2>
 							<?php
-							printLatestImages(7);
+							printImageStatistic(7, "latest");
 						}
 						?>
 					</div><!-- right sidebar -->

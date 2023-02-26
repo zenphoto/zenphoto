@@ -4,17 +4,20 @@
  * zenpage news category class
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage zenpage
+ * @package zpcore\plugins\zenpage\classes
  */
 class ZenpageCategory extends ZenpageRoot {
 
-	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
-	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = ALL_NEWS_RIGHTS;
-	protected $sortorder = 'date';
+	public $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
+	public $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
+	public $view_rights = ALL_NEWS_RIGHTS;
+	public $parent = null;
+	public $parents = null;
+	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
+	protected $is_public = null;
+	
 
 	function __construct($catlink, $create = NULL) {
 		if (is_array($catlink)) {
@@ -49,58 +52,49 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	/**
-	 * Returns the content
-	 *
-	 * @return string
-	 */
-	function getContent($locale = NULL) {
-		$content = $this->get("content");
-		if ($locale == 'all') {
-			return unTagURLs($content);
-		} else {
-			return applyMacros(unTagURLs(get_language_string($content, $locale)));
-		}
-	}
-
-	/**
-	 *
-	 * Set the content datum
-	 * @param $c full language string
-	 */
-	function setContent($c) {
-		$c = tagURLs($c);
-		$this->set("content", $c);
-	}
-
-	/**
-	 * Returns the extra content
-	 *
-	 * @return string
-	 */
-	function getExtraContent($locale = NULL) {
-		$text = $this->get("extracontent");
-		if ($locale == 'all') {
-			return unTagURLs($text);
-		} else {
-			return applyMacros(unTagURLs(get_language_string($text, $locale)));
-		}
-	}
-
-	/**
-	 * sets the extra content
-	 *
-	 */
-	function setExtraContent($ec) {
-		$this->set("extracontent", tagURLs($ec));
-	}
-
-	/**
 	 * Returns the sort order
 	 *
 	 * @return string
 	 */
 	function getSortOrder() {
 		return $this->get('sort_order');
+	}
+	
+	/**
+	 * Sets a default sortorder for the category.
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 */
+	function setDefaultSortorder() {
+		$default = $this->getDefaultSortorder();
+		$this->setSortorder($default);
+	}
+	
+	/**
+	 * Gets the default sortorder if a category
+	 * 
+	 * Use this before save()
+	 * 
+	 * a) If you created an new item after you set a parentid and no new specific sortorder
+	 * b) You updated the parentid without setting specific new sortorder
+	 * 
+	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
+	 * 
+	 * @since ZenphotoCMS 1.5.8
+	 * 
+	 * @global obj $_zp_zenpage  
+	 * @return string
+	 */
+	function getDefaultSortorder() {
+		global $_zp_zenpage;
+		return $_zp_zenpage->getItemDefaultSortorder('category', $this->getParentID());
 	}
 
 	/**
@@ -121,11 +115,11 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	function getSortType() {
-		return $this->sortorder;
+		return $this->sorttype;
 	}
 
 	function setSortType($value) {
-		$this->sortorder = $value;
+		$this->sorttype = $value;
 	}
 
 	function getSortSticky() {
@@ -166,8 +160,13 @@ class ZenpageCategory extends ZenpageRoot {
 		$this->set('password', $pwd);
 	}
 
-	function getPasswordHint() {
-		return $this->get('password_hint');
+	function getPasswordHint($locale = NULL) {
+		$text = $this->get('password_hint');
+		if ($locale !== 'all') {
+			$text = get_language_string($text, $locale);
+		}
+		$text = unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -184,12 +183,13 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 */
 	function remove() {
+		global $_zp_db;
 		if ($success = parent::remove()) {
 			$sortorder = $this->getSortOrder();
-			$success = query("DELETE FROM " . prefix('news2cat') . " WHERE cat_id = " . $this->getID()); // the cat itself
+			$success = $_zp_db->query("DELETE FROM " . $_zp_db->prefix('news2cat') . " WHERE cat_id = " . $this->getID()); // the cat itself
 			// get Subcategories
 			$mychild = strlen($sortorder) + 4;
-			$result = query_full_array('SELECT * FROM ' . prefix('news_categories') . " WHERE `sort_order` like '" . $sortorder . "-%'");
+			$result = $_zp_db->queryFullArray('SELECT * FROM ' . $_zp_db->prefix('news_categories') . " WHERE `sort_order` like '" . $sortorder . "-%'");
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					if (strlen($row['sort_order']) == $mychild) {
@@ -201,35 +201,46 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		return $success;
 	}
-
+	
 	/**
 	 * Gets the sub categories recursivly by titlelink
+	 * 
+	 * @since ZenphotoCMS 1.5.8 - deprecates getSubCategories()
+	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
-	 * @param string $sortdirection "asc" or "desc" for ascending or descending order
+	 * @param bool $sortdirection True for descending (default), false for ascending direction
+	 * @param bool $directchilds Default true to get only the direct sub level pages, set to false to get all levels
 	 * @return array
 	 */
-	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL) {
+	function getCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = true) {
 		global $_zp_zenpage;
-		$subcategories = array();
-		$sortorder = $this->getSortOrder();
-		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection) as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
-			if ($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
-				array_push($subcategories, $catobj->getTitlelink());
+		$categories = array();
+		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, false) as $cat) {
+			if ($cat['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos($cat['sort_order'], $this->getSortOrder()) === 0) || $cat['parentid'] == $this->getID()) {
+				array_push($categories, $cat);
 			}
 		}
-		return $subcategories;
+		return $categories;
 	}
 
 	/**
+	 * @see getCategories()
+	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
+	 */
+	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
+		return $this->getCategories($visible, $sorttype, $sortdirection, $directchilds);
+	}
+	
+	/**
 	 * Checks if the current news category is a sub category of $catlink
 	 *
+	 * @since ZenphotoCMS 1.5.8 - deprecates isSubNewsCategoryOf()
+	 * 
 	 * @return bool
 	 */
-	function isSubNewsCategoryOf($catlink) {
+	function isSubCategoryOf($catlink) {
 		if (!empty($catlink)) {
-			$parentid = $this->getParentID();
 			$categories = $this->getParents();
 			$count = 0;
 			foreach ($categories as $cat) {
@@ -245,34 +256,52 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	/**
-	 * Gets the parent categories recursivly to the category whose parentid is passed or the current object
-	 *
-	 * @param int $parentid The parentid of the category to get the parents of
-	 * @param bool $initparents
-	 * @return array
+	 * @see isSubCategoryOf()
+	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
 	 */
-	function getParents(&$parentid = '', $initparents = true) {
-		global $parentcats, $_zp_zenpage;
-		$allitems = $_zp_zenpage->getAllCategories(false);
-		if ($initparents) {
-			$parentcats = array();
-		}
-		if (empty($parentid)) {
-			$currentparentid = $this->getParentID();
-		} else {
-			$currentparentid = $parentid;
-		}
-		foreach ($allitems as $item) {
-			$obj = new ZenpageCategory($item['titlelink']);
-			$itemtitlelink = $obj->getTitlelink();
-			$itemid = $obj->getID();
-			$itemparentid = $obj->getParentID();
-			if ($itemid == $currentparentid) {
-				array_unshift($parentcats, $itemtitlelink);
-				$obj->getParents($itemparentid, false);
+	function isSubNewsCategoryOf($catlink) {
+		return $this->isSubCategoryOf($catlink);
+	}
+	
+		/**
+	 * Gets the parent category object based on the parentid set
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return obj|null
+	 */
+	function getParent() {
+		if (is_null($this->parent)) {
+			$parentid = $this->getParentID();
+			$obj = getItembyID('news_categories', $parentid);
+			if ($obj) {
+				return $this->parent = $obj;
 			}
+		} else {
+			return $this->parent;
 		}
-		return $parentcats;
+		return null;
+	}
+
+	/**
+	 * Gets the parent categories' titlelinks recursivly to the category
+	 * 
+	 * @return array|null
+	 */
+	function getParents() {
+		if (func_num_args() != 0) {
+			degbuglog(gettext('class ZenpageCategory getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
+		}
+		if (is_null($this->parents)) {
+			$parents = array();
+			$cat = $this;
+			while (!is_null($cat = $cat->getParent())) {
+				array_unshift($parents, $cat->getName());
+			}
+			return $this->parents = $parents;
+		} else {
+			return $this->parents;
+		}
 	}
 
 	/**
@@ -281,18 +310,19 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint = NULL, &$show = NULL) {
+		global $_zp_db;
 		if (!parent::checkForGuest()) {
 			return false;
 		}
 		$obj = $this;
-		$hash = $this->getPassword();
+		$hash = $obj->getPassword();
 		while (empty($hash) && !is_null($obj)) {
 			$parentID = $obj->getParentID();
 			if (empty($parentID)) {
 				$obj = NULL;
 			} else {
-				$sql = 'SELECT `titlelink` FROM ' . prefix('news_categories') . ' WHERE `id`=' . $parentID;
-				$result = query_single_row($sql);
+				$sql = 'SELECT `titlelink` FROM ' . $_zp_db->prefix('news_categories') . ' WHERE `id`=' . $parentID;
+				$result = $_zp_db->querySingleRow($sql);
 				$obj = new ZenpageCategory($result['titlelink']);
 				$hash = $obj->getPassword();
 			}
@@ -300,14 +330,13 @@ class ZenpageCategory extends ZenpageRoot {
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_category_auth_" . $this->getID();
+			$authType = "zpcms_auth_category_" . $this->getID();
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
 			} else {
 				$user = $this->getUser();
-				if (!empty($user))
-					$show = true;
+				$show = (!empty($user));
 				$hint = $this->getPasswordHint();
 				return false;
 			}
@@ -322,20 +351,48 @@ class ZenpageCategory extends ZenpageRoot {
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
-
+	
+	/**
+	 * Returns true if this category is published and also all of its parents.
+	 * 
+	 * @since Zenphoto 1.5.5
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->isPublished()) {
+				return $this->is_public = false;
+			}
+			$parent = $this->getParent();
+			if($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			}
+			return $this->is_public = true;
+		} else {
+			return $this->is_public;
+		}
+	}
+	
+	/**
+	 * Checks if user is news author
+	 * @param bit $action what the caller wants to do
+	 *
+	 * returns true of access is allowed
+	 */
 	function isMyItem($action) {
 		global $_zp_current_admin_obj;
 		if (parent::isMyItem($action)) {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if ($action == LIST_RIGHTS && $this->getShow()) {
+			if ($action == LIST_RIGHTS && $this->isPublic()) {
 				return true;
 			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				$allowed = $this->getParents();
-				array_unshift($allowed, $this->getTitlelink());
+				array_unshift($allowed, $this->getName());
 				$overlap = array_intersect($mycategories, $allowed);
 				if (!empty($overlap)) {
 					return true;
@@ -370,6 +427,24 @@ class ZenpageCategory extends ZenpageRoot {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this, $author);
 	}
+	
+	/**
+	 * Returns the articles count
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 */
+	function getTotalArticles() {
+		return count($this->getArticles(0));
+	}
+	
+	/**
+	 * Gets the total news pages
+	 * 
+	 * @since ZenphotoCMS 1.6
+	 */
+	function getTotalNewsPages() {
+		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	}
 
 	/**
 	 * Returns an article from the album based on the index passed.
@@ -395,7 +470,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$articles = $this->getArticles(0, NULL, true, $sortorder, $sortdirection, $sticky);
 			for ($i = 0; $i < count($articles); $i++) {
 				$article = $articles[$i];
-				if ($this->getTitlelink() == $article['titlelink']) {
+				if ($this->getName() == $article['titlelink']) {
 					$this->index = $i;
 					break;
 				}
@@ -443,7 +518,7 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getTitlelink() . '/' . $pager, "/index.php?p=news&category=" . $this->getTitlelink() . $page), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getName() . '/' . $pager, "/index.php?p=news&category=" . $this->getName() . $page), $this, NULL);
 	}
 
 }

@@ -27,8 +27,7 @@
  *  Matomo aims to be an open source alternative to Google Analytics.
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian), Vincent Bourganel (vincent3569)
- * @package plugins
- * @subpackage Matomo
+ * @package zpcore\plugins\matomo
  */
 $plugin_is_filter = 9 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('A plugin to insert your Matomo (formerly Piwik) JavaScript tracking code into your theme pages.');
@@ -37,7 +36,7 @@ $plugin_category = gettext('Statistics');
 
 $option_interface = 'matomoStats';
 
-if (!getOption('matomo_admintracking') || !zp_loggedin(ADMIN_RIGHTS)) {
+if (getOption('matomo_admintracking') || !zp_loggedin(ADMIN_RIGHTS)) {
 	zp_register_filter('theme_body_close', 'matomoStats::script');
 }
 if (getOption('matomo_widgets_code')) {
@@ -71,6 +70,7 @@ class matomoStats {
 		}
 		setOptionDefault('matomo_disablecookies', 0);
 		setOptionDefault('matomo_requireconsent', 'no-consent');
+		setOptionDefault('matomo_contenttracking', 'disabled');
 	}
 
 	function getOptionsSupported() {
@@ -93,8 +93,18 @@ class matomoStats {
 				gettext('Enable Admin tracking') => array(
 						'key' => 'matomo_admintracking',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 3,
+						'order' => 2,
 						'desc' => gettext('Controls if you want Matomo to track users with <code>Admin</code> rights.')),
+				gettext('Content tracking') => array(
+						'key' => 'matomo_contenttracking',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('Track all content') => 'all-content',
+								gettext('Track visible content only') => 'visible-content',
+								gettext('Disable content tracking') => 'disabled'
+						),
+						'order' => 3,
+						'desc' => gettext('Controls if you want Matomo to track content interaction (e.g. link clicks). Your theme/plugins/site will require specific HTML markup for this to work. Read more about it on <a href="https://developer.matomo.org/guides/content-tracking">Content tracking</a>.')),
 				gettext('Main domain for subdomain tracking') => array(
 						'key' => 'matomo_sitedomain',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -140,21 +150,28 @@ class matomoStats {
 	static function script($exclude = NULL) {
 		if (empty($exclude) || (!in_array('matomo_tag', $exclude))) {
 			$url = getOption('matomo_url');
+			$url = strval($url);
 			$id = getOption('matomo_id');
-			$sitedomain = trim(getOption('matomo_sitedomain'));
+			$sitedomain = trim(strval(getOption('matomo_sitedomain')));
 			$requireconsent = getOption('matomo_requireconsent');
-			$requireconsent_js = "_paq.push(['requireConsent']);";
 			switch($requireconsent) {
 				case 'no-consent':
 					$requireconsent_js = '';
 					break;
+				default:
+				case 'consent-required':
+					$requireconsent_js = "_paq.push(['requireCookieConsent']);";
+					$requireconsent_js .= "_paq.push(['requireConsent']);";
+					break;
+				
 				case 'consent-required-remembered':
+					$requireconsent_js = "_paq.push(['requireCookieConsent']);";
 					$requireconsent_js .= "\n_paq.push(['rememberConsentGiven']);";
 					break;
 			}
 			?>
 			<!-- Matomo -->
-			<script type="text/javascript">
+			<script>
 				var _paq = _paq || [];
 				_paq.push(["setDocumentTitle", '<?php echo matomoStats::printDocumentTitle(); ?>']);	
 				<?php if ($sitedomain) { ?>
@@ -166,19 +183,33 @@ class matomoStats {
 				<?php } ?>
 				_paq.push(['trackPageView']);
 				_paq.push(['enableLinkTracking']);
+				<?php 
+				switch(getOption('matomo_contenttracking')) {
+					case 'all-content':
+						?>
+						_paq.push(['trackAllContentImpressions']);
+						<?php
+						break;
+					case 'visible-content':
+						?>
+						_paq.push(['trackVisibleContentImpressions']);
+						<?php
+						break;
+				}
+				?>
 				(function () {
 					var u = "//<?php echo str_replace(array('http://', 'https://'), '', $url); ?>/";
-					_paq.push(['setTrackerUrl', u + 'piwik.php']);
-					_paq.push(['setSiteId', <?php echo $id; ?>]);
+					_paq.push(['setTrackerUrl', u + 'matomo.php']);
+					_paq.push(['setSiteId', '<?php echo $id; ?>']);
 					var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
 					g.type = 'text/javascript';
 					g.defer = true;
 					g.async = true;
-					g.src = u + 'piwik.js';
+					g.src = u + 'matomo.js';
 					s.parentNode.insertBefore(g, s);
 				})();
 			</script>
-			<noscript><p><img src="<?php echo $url ?>/piwik.php?idsite=<?php echo $id ?>&rec=1" style="border:0" alt="" /></p></noscript>
+			<noscript><p><img src="<?php echo $url ?>/matomo.php?idsite=<?php echo $id ?>&rec=1" style="border:0" alt="" /></p></noscript>
 			<!-- End Matomo Tag -->
 			<?php
 		}
@@ -203,15 +234,27 @@ class matomoStats {
 
 	/**
 	 * Gets the iframe for the optout cookie required by privacy laws of several countries.
+	 * @since ZenphotoCMS 1.6.1
 	 * @return string
 	 */
-	static function getOptOutiFrame() {
+	static function getOptOutForm() {
 		$userlocale = substr(getUserLocale(), 0, 2);
-		$url = getOption('matomo_url');
-		$src = $url . '/index.php?module=CoreAdminHome&action=optOut&language=' . $userlocale;
-		return '<iframe style="border: 0; height: 200px; width: 100%;" src="' . $src . '"></iframe>';
+		$url = strval(getOption('matomo_url'));
+		if (!empty($url)) {
+			$src = $url . '/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=' . $userlocale . '&showIntro=1';
+			$html = '<div id="matomo-opt-out"></div>';
+			$html .= '<script src="' . $src . '"></script>';
+			return $html;
+		}
 	}
-	
+
+	/**
+	 * @deprecated ZenphotoCMS 2.0 - Use matomoStats::getOptOutForm()
+	 */
+	static function getOptOutiFrame() {
+		return matomoStats::getOptOutForm();
+	}
+
 	/**
 	 * The macro button for the utility page
 	 * @param type $macros
@@ -221,9 +264,9 @@ class matomoStats {
 		$macros['MATOMO_OPTOUT'] = array(
 				'class' => 'function',
 				'params' => array(),
-				'value' => 'matomoStats::getOptOutiFrame',
+				'value' => 'matomoStats::getOptOutForm',
 				'owner' => 'matomoStats',
-				'desc' => gettext('Inserts the iframe with the opt-out cookie code as entered on the related plugin option.')
+				'desc' => gettext('Inserts the the opt-out cookie code as entered on the related plugin option.')
 		);
 		return $macros;
 	}

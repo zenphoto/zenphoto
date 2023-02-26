@@ -18,13 +18,13 @@
  * to use a custom Colorbox theme.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage colorbox-js
+ * @package zpcore\plugins\colorboxjs
  */
 $plugin_is_filter = 800 | THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
 $plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself.');
 $plugin_author = 'Stephen Billard (sbillard)';
+$plugin_deprecated = true;
 $plugin_category = gettext('Media');
 $option_interface = 'colorbox';
 
@@ -91,7 +91,7 @@ class colorbox {
 		$css = getPlugin($themepath, $inTheme, true);
 		?>
 		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
-		<script type="text/javascript" src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
+		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<script>
 			/* Colorbox resize function for images*/
 			var resizeTimer;

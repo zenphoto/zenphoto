@@ -24,8 +24,7 @@
  * Image URIs are also processed. Use the appropriate Zenphoto definition tokens to cause the URI to point
  * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
- * @package admin
- * @subpackage development
+ * @package zpcore\admin
  */
 // force UTF-8 Ø
 
@@ -123,7 +122,7 @@ if (!defined('OFFSET_PATH')) {
 		}
 		if ($thirdparty) {
 			if ($plugin_URL) {
-				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>', $plugin_URL, $extension);
+				$doclink = sprintf(gettext('See also the <a href="%1$s">%2$s</a> third party plugin page for more info.'), $plugin_URL, $extension);
 			}
 		} else {
 			//removed for now as doc generators don't group by package/subpackge anymore
@@ -136,7 +135,7 @@ if (!defined('OFFSET_PATH')) {
 		setupCurrentLocale('en_US');
 		?>
 		<!DOCTYPE html>
-		<html xmlns="http://www.w3.org/1999/xhtml">
+		<html<?php printLangAttribute(); ?>>
 			<head>
 				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
 				<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
@@ -262,7 +261,7 @@ if (!defined('OFFSET_PATH')) {
 									$options = array_keys($options);
 								} else {
 									$options = array_keys($supportedOptions);
-									natcasesort($options);
+									sortArray($options);
 								}
 								$notes = array();
 								?>

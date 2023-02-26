@@ -28,8 +28,7 @@
  * The plugin does not present any theme interface.
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage xmpmetadata
+ * @package zpcore\plugins\xmpmetadata
  */
 $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
@@ -50,9 +49,9 @@ zp_register_filter('edit_image_utilities', 'xmpMetadata::create');
 zp_register_filter('bulk_image_actions', 'xmpMetadata::bulkActions');
 zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
-require_once(dirname(dirname(__FILE__)) . '/exif/exif.php');
+require_once SERVERPATH .'/' . ZENFOLDER . '/libs/exif/exif.php';
 
-define('XMP_EXTENSION', strtolower(getOption('xmpMetadata_suffix')));
+define('XMP_EXTENSION', strtolower(strval(getOption('xmpMetadata_suffix'))));
 
 /**
  * Plugin option handling class
@@ -581,13 +580,13 @@ class xmpMetadata {
 			if ($key !== false)
 				unset($list[$key]);
 		}
-		natcasesort($list);
+		sortArray($list);
 		$types = array();
 		foreach ($_zp_extra_filetypes as $suffix => $type) {
 			if ($type == 'Video')
 				$types[] = $suffix;
 		}
-		natcasesort($types);
+		sortArray($types);
 		$list = array_merge($list, $types);
 		$listi = array();
 		foreach ($list as $suffix) {
@@ -837,10 +836,10 @@ class xmpMetadata {
 		$n = explode('/', $element);
 		$v = sprintf('%f', $n[0] / $n[1]);
 		for ($i = strlen($v) - 1; $i > 1; $i--) {
-			if ($v{$i} != '0')
+			if ($v[$i] != '0')
 				break;
 		}
-		if ($v{$i} == '.')
+		if ($v[$i] == '.')
 			$i--;
 		return substr($v, 0, $i + 1);
 	}
@@ -897,7 +896,7 @@ class xmpMetadata {
 						$abort = 0;
 						break;
 					default:
-						if ($f{$i} == '<') {
+						if ($f[$i] == '<') {
 							$source = self::extractXMP($f);
 						}
 						$i = $i + 1;
@@ -1028,7 +1027,7 @@ class xmpMetadata {
 						'rating'					 => '<MicrosoftPhoto:Rating>'
 		);
 		$process = array('dc', 'Iptc4xmpCore', 'photoshop', 'xap');
-		if (isAlbumClass($object)) {
+		if (AlbumBase::isAlbumClass($object)) {
 			$file = rtrim($object->localpath, '/');
 			$file .= '.xmp';
 		} else {
@@ -1115,7 +1114,7 @@ class xmpMetadata {
 	}
 
 	static function bulkActions($actions) {
-		return array_merge($actions, array(gettext('Export Metadata') => 'xmpMetadataPublish'));
+		return array_merge($actions, array(gettext('Export Metadata') => 'xmpMetadata::publish'));
 	}
 
 }

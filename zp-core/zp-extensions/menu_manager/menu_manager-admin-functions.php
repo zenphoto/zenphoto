@@ -1,8 +1,7 @@
 <?php
 /**
  * Menu manager admin functions
- * @package plugins
- * @subpackage menu-manager
+ * @package zpcore\plugins\menumanager
  */
 
 /**
@@ -10,6 +9,7 @@
  *
  */
 function updateItemsSortorder() {
+	global $_zp_db;
 	if (empty($_POST['order'])) { // if someone didn't sort anything there are no values!
 		return '<p class="notebox fade-message">' . gettext('Nothing changed') . '</p>';
 	} else {
@@ -21,8 +21,8 @@ function updateItemsSortorder() {
 			$level = count($orderlist);
 			$parents[$level] = $id;
 			$myparent = $parents[$level - 1];
-			$sql = "UPDATE " . prefix('menu') . " SET `sort_order` = " . db_quote($sortstring) . ", `parentid`= " . db_quote($myparent) . " WHERE `id`=" . sanitize_numeric($id);
-			query($sql);
+			$sql = "UPDATE " . $_zp_db->prefix('menu') . " SET `sort_order` = " . $_zp_db->quote($sortstring) . ", `parentid`= " . $_zp_db->quote($myparent) . " WHERE `id`=" . sanitize_numeric($id);
+			$_zp_db->query($sql);
 		}
 		return "<p class='messagebox fade-message'>" . gettext("Sort order saved.") . "</p>";
 	}
@@ -36,6 +36,7 @@ function updateItemsSortorder() {
  */
 function printItemsListTable($item, $flag) {
 	global $_zp_gallery;
+	$menuset = checkChosenMenuset('');
 	$link = '';
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
@@ -106,13 +107,13 @@ function printItemsListTable($item, $flag) {
 				<?php
 				if ($item['show'] === '1') {
 					?>
-					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>" title="<?php echo gettext('hide'); ?>" >
+					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=0"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>&amp;menuset=<?php echo sanitize($menuset); ?>" title="<?php echo gettext('hide'); ?>" >
 						<img src="../../images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
 					</a>
 					<?php
 				} else {
 					?>
-					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>"  title="<?php echo gettext('show'); ?>">
+					<a href="menu_tab.php?publish&amp;id=<?php echo $item['id'] . "&amp;show=1"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu') ?>&amp;menuset=<?php echo sanitize($menuset); ?>"  title="<?php echo gettext('show'); ?>">
 						<img src="../../images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
 					</a>
 					<?php
@@ -263,14 +264,15 @@ function printItemStatusDropdown() {
  *
  */
 function getMenuSetSelector($active) {
+	global $_zp_db;
 	$menuset = checkChosenMenuset();
 	$menusets = array($menuset => $menuset);
-	$result = query_full_array("SELECT DISTINCT menuset FROM " . prefix('menu') . " ORDER BY menuset");
+	$result = $_zp_db->queryFullArray("SELECT DISTINCT menuset FROM " . $_zp_db->prefix('menu') . " ORDER BY menuset");
 	if ($result) {
 		foreach ($result as $set) {
 			$menusets[$set['menuset']] = $set['menuset'];
 		}
-		natcasesort($menusets);
+		sortArray($menusets);
 	} else {
 		return NULL;
 	}
@@ -300,7 +302,8 @@ function getMenuSetSelector($active) {
  * @param string $menuset chosen menu set
  */
 function publishItem($id, $show, $menuset) {
-	query("UPDATE " . prefix('menu') . " SET `show` = '" . $show . "' WHERE id = " . $id, true . " AND menuset = " . db_quote($menuset));
+	global $_zp_db;
+	$_zp_db->query("UPDATE " . $_zp_db->prefix('menu') . " SET `show` = '" . $show . "' WHERE id = " . $id, true . " AND menuset = " . $_zp_db->quote($menuset));
 }
 
 /**
@@ -312,16 +315,17 @@ function publishItem($id, $show, $menuset) {
  * @param string $sort xxx-xxx-xxx style sort order for album
  */
 function addSubalbumMenus($menuset, $id, $link, $sort) {
-	$album = newAlbum($link);
-	$show = $album->getShow();
+	global $_zp_db;
+	$album = AlbumBase::newAlbum($link);
+	$show = $album->isPublished();
 	$title = $album->getTitle();
-	$sql = "INSERT INTO " . prefix('menu') . " (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) " .
-					'VALUES (' . db_quote($link) . ', "album",' . db_quote($album->name) . ', ' . $show . ',' . db_quote($menuset) . ',' . db_quote($sort) . ',' . $id . ')';
-	$result = query($sql, false);
+	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) " .
+					'VALUES (' . $_zp_db->quote($link) . ', "album",' . $_zp_db->quote($album->name) . ', ' . $show . ',' . $_zp_db->quote($menuset) . ',' . $_zp_db->quote($sort) . ',' . $id . ')';
+	$result = $_zp_db->query($sql, false);
 	if ($result) {
-		$id = db_insert_id();
+		$id = $_zp_db->insertID();
 	} else {
-		$result = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="album" AND `link`=' . db_quote($link));
+		$result = $_zp_db->querySingleRow('SELECT `id` FROM' . $_zp_db->prefix('menu') . ' WHERE `type`="album" AND `link`=' . $_zp_db->quote($link));
 		$id = $result['id'];
 	}
 	if (!$album->isDynamic()) {
@@ -339,9 +343,9 @@ function addSubalbumMenus($menuset, $id, $link, $sort) {
  * @return int
  */
 function addalbumsToDatabase($menuset, $base = NULL) {
-	global $_zp_gallery;
+	global $_zp_gallery, $_zp_db;
 	if (is_null($base)) {
-		$albumbase = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
+		$albumbase = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 		$sortbase = '';
 	} else {
 		$albumbase = array_pop($base);
@@ -365,8 +369,9 @@ function addalbumsToDatabase($menuset, $base = NULL) {
  * @return int
  */
 function addPagesToDatabase($menuset, $base = NULL) {
+	global $_zp_db;
 	if (is_null($base)) {
-		$pagebase = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
+		$pagebase = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 		$sortbase = '';
 	} else {
 		$pagebase = array_pop($base);
@@ -377,21 +382,25 @@ function addPagesToDatabase($menuset, $base = NULL) {
 	}
 	$result = $pagebase;
 	$parents = array('NULL');
-	$result = query_full_array("SELECT * FROM " . prefix('pages') . " ORDER BY sort_order");
+	$result = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('pages') . " ORDER BY sort_order");
 	foreach ($result as $key => $item) {
-		$sorts = explode('-', $item['sort_order']);
+		if(empty($item['sort_order'])) {
+			$sorts = array($key);
+		} else {
+			$sorts = explode('-', $item['sort_order']);
+		}
 		$level = count($sorts);
 		$sorts[0] = sprintf('%03u', $result = $sorts[0] + $pagebase);
 		$order = $sortbase . implode('-', $sorts);
 		$show = $item['show'];
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
-		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) " .
-						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"zenpagepage",' . $show . ',' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
-		if (query($sql, false)) {
-			$id = db_insert_id();
+		$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) " .
+						'VALUES (' . $_zp_db->quote($item['title']) . ',' . $_zp_db->quote($link) . ',"zenpagepage",' . $show . ',' . $_zp_db->quote($menuset) . ',' . $_zp_db->quote($order) . ',' . $parent . ')';
+		if ($_zp_db->query($sql, false)) {
+			$id = $_zp_db->insertID();
 		} else {
-			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="zenpagepage" AND `link`="' . $link . '"');
+			$rslt = $_zp_db->querySingleRow('SELECT `id` FROM' . $_zp_db->prefix('menu') . ' WHERE `type`="zenpagepage" AND `link`="' . $link . '"');
 			$id = $rslt['id'];
 		}
 		$parents[$level] = $id;
@@ -404,8 +413,9 @@ function addPagesToDatabase($menuset, $base = NULL) {
  * @param string $menuset chosen menu set
  */
 function addCategoriesToDatabase($menuset, $base = NULL) {
+	global $_zp_db;
 	if (is_null($base)) {
-		$categorybase = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
+		$categorybase = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 		$sortbase = '';
 	} else {
 		$categorybase = array_pop($base);
@@ -416,20 +426,25 @@ function addCategoriesToDatabase($menuset, $base = NULL) {
 	}
 	$result = $categorybase;
 	$parents = array('NULL');
-	$result = query_full_array("SELECT * FROM " . prefix('news_categories') . " ORDER BY sort_order");
-	foreach ($result as $key => $item) {
-		$sorts = explode('-', $item['sort_order']);
+	$cats = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY sort_order");
+	foreach ($cats as $key => $item) {
+		if(empty($item['sort_order'])) {
+			$sorts = array($key);
+		} else {
+			$sorts = explode('-', $item['sort_order']);
+		}
 		$level = count($sorts);
-		$sorts[0] = sprintf('%03u', $result = $sorts[0] + $categorybase);
+		$result = $sorts[0] + $categorybase;
+		$sorts[0] = sprintf('%03u', $result);
 		$order = $sortbase . implode('-', $sorts);
 		$link = $item['titlelink'];
 		$parent = $parents[$level - 1];
-		$sql = "INSERT INTO " . prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) " .
-						'VALUES (' . db_quote($item['title']) . ',' . db_quote($link) . ',"zenpagecategory", 1,' . db_quote($menuset) . ',' . db_quote($order) . ',' . $parent . ')';
-		if (query($sql, false)) {
-			$id = db_insert_id();
+		$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " (`title`, `link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) " .
+						'VALUES (' . $_zp_db->quote($item['title']) . ',' . $_zp_db->quote($link) . ',"zenpagecategory", 1,' . $_zp_db->quote($menuset) . ',' . $_zp_db->quote($order) . ',' . $parent . ')';
+		if ($_zp_db->query($sql, false)) {
+			$id = $_zp_db->insertID();
 		} else {
-			$rslt = query_single_row('SELECT `id` FROM' . prefix('menu') . ' WHERE `type`="zenpagecategory" AND `link`="' . $link . '"');
+			$rslt = $_zp_db->querySingleRow('SELECT `id` FROM' . $_zp_db->prefix('menu') . ' WHERE `type`="zenpagecategory" AND `link`="' . $link . '"');
 			$id = $rslt['id'];
 		}
 		$parents[$level] = $id;
@@ -447,6 +462,7 @@ function addCategoriesToDatabase($menuset, $base = NULL) {
  * @return array
  */
 function addItem(&$reports) {
+	global $_zp_db;
 	$menuset = checkChosenMenuset();
 	$result['type'] = sanitize($_POST['type']);
 	$result['show'] = getCheckboxState('show');
@@ -461,12 +477,12 @@ function addItem(&$reports) {
 	}
 	switch ($result['type']) {
 		case 'all_items':
-			query("INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-							"VALUES ('" . gettext('Home') . "', '" . WEBPATH . '/' . "','galleryindex','1'," . db_quote($menuset) . ",'000')", true);
+			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
+							"VALUES ('" . gettext('Home') . "', '" . WEBPATH . '/' . "','galleryindex','1'," . $_zp_db->quote($menuset) . ",'000')", true);
 			addAlbumsToDatabase($menuset);
 			if (extensionEnabled('zenpage')) {
-				query("INSERT INTO " . prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
-								"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "', 'zenpagenewsindex', '1', " . db_quote($menuset) . ", '001')", true);
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('menu') . " (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) " .
+								"VALUES ('" . gettext('News index') . "', '" . getNewsIndexURL() . "', 'zenpagenewsindex', '1', " . $_zp_db->quote($menuset) . ", '001')", true);
 				addPagesToDatabase($menuset);
 				addCategoriesToDatabase($menuset);
 			}
@@ -492,9 +508,18 @@ function addItem(&$reports) {
 			}
 			$successmsg = sprintf(gettext("Album menu item <em>%s</em> added"), $result['link']);
 			break;
+		case 'homepage':
+			$result['title'] = process_language_string_save("title", 2);
+			$result['link'] = '';
+			if (empty($result['title'])) {
+				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
+				return $result;
+			}
+			$successmsg = sprintf(gettext("Home page menu item <em>%s</em> added"), $result['link']);
+			break;
 		case 'galleryindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -502,7 +527,7 @@ function addItem(&$reports) {
 			$successmsg = sprintf(gettext("Gallery index menu item <em>%s</em> added"), $result['link']);
 			break;
 		case 'zenpagepage':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -512,7 +537,7 @@ function addItem(&$reports) {
 			break;
 		case 'zenpagenewsindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -520,7 +545,7 @@ function addItem(&$reports) {
 			$successmsg = sprintf(gettext("Zenpage news index menu item <em>%s</em> added"), $result['link']);
 			break;
 		case 'zenpagecategory':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -552,7 +577,7 @@ function addItem(&$reports) {
 			break;
 		case 'menulabel':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -588,19 +613,25 @@ function addItem(&$reports) {
 		default:
 			break;
 	}
-	$count = db_count('menu', 'WHERE menuset=' . db_quote($menuset));
+	$count = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 	$order = sprintf('%03u', $count);
-	$sql = "INSERT INTO " . prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
-					"VALUES (" . db_quote($result['title']) .
-					", " . db_quote($result['link']) .
-					", " . db_quote($result['type']) . ", " . $result['show'] .
-					", " . db_quote($menuset) . ", " . db_quote($order) . ", " . $result['include_li'] .
-					", " . db_quote($result['span_id']) . ", " . db_quote($result['span_class']) .
+	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
+					"VALUES (" 
+					. $_zp_db->quote($result['title']) . ", " 
+					. $_zp_db->quote($result['link']) . ", " 
+					. $_zp_db->quote($result['type']) . ", " 
+					. $_zp_db->quote($result['show']) . ", " 
+					. $_zp_db->quote($menuset) . ", " 
+					. $_zp_db->quote($order) . ", " 
+					. $result['include_li'] . ", " 
+					. $_zp_db->quote($result['span_id']) . ", " 
+					. $_zp_db->quote($result['span_class']) .
 					")";
-	if (query($sql, true)) {
+	debuglog(print_r($sql, true));
+	if ($_zp_db->query($sql, true)) {
 		$reports[] = "<p class = 'messagebox fade-message'>" . $successmsg . "</p>";
 		//echo "<pre>"; print_r($result); echo "</pre>";
-		$result['id'] = db_insert_id();
+		$result['id'] = $_zp_db->insertID();
 		return $result;
 	} else {
 		if (empty($result['link'])) {
@@ -616,9 +647,8 @@ function addItem(&$reports) {
  * Updates a menu item (custom link, custom page only) set via POST
  *
  */
-function updateMenuItem(&
-
-$reports) {
+function updateMenuItem(&$reports) {
+	global $_zp_db;
 	$menuset = checkChosenMenuset();
 	$result = array();
 	$result['id'] = sanitize($_POST['id']);
@@ -641,9 +671,17 @@ $reports) {
 				return $result;
 			}
 			break;
+		case 'homepage':
+			$result['title'] = process_language_string_save("title", 2);
+			$result['link'] = '';
+			if (empty($result['title'])) {
+				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
+				return $result;
+			}
+			break;
 		case 'galleryindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -659,14 +697,14 @@ $reports) {
 			break;
 		case 'zenpagenewsindex':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
 			}
 			break;
 		case 'zenpagecategory':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['categoryselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
@@ -695,7 +733,7 @@ $reports) {
 			break;
 		case 'menulabel':
 			$result['title'] = process_language_string_save("title", 2);
-			$result['link'] = NULL;
+			$result['link'] = '';
 			if (empty($result['title'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 				return $result;
@@ -730,13 +768,13 @@ $reports) {
 			break;
 	}
 	// update the category in the category table
-	$sql = "UPDATE " . prefix('menu') . " SET title = " . db_quote($result['title']) .
-					", link = " . db_quote($result['link']) .
-					", type = " . db_quote($result['type']) . ", `show` = " . db_quote($result['show']) .
-					", menuset = " . db_quote($menuset) . ", include_li = " . $result['include_li'] .
-					", span_id = " . db_quote($result['span_id']) . ", span_class = " . db_quote($result['span_class']) .
+	$sql = "UPDATE " . $_zp_db->prefix('menu') . " SET title = " . $_zp_db->quote($result['title']) .
+					", link = " . $_zp_db->quote($result['link']) .
+					", type = " . $_zp_db->quote($result['type']) . ", `show` = " . $_zp_db->quote($result['show']) .
+					", menuset = " . $_zp_db->quote($menuset) . ", include_li = " . $result['include_li'] .
+					", span_id = " . $_zp_db->quote($result['span_id']) . ", span_class = " . $_zp_db->quote($result['span_class']) .
 					" WHERE `id` = " . $result['id'];
-	if (query($sql)) {
+	if ($_zp_db->query($sql)) {
 		if (isset($_POST['title']) && empty($result['title'])) {
 			$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>title</strong>!") . " </p>";
 		} else if (isset($_POST['link']) && empty($result['link'])) {
@@ -752,12 +790,11 @@ $reports) {
  * Deletes a menu item set via GET
  *
  */
-function deleteItem(&
-
-$reports) {
+function deleteItem(&$reports) {
+	global $_zp_db;
 	if (isset($_GET['delete'])) {
 		$delete = sanitize_numeric($_GET['delete'], 3);
-		query("DELETE FROM " . prefix('menu') . " WHERE `id` = $delete");
+		$_zp_db->query("DELETE FROM " . $_zp_db->prefix('menu') . " WHERE `id` = $delete");
 		$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Custom menu item successfully deleted!") . " </p>";
 	}
 }
@@ -773,13 +810,12 @@ $reports) {
  */
 function printAlbumsSelector($current) {
 	global $_zp_gallery;
-	$albumlist = array();
-	genAlbumList($albumlist, NULL, ALL_ALBUMS_RIGHTS);
+	$albumlist = $_zp_gallery->getAllAlbumsFromDB(false, null, ALL_ALBUMS_RIGHTS);
 	?>
 	<select id="albumselector" name="albumselect">
 		<?php
 		foreach ($albumlist as $key => $value) {
-			$albumobj = newAlbum($key);
+			$albumobj = AlbumBase::newAlbum($key);
 			$albumname = $albumobj->name;
 			if ($albumname == $current) {
 				$selected = ' selected="selected"';
@@ -789,7 +825,7 @@ function printAlbumsSelector($current) {
 			$level = substr_count($albumname, "/");
 			$arrow = "";
 			for ($count = 1; $count <= $level; $count++) {
-				$arrow .= "» ";
+				$arrow .= "–&nbsp;";
 			}
 			echo "<option value = '" . html_encode($albumobj->name) . "'" . $selected . '>';
 			echo $arrow . $albumobj->getTitle() . unpublishedZenphotoItemCheck($albumobj) . "</option>";
@@ -826,7 +862,7 @@ function printZenpagePagesSelector($current) {
 			for ($count = 1; $count <= $level; $count++) {
 				$arrow .= "» ";
 			}
-			echo "<option value = '" . html_encode($pageobj->getTitlelink()) . "'" . $selected . '>';
+			echo "<option value = '" . html_encode($pageobj->getName()) . "'" . $selected . '>';
 			echo $arrow . $pageobj->getTitle() . unpublishedZenphotoItemCheck($pageobj) . "</option>";
 		}
 		?>
@@ -862,7 +898,7 @@ function printZenpageNewsCategorySelector($current) {
 			foreach ($getparents as $parent) {
 				$levelmark .= '» ';
 			}
-			echo "<option value = '" . html_encode($catobj->getTitlelink()) . "'" . $selected . '>';
+			echo "<option value = '" . html_encode($catobj->getName()) . "'" . $selected . '>';
 			echo $levelmark . $catobj->getTitle() . "</option>"
 
 			;
@@ -888,9 +924,31 @@ function printCustomPageSelector($current) {
 		chdir($root);
 		$filelist = safe_glob('*.php');
 		$list = array();
+		$exclude = array(
+				'404.php',
+				'index.php',
+				'main.php',
+				'gallery.php',
+				'album.php',
+				'image.php',
+				'pages.php',
+				'news.php',
+				'functions.php',
+				'inc-footer.php',
+				'footer.php',
+				'inc-header.php',
+				'header.php',
+				'inc-sidebar.php',
+				'sidebar.php',
+				'slideshow.php',
+				'theme_description.php',
+				'themeoptions.php'
+		);
 		foreach ($filelist as $file) {
-			$file = filesystemToInternal($file);
-			$list[$file] = str_replace('.php', '', $file);
+			if(!in_array($file, $exclude)) {
+				$file = filesystemToInternal($file);
+				$list[$file] = str_replace('.php', '', $file);
+			}
 		}
 		generateListFromArray(array($current), $list, false, true);
 		chdir($curdir);
@@ -905,10 +963,10 @@ function printCustomPageSelector($current) {
  * @return string
  */
 function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
-	if ($obj->getShow() != "1") {
-		$show = "*";
-	} else {
+	if ($obj->isPublished()) {
 		$show = "";
+	} else {
+		$show = "*";
 	}
 	return $show;
 }
@@ -918,11 +976,10 @@ function unpublishedZenphotoItemCheck($obj, $dropdown = true) {
  *
  */
 function processMenuBulkActions() {
+	global $_zp_db;
 	$report = NULL;
-	if (isset($_POST[
-									'ids'])) {
-		$action = sanitize(
-						$_POST['checkallaction']);
+	if (isset($_POST['ids'])) {
+		$action = sanitize($_POST['checkallaction']);
 		$ids = $_POST['ids'];
 		$total = count($ids);
 		$message = NULL;
@@ -931,15 +988,15 @@ function processMenuBulkActions() {
 				$n = 0;
 				switch ($action) {
 					case 'deleteall':
-						$sql = "DELETE FROM " . prefix('menu') . " WHERE ";
+						$sql = "DELETE FROM " . $_zp_db->prefix('menu') . " WHERE ";
 						$message = gettext('Selected items deleted');
 						break;
 					case 'showall':
-						$sql = "UPDATE " . prefix('menu') . " SET `show` = 1 WHERE ";
+						$sql = "UPDATE " . $_zp_db->prefix('menu') . " SET `show` = 1 WHERE ";
 						$message = gettext('Selected items published');
 						break;
 					case 'hideall':
-						$sql = "UPDATE " . prefix('menu') . " SET `show` = 0 WHERE ";
+						$sql = "UPDATE " . $_zp_db->prefix('menu') . " SET `show` = 0 WHERE ";
 						$message = gettext('Selected items unpublished');
 						break;
 				}
@@ -949,12 +1006,12 @@ function processMenuBulkActions() {
 					if ($n < $total)
 						$sql .= "OR ";
 				}
-				query($sql);
+				$_zp_db->query($sql);
 			}
-			if (!is_null($message))
+			if (!is_null($message)) {
 				$report = "<p class = 'messagebox fade-message'>" . $message . "</p>";
+			}
 		}
 	}
 	return $report;
 }
-?>

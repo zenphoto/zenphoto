@@ -1,4 +1,7 @@
 <?php
+/**
+ *  @package zpcore\plugins\elfinder
+ */
 
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/admin-globals.php');
 XSRFdefender('elFinder');
@@ -126,7 +129,9 @@ if ($_REQUEST['origin'] == 'upload') {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$opts['roots'][2]['accessControl'] = 'access';
 		} else {
+			$opts['roots'][0]['uploadDeny'] = array('text/x-php', 'application');
 			$opts['roots'][2]['accessControl'] = 'accessAlbums';
+			$opts['roots'][2]['uploadDeny'] = array('text/x-php', 'application');
 			$_managed_folders = getManagedAlbumList();
 			$excluded_folders = $_zp_gallery->getAlbums(0);
 			$excluded_folders = array_diff($excluded_folders, $_managed_folders);
@@ -140,7 +145,7 @@ if ($_REQUEST['origin'] == 'upload') {
 			$all_actions = $_not_upload = $_not_edit = array();
 
 			foreach ($_managed_folders as $key => $folder) {
-				$rightsalbum = newAlbum($folder);
+				$rightsalbum = AlbumBase::newAlbum($folder);
 				$modified_rights = $rightsalbum->albumSubRights();
 				if ($uploadlimit <= 0) {
 					$modified_rights = $modified_rights & ~MANAGED_OBJECT_RIGHTS_UPLOAD;
@@ -241,9 +246,9 @@ if ($_REQUEST['origin'] == 'upload') {
 		);
 		$opts['roots'][5] = array(
 						'driver'				 => 'LocalFileSystem',
-						'startPath'			 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'path'					 => SERVERPATH . '/' . BACKUPFOLDER . '/',
-						'URL'						 => WEBPATH . '/' . BACKUPFOLDER . '/',
+						'startPath'			 => getBackupFolder(SERVERPATH),
+						'path'					 => getBackupFolder(SERVERPATH),
+						'URL'						 => getBackupFolder(WEBPATH),
 						'alias'					 => sprintf(gettext('Backup files (%s)'), BACKUPFOLDER),
 						'mimeDetect'		 => 'internal',
 						'tmbPath'				 => '.tmb',
@@ -269,7 +274,8 @@ if ($_REQUEST['origin'] == 'upload') {
 						'tmbBgColor'		 => 'transparent',
 						'uploadAllow'		 => array('image'),
 						'accessControl'	 => 'access',
-						'acceptedName'	 => '/^[^\.].*$/'
+						'acceptedName'	 => '/^[^\.].*$/',
+						'uploadDeny' => array('text/x-php', 'text/html', 'application'),
 		);
 	}
 }

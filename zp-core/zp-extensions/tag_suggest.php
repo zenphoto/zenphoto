@@ -5,8 +5,7 @@
  * Activate the plugin and the feature is available on the theme's search field.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's jQuery Tag Suggestion
- * @package plugins
- * @subpackage tag-suggest
+ * @package zpcore\plugins\tagsuggest
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
@@ -53,8 +52,8 @@ function tagSuggestJS_frontend() {
 function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
 	// the scripts needed
 	?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
 	<?php
 	$css = getPlugin('tag_suggest/tag.css', true, true);
 	?>
@@ -84,13 +83,11 @@ function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
      $tagseparator = ',';
    }
    ?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
+	<script>
 		var _tagList = [<?php echo $list; ?>];
 		$(function() {
 			$('#search_input, #edit-editable_4, .tagsuggest').tagSuggest({separator: '<?php echo $tagseparator; ?>', tags: _tagList})
 		});
-		// ]]> -->
 	</script>
 	<?php
 }

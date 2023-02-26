@@ -235,7 +235,20 @@ li {
 	list-style-type:none;
 	margin-top:0;
 	margin-bottom: 5px;
+} 
+
+ul.setup_filelist {
+	height: 250px;
+	display: block;
+	overflow: auto;
+	resize: vertical;
 }
+
+ul.setup_filelist li {
+	list-style-type: disc;
+	margin-left: 25px;
+}
+
 .dbwindow {
 	padding: 5px;
 	margin-right: -5px;
@@ -306,12 +319,16 @@ li {
 	height: 2.2em;
 }
 
+.sflags {
+	margin: 0;
+}
+
 .sflags img {
 	border: none;
 }
+
 .sflags li {
-	display: inline;
-	float:right;
+	display: inline-block;
 	padding: 5px;
 }
 
@@ -319,4 +336,3 @@ li {
 	clear: both;
 	text-align: right;
 }
-

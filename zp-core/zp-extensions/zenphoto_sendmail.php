@@ -4,8 +4,7 @@
  * PHP sendmail mailing handler
  *
  * @author Stephen Billard (sbillard)
- * @package plugins
- * @subpackage zenphoto-sendmail
+ * @package zpcore\plugins\zenphotosendmail
  */
 $plugin_is_filter = 5 | CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility.");

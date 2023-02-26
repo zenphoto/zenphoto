@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 	die();
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php zp_apply_filter('theme_head'); ?>
@@ -53,7 +53,7 @@ if (!defined('WEBPATH'))
 			</div>
 
 			<div id="breadcrumb">
-				<h2><?php printGalleryIndexURL(' » '); printSearchBreadcrumb(" » "); ?>
+				<h2><?php printGalleryIndexURL(' » '); printSearchBreadcrumb(" » "); printCurrentPageAppendix(); ?>
 				</h2>
 			</div>
 
@@ -165,7 +165,7 @@ if (!defined('WEBPATH'))
 						<br class="clearall" />
 					<?php } ?>
 					<?php
-					@call_user_func('printSlideShowLink');
+					callUserFunction('printSlideShowLink');
 					if ($total == 0) {
 						echo "<p>" . gettext("Sorry, no matches found. Try refining your search.") . "</p>";
 					}

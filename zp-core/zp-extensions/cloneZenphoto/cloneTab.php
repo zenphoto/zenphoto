@@ -2,8 +2,7 @@
 /**
  * Clone Zenphoto tab
  *
- *
- * @package admin
+ * @package zpcore\plugins\clonezenphoto
  */
 
 if (!defined('OFFSET_PATH')) define ('OFFSET_PATH', 4);
@@ -11,11 +10,11 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs'] = array(gettext('Clone') => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Clone') => WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php');
 printAdminHeader('overview', 'clone');
 
 ?>
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
+	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
 </head>
 <body>
 <?php printLogoAndLinks(); ?>
@@ -87,7 +86,7 @@ printAdminHeader('overview', 'clone');
 
 	if (($dir=opendir($path))!==false) {
 		while(($file=readdir($dir))!==false) {
-			if($file{0} != '.' && $file{0} != '$') {
+			if($file[0] != '.' && $file[0] != '$') {
 				if ((is_dir($path.$file))) {
 					if (!in_array($file, $zp_folders)) {	// no clones "here" or in "hidden" files
 						$folderlist[$file]=$path.$file.'/';
@@ -99,8 +98,7 @@ printAdminHeader('overview', 'clone');
 	}
 
 	?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
+		<script>
 			var prime = '<?php echo SERVERPATH; ?>/';
 			function buttonAction(data) {
 				$('#newDir').val(data);
@@ -120,13 +118,12 @@ printAdminHeader('overview', 'clone');
 			window.onload = function() {
 				folderChange();
 			}
-			// ]]> -->
 		</script>
 		<form name="changeDir" id="changeDir" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cloneZenphoto/cloneTab.php'; ?>" method="post">
 			<input type="hidden" name="path" id="newDir" value = "" />
 			<?php
 			if (empty($folderlist)) {
-				echo gettext('No subfolders in: ') . ' ';
+				echo gettext('No subfolders in:') . ' ';
 			} else {
 				echo gettext('Select the destination folder:') . ' ';
 			}

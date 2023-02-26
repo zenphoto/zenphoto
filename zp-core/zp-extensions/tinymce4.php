@@ -10,8 +10,7 @@
  * <var>zenpage-<yourcustomname>.js.php</var>
  *
  * @author Malte Müller (acrylian)
- * @package plugins
- * @subpackage tinymce4
+ * @package zpcore\plugins\tinymce4
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Text editor TinyMCE 4.x");
