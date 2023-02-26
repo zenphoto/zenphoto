@@ -141,10 +141,10 @@ class graphicsBase {
 	 */
 	static function getCounterClockwiseRotation($degree) {
 		if ($degree == 0 || $degree == 180) {
-			return $value;
+			return $degree;
 		}
 		if ($degree < 0 || $degree > 360) {
-			$value = 90;
+			$degree = 90;
 		}
 		return intval(360 - $degree);
 	}
