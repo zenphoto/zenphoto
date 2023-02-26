@@ -650,22 +650,21 @@ function formatData($type, $tag, $intel, $data) {
 				case '0112': // Orientation
 					// Example of how all of these tag formatters should be...
 					switch ($data) {
-						case 0 : // not set, presume normal
-						case 1 : $data = gettext('1: Normal (0 deg)');
+						case 1 : $data = gettext('1: Horizontal (normal)');
 							break;
-						case 2 : $data = gettext('2: Mirrored');
+						case 2 : $data = gettext('2: Mirror horizontal');
 							break;
-						case 3 : $data = gettext('3: Upside-down');
+						case 3 : $data = gettext('3: Rotate 180');
 							break;
-						case 4 : $data = gettext('4: Upside-down Mirrored');
+						case 4 : $data = gettext('4: Mirror vertical');
 							break;
-						case 5 : $data = gettext('5: 90 deg CW Mirrored');
+						case 5 : $data = gettext('5: Mirror horizontal and rotate 270 CW');
 							break;
-						case 6 : $data = gettext('6: 90 deg CCW');
+						case 6 : $data = gettext('6: Rotate 90 CW');
 							break;
-						case 7 : $data = gettext('7: 90 deg CCW Mirrored');
+						case 7 : $data = gettext('7: Mirror horizontal and rotate 90 CW');
 							break;
-						case 8 : $data = gettext('8: 90 deg CW');
+						case 8 : $data = gettext('8: Rotate 270 CW');
 							break;
 						default : $data = sprintf(gettext('%d: Unknown'), $data);
 							break;

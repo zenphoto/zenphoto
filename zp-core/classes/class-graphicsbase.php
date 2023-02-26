@@ -121,13 +121,32 @@ class graphicsBase {
 	 * @return object|false
 	 */
 	function flipRotateImage($im, $rotate) {
-		if ($rotate['rotate']) {
-			$im = $this->rotateImage($im, $rotate['rotate']);
-		}
 		if ($rotate['flip']) {
 			$im = $this->flipImage($im, $rotate['flip']);
 		}
+		if ($rotate['rotate']) {
+			$im = $this->rotateImage($im, $rotate['rotate']);
+		}
 		return $im;
+	}
+	
+	/**
+	 * Returns  the counter clockwise rotation degree the GD library requires
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * Adapted from anonymous comment on https://www.php.net/manual/en/imagick.rotateimage
+	 * @param int $degree Rotation degree clockwise
+	 * @return int
+	 */
+	static function getCounterClockwiseRotation($degree) {
+		if ($degree == 0 || $degree == 180) {
+			return $value;
+		}
+		if ($degree < 0 || $degree > 360) {
+			$value = 90;
+		}
+		return intval(360 - $degree);
 	}
 
 	function imageDims($filename) {

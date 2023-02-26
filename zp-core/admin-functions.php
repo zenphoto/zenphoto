@@ -2507,33 +2507,7 @@ function processImageEdit($image, $index, $massedit = true) {
 				Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 			}
 		}
-		
-		if (isset($_POST[$index . '-flipping'])) {
-			$flipping = sanitize($_POST[$index . '-flipping']);
-			if ($flipping != 'none') {
-				$fullimage = $image->getFullimage(SERVERPATH);
-				$album = $image->getAlbum();
-				$im = $_zp_graphics->imageGet($fullimage);
-				$success = false;
-				switch ($flipping) {
-					case 'horizontal':
-						$success = $_zp_graphics->flipImage($im, 'horizontal');
-						break;
-					case 'vertical':
-						$success = $_zp_graphics->flipImage($im, 'vertical');
-						break;
-				}
-				if ($success) {
-					$suffix = getSuffix($image->getName());
-					$success_final = $_zp_graphics->imageOutput($im, $suffix, $fullimage);
-					if($success_final) {
-						Gallery::clearCache(SERVERCACHE . '/' . $album->name);
-					}
-					$_zp_graphics->imageKill($im);
-				} 
-			}
-		}
-		
+
 		if (!$massedit) {
 			$image->setLocation(process_language_string_save("$index-location", 3));
 			$image->setCity(process_language_string_save("$index-city", 3));
@@ -5647,4 +5621,38 @@ function markUpdated() {
 	global $_zp_admin_user_updated;
 	$_zp_admin_user_updated = true;
 //for finding out who did it!	debugLogBacktrace('updated');
+}
+
+/**
+ * Prints the image EXIF rotation/flipping selector
+ * 
+ * @since 1.6.1
+ * 
+ * @param obj $imageobj Object of the current image
+ * @param int $currentimage ID of the current image
+ */
+function printImageRotationSelector($imageobj, $currentimage) {
+	$rotation = extractImageExifOrientation($imageobj->get('EXIFOrientation'));
+	if ($rotation > 8 || $rotation < 1) {
+		$rotation = 1;
+	}
+	$list = array(
+			gettext('Horizontal (normal)') => 1,
+			gettext('Mirror horizontal') => 2,
+			gettext('Rotate 180') => 3,
+			gettext('Mirror vertical') => 4,
+			gettext('Mirror horizontal and rotate 270 clockwise') => 5,
+			gettext('Rotate 90 clockwise') => 6,
+			gettext('Mirror horizontal and rotate 90 clockwise') => 7,
+			gettext('Rotate 270 clockwise') => 8
+	);
+	?>
+	<hr />
+	<strong><?php echo gettext("Rotation:"); ?></strong>
+	<br />
+	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
+	<select id="rotation-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-rotation">
+	<?php generateListFromArray((array) $rotation, $list, null, true); ?>
+	</select>
+	<?php
 }

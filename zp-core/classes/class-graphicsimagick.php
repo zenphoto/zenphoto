@@ -279,12 +279,12 @@ class graphicsImagick extends graphicsBase {
 	/**
 	 * Rotates an image resource according to its Orientation setting
 	 *
-	 * @param Imagick $im
-	 * @param int $rotate
+	 * @param Imagick $im Imagick object
+	 * @param int $rotate Rotation degree clock wise
 	 * @return Imagick
 	 */
 	function rotateImage($im, $rotate) {
-		$im->rotateImage('none', 360 - $rotate);
+		$im->rotateImage('none', $rotate);
 		return $im;
 	}
 	

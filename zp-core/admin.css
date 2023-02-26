@@ -33,6 +33,7 @@ em {
 	color: black;
 }
 
+
 .inlinecode {
 	color: #00008B;
 	font-size: 12px;
@@ -1343,6 +1344,10 @@ button.positive,.buttons a.positive {
 .box-edit .buttons a,
 .theme_links .buttons a{
 	width: 90% !important;
+}
+
+.box-edit select {
+	max-width: 100%;
 }
 
 

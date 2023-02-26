@@ -333,12 +333,13 @@ class graphicsGD extends graphicsBase {
 	 * Rotates an image resource according to its Orientation
 	 * NB: requires the imagarotate function to be configured
 	 *
-	 * @param resource $im
-	 * @param int $rotate
+	 * @param object $im GD image object
+	 * @param int $rotate Rotation degree clock wise! GD required counter clockwise calcuation is done internally
 	 * @return resource
 	 */
 	function rotateImage($im, $rotate) {
-		$newim_rot = imagerotate($im, $rotate, 0);
+		$ccw_rotate = graphicsBase::getCounterClockwiseRotation($rotate);
+		$newim_rot = imagerotate($im, $ccw_rotate, 0);
 		imagedestroy($im);
 		return $newim_rot;
 	}

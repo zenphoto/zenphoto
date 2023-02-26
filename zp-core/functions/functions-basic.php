@@ -1118,41 +1118,38 @@ function getImageFlipRotate($rotation) {
 	if ($rotation) {
 		switch ($rotation) {
 			default:
-			case 0:
 			case 1:
-			case 9:
-				// none or not set - nothing to do here
+				// Horizontal (normal) or not set -> nothing to do
 				return false;
 			case 2:
-				// mirrored
+				// Mirror horizontal
 				$flip_rotate['flip'] = 'horizontal';
 				break;
 			case 3:
-				// upside-down
+				// Rotate 180
 				$flip_rotate['rotate'] = 180;
 				break;
 			case 4:
-				// upside-down mirrored
-				$flip_rotate['rotate'] = 180;
-				$flip_rotate['flip'] = 'horizontal';
+				// Mirror vertical
+				$flip_rotate['flip'] = 'vertical';
 				break;
 			case 5:
-				// 90 CCW mirrored
-				$flip_rotate['rotate'] = 270;
+				// Mirror horizontal and rotate 270 CW
 				$flip_rotate['flip'] = 'horizontal';
+				$flip_rotate['rotate'] = 270;
 				break;
 			case 6:
-				// 90 CCW
-				$flip_rotate['rotate'] = 270;
+				// Rotate 90 CW
+				$flip_rotate['rotate'] = 90;
 				break;
 			case 7:
-				// 90 CW mirrored
-				$flip_rotate['rotate'] = 90;
+				// Mirror horizontal and rotate 90 CW
 				$flip_rotate['flip'] = 'horizontal';
+				$flip_rotate['rotate'] = 90;
 				break;
 			case 8:
-				// 90 CW
-				$flip_rotate['rotate'] = 90;
+				// Rotate 270 CW
+				$flip_rotate['rotate'] = 270;
 				break;
 		}
 	}
