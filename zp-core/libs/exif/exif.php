@@ -601,23 +601,34 @@ function formatData($type, $tag, $intel, $data) {
 			switch ($tag) {
 				case '011a': // XResolution
 				case '011b': // YResolution
-					$data = round(unRational($data, $type, $intel)) . ' dots per ResolutionUnit';
+					$data = unRational($data, $type, $intel);
+					if (is_numeric($data)) $data = round($data);
+					$data = $data . ' dots per ResolutionUnit';
 					break;
 				case '829a': // Exposure Time
 					$data = formatExposure(unRational($data, $type, $intel));
 					break;
 				case '829d': // FNumber
-					$data = 'f/' . round(unRational($data, $type, $intel), 2);
+					$data = unRational($data, $type, $intel);
+					if (is_numeric($data)) $data = round($data, 2);
+					$data = 'f/' . $data;
 					break;
 				case '9204': // ExposureBiasValue
-					$data = round(unRational($data, $type, $intel), 2) . ' EV';
+					$data = unRational($data, $type, $intel);
+					if (is_numeric($data)) $data = round($data, 2);
+					$data = $data . ' EV';
 					break;
 				case '9205': // ApertureValue
 				case '9202': // MaxApertureValue
 					// ApertureValue is given in the APEX Mode. Many thanks to Matthieu Froment for this code
 					// The formula is : Aperture = 2*log2(FNumber) <=> FNumber = e((Aperture.ln(2))/2)
-					$datum = exp((unRational($data, $type, $intel) * log(2)) / 2);
-					$data = 'f/' . round($datum, 1); // Focal is given with a precision of 1 digit.
+					$datum = unRational($data, $type, $intel);
+					if (is_numeric($datum)) {
+						$datum = exp(($datum * log(2)) / 2);
+						$data = 'f/' . round($datum, 1); // Focal is given with a precision of 1 digit.
+					} else {
+						$data = 'f/' . $datum;
+					}
 					break;
 				case '920a': // FocalLength
 					$data = unRational($data, $type, $intel) . ' mm';
@@ -628,9 +639,12 @@ function formatData($type, $tag, $intel, $data) {
 					// Where shutter is in APEX, log2(exposure) = ln(exposure)/ln(2)
 					// So final formula is : exposure = exp(-ln(2).shutter)
 					// The formula can be developed : exposure = 1/(exp(ln(2).shutter))
-					$datum = exp(unRational($data, $type, $intel) * log(2));
-					if ($datum != 0) {
-						$datum = 1 / $datum;
+					$datum = unRational($data, $type, $intel);
+					if (is_numeric($datum)) {
+						$datum = exp($datum * log(2));
+						if ($datum != 0) {
+							$datum = 1 / $datum;
+						}
 					}
 					$data = formatExposure($datum);
 					break;
