@@ -4,7 +4,7 @@
  * Base class that kicks in if neither GD or Imagick are available for image handling
  * Provides basic check method to see what library is available
  * 
- * @since ZenphotoCMS 1.6 - reworked as class
+ * @since 1.6 - reworked as class
  * 
  * @package zpcore\classes\graphics
  */

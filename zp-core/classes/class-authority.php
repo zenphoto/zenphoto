@@ -50,7 +50,7 @@ class Authority {
 	/**
 	 * Gets the name of the current master user 
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @global type $_zp_db
 	 * @return type
@@ -264,7 +264,7 @@ class Authority {
 	/**
 	 * Checks if the administrator table and actual admins exist
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @global obj $_zp_db
 	 * @return boolean
@@ -1400,7 +1400,7 @@ class Authority {
 	/**
 	 * Gets the current page params to generate a logout link of the current page if not using modrewrite
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $returnvalue 'string' for a ready to use string for an logout url or 'array' for an indexed array 
 * @return array|string
@@ -1453,7 +1453,7 @@ class Authority {
 	 * 
 	 * If in front end mode this will keep the user on the same page after logout (even if that may not be public)
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @global type $_zp_current_admin_obj
 	 * @param string $mode "backend" (default) for the main backend logout link, 

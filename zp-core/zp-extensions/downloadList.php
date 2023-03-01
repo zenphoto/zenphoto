@@ -709,7 +709,7 @@ function printDownloadURL($file, $linktext = NULL) {
 /**
  * Prints the dwnload url link for a full image
  * 
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * 
  * @global type $_zp_current_image
  * @param string $linktext Linktext for the download

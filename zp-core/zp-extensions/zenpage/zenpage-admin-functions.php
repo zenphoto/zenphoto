@@ -1279,7 +1279,7 @@ function zenpagePublish($obj, $show) {
  * Skips the scheduled future publishing by setting the date of a page or article to the current date to publish it immediately
  * or the expiration handling by setting the expiredate to null.
  *
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * @param object $obj
  * @param string $type "futuredate" or "expiredate"
  * @return string
@@ -1743,7 +1743,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	/**
 	 * Creates the titlelink from the title passed.
 	 * 
-	 * @since ZenphotoCMS 1.5.2
+	 * @since 1.5.2
 	 * 
 	 * @param string|array $title The title respectively language array of titles
 	 * @param string $date The date the article is saved
@@ -1760,7 +1760,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	/**
 	 * Checks if a title link of this itemtype already exists
 	 * 
-	 * @since ZenphotoCMS 1.5.2
+	 * @since 1.5.2
 	 * 
 	 * @param string $titlelink The titlelink to check
 	 * @param string $itemtype
@@ -1788,7 +1788,7 @@ function printPublishIconLink($object, $type, $linkback = '') {
 	 * Append or prepends a date string to a titlelink as defined.
 	 * Note: This does not check the item type option and will add to any string passed!
 	 * 
-	 * @since ZenphotoCMS 1.5.2
+	 * @since 1.5.2
 	 * 
 	 * @param string $titlelink The titleink (e.g. as created by createTitleink())
 	 * @return string

@@ -291,7 +291,7 @@ function html_encodeTagged($original, $allowScript = true) {
  * Convenience wrapper of html_encode(pathurlencode($url))
  * Primarily intended for use with img src URLs
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $url
  * @return string

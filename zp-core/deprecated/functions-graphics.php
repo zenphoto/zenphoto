@@ -7,12 +7,12 @@
  * @package zpcore\functions\deprecated
  *
  * @deprecated ZenphotoCMS 2.0 Use the global object varible $_zp_graphics and its class methods instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead.
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageGet($imgfile) {
 	global $_zp_graphics;
@@ -22,7 +22,7 @@ function zp_imageGet($imgfile) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageOutput($im, $type, $filename = NULL, $qual = 75) {
 	global $_zp_graphics;
@@ -32,7 +32,7 @@ function zp_imageOutput($im, $type, $filename = NULL, $qual = 75) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_createImage($w, $h) {
 	global $_zp_graphics;
@@ -42,7 +42,7 @@ function zp_createImage($w, $h) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageFill($image, $x, $y, $color) {
 	global $_zp_graphics;
@@ -52,7 +52,7 @@ function zp_imageFill($image, $x, $y, $color) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead.
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageColorTransparent($image, $color) {
 	global $_zp_graphics;
@@ -62,7 +62,7 @@ function zp_imageColorTransparent($image, $color) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $h) {
 	global $_zp_graphics;
@@ -72,7 +72,7 @@ function zp_copyCanvas($imgCanvas, $img, $dest_x, $dest_y, $src_x, $src_y, $w, $
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_resampleImage($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
 	global $_zp_graphics;
@@ -82,7 +82,7 @@ function zp_resampleImage($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageUnsharpMask($img, $amount, $radius, $threshold) {
 	global $_zp_graphics;
@@ -92,7 +92,7 @@ function zp_imageUnsharpMask($img, $amount, $radius, $threshold) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageResizeAlpha(&$src, $w, $h) {
 	global $_zp_graphics;
@@ -102,7 +102,7 @@ function zp_imageResizeAlpha(&$src, $w, $h) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageCanRotate() {
 	global $_zp_graphics;
@@ -112,7 +112,7 @@ function zp_imageCanRotate() {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_rotateImage($im, $rotate) {
 	global $_zp_graphics;
@@ -122,7 +122,7 @@ function zp_rotateImage($im, $rotate) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead.
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageDims($filename) {
 	global $_zp_graphics;
@@ -132,7 +132,7 @@ function zp_imageDims($filename) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageIPTC($filename) {
 	global $_zp_graphics;
@@ -142,7 +142,7 @@ function zp_imageIPTC($filename) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageWidth($im) {
 	global $_zp_graphics;
@@ -152,7 +152,7 @@ function zp_imageWidth($im) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead 
- * @since ZenphotoCMS 1.6.
+ * @since 1.6.
  */
 function zp_imageHeight($im) {
 	global $_zp_graphics;
@@ -162,7 +162,7 @@ function zp_imageHeight($im) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct) {
 	global $_zp_graphics;
@@ -172,7 +172,7 @@ function zp_imageMerge($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w,
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageGray($image) {
 	global $_zp_graphics;
@@ -182,7 +182,7 @@ function zp_imageGray($image) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead.
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageKill($im) {
 	global $_zp_graphics;
@@ -192,7 +192,7 @@ function zp_imageKill($im) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_colorAllocate($image, $red, $green, $blue) {
 	global $_zp_graphics;
@@ -202,7 +202,7 @@ function zp_colorAllocate($image, $red, $green, $blue) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_writeString($image, $font, $x, $y, $string, $color) {
 	global $_zp_graphics;
@@ -212,7 +212,7 @@ function zp_writeString($image, $font, $x, $y, $string, $color) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_drawRectangle($image, $x1, $y1, $x2, $y2, $color) {
 	global $_zp_graphics;
@@ -222,7 +222,7 @@ function zp_drawRectangle($image, $x1, $y1, $x2, $y2, $color) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_graphicsLibInfo() {
 	global $_zp_graphics;
@@ -232,7 +232,7 @@ function zp_graphicsLibInfo() {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_getFonts() {
 	global $_zp_graphics;
@@ -242,7 +242,7 @@ function zp_getFonts() {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageLoadFont($font = NULL, $size = 18) {
 	global $_zp_graphics;
@@ -252,7 +252,7 @@ function zp_imageLoadFont($font = NULL, $size = 18) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead.
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageFontWidth($font) {
 	global $_zp_graphics;
@@ -262,7 +262,7 @@ function zp_imageFontWidth($font) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageFontHeight($font) {
 	global $_zp_graphics;
@@ -272,7 +272,7 @@ function zp_imageFontHeight($font) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function imageBlurGD($imgCanvas, $imgCanvas2, $radius, $w, $h) {
 	global $_zp_graphics;
@@ -282,7 +282,7 @@ function imageBlurGD($imgCanvas, $imgCanvas2, $radius, $w, $h) {
 
 /**
  * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_graphics and the class method with the same name (but without the "zp_" prefix) instead. 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  */
 function zp_imageFromString($string) {
 	global $_zp_graphics;

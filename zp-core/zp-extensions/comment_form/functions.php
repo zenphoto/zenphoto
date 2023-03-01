@@ -998,7 +998,7 @@ function commentsAllowed($type) {
 /**
  * Gets an array of comments for the current admin
  * 
- * @since ZenphotoCMS 1.6 - Renamed from fetchComments()
+ * @since 1.6 - Renamed from fetchComments()
  *
  * @param int $number how many comments desired
  * @return array

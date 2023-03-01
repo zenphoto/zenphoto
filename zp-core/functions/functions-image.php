@@ -579,7 +579,7 @@ function getImageRotation($imgfile) {
 /**
  * Adds a watermark to a resized image. If no watermark is set it just returns the image
  * 
- * @since ZenphotoCMS 1.5.3 - consolidated from cacheImage() and full-image.php
+ * @since 1.5.3 - consolidated from cacheImage() and full-image.php
  * 
  * @param resource|object $newim GD image resource or Imagick object
  * @param string $watermark_image The path to the watermark to use
@@ -642,7 +642,7 @@ function addWatermark($newim, $watermark_image, $imgfile = null) {
 /**
  * Checks if an processed image is a GD library image
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param mixed $image And Image resource (PHP < 8) or GDImage object (PHP 8+)
  * @return boolean

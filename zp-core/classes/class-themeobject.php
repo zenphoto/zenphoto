@@ -80,7 +80,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the item itself is published
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * For a check including inheritance and private status use isPublic()
 	 *
@@ -98,7 +98,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Stores the published value
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 *
 	 * @param bool $published True if the item is published
 	 */
@@ -393,7 +393,7 @@ class ThemeObject extends PersistentObject {
 	 * 
 	 * Returns 1 if expired, 2 if in scheduled future publishing
 	 * 
-	 * @since ZenphotoCMS 1.5.7 - Code moved from the deprecated checKPublishDates() function
+	 * @since 1.5.7 - Code moved from the deprecated checKPublishDates() function
 	 * @param array $row database row of the object
 	 * @return int
 	 */
@@ -416,7 +416,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the item has a proper expire date set no matter if it has expired already or will expire in the future
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return boolean
 	 */
 	function hasExpireDate() {
@@ -428,7 +428,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the item will be automatically unpublished by a not yet reached future expire date
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return boolean
 	 */
 	function hasExpiration() {
@@ -441,7 +441,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if a future expiredate is set but the item is unpublished
 	 * 
-	 * @since ZenphotoCMS 1.5.7 
+	 * @since 1.5.7 
 	 * @return boolean
 	 */
 	function hasInactiveExpiration() {
@@ -454,7 +454,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the items has been unpublished after reaching the set expire date.
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return boolean
 	 */
 	function hasExpired() {
@@ -467,7 +467,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns the future date (publishdate for gallery, date for Zenpage items) if set to the future only
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return string | null
 	 */
 	function hasFutureDate() {
@@ -486,7 +486,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the item will be automatically published by a future date set
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return boolean
 	 */
 	function hasPublishSchedule() {
@@ -499,7 +499,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true if the item has a future date but is not published
 	 * 
-	 * @since ZenphotoCMS 1.5.7 
+	 * @since 1.5.7 
 	 * @return boolean
 	 */
 	function hasInactivePublishSchedule() {

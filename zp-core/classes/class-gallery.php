@@ -77,7 +77,7 @@ class Gallery {
 	/**
 	 * Sets the gallery description
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $desc
 	 */
@@ -88,7 +88,7 @@ class Gallery {
 	
 	/**
 	 * Gets the copyright notice
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param type $locale
 	 * @return type
@@ -104,7 +104,7 @@ class Gallery {
 
 	/**
 	 * Sets the copyright notice
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * @param type $notice
 	 */
 	function setCopyrightNotice($notice) {
@@ -124,7 +124,7 @@ class Gallery {
 	 * @see getRightsholderCopyrightCustom()
 	 * @see getRightsholderCopyright()
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function getCopyrightRightsholder() {
 		$rightsholder = $this->get('copyright_site_rightsholder');
@@ -147,7 +147,7 @@ class Gallery {
 	 * 
 	 * Gets the copyright site url
 	 * 
-	 * @since ZenphotoCMS 1.5.8 
+	 * @since 1.5.8 
 	 * @return type
 	 */
 	function getCopyrightURL() {
@@ -171,7 +171,7 @@ class Gallery {
 	/**
 	 * Sets the copyright site url
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * @param type $url
 	 */
 	function setCopyrightURL($url) {
@@ -344,7 +344,7 @@ class Gallery {
 	 * 
 	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
 	 * 
-	 * @since Zenphoto 1.5.8 - general functionality moved from the old admin function genAlbumList()
+	 * @since 1.5.8 - general functionality moved from the old admin function genAlbumList()
 	 * 
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS. Set to null to disable rights check
@@ -398,7 +398,7 @@ class Gallery {
 	 * 
 	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
 	 * 
-	 * @since Zenphoto 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param bool $keeplevel_sortorder Default false, set to true if the sublevels should sorted by their individual settings (slower)
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
@@ -1409,7 +1409,7 @@ class Gallery {
 	/**
 	 * Gets the total album pages 
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return int
 	 */
@@ -1420,7 +1420,7 @@ class Gallery {
 	/**
 	 * Gets the number of images if the thumb transintion page for sharing thumbs on the last album and the first image page
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * @param obj $obj Album object (or child class object) or searchengine object
 	 * @param bool $one_image_page 
 	 * @return int

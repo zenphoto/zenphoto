@@ -262,7 +262,7 @@ function getHitcounter($obj = NULL) {
  * Gets the total hitcounter sum of one or several items
  * 
  * @author Malte Müller (acrylian)
- * @since ZenphotoCMS 1.5.3
+ * @since 1.5.3
  * 
  * @param array $items an array with one or more item table names, e.g. array('albums', 'images', 'news', 'news_categories', 'pages')
  * @return int

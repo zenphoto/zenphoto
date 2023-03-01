@@ -19,7 +19,7 @@ if (!defined('EDITOR_SANITIZE_LEVEL'))
  *
  * @param string $addl additional text to output on the footer.
  * @author Todd Papaioannou (lucky@luckyspin.org)
- * @since  1.0.0
+ * @since 1.0.0
  */
 function printAdminFooter($addl = '') {
 	global $_zp_db;
@@ -238,7 +238,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		 * Print the html required to display the ZP logo and links in the top section of the admin page.
 		 *
 		 * @author Todd Papaioannou (lucky@luckyspin.org)
-		 * @since  1.0.0
+		 * @since 1.0.0
 		 */
 		function printLogoAndLinks() {
 			global $_zp_current_admin_obj, $_zp_admin_current_page, $_zp_admin_current_subpage, $_zp_gallery;
@@ -287,7 +287,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * from the $_GET['page']. If none is set, we default to "home".
 	 *
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 */
 	function printTabs() {
 		global $_zp_admin_submenu, $_zp_admin_menu, $_zp_admin_maintab_space, $_zp_admin_current_page;
@@ -485,7 +485,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 * Roughly fixes outdated usages of old admin "tab" globals and joins them with the actual globals.
 	 * and also throws deprecation notices about this.
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @global type $_zp_admin_menu
 	 * @global type $_zp_admin_current_page
@@ -4675,7 +4675,7 @@ function getAdminThumb($imageobj, $size = 'small') {
  * Returns the full HTML element of an admin thumb
  * Applies the filters 'adminthumb_html'
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param obj $imageobj The image object
  * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
@@ -4706,7 +4706,7 @@ function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null
 /**
  * Prints an admin thumb
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param obj $imageobj The image object
  * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
@@ -5048,7 +5048,7 @@ function checkAlbumimagesort($val, $type = 'albumimagesort') {
  * Prints the last change date and last change user notice on backend edit pages
  * Also for albums it prints the updateddate 
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * @param obj $obj Object of any item type
  */
 function printLastChangeInfo($obj) {
@@ -5086,7 +5086,7 @@ function printLastChangeInfo($obj) {
 /**
  * Returns the option array for the sort by selectors for gallery, albums and images
  * 
- * @since ZenphotoCMS 1.5.5 Replaces the global $_zp_sortby
+ * @since 1.5.5 Replaces the global $_zp_sortby
  * 
  * @param string $type "albums" (also for gallery), "albums-dynamic", 'images' 
  * 										 "image-edit" (the images edit tab backend only ordering)
@@ -5169,7 +5169,7 @@ function getSortByOptions($type) {
 /**
  * Returns an array of the status order options for all items
  * 
- * @since ZenphotoCMS 1.5.5 Replaces the global $_zp_sortby_status
+ * @since 1.5.5 Replaces the global $_zp_sortby_status
  * 
  * @return array
  */
@@ -5183,7 +5183,7 @@ function getSortByStatusOptions() {
 
 /**
  * Helper to check if notes are to be printed (only needed because of the inconvenient legacy table based layout on image edit pages)
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * @param obj $obj Image, album, news article or page object
  * @return boolean
  */
@@ -5197,7 +5197,7 @@ function checkSchedulePublishingNotes($obj) {
 /**
  * Prints various notes regarding the scheduled publishing status for single edit pages
  * 
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * @param obj $obj Image, album, news article or page object
  */
 function printScheduledPublishingNotes($obj) {
@@ -5254,7 +5254,7 @@ function printScheduledPublishingNotes($obj) {
 /**
  * Prints the publish icon link to change the status on the album and thumb image list
  * 
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * @param object $obj Image or album object
  * @param boolean $enableedit  true if allowed to use
  * @param string $owner User name of the owner
@@ -5327,7 +5327,7 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 /**
  * Prints the scheduled publishing date for items if set. Also prints the date for Zenpage news articles and pages
  *
- * @since ZenphotoCMS 1.5.7 moved from Zenpage plugin to generel admin functions
+ * @since 1.5.7 moved from Zenpage plugin to generel admin functions
  * @param string $obj image, albun, news article or page object
  * @return string
  */
@@ -5349,7 +5349,7 @@ function printPublished($obj) {
 /**
  * Prints the expiration or expired date for items
  * 
- * @since ZenphotoCMS 1.5.7 moved from Zenpage plugin to generel admin functions
+ * @since 1.5.7 moved from Zenpage plugin to generel admin functions
  * @param string $obj image, albun, news article or page object
  * @return string
  */
@@ -5368,7 +5368,7 @@ function printExpired($obj) {
  * 
  * Returns either the message why incompatible or false if not.
  * 
- * @since Zenphoto 1.5.8
+ * @since 1.5.8
  * 
  * @param string|array $disable One string or serveral as an array. Not false means incompatible 
  * @return boolean|string
@@ -5416,7 +5416,7 @@ function processExtensionVariable($var) {
  * 
  * If "custom" is selected the custom text field will be shown.
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @global obj $_zp_gallery Gallery object
  * @param string $optionname The option name of the select list
@@ -5478,7 +5478,7 @@ function printSelectorWithCustomField($optionname, $list = array(), $optionlabel
 /**
  * Gets an array of Zenpage pages ready for using with selector, radioboxes and checkbox lists
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param bool $published true for only published, default false for all.
  * 
@@ -5516,7 +5516,7 @@ function getZenpagePagesOptionsArray($published = false) {
  * 
  * it additionally prints a text field for a custom page URL.
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $optionname Name of the option, sued for the selector and the current selection
  * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended
@@ -5533,7 +5533,7 @@ function printZenpagePageSelector($optionname, $optionname_custom = null, $publi
 /**
  * Gets an array of administrators ready for using with selector, radioboxes and checkbox lists
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @global object $_zp_authority
  * @param string $type 'users', 'groups', 'allusers'
@@ -5561,7 +5561,7 @@ function getAdminstratorsOptionsArray($type = 'users') {
  * 
  * it additionally prints a text field for a custom name
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $optionname Name of the option, sued for the selector and the current selection
  * @param string $optionname_custom If defined this will be used for the custom url option, if null (default) the option name will be used with "_custom" appended

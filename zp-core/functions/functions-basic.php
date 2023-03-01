@@ -512,8 +512,8 @@ function loadLocalOptions($albumid, $theme) {
  * Replaces/renames an option. If the old option exits, it creates the new option with the old option's value as the default 
  * unless the new option has already been set otherwise. Independently it always deletes the old option.
  * 
- * @since Zenphoto 1.5.1
- * @since ZenphotoCMS 1.5.8 - renamed from replaceOption() to renameOption()
+ * @since 1.5.1
+ * @since 1.5.8 - renamed from replaceOption() to renameOption()
  * 
  * @param string $oldkey Old option name
  * @param string $newkey New option name
@@ -1008,7 +1008,7 @@ function getImageArgs($set) {
  * @param array $watermarks
  * @return array
  * 
- * @since Zenphoto 1.5.1 Moved from cacheManager/functions.php
+ * @since 1.5.1 Moved from cacheManager/functions.php
  */
 function getImageProcessorURIFromCacheName($match, $watermarks) {
 	$set = array();
@@ -1353,7 +1353,7 @@ function getAlbumFolder($root = SERVERPATH) {
 /**
  * Returns the fully qualified path to the backup folder
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $root the base from whence the path dereives
  * @return string
@@ -1365,7 +1365,7 @@ function getBackupFolder($root = SERVERPATH) {
 /**
  * Returns the fully qualified path to the root albums or backup folder
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $folder The folder path to get: "albumfolder" or "backupfolder"
  * @param string $root the base from whence the path dereives
@@ -1673,7 +1673,7 @@ function getWatermarkPath($wm) {
 /**
  * Checks to see if access was through a secure protocol
  * 
- * @since Zenphoto 1.5.1 Extended/adapted from WordPress' `is_ssl()` function: https://developer.wordpress.org/reference/functions/is_ssl/
+ * @since 1.5.1 Extended/adapted from WordPress' `is_ssl()` function: https://developer.wordpress.org/reference/functions/is_ssl/
  * 
  * @return bool
  */
@@ -1991,7 +1991,7 @@ function httpsRedirect($type = 'backend') {
 /**
  * General url redirection handler using header()
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param string $url A full qualified url
  * @param string $statuscode Default null (no status header). Enter the status header code to send. Currently supported: 
@@ -2076,7 +2076,7 @@ function sanitizeRedirect($redirectTo) {
  * 
  * Note: Invalid static calls to non static class methods cannot be catched unless the native PHP extension Reflection is available.
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * @param string|array $function A function name, static class method calls like classname::methodname, an array with a class name and static method name or a cass object and a non static class name
  * @param array $parameter Parameters of the function/method as one dimensional array
@@ -2136,7 +2136,7 @@ function callUserFunction($function, $parameter = array()) {
 /**
  * Logs a deprecated notice including traces in the debuglog
  * 
- * @since ZenphotoCMS 1.6 - based on deprecated_functions::notify() from the deprecated_functions plugin written by sbillard 
+ * @since 1.6 - based on deprecated_functions::notify() from the deprecated_functions plugin written by sbillard 
  * 
  * @param string $use Additional message, e.g. what to use instead
  * @param bool|string $parameter Set to true if this should notify about deprecated parameter usage (default false), You can also set the name of the parameter if you want to notify about a specific parameter change only
@@ -2189,7 +2189,7 @@ function deprecationNotice($use, $parameter = false) {
  * 
  * zpFormattedDate() can handle these internally
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $format strftime() date format string
  * @return string

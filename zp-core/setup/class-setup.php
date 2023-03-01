@@ -501,7 +501,7 @@ class setup {
 	/**
 	 * Generates an XSRFtoken
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return string
 	 */
@@ -804,7 +804,7 @@ class setup {
 	/**
 	 * Checks if the server software is Apache or Nginx 
 	 * 
-	 * @since ZenphotoCMS 1.5.7
+	 * @since 1.5.7
 	 * @return boolean
 	 */
 	static function checkServerSoftware() {
@@ -819,7 +819,7 @@ class setup {
 	/**
 	 * Returns either "apache" or "nginx" for supported server software or the full $_SERVER['SERVER_SOFTWARE'] info
 	 * 
-	 * @since ZenphotoCMS 1.5.7 
+	 * @since 1.5.7 
 	 * @return string
 	 */
 	static function getServerSoftware() {
@@ -851,7 +851,7 @@ class setup {
 	/**
 	 * Checks to see if access was through a secure protocol
 	 * 
-	 * @since Zenphoto 1.5.8 Doubles the function of the same name in functions-basic.php as not available on fresh installs
+	 * @since 1.5.8 Doubles the function of the same name in functions-basic.php as not available on fresh installs
 	 * 
 	 * @return bool
 	 */
@@ -876,7 +876,7 @@ class setup {
 	/**
 	 * Checks if we are updating from an earlier version or reinstalling and returns an array with various info for the checkmark box
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return array
 	 */
@@ -975,7 +975,7 @@ class setup {
 	 * 
 	 * Note: THis needs to be kept current and updated with the previous version with every release
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return array
 	 */

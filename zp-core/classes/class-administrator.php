@@ -132,7 +132,7 @@ class Administrator extends PersistentObject {
 	/**
 	 * Gets the full name if set 
 	 * 
-	 * @since ZenphotoCNS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $user User id 
 	 * @return string
@@ -470,7 +470,7 @@ class Administrator extends PersistentObject {
 	/**
 	 * Returns the last time the user visited the site being loggedin
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * @return strig
 	 */
 	function getLastVisit() {
@@ -480,7 +480,7 @@ class Administrator extends PersistentObject {
 	/**
 	 * Sets the last time the user visited the site being loggedin
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function setLastVisit($datetime = '') {
 		if(empty($datetime)) {
@@ -491,7 +491,7 @@ class Administrator extends PersistentObject {
 	
 	/**
 	 * Updates the last visit date if enabled on the options and the time frame defined has passed.
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function updateLastVisit() {
 		if (getOption('admin_lastvisit')) {

@@ -51,7 +51,7 @@ class ZenpagePage extends ZenpageItems {
 	 * 
 	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function setDefaultSortorder() {
 		$default = $this->getDefaultSortorder();
@@ -68,7 +68,7 @@ class ZenpagePage extends ZenpageItems {
 	 * 
 	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @global obj $_zp_zenpage  
 	 * @return string
@@ -195,7 +195,7 @@ class ZenpagePage extends ZenpageItems {
 	/**
 	 * Gets the parent page object based on the parentid set
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return obj|null
 	 */
@@ -300,7 +300,7 @@ class ZenpagePage extends ZenpageItems {
 	/**
 	 * Returns true if this page is published and also all of its parents.
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return bool
 	 */

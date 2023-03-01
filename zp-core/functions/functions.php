@@ -341,7 +341,7 @@ function myts_date($format, $mytimestamp) {
  * @return string
  *
  * @author Todd Papaioannou (lucky@luckyspin.org)
- * @since  1.0.0
+ * @since 1.0.0
  */
 function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $bcc_addresses = NULL, $replyTo = NULL) {
 	global $_zp_authority, $_zp_gallery, $_zp_utf8;
@@ -674,7 +674,7 @@ function enableExtension($extension, $priority, $persistent = true) {
  * @param string $extension
  * @param bool $persistent
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  */
 function disableExtension($extension, $persistent = true) {
 	setOption('zp_plugin_' . $extension, 0, $persistent);
@@ -1264,7 +1264,7 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending = fals
  * break for example JS event handlers. Do this in your attribute definition array as needed.
  * Attributes with an empty value are skipped except the alt attribute or known boolean attributes (see in function definition)
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * @param array $attributes key => value pairs of element attribute name and value. e.g. array('class' => 'someclass', 'id' => 'someid');
  * @param array $exclude Names of attributes to exclude (in case already set otherwise)
  * @return string
@@ -1461,7 +1461,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
  * 
  * The function follows native PHP array sorting functions (natcasesort() etc.) and uses the array by reference and returns true or false on success or failure.
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param array $array The array to sort. The array is passed by reference
  * @param string  $descending true for descending sorts (default false)
@@ -1595,7 +1595,7 @@ function safe_fnmatch($pattern, $string) {
  * Returns true if the mail address passed is valid. 
  * It uses PHP's internal `filter_var` functions to validate the syntax but not the existence.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param string $email An email address
  * @return boolean
@@ -1968,7 +1968,7 @@ function setThemeOption($key, $value, $album, $theme, $default = false) {
  * @param string $oldkey Old option name
  * @param string $newkey New option name
  * 
- * @since Zenphoto 1.5.1
+ * @since 1.5.1
  */
 function replaceThemeOption($oldkey, $newkey) {
 	$oldoption = getThemeOption($oldkey);
@@ -1984,7 +1984,7 @@ function replaceThemeOption($oldkey, $newkey) {
  * @global array $_zp_options
  * @param string $key
  * 
- * @since Zenphoto 1.5.1
+ * @since 1.5.1
  */
 function purgeThemeOption($key, $album = NULL, $theme = NULL, $allthemes = false) {
 	global $_zp_set_theme_album, $_zp_gallery, $_zp_db;
@@ -2007,7 +2007,7 @@ function purgeThemeOption($key, $album = NULL, $theme = NULL, $allthemes = false
 /**
  * Deletes a theme option for all themes present or not
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @global obj $_zp_db
  * @param string $key
@@ -2947,7 +2947,7 @@ function removeTrailingSlash($string) {
  * 	'linktext' => '<The defined text>'
  * )
  * 
- * @since Zenphoto 1.5
+ * @since 1.5
  * 
  * @return array
  */
@@ -2982,7 +2982,7 @@ function getDataUsageNotice() {
  * Prints the data privacy policy page and the data usage confirmation text as defined on Options > Security
  * If there is no page defined it only prints the default text.
  * 
- * @since Zenphoto 1.5
+ * @since 1.5
  */
 function printDataUsageNotice() {
 	$data = getDataUsageNotice();
@@ -2995,7 +2995,7 @@ function printDataUsageNotice() {
 /**
  * Returns an array with predefined info about general cookies set by the system and/or plugins
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @return array
@@ -3065,7 +3065,7 @@ function getCookieInfoData($section = null) {
 /**
  * Returns a definition list with predefined info about general cookies set by the system and/or plugins as a string
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.
@@ -3097,7 +3097,7 @@ function getCookieInfoHTML($section = null, $sectionheadline = 'h2') {
 /**
  * Prints a definition list with predefined info about general cookies set by the system and/or plugins
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.

@@ -602,7 +602,7 @@ function getNumAllSubalbums($albumobj, $pre = '') {
  * Returns an randomly selected image objecet from the gallery per day.
  * Returns null on failure
  * 
- * @since Zenphoto 1.5.8
+ * @since 1.5.8
  * 
  * @param string $albumfolder foldername of an specific album. If not set from all images in the gallery
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums

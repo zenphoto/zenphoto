@@ -509,7 +509,7 @@ function printBareGalleryDesc() {
  * Returns the name of the parent website as set by the "Website Title" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @return string
  */
@@ -522,7 +522,7 @@ function getParentSiteTitle() {
  * Returns the URL of the main website as set by the "Website URL" option
  * on the gallery options tab. Use this if Zenphoto is only a part of your website.
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @return string
  */
@@ -2115,7 +2115,7 @@ function getNumImages() {
 
 /**
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @global obj $_zp_current_album
  * @global type $_zp_current_search
@@ -2463,7 +2463,7 @@ function printImageData($field, $label = '') {
 /**
  * Returns the file size of the full original image
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @global obj $_zp_current_image
  * @return int
@@ -4394,7 +4394,7 @@ function print404status($album, $image, $obj) {
 /**
  * Gets current item's owner (gallery images and albums) or author (Zenpage articles and pages)
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @global obj $_zp_current_album
  * @global obj $_zp_current_image
@@ -4427,7 +4427,7 @@ function getOwnerAuthor($fullname = false) {
 /**
  * Prints current item's owner (gallery images and albums) or author (Zenpage articles and pages)
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param type $fullname
  */
@@ -4440,7 +4440,7 @@ function printOwnerAuthor($fullname = false) {
  * 
  * This eventually may return the url to an actual user profile page in the future.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @return type
  */
@@ -4461,7 +4461,7 @@ function getOwnerAuthorURL() {
  * 
  * This eventually may return the url to an actual user profile page in the future.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param type $fullname
  * @param type $resulttype
@@ -4488,7 +4488,7 @@ function printOwnerAuthorURL($fullname = false, $resulttype = 'all', $class = nu
  * 
  * This eventually may return the url to an actual user profile page in the future.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param string $username The user name of a user. Note there is no check if the user name is actually valid!
  * @param string $resulttype  'all' for owner and author, 'gallery' for owner of images/albums only, 'zenpage' for author of news articles and pages
@@ -4519,7 +4519,7 @@ function getUserURL($username, $resulttype = 'all') {
  * 
  * This eventually may point to an actual user profile page in the future.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param string $username The user name of a user. 
  * @param string $resulttype  'all' for owner and author, 'gallery' for owner of images/albums only, 'zenpage' for author of news articles and pages
@@ -4544,8 +4544,8 @@ function printUserURL($username, $resulttype = 'all', $linktext = null, $class =
 /**
  * Display the site or image copyright notice if defined and display is enabled
  * 
- * @since ZenphotoCMS 1.5.8
- * @since ZenphotoCMS 1.6 Also handles the image copyright notice
+ * @since 1.5.8
+ * @since 1.6 Also handles the image copyright notice
  * 
  * @global obj $_zp_gallery
  * @param string $before Text to print before it
@@ -4583,7 +4583,7 @@ function printCopyrightNotice($before = '', $after = '', $linked = true, $type =
 /**
  * Display the site copyright notice if defined and display is enabled
  * 
- * @since ZenphotoCMS 1.6 - Added as shortcut to the general printCopyRightNotice
+ * @since 1.6 - Added as shortcut to the general printCopyRightNotice
  * 
  * @param string $before Text to print before it
  * @param string $after Text to print after it
@@ -4596,7 +4596,7 @@ function printGalleryCopyrightNotice($before = '', $after = '', $linked = true) 
 /**
  * Display the image copyright notice if defined and display iss enabled
  * 
- * @since ZenphotoCMS 1.6 - Added as shortcut to the general printCopyRightNotice
+ * @since 1.6 - Added as shortcut to the general printCopyRightNotice
  * 
  * @param string $before Text to print before it
  * @param string $after Text to print after it
@@ -4609,7 +4609,7 @@ function printImageCopyrightNotice($before = '', $after = '', $linked = true) {
 /**
  * Gets the current page number if it is larger than 1 for use on paginated pages for SEO reason to avoid duplicate titles
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $before Text to add before the page number. Default ' (';
  * @param string $after Text to add ager the page number. Default ')';
@@ -4623,7 +4623,7 @@ function getCurrentPageAppendix($before = ' (', $after =')') {
 /**
  * Prints the current page number if it is larger than 1 for use on paginated pages for SEO reason to avoid duplicate titles
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $before Text to add before the page number. Default ' (';
  * @param string $after Text to add ager the page number. Default ')';

@@ -147,7 +147,7 @@ function signatureChange($tab = NULL, $subtab = NULL) {
 /**
  * Adds the reconfigure notification via filters 
  * 
- * @since ZenphotoCMS 1.5.8 - renamed from reconfigureNote()
+ * @since 1.5.8 - renamed from reconfigureNote()
  */
 function addReconfigureNote() {
 	if (function_exists('zp_register_filter')) {
@@ -161,7 +161,7 @@ function addReconfigureNote() {
 /**
  * prints HTML for the configuration change notification
  * 
- * @since ZenphotoCMS 1.5.8 - renamed from reconfigureNote()
+ * @since 1.5.8 - renamed from reconfigureNote()
  * @param array $diff
  * @param type $needs
  * @param type $mandatory
@@ -233,7 +233,7 @@ function printReconfigureNote($diff, $needs, $mandatory) {
  * 
  * Also adds entries to the debuglog.
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param array $diff
  * @param type $needs
@@ -324,7 +324,7 @@ function debuglogReconfigureNote($notice) {
  * If setup request a run because of a signature change this refreshes the signature 
  * on full admin user request so it is ignored until the next signature change.
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  */
 function ignoreSetupRunRequest() {
 	if (isset($_GET['ignore_setup']) && zp_loggedin(ADMIN_RIGHTS)) {

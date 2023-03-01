@@ -16,7 +16,7 @@
  * 	images_per_page
  * 
  * @deprecated ZenphotoCMS 2.0 - This function is obsolete and has no functionality anymore
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * Computes a normalized images/albums per page and computes the number of
  * images that will fit on the "transitional" page between album thumbs and
@@ -31,7 +31,7 @@ function setThemeColumns() {
  * Returns the mimetype for a suffix
  * 
  * @deprecated ZenphotoCMS 2.0 - Use mimeTypes::getType(m() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $suffix Suffix without . to get the mimetype for
  * @return string
@@ -46,7 +46,7 @@ function getMimeString($suffix) {
  * Wrapper instantiation function for albums. Do not instantiate directly
  * 
  * @deprecated ZenphotoCMS 2.0 - Use AlbumBase::newAlbum() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $folder8 the name of the folder (inernal character set)
  * @param bool $cache true if the album should be fetched from the cache
@@ -62,7 +62,7 @@ function newAlbum($folder8, $cache = true, $quiet = false) {
  * Returns true if the object is a zenphoto 'album'
   * 
  * @deprecated ZenphotoCMS 2.0 - Use AlbumBase::siAlbumClass() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * @param object $album
  * @return bool
@@ -78,7 +78,7 @@ function isAlbumClass($album = NULL) {
  * Returns the oldest ancestor of an alubm;
  *
  * @deprecated ZenphotoCMS 2.0 – Use $album->getUrAlbum() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * @param string $album an album object
  * @return object
@@ -94,7 +94,7 @@ function getUrAlbum($album) {
  * Returns a new "image" object based on the file extension
   * 
  * @deprecated ZenphotoCMS 2.0 - Use Image::newImage() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param object $album the owner album
  * @param string $filename the filename
@@ -110,7 +110,7 @@ function newImage($album, $filename, $quiet = false) {
  * Returns true if the object is a zenphoto 'image'
  * 
  * @deprecated ZenphotoCMS 2.0 - Use Image::isImageClass() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param object $image
  * @return bool
@@ -124,7 +124,7 @@ function isImageClass($image = NULL) {
  * encloses search word in quotes if needed
  * 
  * @deprecated ZenphotoCMS 2.0 - Use SearchEngine::getSearchQuote() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *  
  * @param string $word
  * @return string
@@ -139,7 +139,7 @@ function search_quote($word) {
  * Returns video argument of the current Image.
  *
  * @deprecated ZenphotoCMS 2.0 – Use the Image class method isVideo() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * @param object $image optional image object
  * @return bool
@@ -159,7 +159,7 @@ function isImageVideo($image = NULL) {
  * Returns true if the image is a standard photo type
  *
  * @deprecated ZenphotoCMS 2.0 – Use the Image class method isPhoto() instead
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  *
  * @param object $image optional image object
  * @return bool
@@ -184,7 +184,7 @@ function isImagePhoto($image = NULL) {
  * @param string $oldkey Old option name
  * @param string $newkey New option name
  * 
- * @since Zenphoto 1.5.1
+ * @since 1.5.1
  */
 function replaceOption($oldkey, $newkey) {
 	deprecationNotice(gettext("Use renameOption() instead"));

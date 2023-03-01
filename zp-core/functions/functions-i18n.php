@@ -366,7 +366,7 @@ function setupCurrentLocale($override = NULL) {
  * Converts underscore locales like "en_US" to valid IANA/BCP 47 hyphen locales like "en-US"
  * Needed for example in JS or HTML "lang" attributes.
  * 
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * 
  * @param string $locale a locale like "en_US", if empty the current locale is used
  * @return string
@@ -697,7 +697,7 @@ function getLanguageText($loc = NULL, $separator = NULL) {
  * @param bool $plainarray Default false for a multidimensial array grouped by locale base. Set to true to generate a single dimensional array with all locales. 
  * 
  * @author Stephen Billard (sbillard), Malte Müller (acrylian) - adapted from the old former unsupported tool `list_locales.php`
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * @return array
  */
 function getSystemLocales($plainarray = false) {
@@ -723,7 +723,7 @@ function getSystemLocales($plainarray = false) {
  * If available it will use the native PHP Locale class. It returns the name in the language/locale currently set.
  * Otherwise the far more limited internal Zenphoto catalogue stored in getLanguageArray() will be used.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  * 
  * @param string $locale A vaild locale.
  * @return string
@@ -742,7 +742,7 @@ function getLanguageDisplayName($locale) {
 /**
  * Prints the lang="" attribute for the main <html> element.
  * 
- * @since ZenphotoCMS 1.5.7
+ * @since 1.5.7
  * 
  * @param string $locale Default null so the current locale is used. Or a locale like "en_US" which will get the underscores replaced by hyphens to be valid
  */
@@ -754,7 +754,7 @@ function printLangAttribute($locale = null) {
  * Returns a locale aware - e.g. translated day and month names -  formatted date. Requires the PHP intl extension to work properly
  * Otherwise returns standard formatted date.
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @param string $format A compatible date format string like Y-m-d (default)
  * @param string|int $datetime A date() compatible string or a timestamp. If empty "now" is used

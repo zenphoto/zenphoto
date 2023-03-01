@@ -1481,7 +1481,7 @@ class SearchEngine {
 	 * Checks if the album should be excluded from results
 	 * Subalbums and their contents inherit the exclusion.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $albumname
 	 * @return boolean
@@ -2006,7 +2006,7 @@ class SearchEngine {
 	 * Returns true if $sortdir is set to "DESC", otherwise false, for use with sorting functions
 	 * @param string $sortdirection Traditional speaking values "ASC" or "DESC"
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return boolean
 	 */
@@ -2022,7 +2022,7 @@ class SearchEngine {
 	 *
 	 * encloses search word in quotes if needed
 	 * 
-	 * @since ZenphotoCMS 1.6 - Move to Search class as static method
+	 * @since 1.6 - Move to Search class as static method
 	 * @param string $word
 	 * @return string
 	 */
@@ -2046,7 +2046,7 @@ class SearchEngine {
 	/**
 	 * Returns the formatted date of the search
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $format formatting of the date, default 'F Y'
 	 * @return string
@@ -2067,7 +2067,7 @@ class SearchEngine {
 	 * 
 	 * Gets the number of album pages
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
 	 *		"plain" number of pages as float value
@@ -2088,7 +2088,7 @@ class SearchEngine {
 	/**
 	 * Gets the number of image pages
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
 	 *							"plain" number of pages as float value
@@ -2110,7 +2110,7 @@ class SearchEngine {
 	/**
 	 * Gets the number of total pages of albums and images
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param bool $one_image_page set to true if your theme collapses all image thumbs
 	 * or their equivalent to one page. This is typical with flash viewer themes
@@ -2129,7 +2129,7 @@ class SearchEngine {
 	/**
 	 * Gets the albums per page value
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return int
 	 */
@@ -2141,7 +2141,7 @@ class SearchEngine {
 	 * 
 	 * Gets the images per page value
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return int
 	 */
@@ -2152,7 +2152,7 @@ class SearchEngine {
 		/**
 	 * Gets the number of images if the thumb transintion page for sharing thunbs on the last album and the first image page
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param bool $one_image_page 
 	 * @return int
@@ -2175,7 +2175,7 @@ class SearchEngine {
 	 * Returns a search URL
 	 * 
 	 * @since 1.1.3
-	 * @since ZenphotoCMS 1.6 - Move to SearchEngine class as static method
+	 * @since 1.6 - Move to SearchEngine class as static method
 	 *
 	 * @param mixed $words the search words target
 	 * @param mixed $dates the dates that limit the search

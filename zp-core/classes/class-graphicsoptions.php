@@ -2,7 +2,7 @@
 /**
  * Option class for graphics handlers 
  * 
- * @since ZenphotoCMS 1.6
+ * @since 1.6
  * 
  * @package zpcore\classes\graphics
  */

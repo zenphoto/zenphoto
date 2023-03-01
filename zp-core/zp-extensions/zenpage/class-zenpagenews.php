@@ -165,7 +165,7 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Returns true if this article is published and in any published category
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return bool
 	 */

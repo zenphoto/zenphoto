@@ -228,7 +228,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns the image filename
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * @return string
 	 */
 	function getName() {
@@ -576,7 +576,7 @@ class Image extends MediaObject {
 	 * If there is valid GPS data returns key value array with "long" and "lat" keys
 	 * otherwise an empty array
 	 * 
-	 * @since ZenphotoCMS 1.5.8 - Moved/adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
+	 * @since 1.5.8 - Moved/adapted from the offical Zenphoto GoogleMap plugin by Stephen Billard (sbillard) & Vincent Bourganel (vincent3569)
 	 * 
 	 * @return array
 	 */
@@ -716,7 +716,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns 'is_square', 'is_landscape', 'is_portrait' if the original image's widht and height match.
 	 * 
-	 * @since Zenphoto 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
 	 * @return boolean|string
@@ -746,7 +746,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the image has landscape orientation
 	 * 
-	 * @since Zenphoto 1.5.8
+	 * @since 1.5.8
 	 *  
 	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
 	 * @return bool
@@ -758,7 +758,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the image is a square
 	 * 
-	 * @since Zenphoto 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
 	 * @return bool
@@ -770,7 +770,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the image has portrait orientation
 	 * 
-	 * @since Zenphoto 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $type 'image' or 'thumb' - the latter may be different on non image "image items"
 	 * @return bool
@@ -944,7 +944,7 @@ class Image extends MediaObject {
 	 * - "coypright_image_notice" option
 	 * - Owner
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $locale
 	 * @return string|null
@@ -979,7 +979,7 @@ class Image extends MediaObject {
 	 * – IPTCByLine
 	 * - the owner (fullname if available)
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function getCopyrightRightsholder() {
 		$rightsholder = trim(getOption('copyright_image_rightsholder'));
@@ -1560,7 +1560,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if this image is published and also its album and all of its parents.
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return bool
 	 */
@@ -1582,7 +1582,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns the filesize in bytes of the full image
 	 * 
-	 * @since ZenphotoCMS 1.5.2
+	 * @since 1.5.2
 	 * 
 	 * @return int|false
 	 */
@@ -1594,7 +1594,7 @@ class Image extends MediaObject {
 	
 	/**
 	 * Sets the current date to the images'album and all of its parent albums recursively
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 */
 	function setUpdatedDateAlbum() {
 		$album = $this->album;
@@ -1608,7 +1608,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the image is a "photo"
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return bool
 	 */
@@ -1620,7 +1620,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the image is an "video" file
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return bool
 	 */

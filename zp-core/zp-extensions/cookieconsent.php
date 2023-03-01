@@ -334,7 +334,7 @@ class cookieConsent {
 	 * 
 	 * NOTE: This will not and cannot work properly while using the static_html_cache plugin unless called before the cache is fetched.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return boolean
 	 */
@@ -370,7 +370,7 @@ class cookieConsent {
 	 * 
 	 * Plugins or themes can use the "cookieconsent_consentscripts" to add additional ones
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	static function printConsentJS() {
 		$scripts = getOption('zpcookieconsent_scripts');
@@ -382,7 +382,7 @@ class cookieConsent {
 	 * 
 	 * Plugins or themes can use the "cookieconsent_externalconsentscripts" to add additional ones
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	static function printExternalConsentJS() {
 		$option = trim(strval(getOption('zpcookieconsent_externalscripts')));

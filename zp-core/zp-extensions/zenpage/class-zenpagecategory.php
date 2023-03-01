@@ -70,7 +70,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 
 	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 */
 	function setDefaultSortorder() {
 		$default = $this->getDefaultSortorder();
@@ -87,7 +87,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 
 	 * The sortorder takes care of existing categories on the level and adds the item after existing ones.
 	 * 
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @global obj $_zp_zenpage  
 	 * @return string
@@ -205,7 +205,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Gets the sub categories recursivly by titlelink
 	 * 
-	 * @since ZenphotoCMS 1.5.8 - deprecates getSubCategories()
+	 * @since 1.5.8 - deprecates getSubCategories()
 	 * 
 	 * @param bool $visible TRUE for published and unprotected
 	 * @param string $sorttype NULL for the standard order as sorted on the backend, "title", "date", "popular"
@@ -235,7 +235,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Checks if the current news category is a sub category of $catlink
 	 *
-	 * @since ZenphotoCMS 1.5.8 - deprecates isSubNewsCategoryOf()
+	 * @since 1.5.8 - deprecates isSubNewsCategoryOf()
 	 * 
 	 * @return bool
 	 */
@@ -266,7 +266,7 @@ class ZenpageCategory extends ZenpageRoot {
 		/**
 	 * Gets the parent category object based on the parentid set
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return obj|null
 	 */
@@ -355,7 +355,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Returns true if this category is published and also all of its parents.
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return bool
 	 */
@@ -431,7 +431,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Returns the articles count
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 */
 	function getTotalArticles() {
 		return count($this->getArticles(0));
@@ -440,7 +440,7 @@ class ZenpageCategory extends ZenpageRoot {
 	/**
 	 * Gets the total news pages
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 */
 	function getTotalNewsPages() {
 		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);

@@ -5,7 +5,7 @@
  *
  * Requires Imagick 3.0.0+ and ImageMagick 6.3.8+
  * 
- * @since ZenphotoCMS 1.6 - reworked as class
+ * @since 1.6 - reworked as class
  * 
  * @package zpcore\classes\graphics
  */
@@ -291,7 +291,7 @@ class graphicsImagick extends graphicsBase {
 	/**
 	 * Flips (mirrors) an image
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param image $im 
 	 * @param string $mode "horizontal" (default) or "vertical" 

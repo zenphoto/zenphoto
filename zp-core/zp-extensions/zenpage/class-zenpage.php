@@ -548,7 +548,7 @@ class Zenpage {
 	/**
 	 * Returns the articles count
 	 * 
-	 * @since ZenphotoCMS 1.6 - This gets the news articles of the news index - For categories use the same named method of the Category object
+	 * @since 1.6 - This gets the news articles of the news index - For categories use the same named method of the Category object
 	 */
 	function getTotalArticles() {
 		return count($this->getArticles(0));
@@ -557,7 +557,7 @@ class Zenpage {
 	/**
 	 * Gets the total news pages
 	 * 
-	 * @since ZenphotoCMS 1.6 - This gets the news page number of the news index - For categories use the same named method of the Category object
+	 * @since 1.6 - This gets the news page number of the news index - For categories use the same named method of the Category object
 	 */
 	function getTotalNewsPages() {
 		return ceil($this->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
@@ -849,7 +849,7 @@ class Zenpage {
 	 * Gets the default sortorder for a Zenpage caategory or page that does not yet have one, e.g. because newly created
 	 * The sortorder takae care of existing ones and add the item after existing items.
 	 *  
-	 * @since ZenphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @param string $type "category" or "page"
 	 * @return string

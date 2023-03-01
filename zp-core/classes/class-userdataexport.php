@@ -3,7 +3,7 @@
  * Class for exporting possible privacy related user data
  * 
  * @author Malte Müller (acrylian)
- * @since ZenphotoCMS 1.5
+ * @since 1.5
  * 
  * @package zpcore\classes\admin
  */

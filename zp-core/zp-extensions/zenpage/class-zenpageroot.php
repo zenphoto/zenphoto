@@ -30,7 +30,7 @@ class ZenpageRoot extends ThemeObject {
 	/**
 	 * Returns the name (titlelink)
 	 *
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return string
 	 */
@@ -41,7 +41,7 @@ class ZenpageRoot extends ThemeObject {
 	/**
 	 * sets the name (title link)
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param $v
 	 */

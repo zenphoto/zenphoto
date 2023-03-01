@@ -234,7 +234,7 @@ class matomoStats {
 
 	/**
 	 * Gets the iframe for the optout cookie required by privacy laws of several countries.
-	 * @since ZenphotoCMS 1.6.1
+	 * @since 1.6.1
 	 * @return string
 	 */
 	static function getOptOutForm() {

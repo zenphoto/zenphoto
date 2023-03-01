@@ -3,7 +3,7 @@
 /**
  * class for image handling using the GD library
  * 
- * @since ZenphotoCMS 1.6 - reworked as class
+ * @since 1.6 - reworked as class
  * 
  * @package zpcore\classes\graphics
  */
@@ -305,7 +305,7 @@ class graphicsGD extends graphicsBase {
 	 * 
 	 * Note: You have to apply zp_resampleImage() afterwards as the function does not handle this internally
 	 * 
-	 * @since ZenphotoCMS 1.5.2
+	 * @since 1.5.2
 	 * 
 	 * @param image $src
 	 * @param int $w
@@ -346,7 +346,7 @@ class graphicsGD extends graphicsBase {
 	
 	/**
 	 * Flips (mirrors) an image
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * @param image $im 
 	 * @param string $mode "horizontal" (default) or "vertical"
 	 * @return object

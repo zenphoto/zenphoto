@@ -106,7 +106,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns the folder on the filesystem
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * @return string
 	 */
 	function getName() {
@@ -161,7 +161,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets an array of parent album objects
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return array|null
 	 */
@@ -186,7 +186,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns the oldest ancestor of an alubm;
 	 *
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return object
 	 */
@@ -372,7 +372,7 @@ class AlbumBase extends MediaObject {
 	 * Returns the count of all subalbums of all sublevels
 	 * Note that dynamic albums are not counted
 	 * 
-	 * @since Zenphoto 1.5.2
+	 * @since 1.5.2
 	 */
 	function getNumAllAlbums() {
 		if (!is_null($this->num_allalbums)) {
@@ -442,7 +442,7 @@ class AlbumBase extends MediaObject {
 	 * Returns the number of images in this album and subalbums of all levels
 	 * Note that dynamic albums are not counted.
 	 * 
-	 * @since Zenphoto 1.5.2
+	 * @since 1.5.2
 	 */
 	function getNumAllImages() {
 		if (!is_null($this->num_allimages)) {
@@ -807,7 +807,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Checks is the destination is not a subfolder of the current folder itself
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @param string $destination album name to move or copy to
 	 * @return boolean
@@ -948,7 +948,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns true if this album is published and also all of its parents.
 	 * 
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 * 
 	 * @return bool
 	 */
@@ -1017,7 +1017,7 @@ class AlbumBase extends MediaObject {
 	
 	/**
 	 * Sets the current date to all parent albums of this album recursively
-	 * @since Zenphoto 1.5.5
+	 * @since 1.5.5
 	 */
 	function setUpdatedDateParents() {
 		$parent = $this->getParent();
@@ -1294,7 +1294,7 @@ class AlbumBase extends MediaObject {
 	 * 
 	 * Gets the number of album pages
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
 	 *		"plain" number of pages as float value
@@ -1315,7 +1315,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets the number of image pages
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param string $type 'total" total pages rounded, "full" number of pages that exactly match the per page value, 
 	 * 							"plain" number of pages as float value
@@ -1338,7 +1338,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets the number of total pages of albums and images
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param bool $one_image_page set to true if your theme collapses all image thumbs
 	 * or their equivalent to one page. This is typical with flash viewer themes
@@ -1358,7 +1358,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets the albums per page value
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return int
 	 */
@@ -1369,7 +1369,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets the images per page value
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 */
 	function getImagesPerPage() {
 		return max(1, getOption('images_per_page'));
@@ -1378,7 +1378,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Gets the number of images if the thumb transintion page for sharing thunbs on the last album and the first image page
 	 * 
-	 * @since ZenphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @param bool $one_image_page 
 	 * @return int

@@ -5,7 +5,7 @@
  *
  * @package zpcore\classes\database
  * 
- * @since ZenphotoCMS 1.6 - reworked as class
+ * @since 1.6 - reworked as class
  */
 class dbPDO_MySQL extends dbBase {
 	

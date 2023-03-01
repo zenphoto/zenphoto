@@ -420,7 +420,7 @@ function prepareCustomPage() {
  * Handles redirections via filter hook "redirection_handler".
  * It is meant to perform redirections of pages that have been removed or renamed.
  * 
- * @since ZenphotoCMS 1.5.2
+ * @since 1.5.2
  */
 function redirectionHandler() {
 	if (zp_has_filter('redirection_handler')) {
