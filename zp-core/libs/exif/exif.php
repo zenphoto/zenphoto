@@ -668,7 +668,7 @@ function formatData($type, $tag, $intel, $data) {
 							break;
 						case 2 : $data = gettext('2: Mirror horizontal');
 							break;
-						case 3 : $data = gettext('3: Rotate 180');
+						case 3 : $data = gettext('3: Rotate 180 CW');
 							break;
 						case 4 : $data = gettext('4: Mirror vertical');
 							break;

@@ -5639,7 +5639,7 @@ function printImageRotationSelector($imageobj, $currentimage) {
 	$list = array(
 			gettext('Horizontal (normal)') => 1,
 			gettext('Mirror horizontal') => 2,
-			gettext('Rotate 180') => 3,
+			gettext('Rotate 180 clockwise') => 3,
 			gettext('Mirror vertical') => 4,
 			gettext('Mirror horizontal and rotate 270 clockwise') => 5,
 			gettext('Rotate 90 clockwise') => 6,
