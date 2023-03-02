@@ -124,6 +124,8 @@ if (isset($_GET['action'])) {
 			if ($f == 'custom')
 				$f = sanitize($_POST['date_format'], 3);
 			setOption('date_format', $f);
+			setOption('date_format_localized', (int) isset($_POST['date_format_localized']));
+			
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
 				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
@@ -830,49 +832,19 @@ Authority::printPasswordFormJS();
 									<td width="350">
 										<select id="date_format_list" name="date_format_list" onchange="showfield(this, 'customTextBox')">
 											<?php
-											$formatlist = array(
-															gettext('Custom')												 => 'custom',
-															gettext('02/25/08 15:30')								 => 'm/d/y H:i', //'%d/%m/%y %H:%M',
-															gettext('02/25/08')											 => 'm/d/y', //'%d/%m/%y',
-															gettext('02/25/2008 15:30')							 => 'm/d/Y H:i', //'%d/%m/%Y %H:%M',
-															gettext('02/25/2008')										 => 'm/d/Y', //'%d/%m/%Y',
-															gettext('02-25-08 15:30')								 => 'm-d-y H:i', //'%d-%m-%y %H:%M',
-															gettext('02-25-08')											 => 'm-d-y', //'%d-%m-%y',
-															gettext('02-25-2008 15:30')							 => 'm-d-Y H:i', //'%d-%m-%Y %H:%M',
-															gettext('02-25-2008')										 => 'm-d-Y',//'%d-%m-%Y',
-															gettext('2008. February 25. 15:30')			 => 'Y. F d. H:i',//'%Y. %B %d. %H:%M',
-															gettext('2008. February 25.')						 => 'Y. F d.',//'%Y. %B %d.',
-															gettext('2008-02-25 15:30')							 => 'Y-m-d H:i',//'%Y-%m-%d %H:%M',
-															gettext('2008-02-25')										 => 'Y-m-d', //'%Y-%m-%d',
-															gettext('25 Feb 2008 15:30')						 => 'd M Y H:i', //'%d %B %Y %H:%M',
-															gettext('25 Feb 2008')									 => 'd M Y', //'%d %B %Y',
-															gettext('25 February 2008 15:30')				 => 'd F Y H:i', //'%d %B %Y %H:%M',
-															gettext('25 February 2008')							 => 'd F Y', //'%d %B %Y',
-															gettext('25. Feb 2008 15:30')						 => 'd. M Y H:i', //'%d. %B %Y %H:%M',
-															gettext('25. Feb 2008')									 => 'd. M Y', //'%d. %B %Y',
-															gettext('25. Feb. 08 15:30')						 => 'd. M y H:i', //'%d. %b %y %H:%M',
-															gettext('25. Feb. 08')									 => 'd. M y', //'%d. %b %y',
-															gettext('25. February 2008 15:30')			 => 'd. F Y H:i', //'%d. %B %Y %H:%M',
-															gettext('25. February 2008')						 => 'd. F Y', //'%d. %B %Y',
-															gettext('25.02.08 15:30')								 => 'd.m.y H:i', //'%d.%m.%y %H:%M',
-															gettext('25.02.08')											 => 'd.m.y', //'%d.%m.%y',
-															gettext('25.02.2008 15:30')							 => 'd.m.Y H:i', //'%d.%m.%Y %H:%M',
-															gettext('25.02.2008')										 => 'd.m.Y', //'%d.%m.%Y',
-															gettext('25-02-08 15:30')								 => 'd-m-y H:i', //'%d-%m-%y %H:%M',
-															gettext('25-02-08')											 => 'd-m-y', //'%d-%m-%y',
-															gettext('25-02-2008 15:30')							 => 'd-m-Y H:i', //'%d-%m-%Y %H:%M',
-															gettext('25-02-2008')										 => 'd-m-Y', //'%d-%m-%Y',
-															gettext('25-Feb-08 15:30')							 => 'd-M-y H:i', //'%d-%b-%y %H:%M',
-															gettext('25-Feb-08')										 => 'd-M-y', //'%d-%b-%y',
-															gettext('25-Feb-2008 15:30')						 => 'd-M-Y H:i', //'%d-%b-%Y %H:%M',
-															gettext('25-Feb-2008')									 => 'd-M-Y', //'%d-%b-%Y',
-															gettext('Feb 25, 2008 15:30')						 => 'M d, Y H:i', //'%b %d, %Y %H:%M',
-															gettext('Feb 25, 2008')									 => 'M d, Y', //'%b %d, %Y',
-															gettext('February 25, 2008 15:30')			 => 'F d, Y H:i', //'%B %d, %Y %H:%M',
-															gettext('February 25, 2008')						 => 'F d, Y' //'%B %d, %Y');
-													); 
+											$formats = array_keys(getStandardDateFormats());
+											$formatlist = array();
+											$use_localized_date = getOption('date_format_localized');
+											foreach($formats as $datetime) {
+												if ($use_localized_date) {
+													$formatlist[zpFormattedDate($datetime,'now', true)] = $datetime;
+												} else {
+													$formatlist[zpFormattedDate($datetime,'now', false)] = $datetime;
+												}
+											}
 											if (extension_loaded('intl')) {
-												$formatlist[gettext('Preferred date representation')] = 'locale_preferreddate_time';
+												$formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
+												$formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
 											}
 											$cv = DATE_FORMAT;
 											$flip = array_flip($formatlist);
@@ -886,12 +858,22 @@ Authority::printPasswordFormJS();
 											generateListFromArray(array($cv), $formatlist, false, true);
 											?>
 										</select>
+														
+										<label class="checkboxlabel">
+											<input type="checkbox" name="date_format_localized" value="1"	<?php checked('1', $use_localized_date); ?> /><?php echo gettext('Use localized dates'); ?>
+											</label>
 										<div id="customTextBox" class="customText" style="display:<?php echo $dsp; ?>">
 											<br />
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format" value="<?php echo html_encode(DATE_FORMAT); ?>" />
 										</div>
 									</td>
-									<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/function.date.php"><span class="nowrap"><code>date()</code></span></a> format string in the text box.'); ?></td>
+									<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/function.date.php"><span class="nowrap"><code>date()</code></span></a> format string in the text box.'); ?>
+									<?php if (extension_loaded('intl')) { ?>		
+										<p class="notebox">
+										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you meed to provide a <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>.'); ?>
+									</p>
+								<?php } ?>
+									</td>
 								</tr>
 								<tr>
 									<td width="175"><?php echo gettext("Charset:"); ?></td>

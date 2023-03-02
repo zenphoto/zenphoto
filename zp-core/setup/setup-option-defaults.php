@@ -220,7 +220,8 @@ if ($protection) {
 }
 
 setOptionDefault('locale', '');
-setOptionDefault('date_format', '%x');
+setOptionDefault('date_format', 'Y-m-d');
+setOptionDefault('date_format_localized', 0);
 
 setOptionDefault('use_lock_image', 1);
 setOptionDefault('search_user', '');

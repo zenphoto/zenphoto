@@ -287,13 +287,44 @@ function lookupSortKey($sorttype, $default, $table) {
 /**
  * Returns a formatted date for output
  *
- * @param string $format a date() compatible format string
- * @param string|int $dt the date to be output. Can be a date string or a timestamp
+ * @param string $format a datetime compatible format string. Leave empty to use the option value.
+ *							NOTE: If $localize_date = true you need to provide a ICU dateformat string instead of a datetime format string 
+ *							unless you pass the DATE_FORMAT constant using one of the standard formats.
+ *							You can then also submit these custom formats 'locale_preferreddate_time' and 'locale_preferreddate_notime'
+ * @param string|int $datetime the date to be formatted. Can be a date string or a timestamp.  
+ * @param boolean $localized_date Default null to use the related option setting. Set to true to use localized dates. intl extension required 
  * @return string
  */
-function zpFormattedDate($format, $dt) {
+function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 	global $_zp_utf8;
-	$fdate = getFormattedLocaleDate($format, $dt);
+	if (empty($format)) {
+		$format = DATE_FORMAT;
+	}
+	$format_converted = convertStrftimeFormat($format);
+	if ($format_converted != $format) {
+		deprecationNotice(gettext('Using strftime() based date formats strings is deprecated. Use standard date() compatible formatting or a timestamp instead.'), true);
+	}
+	if (empty($datetime)) {
+		$datetime = 'now';
+	}
+	if (is_null($localized_date)) {
+		$localized_date = (bool) getOption('date_format_localized');
+	}
+	$locale_preferred = array(
+			'locale_preferreddate_time',
+			'locale_preferreddate_notime'
+	);
+	if ($localized_date) {
+		$localized_format = convertDateTimeToICU($format_converted);
+		$fdate = getFormattedLocaleDate($localized_format, $datetime);
+	} else {
+		// no support for preferred locale dates here so use generic fallback
+		if (in_array($format_converted, $locale_preferred)) { 
+			$format_converted = 'Y-m-d';
+		}
+		$dateobj = getDatetimeObject($datetime);
+		$fdate = $dateobj->format($format_converted);
+	}
 	$charset = 'UTF-8';
 	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
@@ -302,6 +333,132 @@ function zpFormattedDate($format, $dt) {
 		}
 	}
 	return $_zp_utf8->convert($fdate, $charset, $outputset);
+}
+
+/**
+ * Attempts to convert datetime formatts to ICU formats. First tries if thte datetime format passed is one of predefined
+ * standard formats. If not it tries to convert it. NOTE This is not reliable if non format letters are included 
+ * as this cannot convert the incompatible escaping between datetime and ICU.
+ * 
+ * @param string $format A datetime format
+ * @return string
+ */
+function convertDateTimeToICU($format = '') {
+	$locale_preferred = array(
+			'locale_preferreddate_time',
+			'locale_preferreddate_notime'
+	);
+	if (in_array($format, $locale_preferred)) {
+		return $format;
+	}
+	$formats = getStandardDateFormats();
+	if (array_key_exists($format, $formats)) {
+		return $formats[$format];
+	}
+	//last step attempt to convert…
+	$catalogue = array(
+			'M' => 'MMM', // Abbreviated month name, based on the locale (an alias of %b) Jan through Dec
+			'm' => 'MM', // Numeric representation of a month, with leading zeros
+			'n' => 'M', // Numeric representation of a month, without leading zeros
+			'A' => 'a', // Uppercase AM and PM
+			'w' => 'e', // Numeric representation of the day of the week. 0 (for Sunday) through 6 (for Saturday)
+			'N' => 'e', // Numeric representation of the day of the week. 1 (for Monday) through 7 (for Sunday)
+			'D' => 'EEE', // An abbreviated textual representation of the day	Sun through Sat
+			'z' => 'D', // The day of the year (starting from 0)
+			'e' => 'z', // Timezone identifier Examples: UTC, GMT
+			'W' => 'w', // Week number of year, weeks starting on Monday
+			'l' => 'EEEE', // A full textual representation of the day Sunday through Saturday
+			'F' => 'MMMM', // Full month name, based on the locale January through December
+			'h' => 'hh', // Hour 0-12 with leading zero
+			'i' => 'mm', // Minute in hour…
+			's' => 'ss', // Seconds with leading zeros
+			'd' => 'dd', // Month day number with leading zero
+			'j' => 'd', // Month day number without leading zero	
+			'g' => 'h', // Hour 0-12 without leading zero
+			'y' => 'yy', // Year two digits
+			'o' => 'yyyy', // Year four digits. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead				
+			'P' => 'xxx' // Difference to Greenwich time (GMT) with colon between hours and minutes
+	);
+	$catalogue_old = array_keys($catalogue);
+	return str_replace($catalogue_old, $catalogue, $format);
+}
+
+/**
+/**
+ * Returns a datetime object
+ * 
+ * @since 1.6.1
+ * 
+* @param string|int $datetime the date to be output. Can be a date string or a timestamp. If empty "now" is used
+ * @return object
+ */
+function getDatetimeObject($datetime = '') {
+	// Check if datetime string or timstamp integer (to cover if passed as a string)
+	if (empty($datetime)) {
+		$datetime = 'now';
+	}
+	if (is_string($datetime) && strtotime($datetime) !== false) {
+		$date = new DateTime($datetime);
+	} else {
+		$timestamp = intval($datetime); // to be sure…
+		$dateobj = new DateTime();
+		$date = $dateobj->setTimestamp($timestamp);
+		if (!$date) { // fallback for invalid timestamp
+			$date = new DateTime('now');
+		}
+	}
+	return $date;
+}
+
+/**
+ * Returns an array with datetime (keys) and ICU date format (values) strings
+ * 
+ * @since 1.6.1
+ * 
+ * @return array
+ */
+function getStandardDateFormats() {
+	$formatlist = array(
+			'm/d/y H:i'		=> 'MM/dd/yy H:mm', //02/25/08 15:30
+			'm/d/y'				=> 'MM/dd/yy', //02/25/08
+			'm/d/Y H:i'		=> 'MM/dd/Y H:mm', //02/25/2008 15:30
+			'm/d/Y'				=> 'MM/dd/yy', //02/25/2008
+			'm-d-y H:i'		=> 'MM-dd-yy H:mm', //02-25-08 15:30
+			'm-d-y'				=> 'MM-dd-yy', //02-25-08
+			'm-d-Y H:i'		=> 'MM-dd-Y H:mm', //02-25-2008 15:30
+			'm-d-Y'				=> 'MM-dd-Y', //02-25-2008
+			'Y. F d. H:i' => 'Y. MMMM dd. H:mm', //2008. February 25. 15:30
+			'Y. F d.'			=> 'Y. MMMM dd.', //2008. February 25.
+			'Y-m-d H:i'		=> 'Y-MM-dd H:mm', //2008-02-25 15:30
+			'Y-m-d'				=> 'Y-MM-dd', //2008-02-25
+			'd M Y H:i'		=> 'dd MMM Y H:mm', //25 Feb 2008 15:30
+			'd M Y'				=> 'dd MMM Y', //25 Feb 2008
+			'd F Y H:i'		=> 'dd MMM Y H:mm', //25 February 2008 15:30
+			'd F Y'				=> 'dd MMM Y', //25 February 2008
+			'd. M Y H:i'	=> 'dd. MMM Y H:mm', //25. Feb 2008 15:30
+			'd. M Y'			=> 'dd. MMM Y', //25. Feb 2008
+			'd. M y H:i'	=> 'dd. MMM yy H:mm', //25. Feb. 08 15:30
+			'd. M y'			=> 'dd. MMM yy', //25. Feb. 08
+			'd. F Y H:i'	=> 'dd. MMMM Y H:mm', //25. February 2008 15:30
+			'd. F Y'			=> 'dd. MMMM Y', //25. February 2008
+			'd.m.y H:i'		=> 'dd.MM.yy H:mm', //25.02.08 15:3
+			'd.m.y'				=> 'dd.MM.yy', //25.02.08
+			'd.m.Y H:i'		=> 'dd.MM.Y H:mm', //25.02.2008 15:30
+			'd.m.Y'				=> 'dd.MM.Y', //25.02.2008
+			'd-m-y H:i'		=> 'dd-MM-yy H:mm', //25-02-08 15:30
+			'd-m-y'				=> 'dd-MM-yy', //25-02-08
+			'd-m-Y H:i'		=> 'dd-MM-Y H:mm', //25-02-2008 15:30
+			'd-m-Y'				=> 'dd-MM-Y', //25-02-2008
+			'd-M-y H:i'		=> 'dd-MM-yy H:mm', //25-Feb-08 15:30
+			'd-M-y'				=> 'dd-MM-yy', //25-Feb-08
+			'd-M-Y H:i'		=> 'dd-MM-Y H:mm', //25-Feb-2008 15:30
+			'd-M-Y'				=> 'dd-MM-Y', //25-Feb-2008
+			'M d, Y H:i'	=> 'MMM dd, Y H:mm', //Feb 25, 2008 15:30
+			'M d, Y'			=> 'MMM dd, Y', //Feb 25, 2008
+			'F d, Y H:i'	=> 'MMMM dd, Y H:mm', //February 25, 2008 15:30
+			'F d, Y'			=> 'MMMM dd, Y' //February 25, 2008
+	);
+	return $formatlist;
 }
 
 /**
@@ -3122,6 +3279,7 @@ function getCookieInfoMacro($macros) {
 	);
 	return $macros;
 }
+
 
 
 setexifvars();

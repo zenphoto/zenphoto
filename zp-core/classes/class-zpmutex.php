@@ -11,6 +11,7 @@ class zpMutex {
 	private $ignoreUseAbort = NULL;
 	private $mutex = NULL;
 	private $lock = NULL;
+	private $ignoreUserAbort = null;
 
 	function __construct($lock = 'zP', $concurrent = NULL) {
 		// if any of the construction fails, run in free mode (lock = NULL)
