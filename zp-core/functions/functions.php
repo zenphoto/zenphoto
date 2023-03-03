@@ -292,7 +292,7 @@ function lookupSortKey($sorttype, $default, $table) {
  *							unless you pass the DATE_FORMAT constant using one of the standard formats.
  *							You can then also submit these custom formats 'locale_preferreddate_time' and 'locale_preferreddate_notime'
  * @param string|int $datetime the date to be formatted. Can be a date string or a timestamp.  
- * @param boolean $localized_date Default null to use the related option setting. Set to true to use localized dates. intl extension required 
+ * @param boolean $localized_date Default null to use the related option setting. Set to true to use localized dates. PHP intl extension required 
  * @return string
  */
 function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
@@ -336,7 +336,7 @@ function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 }
 
 /**
- * Attempts to convert datetime formatts to ICU formats. First tries if thte datetime format passed is one of predefined
+ * Attempts to convert datetime formatts to ICU formats. First tries if the datetime format passed is one of predefined
  * standard formats. If not it tries to convert it. NOTE This is not reliable if non format letters are included 
  * as this cannot convert the incompatible escaping between datetime and ICU.
  * 
@@ -363,14 +363,14 @@ function convertDateTimeToICU($format = '') {
 			'A' => 'a', // Uppercase AM and PM
 			'w' => 'e', // Numeric representation of the day of the week. 0 (for Sunday) through 6 (for Saturday)
 			'N' => 'e', // Numeric representation of the day of the week. 1 (for Monday) through 7 (for Sunday)
-			'D' => 'EEE', // An abbreviated textual representation of the day	Sun through Sat
+			'D' => 'EEE', // An abbreviated textual representation of the day Sun through Sat
 			'z' => 'D', // The day of the year (starting from 0)
 			'e' => 'z', // Timezone identifier Examples: UTC, GMT
 			'W' => 'w', // Week number of year, weeks starting on Monday
 			'l' => 'EEEE', // A full textual representation of the day Sunday through Saturday
 			'F' => 'MMMM', // Full month name, based on the locale January through December
 			'h' => 'hh', // Hour 0-12 with leading zero
-			'i' => 'mm', // Minute in hour…
+			'i' => 'mm', // Minutes with leading zeros
 			's' => 'ss', // Seconds with leading zeros
 			'd' => 'dd', // Month day number with leading zero
 			'j' => 'd', // Month day number without leading zero	

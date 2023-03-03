@@ -870,7 +870,7 @@ Authority::printPasswordFormJS();
 									<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/function.date.php"><span class="nowrap"><code>date()</code></span></a> format string in the text box.'); ?>
 									<?php if (extension_loaded('intl')) { ?>		
 										<p class="notebox">
-										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you meed to provide a <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>.'); ?>
+										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>.'); ?>
 									</p>
 								<?php } ?>
 									</td>
