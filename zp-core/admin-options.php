@@ -846,16 +846,15 @@ Authority::printPasswordFormJS();
 												$formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
 												$formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
 											}
+											$formatlist[gettext('Custom')] = 'custom';
 											$cv = DATE_FORMAT;
-											$flip = array_flip($formatlist);
-											if (isset($flip[$cv])) {
+											if (in_array($cv, $formatlist)) {
 												$dsp = 'none';
 											} else {
-												$dsp = 'block';
-											}
-											if (array_search($cv, $formatlist) === false)
 												$cv = 'custom';
-											generateListFromArray(array($cv), $formatlist, false, true);
+												$dsp = 'block';
+											} 
+											generateListFromArray(array($cv), $formatlist, null, true);
 											?>
 										</select>
 														

@@ -433,8 +433,8 @@ function getStandardDateFormats() {
 			'Y-m-d'				=> 'Y-MM-dd', //2008-02-25
 			'd M Y H:i'		=> 'dd MMM Y H:mm', //25 Feb 2008 15:30
 			'd M Y'				=> 'dd MMM Y', //25 Feb 2008
-			'd F Y H:i'		=> 'dd MMM Y H:mm', //25 February 2008 15:30
-			'd F Y'				=> 'dd MMM Y', //25 February 2008
+			'd F Y H:i'		=> 'dd MMMM Y H:mm', //25 February 2008 15:30
+			'd F Y'				=> 'dd MMMM Y', //25 February 2008
 			'd. M Y H:i'	=> 'dd. MMM Y H:mm', //25. Feb 2008 15:30
 			'd. M Y'			=> 'dd. MMM Y', //25. Feb 2008
 			'd. M y H:i'	=> 'dd. MMM yy H:mm', //25. Feb. 08 15:30
