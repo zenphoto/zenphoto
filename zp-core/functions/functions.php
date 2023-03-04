@@ -449,10 +449,10 @@ function getStandardDateFormats() {
 			'd-m-y'				=> 'dd-MM-yy', //25-02-08
 			'd-m-Y H:i'		=> 'dd-MM-Y H:mm', //25-02-2008 15:30
 			'd-m-Y'				=> 'dd-MM-Y', //25-02-2008
-			'd-M-y H:i'		=> 'dd-MM-yy H:mm', //25-Feb-08 15:30
-			'd-M-y'				=> 'dd-MM-yy', //25-Feb-08
-			'd-M-Y H:i'		=> 'dd-MM-Y H:mm', //25-Feb-2008 15:30
-			'd-M-Y'				=> 'dd-MM-Y', //25-Feb-2008
+			'd-M-y H:i'		=> 'dd-MMM-yy H:mm', //25-Feb-08 15:30
+			'd-M-y'				=> 'dd-MMM-yy', //25-Feb-08
+			'd-M-Y H:i'		=> 'dd-MMM-Y H:mm', //25-Feb-2008 15:30
+			'd-M-Y'				=> 'dd-MMM-Y', //25-Feb-2008
 			'M d, Y H:i'	=> 'MMM dd, Y H:mm', //Feb 25, 2008 15:30
 			'M d, Y'			=> 'MMM dd, Y', //Feb 25, 2008
 			'F d, Y H:i'	=> 'MMMM dd, Y H:mm', //February 25, 2008 15:30
