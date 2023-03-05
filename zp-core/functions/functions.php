@@ -315,7 +315,25 @@ function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 			'locale_preferreddate_notime'
 	);
 	if ($localized_date) {
-		$localized_format = convertDateTimeToICU($format_converted);
+		$datetime_formats = getStandardDateFormats();
+		$date_formats = getStandardDateFormats('date');
+		$time_formats = getStandardDateFormats('time');
+		if (in_array($format_converted, $locale_preferred)) {
+			//special format getFormattedLocaleDate() needs to internally
+			$localized_format = $format_converted;
+		} else if (array_key_exists($format_converted, $datetime_formats)) {
+			//one of the predefined datetime ICU formats
+			$localized_format = $datetime_formats[$format_converted];
+		} else if(array_key_exists($format_converted, $date_formats)) {
+			// one of the predefined date ICU formats
+			$localized_format = $date_formats[$format_converted];
+		} else if(array_key_exists($format_converted, $time_formats)) {
+			//one of the predefined time ICU format
+			$localized_format = $time_formats[$format_converted];
+		} else {
+			//custom date we expect to be ICU format already
+			$localized_format = $format_converted;
+		}
 		$fdate = getFormattedLocaleDate($localized_format, $datetime);
 	} else {
 		// no support for preferred locale dates here so use generic fallback
@@ -333,54 +351,6 @@ function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 		}
 	}
 	return $_zp_utf8->convert($fdate, $charset, $outputset);
-}
-
-/**
- * Attempts to convert datetime formatts to ICU formats. First tries if the datetime format passed is one of predefined
- * standard formats. If not it tries to convert it. NOTE This is not reliable if non format letters are included 
- * as this cannot convert the incompatible escaping between datetime and ICU.
- * 
- * @param string $format A datetime format
- * @return string
- */
-function convertDateTimeToICU($format = '') {
-	$locale_preferred = array(
-			'locale_preferreddate_time',
-			'locale_preferreddate_notime'
-	);
-	if (in_array($format, $locale_preferred)) {
-		return $format;
-	}
-	$formats = getStandardDateFormats();
-	if (array_key_exists($format, $formats)) {
-		return $formats[$format];
-	}
-	//last step attempt to convert…
-	$catalogue = array(
-			'M' => 'MMM', // Abbreviated month name, based on the locale (an alias of %b) Jan through Dec
-			'm' => 'MM', // Numeric representation of a month, with leading zeros
-			'n' => 'M', // Numeric representation of a month, without leading zeros
-			'A' => 'a', // Uppercase AM and PM
-			'w' => 'e', // Numeric representation of the day of the week. 0 (for Sunday) through 6 (for Saturday)
-			'N' => 'e', // Numeric representation of the day of the week. 1 (for Monday) through 7 (for Sunday)
-			'D' => 'EEE', // An abbreviated textual representation of the day Sun through Sat
-			'z' => 'D', // The day of the year (starting from 0)
-			'e' => 'z', // Timezone identifier Examples: UTC, GMT
-			'W' => 'w', // Week number of year, weeks starting on Monday
-			'l' => 'EEEE', // A full textual representation of the day Sunday through Saturday
-			'F' => 'MMMM', // Full month name, based on the locale January through December
-			'h' => 'hh', // Hour 0-12 with leading zero
-			'i' => 'mm', // Minutes with leading zeros
-			's' => 'ss', // Seconds with leading zeros
-			'd' => 'dd', // Month day number with leading zero
-			'j' => 'd', // Month day number without leading zero	
-			'g' => 'h', // Hour 0-12 without leading zero
-			'y' => 'yy', // Year two digits
-			'o' => 'yyyy', // Year four digits. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead				
-			'P' => 'xxx' // Difference to Greenwich time (GMT) with colon between hours and minutes
-	);
-	$catalogue_old = array_keys($catalogue);
-	return str_replace($catalogue_old, $catalogue, $format);
 }
 
 /**
@@ -415,50 +385,55 @@ function getDatetimeObject($datetime = '') {
  * 
  * @since 1.6.1
  * 
+ * @param string $type "date" for date formats without time, "time" for time formats, "datetime" for both combined
+ * 
  * @return array
  */
-function getStandardDateFormats() {
-	$formatlist = array(
-			'm/d/y H:i'		=> 'MM/dd/yy H:mm', //02/25/08 15:30
-			'm/d/y'				=> 'MM/dd/yy', //02/25/08
-			'm/d/Y H:i'		=> 'MM/dd/Y H:mm', //02/25/2008 15:30
-			'm/d/Y'				=> 'MM/dd/yy', //02/25/2008
-			'm-d-y H:i'		=> 'MM-dd-yy H:mm', //02-25-08 15:30
-			'm-d-y'				=> 'MM-dd-yy', //02-25-08
-			'm-d-Y H:i'		=> 'MM-dd-Y H:mm', //02-25-2008 15:30
-			'm-d-Y'				=> 'MM-dd-Y', //02-25-2008
-			'Y. F d. H:i' => 'Y. MMMM dd. H:mm', //2008. February 25. 15:30
-			'Y. F d.'			=> 'Y. MMMM dd.', //2008. February 25.
-			'Y-m-d H:i'		=> 'Y-MM-dd H:mm', //2008-02-25 15:30
-			'Y-m-d'				=> 'Y-MM-dd', //2008-02-25
-			'd M Y H:i'		=> 'dd MMM Y H:mm', //25 Feb 2008 15:30
-			'd M Y'				=> 'dd MMM Y', //25 Feb 2008
-			'd F Y H:i'		=> 'dd MMMM Y H:mm', //25 February 2008 15:30
-			'd F Y'				=> 'dd MMMM Y', //25 February 2008
-			'd. M Y H:i'	=> 'dd. MMM Y H:mm', //25. Feb 2008 15:30
-			'd. M Y'			=> 'dd. MMM Y', //25. Feb 2008
-			'd. M y H:i'	=> 'dd. MMM yy H:mm', //25. Feb. 08 15:30
-			'd. M y'			=> 'dd. MMM yy', //25. Feb. 08
-			'd. F Y H:i'	=> 'dd. MMMM Y H:mm', //25. February 2008 15:30
-			'd. F Y'			=> 'dd. MMMM Y', //25. February 2008
-			'd.m.y H:i'		=> 'dd.MM.yy H:mm', //25.02.08 15:3
-			'd.m.y'				=> 'dd.MM.yy', //25.02.08
-			'd.m.Y H:i'		=> 'dd.MM.Y H:mm', //25.02.2008 15:30
-			'd.m.Y'				=> 'dd.MM.Y', //25.02.2008
-			'd-m-y H:i'		=> 'dd-MM-yy H:mm', //25-02-08 15:30
-			'd-m-y'				=> 'dd-MM-yy', //25-02-08
-			'd-m-Y H:i'		=> 'dd-MM-Y H:mm', //25-02-2008 15:30
-			'd-m-Y'				=> 'dd-MM-Y', //25-02-2008
-			'd-M-y H:i'		=> 'dd-MMM-yy H:mm', //25-Feb-08 15:30
-			'd-M-y'				=> 'dd-MMM-yy', //25-Feb-08
-			'd-M-Y H:i'		=> 'dd-MMM-Y H:mm', //25-Feb-2008 15:30
-			'd-M-Y'				=> 'dd-MMM-Y', //25-Feb-2008
-			'M d, Y H:i'	=> 'MMM dd, Y H:mm', //Feb 25, 2008 15:30
-			'M d, Y'			=> 'MMM dd, Y', //Feb 25, 2008
-			'F d, Y H:i'	=> 'MMMM dd, Y H:mm', //February 25, 2008 15:30
-			'F d, Y'			=> 'MMMM dd, Y' //February 25, 2008
+function getStandardDateFormats($type = "datetime") {
+	$dateformats = array(
+			'm/d/y' => 'MM/dd/yy', //02/25/08
+			'm/d/Y' => 'MM/dd/yy', //02/25/2008
+			'm-d-y' => 'MM-dd-yy', //02-25-08
+			'm-d-Y' => 'MM-dd-Y', //02-25-2008
+			'Y. F d.' => 'Y. MMMM dd.', //2008. February 25.
+			'Y-m-d' => 'Y-MM-dd', //2008-02-25
+			'd M Y' => 'dd MMM Y', //25 Feb 2008
+			'd F Y' => 'dd MMMM Y', //25 February 2008
+			'd. M Y' => 'dd. MMM Y', //25. Feb 2008
+			'd. M y' => 'dd. MMM yy', //25. Feb. 08
+			'd. F Y' => 'dd. MMMM Y', //25. February 2008
+			'd.m.y' => 'dd.MM.yy', //25.02.08
+			'd.m.Y' => 'dd.MM.Y', //25.02.2008
+			'j.n.Y' => 'd.M.Y', //25.2.2008
+			'd-m-y' => 'dd-MM-yy', //25-02-08
+			'd-m-Y' => 'dd-MM-Y', //25-02-2008
+			'd-M-y' => 'dd-MMM-yy', //25-Feb-08
+			'd-M-Y' => 'dd-MMM-Y', //25-Feb-2008
+			'M d, Y' => 'MMM dd, Y', //Feb 25, 2008
+			'F d, Y' => 'MMMM dd, Y' //February 25, 2008
 	);
-	return $formatlist;
+	$timeformats = array(
+			'H:i'			=> 'H:mm', //15:30 / 03:30
+			'H:i:s'			=> 'H:mm:ss', //15:30:30 / 03:30:30
+			'G:i'			=> 'k:mm', //15:30 / 3:30
+			'G:i:s'			=> 'k:mm:ss', //15:30:30 / 3:30:30
+			'g:i A'		=> 'h:mm a', //3:30 PM	
+			'g:i:s A'		=> 'h:mm:ss a' //3:30:30 PM	
+	);
+	switch ($type) {
+		case 'date':
+			return $dateformats;
+		case 'time':
+			return $timeformats;
+		case 'datetime':
+			$datetime_formats = array();
+			foreach($dateformats as $datetime => $icudate) {
+				foreach($timeformats as $time => $icutime) {
+					$datetime_formats[$datetime . ' ' . $time] = $icudate . ' ' . $icutime;
+				}
+			}
+			return array_merge($datetime_formats, $dateformats);
+	}
 }
 
 /**

@@ -120,10 +120,23 @@ if (isset($_GET['action'])) {
 				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
 			}
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
-			$f = sanitize($_POST['date_format_list'], 3);
-			if ($f == 'custom')
-				$f = sanitize($_POST['date_format'], 3);
-			setOption('date_format', $f);
+			
+			// date format
+			$dateformat = sanitize($_POST['date_format_list'], 3);
+			if ($dateformat == 'custom') {
+				$dateformat = sanitize($_POST['date_format'], 3);
+			}
+			setOption('date_format', $dateformat);
+			
+			// time format
+			$timeformat = sanitize($_POST['time_format_list'], 3);
+			if (in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+				$timeformat = '';
+			} else if ($timeformat == 'custom') {
+				$timeformat = sanitize($_POST['time_format'], 3);
+			} 
+			setOption('time_format', $timeformat);
+	
 			setOption('date_format_localized', (int) isset($_POST['date_format_localized']));
 			
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
@@ -830,46 +843,19 @@ Authority::printPasswordFormJS();
 								<tr>
 									<td width="175"><?php echo gettext("Date format:"); ?></td>
 									<td width="350">
-										<select id="date_format_list" name="date_format_list" onchange="showfield(this, 'customTextBox')">
 											<?php
-											$formats = array_keys(getStandardDateFormats());
-											$formatlist = array();
+											printDatetimeFormatSelector('date');
+											printDatetimeFormatSelector('time');
 											$use_localized_date = getOption('date_format_localized');
-											foreach($formats as $datetime) {
-												if ($use_localized_date) {
-													$formatlist[zpFormattedDate($datetime,'now', true)] = $datetime;
-												} else {
-													$formatlist[zpFormattedDate($datetime,'now', false)] = $datetime;
-												}
-											}
-											if (extension_loaded('intl')) {
-												$formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
-												$formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
-											}
-											$formatlist[gettext('Custom')] = 'custom';
-											$cv = DATE_FORMAT;
-											if (in_array($cv, $formatlist)) {
-												$dsp = 'none';
-											} else {
-												$cv = 'custom';
-												$dsp = 'block';
-											} 
-											generateListFromArray(array($cv), $formatlist, null, true);
-											?>
-										</select>
-														
+										?>
 										<label class="checkboxlabel">
 											<input type="checkbox" name="date_format_localized" value="1"	<?php checked('1', $use_localized_date); ?> /><?php echo gettext('Use localized dates'); ?>
 											</label>
-										<div id="customTextBox" class="customText" style="display:<?php echo $dsp; ?>">
-											<br />
-											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format" value="<?php echo html_encode(DATE_FORMAT); ?>" />
-										</div>
 									</td>
-									<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/function.date.php"><span class="nowrap"><code>date()</code></span></a> format string in the text box.'); ?>
+									<td><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/de/datetime.format.php">datetime</a> format string in the custom box.'); ?>
 									<?php if (extension_loaded('intl')) { ?>		
 										<p class="notebox">
-										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>.'); ?>
+										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you choose one of the <em>preferred date representation</em> formats the time format option is ignored.'); ?>
 									</p>
 								<?php } ?>
 									</td>

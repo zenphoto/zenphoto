@@ -337,7 +337,13 @@ define('THUMB_WATERMARK', getOption('Image_watermark'));
 define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
 define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 
-define('DATE_FORMAT', convertStrftimeFormat(getOption('date_format')));
+$date_format = getOption('date_format');
+$time_format = getOption('time_format');
+if (getOption('date_format_localized') && in_array($date_format, array('locale_preferreddate_time','locale_preferreddate_notime'))) {
+	define('DATE_FORMAT', $date_format);
+} else {
+	define('DATE_FORMAT', strval(trim($date_format . ' ' . $time_format)));
+}
 
 define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));
 define('UTF8_IMAGE_URI', getOption('UTF8_image_URI'));

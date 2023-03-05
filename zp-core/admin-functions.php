@@ -5656,3 +5656,70 @@ function printImageRotationSelector($imageobj, $currentimage) {
 	</select>
 	<?php
 }
+
+
+/**
+ * Prints an option selector for either the date formats or the time formats
+ * 
+ * @since 1.6.1
+ * 
+ * @param string $type "date" or "time"
+ */
+function printDatetimeFormatSelector($type = 'date') {
+	$formatlist = array();
+	$use_localized_date = getOption('date_format_localized');
+	switch ($type) {
+		default:
+		case 'date':
+			$selector_id = 'date_format_list';
+			$showfield_id = 'custom_dateformat_box';
+			$custom_format_name = 'date_format';
+			$formats = array_keys(getStandardDateFormats('date'));
+			$currentformat = getOption('date_format');
+			$custom_format_label = gettext('Custom date format');
+			break;
+		case 'time':
+			$selector_id = 'time_format_list';
+			$showfield_id = 'custom_timeformat_box';
+			$custom_format_name = 'time_format';
+			$custom_format_label = gettext('Custom time format');
+			$formats = array_keys(getStandardDateFormats('time'));
+			$currentformat = getOption('time_format');
+			break;
+	}
+	foreach ($formats as $format) {
+		if ($use_localized_date) {
+			$formatlist[zpFormattedDate($format, '2023-03-05 15:30:30', true)] = $format;
+		} else {
+			$formatlist[zpFormattedDate($format, '2023-03-05 15:30:30', false)] = $format;
+		}
+	}
+	if ($type == 'date' && $use_localized_date && extension_loaded('intl')) {
+		$formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
+		$formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
+	}
+	if ($type == 'time') {
+		$formatlist[gettext('None')] = '';
+	}
+	$formatlist[gettext('Custom')] = 'custom';
+	?>
+	<select id="<?php echo $selector_id; ?>" name="<?php echo $selector_id; ?>" onchange="showfield(this, '<?php echo $showfield_id; ?>')">
+	<?php
+		$current_selected = $currentformat;
+		if (in_array($currentformat, $formatlist)) {
+			$display = 'none';
+		} else {
+			$current_selected = 'custom';
+			$display = 'block';
+		} 
+		generateListFromArray(array($current_selected), $formatlist, null, true);
+	?>
+	</select>
+	<br>
+	<label id="<?php echo $showfield_id; ?>" class="customText" style="display:<?php echo $display; ?>">
+		<br />
+		<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $custom_format_name; ?>" value="<?php echo html_encode($currentformat); ?>" />
+		<?php echo $custom_format_label; ?>
+	</label>
+	<?php
+}
