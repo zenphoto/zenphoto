@@ -168,7 +168,12 @@ class flag_thumbnail {
 						'key' => 'flag_thumbnail_use_text',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 8,
-						'desc' => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class <code>textasnewflag</code> for styling "text" overlays.)'))
+						'desc' => gettext('If checked, the defined <em>text</em> will be used in place of the icon. (Use the class <code>textasnewflag</code> for styling "text" overlays.)')),
+				gettext('Disable inline CSS') => array(
+						'key' => 'flag_thumbnail_disableinlinecss',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 9,
+						'desc' => gettext('Check this to disable the default inline CSS styles for placing the flags so your theme can handle this.'))	
 		);
 	}
 
@@ -180,7 +185,11 @@ class flag_thumbnail {
 			} else {
 				$obj = $_zp_current_album;
 			}
-			$html = '<span class="flag_thumbnail" style="position:relative; display:block;">' . "\n" . $html . "\n";
+			if (getOption('flag_thumbnail_disableinlinecss')) {
+				$html = '<span class="flag_thumbnail">' . "\n" . $html . "\n";
+			} else {
+				$html = '<span class="flag_thumbnail" style="position:relative; display:block;">' . "\n" . $html . "\n";
+			}
 			switch (getOption('flag_thumbnail_date')) {
 				case "date":
 					$imagedatestamp = strtotime($obj->getDateTime());
@@ -189,15 +198,22 @@ class flag_thumbnail {
 					$imagedatestamp = $obj->get('mtime');
 					break;
 			}
+		
 			$not_older_as = (60 * 60 * 24 * getOption('flag_thumbnail_range'));
 			$age = (time() - $imagedatestamp);
 			if ($age <= $not_older_as) {
+				$inline_style1 = ' style="position: absolute;top: 10px;right: 6px;"';
+				$inline_style2 = ' style="position: absolute;top: 4px;right: 4px;"';
+				if (getOption('flag_thumbnail_disableinlinecss')) {
+					$inline_style1 = '';
+					$inline_style2 = '';
+				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_new_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_new_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;top: 4px;right: 4px;"/>' . "\n";
+					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_newtext" alt="'. $inline_style2.'/>' . "\n";
 				}
 			}
 		}
@@ -208,12 +224,18 @@ class flag_thumbnail {
 			if (is_object($obj) && get_class($obj) == 'Image') {
 				$exif = $obj->getMetaData();
 				if (!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])) {
+					$inline_style1 = ' style="position: absolute;bottom: 10px;right: 6px;"';
+					$inline_style2 = ' style="position: absolute;bottom: 4px;right: 4px;"';
+					if (getOption('flag_thumbnail_disableinlinecss')) {
+						$inline_style1 = '';
+						$inline_style2 = '';
+					}
 					if (getOption('flag_thumbnail_use_text')) {
 						$text = getOption('flag_thumbnail_geodata_text');
-						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">' . $text . "</span>\n";
+						$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
 					} else {
 						$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_geodata_icon'), false, true);
-						$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>' . "\n";
+						$html .= '<img src="' . $img . '" class="imageasflag imageasflag_geodata" alt=""'. $inline_style2.'/>' . "\n";
 					}
 				}
 			}
@@ -222,23 +244,34 @@ class flag_thumbnail {
 		if ($i !== false) {
 			$locked = strpos($html, 'password_protected', $i + 7) !== false;
 			$unpublished = strpos($html, 'not_visible', $i + 7) !== false;
-
 			if ($locked && getOption('flag_thumbnail_flag_locked')) {
+				$inline_style1 = ' style="position: absolute;bottom: 10px;left: 4px;"';
+				$inline_style2 = ' style="position: absolute;bottom: 4px;left: 4px;"';
+				if (getOption('flag_thumbnail_disableinlinecss')) {
+					$inline_style1 = '';
+					$inline_style2 = '';
+				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_locked_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_locked_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>' . "\n";
+					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_locked" alt=""'. $inline_style2.'/>' . "\n";
 				}
 			}
 			if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
+				$inline_style1 = ' style="position: absolute;top: 10px;left: 4px;"';
+				$inline_style2 = ' style="position: absolute;top: 4px;left: 4px;"';
+				if (getOption('flag_thumbnail_disableinlinecss')) {
+					$inline_style1 = '';
+					$inline_style2 = '';
+				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_unpublished_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_unpublished_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag" alt="" style="position: absolute;top: 4px;left: 4px;"/>' . "\n";
+					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_unpublished" alt=""'. $inline_style2.'/>' . "\n";
 				}
 			}
 		}
@@ -269,5 +302,3 @@ class flag_thumbnail {
 	}
 
 }
-
-?>
