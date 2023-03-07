@@ -210,10 +210,10 @@ class flag_thumbnail {
 				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_new_text');
-					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag textasnewflag_new"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_new_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_newtext" alt="'. $inline_style2.'/>' . "\n";
+					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_new" alt="'. $inline_style2.'/>' . "\n";
 				}
 			}
 		}
@@ -232,7 +232,7 @@ class flag_thumbnail {
 					}
 					if (getOption('flag_thumbnail_use_text')) {
 						$text = getOption('flag_thumbnail_geodata_text');
-						$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
+						$html .= '<span class="textasnewflag textasnewflag_geodata"'. $inline_style1.'>' . $text . "</span>\n";
 					} else {
 						$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_geodata_icon'), false, true);
 						$html .= '<img src="' . $img . '" class="imageasflag imageasflag_geodata" alt=""'. $inline_style2.'/>' . "\n";
@@ -253,7 +253,7 @@ class flag_thumbnail {
 				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_locked_text');
-					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag textasnewflag_locked"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_locked_icon'), false, true);
 					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_locked" alt=""'. $inline_style2.'/>' . "\n";
@@ -268,7 +268,7 @@ class flag_thumbnail {
 				}
 				if (getOption('flag_thumbnail_use_text')) {
 					$text = getOption('flag_thumbnail_unpublished_text');
-					$html .= '<span class="textasnewflag"'. $inline_style1.'>' . $text . "</span>\n";
+					$html .= '<span class="textasnewflag imageasflag_unpublished"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_unpublished_icon'), false, true);
 					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_unpublished" alt=""'. $inline_style2.'/>' . "\n";
