@@ -250,7 +250,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			maintenancemode::printStateNotice();
 			?>
-					
+
 		<span id="administration">
 			<img id="logo" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png"
 					 title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'), html_encode($_zp_gallery->getTitle()), html_encode($_zp_admin_current_page), html_encode($subtab)); ?>"
@@ -480,7 +480,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 		return $default;
 	}
-	
+
 	/**
 	 * Roughly fixes outdated usages of old admin "tab" globals and joins them with the actual globals.
 	 * and also throws deprecation notices about this.
@@ -501,20 +501,19 @@ function printAdminHeader($tab, $subtab = NULL) {
 		global $zenphoto_tabs, $subtabs, $_zp_admin_tab, $_zp_admin_subtab;
 
 		if (isset($zenphoto_tabs)) {
-			trigger_error(gettext('The global $zenphoto_tabs is deprecated. Use $_zp_admin_menu instead'), E_USER_DEPRECATED );
+			trigger_error(gettext('The global $zenphoto_tabs is deprecated. Use $_zp_admin_menu instead'), E_USER_DEPRECATED);
 			$_zp_admin_menu = array_merge($_zp_admin_menu, $zenphoto_tabs);
 		}
 		if (isset($subtabs)) {
-			trigger_error(gettext('The global $subtabs is deprecated. Use $_zp_admin_submenu instead'), E_USER_DEPRECATED );
+			trigger_error(gettext('The global $subtabs is deprecated. Use $_zp_admin_submenu instead'), E_USER_DEPRECATED);
 			$_zp_admin_submenu = array_merge($_zp_admin_submenu, $subtabs);
 		}
 		if (isset($_zp_admin_tab)) {
-			trigger_error(gettext('The global $_zp_admin_tab is deprecated. Use $_zp_admin_current_page instead'), E_USER_DEPRECATED );
+			trigger_error(gettext('The global $_zp_admin_tab is deprecated. Use $_zp_admin_current_page instead'), E_USER_DEPRECATED);
 			$_zp_admin_current_page = $_zp_admin_current_subpage;
-
 		}
 		if (isset($_zp_admin_subtab)) {
-			trigger_error(gettext('The global $_zp_admin_subtab is deprecated. Use $_zp_admin_current_subpage instead'), E_USER_DEPRECATED );
+			trigger_error(gettext('The global $_zp_admin_subtab is deprecated. Use $_zp_admin_current_subpage instead'), E_USER_DEPRECATED);
 			$_zp_admin_current_subpage = $_zp_admin_subtab;
 		}
 	}
@@ -1048,10 +1047,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 							<label class="displayinlineright">
 								<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem) . '_' . $box['name'] . $unique; ?>"<?php echo $class; ?> name="<?php echo $listitem . '_' . $box['name']; ?>"
 											 value="<?php echo html_encode($box['value']); ?>" <?php
-											 if ($box['checked']) {
-												 echo ' checked="checked"';
-											 }
-											 ?>
+					if ($box['checked']) {
+						echo ' checked="checked"';
+					}
+							?>
 											 <?php echo $disable; ?> /> <?php echo $box['display']; ?>
 							</label>
 							<?php
@@ -1353,10 +1352,10 @@ function printAdminHeader($tab, $subtab = NULL) {
 								</td>
 								<td>
 									<p> <?php
-										// Autofill honeypot hack (hidden password input),
-										// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
-										// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
-										?>
+											// Autofill honeypot hack (hidden password input),
+											// needed to prevent "Are you sure?" from tiggering when autofill is enabled in browsers
+											// http://benjaminjshore.info/2014/05/chrome-auto-fill-honey-pot-hack.html
+											?>
 										<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 										<input type="password" 
 													 class="dirtyignore" 
@@ -1367,7 +1366,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										<label><input class="dirtyignore" type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																	id="disclose_password<?php echo $suffix; ?>"
 																	onclick="passwordClear('<?php echo $suffix; ?>');
-																			togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
+																					togglePassword('<?php echo $suffix; ?>');" /><?php echo addslashes(gettext('Show password')); ?></label>
 										<br />
 										<span class="password_field_<?php echo $suffix; ?>">
 											<input class="dirtyignore" type="password"
@@ -1869,7 +1868,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 										 } else {
 											 ?>
 											 onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');
-													 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
+															 deleteConfirm('Delete-<?php echo $prefix; ?>', '<?php echo $prefix; ?>', deleteAlbum1);"
 											 <?php
 										 }
 										 ?> />
@@ -2157,7 +2156,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				<div class="page-list_extra">
 					<?php printPublished($album); ?>
 				</div>
-			<?php
+				<?php
 			}
 			if ($album->hasExpiration() || $album->hasExpired()) {
 				?>
@@ -2461,148 +2460,148 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
- * Process the image edit form posted
- * @param obj $image Image object
- * @param type $index Index of the image if within the images list or 0 if single image edit
- * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
- */
-function processImageEdit($image, $index, $massedit = true) {
-	global $_zp_current_admin_obj, $_zp_graphics;
-	$notify = '';
-	if (isset($_POST[$index . '-MoveCopyRename'])) {
-		$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
-	} else {
-		$movecopyrename_action = '';
-	}
-	if ($movecopyrename_action == 'delete') {
-		$image->remove();
-	} else {
-		if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
-			$talbum = AlbumBase::newAlbum($thumbnail);
-			if ($image->imagefolder == $thumbnail) {
-				$talbum->setThumb($image->filename);
-			} else {
-				$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+	 * Process the image edit form posted
+	 * @param obj $image Image object
+	 * @param type $index Index of the image if within the images list or 0 if single image edit
+	 * @param boolean $massedit Whether editing single image (false) or multiple images at once (true). Note: to determine whether to process additional fields in single image edit mode.
+	 */
+	function processImageEdit($image, $index, $massedit = true) {
+		global $_zp_current_admin_obj, $_zp_graphics;
+		$notify = '';
+		if (isset($_POST[$index . '-MoveCopyRename'])) {
+			$movecopyrename_action = sanitize($_POST[$index . '-MoveCopyRename'], 3);
+		} else {
+			$movecopyrename_action = '';
+		}
+		if ($movecopyrename_action == 'delete') {
+			$image->remove();
+		} else {
+			if ($thumbnail = sanitize($_POST['album_thumb-' . $index])) { //selected as an album thumb
+				$talbum = AlbumBase::newAlbum($thumbnail);
+				if ($image->imagefolder == $thumbnail) {
+					$talbum->setThumb($image->filename);
+				} else {
+					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
+				}
+				$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$talbum->save();
 			}
-			$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
-			$talbum->save();
-		}
-		if (isset($_POST[$index . '-reset_rating'])) {
-			$image->set('total_value', 0);
-			$image->set('total_votes', 0);
-			$image->set('used_ips', 0);
-		}
-		$image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
-		$image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
-		$image->setTitle(process_language_string_save("$index-title", 2));
-		$image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
-		
-		if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
-			$oldrotation = (int) $_POST[$index . '-oldrotation'];
-			$rotation = (int) $_POST[$index . '-rotation'];
-			if ($rotation != $oldrotation) {
-				$image->set('EXIFOrientation', $rotation);
-				$image->updateDimensions();
-				$album = $image->getAlbum();
-				Gallery::clearCache(SERVERCACHE . '/' . $album->name);
+			if (isset($_POST[$index . '-reset_rating'])) {
+				$image->set('total_value', 0);
+				$image->set('total_votes', 0);
+				$image->set('used_ips', 0);
 			}
-		}
+			$image->setPublishDate(sanitize($_POST['publishdate-' . $index]));
+			$image->setExpireDate(sanitize($_POST['expirationdate-' . $index]));
+			$image->setTitle(process_language_string_save("$index-title", 2));
+			$image->setDesc(process_language_string_save("$index-desc", EDITOR_SANITIZE_LEVEL));
 
-		if (!$massedit) {
-			$image->setLocation(process_language_string_save("$index-location", 3));
-			$image->setCity(process_language_string_save("$index-city", 3));
-			$image->setState(process_language_string_save("$index-state", 3));
-			$image->setCountry(process_language_string_save("$index-country", 3));
-			$image->setCredit(process_language_string_save("$index-credit", 1));
-			$image->setCopyright(process_language_string_save("$index-copyright", 1));
-			$tagsprefix = 'tags_' . $index . '-';
-			$tags = array();
-			$l = strlen($tagsprefix);
-			foreach ($_POST as $key => $value) {
-				$key = postIndexDecode($key);
-				if (substr($key, 0, $l) == $tagsprefix) {
-					if ($value) {
-						$tags[] = sanitize(substr($key, $l));
-					}
+			if (isset($_POST[$index . '-oldrotation']) && isset($_POST[$index . '-rotation'])) {
+				$oldrotation = (int) $_POST[$index . '-oldrotation'];
+				$rotation = (int) $_POST[$index . '-rotation'];
+				if ($rotation != $oldrotation) {
+					$image->set('EXIFOrientation', $rotation);
+					$image->updateDimensions();
+					$album = $image->getAlbum();
+					Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 				}
 			}
-			$tags = array_unique($tags);
-			$image->setTags($tags);
-			if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-				$image->setCodeblock(processCodeblockSave($index));
+
+			if (!$massedit) {
+				$image->setLocation(process_language_string_save("$index-location", 3));
+				$image->setCity(process_language_string_save("$index-city", 3));
+				$image->setState(process_language_string_save("$index-state", 3));
+				$image->setCountry(process_language_string_save("$index-country", 3));
+				$image->setCredit(process_language_string_save("$index-credit", 1));
+				$image->setCopyright(process_language_string_save("$index-copyright", 1));
+				$tagsprefix = 'tags_' . $index . '-';
+				$tags = array();
+				$l = strlen($tagsprefix);
+				foreach ($_POST as $key => $value) {
+					$key = postIndexDecode($key);
+					if (substr($key, 0, $l) == $tagsprefix) {
+						if ($value) {
+							$tags[] = sanitize(substr($key, $l));
+						}
+					}
+				}
+				$tags = array_unique($tags);
+				$image->setTags($tags);
+				if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+					$image->setCodeblock(processCodeblockSave($index));
+				}
+				$custom = process_language_string_save("$index-custom_data", 1);
+				$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
 			}
-			$custom = process_language_string_save("$index-custom_data", 1);
-			$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
-		}
-		$image->setDateTime(sanitize($_POST["$index-date"]));
-		$image->setPublished(isset($_POST["$index-Visible"]));
-		$image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
-		if (isset($_POST["reset_hitcounter$index"])) {
-			$image->set('hitcounter', 0);
-		}
-		$wmt = sanitize($_POST["$index-image_watermark"], 3);
-		$image->setWatermark($wmt);
-		$wmuse = 0;
-		if (isset($_POST['wm_image-' . $index])) {
-			$wmuse = $wmuse | WATERMARK_IMAGE;
-		}
-		if (isset($_POST['wm_thumb-' . $index])) {
-			$wmuse = $wmuse | WATERMARK_THUMB;
-		}
-		if (isset($_POST['wm_full-' . $index])) {
-			$wmuse = $wmuse | WATERMARK_FULL;
-		}
-		$image->setWMUse($wmuse);
+			$image->setDateTime(sanitize($_POST["$index-date"]));
+			$image->setPublished(isset($_POST["$index-Visible"]));
+			$image->setCommentsAllowed(isset($_POST["$index-allowcomments"]));
+			if (isset($_POST["reset_hitcounter$index"])) {
+				$image->set('hitcounter', 0);
+			}
+			$wmt = sanitize($_POST["$index-image_watermark"], 3);
+			$image->setWatermark($wmt);
+			$wmuse = 0;
+			if (isset($_POST['wm_image-' . $index])) {
+				$wmuse = $wmuse | WATERMARK_IMAGE;
+			}
+			if (isset($_POST['wm_thumb-' . $index])) {
+				$wmuse = $wmuse | WATERMARK_THUMB;
+			}
+			if (isset($_POST['wm_full-' . $index])) {
+				$wmuse = $wmuse | WATERMARK_FULL;
+			}
+			$image->setWMUse($wmuse);
 
-		if (isset($_POST[$index . '-owner'])) {
-			$image->setOwner(sanitize($_POST[$index . '-owner']));
-		}
-		$image->set('filesize', filesize($image->localpath));
-		$image->setLastchangeUser($_zp_current_admin_obj->getUser());
-		zp_apply_filter('save_image_utilities_data', $image, $index);
-		$image->save(true);
+			if (isset($_POST[$index . '-owner'])) {
+				$image->setOwner(sanitize($_POST[$index . '-owner']));
+			}
+			$image->set('filesize', filesize($image->localpath));
+			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+			zp_apply_filter('save_image_utilities_data', $image, $index);
+			$image->save(true);
 
-		// Process move/copy/rename
-		$mcrerr = array();
-		$folder = $image->getAlbumName();
-		if ($movecopyrename_action == 'move') {
-			$dest = sanitize_path($_POST[$index . '-albumselect']);
-			if ($dest && $dest != $folder) {
-				if ($e = $image->move($dest)) {
+			// Process move/copy/rename
+			$mcrerr = array();
+			$folder = $image->getAlbumName();
+			if ($movecopyrename_action == 'move') {
+				$dest = sanitize_path($_POST[$index . '-albumselect']);
+				if ($dest && $dest != $folder) {
+					if ($e = $image->move($dest)) {
+						SearchEngine::clearSearchCache();
+						$mcrerr['mcrerr'][$e][$index] = $image->getID();
+					}
+				} else {
+					// Cannot move image to same album.
+					$mcrerr['mcrerr'][2][$index] = $image->getID();
+				}
+			} else if ($movecopyrename_action == 'copy') {
+
+				$dest = sanitize_path($_POST[$index . '-albumselect']);
+				if ($dest && $dest != $folder) {
+					if ($e = $image->copy($dest)) {
+						$mcrerr['mcrerr'][$e][$index] = $image->getID();
+					}
+				} else {
+					// Cannot copy image to existing album.
+					// Or, copy with rename?
+					$mcrerr['mcrerr'][2][$index] = $image->getID();
+				}
+			} else if ($movecopyrename_action == 'rename') {
+				$renameto = sanitize_path($_POST[$index . '-renameto']);
+				if ($e = $image->rename($renameto)) {
 					SearchEngine::clearSearchCache();
 					$mcrerr['mcrerr'][$e][$index] = $image->getID();
 				}
-			} else {
-				// Cannot move image to same album.
-				$mcrerr['mcrerr'][2][$index] = $image->getID();
-			}
-		} else if ($movecopyrename_action == 'copy') {
-
-			$dest = sanitize_path($_POST[$index . '-albumselect']);
-			if ($dest && $dest != $folder) {
-				if ($e = $image->copy($dest)) {
-					$mcrerr['mcrerr'][$e][$index] = $image->getID();
-				}
-			} else {
-				// Cannot copy image to existing album.
-				// Or, copy with rename?
-				$mcrerr['mcrerr'][2][$index] = $image->getID();
-			}
-		} else if ($movecopyrename_action == 'rename') {
-			$renameto = sanitize_path($_POST[$index . '-renameto']);
-			if ($e = $image->rename($renameto)) {
-				SearchEngine::clearSearchCache();
-				$mcrerr['mcrerr'][$e][$index] = $image->getID();
 			}
 		}
+		if (!empty($mcrerr)) {
+			$notify = '&' . http_build_query($mcrerr);
+		}
+		return $notify;
 	}
-	if (!empty($mcrerr)) {
-		$notify = '&' . http_build_query($mcrerr);
-	}
-	return $notify;
-}
 
-function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
+	function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 		if (empty($parms)) {
 			$url = '?';
 		} else {
@@ -3247,10 +3246,10 @@ function adminPageNav($pagenum, $totalpages, $adminpage, $parms, $tab = '') {
 						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>"
 										 value="<?php echo $right['value']; ?>"<?php
-										 if ($rights & $right['value'])
-											 echo ' checked="checked"';
-										 echo $alterrights;
-										 ?> /> <?php echo $right['name']; ?>
+				if ($rights & $right['value'])
+					echo ' checked="checked"';
+				echo $alterrights;
+						?> /> <?php echo $right['name']; ?>
 						</label>
 						<?php
 					} else {
@@ -4470,8 +4469,8 @@ function printPageSelector($pagenumber, $rangeset, $script, $queryParams) {
 		}
 		?>
 		<select name="pagenumber" class="dirtyignore" id="pagenumber<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH . '/' . ZENFOLDER . '/' . $script; ?>',
-				[<?php echo $jump; ?>'pagenumber=' + $('#pagenumber<?php echo $instances; ?>').val()]);" >
-							<?php
+						[<?php echo $jump; ?>'pagenumber=' + $('#pagenumber<?php echo $instances; ?>').val()]);" >
+						<?php
 							foreach ($rangeset as $page => $range) {
 								?>
 				<option value="<?php echo $page; ?>" <?php if ($page == $pagenumber) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
@@ -5122,7 +5121,7 @@ function getSortByOptions($type) {
 				case 'albums-search':
 					$orders[gettext('Folder')] = 'folder';
 					$orders[gettext('Last updated date')] = 'updateddate';
-					$orders[gettext('Manual')] = 'manual'; 
+					$orders[gettext('Manual')] = 'manual';
 					if ($type == 'albums-search') {
 						$orders[gettext('Manual')] = 'sort_order';
 					}
@@ -5131,7 +5130,7 @@ function getSortByOptions($type) {
 				case 'images-search':
 					$orders[gettext('Filename')] = 'filename';
 					if ($type == 'images') {
-						$orders[gettext('Manual')] = 'manual'; 
+						$orders[gettext('Manual')] = 'manual';
 					}
 					if ($type == 'images-search') {
 						$orders[gettext('Manual')] = 'sort_order';
@@ -5445,7 +5444,7 @@ function printSelectorWithCustomField($optionname, $list = array(), $optionlabel
 	} else {
 		$currentvalue_customfield = getOption($optionname_customfield);
 	}
-	if(empty($list) && !in_array($currentselection, array('none', 'custom'))) { // no pages or disabled -> custom url
+	if (empty($list) && !in_array($currentselection, array('none', 'custom'))) { // no pages or disabled -> custom url
 		$currentselection = 'none';
 		$hiddenclass = '';
 	}
@@ -5652,41 +5651,86 @@ function printImageRotationSelector($imageobj, $currentimage) {
 	<br />
 	<input type="hidden" name="<?php echo $currentimage; ?>-oldrotation" value="<?php echo $rotation; ?>" />
 	<select id="rotation-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-rotation">
-	<?php generateListFromArray((array) $rotation, $list, null, true); ?>
+		<?php generateListFromArray((array) $rotation, $list, null, true); ?>
 	</select>
 	<?php
 }
 
 
 /**
- * Prints an option selector for either the date formats or the time formats
+ * Prints option selectors for date and time formats
+ * 
+ * @since 1.6.1
+ */
+function printDatetimeFormatSelector() {
+	$formatlist = array();
+	$use_localized_date = getOption('date_format_localized');
+
+	// date format
+	$date_selector_id = 'date_format_list';
+	$date_currentformat = getOption('date_format');
+	$date_formats = array_keys(getStandardDateFormats('date'));
+	$date_formatlist = getDatetimeFormatlistForSelector($date_formats, $use_localized_date);
+	if ($use_localized_date && extension_loaded('intl')) {
+		$date_formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
+		$date_formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
+	}
+	$date_formatlist[gettext('Custom')] = 'custom';
+	if (!in_array($date_currentformat, $date_formatlist)) {
+		$date_currentformat = 'custom';
+		$custom_format_display = 'block';
+	}
+
+	// time format
+	$time_selector_id = 'time_format_list';
+	$time_currentformat = getOption('time_format');
+	$time_formats = array_keys(getStandardDateFormats('time'));
+	$time_formatlist = getDatetimeFormatlistForSelector($time_formats, $use_localized_date);	
+	$time_formatlist[gettext('None')] = '';
+				
+	// custom format
+	$custom_format_id = 'custom_dateformat_box';
+	$custom_format_name = 'date_format';
+	$custom_format_label = gettext('Custom date format');
+	$custom_format_display = 'none';
+	?>
+	<select id="<?php echo $date_selector_id; ?>" name="<?php echo $date_selector_id; ?>" onchange="showfield(this, '<?php echo $custom_format_id; ?>')">
+		<?php generateListFromArray(array($date_currentformat), $date_formatlist, null, true); ?>
+	</select>
+	<select id="<?php echo $time_selector_id; ?>" name="<?php echo $time_selector_id; ?>">
+		<?php generateListFromArray(array($time_currentformat), $time_formatlist, null, true); ?>
+	</select>
+	<br>
+	<label id="<?php echo $custom_format_id; ?>" class="customText" style="display:<?php echo $custom_format_display; ?>">
+		<br />
+		<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $custom_format_name; ?>" value="<?php echo html_encode($date_currentformat); ?>" />
+		<?php echo $custom_format_label; ?>
+	</label>
+	<script>
+		$( "#<?php echo $date_selector_id; ?>" ).change(function() {
+			var date_format = $( "#<?php echo $date_selector_id; ?>" ).val();
+			if (date_format === "custom" || date_format === "locale_preferreddate_time" || date_format === "locale_preferreddate_notime") {
+				$( "#<?php echo $time_selector_id; ?>" ).prop( "disabled", true );
+				$( "#<?php echo $time_selector_id; ?>" ).val('');
+			} else {
+				$( "#<?php echo $time_selector_id; ?>" ).prop( "disabled", false );
+			}
+		});
+	</script>
+	<?php
+}
+
+/**
+ * Helper functions for printDatetimeFormatSelector() ot create the format lists for the selector, not intended to be used standalone
  * 
  * @since 1.6.1
  * 
- * @param string $type "date" or "time"
+ * @param array $formats Array as created by array_keys(getStandardDateFormats($type);
+ * @param bool $use_localized_date Default false, set to true to use localized datees
+ * @return array
  */
-function printDatetimeFormatSelector($type = 'date') {
+function getDatetimeFormatlistForSelector($formats = array(), $use_localized_date = false) {
 	$formatlist = array();
-	$use_localized_date = getOption('date_format_localized');
-	switch ($type) {
-		default:
-		case 'date':
-			$selector_id = 'date_format_list';
-			$showfield_id = 'custom_dateformat_box';
-			$custom_format_name = 'date_format';
-			$formats = array_keys(getStandardDateFormats('date'));
-			$currentformat = getOption('date_format');
-			$custom_format_label = gettext('Custom date format');
-			break;
-		case 'time':
-			$selector_id = 'time_format_list';
-			$showfield_id = 'custom_timeformat_box';
-			$custom_format_name = 'time_format';
-			$custom_format_label = gettext('Custom time format');
-			$formats = array_keys(getStandardDateFormats('time'));
-			$currentformat = getOption('time_format');
-			break;
-	}
 	foreach ($formats as $format) {
 		if ($use_localized_date) {
 			$formatlist[zpFormattedDate($format, '2023-03-05 15:30:30', true)] = $format;
@@ -5694,32 +5738,5 @@ function printDatetimeFormatSelector($type = 'date') {
 			$formatlist[zpFormattedDate($format, '2023-03-05 15:30:30', false)] = $format;
 		}
 	}
-	if ($type == 'date' && $use_localized_date && extension_loaded('intl')) {
-		$formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
-		$formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
-	}
-	if ($type == 'time') {
-		$formatlist[gettext('None')] = '';
-	}
-	$formatlist[gettext('Custom')] = 'custom';
-	?>
-	<select id="<?php echo $selector_id; ?>" name="<?php echo $selector_id; ?>" onchange="showfield(this, '<?php echo $showfield_id; ?>')">
-	<?php
-		$current_selected = $currentformat;
-		if (in_array($currentformat, $formatlist)) {
-			$display = 'none';
-		} else {
-			$current_selected = 'custom';
-			$display = 'block';
-		} 
-		generateListFromArray(array($current_selected), $formatlist, null, true);
-	?>
-	</select>
-	<br>
-	<label id="<?php echo $showfield_id; ?>" class="customText" style="display:<?php echo $display; ?>">
-		<br />
-		<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $custom_format_name; ?>" value="<?php echo html_encode($currentformat); ?>" />
-		<?php echo $custom_format_label; ?>
-	</label>
-	<?php
+	return $formatlist;
 }

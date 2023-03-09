@@ -130,10 +130,8 @@ if (isset($_GET['action'])) {
 			
 			// time format
 			$timeformat = sanitize($_POST['time_format_list'], 3);
-			if (in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+			if ($dateformat == 'custom' || in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
 				$timeformat = '';
-			} else if ($timeformat == 'custom') {
-				$timeformat = sanitize($_POST['time_format'], 3);
 			} 
 			setOption('time_format', $timeformat);
 	
@@ -844,8 +842,7 @@ Authority::printPasswordFormJS();
 									<td width="175"><?php echo gettext("Date format:"); ?></td>
 									<td width="350">
 											<?php
-											printDatetimeFormatSelector('date');
-											printDatetimeFormatSelector('time');
+											printDatetimeFormatSelector();
 											$use_localized_date = getOption('date_format_localized');
 										?>
 										<label class="checkboxlabel">
