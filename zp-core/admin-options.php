@@ -849,7 +849,7 @@ Authority::printPasswordFormJS();
 											<input type="checkbox" name="date_format_localized" value="1"	<?php checked('1', $use_localized_date); ?> /><?php echo gettext('Use localized dates'); ?>
 											</label>
 									</td>
-									<td><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/de/datetime.format.php">datetime</a> format string in the custom box.'); ?>
+									<td><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/datetime.format.php">datetime</a> format string in the custom box.'); ?>
 									<?php if (extension_loaded('intl')) { ?>		
 										<p class="notebox">
 										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you choose one of the <em>preferred date representation</em> formats the time format option is ignored.'); ?>
