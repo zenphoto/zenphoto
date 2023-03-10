@@ -612,6 +612,7 @@ $upgrade = $versioncheck['upgrade_text'];
 								case 0:
 								case 'off':
 								case 'stderr':
+								case '':
 									$display = true;
 									$aux = '';
 									break;
@@ -629,11 +630,16 @@ $upgrade = $versioncheck['upgrade_text'];
 									break;
 							}
 							setup::checkmark($display, gettext('PHP <code>display_errors</code>'), sprintf(gettext('PHP <code>display_errors</code> [is enabled]'), $display), gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sensitive information about your site.') . $aux, $display && !TEST_RELEASE);
-							setup::checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));						
-							setup::checkmark(extension_loaded('curl') ? 1 : -1, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('<code>cURL</code> support is not critical but strongely recommended.'), false);
+						
+							setup::checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));			
+							
+							$good =	setup::checkmark(extension_loaded('curl') ? 1 : 0, gettext('PHP <code>cURL</code> support'), gettext('PHP <code>cURL</code> support [is not present]'), gettext('PHP <code>cURL</code> support is critical and required for some functionalty.')) && $good;		
+							
 							setup::checkmark(extension_loaded('tidy') ? 1 : -1, gettext('PHP <code>tidy</code> support'), gettext('PHP <code>tidy</code> support [is not present]'), gettext('<code>tidy</code> support is not critical but strongely recommended for properly truncating text containing HTML markup.'));
-							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));							
-							$good =	setup::checkmark(extension_loaded('json') ? 1 : 0, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is critical and required for some functionalty.')) && $good;						
+							setup::checkmark(extension_loaded('zip') ? 1 : -1, gettext('PHP <code>ZipArchive</code> support'), gettext('PHP <code>ZipArchive</code> support [is not present]'), gettext('<code>ZipArchive</code> support is not critical and only required if you intend to upload zip archives with supported file types to the gallery.'));			
+							
+							$good =	setup::checkmark(extension_loaded('json') ? 1 : 0, gettext('PHP <code>JSON</code> support'), gettext('PHP <code>JSON</code> support [is not present]'), gettext('<code>JSON</code> support is critical and required for some functionalty.')) && $good;		
+							
 							setup::checkmark(extension_loaded('exif') ? 1 : -1, gettext('PHP <code>exif</code> support'), gettext('PHP <code>exif</code> support [is not present]'), gettext('<code>exif</code> support is not critical but strongely recommended for properly handling exif data of images'));
 							setup::checkmark(extension_loaded('bz2') ? 1 : -1, gettext('PHP <code>bz2</code> support'), gettext('PHP <code>bz2</code> support [is not present]'), gettext('<code>bz2</code> support is not critical but recommended for some optional bzcompression functionalty'));
 							setup::checkmark(extension_loaded('fileinfo') ? 1 : -1, gettext('PHP <code>fileinfo</code> support'), gettext('PHP <code>fileinfo</code> support [is not present]'), gettext('<code>fileinfo</code> support is not critical but strongely recommended for file system functionality'));
