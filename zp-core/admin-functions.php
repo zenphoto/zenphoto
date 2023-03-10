@@ -5698,6 +5698,10 @@ function printDatetimeFormatSelector() {
 		$time_formatlist_disabled = ' disabled="disabled"';
 		$time_currentformat = '';
 	}
+	if (in_array($date_currentformat, array('locale_preferreddate_time','locale_preferreddate_notime'))) {
+		$time_formatlist_disabled = ' disabled="disabled"';
+		$time_currentformat = '';
+	}
 	?>
 	<select id="<?php echo $date_selector_id; ?>" name="<?php echo $date_selector_id; ?>" onchange="showfield(this, '<?php echo $custom_format_id; ?>')">
 		<?php generateListFromArray(array($date_currentformat_selector), $date_formatlist, null, true); ?>
