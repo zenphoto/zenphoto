@@ -5665,10 +5665,10 @@ function printImageRotationSelector($imageobj, $currentimage) {
 function printDatetimeFormatSelector() {
 	$formatlist = array();
 	$use_localized_date = getOption('date_format_localized');
-
+	
 	// date format
 	$date_selector_id = 'date_format_list';
-	$date_currentformat = getOption('date_format');
+	$date_currentformat_selector = $date_currentformat = getOption('date_format');
 	$date_formats = array_keys(getStandardDateFormats('date'));
 	$date_formatlist = getDatetimeFormatlistForSelector($date_formats, $use_localized_date);
 	if ($use_localized_date && extension_loaded('intl')) {
@@ -5676,10 +5676,6 @@ function printDatetimeFormatSelector() {
 		$date_formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
 	}
 	$date_formatlist[gettext('Custom')] = 'custom';
-	if (!in_array($date_currentformat, $date_formatlist)) {
-		$date_currentformat = 'custom';
-		$custom_format_display = 'block';
-	}
 
 	// time format
 	$time_selector_id = 'time_format_list';
@@ -5687,17 +5683,26 @@ function printDatetimeFormatSelector() {
 	$time_formats = array_keys(getStandardDateFormats('time'));
 	$time_formatlist = getDatetimeFormatlistForSelector($time_formats, $use_localized_date);	
 	$time_formatlist[gettext('None')] = '';
-				
+	$time_formatlist_disabled = '';
+	
 	// custom format
 	$custom_format_id = 'custom_dateformat_box';
 	$custom_format_name = 'date_format';
-	$custom_format_label = gettext('Custom date format');
+	$custom_format_label = gettext('Custom datetime format');
 	$custom_format_display = 'none';
+	
+	// special settings for custom datetime formats
+	if (!in_array($date_currentformat, $date_formatlist)) {
+		$date_currentformat_selector = 'custom';
+		$custom_format_display = 'block';
+		$time_formatlist_disabled = ' disabled="disabled"';
+		$time_currentformat = '';
+	}
 	?>
 	<select id="<?php echo $date_selector_id; ?>" name="<?php echo $date_selector_id; ?>" onchange="showfield(this, '<?php echo $custom_format_id; ?>')">
-		<?php generateListFromArray(array($date_currentformat), $date_formatlist, null, true); ?>
+		<?php generateListFromArray(array($date_currentformat_selector), $date_formatlist, null, true); ?>
 	</select>
-	<select id="<?php echo $time_selector_id; ?>" name="<?php echo $time_selector_id; ?>">
+	<select id="<?php echo $time_selector_id; ?>" name="<?php echo $time_selector_id; ?>"<?php echo $time_formatlist_disabled; ?>>
 		<?php generateListFromArray(array($time_currentformat), $time_formatlist, null, true); ?>
 	</select>
 	<br>
