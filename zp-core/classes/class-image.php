@@ -26,6 +26,8 @@ class Image extends MediaObject {
 	public $objectsThumb = NULL; // Thumbnail image for the object
 	public $thumbdimensions = null;
 	protected $is_public = null;
+	public $encwebpath = '';
+	public $imagetype = '';
 
 	/**
 	 * Constructor for class-image
