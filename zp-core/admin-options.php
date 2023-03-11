@@ -129,12 +129,15 @@ if (isset($_GET['action'])) {
 			setOption('date_format', $dateformat);
 			
 			// time format
-			$timeformat = sanitize($_POST['time_format_list'], 3);
-			if ($dateformat == 'custom' || in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+			if (isset($_POST['time_format_list'])) { // may not be submitted if custom/preferred are selector for date format
+				$timeformat = sanitize($_POST['time_format_list'], 3);
+				if ($dateformat == 'custom' || in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+					$timeformat = '';
+				}
+			} else {
 				$timeformat = '';
-			} 
+			}
 			setOption('time_format', $timeformat);
-	
 			setOption('date_format_localized', (int) isset($_POST['date_format_localized']));
 			
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
