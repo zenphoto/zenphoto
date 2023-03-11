@@ -2868,33 +2868,31 @@ function printAdminHeader($tab, $subtab = NULL) {
 	 */
 	function unzip($file, $dir) { //check if zziplib is installed
 		global $_zp_current_admin_obj;
-		if (function_exists('zip_open')) {
-			$zip = zip_open($file);
-			if ($zip) {
-				while ($zip_entry = zip_read($zip)) { // Skip non-images in the zip file.
-					$fname = zip_entry_name($zip_entry);
+		if (class_exists('ziparchive')) {
+			$zip = new ZipArchive();
+			$zip_valid = $zip->open($file);
+			if ($zip_valid === true) {
+				for ($i = 0; $entry = $zip->statIndex($i); $i++) {
+					$fname = $entry['name'];
 					$seoname = internalToFilesystem(seoFriendly($fname));
 					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
-						if (zip_entry_open($zip, $zip_entry, "r")) {
-							$buf = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-							$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
-							$fp = fopen($path_file, "w");
-							fwrite($fp, $buf);
-							fclose($fp);
-							clearstatcache();
-							zip_entry_close($zip_entry);
-							$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
-							$album = AlbumBase::newAlbum($albumname);
-							$image = Image::newImage($album, $seoname);
-							if ($fname != $seoname) {
-								$image->setTitle($fname);
-								$image->setLastChangeUser($_zp_current_admin_obj->getUser());
-								$image->save();
-							}
+						$buf = $zip->getFromName($fname);
+						$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
+						$fp = fopen($path_file, "w");
+						fwrite($fp, $buf);
+						fclose($fp);
+						clearstatcache();
+						$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
+						$album = AlbumBase::newAlbum($albumname);
+						$image = Image::newImage($album, $seoname);
+						if ($fname != $seoname) {
+							$image->setTitle($fname);
+							$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$image->save();
 						}
 					}
 				}
-				return zip_close($zip);
+				return $zip->close();
 			}
 		} else {
 			debuglog(gettext('Zip archive could not be extracted because PHP <code>ZipArchive</code> support is not available'));
@@ -2902,18 +2900,18 @@ function printAdminHeader($tab, $subtab = NULL) {
 		}
 	}
 
-	/**
-	 * Checks for a zip file
-	 *
-	 * @param string $filename name of the file
-	 * @return bool
-	 */
-	function is_zip($filename) {
-		$ext = getSuffix($filename);
-		return ($ext == "zip");
-	}
+/**
+ * Checks for a zip file
+ *
+ * @param string $filename name of the file
+ * @return bool
+ */
+function is_zip($filename) {
+	$ext = getSuffix($filename);
+	return ($ext == "zip");
+}
 
-	/**
+/**
 	 * Extracts and returns a 'statement' from a PHP script so that it may be 'evaled'
 	 *
 	 * @param string $target the assignment variable to match on
