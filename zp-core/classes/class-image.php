@@ -615,25 +615,26 @@ class Image extends MediaObject {
 	 */
 	function updateDimensions() {
 		global $_zp_graphics;
-		$discard = NULL;
 		$size = $_zp_graphics->imageDims($this->localpath);
-		$width = $size['width'];
-		$height = $size['height'];
-		if ($_zp_graphics->imageCanRotate()) {
-			// Swap the width and height values if the image should be rotated
-			$rotation = extractImageExifOrientation($this->get('EXIFOrientation'));
-			switch ($rotation) {
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-					$width = $size['height'];
-					$height = $size['width'];
-					break;
+		if (is_array($size)) {
+			$width = $size['width'];
+			$height = $size['height'];
+			if ($_zp_graphics->imageCanRotate()) {
+				// Swap the width and height values if the image should be rotated
+				$rotation = extractImageExifOrientation($this->get('EXIFOrientation'));
+				switch ($rotation) {
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+						$width = $size['height'];
+						$height = $size['width'];
+						break;
+				}
 			}
+			$this->set('width', $width);
+			$this->set('height', $height);
 		}
-		$this->set('width', $width);
-		$this->set('height', $height);
 	}
 
 	/**
