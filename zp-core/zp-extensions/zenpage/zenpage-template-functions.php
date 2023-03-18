@@ -655,11 +655,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 		if ($yearsonly) {
 			$datetosearch = $key;
 		} else {
-			if (extension_loaded('intl') && getOption('date_format_localized')) {
-				$datetosearch = zpFormattedDate('Y-F', $key);
-			} else {
-				$datetosearch = zpFormattedDate('yyyy-MMMM', $key);
-			}
+			$datetosearch = zpFormattedDate('Y-F', $key);
 		}
 		if (getCurrentNewsArchive('plain') == $datetosearch) {
 			$active = $activeclass;
