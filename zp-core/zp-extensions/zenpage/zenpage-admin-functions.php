@@ -566,8 +566,13 @@ function printArticleDatesDropdown($pagenumber) {
 					$year = "no date";
 					$month = "";
 				} else {
-					$year = getFormattedLocaleDate('Y', $key);
-					$month = getFormattedLocaleDate('F', $key);
+					if (extension_loaded('intl') && getOption('date_format_localized')) {
+						$year = zpFormattedDate('yyyy', $key, true); 
+						$month = zpFormattedDate('MMMM', $key, true);
+					} else {
+						$year = zpFormattedDate('Y', $key, false); 
+						$month = zpFormattedDate('F', $key,  false);
+					}
 				}
 				if (isset($_GET['category'])) {
 					$catlink = "&amp;category=" . sanitize($_GET['category']);

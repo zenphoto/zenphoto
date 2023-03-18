@@ -262,7 +262,7 @@ class dynamicAlbum extends AlbumBase {
 		$parentalbum = $this->getParent();
 		$this->set('mtime', filemtime($this->localpath));
 		if (!$_zp_gallery->getAlbumUseImagedate()) {
-			$date = getFormattedLocaleDate('Y-m-d H:i:s', $this->get('mtime'));
+			$date = zpFormattedDate('Y-m-d H:i:s', $this->get('mtime'));
 			$this->setDateTime($date);
 		}
 		$title = trim($this->name);

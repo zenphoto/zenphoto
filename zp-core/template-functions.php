@@ -1392,7 +1392,7 @@ function printAlbumBreadcrumb($before = '', $after = '', $title = NULL) {
  * @param string $class is the class for the link (if present)
  * @param string $search text for a search page title
  * @param string $archive text for an archive page title
- * @param string $format data format for archive page crumb
+ * @param string $format data format for archive page crumb Datetime format, if using localized dates an ICU dateetime format!
  */
 function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $archive = NULL, $format = 'F Y') {
 	global $_zp_current_search;
@@ -1415,7 +1415,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 		echo "</a>";
 		echo '<span class="betweentext">' . html_encode($between) . '</span>';
 		if ($format) {
-			$d = getFormattedLocaleDate($format, $d);
+			$d = zpFormattedDate($format, $d);
 		}
 		echo $d;
 	} else {

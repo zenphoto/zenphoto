@@ -655,7 +655,11 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 		if ($yearsonly) {
 			$datetosearch = $key;
 		} else {
-			$datetosearch = getFormattedLocaleDate('Y-F', $key);
+			if (extension_loaded('intl') && getOption('date_format_localized')) {
+				$datetosearch = zpFormattedDate('Y-F', $key);
+			} else {
+				$datetosearch = zpFormattedDate('yyyy-MMMM', $key);
+			}
 		}
 		if (getCurrentNewsArchive('plain') == $datetosearch) {
 			$active = $activeclass;
@@ -679,7 +683,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
  * Gets the current select news date (year-month) or formatted
  *
  * @param string $mode "formatted" for a formatted date or "plain" for the pure year-month (for example "2008-09") archive date
- * @param string $format If $mode="formatted" how the date should be printed (see PHP's date() function for the requirements)
+ * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled a ICU dateformat
  * @return string
  */
 function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
@@ -687,7 +691,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
 	if (in_context(ZP_ZENPAGE_NEWS_DATE)) {
 		$archivedate = $_zp_post_date;
 		if ($mode == "formatted") {
-			$archivedate = getFormattedLocaleDate($format, $archivedate);
+			$archivedate = zpFormattedDate($format, $archivedate);
 		}
 		return $archivedate;
 	}
@@ -699,7 +703,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
  *
  * @param string $before What you want to print before the archive if using in a breadcrumb navigation for example
  * @param string $mode "formatted" for a formatted date or "plain" for the pure year-month (for example "2008-09") archive date
- * @param string $format If $mode="formatted" how the date should be printed (see PHP's date() function for the requirements)
+ * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled a ICU dateformat
  * @return string
  */
 function printCurrentNewsArchive($before = '', $mode = 'formatted', $format = 'F Y') {
