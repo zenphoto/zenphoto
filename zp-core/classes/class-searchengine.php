@@ -2048,7 +2048,7 @@ class SearchEngine {
 	 * 
 	 * @since 1.6
 	 * 
-	 * @param string $format formatting of the date, default 'F Y'
+	 * @param string $format A datetime format, if using localized dates an ICU dateformat
 	 * @return string
 	 */
 	function getSearchDateFormatted($format = 'F Y') {

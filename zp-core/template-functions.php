@@ -1392,7 +1392,7 @@ function printAlbumBreadcrumb($before = '', $after = '', $title = NULL) {
  * @param string $class is the class for the link (if present)
  * @param string $search text for a search page title
  * @param string $archive text for an archive page title
- * @param string $format data format for archive page crumb Datetime format, if using localized dates an ICU dateetime format!
+ * @param string $format data format for archive page breadcrumb - A datetime format, if using localized dates an ICU dateformat
  */
 function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $archive = NULL, $format = 'F Y') {
 	global $_zp_current_search;
@@ -1576,7 +1576,7 @@ function printHomeLink($before = '', $after = '', $title = NULL, $class = NULL, 
 /**
  * Returns the formatted date field of the album
  *
- * @param string $format optional format string for the date
+ * @param string $format optional format string for the date - A datetime format, if using localized dates an ICU dateformat
  * @return string
  */
 function getAlbumDate($format = null) {
@@ -1595,7 +1595,7 @@ function getAlbumDate($format = null) {
  * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
- * @param string $format Format string for the date formatting
+ * @param string $format A datetime format, if using localized dates an ICU dateformat
  */
 function printAlbumDate($before = '', $format = NULL) {
 	global $_zp_current_album;
@@ -2288,7 +2288,7 @@ function imageNumber() {
  * Returns the image date of the current image in yyyy-mm-dd hh:mm:ss format.
  * Pass it a date format string for custom formatting
  *
- * @param string $format formatting string for the data
+ * @param string $format A datetime format, if using localized dates an ICU dateformat
  * @return string
  */
 function getImageDate($format = null) {
@@ -2309,7 +2309,7 @@ function getImageDate($format = null) {
  * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
- * @param string $format Format string for the date formatting
+ * @param string $format A datetime format, if using localized dates an ICU dateformat
  */
 function printImageDate($before = '', $format = null) {
 	global $_zp_current_image;
@@ -3981,7 +3981,7 @@ function getSearchWords() {
 /**
  * Returns the date of the search
  *
- * @param string $format formatting of the date, default 'F Y'
+ * @param string $format A datetime format, if using localized dates an ICU dateformat
  * @return string
  * @since 1.1
  */

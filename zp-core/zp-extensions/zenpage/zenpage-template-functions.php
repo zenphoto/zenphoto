@@ -679,7 +679,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
  * Gets the current select news date (year-month) or formatted
  *
  * @param string $mode "formatted" for a formatted date or "plain" for the pure year-month (for example "2008-09") archive date
- * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled a ICU dateformat
+ * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled an ICU dateformat
  * @return string
  */
 function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
@@ -699,7 +699,7 @@ function getCurrentNewsArchive($mode = 'formatted', $format = 'F Y') {
  *
  * @param string $before What you want to print before the archive if using in a breadcrumb navigation for example
  * @param string $mode "formatted" for a formatted date or "plain" for the pure year-month (for example "2008-09") archive date
- * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled a ICU dateformat
+ * @param string $format If $mode="formatted" a datetime format or if localized dates are enabled an ICU dateformat
  * @return string
  */
 function printCurrentNewsArchive($before = '', $mode = 'formatted', $format = 'F Y') {

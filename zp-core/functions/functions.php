@@ -287,8 +287,8 @@ function lookupSortKey($sorttype, $default, $table) {
 /**
  * Returns a formatted date for output
  *
- * @param string $format a datetime compatible format string. Leave empty to use the option value.
- *							NOTE: If $localize_date = true you need to provide a ICU dateformat string instead of a datetime format string 
+ * @param string $format A datetime compatible format string. Leave empty to use the option value.
+ *							NOTE: If $localize_date = true you need to provide an ICU dateformat string instead of a datetime format string 
  *							unless you pass the DATE_FORMAT constant using one of the standard formats.
  *							You can then also submit these custom formats 'locale_preferreddate_time' and 'locale_preferreddate_notime'
  * @param string|int $datetime the date to be formatted. Can be a date string or a timestamp.  
@@ -381,7 +381,7 @@ function getDatetimeObject($datetime = '') {
 }
 
 /**
- * Returns an array with datetime (keys) and ICU date format (values) strings
+ * Returns an array with datetime (keys) and ICU dateformat (values) strings
  * 
  * @since 1.6.1
  * 
