@@ -213,7 +213,7 @@ class flag_thumbnail {
 					$html .= '<span class="textasnewflag textasnewflag_new"'. $inline_style1.'>' . $text . "</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/' . getOption('flag_thumbnail_new_icon'), false, true);
-					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_new" alt="'. $inline_style2.'/>' . "\n";
+					$html .= '<img src="' . $img . '" class="imageasflag imageasflag_new" alt=""'. $inline_style2.'/>' . "\n";
 				}
 			}
 		}
