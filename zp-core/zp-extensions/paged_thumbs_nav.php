@@ -70,27 +70,27 @@ class pagedthumbsOptions {
 
 class pagedThumbsNav {
 
-	var $imagesperpage;
-	var $counter;
-	var $prev;
-	var $next;
-	var $width;
-	var $height;
-	var $crop;
-	var $placeholders;
-	var $showpagelist;
-	var $pagelistprevnext;
-	var $pagelistlength;
-	var $totalimages;
-	var $totalpages;
-	var $images;
-	var $currentpage;
-	var $currentfloor;
-	var $currentciel;
-	var $currentimgnr;
-	var $searchimages;
-	var $prevpageimage;
-	var $nextpageimage;
+	public $imagesperpage;
+	public $counter;
+	public $prev;
+	public $next;
+	public $width;
+	public $height;
+	public $crop;
+	public $placeholders;
+	public $showpagelist;
+	public $pagelistprevnext;
+	public $pagelistlength;
+	public $totalimages;
+	public $totalpages;
+	public $images;
+	public $currentpage;
+	public $currentfloor;
+	public $currentciel;
+	public $currentimgnr;
+	public $searchimages;
+	public $prevpageimage;
+	public $nextpageimage;
 
 	/**
 	 *

@@ -404,6 +404,7 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-mimetypes.php');
 class RSS extends feed {
 
 	protected $feed = 'RSS';
+	public $feeditems = array();
 
 	/**
 	 * Creates a feed object from the URL parameters fetched only

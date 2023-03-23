@@ -29,7 +29,7 @@ if ($plugin_disable) {
  */
 class zpTrivialSpam {
 
-	var $name = 'trivialSpam';
+	public $name = 'trivialSpam';
 
 	/**
 	 * The SpamFilter class instantiation function.

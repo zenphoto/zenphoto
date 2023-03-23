@@ -59,8 +59,9 @@ class VideoObject_Options {
 }
 
 class Video extends Image {
-
-	var $videoalt = array();
+	
+	public $video = false;
+	public $videoalt = array();
 
 	/**
 	 * Constructor for class-video

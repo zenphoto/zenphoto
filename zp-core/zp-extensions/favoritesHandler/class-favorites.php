@@ -6,13 +6,13 @@
  */
 class favorites extends AlbumBase {
 
-	var $imageSortDirection;
-	var $albumSortDirection;
-	var $imageSortType;
-	var $albumSortType;
-	var $list = array('');
-	var $owner;
-	var $instance = '';
+	public $imageSortDirection;
+	public $albumSortDirection;
+	public $imageSortType;
+	public $albumSortType;
+	public $list = array('');
+	public $owner;
+	public $instance = '';
 
 	function __construct($user) {
 		global $_zp_db;

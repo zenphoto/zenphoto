@@ -205,8 +205,8 @@ class CI_jsmin {
 
 class codeIgniter_kludge { //	dummy for all the CI stuff in the CodeIngnter-Google_maps script
 
-	var $load;
-	var $jsmin;
+	public $load;
+	public $jsmin;
 
 	function __construct() {
 		$this->load = new CI_load();

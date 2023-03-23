@@ -7,8 +7,8 @@
 
 class Comment extends PersistentObject {
 
-	var $comment_error_text = NULL;
-	var $dataconfirmation = null;
+	public $comment_error_text = NULL;
+	public $dataconfirmation = null;
 
 	/**
 	 * This is a simple class so that we have a convienient "handle" for manipulating comments.

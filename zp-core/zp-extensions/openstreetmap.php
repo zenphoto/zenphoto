@@ -238,33 +238,33 @@ class openStreetMap {
 	 * Contains the array of the image or images from albums geodata
 	 * @var array
 	 */
-	var $geodata = NULL;
+	public $geodata = NULL;
 
 	/**
 	 * Contains a string presenting a Javascript array of geodata for leafletjs
 	 * @var array
 	 */
-	var $geodatajs = NULL;
+	public $geodatajs = NULL;
 
 	/**
 	 * geodata array('min' => array(lat,lng), 'max => array(lat,lng))
 	 * Default created from an image or the images of an album. 
 	 * @var array
 	 */
-	var $fitbounds = NULL;
+	public $fitbounds = NULL;
 
 	/**
 	 * geodata array(lat,lng)
 	 * Default created from an image or the images of an album. 
 	 * @var array
 	 */
-	var $center = NULL;
+	public $center = NULL;
 
 	/**
 	 * Optional class name to attach to the map html
 	 * @var string
 	 */
-	var $class = '';
+	public $class = '';
 
 	/**
 	 * "single" (one marker)
@@ -273,7 +273,7 @@ class openStreetMap {
 	 * Default created by the $geodata property: "single "if array with one entry, "cluster" if more entries
 	 * @var string
 	 */
-	var $mode = NULL;
+	public $mode = NULL;
 
 	/**
 	 * 
@@ -281,43 +281,43 @@ class openStreetMap {
 	 * The current image's position will be highlighted.
 	 * @var bool
 	 */
-	var $showalbummarkers = false;
+	public $showalbummarkers = false;
 
 	/**
 	 * geodata array(lat,lng)
 	 * Default created from the image marker or from the markers of the images of an album if in context
 	 * @var array
 	 */
-	var $mapcenter = NULL;
+	public $mapcenter = NULL;
 
 	/**
 	 * Unique number if using more than one map on a page
 	 * @var int
 	 */
-	var $mapnumber = '';
+	public $mapnumber = '';
 
 	/**
 	 * Default 100% for responsive map. Values like "100%", "100px" or "100em"
 	 * Default taken from plugin options
 	 * @var string
 	 */
-	var $width = NULL;
+	public $width = NULL;
 
 	/**
 	 * Values like "100px" or "100em"
 	 * Default taken from plugin options
 	 * @var string 
 	 */
-	var $height = NULL;
+	public $height = NULL;
 
 	/**
 	 * Default zoom state
 	 * Default taken from plugin options
 	 * @var int
 	 */
-	var $zoom = NULL;
-	var $minzoom = NULL;
-	var $maxzoom = NULL;
+	public $zoom = NULL;
+	public $minzoom = NULL;
+	public $maxzoom = NULL;
 
 	/**
 	 * The tile providers to use. Select from the $tileproviders property like $this->maptiles = $this->tileproviders['<desired provider>']
@@ -325,16 +325,16 @@ class openStreetMap {
 	 * Default taken from plugin options
 	 * @var array
 	 */
-	var $defaultlayer = NULL;
-	var $layerslist = NULL;
-	var $layer = NULL;
+	public $defaultlayer = NULL;
+	public $layerslist = NULL;
+	public $layer = NULL;
 
 	/**
 	 * Radius when clusters should be created on more than one marker
 	 * Default taken from plugin options
 	 * @var int
 	 */
-	var $clusterradius = NULL;
+	public $clusterradius = NULL;
 
 	/**
 	 * If used on albums or several custom markers if you wish popups on the markers
@@ -342,7 +342,7 @@ class openStreetMap {
 	 * Default taken from plugin options
 	 * @var bool
 	 */
-	var $markerpopup = false;
+	public $markerpopup = false;
 
 	/**
 	 * Only if on an album page and if $imagepopups are enabled.
@@ -350,40 +350,40 @@ class openStreetMap {
 	 * Default taken from plugin options
 	 * @var bool
 	 */
-	var $markerpopup_title = false;
-	var $markerpopup_desc = false;
-	var $markerpopup_thumb = false;
-	var $showmarkers = true;
+	public $markerpopup_title = false;
+	public $markerpopup_desc = false;
+	public $markerpopup_thumb = false;
+	public $showmarkers = true;
 
 	/**
 	 * Mini map parameters
 	 * @var string
 	 */
-	var $showminimap = false;
-	var $minimap_width = NULL;
-	var $minimap_height = NULL;
-	var $minimap_zoom = NULL;
+	public $showminimap = false;
+	public $minimap_width = NULL;
+	public $minimap_height = NULL;
+	public $minimap_zoom = NULL;
 
 	/**
 	 * Position of the map controls: "topleft", "topright", "bottomleft", "bottomright"
 	 * Default taken from plugin options
 	 * @var string
 	 */
-	var $zoomcontrolpos = NULL;
-	var $showscale = NULL;
-	var $showcursorpos = NULL;
+	public $zoomcontrolpos = NULL;
+	public $showscale = NULL;
+	public $showcursorpos = NULL;
 
 	/**
 	 * The current image or album object if not passing custom geodata
 	 * @var object
 	 */
-	var $obj = NULL;
+	public $obj = NULL;
 
 	/**
 	 * The predefined array of all free map tile providers for Open Street Map
 	 * @var array
 	 */
-	var $tileproviders = NULL;
+	public $tileproviders = NULL;
 
 	/**
 	 * If no $geodata array is passed the function gets geodata from the current image or the images of the current album

@@ -67,7 +67,7 @@ if (in_context(ZP_INDEX)) {
  */
 class jquery_rating {
 
-	var $ratingstate;
+	public $ratingstate;
 
 	/**
 	 * class instantiation function

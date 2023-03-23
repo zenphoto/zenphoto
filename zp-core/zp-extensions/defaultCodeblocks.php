@@ -16,7 +16,7 @@ zp_register_filter('codeblock', 'defaultCodeblocks_codebox');
 
 class defaultCodeblocks {
 
-	var $codeblocks;
+	public $codeblocks;
 
 	function __construct() {
 		global $_zp_db;

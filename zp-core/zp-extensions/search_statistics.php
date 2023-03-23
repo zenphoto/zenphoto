@@ -35,7 +35,7 @@ zp_register_filter('admin_utilities_buttons', 'search_statistics::button');
  *
  */
 class search_statistics {
-	var $ratingstate;
+	public $ratingstate;
 	/**
 	 * class instantiation function
 	 *

@@ -45,8 +45,8 @@ zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
 class deprecated_functions {
 
-	var $listed_functions = array();
-	var $unique_functions = array();
+	public $listed_functions = array();
+	public $unique_functions = array();
 
 	function __construct() {
 		foreach (getPluginFiles('*.php') as $extension => $plugin) {
