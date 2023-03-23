@@ -2861,20 +2861,21 @@ function printAdminHeader($tab, $subtab = NULL) {
 	}
 
 	/**
-	 * Unzips an image archive
-	 *
-	 * @param file $file the archive
-	 * @param string $dir where the images go
-	 */
-	function unzip($file, $dir) { //check if zziplib is installed
-		global $_zp_current_admin_obj;
-		if (class_exists('ziparchive')) {
-			$zip = new ZipArchive();
-			$zip_valid = $zip->open($file);
-			if ($zip_valid === true) {
-				for ($i = 0; $entry = $zip->statIndex($i); $i++) {
-					$fname = $entry['name'];
-					$seoname = internalToFilesystem(seoFriendly($fname));
+ * Unzips an image archive
+ *
+ * @param file $file the archive
+ * @param string $dir where the images go
+ */
+function unzip($file, $dir) { //check if zziplib is installed
+	global $_zp_current_admin_obj;
+	if (class_exists('ziparchive')) {
+		$zip = new ZipArchive();
+		$zip_valid = $zip->open($file);
+		if ($zip_valid === true) {
+			for ($i = 0; $entry = $zip->statIndex($i); $i++) {
+				$fname = $entry['name']; 
+				$seoname = internalToFilesystem(seoFriendly($fname));
+				if (strpos($seoname, '__macosx-._') === false) {
 					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
 						$buf = $zip->getFromName($fname);
 						$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
@@ -2892,13 +2893,14 @@ function printAdminHeader($tab, $subtab = NULL) {
 						}
 					}
 				}
-				return $zip->close();
 			}
-		} else {
-			debuglog(gettext('Zip archive could not be extracted because PHP <code>ZipArchive</code> support is not available'));
-			return false;
+			return $zip->close();
 		}
+	} else {
+		debuglog(gettext('Zip archive could not be extracted because PHP <code>ZipArchive</code> support is not available'));
+		return false;
 	}
+}
 
 /**
  * Checks for a zip file
