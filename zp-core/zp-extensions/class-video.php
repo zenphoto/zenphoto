@@ -17,6 +17,7 @@ $plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
 $plugin_notice = gettext('This plugin must always be enabled to use multimedia content. It supports mp4/m4v video and mp3 audio natively in capable browsers. For more support you should also enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_category = gettext('Media');
+$plugin_deprecated = gettext('This plugin will be restructured and moved to core in later versions');
 
 Gallery::addImageHandler('mp4', 'Video');
 Gallery::addImageHandler('m4v', 'Video');
