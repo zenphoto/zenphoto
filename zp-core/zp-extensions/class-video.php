@@ -483,7 +483,7 @@ class pseudoPlayer {
 			case 'm4a':
 			case 'mp3':
 				if (getOption('video_audioposter')) {
-					$poster = '<img class="mediaelementjs_audioposter" src="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '" alt="">' . "\n";
+					$poster = '<img class="video_audioposter" src="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '" alt="">' . "\n";
 				}
 				$content = $poster;
 				$content .= '<audio src="' . html_encode($movie) . '" controls>';
