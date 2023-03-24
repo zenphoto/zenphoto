@@ -372,5 +372,10 @@ class UploadHandlerZP extends UploadHandler {
 		$response = array($this->options['param_name'] => $files);
 		return $this->generate_response($response, $print_response);
 	}
+	
+	protected function basename($filepath, $suffix = null) {
+		$splited = preg_split('/\//', rtrim($filepath, '/ '));
+		return substr(basename('X' . $splited[count($splited) - 1], strval($suffix)), 1);
+	}
 
 }

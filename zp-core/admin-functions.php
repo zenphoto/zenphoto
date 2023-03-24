@@ -2875,7 +2875,7 @@ function unzip($file, $dir) { //check if zziplib is installed
 			for ($i = 0; $entry = $zip->statIndex($i); $i++) {
 				$fname = $entry['name']; 
 				$seoname = internalToFilesystem(seoFriendly($fname));
-				if (strpos($seoname, '__macosx-._') === false) {
+				if (stripos($seoname, '__macosx-._') === false) {
 					if (Gallery::validImage($seoname) || Gallery::validImageAlt($seoname)) {
 						$buf = $zip->getFromName($fname);
 						$path_file = str_replace("/", DIRECTORY_SEPARATOR, $dir . '/' . $seoname);
