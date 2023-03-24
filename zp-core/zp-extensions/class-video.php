@@ -474,7 +474,7 @@ class pseudoPlayer {
 			case 'mp4':
 			case 'm4v':
 				if (getOption('video_videoposter')) {
-					$poster = ' poster="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '"';
+					$poster = ' poster="' . $obj->getCustomImage($posterwidth, $posterwidth, $posterheight, null, null, null, null, true) . '"';
 				}
 				$content = '<video' . $poster . ' src="' . html_encode($movie) . '" controls width="100%">';
 				$content .= gettext('Your browser sadly does not support this video format.');
@@ -483,7 +483,7 @@ class pseudoPlayer {
 			case 'm4a':
 			case 'mp3':
 				if (getOption('video_audioposter')) {
-					$poster = '<img class="video_audioposter" src="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '" alt="">' . "\n";
+					$poster = '<img class="video_audioposter" src="' . $obj->getCustomImage($posterwidth, $posterwidth, $posterheight, null, null, null, null, true) . '" alt="">' . "\n";
 				}
 				$content = $poster;
 				$content .= '<audio src="' . html_encode($movie) . '" controls>';
