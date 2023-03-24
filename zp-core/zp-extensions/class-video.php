@@ -41,6 +41,8 @@ class VideoObject_Options {
 		purgeOption('class-video_3gp_w');
 		purgeOption('class-video_3gp_h');
 		purgeOption('class-video_videoalt');
+		setOptionDefault('video_videoposter', 1);
+		setOptionDefault('video_audioposter', 1);
 	}
 
 	/**
@@ -49,11 +51,31 @@ class VideoObject_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images') => array(
+		return array(
+				gettext('Watermark default images') => array(
 						'key' => 'video_watermark_default_images',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 0,
-						'desc' => gettext('Check to place watermark image on default thumbnail images.'))
+						'desc' => gettext('Check to place watermark image on default thumbnail images.')),
+				gettext('Video Poster') => array(
+						'key' => 'video_videoposter', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 3,
+						'desc' => gettext('If a poster of the videothumb should be shown. This is cropped to fit the player size as the player would distort image not fitting the player dimensions otherwise.')),
+				gettext('Video poster width') => array(
+						'key' => 'video_videoposter_width', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Max width of the video poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
+				gettext('Video poster height') => array(
+						'key' => 'video_videoposter_height', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Height of the video poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
+				gettext('Audio poster') => array(
+						'key' => 'video_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 8,
+						'desc' => gettext('If an image of the videothumb should be shown with audio files. You need to set the width/height. This is cropped to fit the size.')),
+				gettext('Audio poster width') => array(
+						'key' => 'video_audioposter_width', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Max width of the audio poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
+				gettext('Video poster height') => array(
+						'key' => 'video_audioposter_height', 'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Height of the audio poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
 		);
 	}
 
@@ -428,18 +450,43 @@ class pseudoPlayer {
 	function getPlayerConfig($obj, $movietitle = NULL, $count = NULL) {
 		$movie = $obj->getFullImage(FULLWEBPATH);
 		$suffix = getSuffix($movie);
-		$poster =  $obj->getCustomImage(null, $obj->getWidth(), $obj->getHeight(), $obj->getWidth(), $obj->getHeight(), null, null, true);
+		$poster = '';
+		switch ($suffix) {
+			case 'mp4':
+			case 'm4v':
+				$posterwidth = getOption('video_videoposter_width');
+				$posterheight = getOption('video_videoposter_height');
+				break;
+			case 'm4a':
+			case 'mp3':
+				$posterwidth = getOption('video_audioposter_width');
+				$posterheight = getOption('video_audioposter_height');
+				break;
+		}
+		if (empty($posterwidth)) {
+			$posterwidth = $obj->getWidth();
+		}
+		if (empty($posterheight)) {
+			$posterheight = $obj->getHeight();
+		}
 		$content = '';
 		switch ($suffix) {
 			case 'mp4':
 			case 'm4v':
-				$content = '<video poster="' . html_encode($poster) . '" src="' . html_encode($movie) . '" controls width="100%">';
+				if (getOption('video_videoposter')) {
+					$poster = ' poster="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '"';
+				}
+				$content = '<video' . $poster . ' src="' . html_encode($movie) . '" controls width="100%">';
 				$content .= gettext('Your browser sadly does not support this video format.');
 				$content .= '</video>';
 				break;
 			case 'm4a':
 			case 'mp3':
-				$content = '<audio src="' . html_encode($movie) . '" controls>';
+				if (getOption('video_audioposter')) {
+					$poster = '<img class="mediaelementjs_audioposter" src="' . $obj->getCustomImage(null, $posterwidth, $posterheight, $posterwidth, $posterheight, null, null, true) . '" alt="">' . "\n";
+				}
+				$content = $poster;
+				$content .= '<audio src="' . html_encode($movie) . '" controls>';
 				$content .= gettext('Your browser sadly does not support this audio format.');
 				$content .= '</audio>';
 				break;
