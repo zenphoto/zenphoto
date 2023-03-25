@@ -73,7 +73,7 @@
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
+$plugin_description = gettext("Provides image cache management utilities.");
 $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_category = gettext('Admin');
 
@@ -81,8 +81,6 @@ $option_interface = 'cacheManager';
 
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
-
-$_zp_cached_feeds = array('RSS'); //	Add to this array any feed classes that need cache clearing
 
 /**
  *

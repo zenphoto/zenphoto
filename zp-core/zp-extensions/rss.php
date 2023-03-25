@@ -18,6 +18,8 @@ $option_interface = 'rss_options';
 zp_register_filter('admin_utilities_buttons', 'RSS::overviewbutton');
 zp_register_filter('show_change', 'RSS::clearCacheOnPublish');
 
+$_zp_cached_feeds = array('RSS'); //    Add to this array any feed classes that need cache clearing
+
 class rss_options {
 
 	function __construct() {
