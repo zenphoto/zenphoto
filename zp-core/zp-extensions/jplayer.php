@@ -187,7 +187,11 @@ function getjPlayerSkins() {
 	$skins = array_diff(scandir($default_skins_dir), array_merge($filestoignore));
 	$default_skins = getjPlayerSkinCSS($skins, $default_skins_dir);
 	//echo "<pre>";print_r($default_skins);echo "</pre>";
-	$skins2 = @array_diff(scandir($user_skins_dir), array_merge($filestoignore));
+	if (is_array($user_skins_dir) && !empty($user_skins_dir)) {
+		$skins2 = @array_diff(scandir($user_skins_dir), array_merge($filestoignore));
+	} else {
+		$skins2 = array();
+	}
 	if (is_array($skins2)) {
 		$user_skins = getjPlayerSkinCSS($skins2, $user_skins_dir);
 		//echo "<pre>";print_r($user_skins);echo "</pre>";
