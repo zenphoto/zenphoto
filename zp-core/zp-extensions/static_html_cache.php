@@ -87,7 +87,7 @@ class staticHTMLCacheOptions {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.<br />") .
 						'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>'),
-				gettext('Purge cache files') = array(
+				gettext('Purge cache files') => array(
 				'key' => 'static_cache_items',
 				'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 				'order' => 0,
