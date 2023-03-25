@@ -5,12 +5,6 @@
  *
  * It provides:
  * <ul>
- * 		<li>Options to purge the HTML and RSS caches on publish state changes of:
- * 			<ul>
- * 				<li>albums</li>
- * 				<li>images</li>
- * 			</ul>
- * 		</li>
  * 		<li><i>pre-creating</i> the Image cache images</li>
  * 		<li>utilities for purging Image caches</li>
  * </ul>
@@ -417,10 +411,6 @@ class cacheManager {
 				break;
 			case 'albums':
 				$title = sprintf(gettext('album %s'), $row['folder']);
-				break;
-			case 'news':
-			case 'pages':
-				$title = sprintf(gettext('%1$s: %2$s'), $table, $row['titlelink']);
 				break;
 		}
 		return $title;
