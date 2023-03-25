@@ -608,7 +608,9 @@ class cacheManager {
 	 * @since 1.6.1
 	 * 
 	 * @param obj $imageobj Image object
-	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success
+	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success. 
+	 *												Note disabling output only works with the cURL mode!
+	 * @return mixed
 	 */
 	static function loadImage($imageobj, $output = true) {
 		if (!is_object($imageobj)) {
@@ -709,11 +711,9 @@ class cacheManager {
 			cacheManager::$images_cached++;
 			if ($output) {
 				echo $imagetitle; 
-			}
-			
+			}	
 			foreach ($sizeuris as $sizeuri) {
-				cacheManager::generateImage($sizeuri);
-				
+				cacheManager::generateImage($sizeuri, $output);
 				$endtime_temp = time();
 				$time_total_temp = ($endtime_temp - cacheManager::$starttime) / 60;
 				if ($output) {
@@ -737,7 +737,8 @@ class cacheManager {
 	 * Sends a single cURL request to i.php to generate the image size requested if curl is available, otherwise requests the image size directly by printing it.
 	 * 
 	 * @param string $imageuri The image processor uri to this image
-	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success
+	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success. 
+	 *												Note disabling output only works with the cURL mode!
 	 * @return mixed
 	 */
 	static function generateImage($imageuri, $output = true) {
