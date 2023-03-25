@@ -29,6 +29,9 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 $option_interface = 'staticHTMLCacheOptions';
 
+zp_register_filter('admin_utilities_buttons', 'static_html_cache::overviewbutton');
+zp_register_filter('show_change', 'static_html_cache::clearOnPublish');
+
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";
 if (!file_exists($cache_path)) {
 	if (!mkdir($cache_path, FOLDER_MOD)) {
@@ -57,9 +60,23 @@ class staticHTMLCacheOptions {
 	function __construct() {
 		setOptionDefault('static_cache_expire', 86400);
 		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/,favorites.php/');
+		setOptionDefault('static_cache_albums', 0);
+		setOptionDefault('static_cache_images', 0);
+		setOptionDefault('static_cache_news', 0);
+		setOptionDefault('static_cache_pages', 0);
 	}
 
 	function getOptionsSupported() {
+		$list = array(
+				'<em>' . gettext('Albums') . '</em>' => 'static_cache_albums',
+				'<em>' . gettext('Images') . '</em>' => 'static_cache_images');
+		if (extensionEnabled('zenpage')) {
+			$list['<em>' . gettext('News') . '</em>'] = 'static_cache_news';
+			$list['<em>' . gettext('Pages') . '</em>'] = 'static_cache_pages';
+		} else {
+			setOption('static_cache_news', 0);
+			setOption('static_cache_pages', 0);
+		}
 		return array(
 				gettext('Static HTML cache expire') => array(
 						'key' => 'static_cache_expire',
@@ -69,7 +86,14 @@ class staticHTMLCacheOptions {
 						'key' => 'static_cache_excludedpages',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("The list of pages to be excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma.<br />") .
-						'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>')
+						'<div class="notebox">' . gettext("<strong>NOTE:</strong> In order to work correctly, the following theme pages must be excluded from cache generation: <em>search.php, contact.php, register.php</em> and <em>favorites.php</em>") . '</div>'),
+				gettext('Purge cache files') = array(
+				'key' => 'static_cache_items',
+				'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+				'order' => 0,
+				'checkboxes' => $list,
+				'desc' => gettext('If a <em>type</em> is checked, the HTML caches for the item will be purged when the published state of an item of <em>type</em> changes.') .
+				'<div class="notebox">' . gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.') . '</div>' )
 		);
 	}
 
@@ -377,6 +401,45 @@ class static_html_cache {
 		return $uri;
 	}
 
+	/**
+	 * Adds the utility  button for cache clearing
+	 * 
+	 * @since 1.6.1 moved from cacheManager
+	 * 
+	 * @param array $buttons
+	 * @return string
+	 */
+	static function overviewbutton($buttons) {
+		$buttons[] = array(
+				'category' => gettext('Cache'),
+				'enable' => true,
+				'button_text' => gettext('Purge HTML cache'),
+				'formname' => 'clearcache_button',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
+				'icon' => 'images/edit-delete.png',
+				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
+				'alt' => '',
+				'hidden' => '<input type="hidden" name="action" value="clear_html_cache">',
+				'rights' => ADMIN_RIGHTS,
+				'XSRFTag' => 'ClearHTMLCache'
+		);
+		return $buttons;
+	}
+	
+	/**
+	 *
+	 * Clears the html cache for items if published and this is enabled on the options
+	 * 
+	 * @since 1.6.1 former published() method functionality moved from cacheManager
+	 * 
+	 * @param object $obj
+	 */
+	static function clearOnPublish($obj) {
+		global $_zp_html_cache;
+		if (getOption('static_cache_' . $obj->table)) {
+			$_zp_html_cache->clearHTMLCache();
+		}
+		return $obj;
+	}
+	
 }
-
-?>

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto.
+ * This plugin is the centralized Image Cache manager for Zenphoto.
  *
  * It provides:
  * <ul>
@@ -9,12 +9,10 @@
  * 			<ul>
  * 				<li>albums</li>
  * 				<li>images</li>
- * 				<li>news articles</li>
- * 				<li>pages</li>
  * 			</ul>
  * 		</li>
  * 		<li><i>pre-creating</i> the Image cache images</li>
- * 		<li>utilities for purging Image, HTML, and RSS caches</li>
+ * 		<li>utilities for purging Image caches</li>
  * </ul>
  *
  * Image cache <i>pre-creating</i> will examine the gallery and make image references to any images which have not
@@ -87,26 +85,10 @@ $plugin_category = gettext('Admin');
 
 $option_interface = 'cacheManager';
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-feed.php');
-
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
-zp_register_filter('show_change', 'cacheManager::published');
 
 $_zp_cached_feeds = array('RSS'); //	Add to this array any feed classes that need cache clearing
-
-/**
- * Fake feed descendent class so we can use the feed::clearCache()
- */
-class cacheManagerFeed extends feed {
-
-	protected $feed = NULL;
-
-	function __construct($feed) {
-		$this->feed = $feed;
-	}
-
-}
 
 /**
  *
@@ -133,6 +115,10 @@ class cacheManager {
 		setOptionDefault('cachemanager_defaultthumb', 1);
 		setOptionDefault('cachemanager_defaultsizedimage', 1);
 		setOptionDefault('cachemanager_generationmode', 'classic');
+		purgeOption('cacheManager_images');
+		purgeOption('cacheManager_albums');
+		purgeOption('cacheManager_news');
+		purgeOption('cacheManager_pages');
 	}
 
 	/**
@@ -163,24 +149,6 @@ class cacheManager {
 						gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.') .
 						'</p>'
 				)
-		);
-		$list = array(
-				'<em>' . gettext('Albums') . '</em>' => 'cacheManager_albums',
-				'<em>' . gettext('Images') . '</em>' => 'cacheManager_images');
-		if (extensionEnabled('zenpage')) {
-			$list['<em>' . gettext('News') . '</em>'] = 'cacheManager_news';
-			$list['<em>' . gettext('Pages') . '</em>'] = 'cacheManager_pages';
-		} else {
-			setOption('cacheManager_news', 0);
-			setOption('cacheManager_pages', 0);
-		}
-		$options[gettext('Purge cache files')] = array(
-				'key' => 'cacheManager_items',
-				'type' => OPTION_TYPE_CHECKBOX_ARRAY,
-				'order' => 0,
-				'checkboxes' => $list,
-				'desc' => gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when the published state of an item of <em>type</em> changes.') .
-				'<div class="notebox">' . gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.') . '</div>'
 		);
 		$options[gettext('Cache default sizes')] = array(
 				'key' => 'cachemanager_defaultsizes',
@@ -421,17 +389,13 @@ class cacheManager {
 	/**
 	 *
 	 * filter for the setShow() methods
+	 * 
+	 * @deprecated 2.0
+	 * 
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		global $_zp_html_cache, $_zp_cached_feeds;
-		if (getOption('cacheManager_' . $obj->table)) {
-			$_zp_html_cache->clearHTMLCache();
-			foreach ($_zp_cached_feeds as $feed) {
-				$feeder = new cacheManagerFeed($feed);
-				$feeder->clearCache();
-			}
-		}
+		deprecationNotice(gettext('Functionality of this method has been moved to the RSS and static_html_cache plugins'));
 		return $obj;
 	}
 
@@ -618,7 +582,6 @@ class cacheManager {
 		}
 		$sizes_count = 0;
 		$sizeuris = array();
-		$results = array();
 		$albumobj = $imageobj->album;
 		if ($imageobj->isPhoto()) { // not valid for non "photo" types 
 			if (array_key_exists('*', cachemanager::$enabledsizes)) {
@@ -862,21 +825,7 @@ class cacheManager {
 				'rights' => ADMIN_RIGHTS,
 				'title' => $title
 		);
-		if (class_exists('RSS')) {
-			$buttons[] = array(
-					'XSRFTag' => 'clear_cache',
-					'category' => gettext('Cache'),
-					'enable' => true,
-					'button_text' => gettext('Purge RSS cache'),
-					'formname' => 'purge_rss_cache.php',
-					'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
-					'icon' => 'images/edit-delete.png',
-					'alt' => '',
-					'title' => gettext('Delete all files from the RSS cache'),
-					'hidden' => '<input type="hidden" name="action" value="clear_rss_cache" />',
-					'rights' => ADMIN_RIGHTS
-			);
-		}
+
 		$buttons[] = array(
 				'XSRFTag' => 'clear_cache',
 				'category' => gettext('Cache'),
@@ -890,33 +839,7 @@ class cacheManager {
 				'hidden' => '<input type="hidden" name="action" value="clear_cache" />',
 				'rights' => ADMIN_RIGHTS
 		);
-		$buttons[] = array(
-				'category' => gettext('Cache'),
-				'enable' => true,
-				'button_text' => gettext('Purge HTML cache'),
-				'formname' => 'clearcache_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_html_cache',
-				'icon' => 'images/edit-delete.png',
-				'title' => gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
-				'alt' => '',
-				'hidden' => '<input type="hidden" name="action" value="clear_html_cache">',
-				'rights' => ADMIN_RIGHTS,
-				'XSRFTag' => 'ClearHTMLCache'
-		);
 
-		$buttons[] = array(
-				'category' => gettext('Cache'),
-				'enable' => true,
-				'button_text' => gettext('Purge search cache'),
-				'formname' => 'clearcache_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_search_cache',
-				'icon' => 'images/edit-delete.png',
-				'title' => gettext('Clear the static search cache.'),
-				'alt' => '',
-				'hidden' => '<input type="hidden" name="action" value="clear_search_cache">',
-				'rights' => ADMIN_RIGHTS,
-				'XSRFTag' => 'ClearSearchCache'
-		);
 		$buttons[] = array(
 				'category' => gettext('Cache'),
 				'enable' => true,
@@ -924,7 +847,7 @@ class cacheManager {
 				'formname' => 'clearcache_button',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/cacheManager/cacheImages.php?action=cleanup_cache_sizes',
 				'icon' => 'images/edit-delete.png',
-				'title' => gettext('Removes old stored image cache sizes of themes and plugins not existing on this site. It also removes sizes from inactive plugins.'),
+				'title' => gettext('Removes old stored image cache size definitions of themes and plugins not existing on this site. It also removes sizes from inactive plugins.'),
 				'alt' => '',
 				'hidden' => '<input type="hidden" name="action" value="cleanup_cache_sizes">',
 				'rights' => ADMIN_RIGHTS,

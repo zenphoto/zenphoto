@@ -15,6 +15,9 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';
 
+zp_register_filter('admin_utilities_buttons', 'RSS::overviewbutton');
+zp_register_filter('show_change', 'RSS::clearCacheOnPublish');
+
 class rss_options {
 
 	function __construct() {
@@ -71,6 +74,11 @@ class rss_options {
 			setOptionDefault('RSS_cache_expire', 86400);
 			setOptionDefault('RSS_hitcounter', 1);
 			setOptionDefault('RSS_title', 'both');
+
+			setOptionDefault('RSS__cache_albums', 0);
+			setOptionDefault('RSS__cache_images', 0);
+			setOptionDefault('RSS__cache_news', 0);
+			setOptionDefault('RSS__cache_pages', 0);
 		}
 	}
 
@@ -163,7 +171,8 @@ class rss_options {
 						'key' => 'RSS_portable_link',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14,
-						'desc' => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.'))
+						'desc' => gettext('If checked links generated for logged‑in users will include a token identifying the user. Use of that link when not logged‑in will give the same feed as if the user were logged‑in.')),
+				
 		);
 		if (extensionEnabled('zenpage')) {
 			$options[gettext('Feed text length')] = array(
@@ -177,6 +186,24 @@ class rss_options {
 					'order' => 5,
 					'desc' => gettext("The number of news articles you want to appear in your site’s News RSS feed."));
 		}
+		$list = array(
+				'<em>' . gettext('Albums') . '</em>' => 'RSS_cache_albums',
+				'<em>' . gettext('Images') . '</em>' => 'RSS_cache_images');
+		if (extensionEnabled('zenpage')) {
+			$list['<em>' . gettext('News') . '</em>'] = 'RSS_cache_news';
+			$list['<em>' . gettext('Pages') . '</em>'] = 'RSS_cache_pages';
+		} else {
+			setOption('RSS_cache_news', 0);
+			setOption('RSS_cache_pages', 0);
+		}
+		$options[gettext('Purge cache files')] = array(
+				'key' => 'RSS_cache_items',
+				'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+				'order' => 0,
+				'checkboxes' => $list,
+				'desc' => gettext('If a <em>type</em> is checked, the RSS caches for the item will be purged when the published state of an item of <em>type</em> changes.') .
+				'<div class="notebox">' . gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.') . '</div>');
+
 		return $options;
 	}
 
@@ -826,6 +853,49 @@ class RSS extends feed {
 		<?php
 		$this->endCache();
 	}
+	
+	/**
+	 * Adds the utility  button for cache clearing
+	 * 
+	 * @since 1.6.1 moved from cacheManager
+	 * 
+	 * @param array $buttons
+	 * @return string
+	 */
+	static function overviewbutton($buttons) {
+		$buttons[] = array(
+				'XSRFTag' => 'clear_cache',
+				'category' => gettext('Cache'),
+				'enable' => true,
+				'button_text' => gettext('Purge RSS cache'),
+				'formname' => 'purge_rss_cache.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
+				'icon' => 'images/edit-delete.png',
+				'alt' => '',
+				'title' => gettext('Delete all files from the RSS cache'),
+				'hidden' => '<input type="hidden" name="action" value="clear_rss_cache" />',
+				'rights' => ADMIN_RIGHTS
+		);
+		return $buttons;
+	}
+		/**
+	 *
+	 * Clears the RSS cache for items if published and this is enabled on the options
+	 * 
+	 * @since 1.6.1 former published() method moved from cacheManager
+	 * 
+	 * @param object $obj
+	 */
+	static function clearCacheOnPublish($obj) {
+		global $_zp_cached_feeds;
+		if (getOption('RSS_cache' . $obj->table)) {
+			foreach ($_zp_cached_feeds as $feed) {
+				$feeder = new Feed($feed);
+				$feeder->clearCache();
+			}
+		}
+		return $obj;
+	}
 
 }
 
@@ -843,4 +913,3 @@ function executeRSS() {
 if (!OFFSET_PATH && isset($_GET['rss'])) {
 	zp_register_filter('load_theme_script', 'executeRSS', 9999);
 }
-?>
