@@ -1479,7 +1479,7 @@ function debugLog($message, $reset = false) {
 			}
 			$f = fopen($path, 'w');
 			if ($f) {
-				if (!class_exists('zpFunctions') || hasPrimaryScripts()) {
+				if (hasPrimaryScripts()) {
 					$clone = '';
 				} else {
 					$clone = ' ' . gettext('clone');
