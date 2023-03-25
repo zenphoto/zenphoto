@@ -592,100 +592,8 @@ class cacheManager {
 		$images = $albumobj->getImages(0);
 		if (is_array($images) && count($images) > 0) {
 			foreach ($images as $image) {
-				$sizes_count = 0;
-				$sizeuris = array();
-				$results = array();
 				$imageobj = Image::newImage($albumobj, $image);
-				if ($imageobj->isPhoto()) {
-					if (array_key_exists('*', cachemanager::$enabledsizes)) {
-						$uri = getFullImageURL($imageobj);
-						if (strpos($uri, 'full-image.php?') !== false) {
-							$sizes_count++;
-							$sizeuris[] = $uri;
-						}
-					}
-					if (array_key_exists('defaultthumb', cachemanager::$enabledsizes)) {
-						$thumb = $imageobj->getThumb();
-						if (strpos($thumb, 'i.php?') !== false) {
-							$sizes_count++;
-							$sizeuris[] = $thumb;
-						}
-					}
-					if (array_key_exists('defaultsizedimage', cachemanager::$enabledsizes)) {
-						$defaultimage = $imageobj->getSizedImage(getOption('image_size'));
-						if (strpos($defaultimage, 'i.php?') !== false) {
-							$sizes_count++;
-							$sizeuris[] = $defaultimage;
-						}
-					}
-					foreach (cacheManager::$sizes as $key => $cacheimage) {
-						if (array_key_exists($key, cacheManager::$enabledsizes)) {
-							$size = isset($cacheimage['image_size']) ? $cacheimage['image_size'] : NULL;
-							$width = isset($cacheimage['image_width']) ? $cacheimage['image_width'] : NULL;
-							$height = isset($cacheimage['image_height']) ? $cacheimage['image_height'] : NULL;
-							$thumbstandin = isset($cacheimage['thumb']) ? $cacheimage['thumb'] : NULL;
-							if ($special = ($thumbstandin === true)) {
-								list($special, $cw, $ch, $cx, $cy) = $imageobj->getThumbCropping($size, $width, $height);
-							}
-							if (!$special) {
-								$cw = isset($cacheimage['crop_width']) ? $cacheimage['crop_width'] : NULL;
-								$ch = isset($cacheimage['crop_height']) ? $cacheimage['crop_height'] : NULL;
-								$cx = isset($cacheimage['crop_x']) ? $cacheimage['crop_x'] : NULL;
-								$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
-							}
-							$effects = isset($cacheimage['gray']) ? $cacheimage['gray'] : NULL;
-							if (isset($cacheimage['wmk'])) {
-								$passedWM = $cacheimage['wmk'];
-							} else {
-								if ($thumbstandin) {
-									$passedWM = getWatermarkParam($imageobj, WATERMARK_THUMB);
-								} else {
-									$passedWM = getWatermarkParam($imageobj, WATERMARK_IMAGE);
-								}
-							}
-							if (isset($cacheimage['maxspace'])) {
-								getMaxSpaceContainer($width, $height, $imageobj, $thumbstandin);
-							}
-							$args = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
-							$args = getImageParameters($args, $albumobj->name);
-							if ($albumobj->isDynamic()) {
-								$folder = $imageobj->album->name;
-							} else {
-								$folder = $albumobj->name;
-							}
-							$uri = getImageURI($args, $folder, $imageobj->filename, $imageobj->filemtime);
-							if (strpos($uri, 'i.php?') !== false) {
-								$sizes_count++;
-								$sizeuris[] = $uri;
-							}
-						}
-					}
-					$imagetitle = html_encode($imageobj->getTitle()) . ' (' . html_encode($imageobj->filename) . '): ';
-					echo '<li>';
-					if ($sizes_count == 0) {
-						echo $imagetitle;
-						?>
-						<em style="color:green"><?php echo gettext('All already cached.'); ?></em>
-						<?php
-					} else {
-						cacheManager::$images_cached++;
-						echo $imagetitle;
-						foreach ($sizeuris as $sizeuri) {
-							cacheManager::generateImage($sizeuri);
-							$endtime_temp = time();
-							$time_total_temp = ($endtime_temp - cacheManager::$starttime) / 60;
-							?>
-							<script>
-								$('.imagecaching_imagecount').text(<?php echo cacheManager::$images_cached; ?>);
-								$('.imagecaching_imagesizes').text(<?php echo cacheManager::$imagesizes_cached; ?>);
-								$('.imagecaching_imagesizes_failed').text(<?php echo cacheManager::$imagesizes_failed; ?>);
-								$('.imagecaching_time').text(<?php echo round($time_total_temp, 2); ?>);
-							</script>
-							<?php
-						}
-					}
-					echo '</li>';
-				}
+				cacheManager::loadImage($imageobj, true);
 			}
 		} else {
 			?>
@@ -693,27 +601,171 @@ class cacheManager {
 			<?php
 		}
 	}
+	
+	/**
+	 * Caches sizes for a single image
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param obj $imageobj Image object
+	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success
+	 */
+	static function loadImage($imageobj, $output = true) {
+		if (!is_object($imageobj)) {
+			return false;
+		}
+		$sizes_count = 0;
+		$sizeuris = array();
+		$results = array();
+		$albumobj = $imageobj->album;
+		if ($imageobj->isPhoto()) { // not valid for non "photo" types 
+			if (array_key_exists('*', cachemanager::$enabledsizes)) {
+				$uri = getFullImageURL($imageobj);
+				if (strpos($uri, 'full-image.php?') !== false) {
+					$sizes_count++;
+					$sizeuris[] = $uri;
+				}
+			}
+		} 
+		if (array_key_exists('defaultthumb', cachemanager::$enabledsizes)) {
+			$thumb = $imageobj->getThumb();
+			if (strpos($thumb, 'i.php?') !== false) {
+				$sizes_count++;
+				$sizeuris[] = $thumb;
+			}
+		}
+		if (array_key_exists('defaultsizedimage', cachemanager::$enabledsizes)) {
+			if ($imageobj->isPhoto()) {
+				$defaultimage = $imageobj->getSizedImage(getOption('image_size'));
+			} else {
+				$defaultimage = $imageobj->getCustomImage(getOption('image_size'), null, null, null, null, null, null, true);
+			}
+			if (strpos($defaultimage, 'i.php?') !== false) {
+				$sizes_count++;
+				$sizeuris[] = $defaultimage;
+			}
+		}
+		foreach (cacheManager::$sizes as $key => $cacheimage) {
+			if (array_key_exists($key, cacheManager::$enabledsizes)) {
+				$size = isset($cacheimage['image_size']) ? $cacheimage['image_size'] : NULL;
+				$width = isset($cacheimage['image_width']) ? $cacheimage['image_width'] : NULL;
+				$height = isset($cacheimage['image_height']) ? $cacheimage['image_height'] : NULL;
+				$thumbstandin = isset($cacheimage['thumb']) ? $cacheimage['thumb'] : NULL;
+				if ($special = ($thumbstandin === true)) {
+					list($special, $cw, $ch, $cx, $cy) = $imageobj->getThumbCropping($size, $width, $height);
+				}
+				if (!$special) {
+					$cw = isset($cacheimage['crop_width']) ? $cacheimage['crop_width'] : NULL;
+					$ch = isset($cacheimage['crop_height']) ? $cacheimage['crop_height'] : NULL;
+					$cx = isset($cacheimage['crop_x']) ? $cacheimage['crop_x'] : NULL;
+					$cy = isset($cacheimage['crop_y']) ? $cacheimage['crop_y'] : NULL;
+				}
+				$effects = isset($cacheimage['gray']) ? $cacheimage['gray'] : NULL;
+				if (isset($cacheimage['wmk'])) {
+					$passedWM = $cacheimage['wmk'];
+				} else {
+					if ($thumbstandin) {
+						$passedWM = getWatermarkParam($imageobj, WATERMARK_THUMB);
+					} else {
+						$passedWM = getWatermarkParam($imageobj, WATERMARK_IMAGE);
+					}
+				}
+				if (isset($cacheimage['maxspace'])) {
+					getMaxSpaceContainer($width, $height, $imageobj, $thumbstandin);
+				}
+				$args_array = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
+				$args = getImageParameters($args_array, $albumobj->name);
+				if ($albumobj->isDynamic()) {
+					$folder = $imageobj->album->name;
+				} else {
+					$folder = $albumobj->name;
+				}
+				$uri = '';
+				if ($imageobj->isPhoto()) {
+					$uri = getImageURI($args, $folder, $imageobj->filename, $imageobj->filemtime);
+				} else {
+					if ($imageobj->objectsThumb) {
+						$uri = getImageURI($args, $folder, $imageobj->objectsThumb, $imageobj->filemtime);
+					}
+				}
+				if (!empty($uri) && strpos($uri, 'i.php?') !== false) {
+					$sizes_count++;
+					$sizeuris[] = $uri;
+				}
+			}
+		}
+		$imagetitle = html_encode($imageobj->getTitle()) . ' (' . html_encode($imageobj->filename) . '): ';
+		if ($output) {
+			echo '<li>';
+		}
+		if ($sizes_count == 0) {
+			if ($output) { 
+				echo $imagetitle; 
+				?>
+				<em style="color:green"><?php echo gettext('All already cached.'); ?></em>
+				<?php
+			}
+		} else {
+			cacheManager::$images_cached++;
+			if ($output) {
+				echo $imagetitle; 
+			}
+			
+			foreach ($sizeuris as $sizeuri) {
+				cacheManager::generateImage($sizeuri);
+				
+				$endtime_temp = time();
+				$time_total_temp = ($endtime_temp - cacheManager::$starttime) / 60;
+				if ($output) {
+					?>
+					<script>
+						$('.imagecaching_imagecount').text(<?php echo cacheManager::$images_cached; ?>);
+						$('.imagecaching_imagesizes').text(<?php echo cacheManager::$imagesizes_cached; ?>);
+						$('.imagecaching_imagesizes_failed').text(<?php echo cacheManager::$imagesizes_failed; ?>);
+						$('.imagecaching_time').text(<?php echo round($time_total_temp, 2); ?>);
+					</script>
+					<?php
+				}
+			}
+		}
+		if ($output) { 
+			echo '</li>';
+		}
+	}
 
 	/**
 	 * Sends a single cURL request to i.php to generate the image size requested if curl is available, otherwise requests the image size directly by printing it.
 	 * 
 	 * @param string $imageuri The image processor uri to this image
+	 * @param boolean $output If a list entry with the size generation status should be output. Default true. Set to false to return true|false for success
 	 * @return mixed
 	 */
-	static function generateImage($imageuri) {
+	static function generateImage($imageuri, $output = true) {
 		if (function_exists('curl_init') && getOption('cachemanager_generationmode') == 'curl') {
 			$success = generateImageCacheFile($imageuri);
 			if ($success) {
-				echo '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img class="icon-position-top4" src="' . WEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="" title="' . html_encode($imageuri) . '"></a>';
+				if ($output) {
+					echo '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img class="icon-position-top4" src="' . WEBPATH . '/' . ZENFOLDER . '/images/pass.png" alt="" title="' . html_encode($imageuri) . '"></a>';
+				} else {
+					return true;
+				}
 				cacheManager::$imagesizes_cached++;
 			} else {
-				echo '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt=""></a>';
+				if ($output) {
+					echo '<a href="' . html_encode(pathurlencode($imageuri)) . '&amp;debug"><img src="' . WEBPATH . '/' . ZENFOLDER . '/images/fail.png" alt=""></a>';
+				} else {
+					return false;
+				}
 				cacheManager::$imagesizes_failed++;
 			}
 		} else {
-			?>
-			<a href="<?php echo html_encode(pathurlencode($imageuri)); ?>&amp;debug"><img src="<?php echo html_encode(pathurlencode($imageuri)); ?>" height="25" alt="x" /></a>';
-			<?php
+			if ($output) {
+				?>
+								<a href="<?php echo html_encode(pathurlencode($imageuri)); ?>&amp;debug"><img src="<?php echo html_encode(pathurlencode($imageuri)); ?>" height="25" alt="x" /></a>';
+				<?php
+			} else {
+				return false;
+			}
 			cacheManager::$imagesizes_cached++;
 		}
 	}
