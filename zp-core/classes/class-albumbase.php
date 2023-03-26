@@ -707,11 +707,8 @@ class AlbumBase extends MediaObject {
 				// Update old parent(s) that "lost" an album!
 				$this->setUpdatedDateParents(); 
 				$this->save();
-				
 				$this->updateParent($newfolder);
-		
-				//rename the cache folder
-				$cacherename = @rename(SERVERCACHE . '/' . $this->name, SERVERCACHE . '/' . $newfolder);
+				$this->renameCacheFolder($newfolder);
 				return 0;
 			}
 		}
@@ -798,6 +795,7 @@ class AlbumBase extends MediaObject {
 			$newalbum = AlbumBase::newAlbum($newfolder);
 			$newalbum->setUpdatedDate();
 			$newalbum->setUpdatedDateParents();
+			$this->copyCacheFolder($newfolder);
 			return 0;
 		} else {
 			return 1;
@@ -830,6 +828,55 @@ class AlbumBase extends MediaObject {
 		}
 		return true;
 	}
+	
+	/**
+	 * Gets the SERVERPATH to the cache folder of the album witout trailng slash
+	 * Note that his does not check for existance!
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return string
+	 */
+	function getCacheFolder() {
+		return SERVERCACHE . '/' . $this->name;
+	}
+
+	/**
+	 * Copies the cache folder of the album
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param string $newfolder New folder path name
+	 * @return bool
+	 */
+	function copyCacheFolder($newfolder) {
+		return @copy($this->getCacheFolder(), SERVERCACHE . '/' . $newfolder);
+	}
+	
+	/**
+	 * Moves the cache folder of the album
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param string $newfolder New folder path name
+	 * @return bool
+	 */
+	function moveCacheFolder($newfolder) {
+		return @rename($this->getCacheFolder(), SERVERCACHE . '/' . $newfolder);
+	}
+	
+	/**
+	 * Renames the cache folder of the album
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param string $newfolder New folder path name
+	 * @return bool
+	 */
+	function renameCacheFolder($newfolder) {
+		return $this->moveCacheFolder($newfolder);
+	}
+	
 
 	/**
 	 * For every image in the album, look for its file. Delete from the database

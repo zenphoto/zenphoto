@@ -1053,13 +1053,7 @@ class Image extends MediaObject {
 				$this->setUpdatedDateAlbum();
         $_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
         $_zp_db->query("DELETE FROM " . $_zp_db->prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
-        $cachepath = SERVERCACHE . '/' . pathurlencode($this->album->name) . '/' . $this->filename;
-        $cachefilestodelete = safe_glob(substr($cachepath, 0, strrpos($cachepath, '.')) . '_*');
-        foreach ($cachefilestodelete as $file) {
-          @chmod($file, 0777);
-          @unlink($file);
-        }
-				
+        $this->removeCacheFiles();
       }
     }
     clearstatcache();
@@ -1174,6 +1168,75 @@ class Image extends MediaObject {
 			}
 		}
 		return 1;
+	}
+	
+	/**
+	 * Gets the cache files of the image
+	 * 
+	 * @since 1.6.1
+	 * @return array
+	 */
+	function getCacheFiles() {
+		$cachepath = $this->album->getCacheFolder() . '/' . $this->filename;
+    return safe_glob(substr($cachepath, 0, strrpos($cachepath, '.')) . '_*');	
+	}
+	
+	/**
+	 * Copies the cache files of the image to another cache folder
+	 * 
+	 * @since 1.6.1
+	 * @param string $newfolder Album folder name of the cache folder (album/subalbum/…)
+	 * @return boolean
+	 */
+	function copyCacheFiles($newfolder) {
+		$cachefiles = $this->getCacheFiles();
+		$result = '';
+		foreach($cachefiles as $file) {
+			$result = $result && @copy($file, SERVERCACHE . '/'. $newfolder . '/' . basename($file));
+		}
+		return $result;
+	}
+	
+	/**
+	 * Moves the cache files of the image to another cache folder
+	 * 
+	 * @since 1.6.1
+	 * @param string $newfolder THe album folder name to move to
+	 * @param string $newfolder Album folder name of the cache folder (album/subalbum/…)
+	 * @return boolean
+	 */
+	function moveCacheFiles($newfolder, $newfilename) {
+		$cachefiles = $this->getCacheFiles();
+		$newfilenname_nosuffix = stripSuffix($newfilename);
+		$result = '';
+		foreach ($cachefiles as $file) {
+			if ($newfilename == $this->filename) {
+				// move
+				$newcachefilename = $this->filename;
+			} else {
+				// rename
+				$newcachefilename = str_replace($file, $newfilenname_nosuffix, $this->filename);
+			}
+			$result = $result && @rename($file, SERVERCACHE . '/' . $newfolder . '/' . $newcachefilename);
+		}
+		return $result;
+	}
+
+	/**
+	 * Renames the cache files of the image
+	 * 
+	 * @return boolean
+	 */
+	function renameCacheFiles($newfilename) {
+		return $this->moveCacheFiles($this->album->name, $newfilename);
+	}
+	
+	function removeCacheFiles() {
+		$cachefilestodelete = $this->getCacheFiles();
+		foreach ($cachefilestodelete as $file) {
+			@chmod($file, 0777);
+			@unlink($file);
+		}
 	}
 
 	/*	 * ** Image Methods *** */
