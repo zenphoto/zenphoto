@@ -1112,6 +1112,7 @@ class Image extends MediaObject {
 				$newalbum->setUpdatedDateParents(); 
 				$this->set('mtime', filemtime($newpath));
 				$this->save();
+				$this->moveCacheFiles($newalbum->name, $newfilename);
 				return 0;
 			}
 		}
@@ -1164,6 +1165,7 @@ class Image extends MediaObject {
 				$newalbum->setUpdatedDate(); 
 				$newalbum->save();
 				$newalbum->setUpdatedDateParents();
+				$this->copyCacheFiles($newalbum->name);
 				return 0;
 			}
 		}
@@ -1177,7 +1179,7 @@ class Image extends MediaObject {
 	 * @return array
 	 */
 	function getCacheFiles() {
-		$cachepath = $this->album->getCacheFolder() . '/' . $this->filename;
+		$cachepath = $this->album->getCacheFolder() . $this->filename;
     return safe_glob(substr($cachepath, 0, strrpos($cachepath, '.')) . '_*');	
 	}
 	
@@ -1185,14 +1187,19 @@ class Image extends MediaObject {
 	 * Copies the cache files of the image to another cache folder
 	 * 
 	 * @since 1.6.1
-	 * @param string $newfolder Album folder name of the cache folder (album/subalbum/…)
+	 * @param string $newalbum Album folder name of the cache folder (album/subalbum/…)
 	 * @return boolean
 	 */
-	function copyCacheFiles($newfolder) {
+	function copyCacheFiles($newalbum) {
 		$cachefiles = $this->getCacheFiles();
 		$result = '';
-		foreach($cachefiles as $file) {
-			$result = $result && @copy($file, SERVERCACHE . '/'. $newfolder . '/' . basename($file));
+		foreach ($cachefiles as $file) {
+			$filecopy = SERVERCACHE . '/' . $newalbum . '/' . basename($file);
+			if (file_exists($filecopy)) {
+				$result = $result && false;
+			} else {
+				$result = $result && @copy($file, $filecopy);
+			}
 		}
 		return $result;
 	}
@@ -1201,29 +1208,37 @@ class Image extends MediaObject {
 	 * Moves the cache files of the image to another cache folder
 	 * 
 	 * @since 1.6.1
-	 * @param string $newfolder THe album folder name to move to
-	 * @param string $newfolder Album folder name of the cache folder (album/subalbum/…)
+	 * @param string $newalbum THe album folder name to move to
+	 * @param string $newfilename Album folder name of the cache folder (album/subalbum/…)
 	 * @return boolean
 	 */
-	function moveCacheFiles($newfolder, $newfilename) {
+	function moveCacheFiles($newalbum, $newfilename) {
 		$cachefiles = $this->getCacheFiles();
 		$newfilenname_nosuffix = stripSuffix($newfilename);
 		$result = '';
 		foreach ($cachefiles as $file) {
 			if ($newfilename == $this->filename) {
 				// move
-				$newcachefilename = $this->filename;
+				$newcachefilename = $file;
 			} else {
 				// rename
 				$newcachefilename = str_replace($file, $newfilenname_nosuffix, $this->filename);
 			}
-			$result = $result && @rename($file, SERVERCACHE . '/' . $newfolder . '/' . $newcachefilename);
+			$movedfile = SERVERCACHE . '/' . $newalbum . '/' . $newcachefilename;
+			if (file_exists($movedfile)) {
+				$result = $result && false;
+			} else{
+				$result = $result && @rename($file, $movedfile);
+			} 
 		}
 		return $result;
 	}
 
 	/**
 	 * Renames the cache files of the image
+	 * Alias of moveCacheFiles()
+	 * 
+	 * @since 1.6.1
 	 * 
 	 * @return boolean
 	 */
@@ -1231,6 +1246,11 @@ class Image extends MediaObject {
 		return $this->moveCacheFiles($this->album->name, $newfilename);
 	}
 	
+	/**
+	 * Removes cached files
+	 * 
+	 * @since 1.6.1
+	 */
 	function removeCacheFiles() {
 		$cachefilestodelete = $this->getCacheFiles();
 		foreach ($cachefilestodelete as $file) {

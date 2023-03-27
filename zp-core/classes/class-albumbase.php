@@ -708,7 +708,7 @@ class AlbumBase extends MediaObject {
 				$this->setUpdatedDateParents(); 
 				$this->save();
 				$this->updateParent($newfolder);
-				$this->renameCacheFolder($newfolder);
+				$this->moveCacheFolder($newfolder);
 				return 0;
 			}
 		}
@@ -788,7 +788,6 @@ class AlbumBase extends MediaObject {
 						$success = $success && @copy($file, dirname($dest) . '/' . basename($file));
 					}
 				}
-				
 			}
 		}
 		if ($success) {	
@@ -830,7 +829,7 @@ class AlbumBase extends MediaObject {
 	}
 	
 	/**
-	 * Gets the SERVERPATH to the cache folder of the album witout trailng slash
+	 * Gets the SERVERPATH to the cache folder of the album with trailing slash
 	 * Note that his does not check for existance!
 	 * 
 	 * @since 1.6.1
@@ -838,7 +837,7 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getCacheFolder() {
-		return SERVERCACHE . '/' . $this->name;
+		return SERVERCACHE . '/' . pathurlencode($this->name) . '/';
 	}
 
 	/**
@@ -850,7 +849,11 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function copyCacheFolder($newfolder) {
-		return @copy($this->getCacheFolder(), SERVERCACHE . '/' . $newfolder);
+		$foldercopy = SERVERCACHE . '/' . $newfolder;
+		if (!file_exists($foldercopy)) {
+			return @copy($this->getCacheFolder(), $foldercopy);
+		} 
+		return false;
 	}
 	
 	/**
@@ -862,11 +865,16 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function moveCacheFolder($newfolder) {
-		return @rename($this->getCacheFolder(), SERVERCACHE . '/' . $newfolder);
+		$movedfolder = SERVERCACHE . '/' . $newfolder;
+		if (!file_exists($movedfolder)) {
+			return @rename($this->getCacheFolder(), $movedfolder);
+		}
+		return false;
 	}
 	
 	/**
 	 * Renames the cache folder of the album
+	 * Alias of moveCacheFolder();
 	 * 
 	 * @since 1.6.1
 	 * 
@@ -877,6 +885,31 @@ class AlbumBase extends MediaObject {
 		return $this->moveCacheFolder($newfolder);
 	}
 	
+	/**
+	 * Removes the cache folder of the album including all contents
+	 * 
+	 * @since  1.6.1
+	 */
+	function removeCacheFolder() {
+		removeDir($this->getCacheFolder(), true);
+	}
+	
+	/**
+	 * Removes cache image files from this album's folder but not any subalbums or their cache files
+	 * 
+	 * @since 1.6.1
+	 */
+	function clearCacheFolder() {
+		chdir($this->getCacheFolder());
+		// Try tot clear the cache folder of subfolders and files
+		$filelist = safe_glob('*');
+		foreach ($filelist as $file) {
+			if (is_file($file)) {
+				@chmod($file, 0777);
+				@unlink($file); 
+			} 
+		}
+	}
 
 	/**
 	 * For every image in the album, look for its file. Delete from the database
