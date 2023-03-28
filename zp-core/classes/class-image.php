@@ -1093,11 +1093,8 @@ class Image extends MediaObject {
 		$result = @rename($this->localpath, $newpath);
 		@chmod($filename, FILE_MOD);
 		clearstatcache();
-		debuglog(print_r($result, true));
 		if ($result) {
-			debuglog(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
 			$filestomove = safe_glob(substr($this->localpath, 0, strrpos($this->localpath, '.')) . '.*');
-			debuglog(print_r($filestomove, true));
 			foreach ($filestomove as $file) {
 				if (in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 					$result = $result && @rename($file, stripSuffix($newpath) . '.' . getSuffix($file));
