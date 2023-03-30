@@ -35,12 +35,8 @@ class ThemeOptions {
 		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes($me);
-			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
-			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
-			cacheManager::addCacheSize($me, 520, NULL, NULL, NULL, NULL, NULL, NULL, false, $img_wmk, $img_effect, NULL);
-			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
-			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
-			cacheManager::addCacheSize($me, 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
+			cacheManager::addDefaultThumbSize();
+			cacheManager::addDefaultSizedImageSize();
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
