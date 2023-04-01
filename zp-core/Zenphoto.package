@@ -815,6 +815,7 @@ zp-core/template-filters.php
 zp-core/template-functions.php
 zp-core/utilities
 zp-core/utilities/backup_restore.php
+zp-core/utilities/clear_searchcache.php
 zp-core/utilities/database_reference.php
 zp-core/utilities/gallery_statistics.php
 zp-core/utilities/http_header_inspector.php
@@ -1848,4 +1849,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1850
+1851
