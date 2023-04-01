@@ -10,7 +10,7 @@ define('ZP_COMBINEWS', false);
 define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
 define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
 define('ZP_READ_MORE', getOption("zenpage_read_more"));
-define('ZP_ARTICLES_PER_PAGE', getOption("zenpage_articles_per_page"));
+define('ZP_ARTICLES_PER_PAGE', (getOption("zenpage_articles_per_page") >= 1 ? getOption("zenpage_articles_per_page") : 1));
 
 /**
  * Zenpage root classes
