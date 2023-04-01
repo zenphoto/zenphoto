@@ -78,7 +78,7 @@ printAdminHeader('overview', 'images'); ?>
 	$clear = sprintf(gettext('Refreshing cache for %s'), $object);
 
 	if ($alb) {
-		$returnpage = '/admin-edit.php?page = edit&album = ' . $alb;
+		$returnpage = '/admin-edit.php?page=edit&album=' . $alb;
 		echo "\n<h2>" . $clear . "</h2>";
 	} else {
 		$returnpage = '/admin.php';

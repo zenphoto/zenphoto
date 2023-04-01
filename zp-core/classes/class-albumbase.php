@@ -850,10 +850,12 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function copyCacheFolder($newfolder) {
-		$foldercopy = SERVERCACHE . '/' . $newfolder. '/';
-		if (!file_exists($foldercopy)) {
-			return @copy($this->getCacheFolder(), $foldercopy);
-		} 
+		if (file_exists($this->getCacheFolder())) {
+			$foldercopy = SERVERCACHE . '/' . $newfolder . '/';
+			if (!file_exists($foldercopy)) {
+				return @copy($this->getCacheFolder(), $foldercopy);
+			}
+		}
 		return false;
 	}
 	
@@ -866,15 +868,15 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function moveCacheFolder($newfolder) {
-		$movedfolder = SERVERCACHE . '/' . $newfolder. '/';
-		//debuglog('Album move:  cache folder: ' . $this->getCacheFolder());
-		//debuglog('Album move: cache folder new: ' . $movedfolder);
-		if (!file_exists($movedfolder)) {
-			return @rename($this->getCacheFolder(), $movedfolder);
+		if (file_exists($this->getCacheFolder())) {
+			$movedfolder = SERVERCACHE . '/' . $newfolder . '/';
+			if (!file_exists($movedfolder)) {
+				return @rename($this->getCacheFolder(), $movedfolder);
+			}
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Renames the cache folder of the album
 	 * Alias of moveCacheFolder();
