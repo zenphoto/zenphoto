@@ -684,12 +684,12 @@ class AlbumBase extends MediaObject {
 			// Disallow moving to a subfolder of the current folder.
 			return 4;
 		}
+
 		$filemask = substr($this->localpath, 0, -1) . '.*';
 		$perms = FOLDER_MOD;
 		@chmod($this->localpath, 0777);
 		$success = @rename(rtrim($this->localpath, '/'), $dest);
 		@chmod($dest, $perms);
-
 		if ($success) {
 			$this->localpath = $dest . "/";
 			$filestomove = safe_glob($filemask);
@@ -704,11 +704,12 @@ class AlbumBase extends MediaObject {
 			clearstatcache();
 			$success = self::move($newfolder);
 			if ($success) {
+				// must be first as updates below changes the object and paths
+				$this->moveCacheFolder($newfolder); 
 				// Update old parent(s) that "lost" an album!
 				$this->setUpdatedDateParents(); 
 				$this->save();
 				$this->updateParent($newfolder);
-				$this->moveCacheFolder($newfolder);
 				return 0;
 			}
 		}
@@ -849,7 +850,7 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function copyCacheFolder($newfolder) {
-		$foldercopy = SERVERCACHE . '/' . $newfolder;
+		$foldercopy = SERVERCACHE . '/' . $newfolder. '/';
 		if (!file_exists($foldercopy)) {
 			return @copy($this->getCacheFolder(), $foldercopy);
 		} 
@@ -865,7 +866,9 @@ class AlbumBase extends MediaObject {
 	 * @return bool
 	 */
 	function moveCacheFolder($newfolder) {
-		$movedfolder = SERVERCACHE . '/' . $newfolder;
+		$movedfolder = SERVERCACHE . '/' . $newfolder. '/';
+		//debuglog('Album move:  cache folder: ' . $this->getCacheFolder());
+		//debuglog('Album move: cache folder new: ' . $movedfolder);
 		if (!file_exists($movedfolder)) {
 			return @rename($this->getCacheFolder(), $movedfolder);
 		}

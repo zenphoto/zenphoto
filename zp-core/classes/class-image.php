@@ -1109,7 +1109,7 @@ class Image extends MediaObject {
 				$newalbum->setUpdatedDateParents(); 
 				$this->set('mtime', filemtime($newpath));
 				$this->save();
-				$this->moveCacheFiles($newalbum->name, $newfilename);
+				$this->moveCacheFiles($newalbum, $newfilename);
 				return 0;
 			}
 		}
@@ -1162,7 +1162,7 @@ class Image extends MediaObject {
 				$newalbum->setUpdatedDate(); 
 				$newalbum->save();
 				$newalbum->setUpdatedDateParents();
-				$this->copyCacheFiles($newalbum->name);
+				$this->copyCacheFiles($newalbum);
 				return 0;
 			}
 		}
@@ -1184,51 +1184,78 @@ class Image extends MediaObject {
 	 * Copies the cache files of the image to another cache folder
 	 * 
 	 * @since 1.6.1
-	 * @param string $newalbum Album folder name of the cache folder (album/subalbum/…)
-	 * @return boolean
+	 * @param object $newalbum Target album object
 	 */
 	function copyCacheFiles($newalbum) {
 		$cachefiles = $this->getCacheFiles();
-		$result = '';
-		foreach ($cachefiles as $file) {
-			$filecopy = SERVERCACHE . '/' . $newalbum . '/' . basename($file);
-			if (file_exists($filecopy)) {
-				$result = $result && false;
-			} else {
-				$result = $result && @copy($file, $filecopy);
+		if ($cachefiles) {
+			$album_target = SERVERCACHE . '/' . $newalbum->name;
+			if (!file_exists($album_target)) {
+				mkdir($album_target);
 			}
+			chmod($album_target, 0777);
+			foreach ($cachefiles as $file) {
+				$filecopy = $album_target . '/' . basename($file);
+				if (is_link($file)) { 
+					$symlink = readlink($file);
+					$new_target = str_replace($this->album->localpath, $newalbum->localpath, $symlink);
+					@symlink($new_target, $filecopy);
+				} else {
+					$filecopy = $album_target . '/' . basename($file);
+					if (!file_exists($filecopy)) {
+						@copy($file, $filecopy);
+						@chmod($filecopy, FILE_MOD);
+					}
+				}
+			}
+			@chmod($album_target, FOLDER_MOD);
 		}
-		return $result;
 	}
-	
+
 	/**
 	 * Moves the cache files of the image to another cache folder
 	 * 
 	 * @since 1.6.1
-	 * @param string $newalbum THe album folder name to move to
+	 * @param object $newalbum Target album object
 	 * @param string $newfilename Album folder name of the cache folder (album/subalbum/…)
 	 * @return boolean
 	 */
 	function moveCacheFiles($newalbum, $newfilename) {
 		$cachefiles = $this->getCacheFiles();
 		$newfilenname_nosuffix = stripSuffix($newfilename);
-		$result = '';
+		$album_target = null;
+		if (is_object($newalbum)) {
+			$album_target = SERVERCACHE . '/' . $newalbum->name;
+			if (!file_exists($album_target)) {
+				mkdir($album_target);
+			}
+			@chmod($album_target, 0777);
+		} 
+		$skip = false;
 		foreach ($cachefiles as $file) {
-			if ($newfilename == $this->filename) {
+			if (!is_null($album_target) && $newfilename == $this->filename) { 
 				// move
-				$newcachefilename = $file;
+				$targetfile = $album_target . '/' . basename($file);
+				if (is_link($file)) {
+					$symlink = readlink($file);
+					$new_target = str_replace($this->album->localpath, $newalbum->localpath, $symlink);
+					@symlink($new_target, $targetfile);
+					@unlink($file);
+					$skip = true;
+				} 
 			} else {
 				// rename
-				$newcachefilename = str_replace($file, $newfilenname_nosuffix, $this->filename);
+				$targetfile = str_replace(stripSuffix($this->filename) . '_', $newfilenname_nosuffix . '_', $file);
 			}
-			$movedfile = SERVERCACHE . '/' . $newalbum . '/' . $newcachefilename;
-			if (file_exists($movedfile)) {
-				$result = $result && false;
-			} else{
-				$result = $result && @rename($file, $movedfile);
-			} 
+			if (!file_exists($targetfile) && !$skip) {
+				@chmod($targetfile, 0777);
+				@rename($file, $targetfile);
+				@chmod($targetfile, FILE_MOD);
+			}
 		}
-		return $result;
+		if (is_object($newalbum)) {
+			@chmod($album_target, FOLDER_MOD);
+		}
 	}
 
 	/**
