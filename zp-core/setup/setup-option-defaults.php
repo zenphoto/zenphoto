@@ -97,6 +97,9 @@ if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
 	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
 }
 setOptionDefault('server_protocol', "http");
+if (getOption('server_protocol') == 'https_admin') {
+	setOption('server_protocol', 'https');
+}
 setOptionDefault('charset', "UTF-8");
 setOptionDefault('filesystem_charset', "UTF-8");
 setOptionDefault('image_quality', 85);

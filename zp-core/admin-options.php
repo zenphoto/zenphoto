@@ -3271,17 +3271,12 @@ Authority::printPasswordFormJS();
 										<select id="server_protocol" name="server_protocol">
 											<option value="http" <?php if (SERVER_PROTOCOL == 'http') echo 'selected="selected"'; ?>>http</option>
 											<option value="https" <?php if (SERVER_PROTOCOL == 'https') echo 'selected="selected"'; ?>>https</option>
-											<option value="https_admin" <?php if (SERVER_PROTOCOL == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
 										</select>
 									</td>
 									<td>
-										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages. However, if your server supports <em>https</em> there is no reason to use for the admin only!"); ?></p>
-										<p class="notebox"><?php
-											echo gettext('<strong>Note:</strong> Login from the front-end user login form is secure only if <em>https</em> is selected.');
-											?>
-										</p>
+										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>."); ?></p>
 										<p class="warningbox"><?php
-											echo gettext('<strong>Warning:</strong> If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>. ' .
+											echo gettext('<strong>Warning:</strong> If you select <em>https</em> your server <strong>MUST</strong> support <em>https</em>. ' .
 															'If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
 															'Your only possibility then is to set or add <code>$conf["server_protocol"] = "http";</code> to your <code>zenphoto.cfg.php</code> file .');
 											?>

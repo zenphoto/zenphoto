@@ -1978,7 +1978,7 @@ function httpsRedirect($type = 'backend') {
 	$redirect_url = SERVER_HTTP_HOST . getRequestURI();
 	switch ($type) {
 		case 'backend':
-			if (SERVER_PROTOCOL == 'https_admin' || SERVER_PROTOCOL == 'https') {
+			if (SERVER_PROTOCOL == 'https') {
 				// force https login
 				if (!secureServer()) {
 					redirectURL($redirect_url);
