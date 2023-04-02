@@ -11,7 +11,7 @@ if (file_exists($configfile)) {
 if (isset($_zp_conf_vars)) {
 	if (isset($_zp_conf_vars['site_upgrade_state']) && $_zp_conf_vars['site_upgrade_state'] == 'closed') {
 		$protocol = 'http';
-		if (isset($_zp_conf_vars['server_protocol']) && $_zp_conf_vars['server_protocol'] == 'https') {
+		if (isset($_zp_conf_vars['server_protocol']) && ($_zp_conf_vars['server_protocol'] == 'https' || $_zp_conf_vars['server_protocol'] == 'https_admin')) { 
 			$protocol = 'https';
 		} else {
 			if (isset($_SERVER['HTTPS'])) {
