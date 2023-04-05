@@ -150,7 +150,7 @@ class cacheManager {
 						gettext('Default thumb size') => 'cachemanager_defaultthumb',
 						gettext('Default sized image') => 'cachemanager_defaultsizedimage'
 				),
-				'desc' => gettext('If enabled the default thumb size (or if set a manual crop) and/or the default sized image as set on the theme options are enabled for caching. Themes or plugins can request to override this option being disabled by defining <code>addThemeDefaultThumbSize()</code> and/or <code>addThemeDefaultSizedImageSize()</code> on their option definitions.')
+				'desc' => gettext('If enabled the default thumb size (or if set a manual crop) and/or the default sized image as set on the theme options are enabled for caching. Themes or plugins can request to override this option being disabled by defining <code>addDefaultThumbSize()</code> and/or <code>addDefaultSizedImageSize()</code> on their option definitions.')
 		);
 		$options[gettext('Pre-caching generation mode')] = array(
 				'key' => 'cachemanager_generationmode',
