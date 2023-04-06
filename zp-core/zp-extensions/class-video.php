@@ -59,7 +59,7 @@ class VideoObject_Options {
 				gettext('Video Poster') => array(
 						'key' => 'video_videoposter', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 3,
-						'desc' => gettext('If a poster of the videothumb should be shown. This is cropped to fit the player size as the player would distort image not fitting the player dimensions otherwise.')),
+						'desc' => gettext('If a sidecar image should be used as the poster of the video. This is cropped to fit the player size as the player would distort image not fitting the player dimensions otherwise.')),
 				gettext('Video poster width') => array(
 						'key' => 'video_videoposter_width', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Max width of the video poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
@@ -69,11 +69,11 @@ class VideoObject_Options {
 				gettext('Audio poster') => array(
 						'key' => 'video_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 8,
-						'desc' => gettext('If an image of the audiothumb should be shown with audio files. You need to set the width/height. This is cropped to fit the size.')),
+						'desc' => gettext('If a sidecar image should be shown with audio files. You need to set the width/height. This is cropped to fit the size.')),
 				gettext('Audio poster width') => array(
 						'key' => 'video_audioposter_width', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Max width of the audio poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
-				gettext('Video poster height') => array(
+				gettext('Audio poster height') => array(
 						'key' => 'video_audioposter_height', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Height of the audio poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
 		);
