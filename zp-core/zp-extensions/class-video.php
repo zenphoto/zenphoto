@@ -69,7 +69,7 @@ class VideoObject_Options {
 				gettext('Audio poster') => array(
 						'key' => 'video_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 8,
-						'desc' => gettext('If an image of the videothumb should be shown with audio files. You need to set the width/height. This is cropped to fit the size.')),
+						'desc' => gettext('If an image of the audiothumb should be shown with audio files. You need to set the width/height. This is cropped to fit the size.')),
 				gettext('Audio poster width') => array(
 						'key' => 'video_audioposter_width', 'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Max width of the audio poster (px). Image will be sized automatially in responsive layouts. Might require theme CSS changes to work correctly.')),
