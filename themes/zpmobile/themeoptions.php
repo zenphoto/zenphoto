@@ -29,9 +29,12 @@ class ThemeOptions {
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('zpMobile');
 			cacheManager::addDefaultSizedImageSize('zpMobile');
+			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
 			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
-			cacheManager::addCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
+			cacheManager::addCacheSize('zpMobile', NULL, 640, 640, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
+			cacheManager::addCacheSize('zpMobile', NULL, 230, 230, 230, 230, NULL, NULL, true, $img_wmk, $thumb_effect, false);
+			cacheManager::addCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, $thumb_wmk, $thumb_effect, false);
 		}
 	}
 

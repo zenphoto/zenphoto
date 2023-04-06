@@ -41,9 +41,17 @@ class ThemeOptions {
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes($me);
 			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
+			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
 			$img_effect = getOption('image_gray') ? 'gray' : null;
 			cacheManager::addCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
+			cacheManager::addCacheSize($me, NULL, 95, 95, 95, 95, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
 			cacheManager::addDefaultThumbSize();
+			if (extensionEnabled('bxslider_thumb_nav')) {
+				cacheManager::addCacheSize($me, NULL, 50, 50, 50, 50, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
+			}
+			if (extensionEnabled('paged_thumbs_nav')) {
+				cacheManager::addCacheSize($me, NULL, 40, 40, 40, 40, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
+			}
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

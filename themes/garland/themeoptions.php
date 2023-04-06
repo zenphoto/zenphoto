@@ -41,6 +41,7 @@ class ThemeOptions {
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
 			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
 			cacheManager::addCacheSize($me, 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, $thumb_wmk, $thumb_effect, NULL);
+			cacheManager::addDefaultThumbSize();
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
