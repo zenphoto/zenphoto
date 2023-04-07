@@ -358,7 +358,7 @@ class graphicsImagick extends graphicsBase {
 	 */
 	function imageGray($image) {
 		$image->setType(Imagick::IMGTYPE_GRAYSCALE);
-		$image->setImageColorspace(Imagick::COLORSPACE_GRAY);
+		$image->transformImageColorspace(Imagick::COLORSPACE_GRAY);
 		$image->setImageProperty('exif:ColorSpace', Imagick::IMGTYPE_GRAYSCALE);
 		return $image;
 	}

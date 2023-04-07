@@ -417,6 +417,7 @@ class graphicsGD extends graphicsBase {
 				imagesetpixel($image, $x, $y, ImageColorAllocate($image, $gray, $gray, $gray));
 			}
 		}
+		return $image;
 	}
 
 	/**
