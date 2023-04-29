@@ -31,6 +31,7 @@ class ThemeOptions {
 			cacheManager::addDefaultSizedImageSize('zpMobile');
 			$img_wmk = getOption('fullimage_watermark') ? getOption('fullimage_watermark') : null;
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
+			$img_effect = getOption('image_gray') ? 'gray' : null;
 			$thumb_effect = getThemeOption('thumb_gray') ? 'gray' : null;
 			cacheManager::addCacheSize('zpMobile', NULL, 640, 640, NULL, NULL, NULL, NULL, NULL, $img_wmk, $img_effect, true);
 			cacheManager::addCacheSize('zpMobile', NULL, 230, 230, 230, 230, NULL, NULL, true, $img_wmk, $thumb_effect, false);
