@@ -202,10 +202,10 @@ class Zenpage {
 					$page = new ZenpagePage($row['titlelink']);
 					if ($page->isMyItem(LIST_RIGHTS)) {
 						$all_pages[] = $row;
-						if ($number && count($result) >= $number) {
-							break;
-						}
 					}
+				}
+				if ($number && count($all_pages) >= $number) {
+					break;
 				}
 			}
 			$_zp_db->freeResult($result);
