@@ -2344,7 +2344,7 @@ function is_connected($host = 'www.zenphoto.org') {
  */
 function debug404($album, $image, $theme) {
 	if (DEBUG_404) {
-		$list = explode('/', $album);
+		$list = explode('/', strval($album));
 		if (array_shift($list) == 'cache') {
 			return;
 		}

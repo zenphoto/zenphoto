@@ -2,7 +2,7 @@
 // force UTF-8// Ø
 
 list($album, $image) = rewrite_get_album_image('album', 'image');
-$folders = explode('/', $album);
+$folders = explode('/', strval($album));
 if (array_key_exists(0, $folders) && $folders[0] == CACHEFOLDER) {
 	// a failed reference to a cached image?
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
