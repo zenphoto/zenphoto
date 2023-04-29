@@ -2963,7 +2963,7 @@ function tagURLs($text) {
 			$text = serialize($text);
 		}
 	} else if (is_string($text)) {
-		$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', $text));
+		$text = str_replace(WEBPATH, '{*WEBPATH*}', str_replace(FULLWEBPATH, '{*FULLWEBPATH*}', strval($text)));
 	}
 	return $text;
 }
@@ -2988,7 +2988,7 @@ function unTagURLs($text) {
 			$text = serialize($text);
 		}
 	} else if (is_string($text)) {
-		$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, $text));
+		$text = str_replace('{*WEBPATH*}', WEBPATH, str_replace('{*FULLWEBPATH*}', FULLWEBPATH, strval($text)));
 	}
 	return $text;
 }
