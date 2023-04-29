@@ -267,7 +267,7 @@ class scriptlessSocialsharing {
 			$buttons[] = array(
 					'class' => 'sharingicon-whatsapp',
 					'title' => 'Whatsapp',
-					'url' => 'WhatsApp://send?text=' . $url
+					'url' => 'https://wa.me/?text=' . $url
 			);
 		}
 		if (getOption('scriptless_socialsharing_digg')) {
@@ -358,13 +358,7 @@ class scriptlessSocialsharing {
 							?>
 						</a>
 					</li>
-					<?php 
-					if ($button['class'] == 'sharingicon-whatsapp') { ?>
-						<script>
-							(navigator.userAgent.match(/(iPhone)/g)) ? $('.whatsappLink').removeClass('hidden') : null;
-						</script>
-					<?php 
-					} 
+					<?php  
 				} ?>
 			</ul>
 		<?php
