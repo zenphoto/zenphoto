@@ -1136,7 +1136,7 @@ Authority::printPasswordFormJS();
 								</tr>
 								
 								<tr>
-									<td><?php echo gettext("Display coypright notice"); ?></td>
+									<td><?php echo gettext("Display copyright notice"); ?></td>
 									<td>
 										<label><input type="checkbox" name="display_copyright_notice" id="display_copyright_notice" value="1" <?php checked('1', getOption('display_copyright_notice')); ?> /> <?php echo gettext('Enable'); ?></label>
 									</td>
@@ -2550,7 +2550,7 @@ Authority::printPasswordFormJS();
 								</tr>
 								
 								<tr>
-									<td><?php echo gettext("Display Image coypright notice"); ?></td>
+									<td><?php echo gettext("Display Image copyright notice"); ?></td>
 									<td>
 										<label><input type="checkbox" name="display_copyright_image_notice" id="display_copyright_image_notice" value="1" <?php checked('1', getOption('display_copyright_image_notice')); ?> /> <?php echo gettext('Enable'); ?></label>
 									</td>

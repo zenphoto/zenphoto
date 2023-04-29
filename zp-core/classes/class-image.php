@@ -944,7 +944,7 @@ class Image extends MediaObject {
 	 * 
 	 * - IPTCCopyright field
 	 * - EXIFCopyright field
-	 * - "coypright_image_notice" option
+	 * - "copyright_image_notice" option
 	 * - Owner
 	 * 
 	 * @since 1.5.8
