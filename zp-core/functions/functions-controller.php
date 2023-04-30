@@ -62,6 +62,9 @@ function zpRewriteURL($query) {
 				}
 				if (isset($query['search'])) {
 					$redirectURL .= '/' . $query['search'];
+					if (isset($query['searchfields']) && $query['searchfields'] != 'tags') {
+						$redirectURL .= '?searchfields=' . $query['searchfields'];
+					}
 					unset($query['search']);
 				}
 				break;
@@ -109,7 +112,7 @@ function zpRewriteURL($query) {
  */
 function fix_path_redirect() {
 	global $_zp_current_search, $_zp_page;
-	if (in_context(ZP_SEARCH) && is_object($_zp_current_search)) {
+	/*if (in_context(ZP_SEARCH) && is_object($_zp_current_search)) {
 		//include search words in inital search page url
 		$searchwords = $_zp_current_search->codifySearchString();
 		$searchdates = $_zp_current_search->getSearchDate();
@@ -120,7 +123,7 @@ function fix_path_redirect() {
 		if ($request_uri !=  urldecode($searchpagepath)) { //urldecode needed as request_uri is and searchpath is not!
 			redirectURL($searchpagepath, '301');
 		}
-	} 
+	} */
 	if (MOD_REWRITE) {
 		$request_uri = getRequestURI();
 		$parts = parse_url($request_uri);
