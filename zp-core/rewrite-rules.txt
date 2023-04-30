@@ -19,9 +19,6 @@
 	RewriteRule ^%TAGS%/(.*)/?$ 													index.php?p=search&searchfields=tags&search=$1 [L,QSA]
   RewriteRule ^%SEARCH%/*$															index.php?p=search [L,QSA]
 
-	#RewriteRule ^%SEARCH%/([0-9]+)/?$										index.php?p=search&page=$1&searchfields=$2&search=$1 [L,QSA]
-	#RewriteRule ^%SEARCH%/?$															index.php?p=search [L,QSA]
-
 	#### Rules created by plugins
 	_SPECIAL_
 

@@ -62,7 +62,7 @@ function zpRewriteURL($query) {
 				}
 				if (isset($query['search'])) {
 					$redirectURL .= '/' . $query['search'];
-					if (isset($query['searchfields']) && $query['searchfields'] != 'tags') {
+					if (isset($query['searchfields'])) {
 						$redirectURL .= '?searchfields=' . $query['searchfields'];
 					}
 					unset($query['search']);
