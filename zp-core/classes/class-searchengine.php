@@ -257,16 +257,21 @@ class SearchEngine {
 	 * @return array
 	 */
 	protected function numericFields($fields) {
-		if ($fields == 0)
+		if ($fields == 0) {
 			$fields = 0x0fff;
-		if ($fields & 0x01)
+		}
+		if ($fields & 0x01) {
 			$list[$this->search_structure['title']] = 'title';
-		if ($fields & 0x02)
+		}
+		if ($fields & 0x02) {
 			$list[$this->search_structure['desc']] = 'desc';
-		if ($fields & 0x04)
+		}
+		if ($fields & 0x04) {
 			$list[$this->search_structure['tags']] = 'tags';
-		if ($fields & 0x08)
+		}
+		if ($fields & 0x08) {
 			$list[$this->search_structure['filename']] = 'filename';
+		}
 		return $list;
 	}
 
@@ -396,7 +401,7 @@ class SearchEngine {
 				$fields_final[] = $field;
 			}
 		}
-		if (!empty($fields_allowed)) {
+		if (!empty($fields_final)) {
 			return $param . implode(',', $fields_final);
 		}
 		return '';
@@ -532,8 +537,9 @@ class SearchEngine {
 	 * @return mixed
 	 */
 	function getSearchFields($array = false) {
-		if ($array)
+		if ($array) {
 			return $this->fieldList;
+		}
 		return implode(',', $this->fieldList);
 	}
 
@@ -800,9 +806,9 @@ class SearchEngine {
 			$fs = sanitize($_REQUEST['searchfields']);
 			if (is_numeric($fs)) {
 				$fields = array_flip($this->numericFields($fs));
-			} else if(is_string($fs)) {
+			} else if (is_string($fs)) {
 				$fields = explode(',', $fs);
-			} else if(is_array($fs)) {
+			} else if (is_array($fs)) {
 				$fields = $fs;
 			}
 		} else {
@@ -821,8 +827,9 @@ class SearchEngine {
 	 */
 	protected function subsetNewsCategories() {
 		global $_zp_zenpage, $_zp_db;
-		if (!is_array($this->category_list))
+		if (!is_array($this->category_list)) {
 			return false;
+		}
 		$cat = '';
 		$list = $_zp_zenpage->getAllCategories();
 		if (!empty($list)) {
