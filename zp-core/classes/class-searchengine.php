@@ -389,13 +389,15 @@ class SearchEngine {
 	 * @return string
 	 */
 	function getSearchFieldsText($fields, $param = '&searchfields=') {
-		$default = $this->allowedSearchFields();
-		$diff = array_diff($default, $fields);
-		if (count($diff) > 0) {
-			foreach ($fields as $field) {
-				$param .= $field . ',';
+		$fields_allowed = $this->allowedSearchFields();
+		$fields_final = array();
+		foreach ($fields as $field) {
+			if (in_array($field, $fields_allowed)) {
+				$fields_final[] = $field;
 			}
-			return substr($param, 0, -1);
+		}
+		if (!empty($fields_allowed)) {
+			return $param . implode(',', $fields_final);
 		}
 		return '';
 	}
@@ -798,8 +800,10 @@ class SearchEngine {
 			$fs = sanitize($_REQUEST['searchfields']);
 			if (is_numeric($fs)) {
 				$fields = array_flip($this->numericFields($fs));
-			} else {
+			} else if(is_string($fs)) {
 				$fields = explode(',', $fs);
+			} else if(is_array($fs)) {
+				$fields = $fs;
 			}
 		} else {
 			foreach ($_REQUEST as $key => $value) {
@@ -2232,9 +2236,9 @@ class SearchEngine {
 			}			
 		} else {
 			$baseurl = SEO_WEBPATH . "/index.php?p=search";
-			$search = new SearchEngine();
-			$searchfields = $search->getSearchFieldsText($fields, 'searchfields=');
 		}
+		$search = new SearchEngine();
+		$searchfields = $search->getSearchFieldsText($fields, 'searchfields=');
 		if (!empty($words)) {
 			if (is_array($words)) {
 				foreach ($words as $key => $word) {
@@ -2273,6 +2277,9 @@ class SearchEngine {
 							$url .= '/';
 						}
 						$url .= '?search=' . $searchwords;
+						if (!empty($searchfields)) {
+							$url .= '&' . $searchfields;
+						}
 					}
 					break;
 				case 'archive':
@@ -2282,9 +2289,6 @@ class SearchEngine {
 			}
 		} else {
 			$url = $baseurl . '&' . urldecode(http_build_query($query));
-		}
-		if (!empty($searchfields)) {
-			$url .= '&' . $searchfields;
 		}
 		return $url;
 	}

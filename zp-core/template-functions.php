@@ -3944,7 +3944,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
         <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>
 								<?php
 								foreach ($fields as $display => $key) {
-									echo '<li><label><input id="SEARCH_' . html_encode($key) . '" name="SEARCH_' . html_encode($key) . '" type="checkbox"';
+									echo '<li><label><input id="SEARCH_' . html_encode($key) . '" name="searchfields[]" type="checkbox"';
 									if (in_array($key, $query_fields)) {
 										echo ' checked="checked" ';
 									}
