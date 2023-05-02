@@ -3846,6 +3846,9 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
 		<form method="get" action="<?php echo $searchurl; ?>" id="search_form">
+			<?php if(!MOD_REWRITE) { ?>
+				<input type="hidden" name="p" value="search" />
+			<?php } ?>
 			<script>
 			var within = <?php echo (int) $within; ?>;
 			function search_(way) {

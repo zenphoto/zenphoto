@@ -2295,7 +2295,14 @@ class SearchEngine {
 					break;
 			}
 		} else {
+			if(empty($query['search'])) {
+				unset($query['search']);
+			}
 			$url = $baseurl . '&' . urldecode(http_build_query($query));
+			if (!empty($searchfields)) {
+				$url .= '&' . $searchfields;
+			}
+			
 		}
 		return $url;
 	}
