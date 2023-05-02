@@ -1441,7 +1441,13 @@ class Authority {
 				$params = '';
 				if (!empty($page_params)) {
 					foreach ($page_params as $param => $value) {
-						$params .= '&' . $param . '=' . $value;
+						if ($param == 'searchfields' && !empty($value)) {
+							foreach ($value as $val) {
+								$params .= '&searchfields[]='.$val;
+							}
+						} else {
+							$params .= '&' . $param . '=' . $value;
+						}
 					}
 				}
 				return $params;
