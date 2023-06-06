@@ -811,7 +811,11 @@ class sitemap {
 	 */
 	static function getZenpageNewsIndex() {
 		global $_zp_zenpage, $_zp_sitemap_number;
+		$newspages = $_zp_zenpage->getTotalNewsPages();
 		//not splitted into several sitemaps yet
+		if ($_zp_zenpage->getTotalArticles() == 0) {
+			return ;
+		}
 		if ($_zp_sitemap_number == 1) {
 			$data = '';
 			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -844,7 +848,7 @@ class sitemap {
 			  } else {
 			  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 			  } */
-			$newspages = $_zp_zenpage->getTotalNewsPages();
+			
 			if ($newspages > 1) {
 				for ($x = 2; $x <= $newspages; $x++) {
 					switch (SITEMAP_LOCALE_TYPE) {
@@ -939,7 +943,7 @@ class sitemap {
 				$data_start .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 				foreach ($newscats as $newscat) {
 					$catobj = new ZenpageCategory($newscat['titlelink']);
-					if ($catobj->isPublic() && !$catobj->isProtected()) {
+					if ($catobj->isPublic() && !$catobj->isProtected() && $catobj->getTotalArticles() != 0) {
 							switch (SITEMAP_LOCALE_TYPE) {
 								case 1:
 									foreach ($sitemap_locales as $locale) {
