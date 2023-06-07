@@ -705,7 +705,7 @@ Authority::printPasswordFormJS();
 											<?php echo sprintf(gettext('The <em>tokens</em> used in rewritten URIs may be altered to your taste. See the <a href="%s">plugin options</a> for <code>rewriteTokens</code>.'), WEBPATH . '/' . ZENFOLDER . '/admin-options.php?page=options&tab=plugin&single=rewriteTokens'); ?>
 											<?php
 											if (!getOption('mod_rewrite_detected'))
-												echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility.'), '</p>';
+												echo '<p class="notebox">' . gettext('Setup did not detect a working <em>mod_rewrite</em> facility. Since this test is not 100% reliable this may be a false report though.'), '</p>';
 											?>
 										</p>
 										<p><?php echo gettext("If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."); ?></p>
