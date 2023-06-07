@@ -1065,7 +1065,7 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 	$image = preg_replace('~^[0-9a-f]{' . CACHE_HASH_LENGTH . '}\.~', '', basename($image));
 	if (IMAGE_CACHE_SUFFIX) {
 		$candidates = glob(ALBUM_FOLDER_SERVERPATH . $album . "/" . stripSuffix($image) . ".*");
-		if (is_array($candidates) && count($candidates) > 1) {
+		if (is_array($candidates)) {
 			foreach ($candidates as $file) {
 				if (Gallery::validImage($file)) {
 					$image = basename($file);
