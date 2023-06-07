@@ -743,7 +743,7 @@ class cacheManager {
 		//The list to select will also filter
 		$themes = $_zp_gallery->getThemes();
 		foreach($themes as $theme) {
-			if (strtolower($theme['name']) == strtolower($owner)) {
+			if (strtolower(strval($theme['name'])) == strtolower(strval($owner))) {
 				return true;
 			}
 		}

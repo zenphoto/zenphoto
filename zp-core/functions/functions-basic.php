@@ -1060,9 +1060,20 @@ function getImageProcessorURIFromCacheName($match, $watermarks) {
 		$set['wmk'] = '!';
 	}
 	$image = preg_replace('~.*/' . CACHEFOLDER . '/~', '', implode('_', $params)) . '.' . getSuffix($match);
-	//	strip out the obfustication
+	//	strip out the obfuscation
 	$album = dirname($image);
 	$image = preg_replace('~^[0-9a-f]{' . CACHE_HASH_LENGTH . '}\.~', '', basename($image));
+	if (IMAGE_CACHE_SUFFIX) {
+		$candidates = glob(ALBUM_FOLDER_SERVERPATH . $album . "/" . stripSuffix($image) . ".*");
+		if (is_array($candidates) && count($candidates) > 1) {
+			foreach ($candidates as $file) {
+				if (Gallery::validImage($file)) {
+					$image = basename($file);
+					break;
+				}
+			}
+		}
+	}
 	$image = $album . '/' . $image;
 	return array($image, getImageArgs($set));
 }
