@@ -1737,5 +1737,26 @@ class Image extends MediaObject {
 	function isVideo() {
 		return strtolower(get_class($this)) == 'video';
 	}
+	
+	/**
+	 * Calculate the aspect ratio from width and height
+	 * 
+	 * @source https://stackoverflow.com/a/71730390
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @param int $width
+	 * @param int $height
+	 * @param string $separator Separator for the aspect ratio. Defaul ":"
+	 */
+	static function calculateAspectRatio($width = null, $height = null, $separator = ':') {
+		$ratio = [$width, $height];
+		for ($x = $ratio[1]; $x > 1; $x--) {
+			if (($ratio[0] % $x) == 0 && ($ratio[1] % $x) == 0) {
+				$ratio = [$ratio[0] / $x, $ratio[1] / $x];
+			}
+		}
+		return implode($separator, $ratio);
+	}
 
 }

@@ -598,7 +598,8 @@ class pseudoPlayer {
 				}
 				$style = '';
 				if (getOption('video_videoposter_css')) {
-					$style = ' style="max-width: 100%; height: auto; aspect-ratio: 16/9;"';
+					$aspectratio = Image::calculateAspectRatio($container_width, $container_height, '/');
+					$style = ' style="max-width: 100%; height: auto; aspect-ratio: ' . $aspectratio . ';"';
 				}
 				$content = '<video class="video_videoplayer"' . $poster . ' src="' . html_encode($movie) . '" controls width="' . $container_width . '" height="' . $container_height . '"' . $style . '>';
 				$content .= gettext('Your browser sadly does not support this video format.');
@@ -613,7 +614,8 @@ class pseudoPlayer {
 					}
 					$style = $style_player = '';
 					if (getOption('video_audioposter_css')) {
-						$style = ' style="max-width: 100%; height: auto; object-fit: contain !important; aspect-ratio: 16/9;"';
+						$aspectratio = Image::calculateAspectRatio($container_width, $container_height, '/');
+						$style = ' style="max-width: 100%; height: auto; object-fit: contain !important; aspect-ratio: ' . $aspectratio . ';"';
 						$style_player = ' style="width: 100%; max-width: ' . $container_width . 'px;"';
 					}
 					$content = '<img class="video_audioposter" src="' . html_encode($posterdata['url']) . '" width="' . $container_width . '" height="' . $container_height . '"' . $style . ' alt="">' . "\n";
