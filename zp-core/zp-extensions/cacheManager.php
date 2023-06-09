@@ -119,160 +119,32 @@ class cacheManager {
 	 */
 	function getOptionsSupported() {
 		$options = array(
-				gettext('Image caching sizes') => array(
-						'key' => 'cropImage_list',
-						'type' => OPTION_TYPE_CUSTOM,
-						'order' => 1,
-						'desc' => '<p>' .
-						gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.' .
-										'You can determine the values for these fields by examining your cached images. The file names will look something like these:') .
-						'<ul>' .
-						'<li>' . gettext('<code>photo_595.jpg</code>: sized to 595 pixels') . '</li>' .
-						'<li>' . gettext('<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)') . '</li>' .
-						'<li>' . gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).') . '</li>' .
-						'<li>' . gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.') . '</li>' .
-						'</ul>' .
-						'</p>' .
-						'<p>' .
-						gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. ' .
-										'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.') .
-						'</p>' .
-						'<p>' .
-						gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.') .
-						'</p>'
+				gettext('Cache default sizes') => array(
+						'key' => 'cachemanager_defaultsizes',
+						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+						'order' => 0,
+						'checkboxes' => array(
+								gettext('Default thumb size') => 'cachemanager_defaultthumb',
+								gettext('Default sized image') => 'cachemanager_defaultsizedimage'
+						),
+						'desc' => gettext('If enabled the default thumb size (or if set a manual crop) and/or the default sized image as set on the theme options are enabled for caching. Themes or plugins can request to override this option being disabled by defining <code>addDefaultThumbSize()</code> and/or <code>addDefaultSizedImageSize()</code> on their option definitions.')
+				),
+				gettext('Pre-caching generation mode') => array(
+						'key' => 'cachemanager_generationmode',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 0,
+						'buttons' => array(
+								gettext('Classic') => 'classic',
+								gettext('cURL') => 'curl'
+						),
+						'desc' => gettext('Choose the way how the cachemanager generates the cache sizes via its utility.')
+						. '<ul>'
+						. '<li>' . gettext('<em>Classic</em> (default) outputs the image sizes to generate directly. This is faster and works basically on all servers but is not always creating all sizes reliably so the process may have to be repeated.') . '</li>'
+						. '<li>' . gettext('<em>cURL</em> uses PHP cURL requests to generate the images without output. Although processing time and server load is similar to the classic mode, it is actually more reliable in creating the sizes, especially if you have lots of images and albums. However this does not work properly on all servers.') . '</li>'
+						. '</ul>'
 				)
 		);
-		$options[gettext('Cache default sizes')] = array(
-				'key' => 'cachemanager_defaultsizes',
-				'type' => OPTION_TYPE_CHECKBOX_ARRAY,
-				'order' => 0,
-				'checkboxes' => array(
-						gettext('Default thumb size') => 'cachemanager_defaultthumb',
-						gettext('Default sized image') => 'cachemanager_defaultsizedimage'
-				),
-				'desc' => gettext('If enabled the default thumb size (or if set a manual crop) and/or the default sized image as set on the theme options are enabled for caching. Themes or plugins can request to override this option being disabled by defining <code>addDefaultThumbSize()</code> and/or <code>addDefaultSizedImageSize()</code> on their option definitions.')
-		);
-		$options[gettext('Pre-caching generation mode')] = array(
-				'key' => 'cachemanager_generationmode',
-				'type' => OPTION_TYPE_RADIO,
-				'order' => 0,
-				'buttons' => array(
-						gettext('Classic') => 'classic',
-						gettext('cURL') => 'curl'
-				),
-				'desc' => gettext('Choose the way how the cachemanager generates the cache sizes via its utility.')
-				. '<ul>'
-				. '<li>' . gettext('<em>Classic</em> (default) outputs the image sizes to generate directly. This is faster and works basically on all servers but is not always creating all sizes reliably so the process may have to be repeated.') . '</li>'
-				. '<li>' . gettext('<em>cURL</em> uses PHP cURL requests to generate the images without output. Although processing time and server load is similar to the classic mode, it is actually more reliable in creating the sizes, especially if you have lots of images and albums. However this does not work properly on all servers.') . '</li>'
-				. '</ul>'
-		);
-
 		return $options;
-	}
-
-	/**
-	 *
-	 * custom option handler
-	 * @param string $option
-	 * @param mixed $currentValue
-	 */
-	function handleOption($option, $currentValue) {
-		global $_zp_gallery, $_zp_db;
-		$currenttheme = $_zp_gallery->getCurrentTheme();
-		$custom = array();
-		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" ORDER BY `aux`');
-		$key = 0;
-		while ($row = $_zp_db->fetchAssoc($result)) {
-			$theme = $row['aux'];
-			$data = getSerializedArray($row['data']);
-			$custom[$theme][] = $data;
-		}
-		ksort($custom, SORT_LOCALE_STRING);
-		$custom[''] = array(array());
-		$c = 0;
-		self::printJS();
-		foreach ($custom as $theme => $themedata) {
-			$themedata = sortMultiArray($themedata, array('thumb', 'image_size', 'image_width', 'image_height'));
-			?>
-			<span class="icons" id="<?php echo $theme; ?>_arrow">
-				<?php
-				if ($theme) {
-					$inputclass = 'hidden';
-					echo '<em>' . $theme . '</em> (' . count($themedata) . ')';
-				} else {
-					$inputclass = 'textbox';
-					echo '<br />' . gettext('add');
-				}
-				?>
-				<a href="javascript:showTheme('<?php echo $theme; ?>');" title="<?php echo gettext('Show'); ?>">
-					<img class="icon-position-top4" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/images/arrow_down.png'; ?>" alt="" />
-				</a>
-			</span>
-			<br />
-			<div id="<?php echo $theme; ?>_list" style="display:none">
-				<br />
-				<?php
-				foreach ($themedata as $cache) {
-					$key++;
-					if ($c % 2) {
-						$class = 'boxb';
-					} else {
-						$class = 'box';
-					}
-					?>
-					<div>
-						<?php
-						$c++;
-						if (isset($cache['enable']) && $cache['enable']) {
-							$allow = ' checked="checked"';
-						} else {
-							$allow = '';
-						}
-						?>
-						<div class="<?php echo $class; ?>">
-							<input type="<?php echo $inputclass; ?>" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
-							<?php
-							if ($theme) {
-								?>
-								<span class="displayinlineright"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
-								<input type="hidden" name="cacheManager_valid_<?php echo $key; ?>" value="1" />
-								<?php
-							}
-							?>
-							<br />
-							<?php
-							foreach (array('image_size' => gettext('Size'), 'image_width' => gettext('Width'), 'image_height' => gettext('Height'),
-					'crop_width' => gettext('Crop width'), 'crop_height' => gettext('Crop height'), 'crop_x' => gettext('Crop X axis'),
-					'crop_y' => gettext('Crop Y axis')) as $what => $display) {
-								if (isset($cache[$what])) {
-									$v = $cache[$what];
-								} else {
-									$v = '';
-								}
-								?>
-								<span class="nowrap"><?php echo $display; ?> <input type="textbox" size="2" name="cacheManager_<?php echo $what; ?>_<?php echo $key; ?>" value="<?php echo $v; ?>" /></span>
-								<?php
-							}
-							if (isset($cache['wmk'])) {
-								$wmk = $cache['wmk'];
-							} else {
-								$wmk = '';
-							}
-							?>
-							<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
-							<br />
-							<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager_maxspace_<?php echo $key; ?>" value="1"<?php if (isset($cache['maxspace']) && $cache['maxspace']) echo ' checked="checked"'; ?> /></span>
-							<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb']) && $cache['thumb']) echo ' checked="checked"'; ?> /></span>
-							<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray']) && $cache['gray']) echo ' checked="checked"'; ?> /></span>
-						</div>
-						<br />
-					</div>
-					<?php
-				}
-				?>
-			</div><!-- <?php echo $theme; ?>_list -->
-			<?php
-		}
 	}
 
 	static function printJS() {
@@ -284,12 +156,12 @@ class cacheManager {
 			function showTheme(theme) {
 				html = $('#' + theme + '_arrow').html();
 				if (html.match(/down/)) {
-					html = html.replace(/_down/, '_up');
+					html = html.replace(/-down/, '-up');
 					html = html.replace(/title = "<?php echo gettext('Show'); ?>/, 'title="<?php echo gettext('Hide');
 		?>"');
 					$('#' + theme + '_list').show();
 				} else {
-					html = html.replace(/_up/, '_down');
+					html = html.replace(/-up/, '-down');
 					html = html.replace(/title="<?php echo gettext('Hide'); ?>/, 'title="<?php echo gettext('Show'); ?>"');
 					$('#' + theme + '_list').hide();
 				}
@@ -298,33 +170,6 @@ class cacheManager {
 
 		</script>
 		<?php
-	}
-
-	/**
-	 *
-	 * process custom option saves
-	 * @param string $themename
-	 * @param string $themealbum
-	 * @return string
-	 */
-	function handleOptionSave($themename, $themealbum) {
-		global $_zp_db;
-		$cache = array();
-		foreach ($_POST as $key => $value) {
-			preg_match('/^cacheManager_(.*)_(.*)/', $key, $matches);
-			if ($value && !empty($matches)) {
-				$cache[$matches[2]][$matches[1]] = sanitize(trim($value));
-			}
-		}
-		$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager"');
-		foreach ($cache as $cacheimage) {
-			if (!isset($cacheimage['delete']) && count($cacheimage) > 1) {
-				$cacheimage['theme'] = preg_replace("/[\s\"\']+/", "-", $cacheimage['theme']);
-				$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("cacheManager",' . $_zp_db->quote($cacheimage['theme']) . ',' . $_zp_db->quote(serialize($cacheimage)) . ')';
-				$_zp_db->query($sql);
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -754,7 +599,7 @@ class cacheManager {
 		//Sizes that don't apply above and are not from an inactive plugin 
 		//are most certainly custom sizes set via cachemanager itself so better allow them
 		$allplugins = array_keys(getPluginFiles('*.php'));
-		if (!in_array($owner, $allplugins)) {
+		if (in_array($owner, $allplugins)) {
 			return true;
 		}
 		return false;
@@ -880,8 +725,9 @@ class cacheManager {
 			}
 		}
 		if (!empty($sizes_delete)) {
-			$delete = implode(',', $sizes_delete);
-			$query = $_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux` IN (' . $delete . ')');
+			$delete = implode(',', array_unique($sizes_delete));
+			$query = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="cacheManager" AND `aux` IN (' . $delete . ')';
+			$_zp_db->query($query);
 		}
 	}
 
