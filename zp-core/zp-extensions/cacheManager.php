@@ -574,7 +574,7 @@ class cacheManager {
 	 * 
 	 * - Checks if this is from an existing theme ("admin" sizes are always valid)
 	 * - Checks if this is from an enabeled extension
-	 * - Checks if this is a custom size (e.g. not one of the non active plugins)
+	 * - Checks if this is from an installed extension at least
 	 * 
 	 * @param string $owner
 	 * @return boolean
