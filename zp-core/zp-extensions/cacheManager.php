@@ -468,7 +468,7 @@ class cacheManager {
 						$passedWM = getWatermarkParam($imageobj, WATERMARK_IMAGE);
 					}
 				}
-				if (isset($cacheimage['maxspace'])) {
+				if (!empty($cacheimage['maxspace'])) {
 					getMaxSpaceContainer($width, $height, $imageobj, $thumbstandin);
 				}
 				$args_array = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
