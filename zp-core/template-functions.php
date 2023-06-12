@@ -1812,7 +1812,7 @@ function getPasswordProtectImage($extra = '') {
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  * @param string $title option title attribute
  *  */
-function printAlbumThumbImage($alt, $class = '', $id = '' , $title = '') {
+function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '') {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeDefaultThumb($thumbobj);
@@ -1863,7 +1863,7 @@ function printAlbumThumbImage($alt, $class = '', $id = '' , $title = '') {
  *
  * @return string
  */
-function getCustomAlbumThumb($size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $effects = NULL) {
+function getCustomAlbumThumb($size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $effects = NULL) {
 	global $_zp_current_album;
 	$thumb = $_zp_current_album->getAlbumThumbImage();
 	return $thumb->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, true, $effects);
@@ -1889,7 +1889,7 @@ function getCustomAlbumThumb($size, $width = NULL, $height = NULL, $cropw = NULL
  *
  * @return string
  */
-function printCustomAlbumThumbImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null, $maxspace = false) {
+function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null, $maxspace = false) {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
 	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbobj, 'thumb');
@@ -2008,7 +2008,7 @@ function getCustomAlbumThumbMaxSpace($width, $height) {
  * @param string $id Optional style id
  * @param string $title Optional title attribute
  */
-function printCustomAlbumThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = null) {
+function printCustomAlbumThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null) {
 	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title, true);
 }
 
@@ -2715,7 +2715,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
  * @return array
  */
-function getSizeCustomImage($size, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL, $type = 'image') {
+function getSizeCustomImage($size = null, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL, $type = 'image') {
   global $_zp_current_image;
   if (is_null($image))
     $image = $_zp_current_image;
@@ -3255,7 +3255,7 @@ function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, 
  * @param obj $image optional image object, null means current image
  * @param bool $maxspace true for maxspace, false default
  */
-function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image', $image = null, $maxspace = false) {
+function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image', $image = null, $maxspace = false) {
 	global $_zp_current_image;
 	if (is_null($image)) {
 		$image = $_zp_current_image;
@@ -3284,17 +3284,17 @@ function printCustomSizedImage($alt, $size, $width = NULL, $height = NULL, $crop
 	if (!empty($pwd)) {
 		$attr['class'] .= " password_protected";
 	}
-	if ($size && !$maxspace) {
+	if ($maxspace) {
+		$attr['width'] = $width;
+		$attr['height'] = $height;
+	} else {
 		$type = 'image';
 		if ($thumbStandin) {
 			$type = 'thumb';
 		}
-		$dims = getSizeCustomImage($size, null, null, null, null, null, null, $image, $type);
+		$dims = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $image, $type);
 		$attr['width'] = $dims[0];
 		$attr['height'] = $dims[1];
-	} else {
-		$attr['width'] = $width;
-		$attr['height'] = $height;
 	}
 	if ($image->isPhoto() || $thumbStandin) {
 		if ($maxspace) {
@@ -3355,7 +3355,7 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
  * @param string $title optional title attribute
  * @param obj $image optional image object, null means current image
  */
-function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $title = null, $image = null) {
+function printCustomSizedImageThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null, $image = null) {
 	global $_zp_current_image;
 	if (is_null($image))
 		$image = $_zp_current_image;
@@ -3376,7 +3376,7 @@ function printCustomSizedImageThumbMaxSpace($alt, $width, $height, $class = NULL
  * @param string $title optional title attribute
  * @param obj $image optional image object, null means current image
  */
-function printCustomSizedImageMaxSpace($alt, $width, $height, $class = NULL, $id = NULL, $thumb = false, $title = null, $image = null) {
+function printCustomSizedImageMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $thumb = false, $title = null, $image = null) {
 	global $_zp_current_image;
 	if (is_null($image))
 		$image = $_zp_current_image;
