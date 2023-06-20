@@ -102,12 +102,12 @@ if(empty($prefix)) {
 if ($_zp_db->isUtf8System('database', 'any')) {
 	echo '<p class="messagebox">' . gettext('The database is UTF-8') . '</p>';
 } else {
-	echo '<p class="warningbox">' . gettext('The database is not UTF-8') . '</p>';
+	echo '<p class="warningbox">' . gettext('The database is not fully set to UTF-8 (utf8mb4). If you encounter data encoding issues try changing the configuration.') . '</p>';
 }
 if ($_zp_db->isUtf8System('server', 'any')) {
-	echo '<p class="messagebox">' . gettext('The database server is UTF-8</p>') . '</p>';
+	echo '<p class="messagebox">' . gettext('The database server is UTF-8') . '</p>';
 } else {
-	echo '<p class="warningbox">' . gettext('The database server is not UTF-8</p>') . '</p>';
+	echo '<p class="warningbox">' . gettext('The database is not fully set to UTF-8 (utf8mb4). If you encounter data encoding issues try changing the configuration.') . '</p>';
 }
 ?>
 <ul>
