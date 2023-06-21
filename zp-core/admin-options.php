@@ -2516,7 +2516,12 @@ Authority::printPasswordFormJS();
 												<?php generateListFromArray(array(getOption('IPTC_encoding')), array_flip($sets), false, true) ?>
 											</select>
 										</td>
-										<td><?php echo gettext("The default character encoding of image IPTC metadata."); ?></td>
+										<td>
+										<p><?php echo gettext("The default character encoding of image IPTC metadata."); ?></p>
+										<p class="notebox">
+											<?php echo gettext('<strong>NOTE:</strong> If you notice unexpected behaviour, especially with non-ASCII characters (Cyrillic for example), try again with the <code>xmpMetadata</code> plugin enabled.'); ?>
+										</p>
+										</td>
 									</tr>
 									<?php
 								}

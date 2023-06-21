@@ -2,7 +2,8 @@
 
 /**
  *
- * Enable this filter to scan images (or <i>xmp sidecar</i> files) for metadata.
+ * Enable this filter to scan images (or <i>xmp sidecar</i> files) for metadata 
+ * or when you get unexpected results from reading IPTC metadata containing non-ASCII characters, such as Cyrillic.
  *
  * Relevant metadata found will be incorporated into the image (or album object).
  * See <i>{@link http://www.adobe.com/devnet/xmp.html  Adobe XMP Specification}</i>
