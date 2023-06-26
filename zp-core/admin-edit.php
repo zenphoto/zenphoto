@@ -1654,7 +1654,7 @@ echo "\n</head>";
 						}
 						?>
 						<p>
-							<?php printf(gettext('Current sort: <em>%1s%2$s</em>.'), $sorttype, $dir); ?>
+							<?php printf(gettext('Current sort: <em>%1$s%2$s</em>.'), $sorttype, $dir); ?>
 						</p>
 						<p>
 							<?php echo gettext('Drag the albums into the order you wish them displayed.'); ?>
