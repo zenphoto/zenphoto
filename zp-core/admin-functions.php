@@ -399,7 +399,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				case 'zh_CN':
 				case 'zh_TW':
 				case 'ja_JP':
-					$sub_tab_space = count($tabs) * 3 + $chars;
+					$sub_tab_space = count($tabs) * 4 + $chars;
 					break;
 				default:
 					$sub_tab_space = round((count($tabs) * 32 + round($chars * 7.5)) / 11.5);
