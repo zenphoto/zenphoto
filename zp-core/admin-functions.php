@@ -300,7 +300,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			case 'zh_CN':
 			case 'zh_TW':
 			case 'ja_JP':
-				$_zp_admin_maintab_space = count($_zp_admin_menu) * 3 + $chars;
+				$_zp_admin_maintab_space = count($_zp_admin_menu) * 4 + $chars;
 				break;
 			default:
 				$_zp_admin_maintab_space = round((count($_zp_admin_menu) * 32 + round($chars * 7.5)) / 11.5);
