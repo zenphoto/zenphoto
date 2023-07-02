@@ -410,7 +410,8 @@ function getStandardDateFormats($type = "datetime") {
 			'd-M-y' => 'dd-MMM-yy', //25-Feb-08
 			'd-M-Y' => 'dd-MMM-yyyy', //25-Feb-2008
 			'M d, Y' => 'MMM dd, yyyy', //Feb 25, 2008
-			'F d, Y' => 'MMMM dd, yyyy' //February 25, 2008
+			'F d, Y' => 'MMMM dd, yyyy', //February 25, 2008
+			'F Y' => 'MMMM yyyy', //25 February 2008
 	);
 	$timeformats = array(
 			'H:i'			=> 'H:mm', //15:30 / 03:30

@@ -63,7 +63,11 @@ function zpRewriteURL($query) {
 				if (isset($query['search'])) {
 					$redirectURL .= '/' . $query['search'];
 					if (isset($query['searchfields'])) {
-						$redirectURL .= '?searchfields=' . $query['searchfields'];
+						if (is_array($query['searchfields'])) {
+							$redirectURL .= '?searchfields=' . implode(',', $query['searchfields']);
+						} else {
+							$redirectURL .= '?searchfields=' . $query['searchfields'];
+						}
 					}
 					unset($query['search']);
 				}

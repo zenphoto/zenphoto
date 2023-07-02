@@ -775,19 +775,22 @@ function getFormattedLocaleDate($format = 'Y-m-dd', $datetime = '') {
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'
 	);
+	$timezone = IntlTimeZone::createTimeZone($_zp_server_timezone);
 	if (in_array($format, $locale_preferred)) {
 		switch ($format) {
 			case 'locale_preferreddate_time':
 				$formatter = new IntlDateFormatter(
 								$locale,
 								IntlDateFormatter::SHORT,
-								IntlDateFormatter::SHORT);
+								IntlDateFormatter::SHORT,
+								$timezone);
 				break;
 			case 'locale_preferreddate_notime':
 				$formatter = new IntlDateFormatter(
 								$locale,
 								IntlDateFormatter::SHORT,
-								IntlDateFormatter::NONE);
+								IntlDateFormatter::NONE,
+								$timezone);
 				break;
 		}
 		$fdate = $formatter->format($date);
@@ -796,7 +799,7 @@ function getFormattedLocaleDate($format = 'Y-m-dd', $datetime = '') {
 						$locale,
 						IntlDateFormatter::FULL,
 						IntlDateFormatter::FULL,
-						$_zp_server_timezone,
+						$timezone_id,
 						IntlDateFormatter::GREGORIAN,
 						$format
 		);

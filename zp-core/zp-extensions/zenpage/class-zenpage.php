@@ -564,7 +564,8 @@ class Zenpage {
 	}
 
 	/**
-	 * Retrieves a list of all unique years & months
+	 * Retrieves a list of all unique years & months. Note if in localized date mode a "-03" day is 
+	 * appended because otherwise localized dates are not properly generated
 	 * @param bool $yearsonly If set to true only the years' count is returned (Default false)
 	 * @param string $order 'desc' (default) or 'asc' for descending or ascending
 	 * @return array
@@ -586,7 +587,7 @@ class Zenpage {
 				if ($yearsonly) {
 					$cleandates[] = substr($adate, 0, 4);
 				} else {
-					$cleandates[] = substr($adate, 0, 7) . "-01";
+					$cleandates[] = substr($adate, 0, 7);
 				}
 			}
 		}

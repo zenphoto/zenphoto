@@ -1415,9 +1415,10 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 		echo "</a>";
 		echo '<span class="betweentext">' . html_encode($between) . '</span>';
 		if ($format) {
-			$d = zpFormattedDate($format, $d);
+			echo zpFormattedDate($format, $d);
+		} else {
+			echo zpFormattedDate('F Y', $d);
 		}
-		echo $d;
 	} else {
 		if (is_null($search)) {
 			$text = gettext('Search');
@@ -3609,7 +3610,7 @@ function getAllDates($order = 'asc') {
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {
-			$cleandates[] = substr($adate, 0, 7) . "-01";
+			$cleandates[] = substr($adate, 0, 7);
 		}
 	}
 	$datecount = array_count_values($cleandates);
@@ -3666,7 +3667,6 @@ function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month',
 				$month = zpFormattedDate('F', $key,  false);
 			}
 		}
-
 		if ($lastyear != $year) {
 			$lastyear = $year;
 			if ($nr != 1) {
