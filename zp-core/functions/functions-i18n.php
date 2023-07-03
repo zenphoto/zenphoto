@@ -775,8 +775,6 @@ function getFormattedLocaleDate($format = 'Y-m-dd', $datetime = '') {
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'
 	);
-	//$timezone = IntlTimeZone::createTimeZone($_zp_server_timezone);
-	//print_r($timezone);
 	if (in_array($format, $locale_preferred)) {
 		switch ($format) {
 			case 'locale_preferreddate_time':
