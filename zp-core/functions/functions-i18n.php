@@ -799,7 +799,7 @@ function getFormattedLocaleDate($format = 'Y-m-dd', $datetime = '') {
 						$locale,
 						IntlDateFormatter::FULL,
 						IntlDateFormatter::FULL,
-						$timezone_id,
+						$timezone,
 						IntlDateFormatter::GREGORIAN,
 						$format
 		);
