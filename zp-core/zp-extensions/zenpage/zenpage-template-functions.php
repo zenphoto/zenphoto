@@ -2143,7 +2143,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
 						$newsshow = '';
 					} else {
-						$excludenews = " AND id != " . $articlecheck['id'];
+						$excludenews = " AND news.id != " . $articlecheck['id'];
 						$newspasswordcheck = $newspasswordcheck . $excludenews;
 					}
 				}
@@ -2191,7 +2191,7 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 						. " ORDER BY c.id DESC LIMIT $number");
 	}
 	if ($type == "all" OR $type == "page") {
-		$comments_pages = $_zp_db->queryFullArray($sql = "SELECT c.id, c.name, c.type, c.website,"
+		$comments_pages = $_zp_db->queryFullArray("SELECT c.id, c.name, c.type, c.website,"
 						. " c.date, c.anon, c.comment, pages.title, pages.titlelink FROM " . $_zp_db->prefix('comments') . " AS c, " . $_zp_db->prefix('pages') . " AS pages "
 						. $wherePages
 						. " ORDER BY c.id DESC LIMIT $number");
