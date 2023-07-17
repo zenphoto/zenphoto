@@ -329,14 +329,11 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Returns the url to a news article
 	 *
-	 * @param string $path Default empty, optionally pass a path constant like WEBPATH or FULLWEBPATH
+	 * @param string $path Default null, optionally pass a path constant like WEBPATH or FULLWEBPATH
 	 * @return string
 	 */
-	function getLink($path = '') {
-		if (!empty($path) && MOD_REWRITE) {
-			$path = $path . '/'; 
-		}
-		return zp_apply_filter('getLink', rewrite_path($path . _NEWS_ . '/' . $this->getName() . '/', $path . '/index.php?p=news&title=' . $this->getName()), $this, NULL);
+	function getLink($path = null) {
+		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getName() . '/', '/index.php?p=news&title=' . $this->getName(), $path), $this, NULL);
 	}
 
 	/**
