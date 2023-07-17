@@ -1242,16 +1242,24 @@ function rewrite_path($rewrite, $plain, $webpath = NULL) {
 		} else {
 			$webpath = WEBPATH;
 		}
+	} else {
+		if (class_exists('seo_locale')) {
+			$fullpath = false;
+			if ($webpath == FULLWEBPATH) {
+				$fullpath = true;
+			} 
+			$webpath = seo_locale::localePath($fullpath);
+		} 
 	}
 	if (MOD_REWRITE) {
 		$path = $rewrite;
 	} else {
 		$path = $plain;
 	}
-	if ($path[0] == "/") {
+	if ($path[0] == '/') {
 		$path = substr($path, 1);
 	}
-	return $webpath . "/" . $path;
+	return $webpath . '/' . $path;
 }
 
 /**

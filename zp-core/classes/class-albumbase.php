@@ -622,24 +622,21 @@ class AlbumBase extends MediaObject {
 	 * Returns an URL to the album, including the current page number
 	 *
 	 * @param string $page if not null, apppend as page #
-		* @param string $path Default empty, optionally pass a path constant like WEBPATH or FULLWEBPATH
+	 * @param string $path Default null, optionally pass a path constant like WEBPATH or FULLWEBPATH
 	 * @return string
 	 */
-	function getLink($page = NULL, $path = '') {
+	function getLink($page = NULL, $path = null) {
 		global $_zp_current_album, $_zp_page;
-			if (!empty($path) && MOD_REWRITE) {
-			$path = $path . '/'; 
-		}
 		if (is_null($page) && $_zp_current_album && $_zp_current_album->name == $this->name) {
 			$page = $_zp_page;
 		}
-		$rewrite = $path . pathurlencode($this->linkname) . '/';
-		$plain = $path . '/index.php?album=' . pathurlencode($this->name);
+		$rewrite = pathurlencode($this->linkname) . '/';
+		$plain = '/index.php?album=' . pathurlencode($this->name);
 		if ($page > 1) {
 			$rewrite .= _PAGE_ . '/' . $page . '/';
 			$plain .= "&page=$page";
 		}
-		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), $this, $page);
+		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain, $path), $this, $page);
 	}
 
 	/**
