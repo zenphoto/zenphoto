@@ -1283,14 +1283,16 @@ class Image extends MediaObject {
 		}
 	}
 
-	/*	 * ** Image Methods *** */
-
 	/**
 	 * Returns a path urlencoded image page link for the image
-	 *
+	 * 
+	 * @param string $path Default empty, optionally pass a path constant like WEBPATH or FULLWEBPATH
 	 * @return string
 	 */
-	function getLink() {
+	function getLink($path = '') {
+		if (!empty($path) && MOD_REWRITE) {
+			$path = $path . '/';
+		}
 		if (is_array($this->filename)) {
 			$albumq = $album = dirname($this->filename['source']);
 			$image = basename($this->filename['source']);
@@ -1299,7 +1301,7 @@ class Image extends MediaObject {
 			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
-		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path($path . pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, $path . '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image)), $this, NULL);
 	}
 
 	/**

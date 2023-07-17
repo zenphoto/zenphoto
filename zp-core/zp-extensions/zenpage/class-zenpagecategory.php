@@ -505,20 +505,22 @@ class ZenpageCategory extends ZenpageRoot {
 
 	/**
 	 * Returns the full path to a news category
-	 *
+	 * 
+	 * @param string $path Default empty, optionally pass a path constant like WEBPATH or FULLWEBPATH
 	 * @param string $page The category page number
-	 *
 	 * @return string
 	 */
-	function getLink($page = NULL) {
-		global $_zp_zenpage;
+	function getLink($page = NULL, $path = '') {
+		if (!empty($path) && MOD_REWRITE) {
+			$path = $path . '/'; 
+		}
 		if ($page > 1) {
 			$pager = $page . '/';
 			$page = '&page=' . $page;
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getName() . '/' . $pager, "/index.php?p=news&category=" . $this->getName() . $page), $this, NULL);
+		return zp_apply_filter('getLink', rewrite_path($path . _CATEGORY_ . '/' . $this->getName() . '/' . $pager, $path . '/index.php?p=news&category=' . $this->getName() . $page), $this, NULL);
 	}
 
 }
