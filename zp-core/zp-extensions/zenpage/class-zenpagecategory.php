@@ -510,7 +510,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param string $path Default null, optionally pass a path constant like WEBPATH or FULLWEBPATH
 	 * @return string
 	 */
-	function getLink($page = NULL, $path = nul) {
+	function getLink($page = NULL, $path = null) {
 		if ($page > 1) {
 			$pager = $page . '/';
 			$page = '&page=' . $page;
