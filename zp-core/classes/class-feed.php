@@ -563,7 +563,6 @@ class feed {
 				$link = $obj->getLink(FULLWEBPATH);
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = get_language_string($item['albumtitle']);
-				$website = $item['website'];
 				$title = $category . ": " . $title;
 				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
@@ -572,18 +571,15 @@ class feed {
 				$link = rtrim($obj->getLink(1, FULLWEBPATH), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$title = get_language_string($item['albumtitle']);
-				$website = $item['website'];
 				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'news':
 			case 'pages':
 				if (extensionEnabled('zenpage')) {
-					$album = '';
 					$feeditem['pubdate'] = date("r", strtotime($item['date']));
 					$category = '';
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
-					$website = $item['website'];
 					if ($item['type'] == 'news') {
 						$obj = new ZenpageNews($titlelink);
 					} else {

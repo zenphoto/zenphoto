@@ -688,7 +688,6 @@ class RSS extends feed {
 			$fullimagelink = html_encode(pathurlencode($item->getFullImageURL()));
 			$thumburl = '<img border="0" src="' . FULLWEBPATH . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
-			$albumtitle = $albumobj->getTitle($this->locale);
 			$datecontent = '<br />Date: ' . zpFormattedDate(DATE_FORMAT, $item->get('mtime'));
 			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") || ($ext == "3gp") || ($ext == "mov")) AND $this->mode != "album") {
 				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
@@ -748,7 +747,6 @@ class RSS extends feed {
 		$obj = new ZenpageNews($item['titlelink']);
 		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
 		$link = $obj->getLink(FULLWEBPATH);
-		$count2 = 0;
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
@@ -901,6 +899,7 @@ class RSS extends feed {
 }
 
 function executeRSS() {
+	global $_zp_gallery_page;
 	if (!$_GET['rss']) {
 		$_GET['rss'] = 'gallery';
 	}
