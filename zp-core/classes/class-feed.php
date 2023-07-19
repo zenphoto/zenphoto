@@ -499,14 +499,15 @@ class feed {
 					case 'gallery':
 					case 'allcomments':
 					case 'all':
-						$items = getLatestComments($this->itemnumber, 'all');
+						$items_alb = getLatestComments($this->itemnumber, 'album');
+						$items_img = getLatestComments($this->itemnumber, 'image');
 						$items_zenpage = array();
 						if (function_exists('getLatestZenpageComments')) {
-							$items_zenpage = getLatestZenpageComments($this->itemnumber, 'all', $this->id);
-							$items = array_merge($items, $items_zenpage);
-							$items = sortMultiArray($items, 'date', true);
-							$items = array_slice($items, 0, $this->itemnumber);
+							$items_zenpage = getLatestZenpageComments($this->itemnumber);
 						}
+						$items = array_merge($items_alb, $items_img, $items_zenpage);
+						$items = sortMultiArray($items, 'date', true);
+						$items = array_slice($items, 0, $this->itemnumber);
 						break;
 				}
 				break;
