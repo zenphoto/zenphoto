@@ -462,7 +462,6 @@ class RSS extends feed {
 		}
 // general feed setup
 		$channeltitlemode = getOption('RSS_title');
-		$this->host = html_encode($_SERVER["HTTP_HOST"]);
 
 //channeltitle general
 		switch ($channeltitlemode) {
@@ -656,9 +655,9 @@ class RSS extends feed {
 		if ($this->mode == "albums") {
 			$albumobj = $item;
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host . $albumobj->getLink();
+			$itemlink = $albumobj->getLink(1, FULLWEBPATH);
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
+			$thumburl = '<img border="0" src="' . FULLWEBPATH . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
 			if (true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
@@ -673,28 +672,27 @@ class RSS extends feed {
 				} else {
 					$imagenumber = $title;
 				}
-				$feeditem['desc'] = '<a title="' . $title . '" href="' . PROTOCOL . '://' . $itemlink . '">' . $thumburl . '</a>' .
+				$feeditem['desc'] = '<a title="' . $title . '" href="' . $itemlink . '">' . $thumburl . '</a>' .
 								'<p>' . html_encode($imagenumber) . '</p>' . $albumobj->getDesc($this->locale) . '<br />' . sprintf(gettext("Last update: %s"), zpFormattedDate(DATE_FORMAT, $filechangedate));
 			} else {
 				if ($totalimages != 0) {
 					$imagenumber = sprintf(ngettext('%s (%u image)', '%s (%u images)', $totalimages), $title, $totalimages);
 				}
-				$feeditem['desc'] = '<a title="' . html_encode($title) . '" href="' . PROTOCOL . '://' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . '<br />' . sprintf(gettext("Date: %s"), zpFormattedDate(DATE_FORMAT, $item->get('mtime')));
+				$feeditem['desc'] = '<a title="' . html_encode($title) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . '<br />' . sprintf(gettext("Date: %s"), zpFormattedDate(DATE_FORMAT, $item->get('mtime')));
 			}
 			$ext = getSuffix($thumb->localpath);
 		} else {
 			$ext = getSuffix($item->localpath);
 			$albumobj = $item->getAlbum();
-			$itemlink = $this->host . $item->getLink();
-			$fullimagelink = $this->host . html_encode(pathurlencode($item->getFullImageURL()));
-			$thumburl = '<img border="0" src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
+			$itemlink = $item->getLink(FULLWEBPATH);
+			$fullimagelink = html_encode(pathurlencode($item->getFullImageURL()));
+			$thumburl = '<img border="0" src="' . FULLWEBPATH . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
-			$albumtitle = $albumobj->getTitle($this->locale);
 			$datecontent = '<br />Date: ' . zpFormattedDate(DATE_FORMAT, $item->get('mtime'));
 			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") || ($ext == "3gp") || ($ext == "mov")) AND $this->mode != "album") {
-				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
+				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
 			} else {
-				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . PROTOCOL . '://' . $itemlink . '"><img src="' . PROTOCOL . '://' . $this->host . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
+				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '"><img src="' . FULLWEBPATH . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
 			}
 		}
 // title
@@ -704,12 +702,12 @@ class RSS extends feed {
 			$feeditem['title'] = $imagenumber;
 		}
 //link
-		$feeditem['link'] = PROTOCOL . '://' . $itemlink;
+		$feeditem['link'] = $itemlink;
 
 // enclosure
 		$feeditem['enclosure'] = '';
 		if (getOption("RSS_enclosure") AND $this->mode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="' . PROTOCOL . '://' . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
+			$feeditem['enclosure'] = '<enclosure url="' . FULLWEBPATH . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
 		}
 //category
 		if ($this->mode != "albums") {
@@ -721,8 +719,8 @@ class RSS extends feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		if (getOption("RSS_mediarss") AND $this->mode != "albums") {
-			$feeditem['media_content'] = '<media:content url="' . PROTOCOL . '://' . $fullimagelink . '" type="image/jpeg" />';
-			$feeditem['media_thumbnail'] = '<media:thumbnail url="' . PROTOCOL . '://' . $fullimagelink . '" width="' . $this->imagesize . '"	height="' . $this->imagesize . '" />';
+			$feeditem['media_content'] = '<media:content url="' . FULLWEBPATH . $fullimagelink . '" type="image/jpeg" />';
+			$feeditem['media_thumbnail'] = '<media:thumbnail url="' . FULLWEBPATH . $fullimagelink . '" width="' . $this->imagesize . '"	height="' . $this->imagesize . '" />';
 		}
 //date
 		if ($this->mode != "albums") {
@@ -748,8 +746,7 @@ class RSS extends feed {
 		$feeditem['enclosure'] = '';
 		$obj = new ZenpageNews($item['titlelink']);
 		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
-		$link = $obj->getLink();
-		$count2 = 0;
+		$link = $obj->getLink(FULLWEBPATH);
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
@@ -763,7 +760,7 @@ class RSS extends feed {
 			$feeditem['category'] = html_encode($categories);
 			$feeditem['title'] = $title . ' (' . $categories . ')';
 		}
-		$feeditem['link'] = PROTOCOL . '://' . $this->host . $link;
+		$feeditem['link'] = $link;
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($item['date']));
@@ -787,8 +784,8 @@ class RSS extends feed {
 		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 			<channel>
 				<title><![CDATA[<?php echo $this->channel_title; ?>]]></title>
-				<link><?php echo PROTOCOL . '://' . $this->host . WEBPATH; ?></link>
-				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
+				<link><?php echo FULLWEBPATH; ?></link>
+				<atom:link href="<?php echo FULLWEBPATH ?><?php echo html_encode(getRequestURI()); ?>" rel="self"	type="application/rss+xml" />
 				<description><![CDATA[<?php echo getBare($_zp_gallery->getDesc($this->locale)); ?>]]></description>
 				<language><?php echo $this->locale_xml; ?></language>
 				<pubDate><?php echo date("r", time()); ?></pubDate>
@@ -902,6 +899,7 @@ class RSS extends feed {
 }
 
 function executeRSS() {
+	global $_zp_gallery_page;
 	if (!$_GET['rss']) {
 		$_GET['rss'] = 'gallery';
 	}

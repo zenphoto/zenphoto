@@ -70,7 +70,6 @@ class feed {
 	protected $itemnumber = NULL;
 	protected $locale = NULL; // standard locale for lang parameter
 	protected $locale_xml = NULL; // xml locale within feed
-	protected $host = NULL;
 	protected $sortorder = NULL;
 	protected $sortdirection = NULL;
 	//gallery feed specific vars
@@ -500,14 +499,15 @@ class feed {
 					case 'gallery':
 					case 'allcomments':
 					case 'all':
-						$items = getLatestComments($this->itemnumber, 'all');
+						$items_alb = getLatestComments($this->itemnumber, 'album');
+						$items_img = getLatestComments($this->itemnumber, 'image');
 						$items_zenpage = array();
 						if (function_exists('getLatestZenpageComments')) {
-							$items_zenpage = getLatestZenpageComments($this->itemnumber, 'all', $this->id);
-							$items = array_merge($items, $items_zenpage);
-							$items = sortMultiArray($items, 'date', true);
-							$items = array_slice($items, 0, $this->itemnumber);
+							$items_zenpage = getLatestZenpageComments($this->itemnumber);
 						}
+						$items = array_merge($items_alb, $items_img, $items_zenpage);
+						$items = sortMultiArray($items, 'date', true);
+						$items = array_slice($items, 0, $this->itemnumber);
 						break;
 				}
 				break;
@@ -530,7 +530,7 @@ class feed {
 	protected function getitemPages($item, $len) {
 		$obj = new ZenpagePage($item['titlelink']);
 		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
-		$feeditem['link'] = $obj->getLink();
+		$feeditem['link'] = $obj->getLink(FULLWEBPATH);
 		$desc = $obj->getContent($this->locale);
 		$desc = str_replace('//<![CDATA[', '', $desc);
 		$desc = str_replace('//]]>', '', $desc);
@@ -561,36 +561,32 @@ class feed {
 			case 'images':
 				$title = get_language_string($item['title']);
 				$obj = Image::newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
-				$link = $obj->getlink();
+				$link = $obj->getLink(FULLWEBPATH);
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$category = get_language_string($item['albumtitle']);
-				$website = $item['website'];
 				$title = $category . ": " . $title;
-				$commentpath = PROTOCOL . '://' . $this->host . $link . "#zp_comment_id_" . $item['id'];
+				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'albums':
 				$obj = AlbumBase::newAlbum($item['folder']);
-				$link = rtrim($obj->getLink(), '/');
+				$link = rtrim($obj->getLink(1, FULLWEBPATH), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
 				$title = get_language_string($item['albumtitle']);
-				$website = $item['website'];
-				$commentpath = PROTOCOL . '://' . $this->host . $link . "#zp_comment_id_" . $item['id'];
+				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'news':
 			case 'pages':
 				if (extensionEnabled('zenpage')) {
-					$album = '';
 					$feeditem['pubdate'] = date("r", strtotime($item['date']));
 					$category = '';
 					$title = get_language_string($item['title']);
 					$titlelink = $item['titlelink'];
-					$website = $item['website'];
 					if ($item['type'] == 'news') {
 						$obj = new ZenpageNews($titlelink);
 					} else {
 						$obj = new ZenpagePage($titlelink);
 					}
-					$commentpath = PROTOCOL . '://' . $this->host . html_encode($obj->getLink()) . "#zp_comment_id_" . $item['id'];
+					$commentpath = $obj->getLink(FULLWEBPATH) . "#zp_comment_id_" . $item['id'];
 				} else {
 					$commentpath = '';
 				}
