@@ -337,11 +337,11 @@ class Video extends Image {
 	 * returns URL to the original image or to a high quality alternate
 	 * e.g. ogg, avi, wmv files that can be handled by the client browser
 	 *
-	 * @param unknown_type $path
+	 * @param string $path the "path" to the image. Defaults to the simple WEBPATH
 	 */
-	function getFullImageURL() {
+	function getFullImageURL($path = WEBPATH) {
 		// Search for a high quality version of the video
-		if ($vid = parent::getFullImageURL()) {
+		if ($vid = parent::getFullImageURL($path)) {
 			$folder = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($this->album->getName());
 			$video = stripSuffix($this->filename);
 			$curdir = getcwd();

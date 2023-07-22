@@ -1325,9 +1325,10 @@ class Image extends MediaObject {
 
 	/**
 	 * returns URL to the original image
+	 * @param string $path the "path" to the image. Defaults to the simple WEBPATH
 	 */
-	function getFullImageURL() {
-		return $this->getFullImage(WEBPATH);
+	function getFullImageURL($path = WEBPATH) {
+		return $this->getFullImage($path);
 	}
 
 	/**

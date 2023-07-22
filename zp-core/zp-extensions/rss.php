@@ -657,7 +657,7 @@ class RSS extends feed {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $albumobj->getLink(1, FULLWEBPATH);
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="' . FULLWEBPATH . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
+			$thumburl = '<img border="0" src="' . SERVER_HTTP_HOST . html_encode(pathurlencode($thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($albumobj->getTitle($this->locale)) . '" />';
 			$title = $albumobj->getTitle($this->locale);
 			if (true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumobj->name));
@@ -685,14 +685,14 @@ class RSS extends feed {
 			$ext = getSuffix($item->localpath);
 			$albumobj = $item->getAlbum();
 			$itemlink = $item->getLink(FULLWEBPATH);
-			$fullimagelink = html_encode(pathurlencode($item->getFullImageURL()));
-			$thumburl = '<img border="0" src="' . FULLWEBPATH . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
+			$fullimagelink = html_encode(pathurlencode($item->getFullImageURL(FULLWEBPATH)));
+			$thumburl = '<img border="0" src="' . SERVER_HTTP_HOST . pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
 			$datecontent = '<br />Date: ' . zpFormattedDate(DATE_FORMAT, $item->get('mtime'));
-			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") || ($ext == "3gp") || ($ext == "mov")) AND $this->mode != "album") {
+			if (in_array($ext, array('mp3', 'm4a', 'm4v', 'mp4')) AND $this->mode != "album") {
 				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
 			} else {
-				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '"><img src="' . FULLWEBPATH . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
+				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '"><img src="' . SERVER_HTTP_HOST . html_encode(pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))) . '" alt="' . html_encode($title) . '" /></a>' . $item->getDesc($this->locale) . $datecontent;
 			}
 		}
 // title
@@ -707,7 +707,7 @@ class RSS extends feed {
 // enclosure
 		$feeditem['enclosure'] = '';
 		if (getOption("RSS_enclosure") AND $this->mode != "albums") {
-			$feeditem['enclosure'] = '<enclosure url="' . FULLWEBPATH . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
+			$feeditem['enclosure'] = '<enclosure url="' . $fullimagelink . '" type="' . mimeTypes::getType($ext) . '" length="' . filesize($item->localpath) . '" />';
 		}
 //category
 		if ($this->mode != "albums") {
@@ -719,8 +719,8 @@ class RSS extends feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		if (getOption("RSS_mediarss") AND $this->mode != "albums") {
-			$feeditem['media_content'] = '<media:content url="' . FULLWEBPATH . $fullimagelink . '" type="image/jpeg" />';
-			$feeditem['media_thumbnail'] = '<media:thumbnail url="' . FULLWEBPATH . $fullimagelink . '" width="' . $this->imagesize . '"	height="' . $this->imagesize . '" />';
+			$feeditem['media_content'] = '<media:content url="' . $fullimagelink . '" type="image/jpeg" />';
+			$feeditem['media_thumbnail'] = '<media:thumbnail url="' . $fullimagelink . '" width="' . $this->imagesize . '"	height="' . $this->imagesize . '" />';
 		}
 //date
 		if ($this->mode != "albums") {
