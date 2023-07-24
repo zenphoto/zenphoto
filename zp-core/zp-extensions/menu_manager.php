@@ -975,42 +975,42 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$type = false;
 					break;
 				case 'album':
-					$result['title'] = NULL;
+					$result['title'] = '';
 					if (empty($result['link'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
 					}
 					break;
 				case 'homepage':
-					$result['link'] = NULL;
+					$result['link'] = '';
 					if (empty($result['title'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					}
 					break;
 				case 'galleryindex':
-					$result['link'] = NULL;
+					$result['link'] = '';
 					if (empty($result['title'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					}
 					break;
 				case 'zenpagepage':
-					$result['title'] = NULL;
+					$result['title'] = '';
 					if (empty($result['link'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
 					}
 					break;
 				case 'zenpagenewsindex':
-					$result['link'] = NULL;
+					$result['link'] = '';
 					if (empty($result['title'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					}
 					break;
 				case 'zenpagecategory':
-					$result['title'] = NULL;
+					$result['title'] = ''L;
 					if (empty($result['link'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
