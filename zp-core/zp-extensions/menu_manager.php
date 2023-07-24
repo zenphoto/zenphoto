@@ -1010,7 +1010,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					}
 					break;
 				case 'zenpagecategory':
-					$result['title'] = ''L;
+					$result['title'] = '';
 					if (empty($result['link'])) {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty link.'), $key));
