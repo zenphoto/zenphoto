@@ -970,6 +970,10 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 					$type = false;
 					break;
 				case 'all_zenpagecategorys':
+				case 'all_zenpagecategories':
+					if ($type == 'all_zenpagecategorys') {
+						deprecationNotice(gettext('The menu item type all_zenpagecategorys is deprecated. Use all_zenpagecategories instead'));
+					}
 					$orders[$nesting] ++;
 					$orders[$nesting] = addCategoriesToDatabase($menuset, $orders);
 					$type = false;

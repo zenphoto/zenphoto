@@ -122,6 +122,7 @@ $menuset = checkChosenMenuset();
 							$('#link').val('<?php if(class_exists("zenpage")) echo getNewsIndexURL(); ?>');
 							break;
 						case 'all_zenpagecategorys':
+						case 'all_zenpagecategories':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#titleinput,#titlelabel,#link_row,#visible_row,#span_row').hide();
 							$('#selector').html('<?php echo js_encode(gettext("All Zenpage categories")); ?>');
 							$('#description').html('<?php echo js_encode(gettext("This adds menu items for all Zenpage categories.")); ?>');
@@ -259,7 +260,7 @@ if (is_array($result)) {
 							<option value="all_zenpagepages"><?php echo gettext("All Zenpage pages"); ?></option>
 							<option value="zenpagepage"><?php echo gettext("Zenpage page"); ?></option>
 							<option value="zenpagenewsindex"><?php echo gettext("Zenpage news index"); ?></option>
-							<option value="all_zenpagecategorys"><?php echo gettext("All Zenpage news categories"); ?></option>
+							<option value="all_zenpagecategories"><?php echo gettext("All Zenpage news categories"); ?></option>
 							<option value="zenpagecategory"><?php echo gettext("Zenpage news category"); ?></option>
 							<?php
 						}

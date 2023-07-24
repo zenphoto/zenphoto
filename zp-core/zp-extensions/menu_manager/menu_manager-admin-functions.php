@@ -497,6 +497,10 @@ function addItem(&$reports) {
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage pages added.") . " </p>";
 			return NULL;
 		case 'all_zenpagecategorys':
+		case 'all_zenpagecategories':
+			if ($type == 'all_zenpagecategorys') {
+				deprecationNotice(gettext('The menu item type all_zenpagecategorys is deprecated. Use all_zenpagecategories instead'));
+			}
 			addCategoriesToDatabase($menuset);
 			$reports[] = "<p class = 'messagebox fade-message'>" . gettext("Menu items for all Zenpage categories added.") . " </p>";
 			return NULL;
