@@ -137,7 +137,7 @@ if (!defined('OFFSET_PATH')) {
 		<!DOCTYPE html>
 		<html<?php printLangAttribute(); ?>>
 			<head>
-				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+				<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin.css" type="text/css" />
 				<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 				<title><?php echo $pagetitle; ?></title>
 				<style>

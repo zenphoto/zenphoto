@@ -37,7 +37,7 @@ $_zp_admin_menu['overview']['subtabs'] = array(gettext('Statistics') => FULLWEBP
 printAdminHeader('overview', 'statistics');
 
 ?>
-<link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
 <?php
 /*
  * http://php.net/manual/de/function.filesize.php

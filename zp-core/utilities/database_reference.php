@@ -34,7 +34,7 @@ $_zp_admin_menu['overview']['subtabs'] = array(gettext('Database') => FULLWEBPAT
 printAdminHeader('overview','Database');
 
 ?>
-<link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
 <style>
 
 .bordered td {

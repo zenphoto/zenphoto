@@ -13,7 +13,7 @@ if (empty($needs)) {
 	<html>
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin.css" type="text/css" />
+			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin.css" type="text/css" />
 			<?php reconfigureCSS(); ?>
 		</head>
 		<body>

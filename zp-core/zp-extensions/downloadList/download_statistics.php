@@ -22,7 +22,7 @@ $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 $_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
 printAdminHeader('overview', 'download');
 ?>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
 <?php
 
 /**

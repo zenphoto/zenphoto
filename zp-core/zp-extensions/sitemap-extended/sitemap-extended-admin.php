@@ -51,7 +51,7 @@ if (isset($_GET['generatesitemaps'])) {
 	}
 } // if(isset($_GET['generatesitemaps']) end
 ?>
-<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
 <script>
 	$(document).ready(function() {
 		/*	$(".colorbox").colorbox({

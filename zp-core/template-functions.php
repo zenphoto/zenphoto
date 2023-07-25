@@ -48,7 +48,7 @@ function printZenJavascripts() {
 	}
 	if (zp_loggedin()) {
 				?>
-		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/admintoolbox.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admintoolbox.css" type="text/css" />
 		<?php
 	}
 }

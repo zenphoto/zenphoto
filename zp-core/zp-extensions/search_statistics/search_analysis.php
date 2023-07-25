@@ -113,7 +113,7 @@ asort($results_f);
 arsort($results_f);
 $results_f = array_slice($results_f, 0, $limit_f, true);
 ?>
-<link rel="stylesheet" href="../../admin-statistics.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
 <body>
 	<?php printLogoAndLinks(); ?>
 	<div id="main">

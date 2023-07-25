@@ -357,17 +357,13 @@ zp-core/admin-logs.php
 zp-core/admin-options.php
 zp-core/admin-plugins.php
 zp-core/admin-refresh-metadata.php
-zp-core/admin-rtl.css
-zp-core/admin-statistics.css
 zp-core/admin-tags.php
 zp-core/admin-themes-editor.php
 zp-core/admin-themes.php
 zp-core/admin-thumbcrop.php
 zp-core/admin-upload.php
 zp-core/admin-users.php
-zp-core/admin.css
 zp-core/admin.php
-zp-core/admintoolbox.css
 zp-core/auth.php
 zp-core/classes
 zp-core/classes/class-_zp_captcha.php
@@ -399,6 +395,11 @@ zp-core/classes/class-userdataexport.php
 zp-core/classes/class-zpmutex.php
 zp-core/controller.php
 zp-core/cron_runner.php
+zp-core/css
+zp-core/css/admin-rtl.css
+zp-core/css/admin-statistics.css
+zp-core/css/admin.css
+zp-core/css/admintoolbox.css
 zp-core/deprecated
 zp-core/deprecated/functions-db.php
 zp-core/deprecated/functions-graphics.php
@@ -1849,4 +1850,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1851
+1852

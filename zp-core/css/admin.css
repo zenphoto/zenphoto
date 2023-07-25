@@ -21,7 +21,7 @@ body {
 	color: #4B4B4B;
 	text-align: center;
 	background-color: #f1f1f1;
-	background-image: url(images/admin-headerback.jpg);
+	background-image: url(../images/admin-headerback.jpg);
 	background-repeat: repeat-x;
 	margin: 0;
 	padding: 0;
@@ -149,7 +149,7 @@ h2.h2_bordered {
 	font-weight: bold;
 	padding: 4px 12px;
 	border-bottom: 2px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -237,7 +237,7 @@ ul.nav li a {
 	height: 17px;
 	color: #8797A5;
 	background: #F8F8F8;
-	background-image: url(images/admin-navtabback.jpg);
+	background-image: url(../images/admin-navtabback.jpg);
 	background-repeat: repeat-x;
 	_position: relative; /* IE Only */
 	_top: 6px; /* IE Only */
@@ -373,7 +373,7 @@ ul.nav li:hover > ul {
 	height: 17px;
 	color: #8797A5;
 	background: #E9ECEF;
-	background-image: url(images/admin-navtabback.jpg);
+	background-image: url(../images/admin-navtabback.jpg);
 	background-repeat: repeat-x;
 	_position: relative; /* IE Only */
 	_top: 6px; /* IE Only */
@@ -590,7 +590,7 @@ table.bordered th {
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -608,7 +608,7 @@ table.bordered tr td {
 table.bordered tr.alt1 td {
 	background-color: #ECF1F2;
 	border-bottom: 2px solid #dddddd;
-	background-image: url(images/admin-headerback.jpg);
+	background-image: url(../images/admin-headerback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -645,7 +645,7 @@ table.options th {
 	padding: 8px 0px 4px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1238,7 +1238,7 @@ label:hover {
 	float: left;
 	margin: 0 7px 0 0;
 	background-color: #f5f5f5;
-	background-image: url(images/admin-buttonback.jpg);
+	background-image: url(../images/admin-buttonback.jpg);
 	background-repeat: repeat-x;
 	border: 1px solid #dedede;
 	border-top: 1px solid #eee;
@@ -1711,7 +1711,7 @@ button.positive,.buttons a.positive {
 	text-align: center;
 	background: #ECF1F2;
 	border-bottom: 2px solid #BAC9CF;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1719,7 +1719,7 @@ button.positive,.buttons a.positive {
 	text-align: center;
 	background: #ECF1F2;
 	border-top: 2px solid #BAC9CF;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 }
 
@@ -1907,7 +1907,7 @@ span.tagMatches span {
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin-bottom: 0;
 	-moz-border-radius: 5px 5px 0 0;
@@ -1980,7 +1980,7 @@ span.tagMatches span {
 	border-left: 1px solid #cccccc;
 	border-right: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	margin: 0;
 }
@@ -2125,7 +2125,7 @@ fieldset,
 	float: left;
 	margin: 0 7px 0 0;
 	background-color: #f5f5f5;
-	background-image: url(images/admin-buttonback.jpg);
+	background-image: url(../images/admin-buttonback.jpg);
 	background-repeat: repeat-x;
 	border: 1px solid #dedede;
 	border-top: 1px solid #eee;
@@ -2475,7 +2475,7 @@ div.bordered .headline {
 	padding: 8px 10px 13px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
-	background-image: url(images/admin-headlineback.jpg);
+	background-image: url(../images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
 	vertical-align: middle;
 }
@@ -2499,7 +2499,7 @@ div.bordered .page-list_row .page-list_title {
 	width: 20%;
 	height: 30px;
 	padding: 20px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
+	background-image: url(../images/drag_handle.png) !important;
 	background-repeat: no-repeat;
 	background-position: 15px 20px;
 
@@ -2509,7 +2509,7 @@ div.bordered .page-list_row .page-list_albumthumb {
 	width: 50px;
 	height: 45px;
 	padding: 5px 0px 0px 45px;
-	background-image: url(images/drag_handle.png) !important;
+	background-image: url(../images/drag_handle.png) !important;
 	background-repeat: no-repeat;
 	background-position: 15px 20px;
 }
