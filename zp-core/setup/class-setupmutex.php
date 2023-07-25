@@ -9,7 +9,7 @@
 class setupMutex {
 
 	private $locked = NULL;
-	private $ignoreUseAbort = NULL;
+	private $ignoreUserAbort = NULL;
 	private $mutex = NULL;
 	private $lock = NULL;
 	private $lockfolder;
