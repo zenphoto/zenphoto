@@ -2360,6 +2360,9 @@ $upgrade = $versioncheck['upgrade_text'];
 						$sql_statements[] = "ALTER TABLE $tbl_tags DROP INDEX name, ADD UNIQUE INDEX name(name(191))";
 						$sql_statements[] = "ALTER TABLE $tbl_searches DROP INDEX criteria, ADD UNIQUE INDEX criteria(criteria(191))";
 						
+						//1.6.1
+						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `open_newtab` int(1) unsigned NOT NULL default '0'";
+						
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {

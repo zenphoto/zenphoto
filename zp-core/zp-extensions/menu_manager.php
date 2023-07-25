@@ -329,6 +329,7 @@ function getItemTitleAndURL($item) {
 					"title" => get_language_string($item['title']), 
 					"url" => $item['link'], 
 					"name" => $item['link'], 
+					'open_newtab' => $item['open_newtab'], 
 					'protected' => false, 
 					'theme' => $themename);
 			break;
@@ -1318,10 +1319,14 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						echo $itemtitle;
 						break;
 					default:
+						$target_attr = '';
+						if($item['type'] == 'customlink' && $item['open_newtab']) {
+							$target_attr = ' target="_blank"';
+						}
 						if (empty($itemURL)) {
 							$itemURL = FULLWEBPATH;
 						}
-						echo '<a href="' . $itemURL . '" title="' . getBare($itemtitle) . '">' . $itemtitle . '</a>' . $itemcounter;
+						echo '<a href="' . $itemURL . '" title="' . getBare($itemtitle) . '"' . $target_attr . '>' . $itemtitle . '</a>' . $itemcounter;
 						break;
 				}
 				if ($item['span_id'] || $item['span_class']) {
@@ -1349,5 +1354,3 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 		echo "</ul>\n";
 	}
 }
-
-?>

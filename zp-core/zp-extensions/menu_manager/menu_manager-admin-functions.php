@@ -468,6 +468,7 @@ function addItem(&$reports) {
 	$result['show'] = getCheckboxState('show');
 	$result['include_li'] = getCheckboxState('include_li');
 	$result['id'] = 0;
+	$result['open_newtab'] = getCheckboxState('open_newtab');
 	if (getCheckboxState('span')) {
 		$result['span_id'] = sanitize($_POST['span_id']);
 		$result['span_class'] = sanitize($_POST['span_class']);
@@ -619,7 +620,7 @@ function addItem(&$reports) {
 	}
 	$count = $_zp_db->count('menu', 'WHERE menuset=' . $_zp_db->quote($menuset));
 	$order = sprintf('%03u', $count);
-	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`) " .
+	$sql = "INSERT INTO " . $_zp_db->prefix('menu') . " ( `title`, `link`, `type`, `show`, `menuset`, `sort_order`, `include_li`, `span_id`, `span_class`, `open_newtab`) " .
 					"VALUES (" 
 					. $_zp_db->quote($result['title']) . ", " 
 					. $_zp_db->quote($result['link']) . ", " 
@@ -629,7 +630,8 @@ function addItem(&$reports) {
 					. $_zp_db->quote($order) . ", " 
 					. $result['include_li'] . ", " 
 					. $_zp_db->quote($result['span_id']) . ", " 
-					. $_zp_db->quote($result['span_class']) .
+					. $_zp_db->quote($result['span_class']) . ", " 
+					. $_zp_db->quote($result['open_newtab']) .
 					")";
 	debuglog(print_r($sql, true));
 	if ($_zp_db->query($sql, true)) {
@@ -660,6 +662,7 @@ function updateMenuItem(&$reports) {
 	$result['type'] = sanitize($_POST['type']);
 	$result['title'] = process_language_string_save("title", 2);
 	$result['include_li'] = getCheckboxState('include_li');
+	$result['open_newtab'] = getCheckboxState('open_newtab');
 	if (getCheckboxState('span')) {
 		$result['span_id'] = sanitize($_POST['span_id']);
 		$result['span_class'] = sanitize($_POST['span_class']);
@@ -772,11 +775,16 @@ function updateMenuItem(&$reports) {
 			break;
 	}
 	// update the category in the category table
-	$sql = "UPDATE " . $_zp_db->prefix('menu') . " SET title = " . $_zp_db->quote($result['title']) .
+	$sql = "UPDATE " . $_zp_db->prefix('menu') . 
+					" SET title = " . $_zp_db->quote($result['title']) .
 					", link = " . $_zp_db->quote($result['link']) .
-					", type = " . $_zp_db->quote($result['type']) . ", `show` = " . $_zp_db->quote($result['show']) .
-					", menuset = " . $_zp_db->quote($menuset) . ", include_li = " . $result['include_li'] .
-					", span_id = " . $_zp_db->quote($result['span_id']) . ", span_class = " . $_zp_db->quote($result['span_class']) .
+					", type = " . $_zp_db->quote($result['type']) . 
+					", `show` = " . $_zp_db->quote($result['show']) .
+					", menuset = " . $_zp_db->quote($menuset) . 
+					", include_li = " . $result['include_li'] .
+					", span_id = " . $_zp_db->quote($result['span_id']) . 
+					", span_class = " . $_zp_db->quote($result['span_class']) .
+					", open_newtab = " . $_zp_db->quote($result['open_newtab']) .
 					" WHERE `id` = " . $result['id'];
 	if ($_zp_db->query($sql)) {
 		if (isset($_POST['title']) && empty($result['title'])) {

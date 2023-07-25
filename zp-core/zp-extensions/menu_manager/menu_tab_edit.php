@@ -55,6 +55,7 @@ $menuset = checkChosenMenuset();
 				function handleSelectorChange(type) {
 					$('#add,#titlelabel,#link_row,#link,#link_label,#visible_row,#show_visible,#span_row').show();
 					$('#include_li_label').hide();
+					$('#open_newtab_row').hide();
 					$('#type').val(type);
 					$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 					$('#titlelabel').html('<?php echo js_encode(gettext('Title')); ?>');
@@ -153,6 +154,7 @@ $menuset = checkChosenMenuset();
 							$('#link').removeAttr('disabled');
 							$('#link_label').html('<?php echo js_encode(gettext('URL')); ?>');
 							$('#titleinput').show();
+							$('#open_newtab_row').show();
 							break;
 						case 'menulabel':
 							$('#albumselector,#pageselector,#categoryselector,#custompageselector,#link_row').hide();
@@ -364,6 +366,19 @@ if (is_array($result)) {
 								<?php echo gettext('Class'); ?>
 								<input name="span_class" type="text" size="20" id="span_class" value="<?php echo html_encode($result['span_class']); ?>" />
 							</td>
+						</tr>
+						<tr id="open_newtab_row">
+							<td>
+								<label id="open_newtab_visible" style="display: inline">
+									<input name="open_newtab" type="checkbox" id="open_newtab" value="1" <?php
+									if (isset($result['open_newtab']) && $result['open_newtab'] == 1) {
+										echo "checked='checked'";
+									}
+									?> style="display: inline" />
+												 <?php echo gettext("Open in new tab"); ?>
+								</label>
+							</td>
+						
 						</tr>
 						<?php
 						if (is_array($result) && !empty($result['type'])) {
