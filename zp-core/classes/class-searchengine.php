@@ -118,8 +118,8 @@ class SearchEngine {
 			}
 		}
 		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
-		if (isset($_REQUEST['search'])) {
-			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['search'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
+		if (isset($_REQUEST['s'])) {
+			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['s'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
 			$this->words = '';
 			if (isset($_REQUEST['date'])) { // words & dates are mutually exclusive
@@ -287,7 +287,7 @@ class SearchEngine {
 		$r = '';
 		$w = urlencode(trim($this->codifySearchString()));
 		if (!empty($w)) {
-			$r .= '&search=' . $w;
+			$r .= '&s=' . $w;
 		}
 		$d = trim(strval($this->dates));
 		if (!empty($d)) {
@@ -2197,7 +2197,7 @@ class SearchEngine {
 	 */
 	static function getSearchURL($words = '', $dates = '', $fields = '', $page = '', $object_list = NULL) {
 		$baseurl = '';
-		$query = array('search' => '');
+		$query = array('s' => '');
 		$rewrite = $searchurl_mode = 	$searchfields = '';
 		if (MOD_REWRITE) {
 			$rewrite = true;
@@ -2254,7 +2254,7 @@ class SearchEngine {
 				$words = implode(',', $words);
 			}
 			$words = strtr($words, array('%' => '__25__', '&' => '__26__', '#' => '__23__', '/' => '__2F__'));
-			$query['search'] = urlencode($words);
+			$query['s'] = urlencode($words);
 		}
 		if ($searchurl_mode == 'archive') {
 			if (is_array($dates)) {
@@ -2276,14 +2276,14 @@ class SearchEngine {
 		if ($rewrite) {
 			switch ($searchurl_mode) {
 				case 'search':
-					if (isset($query['search'])) {
-						$searchwords = $query['search'];
-						unset($query['search']);
+					if (isset($query['s'])) {
+						$searchwords = $query['s'];
+						unset($query['s']);
 						$url = $baseurl . implode('/', $query);
 						if ($page > 1) {
 							$url .= '/';
 						}
-						$url .= '?search=' . $searchwords;
+						$url .= '?s=' . $searchwords;
 						if (!empty($searchfields)) {
 							$url .= '&' . $searchfields;
 						}
@@ -2295,8 +2295,8 @@ class SearchEngine {
 					break;
 			}
 		} else {
-			if(empty($query['search'])) {
-				unset($query['search']);
+			if(empty($query['s'])) {
+				unset($query['s']);
 			}
 			$url = $baseurl . '&' . urldecode(http_build_query($query));
 			if (!empty($searchfields)) {

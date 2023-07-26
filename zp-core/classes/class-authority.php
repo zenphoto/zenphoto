@@ -1425,8 +1425,8 @@ class Authority {
 		if (isset($_GET['searchfields'])) {
 			$page_params['searchfields'] = sanitize($_GET['searchfields']);
 		}
-		if (isset($_GET['search'])) {
-			$page_params['search'] = sanitize($_GET['search']);
+		if (isset($_GET['s'])) {
+			$page_params['s'] = sanitize($_GET['s']);
 		}
 		if (isset($_GET['date'])) {
 			$page_params['date'] = sanitize($_GET['date']);
