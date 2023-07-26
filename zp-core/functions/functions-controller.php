@@ -60,8 +60,8 @@ function zpRewriteURL($query) {
 					$redirectURL = _TAGS_;
 					unset($query['searchfields']);
 				}
-				if (isset($query['search'])) {
-					$redirectURL .= '/' . $query['search'];
+				if (isset($query['s'])) {
+					$redirectURL .= '/' . $query['s'];
 					if (isset($query['searchfields'])) {
 						if (is_array($query['searchfields'])) {
 							$redirectURL .= '?searchfields=' . implode(',', $query['searchfields']);
@@ -69,7 +69,7 @@ function zpRewriteURL($query) {
 							$redirectURL .= '?searchfields=' . $query['searchfields'];
 						}
 					}
-					unset($query['search']);
+					unset($query['s']);
 				}
 				break;
 			default:
