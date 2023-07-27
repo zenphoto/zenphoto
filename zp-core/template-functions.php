@@ -3781,10 +3781,14 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
  * @param array $objects_list optional array of things to search eg. [albums]=>[list], etc.
  * 														if the list is simply 0, the objects will be omitted from the search
  * @param string $within set to true to search within current results, false to search fresh
+ * @param bool $enable_fieldselector Troe|false to enable/disable the search fields selector. Default null to use the option as set
  * @since 1.1.3
  */
-function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL) {
+function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL, $enable_fieldselector = null) {
 	global $_zp_adminjs_loaded, $_zp_current_search;
+	if (is_null($enable_fieldselector)) {
+		$enable_fieldselector = getOption('search_fieldsselector_enabled');
+	}
 	$engine = new SearchEngine();
 	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {
 		$engine->clearSearchWords();
@@ -3886,7 +3890,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 				<span class="tagSuggestContainer">
 					<input type="text" name="s" value="" id="search_input" size="10" />
 				</span>
-				<?php if (getOption('search_fieldsselector_enabled') && (count($fields) > 1 || $searchwords)) { ?>
+				<?php if ($enable_fieldselector && (count($fields) > 1 || $searchwords)) { ?>
 					<a class="toggle_searchextrashow" href="#"><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 					<script>
 						$(".toggle_searchextrashow").click(function(event) {
@@ -3941,7 +3945,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 							</label>
 							<?php
 						}
-						if (getOption('search_fieldsselector_enabled') && count($fields) > 1) {
+						if ($enable_fieldselector && count($fields) > 1) {
 							?>
 							<ul>
         <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>
