@@ -1422,9 +1422,9 @@ class Authority {
 		if (isset($_GET['p'])) {
 			$page_params['p'] = sanitize($_GET['p']);
 		}
-		if (isset($_GET['searchfields'])) {
+		/*if (isset($_GET['searchfields'])) {
 			$page_params['searchfields'] = sanitize($_GET['searchfields']);
-		}
+		} */
 		if (isset($_GET['s'])) {
 			$page_params['s'] = sanitize($_GET['s']);
 		}
@@ -1441,13 +1441,7 @@ class Authority {
 				$params = '';
 				if (!empty($page_params)) {
 					foreach ($page_params as $param => $value) {
-						if ($param == 'searchfields' && is_array($value) && !empty($value)) {
-							foreach ($value as $val) {
-								$params .= '&searchfields[]='.$val;
-							}
-						} else {
-							$params .= '&' . $param . '=' . $value;
-						}
+						$params .= '&' . $param . '=' . $value;
 					}
 				}
 				return $params;
