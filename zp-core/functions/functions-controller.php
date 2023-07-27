@@ -56,20 +56,15 @@ function zpRewriteURL($query) {
 				if (isset($query['date'])) {
 					$redirectURL = _ARCHIVE_ . '/' . $query['date'];
 					unset($query['date']);
-				} else if (isset($query['searchfields']) && $query['searchfields'] == 'tags') {
-					$redirectURL = _TAGS_;
-					unset($query['searchfields']);
-				}
-				if (isset($query['s'])) {
-					$redirectURL .= '/' . $query['s'];
-					if (isset($query['searchfields'])) {
-						if (is_array($query['searchfields'])) {
-							$redirectURL .= '?searchfields=' . implode(',', $query['searchfields']);
-						} else {
-							$redirectURL .= '?searchfields=' . $query['searchfields'];
+				} else if (isset($query['searchfields'])) {
+					if ($query['searchfields'] == 'tags') {
+						$redirectURL = _TAGS_;
+						unset($query['searchfields']);
+						if (isset($query['s'])) {
+							$redirectURL .= '/' . $query['s'];
+							unset($query['s']);
 						}
-					}
-					unset($query['s']);
+					} 
 				}
 				break;
 			default:

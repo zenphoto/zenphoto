@@ -294,7 +294,7 @@ function adminToolbox() {
 							}
 							zp_apply_filter('admin_toolbox_search', $zf);
 						}
-						$redirect = "&p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
+						$redirect = '&p=search&s=' . $words;
 						break;
 					default:
 						// arbitrary custom page
