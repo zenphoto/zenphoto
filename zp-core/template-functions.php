@@ -3886,7 +3886,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 				<span class="tagSuggestContainer">
 					<input type="text" name="s" value="" id="search_input" size="10" />
 				</span>
-				<?php if (count($fields) > 1 || $searchwords) { ?>
+				<?php if (getOption('search_fieldsselector_enabled') && (count($fields) > 1 || $searchwords)) { ?>
 					<a class="toggle_searchextrashow" href="#"><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 					<script>
 						$(".toggle_searchextrashow").click(function(event) {
@@ -3941,7 +3941,7 @@ function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $
 							</label>
 							<?php
 						}
-						if (count($fields) > 1) {
+						if (getOption('search_fieldsselector_enabled') && count($fields) > 1) {
 							?>
 							<ul>
         <li><label><input type="checkbox" name="checkall_searchfields" id="checkall_searchfields" checked="checked">* <?php echo gettext('Check/uncheck all'); ?> *</label></li>

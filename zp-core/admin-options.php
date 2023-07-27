@@ -207,6 +207,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 			setOption('search_fields', implode(',', $searchfields));
+			setOption('search_fieldsselector_enabled', (int) isset($_POST['search_fieldsselector_enabled']));
 			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			$notify = processCredentials('search');
 			setOption('exact_tag_match', sanitize($_POST['tag_match']));
@@ -1707,6 +1708,22 @@ Authority::printPasswordFormJS();
 									<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 									<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
 								</td>
+								
+								<tr>
+									<td><?php echo gettext('Search fields selector'); ?></td>
+									<td>
+										<p>
+											<label>
+												<input type="checkbox" name="search_fieldsselector_enabled" value="1" <?php checked('1', getOption('search_fieldsselector_enabled')); ?> />
+												<?php echo gettext('Enable selector') ?>
+											</label>
+										</p>
+									</td>
+									<td>
+										<?php echo gettext('If enabled the theme search form will feature a selector for all currently enabled search fields above.'); ?>
+									</td>
+								</tr>
+								
 								<tr>
 									<td><?php echo gettext('Cache expiry'); ?></td>
 									<td>

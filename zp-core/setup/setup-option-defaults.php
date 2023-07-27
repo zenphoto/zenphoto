@@ -264,6 +264,7 @@ setOptionDefault('sharpen_threshold', 3);
 
 setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
+setOptionDefault('search_fieldsselector_enabled', 1);
 
 //	 update group descriptions location
 $admins = $_zp_authority->getAdministrators('groups');
