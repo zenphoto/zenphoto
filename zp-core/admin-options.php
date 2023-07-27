@@ -1720,7 +1720,7 @@ Authority::printPasswordFormJS();
 										</p>
 									</td>
 									<td>
-										<?php echo gettext('If enabled the theme search form will feature a selector for all currently enabled search fields above.'); ?>
+										<?php echo gettext('If enabled the search form will feature a selector for all currently enabled search fields above.'); ?>
 									</td>
 								</tr>
 								
