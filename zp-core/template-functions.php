@@ -3781,7 +3781,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list = NULL) {
  * @param array $objects_list optional array of things to search eg. [albums]=>[list], etc.
  * 														if the list is simply 0, the objects will be omitted from the search
  * @param string $within set to true to search within current results, false to search fresh
- * @param bool $enable_fieldselector Troe|false to enable/disable the search fields selector. Default null to use the option as set
+ * @param bool $enable_fieldselector True|false to enable/disable the search fields selector. Default null to use the option as set
  * @since 1.1.3
  */
 function printSearchForm($prevtext = NULL, $id = 'search', $buttonSource = '', $buttontext = '', $iconsource = NULL, $query_fields = NULL, $object_list = NULL, $within = NULL, $enable_fieldselector = null) {
