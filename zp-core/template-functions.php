@@ -77,9 +77,9 @@ function adminToolbox() {
 		<div id="zp__admin_module">
 			<div id="zp__admin_info">
 				<span class="zp_logo">ZP</span>
-				<span class="zp_user"> <?php echo $_zp_current_admin_obj->getUser(); ?>
+				<span class="zp_user"><?php echo $_zp_current_admin_obj->getUser(); ?>
 					<?php
-					if(array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
+					if (array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
 						if ($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {
 							$maintenance_link = maintenanceMode::getUtilityLinkHTML();
 							echo ' | <span class="zp_sitestatus">' . gettext('Test mode') . $maintenance_link . '</span>';
@@ -93,237 +93,263 @@ function adminToolbox() {
 			</button>
 			<div id="zp__admin_data" style="display: none;">
 				<ul>
-				<?php
-				$outputA = ob_get_contents();
-				ob_end_clean();
-				ob_start();
+					<li>
+						<ul class="zp__admin_list-global">
+							<?php
+							$outputA = ob_get_contents();
+							ob_end_clean();
+							ob_start();
 
-				if (zp_loggedin(OVERVIEW_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(UPLOAD_RIGHTS | FILES_RIGHTS | THEMES_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-upload.php', gettext("Upload"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(ALBUM_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				zp_apply_filter('admin_toolbox_global', $zf);
-
-				if (zp_loggedin(TAGS_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-tags.php', gettext("Tags"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(USER_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(OPTIONS_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-options.php?tab=general', gettext("Options"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(THEMES_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-themes.php', gettext("Themes"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-				if (zp_loggedin(ADMIN_RIGHTS)) {
-					?>
-					<li>
-						<?php printLinkHTML($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
-					</li>
-					<li>
-						<?php printLinkHTML($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
-					</li>
-					<?php
-				}
-
-				$gal = getOption('custom_index_page');
-				if (empty($gal) || !file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/' . internalToFilesystem($gal) . '.php')) {
-					$gal = 'index.php';
-				} else {
-					$gal .= '.php';
-				}
-				$inImage = false;
-				switch ($_zp_gallery_page) {
-					case 'index.php':
-					case $gal:
-						// script is either index.php or the gallery index page
-						if (zp_loggedin(ADMIN_RIGHTS)) {
-							?>
-							<li>
-								<?php printLinkHTML($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
-							</li>
-							<?php
-						}
-						if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-							// admin has upload rights, provide an upload link for a new album
-							?>
-							<li>
-								<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
-							</li>
-							<?php
-						}
-						if ($_zp_gallery_page == 'index.php') {
-							$redirect = '';
-						} else {
-							$redirect = "&p=" . urlencode(stripSuffix($_zp_gallery_page));
-						}
-						if ($page > 1) {
-							$redirect .= "&page=$page";
-						}
-						zp_apply_filter('admin_toolbox_gallery', $zf);
-						break;
-					case 'image.php':
-						$inImage = true; // images are also in albums[sic]
-					case 'album.php':
-						// script is album.php
-						$albumname = $_zp_current_album->name;
-						if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
-							// admin is empowered to edit this album--show an edit link
-							?>
-							<li>
-								<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
-							</li>
-							<?php
-							if (!$_zp_current_album->isDynamic()) {
-								if ($_zp_current_album->getNumAlbums()) {
-									?>
-									<li>
-										<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
-									</li>
-									<?php
-								}
-								if ($_zp_current_album->getNumImages() > 0) {
-									?>
-									<li>
-										<?php printLinkHTML($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname) . '&tab=sort', gettext("Sort images"), NULL, NULL, NULL); ?>
-									</li>
-									<?php
-								}
-							}
-							// and a delete link
-							?>
-							<li>
-								<a href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
-									 title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
-							</li>
-							<?php
-						}
-						if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
-							// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
-							?>
-							<li>
-								<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
-							</li>
-							<li>
-								<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
-							</li>
-							<?php
-						}
-						zp_apply_filter('admin_toolbox_album', $albumname, $zf);
-						if ($inImage) {
-							// script is image.php
-							$imagename = $_zp_current_image->filename;
-								if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
-									if ($_zp_current_album->isDynamic()) { // get folder of the corresponding static album
-										$albumobj = $_zp_current_image->getAlbum();
-										$albumname = $albumobj->name;
-									} else {
-										$delete_image = gettext("Are you sure you want to delete this image? THIS CANNOT BE UNDONE!");
-										// if admin has edit rights on this album, provide a delete link for the image.
-										?>
-										<li>
-											<a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>','<?php echo $delete_image; ?>');"
-												 title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></a>
-										</li>
-										<?php
-									}
-									?>
-									<li>
-										<a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;nopagination"
-											 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
-									</li>
-									<?php
-								// set return to this image page
-								zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
-							}
-							$redirect = "&album=" . html_encode(pathurlencode($albumname)) . "&image=" . urlencode($imagename);
-						} else {
-							// set the return to this album/page
-							$redirect = "&album=" . html_encode(pathurlencode($albumname));
-							if ($page > 1) {
-								$redirect .= "&page=$page";
-							}
-						}
-						break;
-					case 'search.php':
-						$words = $_zp_current_search->getSearchWords();
-						if (!empty($words)) {
-							// script is search.php with a search string
-							if (zp_loggedin(UPLOAD_RIGHTS)) {
-								$link = $zf . '/admin-dynamic-album.php?' . substr($_zp_current_search->getSearchParams(), 1);
-								// if admin has edit rights allow him to create a dynamic album from the search
+							if (zp_loggedin(OVERVIEW_RIGHTS)) {
 								?>
 								<li>
-									<a href="<?php echo $link; ?>" title="<?php echo gettext('Create an album from the search'); ?>" ><?php echo gettext('Create Album'); ?></a>
+									<?php printLinkHTML($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
 								</li>
 								<?php
 							}
-							zp_apply_filter('admin_toolbox_search', $zf);
-						}
-						$redirect = '&p=search&s=' . $words;
-						break;
-					default:
-						// arbitrary custom page
-						$gal = stripSuffix($_zp_gallery_page);
-						$redirect = "&p=" . urlencode($gal);
-						if ($page > 1) {
-							$redirect .= "&page=$page";
-						}
-						$redirect = zp_apply_filter('admin_toolbox_' . $gal, $redirect, $zf);
-						break;
-				}
-				$redirect = zp_apply_filter('admin_toolbox_close', $redirect, $zf);
-				if ($_zp_current_admin_obj->logout_link) {
-					$link = Authority::getLogoutURL('frontend', $redirect);
-					?>
-					<li>
-						<?php printLinkHTML($link, gettext("Logout"), gettext("Logout"), null, null); ?>
+							if (zp_loggedin(UPLOAD_RIGHTS | FILES_RIGHTS | THEMES_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-upload.php', gettext("Upload"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							if (zp_loggedin(ALBUM_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							zp_apply_filter('admin_toolbox_global', $zf);
+							?>
+						</ul>
 					</li>
-					<?php
-				}
-				$outputB = ob_get_contents();
-				ob_end_clean();
-				if ($outputB) {
-					echo $outputA . $outputB;
-					?>
-				</ul>
+					<li>
+						<ul class="zp__admin_list-general">
+							<?php
+							if (zp_loggedin(TAGS_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-tags.php', gettext("Tags"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							if (zp_loggedin(USER_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							if (zp_loggedin(OPTIONS_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-options.php?tab=general', gettext("Options"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							if (zp_loggedin(THEMES_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-themes.php', gettext("Themes"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							if (zp_loggedin(ADMIN_RIGHTS)) {
+								?>
+								<li>
+									<?php printLinkHTML($zf . '/admin-extrafields.php', gettext("Extra fields"), NULL, NULL, NULL); ?>
+								</li>
+								<li>
+									<?php printLinkHTML($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
+								</li>
+								<li>
+									<?php printLinkHTML($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
+								</li>
+								<?php
+							}
+							?>
+						</ul>
+					</li>
+					<li>
+						<ul class="zp__admin_list-edit">
+							<?php
+							$gal = getOption('custom_index_page');
+							if (empty($gal) || !file_exists(SERVERPATH . '/' . THEMEFOLDER . '/' . $_zp_gallery->getCurrentTheme() . '/' . internalToFilesystem($gal) . '.php')) {
+								$gal = 'index.php';
+							} else {
+								$gal .= '.php';
+							}
+							$inImage = false;
+							switch ($_zp_gallery_page) {
+								case 'index.php':
+								case $gal:
+									// script is either index.php or the gallery index page
+									if (zp_loggedin(ADMIN_RIGHTS)) {
+										?>
+										<li>
+											<?php printLinkHTML($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
+										</li>
+										<?php
+									}
+									if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+										// admin has upload rights, provide an upload link for a new album
+										?>
+										<li>
+											<button type="button" onclick="javascript:newAlbum('', true);"><?php echo gettext("New Album"); ?></button>
+										</li>
+										<?php
+									}
+									if ($_zp_gallery_page == 'index.php') {
+										$redirect = '';
+									} else {
+										$redirect = "&;p=" . urlencode(stripSuffix($_zp_gallery_page));
+									}
+									if ($page > 1) {
+										$redirect .= "&;page=$page";
+									}
+									zp_apply_filter('admin_toolbox_gallery', $zf);
+									break;
+								case 'image.php':
+									$inImage = true; // images are also in albums[sic]
+								case 'album.php':
+									// script is album.php
+									$albumname = $_zp_current_album->name;
+									if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
+										// admin is empowered to edit this album--show an edit link
+										?>
+										<li>
+											<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
+										</li>
+										<?php
+										if (!$_zp_current_album->isDynamic()) {
+											if ($_zp_current_album->getNumAlbums()) {
+												?>
+												<li>
+													<?php printLinkHTML($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname) . '&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
+												</li>
+												<?php
+											}
+											if ($_zp_current_album->getNumImages() > 0) {
+												?>
+												<li>
+													<?php printLinkHTML($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname) . '&tab=sort', gettext("Sort images"), NULL, NULL, NULL); ?>
+												</li>
+												<?php
+											}
+										}
+									}
+									if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
+										// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
+										?>
+										<li>
+											<?php printLinkHTML($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
+										</li>
+										<li>
+											<button type="button" onclick="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>', true);"><?php echo gettext("New Album Here"); ?></button>
+										</li>
+										<?php
+									}
+									if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
+										// and a delete link
+										?>
+										<li>
+											<button class="admin_data-delete" type="button" onclick="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
+															title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></button>
+										</li>
+										<?php
+									}
+									zp_apply_filter('admin_toolbox_album', $albumname, $zf);
+									if ($inImage) {
+										// script is image.php
+										$imagename = $_zp_current_image->filename;
+										if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
+											if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
+												?>
+												<li><a href="<?php echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php echo pathurlencode($albumname); ?>&amp;singleimage=<?php echo urlencode($imagename); ?>&amp;tab=imageinfo&amp;nopagination"
+															 title="<?php echo gettext('Edit image'); ?>"><?php echo gettext('Edit image'); ?></a>
+												</li>
+												<?php
+												if ($_zp_current_album->isDynamic()) { // get folder of the corresponding static album
+													$albumobj = $_zp_current_image->getAlbum();
+													$albumname = $albumobj->name;
+												} else {
+													$delete_image = gettext("Are you sure you want to delete this image? THIS CANNOT BE UNDONE!");
+													// if admin has edit rights on this album, provide a delete link for the image.
+													?>
+													<li>
+														<button class="admin_data-delete" type="button" onclick="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>', '<?php echo $delete_image; ?>');"
+																		title="<?php echo gettext("Delete the image"); ?>"><?php echo gettext("Delete image"); ?></button>
+													</li>
+													<?php
+												}
+											}
+											// set return to this image page
+											zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
+										}
+										$redirect = "&album=" . html_pathurlencode($albumname) . "&amp;image=" . urlencode($imagename);
+									} else {
+										// set the return to this album/page
+										$redirect = "&album=" . html_pathurlencode($albumname);
+										if ($page > 1) {
+											$redirect .= "&page=$page";
+										}
+									}
+									break;
+								case 'search.php':
+									$words = $_zp_current_search->getSearchWords();
+									if (!empty($words)) {
+										// script is search.php with a search string
+										if (zp_loggedin(UPLOAD_RIGHTS)) {
+											$link = $zf . '/admin-dynamic-album.php?' . substr($_zp_current_search->getSearchParams(), 1);
+											// if admin has edit rights allow him to create a dynamic album from the search
+											?>
+											<li>
+												<a href="<?php echo $link; ?>" title="<?php echo gettext('Create an album from the search'); ?>" ><?php echo gettext('Create Album'); ?></a>
+											</li>
+											<?php
+										}
+										zp_apply_filter('admin_toolbox_search', $zf);
+									}
+									$redirect = '&p=search&s=' . $words;
+									break;
+								default:
+									// arbitrary custom page
+									$gal = stripSuffix($_zp_gallery_page);
+									$redirect = "&p=" . urlencode($gal);
+									if ($page > 1) {
+										$redirect .= "&page=$page";
+									}
+									$redirect = zp_apply_filter('admin_toolbox_' . $gal, $redirect, $zf);
+									break;
+							}
+							$redirect = zp_apply_filter('admin_toolbox_close', $redirect, $zf);
+							?>
+						</ul>
+					</li>
+					<li>
+						<ul class="zp__admin-list-user">
+							<?php
+							if ($_zp_current_admin_obj->logout_link) {
+								$link = Authority::getLogoutURL('frontend', $redirect);
+								?>
+								<li>
+									<?php printLinkHTML($link, gettext("Logout"), gettext("Logout"), null, null); ?>
+								</li>
+								<?php
+							}
+							$outputB = ob_get_contents();
+							ob_end_clean();
+							if ($outputB) {
+								echo $outputA . $outputB;
+								?>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<?php
+			<?php
 		}
 	}
 }

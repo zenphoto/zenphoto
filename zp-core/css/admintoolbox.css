@@ -5,7 +5,7 @@ body {
 }
 #zp__admin_module * {
 	font-family: Helvetica, Arial, sans-serif !important;
-	font-size: 15px !important;
+	font-size: 16px !important;
 	line-height: 15px !important;
 	font-weight: normal;
 }
@@ -80,14 +80,13 @@ body {
 	white-space: nowrap;
 }
 
-#zp__admin_link:hover {
+#zp__admin_link:hover,
+#zp__admin_link:focus,
+#zp__admin_link:acive {
+	color: #0CF !important;
 	background-color: white;
 	border-color: rgba(0,0,0, 0.2);
 	cursor: pointer;
-}
-
-#zp__admin_link:hover {
-	color: #0CF !important;
 }
 
 #zp__admin_data {
@@ -116,16 +115,36 @@ body {
 	border-bottom: 1px solid lightgray;
 }
 
+#zp__admin_data button,
 #zp__admin_data a {
 	text-decoration: none;
 	color: #09C;
 	display: block;
 	padding: 8px;
+	border: 0;
+	background: white;
+	width: 100%;
+	text-align: left;
 }
-
-#zp__admin_data a:hover {
+#zp__admin_data button:hover,
+#zp__admin_data button:focus,
+#zp__admin_data button:active,
+#zp__admin_data a:hover,
+#zp__admin_data a:focus,
+#zp__admin_data a:active {
 	color: #0CF;
 	background-color: #E3E6E9;
+	cursor: pointer;
+}
+
+#zp__admin_data button.admin_data-delete {
+	color: red;
+}
+
+#zp__admin_data button.admin_data-delete:hover,
+#zp__admin_data button.admin_data-delete:focus,
+#zp__admin_data button.admin_data-delete:active {
+	color: red;
 }
 
 /* Transitions */
