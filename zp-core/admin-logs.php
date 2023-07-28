@@ -99,11 +99,13 @@ if (isset($_GET['action'])) {
 	}
 }
 
-list($_zp_admin_submenu, $default) = getLogTabs();
-$_zp_admin_menu['logs'] = array('text'		 => gettext("logs"),
-				'link'		 => FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php?page=logs',
-				'subtabs'	 => $_zp_admin_submenu,
-				'default'	 => $default);
+list($_zp_admin_submenu, $defaulttab, $defaultlogfile, $logfiles) = getLogTabs();
+$_zp_admin_menu['logs'] = array(
+		'text' => gettext("logs"),
+		'link' => FULLWEBPATH . '/' . ZENFOLDER . '/admin-logs.php?page=logs',
+		'subtabs' => $_zp_admin_submenu,
+		'default' => $defaulttab
+);
 
 printAdminHeader('logs', $default);
 echo "\n</head>";
@@ -118,10 +120,10 @@ echo "\n</head>";
 		?>
 		<div id="content">
 			<?php
-			if ($default) {
-				$logfiletext = str_replace('_', ' ', $default);
+			if ($defaultlogfile) {
+				$logfiletext = str_replace('_', ' ', $defaultlogfile);
 				$logfiletext = strtoupper(substr($logfiletext, 0, 1)) . substr($logfiletext, 1);
-				$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $default . '.log';
+				$logfile = SERVERPATH . "/" . DATA_FOLDER . '/' . $defaultlogfile . '.log';
 				if (file_exists($logfile) && filesize($logfile) > 0) {
 					$logtext = explode("\n", file_get_contents($logfile));
 				} else {
@@ -133,8 +135,8 @@ echo "\n</head>";
 				<?php $subtab = printSubtabs(); ?>
 				<!-- A log -->
 				<div id="theme-editor" class="tabbox">
-					<?php zp_apply_filter('admin_note', 'logs', $subtab); ?>
-					<?php
+					<?php 
+					zp_apply_filter('admin_note', 'logs', $subtab); 
 					if (isset($result)) {
 						?>
 						<div class="<?php echo $class; ?> fade-message">
@@ -142,21 +144,22 @@ echo "\n</head>";
 						</div>
 						<?php
 					}
+					printLogSelector($subtab, $defaultlogfile, $logfiles);
 					?>
-					<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>" >
+					<form method="post" action="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo html_encode($subtab) . '&amp;filename=' . html_encode($defaultlogfile); ?>" >
 						<span class="button buttons">
-							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log'); ?>">
+							<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=delete_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($defaultlogfile); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete_log'); ?>">
 								<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
 						</span>
 						<?php
 						if (!empty($logtext)) {
 							?>
 							<span class="button buttons">
-								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log'); ?>">
+								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=clear_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($defaultlogfile); ?>&amp;XSRFToken=<?php echo getXSRFToken('clear_log'); ?>">
 									<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
 							</span>
 							<span class="button buttons">
-								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($subtab); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log'); ?>">
+								<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-logs.php?action=download_log&amp;page=logs&amp;tab=' . html_encode($subtab) . '&amp;filename=' . html_encode($defaultlogfile); ?>&amp;XSRFToken=<?php echo getXSRFToken('download_log'); ?>">
 									<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
 							</span>
 							<?php
@@ -165,7 +168,7 @@ echo "\n</head>";
 					</form>
 					<br class="clearall" />
 					<br />
-					<blockquote class="logtext">
+					<div class="logtext">
 						<?php
 						if (!empty($logtext)) {
 							$header = array_shift($logtext);
@@ -232,7 +235,8 @@ echo "\n</head>";
 							}
 						}
 						?>
-					</blockquote>
+						<span id="log_end"></span>
+					</div>
 				</div>
 				<?php
 			} else {
@@ -244,6 +248,11 @@ echo "\n</head>";
 		</div>
 	</div>
 	<?php printAdminFooter(); ?>
+	<script>
+		$(document).ready(function() {
+			$(".logtext").scrollTo('#log_end');
+		});
+	</script>
 	<?php
 	// to fool the validator
 	echo "\n</body>";

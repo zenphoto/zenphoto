@@ -316,10 +316,11 @@ function mkdir_recursive($pathname, $mode) {
 
 /**
  * Logs the calling stack
- *
  * @param string $message Message to prefix the backtrace
+ * @param int $omit
+ * @param string $logname Optional custom log name to log to, default "debug"
  */
-function debugLogBacktrace($message, $omit = 0) {
+function debugLogBacktrace($message, $omit = 0, $logname = 'debug') {
 	$output = trim($message) . "\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
@@ -348,7 +349,7 @@ function debugLogBacktrace($message, $omit = 0) {
 	if (!empty($line)) {
 		$output .= 'from ' . $line;
 	}
-	debugLog($output);
+	debugLog($output, $logname);
 }
 
 /**
@@ -356,21 +357,20 @@ function debugLogBacktrace($message, $omit = 0) {
  *
  * @param string $message message to insert in log [optional]
  * @param mixed $var the variable to record
+ * @param string $logname Optional custom log name to log to, default "debug"
  */
-function debugLogVar($message) {
-	$args = func_get_args();
-	if (count($args) == 1) {
+function debugLogVar($message, $var = '', $logname = 'debug') {
+	if (empty($var)) {
 		$var = $message;
 		$message = '';
 	} else {
 		$message .= ' ';
-		$var = $args[1];
 	}
 	ob_start();
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)));
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)), $logname);
 }
 
 /**

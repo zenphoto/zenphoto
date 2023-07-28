@@ -2083,8 +2083,8 @@ fieldset,
 .logtext {
 	border-spacing: 1px;
 	border: 1px solid #BAC9CF;
-	max-height: 600px;
-	overflow-x: scroll;
+	max-height: 55vh;
+	overflow-x: scroll; 
 }
 
 .logtext p {

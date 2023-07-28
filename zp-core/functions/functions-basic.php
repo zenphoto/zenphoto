@@ -1488,14 +1488,17 @@ function switchLog($log) {
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
+ * @param string $logname Optional custom log name to log to, default "debug"
  */
-function debugLog($message, $reset = false) {
+function debugLog($message, $reset = false, $logname = 'debug') {
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
-		$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+		$logname = str_replace('_', '-', $logname) . '_' . date('Y-m-d'); 
+		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $logname . '.log';
 		$me = getmypid();
-		if (is_object($_zp_mutex))
+		if (is_object($_zp_mutex)) {
 			$_zp_mutex->lock();
+		}
 		if ($reset || ($size = @filesize($path)) == 0 || (defined('DEBUG_LOG_SIZE') && DEBUG_LOG_SIZE && $size > DEBUG_LOG_SIZE)) {
 			if (!$reset && $size > 0) {
 				switchLog('debug');
@@ -1513,7 +1516,7 @@ function debugLog($message, $reset = false) {
 			$f = fopen($path, 'a');
 			if ($f) {
 				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
-			}	
+			}
 		}
 		if ($f) {
 			fwrite($f, "  " . $message . "\n");
@@ -1523,8 +1526,9 @@ function debugLog($message, $reset = false) {
 				@chmod($path, LOGS_MOD);
 			}
 		}
-		if (is_object($_zp_mutex))
+		if (is_object($_zp_mutex)) {
 			$_zp_mutex->unlock();
+		}
 	}
 }
 
