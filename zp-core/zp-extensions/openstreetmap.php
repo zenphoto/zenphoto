@@ -386,6 +386,27 @@ class openStreetMap {
 	public $tileproviders = NULL;
 
 	/**
+	 * Show the bounds of a marker cluster on hover
+	 * Default taken from plugin options
+	 * @var bool
+	 */
+	public $cluster_showcoverage_on_hover = NULL;
+	
+	/**
+	 * Show layers controls with selected layers
+	 * Default taken from plugin options
+	 * @var bool
+	 */
+	public $showlayerscontrol = NULL;
+	
+	/**
+	 * Position of the layers controls: "topleft", "topright", "bottomleft", "bottomright"
+	 * Default taken from plugin options
+	 * @var string
+	 */
+	public $layerscontrolpos = NULL;
+	
+	/**
 	 * If no $geodata array is passed the function gets geodata from the current image or the images of the current album
 	 * if in appropiate context.
 	 * 

@@ -146,7 +146,10 @@ class Googlemaps {
 	public $placesAutocompleteBoundNE	= '';						// Both South-West (lat/long co-ordinate or address) and North-East (lat/long co-ordinate or address) values are required if wishing to set bounds
 	public $placesAutocompleteBoundsMap= FALSE;					// An alternative to setting the SW and NE bounds is to use the bounds of the current viewport. If set to TRUE, the bounds will be set to the viewport of the visible map, even if dragged or zoomed
 	public $placesAutocompleteOnChange	= '';						// The JavaScript action to perform when a place is selected
-
+	public $output_js;
+	public $output_js_contents;
+	public $output_html;
+	
 	function __construct($config = array())
 	{
 		if (count($config) > 0)
