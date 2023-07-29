@@ -37,7 +37,7 @@ class PersistentObject {
 
 	/**
 	 *
-	 * @deprecated Zenphoto 1.6 - Unser instantiate() instead
+	 * @deprecated 1.6 - Unser instantiate() instead
 	 * @since 1.4.6
 	 */
 	function __construct($tablename, $unique_set, $cache_by = NULL, $use_cache = true, $is_transient = false, $allowCreate = true) {

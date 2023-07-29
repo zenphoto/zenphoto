@@ -240,7 +240,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns the image filename
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 - User getName() instead
+	 * @deprecated 2.0 - User getName() instead
 	 *
 	 * @return string
 	 */

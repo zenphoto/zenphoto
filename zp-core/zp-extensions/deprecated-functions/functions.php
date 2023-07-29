@@ -2,11 +2,11 @@
 /**
  * 
  * @package zpcore\plugins\dprecatedfunctions
- * @deprecated ZenphotoCMS 1.6
+ * @deprecated 1.6
  */
 
 /**
- * @deprecated ZenphotoCMS 1.6
+ * @deprecated 1.6
  * @global type $files
  * @param type $folder
  * @param type $exclude
@@ -33,7 +33,7 @@ function getPHPFiles($folder, $exclude) {
 }
 
 /**
- * @deprecated ZenphotoCMS 1.6 
+ * @deprecated 1.6 
  * @global type $deprecated
  * @param type $title
  * @param type $subject
@@ -93,7 +93,7 @@ function formatList($title, $subject, $pattern) {
 }
 
 /**
- * @deprecated ZenphotoCMS 1.6
+ * @deprecated 1.6
  * @param type $files
  * @param type $base
  * @param type $pattern
@@ -134,7 +134,7 @@ function listUses($files, $base, $pattern) {
 }
 
 /**
- * @deprecated ZenphotoCMS 1.6 
+ * @deprecated 1.6 
  * @param type $pattern
  * @return boolean
  */

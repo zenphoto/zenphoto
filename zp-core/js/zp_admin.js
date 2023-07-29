@@ -328,7 +328,7 @@ function zp_gotoLink(form) {
  * 
  * The toggle is performed by adding/removing the class "hidden". 
  * 
- * @since ZenphotoCMS 1.5.8
+ * @since 1.5.8
  * 
  * @param {string} element_to_check The selector element to trigger the onchange event (inlcuding # or .!)
  * @param {string} value_to_trigger The selector value to trigger the toggle on

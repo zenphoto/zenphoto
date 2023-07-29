@@ -541,7 +541,7 @@ class Administrator extends PersistentObject {
 /**
  * 
  * @package zpcore\classes\deprecated
- * @deprecated ZenphotoCMS 2.0 - Use the class Administrator instead
+ * @deprecated 2.0 - Use the class Administrator instead
  */
 class Zenphoto_Administrator extends Administrator {
 	

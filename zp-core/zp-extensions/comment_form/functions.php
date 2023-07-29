@@ -1084,7 +1084,7 @@ function getComments($number) {
 /**
  * Gets an array of comments for the current admin
  * 
- * @deprecated ZenphotoCMS 2.0 - Use getComments() instead
+ * @deprecated 2.0 - Use getComments() instead
  *
  * @param int $number how many comments desired
  * @return array

@@ -4530,7 +4530,7 @@ function admin_album_list($owner) {
 /**
  * Returns an array with the logtabs array, the default log tab and an array of log files to the default (current) log tab (for use in the logfile selector)
  * 
- * @since ZenphotoCMS 1.6.1 - Reworked for displaying only tabs for log types
+ * @since 1.6.1 - Reworked for displaying only tabs for log types
  * @return array
  */
 function getLogTabs() {
@@ -4574,7 +4574,7 @@ function getLogTabs() {
 /**
  * Gets an array log tab names and localized (gettexted) log titles
  * 
- * @since ZenphotoCMS 1.6.1
+ * @since 1.6.1
  * @return array
  */
 function getDefaultLogTabs() {
@@ -4588,7 +4588,7 @@ function getDefaultLogTabs() {
 /**
  * Gets a nested array with the log type (tab name) and corresponding log files
  * 
- * @since ZenphotoCMS 1.6.1
+ * @since 1.6.1
  * @return array
  */
 function getLogFiles() {
@@ -4621,7 +4621,7 @@ function getLogFiles() {
 /**
  * Prints the selector for logfiles of the current log tab
  * 
- * @since ZenphotoCMS 1.6.1
+ * @since 1.6.1
  * 
  * @param string $currentlogtab Current log tab 
  * @param string $currentlogfile Current log file selected

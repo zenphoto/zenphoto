@@ -226,7 +226,7 @@ class ZenpageCategory extends ZenpageRoot {
 
 	/**
 	 * @see getCategories()
-	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
+	 * @deprecated 2.0 - Use getCategories() instead
 	 */
 	function getSubCategories($visible = true, $sorttype = NULL, $sortdirection = NULL, $directchilds = false) {
 		return $this->getCategories($visible, $sorttype, $sortdirection, $directchilds);
@@ -257,7 +257,7 @@ class ZenpageCategory extends ZenpageRoot {
 
 	/**
 	 * @see isSubCategoryOf()
-	 * @deprecated ZenphotoCMS 2.0 - Use getCategories() instead
+	 * @deprecated 2.0 - Use getCategories() instead
 	 */
 	function isSubNewsCategoryOf($catlink) {
 		return $this->isSubCategoryOf($catlink);

@@ -52,7 +52,7 @@ class ZenpageRoot extends ThemeObject {
 	/**
 	 * Returns the titlelink
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 - use getName() instead
+	 * @deprecated 2.0 - use getName() instead
 	 * 
 	 * @return string
 	 */
@@ -64,7 +64,7 @@ class ZenpageRoot extends ThemeObject {
 	/**
 	 * sets the title link
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 - use setName() instead
+	 * @deprecated 2.0 - use setName() instead
 	 * @param $v
 	 */
 	function setTitlelink($v) {

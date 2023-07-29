@@ -195,7 +195,7 @@ class ZenpageNews extends ZenpageItems {
 	 *
 	 * returns true if the article exists in any published category (or in no categories)
 	 * 
-	 * @deprecated Zenphoto 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
+	 * @deprecated 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
 	 */
 	function categoryIsVisible() {
 		if (zp_loggedin(ALL_NEWS_RIGHTS))

@@ -116,7 +116,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns the folder on the filesystem
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 – Use getName() instead
+	 * @deprecated 2.0 – Use getName() instead
 	 *
 	 * @return string
 	 */
@@ -128,7 +128,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns the folder on the filesystem
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 – Use getName() instead
+	 * @deprecated 2.0 – Use getName() instead
 	 * 
 	 * @return string
 	 */
@@ -893,7 +893,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Removes the cache folder of the album including all contents
 	 * 
-	 * @since  1.6.1
+	 * @since 1.6.1
 	 */
 	function removeCacheFolder() {
 		removeDir($this->getCacheFolder(), true);

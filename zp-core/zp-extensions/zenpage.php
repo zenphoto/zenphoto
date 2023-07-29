@@ -334,7 +334,7 @@ class zenpagecms {
 
 	/**
 	 * Handles password checks
-	 * @deprecated ZenphotoCMS 2.0 - Use the checkForGuest() template function instead
+	 * @deprecated 2.0 - Use the checkForGuest() template function instead
 	 * @param string $auth
 	 */
 	static function checkForGuest($auth) {

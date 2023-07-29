@@ -101,7 +101,7 @@ class deprecated_functions {
 
 	/**
 	 * used to provided deprecated function notification.
-	 * @deprecated ZenphotoCMS 2.0
+	 * @deprecated 2.0
 	 */
 	static function notify($use) {
 	 deprecationNotice(gettext('Use deprecationNotice() instead'));

@@ -550,7 +550,7 @@ class htmlmetatags {
 	 * 
 	 * Note keywords do not have an SEO meaning anymore
 	 * 
-	 * @deprecated ZenphotoCMS 2.0
+	 * @deprecated 2.0
 	 *
 	 * @param array $array the array of the tags or categories to list
 	 */

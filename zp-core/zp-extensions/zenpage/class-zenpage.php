@@ -90,7 +90,7 @@ class Zenpage {
 	/**
 	 * Checks if a category itself is published.
 	 * 
-	 * @deprecated Zenphoto 2.0 Use the method isPublic() of the ZenpageCategory class instead.
+	 * @deprecated 2.0 Use the method isPublic() of the ZenpageCategory class instead.
 	 * @param type $cat
 	 * @return type
 	 */

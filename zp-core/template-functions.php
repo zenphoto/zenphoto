@@ -558,7 +558,7 @@ function getParentSiteURL() {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0: Use getParentSiteTitle() instead
+ * @deprecated 2.0: Use getParentSiteTitle() instead
  * @return string
  */
 function getMainSiteName() {
@@ -567,7 +567,7 @@ function getMainSiteName() {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0: Use getParentSiteURL() instead
+ * @deprecated 2.0: Use getParentSiteURL() instead
  * @return string
  */
 function getMainSiteURL() {
@@ -3772,7 +3772,7 @@ function isArchive() {
  * Returns a search URL
  * 
  * @since 1.1.3
- * @deprecated ZenphotoCMS 2.0 - Use SearchEngine::getSearchURL() instead
+ * @deprecated 2.0 - Use SearchEngine::getSearchURL() instead
  *
  * @param mixed $words the search words target
  * @param mixed $dates the dates that limit the search

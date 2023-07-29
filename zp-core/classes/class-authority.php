@@ -1386,7 +1386,7 @@ class Authority {
 	 * Checks if the email address being set is already used by another user
 	 * Returns true if it is, false if not
 	 * 
-	 * @deprecated Zenphoto 2.0 – Use the method isUniqueMailaddress() instead
+	 * @deprecated 2.0 – Use the method isUniqueMailaddress() instead
 	 *
 	 * @param string $email_to_check email address to check
 	 * @param type $current_user user id of the user trying to set this email address
@@ -1484,7 +1484,7 @@ class Authority {
 /**
  * 
  * @package zpcore\classes\deprecated
- * @deprecated ZenphotoCMS 2.0 - Use the class Authority instead
+ * @deprecated 2.0 - Use the class Authority instead
  */
 class Zenphoto_Authority extends Authority {
 	

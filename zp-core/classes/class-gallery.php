@@ -1107,7 +1107,7 @@ class Gallery {
 	/**
 	 * Title to be used for a parent website if Zenphoto is used as a part of it
 	 * 
-	 * @deprecated ZenphotoCMS 2.0: Use the method getParentSiteTitle() instead
+	 * @deprecated 2.0: Use the method getParentSiteTitle() instead
 	 * 
 	 * @param string $locale
 	 * @return string
@@ -1129,7 +1129,7 @@ class Gallery {
 
 	/**
 	 * Set the title to be used for a parent website if Zenphoto is used as a part of it
-	 * @deprecated ZenphotoCMS 2.0: Use the method setParentSiteTitle() instead
+	 * @deprecated 2.0: Use the method setParentSiteTitle() instead
 	 * @param type $value
 	 */
 	function setWebsiteTitle($value) {
@@ -1150,7 +1150,7 @@ class Gallery {
 
 	/**
 	 * The URL of the home (not Zenphoto gallery) WEBsite
-	 * @deprecated ZenphotoCMS 2.0: Use the method getParentSiteURL() instead
+	 * @deprecated 2.0: Use the method getParentSiteURL() instead
 	 * 
 	 * @return string
 	 */
@@ -1172,7 +1172,7 @@ class Gallery {
 
 	/**
 	 * Set URL of the home (not Zenphoto gallery) WEBsite
-	 * @deprecated ZenphotoCMS 2.0: Use the method setParentSiteURL() instead
+	 * @deprecated 2.0: Use the method setParentSiteURL() instead
 	 * 
 	 * @return string
 	 */

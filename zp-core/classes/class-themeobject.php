@@ -114,7 +114,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Returns true published
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 – Use isPublished() instead
+	 * @deprecated 2.0 – Use isPublished() instead
 	 * @return bool
 	 */
 	function getShow() {
@@ -125,7 +125,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Stores the published value
 	 * 
-	 * @deprecated ZenphotoCMS 2.0 – Use setPublished() instead
+	 * @deprecated 2.0 – Use setPublished() instead
 	 * @param bool $show True if the album is published
 	 */
 	function setShow($show) {

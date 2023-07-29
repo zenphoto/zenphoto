@@ -8,7 +8,7 @@
  *
  * @package zpcore\functions\deprecated
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global database object variable $_zp_db and the class methods instead
+ * @deprecated 2.0 Use the global database object variable $_zp_db and the class methods instead
  * @since 1.6
  */
 
@@ -18,7 +18,7 @@
  * @param bool $errorstop set to false to omit error messages
  * @return true if successful connection
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method connect() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method connect() instead.
  * @since 1.6
  */
 function db_connect($config, $errorstop = true) {
@@ -36,7 +36,7 @@ function db_connect($config, $errorstop = true) {
  * @return results of the sql statements
  * @since 0.6
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method of the same name instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method of the same name instead.
  * @since 1.6
  */
 function query($sql, $errorstop = true) {
@@ -53,7 +53,7 @@ function query($sql, $errorstop = true) {
  * @return results of the sql statements
  * @since 0.6
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method querySingleRow() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method querySingleRow() instead.
  * @since 1.6
  */
 function query_single_row($sql, $errorstop = true) {
@@ -70,7 +70,7 @@ function query_single_row($sql, $errorstop = true) {
  * @return results of the sql statements
  * @since 0.6
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method queryFullArray() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method queryFullArray() instead.
  * @since 1.6
  */
 function query_full_array($sql, $errorstop = true, $key = NULL) {
@@ -85,7 +85,7 @@ function query_full_array($sql, $errorstop = true, $key = NULL) {
  * @param string $string
  * @return string
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method quote() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method quote() instead.
  * @since 1.6
  */
 function db_quote($string, $addquotes = true) {
@@ -97,7 +97,7 @@ function db_quote($string, $addquotes = true) {
 /**
  * returns the insert id of the last database insert
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method insertID() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method insertID() instead.
  * @since 1.6
  */
 function db_insert_id() {
@@ -109,7 +109,7 @@ function db_insert_id() {
 /**
  * Fetch a result row as an associative array
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method fetchAssoc() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method fetchAssoc() instead.
  * @since 1.6
  */
 function db_fetch_assoc($resource) {
@@ -121,7 +121,7 @@ function db_fetch_assoc($resource) {
 /**
  * Returns the text of the error message from previous operation
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getError() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getError() instead.
  * @since 1.6
  */
 function db_error() {
@@ -133,7 +133,7 @@ function db_error() {
 /**
  * Get number of affected rows in previous operation
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getAffectedRows() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getAffectedRows() instead.
  * @since 1.6
  */
 function db_affected_rows() {
@@ -145,7 +145,7 @@ function db_affected_rows() {
 /**
  * Get a result row as an enumerated array
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method fetchRow() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method fetchRow() instead.
  * @since 1.6
  */
 function db_fetch_row($result) {
@@ -157,7 +157,7 @@ function db_fetch_row($result) {
 /**
  * Get number of rows in result
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getNumRows() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getNumRows() instead.
  * @since 1.6
  */
 function db_num_rows($result) {
@@ -169,7 +169,7 @@ function db_num_rows($result) {
 /**
  * Closes the database
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method close() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method close() instead.
  * @since 1.6
  */
 function db_close() {
@@ -181,7 +181,7 @@ function db_close() {
 /**
  * report the software of the database
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getSoftware() instead. 
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getSoftware() instead. 
  * @since 1.6 
  */
 function db_software() {
@@ -193,7 +193,7 @@ function db_software() {
 /**
  * create the database
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method create() instead
+ * @deprecated 2.0 Use the global object $_zp_db and the class method create() instead
  * @since 1.6
  */
 function db_create() {
@@ -205,7 +205,7 @@ function db_create() {
 /**
  * Returns user's permissions on the database
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getPermissions() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getPermissions() instead.
  * @since 1.6
  */
 function db_permissions() {
@@ -217,7 +217,7 @@ function db_permissions() {
 /**
  * Sets the SQL session mode to empty
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method setSQLmode() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method setSQLmode() instead.
  * @since 1.6
  */
 function db_setSQLmode() {
@@ -229,7 +229,7 @@ function db_setSQLmode() {
 /**
  * Queries the SQL session mode
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getSQLmode() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getSQLmode() instead.
  * @since 1.6
  */
 function db_getSQLmode() {
@@ -239,7 +239,7 @@ function db_getSQLmode() {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getCollation() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getCollation() instead.
  * @since 1.6
  */
 function db_collation() {
@@ -249,7 +249,7 @@ function db_collation() {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method createTable() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method createTable() instead.
  * @since 1.6
  */
 function db_create_table($sql) {
@@ -259,7 +259,7 @@ function db_create_table($sql) {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method tableUpdate() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method tableUpdate() instead.
  * @since 1.6
  */
 function db_table_update($sql) {
@@ -269,7 +269,7 @@ function db_table_update($sql) {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method show() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method show() instead.
  * @since 1.6
  */
 function db_show($what, $aux = '') {
@@ -279,7 +279,7 @@ function db_show($what, $aux = '') {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method listFields() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method listFields() instead.
  * @since 1.6
  */
 function db_list_fields($table) {
@@ -289,7 +289,7 @@ function db_list_fields($table) {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method truncateTable() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method truncateTable() instead.
  * @since 1.6
  */
 function db_truncate_table($table) {
@@ -299,7 +299,7 @@ function db_truncate_table($table) {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method likeEscape() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method likeEscape() instead.
  * @since 1.6
  */
 function db_LIKE_escape($str) {
@@ -309,7 +309,7 @@ function db_LIKE_escape($str) {
 }
 
 /**
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method freeResult() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method freeResult() instead.
  * @since 1.6
  */
 function db_free_result($result) {
@@ -324,7 +324,7 @@ function db_free_result($result) {
  * @param string $tablename name of the table
  * @return prefixed table name
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method of the same name instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method of the same name instead.
  * @since 1.6
  */
 function prefix($tablename = NULL) {
@@ -340,7 +340,7 @@ function prefix($tablename = NULL) {
  * @param string $unique_set what to add to the WHERE clause
  * @return contructed WHERE cleause
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method of the same name instead
+ * @deprecated 2.0 Use the global object $_zp_db and the class method of the same name instead
  * @since 1.6
  */
 function getWhereClause($unique_set) {
@@ -357,7 +357,7 @@ function getWhereClause($unique_set) {
  * @return contructed SET cleause
  * @since 0.6
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method of the same name instead
+ * @deprecated 2.0 Use the global object $_zp_db and the class method of the same name instead
  * @since 1.6
  */
 function getSetClause($new_unique_set) {
@@ -369,7 +369,7 @@ function getSetClause($new_unique_set) {
 /**
  * returns the connected database name
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getDBName() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getDBName() instead.
  * @since 1.6
  */
 function db_name() {
@@ -386,7 +386,7 @@ function db_name() {
  * @param string $field Which fields to count (default: id)
  * @return int
  * 
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method count() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method count() instead.
  * @since 1.6
  */
 function db_count($table, $clause = NULL, $field = "id") {
@@ -398,7 +398,7 @@ function db_count($table, $clause = NULL, $field = "id") {
 /**
  * Returns the server info
  * @since 1.5.7
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getServerInfo() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getServerInfo() instead.
  * @return string
  */
 function db_getServerInfo() {
@@ -410,7 +410,7 @@ function db_getServerInfo() {
 /**
  * Returns the client info
  * @since 1.5.7
- * @deprecated ZenphotoCMS 2.0 Use the global object $_zp_db and the class method getClientInfo() instead.
+ * @deprecated 2.0 Use the global object $_zp_db and the class method getClientInfo() instead.
  * @return string
  */
 function db_getClientInfo() {

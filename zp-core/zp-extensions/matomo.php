@@ -249,7 +249,7 @@ class matomoStats {
 	}
 
 	/**
-	 * @deprecated ZenphotoCMS 2.0 - Use matomoStats::getOptOutForm()
+	 * @deprecated 2.0 - Use matomoStats::getOptOutForm()
 	 */
 	static function getOptOutiFrame() {
 		return matomoStats::getOptOutForm();

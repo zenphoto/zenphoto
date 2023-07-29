@@ -1074,7 +1074,7 @@ class openStreetMap {
  * 
  * The map is not shown if there is no geodata available.
  * 
- * @deprecated ZenphotoCMS 2.0 – Use openStreetMap::printOpenStreetMap() instead
+ * @deprecated 2.0 – Use openStreetMap::printOpenStreetMap() instead
  * 
  * @global obj $_zp_current_album
  * @global obj $_zp_current_image

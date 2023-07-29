@@ -36,7 +36,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package zpcore\plugins\fieldextender
- * @deprecated ZenphotoCMS 1.6
+ * @deprecated 1.6
  */
 class fieldExtender {
 
