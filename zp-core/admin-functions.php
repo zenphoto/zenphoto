@@ -4531,8 +4531,6 @@ function admin_album_list($owner) {
  * Returns an array with the logtabs array, the default log tab and an array of log files to the default (current) log tab (for use in the logfile selector)
  * 
  * @since ZenphotoCMS 1.6.1 - Reworked for displaying only tabs for log types
- * 
- * @param string $logtab "all" for all logs (default) or a log tab name for specific ones.
  * @return array
  */
 function getLogTabs() {
