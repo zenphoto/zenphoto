@@ -3,7 +3,7 @@
  * The version number within @deprecated indicates the version these will be removed completely
  * 
  * @package zpcore\plugins\dprecatedfunctions
- * @deprecated 1.6
+ * @deprecated 2.0
  */
 
 /**

@@ -36,7 +36,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package zpcore\plugins\fieldextender
- * @deprecated 1.6
+ * @deprecated 2.0
  */
 class fieldExtender {
 

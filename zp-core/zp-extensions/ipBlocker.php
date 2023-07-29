@@ -25,10 +25,12 @@
 
  * @author Stephen Billard (sbillard)
  * @package zpcore\plugins\ipblocker
+ * @deprecated 2.0
  */
 $plugin_is_filter = 8 | CLASS_PLUGIN;
 $plugin_description = gettext("Tools to block hacker access to your site.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_deprecated = true;
 $plugin_category = gettext('Admin');
 
 $option_interface = 'ipBlocker';
