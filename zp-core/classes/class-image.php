@@ -1660,14 +1660,6 @@ class Image extends MediaObject {
 	}
 	
 	/**
-	 *
-	 * returns true if there is any protection on the image
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
-	}
-	
-	/**
 	 * Returns true if this image is published and also its album and all of its parents.
 	 * 
 	 * @since 1.5.5

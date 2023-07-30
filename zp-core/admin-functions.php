@@ -2167,12 +2167,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			<?php $wide = '40px'; ?>
 			<div class="page-list_iconwrapperalbum">
 				<div class="page-list_icon">
-					<?php
-					$pwd = $album->getPassword();
-					if (!empty($pwd)) {
-						echo '<a title="' . gettext('Password protected') . '"><img src="images/lock.png" style="border: 0px;" alt="" title="' . gettext('Password protected') . '" /></a>';
-					}
-					?>
+					<?php printProtected($album); ?>
 				</div>
 				<div class="page-list_icon">
 					<?php printPublishIconLinkGallery($album, $enableEdit, $owner); ?>
@@ -5281,7 +5276,7 @@ function getSortByStatusOptions() {
  * @return boolean
  */
 function checkSchedulePublishingNotes($obj) {
-	if ($obj->hasPublishSchedule() || ($obj->hasFutureDate() && !$obj->get('show', false)) || $obj->hasExpiration() || $obj->hasExpired()) {
+	if (getStatusNotesByContext($obj)) {
 		return true;
 	}
 	return false;
@@ -5291,56 +5286,159 @@ function checkSchedulePublishingNotes($obj) {
  * Prints various notes regarding the scheduled publishing status for single edit pages
  * 
  * @since 1.5.7
+ * @deprecated 2.0 - Use printStatusNotes() instead
  * @param obj $obj Image, album, news article or page object
  */
 function printScheduledPublishingNotes($obj) {
-	$validtables = array('albums', 'images', 'news', 'pages');
+	deprecationNotice('Use printStatusNotes() instead');
+	printStatusNotes($obj);
+}
+
+/**
+ * Prints various notes regarding the scheduled publishing status for single edit pages
+ * 
+ * @since 1.6.1 Replaces printScheduledPublishingNotes()
+ * @param obj $obj Image, album, news article, new category or page object
+ */
+function printStatusNotes($obj) {
+	$notes = getStatusNotesByContext($obj);
+	if ($notes) {
+		foreach($notes as $note) {
+			echo $note;
+		}
+	}
+}
+
+/**
+ * Gets a specific predefined status note for an object (if available)
+ * Note: The notes are not status dependend!
+ * 
+ * @param obj $obj Image, album, news article, new category or page object
+ * @param string $name Name of the note
+ * @return string
+ */
+function getStatusNote($obj, $name = '') {
+	$notes = getStatusNotes($obj);
+	if (array_key_exists($name, $notes)) {
+		return $notes[$name];
+	}
+}
+
+/**
+ * Gets an array of all predefined status notes for the object type
+ * @since 1.6.1
+ * 
+ * @param obj $obj Image, album, news article, new category or page object
+ * @return array
+ */
+function getStatusNotes($obj) {
+	$validtables = array('albums', 'images', 'news', 'pages', 'categories');
 	if (in_array($obj->table, $validtables)) {
+		$notes = array(
+				'unpublished' => gettext('Unpublished'),
+				'unpublished_by_parent' => gettext('Unpublished by parent'),
+				'protected' => gettext('Password protected'),
+				'protected_by_parent' => gettext('Password protected by parent'),
+		);
 		switch ($obj->table) {
 			case 'images':
-				$note_scheduledpublishing = gettext('Image scheduled for publishing');
-				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the image is also set to <em>published</em>');
-				$note_scheduledexpiration = gettext('Image scheduled for expiration');
-				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the image is also set to <em>published</em>');
-				$note_expired = gettext('Image has expired');
-				break;
 			case 'albums':
-				$note_scheduledpublishing = gettext('Album scheduled for publishing');
-				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the album is also set to <em>published</em>');
-				$note_scheduledexpiration = gettext('Album scheduled for expiration');
-				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the album is also set to <em>published</em>');
-				$note_expired = gettext('Album has expired');
-				break;
 			case 'news':
-				$note_scheduledpublishing = gettext('Article scheduled for publishing');
-				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>');
-				$note_scheduledexpiration = gettext('Article scheduled for expiration');
-				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the article is also set to <em>published</em>');
-				$note_expired = gettext('Article has expired');
-				break;
 			case 'pages':
-				$note_scheduledpublishing = gettext('Page scheduled for publishing');
-				$note_scheduledpublishing_inactive = gettext('<strong>Note:</strong> Scheduled publishing is not active unless the page is also set to <em>published</em>');
-				$note_scheduledexpiration = gettext('Page scheduled for expiration');
-				$note_scheduledexpiration_inactive = gettext('<strong>Note:</strong> Scheduled expiration is not active unless the page is also set to <em>published</em>');
-				$note_expired = gettext('Page has expired');
+				$notes['scheduledpublishing'] = gettext('Scheduled for publishing');
+				$notes['scheduledpublishing_inactive'] = gettext('<strong>Note:</strong> Scheduled publishing is not active unless also set to <em>published</em>');
+				$notes['scheduledexpiration'] = gettext('Scheduled for expiration');
+				$notes['scheduledexpiration_inactive'] = gettext('<strong>Note:</strong> Scheduled expiration is not active unless also set to <em>published</em>');
+				$notes['expired'] = gettext("Unpublished because expired");
 				break;
+			case 'categories':
+				// nothing to add here currently
+				break;
+		}
+		return $notes;
+	}
+	return array();
+}
+
+/**
+ * Gets an array with all status notes that apply to $obj currently
+ * @since 1.6.1
+ * 
+ * @param string $obj
+ * @return array
+ */
+function getStatusNotesByContext($obj) {
+	$validtables = array('albums', 'images', 'news', 'pages', 'categories');
+	$notes_context = $notes_context_notices = $notes_context_warnings = array();
+	if (in_array($obj->table, $validtables)) {
+		$notes = getStatusNotes($obj);
+		if (!$obj->isPublished()) {
+			$notes_context_notices[] = $notes['unpublished'];
+		} else if ($obj->isUnpublishedByParent()) {
+			$notes_context_notices[] = $notes['unpublished_by_parent'];
+		}
+		if ($obj->isProtected()) {
+			$notes_context_notices[] = $notes['protected'];
+		} else if ($obj->isProtectedByParent()) {
+			$notes_context_notices[] = $notes['protected_by_parent'];
 		}
 		if ($obj->hasPublishSchedule()) {
-			echo '<p id="scheduldedpublishing" class="notebox">' . $note_scheduledpublishing . '</p>';
+			$notes_context_notices[] = $notes['scheduledpublishing'];
 		}
 		if ($obj->hasInactivePublishSchedule()) {
-			echo '<p class="notebox">' . $note_scheduledpublishing_inactive . '</p>';
+			$notes_context_warnings[] = $notes['scheduledpublishing_inactive'];
 		}
 		if ($obj->hasExpiration()) {
-			echo ' <p class="notebox">' . $note_scheduledexpiration . '</p>';
+			$notes_context_notices[] = $notes['scheduledexpiration'];
 		}
 		if ($obj->hasInactiveExpiration()) {
-			echo ' <p class="notebox">' . $note_scheduledexpiration_inactive . '</p>';
+			$notes_context_warnings[] = $notes['scheduledexpiration_inactive'];
 		}
 		if ($obj->hasExpired()) {
-			echo ' <p class="notebox">' . $note_expired . '</p>';
+			$notes_context_notices[] = $notes['expired'];
 		}
+		$notices = $warnings = '';
+		if(!empty($notes_context_notices)) {
+			$notices = '<p class="notebox">' . implode(' | ', $notes_context_notices) . '</p>';
+		}
+		if(!empty($notes_context_warnings)) {
+			$warnings = '<p class="warningbox">' . implode(' | ', $notes_context_warnings) . '</p>';
+		}
+		$notes_context = array($warnings, $notices);
+	}
+	return $notes_context;
+}
+
+/**
+ * Gets an key value array of all available object status icon URLs
+ * @since 1.6.1
+ * 
+ * @return array
+ */
+function getStatusIcons() {
+	return array(
+			'publishschedule' => WEBPATH . '/' . ZENFOLDER . '/images/clock_futuredate.png',
+			'expiration' => WEBPATH . '/' . ZENFOLDER . '/images/clock_expiredate.png',
+			'expired' => WEBPATH . '/' . ZENFOLDER . '/images/clock_expired.png',
+			'published' => WEBPATH . '/' . ZENFOLDER . '/images/pass.png',
+			'unpublished' => WEBPATH . '/' . ZENFOLDER . '/images/action.png',
+			'unpublished_by_parent' => WEBPATH . '/' . ZENFOLDER . '/images/pass_2.png',
+			'protected' => WEBPATH . '/' . ZENFOLDER . '/images/lock.png',
+			'protected_by_parent' => WEBPATH . '/' . ZENFOLDER . '/images/lock_3.png',
+	);
+}
+
+/**
+ * Gets the icon URL for a specific status icon
+ * @since 1.6.1
+ * 
+ * @param string $name (Internal) Name of the icon
+ * @return string
+ */
+function getStatusIcon($name = '') {
+	$icons = getStatusIcons();
+	if (array_key_exists($name, $icons)) {
+		return $icons[$name];
 	}
 }
 
@@ -5353,13 +5451,12 @@ function printScheduledPublishingNotes($obj) {
  * @param string $owner User name of the owner
  */
 function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
-	$notes = array();
 	if ($obj->table == 'albums' || $obj->table == 'images') {
 		switch ($obj->table) {
 			case 'albums':
 				$title_skipscheduledpublishing = sprintf(gettext('Publish the album %s (Skip scheduled publishing)'), $obj->name);
 				$title_skipscheduledexpiration = sprintf(gettext('Publish the album %s (Skip scheduled expiration)'), $obj->name);
-				$title_unpublish = sprintf(gettext('Un-publish the album %s'), $obj->name);
+				$title_unpublish = sprintf(gettext('Unpublish the album %s'), $obj->name);
 				$title_skipexiration = sprintf(gettext('Publish the album %s (Skip expiration)'), $obj->name);
 				$title_publish = sprintf(gettext('Publish the album %s'), $obj->name);
 				$action_addition = '&amp;album=' . html_encode(pathurlencode($obj->name)) . '&amp;return=*' . html_encode(pathurlencode($owner)) . '&amp;XSRFToken=' . getXSRFToken('albumedit');
@@ -5367,7 +5464,7 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			case 'images':
 				$title_skipscheduledpublishing = sprintf(gettext('Publish the image %s (Skip scheduled publishing)'), $obj->filename);
 				$title_skipscheduledexpiration = sprintf(gettext('Publish the image %s (Skip scheduled expiration)'), $obj->filename);
-				$title_unpublish = sprintf(gettext('Un-publish the image %s'), $obj->filename);
+				$title_unpublish = sprintf(gettext('Unpublish the image %s'), $obj->filename);
 				$title_skipexiration = sprintf(gettext('Publish the image %s (Skip expiration)'), $obj->filename);
 				$title_publish = sprintf(gettext('Publish the image %s'), $obj->filename);
 				$action_addition = '&amp;album=' . html_encode(pathurlencode($obj->album->name)) . '&amp;image=' . urlencode($obj->filename) . '&amp;XSRFToken=' . getXSRFToken('imageedit');
@@ -5377,28 +5474,35 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
 			$title = $title_skipscheduledpublishing;
 			$alt = gettext("Scheduled for publishing");
 			$action = '?action=publish&amp;value=1';
-			$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_futuredate.png';
+			$icon = getStatusIcon('publishschedule');
 		} else if ($obj->hasExpiration()) {
 			$title = $title_skipscheduledexpiration;
 			$alt = gettext("Scheduled for expiration");
 			$action = '?action=publish&amp;value=1';
-			$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_expiredate.png';
+			$icon = getStatusIcon('expiration');
 		} else if ($obj->isPublished()) {
-			$title = $title_unpublish;
-			$alt = gettext("Published");
-			$action = '?action=publish&amp;value=0';
-			$icon = WEBPATH . '/' . ZENFOLDER . '/images/pass.png';
+			if ($obj->isUnpublishedByParent()) {
+				$title = $title_unpublish;
+				$alt = gettext("Unpublished by parent");
+				$action = '?action=publish&amp;value=0';
+				$icon = getStatusIcon('unpublished_by_parent');
+			} else {
+				$title = $title_unpublish;
+				$alt = gettext("Published");
+				$action = '?action=publish&amp;value=0';
+				$icon = getStatusIcon('published');
+			}
 		} else if (!$obj->isPublished()) {
 			if ($obj->hasExpired()) {
 				$title = $title_skipexiration;
-				$alt = gettext("Un-published because expired");
+				$alt = gettext("Unpublished because expired");
 				$action = '?action=publish&amp;value=1';
-				$icon = WEBPATH . '/' . ZENFOLDER . '/images/clock_expired.png';
+				$icon = getStatusIcon('expired');
 			} else {
 				$title = $title_publish;
-				$alt = gettext("Un-published");
+				$alt = gettext("Unpublished");
 				$action = '?action=publish&amp;value=1';
-				$icon = WEBPATH . '/' . ZENFOLDER . '/images/action.png';
+				$icon = getStatusIcon('unpublished');
 			}
 		}
 		if ($enableedit) {
@@ -5452,6 +5556,20 @@ function printExpired($obj) {
 		echo ' <span class="expired">' . $date . "</span>";
 	} else if ($obj->hasExpiration()) {
 		echo ' <span class="expiredate">' . $date . "</span>";
+	}
+}
+
+/**
+ * Prints the protected icon if the object is password protected on an edit list
+ * @since 1.6.1
+ * 
+ * @param obj $obj
+ */
+function printProtected($obj) {
+	if ($obj->getPassword()) {
+		echo '<span title="' . gettext('Password protected') . '"><img src="' . getStatusIcon('protected') . '" style="border: 0px;" alt="" title="' . gettext('Password protected') . '" /></span>';
+	} else if ($obj->isProtectedByParent()) {
+		echo '<span title="' . gettext('Password protected by parent') . '"><img src="' . getStatusIcon('protected_by_parent') . '" style="border: 0px;" alt="" title="' . gettext('Password protected by parent') . '" /></span>';
 	}
 }
 

@@ -260,24 +260,19 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 							?>
 							<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'news', false); ?></em></h1>
 							<?php
-							printScheduledPublishingNotes($result);
-							if ($result->inProtectedCategory()) {
-								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This article belongs to a password protected category.') . '</p>';
-							}
+							printStatusNotes($result);
 						}
 						if (is_AdminEditPage('newscategory')) {
 							?>
 							<h1><?php echo gettext('Edit Category:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'category', false); ?></em></h1>
 							<?php
+							printStatusNotes($result);
 						}
 						if (is_AdminEditPage('page')) {
 							?>
 							<h1><?php echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(), 'page', false); ?></em></h1>
 							<?php
-							printScheduledPublishingNotes($result);
-							if ($result->getPassword()) {
-								echo '<p class="notebox">' . gettext('<strong>Note:</strong> This page is password protected.') . '</p>';
-							}
+							printStatusNotes($result);
 						}
 					}
 					if ($result->loaded || $result->transient) {

@@ -478,6 +478,7 @@ zp-core/images/icon_mail.png
 zp-core/images/imageDefault.png
 zp-core/images/info.png
 zp-core/images/lock_2.png
+zp-core/images/lock_3.png
 zp-core/images/lock_open.png
 zp-core/images/lock.png
 zp-core/images/magnify.png
@@ -486,6 +487,7 @@ zp-core/images/mask.png
 zp-core/images/movie.jpg
 zp-core/images/options.png
 zp-core/images/page_white_copy.png
+zp-core/images/pass_2.png
 zp-core/images/pass.png
 zp-core/images/pencil.png
 zp-core/images/pictures_dn.png
@@ -1850,4 +1852,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1852
+1854

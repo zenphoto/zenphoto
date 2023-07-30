@@ -236,11 +236,7 @@ function printPagesListTable($page, $flag) {
 		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
-				<?php
-				if ($page->getPassword()) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-				}
-				?>
+				<?php printProtected($page); ?>
 			</div>
 
 			<?php if (checkIfLockedPage($page)) { ?>
@@ -1000,29 +996,11 @@ function printCategoryListSortableTable($cat, $flag) {
 		</div>
 
 		<div class="page-list_iconwrapper">
-			<div class="page-list_icon"><?php
-				$password = $cat->getPassword();
-				if (!empty($password)) {
-					echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-				}
-				?>
+			<div class="page-list_icon">
+				<?php printProtected($cat); ?>
 			</div>
 			<div class="page-list_icon">
-				<?php
-				if ($cat->isPublished()) {
-					$title = gettext("Un-publish");
-					?>
-					<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="../../images/pass.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
-					<?php
-				} else {
-					$title = gettext("Publish");
-					?>
-					<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>" title="<?php echo $title; ?>">
-						<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
-					<?php
-				}
-				?>
+				<?php printPublishIconLink($cat, 'newscategory'); ?>
 			</div>
 			<div class="page-list_icon">
 				<?php if ($count == 0) { ?>
@@ -1079,13 +1057,15 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 	}
 	$catname = $cat->getTitle();
 	$catlink = $cat->getName();
-	if ($cat->getPassword()) {
+	/*if ($cat->getPassword()) {
 		$protected = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/lock.png" alt="' . gettext('password protected') . '" />';
 	} else {
 		$protected = '';
-	}
+	} */
 	$catid = $cat->getID();
-	echo '<label for="cat' . $catid . '"><input name="cat' . $catid . '" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname . ' ' . $protected . "</label>\n";
+	echo '<label for="cat' . $catid . '"><input name="cat' . $catid . '" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname;
+	printProtected($cat);
+	echo "</label>\n";
 }
 
 /* * ************************
@@ -1500,28 +1480,35 @@ function printPublishIconLink($object, $type, $linkback = '') {
 		$title = gettext("Publish immediately (skip scheduling)");
 		$alt = gettext("Scheduled for published");
 		$action = '?skipscheduling=1';
-		$icon = '../../images/clock_futuredate.png';
+		$icon = getStatusIcon('publishschedule');;
 	} else if ($object->hasExpiration()) {
 		$title = gettext("Skip scheduled expiration");
 		$alt = gettext("Scheduled for expiration");
 		$action = '?skipexpiration=1';
-		$icon = '../../images/clock_expiredate.png';
+		$icon = getStatusIcon('expiration');
 	} else if ($object->isPublished()) {
-		$title = gettext("Un-publish");
-		$alt = gettext("Published");
-		$action = '?publish=0';
-		$icon = '../../images/pass.png';
+		if ($object->isUnpublishedByParent()) {
+			$title = gettext("Unpublish");
+			$alt = gettext("Unpublished by parent");
+			$action = '?publish=0';
+			$icon = getStatusIcon('unpublished_by_parent');
+		} else {
+			$title = gettext("Unpublish");
+			$alt = gettext("Published");
+			$action = '?publish=0';
+			$icon = getStatusIcon('published');
+		}
 	} else if (!$object->isPublished()) {
 		if ($object->hasExpired()) {
 			$title = gettext("Publish immediately (skip expiration)");
-			$alt = gettext("Un-published because expired");
+			$alt = gettext("Unpublished because expired");
 			$action = '?skipexpiration=1';
-			$icon = '../../images/clock_expired.png';
+			$icon = getStatusIcon('expired');
 		} else {
 			$title = gettext("Publish");
-			$alt = gettext("Un-published");
+			$alt = gettext("Unpublished");
 			$action = '?publish=1';
-			$icon = '../../images/action.png';
+			$icon = getStatusIcon('unpublished');
 		}
 	}
 	?>

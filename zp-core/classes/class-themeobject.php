@@ -110,6 +110,19 @@ class ThemeObject extends PersistentObject {
 			zp_apply_filter('show_change', $this); // TODO rename to "published_change"
 		}
 	}
+	
+	/**
+	 * Returns true if published but inherits unpublished status by some parent
+	 * @since 1.6.1
+	 * 
+	 * @return bool
+	 */
+	function isUnpublishedByParent() {
+		if ($this->isPublished() && !$this->isPublic()) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Returns true published
@@ -346,6 +359,26 @@ class ThemeObject extends PersistentObject {
 	function checkForGuest(&$hint = NULL, &$show = NULL) {
 		return !(GALLERY_SECURITY != 'public');
 	}
+	
+	/**
+	 * Checks if gallery is protected and returns TRUE or FALSE
+	 * 	 * 
+	 * @since 1.6.1 Moved to themeObject class as central definition to avoid a lot same override methods
+	 *
+	 * @return bool
+	 */
+	function isProtected() {
+		return !in_array($this->checkforGuest(), array('zp_public_access', true));
+	}
+	
+	/**
+	 * Placeholder for all child classes. Needs to be properly overriden there if password functionality is available
+	 * @since 1.6.1 Added for general class compatibility
+	 * @return null
+	 */
+	function getPassword() {
+		return null;
+	}
 
 	/**
 	 *
@@ -414,6 +447,16 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
+	 * Returns the expired date if available,
+	 * 
+	 * @since 1.6.1 Added as placeholder for general class compatibility. Child classes need to override properly
+	 * @return string
+	 */
+	function getExpireDate() {
+		return '';
+	}
+	
+	/**
 	 * Returns true if the item has a proper expire date set no matter if it has expired already or will expire in the future
 	 * 
 	 * @since 1.5.7
@@ -437,6 +480,7 @@ class ThemeObject extends PersistentObject {
 		}
 		return false;
 	}
+
 	
 	/**
 	 * Returns true if a future expiredate is set but the item is unpublished

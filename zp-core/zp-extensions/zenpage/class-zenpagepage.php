@@ -108,6 +108,20 @@ class ZenpagePage extends ZenpageItems {
 			return $this->get('password');
 		}
 	}
+	
+	/**
+	 * Returns true if not protected but protection is inherited by a parent
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return bool
+	 */
+	function isProtectedByParent() {
+		if($this->isProtected() && !$this->getPassword()) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Sets the encrypted password
@@ -285,16 +299,6 @@ class ZenpagePage extends ZenpageItems {
 				return false;
 			}
 		}
-	}
-	
-	/**
-	 * Checks if a page is protected and returns TRUE or FALSE
-	 * NOTE: This function does only check if a password is set not if it has been entered! Use $this->checkforGuest() for that.
-	 *
-	 * @return bool
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
 	}
 	
 	/**

@@ -709,7 +709,7 @@ echo "\n</head>";
 					<div id="tab_albuminfo" class="tabbox">
 						<?php 
 						consolidatedEditMessages('albuminfo');
-						printScheduledPublishingNotes($album);
+						printStatusNotes($album);
 						?>
 						<form class="dirty-check" name="albumedit1" id="form_albumedit" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>" method="post">
 							<?php XSRFToken('albumedit'); ?>
@@ -1006,7 +1006,7 @@ echo "\n</head>";
 												<table style="border:none" class="formlayout" id="image-<?php echo $currentimage; ?>">
 													<?php if(checkSchedulePublishingNotes($image)) { ?>
 														<tr>
-															<td colspan="5"><?php printScheduledPublishingNotes($image); ?></td>
+															<td colspan="5"><?php printStatusNotes($image); ?></td>
 														</tr>
 													<?php } ?>
 													<tr>

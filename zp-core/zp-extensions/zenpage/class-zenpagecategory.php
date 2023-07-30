@@ -150,6 +150,20 @@ class ZenpageCategory extends ZenpageRoot {
 			return $this->get('password');
 		}
 	}
+	
+		/**
+	 * Returns true if not protected but protection is inherited by a parent
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return bool
+	 */
+	function isProtectedByParent() {
+		if ($this->isProtected() && !$this->getPassword()) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Sets the encrypted password
@@ -342,15 +356,6 @@ class ZenpageCategory extends ZenpageRoot {
 			}
 		}
 	}
-
-	/**
-	 * Checks if a category is protected and returns TRUE or FALSE
-	 *
-	 * @return bool
-	 */
-	function isProtected() {
-		return $this->checkforGuest() != 'zp_public_access';
-	}
 	
 	/**
 	 * Returns true if this category is published and also all of its parents.
@@ -373,6 +378,7 @@ class ZenpageCategory extends ZenpageRoot {
 			return $this->is_public;
 		}
 	}
+
 	
 	/**
 	 * Checks if user is news author
