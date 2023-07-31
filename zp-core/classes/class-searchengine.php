@@ -1823,7 +1823,7 @@ class SearchEngine {
 							$data['weight'] = $weights[$row['id']];
 						}
 						$result[] = $data;
-					}
+					} 
 				}
 				$_zp_db->freeResult($search_result);
 			}

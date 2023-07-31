@@ -1733,10 +1733,8 @@ function next_page() {
 	}
 	while (!empty($_zp_next_pagelist)) {
 		$page = new ZenpagePage(array_shift($_zp_next_pagelist));
-		if ((zp_loggedin() && $page->isMyItem(LIST_RIGHTS)) || $page->checkForGuest()) {
-			$_zp_current_zenpage_page = $page;
-			return true;
-		}
+		$_zp_current_zenpage_page = $page;
+		return true;
 	}
 	$_zp_next_pagelist = NULL;
 	$_zp_current_zenpage_page = $_zp_current_page_restore;
@@ -1903,6 +1901,9 @@ function printPageLastChangeDate($before) {
 function getPageContent($titlelink = NULL, $published = true) {
 	global $_zp_current_zenpage_page;
 	if (is_Pages() && empty($titlelink)) {
+		if (!$_zp_current_zenpage_page->checkAccess()) {
+			return '<p>' . gettext('<em>This page is protected.</em>') . '</p>';
+		}
 		return $_zp_current_zenpage_page->getContent();
 	}
 	// print content of a page directly on a normal zenphoto theme page or any other page for example

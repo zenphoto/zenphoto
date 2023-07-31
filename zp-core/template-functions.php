@@ -159,9 +159,6 @@ function adminToolbox() {
 							if (zp_loggedin(ADMIN_RIGHTS)) {
 								?>
 								<li>
-									<?php printLinkHTML($zf . '/admin-extrafields.php', gettext("Extra fields"), NULL, NULL, NULL); ?>
-								</li>
-								<li>
 									<?php printLinkHTML($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
 								</li>
 								<li>
