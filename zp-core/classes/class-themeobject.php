@@ -12,6 +12,8 @@ class ThemeObject extends PersistentObject {
 	public $manage_rights = ADMIN_RIGHTS;
 	public $manage_some_rights = ADMIN_RIGHTS;
 	public $view_rights = VIEW_ALL_RIGHTS;
+	protected $is_public = null;
+	protected $is_protected = null;
 
 	/**
 	 * Class instantiator
@@ -122,6 +124,26 @@ class ThemeObject extends PersistentObject {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Returns true if this object is published and not private.
+	 * 
+	 * Child classes with any hierachic structure need to override and extend this method to cover inheritance.
+	 * 
+	 * @since 1.5.5
+	 * @since 1.6.1 Moved from mediaObject to themeObject class
+	 * 
+	 * @return bool
+	 */
+	function isPublic() {
+		if (is_null($this->is_public)) {
+			if (!$this->isPublished()) {
+				return $this->is_public = false;
+			}
+		} else {
+			return $this->is_public;
+		}
 	}
 
 	/**
@@ -368,7 +390,24 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function isProtected() {
-		return !in_array($this->checkforGuest(), array('zp_public_access', true));
+		if (is_null($this->is_protected)) {
+			return $this->is_protected = !in_array($this->checkforGuest(), array('zp_public_access', true));
+		}
+		return $this->is_protected;
+	}
+
+	/**
+	 * Returns true if not protected but protection is inherited by a parent
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return bool
+	 */
+	function isProtectedByParent() {
+		if($this->isProtected() && !$this->getPassword()) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**

@@ -13,7 +13,6 @@ class ZenpagePage extends ZenpageItems {
 	public $view_rights = ALL_PAGES_RIGHTS;
 	public $parent = null;
 	public $parents = null;
-	protected $is_public = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {

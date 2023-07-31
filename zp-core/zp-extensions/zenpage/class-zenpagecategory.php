@@ -16,7 +16,6 @@ class ZenpageCategory extends ZenpageRoot {
 	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
-	protected $is_public = null;
 	
 
 	function __construct($catlink, $create = NULL) {

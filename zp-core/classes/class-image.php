@@ -25,7 +25,6 @@ class Image extends MediaObject {
 	// Plugin handler support
 	public $objectsThumb = NULL; // Thumbnail image for the object
 	public $thumbdimensions = null;
-	protected $is_public = null;
 	public $encwebpath = '';
 	public $imagetype = '';
 

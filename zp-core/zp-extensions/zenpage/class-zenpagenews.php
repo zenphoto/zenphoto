@@ -19,7 +19,6 @@ class ZenpageNews extends ZenpageItems {
 	public $view_rights = ALL_NEWS_RIGHTS;
 	public $categories = NULL;
 	public $index = NULL;
-	protected $is_public = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -162,7 +161,10 @@ class ZenpageNews extends ZenpageItems {
 	 * @return bool
 	 */
 	function isProtected() {
-		return $this->inProtectedCategory();
+		if (is_null($this->is_protected)) {
+			return $this->is_protected = $this->inProtectedCategory();
+		}
+		return $this->is_protected;
 	}
 
 	/**

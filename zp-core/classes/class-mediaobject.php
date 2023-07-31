@@ -118,21 +118,6 @@ class MediaObject extends ThemeObject {
 		$this->set('password_hint', tagURLs($hint));
 	}
 	
-	
-	/**
-	 * Returns true if not protected but protection is inherited by a parent
-	 * 
-	 * @since 1.6.1
-	 * 
-	 * @return bool
-	 */
-	function isProtectedByParent() {
-		if($this->isProtected() && !$this->getPassword()) {
-			return true;
-		}
-		return false;
-	}
-
 
 	/**
 	 * Returns the expire date

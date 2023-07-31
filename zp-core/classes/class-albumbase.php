@@ -25,7 +25,6 @@ class AlbumBase extends MediaObject {
 	protected $subrights = NULL; //	cache for album subrights
 	protected $num_allalbums = null; // count of all subalbums of all sublevels
 	protected $num_allimages = null; // count of all images of all sublevels
-	protected $is_public = null;
 	protected $firstpageimages = null;
 	protected $firstpageimages_oneimagepage = null;
 
