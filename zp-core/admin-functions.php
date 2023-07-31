@@ -2057,7 +2057,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 			}
 			?>
 			<li><?php echo getStatusIcon('published') . getStatusIcon('unpublished') . getStatusIcon('unpublished_by_parent'); ?><?php echo gettext("Published/Unpublished/Unpublished by parent"); ?></li>
-			<li>><?php echo getStatusIcon('publishschedule') . getStatusIcon('expiration') . getStatusIcon('expired'); ?>><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
+			<li><?php echo getStatusIcon('publishschedule') . getStatusIcon('expiration') . getStatusIcon('expired'); ?>><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
 			<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 			<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
 			<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
@@ -5494,18 +5494,18 @@ function printPublishIconLinkGallery($obj, $enableedit = false, $owner = null) {
  * @return string
  */
 function getPublishIcon($obj) {
-	if ($object->hasPublishSchedule()) {
+	if ($obj->hasPublishSchedule()) {
 		return getStatusIcon('publishschedule');
-	} else if ($object->hasExpiration()) {
+	} else if ($obj->hasExpiration()) {
 		return getStatusIcon('expiration');
-	} else if ($object->isPublished()) {
-		if ($object->isUnpublishedByParent()) {
+	} else if ($obj->isPublished()) {
+		if ($obj->isUnpublishedByParent()) {
 			return getStatusIcon('unpublished_by_parent');
 		} else {
 			return getStatusIcon('published');
 		}
-	} else if (!$object->isPublished()) {
-		if ($object->hasExpired()) {
+	} else if (!$obj->isPublished()) {
+		if ($obj->hasExpired()) {
 			return getStatusIcon('expired');
 		} else {
 			return getStatusIcon('unpublished');
@@ -5559,9 +5559,9 @@ function printExpired($obj) {
  */
 function printProtectedIcon($obj) {
 	if ($obj->getPassword()) {
-		echo '<span title="' . html_encode(getStatusNote('protected')) . '"><img src="' . getStatusIcon('protected') . '" style="border: 0px;" alt="" title="' . html_encode(getStatusNote('protected')) . '" /></span>';
+		echo '<span title="' . html_encode(getStatusNote('protected')) . '">' . getStatusIcon('protected') . '</span>';
 	} else if ($obj->isProtectedByParent()) {
-		echo '<span title="' . html_encode(getStatusNote('protected_by_parent')) . '"><img src="' . getStatusIcon('protected_by_parent') . '" style="border: 0px;" alt="" title="' . html_encode(getStatusNote('protected_by_parent')) . '" /></span>';
+		echo '<span title="' . html_encode(getStatusNote('protected_by_parent')) . '">' . getStatusIcon('protected') . '</span>';
 	}
 }
 
