@@ -236,7 +236,7 @@ function printPagesListTable($page, $flag) {
 		</div>
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
-				<?php printProtected($page); ?>
+				<?php printProtectedIcon($page); ?>
 			</div>
 
 			<?php if (checkIfLockedPage($page)) { ?>
@@ -997,7 +997,7 @@ function printCategoryListSortableTable($cat, $flag) {
 
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon">
-				<?php printProtected($cat); ?>
+				<?php printProtectedIcon($cat); ?>
 			</div>
 			<div class="page-list_icon">
 				<?php printPublishIconLink($cat, 'newscategory'); ?>
@@ -1064,7 +1064,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 	} */
 	$catid = $cat->getID();
 	echo '<label for="cat' . $catid . '"><input name="cat' . $catid . '" class="' . $class . '" id="cat' . $catid . '" type="checkbox" value="' . $catid . '"' . $selected . ' />' . $catname;
-	printProtected($cat);
+	printProtectedIcon($cat);
 	echo "</label>\n";
 }
 
@@ -1401,9 +1401,9 @@ function printZenpageIconLegend() {
 		<?php
 		if (GALLERY_SECURITY == 'public') {
 			?>
-			<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	
-			<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><?php echo gettext("Published/Not published"); ?></li>
-			<li><img src="../../images/clock_futuredate.png" alt="" /><img src="../../images/clock_expiredate.png" alt="" /><img src="../../images/clock_expired.png" alt="" /><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
+			<li><?php echo getStatusIcon('protected') . getStatusIcon('protected_by_parent').  gettext("Password protected/Password protected by parent"); ?></li>
+			<li><?php echo getStatusIcon('published') . getStatusIcon('unpublished') . getStatusIcon('unpublished_by_parent'); ?><?php echo gettext("Published/Unpublished/Unpublished by parent"); ?></li>
+			<li>><?php echo getStatusIcon('publishschedule') . getStatusIcon('expiration') . getStatusIcon('expired'); ?>><?php echo gettext("Scheduled publishing/Scheduled expiration/Expired"); ?></li>
 			<?php
 		}
 		?>
@@ -1453,13 +1453,14 @@ function authorSelector($author = NULL) {
 
 /**
  * Prints the publish/un-published/scheduled publishing icon with a link for the pages and news articles list.
+ * 
+ * @since 1.6.1 
  *
- * @param string $object Object of the page or news article to check
- * @return string
+ * @param obj $obj Object of the page or news article to check
  */
-function printPublishIconLink($object, $type, $linkback = '') {
+function printPublishIconLink($obj, $type = '', $linkback = '') {
 	$urladd = '';
-	if ($type == "news") {
+	if ($obj->table == 'news') {
 		if (isset($_GET['subpage'])) {
 			$urladd .= "&amp;subpage=" . sanitize($_GET['subpage']);
 		}
@@ -1476,48 +1477,35 @@ function printPublishIconLink($object, $type, $linkback = '') {
 			$urladd .= "&amp;articles_page=" . sanitize_numeric($_GET['articles_page']);
 		}
 	}
-	if ($object->hasPublishSchedule()) {
+	if ($obj->hasPublishSchedule()) {
 		$title = gettext("Publish immediately (skip scheduling)");
-		$alt = gettext("Scheduled for published");
 		$action = '?skipscheduling=1';
-		$icon = getStatusIcon('publishschedule');;
-	} else if ($object->hasExpiration()) {
+	} else if ($obj->hasExpiration()) {
 		$title = gettext("Skip scheduled expiration");
-		$alt = gettext("Scheduled for expiration");
 		$action = '?skipexpiration=1';
-		$icon = getStatusIcon('expiration');
-	} else if ($object->isPublished()) {
-		if ($object->isUnpublishedByParent()) {
-			$title = gettext("Unpublish");
-			$alt = gettext("Unpublished by parent");
+	} else if ($obj->isPublished()) {
+		if ($obj->isUnpublishedByParent()) {
+			$title = gettext("Unpublish") .' - ' . getStatusNote('unpublished_by_parent');
 			$action = '?publish=0';
-			$icon = getStatusIcon('unpublished_by_parent');
 		} else {
 			$title = gettext("Unpublish");
-			$alt = gettext("Published");
 			$action = '?publish=0';
-			$icon = getStatusIcon('published');
 		}
-	} else if (!$object->isPublished()) {
-		if ($object->hasExpired()) {
+	} else if (!$obj->isPublished()) {
+		if ($obj->hasExpired()) {
 			$title = gettext("Publish immediately (skip expiration)");
-			$alt = gettext("Unpublished because expired");
 			$action = '?skipexpiration=1';
-			$icon = getStatusIcon('expired');
 		} else {
 			$title = gettext("Publish");
-			$alt = gettext("Unpublished");
 			$action = '?publish=1';
-			$icon = getStatusIcon('unpublished');
 		}
 	}
 	?>
-	<a href="<?php echo $action; ?>&amp;titlelink=<?php echo html_encode($object->getName()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
-		<img src="<?php echo $icon; ?>" alt="<?php echo $alt; ?>" title= "<?php echo $title; ?>" />
+	<a href="<?php echo $action; ?>&amp;titlelink=<?php echo html_encode($obj->getName()) . $urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update') ?>">
+		<?php echo getPublishIcon($obj); ?>
 	</a>
 	<?php
 }
-
 
 	/**
 	 * Checks if a checkbox is selected and checks it if.
