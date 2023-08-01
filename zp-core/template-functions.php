@@ -1660,9 +1660,13 @@ function printAlbumLocation() {
  * @return string
  */
 function getAlbumDesc() {
-	if (!in_context(ZP_ALBUM))
+	if (!in_context(ZP_ALBUM)) {
 		return false;
+	}
 	global $_zp_current_album;
+	if (!$_zp_current_album->checkAccess()) {
+		return '<p>' . gettext('<em>This album is protected.</em>') . '</p>';
+	}
 	return $_zp_current_album->getDesc();
 }
 
@@ -2405,9 +2409,13 @@ function getImageCountry() {
  * @return string
  */
 function getImageDesc() {
-	if (!in_context(ZP_IMAGE))
+	if (!in_context(ZP_IMAGE)) {
 		return false;
+	}
 	global $_zp_current_image;
+	if (!$_zp_current_image->checkAccess()) {
+		return '<p>' . gettext('<em>This image is protected.</em>') . '</p>';
+	}
 	return $_zp_current_image->getDesc();
 }
 
