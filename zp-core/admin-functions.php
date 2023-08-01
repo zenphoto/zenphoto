@@ -5561,7 +5561,7 @@ function printProtectedIcon($obj) {
 	if ($obj->getPassword()) {
 		echo '<span title="' . html_encode(getStatusNote('protected')) . '">' . getStatusIcon('protected') . '</span>';
 	} else if ($obj->isProtectedByParent()) {
-		echo '<span title="' . html_encode(getStatusNote('protected_by_parent')) . '">' . getStatusIcon('protected') . '</span>';
+		echo '<span title="' . html_encode(getStatusNote('protected_by_parent')) . '">' . getStatusIcon('protected_by_parent') . '</span>';
 	}
 }
 
