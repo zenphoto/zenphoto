@@ -34,7 +34,7 @@ class dynamicAlbum extends AlbumBase {
 					$data = substr($data, $i + 1);
 				}
 				if (strpos($data1, 'WORDS=') !== false) {
-					$words = "search=" . urlencode(substr($data1, 6));
+					$words = "s=" . urlencode(substr($data1, 6));
 				}
 				if (strpos($data1, 'THUMB=') !== false) {
 					$thumb = trim(substr($data1, 6));
@@ -132,7 +132,12 @@ class dynamicAlbum extends AlbumBase {
 	 * @return string
 	 */
 	function getSearchParams() {
-		$searchparams = str_replace('words=', 'search=', strval($this->get('search_params')));
+		$search = array(
+				'words=', // pre 1.6
+				'search=' // 1.6
+		);
+		$replace = 's='; // 1.6.1+
+		$searchparams = str_replace($search, $replace, strval($this->get('search_params')));
 		return $searchparams;
 	}
 
