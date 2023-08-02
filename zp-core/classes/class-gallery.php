@@ -1249,8 +1249,9 @@ class Gallery {
 
 	/**
 	 *
-	 * Tests if a page is excluded from password protection
+	 * Tests if a custom page is excluded from password protection
 	 * @param $page
+	 * @return boolean
 	 */
 	function isUnprotectedPage($page) {
 		return (in_array($page, $this->unprotected_pages));

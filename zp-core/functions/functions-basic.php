@@ -1493,7 +1493,10 @@ function switchLog($log) {
 function debugLog($message, $reset = false, $logname = 'debug') {
 	if (defined('SERVERPATH')) {
 		global $_zp_mutex;
-		$logname = str_replace('_', '-', $logname) . '_' . date('Y-m-d'); 
+		$logname = str_replace('_', '-', $logname);
+		if (getOption('daily_logs')) {
+			$logname .= '_' . date('Y-m-d');
+		}
 		$path = SERVERPATH . '/' . DATA_FOLDER . '/' . $logname . '.log';
 		$me = getmypid();
 		if (is_object($_zp_mutex)) {

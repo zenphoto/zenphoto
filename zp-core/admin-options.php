@@ -147,6 +147,7 @@ if (isset($_GET['action'])) {
 					setOption($matches[1] . '_log_mail', (int) isset($_POST['log_mail_' . $matches[1]]));
 				}
 			}
+			setOption('daily_logs', (int) isset($_POST['daily_logs']));
 		}
 
 		/*		 * * Gallery options ** */
@@ -1067,6 +1068,20 @@ Authority::printPasswordFormJS();
 									<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
 								</tr>
 								
+								<tr>
+									<td width="175">
+										<?php echo gettext("Daily logs:"); ?></p
+									
+									</td>
+									<td width="350">
+										<label>
+											<input type="checkbox" id="daily_logs" name="daily_logs" value="1" <?php checked('1', getOption('daily_logs')); ?> /> <?php echo gettext('Enable daily logs'); ?>
+										</label>
+									</td>
+									<td><?php echo gettext('If checked logs will be created daily by appending the dateformat YYYY-mm-dd to the filename.'); ?></td>
+								</tr>
+								
+								
 								<?php zp_apply_filter('admin_general_data'); ?>
 								<tr>
 									<td colspan="3">
@@ -1076,6 +1091,12 @@ Authority::printPasswordFormJS();
 										</p>
 									</td>
 								</tr>
+								
+								
+								
+								
+								
+								
 							</table>
 						</form>
 					</div>
