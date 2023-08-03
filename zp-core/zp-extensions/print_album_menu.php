@@ -274,7 +274,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 							(in_context(ZP_SEARCH_LINKED)) && ($a = $_zp_current_search->getDynamicAlbum()) && $a->name == $albumobj->name) {
 				$current = $css_class_t;
 			} else {
-				$current = "";
+				$current = trim($has_password);
 			}
 			$title = $albumobj->getTitle();
 			if ($limit) {
