@@ -1486,7 +1486,7 @@ function switchLog($log) {
  * or would create havoc in the HTML.
  * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
  *
- * @param string $message the debug information
+ * @param string|array|object $message the debug information. This can also be an array or object. For detailed info about the content use debuglogVar().
  * @param bool $reset set to true to reset the log to zero before writing the message
  * @param string $logname Optional custom log name to log to, default "debug"
  */
@@ -1520,6 +1520,9 @@ function debugLog($message, $reset = false, $logname = 'debug') {
 			if ($f) {
 				fwrite($f, '{' . $me . ':' . gmdate('D, d M Y H:i:s') . " GMT}\n");
 			}
+		}
+		if (is_array($message) || is_object($message)) {
+			$message = print_r($message, true);
 		}
 		if ($f) {
 			fwrite($f, "  " . $message . "\n");
