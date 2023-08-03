@@ -349,7 +349,7 @@ function debugLogBacktrace($message, $omit = 0, $logname = 'debug') {
 	if (!empty($line)) {
 		$output .= 'from ' . $line;
 	}
-	debugLog($output, $logname);
+	debugLog($output, false, $logname);
 }
 
 /**
@@ -370,7 +370,7 @@ function debugLogVar($message, $var = '', $logname = 'debug') {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog(trim($message) . "\r" . html_decode(getBare($str)), $logname);
+	debugLog(trim($message) . "\r" . html_decode(getBare($str)), false, $logname);
 }
 
 /**
