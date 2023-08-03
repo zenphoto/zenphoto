@@ -120,14 +120,14 @@ if (isset($_GET['action'])) {
 				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
 			}
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
-			
+
 			// date format
 			$dateformat = sanitize($_POST['date_format_list'], 3);
 			if ($dateformat == 'custom') {
 				$dateformat = sanitize($_POST['date_format'], 3);
 			}
 			setOption('date_format', $dateformat);
-			
+
 			// time format
 			if (isset($_POST['time_format_list'])) { // may not be submitted if custom/preferred are selector for date format
 				$timeformat = sanitize($_POST['time_format_list'], 3);
@@ -139,7 +139,7 @@ if (isset($_GET['action'])) {
 			}
 			setOption('time_format', $timeformat);
 			setOption('date_format_localized', (int) isset($_POST['date_format_localized']));
-			
+
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
 				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
@@ -161,14 +161,14 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
 			$_zp_gallery->setTitle(process_language_string_save('gallery_title', 2));
 			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', EDITOR_SANITIZE_LEVEL));
-			
+
 			$_zp_gallery->setCopyrightNotice(process_language_string_save('copyright_site_notice', EDITOR_SANITIZE_LEVEL));
 			$_zp_gallery->setCopyrightURL(sanitize($_POST['copyright_site_url'], 3));
 			$_zp_gallery->set('copyright_site_url_custom', sanitize($_POST['copyright_site_url_custom'], 3));
 			setOption('display_copyright_notice', (int) isset($_POST['display_copyright_notice']));
 			$_zp_gallery->set('copyright_site_rightsholder', sanitize($_POST['copyright_site_rightsholder'], 3));
 			$_zp_gallery->set('copyright_site_rightsholder_custom', sanitize($_POST['copyright_site_rightsholder_custom'], 3));
-		
+
 			$_zp_gallery->setParentSiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'], 3);
 			$_zp_gallery->setParentSiteURL($web);
@@ -219,7 +219,7 @@ if (isset($_GET['action'])) {
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			setOption('search_within', (int) ($_POST['search_within'] && true));
-			
+
 			// image default sort order + direction
 			$sorttype = strtolower(sanitize($_POST['search_image_sort_type'], 3));
 			if ($sorttype == 'custom') {
@@ -236,7 +236,7 @@ if (isset($_GET['action'])) {
 				}
 				setOption('search_image_sort_direction', $direction);
 			}
-			
+
 			// album default sort order + direction
 			$sorttype = strtolower(sanitize($_POST['search_album_sort_type'], 3));
 			if ($sorttype == 'custom') {
@@ -248,7 +248,7 @@ if (isset($_GET['action'])) {
 			} else {
 				setOption('search_album_sort_direction', isset($_POST['search_album_sort_direction']));
 			}
-			
+
 			if (ZP_NEWS_ENABLED) {
 				// Zenpage news articles default sort order + direction
 				$sorttype = strtolower(sanitize($_POST['search_newsarticle_sort_type'], 3));
@@ -262,7 +262,7 @@ if (isset($_GET['action'])) {
 					setOption('search_newsarticle_sort_direction', isset($_POST['search_newsarticle_sort_direction']));
 				}
 			}
-			
+
 			if (ZP_PAGES_ENABLED) {
 				// Zenpage pages default sort order + direction
 				$sorttype = strtolower(sanitize($_POST['search_page_sort_type'], 3));
@@ -288,14 +288,14 @@ if (isset($_GET['action'])) {
 			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
 			setOption('EmbedIPTC', (int) isset($_POST['EmbedIPTC']));
-			
+
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('display_copyright_image_notice', (int) isset($_POST['display_copyright_image_notice']));
 			setOption('copyright_image_url', sanitize($_POST['copyright_image_url']));
 			setOption('copyright_image_url_custom', sanitize($_POST['copyright_image_url_custom']));
 			setOption('copyright_image_rightsholder', sanitize($_POST['copyright_image_rightsholder']));
 			setOption('copyright_image_rightsholder_custom', sanitize($_POST['copyright_image_rightsholder_custom']));
-			
+
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			setOption('image_max_size', sanitize_numeric($_POST['image_max_size']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
@@ -406,7 +406,7 @@ if (isset($_GET['action'])) {
 				} else {
 					$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
 					$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
-					if (isset($_POST['image_size'])) 
+					if (isset($_POST['image_size']))
 						setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 					if (isset($_POST['image_use_side']))
 						setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
@@ -431,7 +431,7 @@ if (isset($_GET['action'])) {
 						}
 						setThemeOption('thumb_crop_height', $nch, $table, $themename);
 					}
-					
+
 					if (isset($_POST['albums_per_page'])) {
 						$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
 						setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
@@ -448,7 +448,7 @@ if (isset($_GET['action'])) {
 					if (isset($_POST['thumb_transition_max'])) {
 						setThemeOption('thumb_transition_max', max(1, sanitize_numeric($_POST['thumb_transition_max'])), $table, $themename);
 					}
-					
+
 					if (isset($_POST['custom_index_page']))
 						setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 					$otg = getThemeOption('thumb_gray', $table, $themename);
@@ -831,7 +831,7 @@ Authority::printPasswordFormJS();
 										<?php if(!empty($systemlocales)) { // if class ResourceBundle does not exist this has no meaning ?>
 											<p class="notebox"><?php printf(gettext('Languages marked with the %1$s icon have no matching locale installed on the server and therefore will not work. This is a technical requirement by native <a href="%2$s">PHP gettext</a>.'), '<img src="'. WEBPATH . '/'. ZENFOLDER .'/images/action.png" alt="'. gettext('Locale not installed'). '">', 'https://www.php.net/manual/en/book.gettext.php'); ?></p>
 										<?php } ?>
-										
+
 										<label class="checkboxlabel">
 											<input type="checkbox" name="multi_lingual" value="1"	<?php checked('1', getOption('multi_lingual')); ?> /><?php echo gettext('Multi-lingual'); ?>
 										</label>
@@ -855,7 +855,7 @@ Authority::printPasswordFormJS();
 											</label>
 									</td>
 									<td><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/datetime.format.php">datetime</a> format string in the custom box.'); ?>
-									<?php if (extension_loaded('intl')) { ?>		
+									<?php if (extension_loaded('intl')) { ?>
 										<p class="notebox">
 										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you use a custom date format or choose one of the <em>preferred date representation</em> formats the time format option is ignored.'); ?>
 									</p>
@@ -1067,11 +1067,11 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext('Logs will be "rolled" over when they exceed the specified size. If checked, the administrator will be e-mailed when this occurs.') ?></td>
 								</tr>
-								
+
 								<tr>
 									<td width="175">
 										<?php echo gettext("Daily logs:"); ?></p
-									
+
 									</td>
 									<td width="350">
 										<label>
@@ -1080,8 +1080,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext('If checked logs will be created daily by appending the dateformat YYYY-mm-dd to the filename.'); ?></td>
 								</tr>
-								
-								
+
 								<?php zp_apply_filter('admin_general_data'); ?>
 								<tr>
 									<td colspan="3">
@@ -1091,12 +1090,7 @@ Authority::printPasswordFormJS();
 										</p>
 									</td>
 								</tr>
-								
-								
-								
-								
-								
-								
+
 							</table>
 						</form>
 					</div>
@@ -1135,18 +1129,18 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext('Site copyright notice'); ?></td>
 									<td>
 										<p><?php print_language_string_list($_zp_gallery->getCopyrightNotice('all'), 'copyright_site_notice'); ?> <?php echo gettext('Notice'); ?></p>
-										
+
 									</td>
 									<td>
 										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
 									</td>
 								</tr>
-		
+
 								<tr>
 									<td><?php echo gettext('Site copyright URL'); ?></td>
 									<td>
@@ -1156,7 +1150,7 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
 									</td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext("Display copyright notice"); ?></td>
 									<td>
@@ -1164,7 +1158,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("Enable to display the copyright notice. This may usually be in the theme footer but is up to the theme."); ?></td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext('Site copyright rightsholder'); ?></td>
 									<td>
@@ -1174,7 +1168,7 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> the image metadata fields "copyright" or "owner" are used as fallbacks, if available.'); ?></p>
 									</td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext('Gallery type'); ?></td>
 									<td>
@@ -1230,7 +1224,7 @@ Authority::printPasswordFormJS();
 										<td>
 											<p>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														 class="dirtyignore" 
+														 class="dirtyignore"
 														 onkeydown="passwordClear('');"
 														 id="user_name" name="user"
 														 value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
@@ -1259,7 +1253,7 @@ Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														 class="dirtyignore" 
+														 class="dirtyignore"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
@@ -1267,7 +1261,7 @@ Authority::printPasswordFormJS();
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															 class="dirtyignore" 
+															 class="dirtyignore"
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -1559,7 +1553,7 @@ Authority::printPasswordFormJS();
 										</td>
 										<td>
 											<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														 class="dirtyignore" 
+														 class="dirtyignore"
 														 onkeydown="passwordClear('');"
 														 id="user_name" name="user"
 														 value="<?php echo html_encode(getOption('search_user')); ?>" autocomplete="off" />
@@ -1588,7 +1582,7 @@ Authority::printPasswordFormJS();
 											?>
 											<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 											<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														 class="dirtyignore" 
+														 class="dirtyignore"
 														 id="pass" name="pass"
 														 onkeydown="passwordClear('');"
 														 onkeyup="passwordStrength('');"
@@ -1596,7 +1590,7 @@ Authority::printPasswordFormJS();
 											<br />
 											<span class="password_field_">
 												<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															 class="dirtyignore" 
+															 class="dirtyignore"
 															 id="pass_r" name="pass_r" disabled="disabled"
 															 onkeydown="passwordClear('');"
 															 onkeyup="passwordMatch('');"
@@ -1729,7 +1723,7 @@ Authority::printPasswordFormJS();
 									<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 									<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
 								</td>
-								
+
 								<tr>
 									<td><?php echo gettext('Search fields selector'); ?></td>
 									<td>
@@ -1744,7 +1738,7 @@ Authority::printPasswordFormJS();
 										<?php echo gettext('If enabled the search form will feature a selector for all currently enabled search fields above.'); ?>
 									</td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext('Cache expiry'); ?></td>
 									<td>
@@ -1754,14 +1748,14 @@ Authority::printPasswordFormJS();
 										<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.'); ?>
 									</td>
 								</tr>
-				
+
 								<tr>
 									<td class="leftcolumn"><?php echo gettext("Sort albums by"); ?> </td>
 									<td colspan="2">
 										<span class="nowrap">
 											<select id="album_sort_select" name="search_album_sort_type" onchange="update_direction(this, 'album_direction_div', 'album_custom_div');">
 												<?php
-												$sort = getSortByOptions('albums-search'); 
+												$sort = getSortByOptions('albums-search');
 												$cvt = $type = strtolower(getOption('search_album_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1797,7 +1791,7 @@ Authority::printPasswordFormJS();
 											$dsp = 'block';
 										}
 										?>
-										
+
 									</td>
 
 								</tr>
@@ -1808,7 +1802,7 @@ Authority::printPasswordFormJS();
 										<span class="nowrap">
 											<select id="image_sort_select" name="search_image_sort_type" onchange="update_direction(this, 'image_direction_div', 'image_custom_div')">
 												<?php
-												$sort = getSortByOptions('images-search'); 
+												$sort = getSortByOptions('images-search');
 												$cvt = $type = strtolower(getOption('search_image_sort_type'));
 												if ($type && !in_array($type, $sort)) {
 													$cv = array('custom');
@@ -1844,7 +1838,7 @@ Authority::printPasswordFormJS();
 											$dsp = 'block';
 										}
 										?>
-										
+
 									</td>
 								</tr>
 								<?php
@@ -1892,11 +1886,11 @@ Authority::printPasswordFormJS();
 												$dsp = 'block';
 											}
 											?>
-											
+
 										</td>
 									</tr>
-								<?php 
-								} 
+								<?php
+								}
 								if (ZP_PAGES_ENABLED) {
 									$zenpage_sort_pages = getSortByOptions('pages-search');
 								?>
@@ -1941,11 +1935,11 @@ Authority::printPasswordFormJS();
 												$dsp = 'block';
 											}
 											?>
-											
+
 										</td>
 									</tr>
 								<?php } ?>
-					
+
 								<tr>
 									<td colspan="3">
 										<p class="buttons">
@@ -2401,7 +2395,7 @@ Authority::printPasswordFormJS();
 													</td>
 													<td style="margin:0; padding:0">
 														<input type="text" size="30"
-																	 class="dirtyignore" 
+																	 class="dirtyignore"
 																	 onkeydown="passwordClear('');"
 																	 id="user_name" name="user"
 																	 value="<?php echo html_encode(getOption('protected_image_user')); ?>" autocomplete="off" />
@@ -2426,7 +2420,7 @@ Authority::printPasswordFormJS();
 														?>
 														<input class="dirtyignore" type="password" name="pass" style="display:none;" />
 														<input type="password" size="30"
-																	 class="dirtyignore" 
+																	 class="dirtyignore"
 																	 id="pass" name="pass"
 																	 onkeydown="passwordClear('');"
 																	 onkeyup="passwordStrength('');"
@@ -2434,7 +2428,7 @@ Authority::printPasswordFormJS();
 														<br />
 														<span class="password_field_">
 															<input type="password" size="30"
-																		 class="dirtyignore" 
+																		 class="dirtyignore"
 																		 id="pass_r" name="pass_r" disabled="disabled"
 																		 onkeydown="passwordClear('');"
 																		 onkeyup="passwordMatch('');"
@@ -2571,12 +2565,12 @@ Authority::printPasswordFormJS();
 										</td>
 										<td><?php echo gettext("If checked line breaks embeded in the IPTCcaption field will be converted to <code>&lt;br&gt;</code> on image importing."); ?></td>
 									</tr>
-        
+
 								<tr>
 									<td><?php echo gettext('Image copyright notice'); ?></td>
 									<td>
 										<p><?php print_language_string_list(getOption('copyright_image_notice'), 'copyright_image_notice'); ?> <?php echo gettext('Notice'); ?></p>
-										
+
 									</td>
 									<td>
 										<p><?php echo gettext('The notice will be used by the html_meta_tags plugin. If not set the image meta data is tried instead.'); ?></p>
@@ -2591,7 +2585,7 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('Choose a Zenpage page or define a custom URL. The URL maybe used to point to some specific copyright info source. Must be an absolute URL address of the form: http://mydomain.com/license.html.'); ?></p>
 									</td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext("Display Image copyright notice"); ?></td>
 									<td>
@@ -2599,7 +2593,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("Enable to display the image copyright notice. This may usually be in the theme below the image but is up to the theme where and if used at all.."); ?></td>
 								</tr>
-								
+
 								<tr>
 									<td><?php echo gettext('Image copyright rightsholder'); ?></td>
 									<td>
@@ -2609,9 +2603,9 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext('The rights holder will be used by the html_meta_tags plugin. If set to <em>none</em> the image metadata fields "copyright" or "owner" are used as fallbacks, if available.'); ?></p>
 									</td>
 								</tr>
-								
-								
-								
+
+
+
 								<tr>
 									<?php
 											if (GRAPHICS_LIBRARY == 'Imagick') {
@@ -3030,7 +3024,7 @@ Authority::printPasswordFormJS();
 											</td>
 											<td><?php echo gettext("If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."); ?></td>
 										</tr>
-						
+
 										<?php
 									}
 									if (count($supportedOptions) > 0) {
@@ -3132,7 +3126,7 @@ Authority::printPasswordFormJS();
 										if (false === eval($str)) {
 											$plugin_name = '';
 										}
-									} 
+									}
 									if(empty($plugin_name)) {
 										$plugin_name = $extension;
 									}
@@ -3143,13 +3137,13 @@ Authority::printPasswordFormJS();
 										} else {
 											$plugin_description = processExtensionVariable($plugin_description);
 										}
-									} 
+									}
 									$plugin_version = '';
 									if ($str = isolate('$plugin_version', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_version = '';
 										}
-									} 
+									}
 									$plugin_deprecated = '';
 									if ($str = isolate('$plugin_deprecated', $pluginStream)) {
 										if (false === eval($str)) {
@@ -3160,13 +3154,13 @@ Authority::printPasswordFormJS();
 												$plugin_deprecated = gettext('This plugin will be removed in future versions.');
 											}
 										}
-									} 
+									}
 									$plugin_date = '';
 									if ($str = isolate('$plugin_date', $pluginStream)) {
 										if (false === eval($str)) {
 											$plugin_date = '';
 										}
-									} 
+									}
 									$str = isolate('$option_interface', $pluginStream);
 									if (false !== $str) {
 										require_once($path);
@@ -3223,8 +3217,8 @@ Authority::printPasswordFormJS();
 															?>
 														</th>
 														<th style="text-align:left; font-weight: normal;" colspan="2">
-															<?php 
-															echo $plugin_description;  
+															<?php
+															echo $plugin_description;
 															if($plugin_deprecated) {
 																echo '<p class="warningbox"><strong>' . gettext('Deprecated').  ':</strong> ' . $plugin_deprecated . '</p>';
 															}
@@ -3414,7 +3408,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td width="350">
 										<label>
-											<?php 
+											<?php
 												$anonymize_ip = getOption('anonymize_ip');
 												$anonymize_ip_levels = array(
 													gettext('0 - No anonymizing') => 0,
@@ -3437,8 +3431,8 @@ Authority::printPasswordFormJS();
 										</p>
 									</td>
 								</tr>
-								<?php 
-								$data_policy_sharedtext = gettext('This is used by the official plugins <em>comment_form</em>, <em>contact_form</em> and <em>register_user</em> plugins if the data usage confirmation is enabled. Other plugins or usages must implement <code>getDataUsageNotice()/printDataUsageNotice()</code> specifially.'); 
+								<?php
+								$data_policy_sharedtext = gettext('This is used by the official plugins <em>comment_form</em>, <em>contact_form</em> and <em>register_user</em> plugins if the data usage confirmation is enabled. Other plugins or usages must implement <code>getDataUsageNotice()/printDataUsageNotice()</code> specifially.');
 								?>
 								<tr>
 									<td width="175">
