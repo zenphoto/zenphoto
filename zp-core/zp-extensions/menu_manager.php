@@ -212,6 +212,7 @@ function getItemTitleAndURL($item) {
 			"title" => '', 
 			"url" => '', 
 			"name" => '', 
+			'public' => true,
 			'protected' => false, 
 			'theme' => $themename);
 	$valid = true;
@@ -222,6 +223,7 @@ function getItemTitleAndURL($item) {
 					"title" => get_language_string($item['title']), 
 					"url" => WEBPATH, 
 					"name" => WEBPATH, 
+					'public' => true,
 					'protected' => false, 
 					'theme' => $themename);
 			break;
@@ -230,6 +232,7 @@ function getItemTitleAndURL($item) {
 					"title" => get_language_string($item['title']), 
 					"url" => getGalleryIndexURL(), 
 					"name" => WEBPATH, 
+					'public' => true,
 					'protected' => false, 
 					'theme' => $themename);
 			break;
@@ -252,6 +255,7 @@ function getItemTitleAndURL($item) {
 					"title" => $title, 
 					"url" => $url, 
 					"name" => $item['link'], 
+					'public' => true,
 					'protected' => $protected, 
 					'theme' => $themename);
 			break;
@@ -262,17 +266,21 @@ function getItemTitleAndURL($item) {
 				if (is_array($result)) {
 					$obj = new ZenpagePage($item['link']);
 					$url = $obj->getLink(0);
+					$public = $obj->isPublic();
 					$protected = $obj->isProtected();
+					
 					$title = $obj->getTitle();
 				} else {
 					$valid = false;
 					$url = '';
+					$public = false;
 					$protected = 0;
 				}
 				$array = array(
 						"title" => $title, 
 						"url" => $url, 
 						"name" => $item['link'], 
+						'public' => $public,
 						'protected' => $protected, 
 						'theme' => $themename);
 			}
@@ -284,6 +292,7 @@ function getItemTitleAndURL($item) {
 						"title" => get_language_string($item['title']), 
 						"url" => $url, 
 						"name" => $url, 
+						'public' => true,
 						'protected' => false);
 			}
 			break;
@@ -294,17 +303,20 @@ function getItemTitleAndURL($item) {
 				if ($obj) {
 					$obj = new ZenpageCategory($item['link']);
 					$title = $obj->getTitle();
+					$public = $obj->isPublic();
 					$protected = $obj->isProtected();
 					$url = $obj->getLink(0);
 				} else {
 					$valid = false;
 					$url = '';
+					$public = 0;
 					$protected = 0;
 				}
 				$array = array(
 						"title" => $title, 
 						"url" => $url, 
 						"name" => $item['link'], 
+						'public' => $public,
 						'protected' => $protected, 
 						'theme' => $themename);
 			}
@@ -321,6 +333,7 @@ function getItemTitleAndURL($item) {
 					"title" => $title, 
 					"url" => $url, 
 					"name" => $item['link'], 
+					'public' => true,
 					'protected' => false, 
 					'theme' => $themename);
 			break;
@@ -330,15 +343,17 @@ function getItemTitleAndURL($item) {
 					"url" => $item['link'], 
 					"name" => $item['link'], 
 					'open_newtab' => $item['open_newtab'], 
+					'public' => true,
 					'protected' => false, 
 					'theme' => $themename);
 			break;
 		case 'menulabel':
 			$array = array(
 					"title" => get_language_string($item['title']), 
-					"url" => NULL, 
-					'name' => $item['title'], 
-					'protected' => false, 
+					"url" => NULL,
+					'name' => $item['title'],
+					'public' => true,
+					'protected' => false,
 					'theme' => $themename);
 			break;
 		default:
@@ -346,6 +361,7 @@ function getItemTitleAndURL($item) {
 					"title" => get_language_string($item['title']), 
 					"url" => $item['link'], 
 					"name" => $item['link'], 
+					'public' => true,
 					'protected' => false, 
 					'theme' => $themename);
 			break;
@@ -610,7 +626,10 @@ function getMenumanagerPredicessor($menuset = 'default') {
 		array_push($order, sprintf('%03u', $next));
 		$sortorder = implode('-', $order);
 		if (array_key_exists($sortorder, $items) && $items[$sortorder]['type'] != 'menulabel') { // omit the menulabels
-			return getItemTitleAndURL($items[$sortorder]);
+			$item = getItemTitleAndURL($items[$sortorder]);
+			if ($item['public']) {
+				return $item;
+			}
 		}
 		$next--;
 	}
@@ -659,7 +678,10 @@ function getMenumanagerSuccessor($menuset = 'default') {
 		$sortorder = implode('-', $order);
 		if (array_key_exists($sortorder, $items)) {
 			if ($items[$sortorder]['type'] != 'menulabel') { // omit the menulabels
-				return getItemTitleAndURL($items[$sortorder]);
+				$item = getItemTitleAndURL($items[$sortorder]);
+				if ($item['public']) {
+					return $item;
+				}
 			}
 		}
 		$next++;
@@ -733,7 +755,7 @@ function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset = 'defa
 		$items = getMenuItems($menuset, getMenuVisibility());
 		echo "<div" . (($id) ? " id=\"$id\"" : "") . " class=\"$class\">\n";
 		echo "<ul class=\"$class\">\n";
-		if ($nextprev) {
+		if ($nextprev && getMenumanagerPredicessor($menuset)) {
 			echo "<li class=\"prev\">";
 			printMenumanagerPrevLink($prevtext, $menuset, $prevtext, gettext("Previous Page"));
 			echo "</li>\n";
@@ -773,7 +795,7 @@ function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset = 'defa
 			printLinkHTML($itemarray['url'], $total, sprintf(ngettext('Page {%u}', 'Page {%u}', $total), $total));
 			echo "</li>";
 		}
-		if ($nextprev) {
+		if ($nextprev && getMenumanagerSuccessor($menuset)) {
 			echo "<li class=\"next\">";
 			printMenumanagerNextLink($nexttext, gettext("Next Page"));
 			echo "</li>\n";
@@ -1275,11 +1297,15 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 						break;
 				}
 			}
+			$class = '';
 			if ($item['id'] == $pageid && !is_null($pageid)) {
 				if ($level == 1) { // top level
 					$class = ' ' . $css_class_topactive;
 				} else {
 					$class = ' ' . $css_class_active .'-' . $level;
+				}
+				if ($itemarray['protected']) {
+					$class .= ' has_password';
 				}
 				echo '<li class="menu_' . trim($item['type'] . ' ' . $class) . '">' . $itemtitle . $itemcounter;
 			} else {
@@ -1289,8 +1315,9 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 					} else {
 						$class = ' ' . $css_class_active .'-' . $level;
 					}
-				} else {
-					$class = '';
+				} 
+				if ($itemarray['protected']) {
+					$class .= ' has_password';
 				}
 				if ($item['include_li']) {
 					echo '<li class="menu_' . $item['type'] . $class . '">';
