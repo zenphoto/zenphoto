@@ -393,6 +393,7 @@ class zenpagecms {
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS) && ZP_NEWS_ENABLED) {
 			// admin has zenpage rights, provide link to the Zenpage admin tab
 			echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php">' . gettext('News') . '</a></li>';
+			echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-categories.php?page=news&tab=categories">' . gettext('News Categories') . '</a></li>';
 		}
 		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS) && ZP_PAGES_ENABLED) {
 			echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php">' . gettext('Pages') . '</a></li>';
