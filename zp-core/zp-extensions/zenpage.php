@@ -406,12 +406,12 @@ class zenpagecms {
 			$delete_page = gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!");
 			// page is zenpage page--provide edit, delete, and add links
 			echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=' . html_encode(getPageTitlelink()) . '">' . gettext('Edit Page') . '</a></li>';
+			echo '<li><a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?page&amp;add">' . gettext('New Page') . '</a></li>';
 			?>
 			<li>
-				<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-pages.php?delete=<?php echo html_encode(getPageTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>', '<?php echo $delete_page; ?>')" title="<?php echo gettext('Delete page'); ?>"><?php echo gettext('Delete Page'); ?></a>
+				<button class="admin_data-delete" type="button" onclick="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-pages.php?delete=<?php echo html_encode(getPageTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>', '<?php echo $delete_page; ?>')"><?php echo gettext('Delete Page'); ?></button>
 			</li>
 			<?php
-			echo '<li><a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?page&amp;add">' . gettext('New Page') . '</a></li>';
 		}
 		return $redirect . '&title=' . urlencode(getPageTitlelink());
 	}
@@ -423,12 +423,12 @@ class zenpagecms {
 				$delete_article = gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!");
 				// page is a NewsArticle--provide zenpage edit, delete, and Add links
 				echo "<li><a href=\"" . $zf . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=" . html_encode($_zp_current_zenpage_news->getName()) . "\">" . gettext("Edit Article") . "</a></li>";
+				echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newsarticle&amp;add">' . gettext('New Article') . '</a></li>';
 				?>
 				<li>
-					<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?delete=<?php echo html_encode($_zp_current_zenpage_news->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>', '<?php echo $delete_article; ?>')" title="<?php echo gettext('Delete article'); ?>"><?php echo gettext('Delete Article'); ?></a>
+					<button class="admin_data-delete" type="button" onclick="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?delete=<?php echo html_encode($_zp_current_zenpage_news->getName()); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>', '<?php echo $delete_article; ?>')"><?php echo gettext('Delete Article'); ?></button>
 				</li>
 				<?php
-				echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newsarticle&amp;add">' . gettext('New Article') . '</a></li>';
 			}
 			$redirect .= '&title=' . urlencode($_zp_current_zenpage_news->getName());
 		} else {
@@ -439,7 +439,7 @@ class zenpagecms {
 					echo '<li><a href="' . $zf . '/' . PLUGIN_FOLDER . '/zenpage/admin-edit.php?newscategory&add">' . gettext('New Category') . '</a></li>';
 					?>
 					<li>
-						<a href="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-categories.php?delete=<?php echo html_encode($_zp_current_category->getName()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category'); ?>', '<?php echo $delete_category; ?>')" title="<?php echo gettext('Delete Category'); ?>"><?php echo gettext('Delete Category'); ?></a>
+						<button class="admin_data-delete" type="button" onclick="javascript:confirmDelete('<?php echo $zf . '/' . PLUGIN_FOLDER; ?>/zenpage/admin-categories.php?delete=<?php echo html_encode($_zp_current_category->getName()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category'); ?>', '<?php echo $delete_category; ?>')"><?php echo gettext('Delete Category'); ?></button>
 					</li>
 					<?php
 					$redirect .= '&category=' . $_zp_current_category->getName();
