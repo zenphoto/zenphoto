@@ -244,10 +244,12 @@ function getItemTitleAndURL($item) {
 			if (!$valid || strpos($localpath, '..') !== false) {
 				$valid = false;
 				$url = '';
+				$public = false;
 				$protected = 0;
 			} else {
 				$obj = AlbumBase::newAlbum($item['link']);
 				$url = $obj->getLink(0);
+				$public = $obj->isPublic();
 				$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 				$title = $obj->getTitle();
 			}
@@ -255,7 +257,7 @@ function getItemTitleAndURL($item) {
 					"title" => $title, 
 					"url" => $url, 
 					"name" => $item['link'], 
-					'public' => true,
+					'public' => $public,
 					'protected' => $protected, 
 					'theme' => $themename);
 			break;
