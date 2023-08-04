@@ -212,7 +212,7 @@ function getItemTitleAndURL($item) {
 			"title" => '', 
 			"url" => '', 
 			"name" => '', 
-			'public' => true,
+			'public' => false,
 			'protected' => false, 
 			'theme' => $themename);
 	$valid = true;
@@ -248,7 +248,7 @@ function getItemTitleAndURL($item) {
 			} else {
 				$obj = AlbumBase::newAlbum($item['link']);
 				$url = $obj->getLink(0);
-				$protected = $obj->isProtected();
+				$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 				$title = $obj->getTitle();
 			}
 			$array = array(
@@ -265,10 +265,9 @@ function getItemTitleAndURL($item) {
 				$result = $_zp_db->querySingleRow($sql);
 				if (is_array($result)) {
 					$obj = new ZenpagePage($item['link']);
-					$url = $obj->getLink(0);
+					$url = $obj->getLink();
 					$public = $obj->isPublic();
-					$protected = $obj->isProtected();
-					
+					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$title = $obj->getTitle();
 				} else {
 					$valid = false;
@@ -293,7 +292,8 @@ function getItemTitleAndURL($item) {
 						"url" => $url, 
 						"name" => $url, 
 						'public' => true,
-						'protected' => false);
+						'protected' => false, 
+						'theme' => $themename);
 			}
 			break;
 		case "zenpagecategory":
@@ -304,7 +304,7 @@ function getItemTitleAndURL($item) {
 					$obj = new ZenpageCategory($item['link']);
 					$title = $obj->getTitle();
 					$public = $obj->isPublic();
-					$protected = $obj->isProtected();
+					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$url = $obj->getLink(0);
 				} else {
 					$valid = false;
