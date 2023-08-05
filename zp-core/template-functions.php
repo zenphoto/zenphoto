@@ -1813,12 +1813,25 @@ function getAlbumThumb() {
 }
 
 /**
- * Returns an img src link to the password protect thumb substitute
+ * Returns an <img> element of the password protect thumb substitute
  *
+ * @deprecated 2.0 Use printPasswordProtected() instead
  * @param string $extra extra stuff to put in the HTML
  * @return string
  */
 function getPasswordProtectImage($extra = '') {
+	deprecationNotice(gettext('Use printPasswordProtected() instead'));
+	printPasswordProtectedImage($extra);
+}
+
+/**
+ * Gets the URL to the password protected images
+ * 
+ * @since 1.6.1
+ * @global string $_zp_themeroot
+ * @return string
+ */
+function getPasswordProtectedImage() {
 	global $_zp_themeroot;
 	$image = '';
 	$themedir = SERVERPATH . '/themes/' . basename($_zp_themeroot);
@@ -1829,7 +1842,19 @@ function getPasswordProtectImage($extra = '') {
 	} else {
 		$image = WEBPATH . '/' . ZENFOLDER . '/images_errors/err-passwordprotected.png';
 	}
-	return '<img src="' . $image . '" ' . $extra . ' alt="protected" loading="lazy" />';
+	return $image;
+}
+
+/**
+ * Prints an image element with the password protected image.
+ * 
+ * @since 1.6.1 Replaces getPasswordProtectImage()
+ * 
+ * @param string $extra extra attributes, trailing space required. Do not pass the width/height as it is taken from the image itself
+ */
+function printPasswordProtectedImage($extra = '') {
+	$image = getPasswordProtectedImage();
+	echo '<img src="' . html_encode($image) . '" alt="protected" loading="lazy"' . $extra . ' />';
 }
 
 /**
@@ -1866,14 +1891,14 @@ function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '') {
 	}
 	$attr['class'] = trim($attr['class']);
 	$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $thumbobj);
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd) || $_zp_current_album->checkForGuest()) {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || !$_zp_current_album->isProtected()) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
 		$size = ' width="' . $attr['width'] . '"';
-		echo getPasswordProtectImage($size);
+		printPasswordProtectedImage($size);
 	}
 }
 
@@ -1955,14 +1980,14 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
 		$attr['src']= html_pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy));
 	}
 	$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd) || $_zp_current_album->checkForGuest()) {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || !$_zp_current_album->isProtected()) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
 		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
 		$size = ' width="' . $attr['width'] . '"';
-		echo getPasswordProtectImage($size);
+		printPasswordProtectedImage($size);
 	}
 }
 
