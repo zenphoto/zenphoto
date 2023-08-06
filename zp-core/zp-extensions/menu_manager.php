@@ -249,7 +249,7 @@ function getItemTitleAndURL($item) {
 			} else {
 				$obj = AlbumBase::newAlbum($item['link']);
 				$url = $obj->getLink(0);
-				$public = $obj->isPublic();
+				$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
 				$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 				$title = $obj->getTitle();
 			}
@@ -268,7 +268,7 @@ function getItemTitleAndURL($item) {
 				if (is_array($result)) {
 					$obj = new ZenpagePage($item['link']);
 					$url = $obj->getLink();
-					$public = $obj->isPublic();
+					$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
 					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$title = $obj->getTitle();
 				} else {
@@ -305,7 +305,7 @@ function getItemTitleAndURL($item) {
 				if ($obj) {
 					$obj = new ZenpageCategory($item['link']);
 					$title = $obj->getTitle();
-					$public = $obj->isPublic();
+					$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
 					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$url = $obj->getLink(0);
 				} else {
@@ -540,7 +540,7 @@ function inventMenuItem($menuset, $visibility, $field = 'sort_order') {
  * 
  * @since 1.5.7 Return values changed to match function name and doc, parameter $field added to help
  * @param string $menuset current menu set
- * @param string $field The field of the array item to get, "all" for the full item array, "key" for the array index of the item within the items array (old default value)
+ * @param string $field The field of the array item to get, "all" for the full item array, "key" for the array index of the item within the items array (old default value). Default 'sort_order'
  * @return int|array|string
  */
 function getCurrentMenuItem($menuset, $field = 'sort_order') {
@@ -823,10 +823,13 @@ function printMenuemanagerPageList($menuset = 'default', $class = 'pagelist', $i
 /**
  * Gets the parent menu items of the current menu item. Returns the array of the items or false.
  * @param string $menuset current menu set
+ * @param array $currentitem Optional array of the menu item to get parents of. Default null for the current item
  * @return array|false
  */
-function getParentMenuItems($menuset = 'default') {
-	$currentitem = getCurrentMenuItem($menuset, 'all');
+function getParentMenuItems($menuset = 'default', $currentitem = null) {
+	if (is_null($currentitem)) {
+		$currentitem = getCurrentMenuItem($menuset, 'all');
+	} 
 	$items = getMenuItems($menuset, getMenuVisibility());
 	if (count($items) > 0) {
 		if ($currentitem) {
@@ -840,7 +843,7 @@ function getParentMenuItems($menuset = 'default') {
 				}
 			}
 			if (!empty($parents)) {
-				sortMultiArray($parents, 'sort_order', $descending = false, $natsort = false, $case_sensitive = false);
+				sortMultiArray($parents, 'sort_order', false, false, false);
 				return $parents;
 			}
 		}
@@ -1114,11 +1117,16 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
  * Gets the direct child menu items of the current menu item. Returns the array of the items or false.
  * @param string $menuset current menu set
  * @param bool $allchilds Set to false (default) for the next level childs, true for childs of all further levels
+ * @param array $item Optional array of the menu item to get parents of. Default null for the current item
  * @return array|false
  */
-function getMenuItemChilds($menuset = 'default', $allchilds = false) {
-  $sortorder = getCurrentMenuItem($menuset);
-  $items = getMenuItems($menuset, getMenuVisibility());
+function getMenuItemChilds($menuset = 'default', $allchilds = false, $currentitem = null) {
+	if (is_null($currentitem)) {
+		$sortorder = getCurrentMenuItem($menuset);
+	} else {
+		$sortorder = $currentitem['sort_order'];
+	}
+	$items = getMenuItems($menuset, getMenuVisibility());
   if (count($items) > 0) {
     if ($sortorder) { 
       $length = strlen($sortorder);
@@ -1165,6 +1173,31 @@ function isCurrentitemParent($menuset = 'default', $item = array()) {
 		return false;
 	} 
 	
+}
+
+/**
+ * Checks if the actual object the menu item represents is actually public
+ * 
+ * @since 1.6.1
+ * @param string  $menuset
+ * @param array $item The menu item array of the menu item to check
+ * @param array $itemarray The item array of the menu item to check as returned by getItemTitleAndURL()
+ * @return bool
+ */
+function isPublicMenuItem($menuset, $item, $itemarray) {
+	if (!$itemarray['public']) {
+		return false;
+	}
+	$parents = getParentMenuItems($menuset, $item);
+	if ($parents) {
+		foreach ($parents as $parent) {
+			$parentitemarray = getItemTitleAndURL($parent);
+			if (!$parentitemarray['public']) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
 
 /**
@@ -1223,6 +1256,9 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 	}
 	foreach ($items as $item) {
 		$itemarray = getItemTitleAndURL($item);
+		if (!isPublicMenuItem($menuset, $item, $itemarray)) {
+			continue;
+		}
 		$itemURL = $itemarray['url'];
 		$itemtitle = $itemarray['title'];
 		$level = max(1, count(explode('-', $item['sort_order'])));
