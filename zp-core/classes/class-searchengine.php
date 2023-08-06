@@ -1438,7 +1438,7 @@ class SearchEngine {
 										$row['show'] = 0;
 								}
 							//	if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS)) || (checkAlbumPassword($albumname) && (($album->checkAccess() && $album->isPublic()) || $viewUnpublished))) {	
-									if ($mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || $album->isPublic() || $viewUnpublished))) {		
+									if ($mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || ($album->isPublic() && !$album->isProtectedByParent()) || $viewUnpublished))) {		
 									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
