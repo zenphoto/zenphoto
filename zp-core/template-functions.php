@@ -1815,12 +1815,12 @@ function getAlbumThumb() {
 /**
  * Returns an <img> element of the password protect thumb substitute
  *
- * @deprecated 2.0 Use printPasswordProtected() instead
+ * @deprecated 2.0 Use printPasswordProtectedImage() instead
  * @param string $extra extra stuff to put in the HTML
  * @return string
  */
 function getPasswordProtectImage($extra = '') {
-	deprecationNotice(gettext('Use printPasswordProtected() instead'));
+	deprecationNotice(gettext('Use printPasswordProtectedImage() instead'));
 	printPasswordProtectedImage($extra);
 }
 
