@@ -232,7 +232,7 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function getParents() {
 		if (func_num_args() != 0) {
-			debuglog(gettext('class ZenpagePage getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
+			deprecationNotice(gettext('class ZenpagePage getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'), true);
 		}
 		if (is_null($this->parents)) {
 			$parents = array();

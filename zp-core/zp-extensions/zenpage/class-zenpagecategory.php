@@ -303,7 +303,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getParents() {
 		if (func_num_args() != 0) {
-			degbuglog(gettext('class ZenpageCategory getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'));
+			deprecationNotice(gettext('class ZenpageCategory getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'), true);
 		}
 		if (is_null($this->parents)) {
 			$parents = array();
