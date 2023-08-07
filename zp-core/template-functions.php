@@ -3686,7 +3686,7 @@ function getAllDates($order = 'asc') {
  * @param string $monthid optional class for "month"
  * @param string $order set to 'desc' for the list to be in descending order
  */
-function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month', $order = 'asc') {
+function printAllDates($class = 'archive', $yearid = 'year', $monthid = 'month', $order = 'desc') {
 	global $_zp_current_search, $_zp_gallery_page;
 	if (empty($class)) {
 		$classactive = 'archive_active';
