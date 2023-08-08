@@ -214,7 +214,7 @@ class cycle {
 	static function getShow($heading, $speedctl, $albumobj, $imageobj, $width, $height, $crop, $shuffle, $linkslides, $controls, $returnpath, $imagenumber) {
 		global $_zp_gallery, $_zp_gallery_page;
 		setOption('cycle-slideshow_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1);
-		if (!$albumobj->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumobj)) {
+		if (!$albumobj->isMyItem(LIST_RIGHTS) && !$albumobj->isProtected()) {
 			return '<div class="errorbox" id="message"><h2>' . gettext('This album is password protected!') . '</h2></div>';
 		}
 		// setting the image size

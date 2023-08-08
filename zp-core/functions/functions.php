@@ -614,56 +614,12 @@ function sortByMultilingual($dbresult, $field, $descending) {
  * @return bool
  */
 function checkAlbumPassword($album, &$hint = NULL) {
-	global $_zp_pre_authorization, $_zp_gallery;
 	if (is_object($album)) {
-		$albumname = $album->name;
+		$albumobj = $album;
 	} else {
-		$album = AlbumBase::newAlbum($albumname = $album, true, true);
+		$albumobj = AlbumBase::newAlbum($album, true, true);
 	}
-	if (isset($_zp_pre_authorization[$albumname])) {
-		return $_zp_pre_authorization[$albumname];
-	}
-	$hash = $album->getPassword();
-	if (empty($hash)) {
-		$album = $album->getParent();
-		while (!is_null($album)) {
-			$hash = $album->getPassword();
-			$authType = "zpcms_auth_album_" . $album->getID();
-			$saved_auth = zp_getCookie($authType);
-
-			if (!empty($hash)) {
-				if ($saved_auth == $hash) {
-					$_zp_pre_authorization[$albumname] = $authType;
-					return $authType;
-				} else {
-					$hint = $album->getPasswordHint();
-					return false;
-				}
-			}
-			$album = $album->getParent();
-		}
-		// revert all tlhe way to the gallery
-		$hash = $_zp_gallery->getPassword();
-		$authType = 'zpcms_auth_gallery';
-		$saved_auth = zp_getCookie($authType);
-		if (empty($hash)) {
-			$authType = 'zp_public_access';
-		} else {
-			if ($saved_auth != $hash) {
-				$hint = $_zp_gallery->getPasswordHint();
-				return false;
-			}
-		}
-	} else {
-		$authType = "zpcms_auth_album_" . $album->getID();
-		$saved_auth = zp_getCookie($authType);
-		if ($saved_auth != $hash) {
-			$hint = $album->getPasswordHint();
-			return false;
-		}
-	}
-	$_zp_pre_authorization[$albumname] = $authType;
-	return $authType;
+	return $albumobj->checkForGuest($hint);
 }
 
 /**

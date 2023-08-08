@@ -293,7 +293,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 				case 'album.php':
 					$album = $object;
 					$hint = '';
-					if (!(zp_loggedin() || checkAlbumPassword($album->name))) {
+					if (!(zp_loggedin() || $album->isProtected())) {
 						$vote = 0;
 					}
 					break;
@@ -306,7 +306,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 				default:
 					$album = $object->getAlbum();
 					$hint = '';
-					if (!(zp_loggedin() || checkAlbumPassword($album->name))) {
+					if (!(zp_loggedin() || $album->isProtected())) {
 						$vote = 0;
 					}
 					break;

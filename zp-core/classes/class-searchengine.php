@@ -1630,7 +1630,7 @@ class SearchEngine {
 									$row['show'] = 0;
 									break;
 							}
-							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && ($album->isPublic() || $viewUnpublished));
+							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || $album->isProtected() && ($album->isPublic() || $viewUnpublished));
 							if ($viewUnpublished) {
 								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname);
 							} 

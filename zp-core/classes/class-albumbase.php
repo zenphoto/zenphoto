@@ -1010,6 +1010,8 @@ class AlbumBase extends MediaObject {
 
 	/**
 	 * Checks if guest is loggedin for the album
+	 * 
+
 	 * @param unknown_type $hint
 	 * @param unknown_type $show
 	 */
@@ -1017,7 +1019,51 @@ class AlbumBase extends MediaObject {
 		if (!parent::checkForGuest()) {
 			return false;
 		}
-		return checkAlbumPassword($this, $hint);
+		global $_zp_pre_authorization, $_zp_gallery;
+		if (isset($_zp_pre_authorization[$this->getName()])) {
+			return $_zp_pre_authorization[$this->getName()];
+		}
+		$hash = $this->getPassword();
+		if (empty($hash)) {
+			$album = $this->getParent();
+			while (!is_null($album)) {
+				$hash = $album->getPassword();
+				$authType = "zpcms_auth_album_" . $album->getID();
+				$saved_auth = zp_getCookie($authType);
+
+				if (!empty($hash)) {
+					if ($saved_auth == $hash) {
+						$_zp_pre_authorization[$album->getName()] = $authType;
+						return $authType;
+					} else {
+						$hint = $album->getPasswordHint();
+						return false;
+					}
+				}
+				$album = $album->getParent();
+			}
+			// revert all tlhe way to the gallery
+			$hash = $_zp_gallery->getPassword();
+			$authType = 'zpcms_auth_gallery';
+			$saved_auth = zp_getCookie($authType);
+			if (empty($hash)) {
+				$authType = 'zp_public_access';
+			} else {
+				if ($saved_auth != $hash) {
+					$hint = $_zp_gallery->getPasswordHint();
+					return false;
+				}
+			}
+		} else {
+			$authType = "zpcms_auth_album_" . $this->getID();
+			$saved_auth = zp_getCookie($authType);
+			if ($saved_auth != $hash) {
+				$hint = $this->getPasswordHint();
+				return false;
+			}
+		}
+		$_zp_pre_authorization[$this->getName()] = $authType;
+		return $authType;
 	}
 
 	/**
