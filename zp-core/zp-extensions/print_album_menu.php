@@ -233,6 +233,9 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 		}
 		$topalbum = '';
 		$albumobj = AlbumBase::newAlbum($album, true);
+		if (!$albumobj->isMyItem(LIST_RIGHTS) && $albumobj->isProtectedByParent()) {
+			continue;
+		}
 		$has_password = '';
 		if(!$albumobj->isMyItem(LIST_RIGHTS) && $albumobj->isProtected()) {
 			$has_password = ' has_password';
@@ -352,6 +355,9 @@ function printAlbumMenuJump($option = "count", $indexname = "Gallery Index", $fi
     $albums = getNestedAlbumList(null, $showsubs, false);
     foreach($albums as $album) {
       $albumobj = AlbumBase::newAlbum($album['name'], true);
+			if (!$albumobj->isMyItem(LIST_RIGHTS) && $albumobj->isProtectedByParent()) {
+				continue;
+			}
       $count = '';
       if ($option == "count") {
         $numimages = $albumobj->getNumImages();
