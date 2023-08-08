@@ -381,11 +381,11 @@ class ZenpageCategory extends ZenpageRoot {
 	
 	/**
 	 * Checks if user is news author
-	 * @param bit $action what the caller wants to do
+	 * @param bit $action User rights level, default LIST_RIGHTS
 	 *
 	 * returns true of access is allowed
 	 */
-	function isMyItem($action) {
+	function isMyItem($action = LIST_RIGHTS) {
 		global $_zp_current_admin_obj;
 		if (parent::isMyItem($action)) {
 			return true;

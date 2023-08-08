@@ -355,9 +355,9 @@ class ThemeObject extends PersistentObject {
 
 	/**
 	 * Checks basic access rights of an object
-	 * @param bit $action what the caller wants to do
+	 * @param bit $action User rights level, default LIST_RIGHTS
 	 */
-	function isMyItem($action) {
+	function isMyItem($action = LIST_RIGHTS) {
 		if (!$this->checkPublishDates()) {
 			$this->setPublished(0);
 		}

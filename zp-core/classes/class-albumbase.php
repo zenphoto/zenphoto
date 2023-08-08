@@ -974,11 +974,11 @@ class AlbumBase extends MediaObject {
 
 	/**
 	 * checks access to the album
-	 * @param bit $action What the requestor wants to do
+	 * @param bit $action User rights level, default LIST_RIGHTS
 	 *
 	 * returns true of access is allowed
 	 */
-	function isMyItem($action) {
+	function isMyItem($action = LIST_RIGHTS) {
 		global $_zp_loggedin;
 		if ($parent = parent::isMyItem($action)) {
 			return $parent;

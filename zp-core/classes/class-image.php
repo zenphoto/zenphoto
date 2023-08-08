@@ -1628,8 +1628,13 @@ class Image extends MediaObject {
 	function setOwner($owner) {
 		$this->set('owner', $owner);
 	}
-
-	function isMyItem($action) {
+	/**
+	 * checks access to the album
+	 * @param bit $action User rights level, default LIST_RIGHTS
+	 *
+	 * returns true of access is allowed
+	 */
+	function isMyItem($action = LIST_RIGHTS) {
 		$album = $this->album;
 		return $album->isMyItem($action);
 	}
