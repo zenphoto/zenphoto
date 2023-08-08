@@ -391,7 +391,7 @@ class ZenpageCategory extends ZenpageRoot {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if ($action == LIST_RIGHTS && $this->isPublic()) {
+			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) {
 				return true;
 			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
