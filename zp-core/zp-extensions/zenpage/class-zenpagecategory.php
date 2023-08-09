@@ -275,8 +275,8 @@ class ZenpageCategory extends ZenpageRoot {
 	function isSubNewsCategoryOf($catlink) {
 		return $this->isSubCategoryOf($catlink);
 	}
-	
-		/**
+
+	/**
 	 * Gets the parent category object based on the parentid set
 	 * 
 	 * @since 1.5.5
@@ -284,14 +284,15 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return obj|null
 	 */
 	function getParent() {
-		if (is_null($this->parent)) {
-			$parentid = $this->getParentID();
-			$obj = getItembyID('news_categories', $parentid);
-			if ($obj) {
-				return $this->parent = $obj;
+		if ($this->getParentID()) {
+			if (is_null($this->parent)) {
+				$obj = getItembyID('news_categories', $this->getParentID());
+				if ($obj) {
+					return $this->parent = $obj;
+				}
+			} else {
+				return $this->parent;
 			}
-		} else {
-			return $this->parent;
 		}
 		return null;
 	}
@@ -305,15 +306,17 @@ class ZenpageCategory extends ZenpageRoot {
 		if (func_num_args() != 0) {
 			deprecationNotice(gettext('class ZenpageCategory getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'), true);
 		}
-		if (is_null($this->parents)) {
-			$parents = array();
-			$cat = $this;
-			while (!is_null($cat = $cat->getParent())) {
-				array_unshift($parents, $cat->getName());
+		if ($this->getParentID()) {
+			if (is_null($this->parents)) {
+				$parents = array();
+				$cat = $this;
+				while (!is_null($cat = $cat->getParent())) {
+					array_unshift($parents, $cat->getName());
+				}
+				return $this->parents = $parents;
+			} else {
+				return $this->parents;
 			}
-			return $this->parents = $parents;
-		} else {
-			return $this->parents;
 		}
 	}
 

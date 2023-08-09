@@ -213,14 +213,15 @@ class ZenpagePage extends ZenpageItems {
 	 * @return obj|null
 	 */
 	function getParent() {
-		if (is_null($this->parent)) {
-			$parentid = $this->getParentID();
-			$obj = getItembyID('pages', $parentid);
-			if ($obj) {
-				return $obj;
+		if ($this->getParentID()) {
+			if (is_null($this->parent)) {
+				$obj = getItembyID('pages', $this->getParentID());
+				if ($obj) {
+					return $obj;
+				}
+			} else {
+				return $this->parent;
 			}
-		} else {
-			return $this->parent;
 		}
 		return null;
 	}
@@ -234,15 +235,17 @@ class ZenpagePage extends ZenpageItems {
 		if (func_num_args() != 0) {
 			deprecationNotice(gettext('class ZenpagePage getParents(): The parameters $parentid and $initparents have been removed in Zenphoto 1.5.5.'), true);
 		}
-		if (is_null($this->parents)) {
-			$parents = array();
-			$page = $this;
-			while (!is_null($page = $page->getParent())) {
-				array_unshift($parents, $page->getName());
+		if ($this->getParentID()) {
+			if (is_null($this->parents)) {
+				$parents = array();
+				$page = $this;
+				while (!is_null($page = $page->getParent())) {
+					array_unshift($parents, $page->getName());
+				}
+				return $this->parents = $parents;
+			} else {
+				return $this->parents;
 			}
-			return $this->parents = $parents;
-		} else {
-			return $this->parents;
 		}
 	}
 

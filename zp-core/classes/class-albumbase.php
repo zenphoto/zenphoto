@@ -13,6 +13,7 @@ class AlbumBase extends MediaObject {
 	public $parent = null; // The parent album name
 	public $parentalbum = null; // The parent album's album object (lazy)
 	public $parentalbums = null; // Array of objects of parent albums (lazy)
+	public $urparentalbum = null; // The ur parent album's album object (lazy)
 	public $sidecars = array(); // keeps the list of suffixes associated with this album
 	public $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	public $manage_some_rights = ALBUM_RIGHTS;
@@ -139,24 +140,26 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns The parent Album of this Album. NULL if this is a top-level album.
 	 *
-	 * @return object
+	 * @return object|null
 	 */
 	function getParent() {
-		if (is_null($this->parentalbum)) {
-			$slashpos = strrpos($this->name, "/");
-			if ($slashpos) {
-				$parent = substr($this->name, 0, $slashpos);
-				$parentalbum = AlbumBase::newAlbum($parent, true, true);
-				if ($parentalbum->exists) {
-					return $parentalbum;
+		if ($this->getParentID()) {
+			if (is_null($this->parentalbum)) {
+				$slashpos = strrpos($this->name, "/");
+				if ($slashpos) {
+					$parent = substr($this->name, 0, $slashpos);
+					$parentalbum = AlbumBase::newAlbum($parent, true, true);
+					if ($parentalbum->exists) {
+						return $this->parentalbum = $parentalbum;
+					}
 				}
+			} else if ($this->parentalbum->exists) {
+				return $this->parentalbum;
 			}
-		} else if ($this->parentalbum->exists) {
-			return $this->parentalbum;
 		}
 		return NULL;
 	}
-	
+
 	/**
 	 * Gets an array of parent album objects
 	 * 
@@ -165,39 +168,73 @@ class AlbumBase extends MediaObject {
 	 * @return array|null
 	 */
 	function getParents() {
-		if (is_null($this->parentalbums)) {
-			$parents = array();
-			$album = $this;
-			while (!is_null($album = $album->getParent())) {
-				array_unshift($parents, $album);
+		if ($this->getParentID()) {
+			if (is_null($this->parentalbums)) {
+				$albumarray = getAlbumArray($this->name, false);
+				if (count($albumarray) == 1) {
+					$parent = $this->getParent();
+					$this->urparentalbum = $parent;
+					return $this->parentalbums = array($parent);
+				}
+				$parents = array();
+				$album = $this;
+				while (!is_null($album = $album->getParent())) {
+					array_unshift($parents, $album);
+				}
+				return $this->parentalbums = $parents;
+			} else {
+				return $this->parentalbums;
 			}
-			return $this->parentalbums = $parents;
-		} else {
-			return $this->parentalbums;
 		}
+		return null;
 	}
-
 
 	function getParentID() {
 		return $this->get('parentid');
 	}
 	
 	/**
+	 * Returns the oldest ancestor of an album. Returns the object of the album itself if there is no urparent
+	 *
+	 * @since 1.6.1 Replaces getUrAlbum() to align all classes
+	 * 
+	 * @return object
+	 */
+	function getUrParent() {
+		if (is_null($this->urparentalbum)) {
+			if (!$this->getParentID()) {
+				return $this->urparentalbum = $this;
+			}
+			$albumarray = getAlbumArray($this->name, false);
+			if (is_null($this->parentalbums)) {
+				if (count($albumarray) == 1) {
+					$urparent = $this->getParent();
+					$this->parentalbums = array($urparent);
+					return $this->urparentalbum = $urparent;
+				}
+				$urparent = AlbumBase::newAlbum($albumarray[0], true, true);
+				if ($urparent->exists) {
+					return $this->parentalbum = $urparent;
+				}
+			} else {
+				return $this->parentalbum = $this->parentalbums[0];
+			}
+		} else {
+			return $this->urparentalbum;
+		}
+	}
+
+	/**
 	 * Returns the oldest ancestor of an alubm;
 	 *
+	 * @deprecated 2.0 Use getUrParent() instead
 	 * @since 1.6
 	 * 
 	 * @return object
 	 */
 	function getUrAlbum() {
-		$album = $this;
-		while (true) {
-			$parent = $album->getParent();
-			if (is_null($parent)) {
-				return $album;
-			}
-			$album = $parent;
-		}
+		deprecationNotice(gettext('Use getUrParent() instead'));
+		return $this->getUrParent();
 	}
 
 	/**
