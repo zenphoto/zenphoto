@@ -170,7 +170,7 @@ function checkParentLayouts($obj, $type) {
 		case 'multiple_layouts_pages':
 		case 'multiple_layouts_news_categories':
 			$parents = $obj->getParents();
-			if (count($parents) > 0) {
+			if ($parents && count($parents) > 0) {
 				$parents = array_reverse($parents); //reverse so we can check the direct parent first.
 				foreach ($parents as $parent) {
 					if ($type === 'multiple_layouts_pages') {
