@@ -13,6 +13,7 @@ class ZenpagePage extends ZenpageItems {
 	public $view_rights = ALL_PAGES_RIGHTS;
 	public $parent = null;
 	public $parents = null;
+	public $urparent = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -227,7 +228,7 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 	/**
-	 * Gets the parent pages' titlelinks recursivly to the page
+	 * Gets the parent pages' name recursivly to the page
 	 *
 	 * @return array
 	 */

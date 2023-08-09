@@ -13,6 +13,7 @@ class ZenpageCategory extends ZenpageRoot {
 	public $view_rights = ALL_NEWS_RIGHTS;
 	public $parent = null;
 	public $parents = null;
+	public $urparent = null;
 	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;

@@ -72,4 +72,42 @@ class ZenpageRoot extends ThemeObject {
 		$this->set("titlelink", $v);
 	}
 	
+	/**
+	 * Gets the object of the oldest ancester of the page or category. Returns the object of the page/category itself if there is no urparent
+	 * 
+	 * @since 1.6.1
+	 * return object
+	 */
+	function getUrParent() {
+		global $_zp_db;
+		if (method_exists($this, 'getParentID')) {
+			if (is_null($this->urparent)) {
+				$classname = get_class($this);
+				if (!$this->getParentID()) {
+					return $this->urparent = $this;
+				}
+				if (is_null($this->parents)) {
+					$sortorders = explode('-', $this->getSortorder());
+					if (count($sortorders) == 1) {
+						$urparent = $this->getParent();
+						$this->parents = array($urparent);
+						return $this->urparent = $urparent;
+					}
+					$result = $_zp_db->querySingleRow('SELECT `titlelink` FROM ' . $_zp_db->prefix($this->table) . ' WHERE sort_order ="' . $sortorders[0] . '"');
+					if ($result) {
+						$urparent = new $classname($result['titlelink'], false);
+						return $this->urparent = $urparent;
+					} else {
+						return $this->urparent = $this;
+					}
+				} else {
+					$urparent = new $classname($this->parents[0], false);
+					return $this->urparent = $urparent;
+				}
+			} else {
+				return $this->urparent;
+			}
+		}
+	}
+
 }

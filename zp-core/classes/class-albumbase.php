@@ -205,8 +205,8 @@ class AlbumBase extends MediaObject {
 			if (!$this->getParentID()) {
 				return $this->urparentalbum = $this;
 			}
-			$albumarray = getAlbumArray($this->name, false);
 			if (is_null($this->parentalbums)) {
+				$albumarray = getAlbumArray($this->name, false);
 				if (count($albumarray) == 1) {
 					$urparent = $this->getParent();
 					$this->parentalbums = array($urparent);
