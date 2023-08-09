@@ -234,7 +234,7 @@ class Zenpage {
 				$_zp_not_viewable_pages_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if ($obj->isProtected() && !$obj->isPublic()) {
+					if (!$obj->isPublic() && $obj->isProtectedByParent()) {
 						$_zp_not_viewable_pages_list[] = $obj->getID();
 					}
 				}
@@ -498,7 +498,7 @@ class Zenpage {
 				$_zp_not_viewable_news_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if (!$obj->isProtected() && $obj->isPublic()) {
+					if (!$obj->isPublic() && $obj->isProtectedByParent()) {
 						$_zp_not_viewable_news_list[] = $obj->getID();
 					}
 				}

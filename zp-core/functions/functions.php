@@ -1598,21 +1598,18 @@ function sortArray(&$array, $descending = false, $natsort = true, $case_sensitiv
  */
 function getNotViewableAlbums() {
 	global $_zp_not_viewable_album_list, $_zp_db;
-	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
+	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 		return array(); //admins can see all
+	}
 	if (is_null($_zp_not_viewable_album_list)) {
-		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM ' . $_zp_db->prefix('albums') . ' WHERE `show`=0 OR `password`!=""';
+		$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums');
 		$result = $_zp_db->query($sql);
 		if ($result) {
 			$_zp_not_viewable_album_list = array();
 			while ($row = $_zp_db->fetchAssoc($result)) {
-				if (checkAlbumPassword($row['folder'])) {
-					$album = AlbumBase::newAlbum($row['folder']);
-					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
-						$_zp_not_viewable_album_list[] = $row['id'];
-					}
-				} else {
-					$_zp_not_viewable_album_list[] = $row['id'];
+				$album = AlbumBase::newAlbum($row['folder']);
+				if (!$album->isMyItem(LIST_RIGHTS) || (!$album->isPublic() && $album->isProtectedByParent())) {
+					$_zp_not_viewable_album_list[] = $album->getID();
 				}
 			}
 			$_zp_db->freeResult($result);
