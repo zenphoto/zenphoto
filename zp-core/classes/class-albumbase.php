@@ -214,10 +214,10 @@ class AlbumBase extends MediaObject {
 				}
 				$urparent = AlbumBase::newAlbum($albumarray[0], true, true);
 				if ($urparent->exists) {
-					return $this->parentalbum = $urparent;
+					return $this->urparentalbum = $urparent;
 				}
 			} else {
-				return $this->parentalbum = $this->parentalbums[0];
+				return $this->urlparentalbum = $this->parentalbums[0];
 			}
 		} else {
 			return $this->urparentalbum;
