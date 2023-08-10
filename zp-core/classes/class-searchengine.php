@@ -1428,7 +1428,7 @@ class SearchEngine {
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 								$album = AlbumBase::newAlbum($albumname);
-								$uralbum = $album->getUrAlbum();
+								$uralbum = $album->getUrParent();
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
@@ -1619,7 +1619,7 @@ class SearchEngine {
 							$albumname = $row2['folder'];
 							$allow = false;
 							$album = AlbumBase::newAlbum($albumname);
-							$uralbum = $album->getUrAlbum();
+							$uralbum = $album->getUrParent();
 							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (themeObject::checkScheduledPublishing($row)) {
 								case 1:

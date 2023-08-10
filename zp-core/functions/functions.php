@@ -1013,7 +1013,7 @@ function setupTheme($album = NULL) {
 	$theme = $_zp_gallery->getCurrentTheme();
 	$id = 0;
 	if (!is_null($album)) {
-		$parent = $album->getUrAlbum();
+		$parent = $album->getUrParent();
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;

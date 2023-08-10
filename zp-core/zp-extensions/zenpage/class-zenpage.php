@@ -578,6 +578,10 @@ class Zenpage {
 		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 			$sql .= " WHERE `show` = 1";
 		}
+		$hidenews = $this->getNotViewableNews();
+		if (!empty($hidenews)) {
+			$sql .= ' AND `id` NOT IN('. implode(',', $hidenews) . ')';
+		}
 		$result = $_zp_db->queryFullArray($sql);
 		foreach ($result as $row) {
 			$alldates[] = $row['date'];

@@ -618,7 +618,7 @@ class AlbumBase extends MediaObject {
 		$nullimage = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
 		// check for theme imageDefault.png
 		$theme = '';
-		$uralbum = $this->getUralbum();
+		$uralbum = $this->getUrParent();
 		$albumtheme = $uralbum->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;

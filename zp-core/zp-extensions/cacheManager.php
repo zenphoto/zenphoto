@@ -360,7 +360,7 @@ class cacheManager {
 		global $_zp_gallery;
 		$theme = $_zp_gallery->getCurrentTheme();
 		$id = 0;
-		$parent = $albumobj->getUrAlbum();
+		$parent = $albumobj->getUrParent();
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;

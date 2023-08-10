@@ -389,7 +389,7 @@ function prepareCustomPage() {
 					$albums = array();
 					foreach ($searchalbums as $analbum) {
 						$albumobj = AlbumBase::newAlbum($analbum);
-						$parent = $albumobj->getUrAlbum();
+						$parent = $albumobj->getUrParent();
 						$albums[$parent->getID()] = $parent;
 					}
 					if (count($albums) == 1) { // there is only one parent album for the search

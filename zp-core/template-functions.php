@@ -581,7 +581,7 @@ function getGalleryIndexURL() {
 	global $_zp_current_album, $_zp_gallery_page;
 	$page = 1;
 	if (in_context(ZP_ALBUM) && $_zp_gallery_page != 'index.php') {
-		$album = $_zp_current_album->getUrAlbum($_zp_current_album);
+		$album = $_zp_current_album->getUrParent();
 		$page = $album->getGalleryPage();
 	}
 	if (!$link = getCustomGalleryIndexURL($page)) {
@@ -3643,15 +3643,16 @@ function getAllDates($order = 'asc') {
 	$cleandates = array();
 	$sql = "SELECT `date` FROM " . $_zp_db->prefix('images');
 	if (!zp_loggedin()) {
-		$sql .= " WHERE `show` = 1";
-	}
+		//$sql .= " WHERE `show` = 1";
+	} 
 	$hidealbums = getNotViewableAlbums();
 	if (!is_null($hidealbums)) {
-		if (zp_loggedin()) {
+		$sql .= ' WHERE ';
+		/*if (zp_loggedin()) {
 			$sql .= ' WHERE ';
 		} else {
 			$sql .= ' AND ';
-		}
+		} */
 		foreach ($hidealbums as $id) {
 			$sql .= '`albumid`!=' . $id . ' AND ';
 		}

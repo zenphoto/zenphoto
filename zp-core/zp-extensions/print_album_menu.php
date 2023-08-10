@@ -248,7 +248,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			}
 			if ($keeptopactive) {
 				if (isset($_zp_current_album) && is_object($_zp_current_album)) {
-					$currenturalbum = $_zp_current_album->getUrAlbum();
+					$currenturalbum = $_zp_current_album->getUrParent();
 					$currenturalbumname = $currenturalbum->name;
 				}
 			}

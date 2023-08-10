@@ -77,17 +77,17 @@ function isAlbumClass($album = NULL) {
 /**
  * Returns the oldest ancestor of an alubm;
  *
- * @deprecated 2.0 – Use $album->getUrAlbum() instead
+ * @deprecated 2.0 – Use $album->getUrParent() instead
  * @since 1.6
  *
  * @param string $album an album object
  * @return object
  */
 function getUrAlbum($album) {
-	deprecationNotice(gettext('Use $album->getUrAlbum() instead'));
+	deprecationNotice(gettext('Use $album->getUrParent() instead'));
 	if (!is_object($album))
 		return NULL;
-	return $album->getUrAlbum();
+	return $album->getUrParent();
 }
 
 /**
