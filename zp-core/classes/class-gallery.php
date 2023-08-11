@@ -362,7 +362,7 @@ class Gallery {
 		if (is_array($albums)) {
 			foreach ($albums as $folder) {
 				$album = AlbumBase::newAlbum($folder);
-				if ($is_fulladmin || $album->isMyItem($rights)) {
+				if ($is_fulladmin || $album->isVisible($rights)) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
 							if ($includetitles) {
@@ -443,7 +443,7 @@ class Gallery {
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$album = AlbumBase::newAlbum($row['folder']);
-				if ($album->exists && ($is_fulladmin || $album->isMyItem($rights))) {
+				if ($album->exists && ($is_fulladmin || $album->isVisible($rights))) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
 							if ($includetitles) {
