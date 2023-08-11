@@ -1437,7 +1437,7 @@ class SearchEngine {
 									case 2:
 										$row['show'] = 0;
 								}
-									if ($mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || ($album->isPublic() && !$album->isProtectedByParent()) || $viewUnpublished))) {		
+								if ($mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || (($album->isPublic() || $viewUnpublished)) && !$album->isProtectedByParent()))) {		
 									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
@@ -1630,7 +1630,7 @@ class SearchEngine {
 									$row['show'] = 0;
 									break;
 							}
-							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || $album->isProtected() && ($album->isPublic() || $viewUnpublished));
+							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || (($album->isPublic() || $viewUnpublished) && !$album->isProtectedbyParent()));
 							if ($viewUnpublished) {
 								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname);
 							} 
@@ -1817,7 +1817,7 @@ class SearchEngine {
 			if ($search_result) {
 				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$pageobj = new ZenpagePage($row['titlelink']);
-					if((zp_loggedin() && $pageobj->isMyItem(LIST_RIGHTS)) || ($pageobj->isPublic() || $this->search_unpublished)) {
+					if ($pageobj->isMyItem(LIST_RIGHTS) || (($pageobj->isPublic() || $this->search_unpublished) && !$pageobj->isProtectedByParent())) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 						if (isset($weights)) {
 							$data['weight'] = $weights[$row['id']];
@@ -1907,7 +1907,7 @@ class SearchEngine {
 			if ($search_result) {
 				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$articleobj = new ZenpageNews($row['titlelink']);
-					if((zp_loggedin() && $articleobj->isMyItem(LIST_RIGHTS)) || ($articleobj->isPublic() || $this->search_unpublished)) {
+					if (($articleobj->isMyItem(LIST_RIGHTS)) || (($articleobj->isPublic() || $this->search_unpublished) && !$articleobj->isProtectedByParent())) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 						if (isset($weights)) {
 							$data['weight'] = $weights[$row['id']];

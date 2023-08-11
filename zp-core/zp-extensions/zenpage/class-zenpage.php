@@ -196,14 +196,10 @@ class Zenpage {
 		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix('pages') . $show . ' ORDER by `' . $sortorder . '`' . $sortdir);
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
-				if ($all || $row['show']) {
+				$page = new ZenpagePage($row['titlelink']);
+				if ($all || $page->isMyItem(LIST_RIGHTS) || $page->isPublic()) {
 					$all_pages[] = $row;
-				} else if ($_zp_loggedin) {
-					$page = new ZenpagePage($row['titlelink']);
-					if ($page->isMyItem(LIST_RIGHTS)) {
-						$all_pages[] = $row;
-					}
-				}
+				} 
 				if ($number && count($all_pages) >= $number) {
 					break;
 				}
@@ -234,7 +230,7 @@ class Zenpage {
 				$_zp_not_viewable_pages_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if (!$obj->isPublic() && $obj->isProtectedByParent()) {
+					if (!$obj->isVisible()) {
 						$_zp_not_viewable_pages_list[] = $obj->getID();
 					}
 				}
@@ -446,7 +442,7 @@ class Zenpage {
 			if ($resource) {
 				while ($item = $_zp_db->fetchAssoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']); 
-					if ($getUnpublished && $article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || ($article->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS))) { //|| $article->categoryIsVisible()
+					if ($article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || $getUnpublished || $article->isPublic()) { 
 						$result[] = $item;
 					}
 				}
@@ -498,7 +494,7 @@ class Zenpage {
 				$_zp_not_viewable_news_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
-					if (!$obj->isPublic() && $obj->isProtectedByParent()) {
+					if (!$obj->isVisible()) {
 						$_zp_not_viewable_news_list[] = $obj->getID();
 					}
 				}
@@ -716,7 +712,7 @@ class Zenpage {
 		if ($visible) {
 			foreach ($structure as $key => $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				if ($catobj->isPublic() || $catobj->isMyItem(LIST_RIGHTS)) {
+				if ($catobj->isVisible()) {
 					$structure[$key]['show'] = 1;
 				} else {
 					unset($structure[$key]);

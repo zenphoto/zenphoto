@@ -249,7 +249,7 @@ function getItemTitleAndURL($item) {
 			} else {
 				$obj = AlbumBase::newAlbum($item['link']);
 				$url = $obj->getLink(0);
-				$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
+				$public = $obj->isVisible();
 				$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 				$title = $obj->getTitle();
 			}
@@ -268,7 +268,7 @@ function getItemTitleAndURL($item) {
 				if (is_array($result)) {
 					$obj = new ZenpagePage($item['link']);
 					$url = $obj->getLink();
-					$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
+					$public = $obj->isVisible();
 					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$title = $obj->getTitle();
 				} else {
@@ -305,7 +305,7 @@ function getItemTitleAndURL($item) {
 				if ($obj) {
 					$obj = new ZenpageCategory($item['link']);
 					$title = $obj->getTitle();
-					$public = $obj->isMyItem(LIST_RIGHTS) || $obj->isPublic();
+					$public = $obj->isVisible();
 					$protected = !$obj->isMyItem(LIST_RIGHTS) && $obj->isProtected();
 					$url = $obj->getLink(0);
 				} else {

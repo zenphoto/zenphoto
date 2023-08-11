@@ -114,7 +114,7 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
-	 * Returns true if published but inherits unpublished status by some parent
+	 * Returns true if itself published but unpublished status is inheretited by a parent
 	 * @since 1.6.1
 	 * 
 	 * @return bool
@@ -127,7 +127,7 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
-	 * Returns true if this object is published and not private.
+	 * Returns true if this object is published and does not inherit any unpublish status by a parent
 	 * 
 	 * Child classes with any hierachic structure need to override and extend this method to cover inheritance.
 	 * 
@@ -144,6 +144,27 @@ class ThemeObject extends PersistentObject {
 		} else {
 			return $this->is_public;
 		}
+	}
+	
+	/**
+	 * Checks if the current item is visible (= listed) to the current visitor via rights, publish status or protection status
+	 *
+	 * Convenience wrapper for various methods.
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @see isPublic()
+	 * @see isProtectedByParent()
+	 * @see isMyItem()
+	 * 
+	 * @param bit $action User rights level, default LIST_RIGHTS
+	 * @return bool
+	 */
+	function isVisible($action = LIST_RIGHTS) {
+		if ($this->isMyItem($action) || ($this->isPublic() && !$this->isProtectedByParent())) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -164,7 +185,7 @@ class ThemeObject extends PersistentObject {
 	 * @param bool $show True if the album is published
 	 */
 	function setShow($show) {
-		deprecationNotice(gettext('Use isPublished() instead'));
+		deprecationNotice(gettext('Use setPublished() instead'));
 		$this->setPublished($show);
 	}
 
@@ -374,7 +395,8 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 * returns false (deny) if gallery is "private"
+	 * Checks if the item is password protected and if the password has been entered
+	 * 
 	 * @param $hint
 	 * @param $show
 	 */
@@ -383,7 +405,7 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
-	 * Checks if gallery is protected and returns TRUE or FALSE
+	 * Checks if the item is password protected. Checks if the password has been entered
 	 * 	 * 
 	 * @since 1.6.1 Moved to themeObject class as central definition to avoid a lot same override methods
 	 *
@@ -397,7 +419,7 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 * Returns true if not protected but protection is inherited by a parent
+	 * Check if the item is not protected itself but protection is inherited by a parent. Checks if the password has been entered.
 	 * 
 	 * @since 1.6.1
 	 * 
@@ -411,6 +433,8 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
+	 * Gets the password if set
+	 * 
 	 * Placeholder for all child classes. Needs to be properly overriden there if password functionality is available
 	 * @since 1.6.1 Added for general class compatibility
 	 * @return null
@@ -420,8 +444,8 @@ class ThemeObject extends PersistentObject {
 	}
 
 	/**
-	 *
-	 * Checks if viewing of object is allowed
+	 * Checks if viewing of object is allowed by rights or protection status
+	 * 
 	 * @param string $hint
 	 * @param string $show
 	 */

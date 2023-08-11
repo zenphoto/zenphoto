@@ -1608,7 +1608,7 @@ function getNotViewableAlbums() {
 			$_zp_not_viewable_album_list = array();
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$album = AlbumBase::newAlbum($row['folder']);
-				if (!$album->isMyItem(LIST_RIGHTS) || (!$album->isPublic() && $album->isProtectedByParent())) {
+				if (!$album->isVisible()) {
 					$_zp_not_viewable_album_list[] = $album->getID();
 				}
 			}
