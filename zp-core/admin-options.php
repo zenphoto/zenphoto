@@ -3314,7 +3314,7 @@ Authority::printPasswordFormJS();
 										<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you are running a secure server, change this to <em>https</em>."); ?></p>
 										<p class="warningbox"><?php
 											echo gettext('<strong>Warning:</strong> If you select <em>https</em> your server <strong>MUST</strong> support <em>https</em>. ' .
-															'If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
+															'If you set <em>https</em> on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ' .
 															'Your only possibility then is to set or add <code>$conf["server_protocol"] = "http";</code> to your <code>zenphoto.cfg.php</code> file .');
 											?>
 										</p>
