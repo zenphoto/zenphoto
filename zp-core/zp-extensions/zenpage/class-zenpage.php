@@ -197,7 +197,7 @@ class Zenpage {
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$page = new ZenpagePage($row['titlelink']);
-				if ($all || $page->isMyItem(LIST_RIGHTS) || $page->isPublic()) {
+				if ($all || $page->isVisible()) {
 					$all_pages[] = $row;
 				} 
 				if ($number && count($all_pages) >= $number) {
@@ -442,7 +442,9 @@ class Zenpage {
 			if ($resource) {
 				while ($item = $_zp_db->fetchAssoc($resource)) {
 					$article = new ZenpageNews($item['titlelink']); 
-					if ($article->isMyItem(LIST_RIGHTS) || ($currentcategory && $article->inNewsCategory($currentcategory)) || $getUnpublished || $article->isPublic()) { 
+					if ($currentcategory && $article->inNewsCategory($currentcategory) && ($getUnpublished || $article->isVisible())) {
+						$result[] = $item;
+					} else if ($getUnpublished || $article->isVisible()) { 
 						$result[] = $item;
 					}
 				}
@@ -549,7 +551,7 @@ class Zenpage {
 	function getTotalArticles() {
 		return count($this->getArticles(0));
 	}
-	
+
 	/**
 	 * Gets the total news pages
 	 * 
@@ -607,12 +609,16 @@ class Zenpage {
 	/**
 	 *
 	 * filters query results for only news that should be shown. (that is fit to print?)
+	 * 
+	 * @deprecated 2.0 Unused and obsolete method - articles are already filtered via getArticles()
+	 * 
 	 * @param $sql query to return all candidates of interest
 	 * @param $offset skip this many legitimate items (used for pagination)
 	 * @param $limit return only this many items
 	 */
 	private function siftResults($sql, $offset, $limit) {
 		global $_zp_db;
+		deprecationNotice(gettext('Unused and obsolete method - articles are already filtered via getArticles()'));
 		$resource = $result = $_zp_db->query($sql);
 		if ($resource) {
 			$result = array();

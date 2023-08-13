@@ -1462,14 +1462,10 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					echo "<li><a href=\"" . html_encode(getNewsIndexURL()) . "\" title=\"" . html_encode($indexname) . "\">" . html_encode($display) . "</a>";
 				}
 				if ($counter) {
-					if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) && $mode == 'categories') {
-						$totalcount = count($_zp_current_category->getArticles(0));
-					} else {
-						save_context();
-						rem_context(ZP_ZENPAGE_NEWS_DATE);
-						$totalcount = count($_zp_zenpage->getArticles(0));
-						restore_context();
-					}
+					save_context();
+					rem_context(ZP_ZENPAGE_NEWS_DATE);
+					$totalcount = $_zp_zenpage->getTotalArticles();
+					restore_context();
 					echo ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $totalcount), $totalcount) . ')</small></span>';
 				}
 				echo "</li>\n";

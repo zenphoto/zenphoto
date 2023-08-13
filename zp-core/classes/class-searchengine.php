@@ -1428,8 +1428,6 @@ class SearchEngine {
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 								$album = AlbumBase::newAlbum($albumname);
-								$uralbum = $album->getUrParent();
-								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
 										$album->setPublished(0);
@@ -1437,7 +1435,7 @@ class SearchEngine {
 									case 2:
 										$row['show'] = 0;
 								}
-								if ($mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || (($album->isPublic() || $viewUnpublished)) && !$album->isProtectedByParent()))) {		
+								if ($mine || (is_null($mine) && $album->isVisible())) {		
 									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname)) {
 										$result[] = array('title' => $row['title'], 'name' => $albumname, 'weight' => $weights[$row['id']]);
 									}
@@ -1618,9 +1616,7 @@ class SearchEngine {
 						if ($row2) {
 							$albumname = $row2['folder'];
 							$allow = false;
-							$album = AlbumBase::newAlbum($albumname);
-							$uralbum = $album->getUrParent();
-							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+							$album = AlbumBase::newAlbum($albumname);			
 							switch (themeObject::checkScheduledPublishing($row)) {
 								case 1:
 									$imageobj = Image::newImage($album, $row['filename']);
@@ -1630,7 +1626,7 @@ class SearchEngine {
 									$row['show'] = 0;
 									break;
 							}
-							$viewUnpublished = ($mine || is_null($mine)) && ($album->isMyItem(LIST_RIGHTS) || (($album->isPublic() || $viewUnpublished) && !$album->isProtectedbyParent()));
+							$viewUnpublished = ($mine || $this->search_unpublished || (is_null($mine)) && ($album->isVisible()));
 							if ($viewUnpublished) {
 								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname);
 							} 
@@ -1817,7 +1813,7 @@ class SearchEngine {
 			if ($search_result) {
 				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$pageobj = new ZenpagePage($row['titlelink']);
-					if ($pageobj->isMyItem(LIST_RIGHTS) || (($pageobj->isPublic() || $this->search_unpublished) && !$pageobj->isProtectedByParent())) {
+					if ($this->search_unpublished || $pageobj->isVisible()) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 						if (isset($weights)) {
 							$data['weight'] = $weights[$row['id']];
@@ -1907,7 +1903,7 @@ class SearchEngine {
 			if ($search_result) {
 				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$articleobj = new ZenpageNews($row['titlelink']);
-					if (($articleobj->isMyItem(LIST_RIGHTS)) || (($articleobj->isPublic() || $this->search_unpublished) && !$articleobj->isProtectedByParent())) {
+					if ($this->search_unpublished || $articleobj->isVisible()) {
 						$data = array('title' => $row['title'], 'titlelink' => $row['titlelink']);
 						if (isset($weights)) {
 							$data['weight'] = $weights[$row['id']];
