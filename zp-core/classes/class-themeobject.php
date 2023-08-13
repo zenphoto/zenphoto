@@ -94,9 +94,6 @@ class ThemeObject extends PersistentObject {
 		if ($use_dbvalue) {
 			return $this->get('show', false);
 		}
-		if (!$this->checkPublishDates()) {
-			$this->setPublished(0);
-		}
 		return $this->get('show');
 	}
 
@@ -382,6 +379,9 @@ class ThemeObject extends PersistentObject {
 	 * @param bit $action User rights level, default LIST_RIGHTS
 	 */
 	function isMyItem($action = LIST_RIGHTS) {
+		if (!$this->checkPublishDates()) {
+			$this->setPublished(0);
+		} 
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
