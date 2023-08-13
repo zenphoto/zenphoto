@@ -2125,7 +2125,6 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 	global $_zp_db;
 	$itemID = sanitize_numeric($itemID);
 	$number = sanitize_numeric($number);
-	$checkauth = zp_loggedin();
 
 	if ($type == 'all' || $type == 'news') {
 		$newspasswordcheck = "";
@@ -2136,13 +2135,11 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$newscheck = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news') . " ORDER BY date");
 			foreach ($newscheck as $articlecheck) {
 				$obj = new ZenpageNews($articlecheck['titlelink']);
-				if ($obj->inProtectedCategory()) {
-					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
-						$newsshow = '';
-					} else {
-						$excludenews = " AND news.id != " . $articlecheck['id'];
-						$newspasswordcheck = $newspasswordcheck . $excludenews;
-					}
+				if ($obj->isVisible()) {
+					$newsshow = '';
+				} else {
+					$excludenews = " AND news.id != " . $articlecheck['id'];
+					$newspasswordcheck = $newspasswordcheck . $excludenews;
 				}
 			}
 		}
@@ -2156,13 +2153,11 @@ function getLatestZenpageComments($number, $type = "all", $itemID = "") {
 			$pagescheck = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('pages') . " ORDER BY date");
 			foreach ($pagescheck as $pagecheck) {
 				$obj = new ZenpagePage($pagecheck['titlelink']);
-				if ($obj->isProtected()) {
-					if ($checkauth && $obj->isMyItem(LIST_RIGHTS)) {
-						$pagesshow = '';
-					} else {
-						$excludepages = " AND pages.id != " . $pagecheck['id'];
-						$pagepasswordcheck = $pagepasswordcheck . $excludepages;
-					}
+				if ($obj->isVisible()) {
+					$pagesshow = '';
+				} else {
+					$excludepages = " AND pages.id != " . $pagecheck['id'];
+					$pagepasswordcheck = $pagepasswordcheck . $excludepages;
 				}
 			}
 		}
