@@ -129,32 +129,31 @@ class ZenpageNews extends ZenpageItems {
 
 	/**
 	 * Checks if an article is in a password protected category and returns TRUE or FALSE
-	 * NOTE: This function does not check if the password has been entered! Use checkAccess() for that.
-	 *
+	 * 	
 	 * @param bool $only set to true to know if the news article belongs only to protected categories
 	 *
-	 * @return array
+	 * @return boolean
 	 */
 	function inProtectedCategory($only = false) {
-		$categories = $this->getCategories();
+		$categories = $this->getCategories(false, null, null, false);
+		$protected_cats = '';
 		if (!empty($categories)) {
+			$catcount = count($categories);
 			foreach ($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				$password = $catobj->getPassword();
-				if (!empty($password)) {
-					if (!$only)
+				if ($catobj->isProtected()) {
+					if ($only) {
+						$protected_cats++;
+					} else {
 						return true;
-				} else {
-					if ($only)
-						return false;
+					}
 				}
 			}
-			return $only;
+			return ($catcount == $protected_cats);
 		}
 		return false;
 	}
 
-	
 	/**
 	 * Returns true if the article is protected by a category
 	 * @since 1.6.1 Returns true if the article is in any protected category instead if protected categories only

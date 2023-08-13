@@ -308,13 +308,8 @@ datepickerJS();
 									<?php printExpired($article); ?>
 								</td>
 								<td class="page-list_icon">
-									<?php
-									if ($article->inProtectedCategory()) {
-										echo '<img src="../../images/lock.png" style="border: 0px;" alt="' . gettext('Password protected') . '" title="' . gettext('Password protected') . '" />';
-									}
-									?>
+									<?php printProtectedIcon($article); ?>
 								</td>
-
 								<?php
         $option = getNewsAdminOptionPath(getNewsAdminOption(array('category' => 0, 'date' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'subpage' => 1)));
         if (empty($option)) {

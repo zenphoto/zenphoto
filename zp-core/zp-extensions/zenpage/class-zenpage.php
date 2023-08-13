@@ -310,7 +310,7 @@ class Zenpage {
 				$showConjunction = ' AND ';
 				// new code to get nested cats
 				$catid = $category->getID();
-				$subcats = $category->getCategories();
+				$subcats = $category->getCategories(false, null, null, false);
 				if ($subcats) {
 					$cat = " (cat.cat_id = '" . $catid . "'";
 					foreach ($subcats as $subcat) {
@@ -363,6 +363,7 @@ class Zenpage {
 			}
 
 			/** get all articles * */
+			$getall = false;
 			switch ($published) {
 				case "published":
 					$show = "$showConjunction `show` = 1 AND date <= '" . date('Y-m-d H:i:s') . "'";
@@ -379,13 +380,15 @@ class Zenpage {
 				case 'sticky':
 					$show = "$showConjunction `sticky` <> 0";
 					$getUnpublished = true;
+					$getall = true;
 					break;
 				case "all":
 					$show = false;
 					$getUnpublished = true;
-					if($getunpublished_myitems) {
+					if ($getunpublished_myitems) {
 						$getUnpublished = false;
 					}
+					$getall = true;
 					break;
 			}
 			if ($author) {
@@ -402,11 +405,7 @@ class Zenpage {
 				$datesearch = '';
 				switch ($published) {
 					case "published":
-						$datesearch = "date LIKE '$_zp_post_date%' ";
-						break;
 					case "unpublished":
-						$datesearch = "date LIKE '$_zp_post_date%' ";
-						break;
 					case "all":
 						$datesearch = "date LIKE '$_zp_post_date%' ";
 						break;
@@ -441,10 +440,10 @@ class Zenpage {
 			$result = array();
 			if ($resource) {
 				while ($item = $_zp_db->fetchAssoc($resource)) {
-					$article = new ZenpageNews($item['titlelink']); 
-					if ($currentcategory && $article->inNewsCategory($currentcategory) && ($getUnpublished || $article->isVisible())) {
+					$article = new ZenpageNews($item['titlelink']);
+					if (($currentcategory && $article->inNewsCategory($currentcategory)) && ($getall || ($getUnpublished && !$article->isVisible()) || $article->isVisible())) {
 						$result[] = $item;
-					} else if ($getUnpublished || $article->isVisible()) { 
+					} else if ($getall || ($getUnpublished && !$article->isVisible()) || $article->isVisible()) {
 						$result[] = $item;
 					}
 				}
