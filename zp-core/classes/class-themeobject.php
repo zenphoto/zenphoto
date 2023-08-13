@@ -84,7 +84,7 @@ class ThemeObject extends PersistentObject {
 	 * 
 	 * @since 1.5.8
 	 * 
-	 * For a check including inheritance and private status use isPublic()
+	 * For a check including inheritance use isPublic()
 	 *
 	 * @param bool $use_dbvalue Set to true to use the actual db value stored 
 	 * and not the possibly temporary modified value (e.g. if in scheduled publishing or expiration)
@@ -93,6 +93,9 @@ class ThemeObject extends PersistentObject {
 	function isPublished($use_dbvalue = false) {
 		if ($use_dbvalue) {
 			return $this->get('show', false);
+		}
+		if (!$this->checkPublishDates()) {
+			$this->setPublished(0);
 		}
 		return $this->get('show');
 	}
@@ -379,9 +382,6 @@ class ThemeObject extends PersistentObject {
 	 * @param bit $action User rights level, default LIST_RIGHTS
 	 */
 	function isMyItem($action = LIST_RIGHTS) {
-		if (!$this->checkPublishDates()) {
-			$this->setPublished(0);
-		}
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
