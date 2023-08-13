@@ -319,6 +319,7 @@ class ZenpageCategory extends ZenpageRoot {
 				return $this->parents;
 			}
 		}
+		return $this->parents = array();
 	}
 
 	/**

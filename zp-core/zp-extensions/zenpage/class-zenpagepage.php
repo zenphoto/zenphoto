@@ -248,6 +248,7 @@ class ZenpagePage extends ZenpageItems {
 				return $this->parents;
 			}
 		}
+		return $this->parents = array();
 	}
 
 	/**

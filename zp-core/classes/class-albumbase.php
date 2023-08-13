@@ -186,7 +186,7 @@ class AlbumBase extends MediaObject {
 				return $this->parentalbums;
 			}
 		}
-		return null;
+		return $this->parentalbums = array();
 	}
 
 	function getParentID() {
