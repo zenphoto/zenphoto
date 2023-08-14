@@ -1055,15 +1055,18 @@ class Gallery {
 		foreach ($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = AlbumBase::newAlbum($folder);
-			switch (themeObject::checkScheduledPublishing($row)) {
+			switch(themeObject::checkScheduledPublishing($row)) {
 				case 1:
+					// permanent as expired
 					$album->setPublished(0);
 					$album->save();
+					break;
 				case 2:
-					$row['show'] = 0;
+					// temporary as future published
+					$album->setPublished(0);
+					break;
 			}
-
-			if ($mine || $row['show'] || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
+			if ($mine || $viewUnpublished || $album->isVisible()) {
 				$albums_ordered[] = $folder;
 			}
 		}

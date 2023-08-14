@@ -578,7 +578,7 @@ function unpublishedZenpageItemCheck($page) {
 			}
 			switch ($class) {
 				case 'ZenpageNews':
-					if ($page->inProtectedCategory()) {
+					if ($page->isProtected()) {
 						$protected = "<span style='color: red; font-weight: bold'>+</span>";
 					}
 					break;
