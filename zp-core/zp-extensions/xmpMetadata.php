@@ -846,11 +846,11 @@ class xmpMetadata {
 	}
 
 	private static function encode($str) {
-		return strtr($str, array_flip(self::$XML_trans));
+		return strtr(strval($str), array_flip(self::$XML_trans));
 	}
 
 	private static function decode($str) {
-		return strtr($str, self::$XML_trans);
+		return strtr(strval($str), self::$XML_trans);
 	}
 
 	static function image_instantiate($image) {
