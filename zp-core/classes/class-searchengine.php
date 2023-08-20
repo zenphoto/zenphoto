@@ -1616,17 +1616,18 @@ class SearchEngine {
 						if ($row2) {
 							$albumname = $row2['folder'];
 							$allow = false;
-							$album = AlbumBase::newAlbum($albumname);			
-							switch (themeObject::checkScheduledPublishing($row)) {
+							$album = AlbumBase::newAlbum($albumname);		
+							$imageobj = Image::newImage($album, $row['filename']);
+							switch ($imageobj->checkPublishDates()) {
 								case 1:
-									$imageobj = Image::newImage($album, $row['filename']);
 									$imageobj->setPublished(0);
 									$imageobj->save();
 								case 2:
+									$imageobj->setPublished(0);
 									$row['show'] = 0;
 									break;
 							}
-							$viewUnpublished = ($mine || $this->search_unpublished || (is_null($mine)) && ($album->isVisible()));
+							$viewUnpublished = ($mine || $this->search_unpublished || (is_null($mine)) && ($imageobj->isVisible()));
 							if ($viewUnpublished) {
 								$allow = (empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname);
 							} 

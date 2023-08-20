@@ -490,14 +490,14 @@ class Zenpage {
 			return array(); //admins can see all
 		}
 		if (is_null($_zp_not_viewable_news_list)) {
-			$items = $this->getArticles(0, 'published', true, NULL, NULL, NULL, NULL);
+			$items = $this->getArticles(0, 'all', true, NULL, NULL, NULL, NULL);
 			if (!is_null($items)) {
 				$_zp_not_viewable_news_list = array();
 				foreach ($items as $item) {
 					$obj = new ZenpageNews($item['titlelink']);
 					if (!$obj->isVisible()) {
 						$_zp_not_viewable_news_list[] = $obj->getID();
-					}
+					} 
 				}
 			}
 		}
@@ -572,12 +572,9 @@ class Zenpage {
 		$alldates = array();
 		$cleandates = array();
 		$sql = "SELECT date FROM " . $_zp_db->prefix('news');
-		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-			$sql .= " WHERE `show` = 1";
-		}
 		$hidenews = $this->getNotViewableNews();
 		if (!empty($hidenews)) {
-			$sql .= ' AND `id` NOT IN('. implode(',', $hidenews) . ')';
+			$sql .= ' WHERE `id` NOT IN('. implode(',', $hidenews) . ')';
 		}
 		$result = $_zp_db->queryFullArray($sql);
 		foreach ($result as $row) {

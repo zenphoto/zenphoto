@@ -3642,21 +3642,18 @@ function getAllDates($order = 'asc') {
 	$alldates = array();
 	$cleandates = array();
 	$sql = "SELECT `date` FROM " . $_zp_db->prefix('images');
-	if (!zp_loggedin()) {
-		//$sql .= " WHERE `show` = 1";
-	} 
 	$hidealbums = getNotViewableAlbums();
 	if (!is_null($hidealbums)) {
-		$sql .= ' WHERE ';
-		/*if (zp_loggedin()) {
+		$sql .= ' WHERE `albumid` NOT IN ('. implode(',', $hidealbums) . ')';
+	}
+	$hideimages = getNotViewableImages();
+	if(!is_null($hideimages)) {
+		if (is_null($hidealbums)) {
 			$sql .= ' WHERE ';
 		} else {
 			$sql .= ' AND ';
-		} */
-		foreach ($hidealbums as $id) {
-			$sql .= '`albumid`!=' . $id . ' AND ';
 		}
-		$sql = substr($sql, 0, -5);
+		$sql .= ' `id` NOT IN ('. implode(',', $hideimages) . ')';
 	}
 	$result = $_zp_db->query($sql);
 	if ($result) {
