@@ -35,7 +35,7 @@ $plugin_is_filter = 9 | CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Media');
-$option_interface = 'xmpMetadata';
+$option_interface = 'xmpMetadataOptions';
 
 zp_register_filter('album_instantiate', 'xmpMetadata::album_instantiate');
 zp_register_filter('new_album', 'xmpMetadata::new_album');
@@ -53,6 +53,72 @@ zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 require_once SERVERPATH .'/' . ZENFOLDER . '/libs/exif/exif.php';
 
 define('XMP_EXTENSION', strtolower(strval(getOption('xmpMetadata_suffix'))));
+
+
+class xmpMetadataOptions {
+
+	/**
+	 * Class instantiation function
+	 *
+	 * @return xmpMetadata_options
+	 */
+	function __construct() {
+		setOptionDefault('xmpMetadata_suffix', 'xmp');
+		setOptionDefault('xmpMetadata_exportmultilingual', 1);
+	}
+
+	/**
+	 * Option interface
+	 *
+	 * @return array
+	 */
+	function getOptionsSupported() {
+		global $_zp_supported_images, $_zp_extra_filetypes;
+		$list = $_zp_supported_images;
+		foreach (array('gif', 'wbmp') as $suffix) {
+			$key = array_search($suffix, $list);
+			if ($key !== false)
+				unset($list[$key]);
+		}
+		sortArray($list);
+		$types = array();
+		foreach ($_zp_extra_filetypes as $suffix => $type) {
+			if ($type == 'Video')
+				$types[] = $suffix;
+		}
+		sortArray($types);
+		$list = array_merge($list, $types);
+		$listi = array();
+		foreach ($list as $suffix) {
+			$listi[$suffix] = 'xmpMetadata_examine_images_' . $suffix;
+		}
+		return array(gettext('Sidecar file extension') => array(
+						'key' => 'xmpMetadata_suffix',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The plugin will look for files with <em>image_name.extension</em> and extract XMP metadata from them into the <em>image_name</em> record.')),
+				gettext('Process extensions') => array(
+						'key' => 'xmpMetadata_examine_imagefile',
+						'type' => OPTION_TYPE_CHECKBOX_UL,
+						'checkboxes' => $listi,
+						'desc' => gettext('If no sidecar file exists and the extension is enabled, the plugin will search within that type <em>image</em> file for an <code>XMP</code> block. <strong>Warning</strong> do not set this option unless you require it. Searching image files can be computationally intensive.')),
+				gettext('Export multilingual content') => array(
+						'key' => 'xmpMetadata_exportmultilingual',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If you export meta data to an XMP file the multilingual serialized sting of all languages is exported. Check this to export the current active language only.'))
+		);
+	}
+
+	/**
+	 * Custom option handler
+	 *
+	 * @param string $option
+	 * @param mixed $currentValue
+	 */
+	function handleOption($option, $currentValue) {
+
+	}
+
+}
 
 /**
  * Plugin option handling class
@@ -559,58 +625,7 @@ class xmpMetadata {
 					'&yuml;'	 => 'ÿ'
 	);
 
-	/**
-	 * Class instantiation function
-	 *
-	 * @return xmpMetadata_options
-	 */
-	function __construct() {
-		setOptionDefault('xmpMetadata_suffix', 'xmp');
-	}
-
-	/**
-	 * Option interface
-	 *
-	 * @return array
-	 */
-	function getOptionsSupported() {
-		global $_zp_supported_images, $_zp_extra_filetypes;
-		$list = $_zp_supported_images;
-		foreach (array('gif', 'wbmp') as $suffix) {
-			$key = array_search($suffix, $list);
-			if ($key !== false)
-				unset($list[$key]);
-		}
-		sortArray($list);
-		$types = array();
-		foreach ($_zp_extra_filetypes as $suffix => $type) {
-			if ($type == 'Video')
-				$types[] = $suffix;
-		}
-		sortArray($types);
-		$list = array_merge($list, $types);
-		$listi = array();
-		foreach ($list as $suffix) {
-			$listi[$suffix] = 'xmpMetadata_examine_images_' . $suffix;
-		}
-		return array(gettext('Sidecar file extension')	 => array('key'	 => 'xmpMetadata_suffix', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('The plugin will look for files with <em>image_name.extension</em> and extract XMP metadata from them into the <em>image_name</em> record.')),
-						gettext('Process extensions')			 => array('key'				 => 'xmpMetadata_examine_imagefile', 'type'			 => OPTION_TYPE_CHECKBOX_UL,
-										'checkboxes' => $listi,
-										'desc'			 => gettext('If no sidecar file exists and the extension is enabled, the plugin will search within that type <em>image</em> file for an <code>XMP</code> block. <strong>Warning</strong> do not set this option unless you require it. Searching image files can be computationally intensive.'))
-		);
-	}
-
-	/**
-	 * Custom option handler
-	 *
-	 * @param string $option
-	 * @param mixed $currentValue
-	 */
-	function handleOption($option, $currentValue) {
-
-	}
-
+	
 	/**
 	 * Parses xmp metadata for interesting tags
 	 *
@@ -1049,7 +1064,11 @@ class xmpMetadata {
 				$last_element = $elementXML;
 				$output = false;
 			}
-			$v = self::encode($object->get($field));
+			if (getOption('xmpMetadata_exportmultilingual')) {
+				$v = self::encode($object->get($field));
+			} else {
+				$v = self::encode(get_language_string($object->get($field)));
+			}
 			$tag = $elementXML;
 			switch ($elementXML) {
 				case 'dc:creator':
@@ -1111,6 +1130,9 @@ class xmpMetadata {
 		if ($html)
 			$html .= '<hr />';
 		$html .= '<label><input type="checkbox" name="xmpMedadataPut_' . $prefix . '" value="1" /> ' . gettext('Export metadata info to XMP sidecar.') . '</label>';
+		if (!getOption('xmpMetadata_exportmultilingual')) {
+			$html .= '<p class="warningbox">' . gettext("Only content of current user's language is exported"). '</p>';
+		}
 		return $html;
 	}
 
@@ -1119,5 +1141,3 @@ class xmpMetadata {
 	}
 
 }
-
-?>
