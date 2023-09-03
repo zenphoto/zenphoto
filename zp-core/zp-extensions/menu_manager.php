@@ -1261,7 +1261,7 @@ function printCustomMenu($menuset = 'default', $option = 'list', $css_id = '', $
 		}
 		$itemURL = $itemarray['url'];
 		$itemtitle = $itemarray['title'];
-		$level = max(1, count(explode('-', $item['sort_order'])));
+		$level = substr_count($item['sort_order'], '-') + 1;
 		$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 						|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
 						|| (($option == 'list' || ($option == 'omit-top' && $level > 1)) && (($item['id'] == $pageid) // current page

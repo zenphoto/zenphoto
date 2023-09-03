@@ -5701,7 +5701,7 @@ function getZenpagePagesOptionsArray($published = false) {
 					$unpublished_note = '*';
 				}
 				$sublevel = '';
-				$level = count(explode('-', $pageobj->getSortorder()));
+				$level = $pageobj->getLevel();
 				if ($level != 1) {
 					for ($l = 1; $l < $level; $l++) {
 						$sublevel .= '-';

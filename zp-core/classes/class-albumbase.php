@@ -1554,5 +1554,16 @@ class AlbumBase extends MediaObject {
 			return $this->firstpageimages = Gallery::getFirstPageImages($this, $one_image_page);
 		}
 	}
+	
+	/**
+	 * Gets the level based on the folder name(s) as freshly discovered albums from the file system may not have a proper sortorder set
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return int
+	 */
+	function getLevel() {
+		return substr_count($this->getName(), '/') + 1;
+	}
 
 }

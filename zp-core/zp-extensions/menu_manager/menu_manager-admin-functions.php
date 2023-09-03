@@ -834,9 +834,9 @@ function printAlbumsSelector($current) {
 			} else {
 				$selected = '';
 			}
-			$level = substr_count($albumname, "/");
+			$level = $albumobj->getLevel(); 
 			$arrow = "";
-			for ($count = 1; $count <= $level; $count++) {
+			for ($count = 1; $count < $level; $count++) {
 				$arrow .= "–&nbsp;";
 			}
 			echo "<option value = '" . html_encode($albumobj->name) . "'" . $selected . '>';
@@ -869,10 +869,10 @@ function printZenpagePagesSelector($current) {
 				$selected = '';
 			}
 			$pageobj = new ZenpagePage($page['titlelink']);
-			$level = substr_count($pageobj->getSortOrder(), "-");
+			$level = $pageobj->getLevel();
 			$arrow = "";
-			for ($count = 1; $count <= $level; $count++) {
-				$arrow .= "» ";
+			for ($count = 1; $count < $level; $count++) {
+				$arrow .= "–&nbsp;";
 			}
 			echo "<option value = '" . html_encode($pageobj->getName()) . "'" . $selected . '>';
 			echo $arrow . $pageobj->getTitle() . unpublishedZenphotoItemCheck($pageobj) . "</option>";

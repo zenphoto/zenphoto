@@ -615,5 +615,16 @@ class ThemeObject extends PersistentObject {
 		}
 		return false;
 	}
+	
+	/**
+	 * Gets the level based on the sort order if the theme object is hierachical. Otherwise returns 1 (top level)
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @return int
+	 */
+	function getLevel() {
+		return substr_count($this->get('sort_order'), '-') + 1;
+	}
 
 }
