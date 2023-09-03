@@ -2844,28 +2844,6 @@ function setexifvars() {
 
 /**
  *
- * Returns true if the install is not a "clone"
- */
-function hasPrimaryScripts() {
-	if (!defined('PRIMARY_INSTALLATION')) {
-		if (function_exists('readlink') && ($zen = str_replace('\\', '/', @readlink(SERVERPATH . '/' . ZENFOLDER)))) {
-			// no error reading the link info
-			$os = strtoupper(PHP_OS);
-			$sp = SERVERPATH;
-			if (substr($os, 0, 3) == 'WIN' || $os == 'DARWIN') { // canse insensitive file systems
-				$sp = strtolower($sp);
-				$zen = strtolower($zen);
-			}
-			define('PRIMARY_INSTALLATION', $sp == dirname($zen));
-		} else {
-			define('PRIMARY_INSTALLATION', true);
-		}
-	}
-	return PRIMARY_INSTALLATION;
-}
-
-/**
- *
  * Recursively clears and removes a folder
  * @param string $path
  * @return boolean
