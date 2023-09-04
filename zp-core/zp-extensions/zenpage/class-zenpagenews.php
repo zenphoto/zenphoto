@@ -190,17 +190,6 @@ class ZenpageNews extends ZenpageItems {
 			if(!$this->isPublished()) {
 				return $this->is_public = false;
 			}
-			$categories = $this->getCategories();
-			$catcheck = true;
-			if (count($categories) > 0) {
-				foreach ($categories as $cat) {
-					$catobj = new ZenpageCategory($cat);
-					if (!$catobj->isPublic()) {
-						$catcheck = $catcheck && false;
-					}
-				}
-				return $this->is_public = $catcheck;
-			}
 			return $this->is_public = true;
 		} else {
 			return $this->is_public;
