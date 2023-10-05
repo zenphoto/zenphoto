@@ -633,7 +633,6 @@ function addItem(&$reports) {
 					. $_zp_db->quote($result['span_class']) . ", " 
 					. $_zp_db->quote($result['open_newtab']) .
 					")";
-	debuglog(print_r($sql, true));
 	if ($_zp_db->query($sql, true)) {
 		$reports[] = "<p class = 'messagebox fade-message'>" . $successmsg . "</p>";
 		//echo "<pre>"; print_r($result); echo "</pre>";
