@@ -379,9 +379,7 @@ class ThemeObject extends PersistentObject {
 	 * @param bit $action User rights level, default LIST_RIGHTS
 	 */
 	function isMyItem($action = LIST_RIGHTS) {
-		if (!$this->checkPublishDates()) {
-			$this->setPublished(0);
-		} 
+		$this->checkPublishDates();
 		if (zp_loggedin($this->manage_rights)) {
 			return true;
 		}
@@ -458,7 +456,9 @@ class ThemeObject extends PersistentObject {
 
 	/**
 	 * Checks if the item is either expired or needs to be scheduled published
-	 * A class method wrapper of the functions.php function of the same name
+	 * 
+	 * Unpublishes the item if expired (saves to db) or scheduled (temporary) and 
+	 * returns false if expired or scheduled.
 	 * @return boolean
 	 */
 	function checkPublishDates() {
@@ -477,13 +477,19 @@ class ThemeObject extends PersistentObject {
 			);
 		}
 		$check = self::checkScheduledPublishing($row);
-		if ($check == 1 || $check == 2) {
-			return false;
-		} else {
-			return true;
+		switch ($check) {
+			case 1:
+				$this->setPublished(0);
+				$this->save();
+				return false;
+			case 2:
+				$this->setPublished(0);
+				return false;
+			default;
+				return true;
 		}
 	}
-	
+
 	/**
 	 * Checks if the item has expired or is in scheduled publishing
 	 * 

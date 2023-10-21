@@ -1618,14 +1618,8 @@ class SearchEngine {
 							$allow = false;
 							$album = AlbumBase::newAlbum($albumname);		
 							$imageobj = Image::newImage($album, $row['filename']);
-							switch ($imageobj->checkPublishDates()) {
-								case 1:
-									$imageobj->setPublished(0);
-									$imageobj->save();
-								case 2:
-									$imageobj->setPublished(0);
-									$row['show'] = 0;
-									break;
+							if ($imageobj->hasPublishSchedule()) {
+								$row['show'] = 0;
 							}
 							$viewUnpublished = ($mine || $this->search_unpublished || (is_null($mine)) && ($imageobj->isVisible()));
 							if ($viewUnpublished) {
