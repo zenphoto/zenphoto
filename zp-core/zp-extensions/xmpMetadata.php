@@ -104,7 +104,7 @@ class xmpMetadataOptions {
 				gettext('Export multilingual content') => array(
 						'key' => 'xmpMetadata_exportmultilingual',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If you export metadata to an XMP file the multilingual serialized sting of all languages is exported. Check this to export the metadata in all activated languages.'))
+						'desc' => gettext('Check this to export the metadata in all activated languages.'))
 		);
 	}
 
