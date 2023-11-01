@@ -350,6 +350,20 @@ function toggleElementsBySelector(element_to_check, value_to_trigger, element_to
 	});
 }
 
+/**
+ * Confirm a click
+ * 
+ * @since 1.6.1
+ * @param {string} element CSS class or id of the element (".someclass" or "#someid")
+ * @param {string} message Text message
+ * @returns {bool}
+ */
+function confirmClick(element, message) {
+	$(element).click(function (event) {
+		return confirm(message);
+	});
+}
+
 $( document ).ready(function() {
 /* 
 	 * backtop button 

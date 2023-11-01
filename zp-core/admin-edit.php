@@ -1243,11 +1243,18 @@ echo "\n</head>";
 																<br class="clearall" />
 																<hr />
 																<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+																	<a href="admin-edit.php?action=refresh&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" class="js_confirm_metadata_refresh<?php echo $currentimage; ?>">
 																		<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 																	</a>
 																	<br class="clearall" />
 																</div>
+																<script>
+																	$( document ).ready(function() {
+																		var element = '.js_confirm_metadata_refresh<?php echo $currentimage; ?>';
+																		var message = '<?php echo js_encode(gettext('Refreshing metadata will overwrite existing data. This cannot be undone!')); ?>';
+																		confirmClick(element, message);
+																	});
+																</script>
 																<?php
 																if (($image->isPhoto() || !is_null($image->objectsThumb)) && getOption('thumb_crop')) {
 																	?>

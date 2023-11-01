@@ -613,7 +613,7 @@ if (!zp_loggedin()) {
 									<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
 									<?php echo $button['hidden']; ?>
 									<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-										<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+										<button class="fixedwidth <?php echo $button['formname']; ?>" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
 											<?php
 											if (!empty($button_icon)) {
 												?>
@@ -624,6 +624,15 @@ if (!zp_loggedin()) {
 											?>
 										</button>
 									</div><!--buttons -->
+									<?php if (isset($button['confirmclick']) && !empty($button['confirmclick'])) { ?>
+										<script>
+											$( document ).ready(function() {
+												var element = 'button.<?php echo $button['formname']; ?>';
+												var message = '<?php echo js_encode($button['confirmclick']); ?>';
+												confirmClick(element, message );
+											});
+										</script>
+									<?php } ?>
 								</form>
 								<?php
 							}

@@ -2032,10 +2032,17 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums())) {
 			?>
 			<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album."); ?>">
-				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>">
+				<a href="<?php echo WEBPATH . '/' . ZENFOLDER . '/admin-refresh-metadata.php?album=' . html_encode($album->name) . '&amp;return=' . html_encode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh'); ?>" class="js_confirm_metadata_refresh_<?php echo $album->getID(); ?>">
 					<img src="images/cache.png" /><?php echo gettext('Refresh album metadata'); ?></a>
 				<br class="clearall" />
 			</div>
+			<script>
+				$( document ).ready(function() {
+					var element = '.js_confirm_metadata_refresh_<?php echo $album->getID(); ?>';
+					var message = '<?php echo js_encode(gettext('Refreshing metadata will overwrite existing data. This cannot be undone!')); ?>';
+					confirmClick(element, message);
+				});
+			</script>
 			<?php
 		}
 	}
@@ -2220,9 +2227,16 @@ function printAdminHeader($tab, $subtab = NULL) {
 						<?php
 					} else {
 						?>
-						<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+						<a class="warn js_confirm_metadata_refresh" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo html_encode(pathurlencode($album->name)); ?>&amp;return=*<?php echo html_encode(pathurlencode($owner)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh') ?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
 							<img src="images/refresh.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
 						</a>
+						<script>
+						$( document ).ready(function() {
+							var element = '.js_confirm_metadata_refresh';
+							var message = '<?php echo js_encode(gettext('Refreshing metadata will overwrite existing data. This cannot be undone!')); ?>';
+							confirmClick(element, message);
+						});
+						</script>
 						<?php
 					}
 					?>
