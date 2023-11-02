@@ -162,7 +162,7 @@ function intel2Moto($intel) {
 		$len = 1000;
 	}
 	for ($i = 0; $i <= $len; $i += 2) {
-		$cache[$intel] .= substr($intel, $len - $i, 2);
+		$cache[strval($intel)] .= substr($intel, $len - $i, 2);
 	}
 	return $cache[$intel];
 }
@@ -1338,7 +1338,7 @@ function read_exif_data_raw($path, $verbose) {
 	}
 
 	// seek to SubIFD (Value of ExifOffset tag) above.
-	$ExitOffset = $result['IFD0']['ExifOffset'];
+	$ExitOffset = intval($result['IFD0']['ExifOffset']);
 	$v = fseek($in, $globalOffset + $ExitOffset);
 	if ($v == -1) {
 		$result['Errors'] = $result['Errors'] + 1;
