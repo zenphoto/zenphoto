@@ -396,5 +396,3 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 }
-// zenpage news class end
-?>
