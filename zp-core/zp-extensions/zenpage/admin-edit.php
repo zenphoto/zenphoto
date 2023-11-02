@@ -682,7 +682,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															if (is_object($result)) {
 																?>
 																<ul>
-																	<?php printNestedItemsList('cats-checkboxlist', $result->getID()); ?>
+																	<?php printNestedItemsList('cats-checkboxlist', $result); ?>
 																</ul>
 																<?php
 															} else {

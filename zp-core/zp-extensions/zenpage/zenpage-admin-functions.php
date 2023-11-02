@@ -1078,12 +1078,22 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
  * @param string $listtype 'cats-checkboxlist' for a fake nested checkbock list of categories for the news article edit/add page
  * 												'cats-sortablelist' for a sortable nested list of categories for the admin categories page
  * 												'pages-sortablelist' for a sortable nested list of pages for the admin pages page
- * @param int $articleid Only for $listtype = 'cats-checkboxlist': For ID of the news article if the categories an existing articles is assigned to shall be shown, empty if this is a new article to be added.
+ * @param $obj $obj Optional, default empty. Passing an articledid is deprecated and will be removed in ZenphotoCMS 2.0.
+ * - listtype = 'cats-checkboxlist': Object of the news article if the categories an existing articles is assigned to shall be shown, empty if this is a new article to be added.
+ * - listtype = 'pages-sortablelist': Object of the page object to show sub pages of or empty for all 
  * @param string $option Only for $listtype = 'cats-checkboxlist': "all" to show all categories if creating a new article without categories assigned, empty if editing an existing article that already has categories assigned.
  * @return string | bool
  */
-function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', $option = '', $class = 'nestedItem') {
+function printNestedItemsList($listtype = 'cats-sortablelist', $obj = '', $option = '', $class = 'nestedItem') {
 	global $_zp_zenpage;
+	if ($listtype == 'cats-sortablelist' && is_int($obj)) {
+		deprecationNotice(gettext('The 2nd parameter of printNestedItemsList() should bean Zenpage news or page object and not an integer (to be removed in ZenphotoCMS 2.0'), '$obj');
+		$obj = getItemByID($obj, 'news');
+	}
+	$id = '';
+	if (is_object($obj)) {
+		$id = $obj->getID();
+	}
 	switch ($listtype) {
 		case 'cats-checkboxlist':
 		default:
@@ -1102,7 +1112,11 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 			$items = $_zp_zenpage->getAllCategories(false);
 			break;
 		case 'pages-sortablelist':
-			$items = $_zp_zenpage->getPages(false);
+			if (is_object($obj)) {
+				$items = $obj->getPages(false);
+			} else {
+				$items = $_zp_zenpage->getPages(false);
+			}
 			break;
 		default:
 			$items = array();
@@ -1157,7 +1171,7 @@ function printNestedItemsList($listtype = 'cats-sortablelist', $articleid = '', 
 			switch ($listtype) {
 				case 'cats-checkboxlist':
 					echo "<li>\n";
-					printCategoryCheckboxListEntry($itemobj, $articleid, $option, $class);
+					printCategoryCheckboxListEntry($itemobj, $id, $option, $class);
 					break;
 				case 'cats-sortablelist':
 					echo str_pad("\t", $indent - 1, "\t") . "<li id=\"id_" . $itemid . "\">";
