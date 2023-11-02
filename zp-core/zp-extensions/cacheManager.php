@@ -664,7 +664,7 @@ class cacheManager {
 				'category' => gettext('Cache'),
 				'enable' => true,
 				'button_text' => gettext('Purge Image cache'),
-				'formname' => 'purge_image_cache.php',
+				'formname' => 'purge_image_cache',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=action=clear_cache',
 				'icon' => 'images/edit-delete.png',
 				'alt' => '',

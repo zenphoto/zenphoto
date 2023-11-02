@@ -2526,13 +2526,13 @@ Authority::printPasswordFormJS();
 										<p>
 											<?php echo gettext("Select how image metadata fields are handled."); ?>
 										<ul style="list-style: none;">
-											<li><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
-											<li><img src ="images/reset.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
-											<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Do not process the field'); ?></li>
+											<li><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field and import data'); ?></li>
+											<li><img src ="images/reset.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field but import data'); ?></li>
+											<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('No display and import'); ?></li>
 										</ul>
 										</p>
-										<p>
-											<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.') ?>
+										<p class="warningbox">
+											<?php echo gettext('<strong>Important</strong>: The "Refresh metadata" utility which is accessible from the backend "Overview" page, every album-edit page and every image-edit page, will overwrite all manually added metadata with metadata embedded in the image/album for all fields enabled. This cannot be undone!'); ?>
 										</p>
 									</td>
 								</tr>

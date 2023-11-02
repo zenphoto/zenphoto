@@ -867,7 +867,7 @@ class RSS extends feed {
 				'category' => gettext('Cache'),
 				'enable' => true,
 				'button_text' => gettext('Purge RSS cache'),
-				'formname' => 'purge_rss_cache.php',
+				'formname' => 'purge_rss_cache',
 				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=clear_rss_cache',
 				'icon' => 'images/edit-delete.png',
 				'alt' => '',
