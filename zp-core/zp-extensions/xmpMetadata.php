@@ -643,7 +643,7 @@ class xmpMetadata {
 						'IPTCKeywords'					 => '<dc:subject>',
 						'EXIFExposureTime'			 => '<exif:ExposureTime>',
 						'EXIFFNumber'						 => '<exif:FNumber>',
-						'EXIFAperatureValue'		 => '<exif:ApertureValue>',
+						'EXIFApertureValue'		 	 => '<exif:ApertureValue>',
 						'EXIFExposureProgram'		 => '<exif:ExposureProgram>',
 						'EXIFISOSpeedRatings'		 => '<exif:ISOSpeedRatings>',
 						'EXIFDateTimeOriginal'	 => '<exif:DateTimeOriginal>',
@@ -678,7 +678,7 @@ class xmpMetadata {
 						'watermark'							 => '<zp:Watermark>',
 						'watermark_use'					 => '<zp:Watermark_use>',
 						'watermark_thumb'				 => '<zp:Watermark_thumb>',
-						'custom_data'						 => '<zp:CustomData',
+						'custom_data'						 => '<zp:CustomData>',
 						'codeblock'							 => '<zp:Codeblock>'
 		);
 		$xmp_parsed = array();
@@ -731,7 +731,7 @@ class xmpMetadata {
 	}
 
 	/**
-	 * insures that the metadata is a string
+	 * ensures that the metadata is a string
 	 *
 	 * @param mixed $meta
 	 * @return string
@@ -961,7 +961,7 @@ class xmpMetadata {
 					case 'EXIFFocalLength':
 						$v = self::rationalNum($element) . ' mm';
 						break;
-					case 'EXIFAperatureValue':
+					case 'EXIFApertureValue':
 					case 'EXIFFNumber':
 						$v = 'f/' . self::rationalNum($element);
 						break;
