@@ -3643,15 +3643,15 @@ function getAllDates($order = 'asc') {
 	$cleandates = array();
 	$sql = "SELECT `date` FROM " . $_zp_db->prefix('images');
 	$hidealbums = getNotViewableAlbums();
-	if (!is_null($hidealbums)) {
+	if ($hidealbums) {
 		$sql .= ' WHERE `albumid` NOT IN ('. implode(',', $hidealbums) . ')';
 	}
 	$hideimages = getNotViewableImages();
-	if(!is_null($hideimages)) {
-		if (is_null($hidealbums)) {
-			$sql .= ' WHERE ';
-		} else {
+	if($hideimages) {
+		if ($hidealbums) {
 			$sql .= ' AND ';
+		} else {
+			$sql .= ' WHERE ';
 		}
 		$sql .= ' `id` NOT IN ('. implode(',', $hideimages) . ')';
 	}
