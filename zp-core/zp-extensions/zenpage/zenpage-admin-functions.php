@@ -754,7 +754,7 @@ function printCategoryDropdown() {
 			foreach ($result as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				// check if there are articles in this category. If not don't list the category.
-				$count = count($catobj->getArticles(0, 'all'));
+				$count = count($catobj->getArticles(0, 'all', false, null, null, null, null, false));
 				$count = " (" . $count . ")";
 				if ($category == $cat['titlelink']) {
 					$selected = "selected='selected'";

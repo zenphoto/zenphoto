@@ -412,7 +412,7 @@ class ZenpageCategory extends ZenpageRoot {
 		return false;
 	}
 
-	/**
+		/**
 	 * Gets news articles titlelinks this category is attached to
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude articles that are password protected via a category
@@ -431,11 +431,12 @@ class ZenpageCategory extends ZenpageRoot {
 	 * 											        This parameter is not used for date archives
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @param string $author Optional author name to get the article of
+	* @param string|null|false $date Date YYYY-mm format for a date archive, null uses global theme date archive context, false (default) to disable date archive context
 	 * @return array
 	 */
-	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $author = null) {
+	function getArticles($articles_per_page = 0, $published = NULL, $ignorepagination = false, $sortorder = NULL, $sortdirection = NULL, $sticky = NULL, $author = null, $date = false) {
 		global $_zp_zenpage;
-		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this, $author);
+		return $_zp_zenpage->getArticles($articles_per_page, $published, $ignorepagination, $sortorder, $sortdirection, $sticky, $this, $author, $date);
 	}
 	
 	/**

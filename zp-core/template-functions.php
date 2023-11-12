@@ -3637,23 +3637,23 @@ function printAllTagsAs($option, $class = '', $sort = NULL, $counter = FALSE, $l
  * @param string $order set to 'desc' for the list to be in descending order
  * @return array
  */
-function getAllDates($order = 'asc') {	
+function getAllDates($order = 'asc') {
 	global $_zp_db;
 	$alldates = array();
 	$cleandates = array();
 	$sql = "SELECT `date` FROM " . $_zp_db->prefix('images');
 	$hidealbums = getNotViewableAlbums();
 	if ($hidealbums) {
-		$sql .= ' WHERE `albumid` NOT IN ('. implode(',', $hidealbums) . ')';
+		$sql .= ' WHERE `albumid` NOT IN (' . implode(',', $hidealbums) . ')';
 	}
 	$hideimages = getNotViewableImages();
-	if($hideimages) {
+	if ($hideimages) {
 		if ($hidealbums) {
 			$sql .= ' AND ';
 		} else {
 			$sql .= ' WHERE ';
 		}
-		$sql .= ' `id` NOT IN ('. implode(',', $hideimages) . ')';
+		$sql .= ' `id` NOT IN (' . implode(',', $hideimages) . ')';
 	}
 	$result = $_zp_db->query($sql);
 	if ($result) {
