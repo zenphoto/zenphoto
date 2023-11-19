@@ -1087,7 +1087,7 @@ function printCategoryCheckboxListEntry($cat, $articleid, $option, $class = '') 
 function printNestedItemsList($listtype = 'cats-sortablelist', $obj = '', $option = '', $class = 'nestedItem') {
 	global $_zp_zenpage;
 	if ($listtype == 'cats-sortablelist' && is_int($obj)) {
-		deprecationNotice(gettext('The 2nd parameter of printNestedItemsList() should bean Zenpage news or page object and not an integer (to be removed in ZenphotoCMS 2.0'), '$obj');
+		deprecationNotice(gettext('The 2nd parameter of printNestedItemsList() should be a Zenpage news or page object and not an integer (to be removed in ZenphotoCMS 2.0'), '$obj');
 		$obj = getItemByID($obj, 'news');
 	}
 	$id = '';
