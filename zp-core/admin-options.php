@@ -2532,7 +2532,7 @@ Authority::printPasswordFormJS();
 										</ul>
 										</p>
 										<p class="warningbox">
-											<?php echo gettext('<strong>Important</strong>: The "Refresh metadata" utility which is accessible from the backend "Overview" page, every album-edit page and every image-edit page, will overwrite all manually added metadata with metadata embedded in the image/album for all fields enabled. This cannot be undone!'); ?>
+											<?php echo gettext('<strong>Important:</strong> The "Refresh metadata" utility which is accessible from the backend "Overview" page, every album-edit page and every image-edit page, will overwrite all manually added metadata with metadata embedded in the image/album for all fields enabled. This cannot be undone!'); ?>
 										</p>
 									</td>
 								</tr>
