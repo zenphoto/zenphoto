@@ -38,10 +38,10 @@ if ($filehandler) {
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars code fullscreen",
 			"insertdatetime media nonbreaking save table contextmenu directionality",
-			"emoticons template paste textpattern imagetools tinyzenpage"
+			"emoticons template paste textpattern imagetools colorpicker textcolor tinyzenpage"
 		],
 		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image",
-		toolbar2: "print preview media | forecolor backcolor emoticons | code fullscreen | pagebreak tinyzenpage | ltr rtl",
+		toolbar2: "print preview media | forecolor backcolor emoticons | pagebreak tinyzenpage | code fullscreen | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');
