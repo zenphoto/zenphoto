@@ -58,10 +58,6 @@ if ($const_webpath == '/' || $const_webpath == '.') {
 	$const_webpath = '';
 }
 
-if (defined('SERVERPATH')) {
-	$const_serverpath = SERVERPATH;
-}
-
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
 }
