@@ -577,8 +577,8 @@ class openStreetMap {
 			$result = array(
 					'lat' => $gps['lat'],
 					'long' => $gps['long'],
-					'title' => "<a href='" . $image->getLink() . "'>". shortenContent($image->getTitle(), 50, '...') . "</a><br />",
-					'desc' => shortenContent($image->getDesc(), 100, '...'),
+					'title' => "<a href='" . $image->getLink() . "'>". js_encode(shortenContent($image->getTitle(), 50, '...')) . "</a><br />",
+					'desc' => js_encode(shortenContent($image->getDesc(), 100, '...')),
 					'thumb' => $thumb,
 					'current' => $current
 			);
@@ -656,8 +656,8 @@ class openStreetMap {
 				$js_geodata .= ' geodata[' . $count . '] = {
 					lat : "' . $geo['lat'] . '",
 					long : "' . $geo['long'] . '",
-					title : "' . js_encode(shortenContent($geo['title'], 50, '...')) . '",
-					desc : "' . js_encode(shortenContent($geo['desc'], 100, '...')) . '",
+					title : "' . $geo['title'] . '",
+					desc : "' . $geo['desc'] . '",
 					thumb : "' . $geo['thumb'] . '",
 					current : "' . $geo['current'] . '"
 
