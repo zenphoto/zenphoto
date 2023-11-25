@@ -577,7 +577,7 @@ class openStreetMap {
 			$result = array(
 					'lat' => $gps['lat'],
 					'long' => $gps['long'],
-					'title' => '<a href="' . $image->getLink() . '">' . shortenContent($image->getTitle(), 50, '...') . '</a><br />',
+					'title' => "<a href='" . $image->getLink() . "'>". shortenContent($image->getTitle(), 50, '...') . "</a><br />",
 					'desc' => shortenContent($image->getDesc(), 100, '...'),
 					'thumb' => $thumb,
 					'current' => $current
