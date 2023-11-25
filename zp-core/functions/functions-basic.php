@@ -62,6 +62,16 @@ if (defined('SERVERPATH')) {
 	$const_serverpath = SERVERPATH;
 }
 
+if (!defined('WEBPATH')) {
+	define('WEBPATH', $const_webpath);
+}
+unset($const_webpath);
+
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', $const_serverpath);
+}
+unset($const_serverpath);
+
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX", 1);
 define("ZP_ALBUM", 2);
@@ -110,22 +120,13 @@ set_exception_handler("zpErrorHandler");
 $_zp_mutex = new zpMutex('cF');
 
 // Including the config file more than once is OK, and avoids $conf missing.
-if (OFFSET_PATH != 2 && !file_exists($const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
+if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
 	reconfigureAction(1);
 } else {
-	require_once $const_serverpath . '/' . DATA_FOLDER . '/' . CONFIGFILE;
+	require_once SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE;
 }
 
-if (!defined('WEBPATH')) {
-	define('WEBPATH', $const_webpath);
-}
-unset($const_webpath);
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', $const_serverpath);
-}
-unset($const_serverpath);
 
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
