@@ -3544,9 +3544,24 @@ function getCheckboxState($id) {
  * @return array
  */
 function standardScripts() {
-	$standardlist = array('themeoptions', 'password', 'theme_description', '404', 'slideshow', 'search', 'image', 'index', 'album', 'customfunctions', 'functions');
-	if (extensionEnabled('zenpage'))
+	$standardlist = array(
+			'themeoptions',
+			'password',
+			'theme_description',
+			'404', 'slideshow',
+			'search', 'image',
+			'index', 'album',
+			'customfunctions',
+			'functions',
+			'footer',
+			'sidebar',
+			'header',
+			'inc-footer',
+			'inc-header'
+	);
+	if (extensionEnabled('zenpage')) {
 		$standardlist = array_merge($standardlist, array('news', 'pages'));
+	}
 	return $standardlist;
 }
 
