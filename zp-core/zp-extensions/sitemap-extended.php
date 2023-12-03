@@ -435,7 +435,7 @@ class sitemap {
 						}
 						break;
 					default:
-						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . $galleryindex . "/</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . FULLWEBPATH . $galleryindex . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 				}
 			}
@@ -826,18 +826,18 @@ class sitemap {
 			switch (SITEMAP_LOCALE_TYPE) {
 				case 1:
 					foreach ($sitemap_locales as $locale) {
-						$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/1/';
+						$url = seo_locale::localePath(true, $locale) . '/' . _NEWS_ . '/';
 						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
-						$url = rewrite_path(_NEWS_ . '/1/', 'index.php?p=news&amp;page=1', dynamic_locale::fullHostPath($locale));
+						$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news&amp;page=1', dynamic_locale::fullHostPath($locale));
 						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				default:
-					$url = rewrite_path(_NEWS_ . '/1/', 'index.php?p=news&amp;page=1', FULLWEBPATH);
+					$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news&amp;page=1', FULLWEBPATH);
 					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					Break;
 			}
