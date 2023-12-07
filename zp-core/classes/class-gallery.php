@@ -1066,7 +1066,7 @@ class Gallery {
 					$album->setPublished(0);
 					break;
 			}
-			if ($mine || $viewUnpublished || $album->isVisible()) {
+			if ($mine || $viewUnpublished || (!$this->isProtectedGalleryIndex() && $album->isPublic()) || $album->isVisible()) {
 				$albums_ordered[] = $folder;
 			}
 		}
@@ -1249,6 +1249,32 @@ class Gallery {
 	function setGallerySession($value) {
 		$this->set('album_session', $value);
 	}
+	
+	/**
+	 * Checks if the site is protected and if the gallery index is one of the unprotected pages
+	 * 
+	 * @since 1.6.1
+	 * 
+	 * @global string $_zp_gallery_page
+	 * @return bool
+	 */
+	function isProtectedGalleryIndex() {
+		global $_zp_gallery_page;
+		$validindexes = array(
+				'gallery',
+				'index'
+		);
+		$current = stripSuffix($_zp_gallery_page);
+		if (GALLERY_SECURITY != 'public' && !zp_loggedin()) {
+			if (in_array($current, $validindexes) && in_array($current, $this->unprotected_pages)) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 *
@@ -1259,6 +1285,8 @@ class Gallery {
 	function isUnprotectedPage($page) {
 		return (in_array($page, $this->unprotected_pages));
 	}
+	
+
 
 	function setUnprotectedPage($page, $on) {
 		if ($on) {
