@@ -143,19 +143,17 @@ class AlbumBase extends MediaObject {
 	 * @return object|null
 	 */
 	function getParent() {
-		if ($this->getParentID()) {
-			if (is_null($this->parentalbum)) {
-				$slashpos = strrpos($this->name, "/");
-				if ($slashpos) {
-					$parent = substr($this->name, 0, $slashpos);
-					$parentalbum = AlbumBase::newAlbum($parent, true, true);
-					if ($parentalbum->exists) {
-						return $this->parentalbum = $parentalbum;
-					}
+		if (is_null($this->parentalbum)) {
+			$slashpos = strrpos($this->name, "/");
+			if ($slashpos) {
+				$parent = substr($this->name, 0, $slashpos);
+				$parentalbum = AlbumBase::newAlbum($parent, true, true);
+				if ($parentalbum->exists) {
+					return $this->parentalbum = $parentalbum;
 				}
-			} else if ($this->parentalbum->exists) {
-				return $this->parentalbum;
 			}
+		} else if ($this->parentalbum->exists) {
+			return $this->parentalbum;
 		}
 		return NULL;
 	}
@@ -168,23 +166,21 @@ class AlbumBase extends MediaObject {
 	 * @return array|null
 	 */
 	function getParents() {
-		if ($this->getParentID()) {
-			if (is_null($this->parentalbums)) {
-				$albumarray = getAlbumArray($this->name, false);
-				if (count($albumarray) == 1) {
-					$parent = $this->getParent();
-					$this->urparentalbum = $parent;
-					return $this->parentalbums = array($parent);
-				}
-				$parents = array();
-				$album = $this;
-				while (!is_null($album = $album->getParent())) {
-					array_unshift($parents, $album);
-				}
-				return $this->parentalbums = $parents;
-			} else {
-				return $this->parentalbums;
+		if (is_null($this->parentalbums)) {
+			$albumarray = getAlbumArray($this->name, false);
+			if (count($albumarray) == 1) {
+				$parent = $this->getParent();
+				$this->urparentalbum = $parent;
+				return $this->parentalbums = array($parent);
 			}
+			$parents = array();
+			$album = $this;
+			while (!is_null($album = $album->getParent())) {
+				array_unshift($parents, $album);
+			}
+			return $this->parentalbums = $parents;
+		} else {
+			return $this->parentalbums;
 		}
 		return $this->parentalbums = array();
 	}
