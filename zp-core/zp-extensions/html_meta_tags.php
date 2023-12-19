@@ -106,11 +106,18 @@ class htmlmetatags {
 						'selections' => array(
 								'noindex' => "noindex",
 								'index' => "index",
+								'index,noai,noimagea' => "index,noai,noimagea",
 								'nofollow' => "nofollow",
+								'nofollow,oai,noimagea' => "nofollow,noai,noimagea",
 								'noindex,nofollow' => "noindex,nofollow",
 								'noindex,follow' => "noindex,follow",
+								'noindex,follow,noai,noimagea' => "noindex,follow,noai,noimagea",
+								'noindex,nofollow,noai,noimageai' => "noindex,nofollow,noai,noimageai",
 								'index,nofollow' => "index,nofollow",
-								'none' => "none"),
+								'index,nofollow,noai,noimageai' => "index,nofollow,noai,noimageai",
+								'noai,noimageai' => 'noai,noimageai',
+								'none' => "none"
+						),
 						'desc' => gettext("If and how robots are allowed to visit the site. Default is “index”. Note that you also should use a robot.txt file.")),
 				gettext('Revisit after') => array(
 						'key' => 'htmlmeta_revisit_after',
