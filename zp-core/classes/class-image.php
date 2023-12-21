@@ -984,10 +984,10 @@ class Image extends MediaObject {
 	 * @since 1.5.8
 	 */
 	function getCopyrightRightsholder() {
-		$rightsholder = trim(getOption('copyright_image_rightsholder'));
+		$rightsholder = trim(strval(getOption('copyright_image_rightsholder')));
 		if ($rightsholder && $rightsholder != 'none') {
 			if ($rightsholder == 'custom') {
-				$rightsholder = trim(getOption('copyright_image_rightsholder_custom'));
+				$rightsholder = trim(strval(getOption('copyright_image_rightsholder_custom')));
 			} else {
 				$rightsholder = Administrator::getNameByUser($rightsholder);
 			}
