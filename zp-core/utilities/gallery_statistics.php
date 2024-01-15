@@ -417,7 +417,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 				break;
 			case "tags":
 				$editurl = $webpath . "/admin-tags.php";
-				$viewurl = WEBPATH . "/index.php?p=search&amp;searchfields=tags&amp;search=" . $item['name'];
+				$viewurl = WEBPATH . "/index.php?p=search&amp;searchfields=tags&amp;s=" . $item['name'];
 				$title = $item['name'];
 				break;
 			case "rss":

@@ -520,7 +520,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
      	function newDynAlbum(folder, albumtab) {
         var album = prompt('<?php echo addslashes(gettext('New dynamic album name?')); ?>', '<?php echo addslashes(gettext('new dynamic album')); ?>');
 									if (album) {
-          launchScript('admin-dynamic-album.php', ['search=' + encodeURIComponent(album), 'folder=' + encodeURIComponent(folder), 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
+          launchScript('admin-dynamic-album.php', ['s=' + encodeURIComponent(album), 'folder=' + encodeURIComponent(folder), 'XSRFToken=<?php echo getXSRFToken('newalbum'); ?>']);
         	}
 					}
 	function confirmAction() {
