@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.1\n"
+"Project-Id-Version: Zenphoto 1.6.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-12 09:56+0100\n"
-"PO-Revision-Date: 2024-01-18 11:55+0100\n"
+"PO-Revision-Date: 2024-01-19 10:12+0100\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -3375,20 +3375,15 @@ msgid "Use localized dates"
 msgstr "Utiliser des dates localisées"
 
 #: zp-core/admin-options.php:857
-#, fuzzy
-#| msgid ""
-#| "Format for dates. Select from the list or set to <code>custom</code> and "
-#| "provide a <a href=\"http://us2.php.net/manual/en/function.strftime."
-#| "php\"><span class=\"nowrap\"><code>strftime()</code></span></a> format "
-#| "string in the text box."
 msgid ""
 "Formats for date and time. Select from the lists or set to <code>custom</"
 "code> and provide a <a href=\"https://www.php.net/manual/en/datetime.format."
 "php\">datetime</a> format string in the custom box."
 msgstr ""
-"Format des dates. Sélectionner dans la liste ou choisir <code>personnalisé</"
-"code> puis saisir une chaîne de formatage <a href=\"http://fr.php.net/manual/"
-"fr/function.strftime.php\"><code>strftime()</code></a> dans le champ texte."
+"Formatage dates et heures. Choisissez une option depuis la liste ou une "
+"variante personnalisée avec <code>Personnalisé</code>. Elle doit respecter "
+"le format <a href=\"https://www.php.net/manual/fr/datetime.format."
+"php\">datetime</a>."
 
 #: zp-core/admin-options.php:860
 msgid ""
@@ -3403,7 +3398,7 @@ msgstr ""
 "github.io/icu/userguide/format_parse/datetime/\">une chaîne normalisée "
 "\"DateFormat\" ICU</a>. Si vous utilisez un format de date personnalisé, ou "
 "une des options de <em>Format préféré pour la représentation des dates</em>, "
-"le formatage de l'heure est ignoré. "
+"le formatage de l'heure est ignoré."
 
 #: zp-core/admin-options.php:866
 msgid "Charset:"
@@ -3449,16 +3444,12 @@ msgstr ""
 "autres champs."
 
 #: zp-core/admin-options.php:955
-#, fuzzy
-#| msgid ""
-#| "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; "
-#| "(<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 msgid ""
 "Follow the form: <em>tag</em> =&gt; (<em>attribute</em> =&gt;() "
 "<em>attribute</em>=&gt;() <em>attribute</em> =&gt;()....etc.)"
 msgstr ""
-"Suivez le schéma suivant <em>tag</em> =&gt; (<em>attribut</em> =&gt; "
-"(<em>attribut</em>=&gt; (), <em>attribut</em> =&gt; ()...)))"
+"Suivez le schéma : <em>tag</em> =&gt; (<em>attribut</em> =&gt;() "
+"<em>attribut</em>=&gt;() <em>attribut</em> =&gt;()....etc.)"
 
 #: zp-core/admin-options.php:957
 msgid ""
@@ -3645,17 +3636,14 @@ msgid "Site copyright URL"
 msgstr "URL des copyrights du site"
 
 #: zp-core/admin-options.php:1150 zp-core/admin-options.php:2585
-#, fuzzy
-#| msgid ""
-#| "Optional. Used only if the Google extension is checked. Must be an "
-#| "absolute URL address of the form: http://mydomain.com/license.html"
 msgid ""
 "Choose a Zenpage page or define a custom URL. The URL maybe used to point to "
 "some specific copyright info source. Must be an absolute URL address of the "
 "form: http://mydomain.com/license.html."
 msgstr ""
-"Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être "
-"une URL complète de la forme : http://mondomaine.com/license.html)"
+"Choisissez une page Zenpage ou une URL personnalisée. L'URL doit pointer "
+"vers les informations de copyright, elle doit-être absolue, ex : https://mon-"
+"domaine.fr/copyrights.html"
 
 #: zp-core/admin-options.php:1155
 msgid "Display copyright notice"
@@ -3778,16 +3766,13 @@ msgid "Parent website URL:"
 msgstr "URL du site parent :"
 
 #: zp-core/admin-options.php:1334
-#, fuzzy
-#| msgid ""
-#| "This is used to link back to your main site, but your theme must support "
-#| "it."
 msgid ""
 "This URL is used to link back to your parent website in e.g. breadcrumbs, "
 "but your theme must support it. Not needed on plain Zenphoto sites."
 msgstr ""
-"Cette adresse est utilisée pour établir un lien qui permet de retourner à "
-"votre site principal. Le thème utilisé doit gérer cette option."
+"Cette URL est utilisée pour lier votre site parent, par exemple dans un fil "
+"d'ariane. Votre thème doit être compatible. Inutile sur un site uniquement "
+"Zenphoto."
 
 #: zp-core/admin-options.php:1337
 msgid "Album thumbnails:"
@@ -3890,17 +3875,14 @@ msgstr ""
 "de l’album qui sera utilisée."
 
 #: zp-core/admin-options.php:1461
-#, fuzzy
-#| msgid ""
-#| "<strong>NOTE</strong>: Zenphoto will update the album date only if an "
-#| "image is discovered which is newer than the current date of the album."
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
 "is discovered which is newer than the current date of the album.<br>Be sure "
 "to refresh image metadata for this option to have effect."
 msgstr ""
-"<strong>Note :</strong> Zenphoto mettra à jour la date de l’album seulement "
-"si une image est plus récente que cette date est détectée."
+"<strong>Note :</strong> Zenphoto mettra à jour la date de l'album que si une "
+"image plus récente que sa date actuelle est trouvée.<br>Assurez-vous de "
+"rafraîchir les métadonnées pour que cette option fonctionne."
 
 #: zp-core/admin-options.php:1465
 msgid ""
@@ -4609,23 +4591,16 @@ msgid "Use lock image"
 msgstr "Utiliser une image de cadenas"
 
 #: zp-core/admin-options.php:2479
-#, fuzzy
-#| msgid ""
-#| "Substitute a <em>lock</em> image for thumbnails of password protected "
-#| "albums when the viewer has not supplied the password. If your theme "
-#| "supplies an <code>images/err-passwordprotected.png</code> image, it will "
-#| "be shown. Otherwise the zenphoto default lock image is displayed."
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
 "<code>images_errors/err-passwordprotected.png</code> image, it will be "
 "shown. Otherwise the zenphoto default lock image is displayed."
 msgstr ""
-"Afficher une image de <em>cadenas</em> au lieu de la vignette des albums "
-"protégés par mot de passe quand le visiteur n’en a pas fourni un. Si votre "
-"thème comprend une image <code>images/err-passwordprotected.png</code>, "
-"celle-ci sera affichée ; dans le cas contraire, c’est l’image de cadenas par "
-"défaut de Zenphoto qui sera utilisée."
+"Remplace la vignette d'un album verrouillé pour l'utilisateur par un "
+"<em>cadenas</em>. Si le thème fourni cette image : <code>images_errors/err-"
+"passwordprotected.png</code>, elle sera utilisée. Sinon l'icône par défaut "
+"de Zenphoto sera utilisée."
 
 #: zp-core/admin-options.php:2492
 msgid "Metadata"
@@ -4732,53 +4707,39 @@ msgstr ""
 "l'affichent généralement sous l'image. Cela dépend de ce dernier."
 
 #: zp-core/admin-options.php:2598
-#, fuzzy
-#| msgid "Copyright Holder"
 msgid "Image copyright rightsholder"
-msgstr "Titulaire du copyright"
+msgstr "Propriétaire du copyright"
 
 #: zp-core/admin-options.php:2612
 msgid "Embed IPTC copyright"
 msgstr "Copyright IPTC intégré"
 
 #: zp-core/admin-options.php:2613
-#, fuzzy
-#| msgid ""
-#| "If checked and an image has no IPTC data a copyright notice will be "
-#| "imbedded cached copies."
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be embedded "
 "in cached copies."
 msgstr ""
-"Si cette case est cochée et que l’image n’a pas de donnée IPTC, une notice "
-"de copyright sera incorporée dans les copies mises en cache."
+"Si coché, une image n’ayant pas de données IPTC concernant son copyright, en "
+"aura une dans sa version en cache."
 
 #: zp-core/admin-options.php:2615
 msgid "Replicate IPTC metadata"
 msgstr "Dupliquer les métadonnées IPTC"
 
 #: zp-core/admin-options.php:2616
-#, fuzzy
-#| msgid ""
-#| "If checked IPTC data from the original image will be imbedded in cached "
-#| "copies. If the image has no IPTC data a copyright notice will be "
-#| "imbedded. (The text supplied will be used if the orginal image has no "
-#| "copyright.)"
 msgid ""
 "If checked IPTC data from the original image will be embedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be embedded. "
 "(The text supplied will be used if the orginal image has no copyright.)"
 msgstr ""
-"Cocher pour que les données IPTC de l’image originale soient intégrées aux "
-"copies mises en cache. Si l’image n’a pas de donnée IPTC, une notice de "
-"copyright sera intégrée (le texte par défaut est utilisé si l’image "
-"originale n’a pas de copyright)."
+"Si coché, les données IPTC de l’image d’origine seront intégrées aux "
+"versions en cache. Si l’image ne possède pas de données IPTC, une "
+"information de copyright IPTC sera intégrée (à partir de la mention "
+"renseignée plus haut)."
 
 #: zp-core/admin-options.php:2619
-#, fuzzy
-#| msgid "IPTC Imbedding:"
 msgid "IPTC copyright embedding"
-msgstr "Mention IPTC intégrée :"
+msgstr "Incorporer des mentions IPTC de copyright"
 
 #: zp-core/admin-options.php:2626
 msgid ""
@@ -8655,16 +8616,13 @@ msgid "Image %s not rotatable."
 msgstr "L’image %s ne peut être tournée."
 
 #: zp-core/functions/functions-image.php:285
-#, fuzzy, php-format
-#| msgid ""
-#| "Unknown error processing %s! Please report to the developers at <a "
-#| "href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
+#, php-format
 msgid ""
 "Unknown error processing %s! Please report to the developers at <a "
 "href=\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
 msgstr ""
 "Erreur inconnue lors du traitement de %s ! Veuillez en informer les "
-"développeurs à <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
+"développeurs à <a href=\"http://www.zenphoto.org/\">zenphoto.org</a>"
 
 #: zp-core/functions/functions-image.php:418
 #: zp-core/functions/functions-image.php:459
@@ -8703,10 +8661,8 @@ msgid "Image %s not renderable (copycanvas)."
 msgstr "Impossible de faire le rendu de l’image %s (copycanvas)."
 
 #: zp-core/functions/functions-reconfigure.php:49
-#, fuzzy
-#| msgid "Zenphoto core file permissions"
 msgid "ZenphotoCMS config file is missing."
-msgstr "Droits des fichiers de base de Zenphoto"
+msgstr "Fichier de configuration ZenphotoCMS manquant."
 
 #: zp-core/functions/functions-reconfigure.php:49
 #: zp-core/functions/functions-reconfigure.php:62
@@ -8714,10 +8670,10 @@ msgid "Setup run required."
 msgstr "Lancement du script d'installation requis."
 
 #: zp-core/functions/functions-reconfigure.php:53
-#, fuzzy
-#| msgid "Post of Database credentials"
 msgid "ZenphotoCMS database credentials are missing."
-msgstr "Envoi des informations de connexion à la base de données"
+msgstr ""
+"Les informations de connexion à la base de donnée de ZenphotoCMS sont "
+"absentes."
 
 #: zp-core/functions/functions-reconfigure.php:53
 #: zp-core/functions/functions-reconfigure.php:57
@@ -11816,19 +11772,14 @@ msgstr ""
 "recommandé)"
 
 #: zp-core/utilities/maintenance_mode.php:87
-#, fuzzy
-#| msgid ""
-#| "Restores the files in the \"plugins/site_upgrade\" folder to their "
-#| "default state. Note: this will overwrite any custom edits you may have "
-#| "made."
 msgid ""
 "Restore the files in the <code>plugins/site_upgrade</code> folder to their "
 "default state. <strong>Note: this will overwrite any custom edits you may "
 "have made.</strong>"
 msgstr ""
-"Restaure les fichiers présents dans le dossier « plugins/site_upgrade »  à "
-"leur état initial. Note : cela va écraser toutes les modifications que avez "
-"effectuées."
+"Restaure les fichiers présents dans le dossier <code>plugins/site_upgrade</"
+"code> à leur état initial. <strong>Note : écrase toutes les modifications "
+"que avez effectuées.</strong>"
 
 #: zp-core/utilities/maintenance_mode.php:93
 msgid ""
@@ -12541,13 +12492,6 @@ msgid "Default sized image"
 msgstr "Image dimensionnée par défaut"
 
 #: zp-core/zp-extensions/cacheManager.php:130
-#, fuzzy
-#| msgid ""
-#| "If enabled the default thumb size (or if set a manual crop) and/or the "
-#| "default sized image as set on the theme options are enabled for caching. "
-#| "Themes or plugins can request to override this option being disabled by "
-#| "defining <code>addThemeDefaultThumbSize()</code> and/or "
-#| "<code>addThemeDefaultSizedImageSize()</code> on their option definitions."
 msgid ""
 "If enabled the default thumb size (or if set a manual crop) and/or the "
 "default sized image as set on the theme options are enabled for caching. "
@@ -12555,12 +12499,11 @@ msgid ""
 "defining <code>addDefaultThumbSize()</code> and/or "
 "<code>addDefaultSizedImageSize()</code> on their option definitions."
 msgstr ""
-"Si cette option est activée, la taille des vignettes (avec un éventuel "
-"dimensionnement manuel) et/ou la taille d'images définies sur les options du "
-"thème sont activées pour la mise en cache. Les thèmes ou les plugins peuvent "
-"forcer cette option étant désactivée en définissant "
-"<code>addThemeDefaultThumbSize()</code> et/ou "
-"<code>addThemeDefaultSizedImageSize()</code> sur leurs définitions d'options."
+"Si activé, les dimensions d’images et vignettes données dans les options de "
+"thèmes seront utilisées pour la mise en cache. Thèmes et plugins peuvent "
+"remplacer ces options en utilisant les fonctions "
+"<code>addDefaultThumbSize()</code> et/ou <code>addDefaultSizedImageSize()</"
+"code>."
 
 #: zp-core/zp-extensions/cacheManager.php:132
 msgid "Pre-caching generation mode"
@@ -12673,17 +12616,12 @@ msgid "Cleanup image cache sizes"
 msgstr "Nettoyage des tailles de cache d'image"
 
 #: zp-core/zp-extensions/cacheManager.php:683
-#, fuzzy
-#| msgid ""
-#| "Removes old stored image cache sizes of themes and plugins not existing "
-#| "on this site. It also removes sizes from inactive plugins."
 msgid ""
 "Removes old stored image cache size definitions of themes and plugins not "
 "existing on this site. It also removes sizes from inactive plugins."
 msgstr ""
-"Supprime les anciennes tailles de cache d'images stockées pour des thèmes et "
-"des plugins qui ne sont pas présents sur ce site. Il supprime également les "
-"tailles des plugins inactifs."
+"Supprime les anciennes images en cache de thèmes et plugins qui n'existent "
+"plus sur ce site. Concerne également les plugins inactifs."
 
 #: zp-core/zp-extensions/cacheManager.php:702
 msgid "Cache album images"
@@ -14528,31 +14466,24 @@ msgid "Button: Agree"
 msgstr "Bouton : Accepter"
 
 #: zp-core/zp-extensions/cookieconsent.php:52
-#, fuzzy
-#| msgid ""
-#| "Text used for the dismiss button. Leave empty to use the default text."
 msgid ""
 "Text used for the dismiss button in info complicance. Leave empty to use the "
 "default text."
 msgstr ""
-"Texte utilisé pour le bouton <em>Accepter</em>. Laisser le champ vide pour "
-"utiliser le texte par défaut."
+"Texte utilisé par le bouton ignorer dans les informations de conformité. "
+"Laisser le champ vide pour utiliser le texte par défaut."
 
 #: zp-core/zp-extensions/cookieconsent.php:53
 msgid "Button: Allow cookies"
 msgstr "Bouton : autoriser les cookies"
 
 #: zp-core/zp-extensions/cookieconsent.php:57
-#, fuzzy
-#| msgid ""
-#| "Text used for the learn more info button. Leave empty to use the default "
-#| "text."
 msgid ""
 "Text used for the button to allow cookies in opt-in and opt-out complicance. "
 "Leave empty to use the default text."
 msgstr ""
-"Texte utilisé pour le bouton <em>En savoir davantage</em>. Laisser le champ "
-"vide pour utiliser le texte par défaut."
+"Texte utilisé par le bouton qui autorise les cookies en opt-in ou opt-out. "
+"Laisser le champ vide pour utiliser le texte par défaut."
 
 #: zp-core/zp-extensions/cookieconsent.php:58
 msgid "Button: Decline cookies"
@@ -15021,22 +14952,16 @@ msgid "Use mimeTypes::getType() instead"
 msgstr "Utilisez plutôt mimeTypes::getType()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:57
-#, fuzzy
-#| msgid "Use pluginDebug() instead"
 msgid "Use AlbumBase::newAlbum() instead"
-msgstr "Utilisez pluginDebug() à la place"
+msgstr "Utilisez plutôt AlbumBase::newAlbum()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:71
-#, fuzzy
-#| msgid "Use AlbumBase class method getNumAllImages() instead"
 msgid "Use AlbumBase::isAlbumClass() instead"
-msgstr "Utilisez la méthode de classe AlbumBase getNumAllImages() à la place"
+msgstr "Utilisez plutôt AlbumBase::isAlbumClass()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:87
-#, fuzzy
-#| msgid "Use getLanguageText() instead"
 msgid "Use $album->getUrParent() instead"
-msgstr "Utilisez getLanguageText() à la place"
+msgstr "Utilisez plutôt $album->getUrParent()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:105
 msgid "Use Image::newImage() instead"
@@ -15096,16 +15021,12 @@ msgid "There is no replacement"
 msgstr "Il n'y a pas d'alternative de remplacement"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:374
-#, fuzzy
-#| msgid ""
-#| "Use the image_album_statistics plugin function getImageStatistic()with "
-#| "appropiate parameters"
 msgid ""
 "Use the image_album_statistics plugin function getImageStatistic() with "
 "appropiate parameters"
 msgstr ""
 "Utilisez la fonction getImageStatistic() de l'extension "
-"image_album_statistics avec les paramètres appropriés"
+"image_album_statistics avec les paramètres appropriés."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:376
 msgid ""
@@ -15116,16 +15037,12 @@ msgstr ""
 "getPictureOfTheDay() de l'extension image_album_statistics"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:425
-#, fuzzy
-#| msgid ""
-#| "Use the image_album_statistics plugin function getImageStatistic()with "
-#| "appropiate parameters"
 msgid ""
 "Use the image_album_statistics plugin function getImageStatisic() with "
 "appropiate parameters"
 msgstr ""
-"Utilisez la fonction getImageStatistic() de l'extension "
-"image_album_statistics avec les paramètres appropriés"
+"Utilisez la fonction getImageStatisic() de l'extension "
+"image_album_statistics avec les paramètres appropriés."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:427
 msgid ""
@@ -15136,10 +15053,6 @@ msgstr ""
 "getPictureOfTheDay() de l'extension image_album_statiscic"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:519
-#, fuzzy
-#| msgid ""
-#| "Use the image_album_statistics plugin function getImageStatistic()with "
-#| "appropiate parameters. You might need to adjust your theme's CSS."
 msgid ""
 "Use the image_album_statistics plugin function getImageStatistic() with "
 "appropiate parameters. You might need to adjust your theme's CSS."
@@ -16281,13 +16194,6 @@ msgstr ""
 "mauvaise configuration peut casser votre site.</p>"
 
 #: zp-core/zp-extensions/http_security_headers.php:52
-#, fuzzy
-#| msgid ""
-#| "The Content-Security-Policy header allows to control which resources "
-#| "browser are allowed to load. For detailed info please see <a "
-#| "href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-"
-#| "Security-Policy\" target=\"_blank\">https://developer.mozilla.org/en-US/"
-#| "docs/Web/HTTP/Headers/Content-Security-Policy</a>."
 msgid ""
 "The Content-Security-Policy header allows you to control which resourcess "
 "browsers are allowed to load. For detailed info please see <a href=\"https://"
@@ -16296,10 +16202,10 @@ msgid ""
 "Content-Security-Policy</a>."
 msgstr ""
 "L’en-tête Content-Security-Policy permet de contrôler les ressources que le "
-"navigateur est autorisé à charger.  Pour plus d'informations s'il vous plaît "
-"voir <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/"
-"Content-Security-Policy\" target=\"_blank\">https://developer.mozilla.org/en-"
-"US/docs/Web/HTTP/Headers/Content-Security-Policy</a>."
+"navigateur est autorisé à charger. Pour plus d'informations : <a "
+"href=\"https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Content-"
+"Security-Policy\" target=\"_blank\">developer.mozilla.org/fr/docs/Web/HTTP/"
+"Headers/Content-Security-Policy</a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:53
 msgid ""
@@ -16358,7 +16264,7 @@ msgstr "Sources autorisées pour les vidéo et audio."
 
 #: zp-core/zp-extensions/http_security_headers.php:173
 msgid "Allowed sources for object, embed and applet usage"
-msgstr "dSources autorisées pour les éléments de type object, embed et applet."
+msgstr "Sources autorisées pour les éléments de type object, embed et applet."
 
 #: zp-core/zp-extensions/http_security_headers.php:187
 msgid "Allowed sources for JavaScript."
@@ -16408,22 +16314,18 @@ msgid "<h2>Strict-Transport-Security</h2><hr>"
 msgstr "<h2>Strict-Transport-Security</h2><hr>"
 
 #: zp-core/zp-extensions/http_security_headers.php:296
-#, fuzzy
-#| msgid ""
-#| "Enter the max age in seconds. Instructs the browser that the site should "
-#| "be accessed via https only"
 msgid ""
 "Enter the max age in seconds. Instructs the browser that the site should be "
 "accessed via https only."
 msgstr ""
-"Entrez l'âge maximum en quelques secondes. Indique au navigateur que le site "
-"doit être consulté via https uniquement"
+"Entrez la valeur <code>max-age</code> en secondes. Indique au navigateur que "
+"le site doit être consulté via https uniquement"
 
 #: zp-core/zp-extensions/http_security_headers.php:303
-#, fuzzy
-#| msgid "Optional to include sub domains"
 msgid "Optional to include sub domains if <em>max-age</em> is set above."
-msgstr "Optionnel pour inclure les sous-domaines"
+msgstr ""
+"Facultatif, pour inclure les sous-domaines si <em>max-age</em> est défini ci-"
+"dessus."
 
 #: zp-core/zp-extensions/http_security_headers.php:309
 msgid "Optional if <em>max-age</em> is set above."
@@ -16442,11 +16344,9 @@ msgstr ""
 "Policy: frame-ancestors"
 
 #: zp-core/zp-extensions/http_security_headers.php:332
-#, fuzzy
-#| msgid "Enter one or more domains if allow-from is selected above."
 msgid "Enter one or more domains if <em>allow-from</em> is selected above."
 msgstr ""
-"Entrez un ou plusieurs domaines si permis-à partir-de est sélectionné ci-"
+"Entrez un ou plusieurs domaines si <em>allow-from</em> est sélectionné ci-"
 "dessus."
 
 #: zp-core/zp-extensions/http_security_headers.php:338
@@ -17130,15 +17030,11 @@ msgid "View Matomo statisics of your site"
 msgstr "Voir les statistiques Matomo de votre site"
 
 #: zp-core/zp-extensions/matomo.php:269
-#, fuzzy
-#| msgid ""
-#| "Inserts the iframe with the opt-out cookie code as entered on the related "
-#| "plugin option."
 msgid ""
 "Inserts the the opt-out cookie code as entered on the related plugin option."
 msgstr ""
-"Insère l'iframe avec le code de cookie d'opt-out tel qu'indiqué dans "
-"l'option du plugin associé."
+"Insère le code du cookie opt-out tel que défini dans l'option du plugin "
+"associée."
 
 #: zp-core/zp-extensions/matomo/matomo_tab.php:10
 msgid "Matomo"
@@ -18438,12 +18334,6 @@ msgstr ""
 "visibilité des images."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:225
-#, fuzzy
-#| msgid ""
-#| "The number of un-published items does <strong>not</strong> include items "
-#| "that are un-published by <a href=\"http://www.zenphoto.org/news/an-"
-#| "overview-of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
-#| "obj\">inheritance</a>."
 msgid ""
 "The number of un-published items does <strong>not</strong> include items "
 "that are un-published by <a href=\"https://www.zenphoto.org/news/an-overview-"
@@ -18451,9 +18341,9 @@ msgid ""
 "obj\">inheritance</a>."
 msgstr ""
 "Le nombre d’éléments non publiés <strong>ne comprend pas</strong> les "
-"éléments non publiés par <a href=\"http://www.zenphoto.org/news/an-overview-"
-"of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
-"obj\">descendance</a>."
+"éléments non publiés <a href=\"https://www.zenphoto.org/news/an-overview-of-"
+"zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-obj\">enfants</"
+"a>."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:230
 msgid "Albums not published"
@@ -19636,17 +19526,12 @@ msgid "Purge cache files"
 msgstr "Effacer les fichiers du cache"
 
 #: zp-core/zp-extensions/rss.php:206
-#, fuzzy
-#| msgid ""
-#| "If a <em>type</em> is checked, the HTML and RSS caches for the item will "
-#| "be purged when the published state of an item of <em>type</em> changes."
 msgid ""
 "If a <em>type</em> is checked, the RSS caches for the item will be purged "
 "when the published state of an item of <em>type</em> changes."
 msgstr ""
-"Si un <em>type</em> est coché, les caches HTML et RSS de l’élément seront "
-"vidés lors de la modification de l’état de publication d’un élément de ce "
-"<em>type</em>."
+"Si un <em>type d’éléments</em> est coché, les caches RSS de ce type seront "
+"purgés lorsque l’état publié d’un de ses éléments change."
 
 #: zp-core/zp-extensions/rss.php:207
 #: zp-core/zp-extensions/static_html_cache.php:96
