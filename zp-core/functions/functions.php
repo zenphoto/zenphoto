@@ -3061,7 +3061,7 @@ function printDataUsageNotice() {
  * 
  * @since 1.5.8
  * 
- * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @param string $section Name of the section to get: 'authentication', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @return array
  */
 function getCookieInfoData($section = null) {
@@ -3131,7 +3131,7 @@ function getCookieInfoData($section = null) {
  * 
  * @since 1.5.8
  * 
- * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @param string $section Name of the section to get: 'authentication', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.
  * @return string
  */
@@ -3163,7 +3163,7 @@ function getCookieInfoHTML($section = null, $sectionheadline = 'h2') {
  * 
  * @since 1.5.8
  * 
- * @param string $section Name of the section to get: 'authenticaion', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
+ * @param string $section Name of the section to get: 'authentication', 'search', 'admin', 'cookie', 'various' or null (default) for the full array
  * @param string $sectionheadline Add h2 to h6 to print as the section headline, h2 default.
  */
 function printCookieInfo($section = null, $sectionheadline = 'h2') {
