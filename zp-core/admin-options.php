@@ -2273,6 +2273,9 @@ Authority::printPasswordFormJS();
 											<?php
 										}
 										?>
+										<p class="notebox">
+											<?php echo gettext('<strong>NOTE:</strong> If you want to watermark <em>Full sized images</em> you have to enable <em>cache the full image</em> from the <em>Full image protection</em> option below.'); ?>
+										</p>
 									</td>
 
 								</tr>
