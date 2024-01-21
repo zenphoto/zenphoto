@@ -355,6 +355,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 					}
 				}
 			}
+			if (!is_null($neww)) {
+				$neww = round($neww);
+			}
+			if (!is_null($newh)) {
+				$newh = round($newh);
+			}
 			if (is_null($cx) && is_null($cy)) { // scale crop to max of image
 				// set crop scale factor
 				$cf = 1;
@@ -396,6 +402,18 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 			if ($cy < 0) {
 				$ch = $ch + $cy;
 				$cy = 0;
+			}
+			if (!is_null($cw)) {
+				$cw = round($cw);
+			}
+			if (!is_null($ch)) {
+				$ch = round($ch);
+			}
+			if (!is_null($cx)) {
+				$cx = round($cx);
+			}
+			if (!is_null($cy)) {
+				$cy = round($cy);
 			}
 			if (DEBUG_IMAGE) {
 				debugLog("cacheImage:crop " . basename($imgfile) . ":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");

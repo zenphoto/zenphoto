@@ -244,6 +244,7 @@ class cacheManager {
 	 */
 	static function getTitle($table, $row) {
 		global $_zp_db;
+		$title = '';
 		switch ($table) {
 			case 'images':
 				$album = $_zp_db->querySingleRow('SELECT `folder` FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $row['albumid']);
