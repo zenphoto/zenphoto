@@ -1608,7 +1608,10 @@ function imgSrcURI($uri) {
  * @return string
  */
 function getSuffix($filename) {
-	return strtolower(substr(strrchr($filename, "."), 1));
+	if (is_string($filename)) {
+		return strtolower(substr(strrchr($filename, "."), 1));
+	}
+	return $filename;
 }
 
 /**
@@ -1618,7 +1621,10 @@ function getSuffix($filename) {
  * @return string
  */
 function stripSuffix($filename) {
-	return str_replace(strrchr($filename, "."), '', $filename);
+	if (is_string($filename)) {
+		return str_replace(strrchr($filename, "."), '', $filename);
+	}
+	return $filename;
 }
 
 /**

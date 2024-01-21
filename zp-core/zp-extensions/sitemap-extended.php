@@ -66,6 +66,10 @@ class sitemapOptions {
 		setOptionDefault('sitemap_processing_chunk', 25);
 		setOptionDefault('sitemap_google', 0);
 		setOptionDefault('sitemap_google_fullimage', 0);
+		setOptionDefault('sitemap_includepagination_gallery', 0);
+		setOptionDefault('sitemap_includepagination_album', 0);
+		setOptionDefault('sitemap_includepaginatio_news', 0);
+		setOptionDefault('sitemap_includepaginaion_category', 0);
 	}
 
 	function getOptionsSupported() {
@@ -74,6 +78,15 @@ class sitemapOptions {
 		if (!$_zp_common_locale_type) {
 			$localdesc .= '<p>' . gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)') . '</p>';
 		}
+		$update_frequencies = array(
+				gettext("always") => "always",
+				gettext("hourly") => "hourly",
+				gettext("daily") => "daily",
+				gettext("weekly") => "weekly",
+				gettext("monthly") => "monthly",
+				gettext("yearly") => "yearly",
+				gettext("never") => "never"
+		);
 		$options = array(
 				gettext('Album date') => array(
 						'key' => 'sitemap_lastmod_albums',
@@ -97,85 +110,43 @@ class sitemapOptions {
 						'key' => 'sitemap_changefreq_index',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 2,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency - albums') => array(
 						'key' => 'sitemap_changefreq_albums',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 3,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency - images') => array(
 						'key' => 'sitemap_changefreq_images',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 4,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency - Zenpage pages') => array(
 						'key' => 'sitemap_changefreq_pages',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 5,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency - Zenpage news index') => array(
 						'key' => 'sitemap_changefreq_newsindex',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 6,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency: Zenpage news articles') => array(
 						'key' => 'sitemap_changefreq_news',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 7,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Change frequency - Zenpage news categories') => array(
 						'key' => 'sitemap_changefreq_newscats',
 						'type' => OPTION_TYPE_SELECTOR,
 						'order' => 8,
-						'selections' => array(gettext("always") => "always",
-								gettext("hourly") => "hourly",
-								gettext("daily") => "daily",
-								gettext("weekly") => "weekly",
-								gettext("monthly") => "monthly",
-								gettext("yearly") => "yearly",
-								gettext("never") => "never"),
+						'selections' => $update_frequencies,
 						'desc' => ''),
 				gettext('Enable Google image and video extension') => array(
 						'key' => 'sitemap_google',
@@ -203,7 +174,17 @@ class sitemapOptions {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14,
 						'disabled' => $_zp_common_locale_type,
-						'desc' => $localdesc)
+						'desc' => $localdesc),
+				gettext('Include pagination') => array(
+						'key' => 'sitemap_includepagination',
+						'type' => OPTION_TYPE_CHECKBOX_UL,
+						"checkboxes" => array(
+								gettext('Gallery pagination') => 'sitemap_includepagination_gallery',
+								gettext('Album pagination') => 'sitemap_includepagination_album',
+								gettext('News article pagination') => 'sitemap_includepaginatio_new',
+								gettext('News category pagination') => 'sitemap_includepaginaion_category'
+						),
+						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
@@ -440,7 +421,7 @@ class sitemap {
 				}
 			}
 			// print further index pages if available
-			if ($toplevelpages) {
+			if (getOption('sitemap_includepagination_gallery') && $toplevelpages) {
 				for ($x = 2; $x <= $toplevelpages; $x++) {
 					if (getOption('custom_index_page')) {
 						$galleryindex = getCustomGalleryIndexURL($x, '');
@@ -542,8 +523,6 @@ class sitemap {
 			foreach ($albums as $album) {
 				$albumobj = AlbumBase::newAlbum($album['folder']);
 				$pageCount = $albumobj->getTotalPages();
-				//$imageCount = getNumImages();
-				//$images = $albumobj->getImages();
 				$date = sitemap::getDateformat($albumobj, $albumlastmod);
 				switch (SITEMAP_LOCALE_TYPE) {
 					case 1:
@@ -567,7 +546,7 @@ class sitemap {
 						break;
 				}
 				// print album pages if avaiable
-				if ($pageCount > 1) {
+				if (getOption('sitemap_includepagination_album') && $pageCount > 1) {
 					for ($x = 2; $x <= $pageCount; $x++) {
 						switch (SITEMAP_LOCALE_TYPE) {
 							case 1:
@@ -832,12 +811,12 @@ class sitemap {
 					Break;
 				case 2:
 					foreach ($sitemap_locales as $locale) {
-						$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news&amp;page=1', dynamic_locale::fullHostPath($locale));
+						$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news', dynamic_locale::fullHostPath($locale));
 						$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					Break;
 				default:
-					$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news&amp;page=1', FULLWEBPATH);
+					$url = rewrite_path(_NEWS_ . '/', 'index.php?p=news', FULLWEBPATH);
 					$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					Break;
 			}
@@ -849,7 +828,7 @@ class sitemap {
 			  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 			  } */
 			
-			if ($newspages > 1) {
+			if (getOption('sitemap_includepagination_news') && $newspages > 1) {
 				for ($x = 2; $x <= $newspages; $x++) {
 					switch (SITEMAP_LOCALE_TYPE) {
 						case 1:
@@ -860,12 +839,12 @@ class sitemap {
 							break;
 						case 2:
 							foreach ($sitemap_locales as $locale) {
-								$url = rewrite_path(_NEWS_ . '/' . $x . '/', '?p=news&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
+								$url = rewrite_path(_NEWS_ . '/' . $x . '/', 'index.php?p=news&amp;page=' . $x, dynamic_locale::fullHostPath($locale));
 								$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 							break;
 						default:
-							$url = rewrite_path(_NEWS_ . '/' . $x . '/', '?p=news&amp;page=' . $x, FULLWEBPATH);
+							$url = rewrite_path(_NEWS_ . '/' . $x . '/', 'index.php?p=news&amp;page=' . $x, FULLWEBPATH);
 							$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							break;
 					}
@@ -947,18 +926,18 @@ class sitemap {
 							switch (SITEMAP_LOCALE_TYPE) {
 								case 1:
 									foreach ($sitemap_locales as $locale) {
-										$url = seo_locale::localePath(true, $locale) . '/' . _CATEGORY_ . '/' . urlencode($catobj->getName()) . '/1/';
+										$url = seo_locale::localePath(true, $locale) . '/' . _CATEGORY_ . '/' . urlencode($catobj->getName()) . '/';
 										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								case 2:
 									foreach ($sitemap_locales as $locale) {
-										$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()) . '&amp;page=1', dynamic_locale::fullHostPath($locale));
+										$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), dynamic_locale::fullHostPath($locale));
 										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
-									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()) . '&amp;page=1', FULLWEBPATH);
+									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), FULLWEBPATH);
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
@@ -970,7 +949,7 @@ class sitemap {
 							  $zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 							  } */
 							$catpages = $catobj->getTotalNewsPages();
-							if ($catpages > 1) {
+							if (getOption('sitemap_includepagination_category') && $catpages > 1) {
 								for ($x = 2; $x <= $catpages; $x++) {
 									switch (SITEMAP_LOCALE_TYPE) {
 										case 1:
