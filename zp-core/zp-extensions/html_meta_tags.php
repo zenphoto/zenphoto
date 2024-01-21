@@ -77,6 +77,10 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_twittername', '');
 		setOptionDefault('htmlmeta_ogimage_width', 1280);
 		setOptionDefault('htmlmeta_ogimage_height', 900);
+		setOptionDefault('htmlmeta_indexpagination_gallery', 0);
+		setOptionDefault('htmlmeta_indexpagination_album', 0);
+		setOptionDefault('htmlmeta_indexpagination_news', 0);
+		setOptionDefault('htmlmeta_indexpagination_category', 0);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('html_meta_tags');
 			cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
@@ -186,7 +190,17 @@ class htmlmetatags {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 12,
 						'disabled' => $_zp_common_locale_type,
-						'desc' => $localdesc)
+						'desc' => $localdesc),
+				gettext('Index pagination') => array(
+						'key' => 'htmlmeta_indexpagination',
+						'type' => OPTION_TYPE_CHECKBOX_UL,
+						"checkboxes" => array(
+								gettext('Gallery pagination') => 'htmlmeta_indexpagination_gallery',
+								gettext('Album pagination') => 'htmlmeta_indexpagination_album',
+								gettext('News article pagination') => 'htmlmeta_indexpagination_news',
+								gettext('News category pagination') => 'htmlmeta_indexpaginaion_category'
+						),
+						"desc" => gettext("By default paginated pages are set to noindex automatically. Enable this to allow indexing.")),
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
@@ -253,6 +267,7 @@ class htmlmetatags {
 		$copyright_url = $_zp_gallery->getCopyrightURL();
 		$type = 'article';
 		$public = true;
+		$indexing_allowed = true;
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 			case getCustomGalleryIndexPage():
@@ -265,6 +280,9 @@ class htmlmetatags {
 					case getCustomGalleryIndexPage():
 						$canonicalurl = $host . getCustomGalleryIndexURL($_zp_page);
 						break;
+				}
+				if (!getOption('htmlmeta_indexpagination_gallery') && $_zp_page > 1) {
+					$indexing_allowed = false;
 				}
 				break;
 			case 'album.php':
@@ -280,6 +298,9 @@ class htmlmetatags {
 				}
 				$author = $_zp_current_album->getOwner(true);
 				$public = $_zp_current_album->isPublic();
+				if (!getOption('htmlmeta_indexpagination_album') && $_zp_page > 1) {
+					$indexing_allowed = false;
+				}
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
@@ -311,11 +332,17 @@ class htmlmetatags {
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$public = $_zp_current_category->isPublic();
 						$type = 'category';	
+						if (!getOption('htmlmeta_indexpagination_category') && $_zp_page > 1) {
+							$indexing_allowed = false;
+						}
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
 						$canonicalurl = $host . getNewsIndexURL();
 						$type = 'website';
+						if (!getOption('htmlmeta_indexpagination_news') && $_zp_page > 1) {
+							$indexing_allowed = false;
+						}
 					}
 					if ($_zp_page != 1) {
 						$canonicalurl .= $_zp_page . '/';
@@ -375,7 +402,11 @@ class htmlmetatags {
 		}
 		if (getOption('htmlmeta_name-robots')) {
 			if ($public) {
-				$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
+				if ($indexing_allowed) {
+					$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
+				} else {
+					$meta .= '<meta name="robots" content="noindex,nofollow">' . "\n";
+				}
 			} else {
 				$meta .= '<meta name="robots" content="noindex,nofollow">' . "\n";
 			}
