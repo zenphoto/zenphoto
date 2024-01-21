@@ -184,7 +184,7 @@ class sitemapOptions {
 								gettext('News article pagination') => 'sitemap_includepaginatio_new',
 								gettext('News category pagination') => 'sitemap_includepaginaion_category'
 						),
-						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
+						"desc" => gettext("Enable if you want to include paginated pages. For SEO best practices it is recommended to have this disabled though.")),
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
