@@ -68,7 +68,7 @@ class sitemapOptions {
 		setOptionDefault('sitemap_google_fullimage', 0);
 		setOptionDefault('sitemap_includepagination_gallery', 0);
 		setOptionDefault('sitemap_includepagination_album', 0);
-		setOptionDefault('sitemap_includepaginatio_news', 0);
+		setOptionDefault('sitemap_includepagination_news', 0);
 		setOptionDefault('sitemap_includepaginaion_category', 0);
 	}
 
@@ -181,7 +181,7 @@ class sitemapOptions {
 						"checkboxes" => array(
 								gettext('Gallery pagination') => 'sitemap_includepagination_gallery',
 								gettext('Album pagination') => 'sitemap_includepagination_album',
-								gettext('News article pagination') => 'sitemap_includepaginatio_new',
+								gettext('News article pagination') => 'sitemap_includepagination_news',
 								gettext('News category pagination') => 'sitemap_includepaginaion_category'
 						),
 						"desc" => gettext("Enable if you want to include paginated pages. For SEO best practices it is recommended to have this disabled though.")),
