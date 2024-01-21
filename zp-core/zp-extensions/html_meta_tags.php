@@ -81,6 +81,9 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_indexpagination_album', 0);
 		setOptionDefault('htmlmeta_indexpagination_news', 0);
 		setOptionDefault('htmlmeta_indexpagination_category', 0);
+		setOptionDefault('htmlmeta_prevnext-gallery', 1);
+		setOptionDefault('htmlmeta_prevnext-image', 1);
+		setOptionDefault('htmlmeta_prevnext-news', 1);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('html_meta_tags');
 			cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
@@ -182,7 +185,10 @@ class htmlmetatags {
 								"name='date'" => "htmlmeta_name-date",
 								"OpenGraph (og:)" => "htmlmeta_opengraph",
 								"name='pinterest' content='nopin'" => "htmlmeta_name-pinterest",
-								"twitter:card" => "htmlmeta_twittercard"
+								"twitter:card" => "htmlmeta_twittercard",
+								gettext('rel="next"/rel="prev": Gallery/album pagination') => "htmlmeta_prevnext-gallery",
+								gettext('rel="next"/rel="prev": Single image next/previous') => "htmlmeta_prevnext-image",
+								gettext('rel="next"/rel="prev": Zenpage news/category pagination') => "htmlmeta_prevnext-news"
 						),
 						"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 				gettext('Use subdomains') . '*' => array(
@@ -200,7 +206,7 @@ class htmlmetatags {
 								gettext('News article pagination') => 'htmlmeta_indexpagination_news',
 								gettext('News category pagination') => 'htmlmeta_indexpaginaion_category'
 						),
-						"desc" => gettext("By default paginated pages are set to noindex automatically. Enable this to allow indexing.")),
+						"desc" => gettext("By default paginated pages are set to noindex automatically. Enable this to allow indexing."))
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
@@ -248,6 +254,8 @@ class htmlmetatags {
 		$date = zpFormattedDate(DATE_FORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 		$thumb = '';
+		$prev = $next = '';
+		
 		if (getOption('htmlmeta_sitelogo')) {
 			$thumb = getOption('htmlmeta_sitelogo');
 		}
@@ -276,9 +284,25 @@ class htmlmetatags {
 				switch ($_zp_gallery_page) {
 					case 'index.php':
 						$canonicalurl = $host . getPageNumURL($_zp_page);
+						if (getOption('htmlmeta_prevnext-gallery')) {
+							if (hasPrevPage()) {
+								$prev = $host . getPageNumURL($_zp_page - 1);
+							}
+							if (hasNextPage()) {
+								$next = $host . getPageNumURL($_zp_page + 1);
+							}
+						}
 						break;
 					case getCustomGalleryIndexPage():
 						$canonicalurl = $host . getCustomGalleryIndexURL($_zp_page);
+						if (getOption('htmlmeta_prevnext-gallery')) {
+							if (hasPrevPage()) {
+								$prev = $host . getCustomGalleryIndexURL($_zp_page - 1);
+							}
+							if (hasNextPage()) {
+								$next = $host . getCustomGalleryIndexURL($_zp_page + 1);
+							}
+						}
 						break;
 				}
 				if (!getOption('htmlmeta_indexpagination_gallery') && $_zp_page > 1) {
@@ -296,6 +320,14 @@ class htmlmetatags {
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
 					$twittercard_type = 'summary_large_image';
 				}
+				if (getOption('htmlmeta_prevnext-gallery')) {
+					if (getPrevAlbum()) {
+						$prev = $host . getPrevAlbumURL();
+					}
+					if (getNextAlbum()) {
+						$next = $host . getNextAlbumURL();
+					}
+				}
 				$author = $_zp_current_album->getOwner(true);
 				$public = $_zp_current_album->isPublic();
 				if (!getOption('htmlmeta_indexpagination_album') && $_zp_page > 1) {
@@ -310,6 +342,14 @@ class htmlmetatags {
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';
+				}
+				if (getOption('htmlmeta_prevnext-image')) {
+					if(hasPrevImage()) {
+						$prev = $host .getPrevImageURL();
+					}
+					if(hasNextImage()) {
+						$next = $host .getNextImageURL();
+					}
 				}
 				$author = $_zp_current_image->getCopyrightRightsholder();
 				$copyright_notice = trim(getBare($_zp_current_image->getCopyrightNotice()));
@@ -340,6 +380,14 @@ class htmlmetatags {
 						$desc = '';
 						$canonicalurl = $host . getNewsIndexURL();
 						$type = 'website';
+						if (!is_NewsArticle() && getOption('htmlmeta_prevnext-news')) {
+							if (getPrevNewsPageURL()) {
+								$prev = $host . getPrevNewsPageURL();
+							}
+							if (getNextNewsPageURL()) {
+								$next = $host . getNextNewsPageURL();
+							}
+						}
 						if (!getOption('htmlmeta_indexpagination_news') && $_zp_page > 1) {
 							$indexing_allowed = false;
 						}
@@ -476,6 +524,13 @@ class htmlmetatags {
 			if (!empty($thumb)) {
 				$meta .= '<meta name="twitter:image" content="' . $thumb . '">' . "\n";
 			}
+		}
+		
+		if($prev) {
+			$meta .= '<link rel="prev" href="' . html_encode($prev) . '">' . "\n";
+		}
+		if($next) {
+			$meta .= '<link rel="next" href="' . html_encode($next) . '">' . "\n";
 		}
 
 		// Canonical url
