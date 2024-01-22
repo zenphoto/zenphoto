@@ -937,7 +937,7 @@ class sitemap {
 									}
 									break;
 								default:
-									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/1/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), FULLWEBPATH);
+									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), FULLWEBPATH);
 									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
