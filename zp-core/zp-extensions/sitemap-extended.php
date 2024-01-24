@@ -923,22 +923,28 @@ class sitemap {
 				foreach ($newscats as $newscat) {
 					$catobj = new ZenpageCategory($newscat['titlelink']);
 					if ($catobj->isPublic() && !$catobj->isProtected() && $catobj->getTotalArticles() != 0) {
+							$lastchange = $catobj->getLastChange();
+							if ($lastchange) {
+								$date = sitemap::getISO8601Date($lastchange);
+							} else {
+								$date = sitemap::getISO8601Date();
+							}
 							switch (SITEMAP_LOCALE_TYPE) {
 								case 1:
 									foreach ($sitemap_locales as $locale) {
 										$url = seo_locale::localePath(true, $locale) . '/' . _CATEGORY_ . '/' . urlencode($catobj->getName()) . '/';
-										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								case 2:
 									foreach ($sitemap_locales as $locale) {
 										$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), dynamic_locale::fullHostPath($locale));
-										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+										$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									}
 									break;
 								default:
 									$url = rewrite_path(_CATEGORY_ . '/' . urlencode($catobj->getName()) . '/', 'index.php?p=news&amp;category=' . urlencode($catobj->getName()), FULLWEBPATH);
-									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									$data .= sitemap::echonl("\t<url>\n\t\t<loc>" . $url . "</loc>\n\t\t<lastmod>" . $date . "</lastmod>\n\t\t<changefreq>" . $changefreq . "</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 									break;
 							}
 							// getting pages for the categories
