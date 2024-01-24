@@ -138,7 +138,12 @@ if (isset($_GET['action'])) {
 				$timeformat = '';
 			}
 			setOption('time_format', $timeformat);
-			setOption('date_format_localized', (int) isset($_POST['date_format_localized']));
+			if (extension_loaded('intl')) {
+				$localized_dates = (int) isset($_POST['date_format_localized']);
+			} else {
+				$localized_dates = 0;
+			}
+			setOption('date_format_localized', $localized_dates);
 
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
@@ -858,6 +863,10 @@ Authority::printPasswordFormJS();
 									<?php if (extension_loaded('intl')) { ?>
 										<p class="notebox">
 										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you use a custom date format or choose one of the <em>preferred date representation</em> formats the time format option is ignored.'); ?>
+									</p>
+								<?php } else { ?>
+									<p class="warningbox">
+										<?php echo gettext('The intl PHP extension is not installed and localized dates are not available on your system.'); ?>
 									</p>
 								<?php } ?>
 									</td>

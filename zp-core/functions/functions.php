@@ -314,7 +314,7 @@ function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 			'locale_preferreddate_time',
 			'locale_preferreddate_notime'
 	);
-	if ($localized_date) {
+	if ($localized_date && extension_loaded('intl')) { 
 		$datetime_formats = getStandardDateFormats();
 		$date_formats = getStandardDateFormats('date');
 		$time_formats = getStandardDateFormats('time');
