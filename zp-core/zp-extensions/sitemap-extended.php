@@ -1048,21 +1048,30 @@ class sitemap {
 	 * @return string
 	 */
 	static function getLastChangeDate($obj, $fulldate = false) {
+		$dates = array();
 		$date = $obj->getDatetime();
 		if (!$fulldate) {
 			$date = substr($date, 0, 10);
 		}
-		$lastchange = '';
-		if (!is_null($obj->getLastchange())) {
-			$lastchange = $obj->getLastchange();
+		$dates[] = $date;
+		$lastchangedate = $obj->getLastchange();
+		if ($lastchangedate) {
 			if (!$fulldate) {
-				$lastchange = substr($lastchange, 0, 10);
+				$lastchangedate = substr($lastchangedate, 0, 10);
+			}
+			$dates[] = $lastchangedate;
+		}
+		$updateddate = '';
+		if ($obj->table == 'albums') {
+			$updateddate = $obj->getUpdatedDate();
+			if ($updateddate) {
+				if (!$fulldate) {
+					$updateddate = substr($updateddate, 0, 10);
+				}
+				$dates[] = $updateddate;
 			}
 		}
-		if ($date > $lastchange && !empty($lastchange)) {
-			return $lastchange;
-		}
-		return $date;
+		return max($dates);
 	}
 
 }
