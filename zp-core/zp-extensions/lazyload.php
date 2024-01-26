@@ -17,6 +17,8 @@ $plugin_author = 'Malte Müller (acrylian)';
 $plugin_disable = false;
 $plugin_category = gettext('Media');
 
+$option_interface = "lazyloadOptions";
+
 //frontend
 zp_register_filter('theme_head', 'lazyload::getJS');
 zp_register_filter('standard_image_attr', 'lazyload::filterHTMLAttributes');
@@ -41,6 +43,30 @@ zp_register_filter('adminthumb_attr', 'lazyload::filterHTMLAttributes');
 zp_register_filter('adminthumb_html', 'lazyload::addNoscriptImgHTML');
 
 /**
+ * Options for the lazyload plugin
+ *
+ * @author Malte Müller (acrylian)
+ * 
+ * @package zpcore\plugins\lazyload
+ */
+class lazyloadOptions {
+
+	function __construct() {
+		setOptionDefault('lazyload_nativeonly', 0);
+	}
+
+	function getOptionsSupported() {
+		return array(gettext('Native lazyload') => array(
+						'key' => 'lazyload_nativeonly',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 1,
+						'desc' => gettext('This disables loading the lazysizes script to only use native lazyloading modern browsers support.'))
+		);
+	}
+
+}
+
+/**
  * Filter HTML to add JS lazyloading using the script lazysizes
  *
  * @author Malte Müller (acrylian)
@@ -55,7 +81,6 @@ class lazyload {
 	 */
 	public static $lazyloadclass = 'lazyload';
 
-
 	/**
 	 * Filters image attributes
 	 * 
@@ -63,22 +88,27 @@ class lazyload {
 	 * @return array
 	 */
 	static function filterHTMLAttributes($attr) {
-		if (isset($attr['class']) && strpos($attr['class'], lazyload::$lazyloadclass) === false) {
-			$attr['class'] .= ' ' . lazyload::$lazyloadclass;
-		} else {
-			$attr['class'] = lazyload::$lazyloadclass;
+		if (!getOption('lazyload_nativeonly')) {
+			if (isset($attr['class']) && strpos($attr['class'], lazyload::$lazyloadclass) === false) {
+				$attr['class'] .= ' ' . lazyload::$lazyloadclass;
+			} else {
+				$attr['class'] = lazyload::$lazyloadclass;
+			}
+			if (isset($attr['src'])) {
+				$attr['data-src'] = $attr['src'];
+				unset($attr['src']);
+			}
+			if (isset($attr['srcset'])) {
+				$attr['data-srcset'] = $attr['srcset'];
+				unset($attr['srcset']);
+			}
+			if (isset($attr['sizes'])) {
+				$attr['data-sizes'] = $attr['sizes'];
+				unset($attr['sizes']);
+			}
 		}
-		if (isset($attr['src'])) {
-			$attr['data-src'] = $attr['src'];
-			unset($attr['src']);
-		}
-		if (isset($attr['srcset'])) {
-			$attr['data-srcset'] = $attr['srcset'];
-			unset($attr['srcset']);
-		}
-		if (isset($attr['sizes'])) {
-			$attr['data-sizes'] = $attr['sizes'];
-			unset($attr['sizes']);
+		if (!isset($attr['decoding'])) {
+			$attr['decoding'] = 'async';
 		}
 		if (!isset($attr['loading'])) {
 			$attr['loading'] = 'lazy';
@@ -93,13 +123,14 @@ class lazyload {
 	 * @return string
 	 */
 	static function addNoscriptImgHTML($html) {
-		//return $html;
-		$noscriptimg = str_replace('data-src="', 'src="', $html);
-		$noscriptimg = str_replace('data-srcset="', 'srcset="', $noscriptimg);
-		$noscriptimg = str_replace('data-sizes="', 'sizes="', $noscriptimg);
-		$noscriptimg = str_replace(lazyload::$lazyloadclass, '', $noscriptimg);
-		if ($html != $noscriptimg) {
-			$html = '<noscript>' . $noscriptimg . '</noscript>' . $html;
+		if (!getOption('lazyload_nativeonly')) {
+			$noscriptimg = str_replace('data-src="', 'src="', $html);
+			$noscriptimg = str_replace('data-srcset="', 'srcset="', $noscriptimg);
+			$noscriptimg = str_replace('data-sizes="', 'sizes="', $noscriptimg);
+			$noscriptimg = str_replace(lazyload::$lazyloadclass, '', $noscriptimg);
+			if ($html != $noscriptimg) {
+				$html = '<noscript>' . $noscriptimg . '</noscript>' . $html;
+			}
 		}
 		return $html;
 	}
@@ -108,11 +139,13 @@ class lazyload {
 	 * Gets the JS to include and also if enabled the default config
 	 */
 	static function getJS() {
-		?>
-		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/lazysizes.min.js"></script>
-		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/ls.native-loading.min.js"></script>
-		<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/ls.unveilhooks.min.js"></script>
-		<?php
+		if(!getOption('lazyload_nativeonly')) {
+			?>
+			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/lazysizes.min.js"></script>
+			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/ls.native-loading.min.js"></script>
+			<script src="<?php echo FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/lazyload/ls.unveilhooks.min.js"></script>
+			<?php
+		}
 	}
 
 }
