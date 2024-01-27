@@ -43,6 +43,10 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_tags', '');
 
 		setOptionDefault('htmlmeta_google-site-verification', '');
+		setOptionDefault('htmlmeta_baidu-site-verification', '');
+		setOptionDefault('htmlmeta_bing-site-verification', '');
+		setOptionDefault('htmlmeta_pinterest-site-verification', '');
+		setOptionDefault('htmlmeta_yandex-site-verification', '');
 	
 		if(getOption('htmlmeta_og-title')) { // assume this will be set
 			setOptionDefault('htmlmeta_opengraph', 1);
@@ -143,6 +147,22 @@ class htmlmetatags {
 						'key' => 'htmlmeta_google-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
+				gettext('Baidu site verification') => array(
+						'key' => 'htmlmeta_baidu-site-verification',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Baidu.')),				
+				gettext('Bing site verification') => array(
+						'key' => 'htmlmeta_bing-site-verification',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Bing.')),
+				gettext('Pinterest site verification') => array(
+						'key' => 'htmlmeta_pinterest-site-verification',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Pinterest.')),
+				gettext('Yandex site verification') => array(
+						'key' => 'htmlmeta_yandex-site-verification',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Yandex.')),				
 				gettext('Site logo') => array(
 						'key' => 'htmlmeta_sitelogo',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -486,8 +506,22 @@ class htmlmetatags {
 				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
+		
+		// site verifications
 		if(getOption('htmlmeta_google-site-verification')) {
 			$meta .= '<meta name="google-site-verification" content="' . getOption('htmlmeta_google-site-verification') . '">' . "\n";
+		}
+		if(getOption('htmlmeta_baidu-site-verification')) {
+				$meta .= '<meta name="baidu-site-verification" content="' . getOption('htmlmeta_baidu-site-verification') . '">' . "\n";
+		}
+		if(getOption('htmlmeta_bing-site-verification')) {
+				$meta .= '<meta name="msvalidate.01" content="' . getOption('htmlmeta_bing-site-verification') . '">' . "\n";
+		}
+		if(getOption('htmlmeta_pinterest-site-verification')) {
+				$meta .= '<meta name="p:domain_verify" content="' . getOption('htmlmeta_pinterest-site-verification') . '">' . "\n";
+		}
+		if(getOption('htmlmeta_yandex-site-verification')) {
+				$meta .= '<meta name="yandex-verification" content="' . getOption('htmlmeta_yandex-site-verification') . '">' . "\n";
 		}
 
 		// OpenGraph meta
