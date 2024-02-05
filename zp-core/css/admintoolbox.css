@@ -82,7 +82,7 @@ body {
 
 #zp__admin_link:hover,
 #zp__admin_link:focus,
-#zp__admin_link:acive {
+#zp__admin_link:active {
 	color: #0CF !important;
 	background-color: white;
 	border-color: rgba(0,0,0, 0.2);
