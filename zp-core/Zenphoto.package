@@ -372,6 +372,7 @@ zp-core/classes/class-administrator.php
 zp-core/classes/class-album.php
 zp-core/classes/class-albumbase.php
 zp-core/classes/class-authority.php
+zp-core/classes/class-backuprestore.php
 zp-core/classes/class-dbbase.php
 zp-core/classes/class-dbmysqli.php
 zp-core/classes/class-dbpdo_mysql.php
@@ -1853,4 +1854,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1855
+1856
