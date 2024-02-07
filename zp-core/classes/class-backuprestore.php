@@ -434,7 +434,7 @@ class backupRestore {
 	 * @param resource $handle Backup file resource
 	 * @return bool
 	 */
-	function fillbuffer($handle) {
+	function fillBuffer($handle) {
 		$record = fread($handle, 8192);
 		if ($record === false || empty($record)) {
 			return false;
@@ -449,7 +449,7 @@ class backupRestore {
 	 * @param resource $handle Backup file resource
 	 * @return bool
 	 */
-	function getrow($handle) {
+	function getRow($handle) {
 		if ($this->file_version == 0 || substr($this->buffer, 0, strlen($this->header)) == $this->header) {
 			$end = strpos($this->buffer, $this->record_separator);
 			while ($end === false) {
@@ -473,7 +473,6 @@ class backupRestore {
 					return false;
 			}
 			$result = substr($this->buffer, $i + 1, $end - $i - 1);
-			debuglog('i: '. $i . ' /  end:' . $end, false, 'backuprestore'); 
 			$this->buffer = substr($this->buffer, $end);
 		}
 		return $result;
