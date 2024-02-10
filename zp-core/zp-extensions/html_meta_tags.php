@@ -6,6 +6,7 @@
  * <li><meta> tags using general existing Zenphoto info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.</li>
  * <li>Support for <var><link rel="canonical" href="..." /></var></li>
  * <li>Open Graph tags for social sharing</li>
+ * <li>Twitter cards</li>
  * <li>Pinterest sharing tag</li>
  * </ul>
  *
@@ -74,7 +75,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_name-expires', '1');
 		setOptionDefault('htmlmeta_name-generator', '1');
 		setOptionDefault('htmlmeta_name-date', '1');
-		setOptionDefault('htmlmeta_canonical-url', '0');
+		setOptionDefault('htmlmeta_canonical-url', '1');
 		setOptionDefault('htmlmeta_sitelogo', '');
 		setOptionDefault('htmlmeta_fb-app_id', '');
 		setOptionDefault('htmlmeta_twittercard', '');
@@ -88,6 +89,9 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_prevnext-gallery', 1);
 		setOptionDefault('htmlmeta_prevnext-image', 1);
 		setOptionDefault('htmlmeta_prevnext-news', 1);
+		
+		setOptionDefault('htmlmeta_canonical-url_dynalbum', 1);
+		
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('html_meta_tags');
 			cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
@@ -104,7 +108,6 @@ class htmlmetatags {
 		$options = array(
 				gettext('Cache control') => array(
 						'key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
-						'order' => 0,
 						'selections' => array(
 								'no-cache' => "no-cache",
 								'public' => "public",
@@ -141,9 +144,12 @@ class htmlmetatags {
 				gettext('Canonical URL link') => array(
 						'key' => 'htmlmeta_canonical-url',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 11,
 						'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
-				gettext('Google site verification') => array(
+				gettext('Canonical URL link: Dynamic album images') => array(
+						'key' => 'htmlmeta_canonical-url_dynalbum',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If you are using dynamic (virtual) albums side by side with physical albums images within a dynamic album duplicate the physical content as they have the url of the dynamic album. This makes the canonical url lead to their real physical image page. Applies only if the canonical url option is enabled.')),
+				gettext('Gooogle site verification') => array(
 						'key' => 'htmlmeta_google-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
@@ -214,7 +220,6 @@ class htmlmetatags {
 				gettext('Use subdomains') . '*' => array(
 						'key' => 'dynamic_locale_subdomain',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 12,
 						'disabled' => $_zp_common_locale_type,
 						'desc' => $localdesc),
 				gettext('Index pagination') => array(
@@ -232,14 +237,12 @@ class htmlmetatags {
 			$options['note'] = array(
 					'key' => 'html_meta_tags_locale_type',
 					'type' => OPTION_TYPE_NOTE,
-					'order' => 13,
 					'desc' => '<p class="notebox">' . $_zp_common_locale_type . '</p>');
 		} else {
 			$_zp_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
 			$options['note'] = array(
 					'key' => 'html_meta_tags_locale_type',
 					'type' => OPTION_TYPE_NOTE,
-					'order' => 13,
 					'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
@@ -358,7 +361,13 @@ class htmlmetatags {
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
-				$canonicalurl = $host . getImageURL();
+				if(getOption('htmlmeta_canonical-url_dynalbum')) {
+					$imagereal_rewrite = html_encode($_zp_current_image->album->name) . '/' . html_encode($_zp_current_image->filename) . IM_SUFFIX;
+					$imagereal_nonrewrite = 'index.php?album=' . html_encode($_zp_current_image->album->name) . '&amp;image=' . html_encode($_zp_current_image->filename);
+					$canonicalurl = rewrite_path($imagereal_rewrite, $imagereal_nonrewrite, FULLWEBPATH);
+				} else {
+					$canonicalurl = $host . getImageURL();
+				}
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
 					$twittercard_type = 'summary_large_image';

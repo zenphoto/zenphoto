@@ -70,6 +70,7 @@ class sitemapOptions {
 		setOptionDefault('sitemap_includepagination_album', 0);
 		setOptionDefault('sitemap_includepagination_news', 0);
 		setOptionDefault('sitemap_includepaginaion_category', 0);
+		setOptionDefault('sitemap_include_dynamicalbums', 0);
 	}
 
 	function getOptionsSupported() {
@@ -175,6 +176,7 @@ class sitemapOptions {
 						'order' => 14,
 						'disabled' => $_zp_common_locale_type,
 						'desc' => $localdesc),
+				
 				gettext('Include pagination') => array(
 						'key' => 'sitemap_includepagination',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
@@ -185,7 +187,13 @@ class sitemapOptions {
 								gettext('News category pagination') => 'sitemap_includepaginaion_category'
 						),
 						"desc" => gettext("Enable if you want to include paginated pages. For SEO best practices it is recommended to have this disabled though.")),
+				gettext('Include dynamic albums') . '*' => array(
+						'key' => 'sitemap_include_dynamicalbums',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 14,
+						'desc' => gettext("Enable if you want to include dynamic albums. Images of dynamic albums are not included in any case.")),
 		);
+		
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
 					'key' => 'sitemap_locale_type',
@@ -465,7 +473,7 @@ class sitemap {
 		$locallist = $obj->getAlbums();
 		foreach ($locallist as $folder) {
 			$album = AlbumBase::newAlbum($folder);
-			if ($album->isPublic() && !$album->isProtected()) {
+			if ($album->isPublic() && !$album->isProtected() && (getOption('sitemap_include_dynamicalbums') || !$album->isDynamic())) {
 				$albumlist[] = array('folder' => $album->name, 'date' => $album->getDateTime(), 'title' => $album->getTitle());
 				if (!$album->isDynamic()) {
 					sitemap::getAlbumList($album, $albumlist);
