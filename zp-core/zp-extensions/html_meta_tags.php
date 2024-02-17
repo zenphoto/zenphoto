@@ -149,7 +149,7 @@ class htmlmetatags {
 						'key' => 'htmlmeta_canonical-url_dynalbum',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('If you are using dynamic (virtual) albums side by side with physical albums images within a dynamic album duplicate the physical content as they have the url of the dynamic album. This makes the canonical url lead to their real physical image page. Applies only if the canonical url option is enabled.')),
-				gettext('Gooogle site verification') => array(
+				gettext('Google site verification') => array(
 						'key' => 'htmlmeta_google-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Google.')),
