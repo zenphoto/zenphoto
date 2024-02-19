@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 08:31+0100\n"
-"PO-Revision-Date: 2024-02-13 08:43+0100\n"
+"POT-Creation-Date: 2024-02-19 09:39+0100\n"
+"PO-Revision-Date: 2024-02-19 09:40+0100\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -18143,7 +18143,7 @@ msgstr ""
 "est activée."
 
 #: zp-core/zp-extensions/html_meta_tags.php:152
-msgid "Gooogle site verification"
+msgid "Google site verification"
 msgstr "Vérification Google site"
 
 #: zp-core/zp-extensions/html_meta_tags.php:155
