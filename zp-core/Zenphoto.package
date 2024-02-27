@@ -1346,7 +1346,6 @@ zp-core/zp-extensions/mobileTheme/vendor/mobiledetect/mobiledetectlib/src/Except
 zp-core/zp-extensions/mobileTheme/vendor/mobiledetect/mobiledetectlib/src/MobileDetect.php
 zp-core/zp-extensions/mobileTheme/vendor/psr
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache
-zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/.editorconfig
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/composer.json
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/LICENSE.md
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/README.md
@@ -1900,4 +1899,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1902
+1901
