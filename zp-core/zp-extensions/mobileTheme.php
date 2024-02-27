@@ -238,7 +238,7 @@ class mobileTheme {
 if (version_compare(PHP_VERSION, '8.0.0', '>=')) {
 
 	/**
-	 * Child class of MobileDetect. isMobile() and isTab
+	 * Child class of MobileDetect. isMobile() and isTablet()
 	 */
 	class mobile extends Detection\MobileDetect {
 
