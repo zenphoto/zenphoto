@@ -68,6 +68,7 @@ class comment_form {
 		setOptionDefault('comment_form_toggle', 1);
 		setOptionDefault('tinymce4_comments', null);
 		setOptionDefault('comment_form_dataconfirmation', 0);
+		setOptionDefault('comment_form_remember', 0);
 	}
 
 	/**
