@@ -1,6 +1,5 @@
 <form id="commentform" action="#commentform" method="post">
 	<input type="hidden" name="comment" value="1" />
-	<input type="hidden" name="remember" value="1" />
 	<?php
 	$star = '<strong>*</strong>';
 	$required = false;
@@ -23,8 +22,10 @@
 			?>
 			<p>
 				<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
-				<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"';
-		echo $disabled['anon']; ?> />
+				<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon'])
+			echo ' checked="checked"';
+		echo $disabled['anon'];
+		?> />
 			</p>
 			<?php
 		}
@@ -87,21 +88,15 @@
 		</p>
 		<?php
 	}
-	if (getOption('comment_form_dataconfirmation')) {
+	if (getOption('comment_form_rememberfield')) {
 		?>
 		<p>
-			<label for="comment_dataconfirmation">
-				<input type="checkbox" id="comment_dataconfirmation" name="comment_dataconfirmation" value="1"<?php if ($stored['comment_dataconfirmation']) echo ' checked="checked"'; ?> />
-				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
-			</label>
+			<label for="comment_remembername"><?php echo gettext('Remember me via cookie'); ?></label>
+			<input type="checkbox" id="comment_remembername" name="comment_remember" value="1" />
 		</p>
 		<?php
 	}
-	if ($required) {
-		?>
-		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
-		<?php
-	}
+
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
 		<p>
@@ -110,11 +105,27 @@
 		</p>
 		<?php
 	}
-	?>
+	if (getOption('comment_form_dataconfirmation')) {
+		?>
+		<p>
+			<label for="comment_dataconfirmation">
+				<input type="checkbox" id="comment_dataconfirmation" name="comment_dataconfirmation" value="1"<?php if ($stored['comment_dataconfirmation']) echo ' checked="checked"'; ?> />
+		<?php printDataUsageNotice();
+		echo '<strong>*</strong>'; ?>
+		</p>
+		<?php
+	}
+	if ($required) {
+		?>
+		<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
+	<?php
+}
+?>
 	<br />
-	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment'];
-	echo $disabled['comment'];
-	?></textarea>
+	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php
+		echo $stored['comment'];
+		echo $disabled['comment'];
+?></textarea>
 	<br />
 	<input type="submit" class="button buttons"  value="<?php echo gettext('Add Comment'); ?>" />
 </form>
