@@ -68,7 +68,6 @@ class comment_form {
 		setOptionDefault('comment_form_toggle', 1);
 		setOptionDefault('tinymce4_comments', null);
 		setOptionDefault('comment_form_dataconfirmation', 0);
-		setOptionDefault('comment_form_remember', 0);
 	}
 
 	/**
@@ -135,10 +134,6 @@ class comment_form {
 								gettext('Show') => 1,
 								gettext('Require') => 'required'),
 						'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
-				gettext('Remember field') => array(
-						'key' => 'comment_form_rememberfield',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('Enable to display a checkbox so commenters can choose to be remembered via cookie.')),
 				gettext('Allow comments on') => array(
 						'key' => 'comment_form_allowed',
 						'type' => OPTION_TYPE_CHECKBOX_ARRAY,

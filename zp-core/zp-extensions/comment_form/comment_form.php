@@ -1,5 +1,6 @@
 <form id="commentform" action="#commentform" method="post">
 	<input type="hidden" name="comment" value="1" />
+	<input type="hidden" name="remember" value="1" />
 	<?php
 	$star = '<strong>*</strong>';
 	$required = false;
@@ -88,15 +89,6 @@
 		</p>
 		<?php
 	}
-	if (getOption('comment_form_rememberfield')) {
-		?>
-		<p>
-			<label for="comment_remembername"><?php echo gettext('Remember me via cookie'); ?></label>
-			<input type="checkbox" id="comment_remembername" name="comment_remember" value="1" />
-		</p>
-		<?php
-	}
-
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
 		<p>
