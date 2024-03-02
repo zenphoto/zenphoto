@@ -68,6 +68,7 @@ class comment_form {
 		setOptionDefault('comment_form_toggle', 1);
 		setOptionDefault('tinymce4_comments', null);
 		setOptionDefault('comment_form_dataconfirmation', 0);
+		setOptionDefault('comment_form_remember', 0);
 	}
 
 	/**
@@ -126,6 +127,10 @@ class comment_form {
 								gettext('Require') => 1),
 						'disabled' => ($_zp_captcha->name) ? false : true,
 						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Remember field') => array(
+						'key' => 'comment_form_remember',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enable a field so commenters can choose to be remembered via a cookie')),
 				gettext('Address fields') => array(
 						'key' => 'comment_form_addresses',
 						'type' => OPTION_TYPE_RADIO,

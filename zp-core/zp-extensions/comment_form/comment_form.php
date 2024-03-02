@@ -1,6 +1,5 @@
 <form id="commentform" action="#commentform" method="post">
 	<input type="hidden" name="comment" value="1" />
-	<input type="hidden" name="remember" value="1" />
 	<?php
 	$star = '<strong>*</strong>';
 	$required = false;
@@ -97,13 +96,22 @@
 		</p>
 		<?php
 	}
+	if(getOption('comment_form_remember')) {
+		?>
+		<p>
+			<label for="remember"><?php echo gettext("Remember me"); ?></label>
+			<input type="checkbox" id="remember" name="remember" value="1" />
+		</p>	
+		<?php
+	}
 	if (getOption('comment_form_dataconfirmation')) {
 		?>
 		<p>
 			<label for="comment_dataconfirmation">
+				<?php printDataUsageNotice();
+				echo '<strong>*</strong>'; ?>
 				<input type="checkbox" id="comment_dataconfirmation" name="comment_dataconfirmation" value="1"<?php if ($stored['comment_dataconfirmation']) echo ' checked="checked"'; ?> />
-		<?php printDataUsageNotice();
-		echo '<strong>*</strong>'; ?>
+			</label>
 		</p>
 		<?php
 	}
