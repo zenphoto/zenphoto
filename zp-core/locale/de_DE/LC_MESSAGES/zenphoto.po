@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.1\n"
+"Project-Id-Version: Zenphoto 1.6.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 16:31+0100\n"
-"PO-Revision-Date: 2024-02-15 16:43+0100\n"
+"POT-Creation-Date: 2024-03-03 11:36+0100\n"
+"PO-Revision-Date: 2024-03-03 11:37+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -698,11 +698,11 @@ msgid "Separate"
 msgstr "Getrennt"
 
 #: themes/garland/themeoptions.php:167
-#: zp-core/zp-extensions/comment_form.php:103
-#: zp-core/zp-extensions/comment_form.php:112
-#: zp-core/zp-extensions/comment_form.php:121
-#: zp-core/zp-extensions/comment_form.php:130
-#: zp-core/zp-extensions/comment_form.php:140
+#: zp-core/zp-extensions/comment_form.php:101
+#: zp-core/zp-extensions/comment_form.php:109
+#: zp-core/zp-extensions/comment_form.php:117
+#: zp-core/zp-extensions/comment_form.php:125
+#: zp-core/zp-extensions/comment_form.php:138
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Omit"
 msgstr "Weglassen"
@@ -2440,7 +2440,7 @@ msgstr "Wählen Sie die Protokolldatei zum Anzeigen"
 #: zp-core/zp-extensions/defaultCodeblocks.php:12
 #: zp-core/zp-extensions/downloadList.php:39
 #: zp-core/zp-extensions/galleryArticles.php:12
-#: zp-core/zp-extensions/mobileTheme.php:81
+#: zp-core/zp-extensions/mobileTheme.php:80
 #: zp-core/zp-extensions/multiple_layouts.php:44
 #: zp-core/zp-extensions/openstreetmap.php:22
 #: zp-core/zp-extensions/scriptless-socialsharing.php:48
@@ -5777,7 +5777,7 @@ msgid "Current Theme"
 msgstr "Aktives Theme"
 
 #: zp-core/admin-themes.php:321 zp-core/utilities/gallery_statistics.php:463
-#: zp-core/zp-extensions/comment_form.php:347
+#: zp-core/zp-extensions/comment_form.php:334
 #: zp-core/zp-extensions/comment_form/admin-comments.php:457
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -6454,7 +6454,7 @@ msgstr ""
 "Ihre Nutzungsrrechte erlauben keinen Zugriff auf administrative Funktionen."
 
 #: zp-core/classes/class-_zp_captcha.php:12
-#: zp-core/zp-extensions/comment_form.php:134
+#: zp-core/zp-extensions/comment_form.php:129
 #: zp-core/zp-extensions/contact_form.php:189
 #: zp-core/zp-extensions/register_user.php:115
 msgid "No captcha handler is enabled."
@@ -6613,7 +6613,7 @@ msgstr "Kommentare senden"
 #: zp-core/classes/class-authority.php:610
 #: zp-core/classes/class-authority.php:636
 #: zp-core/classes/class-userdataexport.php:300
-#: zp-core/zp-extensions/comment_form.php:233
+#: zp-core/zp-extensions/comment_form.php:220
 #: zp-core/zp-extensions/comment_form/admin-comments.php:264
 msgid "Comments"
 msgstr "Kommentare"
@@ -12894,7 +12894,7 @@ msgstr ""
 "NICHT RÜCKGÄNGIG GEMACHT WERDEN!"
 
 #: zp-core/template-functions.php:85 zp-core/utilities/maintenance_mode.php:83
-#: zp-core/zp-extensions/mobileTheme.php:104
+#: zp-core/zp-extensions/mobileTheme.php:125
 msgid "Test mode"
 msgstr "Testmodus"
 
@@ -13613,10 +13613,10 @@ msgstr "bis "
 #: zp-core/zp-extensions/cacheManager.php:160
 #: zp-core/zp-extensions/cacheManager.php:165
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:190
-#: zp-core/zp-extensions/comment_form.php:104
-#: zp-core/zp-extensions/comment_form.php:113
-#: zp-core/zp-extensions/comment_form.php:122
-#: zp-core/zp-extensions/comment_form.php:141
+#: zp-core/zp-extensions/comment_form.php:102
+#: zp-core/zp-extensions/comment_form.php:110
+#: zp-core/zp-extensions/comment_form.php:118
+#: zp-core/zp-extensions/comment_form.php:139
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Show"
@@ -14975,7 +14975,7 @@ msgstr "PDF"
 #: zp-core/zp-extensions/class-WEBdocs.php:56
 #: zp-core/zp-extensions/class-WEBdocs.php:67
 #: zp-core/zp-extensions/class-WEBdocs.php:74
-#: zp-core/zp-extensions/comment_form.php:190
+#: zp-core/zp-extensions/comment_form.php:179
 #: zp-core/zp-extensions/galleryArticles.php:99
 #: zp-core/zp-extensions/tinymce4.php:50 zp-core/zp-extensions/tinymce4.php:57
 msgid "Disabled"
@@ -15388,33 +15388,33 @@ msgstr "Stellt allgemeine Funktionalität zum Kommentarverarbeiten bereit."
 msgid "Enable comment notification"
 msgstr "Kommentarbenachrichtigung aktivieren"
 
-#: zp-core/zp-extensions/comment_form.php:97
+#: zp-core/zp-extensions/comment_form.php:96
 msgid "Email the Admin when new comments are posted"
 msgstr "Verschicke eine E-Mail, wenn neue Kommentare vorhanden sind"
 
-#: zp-core/zp-extensions/comment_form.php:98
+#: zp-core/zp-extensions/comment_form.php:97
 msgid "Name field"
 msgstr "Name-Feld"
 
-#: zp-core/zp-extensions/comment_form.php:105
-#: zp-core/zp-extensions/comment_form.php:114
-#: zp-core/zp-extensions/comment_form.php:123
-#: zp-core/zp-extensions/comment_form.php:132
-#: zp-core/zp-extensions/comment_form.php:142
+#: zp-core/zp-extensions/comment_form.php:103
+#: zp-core/zp-extensions/comment_form.php:111
+#: zp-core/zp-extensions/comment_form.php:119
+#: zp-core/zp-extensions/comment_form.php:127
+#: zp-core/zp-extensions/comment_form.php:140
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Require"
 msgstr "Notwendig"
 
-#: zp-core/zp-extensions/comment_form.php:106
+#: zp-core/zp-extensions/comment_form.php:104
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 "Wenn das <em>Name</em>-Feld Pflicht ist, muss ein Name angegeben werden."
 
-#: zp-core/zp-extensions/comment_form.php:107
+#: zp-core/zp-extensions/comment_form.php:105
 msgid "Email field"
 msgstr "E-Mail-Feld"
 
-#: zp-core/zp-extensions/comment_form.php:115
+#: zp-core/zp-extensions/comment_form.php:112
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
@@ -15422,26 +15422,26 @@ msgstr ""
 "Wenn das <em>E-Mail</em>-Feld Pflicht ist, muss eine E-Mail-Adresse "
 "angegeben werden."
 
-#: zp-core/zp-extensions/comment_form.php:116
+#: zp-core/zp-extensions/comment_form.php:113
 msgid "Website field"
 msgstr "Website-Feld"
 
-#: zp-core/zp-extensions/comment_form.php:124
+#: zp-core/zp-extensions/comment_form.php:120
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 "Wenn das <em>Website</em>-Feld Pflicht ist, muss eine Website angegeben "
 "werden."
 
-#: zp-core/zp-extensions/comment_form.php:125
+#: zp-core/zp-extensions/comment_form.php:121
 msgid "Captcha field"
 msgstr "Captcha-Feld"
 
-#: zp-core/zp-extensions/comment_form.php:131
+#: zp-core/zp-extensions/comment_form.php:126
 msgid "For guests"
 msgstr "Für Gäste"
 
-#: zp-core/zp-extensions/comment_form.php:134
+#: zp-core/zp-extensions/comment_form.php:129
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha "
 "verification."
@@ -15449,12 +15449,22 @@ msgstr ""
 "Wenn das <em>Captcha</em>-Feld Pflicht ist, wird das Formular eine Catcha-"
 "Verifikation enthalten."
 
-#: zp-core/zp-extensions/comment_form.php:135
+#: zp-core/zp-extensions/comment_form.php:130
+msgid "Remember field"
+msgstr "Erinnern-Feld"
+
+#: zp-core/zp-extensions/comment_form.php:133
+msgid "Enable a field so commenters can choose to be remembered via a cookie"
+msgstr ""
+"Aktiviere ein Feld, so dass Kommentatoren wählen können, ob das Formular sie "
+"via Cookie merken soll"
+
+#: zp-core/zp-extensions/comment_form.php:134
 #: zp-core/zp-extensions/register_user.php:123
 msgid "Address fields"
 msgstr "Adressen-Feld"
 
-#: zp-core/zp-extensions/comment_form.php:143
+#: zp-core/zp-extensions/comment_form.php:141
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data "
@@ -15464,19 +15474,19 @@ msgstr ""
 "wird das Formular Adressfelder dafür anzeigen. Wenn sie erforderlich sind, "
 "muß ein Kommentator jedes dieser Adressfelder ausfüllen."
 
-#: zp-core/zp-extensions/comment_form.php:144
+#: zp-core/zp-extensions/comment_form.php:142
 msgid "Allow comments on"
 msgstr "Kommentare erlaubt auf"
 
-#: zp-core/zp-extensions/comment_form.php:149
+#: zp-core/zp-extensions/comment_form.php:146
 msgid "Comment forms will be presented on the checked pages."
 msgstr "Kommentarformulare werden auf den ausgewählten Seiten angezeigt."
 
-#: zp-core/zp-extensions/comment_form.php:150
+#: zp-core/zp-extensions/comment_form.php:147
 msgid "Toggled comment block"
 msgstr "Kommentarblock ausblenden"
 
-#: zp-core/zp-extensions/comment_form.php:154
+#: zp-core/zp-extensions/comment_form.php:150
 msgid ""
 "If checked, existing comments will be initially hidden. Clicking on the "
 "provided button will show them."
@@ -15484,42 +15494,42 @@ msgstr ""
 "Wenn ausgewählt, werden existierende Kommentar verborgen. Ein Klick auf den "
 "entsprechenden Button zeigt sie an."
 
-#: zp-core/zp-extensions/comment_form.php:155
+#: zp-core/zp-extensions/comment_form.php:151
 msgid "Show author URL"
 msgstr "Autor-Url anzeigen"
 
-#: zp-core/zp-extensions/comment_form.php:159
+#: zp-core/zp-extensions/comment_form.php:154
 msgid ""
 "To discourage SPAM, uncheck this box and the author URL will not be revealed."
 msgstr ""
 "Um SPAM nicht zu ermutigen, deaktivieren Sie diese Checkbox und die Autor-"
 "URL wird nicht angezeigt."
 
-#: zp-core/zp-extensions/comment_form.php:160
+#: zp-core/zp-extensions/comment_form.php:155
 msgid "Only members can comment"
 msgstr "Nur Mitglieder können kommentieren"
 
-#: zp-core/zp-extensions/comment_form.php:164
+#: zp-core/zp-extensions/comment_form.php:158
 msgid "If checked, only logged in users will be allowed to post comments."
 msgstr ""
 "Wenn ausgewählt, können nur angemeldete Benutzer*innen Kommentare verfassen."
 
-#: zp-core/zp-extensions/comment_form.php:165
+#: zp-core/zp-extensions/comment_form.php:159
 msgid "Allow private postings"
 msgstr "Private Kommentare erlauben"
 
-#: zp-core/zp-extensions/comment_form.php:169
+#: zp-core/zp-extensions/comment_form.php:162
 msgid ""
 "If checked, posters may mark their comments as private (not for publishing)."
 msgstr ""
 "Wenn ausgewählt, können Kommentatoren ihren Kommentar als privat "
 "deklatieren, der nicht veröffentlicht wird."
 
-#: zp-core/zp-extensions/comment_form.php:170
+#: zp-core/zp-extensions/comment_form.php:163
 msgid "Allow anonymous posting"
 msgstr "Anonymes Kommentieren erlauben"
 
-#: zp-core/zp-extensions/comment_form.php:174
+#: zp-core/zp-extensions/comment_form.php:166
 msgid ""
 "If checked, posters may exclude their personal information from the "
 "published post."
@@ -15527,11 +15537,11 @@ msgstr ""
 "Wenn ausgewählt, können Kommentatoren ihre persönlichen Information vom "
 "veröffentlichten Kommentar ausschließen."
 
-#: zp-core/zp-extensions/comment_form.php:175
+#: zp-core/zp-extensions/comment_form.php:167
 msgid "Include RSS link"
 msgstr "RSS-Link anzeigen"
 
-#: zp-core/zp-extensions/comment_form.php:179
+#: zp-core/zp-extensions/comment_form.php:170
 msgid ""
 "If checked, an RSS link will be included at the bottom of the comment "
 "section."
@@ -15539,11 +15549,11 @@ msgstr ""
 "Wenn ausgewählt wird ein RSS-Link für Kommentar unterhalb des "
 "Kommentarbereichs angezeigt."
 
-#: zp-core/zp-extensions/comment_form.php:180
+#: zp-core/zp-extensions/comment_form.php:171
 msgid "Comments per page"
 msgstr "Kommentare pro Seite"
 
-#: zp-core/zp-extensions/comment_form.php:184
+#: zp-core/zp-extensions/comment_form.php:174
 msgid ""
 "The comments that should show per page on the admin tab and when using the "
 "jQuery pagination"
@@ -15551,11 +15561,11 @@ msgstr ""
 "Anzahl Kommentar pro Seite auf dem Administrationstabulator und wenn die "
 "jQuery-Paginierung verwendet wird"
 
-#: zp-core/zp-extensions/comment_form.php:185
+#: zp-core/zp-extensions/comment_form.php:175
 msgid "Comment editor configuration"
 msgstr "Kommentareditor-Konfiguration"
 
-#: zp-core/zp-extensions/comment_form.php:191
+#: zp-core/zp-extensions/comment_form.php:180
 msgid ""
 "Configuration file for TinyMCE when used for comments. Set to "
 "<code>Disabled</code> to disable visual editing."
@@ -15563,24 +15573,24 @@ msgstr ""
 "Konfigurationsdatei für TinyMCE, wenn bei den Kommentaren verwendet. Stellen "
 "Sie auf <code>Deaktiviert</code>, um den visuellen Editor zu deaktivieren."
 
-#: zp-core/zp-extensions/comment_form.php:192
+#: zp-core/zp-extensions/comment_form.php:181
 msgid "Pagination"
 msgstr "Paginierung"
 
-#: zp-core/zp-extensions/comment_form.php:196
+#: zp-core/zp-extensions/comment_form.php:184
 msgid ""
 "Uncheck to disable the jQuery pagination of comments. Enabled by default."
 msgstr ""
 "Abschalten, um die jQuery-Seitenunterteilung für Kommentare zu deaktivieren, "
 "die standardmäßig aktiviert ist."
 
-#: zp-core/zp-extensions/comment_form.php:197
+#: zp-core/zp-extensions/comment_form.php:185
 #: zp-core/zp-extensions/contact_form.php:196
 #: zp-core/zp-extensions/register_user.php:116
 msgid "Data usage confirmation"
 msgstr "Zustimmung zur Datenverarbeitung"
 
-#: zp-core/zp-extensions/comment_form.php:201
+#: zp-core/zp-extensions/comment_form.php:188
 #: zp-core/zp-extensions/contact_form.php:200
 #: zp-core/zp-extensions/register_user.php:120
 msgid ""
@@ -15593,51 +15603,51 @@ msgstr ""
 "Site einverstanden sind. Dies wird empfohlen, um z.B. der DSVGO zu "
 "entsprechen."
 
-#: zp-core/zp-extensions/comment_form.php:217
-#: zp-core/zp-extensions/comment_form.php:218
-#: zp-core/zp-extensions/comment_form.php:233
+#: zp-core/zp-extensions/comment_form.php:204
+#: zp-core/zp-extensions/comment_form.php:205
+#: zp-core/zp-extensions/comment_form.php:220
 msgid "comments"
 msgstr "Kommentare"
 
-#: zp-core/zp-extensions/comment_form.php:260
+#: zp-core/zp-extensions/comment_form.php:247
 msgid "Add a comment:"
 msgstr "Kommentar hinzufügen:"
 
-#: zp-core/zp-extensions/comment_form.php:295
+#: zp-core/zp-extensions/comment_form.php:282
 msgid "No Comments"
 msgstr "Keine Kommentare"
 
-#: zp-core/zp-extensions/comment_form.php:299
+#: zp-core/zp-extensions/comment_form.php:286
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
 msgstr[0] "%u Kommentar"
 msgstr[1] "%u Kommentare"
 
-#: zp-core/zp-extensions/comment_form.php:308
+#: zp-core/zp-extensions/comment_form.php:295
 msgid "show comments"
 msgstr "Kommentare zeigen"
 
-#: zp-core/zp-extensions/comment_form.php:312
+#: zp-core/zp-extensions/comment_form.php:299
 msgid "hide comments"
 msgstr "Kommentare verbergen"
 
-#: zp-core/zp-extensions/comment_form.php:345
+#: zp-core/zp-extensions/comment_form.php:332
 msgid "on"
 msgstr "zu"
 
-#: zp-core/zp-extensions/comment_form.php:368
+#: zp-core/zp-extensions/comment_form.php:355
 msgid "Only registered users may post comments."
 msgstr "Nur regisitrierte Benutzer*innen können kommentieren."
 
-#: zp-core/zp-extensions/comment_form.php:446
-#: zp-core/zp-extensions/comment_form.php:449
-#: zp-core/zp-extensions/comment_form.php:452
-#: zp-core/zp-extensions/comment_form.php:455
+#: zp-core/zp-extensions/comment_form.php:433
+#: zp-core/zp-extensions/comment_form.php:436
+#: zp-core/zp-extensions/comment_form.php:439
+#: zp-core/zp-extensions/comment_form.php:442
 msgid "Subscribe to comments"
 msgstr "Kommentare abonnieren"
 
-#: zp-core/zp-extensions/comment_form.php:464
+#: zp-core/zp-extensions/comment_form.php:451
 msgid "Closed for comments."
 msgstr "Für Kommentare geschlossen."
 
@@ -15837,78 +15847,82 @@ msgstr "Kommentar bearbeiten"
 msgid "E-mail comment author"
 msgstr "E-Mail des Kommentatoren"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:18
+#: zp-core/zp-extensions/comment_form/comment_form.php:17
 #: zp-core/zp-extensions/contact_form/form.php:23
 #, php-format
 msgid "Name%s"
 msgstr "Name%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:25
+#: zp-core/zp-extensions/comment_form/comment_form.php:24
 msgid "<em>anonymous</em>"
 msgstr "<em>Anonym</em>"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:36
+#: zp-core/zp-extensions/comment_form/comment_form.php:37
 #: zp-core/zp-extensions/contact_form/form.php:85
 #, php-format
 msgid "E-Mail%s"
 msgstr "E-Mail%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:44
+#: zp-core/zp-extensions/comment_form/comment_form.php:45
 #: zp-core/zp-extensions/contact_form/form.php:93
 #, php-format
 msgid "Website%s"
 msgstr "Website%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:53
+#: zp-core/zp-extensions/comment_form/comment_form.php:54
 #: zp-core/zp-extensions/contact_form/form.php:45
 #: zp-core/zp-extensions/register_user/register_user_form.php:58
 #, php-format
 msgid "Street%s"
 msgstr "Straße%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:57
+#: zp-core/zp-extensions/comment_form/comment_form.php:58
 #: zp-core/zp-extensions/contact_form/form.php:53
 #: zp-core/zp-extensions/register_user/register_user_form.php:64
 #, php-format
 msgid "City%s"
 msgstr "Stadt%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:61
+#: zp-core/zp-extensions/comment_form/comment_form.php:62
 #: zp-core/zp-extensions/contact_form/form.php:61
 #: zp-core/zp-extensions/register_user/register_user_form.php:70
 #, php-format
 msgid "State%s"
 msgstr "Land%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:65
+#: zp-core/zp-extensions/comment_form/comment_form.php:66
 #: zp-core/zp-extensions/contact_form/form.php:69
 #: zp-core/zp-extensions/register_user/register_user_form.php:76
 #, php-format
 msgid "Country%s"
 msgstr "Staat%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:69
+#: zp-core/zp-extensions/comment_form/comment_form.php:70
 #: zp-core/zp-extensions/contact_form/form.php:77
 #: zp-core/zp-extensions/register_user/register_user_form.php:82
 #, php-format
 msgid "Postal code%s"
 msgstr "Postleitzahl%s"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:75
+#: zp-core/zp-extensions/comment_form/comment_form.php:76
 #: zp-core/zp-extensions/contact_form/form.php:107
 #: zp-core/zp-extensions/register_user/register_user_form.php:91
 msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "CAPTCHA eingeben<strong>*</strong>"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:102
-msgid "<strong>*</strong>Required fields"
-msgstr "<strong>*</strong>Pflichtfelder"
-
-#: zp-core/zp-extensions/comment_form/comment_form.php:108
+#: zp-core/zp-extensions/comment_form/comment_form.php:94
 msgid "Private comment (do not publish)"
 msgstr "Privater Kommentar (wird nicht veröffentlicht)"
 
-#: zp-core/zp-extensions/comment_form/comment_form.php:119
+#: zp-core/zp-extensions/comment_form/comment_form.php:102
+msgid "Remember me"
+msgstr "Erinnere mich"
+
+#: zp-core/zp-extensions/comment_form/comment_form.php:120
+msgid "<strong>*</strong>Required fields"
+msgstr "<strong>*</strong>Pflichtfelder"
+
+#: zp-core/zp-extensions/comment_form/comment_form.php:130
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
 
@@ -16288,7 +16302,7 @@ msgstr ""
 "Wenn ausgewählt, wird das Formular eine Captcha-Verifikation enthalten."
 
 #: zp-core/zp-extensions/contact_form.php:190
-#: zp-core/zp-extensions/mobileTheme.php:105
+#: zp-core/zp-extensions/mobileTheme.php:126
 msgid "Phone"
 msgstr "Handy"
 
@@ -18075,8 +18089,8 @@ msgstr ""
 "Canonical-URL-Einstellung muss dazu  aktiviert sein."
 
 #: zp-core/zp-extensions/html_meta_tags.php:152
-msgid "Gooogle site verification"
-msgstr "Google-Site-Bestätigung"
+msgid "Google site verification"
+msgstr "Google Site Verifiikation"
 
 #: zp-core/zp-extensions/html_meta_tags.php:155
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
@@ -19788,41 +19802,45 @@ msgstr "Feed-Einträge:"
 msgid "The number of new entries you want to appear in your site’s RSS feed"
 msgstr "Die Anzahl an neuen Einträgen, die im RSS-Newsfeed erscheinen soll"
 
-#: zp-core/zp-extensions/mobileTheme.php:79
+#: zp-core/zp-extensions/mobileTheme.php:78
 msgid "Select your theme based on the device connecting to your site"
 msgstr ""
 "Wählen Sie das Theme basierend auf dem Gerät, dass Ihre Website aufruft"
 
-#: zp-core/zp-extensions/mobileTheme.php:96
+#: zp-core/zp-extensions/mobileTheme.php:81
+msgid "PHP 8+ required"
+msgstr "PHP 8+ erforderlich"
+
+#: zp-core/zp-extensions/mobileTheme.php:117
 msgid "Phone theme"
 msgstr "Handy-Theme"
 
-#: zp-core/zp-extensions/mobileTheme.php:98
-#: zp-core/zp-extensions/mobileTheme.php:102
+#: zp-core/zp-extensions/mobileTheme.php:119
+#: zp-core/zp-extensions/mobileTheme.php:123
 msgid "gallery theme"
 msgstr "Galerie-Theme"
 
-#: zp-core/zp-extensions/mobileTheme.php:99
+#: zp-core/zp-extensions/mobileTheme.php:120
 msgid "Select the theme to be used when a phone device connects."
 msgstr "Wählen Sie das Theme, dass Handys verwenden sollen."
 
-#: zp-core/zp-extensions/mobileTheme.php:100
+#: zp-core/zp-extensions/mobileTheme.php:121
 msgid "Tablet theme"
 msgstr "Tablet-Theme"
 
-#: zp-core/zp-extensions/mobileTheme.php:103
+#: zp-core/zp-extensions/mobileTheme.php:124
 msgid "Select the theme to be used when a tablet device connects."
 msgstr "Wählen Sie das Theme, dass für Tablet-PCs verwendet werden soll."
 
-#: zp-core/zp-extensions/mobileTheme.php:105
+#: zp-core/zp-extensions/mobileTheme.php:126
 msgid "Tablet"
 msgstr "Tablet"
 
-#: zp-core/zp-extensions/mobileTheme.php:106
+#: zp-core/zp-extensions/mobileTheme.php:127
 msgid "live"
 msgstr "live"
 
-#: zp-core/zp-extensions/mobileTheme.php:107
+#: zp-core/zp-extensions/mobileTheme.php:128
 msgid ""
 "Put the plugin in <em>test mode</em> and it will simulate the selected "
 "device. If <em>live</em> is selected operations are normal."
@@ -19830,11 +19848,11 @@ msgstr ""
 "Aktiviert den <em>Testmodus</em>, um das ausgewählte Gerät zu simulieren. "
 "Wenn <em>live</em> ausgewählt ist, funktioniert alles wie gewohnt."
 
-#: zp-core/zp-extensions/mobileTheme.php:150
+#: zp-core/zp-extensions/mobileTheme.php:175
 msgid "View the mobile gallery"
 msgstr "Die mobile Site besuchen"
 
-#: zp-core/zp-extensions/mobileTheme.php:155
+#: zp-core/zp-extensions/mobileTheme.php:180
 msgid "View the normal gallery"
 msgstr "Die normale Site besuchen"
 
@@ -30169,9 +30187,6 @@ msgstr "OSX"
 
 #~ msgid "Phone field"
 #~ msgstr "Telefon-Feld"
-
-#~ msgid "Phone number field"
-#~ msgstr "Telefon-Nummer-Feld"
 
 #~ msgid "Subject field"
 #~ msgstr "Betreff-Feld."
