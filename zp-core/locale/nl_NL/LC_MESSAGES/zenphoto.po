@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-29 13:52+0100\n"
+"POT-Creation-Date: 2024-03-03 17:31+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -710,10 +710,10 @@ msgstr "apart"
 #: zp-core/zp-extensions/comment_form.php:109
 #: zp-core/zp-extensions/comment_form.php:117
 #: zp-core/zp-extensions/comment_form.php:125
-#: zp-core/zp-extensions/comment_form.php:134
+#: zp-core/zp-extensions/comment_form.php:138
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Omit"
-msgstr "niet tonen"
+msgstr "Niet tonen"
 
 #: themes/garland/themeoptions.php:169
 msgid "Location for Image gallery picture caption"
@@ -4604,7 +4604,7 @@ msgstr "Metadata"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:117
 msgid "show"
-msgstr "toon"
+msgstr "Toon"
 
 #: zp-core/admin-options.php:2527 zp-core/zp-extensions/GoogleMap.php:111
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:110
@@ -13492,7 +13492,7 @@ msgstr "tot"
 #: zp-core/zp-extensions/comment_form.php:102
 #: zp-core/zp-extensions/comment_form.php:110
 #: zp-core/zp-extensions/comment_form.php:118
-#: zp-core/zp-extensions/comment_form.php:135
+#: zp-core/zp-extensions/comment_form.php:139
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Show"
@@ -15214,10 +15214,10 @@ msgstr "Naam"
 #: zp-core/zp-extensions/comment_form.php:111
 #: zp-core/zp-extensions/comment_form.php:119
 #: zp-core/zp-extensions/comment_form.php:127
-#: zp-core/zp-extensions/comment_form.php:136
+#: zp-core/zp-extensions/comment_form.php:140
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Require"
-msgstr "verplicht"
+msgstr "Verplicht"
 
 #: zp-core/zp-extensions/comment_form.php:104
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
@@ -15253,7 +15253,7 @@ msgstr "Captcha"
 
 #: zp-core/zp-extensions/comment_form.php:126
 msgid "For guests"
-msgstr "voor gasten"
+msgstr "Gasten"
 
 #: zp-core/zp-extensions/comment_form.php:129
 msgid ""
@@ -15264,11 +15264,21 @@ msgstr ""
 "verificatie tonen."
 
 #: zp-core/zp-extensions/comment_form.php:130
+msgid "Remember field"
+msgstr "Herinnering"
+
+#: zp-core/zp-extensions/comment_form.php:133
+msgid "Enable a field so commenters can choose to be remembered via a cookie"
+msgstr ""
+"Vink aan om reageerders de mogelijkheid te geven om via een cookie herinnerd "
+"te kunnen worden door het formulier."
+
+#: zp-core/zp-extensions/comment_form.php:134
 #: zp-core/zp-extensions/register_user.php:123
 msgid "Address fields"
 msgstr "Adresvelden."
 
-#: zp-core/zp-extensions/comment_form.php:137
+#: zp-core/zp-extensions/comment_form.php:141
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data "
@@ -15276,18 +15286,6 @@ msgid ""
 msgstr ""
 "Als <em>Adresvelden</em> worden getoond of verplicht zijn, zal het formulier "
 "er de velden voor tonen."
-
-#: zp-core/zp-extensions/comment_form.php:138
-msgid "Remember field"
-msgstr "Herinnering"
-
-#: zp-core/zp-extensions/comment_form.php:141
-msgid ""
-"Enable to display a checkbox so commenters can choose to be remembered via "
-"cookie."
-msgstr ""
-"Vink aan om reageerders de mogelijkheid te geven om via een cookie herinnerd "
-"te kunnen worden."
 
 #: zp-core/zp-extensions/comment_form.php:142
 msgid "Allow comments on"
@@ -15436,7 +15434,7 @@ msgstr[1] "%u reacties"
 
 #: zp-core/zp-extensions/comment_form.php:295
 msgid "show comments"
-msgstr "toon reacties"
+msgstr "Toon reacties"
 
 #: zp-core/zp-extensions/comment_form.php:299
 msgid "hide comments"
@@ -15720,12 +15718,12 @@ msgid "Enter CAPTCHA<strong>*</strong>"
 msgstr "Voer CAPTCHA in<strong>*</strong>"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:94
-msgid "Remember me via cookie"
-msgstr "Herinner mij via een cookie"
-
-#: zp-core/zp-extensions/comment_form/comment_form.php:103
 msgid "Private comment (do not publish)"
 msgstr "Privé bericht (niet publiceren)"
+
+#: zp-core/zp-extensions/comment_form/comment_form.php:102
+msgid "Remember me"
+msgstr "Onthoud mij"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:120
 msgid "<strong>*</strong>Required fields"
@@ -15954,11 +15952,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/contact_form.php:81
 msgid "required"
-msgstr "verplicht"
+msgstr "Verplicht"
 
 #: zp-core/zp-extensions/contact_form.php:81
 msgid "omitted"
-msgstr "niet tonen"
+msgstr "Niet tonen"
 
 #: zp-core/zp-extensions/contact_form.php:82
 #, php-format
@@ -19583,7 +19581,6 @@ msgstr ""
 "Selecteer een thema geschikt voor het apparaat waarmee de site bekeken wordt."
 
 #: zp-core/zp-extensions/mobileTheme.php:81
-#| msgid "required"
 msgid "PHP 8+ required"
 msgstr "PHP 8+ vereist"
 
@@ -20537,11 +20534,11 @@ msgstr "Stem opnieuw"
 
 #: zp-core/zp-extensions/rating.php:119
 msgid "Show rating"
-msgstr "toon beoordeling"
+msgstr "Toon beoordeling"
 
 #: zp-core/zp-extensions/rating.php:120
 msgid "Show previous vote"
-msgstr "toon vorige beoordeling"
+msgstr "Toon vorige beoordeling"
 
 #: zp-core/zp-extensions/rating.php:121
 msgid ""
@@ -24950,6 +24947,9 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "Remember me via cookie"
+#~ msgstr "Herinner mij via een cookie"
 
 #~ msgid "Do not process the field"
 #~ msgstr "Negeren"
