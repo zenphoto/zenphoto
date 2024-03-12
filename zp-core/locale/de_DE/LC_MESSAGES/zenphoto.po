@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.2\n"
+"Project-Id-Version: Zenphoto 1.6.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-03 11:36+0100\n"
-"PO-Revision-Date: 2024-03-03 11:37+0100\n"
+"POT-Creation-Date: 2024-03-12 15:15+0100\n"
+"PO-Revision-Date: 2024-03-12 15:15+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -4857,7 +4857,7 @@ msgstr "Aktivieren Sie eine Übergangsseite"
 
 #: zp-core/admin-options.php:2860
 msgid "Minimum number of image thumbs"
-msgstr "Maximale Anzahl an Bild-Thumbnails"
+msgstr "Minimale Anzahl an Bild-Thumbnails"
 
 #: zp-core/admin-options.php:2870
 msgid "Maximum number of image thumbs"
