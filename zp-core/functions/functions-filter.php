@@ -145,7 +145,10 @@ function zp_apply_filter($hook, $value = '') {
 			if (!is_null($the_['function'])) {
 				if (DEBUG_FILTERS)
 					$debug .= "\n    " . $the_['function'];
-				$args[1] = $value;
+				// Add default value if not supplied by caller
+				if (func_num_args() < 2)
+					$args[1] = $value;
+				// Invoke filter function and pass parameters (but truncate $hook from the list)
 				$new_value = call_user_func_array($the_['function'], array_slice($args, 1));
 				if (!is_null($new_value)) {
 					$value = $new_value;
