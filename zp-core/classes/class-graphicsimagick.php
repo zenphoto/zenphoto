@@ -31,7 +31,8 @@ class graphicsImagick extends graphicsBase {
 				'PNG32' => 'png',
 				'TIFF' => 'jpg',
 				'TIFF64' => 'jpg',
-				'WEBP' => 'webp'
+				'WEBP' => 'webp',
+				'AVIF' => 'avif'
 		);
 
 		$imagick = new Imagick();
@@ -106,7 +107,8 @@ class graphicsImagick extends graphicsBase {
 				}
 				break;
 			case 'png':
-			case 'webp': // apparently there are no interlace and compression constants for webp so we just use the png setting
+			case 'webp': // apparently there are no interlace and compression constants for webp/avif so we just use the png setting
+			case 'avif': 
 				$im->setImageCompression(Imagick::COMPRESSION_ZIP);
 				$im->setImageCompressionQuality($qual);
 				if ($interlace) {

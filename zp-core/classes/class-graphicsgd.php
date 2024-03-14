@@ -28,7 +28,12 @@ class graphicsGD extends graphicsBase {
 		$gd_imgtypes['JPEG'] = ($imgtypes & IMG_JPG) ? 'jpg' : false;
 		$gd_imgtypes['PNG'] = ($imgtypes & IMG_PNG) ? 'png' : false;
 		$gd_imgtypes['WBMP'] = ($imgtypes & IMG_WBMP) ? 'jpg' : false;
-		$gd_imgtypes['WEBP'] = ($imgtypes & IMG_WEBP) ? 'webp' : false;
+		if (version_compare(PHP_VERSION, '7.0.10', '>=')) {
+			$gd_imgtypes['WEBP'] = ($imgtypes & IMG_WEBP) ? 'webp' : false;
+		}
+		if (version_compare(PHP_VERSION, '8.1.0', '>=')) {
+			$gd_imgtypes['AVIF'] = ($imgtypes & IMG_AVIF) ? 'avif' : false;
+		}
 
 		//Fix that unsupported types may be listed without suffix and then confuse e.g. the "cache as" option
 		foreach($gd_imgtypes as $key => $value) {
@@ -66,6 +71,8 @@ class graphicsGD extends graphicsBase {
 				return imagecreatefromgif($imgfile);
 			case 'webp':
 				return imagecreatefromwebp($imgfile);
+			case 'avif':
+				return imagecreatefromavif($imgfile);
 		}
 		return false;
 	}
@@ -96,6 +103,8 @@ class graphicsGD extends graphicsBase {
 				return imagegif($im, $filename);
 			case 'webp':
 				return imagewebp($im, $filename, $qual);
+			case 'avif':
+				return imageavif($im, $filename, $qual);
 		}
 		return false;
 	}
