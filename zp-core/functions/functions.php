@@ -665,21 +665,23 @@ function getPluginFiles($pattern, $folder = '', $stripsuffix = true) {
 }
 
 /**
- * Returns the fully qualified file name of the plugin file.
- *
- * Note: order of selection is:
- * 	1-theme folder file (if $inTheme is set)
- *  2-user plugin folder file
- *  3-zp-extensions file
- * first file found is used
+ * Returns the fully qualified file path of a plugin file.
+ * 
+ * Note: order of selection is if the file is named "something.php":
+ * 
+ * - 1-theme folder file (if $inTheme is set): /themes/currenthemefolder/something.php
+ * - 2-user plugin folder file: /plugins/something.php
+ * - 3-zp-extensions file /zp-core/zp-extensions/something.php
+ * 
+ * First file found is used. Returns false if no file is found.
  *
  * @param string $plugin is the name of the plugin file, typically something.php
  * @param bool $inTheme tells where to find the plugin.
- *   true means look in the current theme
+ *   true means look in the current theme. This for example can be also used to load a additional custom css file for theme customizations so the theme itself does not need to be modified.
  *   false means look in the zp-core/plugins folder.
  * @param bool $webpath return a WEBPATH rather than a SERVERPATH
  *
- * @return string
+ * @return string|false
  */
 function getPlugin($plugin, $inTheme = false, $webpath = false) {
 	global $_zp_gallery;
