@@ -4678,6 +4678,8 @@ function printLogSelector($currentlogtab = '', $currentlogfile = '', $logfiles =
 	}
 }
 
+
+
 /**
  * Figures out which plugin tabs to display
  */
@@ -4748,44 +4750,84 @@ function getPluginTabs() {
 }
 
 /**
+ * Gets an array with the size values for the admin thumb generation
+ * 
+ * @since 1.6.3
+ * 
+ * @param obj $imageobj The image object
+ * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
+ * @return array
+ */
+function getAdminThumbSizes($imageobj, $size = 'small') {
+	$sizes = array(
+			'thumbsize' => null,
+			'width' => null,
+			'height' => null,
+			'cropwidth' => null,
+			'cropheight' => null
+	);
+	switch ($size) {
+		case 'large':
+			$sizes['thumbsize'] = 80;
+			$sizes['cropwidth'] = 80;
+			$sizes['cropheight'] = 80;
+			return $sizes;
+		case 'small':
+		default:
+			$sizes['thumbsize'] = 40;
+			$sizes['cropwidth'] = 40;
+			$sizes['cropheight'] = 40;
+			return $sizes;
+		case 'large-uncropped':
+		case 'small-uncropped':
+			switch ($size) {
+				case 'large-uncropped':
+					if ($imageobj->isSquare('thumb')) {
+						$sizes['thumbsize'] = 135;
+					} else if ($imageobj->isLandscape('thumb')) {
+						$sizes['width'] = 135;
+					} else if ($imageobj->isPortrait('thumb')) {
+						$sizes['height'] = 135;
+					}
+					return $sizes;
+				case 'small-uncropped':
+					if ($imageobj->isSquare('thumb')) {
+						$sizes['thumbsize'] = 110;
+					} else if ($imageobj->isLandscape('thumb')) {
+						$sizes['width'] = 110;
+					} else if ($imageobj->isPortrait('thumb')) {
+						$sizes['height'] = 110;
+					}
+					return $sizes;
+			}
+			break;
+	}
+}
+
+/**
  * Gets the URL of the adminthumb
  * 
- * @param obj $image The image object
+ * @param obj $imageobj The image object
  * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
  * @return string
  */
 function getAdminThumb($imageobj, $size = 'small') {
-	switch ($size) {
-		case 'large':
-			return $imageobj->getCustomImage(80, NULL, NULL, 80, 80, NULL, NULL, -1);
-		case 'small':
-		default:
-			return $imageobj->getCustomImage(40, NULL, NULL, 40, 40, NULL, NULL, -1);
-		case 'large-uncropped':
-		case 'small-uncropped':
-			$thumbsize = $width = $height = null;
-			switch ($size) {
-				case 'large-uncropped':
-					if ($imageobj->isSquare('thumb')) {
-						$thumbsize = 135;
-					} else if ($imageobj->isLandscape('thumb')) {
-						$width = 135;
-					} else if ($imageobj->isPortrait('thumb')) {
-						$height = 135;
-					}
-					return $imageobj->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
-				case 'small-uncropped':
-					if ($imageobj->isSquare('thumb')) {
-						$thumbsize = 110;
-					} else if ($imageobj->isLandscape('thumb')) {
-						$width = 110;
-					} else if ($imageobj->isPortrait('thumb')) {
-						$height = 110;
-					}
-					return $imageobj->getCustomImage($thumbsize, $width, $height, NULL, NULL, NULL, NULL, -1);
-			}
-			break;
-	}
+	$values = getAdminThumbSizes($imageobj, $size);
+	return $imageobj->getCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, false);
+}
+
+/**
+ * Returns an array with width and height of the resized image
+ * 
+ * @since 1.6.3
+ * 
+ * @param obj  $imageobj The image object
+ * @param string $size Adminthumb sizeame: 'large', 'small', 'large-uncropped', 'small-uncropped'
+ * @return array
+ */
+function getSizeAdminThumb($imageobj, $size = 'small') {
+	$values = getAdminThumbSizes($imageobj, $size);
+	return getSizeCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, $imageobj, 'image');
 }
 
 /**
@@ -4806,8 +4848,11 @@ function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null
 	if (empty($title)) {
 		$title = $alt;
 	}
+	$dimensions = getSizeAdminThumb($imageobj, $size);
 	$attr = array(
 			'src' => html_pathurlencode(getAdminThumb($imageobj, $size)),
+			'width' => $dimensions[0],
+			'height' => $dimensions[1],
 			'alt' => html_encode($alt),
 			'class' => $class,
 			'id' => $id,
