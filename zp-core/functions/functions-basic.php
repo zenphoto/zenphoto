@@ -1102,18 +1102,18 @@ function getImageURI($args, $album, $image, $mtime) {
 }
 
 /**
- * Extracts integer value (1-9) from the exifOrientation value stored (e.g. '7: 90 deg CCW Mirrored') in the database for images
- * 
- * Returns 0 if not a string.
+ * Extracts integer value (1-9) from the exifOrientation value stored (e.g. '7: 90 deg CCW Mirrored') in the database for images or returns the value if it is an integer
  * 
  * @since 1.6.1
  * 
- * @param string $exiforientation String value as stored in the db (e.g. '7: 90 deg CCW Mirrored')
+ * @param string|integer $exiforientation String or integer  value as stored in the db (e.g. '7: 90 deg CCW Mirrored' or just "7")
  * @return int
  */
 function extractImageExifOrientation($exiforientation = '') {
 	if (is_string($exiforientation)) {
 		return intval(substr($exiforientation, 0, 1));
+	} else {
+		return intval($exiforientation);
 	}
 	return 0;
 }
