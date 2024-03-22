@@ -47,7 +47,8 @@ class SearchEngine {
 	 * @return SearchEngine
 	 */
 	function __construct($dynamic_album = false) {
-		global $_zp_exifvars, $_zp_gallery;
+		global $_zp_exifvars, $_zp_gallery, $_zp_db;
+		$regexboundaries = $_zp_db->getRegexWordBoundaryChars();
 		switch ((int) getOption('exact_tag_match')) {
 			case 0:
 				// partial
@@ -59,7 +60,7 @@ class SearchEngine {
 				break;
 			case 2:
 				//word
-				$this->tagPattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '[[:>:]]');
+				$this->tagPattern = array('type' => 'regexp', 'open' => $regexboundaries['open'], 'close' => $regexboundaries['close']);
 				break;
 		}
 
@@ -70,14 +71,13 @@ class SearchEngine {
 				break;
 			case 1:
 				// partial start
-				$this->pattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '');
+				$this->pattern = array('type' => 'regexp', 'open' => $regexboundaries['open'], 'close' => '');
 				break;
 			case 2:
 				//word
-				$this->pattern = array('type' => 'regexp', 'open' => '[[:<:]]', 'close' => '[[:>:]]');
+				$this->pattern = array('type' => 'regexp', 'open' => $regexboundaries['open'], 'close' => $regexboundaries['close']);
 				break;
 		}
-
 		$this->extraparams['albumssorttype'] = getOption('search_album_sort_type');
 		$this->extraparams['albumssortdirection'] = getOption('search_album_sort_direction') ? 'DESC' : '';
 		$this->extraparams['imagessorttype'] = getOption('search_image_sort_type');

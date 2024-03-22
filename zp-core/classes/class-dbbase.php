@@ -918,5 +918,29 @@ class dbBase {
 		}
 		return false;
 	}
+	
+	/**
+	 * Returns the REGEX word boundary characters
+	 * - For MariaDB and MySQL < 8: Spencer lib variant [[:<:]] and [[:>:]]
+	 * - For MySQL 8+: ICU variant \\b
+	 * 
+	 * @since 1.6.3
+	 * 
+	 * @return array
+	 */
+	function getRegexWordBoundaryChars() {
+		$boundaries = array(
+				'open' => '[[:<:]]',
+				'close' => '[[:>:]]'
+		);
+		$version = $this->getVersion();
+		if (!$this->isMariaDB() && version_compare($version, '8.0.0', '>=')) {
+			$boundaries = array(
+					'open' => '\\b',
+					'close' => '\\b'
+			);
+		}
+		return $boundaries;
+	}
 
 }

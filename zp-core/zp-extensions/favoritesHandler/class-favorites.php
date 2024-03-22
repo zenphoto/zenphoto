@@ -25,7 +25,8 @@ class favorites extends AlbumBase {
 		$this->albumSortDirection = getOption('favorites_album_sort_direction');
 		$this->imageSortType = getOption('favorites_image_sort_type');
 		$this->albumSortType = getOption('favorites_album_sort_type');
-		$list = $_zp_db->queryFullArray('SELECT `aux` FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . $_zp_db->quote('[[:<:]]' . $user . '[[:>:]]'));
+		$regexboundaries = $_zp_db->getRegexWordBoundaryChars();
+		$list = $_zp_db->queryFullArray('SELECT `aux` FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux` REGEXP ' . $_zp_db->quote($regexboundaries['open'] . $user . $regexboundaries['close']));
 		foreach ($list as $aux) {
 			$instance = getSerializedArray($aux['aux']);
 			if (isset($instance[1])) {
