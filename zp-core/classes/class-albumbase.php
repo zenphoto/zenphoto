@@ -163,17 +163,20 @@ class AlbumBase extends MediaObject {
 	 * 
 	 * @since 1.5.5
 	 * 
-	 * @return array|null
+	 * @return array
 	 */
 	function getParents() {
+		$parents = array();
 		if (is_null($this->parentalbums)) {
 			$albumarray = getAlbumArray($this->name, false);
 			if (count($albumarray) == 1) {
 				$parent = $this->getParent();
-				$this->urparentalbum = $parent;
-				return $this->parentalbums = array($parent);
+				if ($parent) {
+					$this->urparentalbum = $parent;
+					return $this->parentalbums = array($parent);
+				}
+				return $this->parentalbums = array();
 			}
-			$parents = array();
 			$album = $this;
 			while (!is_null($album = $album->getParent())) {
 				array_unshift($parents, $album);

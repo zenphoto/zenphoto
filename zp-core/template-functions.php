@@ -1461,7 +1461,7 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
  */
 function getParentBreadcrumb() {
 	global $_zp_gallery, $_zp_current_search, $_zp_current_album, $_zp_last_album;
-	$output = array();
+	$parents = $output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$page = $_zp_current_search->page;
 		$searchwords = $_zp_current_search->getSearchWords();
@@ -1501,8 +1501,7 @@ function getParentBreadcrumb() {
 	} else {
 		$parents = getParentAlbums();
 	}
-	$n = count($parents);
-	if ($n > 0) {
+	if ($parents) {
 		array_push($parents, $_zp_current_album);
 		$index = -1;
 		foreach ($parents as $parent) {
