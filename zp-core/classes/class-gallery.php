@@ -1430,7 +1430,7 @@ class Gallery {
 	/**
 	 * Gets the albums per page setting
 	 * 
-	 * @since ZemphotoCMS 1.6
+	 * @since 1.6
 	 * 
 	 * @return int
 	 */
