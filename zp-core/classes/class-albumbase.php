@@ -38,7 +38,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Wrapper instantiation function for albums. Do not instantiate directly
 	 * 
-	 * @since ZnephotoCMS 1.6 - Moved to AlbumBase class as static method
+	 * @since 1.6 - Moved to AlbumBase class as static method
 	 * 
 	 * @param string $folder8 the name of the folder (inernal character set)
 	 * @param bool $cache true if the album should be fetched from the cache
@@ -58,7 +58,7 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns true if the object is a zenphoto 'album'
 	 * 
-	 * @since ZnephotoCMS 1.6 - Moved to AlbumBase class as static method
+	 * @since 1.6 - Moved to AlbumBase class as static method
 	 *
 	 * @param object $album
 	 * @return bool

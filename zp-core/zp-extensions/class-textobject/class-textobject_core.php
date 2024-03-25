@@ -182,7 +182,7 @@ class TextObject extends Image {
 	/**
 	 * Returns an array with widht and height the sidecar thumb image
 	 * 
-	 * @since ZephotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return array
 	 */

@@ -78,7 +78,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns a new "image" object based on the file extension
 	 * 
-	 * @since ZnephotoCMS 1.6 - Moved to Image class as static method
+	 * @since 1.6 - Moved to Image class as static method
 	 *
 	 * @param object $album the owner album
 	 * @param string $filename the filename
@@ -143,7 +143,7 @@ class Image extends MediaObject {
 	/**
 	 * Returns true if the object is a zenphoto 'image'
 	 * 
-	 * @since ZnephotoCMS 1.6 - Moved to Image class as static method
+	 * @since 1.6 - Moved to Image class as static method
 	 *
 	 * @param object $image
 	 * @return bool
@@ -675,7 +675,7 @@ class Image extends MediaObject {
 	 * file need to override this and provide the actual dimensions of the thumb using zp_getImageDims($thumbfile). 
 	 * Otherwise thumb generation may be distorted.
 	 * 
-	 * @since ZephotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return array
 	 */
@@ -693,7 +693,7 @@ class Image extends MediaObject {
 	 * Returns the width of the thumb. Here just the same as getWidth(). 
 	 *
 	 * @see getThumbDimensions() for specific usage
-	 * @since ZephotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return int
 	 */
@@ -706,7 +706,7 @@ class Image extends MediaObject {
 	 * Returns the height of the image. Here just the same as getHeight().
 	 *
 	 * @see getThumbDimensions() for specific usage
-	 * @since ZephotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return int
 	 */
@@ -1010,7 +1010,7 @@ class Image extends MediaObject {
 	/**
 	 * Gets the image copyright URL
 	 * 
-	 * @since ZenhphotoCMS 1.5.8
+	 * @since 1.5.8
 	 * 
 	 * @return string
 	 */
