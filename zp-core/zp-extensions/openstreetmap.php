@@ -31,7 +31,7 @@ class openStreetMapOptions {
 
 		setOptionDefault('osmap_width', '100%'); //responsive by default!
 		setOptionDefault('osmap_height', '300px');
-		setOptionDefault('osmap_zoom', 4);
+		setOptionDefault('osmap_zoom', 13);
 		setOptionDefault('osmap_minzoom', 2);
 		setOptionDefault('osmap_maxzoom', 18);
 

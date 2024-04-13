@@ -82,10 +82,10 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_twittername', '');
 		setOptionDefault('htmlmeta_ogimage_width', 1280);
 		setOptionDefault('htmlmeta_ogimage_height', 900);
-		setOptionDefault('htmlmeta_indexpagination_gallery', 0);
-		setOptionDefault('htmlmeta_indexpagination_album', 0);
-		setOptionDefault('htmlmeta_indexpagination_news', 0);
-		setOptionDefault('htmlmeta_indexpagination_category', 0);
+		setOptionDefault('htmlmeta_indexpagination_gallery', 1);
+		setOptionDefault('htmlmeta_indexpagination_album', 1);
+		setOptionDefault('htmlmeta_indexpagination_news', 1);
+		setOptionDefault('htmlmeta_indexpagination_category', 1);
 		setOptionDefault('htmlmeta_prevnext-gallery', 1);
 		setOptionDefault('htmlmeta_prevnext-image', 1);
 		setOptionDefault('htmlmeta_prevnext-news', 1);
