@@ -289,7 +289,7 @@ class Video extends Image {
 	 * @param bool $effects ignored
 	 * @return string
 	 */
-	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin = false, $effects = NULL) {
+	function getCustomImage($size = null, $width = null, $height = null, $cropw = null, $croph = null, $cropx = null, $cropy = null, $thumbStandin = false, $effects = NULL) {
 		if ($thumbStandin) {
 			$wmt = getOption('Video_watermark');
 			if (empty($wmt)) {
