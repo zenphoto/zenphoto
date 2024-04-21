@@ -452,11 +452,11 @@ class Image extends MediaObject {
 		/* iptc description */
 		$desc = $this->get('IPTCImageCaption');
 		if (!empty($desc)) {
-   if(getOption('IPTC_convert_linebreaks')) {
-     $desc = nl2br($desc);
-   }
+			if (getOption('IPTC_convert_linebreaks')) {
+				$desc = nl2br(html_decode($desc));
+			}
 			$this->setDesc($desc);
-		}
+		} 
 
 		/* iptc location, state, country */
 		$loc = $this->get('IPTCSubLocation');
@@ -562,6 +562,7 @@ class Image extends MediaObject {
 	 */
 	private function prepIPTCString($iptcstring, $characterset) {
 		global $_zp_utf8;
+		return $iptcstring;
 		// Remove null byte at the end of the string if it exists.
 		if (substr($iptcstring, -1) === 0x0) {
 			$iptcstring = substr($iptcstring, 0, -1);
