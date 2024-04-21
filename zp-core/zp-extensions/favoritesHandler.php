@@ -416,7 +416,7 @@ if (OFFSET_PATH) {
 					$link = $_zp_myfavorites->getLink(NULL, $instance);
 					$display = $text;
 					if ($instance) {
-						$display .= '[' . $instance . ']';
+						$display .= ' [' . $instance . ']';
 					}
 					echo $betwixt;
 					$betwixt = $between;
