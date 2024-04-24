@@ -257,20 +257,44 @@ class Image extends MediaObject {
 		$storedmtime = $this->get('mtime');
 		return (empty($storedmtime) || $this->filemtime > $storedmtime);
 	}
+	
+	/**
+	 * Returns true if the image has any meta data
+	 * @since 1.6.3
+	 * @return bool
+	 */
+	function hasMetaData() {
+		return $this->get('hasMetadata');
+	}
 
 	/**
 	 * Returns an array of EXIF data
-	 *
+	 * 
+	 * @since 1.6.3 Parameters $displayonly and $hide_empty added
+	 * 
+	 * @param string $displayonly set to true to return only the items selected for display (default true)
+	 * @param bool $hide_empty Hide empty meta data fields (default true)
 	 * @return array
 	 */
-	function getMetaData() {
+	function getMetaData($displayonly = true, $hide_empty = true) {
 		global $_zp_exifvars;
 		$exif = array();
 		// Put together an array of EXIF data to return
 		foreach ($_zp_exifvars as $field => $exifvar) {
+			$display = true;
+			if ($displayonly) {
+				$display = $exifvar[3];
+			}
 			//	only enabled image metadata
-			if ($_zp_exifvars[$field][5]) {
-				$exif[$field] = $this->get($field);
+			if ($exifvar[5] && $display) {
+				$value = $this->get($field);
+				$hide = false;
+				if ($hide_empty && !$value) {
+					$hide = true;
+				}
+				if (!$hide) {
+					$exif[$field] = $value;
+				}
 			}
 		}
 		return $exif;

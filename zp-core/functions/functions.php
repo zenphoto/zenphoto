@@ -1780,6 +1780,21 @@ function dateTimeConvert($datetime, $raw = false) {
 	return date('Y-m-d H:i:s', $time);
 }
 
+/**
+ * Removes the time zone info from date formats like "2009-05-14T13:30:29+10:00" as stored for e.g. image meta data
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $date
+ * @return string
+ */
+function removeDateTimeZone($date) {
+	if (!is_int($date) && strpos($date, 'T') !== false) {
+		$date = str_replace('T', ' ', substr($date, 0, 19));
+	}
+	return $date;
+}
+
 /* * * Context Manipulation Functions ****** */
 /* * *************************************** */
 
@@ -2740,6 +2755,10 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 		}
 	}
 	return $list;
+}
+
+function getImageMetaDataFieldFormatted() {
+	
 }
 
 /**

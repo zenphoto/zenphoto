@@ -2651,19 +2651,13 @@ function printImageURL($text, $title, $class = NULL, $id = NULL) {
  */
 function getImageMetaData($image = NULL, $displayonly = true) {
 	global $_zp_current_image, $_zp_exifvars;
-	if (is_null($image))
+	if (is_null($image)) {
 		$image = $_zp_current_image;
-	if (is_null($image) || !$image->get('hasMetadata')) {
+	}
+	if (is_null($image) || !$image->hasMetaData()) {
 		return false;
 	}
-	$data = $image->getMetaData();
-	if ($displayonly) {
-		foreach ($data as $field => $value) { //	remove the empty or not selected to display
-			if (!$value || !$_zp_exifvars[$field][3]) {
-				unset($data[$field]);
-			}
-		}
-	}
+	$data = $image->getMetaData($displayonly);
 	if (count($data) > 0) {
 		return $data;
 	}
@@ -2739,13 +2733,10 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				<?php
 				foreach ($exif as $field => $value) {
 					$label = $_zp_exifvars[$field][2];
-					echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
+					echo '<tr><td class="label">'.$label.'.:</td><td class="value">';
 					switch ($_zp_exifvars[$field][6]) {
 						case 'time':
-							if (!is_int($value) && strpos($value, 'T') !== false) {
-								$value = str_replace('T', ' ', substr($value, 0, 19));
-							}
-							echo zpFormattedDate(DATE_FORMAT, $value);
+							echo zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
 							break;
 						default:
 							echo html_encode($value);
