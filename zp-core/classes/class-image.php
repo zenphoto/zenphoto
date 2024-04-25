@@ -586,14 +586,14 @@ class Image extends MediaObject {
 	 */
 	private function prepIPTCString($iptcstring, $characterset) {
 		global $_zp_utf8;
-		return $iptcstring;
 		// Remove null byte at the end of the string if it exists.
 		if (substr($iptcstring, -1) === 0x0) {
 			$iptcstring = substr($iptcstring, 0, -1);
 		}
 		$outputset = LOCAL_CHARSET;
-		if ($characterset == $outputset)
+		if ($characterset == $outputset) {
 			return $iptcstring;
+		}
 		$iptcstring = $_zp_utf8->convert($iptcstring, $characterset, $outputset);
 		return trim(sanitize($iptcstring, 1));
 	}

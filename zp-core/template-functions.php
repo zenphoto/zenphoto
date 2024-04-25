@@ -2739,7 +2739,11 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 							echo zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
 							break;
 						default:
-							echo html_encode($value);
+							if ($field == 'IPTCImageCaption') {
+								$value = nl2br(html_decode($value));
+							} else {
+								$value = html_encode($value);
+							}
 							break;
 					}
 					echo "</td></tr>\n";

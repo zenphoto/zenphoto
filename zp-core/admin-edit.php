@@ -1456,7 +1456,11 @@ echo "\n</head>";
 																					$value = zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
 																					break;
 																				default:
-																					$value = html_encode($value);
+																					if ($field == 'IPTCImageCaption') {
+																						$value = nl2br(html_decode($value));
+																					} else {
+																						$value = html_encode($value);
+																					}
 																					break;
 																			}
 																			echo '<tr><td class="metadata_tag">' . $label . ': </td> <td>' . $value . '</td></tr>'. "\n";
