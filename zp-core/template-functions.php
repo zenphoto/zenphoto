@@ -2740,9 +2740,9 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 							break;
 						default:
 							if ($field == 'IPTCImageCaption') {
-								$value = nl2br(html_decode($value));
+								echo nl2br(html_decode($value));
 							} else {
-								$value = html_encode($value);
+								echo html_encode($value);
 							}
 							break;
 					}
