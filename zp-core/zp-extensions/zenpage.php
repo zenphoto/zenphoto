@@ -295,7 +295,7 @@ class zenpagecms {
 	static function switcher_controllink($theme) {
 		global $_zp_gallery_page;
 		if ($_zp_gallery_page == 'pages.php' || $_zp_gallery_page == 'news.php') {
-			$disabled = ' disabled="disalbed"';
+			$disabled = ' disabled="disabled"';
 		} else {
 			$disabled = '';
 		}
