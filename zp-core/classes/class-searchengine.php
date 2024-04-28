@@ -1957,7 +1957,7 @@ class SearchEngine {
 	private function cacheSearch($criteria, $found) {
 		global $_zp_db;
 		if (SEARCH_CACHE_DURATION) {
-			$criteria = serialize($criteria);
+			$criteria = serialize(serialize($criteria));
 			$sql = 'SELECT `id`, `data`, `date` FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `criteria` = ' . $_zp_db->quote($criteria);
 			$result = $_zp_db->querySingleRow($sql);
 			if ($result) {
@@ -1978,7 +1978,8 @@ class SearchEngine {
 	private function getCachedSearch($criteria) {
 		global $_zp_db;
 		if (SEARCH_CACHE_DURATION) {
-			$sql = 'SELECT `id`, `date`, `data` FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `criteria` = ' . $_zp_db->quote(serialize($criteria));
+			$criteria = serialize(serialize($criteria));
+			$sql = 'SELECT `id`, `date`, `data` FROM ' . $_zp_db->prefix('search_cache') . ' WHERE `criteria` = ' . $_zp_db->quote($criteria);
 			$result = $_zp_db->querySingleRow($sql);
 			if ($result) {
 				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION * 60) {
