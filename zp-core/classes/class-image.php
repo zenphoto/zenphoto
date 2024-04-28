@@ -609,7 +609,7 @@ class Image extends MediaObject {
 	function getGeodata() {
 		$gps = array();
 		if (Image::isImageClass($this)) {
-			$exif = $this->getMetaData();
+			$exif = $this->getMetaData(false);
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
 				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
 				$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);
