@@ -257,20 +257,44 @@ class Image extends MediaObject {
 		$storedmtime = $this->get('mtime');
 		return (empty($storedmtime) || $this->filemtime > $storedmtime);
 	}
+	
+	/**
+	 * Returns true if the image has any meta data
+	 * @since 1.6.3
+	 * @return bool
+	 */
+	function hasMetaData() {
+		return $this->get('hasMetadata');
+	}
 
 	/**
 	 * Returns an array of EXIF data
-	 *
+	 * 
+	 * @since 1.6.3 Parameters $displayonly and $hide_empty added
+	 * 
+	 * @param string $displayonly set to true to return only the items selected for display (default true)
+	 * @param bool $hide_empty Hide empty meta data fields (default true)
 	 * @return array
 	 */
-	function getMetaData() {
+	function getMetaData($displayonly = true, $hide_empty = true) {
 		global $_zp_exifvars;
 		$exif = array();
 		// Put together an array of EXIF data to return
 		foreach ($_zp_exifvars as $field => $exifvar) {
+			$display = true;
+			if ($displayonly) {
+				$display = $exifvar[3];
+			}
 			//	only enabled image metadata
-			if ($_zp_exifvars[$field][5]) {
-				$exif[$field] = $this->get($field);
+			if ($exifvar[5] && $display) {
+				$value = $this->get($field);
+				$hide = false;
+				if ($hide_empty && !$value) {
+					$hide = true;
+				}
+				if (!$hide) {
+					$exif[$field] = $value;
+				}
 			}
 		}
 		return $exif;
@@ -452,11 +476,11 @@ class Image extends MediaObject {
 		/* iptc description */
 		$desc = $this->get('IPTCImageCaption');
 		if (!empty($desc)) {
-   if(getOption('IPTC_convert_linebreaks')) {
-     $desc = nl2br($desc);
-   }
+			if (getOption('IPTC_convert_linebreaks')) {
+				$desc = nl2br(html_decode($desc));
+			}
 			$this->setDesc($desc);
-		}
+		} 
 
 		/* iptc location, state, country */
 		$loc = $this->get('IPTCSubLocation');
@@ -567,8 +591,9 @@ class Image extends MediaObject {
 			$iptcstring = substr($iptcstring, 0, -1);
 		}
 		$outputset = LOCAL_CHARSET;
-		if ($characterset == $outputset)
+		if ($characterset == $outputset) {
 			return $iptcstring;
+		}
 		$iptcstring = $_zp_utf8->convert($iptcstring, $characterset, $outputset);
 		return trim(sanitize($iptcstring, 1));
 	}
@@ -584,7 +609,7 @@ class Image extends MediaObject {
 	function getGeodata() {
 		$gps = array();
 		if (Image::isImageClass($this)) {
-			$exif = $this->getMetaData();
+			$exif = $this->getMetaData(false);
 			if ((!empty($exif['EXIFGPSLatitude'])) && (!empty($exif['EXIFGPSLongitude']))) {
 				$lat_c = explode('.', str_replace(',', '.', $exif['EXIFGPSLatitude']) . '.0');
 				$lat_f = round((float) abs($lat_c[0]) + ($lat_c[1] / pow(10, strlen($lat_c[1]))), 12);

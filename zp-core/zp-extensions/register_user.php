@@ -619,7 +619,7 @@ function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 		}
 		echo $prev;
 		?>
-		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?> </a>
+		<a href="<?php echo html_encode(register_user::getLink()); ?>"<?php echo $class; ?> title="<?php echo html_encode($_linktext); ?>" id="register_link"><?php echo $_linktext; ?></a>
 		<?php
 		echo $next;
 	}

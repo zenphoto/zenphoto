@@ -4813,7 +4813,7 @@ function getAdminThumbSizes($imageobj, $size = 'small') {
  */
 function getAdminThumb($imageobj, $size = 'small') {
 	$values = getAdminThumbSizes($imageobj, $size);
-	return $imageobj->getCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, false);
+	return $imageobj->getCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, true);
 }
 
 /**
@@ -4827,7 +4827,7 @@ function getAdminThumb($imageobj, $size = 'small') {
  */
 function getSizeAdminThumb($imageobj, $size = 'small') {
 	$values = getAdminThumbSizes($imageobj, $size);
-	return getSizeCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, $imageobj, 'image');
+	return getSizeCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, $imageobj, 'thumb');
 }
 
 /**

@@ -36,7 +36,7 @@ class htmlmetatags {
 
 	function __construct() {
 		renameOption('google-site-verification','htmlmeta_google-site-verification');
-		purgeOption('htmlmeta_pragma');
+		
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
@@ -52,13 +52,19 @@ class htmlmetatags {
 		if(getOption('htmlmeta_og-title')) { // assume this will be set
 			setOptionDefault('htmlmeta_opengraph', 1);
 		}
+		
 		//remove obsolete old options
 		purgeOption('htmlmeta_og-title');
 		purgeOption('htmlmeta_og-image');
 		purgeOption('htmlmeta_og-description');
 		purgeOption('htmlmeta_og-url');
 		purgeOption('htmlmeta_og-type');
-
+		purgeOption('htmlmeta_pragma');
+		purgeOption('htmlmeta_indexpagination_gallery');
+		purgeOption('htmlmeta_indexpagination_album');
+		purgeOption('htmlmeta_indexpagination_news');
+		purgeOption('htmlmeta_indexpagination_category');
+		
 		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
@@ -82,10 +88,6 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_twittername', '');
 		setOptionDefault('htmlmeta_ogimage_width', 1280);
 		setOptionDefault('htmlmeta_ogimage_height', 900);
-		setOptionDefault('htmlmeta_indexpagination_gallery', 1);
-		setOptionDefault('htmlmeta_indexpagination_album', 1);
-		setOptionDefault('htmlmeta_indexpagination_news', 1);
-		setOptionDefault('htmlmeta_indexpagination_category', 1);
 		setOptionDefault('htmlmeta_prevnext-gallery', 1);
 		setOptionDefault('htmlmeta_prevnext-image', 1);
 		setOptionDefault('htmlmeta_prevnext-news', 1);
@@ -222,16 +224,21 @@ class htmlmetatags {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'disabled' => $_zp_common_locale_type,
 						'desc' => $localdesc),
-				gettext('Index pagination') => array(
-						'key' => 'htmlmeta_indexpagination',
+				gettext('Disable indexing') => array(
+						'key' => 'htmlmeta_noindexpagination',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
-						"checkboxes" => array(
-								gettext('Gallery pagination') => 'htmlmeta_indexpagination_gallery',
-								gettext('Album pagination') => 'htmlmeta_indexpagination_album',
-								gettext('News article pagination') => 'htmlmeta_indexpagination_news',
-								gettext('News category pagination') => 'htmlmeta_indexpaginaion_category'
+						"checkboxes" => array (
+								gettext('Gallery pagination') => 'htmlmeta_noindex_pagination_gallery',
+								gettext('Album pagination') => 'htmlmeta_noindex_pagination_album',
+								gettext('News article pagination') => 'htmlmeta_noindex_pagination_news',
+								gettext('News category pagination') => 'htmlmeta_noindex_pagination_category',
+								gettext('Search and search results') => 'htmlmeta_noindex_search',
+								gettext('Date archive') => 'htmlmeta_noindex_custompage_archive',
+								gettext('Contact custom page') => 'htmlmeta_noindex_custompage_contact',
+								gettext('Password custom page') => 'htmlmeta_noindex_custompage_password',
+								gettext('Register custom page') => 'htmlmeta_noindex_custompage_register'
 						),
-						"desc" => gettext("By default paginated pages are set to noindex automatically. Enable this to allow indexing."))
+						"desc" => gettext("You can choose to dissallow index of certain paginatied pages and common (static) custom pages themes may provide. Following links will still be allowed."))
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
@@ -328,7 +335,7 @@ class htmlmetatags {
 						}
 						break;
 				}
-				if (!getOption('htmlmeta_indexpagination_gallery') && $_zp_page > 1) {
+				if (getOption('htmlmeta_noindex_pagination_gallery') && $_zp_page > 1) {
 					$indexing_allowed = false;
 				}
 				break;
@@ -353,7 +360,7 @@ class htmlmetatags {
 				}
 				$author = $_zp_current_album->getOwner(true);
 				$public = $_zp_current_album->isPublic();
-				if (!getOption('htmlmeta_indexpagination_album') && $_zp_page > 1) {
+				if (getOption('htmlmeta_noindex_pagination_album') && $_zp_page > 1) {
 					$indexing_allowed = false;
 				}
 				break;
@@ -401,7 +408,7 @@ class htmlmetatags {
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$public = $_zp_current_category->isPublic();
 						$type = 'category';	
-						if (!getOption('htmlmeta_indexpagination_category') && $_zp_page > 1) {
+						if (getOption('htmlmeta_noindex_pagination_category') && $_zp_page > 1) {
 							$indexing_allowed = false;
 						}
 					} else {
@@ -436,7 +443,12 @@ class htmlmetatags {
 				break;
 			default: // for all other possible static custom pages
 				$custompage = stripSuffix($_zp_gallery_page);
-				$standard = array('contact' => gettext('Contact'), 'register' => gettext('Register'), 'search' => gettext('Search'), 'archive' => gettext('Archive view'), 'password' => gettext('Password required'));
+				$standard = array(
+						'contact' => gettext('Contact'),
+						'register' => gettext('Register'),
+						'search' => gettext('Search'),
+						'archive' => gettext('Archive view'),
+						'password' => gettext('Password required'));
 				if (is_object($_zp_myfavorites)) {
 					$standard['favorites'] = gettext('My favorites');
 				}
@@ -444,6 +456,33 @@ class htmlmetatags {
 					$pagetitle = $standard[$custompage] . " - ";
 				} else {
 					$pagetitle = $custompage . " - ";
+				}
+				switch ($custompage) {
+					case 'search':
+						if (getOption('htmlmeta_noindex_search')) {
+							$indexing_allowed = false;
+						}
+						break;
+					case 'archive':
+						if (getOption('htmlmeta_noindex_custompage_archive')) {
+							$indexing_allowed = false;
+						}
+						break;
+					case 'register':
+						if (getOption('htmlmeta_noindex_custompage_registter')) {
+							$indexing_allowed = false;
+						}
+						break;
+					case 'contact':
+						if (getOption('htmlmeta_noindex_custompage_contact')) {
+							$indexing_allowed = false;
+						}
+						break;
+					case 'password':
+						if (getOption('htmlmeta_noindex_custompage_password')) {
+							$indexing_allowed = false;
+						}
+						break;
 				}
 				$desc = '';
 				$canonicalurl = $host . getCustomPageURL($custompage);
@@ -482,7 +521,7 @@ class htmlmetatags {
 				if ($indexing_allowed) {
 					$meta .= '<meta name="robots" content="' . getOption("htmlmeta_robots") . '">' . "\n";
 				} else {
-					$meta .= '<meta name="robots" content="noindex,nofollow">' . "\n";
+					$meta .= '<meta name="robots" content="noindex,follow">' . "\n";
 				}
 			} else {
 				$meta .= '<meta name="robots" content="noindex,nofollow">' . "\n";

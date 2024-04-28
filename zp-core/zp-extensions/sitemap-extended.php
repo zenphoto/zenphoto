@@ -1053,7 +1053,7 @@ class sitemap {
 			echo '<ol>';
 			foreach ($dirs as $dir) {
 				$filemtime = filemtime($cachefolder . $dir);
-				$lastchange = date('Y-m-d H:m:s', $filemtime);
+				$lastchange = date('Y-m-d H:i:s', $filemtime);
 				?>
 				<li><a target="_blank" href="<?php echo FULLWEBPATH . '/' . STATIC_CACHE_FOLDER; ?>/sitemap/<?php echo $dir; ?>"><?php echo $dir; ?></a> (<small><?php echo $lastchange; ?>)</small>
 				</li>

@@ -372,8 +372,8 @@ define('MENU_TRUNCATE_INDICATOR', getOption('menu_truncate_indicator'));
 function js_encode($this_string) {
 	global $_zp_utf8;
 	$this_string = strval($this_string);
-	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
 	$this_string = utf8::encode_javascript($this_string);
+	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
 	return $this_string;
 }
 

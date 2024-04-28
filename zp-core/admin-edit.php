@@ -1437,34 +1437,37 @@ echo "\n</head>";
 														</tr>
 														<?php
 													}
-													if ($image->get('hasMetadata')) {
+													if ($image->hasMetadata()) {
 														?>
 														<tr>
 															<td valign="top"><?php echo gettext("Metadata:"); ?></td>
 															<td>
 																<?php
-																$data = '';
-																$exif = $image->getMetaData();
+																$exif = $image->getMetaData(false);
 																if (false !== $exif) {
-																	foreach ($exif as $field => $value) {
-																		if (!empty($value)) {
-																			$display = $_zp_exifvars[$field][3];
-																			if ($display) {
-																				$label = $_zp_exifvars[$field][2];
-																				$data .= "<tr><td class=\"medtadata_tag\">$label: </td> <td>" . html_encode($value) . "</td></tr>\n";
-																			}
-																		}
-																	}
-																}
-																if (empty($data)) {
-																	echo gettext('None selected for display');
-																} else {
 																	?>
 																	<div class="metadata_container">
 																		<table class="metadata_table" >
-																			<?php echo $data; ?>
+																		<?php
+																		foreach ($exif as $field => $value) {
+																			$label = $_zp_exifvars[$field][2];
+																			switch ($_zp_exifvars[$field][6]) {
+																				case 'time':
+																					$value = zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
+																					break;
+																				default:
+																					if ($field == 'IPTCImageCaption') {
+																						$value = nl2br(html_decode($value));
+																					} else {
+																						$value = html_encode($value);
+																					}
+																					break;
+																			}
+																			echo '<tr><td class="metadata_tag">' . $label . ': </td> <td>' . $value . '</td></tr>'. "\n";
+																		}
+																		?>
 																		</table>
-																	</div>
+																	</div>		
 																	<?php
 																}
 																?>
