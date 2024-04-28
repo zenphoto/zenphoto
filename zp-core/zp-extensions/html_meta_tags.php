@@ -238,7 +238,7 @@ class htmlmetatags {
 								gettext('Password custom page') => 'htmlmeta_noindex_custompage_password',
 								gettext('Register custom page') => 'htmlmeta_noindex_custompage_register'
 						),
-						"desc" => gettext("You can choose to dissallow index of certain paginatied pages and common (static) custom pages themes may provide. Following links will still be allowed."))
+						"desc" => gettext("You can choose to disallow index of certain paginated pages and common (static) custom pages themes may provide. Following links will still be allowed."))
 		);
 		if ($_zp_common_locale_type) {
 			$options['note'] = array(
