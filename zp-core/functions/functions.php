@@ -2467,7 +2467,8 @@ function read_exif_data_protected($path) {
 		$start = microtime(true);
 	}
 	try {
-		$rslt = read_exif_data_raw($path, false);
+		$rslt = exif_read_data($path); // PHP native
+		//$rslt = read_exif_data_raw($path, false); // exifer library
 	} catch (Exception $e) {
 		debugLog("read_exif_data($path) exception: " . $e->getMessage());
 		$rslt = array();
