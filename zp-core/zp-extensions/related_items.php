@@ -151,15 +151,18 @@ function createRelatedItemsResultArray($result, $type) {
  * @param bool $thumb For $type = 'albums' or 'images' if a thumb should be shown (default size as set on the options)
  */
 function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excerpt = NULL, $thumb = false, $date = false) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	$label = array('albums' => gettext('Albums'), 'images' => gettext('Images'), 'news' => gettext('News'), 'pages' => gettext('Pages'));
+	$label = array(
+			'albums' => gettext('Related albums'),
+			'images' => gettext('Related images'),
+			'news' => gettext('Related news'),
+			'pages' => gettext('Related pages'),
+			'all' => gettext('Related')
+	);
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
 	if ($resultcount != 0) {
 		?>
-		<h3 class="relateditems">
-			<?php printf(gettext('Related %s'), $type); ?>
-		</h3>
+		<h3 class="relateditems"><?php echo $label[$type]; ?></h3>
 		<ul id="relateditems">
 			<?php
 			$count = 0;
