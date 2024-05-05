@@ -926,7 +926,7 @@ class Authority {
 			if ($logo) {
 				?>
 				<p>
-					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="ZenPhoto" alt="ZenPhoto" />
+					<img src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/zen-logo.png" title="Zenphoto" alt="Zenphoto" />
 				</p>
 				<?php
 			}
@@ -1115,13 +1115,13 @@ class Authority {
 							if ($showUserField) { //	requires a "user" field
 								?>
 								<fieldset><legend><?php echo gettext("User"); ?></legend>
-									<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+									<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" required>
 								</fieldset>
 								<?php
 							}
 							?>
 							<fieldset><legend><?php echo gettext("Password"); ?></legend>
-								<input class="textfield" name="pass" id="pass" type="password" size="35" /><br />
+								<input class="textfield" name="pass" id="pass" type="password" size="35" required><br />
 								<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="togglePassword('');" /><?php echo gettext('Show password') ?></label>
 							</fieldset>
 							<br />
@@ -1309,6 +1309,7 @@ class Authority {
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"
+						 required
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onclick="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordStrength('<?php echo $id; ?>');"
@@ -1324,6 +1325,7 @@ class Authority {
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass_r<?php echo $id; ?>" disabled="disabled"
+						 required
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordMatch('<?php echo $id; ?>');" />
