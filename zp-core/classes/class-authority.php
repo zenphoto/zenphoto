@@ -971,7 +971,7 @@ class Authority {
 							<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 							<fieldset>
 								<legend><?php echo gettext('User') ?></legend>
-								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" required>
 							</fieldset>
 							<?php
 							if ($requestor && $admin) {
@@ -1045,7 +1045,7 @@ class Authority {
 						<input type="hidden" name="redirect" value="<?php echo html_encode(pathurlencode($redirect)); ?>" />
 						<fieldset id="logon_box">
 							<fieldset><legend><?php echo gettext('User'); ?></legend>
-								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
+								<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" required>
 							</fieldset>
 							<?php
 							if (isset($captcha['input'])) {

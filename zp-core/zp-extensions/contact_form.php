@@ -78,7 +78,11 @@ class contactformOptions {
 		$mailinglist = explode(';', getOption("contactform_mailaddress"));
 		array_walk($mailinglist, 'contactformOptions::trim_value');
 		setOption('contactform_mailaddress', implode(';', $mailinglist));
-		$list = array(gettext("required") => "required", gettext("show") => "show", gettext("omitted") => "omitted");
+		$list = array(
+				gettext("required") => "required",
+				gettext("show") => "show",
+				gettext("omitted") => "omitted"
+		);
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
 		$options = array(
 				gettext('Intro text') => array(

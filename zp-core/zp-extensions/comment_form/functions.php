@@ -1167,9 +1167,10 @@ function getCommentFormReadonlyFieldAttr($disabled) {
 }
 
 /**
- * 
- * @param type $option
- * @param type $disabled
+ * Prints the combined required and readonly attributes as needed
+ * @since 1.6.3
+ * @param string $option The field option name
+ * @param bool $disabled
  */
 function printCommenetFormFieldAttributes($option, $disabled) {
 	echo getCommentFormRequiredFieldAttr($option);
