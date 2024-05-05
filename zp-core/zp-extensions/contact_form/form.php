@@ -83,7 +83,7 @@
 		?>
 		<p>
 			<label for="email"><?php printf(gettext("E-Mail%s"), contactform::getRequiredFieldMark('contactform_email')); ?></label>
-			<input type="text" id="email" name="email" size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php contactForm::printAttributes('contactform_email'); ?> />
+			<input type="email" id="email" name="email" size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php contactForm::printAttributes('contactform_email'); ?> />
 		</p>
 		<?php
 	}
@@ -99,7 +99,7 @@
 		?>
 		<p>
 			<label for="phone"><?php printf(gettext("Phone%s"), contactform::getRequiredFieldMark('contactform_phone')); ?></label>
-			<input type="text" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php contactForm::printAttributes('contactform_phone'); ?> />
+			<input type="tel" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php contactForm::printAttributes('contactform_phone'); ?> />
 		</p>
 		<?php
 	}
