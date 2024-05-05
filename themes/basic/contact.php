@@ -3,7 +3,7 @@
 
 if (!defined('WEBPATH'))
 	die();
-if (function_exists('printContactForm')) {
+if (extensionEnabled('contact_form')) {
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>
@@ -29,7 +29,7 @@ if (function_exists('printContactForm')) {
 					</h2>
 				</div>
 				<h3><?php echo gettext('Contact us') ?></h3>
-				<?php printContactForm(); ?>
+				<?php contactForm::printContactForm(); ?>
 			</div>
 			<?php include 'inc-footer.php'; ?>
 		</body>

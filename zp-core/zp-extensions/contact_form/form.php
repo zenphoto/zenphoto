@@ -9,111 +9,114 @@
 	<input type="hidden" id="sendmail" name="sendmail" value="sendmail" />
 	<?php
 	$star = '<strong>*</strong>';
-	if (showOrNotShowField(getOption('contactform_title'))) {
+	if (contactForm::isVisibleField('contactform_title')) {
 		?>
 		<p>
-			<label for="title"><?php printf(gettext("Title%s"), checkRequiredField(getOption('contactform_title'))); ?></label>
-			<input type="text" id="title" name="title" size="50" value="<?php echo html_encode($mailcontent['title']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="title"><?php printf(gettext("Title%s"), contactform::getRequiredFieldMark('contactform_title')); ?></label>
+			<input type="text" id="title" name="title" size="50" value="<?php echo html_encode($mailcontent['title']); ?>"<?php contactForm::printAttributes('contactform_title'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_name'))) {
+	if (contactForm::isVisibleField('contactform_name')) {
 		?>
 		<p>
-			<label for="name"><?php printf(gettext("Name%s"), checkRequiredField(getOption('contactform_name'))); ?></label>
-			<input type="text" id="name" name="name" size="50" value="<?php echo html_encode($mailcontent['name']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="name"><?php printf(gettext("Name%s"), contactform::getRequiredFieldMark('contactform_name')); ?></label>
+			<input type="text" id="name" name="name" size="50" value="<?php echo html_encode($mailcontent['name']); ?>"<?php contactForm::printAttributes('contactform_name'); ?> />
 		</p>
 		<?php
 	}
 	?>
 	<p style="display:none;">
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+		<label for="username"><?php echo gettext('Username:'); ?></label>
+		<input type="text" id="username" name="username" size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php echo contactform::getProcessedFieldDisabledAttr(); ?> />
 	</p>
 	<?php
-	if (showOrNotShowField(getOption('contactform_company'))) {
+	if (contactForm::isVisibleField('contactform_company')) {
 		?>
 		<p>
-			<label for="company"><?php printf(gettext("Company%s"), checkRequiredField(getOption('contactform_company'))); ?></label>
-			<input type="text" id="company" name="company" size="50" value="<?php echo html_encode($mailcontent['company']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="company"><?php printf(gettext("Company%s"), contactform::getRequiredFieldMark('contactform_company')); ?></label>
+			<input type="text" id="company" name="company" size="50" value="<?php echo html_encode($mailcontent['company']); ?>"<?php contactForm::printAttributes('contactform_company'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_street'))) {
+	if (contactForm::isVisibleField('contactform_street')) {
 		?>
 		<p>
-			<label for="street"><?php printf(gettext("Street%s"), checkRequiredField(getOption('contactform_street'))); ?></label>
-			<input type="text" id="street" name="street" size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="street"><?php printf(gettext("Street%s"), contactform::getRequiredFieldMark('contactform_street')); ?></label>
+			<input type="text" id="street" name="street" size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php contactForm::printAttributes('contactform_street'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_city'))) {
+	if (contactForm::isVisibleField('contactform_city')) {
 		?>
 		<p>
-			<label for="city"><?php printf(gettext("City%s"), checkRequiredField(getOption('contactform_city'))); ?></label>
-			<input type="text" id="city" name="city" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="city"><?php printf(gettext("City%s"), contactform::getRequiredFieldMark('contactform_city')); ?></label>
+			<input type="text" id="city" name="city" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_city'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_state'))) {
+	if (contactForm::isVisibleField('contactform_state')) {
 		?>
 		<p>
-			<label for="state"><?php printf(gettext("State%s"), checkRequiredField(getOption('contactform_state'))); ?></label>
-			<input type="text" id="state" name="state" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="state"><?php printf(gettext("State%s"), contactform::getRequiredFieldMark('contactform_state')); ?></label>
+			<input type="text" id="state" name="state" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_state'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_country'))) {
+	if (contactForm::isVisibleField('contactform_country')) {
 		?>
 		<p>
-			<label for="country"><?php printf(gettext("Country%s"), checkRequiredField(getOption('contactform_country'))); ?></label>
-			<input type="text" id="country" name="country" size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="country"><?php printf(gettext("Country%s"), contactform::getRequiredFieldMark('contactform_country')); ?></label>
+			<input type="text" id="country" name="country" size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php contactForm::printAttributes('contactform_country'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_postal'))) {
+	if (contactForm::isVisibleField('contactform_postal')) {
 		?>
 		<p>
-			<label for="postal"><?php printf(gettext("Postal code%s"), checkRequiredField(getOption('contactform_postal'))); ?></label>
-			<input type="text" id="postal" name="postal" size="50" value="<?php echo html_encode($mailcontent['postal']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="postal"><?php printf(gettext("Postal code%s"), contactform::getRequiredFieldMark('contactform_postal')); ?></label>
+			<input type="text" id="postal" name="postal" size="50" value="<?php echo html_encode($mailcontent['postal']); ?>"<?php contactForm::printAttributes('contactform_postal'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_email'))) {
+	if (contactForm::isVisibleField('contactform_email')) {
 		?>
 		<p>
-			<label for="email"><?php printf(gettext("E-Mail%s"), checkRequiredField(getOption('contactform_email'))); ?></label>
-			<input type="text" id="email" name="email" size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="email"><?php printf(gettext("E-Mail%s"), contactform::getRequiredFieldMark('contactform_email')); ?></label>
+			<input type="text" id="email" name="email" size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php contactForm::printAttributes('contactform_email'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_website'))) {
+	if (contactForm::isVisibleField('contactform_website')) {
 		?>
 		<p>
-			<label for="website"><?php printf(gettext("Website%s"), checkRequiredField(getOption('contactform_website'))); ?></label>
-			<input type="text" id="website" name="website" size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="website"><?php printf(gettext("Website%s"), contactform::getRequiredFieldMark('contactform_website')); ?></label>
+			<input type="text" id="website" name="website" size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php contactForm::printAttributes('contactform_website'); ?> />
 		</p>
 		<?php
 	}
-	if (showOrNotShowField(getOption('contactform_phone'))) {
+	if (contactForm::isVisibleField('contactform_phone')) {
 		?>
 		<p>
-			<label for="phone"><?php printf(gettext("Phone%s"), checkRequiredField(getOption('contactform_phone'))); ?></label>
-			<input type="text" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			<label for="phone"><?php printf(gettext("Phone%s"), contactform::getRequiredFieldMark('contactform_phone')); ?></label>
+			<input type="text" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php contactForm::printAttributes('contactform_phone'); ?> />
 		</p>
 		<?php
 	}
-	if ($_zp_captcha->name && getOption("contactform_captcha") && !$_processing_post) {
+	if ($_zp_captcha->name && getOption("contactform_captcha") && !contactForm::isProcessingPost()) {
 		$captcha = $_zp_captcha->getCaptcha(gettext("Enter CAPTCHA<strong>*</strong>"));
 		?>
 		<p>
 			<?php
-			if (isset($captcha['html']))
+			if (isset($captcha['html'])) {
 				echo $captcha['html'];
-			if (isset($captcha['input']))
+			}
+			if (isset($captcha['input'])) {
 				echo $captcha['input'];
-			if (isset($captcha['hidden']))
+			}
+			if (isset($captcha['hidden'])) {
 				echo $captcha['hidden'];
+			}
 			?>
 		</p>
 		<?php
@@ -121,11 +124,11 @@
 	?>
 	<p>
 		<label for="subject"><?php echo gettext("Subject<strong>*</strong>"); ?></label>
-		<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+		<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php echo contactForm::getProcessedFieldDisabledAttr(); ?> required="required" />
 	</p>
 	<p class="mailmessage">
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
-		<textarea id="message" name="message" <?php if ($_processing_post) echo ' disabled="disabled"'; ?>><?php echo $mailcontent['message']; ?></textarea>
+		<textarea id="message" name="message" <?php echo contactform::getProcessedFieldDisabledAttr(); ?> required="required"><?php echo $mailcontent['message']; ?></textarea>
 	</p>
 	<?php 
 	if(getOption('contactform_dataconfirmation')) { 
@@ -136,12 +139,12 @@
 		?>
 		<p>
 			<label for="dataconfirmation">
-				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1"<?php echo $dataconfirmation_checked; if ($_processing_post) echo ' disabled="disabled"'; ?>>
+				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1"<?php echo $dataconfirmation_checked; contactForm::getProcessedFieldDisabledAttr(); ?> required="required">
 				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 			</label>
 		</p>
 	<?php } 
-	if (!$_processing_post) {
+	if (!contactForm::isProcessingPost()) {
 		?>
 		<p>
 			<input type="submit" class="button buttons" value="<?php echo gettext("Send e-mail"); ?>" />

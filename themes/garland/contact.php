@@ -1,7 +1,7 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-if (function_exists('printContactForm')) {
+if (extension_enabled('contact_form')) {
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>
@@ -42,7 +42,7 @@ if (function_exists('printContactForm')) {
 										<h2 id="gallerytitle">
 											<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); gettext('Contact us'); ?>
 										</h2>
-										<em><?php printContactForm(); ?></em>
+										<em><?php contactForm::printContactForm(); ?></em>
 										<?php footer(); ?>
 										<p style="clear: both;"></p>
 									</div>
