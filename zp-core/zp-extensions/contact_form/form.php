@@ -124,7 +124,7 @@
 	?>
 	<p>
 		<label for="subject"><?php echo gettext("Subject<strong>*</strong>"); ?></label>
-		<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php echo contactForm::getProcessedFieldDisabledAttr(); ?> required="required" />
+		<input type="text" id="subject" name="subject" size="50" value="<?php echo html_encode($mailcontent['subject']); ?>"<?php echo contactForm::getProcessedFieldDisabledAttr(); ?> required />
 	</p>
 	<p class="mailmessage">
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
@@ -139,7 +139,7 @@
 		?>
 		<p>
 			<label for="dataconfirmation">
-				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1"<?php echo $dataconfirmation_checked; contactForm::getProcessedFieldDisabledAttr(); ?> required="required">
+				<input type="checkbox" name="dataconfirmation" id="dataconfirmation" value="1"<?php echo $dataconfirmation_checked; contactForm::getProcessedFieldDisabledAttr(); ?> required>
 				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 			</label>
 		</p>
