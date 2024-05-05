@@ -593,7 +593,7 @@ class contactForm {
 	 */
 	static function getRequiredAttr($option) {
 		if (self::isRequiredField($option)) {
-			return ' required="required"';
+			return ' required';
 		}
 	}
 	
@@ -607,7 +607,7 @@ class contactForm {
 	 */
 	static function getProcessedFieldDisabledAttr() {
 		if (self::isProcessingPost()) {
-			return ' disabled="disabled"'; 
+			return ' disabled'; 
 		}
 	}
 	
