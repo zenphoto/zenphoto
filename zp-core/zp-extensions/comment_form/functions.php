@@ -1172,7 +1172,7 @@ function getCommentFormReadonlyFieldAttr($disabled) {
  * @param string $option The field option name
  * @param bool $disabled
  */
-function printCommenetFormFieldAttributes($option, $disabled) {
+function printCommentFormFieldAttributes($option, $disabled) {
 	echo getCommentFormRequiredFieldAttr($option);
 	echo getCommentFormReadonlyFieldAttr($disabled);
 }
