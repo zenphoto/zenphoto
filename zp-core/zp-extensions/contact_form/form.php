@@ -8,7 +8,6 @@
 <form id="mailform" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
 	<input type="hidden" id="sendmail" name="sendmail" value="sendmail" />
 	<?php
-	$star = '<strong>*</strong>';
 	if (contactForm::isVisibleField('contactform_title')) {
 		?>
 		<p>

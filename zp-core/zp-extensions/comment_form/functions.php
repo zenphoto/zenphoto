@@ -1093,3 +1093,85 @@ function fetchComments($number) {
 	deprecationNotice(gettext('Use getComments() instead.'));
 	return getComments($number);
 }
+
+/**
+ * Checks if a field is required
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $option The field option name
+ * @return bool
+ */
+function isCommentFormRequiredField($option) {
+	if (getOption('comment_name_required') == 'required') {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Gets the star to mark required field names
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $option The field option name
+ * @return string
+ */
+function getCommentFormRequiredFieldMark($option) {
+	if (isCommentFormRequiredField($option)) {
+		return '<strong>*</strong>';
+	}
+}
+
+/**
+ * Returns the required attribute if the field is required
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $option The field option name
+ * @return string
+ */
+function getCommentFormRequiredFieldAttr($option) {
+	if (isCommentFormRequiredField($option)) {
+		return ' required';
+	}
+}
+
+/**
+ * Checks if the field should be set to readonly
+ * 
+ * @since 1.6.3
+ * 
+ * @param bool $disabled 
+ * return bool
+ */
+function isCommentFormReadonlyField($disabled) {
+	if ($disabled) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Gets the readonly attribute for disabled fields
+ * 
+ * @since 1.6.3
+ * 
+ * @param bool $disabled
+ * @return string
+ */
+function getCommentFormReadonlyFieldAttr($disabled) {
+	if(isCommentFormReadonlyField($disabled)) {
+		return ' readonly';
+	}
+}
+
+/**
+ * 
+ * @param type $option
+ * @param type $disabled
+ */
+function printCommenetFormFieldAttributes($option, $disabled) {
+	echo getCommentFormRequiredFieldAttr($option);
+	echo getCommentFormReadonlyFieldAttr($disabled);
+}
