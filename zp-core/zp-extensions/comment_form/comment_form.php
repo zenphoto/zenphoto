@@ -17,7 +17,7 @@
 			?>
 			<p>
 				<label for="anon"> (<?php echo gettext("<em>anonymous</em>"); ?>)</label>
-				<input type="checkbox" name="anon" id="anon" value="1"<?php if ($stored['anon'])
+				<input type="checkbox" id="anon" name="anon" value="1"<?php if ($stored['anon'])
 			echo ' checked="checked"';
 		echo $disabled['anon'];
 		?> />
@@ -45,23 +45,23 @@
 		?>
 		<p>
 			<label for="0-comment_form_street"><?php printf(gettext('Street%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street']); ?> type="text" name="0-comment_form_street" autocomplete="street-address" id="0-comment_form_street" class="inputbox" size="22" value="<?php echo html_encode($stored['street']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street']); ?> type="text" id="0-comment_form_street" name="0-comment_form_street" autocomplete="street-address" size="22" value="<?php echo html_encode($stored['street']); ?>" class="inputbox" />
 		</p>
 		<p>
 			<label for="0-comment_form_city"><?php printf(gettext('City%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city']); ?> type="text" name="0-comment_form_city" autocomplete="address-level2" id="0-comment_form_city" class="inputbox" size="22" value="<?php echo html_encode($stored['city']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city']); ?> type="text" id="0-comment_form_city" name="0-comment_form_city" autocomplete="address-level2" size="22" value="<?php echo html_encode($stored['city']); ?>" class="inputbox" />
 		</p>
 		<p>
 			<label for="comment_form_state"><?php printf(gettext('State%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state']); ?> type="text" name="0-comment_form_state" autocomplete="address-level1" id="comment_form_state" class="inputbox" size="22" value="<?php echo html_encode($stored['state']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state']); ?> type="text" id="comment_form_state" name="0-comment_form_state" autocomplete="address-level1" size="22" value="<?php echo html_encode($stored['state']); ?>" class="inputbox" />
 		</p>
 		<p>
 			<label for="comment_form_country"><?php printf(gettext('Country%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country']); ?> type="text" id="comment_form_country" name="0-comment_form_country" autocomplete="country" class="inputbox" size="22" value="<?php echo html_encode($stored['country']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country']); ?> type="text" id="comment_form_country" name="0-comment_form_country" autocomplete="country" size="22" value="<?php echo html_encode($stored['country']); ?>" class="inputbox" />
 		</p>
 		<p>
 			<label for="comment_form_postal"><?php printf(gettext('Postal code%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal']); ?> type="text" id="comment_form_postal" name="0-comment_form_postal" autocomplete="postal-code" class="inputbox" size="22" value="<?php echo html_encode($stored['postal']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal']); ?> type="text" id="comment_form_postal" name="0-comment_form_postal" autocomplete="postal-code" size="22" value="<?php echo html_encode($stored['postal']); ?>" class="inputbox" />
 		</p>
 		<?php
 	}
