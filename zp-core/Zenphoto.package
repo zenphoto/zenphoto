@@ -673,16 +673,6 @@ zp-core/js/zp_upload.js
 zp-core/libs
 zp-core/libs/class-utf8.php
 zp-core/libs/class-zipstream.php
-zp-core/libs/exif
-zp-core/libs/exif/exif.php
-zp-core/libs/exif/makers
-zp-core/libs/exif/makers/canon.php
-zp-core/libs/exif/makers/fujifilm.php
-zp-core/libs/exif/makers/gps.php
-zp-core/libs/exif/makers/nikon.php
-zp-core/libs/exif/makers/olympus.php
-zp-core/libs/exif/makers/panasonic.php
-zp-core/libs/exif/makers/sanyo.php
 zp-core/libs/functions-encryption.php
 zp-core/libs/functions-gettext.php
 zp-core/libs/functions-htmlawed.php
@@ -1895,4 +1885,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1897
+1887
