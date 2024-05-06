@@ -71,6 +71,7 @@ class contactformOptions {
 			setOptionDefault('contactform_mailaddress', substr($email_list, 1));
 		}
 		setOptionDefault('contactform_dataconfirmation', 0);
+		setOptionDefault('contactform_autocomplete', 0);
 	}
 
 	function getOptionsSupported() {
@@ -88,120 +89,103 @@ class contactformOptions {
 				gettext('Intro text') => array(
 						'key' => 'contactform_introtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 13,
 						'desc' => gettext("The intro text for your contact form")),
 				gettext('Confirm text') => array(
 						'key' => 'contactform_confirmtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 14,
 						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message.")),
 				gettext('Thanks text') => array(
 						'key' => 'contactform_thankstext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 15,
 						'desc' => gettext("The text that is shown after a message has been confirmed and sent.")),
 				gettext('New message link text') => array(
 						'key' => 'contactform_newmessagelink',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 16,
 						'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
 				gettext('Require confirmation') => array(
 						'key' => 'contactform_confirm',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 0.1,
 						'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
 				gettext('Send copy') => array(
 						'key' => 'contactform_sendcopy',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 0.3,
 						'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries’ jurisdictions(e.g. most European countries) you may be made responsible for this then!</p>")),
 				gettext('Send copy note text') => array(
 						'key' => 'contactform_sendcopy_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'order' => 0.2,
 						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
 				gettext('Contact recipients') => array(
 						'key' => 'contactform_mailaddress',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 17,
 						'desc' => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
 				gettext('Title') => array(
 						'key' => 'contactform_title',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 1,
 						'desc' => sprintf($mailfieldinstruction, gettext("Title"))),
 				gettext('Name') => array(
 						'key' => 'contactform_name',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 2,
 						'desc' => sprintf($mailfieldinstruction, gettext("Name"))),
 				gettext('Company') => array(
 						'key' => 'contactform_company',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 3,
 						'desc' => sprintf($mailfieldinstruction, gettext("Company"))),
 				gettext('Street') => array(
 						'key' => 'contactform_street',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 4,
 						'desc' => sprintf($mailfieldinstruction, gettext("Street"))),
 				gettext('City') => array(
 						'key' => 'contactform_city',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 5,
 						'desc' => sprintf($mailfieldinstruction, gettext("City"))),
 				gettext('State') => array(
 						'key' => 'contactform_state',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 5.1,
 						'desc' => sprintf($mailfieldinstruction, gettext("State"))),
 				gettext('Postal code') => array(
 						'key' => 'contactform_postal',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 5.2,
 						'desc' => sprintf($mailfieldinstruction, gettext("Postal code"))),
 				gettext('Country') => array(
 						'key' => 'contactform_country',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 6,
 						'desc' => sprintf($mailfieldinstruction, gettext("Country"))),
 				gettext('E-mail') => array(
 						'key' => 'contactform_email',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 7,
 						'desc' => sprintf($mailfieldinstruction, gettext("E-mail"))),
 				gettext('Website') => array(
 						'key' => 'contactform_website',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 8,
 						'desc' => sprintf($mailfieldinstruction, gettext("Website"))),
 				gettext('CAPTCHA') => array(
 						'key' => 'contactform_captcha',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'disabled' => ($_zp_captcha->name) ? false : true,
-						'order' => 9,
 						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="warningbox">' . gettext('No captcha handler is enabled.') . '</span>'),
 				gettext('Phone') => array(
 						'key' => 'contactform_phone',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
-						'order' => 10,
 						'desc' => sprintf($mailfieldinstruction, gettext("Phone number"))),
 				gettext('Data usage confirmation') => array(
 						'key' => 'contactform_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 11,
-						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.'))
+						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.')),
+				gettext('Data usage confirmation') => array(
+						'key' => 'contactform_autocomplete',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns'))
 		);
 		return $options;
 	}
@@ -614,7 +598,48 @@ class contactForm {
 			return ' disabled'; 
 		}
 	}
-	
+
+	/**
+	 * Returns the autocomplete attribute for the form depending if autocomplete is enabled
+	 *  
+	 * @since 1.6.3
+	 * 
+	 * @return string
+	 */
+	static function getFormAutocompleteAttr() {
+		if (getOption('contactform_autocomplete')) {
+			return self::getAutocompleteAttr('on');
+		}
+		return self::getAutocompleteAttr('off');
+	}
+
+	/**
+	 * Gets the autocomplete attribute with the value passed if autocomplete is enabled
+	 * Note that the value is not validated. See See e.g. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete for valid values and tokens
+	 *  
+	 * @since 1.6.3
+	 * 
+	 * @param string $value 
+	 * @return string
+	 */
+	static function getAutocompleteAttr($value) {
+		if (getOption('contactform_autocomplete')) {
+			return ' autocomplete="' . sanitize($value) . '"';
+		}
+	}
+
+	/**
+	 * Prints the autocomplete attribute with the value passed if autocomplete is enabled
+	 * Note that the value is not validated. See See e.g. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete for valid values and tokens
+	 *  
+	 * @since 1.6.3
+	 * 
+	 * @param string $value 
+	 */
+	static function printAutocompleteAttr($value) {
+		echo self::getAutocompleteAttr($value);
+	}
+
 	/**
 	 * Wrapper for printing the disabled and required attributes as needed
 	 * @param string $option The field option name or the field option value (legacy)
