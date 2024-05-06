@@ -182,10 +182,10 @@ class contactformOptions {
 						'key' => 'contactform_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.')),
-				gettext('Data usage confirmation') => array(
+				gettext('Automcomplete') => array(
 						'key' => 'contactform_autocomplete',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns'))
+						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.'))
 		);
 		return $options;
 	}
