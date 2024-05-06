@@ -1176,3 +1176,44 @@ function printCommentFormFieldAttributes($option, $disabled) {
 	echo getCommentFormRequiredFieldAttr($option);
 	echo getCommentFormReadonlyFieldAttr($disabled);
 }
+
+/**
+ * Returns the autocomplete attribute for the form depending if autocomplete is enabled
+ *  
+ * @since 1.6.3
+ * 
+ * @return string
+ */
+function getCommentformFormAutocompleteAttr() {
+	if (getOption('comment_form_autocomplete')) {
+		return getCommentformAutocompleteAttr('on');
+	}
+	return getCommentformAutocompleteAttr('off');
+}
+
+/**
+ * Gets the autocomplete attribute with the value passed if autocomplete is enabled
+ * Note that the value is not validated. See See e.g. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete for valid values and tokens
+ *  
+ * @since 1.6.3
+ * 
+ * @param string $value 
+ * @return string
+ */
+function getCommentformAutocompleteAttr($value) {
+	if (getOption('comment_form_autocomplete')) {
+		return ' autocomplete="' . sanitize($value) . '"';
+	}
+}
+
+/**
+ * Prints the autocomplete attribute with the value passed if autocomplete is enabled
+ * Note that the value is not validated. See See e.g. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete for valid values and tokens
+ *  
+ * @since 1.6.3
+ * 
+ * @param string $value 
+ */
+function printCommentformAutocompleteAttr($value) {
+	echo getCommentformAutocompleteAttr($value);
+}

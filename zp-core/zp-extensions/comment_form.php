@@ -69,6 +69,7 @@ class comment_form {
 		setOptionDefault('tinymce4_comments', null);
 		setOptionDefault('comment_form_dataconfirmation', 0);
 		setOptionDefault('comment_form_remember', 0);
+		setOptionDefault('comment_form_autocomplete', 0);
 	}
 
 	/**
@@ -185,7 +186,11 @@ class comment_form {
 				gettext('Data usage confirmation') => array(
 						'key' => 'comment_form_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.'))
+						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.')),
+				gettext('Autocomplete') => array(
+						'key' => 'comment_form_autocomplete',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.'))
 		);
 		return $options;
 	}
