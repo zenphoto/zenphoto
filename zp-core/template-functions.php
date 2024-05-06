@@ -2733,7 +2733,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				<?php
 				foreach ($exif as $field => $value) {
 					$label = $_zp_exifvars[$field][2];
-					echo '<tr><td class="label">'.$label.'.:</td><td class="value">';
+					echo '<tr><td class="label">' . $label . ':</td><td class="value">';
 					switch ($_zp_exifvars[$field][6]) {
 						case 'time':
 							echo zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
