@@ -50,8 +50,6 @@ zp_register_filter('edit_image_utilities', 'xmpMetadata::create');
 zp_register_filter('bulk_image_actions', 'xmpMetadata::bulkActions');
 zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
-require_once SERVERPATH .'/' . ZENFOLDER . '/libs/exif/exif.php';
-
 define('XMP_EXTENSION', strtolower(strval(getOption('xmpMetadata_suffix'))));
 
 
@@ -742,6 +740,52 @@ class xmpMetadata {
 		}
 		return trim($meta);
 	}
+	
+	/**
+	 * @since 1.6.3 ported from Exifer library
+	 * @param type $data
+	 * @return type
+	 */
+	static function formatExposure($data) {
+		if (strpos($data, '/') === false) {
+			$data = floatval($data);
+			if ($data >= 1) {
+				return round($data, 2) . ' sec';
+			} else {
+				$n = 0;
+				$d = 0;
+				self::ConvertToFraction($data, $n, $d);
+				return $n . '/' . $d . ' sec';
+			}
+		} else {
+			return gettext('Bulb');
+		}
+	}
+
+	/**
+	 * Converts a floating point number into a simple fraction.
+	 * 
+	 * @since 1.6.3 ported from Exifer library
+	 * 
+	 * @param type $v
+	 * @param type $n
+	 * @param type $d
+	 * @return type
+	 */
+	static function ConvertToFraction($v, &$n, &$d) {
+		if ($v == 0) {
+			$n = 0;
+			$d = 1;
+			return;
+		}
+		for ($n = 1; $n < 100; $n++) {
+			$v1 = 1 / $v * $n;
+			$d = round($v1, 0);
+			if (abs($d - $v1) < 0.02) {
+				return; // within tolarance
+			}
+		}
+	}
 
 	/**
 	 * Filter called when an album object is instantiated
@@ -956,7 +1000,7 @@ class xmpMetadata {
 						$image->setLocation($v);
 						break;
 					case 'EXIFExposureTime':
-						$v = formatExposure(self::rationalNum($element));
+						$v = self::formatExposure(self::rationalNum($element));
 						break;
 					case 'EXIFFocalLength':
 						$v = self::rationalNum($element) . ' mm';
