@@ -289,7 +289,7 @@ function lookupSortKey($sorttype, $default, $table) {
  *
  * @param string $format A datetime compatible format string. Leave empty to use the option value.
  *							NOTE: If $localize_date = true you need to provide an ICU dateformat string instead of a datetime format string 
- *							unless you pass the DATE_FORMAT constant using one of the standard formats.
+ *							unless you pass a date format constant like DATETIME_DISPLAYFORMAT using one of the standard formats.
  *							You can then also submit these custom formats 'locale_preferreddate_time' and 'locale_preferreddate_notime'
  * @param string|int $datetime the date to be formatted. Can be a date string or a timestamp.  
  * @param boolean $localized_date Default null to use the related option setting. Set to true to use localized dates. PHP intl extension required 

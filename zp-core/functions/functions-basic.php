@@ -337,13 +337,11 @@ define('THUMB_WATERMARK', getOption('Image_watermark'));
 define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
 define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 
-$date_format = getOption('date_format');
-$time_format = getOption('time_format');
 $time_display_disabled = getOption('time_display_disabled');
-define('DATE_FORMAT', strval(trim($date_format)));
-define('TIME_FORMAT', strval(trim($time_format)));
+define('DATE_FORMAT', strval(trim(getOption('date_format'))));
+define('TIME_FORMAT', strval(trim(getOption('time_format'))));
 define('DATETIME_FORMAT', DATE_FORMAT . ' ' . TIME_FORMAT);
-if (getOption('date_format_localized') && in_array($date_format, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+if (getOption('date_format_localized') && in_array(DATE_FORMAT, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
 	define('DATETIME_DISPLAYFORMAT', DATE_FORMAT);
 } else {
 	if ($time_display_disabled) {

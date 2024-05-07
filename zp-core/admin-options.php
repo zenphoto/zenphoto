@@ -127,16 +127,6 @@ if (isset($_GET['action'])) {
 				$dateformat = sanitize($_POST['date_format'], 3);
 			}
 			setOption('date_format', $dateformat);
-
-			// time format
-			/*if (isset($_POST['time_format_list'])) { // may not be submitted if custom/preferred are selector for date format
-				$timeformat = sanitize($_POST['time_format_list'], 3);
-				if ($dateformat == 'custom' || in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
-					$timeformat = '';
-				}
-			} else {
-				$timeformat = '';
-			} */
 			$timeformat = sanitize($_POST['time_format_list'], 3);
 			if ($timeformat == 'custom') {
 				$timeformat = sanitize($_POST['time_format'], 3);
