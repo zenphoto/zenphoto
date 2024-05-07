@@ -673,12 +673,12 @@ class RSS extends feed {
 					$imagenumber = $title;
 				}
 				$feeditem['desc'] = '<a title="' . $title . '" href="' . $itemlink . '">' . $thumburl . '</a>' .
-								'<p>' . html_encode($imagenumber) . '</p>' . $albumobj->getDesc($this->locale) . '<br />' . sprintf(gettext("Last update: %s"), zpFormattedDate(DATE_FORMAT, $filechangedate));
+								'<p>' . html_encode($imagenumber) . '</p>' . $albumobj->getDesc($this->locale) . '<br />' . sprintf(gettext("Last update: %s"), zpFormattedDate(DATETIME_DISPLAYFORMAT, $filechangedate));
 			} else {
 				if ($totalimages != 0) {
 					$imagenumber = sprintf(ngettext('%s (%u image)', '%s (%u images)', $totalimages), $title, $totalimages);
 				}
-				$feeditem['desc'] = '<a title="' . html_encode($title) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . '<br />' . sprintf(gettext("Date: %s"), zpFormattedDate(DATE_FORMAT, $item->get('mtime')));
+				$feeditem['desc'] = '<a title="' . html_encode($title) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . '<br />' . sprintf(gettext("Date: %s"), zpFormattedDate(DATETIME_DISPLAYFORMAT, $item->get('mtime')));
 			}
 			$ext = getSuffix($thumb->localpath);
 		} else {
@@ -688,7 +688,7 @@ class RSS extends feed {
 			$fullimagelink = html_encode(pathurlencode($item->getFullImageURL(FULLWEBPATH)));
 			$thumburl = '<img border="0" src="' . SERVER_HTTP_HOST . pathurlencode($item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE)) . '" alt="' . $item->getTitle($this->locale) . '" /><br />';
 			$title = $item->getTitle($this->locale);
-			$datecontent = '<br />Date: ' . zpFormattedDate(DATE_FORMAT, $item->get('mtime'));
+			$datecontent = '<br />Date: ' . zpFormattedDate(DATETIME_DISPLAYFORMAT, $item->get('mtime'));
 			if (in_array($ext, array('mp3', 'm4a', 'm4v', 'mp4')) AND $this->mode != "album") {
 				$feeditem['desc'] = '<a title="' . html_encode($title) . ' in ' . html_encode($albumobj->getTitle($this->locale)) . '" href="' . $itemlink . '">' . $thumburl . '</a>' . $item->getDesc($this->locale) . $datecontent;
 			} else {

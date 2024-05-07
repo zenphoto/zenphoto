@@ -129,13 +129,17 @@ if (isset($_GET['action'])) {
 			setOption('date_format', $dateformat);
 
 			// time format
-			if (isset($_POST['time_format_list'])) { // may not be submitted if custom/preferred are selector for date format
+			/*if (isset($_POST['time_format_list'])) { // may not be submitted if custom/preferred are selector for date format
 				$timeformat = sanitize($_POST['time_format_list'], 3);
 				if ($dateformat == 'custom' || in_array($dateformat, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
 					$timeformat = '';
 				}
 			} else {
 				$timeformat = '';
+			} */
+			$timeformat = sanitize($_POST['time_format_list'], 3);
+			if ($timeformat == 'custom') {
+				$timeformat = sanitize($_POST['time_format'], 3);
 			}
 			setOption('time_format', $timeformat);
 			if (extension_loaded('intl')) {
@@ -144,7 +148,8 @@ if (isset($_GET['action'])) {
 				$localized_dates = 0;
 			}
 			setOption('date_format_localized', $localized_dates);
-
+			setOption('time_display_disabled', (int) isset($_POST['time_display_disabled']));
+			
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
 			foreach ($_POST as $key => $value) {
 				if (preg_match('/^log_size.*_(.*)$/', $key, $matches)) {
@@ -849,20 +854,30 @@ Authority::printPasswordFormJS();
 									</td>
 								</tr>
 								<tr>
-									<td width="175"><?php echo gettext("Date format:"); ?></td>
+									<td width="175"><?php echo gettext("Date and time formats:"); ?></td>
 									<td width="350">
 											<?php
 											printDatetimeFormatSelector();
 											$use_localized_date = getOption('date_format_localized');
+											$time_display_disabled = getOption('time_display_disabled');
 										?>
-										<label class="checkboxlabel">
-											<input type="checkbox" name="date_format_localized" value="1"	<?php checked('1', $use_localized_date); ?> /><?php echo gettext('Use localized dates'); ?>
+										<p>
+											<label class="checkboxlabel">
+												<input type="checkbox" name="date_format_localized" value="1"	<?php checked('1', $use_localized_date); ?> /><?php echo gettext('Use localized dates'); ?>
 											</label>
+										</p>
+										<p>	
+											<label class="checkboxlabel">
+												<input type="checkbox" name="time_display_disabled" value="1"	<?php checked('1', $time_display_disabled); ?> /><?php echo gettext('Disable time for display'); ?>
+											</label>
+										</p>
 									</td>
-									<td><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/datetime.format.php">datetime</a> format string in the custom box.'); ?>
+									<td>
+										<p><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/datetime.format.php">datetime</a> format string for date and time in the custom boxes.'); ?></p>
+										<p><?php echo gettext('If time is disabled for display standard theme and admin functions will not display it. samm apples if the <em>preferred date representation</em> format without time is selected.'); ?></p>
 									<?php if (extension_loaded('intl')) { ?>
 										<p class="notebox">
-										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you use a custom date format or choose one of the <em>preferred date representation</em> formats the time format option is ignored.'); ?>
+										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you choose one of the <em>preferred date representation</em> formats the time format option is ignored for display.'); ?>
 									</p>
 								<?php } else { ?>
 									<p class="warningbox">

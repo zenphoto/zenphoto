@@ -235,7 +235,7 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 							}
 							?>
 							<span class="relateditems_date">
-								<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+								<?php echo zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($d)); ?>
 							</span>
 							<?php
 						}

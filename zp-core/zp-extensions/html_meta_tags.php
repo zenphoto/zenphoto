@@ -281,7 +281,7 @@ class htmlmetatags {
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
-		$date = zpFormattedDate(DATE_FORMAT); // if we don't have a item date use current date
+		$date = zpFormattedDate(DATETIME_DISPLAYFORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 		$thumb = '';
 		$prev = $next = '';
@@ -403,7 +403,7 @@ class htmlmetatags {
 						$public = $_zp_current_zenpage_news->isPublic();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getName() . " - ";
-						$date = zpFormattedDate(DATE_FORMAT);
+						$date = zpFormattedDate(DATETIME_DISPLAYFORMAT);
 						$desc = trim(getBare($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$public = $_zp_current_category->isPublic();

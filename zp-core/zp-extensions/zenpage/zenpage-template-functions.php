@@ -155,7 +155,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 		if ($obj->getTruncation()) {
 			$shorten = true;
 		}
-		$date = zpFormattedDate(DATE_FORMAT, strtotime($item['date']));
+		$date = zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($item['date']));
 		echo "<li>";
 		echo "<h3><a href=\"" . $link . "\" title=\"" . getBare(html_encode($title)) . "\">" . $title . "</a></h3>\n";
 		if ($showdate) {
@@ -586,7 +586,7 @@ function getNewsDate() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
 		$d = $_zp_current_zenpage_news->getDateTime();
-		return zpFormattedDate(DATE_FORMAT, strtotime($d));
+		return zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($d));
 	}
 	return false;
 }
@@ -1294,7 +1294,7 @@ function printZenpageStatistic($number = 10, $option = "all", $mode = "popular",
 		echo '</small>';
 		echo '</h3></a>';
 		if ($showdate && $item['type'] != 'Category') {
-			echo "<p>" . zpFormattedDate(DATE_FORMAT, strtotime($item['date'])) . "</p>";
+			echo "<p>" . zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($item['date'])) . "</p>";
 		}
 		if ($showcontent && $item['type'] != 'Category') {
 			echo '<p>' . truncate_string($item['content'], $contentlength) . '</p>';
@@ -1847,7 +1847,7 @@ function getPageDate() {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page)) {
 		$d = $_zp_current_zenpage_page->getDatetime();
-		return zpFormattedDate(DATE_FORMAT, strtotime($d));
+		return zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($d));
 	}
 	return false;
 }
@@ -1870,7 +1870,7 @@ function getPageLastChangeDate() {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page)) {
 		$d = $_zp_current_zenpage_page->getLastChange();
-		return zpFormattedDate(DATE_FORMAT, strtotime($d));
+		return zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($d));
 	}
 	return false;
 }

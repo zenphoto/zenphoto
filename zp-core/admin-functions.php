@@ -5941,10 +5941,11 @@ function printImageRotationSelector($imageobj, $currentimage) {
  * @since 1.6.1
  */
 function printDatetimeFormatSelector() {
-	$formatlist = array();
 	$use_localized_date = getOption('date_format_localized');
 	
-	// date format
+	/*
+	 * date format
+	 */
 	$date_selector_id = 'date_format_list';
 	$date_currentformat_selector = $date_currentformat = getOption('date_format');
 	$date_formats = array_keys(getStandardDateFormats('date'));
@@ -5954,56 +5955,63 @@ function printDatetimeFormatSelector() {
 		$date_formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
 	}
 	$date_formatlist[gettext('Custom')] = 'custom';
-
-	// time format
-	$time_selector_id = 'time_format_list';
-	$time_currentformat = getOption('time_format');
-	$time_formats = array_keys(getStandardDateFormats('time'));
-	$time_formatlist = getDatetimeFormatlistForSelector($time_formats, $use_localized_date);	
-	$time_formatlist[gettext('None')] = '';
-	$time_formatlist_disabled = '';
 	
-	// custom format
-	$custom_format_id = 'custom_dateformat_box';
-	$custom_format_name = 'date_format';
-	$custom_format_label = gettext('Custom datetime format');
-	$custom_format_display = 'none';
-	
-	// special settings for custom datetime formats
+	// date custom format
+	$date_custom_format_id = 'custom_dateformat_box';
+	$date_custom_format_name = 'date_format';
+	$date_custom_format_label = gettext('Custom date format');
+	$date_custom_format_display = 'none';
 	if (!in_array($date_currentformat, $date_formatlist)) {
 		$date_currentformat_selector = 'custom';
-		$custom_format_display = 'block';
-		$time_formatlist_disabled = ' disabled="disabled"';
-		$time_currentformat = '';
+		$date_custom_format_display = 'block';
 	}
-	if (in_array($date_currentformat, array('locale_preferreddate_time','locale_preferreddate_notime'))) {
+	/*if (in_array($date_currentformat, array('locale_preferreddate_time','locale_preferreddate_notime'))) {
 		$time_formatlist_disabled = ' disabled="disabled"';
 		$time_currentformat = '';
+	} */
+	?>
+	<p>
+		<label><select id="<?php echo $date_selector_id; ?>" name="<?php echo $date_selector_id; ?>" onchange="showfield(this, '<?php echo $date_custom_format_id; ?>')">
+		<?php generateListFromArray(array($date_currentformat_selector), $date_formatlist, null, true); ?>
+		</select> <?php echo gettext('Date format'); ?></label>
+		<label id="<?php echo $date_custom_format_id; ?>" class="customText" style="display:<?php echo $date_custom_format_display; ?>">
+			<br />
+			<input type="text" size="30" name="<?php echo $date_custom_format_name; ?>" value="<?php echo html_encode($date_currentformat); ?>" />
+			<?php echo $date_custom_format_label; ?>
+		</label>
+	</p>
+	<?php
+	/*
+	 * time format
+	 */
+	$time_selector_id = 'time_format_list';
+	$time_currentformat_selector = $time_currentformat = getOption('time_format');
+	$time_formats = array_keys(getStandardDateFormats('time'));
+	$time_formatlist = getDatetimeFormatlistForSelector($time_formats, $use_localized_date);	
+	$time_formatlist[gettext('Custom')] = 'custom';
+
+	
+	// time custom format
+	$time_custom_format_id = 'custom_timeformat_box';
+	$time_custom_format_name = 'time_format';
+	$time_custom_format_label = gettext('Custom time format');
+	$time_custom_format_display = 'none';
+	if (!in_array($time_currentformat, $time_formatlist)) {
+		$time_currentformat_selector = 'custom';
+		$time_custom_format_display = 'block';
 	}
 	?>
-	<select id="<?php echo $date_selector_id; ?>" name="<?php echo $date_selector_id; ?>" onchange="showfield(this, '<?php echo $custom_format_id; ?>')">
-		<?php generateListFromArray(array($date_currentformat_selector), $date_formatlist, null, true); ?>
-	</select>
-	<select id="<?php echo $time_selector_id; ?>" name="<?php echo $time_selector_id; ?>"<?php echo $time_formatlist_disabled; ?>>
-		<?php generateListFromArray(array($time_currentformat), $time_formatlist, null, true); ?>
-	</select>
-	<br>
-	<label id="<?php echo $custom_format_id; ?>" class="customText" style="display:<?php echo $custom_format_display; ?>">
-		<br />
-		<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $custom_format_name; ?>" value="<?php echo html_encode($date_currentformat); ?>" />
-		<?php echo $custom_format_label; ?>
-	</label>
-	<script>
-		$( "#<?php echo $date_selector_id; ?>" ).change(function() {
-			var date_format = $( "#<?php echo $date_selector_id; ?>" ).val();
-			if (date_format === "custom" || date_format === "locale_preferreddate_time" || date_format === "locale_preferreddate_notime") {
-				$( "#<?php echo $time_selector_id; ?>" ).prop( "disabled", true );
-				$( "#<?php echo $time_selector_id; ?>" ).val('');
-			} else {
-				$( "#<?php echo $time_selector_id; ?>" ).prop( "disabled", false );
-			}
-		});
-	</script>
+	<p>
+		<label><select id="<?php echo $time_selector_id; ?>" name="<?php echo $time_selector_id; ?>" onchange="showfield(this, '<?php echo $time_custom_format_id; ?>')">
+		<?php generateListFromArray(array($time_currentformat_selector), $time_formatlist, null, true); ?>
+		</select> <?php echo gettext('Time format'); ?></label>
+		<br>
+		<label id="<?php echo $time_custom_format_id; ?>" class="customText" style="display:<?php echo $time_custom_format_display; ?>">
+			<br />
+			<input type="text" size="30" name="<?php echo $time_custom_format_name; ?>" value="<?php echo html_encode($time_currentformat); ?>" />
+			<?php echo $time_custom_format_label; ?>
+		</label>
+	</p>
 	<?php
 }
 

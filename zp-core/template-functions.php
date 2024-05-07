@@ -1623,7 +1623,7 @@ function getAlbumDate($format = null) {
 function printAlbumDate($before = '', $format = NULL) {
 	global $_zp_current_album;
 	if (is_null($format)) {
-		$format = DATE_FORMAT;
+		$format = DATETIME_DISPLAYFORMAT;
 	}
 	$date = getAlbumDate($format);
 	if ($date) {
@@ -2366,7 +2366,7 @@ function getImageDate($format = null) {
 function printImageDate($before = '', $format = null) {
 	global $_zp_current_image;
 	if (is_null($format)) {
-		$format = DATE_FORMAT;
+		$format = DATETIME_DISPLAYFORMAT;
 	}
 	$date = getImageDate($format);
 	if ($date) {
@@ -2736,7 +2736,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 					echo '<tr><td class="label">' . $label . ':</td><td class="value">';
 					switch ($_zp_exifvars[$field][6]) {
 						case 'time':
-							echo zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
+							echo zpFormattedDate(DATETIME_DISPLAYFORMAT, removeDateTimeZone($value));
 							break;
 						default:
 							if ($field == 'IPTCImageCaption') {

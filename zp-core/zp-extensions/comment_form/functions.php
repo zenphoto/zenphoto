@@ -656,7 +656,7 @@ function printCommentAuthorLink($title = NULL, $class = NULL, $id = NULL) {
  */
 function getCommentDateTime($format = NULL) {
 	if (is_null($format)) {
-		$format = DATE_FORMAT;
+		$format = DATETIME_DISPLAYFORMAT;
 	}
 	global $_zp_current_comment;
 	return myts_date($format, $_zp_current_comment['date']);

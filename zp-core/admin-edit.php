@@ -1453,7 +1453,7 @@ echo "\n</head>";
 																			$label = $_zp_exifvars[$field][2];
 																			switch ($_zp_exifvars[$field][6]) {
 																				case 'time':
-																					$value = zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
+																					$value = zpFormattedDate(DATETIME_DISPLAYFORMAT, removeDateTimeZone($value));
 																					break;
 																				default:
 																					if ($field == 'IPTCImageCaption') {

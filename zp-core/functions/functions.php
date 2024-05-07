@@ -298,7 +298,7 @@ function lookupSortKey($sorttype, $default, $table) {
 function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 	global $_zp_utf8;
 	if (empty($format)) {
-		$format = DATE_FORMAT;
+		$format = DATETIME_DISPLAYFORMAT;
 	}
 	$format_converted = convertStrftimeFormat($format);
 	if ($format_converted != $format) {

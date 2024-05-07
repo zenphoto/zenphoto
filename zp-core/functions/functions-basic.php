@@ -339,10 +339,18 @@ define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 
 $date_format = getOption('date_format');
 $time_format = getOption('time_format');
-if (getOption('date_format_localized') && in_array($date_format, array('locale_preferreddate_time','locale_preferreddate_notime'))) {
-	define('DATE_FORMAT', $date_format);
+$time_display_disabled = getOption('time_display_disabled');
+define('DATE_FORMAT', strval(trim($date_format)));
+define('TIME_FORMAT', strval(trim($time_format)));
+define('DATETIME_FORMAT', DATE_FORMAT . ' ' . TIME_FORMAT);
+if (getOption('date_format_localized') && in_array($date_format, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+	define('DATETIME_DISPLAYFORMAT', DATE_FORMAT);
 } else {
-	define('DATE_FORMAT', strval(trim($date_format . ' ' . $time_format)));
+	if ($time_display_disabled) {
+		define('DATETIME_DISPLAYFORMAT', DATE_FORMAT);
+	} else {
+		define('DATETIME_DISPLAYFORMAT', DATETIME_FORMAT);
+	}
 }
 
 define('IM_SUFFIX', getOption('mod_rewrite_image_suffix'));

@@ -64,7 +64,7 @@ function printNews() {
 						}
 					}
 					$title = $article["title"];
-					$date = zpFormattedDate(DATE_FORMAT, strtotime($article["pubDate"]));
+					$date = zpFormattedDate(DATETIME_DISPLAYFORMAT, strtotime($article["pubDate"]));
 					$link = $article["link"];
 					if ($shorten) {
 						$description = shortenContent($article["description"], $shorten, '...');
