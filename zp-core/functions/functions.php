@@ -2462,19 +2462,23 @@ function zp_loggedin($rights = ALL_RIGHTS) {
  *
  */
 function read_exif_data_protected($path) {
-	if (DEBUG_EXIF) {
-		debugLog("Begin read_exif_data_protected($path)");
-		$start = microtime(true);
-	}
-	try {
-		$rslt = exif_read_data($path); 
-	} catch (Exception $e) {
-		debugLog("read_exif_data($path) exception: " . $e->getMessage());
-		$rslt = array();
-	}
-	if (DEBUG_EXIF) {
-		$time = microtime(true) - $start;
-		debugLog(sprintf("End read_exif_data_protected($path) [%f]", $time));
+	if (@exif_imagetype($path) !== false) {
+		if (DEBUG_EXIF) {
+			debugLog("Begin read_exif_data_protected($path)");
+			$start = microtime(true);
+		}
+		try {
+			$rslt = exif_read_data($path);
+		} catch (Exception $e) {
+			if (DEBUG_EXIF) {
+				debugLog("read_exif_data($path) exception: " . $e->getMessage());
+			}
+			$rslt = array();
+		}
+		if (DEBUG_EXIF) {
+			$time = microtime(true) - $start;
+			debugLog(sprintf("End read_exif_data_protected($path) [%f]", $time));
+		}
 	}
 	return $rslt;
 }
