@@ -176,10 +176,9 @@ msgid "User Registration"
 msgstr "Регистрация пользователя"
 
 #: themes/basic/search.php:44
-#, fuzzy, php-format
-#| msgid "all sizes for <i>%1$s</i>"
+#, php-format
 msgid "Total matches for <em>%1$s</em>: %2$u"
-msgstr "все размеры для <i>%1$s</i>"
+msgstr "Всего совпадений для <em>%1$s</em>: %2$u"
 
 #: themes/basic/search.php:60 zp-core/admin-edit.php:1315
 #: zp-core/admin-functions.php:1402
@@ -296,10 +295,9 @@ msgid "Tags: "
 msgstr "Метки: "
 
 #: themes/garland/album.php:137
-#, fuzzy, php-format
-#| msgid "Latest images"
+#, php-format
 msgid "Latest Images for %s"
-msgstr "Последние изображения"
+msgstr ""
 
 #: themes/garland/archive.php:45
 #, fuzzy
@@ -406,13 +404,12 @@ msgstr ""
 
 #: themes/garland/search.php:91 themes/zenpage/search.php:75
 #: themes/zpmobile/search.php:69
-#, fuzzy, php-format
-#| msgid "Options for <em>%s</em>"
+#, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
 msgid_plural "%1$u Hits for <em>%2$s</em>"
-msgstr[0] "Параметры <em>%s</em>"
-msgstr[1] "Параметры <em>%s</em>"
-msgstr[2] "Параметры <em>%s</em>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: themes/garland/search.php:96
 msgid "Sorry, no matches for your search."
@@ -670,10 +667,8 @@ msgid ""
 msgstr ""
 
 #: themes/garland/themeoptions.php:150
-#, fuzzy
-#| msgid "enable gallery sessions"
 msgid "Image gallery transition"
-msgstr "использовать сессии"
+msgstr ""
 
 #: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5770
 #: zp-core/admin-functions.php:5823 zp-core/zp-extensions/GoogleMap.php:119
@@ -712,16 +707,12 @@ msgid "Image gallery caption"
 msgstr "Страница изображения"
 
 #: themes/garland/themeoptions.php:165
-#, fuzzy
-#| msgid "image"
 msgid "On image"
-msgstr "изображение"
+msgstr "На изображение"
 
 #: themes/garland/themeoptions.php:166
-#, fuzzy
-#| msgid "separate"
 msgid "Separate"
-msgstr "раздельно"
+msgstr "Раздельно"
 
 #: themes/garland/themeoptions.php:167
 #: zp-core/zp-extensions/comment_form.php:102
@@ -801,10 +792,8 @@ msgid "RSS"
 msgstr "RSS"
 
 #: themes/zenpage/sidebar.php:83
-#, fuzzy
-#| msgid "Album"
 msgid "Album RSS"
-msgstr "Альбом"
+msgstr "RSS Альбома"
 
 #: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
 #: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:162
@@ -854,10 +843,8 @@ msgid "Gallery index"
 msgstr "Начало галереи"
 
 #: themes/zenpage/themeoptions.php:119
-#, fuzzy
-#| msgid "Colorbox"
 msgid "Use Colorbox"
-msgstr "Colorbox"
+msgstr "Используйте Colorbox"
 
 #: themes/zenpage/themeoptions.php:122
 msgid "Check to display of the full size image with Colorbox."
@@ -914,10 +901,8 @@ msgid ""
 msgstr ""
 
 #: themes/zpmobile/404.php:31
-#, fuzzy
-#| msgid "Zenphoto Error:</strong> the requested object was not found."
 msgid "The Zenphoto object you are requesting cannot be found."
-msgstr "Ошибка Zenphoto:</strong> запрашиваемый объект не найден."
+msgstr "Ошибка Zenphoto: запрашиваемый объект не найден."
 
 #: themes/zpmobile/archive.php:26 zp-core/template-functions.php:472
 #: zp-core/zp-extensions/html_meta_tags.php:450
@@ -948,10 +933,8 @@ msgid "Powered by"
 msgstr ""
 
 #: themes/zpmobile/functions.php:98
-#, fuzzy
-#| msgid "Tablet theme"
 msgid "zpMobile theme by"
-msgstr "Тема для планшета"
+msgstr "тема zpMobile авторства"
 
 #: themes/zpmobile/functions.php:110
 #: zp-core/zp-extensions/favoritesHandler/class-favorites.php:299
@@ -964,24 +947,20 @@ msgid "Back to top"
 msgstr "Наверх"
 
 #: themes/zpmobile/functions.php:207
-#, fuzzy, php-format
-#| msgid "%u album"
-#| msgid_plural "%u albums"
+#, php-format
 msgid "%d album"
 msgid_plural "%d albums"
-msgstr[0] "%u альбом"
-msgstr[1] "%u альбома"
-msgstr[2] "%u альбомов"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: themes/zpmobile/functions.php:212
-#, fuzzy, php-format
-#| msgid "%u image"
-#| msgid_plural "%u images"
+#, php-format
 msgid "%d image"
 msgid_plural "%d images"
-msgstr[0] "%u изображение"
-msgstr[1] "%u изображения"
-msgstr[2] "%u изображений"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: themes/zpmobile/image.php:50
 #, fuzzy
@@ -1788,10 +1767,8 @@ msgid "There are no albums for you to edit."
 msgstr "Нет никаких альбомов для редактирования."
 
 #: zp-core/admin-functions.php:28
-#, fuzzy
-#| msgid "Stick to top"
 msgid "Scroll to top"
-msgstr "закрепить наверху"
+msgstr "Вернуться наверх"
 
 #: zp-core/admin-functions.php:28 zp-core/zp-extensions/cookieconsent.php:118
 #, fuzzy
@@ -2010,10 +1987,9 @@ msgstr "*также как и альбомы"
 #: zp-core/admin-options.php:1399 zp-core/admin-options.php:1776
 #: zp-core/admin-options.php:1823 zp-core/admin-options.php:1871
 #: zp-core/admin-options.php:1920 zp-core/admin-options.php:2026
-#, fuzzy, php-format
-#| msgid "Custom"
+#, php-format
 msgid "Custom (%s)"
-msgstr "Пользовательский"
+msgstr "Пользовательский (%s)"
 
 #: zp-core/admin-functions.php:1472 zp-core/admin-functions.php:1524
 #: zp-core/admin-options.php:1409 zp-core/admin-options.php:1791
@@ -2451,11 +2427,8 @@ msgid "debug"
 msgstr "отладка"
 
 #: zp-core/admin-functions.php:4673
-#, fuzzy
-#| msgid "Select the legacy spam filter to be used."
 msgid "Select the logfile to view"
 msgstr ""
-"Выберите один из устаревших спам фильтров почты, который будет использован."
 
 #: zp-core/admin-functions.php:4708 zp-core/admin-functions.php:4719
 #: zp-core/admin.php:234 zp-core/zp-extensions/GoogleMap.php:31
@@ -2763,9 +2736,9 @@ msgid "Account created: %s"
 msgstr "Аккаунт создан: %s"
 
 #: zp-core/admin-functions.php:5229
-#, fuzzy, php-format
+#, php-format
 msgid "Current login: %s"
-msgstr "Пользовательский"
+msgstr "Текущий логин: %s"
 
 #: zp-core/admin-functions.php:5230
 #, php-format
@@ -2791,10 +2764,8 @@ msgid "Last change: %s"
 msgstr "Дата обновления: %s"
 
 #: zp-core/admin-functions.php:5240
-#, fuzzy
-#| msgid "Zenphoto License agreement"
 msgid "ZenphotoCMS internal request"
-msgstr "Лицензионное соглашение Zenphoto"
+msgstr "Внутренний запрос ZenphotoCMS"
 
 #: zp-core/admin-functions.php:5243
 #, fuzzy, php-format
@@ -2844,16 +2815,12 @@ msgid "Expire date"
 msgstr "Срок действия"
 
 #: zp-core/admin-functions.php:5268
-#, fuzzy
-#| msgid "top rated"
 msgid "Top rated"
-msgstr "топ-рейтинг"
+msgstr "Топ-рейтинг"
 
 #: zp-core/admin-functions.php:5269
-#, fuzzy
-#| msgid "most rated"
 msgid "Most rated"
-msgstr "по количеству выставленных рейтингов"
+msgstr "По количеству выставленных рейтингов"
 
 #: zp-core/admin-functions.php:5270
 #, fuzzy
@@ -2974,16 +2941,14 @@ msgid "Unpublished because expired"
 msgstr "Нет неопубликованных разделов"
 
 #: zp-core/admin-functions.php:5515
-#, fuzzy, php-format
-#| msgid "Publish immediately (skip scheduling)"
+#, php-format
 msgid "Publish the album %s (Skip scheduled publishing)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать альбом %s сейчас (игнорировать ожидание)"
 
 #: zp-core/admin-functions.php:5516
-#, fuzzy, php-format
-#| msgid "Publish immediately (skip scheduling)"
+#, php-format
 msgid "Publish the album %s (Skip scheduled expiration)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать альбом %s сейчас (игнорировать ожидание)"
 
 #: zp-core/admin-functions.php:5517
 #, fuzzy, php-format
@@ -3003,28 +2968,24 @@ msgid "Publish the album %s"
 msgstr "Опубликовать альбом %s"
 
 #: zp-core/admin-functions.php:5523
-#, fuzzy, php-format
-#| msgid "Publish immediately (skip scheduling)"
+#, php-format
 msgid "Publish the image %s (Skip scheduled publishing)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать изображение %s сейчас (игнорировать ожидание)"
 
 #: zp-core/admin-functions.php:5524
-#, fuzzy, php-format
-#| msgid "Publish immediately (skip scheduling)"
+#, php-format
 msgid "Publish the image %s (Skip scheduled expiration)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать изображение %s сейчас (игнорировать ожидание)"
 
 #: zp-core/admin-functions.php:5525
-#, fuzzy, php-format
-#| msgid "Un-publish the album %s"
+#, php-format
 msgid "Unpublish the image %s"
-msgstr "Нажмите, чтобы отменить публикацию альбома %s"
+msgstr "Нажмите, чтобы отменить публикацию изображения %s"
 
 #: zp-core/admin-functions.php:5526
-#, fuzzy, php-format
-#| msgid "Publish images by default"
+#, php-format
 msgid "Publish the image %s (Skip expiration)"
-msgstr "публиковать изображения по умолчанию"
+msgstr "Опубликовать изображение %s сейчас (игнорировать ожидание)"
 
 #: zp-core/admin-functions.php:5527
 #, fuzzy, php-format
@@ -3039,10 +3000,8 @@ msgid "Custom"
 msgstr "Пользовательский"
 
 #: zp-core/admin-functions.php:5805
-#, fuzzy
-#| msgid "Selected items unpublished"
 msgid "Select a Zenpage page. * denotes unpublished page."
-msgstr "Выбранные объекты сняты с публикации"
+msgstr ""
 
 #: zp-core/admin-functions.php:5806
 #, fuzzy
@@ -3050,10 +3009,8 @@ msgid "Custom page url"
 msgstr "Пользовательский"
 
 #: zp-core/admin-functions.php:5850
-#, fuzzy
-#| msgid "Select users:"
 msgid "Select a user"
-msgstr "Выберите пользователей:"
+msgstr "Выберите пользователя"
 
 #: zp-core/admin-functions.php:5917
 msgid "Horizontal (normal)"
@@ -3110,10 +3067,8 @@ msgid "Custom date format"
 msgstr "Пользовательские данные"
 
 #: zp-core/admin-functions.php:5976
-#, fuzzy
-#| msgid "Date format:"
 msgid "Date format"
-msgstr "Формат даты:"
+msgstr "Формат даты"
 
 #: zp-core/admin-functions.php:5997
 #, fuzzy
@@ -3122,10 +3077,8 @@ msgid "Custom time format"
 msgstr "Пользовательские данные"
 
 #: zp-core/admin-functions.php:6007
-#, fuzzy
-#| msgid "Date format:"
 msgid "Time format"
-msgstr "Формат даты:"
+msgstr "Формат даты"
 
 #: zp-core/admin-globals.php:51
 msgid "overview"
@@ -3323,13 +3276,7 @@ msgid "Your server reports its time zone as: <code>%s</code>."
 msgstr "Часовой пояс сервера: <code>%s</code>."
 
 #: zp-core/admin-options.php:677
-#, fuzzy, php-format
-#| msgid ""
-#| "Your time zone offset is %d hour. If your time zone is different from the "
-#| "servers, select the correct time zone here."
-#| msgid_plural ""
-#| "Your time zone offset is: %d hours. If your time zone is different from "
-#| "the servers, select the correct time zone here."
+#, php-format
 msgid ""
 "Your time zone offset in hours is: %d. If your time zone is different from "
 "the servers, select the correct time zone here."
@@ -3461,10 +3408,8 @@ msgid "Date and time formats:"
 msgstr "Формат даты:"
 
 #: zp-core/admin-options.php:856
-#, fuzzy
-#| msgid "Use lock image"
 msgid "Use localized dates"
-msgstr "Запрет миниатюр"
+msgstr ""
 
 #: zp-core/admin-options.php:861
 #, fuzzy
@@ -3551,16 +3496,12 @@ msgstr ""
 "других полях."
 
 #: zp-core/admin-options.php:969
-#, fuzzy
-#| msgid ""
-#| "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; "
-#| "(<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 msgid ""
 "Follow the form: <em>tag</em> =&gt; (<em>attribute</em> =&gt;() "
 "<em>attribute</em>=&gt;() <em>attribute</em> =&gt;()....etc.)"
 msgstr ""
-"Шаблон: <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</"
-"em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
+"Шаблон: <em>tag</em> =&gt; (<em>attribute</em> =&gt;() <em>attribute</"
+"em>=&gt;() <em>attribute</em> =&gt;()....etc.)"
 
 #: zp-core/admin-options.php:971
 msgid ""
@@ -3717,10 +3658,8 @@ msgid "Site copyright notice"
 msgstr "Уведомление об авторских правах"
 
 #: zp-core/admin-options.php:1150 zp-core/admin-options.php:2589
-#, fuzzy
-#| msgid "Notice!"
 msgid "Notice"
-msgstr "Замечание!"
+msgstr "Уведомление"
 
 #: zp-core/admin-options.php:1154 zp-core/admin-options.php:2593
 msgid ""
@@ -3758,9 +3697,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/admin-options.php:1177
-#, fuzzy
 msgid "Site copyright rightsholder"
-msgstr "Авторское право:"
+msgstr "Авторские права"
 
 #: zp-core/admin-options.php:1182 zp-core/admin-options.php:2620
 msgid ""
@@ -3799,7 +3737,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:1234
 msgid "Gallery guest user:"
-msgstr "Имя пользователя:"
+msgstr "Гостевое имя пользователя:"
 
 #: zp-core/admin-options.php:1249
 msgid "User ID for the gallery guest user"
@@ -3851,10 +3789,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/admin-options.php:1345
-#, fuzzy
-#| msgid "a website"
 msgid "Parent website URL:"
-msgstr "сайт"
+msgstr "URL сайта:"
 
 #: zp-core/admin-options.php:1348
 #, fuzzy
@@ -3916,9 +3852,8 @@ msgid "visual thumb selection"
 msgstr "визуальный выбор миниатюр"
 
 #: zp-core/admin-options.php:1456
-#, fuzzy
 msgid "show subalbum thumbs"
-msgstr "Определяет порядок выбора миниатюр альбомов и подальбомов"
+msgstr "показывать миниатюры подальбомов"
 
 #: zp-core/admin-options.php:1461
 msgid ""
@@ -4181,10 +4116,8 @@ msgstr ""
 "проигнорировать <em>{items}</em> в результатах поиска совпадения."
 
 #: zp-core/admin-options.php:1742
-#, fuzzy
-#| msgid "Search fields:"
 msgid "Search fields selector"
-msgstr "Поля поиска:"
+msgstr "Выбор полей поиска"
 
 #: zp-core/admin-options.php:1747
 #, fuzzy
@@ -4310,7 +4243,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:2122
 msgid "Use embedded thumbnail"
-msgstr "Встроенные миниатюры"
+msgstr "Используйте встроенные миниатюры"
 
 #: zp-core/admin-options.php:2133
 #, fuzzy
@@ -4412,9 +4345,8 @@ msgid "%s thumbnails"
 msgstr "Миниатюры (%s)"
 
 #: zp-core/admin-options.php:2251
-#, fuzzy
 msgid "image thumb"
-msgstr "Выберите миниатюру альбома."
+msgstr ""
 
 #: zp-core/admin-options.php:2266
 msgid "cover"
@@ -4455,15 +4387,9 @@ msgid ""
 msgstr ""
 
 #: zp-core/admin-options.php:2281
-#, fuzzy
-#| msgid ""
-#| "If <em>allow upscale</em> is not checked the watermark will not be made "
-#| "larger than the original watermark image."
 msgid ""
 "The watermark will not be made larger than the original watermark image."
-msgstr ""
-"<em>разрешить увеличение</em> позволяет масштабировать водяной знак болеее "
-"размеров его исходного изображения. "
+msgstr "Водяной знак не превысит размеров своего его исходного изображения."
 
 #: zp-core/admin-options.php:2282
 #, php-format
@@ -4652,12 +4578,6 @@ msgid "Use lock image"
 msgstr "Запрет миниатюр"
 
 #: zp-core/admin-options.php:2496
-#, fuzzy
-#| msgid ""
-#| "Substitute a <em>lock</em> image for thumbnails of password protected "
-#| "albums when the viewer has not supplied the password. If your theme "
-#| "supplies an <code>images/err-passwordprotected.png</code> image, it will "
-#| "be shown. Otherwise the zenphoto default lock image is displayed."
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -4667,7 +4587,7 @@ msgstr ""
 "Запрещает отображение миниатюр для закрытых паролем альбомов, если "
 "пользователь не прошёл аутентификацию. Вместо этого, выводится миниатюра в "
 "виде <em>замка</em> или (если ваша тема содержит) <code>images/err-"
-"passwordprotected.png</code>"
+"passwordprotected.png</code>."
 
 #: zp-core/admin-options.php:2509
 msgid "Metadata"
@@ -4710,10 +4630,8 @@ msgid "Hide the field but import data"
 msgstr "Скрыть поле, но импортировать данные"
 
 #: zp-core/admin-options.php:2548
-#, fuzzy
-#| msgid "No tags to import."
 msgid "No display and import"
-msgstr "Нет тэгов для импорта."
+msgstr ""
 
 #: zp-core/admin-options.php:2552
 msgid ""
@@ -4756,9 +4674,8 @@ msgid "Image copyright notice"
 msgstr "Уведомление об авторских правах"
 
 #: zp-core/admin-options.php:2597
-#, fuzzy
 msgid "Image Copyright URL"
-msgstr "Авторское право:"
+msgstr "Авторское право"
 
 #: zp-core/admin-options.php:2607
 #, fuzzy
@@ -4773,14 +4690,12 @@ msgid ""
 msgstr ""
 
 #: zp-core/admin-options.php:2615
-#, fuzzy
 msgid "Image copyright rightsholder"
-msgstr "Авторское право:"
+msgstr "Авторское право"
 
 #: zp-core/admin-options.php:2629
-#, fuzzy
 msgid "Embed IPTC copyright"
-msgstr "Авторское право:"
+msgstr ""
 
 #: zp-core/admin-options.php:2630
 msgid ""
@@ -4810,13 +4725,10 @@ msgid "IPTC copyright embedding"
 msgstr "Внедрение IPTC"
 
 #: zp-core/admin-options.php:2643
-#, fuzzy
-#| msgid ""
-#| "<strong>NOTE:</strong> This option  applies only to JPEG format cached "
-#| "images."
 msgid ""
 "<strong>NOTE:</strong> This option applies only to JPEG format cached images."
-msgstr "<strong>Замечание:</strong> Доступно только для кэш-копий формата JPEG"
+msgstr ""
+"<strong>Замечание:</strong> Доступно только для кэш-копий формата JPEG."
 
 #: zp-core/admin-options.php:2739 zp-core/admin-themes.php:150
 msgid "There are no themes for which you have rights to administer."
@@ -4989,10 +4901,9 @@ msgstr ""
 "нижней границы изображения и на %2$.1f%% от левой и правой границы."
 
 #: zp-core/admin-options.php:2953
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
-msgstr "<strong>Один</strong> комментарий"
+msgstr ""
 
 #: zp-core/admin-options.php:2957
 msgid "Gray scale conversion:"
@@ -5025,9 +4936,8 @@ msgstr ""
 "сторон соответствовала указанному значению (в пикселах)."
 
 #: zp-core/admin-options.php:3022
-#, fuzzy
 msgid "Gallery index page link:"
-msgstr "Начало галереи"
+msgstr ""
 
 #: zp-core/admin-options.php:3042
 msgid ""
@@ -5404,10 +5314,8 @@ msgid "by %s"
 msgstr ""
 
 #: zp-core/admin-plugins.php:400
-#, fuzzy
-#| msgid "Visible items"
 msgid "Visit plugin site"
-msgstr "Видимые пункты"
+msgstr "Посетить сайт плагина"
 
 #: zp-core/admin-plugins.php:417
 msgid "Official plugin"
@@ -5736,10 +5644,8 @@ msgid "Action"
 msgstr "Действие"
 
 #: zp-core/admin-themes.php:201
-#, fuzzy
-#| msgid "Zenphoto files"
 msgid "Zenphoto official theme"
-msgstr "файлы Zenphoto"
+msgstr "Официальная тема Zenphoto"
 
 #: zp-core/admin-themes.php:204
 msgid "third party theme"
@@ -5752,14 +5658,12 @@ msgid "This theme will be removed in future versions."
 msgstr "Блокировка будет снята через указанный промежуток времени (в минутах)"
 
 #: zp-core/admin-themes.php:262
-#, fuzzy
 msgid "This theme is not compatible."
-msgstr "Порядок изображений"
+msgstr "Тема не совместима."
 
 #: zp-core/admin-themes.php:277
-#, fuzzy
 msgid "Visit theme site"
-msgstr "Посетить галерею фотографий"
+msgstr "Посетить сайт темы"
 
 #: zp-core/admin-themes.php:282
 #, php-format
@@ -5924,10 +5828,8 @@ msgid "Create a new album"
 msgstr "Создать альбом"
 
 #: zp-core/admin-upload.php:274
-#, fuzzy
-#| msgid "Publish the album %s"
 msgid "Publish the album."
-msgstr "Опубликовать альбом %s"
+msgstr "Опубликовать альбом."
 
 #: zp-core/admin-upload.php:285
 msgid "Folder name"
@@ -6513,14 +6415,12 @@ msgstr ""
 
 #: zp-core/classes/class-albumbase.php:124
 #: zp-core/classes/class-albumbase.php:136 zp-core/classes/class-image.php:247
-#, fuzzy
 msgid "Use getName() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте getName()"
 
 #: zp-core/classes/class-albumbase.php:235
-#, fuzzy
 msgid "Use getUrParent() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте getUrParent()"
 
 #: zp-core/classes/class-authority.php:82
 msgid "Primary album edit"
@@ -6533,9 +6433,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/classes/class-authority.php:86
-#, fuzzy
 msgid "Minimum password strength"
-msgstr "Минимальная длина пароля:"
+msgstr "Минимальная длина пароля"
 
 #: zp-core/classes/class-authority.php:89
 #, php-format
@@ -6649,10 +6548,8 @@ msgstr "Zenpage"
 #: zp-core/classes/class-authority.php:597
 #: zp-core/classes/class-authority.php:622
 #: zp-core/classes/class-authority.php:649
-#, fuzzy
-#| msgid "upload rights"
 msgid "Full admin rights"
-msgstr "права на загрузку файлов в альбом"
+msgstr "Полные права админа"
 
 #: zp-core/classes/class-authority.php:582
 #: zp-core/classes/class-authority.php:601
@@ -7246,14 +7143,12 @@ msgid "Most popular images"
 msgstr "Метки отсутствуют"
 
 #: zp-core/classes/class-feed.php:427
-#, fuzzy
 msgid "Top rated albums"
-msgstr "Создать альбом"
+msgstr "Топ-рейтинг альбомов"
 
 #: zp-core/classes/class-feed.php:429
-#, fuzzy
 msgid "Top rated images"
-msgstr "Автоповорот изображений:"
+msgstr "Топ-рейтинг изображений"
 
 #: zp-core/classes/class-feed.php:434
 msgid "Random albums"
@@ -7384,11 +7279,11 @@ msgid ""
 msgstr ""
 
 #: zp-core/classes/class-graphicsoptions.php:92
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The <strong><em>ImageMagick</em></strong> binary version must be <strong>%s</"
 "strong> or later."
-msgstr "Расширение <strong><em>Imagick</em></strong> недоступно."
+msgstr ""
 
 #: zp-core/classes/class-graphicsoptions.php:95
 msgid "The <strong><em>Imagick</em></strong> extension is not available."
@@ -7462,9 +7357,8 @@ msgid "Closed for maintenance"
 msgstr "Закрыто для проведения работ"
 
 #: zp-core/classes/class-maintenancemode.php:220
-#, fuzzy
 msgid "The site is currently undergoing an upgrade"
-msgstr "Избражение помечнено не видимым"
+msgstr ""
 
 #: zp-core/classes/class-maintenancemode.php:235
 #: zp-core/classes/class-maintenancemode.php:240
@@ -7522,9 +7416,8 @@ msgid "Content"
 msgstr "Содержимое"
 
 #: zp-core/classes/class-searchengine.php:109
-#, fuzzy
 msgid "ExtraContent"
-msgstr "Комментарий:"
+msgstr ""
 
 #: zp-core/classes/class-searchengine.php:112
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:486
@@ -7540,14 +7433,12 @@ msgid "no date"
 msgstr ""
 
 #: zp-core/classes/class-themeobject.php:177
-#, fuzzy
 msgid "Use isPublished() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте isPublished()"
 
 #: zp-core/classes/class-themeobject.php:188
-#, fuzzy
 msgid "Use setPublished() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте setPublished()"
 
 #: zp-core/classes/class-userdataexport.php:115
 #, php-format
@@ -7560,9 +7451,8 @@ msgid "Personal user data export for %1$s and %2$s"
 msgstr ""
 
 #: zp-core/classes/class-userdataexport.php:211
-#, fuzzy
 msgid "Export user data"
-msgstr "Метаданные:"
+msgstr "Экспорт данных поль"
 
 #: zp-core/classes/class-userdataexport.php:213
 msgid "Export as HTML"
@@ -7577,9 +7467,8 @@ msgid "Report for"
 msgstr ""
 
 #: zp-core/classes/class-userdataexport.php:229
-#, fuzzy
 msgid "User mail"
-msgstr "новый альбом"
+msgstr "Почта пользователя"
 
 #: zp-core/classes/class-userdataexport.php:230
 #: zp-core/zp-extensions/contact_form.php:166
@@ -7589,10 +7478,8 @@ msgid "Website"
 msgstr "Сайт"
 
 #: zp-core/classes/class-userdataexport.php:243
-#, fuzzy
-#| msgid "Gallery guest user:"
 msgid "Gallery guest user"
-msgstr "Имя пользователя:"
+msgstr "Гостевое имя пользователя"
 
 #: zp-core/classes/class-userdataexport.php:261
 msgid "User account data"
@@ -7604,29 +7491,21 @@ msgid "Security log entries"
 msgstr "Файлы ядра Zenphoto"
 
 #: zp-core/classes/class-userdataexport.php:344
-#, fuzzy
-#| msgid "Album folder:"
 msgid "Album owner"
-msgstr "Имя папки:"
+msgstr "Владелец альбома"
 
 #: zp-core/classes/class-userdataexport.php:348
-#, fuzzy
-#| msgid "Album guest user:"
 msgid "Album guest user"
-msgstr "Гостевой пользователя альбома:"
+msgstr "Гостевой пользователь альбома"
 
 #: zp-core/classes/class-userdataexport.php:352
-#, fuzzy
-#| msgid "Album guest user:"
 msgid "Album last change user"
-msgstr "Гостевой пользователя альбома:"
+msgstr "Гостевой пользователя альбома"
 
 #: zp-core/classes/class-userdataexport.php:363
 #: zp-core/classes/class-userdataexport.php:420
-#, fuzzy
-#| msgid "Unpublished"
 msgid "unpublished"
-msgstr "Неопубликовано"
+msgstr "неопубликовано"
 
 #: zp-core/classes/class-userdataexport.php:366
 #: zp-core/classes/class-userdataexport.php:423
@@ -7642,10 +7521,8 @@ msgid "Image owner"
 msgstr "Порядок изображений"
 
 #: zp-core/classes/class-userdataexport.php:395
-#, fuzzy
-#| msgid "Gallery guest user:"
 msgid "Image guest user"
-msgstr "Имя пользователя:"
+msgstr "Имя пользователя"
 
 #: zp-core/classes/class-userdataexport.php:399
 #, fuzzy
@@ -7668,16 +7545,12 @@ msgid "author"
 msgstr "автор"
 
 #: zp-core/classes/class-userdataexport.php:485
-#, fuzzy
-#| msgid "Database user"
 msgid "last change user"
-msgstr "Пользователь"
+msgstr ""
 
 #: zp-core/classes/class-userdataexport.php:489
-#, fuzzy
-#| msgid "Guest user:"
 msgid "guest user"
-msgstr "Гостевое имя пользователя:"
+msgstr "гостевое имя пользователя"
 
 #: zp-core/deprecated/functions-db.php:28
 msgid "Use the global object $_zp_db and the class method connect() instead."
@@ -7910,16 +7783,16 @@ msgid "unknown"
 msgstr "неизвестна"
 
 #: zp-core/functions/functions-basic.php:2218
-#, fuzzy, php-format
-#| msgid "%1$s (called from %2$s line %3$s) is deprecated"
+#, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
-msgstr "%1$s (вызываемая из %2$s строка %3$s) устарела"
+msgstr "Использование %1$s (вызываемая из %2$s строка %3$s) устарело."
 
 #: zp-core/functions/functions-basic.php:2220
-#, fuzzy, php-format
-#| msgid "%1$s (called from %2$s line %3$s) is deprecated"
+#, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
-msgstr "%1$s (вызываемая из %2$s строка %3$s) устарела"
+msgstr ""
+"Использование %1$s в качестве параметра %2$s (вызывается из %3$s строки "
+"%4$s) устарело."
 
 #: zp-core/functions/functions-basic.php:2222
 #, php-format
@@ -8573,34 +8446,34 @@ msgid "Using %1$ux%2$u %3$s thumbnail image."
 msgstr ""
 
 #: zp-core/functions/functions-image.php:229
-#, fuzzy, php-format
+#, php-format
 msgid "Image %s not renderable (imageGet)."
-msgstr "Порядок изображений"
+msgstr "Изображение %s не может быть отображено (imageGet)."
 
 #: zp-core/functions/functions-image.php:237
-#, fuzzy, php-format
+#, php-format
 msgid "Image %s not rotatable."
-msgstr "Порядок изображений"
+msgstr "Изображение %s не может быть повернуто."
 
 #: zp-core/functions/functions-image.php:285
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Unknown error processing %s! Please report to the developers at <a "
 "href=\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
 msgstr ""
-"Неизвестная ошибка! Пожалуйста свяжитесь с разработчиками на <a "
-"href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
+"Неизвестная ошибка %s! Пожалуйста свяжитесь с разработчиками на <a "
+"href=\"https://www.zenphoto.org/\">www.zenphoto.org</a>"
 
 #: zp-core/functions/functions-image.php:436
 #: zp-core/functions/functions-image.php:477
-#, fuzzy, php-format
+#, php-format
 msgid "Image %s not renderable (resample)."
-msgstr "Порядок изображений"
+msgstr "Изображение %s не может быть отображено (resample)."
 
 #: zp-core/functions/functions-image.php:481
-#, fuzzy, php-format
+#, php-format
 msgid "Image %s not renderable (unsharp)."
-msgstr "Порядок изображений"
+msgstr "Изображение %s не может быть отображено (unsharp)."
 
 #: zp-core/functions/functions-image.php:553
 #, php-format
@@ -8613,24 +8486,23 @@ msgid "cacheImage(%1$s) exception: %2$s"
 msgstr ""
 
 #: zp-core/functions/functions-image.php:612
-#, fuzzy, php-format
+#, php-format
 msgid "Watermark %s not renderable."
-msgstr "Водный знак head_image"
+msgstr ""
 
 #: zp-core/functions/functions-image.php:631
-#, fuzzy, php-format
+#, php-format
 msgid "Watermark %s not resizeable."
-msgstr "Водный знак head_image"
+msgstr ""
 
 #: zp-core/functions/functions-image.php:646
-#, fuzzy, php-format
+#, php-format
 msgid "Image %s not renderable (copycanvas)."
-msgstr "Порядок изображений"
+msgstr "Изображение %s не может быть отображено (copycanvas)."
 
 #: zp-core/functions/functions-reconfigure.php:49
-#, fuzzy
 msgid "ZenphotoCMS config file is missing."
-msgstr "Файлы ядра Zenphoto"
+msgstr "Файл конфигурации ZenphotoCMS отсутствует."
 
 #: zp-core/functions/functions-reconfigure.php:49
 #: zp-core/functions/functions-reconfigure.php:62
@@ -8733,10 +8605,8 @@ msgid "A configuration error occurred."
 msgstr ""
 
 #: zp-core/functions/functions-reconfigure.php:301
-#, fuzzy
-#| msgid "Please return later"
 msgid "Please return later."
-msgstr "Пожалуйста, зайдите позднее"
+msgstr "Пожалуйста, зайдите позднее."
 
 #: zp-core/functions/functions-reconfigure.php:334
 msgid "Setup re-run ignored by admin request."
@@ -8949,9 +8819,8 @@ msgid "Date Created"
 msgstr "Дата создания"
 
 #: zp-core/functions/functions.php:2794
-#, fuzzy
 msgid "Time Created"
-msgstr "создать"
+msgstr "Время создания"
 
 #: zp-core/functions/functions.php:2795
 msgid "Digital Creation Date"
@@ -9300,10 +9169,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/functions/functions.php:3118
-#, fuzzy
-#| msgid "Administrators"
 msgid "Administration"
-msgstr "Администраторы"
+msgstr "Администрация"
 
 #: zp-core/functions/functions.php:3119
 msgid "These are set on the backend to help editing."
@@ -9318,19 +9185,16 @@ msgid "Stores the setting for the nested subalbum list display on the backend."
 msgstr ""
 
 #: zp-core/functions/functions.php:3123
-#, fuzzy
-#| msgid "Executes the caching of the selected image sizes."
 msgid "Stores the image count on the backend images pages."
-msgstr "Создать кэш изображений отмеченных размеров"
+msgstr ""
 
 #: zp-core/functions/functions.php:3124
 msgid "Stores the upload method on the backend."
 msgstr ""
 
 #: zp-core/functions/functions.php:3128
-#, fuzzy
 msgid "Cookie related"
-msgstr "создать"
+msgstr ""
 
 #: zp-core/functions/functions.php:3131
 msgid ""
@@ -9343,10 +9207,8 @@ msgid "Stores the path for cookies."
 msgstr ""
 
 #: zp-core/functions/functions.php:3136
-#, fuzzy
-#| msgid "previous"
 msgid "Various"
-msgstr "назад"
+msgstr "Различные"
 
 #: zp-core/functions/functions.php:3137
 msgid "Various cookies set by plugins, themes or otherwise"
@@ -9384,9 +9246,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/i.php:63
-#, fuzzy
 msgid "Forbidden(1)"
-msgstr "Доступ запрещен"
+msgstr "Доступ запрещен(1)"
 
 #: zp-core/i.php:110
 msgid ""
@@ -9399,9 +9260,9 @@ msgid "The cache directory is not writable! Attempts to chmod did not work."
 msgstr ""
 
 #: zp-core/i.php:129
-#, fuzzy, php-format
+#, php-format
 msgid "Image not found; file %s does not exist."
-msgstr "Изображение не найдено; файл не существует."
+msgstr "Изображение не найдено; файл %s не существует."
 
 #: zp-core/i.php:156
 #, php-format
@@ -9474,7 +9335,7 @@ msgstr "Центральноевропейская (DOS)"
 
 #: zp-core/libs/class-utf8.php:280
 msgid "Turkish (DOS)"
-msgstr "Турецкая (DOS)"
+msgstr "Turkish (DOS)"
 
 #: zp-core/libs/class-utf8.php:281
 msgid "Icelandic (DOS)"
@@ -9518,7 +9379,7 @@ msgstr "Иврит (ISO-Visual)"
 
 #: zp-core/libs/class-utf8.php:291
 msgid "Turkish (ISO)"
-msgstr "Турецкая (ISO)"
+msgstr "Turkish (ISO)"
 
 #: zp-core/libs/class-utf8.php:292
 msgid "Baltic (ISO)"
@@ -9535,10 +9396,8 @@ msgid "Latin 9 (ISO)"
 msgstr ""
 
 #: zp-core/libs/class-utf8.php:295
-#, fuzzy
-#| msgid "Western European (ISO)"
 msgid "South European (ISO)"
-msgstr "Западноевропейская (ISO)"
+msgstr "South European (ISO)"
 
 #: zp-core/libs/class-utf8.php:296
 msgid "Cyrillic (KOI8-R)"
@@ -9558,17 +9417,15 @@ msgstr ""
 
 #: zp-core/libs/class-utf8.php:301
 msgid "Unicode (UTF-7)"
-msgstr "Юникод (UTF-7)"
+msgstr "Unicode (UTF-7)"
 
 #: zp-core/libs/class-utf8.php:302
 msgid "Unicode (UTF-8)"
-msgstr "Юникод (UTF-8)"
+msgstr "Unicode (UTF-8)"
 
 #: zp-core/libs/class-utf8.php:303
-#, fuzzy
-#| msgid "Unicode (UTF-7)"
 msgid "Unicode (UTF-16)"
-msgstr "Юникод (UTF-7)"
+msgstr "Unicode (UTF-16)"
 
 #: zp-core/libs/class-utf8.php:304
 msgid "Central European (Windows)"
@@ -9588,7 +9445,7 @@ msgstr "Греческая (Windows)"
 
 #: zp-core/libs/class-utf8.php:308
 msgid "Turkish (Windows)"
-msgstr "Турецкая (Windows)"
+msgstr "Turkish (Windows)"
 
 #: zp-core/libs/class-utf8.php:309
 msgid "Hebrew (Windows)"
@@ -9939,9 +9796,8 @@ msgid "strict"
 msgstr "строгий"
 
 #: zp-core/setup/index.php:198
-#, fuzzy
 msgid "relaxed"
-msgstr "Формат даты:"
+msgstr ""
 
 #: zp-core/setup/index.php:199
 msgid "loose"
@@ -9976,20 +9832,17 @@ msgid "Post of Database credentials"
 msgstr ""
 
 #: zp-core/setup/index.php:429
-#, fuzzy, php-format
-#| msgid "%1$s %2$s: %3$s"
+#, php-format
 msgid "Zenphoto Setup v%1$s %2$s: %3$s"
-msgstr "%1$s %2$s: %3$s"
+msgstr "Установка Zenphoto v%1$s %2$s: %3$s"
 
 #: zp-core/setup/index.php:432
-#, fuzzy
 msgid "Full environment"
-msgstr "Полное имя:"
+msgstr ""
 
 #: zp-core/setup/index.php:434
-#, fuzzy
 msgid "Primitive environment"
-msgstr "Полное имя:"
+msgstr ""
 
 #: zp-core/setup/index.php:436
 #, php-format
@@ -10005,9 +9858,8 @@ msgid "update"
 msgstr "обновить"
 
 #: zp-core/setup/index.php:470
-#, fuzzy
 msgid "install"
-msgstr "Включить"
+msgstr "установить"
 
 #: zp-core/setup/index.php:494
 msgid "Zenphoto Setup"
@@ -10033,11 +9885,10 @@ msgid "Backup your database before proceeding!"
 msgstr ""
 
 #: zp-core/setup/index.php:541
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
-msgstr "<strong>Замечание:</strong> В этом альбоме отсутствуют изображения."
+msgstr ""
 
 #: zp-core/setup/index.php:567
 #, php-format
@@ -10492,9 +10343,8 @@ msgid "Graphics library"
 msgstr "Графическая библиотека"
 
 #: zp-core/setup/index.php:689
-#, fuzzy
 msgid "Graphics support:"
-msgstr "Счетчик посещений: <strong>%s</strong>"
+msgstr ""
 
 #: zp-core/setup/index.php:692
 msgid "[enabled]"
@@ -10594,9 +10444,9 @@ msgid "File permissions"
 msgstr "Права доступа"
 
 #: zp-core/setup/index.php:752
-#, fuzzy, php-format
+#, php-format
 msgid "Set File permissions to %s."
-msgstr "Имя файла/папки"
+msgstr ""
 
 #: zp-core/setup/index.php:755
 #, php-format
@@ -10609,9 +10459,9 @@ msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>неизвестно</em> (<code>%o</code>)"
 
 #: zp-core/setup/index.php:768
-#, fuzzy, php-format
+#, php-format
 msgid "File Permissions [are %s]"
-msgstr "Имя файла/папки"
+msgstr ""
 
 #: zp-core/setup/index.php:769
 msgid ""
@@ -10636,12 +10486,13 @@ msgid "Character set"
 msgstr "Кодировка"
 
 #: zp-core/setup/index.php:823
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
 "and you create album or image filenames names containing characters with "
 "diacritical marks you may have problems with these objects."
-msgstr "Если набор символов файловой системы вашего сервера не <code>%s</code>"
+msgstr ""
+"Если набор символов файловой системы вашего сервера не <code>%s</code>."
 
 #: zp-core/setup/index.php:825
 #, php-format
@@ -10917,10 +10768,9 @@ msgid " [not using any utf8 collations]"
 msgstr ""
 
 #: zp-core/setup/index.php:1138
-#, fuzzy, php-format
-#| msgid "The following are options specifically implemented by %s."
+#, php-format
 msgid "The following tables are not or not completely UTF-8: %s"
-msgstr "параметры темы %s."
+msgstr ""
 
 #: zp-core/setup/index.php:1139
 #, fuzzy
@@ -10972,9 +10822,8 @@ msgid "Zenphoto files"
 msgstr "Файлы Zenphoto"
 
 #: zp-core/setup/index.php:1188
-#, fuzzy
 msgid "Zenphoto package [missing]"
-msgstr "Файлы ядра Zenphoto"
+msgstr "Файлы ядра Zenphoto [отсутствуют]"
 
 #: zp-core/setup/index.php:1188
 msgid ""
@@ -11055,14 +10904,12 @@ msgid "Delete extra files"
 msgstr "Удалить файлы"
 
 #: zp-core/setup/index.php:1367
-#, fuzzy
 msgid "Zenphoto core file permissions"
-msgstr "Файлы ядра Zenphoto"
+msgstr "Настройки доступа к файлам Zenphoto"
 
 #: zp-core/setup/index.php:1367
-#, fuzzy
 msgid "Zenphoto core file permissions [not correct]"
-msgstr "Файлы ядра Zenphoto"
+msgstr "Настройки доступа к файлам Zenphoto [не верны]"
 
 #: zp-core/setup/index.php:1367
 msgid ""
@@ -11316,16 +11163,12 @@ msgid "Checking the database"
 msgstr "Проверка базы данных"
 
 #: zp-core/setup/index.php:2402
-#, fuzzy
-#| msgid "About to create tables"
 msgid "About to create database tables"
-msgstr "Создаю таблицы"
+msgstr "Создаю таблицы базы данных"
 
 #: zp-core/setup/index.php:2404
-#, fuzzy
-#| msgid "About to update tables"
 msgid "About to update database tables"
-msgstr "Обновляю таблицы"
+msgstr "Обновляю таблицы базы данных"
 
 #: zp-core/setup/index.php:2407
 #, fuzzy
@@ -11418,11 +11261,10 @@ msgstr ""
 "Теперь необходимо определить <a href=\"%1$s\">имя и пароль администратора</a>"
 
 #: zp-core/setup/index.php:2539
-#, fuzzy, php-format
-#| msgid "You can now <a href=\"%1$s\">administer your gallery.</a>"
+#, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr ""
-"Теперь вы можете приступить к <a href=\"%1$s\">управлению Zenphoto.</a>"
+"Теперь вы можете приступить к <a href=\"%1$s\">управлению Zenphoto</a>."
 
 #: zp-core/setup/index.php:2603
 #, php-format
@@ -11464,9 +11306,8 @@ msgid "Go"
 msgstr "Старт"
 
 #: zp-core/setup/index.php:2732
-#, fuzzy
 msgid "database did not connect"
-msgstr "Связь с БД установлена"
+msgstr "связь с БД не установлена"
 
 #: zp-core/setup/index.php:2734
 msgid "If you haven not created the database yet, now would be a good time."
@@ -11529,9 +11370,9 @@ msgid "Setting theme default options"
 msgstr "Применить"
 
 #: zp-core/setup/setup-option-defaults.php:377
-#, fuzzy, php-format
+#, php-format
 msgid "Copyright %1$u: %2$s"
-msgstr "Автор:"
+msgstr "Автор %1$u: %2$s"
 
 #: zp-core/setup/setup-option-defaults.php:416
 msgid ""
@@ -11588,14 +11429,14 @@ msgid "Database server port"
 msgstr "Пользователь"
 
 #: zp-core/setup/setup_permissions_changer.php:19
-#, fuzzy, php-format
+#, php-format
 msgid "Setting permissions (0%o) for %s."
-msgstr "Имя файла/папки"
+msgstr "Установить доступ (0%o) для %s."
 
 #: zp-core/setup/setup_permissions_changer.php:21
-#, fuzzy, php-format
+#, php-format
 msgid "Notice: failed setting permissions (0%o) for %s."
-msgstr "Имя файла/папки"
+msgstr ""
 
 #: zp-core/setup/setup_permissions_changer.php:24
 #, php-format
@@ -11741,15 +11582,12 @@ msgid "My favorites"
 msgstr "Избранное"
 
 #: zp-core/template-functions.php:562
-#, fuzzy
 msgid "Use getParentSiteTitle() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте getParentSiteTitle()"
 
 #: zp-core/template-functions.php:571
-#, fuzzy
-#| msgid "use getPageURL()"
 msgid "Use getParentSiteURL() instead"
-msgstr "используйте getPageURL()"
+msgstr "Используйте getParentSiteURL()"
 
 #: zp-core/template-functions.php:1004 zp-core/template-functions.php:1098
 #: zp-core/zp-extensions/menu_manager.php:762
@@ -11816,12 +11654,11 @@ msgstr "<em>Этот альбом защищён паролем.</em>"
 
 #: zp-core/template-functions.php:1822
 msgid "Use printPasswordProtectedImage() instead"
-msgstr ""
+msgstr "Используйте printPasswordProtectedImage()"
 
 #: zp-core/template-functions.php:2293
-#, fuzzy
 msgid "The image is marked un-published."
-msgstr "Избражение помечнено не видимым"
+msgstr "Изображение помечено как не опубликованное."
 
 #: zp-core/template-functions.php:2441
 msgid "<em>This image is protected.</em>"
@@ -11836,9 +11673,8 @@ msgid "No popular tags"
 msgstr "Метки отсутствуют"
 
 #: zp-core/template-functions.php:3810
-#, fuzzy
 msgid "Use SearchEngine::getSearchURL() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте SearchEngine::getSearchURL()"
 
 #: zp-core/template-functions.php:3849
 msgid ""
@@ -11935,10 +11771,8 @@ msgid "Restore your database content"
 msgstr "Восстановить БД"
 
 #: zp-core/utilities/backup_restore.php:80
-#, fuzzy
-#| msgid "Backup and Restore your Database"
 msgid "Backup and Restore your database content"
-msgstr "Резервное копирование и восстановление базы данных."
+msgstr "Резервное копирование и восстановление базы данных"
 
 #: zp-core/utilities/backup_restore.php:89
 #, php-format
@@ -12147,10 +11981,8 @@ msgid "The database server is UTF-8"
 msgstr ""
 
 #: zp-core/utilities/database_reference.php:148
-#, fuzzy
-#| msgid "The following files could not be deleted."
 msgid "The following tables are not UTF-8."
-msgstr "Эти файлы не могут быть удалены."
+msgstr ""
 
 #: zp-core/utilities/database_reference.php:227
 #: zp-core/utilities/list_locales.php:53
@@ -12284,14 +12116,13 @@ msgid "View"
 msgstr "Просмотреть"
 
 #: zp-core/utilities/gallery_statistics.php:501
-#, fuzzy
 msgid ""
 "This page shows more detailed statistics of your gallery. For album "
 "statistics the bar graph always shows the total number of images in that "
 "album. For image statistics always the album the image is in is shown.<br /"
 ">Un-published items are marked in dark red. Images are marked un-published "
 "if their (direct) album is, too."
-msgstr "Здесь отображается детальная статистика вашей галереи. "
+msgstr ""
 
 #: zp-core/utilities/gallery_statistics.php:506
 #, php-format
@@ -12439,10 +12270,8 @@ msgid "Backend headers"
 msgstr ""
 
 #: zp-core/utilities/http_header_inspector.php:59
-#, fuzzy
-#| msgid "The locale %s is not supported on your server."
 msgid "Fetching headers not possible on your server."
-msgstr "locale %s не поддерживается вашим сервером."
+msgstr "Загрузка заголовков не поддерживается вашим сервером."
 
 #: zp-core/utilities/list_locales.php:12 zp-core/utilities/list_locales.php:23
 #, fuzzy
@@ -12459,10 +12288,8 @@ msgid "PHPInfo"
 msgstr "PHPInfo"
 
 #: zp-core/utilities/list_locales.php:40
-#, fuzzy
-#| msgid "More information on %s"
 msgid "Locale information."
-msgstr "Дополнительные сведения о %s"
+msgstr ""
 
 #: zp-core/utilities/list_locales.php:41
 #, fuzzy
@@ -12486,10 +12313,8 @@ msgid "Supported system locales"
 msgstr "Проверка системы завершена"
 
 #: zp-core/utilities/list_locales.php:87
-#, fuzzy
-#| msgid "The locale %s is not supported on your server."
 msgid "These are the locales that are installed and supported on your server."
-msgstr "locale %s не поддерживается вашим сервером."
+msgstr ""
 
 #: zp-core/utilities/list_locales.php:91
 #, php-format
@@ -12500,10 +12325,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/utilities/maintenance_mode.php:23
-#, fuzzy
-#| msgid "The site is opened"
 msgid "Site is open."
-msgstr "Сайт доступен"
+msgstr "Сайт доступен."
 
 #: zp-core/utilities/maintenance_mode.php:27
 msgid "Site is now closed for upgrade."
@@ -12514,10 +12337,8 @@ msgid "Site is now closed for testing only."
 msgstr ""
 
 #: zp-core/utilities/maintenance_mode.php:42
-#, fuzzy
-#| msgid "Setup files restored."
 msgid "site_upgrade files restored to original."
-msgstr "Установочные файлы активированы."
+msgstr "site_upgrade: установочные файлы восстановлены."
 
 #: zp-core/utilities/maintenance_mode.php:71
 msgid ""
@@ -12530,10 +12351,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/utilities/maintenance_mode.php:79
-#, fuzzy
-#| msgid "Generate sitemaps"
 msgid "Open the site"
-msgstr "Создать sitemap"
+msgstr "Открыть сайт"
 
 #: zp-core/utilities/maintenance_mode.php:81
 msgid "Close the site"
@@ -12576,9 +12395,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/utilities/maintenance_mode.php:100
-#, fuzzy
 msgid "Custom placeholder files"
-msgstr "Пользовательские данные:"
+msgstr ""
 
 #: zp-core/utilities/maintenance_mode.php:101
 msgid ""
@@ -12651,10 +12469,8 @@ msgid "Set all albums to"
 msgstr "Назначить миниатюрой"
 
 #: zp-core/utilities/user-data-export.php:15
-#, fuzzy
-#| msgid "Metadata exported"
 msgid "User data export"
-msgstr "Метаданные экспортированы"
+msgstr "Экспорт данных пользователя"
 
 #: zp-core/utilities/user-data-export.php:19
 msgid "Lists and exports data stored about a specific user and email address."
@@ -12667,10 +12483,9 @@ msgid "You must supply a user name and/or mail address."
 msgstr "Необходимо указать e-mail."
 
 #: zp-core/utilities/user-data-export.php:43
-#, fuzzy, php-format
-#| msgid "No statistic available"
+#, php-format
 msgid "No data available for %1$s"
-msgstr "Статистика недоступна"
+msgstr "Статистика недоступна %1$s"
 
 #: zp-core/utilities/user-data-export.php:45
 #, php-format
@@ -12733,10 +12548,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/utilities/user-data-export.php:80
-#, fuzzy
-#| msgid "a valid email address"
 msgid "User email address"
-msgstr "действительный e-mail адрес"
+msgstr "E-mail адрес пользователя"
 
 #: zp-core/utilities/user-data-export.php:82
 msgid ""
@@ -13069,10 +12882,9 @@ msgid "Last backup"
 msgstr "Последний бэкап"
 
 #: zp-core/zp-extensions/auto_backup.php:75
-#, fuzzy, php-format
+#, php-format
 msgid "Auto Backup last ran %s."
-msgstr ""
-"Дата, когда проводилось последнее автоматическое резервирование базы данных."
+msgstr "Последний запуск автоматического резервного копирования: %s."
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:14
 msgid ""
@@ -13142,9 +12954,8 @@ msgid "The speed in miliseconds the slides advance when clicked.)"
 msgstr ""
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:88
-#, fuzzy
 msgid "Full image link"
-msgstr "Качество полного изображения:"
+msgstr "Ссылка на полноразмерный файл"
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:91
 msgid "If checked the thumbs link to the full image instead of the image page."
@@ -13260,10 +13071,8 @@ msgid "This album does not have any images."
 msgstr "<strong>Замечание:</strong> В этом альбоме отсутствуют изображения."
 
 #: zp-core/zp-extensions/cacheManager.php:506
-#, fuzzy
-#| msgid "Album already exists."
 msgid "All already cached."
-msgstr "Альбом уже существует."
+msgstr "Кеш уже создан."
 
 #: zp-core/zp-extensions/cacheManager.php:646
 #: zp-core/zp-extensions/cacheManager.php:700
@@ -13337,10 +13146,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:34
-#, fuzzy
-#| msgid "The following files could not be deleted."
 msgid "The following database fields are checked:"
-msgstr "Эти файлы не могут быть удалены."
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:36
 msgid "<code>desc</code> (description) of albums and images"
@@ -13504,9 +13311,8 @@ msgid "* Approximate number not counting already existing cache sizes."
 msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:257
-#, fuzzy
 msgid "Image caching in progress."
-msgstr "Изображения"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:259
 msgid ""
@@ -13521,32 +13327,24 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:265
-#, fuzzy
 msgid "Image cache sizes generated: "
-msgstr "Изображения загружены"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:266
-#, fuzzy
 msgid "Image cache sizes failed: "
-msgstr "Изображения"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:268
-#, fuzzy
-#| msgid "Image order saved"
 msgid "Images processed: "
-msgstr "Порядок изображений сохранен"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:269
-#, fuzzy
-#| msgid "Album access"
 msgid "Albums processed: "
-msgstr "Доступ к альбому"
+msgstr "Альбомов обработано: "
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:270
-#, fuzzy
-#| msgid "Process changes"
 msgid "Processing time: "
-msgstr "Сохранить изменения"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:270
 msgid "minutes"
@@ -13554,15 +13352,12 @@ msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:294
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:298
-#, fuzzy
-#| msgid "Caching concurrency:"
 msgid "Caching done!"
-msgstr "Параллельное кэширование:"
+msgstr "Кэширование завершено!"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:312
-#, fuzzy
 msgid "No cache sizes enabled."
-msgstr "Изображения загружены"
+msgstr ""
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:316
 msgid "Cache the images"
@@ -13899,9 +13694,9 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:58
-#, fuzzy, php-format
+#, php-format
 msgid "The existing folder <code>%s</code> could not be removed."
-msgstr "Эти файлы не могут быть удалены."
+msgstr "Существующая папка <code>%s</code> не может быть удалена."
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:70
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:88
@@ -13922,9 +13717,9 @@ msgid "The existing symlink <code>%s</code> could not be removed."
 msgstr ""
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:86
-#, fuzzy, php-format
+#, php-format
 msgid "The existing file <code>%s</code> was replaced."
-msgstr "База данных <code>%s</code> создана"
+msgstr "Существующий файл <code>%s</code> был заменен."
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:91
 #, php-format
@@ -13932,9 +13727,9 @@ msgid "The existing file <code>%s</code> was removed but Link creation failed."
 msgstr ""
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:96
-#, fuzzy, php-format
+#, php-format
 msgid "The existing file <code>%s</code> could not be removed."
-msgstr "Эти файлы не могут быть удалены."
+msgstr "Существующий файл <code>%s</code> не может быть удален."
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:106
 #, php-format
@@ -13947,9 +13742,9 @@ msgid "<code>%s</code> Link creation failed."
 msgstr "<code>%s</code> Ссылку создать не удалось."
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:115
-#, fuzzy, php-format
+#, php-format
 msgid "Successful clone to %s"
-msgstr "Успехи"
+msgstr ""
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:127
 msgid "setup the new install"
@@ -14092,10 +13887,8 @@ msgstr ""
 "Выберите, следует ли отображать защитный код <em>Captcha</em> в комментариях."
 
 #: zp-core/zp-extensions/comment_form.php:131
-#, fuzzy
-#| msgid "Name field"
 msgid "Remember field"
-msgstr "Имя"
+msgstr "Запомнить поле"
 
 #: zp-core/zp-extensions/comment_form.php:134
 msgid "Enable a field so commenters can choose to be remembered via a cookie"
@@ -14567,10 +14360,8 @@ msgid "Private comment (do not publish)"
 msgstr "Частный комментарий (не публиковать)"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:94
-#, fuzzy
-#| msgid "members only"
 msgid "Remember me"
-msgstr "только пользователи"
+msgstr "Запомнить меня"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:111
 msgid "<strong>*</strong>Required fields"
@@ -14750,10 +14541,8 @@ msgid "%1$s commented on %2$s%3$s"
 msgstr "%1$s  комментировал %2$s%3$s"
 
 #: zp-core/zp-extensions/comment_form/functions.php:1093
-#, fuzzy
-#| msgid "Use getCommentDateTime()."
 msgid "Use getComments() instead."
-msgstr "Используйте getCommentDateTime()."
+msgstr "Используйте getComments()"
 
 #: zp-core/zp-extensions/common/fieldExtender.php:305
 #, php-format
@@ -15047,34 +14836,28 @@ msgid "Set %1 to optionally override the subject."
 msgstr ""
 
 #: zp-core/zp-extensions/contact_form.php:710
-#, fuzzy
 msgid "Use contactForm::getField() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте contactForm::getField()"
 
 #: zp-core/zp-extensions/contact_form.php:723
-#, fuzzy
 msgid "Use contactForm::printContactForm() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте contactForm::printContactForm()"
 
 #: zp-core/zp-extensions/contact_form.php:738
-#, fuzzy
 msgid "Use contactForm::isVisibleField() instead."
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте contactForm::isVisibleField()"
 
 #: zp-core/zp-extensions/contact_form.php:752
 msgid "Use contactform::getRequiredFieldMark() instead"
-msgstr ""
+msgstr "Используйте contactform::getRequiredFieldMark()"
 
 #: zp-core/zp-extensions/contact_form.php:765
-#, fuzzy
 msgid "Use contactform::printMacro() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте contactform::printMacro()"
 
 #: zp-core/zp-extensions/contact_form.php:778
-#, fuzzy
-#| msgid "Use getCommentDateTime()."
 msgid "Use contactform::getMacros() instead"
-msgstr "Используйте getCommentDateTime()."
+msgstr "Используйте contactform::getMacros()"
 
 #: zp-core/zp-extensions/contact_form/form.php:14
 #, php-format
@@ -15082,10 +14865,8 @@ msgid "Title%s"
 msgstr ""
 
 #: zp-core/zp-extensions/contact_form/form.php:29
-#, fuzzy
-#| msgid "User name"
 msgid "Username:"
-msgstr "Имя пользователя"
+msgstr "Имя пользователя:"
 
 #: zp-core/zp-extensions/contact_form/form.php:36
 #, php-format
@@ -15172,10 +14953,8 @@ msgid "URL to your cookie policy / privacy info page."
 msgstr ""
 
 #: zp-core/zp-extensions/cookieconsent.php:72
-#, fuzzy
-#| msgid "Message:"
 msgid "Message"
-msgstr "Текст письма:"
+msgstr "Текст письма"
 
 #: zp-core/zp-extensions/cookieconsent.php:76
 msgid "The message shown by the plugin. Leave empty to use the default text."
@@ -15231,10 +15010,8 @@ msgid "Theme"
 msgstr "Тема"
 
 #: zp-core/zp-extensions/cookieconsent.php:102
-#, fuzzy
-#| msgid "Custom"
 msgid "custom"
-msgstr "Пользовательский"
+msgstr "пользовательский"
 
 #: zp-core/zp-extensions/cookieconsent.php:104
 msgid ""
@@ -15252,10 +15029,8 @@ msgid "The layout style of the chosen theme."
 msgstr ""
 
 #: zp-core/zp-extensions/cookieconsent.php:114
-#, fuzzy
-#| msgid "Position:"
 msgid "Position"
-msgstr "Расположение:"
+msgstr "Расположение"
 
 #: zp-core/zp-extensions/cookieconsent.php:119
 #: zp-core/zp-extensions/openstreetmap.php:108
@@ -15266,9 +15041,8 @@ msgstr ""
 #: zp-core/zp-extensions/cookieconsent.php:120
 #: zp-core/zp-extensions/openstreetmap.php:109
 #: zp-core/zp-extensions/openstreetmap.php:161
-#, fuzzy
 msgid "Top right"
-msgstr "Права"
+msgstr "Верхний правый"
 
 #: zp-core/zp-extensions/cookieconsent.php:121
 msgid "Bottom"
@@ -15519,7 +15293,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions.php:107
 msgid "Use deprecationNotice() instead"
-msgstr ""
+msgstr "Используйте deprecationNotice()"
 
 #: zp-core/zp-extensions/deprecated-functions.php:115
 msgid "Check deprecated use"
@@ -15578,46 +15352,43 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:40
 msgid "Use mimeTypes::getType() instead"
-msgstr ""
+msgstr "Используйте mimeTypes::getType()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:57
 msgid "Use AlbumBase::newAlbum() instead"
-msgstr ""
+msgstr "Используйте AlbumBase::newAlbum()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:71
-#, fuzzy
 msgid "Use AlbumBase::isAlbumClass() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте AlbumBase::isAlbumClass()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:87
 msgid "Use $album->getUrParent() instead"
-msgstr ""
+msgstr "Используйте $album->getUrParent()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:105
 msgid "Use Image::newImage() instead"
-msgstr ""
+msgstr "Используйте Image::newImage()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:119
-#, fuzzy
 msgid "Use Image::isImageClass() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте Image::isImageClass()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:133
 msgid "Use SearchEngine::getSearchQuote() instead"
-msgstr ""
+msgstr "Используйте SearchEngine::getSearchQuote()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:148
 msgid "Use Image object method isVideo() instead"
-msgstr ""
+msgstr "Используйте isVideo()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:168
 msgid "Use Image object method isPhoto() instead"
-msgstr ""
+msgstr "Используйте isPhoto()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:190
-#, fuzzy
 msgid "Use renameOption() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте renameOption()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:204
 #, fuzzy
@@ -15635,10 +15406,8 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:265
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:273
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:281
-#, fuzzy
-#| msgid "Use printAlbumLocation()."
 msgid "Use printAlbumStatistisc() instead"
-msgstr "Используйте printAlbumLocation()."
+msgstr "Используйте printAlbumStatistisc()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:289
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:297
@@ -15646,10 +15415,8 @@ msgstr "Используйте printAlbumLocation()."
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:313
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:320
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:328
-#, fuzzy
-#| msgid "Use printImageMetadata()."
 msgid "Use printImageStatistisc() instead"
-msgstr "Используйте printImageMetadata()."
+msgstr "Используйте printImageStatistisc()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:345
 msgid "There is no replacement"
@@ -15697,7 +15464,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:601
 msgid "Use AlbumBase class method getNumAllImages() instead"
-msgstr ""
+msgstr "Используйте AlbumBase class method getNumAllImages()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:612
 msgid "Use themeObject::checkScheduledPublishing() instead"
@@ -15705,28 +15472,27 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:627
 msgid "Use getLanguageSubdomains() instead"
-msgstr ""
+msgstr "Используйте getLanguageSubdomains()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:634
 msgid "Use getLanguageText() instead"
-msgstr ""
+msgstr "Используйте getLanguageText()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:641
 msgid "Use setexifvars() instead"
-msgstr ""
+msgstr "Используйте setexifvars()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:648
 msgid "Use hasPrimaryScripts() instead"
-msgstr ""
+msgstr "Используйте hasPrimaryScripts()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:655
 msgid "Use removeDir() instead"
-msgstr ""
+msgstr "Используйте removeDir()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:662
-#, fuzzy
 msgid "Use tagURLs() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте tagURLs()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:669
 msgid "Use unTagURLs() instead"
@@ -15738,12 +15504,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:684
 msgid "Use pluginDebug() instead"
-msgstr ""
+msgstr "Используйте pluginDebug()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:692
-#, fuzzy
 msgid "Use removeTrailingSlash() instead"
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте removeTrailingSlash()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:708
 msgid "Use the instantiate method instead"
@@ -15804,9 +15569,8 @@ msgid "Full images"
 msgstr "Оригинал изображений"
 
 #: zp-core/zp-extensions/downloadList.php:88
-#, fuzzy
 msgid "Resized images"
-msgstr "Посмотреть изображение:"
+msgstr ""
 
 #: zp-core/zp-extensions/downloadList.php:89
 msgid ""
@@ -15854,14 +15618,12 @@ msgid "Check if users are required to have <em>file</em> rights to download."
 msgstr ""
 
 #: zp-core/zp-extensions/downloadList.php:104
-#, fuzzy
 msgid "credentials"
-msgstr "Скрыть детали"
+msgstr ""
 
 #: zp-core/zp-extensions/downloadList.php:106
-#, fuzzy
 msgid "Provide credentials to password protect downloads"
-msgstr "Альбом защищен паролем."
+msgstr ""
 
 #: zp-core/zp-extensions/downloadList.php:119
 #: zp-core/zp-extensions/downloadList.php:143
@@ -15876,9 +15638,8 @@ msgid "Guest user:"
 msgstr "Гостевое имя пользователя:"
 
 #: zp-core/zp-extensions/downloadList.php:173
-#, fuzzy
 msgid "You must supply a password for the DownloadList user"
-msgstr "Вы должны ввести гостевой пароль для поиска."
+msgstr "Вы должны ввести гостевой пароль для DownloadList"
 
 #: zp-core/zp-extensions/downloadList.php:175
 #, fuzzy
@@ -16190,9 +15951,8 @@ msgid "Support for <em>favorites</em> handling."
 msgstr "Обработчик аудио/видео для Zenphoto."
 
 #: zp-core/zp-extensions/favoritesHandler.php:63
-#, fuzzy
 msgid "The albums and images selected as favorites."
-msgstr "Метки к изображениям для выбранных обьектов добавлены"
+msgstr "Альбомы и изображения, добавленные в Избранное."
 
 #: zp-core/zp-extensions/favoritesHandler.php:65
 msgid "Add favorite"
@@ -16208,9 +15968,8 @@ msgid "Link text"
 msgstr "Текст ссылки"
 
 #: zp-core/zp-extensions/favoritesHandler.php:93
-#, fuzzy
 msgid "The text for the link to the favorites page."
-msgstr "Текст для ссылки на полную версию статьи"
+msgstr "Текст для ссылки на страницу с Избранным."
 
 #: zp-core/zp-extensions/favoritesHandler.php:94
 msgid "Multiple sets"
@@ -16242,9 +16001,8 @@ msgid "The favorites page title text."
 msgstr ""
 
 #: zp-core/zp-extensions/favoritesHandler.php:112
-#, fuzzy
 msgid "The favorites page description text."
-msgstr "Название и описание"
+msgstr "Описание страницы с Избранным."
 
 #: zp-core/zp-extensions/favoritesHandler.php:125
 msgid ""
@@ -16494,7 +16252,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/galleryArticles.php:89
 msgid "Use album folder"
-msgstr ""
+msgstr "Используйте папку альбома"
 
 #: zp-core/zp-extensions/galleryArticles.php:91
 msgid ""
@@ -16780,17 +16538,13 @@ msgstr "Выключить горячие ссылки"
 
 #: zp-core/zp-extensions/html_meta_tags.php:231
 #: zp-core/zp-extensions/sitemap-extended.php:184
-#, fuzzy
-#| msgid "Gallery description:"
 msgid "Gallery pagination"
-msgstr "Описание галереи:"
+msgstr ""
 
 #: zp-core/zp-extensions/html_meta_tags.php:232
 #: zp-core/zp-extensions/sitemap-extended.php:185
-#, fuzzy
-#| msgid "Album Description:"
 msgid "Album pagination"
-msgstr "Описание альбома:"
+msgstr "Разбивка альбома на страницы"
 
 #: zp-core/zp-extensions/html_meta_tags.php:233
 #: zp-core/zp-extensions/sitemap-extended.php:186
@@ -17203,9 +16957,8 @@ msgid "Enable this if you wish the playlist to be numbered."
 msgstr ""
 
 #: zp-core/zp-extensions/jplayer.php:151
-#, fuzzy
 msgid "Playlist playtime"
-msgstr "последние комментарии"
+msgstr "Продолжительность плейлиста"
 
 #: zp-core/zp-extensions/jplayer.php:154
 msgid "Enable if you want to show the playtime of playlist entries."
@@ -17435,14 +17188,12 @@ msgid "Mark installation as “released”."
 msgstr ""
 
 #: zp-core/zp-extensions/markRelease.php:44
-#, fuzzy
 msgid "released"
-msgstr "Формат даты:"
+msgstr ""
 
 #: zp-core/zp-extensions/markRelease.php:56
-#, fuzzy
 msgid "Mark release"
-msgstr "неизвестный релиз"
+msgstr ""
 
 #: zp-core/zp-extensions/markRelease.php:60
 #, php-format
@@ -17536,10 +17287,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/matomo.php:120
-#, fuzzy
-#| msgid "Language:"
 msgid "Language to track"
-msgstr "Язык:"
+msgstr "Язык для отслеживания"
 
 #: zp-core/zp-extensions/matomo.php:126
 msgid ""
@@ -17668,12 +17417,12 @@ msgid "menu"
 msgstr "меню"
 
 #: zp-core/zp-extensions/menu_manager.php:781
-#, fuzzy, php-format
+#, php-format
 msgid "Page %1$u (Current Page)"
 msgid_plural "Page %1$u (Current Page)"
-msgstr[0] "(Текущая страница)"
-msgstr[1] "(Текущая страница)"
-msgstr[2] "(Текущая страница)"
+msgstr[0] "Страница %1$u (Текущая страница)"
+msgstr[1] "Страница %1$u (Текущая страница)"
+msgstr[2] "Страница %1$u (Текущая страница)"
 
 #: zp-core/zp-extensions/menu_manager.php:797
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1012
@@ -17772,14 +17521,12 @@ msgid "Target does not exists in <em>%1$s</em> theme"
 msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
-#, fuzzy
 msgid "The object of this menu is under password protection"
-msgstr "Альбом защищен паролем."
+msgstr "Объект в данном меню защищен паролем"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:101
-#, fuzzy
 msgid "under password protection"
-msgstr "Защищенный паролем"
+msgstr "защищено паролем"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:130
 #: zp-core/zp-extensions/publishContent/publishContent.php:278
@@ -17863,9 +17610,9 @@ msgid "Home page menu item <em>%s</em> added"
 msgstr "<em>%s</em> папка"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery index menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:538
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:556
@@ -17876,25 +17623,25 @@ msgid "You forgot to give your menu item a <strong>link</strong>!"
 msgstr "Вы забыли указать <strong>ссылку</strong> для пункта меню!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:541
-#, fuzzy, php-format
+#, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr "Страница Zenpage <em>%s</em> добавлена"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:550
-#, fuzzy, php-format
+#, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr "Ссылка на новостную страницу Zenpage <em>%s</em> добавлена"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:559
-#, fuzzy, php-format
+#, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr "Ссылка на страницу новостного раздела Zenpage <em>%s</em> добавлена"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:568
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:581
-#, fuzzy, php-format
+#, php-format
 msgid "Custom page menu item <em>%s</em> added"
-msgstr " <em>%s</em> папка"
+msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:578
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:600
@@ -17902,14 +17649,12 @@ msgstr " <em>%s</em> папка"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:736
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:756
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:768
-#, fuzzy
 msgid "You forgot to provide a <strong>function</strong>!"
-msgstr "Ваша база данных <strong>%s</strong>"
+msgstr "Вы забыли указать <strong>function</strong>!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:590
-#, fuzzy
 msgid "Custom label added"
-msgstr "Пользовательские данные:"
+msgstr "Пользовательские данные"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:603
 #, php-format
@@ -17937,9 +17682,8 @@ msgid "Menu item updated!"
 msgstr "Пункт меню обновлен!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:809
-#, fuzzy
 msgid "Custom menu item successfully deleted!"
-msgstr "Комментарии удалены успешно."
+msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:58
 msgid "Menu item deleted failed"
@@ -17970,9 +17714,9 @@ msgid "Name for new menu:"
 msgstr "Название нового меню:"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:120
-#, fuzzy, php-format
+#, php-format
 msgid "Copy_of_%s"
-msgstr "кроп %s"
+msgstr "Копия_%s"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:126
 #, php-format
@@ -18040,9 +17784,8 @@ msgid "No menus exist"
 msgstr "Пока нет комментариев"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:251
-#, fuzzy
 msgid "Menu target is password protected"
-msgstr "Альбом защищен паролем."
+msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:252
 msgid "Show/hide"
@@ -18214,9 +17957,8 @@ msgid "All Zenpage news categories"
 msgstr "Все категории новостей Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
-#, fuzzy
 msgid "Custom theme page"
-msgstr "официального сайта"
+msgstr ""
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
 #, php-format
@@ -18351,14 +18093,12 @@ msgid "Select layout:"
 msgstr "Гостевое имя пользователя поиска:"
 
 #: zp-core/zp-extensions/multiple_layouts.php:246
-#, fuzzy
 msgid "Select album layout:"
-msgstr "Удалить альбом"
+msgstr ""
 
 #: zp-core/zp-extensions/multiple_layouts.php:247
-#, fuzzy
 msgid "Select default album image layout:"
-msgstr "Выберите миниатюру альбома."
+msgstr ""
 
 #: zp-core/zp-extensions/multiple_layouts.php:249
 msgid "Reset individual image layouts"
@@ -18384,14 +18124,14 @@ msgid "from category"
 msgstr "из категории"
 
 #: zp-core/zp-extensions/multiple_layouts.php:365
-#, fuzzy, php-format
+#, php-format
 msgid "No extra <em>%s</em> theme pages available"
-msgstr "Статистика недоступна"
+msgstr ""
 
 #: zp-core/zp-extensions/multiple_layouts.php:451
-#, fuzzy, php-format
+#, php-format
 msgid "Query failure: %s"
-msgstr "восстановление — неудача"
+msgstr "Неудачный запрос %s"
 
 #: zp-core/zp-extensions/openstreetmap.php:18
 msgid ""
@@ -18426,10 +18166,8 @@ msgid "Map zoom"
 msgstr "Смотреть"
 
 #: zp-core/zp-extensions/openstreetmap.php:84
-#, fuzzy
-#| msgid "Default size"
 msgid "Default zoom level."
-msgstr "Размер по умолчанию"
+msgstr "Масштаб по умолчанию."
 
 #: zp-core/zp-extensions/openstreetmap.php:85
 msgid "Map minimum zoom"
@@ -18452,10 +18190,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:95
-#, fuzzy
-#| msgid "Default search"
 msgid "Default layer"
-msgstr "Поиск по умолчанию:"
+msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:100
 msgid ""
@@ -18466,10 +18202,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:103
-#, fuzzy
-#| msgid "Zoom controls"
 msgid "Zoom controls position"
-msgstr "Управления масштабированием размера"
+msgstr "Масштабирование управляет позицией"
 
 #: zp-core/zp-extensions/openstreetmap.php:113
 msgid "Position of the zoom controls"
@@ -18522,10 +18256,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:139
-#, fuzzy
-#| msgid "Gallery description:"
 msgid "Marker popups with description"
-msgstr "Описание галереи:"
+msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:143
 msgid ""
@@ -18664,7 +18396,7 @@ msgstr "GeoportailFrance - ApiKey"
 
 #: zp-core/zp-extensions/openstreetmap.php:1094
 msgid "Use openStreetMap::printOpenStreetMap() instead"
-msgstr ""
+msgstr "Используйте openStreetMap::printOpenStreetMap()"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:10
 msgid ""
@@ -18922,9 +18654,8 @@ msgid "Review images older than: %s"
 msgstr "Обзор изображений, старше чем: %s"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:338
-#, fuzzy
 msgid "Review un-published images."
-msgstr "Отменить публикацию"
+msgstr ""
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:339
 msgid "Review images"
@@ -19140,9 +18871,8 @@ msgid "(%s kb used)"
 msgstr "(%s kb использовано)"
 
 #: zp-core/zp-extensions/quota_manager.php:131
-#, fuzzy
 msgid "Image storage quota:"
-msgstr "Страница изображения"
+msgstr ""
 
 #: zp-core/zp-extensions/quota_manager.php:132
 #, php-format
@@ -19341,16 +19071,12 @@ msgid "Public key"
 msgstr "Публичный ключ"
 
 #: zp-core/zp-extensions/reCaptcha.php:53
-#, fuzzy
-#| msgid ""
-#| "Enter your <em>reCaptcha</em> public key. You can obtain this key from "
-#| "the Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
 msgid ""
 "Enter your <em>reCaptcha v2</em> public key. You can obtain this key from "
 "the Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
 msgstr ""
 "Введите ваш публичный ключ <em>reCaptcha</em>. Ключ можно получить на сайте "
-"Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a>."
+"Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a>"
 
 #: zp-core/zp-extensions/reCaptcha.php:54
 msgid "Private key"
@@ -19363,10 +19089,8 @@ msgid "Enter your <em>reCaptcha v2</em> private key."
 msgstr "Введите ваш приватный ключ <em>reCaptcha</em>."
 
 #: zp-core/zp-extensions/reCaptcha.php:60
-#, fuzzy
-#| msgid "Current Theme"
 msgid "Widget Theme:"
-msgstr "Текущая"
+msgstr "Тема виджета:"
 
 #: zp-core/zp-extensions/reCaptcha.php:65
 #, fuzzy
@@ -19395,10 +19119,8 @@ msgid "Choose the secondary verification method you would like to use."
 msgstr ""
 
 #: zp-core/zp-extensions/reCaptcha.php:80
-#, fuzzy
-#| msgid "Image size:"
 msgid "Widget Size:"
-msgstr "Размер изображения:"
+msgstr "Размер виджета:"
 
 #: zp-core/zp-extensions/reCaptcha.php:85
 msgid "Normal"
@@ -19493,20 +19215,16 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/register_user.php:96
-#, fuzzy
 msgid "User album"
-msgstr "новый альбом"
+msgstr "Альбом пользователя"
 
 #: zp-core/zp-extensions/register_user.php:100
-#, fuzzy
 msgid "If checked, an album will be created and assigned to the user."
 msgstr ""
-"Позволяет создавать чёрно-белые изображения и миниатюры, вместо цветных. "
 
 #: zp-core/zp-extensions/register_user.php:101
-#, fuzzy
 msgid "Email ID"
-msgstr "E-Mail"
+msgstr "E-Mail ID"
 
 #: zp-core/zp-extensions/register_user.php:105
 msgid "If checked, The use’s e-mail address will be used as his User ID."
@@ -19591,9 +19309,8 @@ msgid "Registration confirmation"
 msgstr "Подтверждение регистрации"
 
 #: zp-core/zp-extensions/register_user.php:417
-#, fuzzy
 msgid "Zenphoto Gallery registration"
-msgstr "Панель управления zenphoto"
+msgstr "Регистрация в галереи Zenphoto"
 
 #: zp-core/zp-extensions/register_user.php:417
 #, php-format
@@ -19642,9 +19359,8 @@ msgid "The user ID <em>%s</em> is already in use."
 msgstr "<em>%s</em> уже используется в системе."
 
 #: zp-core/zp-extensions/register_user.php:504
-#, fuzzy
 msgid "Passwords may not be empty."
-msgstr "Ваши пароли не совпадают"
+msgstr "Поле пароля не может быть пустым."
 
 #: zp-core/zp-extensions/register_user.php:520
 msgid "You have not filled in all the fields."
@@ -19682,9 +19398,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/register_user.php:583
-#, fuzzy
 msgid "Data usage confirmation missing."
-msgstr "Требовать подтверждение"
+msgstr ""
 
 #: zp-core/zp-extensions/register_user.php:584
 msgid "You have not agreed to data storage and handling by this website."
@@ -20161,10 +19876,8 @@ msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:96
-#, fuzzy
-#| msgid "with the folder name:"
 msgid "Twitter user name"
-msgstr "Имя папки:"
+msgstr "Имя пользователя Twitter"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:100
 msgid ""
@@ -20173,10 +19886,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:325
-#, fuzzy
-#| msgid "E-mail"
 msgid "e-mail"
-msgstr "E-Mail"
+msgstr "e-mail"
 
 #: zp-core/zp-extensions/search_statistics.php:24
 #, fuzzy
@@ -20243,24 +19954,22 @@ msgid "No search criteria collected."
 msgstr "Введите ваши критерии поиска."
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:136
-#, fuzzy, php-format
+#, php-format
 msgid "Top %u successful search criteria"
-msgstr "Введите ваши критерии поиска."
+msgstr ""
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:138
-#, fuzzy
 msgid "Successful search criteria"
-msgstr "Критерий поиска:"
+msgstr "Успешный критерий поиска"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:170
-#, fuzzy, php-format
+#, php-format
 msgid "Top %u failed search criteria"
-msgstr "Введите ваши критерии поиска."
+msgstr ""
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:172
-#, fuzzy
 msgid "Failed search criteria"
-msgstr "Критерий поиска:"
+msgstr ""
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:203
 #, php-format
@@ -20268,9 +19977,8 @@ msgid "Top %u search terms used"
 msgstr ""
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:205
-#, fuzzy
 msgid "Search terms used"
-msgstr "Имя пользователя поиска:"
+msgstr "Поиск осуществлялся"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:236
 #, php-format
@@ -20283,9 +19991,8 @@ msgid "Search IPs"
 msgstr "Поиск"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:270
-#, fuzzy
 msgid "Change <em>Threshold</em> values"
-msgstr " <em>%s</em> папка"
+msgstr ""
 
 #: zp-core/zp-extensions/security-logger.php:19
 msgid "Logs selected security events."
@@ -20544,9 +20251,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/seo_null.php:10
-#, fuzzy
 msgid "SEO <em>Null</em> filter."
-msgstr "Каталоги <em>locale</em>"
+msgstr ""
 
 #: zp-core/zp-extensions/seo_null.php:11
 msgid ""
@@ -20669,9 +20375,8 @@ msgid "always"
 msgstr "всегда"
 
 #: zp-core/zp-extensions/sitemap-extended.php:84
-#, fuzzy
 msgid "hourly"
-msgstr "Страна"
+msgstr "по часам"
 
 #: zp-core/zp-extensions/sitemap-extended.php:85
 msgid "daily"
@@ -20811,10 +20516,8 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/sitemap-extended.php:190
-#, fuzzy
-#| msgid "new dynamic album"
 msgid "Include dynamic albums"
-msgstr "новый динамический альбом"
+msgstr ""
 
 #: zp-core/zp-extensions/sitemap-extended.php:194
 msgid ""
@@ -21066,9 +20769,8 @@ msgid "Colorbox: Transition"
 msgstr "Colorbox: Переход"
 
 #: zp-core/zp-extensions/slideshow2.php:165
-#, fuzzy
 msgid "elastic"
-msgstr "Icelandic"
+msgstr ""
 
 #: zp-core/zp-extensions/slideshow2.php:168
 msgid "The Colorbox transition slide effect to be used."
@@ -21079,9 +20781,8 @@ msgid "Colorbox: Image type"
 msgstr "Colorbox: Тип изображения"
 
 #: zp-core/zp-extensions/slideshow2.php:175
-#, fuzzy
 msgid "sized image"
-msgstr "Посмотреть изображение:"
+msgstr "уменьшенное изображение"
 
 #: zp-core/zp-extensions/slideshow2.php:176
 msgid ""
@@ -21898,9 +21599,8 @@ msgid ""
 msgstr "Zenphoto не поддерживает формат файлов, которые вы пытаетесь загрузить"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:150
-#, fuzzy
 msgid "The uploader could not write the file."
-msgstr "Не могу создать tar-файл."
+msgstr "Загрузчик не смог записать файл."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:154
 msgid "You have attempted to upload too large a file"
@@ -21944,10 +21644,8 @@ msgid "Disallow"
 msgstr "Отключить пользователя"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:50
-#, fuzzy
-#| msgid "Overview"
 msgid "Overwrite"
-msgstr "закладка \"Общие\""
+msgstr ""
 
 #: zp-core/zp-extensions/uploader_jQuery.php:53
 msgid "Define how the uploader should treat filename duplicates on upload."
@@ -21968,9 +21666,8 @@ msgid "The uploaded file was only partially uploaded"
 msgstr ""
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:36
-#, fuzzy
 msgid "No file was uploaded"
-msgstr "Ваши файлы загружены."
+msgstr "Ваши файлы не были загружены"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:37
 msgid "Missing a temporary folder"
@@ -22023,9 +21720,8 @@ msgid "Image requires a minimum height"
 msgstr ""
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:49
-#, fuzzy
 msgid "File upload aborted"
-msgstr "Ваши файлы загружены."
+msgstr ""
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:50
 #, fuzzy
@@ -22075,10 +21771,8 @@ msgid "Successfully uploaded"
 msgstr "Успехи"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:221
-#, fuzzy
-#| msgid "Edit this file"
 msgid "Edit file"
-msgstr "Редактировать этот файл"
+msgstr "Редактировать файл"
 
 #: zp-core/zp-extensions/user-expiry.php:30
 msgid "Provides management of users based on when they were created."
@@ -22186,20 +21880,19 @@ msgid "Manage user expiry."
 msgstr ""
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
-#, fuzzy, php-format
+#, php-format
 msgid "Expired:%s; "
-msgstr "Срок действия истёк: %s"
+msgstr "Срок действия истёк: %s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:155
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:157
-#, fuzzy, php-format
+#, php-format
 msgid "Expires:%s; "
-msgstr "Истекает: %s"
+msgstr "Истекает: %s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:173
-#, fuzzy
 msgid "User id has been preempted"
-msgstr "Кэш был удален."
+msgstr ""
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:179
 msgid "enable"
@@ -22278,9 +21971,9 @@ msgid "no group affiliation"
 msgstr "не состоит в группах"
 
 #: zp-core/zp-extensions/user_groups.php:197
-#, fuzzy, php-format
+#, php-format
 msgid "User group membership: %s"
-msgstr "Членство в группах"
+msgstr "Членство в группах: %s"
 
 #: zp-core/zp-extensions/user_groups.php:198
 msgid "Templates are highlighted."
@@ -22533,9 +22226,8 @@ msgid "Only content of current user's language is exported"
 msgstr ""
 
 #: zp-core/zp-extensions/xmpMetadata.php:1184
-#, fuzzy
 msgid "Export Metadata"
-msgstr "Метаданные:"
+msgstr "Экспорт мета-данных"
 
 #: zp-core/zp-extensions/zenpage.php:39
 msgid ""
@@ -22780,10 +22472,8 @@ msgstr ""
 "Вы уверены, что хотите удалить этот раздел? ОПЕРАЦИЮ НЕЛЬЗЯ БУДЕТ ОТМЕНИТЬ!"
 
 #: zp-core/zp-extensions/zenpage.php:438
-#, fuzzy
-#| msgid "Edit Category:"
 msgid "Edit Category"
-msgstr "Редактировать раздел:"
+msgstr "Редактировать раздел"
 
 #: zp-core/zp-extensions/zenpage.php:439
 #: zp-core/zp-extensions/zenpage/admin-edit.php:204
@@ -23043,10 +22733,8 @@ msgid "Expiration date:"
 msgstr "Срок действия:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:622
-#, fuzzy
-#| msgid "Expiration date"
 msgid "Expiration date set!"
-msgstr "Срок действия"
+msgstr ""
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:714
 msgid "TitleLink:"
@@ -23179,14 +22867,12 @@ msgid ""
 msgstr ""
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpageroot.php:60
-#, fuzzy
 msgid "Use getName() instead."
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте getName()"
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpageroot.php:71
-#, fuzzy
 msgid "Use setName() instead."
-msgstr "Использовать flv-плейлист"
+msgstr "Используйте setName()."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:13
 msgid "Use the method isPublic() of the ZenpageCategory class instead."
@@ -23197,6 +22883,8 @@ msgid ""
 "Use <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> "
 "for a equivalent check instead."
 msgstr ""
+"Используйте <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }"
+"</code> для эквивалентной проверки."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:28
 msgid "Use Zenpage::processScheduledPublishing(\"expiredate\") instead."
@@ -23217,17 +22905,15 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:147
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:161
-#, fuzzy
 msgid "You must supply a password for the Protected Page user"
-msgstr "Вы должны ввести гостевой пароль для поиска."
+msgstr "Вы должны ввести гостевой пароль для Страницы"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:149
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:163
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:922
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:935
-#, fuzzy
 msgid "Your passwords were empty or did not match"
-msgstr "Ваши пароли %s пустые или не совпадают"
+msgstr "Ваши пароли пустые или не совпадают"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:151
 #, php-format
@@ -23360,10 +23046,8 @@ msgid "%u per page"
 msgstr "%u на странице"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:833
-#, fuzzy
-#| msgid "All categories"
 msgid "All authors"
-msgstr "Все разделы"
+msgstr "Все авторы"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:868
 msgid "Duplicate category title"
@@ -23380,9 +23064,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:920
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:933
-#, fuzzy
 msgid "You must supply a password for the Protected Category user"
-msgstr "Вы должны ввести гостевой пароль для поиска."
+msgstr "Вы должны ввести гостевой пароль для Категории"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:924
 #, php-format
@@ -23656,9 +23339,9 @@ msgid "News from Zenphoto.org"
 msgstr "Новости Zenphoto.org"
 
 #: zp-core/zp-extensions/zenphoto_news.php:100
-#, fuzzy, php-format
+#, php-format
 msgid "Failed to retrieve link <em>%s</em>"
-msgstr " <em>%s</em> папка"
+msgstr ""
 
 #: zp-core/zp-extensions/zenphoto_news.php:107
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
