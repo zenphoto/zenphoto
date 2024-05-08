@@ -2787,12 +2787,12 @@ function setexifvars() {
 			'IPTCImageHeadline' => array('IPTC', 'ImageHeadline', gettext('Image Headline'), false, 256, true, 'string'),
 			'IPTCImageCaption' => array('IPTC', 'ImageCaption', gettext('Image Caption'), false, 2000, true, 'string'),
 			'IPTCImageCaptionWriter' => array('IPTC', 'ImageCaptionWriter', gettext('Image Caption Writer'), false, 32, true, 'string'),
-			'EXIFDateTime' => array('SubIFD', 'DateTime', gettext('Time Taken'), true, 52, true, 'time'),
-			'EXIFDateTimeOriginal' => array('SubIFD', 'DateTimeOriginal', gettext('Original Time Taken'), true, 52, true, 'time'),
-			'EXIFDateTimeDigitized' => array('SubIFD', 'DateTimeDigitized', gettext('Time Digitized'), true, 52, true, 'time'),
-			'IPTCDateCreated' => array('IPTC', 'DateCreated', gettext('Date Created'), false, 8, true, 'time'),
+			'EXIFDateTime' => array('SubIFD', 'DateTime', gettext('Date and Time Taken'), true, 52, true, 'datetime'),
+			'EXIFDateTimeOriginal' => array('SubIFD', 'DateTimeOriginal', gettext('Original Date and Time Taken'), true, 52, true, 'datetime'),
+			'EXIFDateTimeDigitized' => array('SubIFD', 'DateTimeDigitized', gettext('Date and Time Digitized'), true, 52, true, 'datetime'),
+			'IPTCDateCreated' => array('IPTC', 'DateCreated', gettext('Date Created'), false, 8, true, 'date'),
 			'IPTCTimeCreated' => array('IPTC', 'TimeCreated', gettext('Time Created'), false, 11, true, 'time'),
-			'IPTCDigitizeDate' => array('IPTC', 'DigitizeDate', gettext('Digital Creation Date'), false, 8, true, 'time'),
+			'IPTCDigitizeDate' => array('IPTC', 'DigitizeDate', gettext('Digital Creation Date'), false, 8, true, 'date'),
 			'IPTCDigitizeTime' => array('IPTC', 'DigitizeTime', gettext('Digital Creation Time'), false, 11, true, 'time'),
 			'EXIFArtist' => array('IFD0', 'Artist', gettext('Artist'), false, 52, true, 'string'),
 			'IPTCImageCredit' => array('IPTC', 'ImageCredit', gettext('Image Credit'), false, 32, true, 'string'),
@@ -3212,6 +3212,43 @@ function getCookieInfoMacro($macros) {
 	return $macros;
 }
 
+/**
+ * Gets a formatted metadata field value for display
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $type The field type
+ * @param mixed $value The field value
+ * @param string $name The field name (Metadata Key)
+ */
+function getImageMetadataValue($type = '', $value = '', $name = '') {
+	switch ($type) {
+		case 'datetime':
+			return zpFormattedDate(DATETIME_FORMAT, removeDateTimeZone($value));
+		case 'date':
+			return zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
+		case 'time':	
+			return zpFormattedDate(TIME_FORMAT, removeDateTimeZone($value));
+		default:
+			if ($name == 'IPTCImageCaption') {
+				return nl2br(html_decode($value));
+			} else {
+				return html_encode($value);
+			}
+	}
+}
 
+/**
+ * Prints a formatted metadata field value
+ * 
+ * @since 1.6.3
+ * 
+ * @param string $type The field type
+ * @param mixed $value The field value
+ * @param string $name The field name (Metadata Key)
+ */
+function printImageMetadataValue($type, $value = '', $name = '') {
+	echo getImageMetadataValue($type, $value, $name);
+}
 
 setexifvars();

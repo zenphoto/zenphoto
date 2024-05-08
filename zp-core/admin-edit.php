@@ -1451,18 +1451,7 @@ echo "\n</head>";
 																		<?php
 																		foreach ($exif as $field => $value) {
 																			$label = $_zp_exifvars[$field][2];
-																			switch ($_zp_exifvars[$field][6]) {
-																				case 'time':
-																					$value = zpFormattedDate(DATETIME_DISPLAYFORMAT, removeDateTimeZone($value));
-																					break;
-																				default:
-																					if ($field == 'IPTCImageCaption') {
-																						$value = nl2br(html_decode($value));
-																					} else {
-																						$value = html_encode($value);
-																					}
-																					break;
-																			}
+																			$value = getImageMetadataValue($_zp_exifvars[$field][6], $value, $field);
 																			echo '<tr><td class="metadata_tag">' . $label . ': </td> <td>' . $value . '</td></tr>'. "\n";
 																		}
 																		?>
