@@ -688,7 +688,7 @@ class contactForm {
 		$macros['CONTACTFORM'] = array(
 				'class' => 'function',
 				'params' => array('string*'),
-				'value' => 'printContactFormMacro',
+				'value' => 'self::printMacro',
 				'owner' => 'contact_form',
 				'desc' => gettext('Set %1 to optionally override the subject.')
 		);
@@ -743,38 +743,38 @@ function showOrNotShowField($option) {
  * Helper function that checks if the field is a required one. If it returns '*" to be appended to the field name as an indicator.
  * Not for the CAPTCHA field that is always required if shown...
  * 
- * @deprecated 2.0 – Use contactform::getRequiredFieldMark() instead
+ * @deprecated 2.0 – Use contactForm::getRequiredFieldMark() instead
  *
  * @param string $option the option value
  * @return string
  */
 function checkRequiredField($option) {
-	deprecationNotice(gettext('Use contactform::getRequiredFieldMark() instead'));
+	deprecationNotice(gettext('Use contactForm::getRequiredFieldMark() instead'));
 	return contactForm::checkRequiredField($option);
 }
 
 /**
  * Buffers the contact form print out so it can be passed to its content macro
  * 
- * @deprecated 2.0 – Use contactform::printMacro() instead
+ * @deprecated 2.0 – Use contactForm::printMacro() instead
  * 
  * @param type $subject_override
  * @return type
  */
 function printContactFormMacro($subject_override = '') {
-	deprecationNotice(gettext('Use contactform::printMacro() instead'));
+	deprecationNotice(gettext('Use contactForm::printMacro() instead'));
 	return contactForm::printMacro($subject_override);
 }
 
 /**
  * Registers the content macro(s)
  * 
- * @deprecated 2.0 – Use contactform::getMacros() instead
+ * @deprecated 2.0 – Use contactForm::getMacros() instead
  * 
  * @param array $macros Passes through the array of already registered 
  * @return array
  */
 function getContactFormMacros($macros) {
-	deprecationNotice(gettext('Use contactform::getMacros() instead'));
+	deprecationNotice(gettext('Use contactForm::getMacros() instead'));
 	return contactForm::getMacros($macros);
 }
