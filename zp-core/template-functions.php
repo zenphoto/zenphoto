@@ -2734,18 +2734,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 				foreach ($exif as $field => $value) {
 					$label = $_zp_exifvars[$field][2];
 					echo '<tr><td class="label">' . $label . ':</td><td class="value">';
-					switch ($_zp_exifvars[$field][6]) {
-						case 'time':
-							echo zpFormattedDate(DATETIME_DISPLAYFORMAT, removeDateTimeZone($value));
-							break;
-						default:
-							if ($field == 'IPTCImageCaption') {
-								echo nl2br(html_decode($value));
-							} else {
-								echo html_encode($value);
-							}
-							break;
-					}
+					printImageMetadataValue($_zp_exifvars[$field][6], $value, $field);
 					echo "</td></tr>\n";
 				}
 				?>
