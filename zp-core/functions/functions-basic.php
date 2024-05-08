@@ -342,6 +342,7 @@ define('DATE_FORMAT', strval(trim(getOption('date_format'))));
 define('TIME_FORMAT', strval(trim(getOption('time_format'))));
 define('DATETIME_FORMAT', DATE_FORMAT . ' ' . TIME_FORMAT);
 if (getOption('date_format_localized') && in_array(DATE_FORMAT, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
+	deprecationNotice(gettext("The date format options 'locale_preferreddate_time' and 'locale_preferreddate_notime' are deprecated and will be removed in Zenphoto 1.7. Please set individual date and time formats."));
 	define('DATETIME_DISPLAYFORMAT', DATE_FORMAT);
 } else {
 	if ($time_display_disabled) {
