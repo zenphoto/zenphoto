@@ -21738,7 +21738,7 @@ msgstr "новые по дате"
 
 #: zp-core/zp-extensions/sitemap-extended.php:100
 msgid "Field to use for the last modification date of albums."
-msgstr ""
+msgstr "Поле для использования в качестве даты последнего изменения альбомов."
 
 #: zp-core/zp-extensions/sitemap-extended.php:101
 msgid "Image date"
@@ -21747,44 +21747,47 @@ msgstr "Страница изображения"
 #: zp-core/zp-extensions/sitemap-extended.php:109
 msgid "Field to use for the last modification date of images."
 msgstr ""
+"Поле для использования в качестве даты последнего изменения изображений."
 
 #: zp-core/zp-extensions/sitemap-extended.php:110
 msgid "Change frequency - Zenphoto index"
-msgstr ""
+msgstr "Частота изменения - Индекс Zenphoto"
 
 #: zp-core/zp-extensions/sitemap-extended.php:116
 msgid "Change frequency - albums"
-msgstr ""
+msgstr "Частота изменений - альбомы"
 
 #: zp-core/zp-extensions/sitemap-extended.php:122
 msgid "Change frequency - images"
-msgstr ""
+msgstr "Частота изменения - изображения"
 
 #: zp-core/zp-extensions/sitemap-extended.php:128
 msgid "Change frequency - Zenpage pages"
-msgstr ""
+msgstr "Частота изменения - Страницы Zenpage"
 
 #: zp-core/zp-extensions/sitemap-extended.php:134
 msgid "Change frequency - Zenpage news index"
-msgstr ""
+msgstr "Частота изменений - индекс новостей Zenpage"
 
 #: zp-core/zp-extensions/sitemap-extended.php:140
 msgid "Change frequency: Zenpage news articles"
-msgstr ""
+msgstr "Частота изменений - Новостные статьи Zenpage"
 
 #: zp-core/zp-extensions/sitemap-extended.php:146
 msgid "Change frequency - Zenpage news categories"
-msgstr ""
+msgstr "Частота изменения - категорий новостей Zenpage"
 
 #: zp-core/zp-extensions/sitemap-extended.php:152
 msgid "Enable Google image and video extension"
-msgstr ""
+msgstr "Включить расширение для изображений и видео Google"
 
 #: zp-core/zp-extensions/sitemap-extended.php:156
 msgid ""
 "If checked, the XML output file will be formatted using the Google XML image "
 "and video extensions where applicable."
 msgstr ""
+"Если этот флажок установлен, выходной файл XML будет отформатирован с "
+"использованием расширений Google XML image и video, где это применимо."
 
 #: zp-core/zp-extensions/sitemap-extended.php:156
 msgid ""
@@ -21796,6 +21799,15 @@ msgid ""
 "if you really need this setting as the creation may cause extra workload of "
 "your server and result in timeouts"
 msgstr ""
+"<strong>Примечание: </strong> Другие поисковые системы (Yahoo, Bing) могут "
+"не иметь возможности прочитать вашу карту сайта. Также расширения Google "
+"охватывают только форматы изображений и видео. Если вы используете "
+"пользовательские типы файлов, на которые не распространяются стандартные "
+"плагины Zenphoto, или такие типы, как .mp3, .txt и .html, вам, вероятно, не "
+"следует использовать это или изменять плагин. Кроме того, если ваш сайт "
+"действительно огромен, подумайте, действительно ли вам нужна эта настройка, "
+"поскольку создание может вызвать дополнительную нагрузку на ваш сервер и "
+"привести к тайм-аутам"
 
 #: zp-core/zp-extensions/sitemap-extended.php:157
 msgid "Google image and video extension: Link full image "
@@ -21806,6 +21818,9 @@ msgid ""
 "If checked, the original full image is referenced instead of the sized "
 "images in the cache. For image formats only."
 msgstr ""
+"Если этот флажок установлен, ссылка делается на исходное полное изображение, "
+"а не на изображения в кэше определенного размера. Только для форматов "
+"изображений."
 
 #: zp-core/zp-extensions/sitemap-extended.php:162
 msgid "Google - URL to image license"
@@ -21816,16 +21831,21 @@ msgid ""
 "Optional. Used only if the Google extension is checked. Must be an absolute "
 "URL address of the form: http://mydomain.com/license.html"
 msgstr ""
+"Опционально. Используется, только если установлено значение расширения "
+"Google. Должен быть указан абсолютный URL-адрес формы: http://mydomain.com/"
+"license.html"
 
 #: zp-core/zp-extensions/sitemap-extended.php:168
 msgid "Sitemap processing chunk"
-msgstr ""
+msgstr "Фрагментация для создания файлов карты сайта"
 
 #: zp-core/zp-extensions/sitemap-extended.php:172
 msgid ""
 "The number of albums that will be processed for each sitemap file. Lower "
 "this value if you get script timeouts when creating the files."
 msgstr ""
+"Количество альбомов, которые будут обработаны для каждого файла sitemap. "
+"Уменьшите это значение, если при создании файлов возникают тайм-ауты скрипта."
 
 #: zp-core/zp-extensions/sitemap-extended.php:180
 msgid "Include pagination"
@@ -21836,16 +21856,20 @@ msgid ""
 "Enable if you want to include paginated pages. For SEO best practices it is "
 "recommended to have this disabled though."
 msgstr ""
+"Включите, если хотите включать страницы с разбиением на страницы. Однако в "
+"целях оптимизации рекомендуется отключить эту опцию."
 
 #: zp-core/zp-extensions/sitemap-extended.php:190
 msgid "Include dynamic albums"
-msgstr ""
+msgstr "Включить динамические альбомы"
 
 #: zp-core/zp-extensions/sitemap-extended.php:194
 msgid ""
 "Enable if you want to include dynamic albums. Images of dynamic albums are "
 "not included in any case."
 msgstr ""
+"Включите, если хотите включить динамические альбомы. Изображения "
+"динамических альбомов ни в коем случае не включаются."
 
 #: zp-core/zp-extensions/sitemap-extended.php:204
 msgid ""
@@ -21882,6 +21906,9 @@ msgid ""
 "<strong>NOTE:</strong> If your theme uses different custom settings instead "
 "of the backend options the sitemaps may not match your site."
 msgstr ""
+"<strong>ПРИМЕЧАНИЕ: </strong> Если в вашей теме используются другие "
+"пользовательские настройки вместо параметров серверной части, карты сайта "
+"могут не соответствовать вашему сайту."
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:86
 msgid ""
@@ -21951,6 +21978,8 @@ msgid ""
 "Only one slideshow plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
+"Может быть включен только один плагин для слайдшоу. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> уже включен."
 
 #: zp-core/zp-extensions/slideshow2.php:86
 msgid "Slideshow: Mode"
@@ -21958,7 +21987,7 @@ msgstr "Слайдшоу: Режим"
 
 #: zp-core/zp-extensions/slideshow2.php:91
 msgid "jQuery Cycle"
-msgstr ""
+msgstr "jQuery Cycle"
 
 #: zp-core/zp-extensions/slideshow2.php:92
 msgid "jQuery Colorbox"
@@ -21972,6 +22001,13 @@ msgid ""
 "printSlideShowLink() function prints and can neither be called directly nor "
 "used on the slideshow.php theme page."
 msgstr ""
+"<em>jQuery Cycle</em> для слайд-шоу с использованием плагина jQuery "
+"Cycle2<br />\n"
+"<em>jQuery Colorbox</em> для слайд-шоу с использованием Colorbox (требуется "
+"плагин Colorbox).<br />\n"
+"Примечание: режим работы с jQuery colorbox в прикрепленный к ссылке в "
+"printSlideShowLink() печатает функцию и не может быть вызван непосредственно "
+"и использоваться на странице slideshow.php темы."
 
 #: zp-core/zp-extensions/slideshow2.php:94
 msgid "Slideshow: Speed"
@@ -22013,11 +22049,11 @@ msgstr "fadeOut"
 
 #: zp-core/zp-extensions/slideshow2.php:123
 msgid "Scroll horizontal"
-msgstr ""
+msgstr "Прокрутка по горизонтали"
 
 #: zp-core/zp-extensions/slideshow2.php:124
 msgid "Scroll vertical"
-msgstr ""
+msgstr "Прокрутка по вертикали"
 
 #: zp-core/zp-extensions/slideshow2.php:125
 msgid "Flip horizontal"
@@ -22029,11 +22065,11 @@ msgstr "Отразить по вертикали"
 
 #: zp-core/zp-extensions/slideshow2.php:127
 msgid "Tile slide"
-msgstr ""
+msgstr "Слайд с плиткой"
 
 #: zp-core/zp-extensions/slideshow2.php:128
 msgid "Tile blind"
-msgstr ""
+msgstr "Жалюзи из плитки"
 
 #: zp-core/zp-extensions/slideshow2.php:129
 msgid ""
@@ -22041,18 +22077,21 @@ msgid ""
 "browsers that support CSS3 3D transforms. (IE10+, current Chrome, Firefox, "
 "Opera and Safari.)"
 msgstr ""
+"Будет использоваться эффект циклического слайда. Обратные переходы "
+"поддерживаются только в браузерах, поддерживающих 3D-преобразования CSS3. "
+"(IE10+, текущие Chrome, Firefox, Opera и Safari)"
 
 #: zp-core/zp-extensions/slideshow2.php:130
 msgid "Slideshow: Tile Effect - Extra"
-msgstr ""
+msgstr "Слайд-шоу: эффект плитки - Дополнительно"
 
 #: zp-core/zp-extensions/slideshow2.php:135
 msgid "Horziontal"
-msgstr ""
+msgstr "Горизонтальный"
 
 #: zp-core/zp-extensions/slideshow2.php:137
 msgid "If one of the tile effects is selected, this is its orientation."
-msgstr ""
+msgstr "Если выбран один из эффектов плитки, то это будет ее ориентация."
 
 #: zp-core/zp-extensions/slideshow2.php:138
 msgid "Slideshow: Timeout"
@@ -22061,6 +22100,8 @@ msgstr "Слайдшоу: Тайм-аут"
 #: zp-core/zp-extensions/slideshow2.php:142
 msgid "Milliseconds between slide transitions (0 to disable auto advance.)"
 msgstr ""
+"Миллисекунды между переходами слайдов (0, чтобы отключить автоматическое "
+"продвижение)"
 
 #: zp-core/zp-extensions/slideshow2.php:143
 msgid "Slideshow: Description"
@@ -22068,23 +22109,25 @@ msgstr "Слайдшоу: Описание"
 
 #: zp-core/zp-extensions/slideshow2.php:147
 msgid "Check if you want to show the image’s description below the slideshow."
-msgstr ""
+msgstr "Отметьте, если хотите показывать описание изображения под слайд-шоу."
 
 #: zp-core/zp-extensions/slideshow2.php:148
 msgid "Slideshow: Swipe gestures"
-msgstr ""
+msgstr "Слайд-шоу: жесты прокрутки"
 
 #: zp-core/zp-extensions/slideshow2.php:152
 msgid "Check if you want to enable touch screen swipe gestures."
-msgstr ""
+msgstr "Отметьте, если хотите включить жесты прокрутки сенсорного экрана."
 
 #: zp-core/zp-extensions/slideshow2.php:153
 msgid "Slideshow: Pause on hover"
-msgstr ""
+msgstr "Слайд-шоу: пауза при наведении курсора мыши"
 
 #: zp-core/zp-extensions/slideshow2.php:157
 msgid "Check if you want the slidesshow to pause on hover."
 msgstr ""
+"Отметьте, если хотите чтобы слайдшоу приостанавливалось при наведении "
+"курсора мыши."
 
 #: zp-core/zp-extensions/slideshow2.php:162
 msgid "Colorbox: Transition"
@@ -22092,7 +22135,7 @@ msgstr "Colorbox: Переход"
 
 #: zp-core/zp-extensions/slideshow2.php:165
 msgid "elastic"
-msgstr ""
+msgstr "эластичный"
 
 #: zp-core/zp-extensions/slideshow2.php:168
 msgid "The Colorbox transition slide effect to be used."
@@ -22111,6 +22154,9 @@ msgid ""
 "The image type you wish to use for the Colorbox. If you choose “sized image” "
 "the slideshow width value will be used for the longest side of the image."
 msgstr ""
+"Тип изображения, который вы хотите использовать для Colorbox. Если вы "
+"выберете “размер изображения”, значение ширины слайд-шоу будет "
+"использоваться для самой длинной стороны изображения."
 
 #: zp-core/zp-extensions/slideshow2.php:177
 msgid "Colorbox: Image title"
@@ -22126,7 +22172,7 @@ msgstr "Colorbox: Ширина"
 
 #: zp-core/zp-extensions/slideshow2.php:210
 msgid "Invalid slideshow album name!"
-msgstr ""
+msgstr "Неверное название альбома слайдшоу!"
 
 #: zp-core/zp-extensions/slideshow2.php:218
 msgid "This album is password protected!"
@@ -22134,7 +22180,7 @@ msgstr "Этот альбом защищён паролем!"
 
 #: zp-core/zp-extensions/slideshow2.php:297
 msgid "No images for the slideshow!"
-msgstr ""
+msgstr "Для слайд-шоу нет изображений!"
 
 #: zp-core/zp-extensions/slideshow2.php:304
 msgid "pause"
@@ -22147,6 +22193,10 @@ msgid ""
 "the default. Width(%3) and height(%4) may also be specified to override the "
 "defaults."
 msgstr ""
+"укажите название альбома как %1 и (необязательно) <code>true</code> (или "
+"<code>false</code>) как %2, чтобы отобразить (скрыть) элементы управления. "
+"По умолчанию элементы управления скрыты. Ширина (%3) и высота (%4) также "
+"могут быть указаны для переопределения значений по умолчанию."
 
 #: zp-core/zp-extensions/slideshow2.php:609
 #, php-format
@@ -22172,11 +22222,11 @@ msgstr "изображение %1$s из %2$s"
 
 #: zp-core/zp-extensions/slideshow2.php:721
 msgid "Invalid linking to the slideshow page."
-msgstr ""
+msgstr "Недопустимая ссылка на страницу слайдшоу."
 
 #: zp-core/zp-extensions/static_html_cache.php:27
 msgid "Adds static HTML cache functionality to Zenphoto."
-msgstr ""
+msgstr "Добавляет в Zenphoto функциональность статического HTML-кэша."
 
 #: zp-core/zp-extensions/static_html_cache.php:38
 #: zp-core/zp-extensions/static_html_cache.php:46
@@ -22184,20 +22234,24 @@ msgid ""
 "Static HTML Cache folder could not be created. Please try to create it "
 "manually via FTP with chmod 0777."
 msgstr ""
+"Не удалось создать папку статического кэша HTML. Пожалуйста, попробуйте "
+"создать ее вручную через FTP с помощью chmod 0777."
 
 #: zp-core/zp-extensions/static_html_cache.php:81
 msgid "Static HTML cache expire"
-msgstr ""
+msgstr "Срок действия статического HTML-кэша"
 
 #: zp-core/zp-extensions/static_html_cache.php:84
 msgid ""
 "When the cache should expire in seconds. Default is 86400 seconds (1 day  = "
 "24 hrs * 60 min * 60 sec)."
 msgstr ""
+"Когда срок действия кэша истекает в секундах. По умолчанию - 86400 секунд (1 "
+"день = 24 часа * 60 минут * 60 секунд)."
 
 #: zp-core/zp-extensions/static_html_cache.php:85
 msgid "Excluded pages"
-msgstr ""
+msgstr "Страницы-исключения"
 
 #: zp-core/zp-extensions/static_html_cache.php:88
 msgid ""
@@ -22210,6 +22264,17 @@ msgid ""
 "image filename, or album folder name enter <em>pagefilename.php/titlelink or "
 "image filename or album folder</em>. Separate several entries by comma.<br />"
 msgstr ""
+"Список страниц, которые должны быть исключены из генерации кэша. Страницы, "
+"которые могут быть исключены, - это страницы пользовательских тем, включая "
+"страницы Zenpage (они могут быть более конкретными по ссылке на заголовок) и "
+"стандартные файлы тем image.php (необязательно по имени файла изображения), "
+"album.php (необязательно по имени папки альбома) или index.php.<br />\n"
+"Если вы хотите полностью исключить страницу, введите <em>page-filename.php/</"
+"em>. <br />\n"
+"Если вы хотите исключить страницу по определенному заголовку, имени файла "
+"изображения или имени папки альбома, введите <em>имя_файла страницы.php/"
+"titlelink или имени файла изображения или папки альбома</em>. Разделите "
+"несколько записей запятой.<br />"
 
 #: zp-core/zp-extensions/static_html_cache.php:89
 msgid ""
@@ -22217,12 +22282,17 @@ msgid ""
 "must be excluded from cache generation: <em>search.php, contact.php, "
 "register.php</em> and <em>favorites.php</em>"
 msgstr ""
+"<strong>ПРИМЕЧАНИЕ:</strong> Для корректной работы следующие тематические "
+"страницы должны быть исключены из генерации кэша: <em>search.php, contact."
+"php, register.php</em> и <em>favorites.php</em>"
 
 #: zp-core/zp-extensions/static_html_cache.php:95
 msgid ""
 "If a <em>type</em> is checked, the HTML caches for the item will be purged "
 "when the published state of an item of <em>type</em> changes."
 msgstr ""
+"Если установлен флажок <em>тип</em>, HTML-кэши для элемента будут очищены "
+"при изменении опубликованного состояния элемента <em>типа</em>."
 
 #: zp-core/zp-extensions/static_html_cache.php:221
 #, php-format
@@ -22230,6 +22300,9 @@ msgid ""
 "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus "
 "%2$.4f seconds unavoidable Zenphoto overhead."
 msgstr ""
+"Кэшированное содержимое %3$s, обслуживаемое static_html_cache за %1$.4f "
+"секунд плюс %2$.4f секунд, что приводит к неизбежным накладным расходам "
+"Zenphoto."
 
 #: zp-core/zp-extensions/static_html_cache.php:416
 msgid "Purge HTML cache"
@@ -22246,22 +22319,25 @@ msgstr ""
 msgid ""
 "Provides functions to print a tag cloud of all tags from a Zenphoto object."
 msgstr ""
+"Предоставляет функции для отображения облака тегов, состоящего из всех тегов "
+"объекта Zenphoto."
 
 #: zp-core/zp-extensions/tag_suggest.php:11
 msgid "Enables jQuery tag suggestions on the search field."
-msgstr ""
+msgstr "Позволяет предлагать теги jQuery в поле поиска."
 
 #: zp-core/zp-extensions/tag_suggest.php:27
 msgid "Exclude unassigned"
-msgstr ""
+msgstr "Исключить неназначенные"
 
 #: zp-core/zp-extensions/tag_suggest.php:31
 msgid "Check if you wish to exclude tags are not assigned to any item."
 msgstr ""
+"Отметьте, если хотите исключить теги, не присвоенные ни одному элементу."
 
 #: zp-core/zp-extensions/tag_suggest.php:32
 msgid "Check tag access"
-msgstr ""
+msgstr "Проверить доступ к тегу"
 
 #: zp-core/zp-extensions/tag_suggest.php:36
 msgid ""
@@ -22271,6 +22347,12 @@ msgid ""
 "that this may cause overhead on larger sites. The usage of the "
 "static_html_cache plugin is recommended.</p>"
 msgstr ""
+"Отметьте, если хотите исключить теги, которые присвоены элементам (или не "
+"присвоены вообще), которые посетителю запрещено видеть. Это отменяет опцию "
+"исключить неназначенные.\n"
+"<p class=\"notebox\"><strong>Примечание:</strong> Помните, что это может "
+"привести к накладным расходам на более крупных сайтах. Рекомендуется "
+"использовать плагин static_html_cache .</p>"
 
 #: zp-core/zp-extensions/themeSwitcher.php:22
 msgid "Allow a visitor to select the theme of the gallery."
@@ -22285,6 +22367,8 @@ msgstr "Сохранять куки"
 #: zp-core/zp-extensions/themeSwitcher.php:73
 msgid "The time in minutes that the theme switcher cookie lasts."
 msgstr ""
+"Время в минутах, в течение которого сохраняется файл cookie для плагина "
+"themeSwitcher."
 
 #: zp-core/zp-extensions/themeSwitcher.php:74
 msgid "Selector CSS"
@@ -22295,6 +22379,8 @@ msgid ""
 "Change this box if you wish to style the theme switcher selector for your "
 "themes."
 msgstr ""
+"Измените это поле, если вы хотите изменить стиль переключателя тем для своих "
+"тем."
 
 #: zp-core/zp-extensions/themeSwitcher.php:77
 msgid "Selector CSS Loggedin"
@@ -22305,6 +22391,9 @@ msgid ""
 "Change this box if you wish to style the theme switcher selector for your "
 "themes. Only if loggedin to cover the admin toolbox."
 msgstr ""
+"Измените это поле, если вы хотите изменить стиль переключателя тем для своих "
+"тем. Только если вы вошли в систему, чтобы использовать панель инструментов "
+"администратора."
 
 #: zp-core/zp-extensions/themeSwitcher.php:80
 msgid "Private"
@@ -22315,6 +22404,8 @@ msgid ""
 "Only users with <em>Themes</em> rights will see the selector if this is "
 "checked."
 msgstr ""
+"Только пользователи с правами на <em> Темы </em> будут видеть селектор, если "
+"этот флажок установлен."
 
 #: zp-core/zp-extensions/themeSwitcher.php:82
 msgid "Theme list"
@@ -22322,21 +22413,24 @@ msgstr "Список тем"
 
 #: zp-core/zp-extensions/themeSwitcher.php:84
 msgid "These are the themes that may be selected among."
-msgstr ""
+msgstr "Это темы, которые можно выбрать среди других."
 
 #: zp-core/zp-extensions/themeSwitcher.php:164
 msgid ""
 "Themes will not show in this list if selecting them would result in a “not "
 "found” error."
 msgstr ""
+"Темы не будут отображаться в этом списке, если их выбор приведет к ошибке "
+"“не найдено”."
 
 #: zp-core/zp-extensions/tinyURL.php:16
 msgid "Provides short URLs to Zenphoto objects."
-msgstr ""
+msgstr "Предоставляет короткие URL-адреса для объектов Zenphoto."
 
 #: zp-core/zp-extensions/tinyURL.php:18
 msgid "Shortened URLs require the <code>mod_rewrite</code> option be enabled."
 msgstr ""
+"Для сокращения URL-адресов требуется включить опцию <code>mod_rewrite</code>."
 
 #: zp-core/zp-extensions/tinyURL.php:66
 msgid "Use in themes for"
@@ -22388,6 +22482,8 @@ msgstr "Пользовательский"
 #: zp-core/zp-extensions/tinymce4.php:63 zp-core/zp-extensions/tinymce4.php:68
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
+"Предопределенный размер (в пикселях) для изображений нестандартного размера, "
+"добавляемых с помощью tinyZenpage."
 
 #: zp-core/zp-extensions/tinymce4.php:69
 msgid "Custom thumb crop - size"
@@ -22398,6 +22494,8 @@ msgid ""
 "Predefined size (px) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
+"Предопределенный размер (в пикселях) для пользовательских обрезанных "
+"изображений миниатюр, включенных с помощью tinyZenpage."
 
 #: zp-core/zp-extensions/tinymce4.php:74
 msgid "Custom thumb crop - width"
@@ -22408,6 +22506,8 @@ msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
 msgstr ""
+"Предопределенная ширина обрезки (%) для пользовательских миниатюр "
+"изображений, добавленных с помощью tinyZenpage."
 
 #: zp-core/zp-extensions/tinymce4.php:79
 msgid "Custom thumb crop - height"
@@ -22418,6 +22518,8 @@ msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
+"Предустановленная высота обрезки (%) для пользовательских миниатюр "
+"изображений, добавленных с помощью tinyZenpage."
 
 #: zp-core/zp-extensions/tinymce4.php:84
 msgid "Entity encoding"
@@ -22425,11 +22527,11 @@ msgstr "Кодировка IPTC"
 
 #: zp-core/zp-extensions/tinymce4.php:89
 msgid "Raw"
-msgstr ""
+msgstr "Необработанное"
 
 #: zp-core/zp-extensions/tinymce4.php:90
 msgid "Numeric"
-msgstr ""
+msgstr "Числовое"
 
 #: zp-core/zp-extensions/tinymce4.php:91
 msgid "Named"
@@ -22437,7 +22539,7 @@ msgstr "Имя"
 
 #: zp-core/zp-extensions/tinymce4.php:92
 msgid "Named and numeric"
-msgstr ""
+msgstr "Именованное и числовое"
 
 #: zp-core/zp-extensions/tinymce4.php:95
 msgid ""
@@ -22446,6 +22548,11 @@ msgid ""
 "the <a href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entity_encoding\">tinyMCE docs</a>."
 msgstr ""
+"При возникновении проблем со специальными символами и другими символьными "
+"сущностями измените это. Обратите внимание, что это применимо только к "
+"повторному сохранению содержимого. Дополнительная информация в <a "
+"href=\"https://www.tinymce.com/docs/configure/content-filtering/"
+"#entity_encoding\"> документах TinyMCE</a>."
 
 #: zp-core/zp-extensions/tinymce4.php:96
 msgid "Entities"
@@ -22457,6 +22564,9 @@ msgid ""
 "href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entities\">tinyMCE docs</a>."
 msgstr ""
+"Вы можете настроить способ обработки объектов. Дополнительная информация в "
+"<a href=\"https://www.tinymce.com/docs/configure/content-filtering/"
+"#entities\">документах TinyMCE</a>."
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "none()"
@@ -22464,7 +22574,7 @@ msgstr "нет"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "Edge"
-msgstr ""
+msgstr "Edge"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "Chrome"
@@ -22472,37 +22582,37 @@ msgstr "Монохроматическая волна"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "IE"
-msgstr ""
+msgstr "IE"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "Opera"
-msgstr ""
+msgstr "Opera"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "Safari"
-msgstr ""
+msgstr "Safari"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: zp-core/zp-extensions/tinymce4/plugins/lists/plugin.min.js:1
 msgid "OSX"
-msgstr ""
+msgstr "OSX"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
 msgid "It is not possible to a include a custom size %s."
-msgstr ""
+msgstr "Включить пользовательский размер %s невозможно."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:91
 #, php-format
 msgid "It is not possible to a include a full size %s."
-msgstr ""
+msgstr "Включить полный размер %s невозможно."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:102
 msgid "Album:"
@@ -22575,7 +22685,7 @@ msgstr "Заказная миниатюра"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:118
 msgid "Sized image/multimedia item"
-msgstr ""
+msgstr "Размер изображения/мультимедийного элемента"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:120
 msgid "Custom size (un-cropped)"
@@ -22652,6 +22762,11 @@ msgid ""
 "to see an excerpt of the page or article. Un-published pages or articles are "
 "marked with an “*” and protected with an “+”. There are no further options."
 msgstr ""
+"Выберите <em> страницы</em>, <em>статьи </em> или <em>категории </em>, чтобы "
+"отобразить список этих элементов. Нажмите на заголовок, чтобы включить "
+"ссылку. Наведите указатель мыши на ссылку, чтобы увидеть отрывок страницы "
+"или статьи. Неопубликованные страницы или статьи отмечены знаком “*\" и "
+"защищены знаком “+\". Других вариантов нет."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:188
 msgid ""
@@ -22662,6 +22777,14 @@ msgid ""
 "first thumbnail is always the thumbnail of the selected album. It is titled "
 "<em>Albumthumb</em> and appears on every thumbnail page."
 msgstr ""
+"Выберите альбом, из которого вы хотите включить изображения на свою страницу "
+"или в статью. Нажмите на изображение, чтобы включить его. Неопубликованные "
+"альбомы или изображения отмечены знаком “*”. Вы также можете нажать на "
+"значок увеличительного стекла, чтобы просмотреть предварительный просмотр "
+"объекта. Предварительный просмотр откроется в цветном окне с отображением "
+"интерфейса / темы. Первая миниатюра всегда является миниатюрой выбранного "
+"альбома. Оно называется <em>Albumthumb</em> и отображается на каждой "
+"странице с миниатюрами."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:195
 msgid "Options on what to include"
@@ -22681,28 +22804,37 @@ msgid ""
 "NOTE: These selections are not sticky. If you change albums or change pages "
 "in an album you will have to select them again."
 msgstr ""
+"ПРИМЕЧАНИЕ: Эти варианты выбора не привязаны. Если вы меняете альбомы или "
+"страницы в альбоме, вам придется выбирать их снова."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:202
 msgid ""
 "The window does not close automatically so you can include several images "
 "one after another."
 msgstr ""
+"Окно не закрывается автоматически, поэтому вы можете включать несколько "
+"изображений одно за другим."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:207
 msgid "Thumbnail: Size as set in Zenphoto’s options"
-msgstr ""
+msgstr "Миниатюра: размер, указанный в настройках Zenphoto"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:208
 msgid ""
 "Custom thumbnail: size for the longest side / (cropwidth x cropheight). You "
 "can set default sizes for this on the TinyMCE plugin options."
 msgstr ""
+"Пользовательская миниатюра: размер для самой длинной стороны / (ширина "
+"кадрирования x высота кадрирования). Вы можете установить размеры по "
+"умолчанию для этого в настройках плагина TinyMCE."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:210
 msgid ""
 "Sized image/multimedia item: The sized image as set in gallery default "
 "theme’s options."
 msgstr ""
+"Размер изображения / мультимедийного элемента: размер изображения, указанный "
+"в настройках темы галереи по умолчанию."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:212
 msgid ""
@@ -22711,6 +22843,10 @@ msgid ""
 "any suitable multimedia player plugin for the file type is enabled and also "
 "has registered to the macro."
 msgstr ""
+"<strong>Мультимедийный элемент </strong>: Он встраивает содержимое макроса "
+"MEDIAPLAYER в текст. Это создает видео- или аудиоплеер во внешнем "
+"интерфейсе, если любой подходящий плагин мультимедийного проигрывателя для "
+"данного типа файла включен, а также зарегистрирован в макросе."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:214
 msgid "Custom size (un-cropped)."
@@ -22731,12 +22867,18 @@ msgid ""
 "album</em>) will be printed below the image. Only if <em>Image</em> is "
 "chosen as type."
 msgstr ""
+"Если вы дополнительно установите флажок <em>Показывать заголовок</em> или "
+"<em>Показывать описание</em>, заголовок / описание изображения или альбома "
+"(если вы установили флажок <em>ссылка на альбом</em>) будут напечатаны под "
+"изображением. Только если в качестве типа выбрано <em> Изображение</em>."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:222
 msgid ""
 "Select to link to the image page of the image, to the album the image is in, "
 "no link at all or a custom URL."
 msgstr ""
+"Выберите ссылку на страницу изображения изображения, на альбом, в котором "
+"находится изображение, без ссылки вообще или пользовательский URL."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:227
 msgid ""
@@ -22744,14 +22886,19 @@ msgid ""
 "tinyZenpage adds a bit of CSS to the included image if you use text wrap. So "
 "that you see immediate results to the text wrap it attaches some inline CSS:"
 msgstr ""
+"Переносите текст справа или слева от изображения или не переносите его "
+"вовсе. Обратите внимание, что tinyZenpage добавляет немного CSS к "
+"включенному изображению, если вы используете перенос текста. Чтобы вы сразу "
+"увидели результаты, к текстовому переносу добавляется некоторый встроенный "
+"CSS:"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:229
 msgid "left wrap: <em>style=\"float:right\"</em>"
-msgstr ""
+msgstr "перенос влево: <em>style=\"float:right\"</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:230
 msgid "right wrap: <em>style=\"float: left\"</em>"
-msgstr ""
+msgstr "перенос вправо: <em>style=\"float: left\"</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:234
 msgid ""
@@ -22759,30 +22906,42 @@ msgid ""
 "chosen) to be styled with your theme’s css. If you choose left or right "
 "align “_left” or “_right” is appended:"
 msgstr ""
+"Также tinyZenpage прикрепляет к изображению CSS-класс по умолчанию (если "
+"выбрано изображение), который будет стилизован под css вашей темы. При "
+"выборе выравнивания по левому или правому краю добавляется “_left” или "
+"“_right”:"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:237
 msgid ""
 "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
 "<em>zenpage_thumb_right</em>"
 msgstr ""
+"Миниатюра по умолчанию: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
+"<em>zenpage_thumb_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:238
 msgid ""
 "Custom thumbnail: <em>zenpage_customthumb</em> or "
 "<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 msgstr ""
+"Пользовательская миниатюра: <em>zenpage_customthumb</em> или "
+"<em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:239
 msgid ""
 "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
 "<em>zenpage_sizedimage_right</em>"
 msgstr ""
+"Размер изображения: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</"
+"em>/<em>zenpage_sizedimage_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:240
 msgid ""
 "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
 "<em>zenpage_customimage_right</em>"
 msgstr ""
+"Пользовательское изображение: <em>zenpage_customimage</em>/"
+"<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:241
 msgid ""
@@ -22793,16 +22952,23 @@ msgid ""
 "wrapping the title respectively <em>zenpage_desc</em> wrapping the "
 "description."
 msgstr ""
+"Если вы дополнительно установили флажок <em>Показывать заголовок</em> или "
+"<em>Показывать описание</em> для изображения или альбома, div с классом "
+"<em>zenpage_wrapper</em> будет обернут вокруг изображения и ссылки. Внутри, "
+"после изображения и ссылки, div с классом <em>zenpage_title</em> перенос "
+"заголовка соответственно <em>zenpage_desc</em> перенос описания."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:244
 msgid ""
 "Additionally a default CSS class is attached to the link itself depending on "
 "the link option set:"
 msgstr ""
+"Кроме того, к самой ссылке прикреплен CSS-класс по умолчанию, в зависимости "
+"от установленного параметра ссылки:"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:247
 msgid "Image link: <em>zenpage_imagelink</em>"
-msgstr ""
+msgstr "Ссылка на изображение: <em>zenpage_imagelink</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:248
 msgid ""
@@ -22810,6 +22976,9 @@ msgid ""
 "<em>rel='colorbox'</em> is attached so you can move through all images on a "
 "page using Colorbox or similar *box scripts."
 msgstr ""
+"Ссылка на полное изображение: <em>zenpage_fullimagelink</em>. Дополнительно "
+"<em>rel='colorbox'</em> прикреплен, чтобы вы могли перемещаться по всем "
+"изображениям на странице, используя Colorbox или аналогичные скрипты * box."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:249
 msgid "Album link: <em>zenpage_albumlink</em>"
@@ -22817,13 +22986,15 @@ msgstr "Ссылка на альбом: <em>zenpage_albumlink</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:250
 msgid "Custom link: <em>zenpage_customlink</em>"
-msgstr ""
+msgstr "Пользовательская ссылка: <em>zenpage_customlink</em>"
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:253
 msgid ""
 "If you would like to do some direct styling you can also use TinyMCE’s image "
 "button or source code editor."
 msgstr ""
+"Если вы хотите создать какой-либо применяющийся напрямую стиль, вы также "
+"можете использовать кнопку изображения в TinyMCE или редактор исходного кода."
 
 #: zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
@@ -22857,7 +23028,7 @@ msgstr "изображения (%s)"
 
 #: zp-core/zp-extensions/uploader_http/upload_form.php:58
 msgid "Does not reload!"
-msgstr ""
+msgstr "Не перезагружается!"
 
 #: zp-core/zp-extensions/uploader_http/upload_form.php:58
 msgid "Add more upload boxes"
@@ -22873,12 +23044,17 @@ msgid ""
 "permissions problem. Try setting the permissions on the “albums” and “cache” "
 "folders to be world-writable using a shell:"
 msgstr ""
+"Не удалось создать альбом в папке “альбомы”. Обычно это проблема с "
+"разрешениями. Попробуйте установить разрешения для папок “альбомы” и “кэш”, "
+"чтобы они были доступны для записи по всему миру, используя оболочку:"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:136
 msgid ""
 "You have most likely exceeded the upload limits. Try uploading fewer files "
 "at a time, or use a ZIP file."
 msgstr ""
+"Скорее всего, вы превысили лимиты загрузки. Попробуйте загружать меньше "
+"файлов за раз или используйте ZIP-файл."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:138
 msgid "You must upload at least one file."
@@ -22893,6 +23069,7 @@ msgid ""
 "You have attempted to upload to an album for which you do not have upload "
 "rights"
 msgstr ""
+"Вы попытались загрузить в альбом, для которого у вас нет прав на загрузку"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:147
 msgid ""
@@ -22906,11 +23083,11 @@ msgstr "Загрузчик не смог записать файл."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:154
 msgid "You have attempted to upload too large a file"
-msgstr ""
+msgstr "Вы пытались загрузить файл слишком большого размера"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:157
 msgid "You have exceeded your upload quota"
-msgstr ""
+msgstr "Вы превысили свою квоту загрузки"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:160
 #, php-format
@@ -22920,6 +23097,11 @@ msgid ""
 "file uploads are enabled, and upload_max_filesize is set high enough.) If "
 "you think this is a bug, file a bug report. Thanks!"
 msgstr ""
+"При отправке формы было сообщено об ошибке %s. Попробуйте еще раз. Если это "
+"происходит постоянно, проверьте свой сервер и конфигурацию PHP (убедитесь, "
+"что загрузка файлов включена, а параметр upload_max_filesize установлен на "
+"достаточно высоком уровне). Если вы считаете, что это ошибка, отправьте "
+"отчет об ошибке. Спасибо!"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:15
 msgid "<em>jQuery</em> image upload handler."
@@ -22935,7 +23117,7 @@ msgstr "Копировать меню"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:48
 msgid "Rename (append time string)"
-msgstr ""
+msgstr "Переименовать (добавить временную строку)"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:49
 msgid "Disallow"
@@ -22943,25 +23125,27 @@ msgstr "Отключить пользователя"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:50
 msgid "Overwrite"
-msgstr ""
+msgstr "Перезаписать"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:53
 msgid "Define how the uploader should treat filename duplicates on upload."
 msgstr ""
+"Определите, как загрузчик должен обрабатывать дубликаты имен файлов при "
+"загрузке."
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:33
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
-msgstr ""
+msgstr "Загружаемый файл превышает лимит upload_max_filesize в php.ini"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:34
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form"
-msgstr ""
+msgstr "Загруженный файл превышает лимит MAX_FILE_SIZE, указанную в HTML-форме"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:35
 msgid "The uploaded file was only partially uploaded"
-msgstr ""
+msgstr "Загружаемый файл был загружен только частично"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:36
 msgid "No file was uploaded"
@@ -22977,11 +23161,11 @@ msgstr "Невозможно записать файл на диск"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:39
 msgid "A PHP extension stopped the file upload"
-msgstr ""
+msgstr "Расширение PHP остановило загрузку файла"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:40
 msgid "The uploaded file exceeds the post_max_size directive in php.ini"
-msgstr ""
+msgstr "Загружаемый файл превышает лимит post_max_size в php.ini"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:41
 msgid "File is too big"
@@ -23001,23 +23185,23 @@ msgstr "Превышено максимальное количество фай�
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:45
 msgid "Image exceeds maximum width"
-msgstr ""
+msgstr "Изображение превышает максимальную ширину"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:46
 msgid "Image requires a minimum width"
-msgstr ""
+msgstr "Для изображения требуется минимальная ширина"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:47
 msgid "Image exceeds maximum height"
-msgstr ""
+msgstr "Изображение превышает максимальную высоту"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:48
 msgid "Image requires a minimum height"
-msgstr ""
+msgstr "Для изображения требуется минимальная высота"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:49
 msgid "File upload aborted"
-msgstr ""
+msgstr "Загрузка файла прервана"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:50
 msgid "Failed to resize image"
@@ -23025,19 +23209,21 @@ msgstr "Оригиналы"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:51
 msgid "File not uploaded. Duplicates are not allowed"
-msgstr ""
+msgstr "Файл не загружен. Дубликаты не допускаются"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:125
 msgid "Duplicate filenames will be renamed with an appended time string."
 msgstr ""
+"Повторяющиеся имена файлов будут переименованы с добавлением временной "
+"строки."
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:128
 msgid "NOTE: Duplicate filenames are not allowed to upload."
-msgstr ""
+msgstr "ПРИМЕЧАНИЕ: Повторяющиеся имена файлов не допускаются к загрузке."
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:131
 msgid "CAUTION: Duplicate filenames will overwrite existing files."
-msgstr ""
+msgstr "ВНИМАНИЕ: Повторяющиеся имена файлов перезапишут существующие файлы."
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:138
 msgid "Add files..."
@@ -23053,11 +23239,11 @@ msgstr "Отменить загрузку"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:143
 msgid "Drag files to upload here"
-msgstr ""
+msgstr "Перетащите файлы для загрузки сюда"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:216
 msgid "Done"
-msgstr ""
+msgstr "Выполнено"
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:216
 msgid "Successfully uploaded"
@@ -23073,13 +23259,16 @@ msgstr "Управление пользователями на основани�
 
 #: zp-core/zp-extensions/user-expiry.php:69
 msgid "Days until expiration"
-msgstr ""
+msgstr "Дни до истечения срока действия"
 
 #: zp-core/zp-extensions/user-expiry.php:73
 msgid ""
 "The number of days until a user is flagged as expired. Set to zero for no "
 "expiry."
 msgstr ""
+"Количество дней до того, как аккаунт пользователь будет помечен как "
+"\"аккаунт с истекшим сроком действия\". Установите нулевое значение для "
+"значения без ограничения срока действия аккаунтов."
 
 #: zp-core/zp-extensions/user-expiry.php:74
 msgid "Warning interval"
@@ -23090,6 +23279,9 @@ msgid ""
 "The period in days before the expiry during which a warning message will be "
 "sent to the user. (If set to zero, no warning occurs.)"
 msgstr ""
+"Период в днях до истечения срока действия, в течение которого пользователю "
+"будет отправлено предупреждающее сообщение. (Если установлено нулевое "
+"значение, предупреждение не появляется.)"
 
 #: zp-core/zp-extensions/user-expiry.php:79
 msgid "Auto renew"
@@ -23100,6 +23292,8 @@ msgid ""
 "Automatically renew the subscription if the user visits during the warning "
 "period."
 msgstr ""
+"Автоматически продлевает подписку, если пользователь посещает сайт в течение "
+"периода предупреждения."
 
 #: zp-core/zp-extensions/user-expiry.php:84
 msgid "Password cycle"
@@ -23110,6 +23304,8 @@ msgid ""
 "Number of days between required password changes. Set to zero for no "
 "required changes."
 msgstr ""
+"Количество дней между необходимыми изменениями пароля. Установите нулевое "
+"значение для отсутствия необходимых изменений."
 
 #: zp-core/zp-extensions/user-expiry.php:112
 msgid "expiry"
@@ -23119,6 +23315,8 @@ msgstr "истекает"
 #, php-format
 msgid "Your user id for the Zenphoto site %s will expire on %s."
 msgstr ""
+"Срок действия вашего идентификатора пользователя для сайта Zenphoto %s "
+"истекает в %s."
 
 #: zp-core/zp-extensions/user-expiry.php:164
 msgid "User id expiration"
@@ -23128,6 +23326,7 @@ msgstr "Регистрация нового пользователя"
 msgid ""
 "You have used that password recently. Please choose a different password."
 msgstr ""
+"Вы недавно использовали этот пароль. Пожалуйста, выберите другой пароль."
 
 #: zp-core/zp-extensions/user-expiry.php:291
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:155
@@ -23137,7 +23336,7 @@ msgstr "Истекает: %s"
 #: zp-core/zp-extensions/user-expiry.php:293
 #, php-format
 msgid "Your subscription expires on %s"
-msgstr ""
+msgstr "Срок действия вашей подписки истекает %s"
 
 #: zp-core/zp-extensions/user-expiry.php:307
 msgid "You must change your password."
@@ -23146,6 +23345,7 @@ msgstr "Необходимо изменить пароль."
 #: zp-core/zp-extensions/user-expiry.php:310
 msgid "You have users whose credentials have expired."
 msgstr ""
+"У вас есть пользователи, у которых истек срок действия учетных записей."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:70
 #, php-format
@@ -23153,6 +23353,8 @@ msgid ""
 "Your %1$s credentials need to be renewed. Visit %2$s to renew your logon "
 "credentials."
 msgstr ""
+"Ваши учетные данные %1$s необходимо обновить. Посетите %2$s, чтобы обновить "
+"учетные данные для входа."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:71
 #, php-format
@@ -23165,7 +23367,7 @@ msgstr "Обработанный"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:116
 msgid "Manage user expiry."
-msgstr ""
+msgstr "Управление сроком действия аккаунтов пользователей."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
 #, php-format
@@ -23180,7 +23382,7 @@ msgstr "Истекает: %s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:173
 msgid "User id has been preempted"
-msgstr ""
+msgstr "ID пользователя был удален"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:179
 msgid "enable"
@@ -23218,11 +23420,11 @@ msgstr "Возобновить"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:216
 msgid "Email renewal link"
-msgstr ""
+msgstr "Ссылка для обновления электронной почты"
 
 #: zp-core/zp-extensions/userAddressFields.php:15
 msgid "Adds user address fields"
-msgstr ""
+msgstr "Добавляет поля адреса пользователя"
 
 #: zp-core/zp-extensions/user_groups.php:16
 msgid "Provides rudimentary user groups."
@@ -23249,6 +23451,8 @@ msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
 msgstr ""
+"Применение шаблона объединит шаблон с текущими <em>правами</em> и <em> "
+"объектами </em>."
 
 #: zp-core/zp-extensions/user_groups.php:193
 msgid "no group affiliation"
@@ -23261,7 +23465,7 @@ msgstr "Членство в группах: %s"
 
 #: zp-core/zp-extensions/user_groups.php:198
 msgid "Templates are highlighted."
-msgstr ""
+msgstr "Шаблоны выделены."
 
 #: zp-core/zp-extensions/user_groups.php:198
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:460
@@ -23269,6 +23473,8 @@ msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
 "<em>managed objects</em> are determined by the group!"
 msgstr ""
+"<strong>Примечание:</strong> Когда группе назначаются <em>права</em> и <em> "
+"управляемые объекты</em> определяются группой!"
 
 #: zp-core/zp-extensions/user_groups.php:212
 msgid "assignments"
@@ -23329,12 +23535,12 @@ msgstr "Пользователь %s в нескольких группах."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:424
 msgid "Group names may not contain “?”, “&”, or quotation marks."
-msgstr ""
+msgstr "Названия групп не должны содержать\"?”, “&” или кавычек."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:429
 #, php-format
 msgid "The group “%s” already exists."
-msgstr ""
+msgstr "Группа “%s” уже существует."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:449
 msgid "Assign users to groups."
@@ -23343,6 +23549,8 @@ msgstr "Здесь можно распределить пользователе�
 #: zp-core/zp-extensions/user_login-out.php:11
 msgid "Provides a means for users to login/out from your theme pages."
 msgstr ""
+"Предоставляет пользователям возможность входить в систему или выходить из "
+"системы на страницах вашей темы."
 
 #: zp-core/zp-extensions/user_login-out.php:36
 msgid "Login form"
@@ -23361,6 +23569,8 @@ msgid ""
 "If the user is not logged-in display an <em>in-line</em> logon form or a "
 "link to a modal <em>Colorbox</em> form."
 msgstr ""
+"Если пользователь не вошел в систему, отобразите <em>встроенную форму</em> "
+"входа в систему или ссылку на модальную форму <em>Colorbox</em>."
 
 #: zp-core/zp-extensions/user_mailing_list.php:13
 msgid ""
@@ -23409,6 +23619,8 @@ msgid ""
 "<strong>Note: </strong>No <em>sendmail</em> filter is registered. You must "
 "activate and configure a mailer plugin."
 msgstr ""
+"<strong>Примечание: </strong> Фильтр <em> sendmail</em> не зарегистрирован. "
+"Необходимо активировать и настроить плагин почтовой программы."
 
 #: zp-core/zp-extensions/user_mailing_list.php:115
 msgid "Mail sent."
@@ -23483,11 +23695,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/xmpMetadata.php:102
 msgid "Export multilingual content"
-msgstr ""
+msgstr "Экспорт мульти-язычного контента"
 
 #: zp-core/zp-extensions/xmpMetadata.php:105
 msgid "Check this to export the metadata in all activated languages."
 msgstr ""
+"Установите этот флажок, чтобы экспортировать метаданные на всех "
+"активированных языках."
 
 #: zp-core/zp-extensions/xmpMetadata.php:761
 msgid "Bulb"
@@ -23499,11 +23713,11 @@ msgstr "Метаданные экспортированы"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1176
 msgid "Export metadata info to XMP sidecar."
-msgstr ""
+msgstr "Экспортируйте метаданные в XMP sidecar-файл."
 
 #: zp-core/zp-extensions/xmpMetadata.php:1178
 msgid "Only content of current user's language is exported"
-msgstr ""
+msgstr "Экспортируется только содержимое на языке текущего пользователя"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1184
 msgid "Export Metadata"
@@ -23556,6 +23770,15 @@ msgid ""
 "direct links. <p class=\"notebox\"><strong>NOTE:</strong> This does not "
 "delete content and is not related to management rights.</p>"
 msgstr ""
+"Это включает или отключает вкладки администратора для страниц и / или "
+"новостных статей. Чтобы скрыть содержимое новостей и / или страниц во "
+"внешнем интерфейсе, темы также должны быть настроены на использование <br>\n"
+"<code>if(ZP_NEWS_ENABLED) { … }</code> или <br>\n"
+"<code>if(ZP_PAGES_ENABLED) { … }</code> в соответствующих местах. То же "
+"самое, если отключенные материалы должны быть заблокированы, поскольку в "
+"противном случае к ним все равно можно получить доступ по прямым ссылкам.\n"
+"<p class=\"notebox\"><strong>ПРИМЕЧАНИЕ:</strong> Это не удаляет содержимое "
+"и не связано с правами управления.</p>"
 
 #: zp-core/zp-extensions/zenpage.php:177
 msgid "Articles per page (theme)"
@@ -23611,65 +23834,72 @@ msgstr "Текст для ссылки на полную версию стать
 
 #: zp-core/zp-extensions/zenpage.php:199
 msgid "New titlelink with date: Item types"
-msgstr ""
+msgstr "Новая ссылка на заголовок с датой: типы объектов"
 
 #: zp-core/zp-extensions/zenpage.php:208
 msgid ""
 "Select the item type where the date always should be appended or prepended "
 "to the titlelink of newly created items."
 msgstr ""
+"Выберите тип элемента, при котором дата всегда должна добавляться к ссылке "
+"на заголовок вновь созданных элементов."
 
 #: zp-core/zp-extensions/zenpage.php:208
 msgid ""
 "A date will automatically be added if you are creating an item with an "
 "already used titlelink."
 msgstr ""
+"Дата будет добавлена автоматически, если вы создаете статью с уже "
+"используемой ссылкой на заголовок."
 
 #: zp-core/zp-extensions/zenpage.php:209
 msgid "New titlelink with date: Date location"
-msgstr ""
+msgstr "Новая ссылка на заголовок с датой: Местоположение даты"
 
 #: zp-core/zp-extensions/zenpage.php:213
 msgid "Before"
-msgstr ""
+msgstr "До"
 
 #: zp-core/zp-extensions/zenpage.php:214
 msgid "After"
-msgstr ""
+msgstr "После"
 
 #: zp-core/zp-extensions/zenpage.php:217
 msgid "Choose where to add the date to the titlelink of newly created items."
 msgstr ""
+"Выберите, куда добавлять дату в ссылку на заголовок вновь созданных объектов."
 
 #: zp-core/zp-extensions/zenpage.php:218
 msgid "New titlelink with date: Date format"
-msgstr ""
+msgstr "Новая ссылка на заголовок с датой: формат даты"
 
 #: zp-core/zp-extensions/zenpage.php:222
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 #: zp-core/zp-extensions/zenpage.php:223
 msgid "Ymd"
-msgstr ""
+msgstr "Ymd"
 
 #: zp-core/zp-extensions/zenpage.php:224
 msgid "Y-m-d_H-i-s"
-msgstr ""
+msgstr "Y-m-d_H-i-s"
 
 #: zp-core/zp-extensions/zenpage.php:225
 msgid "YmdHis"
-msgstr ""
+msgstr "YmdHis"
 
 #: zp-core/zp-extensions/zenpage.php:226
 msgid "Unix timestamp"
-msgstr ""
+msgstr "Временная метка Unix"
 
 #: zp-core/zp-extensions/zenpage.php:229
 msgid ""
 "Choose which date format to append or prepend to the titlelink of newly "
 "created items."
 msgstr ""
+"Выберите формат даты для добавления к ссылке на заголовок вновь созданных "
+"элементов."
 
 #: zp-core/zp-extensions/zenpage.php:251
 msgid ""
@@ -23685,7 +23915,7 @@ msgstr "Включить плагин Zenpage"
 
 #: zp-core/zp-extensions/zenpage.php:342
 msgid "Use the checkForGuest() template function instead"
-msgstr ""
+msgstr "Вместо этого используйте функцию шаблона checkForGuest()"
 
 #: zp-core/zp-extensions/zenpage.php:406
 #: zp-core/zp-extensions/zenpage/admin-edit.php:131
@@ -23789,6 +24019,9 @@ msgid ""
 "The sort position of the indicated items cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
 msgstr ""
+"Положение сортировки указанных объектов не может быть зафиксировано из-за "
+"слишком глубокого размещения. Пожалуйста, переместите их на более высокий "
+"уровень и сохраните ваш порядок."
 
 #: zp-core/zp-extensions/zenpage/admin-categories.php:186
 msgid "Has Password"
@@ -23802,7 +24035,7 @@ msgstr "Удалить раздел"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:76
 #, php-format
 msgid "copy of %s"
-msgstr ""
+msgstr "копия %s"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:142
 msgid "This is not a future date!"
@@ -23857,6 +24090,12 @@ msgid ""
 "and the titlelink stays always the same (recommended if you use Zenphoto’s "
 "multilingual mode)."
 msgstr ""
+"Установите флажок <em> Редактировать ссылку на заголовок </em>, если вам "
+"нужно настроить отображение заголовка в URL-адресах. В противном случае он "
+"будет автоматически обновляться с учетом любых изменений, внесенных в "
+"заголовок. Если вы хотите предотвратить эту проверку, <em>Включите "
+"permaTitlelink</em> и ссылка на заголовок останется неизменной "
+"(рекомендуется, если вы используете многоязычный режим Zenphoto)."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:367
 msgid "<strong>Note:</strong> Edit titlelink overrides the permalink setting."
@@ -23869,6 +24108,9 @@ msgid ""
 "<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode "
 "the Titlelink is generated from the Title of the currently selected language."
 msgstr ""
+"<strong>Важно: </strong> Если вы используете многоязычный режим Zenphoto, "
+"ссылка на заголовок создается на основе названия на выбранном в данный "
+"момент языке."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:369
 msgid ""
@@ -23953,6 +24195,9 @@ msgid ""
 "Hint: If you need more space for your text use TinyMCE’s full screen mode "
 "(Click the expend icon of editor’s control bar, near ZP icon)."
 msgstr ""
+"Подсказка: Если вам нужно больше места для текста, используйте полноэкранный "
+"режим TinyMCE (щелкните значок \"expand\" на панели управления редактора, "
+"рядом со значком ZP)."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:410
 msgid "Edit TitleLink"
@@ -24003,7 +24248,7 @@ msgstr "Срок действия:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:622
 msgid "Expiration date set!"
-msgstr ""
+msgstr "Срок активности установлен!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:714
 msgid "TitleLink:"
@@ -24105,35 +24350,50 @@ msgid ""
 "The sort position of the indicated pages cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
 msgstr ""
+"Выбор сортировки указанных страниц не может быть зафиксировано из-за слишком "
+"глубокой вложенности. Пожалуйста, переместите их на более высокий уровень и "
+"сохраните ваш порядок сортировки."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:617
 msgid ""
 "Unused and obsolete method - articles are already filtered via getArticles()"
 msgstr ""
+"Неиспользуемый и устаревший метод - статьи уже отфильтрованы с помощью "
+"getArticles()"
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:679
 msgid ""
 "Zenpage::getAllCategories() - The value \"asc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use false instead."
 msgstr ""
+"Zenpage::getAllCategories() - значение \"asc\" для параметра $sortdirection "
+"считается устаревшим с выпуска ZenphotoCMS 1.5.8. Используйте вместо него "
+"значение false."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:682
 msgid ""
 "Zenpage::getAllCategories() - The value \"desc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use true instead."
 msgstr ""
+"Zenpage::getAllCategories() - значение \"desc\" для параметра $sortdirection "
+"считается устаревшим с выпуска ZenphotoCMS 1.5.8. Используйте вместо него "
+"значение true."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:308
 msgid ""
 "class ZenpageCategory getParents(): The parameters $parentid and "
 "$initparents have been removed in Zenphoto 1.5.5."
 msgstr ""
+"class ZenpageCategory getParents(): Параметры $parentid и $initparents были "
+"упразднены в Zenphoto 1.5.5."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:237
 msgid ""
 "class ZenpagePage getParents(): The parameters $parentid and $initparents "
 "have been removed in Zenphoto 1.5.5."
 msgstr ""
+"class ZenpagePage getParents(): Параметры $parentid and $initparents были "
+"упразднены в Zenphoto 1.5.5."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpageroot.php:60
 msgid "Use getName() instead."
@@ -24145,7 +24405,7 @@ msgstr "Используйте setName()."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:13
 msgid "Use the method isPublic() of the ZenpageCategory class instead."
-msgstr ""
+msgstr "Используйте вместо этого метод isPublic() для класса ZenpageCategory."
 
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:21
 msgid ""
@@ -24158,10 +24418,11 @@ msgstr ""
 #: zp-core/zp-extensions/zenpage/deprecated-functions.php:28
 msgid "Use Zenpage::processScheduledPublishing(\"expiredate\") instead."
 msgstr ""
+"Используйте Zenpage::processScheduledPublishing(\"expiredate\") вместо этого."
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:84
 msgid "Duplicate page title"
-msgstr ""
+msgstr "Дублировать заголовок страницы"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:145
 #, php-format
@@ -24226,7 +24487,7 @@ msgstr "Удалить страницу"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:352
 msgid "Duplicate article title"
-msgstr ""
+msgstr "Дублировать заголовок статьи"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:426
 #, php-format
@@ -24316,7 +24577,7 @@ msgstr "Все авторы"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:868
 msgid "Duplicate category title"
-msgstr ""
+msgstr "Дублировать название категории"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:918
 #, php-format
@@ -24371,6 +24632,8 @@ msgid ""
 "The 2nd parameter of printNestedItemsList() should be a Zenpage news or page "
 "object and not an integer (to be removed in ZenphotoCMS 2.0"
 msgstr ""
+"Вторым параметром printNestedItemsList() должна быть новость Zenpage или "
+"объект страницы, а не целое число (должно быть удалено в ZenphotoCMS 2.0)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1243
 msgid "Untitled page"
@@ -24501,12 +24764,18 @@ msgid ""
 "getZenpageStatistic - \"asc\" for the $sortdirection is deprecated since "
 "ZenphotoCMS 1.5.8. Use false instead."
 msgstr ""
+"getZenpageStatistic - значение \"asc\" для параметра $sortdirection "
+"считается устаревшим с выпуска ZenphotoCMS 1.5.8. Используйте вместо него "
+"значение false."
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1148
 msgid ""
 "getZenpageStatistic - \"desc\" for the $sortdirection is deprecated since "
 "ZenphotoCMS 1.5.8. Use true instead."
 msgstr ""
+"getZenpageStatistic - значение \"desc\" для параметра $sortdirection "
+"считается устаревшим с выпуска ZenphotoCMS 1.5.8. Используйте вместо него "
+"значение true."
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1469
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1512
@@ -24584,6 +24853,9 @@ msgid ""
 "the RSS feed from zenphoto.org. No data from your install is submitted or "
 "collected."
 msgstr ""
+"Примечание о конфиденциальности: Этот плагин выполняет внешние проверки на "
+"наличие новых выпусков, используя RSS-канал с сайта zenphoto.org. Никакие "
+"данные из вашей установки не отправляются и не собираются."
 
 #: zp-core/zp-extensions/zenphoto_news.php:26
 msgid "Truncation"
@@ -24591,7 +24863,7 @@ msgstr "Действие"
 
 #: zp-core/zp-extensions/zenphoto_news.php:27
 msgid "The length of the article to display."
-msgstr ""
+msgstr "Длина статьи для отображения."
 
 #: zp-core/zp-extensions/zenphoto_news.php:36
 msgid "News from Zenphoto.org"
@@ -24600,7 +24872,7 @@ msgstr "Новости Zenphoto.org"
 #: zp-core/zp-extensions/zenphoto_news.php:100
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
-msgstr ""
+msgstr "Не удалось извлечь ссылку <em>%s</em>\""
 
 #: zp-core/zp-extensions/zenphoto_news.php:107
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
