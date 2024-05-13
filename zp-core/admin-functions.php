@@ -5950,10 +5950,6 @@ function printDatetimeFormatSelector() {
 	$date_currentformat_selector = $date_currentformat = getOption('date_format');
 	$date_formats = array_keys(getStandardDateFormats('date'));
 	$date_formatlist = getDatetimeFormatlistForSelector($date_formats, $use_localized_date);
-	if ($use_localized_date && extension_loaded('intl')) {
-		$date_formatlist[gettext('Preferred date representation with time')] = 'locale_preferreddate_time';
-		$date_formatlist[gettext('Preferred date representation without time')] = 'locale_preferreddate_notime';
-	}
 	$date_formatlist[gettext('Custom')] = 'custom';
 	
 	// date custom format

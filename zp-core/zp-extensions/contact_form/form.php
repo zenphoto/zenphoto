@@ -11,7 +11,7 @@
 	if (contactForm::isVisibleField('contactform_title')) {
 		?>
 		<p>
-			<label for="title"><?php printf(gettext("Title%s"), contactform::getRequiredFieldMark('contactform_title')); ?></label>
+			<label for="title"><?php printf(gettext("Title%s"), contactForm::getRequiredFieldMark('contactform_title')); ?></label>
 			<input type="text" id="title" name="title"<?php contactForm::printAutocompleteAttr('honorific-prefix'); ?> size="50" value="<?php echo html_encode($mailcontent['title']); ?>"<?php contactForm::printAttributes('contactform_title'); ?> />
 		</p>
 		<?php
@@ -19,7 +19,7 @@
 	if (contactForm::isVisibleField('contactform_name')) {
 		?>
 		<p>
-			<label for="name"><?php printf(gettext("Name%s"), contactform::getRequiredFieldMark('contactform_name')); ?></label>
+			<label for="name"><?php printf(gettext("Name%s"), contactForm::getRequiredFieldMark('contactform_name')); ?></label>
 			<input type="text" id="name" name="name"<?php contactForm::printAutocompleteAttr('name'); ?> size="50" value="<?php echo html_encode($mailcontent['name']); ?>"<?php contactForm::printAttributes('contactform_name'); ?> />
 		</p>
 		<?php
@@ -27,13 +27,13 @@
 	?>
 	<p style="display:none;">
 		<label for="username"><?php echo gettext('Username:'); ?></label>
-		<input type="text" id="username" name="username"<?php contactForm::printAutocompleteAttr('username'); ?> size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php echo contactform::getProcessedFieldDisabledAttr(); ?> />
+		<input type="text" id="username" name="username"<?php contactForm::printAutocompleteAttr('username'); ?> size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php echo contactForm::getProcessedFieldDisabledAttr(); ?> />
 	</p>
 	<?php
 	if (contactForm::isVisibleField('contactform_company')) {
 		?>
 		<p>
-			<label for="company"><?php printf(gettext("Company%s"), contactform::getRequiredFieldMark('contactform_company')); ?></label>
+			<label for="company"><?php printf(gettext("Company%s"), contactForm::getRequiredFieldMark('contactform_company')); ?></label>
 			<input type="text" id="company" name="company"<?php contactForm::printAutocompleteAttr('organization'); ?> size="50" value="<?php echo html_encode($mailcontent['company']); ?>"<?php contactForm::printAttributes('contactform_company'); ?> />
 		</p>
 		<?php
@@ -41,7 +41,7 @@
 	if (contactForm::isVisibleField('contactform_street')) {
 		?>
 		<p>
-			<label for="street"><?php printf(gettext("Street%s"), contactform::getRequiredFieldMark('contactform_street')); ?></label>
+			<label for="street"><?php printf(gettext("Street%s"), contactForm::getRequiredFieldMark('contactform_street')); ?></label>
 			<input type="text" id="street" name="street""<?php contactForm::printAutocompleteAttr('street-address'); ?> size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php contactForm::printAttributes('contactform_street'); ?> />
 		</p>
 		<?php
@@ -49,7 +49,7 @@
 	if (contactForm::isVisibleField('contactform_city')) {
 		?>
 		<p>
-			<label for="city"><?php printf(gettext("City%s"), contactform::getRequiredFieldMark('contactform_city')); ?></label>
+			<label for="city"><?php printf(gettext("City%s"), contactForm::getRequiredFieldMark('contactform_city')); ?></label>
 			<input type="text" id="city" name="city""<?php contactForm::printAutocompleteAttr('address-level2'); ?> size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_city'); ?> />
 		</p>
 		<?php
@@ -57,7 +57,7 @@
 	if (contactForm::isVisibleField('contactform_state')) {
 		?>
 		<p>
-			<label for="state"><?php printf(gettext("State%s"), contactform::getRequiredFieldMark('contactform_state')); ?></label>
+			<label for="state"><?php printf(gettext("State%s"), contactForm::getRequiredFieldMark('contactform_state')); ?></label>
 			<input type="text" id="state" name="state"<?php contactForm::printAutocompleteAttr('address-level1'); ?> size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_state'); ?> />
 		</p>
 		<?php
@@ -65,7 +65,7 @@
 	if (contactForm::isVisibleField('contactform_country')) {
 		?>
 		<p>
-			<label for="country"><?php printf(gettext("Country%s"), contactform::getRequiredFieldMark('contactform_country')); ?></label>
+			<label for="country"><?php printf(gettext("Country%s"), contactForm::getRequiredFieldMark('contactform_country')); ?></label>
 			<input type="text" id="country" name="country"<?php contactForm::printAutocompleteAttr('country'); ?> size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php contactForm::printAttributes('contactform_country'); ?> />
 		</p>
 		<?php
@@ -73,7 +73,7 @@
 	if (contactForm::isVisibleField('contactform_postal')) {
 		?>
 		<p>
-			<label for="postal"><?php printf(gettext("Postal code%s"), contactform::getRequiredFieldMark('contactform_postal')); ?></label>
+			<label for="postal"><?php printf(gettext("Postal code%s"), contactForm::getRequiredFieldMark('contactform_postal')); ?></label>
 			<input type="text" id="postal" name="postal"<?php contactForm::printAutocompleteAttr('postal-code'); ?> size="50" value="<?php echo html_encode($mailcontent['postal']); ?>"<?php contactForm::printAttributes('contactform_postal'); ?> />
 		</p>
 		<?php
@@ -81,7 +81,7 @@
 	if (contactForm::isVisibleField('contactform_email')) {
 		?>
 		<p>
-			<label for="email"><?php printf(gettext("E-Mail%s"), contactform::getRequiredFieldMark('contactform_email')); ?></label>
+			<label for="email"><?php printf(gettext("E-Mail%s"), contactForm::getRequiredFieldMark('contactform_email')); ?></label>
 			<input type="email" id="email" name="email"<?php contactForm::printAutocompleteAttr('email'); ?> size="50" value="<?php echo html_encode($mailcontent['email']); ?>"<?php contactForm::printAttributes('contactform_email'); ?> />
 		</p>
 		<?php
@@ -89,7 +89,7 @@
 	if (contactForm::isVisibleField('contactform_website')) {
 		?>
 		<p>
-			<label for="website"><?php printf(gettext("Website%s"), contactform::getRequiredFieldMark('contactform_website')); ?></label>
+			<label for="website"><?php printf(gettext("Website%s"), contactForm::getRequiredFieldMark('contactform_website')); ?></label>
 			<input type="text" id="website" name="website"<?php contactForm::printAutocompleteAttr('url'); ?> size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php contactForm::printAttributes('contactform_website'); ?> />
 		</p>
 		<?php
@@ -97,7 +97,7 @@
 	if (contactForm::isVisibleField('contactform_phone')) {
 		?>
 		<p>
-			<label for="phone"><?php printf(gettext("Phone%s"), contactform::getRequiredFieldMark('contactform_phone')); ?></label>
+			<label for="phone"><?php printf(gettext("Phone%s"), contactForm::getRequiredFieldMark('contactform_phone')); ?></label>
 			<input type="tel" id="phone" name="phone"<?php contactForm::printAutocompleteAttr('tel'); ?> size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php contactForm::printAttributes('contactform_phone'); ?> />
 		</p>
 		<?php
@@ -127,7 +127,7 @@
 	</p>
 	<p class="mailmessage">
 		<label for="message"><?php echo gettext("Message<strong>*</strong>"); ?></label>
-		<textarea id="message" name="message" <?php echo contactform::getProcessedFieldDisabledAttr(); ?> required><?php echo $mailcontent['message']; ?></textarea>
+		<textarea id="message" name="message" <?php echo contactForm::getProcessedFieldDisabledAttr(); ?> required><?php echo $mailcontent['message']; ?></textarea>
 	</p>
 	<?php 
 	if(getOption('contactform_dataconfirmation')) { 

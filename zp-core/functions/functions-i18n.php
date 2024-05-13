@@ -757,8 +757,7 @@ function printLangAttribute($locale = null) {
  * @since 1.6
  * @since 1.6.1 Parameter value requirements changed
  * 
- * @param string $format An ICU dateformat string 
- *										or one of the custom formats 'locale_preferreddate_time' and 'locale_preferreddate_notime'
+ * @param string $format An ICU dateformat string
  * @param string|int $datetime A date() compatible string or a timestamp. If empty "now" is used
  * @return string
  */
@@ -776,6 +775,7 @@ function getFormattedLocaleDate($format = 'Y-m-dd', $datetime = '') {
 			'locale_preferreddate_notime'
 	);
 	if (in_array($format, $locale_preferred)) {
+		deprecationNotice(gettext("The date format options 'locale_preferreddate_time' and 'locale_preferreddate_notime' are deprecated and will be removed in Zenphoto 1.7. Please set individual date and time formats."));
 		switch ($format) {
 			case 'locale_preferreddate_time':
 				$formatter = new IntlDateFormatter(
