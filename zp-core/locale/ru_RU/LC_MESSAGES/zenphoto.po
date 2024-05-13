@@ -18621,13 +18621,15 @@ msgid ""
 "The menu item type all_zenpagecategorys is deprecated. Use "
 "all_zenpagecategories instead"
 msgstr ""
+"Тип элемента меню all_zenpagecategorys устарел. Вместо этого используйте "
+"all_zenpagecategories"
 
 #: zp-core/zp-extensions/menu_manager.php:1013
 #: zp-core/zp-extensions/menu_manager.php:1034
 #: zp-core/zp-extensions/menu_manager.php:1048
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty link."
-msgstr ""
+msgstr "createMenuIfNotExists элемент %s содержит пустую ссылку."
 
 #: zp-core/zp-extensions/menu_manager.php:1020
 #: zp-core/zp-extensions/menu_manager.php:1027
@@ -18636,7 +18638,7 @@ msgstr ""
 #: zp-core/zp-extensions/menu_manager.php:1068
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title."
-msgstr ""
+msgstr "createMenuIfNotExists элемент %s содержит пустой заголовок."
 
 #: zp-core/zp-extensions/menu_manager.php:1054
 #: zp-core/zp-extensions/menu_manager.php:1075
@@ -18644,20 +18646,24 @@ msgstr ""
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title or link."
 msgstr ""
+"createMenuIfNotExists элемент %s содержит содержит пустой заголовок или "
+"ссылку."
 
 #: zp-core/zp-extensions/menu_manager.php:1086
 #, php-format
 msgid "createMenuIfNotExists item %s has an invalid type."
-msgstr ""
+msgstr "createMenuIfNotExists элемент %s имеет недопустимый тип."
 
 #: zp-core/zp-extensions/menu_manager.php:1103
 #, php-format
 msgid "createMenuIfNotExists item %1$s query (%2$s) failed: %3$s."
 msgstr ""
+"createMenuIfNotExists элемент %1$s при запросе (%2$s) выдал ошибку: %3$s."
 
 #: zp-core/zp-extensions/menu_manager.php:1111
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr ""
+"createMenuIfNotExists опубликовал ошибки обработки в вашем журнале отладки."
 
 #: zp-core/zp-extensions/menu_manager.php:1315
 #: zp-core/zp-extensions/print_album_menu.php:263
@@ -18687,13 +18693,13 @@ msgstr "Порядок сортировки сохранен."
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:56
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:63
 msgid "Zenpage CMS plugin required for this item type!"
-msgstr ""
+msgstr "Для данного типа объектов требуется плагин Zenpage!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:77
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:390
 #, php-format
 msgid "Target does not exists in <em>%1$s</em> theme"
-msgstr ""
+msgstr "Цель не существует в теме <em>%1$s</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:97
 msgid "The object of this menu is under password protection"
@@ -18787,7 +18793,7 @@ msgstr "<em>%s</em> папка"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
-msgstr ""
+msgstr "Добавлен пункт меню \"Индекс галереи\" <em>%s</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:538
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:556
@@ -18816,7 +18822,7 @@ msgstr "Ссылка на страницу новостного раздела Z
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:581
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
-msgstr ""
+msgstr "Добавлен пункт меню пользовательской страницы <em>%s</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:578
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:600
@@ -18834,7 +18840,7 @@ msgstr "Пользовательские данные"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:603
 #, php-format
 msgid "Function menu item <em>%s</em> added"
-msgstr ""
+msgstr "Добавлен пункт функционального меню <em>%s</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:616
 msgid "<em>HTML</em> added"
@@ -18843,7 +18849,7 @@ msgstr "<em>HTML</em> добавлен"
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:643
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s </em>!"
-msgstr ""
+msgstr "Элемент <em>%1$s</em> уже существует в <em>%2$s </em>!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:645
 #, php-format
@@ -18851,6 +18857,8 @@ msgid ""
 "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s "
 "</em>!"
 msgstr ""
+"Элемент <em>%1$s</em> со ссылкой <em>%2$s</em> уже существует в <em>%3$s</"
+"em>!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:794
 msgid "Menu item updated!"
@@ -18858,7 +18866,7 @@ msgstr "Пункт меню обновлен!"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:809
 msgid "Custom menu item successfully deleted!"
-msgstr ""
+msgstr "Пункт пользовательского меню успешно удален!"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:58
 msgid "Menu item deleted failed"
@@ -18871,17 +18879,17 @@ msgstr "Пункт меню удален"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:73
 #, php-format
 msgid "Menu “%s” deleted"
-msgstr ""
+msgstr "Меню “%s” удалено"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:85
 #, php-format
 msgid "Menu “%s” duplicated"
-msgstr ""
+msgstr "Меню “%s” дублировано"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:87
 #, php-format
 msgid "Menu “%s” already exists"
-msgstr ""
+msgstr "Меню “%s” уже существует"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:114
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:120
@@ -18912,6 +18920,9 @@ msgid ""
 "Drag the items into the order and nesting you wish displayed. Place the menu "
 "on your theme pages by calling printCustomMenu()."
 msgstr ""
+"Перетащите элементы в том порядке и вложенности, которые вы хотите "
+"отобразить. Разместите меню на страницах вашей темы, вызвав "
+"printCustomMenu()."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:155
 msgid ""
@@ -18921,6 +18932,12 @@ msgid ""
 "Zenphoto functions such as the breadcrumb functions and the next_album() "
 "loop will NOT reflect of this menu’s structure!"
 msgstr ""
+"<strong>ВАЖНО: </strong> Порядок расположения альбомов или страниц в этом "
+"меню полностью независим от любого порядка, установленного на других "
+"страницах администратора. Используйте с настраиваемыми темами, которые не "
+"требуют стандартной структуры отображения Zenphoto. Функции Zenphoto, такие "
+"как функции breadcrumb и цикл next_album(), НЕ будут отражать структуру "
+"этого меню!"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:167
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:234
@@ -18959,7 +18976,7 @@ msgstr "Пока нет комментариев"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:251
 msgid "Menu target is password protected"
-msgstr ""
+msgstr "Цель меню защищено паролем"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:252
 msgid "Show/hide"
@@ -18985,6 +19002,8 @@ msgid ""
 "This adds menu items for all Zenphoto objects. (It creates a \"default\" "
 "menuset.)"
 msgstr ""
+"Это добавляет пункты меню для всех объектов Zenphoto. (Создает набор меню по "
+"умолчанию)."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:71
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:255
@@ -18996,16 +19015,21 @@ msgid ""
 "This is the normal Zenphoto home page. This may also be the gallery index if "
 "you have no separate gallery index page defined."
 msgstr ""
+"Это обычная домашняя страница Zenphoto. Это также может быть индекс галереи, "
+"если у вас не определена отдельная страница индекса галереи."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:80
 msgid ""
 "This is the normal Zenphoto gallery Index page. It may also be the home page "
 "if you have no separate gallery index page defined."
 msgstr ""
+"Это обычная страница с индексом галереи Zenphoto. Она также может быть "
+"домашней страницей, если у вас не определена отдельная страница с индексом "
+"галереи."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:88
 msgid "This adds menu items for all Zenphoto albums."
-msgstr ""
+msgstr "Это добавляет пункты меню для всех альбомов Zenphoto."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:93
 msgid "Creates a link to a Zenphoto Album."
@@ -19027,16 +19051,16 @@ msgstr "Страница Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:109
 msgid "Creates a link to a Zenpage Page."
-msgstr ""
+msgstr "Создает ссылку на страницу Zenpage."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:119
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:264
 msgid "Zenpage news index"
-msgstr ""
+msgstr "Индекс новостей Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:120
 msgid "Creates a link to the Zenpage News Index."
-msgstr ""
+msgstr "Создает ссылку на новостной индекс Zenpage."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:128
 msgid "All Zenpage categories"
@@ -19044,7 +19068,7 @@ msgstr "Все разделы Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:129
 msgid "This adds menu items for all Zenpage categories."
-msgstr ""
+msgstr "Это добавляет пункты меню для всех категорий Zenpage."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:133
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:266
@@ -19053,7 +19077,7 @@ msgstr "Раздел новостей Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:134
 msgid "Creates a link to a Zenpage News article category."
-msgstr ""
+msgstr "Создает ссылку на категорию новостных статей Zenpage."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:145
 msgid "Custom page"
@@ -19063,6 +19087,8 @@ msgstr "Пользовательский"
 msgid ""
 "Creates a link to a custom theme page as described in the theming tutorial."
 msgstr ""
+"Создает ссылку на страницу пользовательской темы, как описано в руководстве "
+"по созданию темы."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:147
 msgid "Script page"
@@ -19079,6 +19105,8 @@ msgid ""
 "Creates a link outside the Zenphoto structure. Use of a full URL is "
 "recommended (e.g. http://www.domain.com)."
 msgstr ""
+"Создает ссылку вне структуры Zenphoto. Рекомендуется использовать полный URL "
+"(например, http://www.domain.com)."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:161
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:272
@@ -19087,7 +19115,7 @@ msgstr "Метка"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:162
 msgid "Creates a <em>label</em> to use in menu structures)."
-msgstr ""
+msgstr "Создает метку <em>label</em> для использования в структурах меню."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:168
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:170
@@ -19107,7 +19135,7 @@ msgstr "HTML"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:178
 msgid "Inserts custom HTML."
-msgstr ""
+msgstr "Вставляет пользовательский HTML-код."
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:214
 msgid "Menu Manager: Edit Menu Item"
@@ -19127,7 +19155,7 @@ msgstr "Все категории новостей Zenpage"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:270
 msgid "Custom theme page"
-msgstr ""
+msgstr "Страница пользовательской темы"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:300
 #, php-format
@@ -19144,7 +19172,7 @@ msgstr "опубликовано"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:348
 msgid "Include <em>&lt;LI&gt;</em> element"
-msgstr ""
+msgstr "Включить элемент <em>&lt;LI&gt;</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:360
 msgid "Add <em>span</em> tags"
@@ -19156,7 +19184,7 @@ msgstr "Класс"
 
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:378
 msgid "Open in new tab"
-msgstr ""
+msgstr "Открыть в новой вкладке"
 
 #: zp-core/zp-extensions/mergedRSS.php:18
 msgid "Merges several RSS feeds into one."
@@ -19175,14 +19203,17 @@ msgid ""
 "Enter the full urls of the feeds to merge separated by semicolons (e.g. "
 "\"http://www.domain1.com/rss; http://www.domain2.com/rss\")"
 msgstr ""
+"Введите полные URL каналов для объединения, разделенные точкой с запятой "
+"(например,\"http://www.domain1.com/rss; http://www.domain2.com/rss\")."
 
 #: zp-core/zp-extensions/mergedRSS.php:67
 msgid "Feed items:"
-msgstr ""
+msgstr "Элементы ленты:"
 
 #: zp-core/zp-extensions/mergedRSS.php:69
 msgid "The number of new entries you want to appear in your site’s RSS feed"
 msgstr ""
+"Количество новых записей, которые вы хотите видеть в RSS-ленте вашего сайта"
 
 #: zp-core/zp-extensions/mobileTheme.php:78
 msgid "Select your theme based on the device connecting to your site"
@@ -19245,11 +19276,11 @@ msgstr "Посетить галерею фотографий"
 
 #: zp-core/zp-extensions/multiple_layouts.php:42
 msgid "Multiple <em>Theme</em> layouts"
-msgstr ""
+msgstr "Несколько макетов <em>темы</em>"
 
 #: zp-core/zp-extensions/multiple_layouts.php:104
 msgid "Enable multiple layouts for"
-msgstr ""
+msgstr "Включить несколько макетов для"
 
 #: zp-core/zp-extensions/multiple_layouts.php:231
 msgid "Select layout:"
@@ -19257,15 +19288,15 @@ msgstr "Гостевое имя пользователя поиска:"
 
 #: zp-core/zp-extensions/multiple_layouts.php:246
 msgid "Select album layout:"
-msgstr ""
+msgstr "Выберите макет альбома:"
 
 #: zp-core/zp-extensions/multiple_layouts.php:247
 msgid "Select default album image layout:"
-msgstr ""
+msgstr "Выберите макет изображения по умолчанию:"
 
 #: zp-core/zp-extensions/multiple_layouts.php:249
 msgid "Reset individual image layouts"
-msgstr ""
+msgstr "Сброс отдельных макетов изображений"
 
 #: zp-core/zp-extensions/multiple_layouts.php:276
 msgid "default"
@@ -19276,7 +19307,7 @@ msgstr "по умолчанию"
 #: zp-core/zp-extensions/multiple_layouts.php:306
 #: zp-core/zp-extensions/multiple_layouts.php:316
 msgid "inherited"
-msgstr ""
+msgstr "унаследовано"
 
 #: zp-core/zp-extensions/multiple_layouts.php:291
 msgid "album default"
@@ -19289,7 +19320,7 @@ msgstr "из категории"
 #: zp-core/zp-extensions/multiple_layouts.php:365
 #, php-format
 msgid "No extra <em>%s</em> theme pages available"
-msgstr ""
+msgstr "Дополнительных страниц для <em>%s</em> темы нет"
 
 #: zp-core/zp-extensions/multiple_layouts.php:451
 #, php-format
@@ -19301,26 +19332,33 @@ msgid ""
 "A Zenphoto plugin for displaying OpenStreetMap based maps using LeafletJS "
 "for images or images from albums with embeded geodata."
 msgstr ""
+"Плагин Zenphoto для отображения карт на основе OpenStreetMap с "
+"использованием LeafletJS для изображений или изображений из альбомов со "
+"встроенными геоданными."
 
 #: zp-core/zp-extensions/openstreetmap.php:70
 msgid "Map dimensions—width"
-msgstr ""
+msgstr "Размеры карты—ширина"
 
 #: zp-core/zp-extensions/openstreetmap.php:74
 msgid ""
 "Width of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
 msgstr ""
+"Ширина карты, включая название объекта, например, 100% (по умолчанию для "
+"адаптивной карты), 100 пикселей или 100em."
 
 #: zp-core/zp-extensions/openstreetmap.php:75
 msgid "Map dimensions—height"
-msgstr ""
+msgstr "Размеры карты—высота"
 
 #: zp-core/zp-extensions/openstreetmap.php:79
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
 msgstr ""
+"Высота карты, включая название объекта, например, 100% (по умолчанию для "
+"адаптивной карты), 100 пикселей или 100em."
 
 #: zp-core/zp-extensions/openstreetmap.php:80
 msgid "Map zoom"
@@ -19332,11 +19370,11 @@ msgstr "Масштаб по умолчанию."
 
 #: zp-core/zp-extensions/openstreetmap.php:85
 msgid "Map minimum zoom"
-msgstr ""
+msgstr "Минимальный масштаб карты"
 
 #: zp-core/zp-extensions/openstreetmap.php:89
 msgid "Default minimum zoom level possible."
-msgstr ""
+msgstr "Минимальный уровень масштабирования по умолчанию."
 
 #: zp-core/zp-extensions/openstreetmap.php:90
 msgid "Map maximum zoom"
@@ -19347,10 +19385,13 @@ msgid ""
 "Default maximum zoom level possible. If no value is defined, use the maximum "
 "zoom level of the map used (may be different for each map)."
 msgstr ""
+"Максимально возможный уровень масштабирования по умолчанию. Если значение не "
+"определено, используйте максимальный уровень масштабирования используемой "
+"карты (может отличаться для каждой карты)."
 
 #: zp-core/zp-extensions/openstreetmap.php:95
 msgid "Default layer"
-msgstr ""
+msgstr "Слой по умолчанию"
 
 #: zp-core/zp-extensions/openstreetmap.php:100
 msgid ""
@@ -19359,6 +19400,11 @@ msgid ""
 "credentials and registration. More info on <a href=\"https://github.com/"
 "leaflet-extras/leaflet-providers\">leaflet-providers</a>"
 msgstr ""
+"Используемый по умолчанию поставщик листов карты. Включены только бесплатные "
+"поставщики. Для некоторых поставщиков (здесь Mapbox, Thunderforest, "
+"Geoportail) требуются учетные данные для доступа и регистрация. "
+"Дополнительная информация о <a href=\"https://github.com/leaflet-extras/"
+"leaflet-providers\"> поставщиках листовок</a>"
 
 #: zp-core/zp-extensions/openstreetmap.php:103
 msgid "Zoom controls position"
@@ -19366,63 +19412,73 @@ msgstr "Масштабирование управляет позицией"
 
 #: zp-core/zp-extensions/openstreetmap.php:113
 msgid "Position of the zoom controls"
-msgstr ""
+msgstr "Расположение элементов управления масштабированием"
 
 #: zp-core/zp-extensions/openstreetmap.php:114
 msgid "Cluster radius"
-msgstr ""
+msgstr "Радиус кластера"
 
 #: zp-core/zp-extensions/openstreetmap.php:118
 msgid "The radius when marker clusters should be used."
-msgstr ""
+msgstr "Радиус, при котором следует использовать скопления маркеров."
 
 #: zp-core/zp-extensions/openstreetmap.php:119
 msgid "Show cluster coverage on hover"
-msgstr ""
+msgstr "Показывать покрытие кластера при наведении курсора мыши"
 
 #: zp-core/zp-extensions/openstreetmap.php:123
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr ""
+"Включите, если хотите, отображение границ кластера маркеров при наведении "
+"курсора мыши."
 
 #: zp-core/zp-extensions/openstreetmap.php:124
 msgid "Marker popups"
-msgstr ""
+msgstr "Всплывающие окна для маркеров"
 
 #: zp-core/zp-extensions/openstreetmap.php:128
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album "
 "context or custom geodata."
 msgstr ""
+"Включите это, если хотите, чтобы на маркерах карты появлялась информация. "
+"Только для контекста альбома или пользовательских геоданных."
 
 #: zp-core/zp-extensions/openstreetmap.php:129
 msgid "Marker popups with thumbs"
-msgstr ""
+msgstr "Всплывающие окна с миниатюрами"
 
 #: zp-core/zp-extensions/openstreetmap.php:133
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for "
 "album context."
 msgstr ""
+"Включите, если вы хотите показывать миниатюры изображений во всплывающих "
+"окнах с маркерами. Только для альбомов."
 
 #: zp-core/zp-extensions/openstreetmap.php:134
 msgid "Marker popups with title"
-msgstr ""
+msgstr "Всплывающие окна для маркером с заголовком"
 
 #: zp-core/zp-extensions/openstreetmap.php:138
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for "
 "album context."
 msgstr ""
+"Включите, если хотите отображать заголовки изображений во всплывающих окнах "
+"для маркеров. Только для альбомов."
 
 #: zp-core/zp-extensions/openstreetmap.php:139
 msgid "Marker popups with description"
-msgstr ""
+msgstr "Всплывающие окна с описанием для маркеров"
 
 #: zp-core/zp-extensions/openstreetmap.php:143
 msgid ""
 "Enable if you want to show desc of images in the marker popups. Only for "
 "album context."
 msgstr ""
+"Включите, если хотите показывать описания изображений во всплывающих окнах "
+"для маркеров. Только для альбомов."
 
 #: zp-core/zp-extensions/openstreetmap.php:144
 msgid "Show layers controls"
@@ -19432,6 +19488,8 @@ msgstr "Показывать счётчики"
 msgid ""
 "Enable if you want to show layers controls with selected layers list below."
 msgstr ""
+"Включите, если вы хотите отображать элементы управления слоями со списком "
+"выбранных слоев ниже."
 
 #: zp-core/zp-extensions/openstreetmap.php:149
 msgid "Layers list"
@@ -19442,22 +19500,26 @@ msgid ""
 "Choose layers list to show in layers controls. No need to select the default "
 "layer again, otherwise it will be de-duplicated."
 msgstr ""
+"Выберите список слоев для отображения в элементах управления слоями. Нет "
+"необходимости повторно выбирать слой по умолчанию, иначе он не будет "
+"дублироваться."
 
 #: zp-core/zp-extensions/openstreetmap.php:155
 msgid "Layers controls position"
-msgstr ""
+msgstr "Слои управляют положением"
 
 #: zp-core/zp-extensions/openstreetmap.php:165
 msgid "Position of the layers controls"
-msgstr ""
+msgstr "Расположение элементов управления слоями"
 
 #: zp-core/zp-extensions/openstreetmap.php:166
 msgid "Show scale"
-msgstr "Показать название"
+msgstr "Показать масштаб"
 
 #: zp-core/zp-extensions/openstreetmap.php:170
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr ""
+"Включите, если вы хотите отображать наложение масштаба (километры и мили)."
 
 #: zp-core/zp-extensions/openstreetmap.php:171
 msgid "Show cursor position"
@@ -19467,6 +19529,7 @@ msgstr "Описание альбома"
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr ""
+"ключите, если вы хотите отображать координаты при наведении курсора на карту."
 
 #: zp-core/zp-extensions/openstreetmap.php:176
 msgid "Show album markers"
@@ -19478,15 +19541,19 @@ msgid ""
 "marker of the current image but all markers from the album. The current "
 "position will be highlighted."
 msgstr ""
+"Включите, если вы хотите отобразить карту на странице с одним изображением, "
+"не только маркер текущего изображения, но и все маркеры из альбома. Текущая "
+"позиция будет выделена."
 
 #: zp-core/zp-extensions/openstreetmap.php:181
 msgid "Mini map"
-msgstr ""
+msgstr "Мини-карта"
 
 #: zp-core/zp-extensions/openstreetmap.php:185
 msgid ""
 "Enable if you want to show an overview mini map in the lower right corner."
 msgstr ""
+"Включите, если вы хотите отображать обзорную мини-карту в правом нижнем углу."
 
 #: zp-core/zp-extensions/openstreetmap.php:186
 msgid "Mini map: width"
@@ -19506,21 +19573,24 @@ msgstr "Высота"
 
 #: zp-core/zp-extensions/openstreetmap.php:196
 msgid "Mini map: Zoom level"
-msgstr ""
+msgstr "Мини-карта: уровень масштабирования"
 
 #: zp-core/zp-extensions/openstreetmap.php:200
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the "
 "main map. Can be positive or negative, defaults to -5."
 msgstr ""
+"Смещение, применяемое к масштабированию миникарты по сравнению с "
+"масштабированием основной карты. Может быть положительным или отрицательным, "
+"по умолчанию -5."
 
 #: zp-core/zp-extensions/openstreetmap.php:201
 msgid "HERE - App id"
-msgstr ""
+msgstr "ЗДЕСЬ - Идентификатор приложения"
 
 #: zp-core/zp-extensions/openstreetmap.php:206
 msgid "HERE - App code"
-msgstr ""
+msgstr "ЗДЕСЬ - код приложения"
 
 #: zp-core/zp-extensions/openstreetmap.php:211
 msgid "Mapbox - Access token"
@@ -19528,7 +19598,7 @@ msgstr "Маркер доступа"
 
 #: zp-core/zp-extensions/openstreetmap.php:216
 msgid "Thunderforest - ApiKey"
-msgstr ""
+msgstr "Thunderforest (Грозовой лес) - ApiKey"
 
 #: zp-core/zp-extensions/openstreetmap.php:221
 msgid "GeoportailFrance - ApiKey"
@@ -19543,6 +19613,8 @@ msgid ""
 "Prints a paged thumbs navigation on image.php, independent of the album."
 "php’s thumbs."
 msgstr ""
+"Печатает навигацию с разделением по страницам с помощью миниатюр на image."
+"php, независимо от миниатюр album.php."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "Thumbs per page"
@@ -19553,6 +19625,8 @@ msgid ""
 "Controls the number of images on a page. You might need to change this after "
 "switching themes to make it look better."
 msgstr ""
+"Управляет количеством изображений на странице. Возможно, вам потребуется "
+"изменить это после переключения темы, чтобы она выглядела лучше."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:46
 msgid "Counter"
@@ -19560,33 +19634,37 @@ msgstr "Счётчик"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:47
 msgid "If you want to show the counter “x - y of z images”."
-msgstr ""
+msgstr "Если вы хотите отобразить счетчик “x - y из z изображений”."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:48
 msgid "Prevtext"
-msgstr ""
+msgstr "Предварительный текст"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "The text for the previous thumbs."
-msgstr ""
+msgstr "Текст для предыдущих миниатюр."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid "Nexttext"
-msgstr ""
+msgstr "Следующий текст"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid "The text for the next thumbs."
-msgstr ""
+msgstr "Текст для следующих миниатюр."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:53
 msgid ""
 "The thumb crop width is the maximum width when height is the shortest side"
 msgstr ""
+"Ширина обрезки миниатюры - это максимальная ширина, когда высота - самая "
+"короткая сторона"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid ""
 "The thumb crop height is the maximum height when width is the shortest side"
 msgstr ""
+"Высота обрезки миниатюры - это максимальная высота, когда ширина - самая "
+"короткая сторона"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:56
 msgid "Crop"
@@ -19599,6 +19677,11 @@ msgid ""
 "Otherwise, it will be the full image resized to thumb size (by shortest "
 "side)."
 msgstr ""
+"Если флажок установлен, миниатюра будет представлять собой центрированную "
+"часть изображения с заданными шириной и высотой после изменения размера до "
+"размера большого пальца (по кратчайшей стороне). В противном случае это "
+"будет полное изображение, измененное до размера большого пальца (по "
+"кратчайшей стороне)."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:58
 msgid "Placeholders"
@@ -19610,6 +19693,10 @@ msgid ""
 "the number of thumbs does not match images per page. Recommended only for "
 "cropped thumbs."
 msgstr ""
+"если вы хотите использовать заглушку для оформления, чтобы заполнить "
+"миниатюры, если количество миниатюр не соответствует выбранному параметру "
+"количества изображениям на странице. Рекомендуется только для обрезанных "
+"миниатюр."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:60
 msgid "Page list"
@@ -19617,16 +19704,18 @@ msgstr "Страницы"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid "If you want the list of the pages to be shown."
-msgstr ""
+msgstr "Если вы хотите, чтобы был показан список страниц."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:62
 msgid "Pages list prev and next links"
-msgstr ""
+msgstr "Предыдущие и следующие ссылки для список страниц"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:63
 msgid ""
 "If you want to show previous and next thumb page links with the page list."
 msgstr ""
+"Если вы хотите показать ссылки на предыдущую и следующую страницу со списком "
+"страниц."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:64
 msgid "Pages list length"
@@ -19634,17 +19723,17 @@ msgstr "Страницы"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:65
 msgid "The number of links for the page list."
-msgstr ""
+msgstr "Количество ссылок для списка страниц."
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:227
 #: zp-core/zp-extensions/paged_thumbs_nav.php:379
 msgid "previous thumbs"
-msgstr ""
+msgstr "предыдущие миниатюры"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:329
 #: zp-core/zp-extensions/paged_thumbs_nav.php:402
 msgid "next thumbs"
-msgstr ""
+msgstr "следующие миниатюры"
 
 #: zp-core/zp-extensions/paged_thumbs_nav.php:355
 #, php-format
@@ -19669,6 +19758,9 @@ msgid ""
 "<code>printAlbumMenuList</code> “List” option. Note: themes may override "
 "this default."
 msgstr ""
+"Глубина уровней вложенного альбома отображается с помощью опции "
+"<code>printAlbumMenu</code> и <code>printAlbumMenuList</code> “Список”. "
+"Примечание: темы могут переопределять это значение по умолчанию."
 
 #: zp-core/zp-extensions/print_album_menu.php:47
 msgid "Show counts"
@@ -19702,7 +19794,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/publishContent.php:28
 msgid "A single place to quickly review your unpublished content."
-msgstr ""
+msgstr "Единое место для быстрого просмотра вашего неопубликованного контента."
 
 #: zp-core/zp-extensions/publishContent.php:40
 msgid "Publish content"
@@ -19718,7 +19810,7 @@ msgstr "Управление публикацией материалов"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:192
 msgid "Image and album <em>Discovery</em> options"
-msgstr ""
+msgstr "Параметры <em>поиска</em> изображений и альбомов"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:198
 msgid "Defaults applied"
@@ -19736,6 +19828,10 @@ msgid ""
 "of-zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
 "obj\">inheritance</a>."
 msgstr ""
+"В число неопубликованных материалов <strong>не входят</strong> материалы, не "
+"опубликованные в силу <a href=\"https://www.zenphoto.org/news/an-overview-of-"
+"zenphoto-users#rules-of-protection-andvisibility-for-zenphoto-"
+"obj\">наследования</a>."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:230
 msgid "Albums not published"
@@ -19755,7 +19851,7 @@ msgstr "Изменения в альбоме сохранены"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:250
 msgid "Unpublished state propagated"
-msgstr ""
+msgstr "Распространено неопубликованное состояние"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:288
 msgid "Publish waiting albums."
@@ -19790,7 +19886,7 @@ msgstr "Обзор изображений, старше чем: %s"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:338
 msgid "Review un-published images."
-msgstr ""
+msgstr "Просмотрите неопубликованные изображения."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:339
 msgid "Review images"
@@ -19812,7 +19908,7 @@ msgstr "Отменить публикацию"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:400
 msgid "Set all to be deleted"
-msgstr ""
+msgstr "Отметить все для удаления"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:416
 #: zp-core/zp-extensions/zenpage/admin-edit.php:398
@@ -19835,7 +19931,7 @@ msgstr "все изображения"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:462
 msgid "Process the above changes."
-msgstr ""
+msgstr "Обработать вышеуказанные изменения."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:463
 msgid "Process changes"
@@ -19955,6 +20051,8 @@ msgid ""
 "Provides a quota management system to limit the sum of sizes of images a "
 "user uploads."
 msgstr ""
+"Предоставляет систему управления квотами для ограничения объемов и размеров "
+"изображений, загружаемых пользователем."
 
 #: zp-core/zp-extensions/quota_manager.php:30
 msgid ""
@@ -19962,6 +20060,10 @@ msgid ""
 "assignment is necessary. ZIP file upload is disabled by default as quotas "
 "are not applied to the files contained therein."
 msgstr ""
+"<strong>Примечание: </strong> если для загрузки изображений используется "
+"FTP, необходимо ручное назначение пользователя. Загрузка ZIP-файлов по "
+"умолчанию отключена, поскольку к содержащимся в них файлам не применяются "
+"квоты."
 
 #: zp-core/zp-extensions/quota_manager.php:32
 #, php-format
@@ -19998,7 +20100,7 @@ msgstr "(%s kb использовано)"
 
 #: zp-core/zp-extensions/quota_manager.php:131
 msgid "Image storage quota:"
-msgstr ""
+msgstr "Квота на хранение изображений:"
 
 #: zp-core/zp-extensions/quota_manager.php:132
 #, php-format
@@ -20007,12 +20109,12 @@ msgstr "Разрешено: %s kb"
 
 #: zp-core/zp-extensions/quota_manager.php:252
 msgid "Uploading is disabled."
-msgstr ""
+msgstr "Загрузка отключена."
 
 #: zp-core/zp-extensions/quota_manager.php:257
 #, php-format
 msgid "Your available upload quota is <span %1$s>%2$s</span> kb."
-msgstr ""
+msgstr "Ваша доступная квота загрузки составляет <span %1$s>%2$ s</span> кб."
 
 #: zp-core/zp-extensions/rating.php:40
 msgid "All ratings have been set to <em>unrated</em>."
@@ -20023,6 +20125,8 @@ msgid ""
 "Adds several theme functions to enable images, album, news, or pages to be "
 "rated by users. "
 msgstr ""
+"Добавляет несколько функций для тем, позволяющих пользователям оценивать "
+"изображения, альбомы, новости или страницы."
 
 #: zp-core/zp-extensions/rating.php:83
 msgid "open"
@@ -20070,7 +20174,7 @@ msgstr "целая"
 
 #: zp-core/zp-extensions/rating.php:107
 msgid "half"
-msgstr ""
+msgstr "половина"
 
 #: zp-core/zp-extensions/rating.php:108
 msgid "third"
@@ -20086,15 +20190,17 @@ msgstr ""
 
 #: zp-core/zp-extensions/rating.php:110
 msgid "Individual image control"
-msgstr ""
+msgstr "Индивидуальное управление изображением"
 
 #: zp-core/zp-extensions/rating.php:113
 msgid "Enable to allow voting status control on individual images."
 msgstr ""
+"Включить, чтобы разрешить контроль статуса голосования на отдельных "
+"изображениях."
 
 #: zp-core/zp-extensions/rating.php:114
 msgid "Recast vote"
-msgstr ""
+msgstr "Измененное голосования"
 
 #: zp-core/zp-extensions/rating.php:118
 msgid "No"
@@ -20106,7 +20212,7 @@ msgstr "Показать рейтинг"
 
 #: zp-core/zp-extensions/rating.php:120
 msgid "Show previous vote"
-msgstr ""
+msgstr "Показать предыдущее голосование"
 
 #: zp-core/zp-extensions/rating.php:121
 msgid ""
@@ -20120,7 +20226,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/rating.php:122
 msgid "Disguise IP"
-msgstr ""
+msgstr "Маскировка IP-адреса"
 
 #: zp-core/zp-extensions/rating.php:125
 msgid ""
@@ -20128,10 +20234,14 @@ msgid ""
 "issues. If not set the IP is anonymized as defined on the general Zenphoto "
 "option <em>Anonymize IP</em>."
 msgstr ""
+"Хэширует сохраненный IP-адрес, чтобы избежать проблем с отслеживанием "
+"конфиденциальности. Если этот параметр не установлен, IP-адрес "
+"анонимизируется, как определено в общей опции Zenphoto <em>Анонимизировать "
+"IP</em>."
 
 #: zp-core/zp-extensions/rating.php:143
 msgid "retract"
-msgstr ""
+msgstr "убрать"
 
 #: zp-core/zp-extensions/rating.php:159
 msgid "Vote Status:"
@@ -20187,6 +20297,8 @@ msgid ""
 "Only one Captcha handler plugin may be enabled. <a "
 "href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
 msgstr ""
+"Может быть включен только один плагин для обработки капчи. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> уже включен."
 
 #: zp-core/zp-extensions/reCaptcha.php:20
 msgid "Google account and reCaptcha key required."
@@ -20222,23 +20334,24 @@ msgstr "Сутки"
 
 #: zp-core/zp-extensions/reCaptcha.php:66
 msgid "Dark"
-msgstr ""
+msgstr "Темная"
 
 #: zp-core/zp-extensions/reCaptcha.php:68
 msgid "Choose the theme for your reCaptcha."
-msgstr ""
+msgstr "Выберите тему для вашей eCaptcha."
 
 #: zp-core/zp-extensions/reCaptcha.php:70
 msgid "Widget Type:"
-msgstr ""
+msgstr "Тип виджета:"
 
 #: zp-core/zp-extensions/reCaptcha.php:75
 msgid "Audio"
-msgstr ""
+msgstr "Аудио"
 
 #: zp-core/zp-extensions/reCaptcha.php:78
 msgid "Choose the secondary verification method you would like to use."
 msgstr ""
+"Выберите дополнительный метод проверки, который вы хотели бы использовать."
 
 #: zp-core/zp-extensions/reCaptcha.php:80
 msgid "Widget Size:"
@@ -20254,7 +20367,7 @@ msgstr "Компактный"
 
 #: zp-core/zp-extensions/reCaptcha.php:88
 msgid "Choose the size of the reCaptcha widget."
-msgstr ""
+msgstr "Выберите размер виджета reCaptcha ."
 
 #: zp-core/zp-extensions/reCaptcha.php:153
 msgid ""
@@ -20262,21 +20375,29 @@ msgid ""
 "google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
 "reCaptcha keys."
 msgstr ""
+"Ключи reCaptcha v2 настроены неправильно. Перейдите по <a href=\"https://www."
+"google.com/recaptcha/intro/index.html\">этой ссылке</a>, чтобы получить "
+"ключи reCaptcha."
 
 #: zp-core/zp-extensions/redirector.php:33
 msgid ""
 "A plugin to redirect internal URLs. Primarily intended for URLs that "
 "otherwise would cause 404 not found errors."
 msgstr ""
+"Плагин для перенаправления внутренних URL-адресов. В первую очередь "
+"предназначен для URL-адресов, которые в противном случае вызвали бы ошибки "
+"\"404 не найдено\"."
 
 #: zp-core/zp-extensions/redirector.php:52
 msgid "Redirection catalogue"
-msgstr ""
+msgstr "Каталог перенаправлений"
 
 #: zp-core/zp-extensions/redirector.php:57
 msgid ""
 "Place a JSON or CSV file within /plugins/redirector/ to use for redirecting."
 msgstr ""
+"Поместите файл JSON или CSV в /plugins/redirector/ для использования при "
+"перенаправлении."
 
 #: zp-core/zp-extensions/redirector.php:58
 msgid "Debug mode"
@@ -20287,12 +20408,16 @@ msgid ""
 "If enabled valid redirections will not be executed but logged in the debug "
 "log."
 msgstr ""
+"Если включено, допустимые перенаправления не будут выполняться, но будут "
+"занесены в журнал отладки."
 
 #: zp-core/zp-extensions/redirector.php:129
 #: zp-core/zp-extensions/redirector.php:138
 msgid ""
 "redirector Error: Could not open and load the redirections catalogue file: "
 msgstr ""
+"redirector столкнулся с ошибкой: не удалось открыть и загрузить файл "
+"каталога перенаправлений: "
 
 #: zp-core/zp-extensions/register_user.php:25
 msgid ""
@@ -20306,6 +20431,9 @@ msgid ""
 "this site.\n"
 "To complete your registration visit %1$s."
 msgstr ""
+"Вы получили это электронное письмо, потому что зарегистрировались с "
+"идентификатором пользователя %3$s на этом сайте.\n"
+"Для завершения регистрации перейдите на страницу %1$s."
 
 #: zp-core/zp-extensions/register_user.php:62
 msgid "Click here to register for this site."
@@ -20317,6 +20445,8 @@ msgid ""
 "If this option is set, the visitor login form will include a link to this "
 "page. The link text will be labeled with the text provided."
 msgstr ""
+"Если этот параметр установлен, форма входа посетителя будет содержать ссылку "
+"на эту страницу. Текст ссылки будет помечен указанным текстом."
 
 #: zp-core/zp-extensions/register_user.php:86
 msgid "Hint text"
@@ -20333,6 +20463,8 @@ msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "verified his registration."
 msgstr ""
+"Если этот флажок установлен, администратору галереи будет отправлено "
+"электронное письмо, когда новый пользователь подтвердит свою регистрацию."
 
 #: zp-core/zp-extensions/register_user.php:96
 msgid "User album"
@@ -20341,6 +20473,7 @@ msgstr "Альбом пользователя"
 #: zp-core/zp-extensions/register_user.php:100
 msgid "If checked, an album will be created and assigned to the user."
 msgstr ""
+"Если флажок установлен, альбом будет создан и закреплен за пользователем."
 
 #: zp-core/zp-extensions/register_user.php:101
 msgid "Email ID"
@@ -20349,6 +20482,8 @@ msgstr "E-Mail ID"
 #: zp-core/zp-extensions/register_user.php:105
 msgid "If checked, The use’s e-mail address will be used as his User ID."
 msgstr ""
+"Если этот флажок установлен, адрес электронной почты пользователя будет "
+"использоваться в качестве его идентификатора пользователя."
 
 #: zp-core/zp-extensions/register_user.php:106
 msgid "Email notification text"
@@ -20365,6 +20500,16 @@ msgid ""
 "<em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we "
 "recommend <strong>not</strong> inserting the <em>password</em>.</p>"
 msgstr ""
+"Текст для тела электронного письма, отправленного владельцу регистрации для "
+"подтверждения регистрации.\n"
+"<p class=\"notebox\"><strong>Примечание:</strong> Вы должны указать "
+"<code>%1$s</code> в своем сообщении, где вы хотите, чтобы появилась ссылка "
+"для подтверждения регистрации . Вы также можете ввести <em> имя владельца "
+"регистрации </em> (<code>%2$s</code>), <em> идентификатор пользователя</em> "
+"(<code>%3$s</code>) и <em>пароль</em>* (<code>%4$s</code>).<br />\n"
+"<br />\n"
+"* По соображениям безопасности мы рекомендуем <strong>не</strong> вводить "
+"<em>пароль</em>.</p>"
 
 #: zp-core/zp-extensions/register_user.php:128
 msgid ""
@@ -20388,6 +20533,8 @@ msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
 msgstr ""
+"Конечно, должен быть какой-то администратор с адресом электронной почты, "
+"чтобы этот вариант имел смысл!"
 
 #: zp-core/zp-extensions/register_user.php:167
 msgid "Default user group"
@@ -20402,6 +20549,8 @@ msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
 msgstr ""
+"Первоначальные права для нового пользователя. (Если права не установлены, "
+"потребуется одобрение пользователя.)"
 
 #: zp-core/zp-extensions/register_user.php:310
 msgid "You must supply the street field."
@@ -20449,7 +20598,7 @@ msgstr "Спасибо за регистрацию."
 
 #: zp-core/zp-extensions/register_user.php:460
 msgid "You may now log onto the site and verify your personal information."
-msgstr ""
+msgstr "Теперь вы можете войти на сайт и подтвердить свою личную информацию."
 
 #: zp-core/zp-extensions/register_user.php:479
 msgid ""
@@ -20487,7 +20636,7 @@ msgstr "Вы не заполнили все поля."
 
 #: zp-core/zp-extensions/register_user.php:528
 msgid "Invalid verification link."
-msgstr ""
+msgstr "Неверная ссылка для подтверждения."
 
 #: zp-core/zp-extensions/register_user.php:536
 msgid "Enter a valid email address."
@@ -20495,7 +20644,7 @@ msgstr "Введите действительный адрес e-mail."
 
 #: zp-core/zp-extensions/register_user.php:544
 msgid "The email address entered is already used."
-msgstr ""
+msgstr "Введенный адрес электронной почты уже используется."
 
 #: zp-core/zp-extensions/register_user.php:552
 msgid "The CAPTCHA you entered was not correct."
@@ -20507,29 +20656,33 @@ msgstr "Вы неправильно ввели защитный код."
 
 #: zp-core/zp-extensions/register_user.php:560
 msgid "Your registration request could not be completed."
-msgstr ""
+msgstr "Не удалось выполнить ваш запрос на регистрацию."
 
 #: zp-core/zp-extensions/register_user.php:573
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
 msgstr ""
+"Ваша попытка регистрации не удалась при проверке фильтра "
+"<code>register_user_registered</code>."
 
 #: zp-core/zp-extensions/register_user.php:583
 msgid "Data usage confirmation missing."
-msgstr ""
+msgstr "Отсутствует подтверждение использования данных."
 
 #: zp-core/zp-extensions/register_user.php:584
 msgid "You have not agreed to data storage and handling by this website."
-msgstr ""
+msgstr "Вы дали согласия на хранение и обработку данных на этом веб-сайте."
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:14
 msgid "Username* (this will be your user username)"
-msgstr ""
+msgstr "Имя пользователя * (это будет ваше имя пользователя)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:21
 msgid "Email<strong>*</strong> (this will be your user id)"
 msgstr ""
+"Электронная почта<strong>*</strong> (это будет ваш идентификатор "
+"пользователя)"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:23
 msgid "User ID"
@@ -20542,12 +20695,15 @@ msgstr "<strong>*</strong>Обязательно"
 #: zp-core/zp-extensions/register_user/register_user_form.php:126
 msgid "You may also register using federated credentials"
 msgstr ""
+"Вы также можете зарегистрироваться, используя федеративные учетные данные"
 
 #: zp-core/zp-extensions/related_items.php:9
 msgid ""
 "Provides functionality to get the related items to an item based on a tag "
 "search."
 msgstr ""
+"Предоставляет функциональность для поиска связанных элементов для элемента "
+"на основе поиска по тегу."
 
 #: zp-core/zp-extensions/related_items.php:155
 msgid "Related albums"
@@ -20571,12 +20727,12 @@ msgstr "Похожие %s"
 
 #: zp-core/zp-extensions/rewriteRules.php:15
 msgid "Site rewrite rules tab."
-msgstr ""
+msgstr "Вкладка \"Правила перезаписи сайта\"."
 
 #: zp-core/zp-extensions/rewriteRules.php:33
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:13
 msgid "rewrite"
-msgstr ""
+msgstr "переписать"
 
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:25
 msgid "Rewrite Rules"
@@ -20584,35 +20740,39 @@ msgstr "Правила переименования"
 
 #: zp-core/zp-extensions/rewriteRules/functions.php:44
 msgid "Error processing rewrite rule:"
-msgstr ""
+msgstr "Ошибка при обработке правил перезаписи :"
 
 #: zp-core/zp-extensions/rewriteTokens.php:10
 msgid ""
 "Utility to alter the rewrite token substitutions array in the configuration "
 "file."
 msgstr ""
+"Утилита для изменения массива замен токенов rewrite в файле конфигурации."
 
 #: zp-core/zp-extensions/rewriteTokens.php:12
 msgid ""
 "Rewrite Tokens are not useful unless the <code>mod_rewrite</code> option is "
 "enabled."
 msgstr ""
+"Токены перезаписи бесполезны, если не включена опция <code>mod_rewrite</"
+"code>."
 
 #: zp-core/zp-extensions/rewriteTokens.php:64
 msgid "rewriteTokens restored to default"
-msgstr ""
+msgstr "rewriteTokens восстановлены до значений по умолчанию"
 
 #: zp-core/zp-extensions/rewriteTokens.php:79
 #, php-format
 msgid ""
 "The <code>%1$s</code> rule defines <strong>%2$s</strong> as <em>%3$s</em>."
 msgstr ""
+"Правило <code>%1$s</code> определяет <strong>%2$s</strong> как <em>%3$s</em>."
 
 #: zp-core/zp-extensions/rewriteTokens.php:81
 #: zp-core/zp-extensions/rewriteTokens.php:187
 #, php-format
 msgid "Link for <em>%s</em> script page."
-msgstr ""
+msgstr "Ссылка на страницу скрипта <em>%s</em>.\""
 
 #: zp-core/zp-extensions/rewriteTokens.php:109
 msgid ""
@@ -20624,41 +20784,41 @@ msgstr ""
 
 #: zp-core/zp-extensions/rewriteTokens.php:116
 msgid "<p>* denotes default core rewrite tokens.</p>"
-msgstr ""
+msgstr "<p>* обозначает токены перезаписи ядра по умолчанию.</p>"
 
 #: zp-core/zp-extensions/rewriteTokens.php:120
 msgid "Restore defaults."
-msgstr ""
+msgstr "Восстановите настройки по умолчанию."
 
 #: zp-core/zp-extensions/rewriteTokens.php:163
 #: zp-core/zp-extensions/rewriteTokens.php:171
 msgid "Rewrite tokens may not be empty."
-msgstr ""
+msgstr "Токены перезаписи не могут быть пустыми."
 
 #: zp-core/zp-extensions/rewriteTokens.php:184
 #, php-format
 msgid "Link for <em>%s</em> rule."
-msgstr ""
+msgstr "Ссылка для правила <em>%s</em>."
 
 #: zp-core/zp-extensions/rewriteTokens.php:209
 msgid "tokens"
-msgstr ""
+msgstr "токены"
 
 #: zp-core/zp-extensions/rewriteTokens/admin_tab.php:9
 msgid "rewriteTokens"
-msgstr ""
+msgstr "rewriteTokens"
 
 #: zp-core/zp-extensions/rewriteTokens/admin_tab.php:25
 msgid "Rewrite Tokens"
-msgstr ""
+msgstr "Rewrite Tokens"
 
 #: zp-core/zp-extensions/rss.php:11
 msgid "The Zenphoto <em>RSS</em> handler."
-msgstr ""
+msgstr "Настройка <em>RSS</em> для Zenphoto."
 
 #: zp-core/zp-extensions/rss.php:12
 msgid "This plugin must be enabled to supply <em>RSS</em> feeds."
-msgstr ""
+msgstr "Этот плагин должен быть включен для работы RSS-каналов."
 
 #: zp-core/zp-extensions/rss.php:12
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
@@ -20672,7 +20832,7 @@ msgstr "RSS потоки:"
 
 #: zp-core/zp-extensions/rss.php:94
 msgid "Gallery Comments"
-msgstr ""
+msgstr "Комментарии к галерее"
 
 #: zp-core/zp-extensions/rss.php:95
 msgid "All News"
@@ -20684,7 +20844,7 @@ msgstr "Все страницы"
 
 #: zp-core/zp-extensions/rss.php:97
 msgid "News/Page Comments"
-msgstr ""
+msgstr "Комментарии к новостям/страницам"
 
 #: zp-core/zp-extensions/rss.php:99
 msgid "Check each RSS feed you wish to activate."
@@ -20692,13 +20852,15 @@ msgstr "Отметьте, какие RSS ленты будут задейств�
 
 #: zp-core/zp-extensions/rss.php:100
 msgid "Image feed items:"
-msgstr ""
+msgstr "RSS изображений:"
 
 #: zp-core/zp-extensions/rss.php:104 zp-core/zp-extensions/rss.php:109
 msgid ""
 "The number of new images and comments you want to appear in your site’s RSS "
 "feed"
 msgstr ""
+"Количество новых изображений и комментариев, которые вы хотите видеть в RSS-"
+"ленте вашего сайта"
 
 #: zp-core/zp-extensions/rss.php:105
 msgid "Album feed items:"
@@ -20712,7 +20874,7 @@ msgstr "Размер изображения"
 
 #: zp-core/zp-extensions/rss.php:114
 msgid "Size of RSS image feed images:"
-msgstr ""
+msgstr "Размер изображений в RSS-ленте изображений:"
 
 #: zp-core/zp-extensions/rss.php:115
 msgid "Album image size"
@@ -20720,11 +20882,11 @@ msgstr "Размер изображений альбома"
 
 #: zp-core/zp-extensions/rss.php:119
 msgid "Size of RSS album feed images :"
-msgstr ""
+msgstr "Размер изображений в RSS-ленте альбомов:"
 
 #: zp-core/zp-extensions/rss.php:120
 msgid "Image feed sort order:"
-msgstr ""
+msgstr "Порядок сортировки RSS-ленты изображений:"
 
 #: zp-core/zp-extensions/rss.php:124 zp-core/zp-extensions/rss.php:133
 msgid "latest by id"
@@ -20748,6 +20910,10 @@ msgid ""
 "latest uploaded fetched by date, or latest by mtime for the latest uploaded "
 "fetched by the file’ last change timestamp."
 msgstr ""
+"Выберите <em>последнее по ID</em> для последнего загруженного файла,"
+"<em>последнее по дате</em> для последнего загруженного файла, выбранного по "
+"дате, или <em>последнее по mtime</em> для последнего загруженного файла, "
+"выбранного по метке времени последнего изменения этого файла."
 
 #: zp-core/zp-extensions/rss.php:130
 msgid "Album feed sort order:"
@@ -20756,10 +20922,12 @@ msgstr "Порядок сортировки элементов ленты аль
 #: zp-core/zp-extensions/rss.php:140
 msgid "Choose between latest by id for the latest uploaded and latest updated"
 msgstr ""
+"Выберите \"последнее по ID\" для последнего загруженного и последнего "
+"обновленного изображения"
 
 #: zp-core/zp-extensions/rss.php:141
 msgid "RSS enclosure:"
-msgstr ""
+msgstr "RSS-вложения:"
 
 #: zp-core/zp-extensions/rss.php:145
 msgid ""
@@ -20767,16 +20935,21 @@ msgid ""
 "direct download for full images, movies etc. from within certain RSS reader "
 "clients (only Images RSS)."
 msgstr ""
+"Отметьте, если хотите включить функцию вложения RSS, которая обеспечивает "
+"прямую загрузку полных изображений, фильмов и т.д. из определенных клиентов "
+"для чтения RSS (работает только для RSS-ленты изображений)."
 
 #: zp-core/zp-extensions/rss.php:146
 msgid "Media RSS:"
-msgstr ""
+msgstr "Медиа RSS:"
 
 #: zp-core/zp-extensions/rss.php:150
 msgid ""
 "Check if media RSS support is to be enabled. This support is used by some "
 "services and programs (only Images RSS)."
 msgstr ""
+"Отметьте для подключения поддержка media RSS. Эта поддержка используется "
+"некоторыми сервисами и программами (только для RSS-ленты изображений)."
 
 #: zp-core/zp-extensions/rss.php:155
 #, php-format
@@ -20784,19 +20957,23 @@ msgid ""
 "Check if you want to enable static RSS feed caching. The cached file will be "
 "placed within the <em>%s</em> folder."
 msgstr ""
+"Отметьте, если хотите включить статическое кэширование RSS-канала. "
+"Кэшированный файл будет помещен в папку <em>%s</em>."
 
 #: zp-core/zp-extensions/rss.php:156
 msgid "Cache expiration"
-msgstr ""
+msgstr "Срок действия кэша"
 
 #: zp-core/zp-extensions/rss.php:160
 msgid ""
 "Cache expire default is 86400 seconds (1 day = 24 hrs * 60 min * 60 sec)."
 msgstr ""
+"Срок действия кэша по умолчанию составляет 86400 секунд (1 день = 24 часа * "
+"60 минут * 60 секунд)."
 
 #: zp-core/zp-extensions/rss.php:161
 msgid "Hitcounter"
-msgstr ""
+msgstr "Счетчик посещений"
 
 #: zp-core/zp-extensions/rss.php:165
 msgid "Check if you want to store the hitcount on RSS feeds."
@@ -20819,10 +20996,13 @@ msgid ""
 "Select what you want to use as the main RSS feed (channel) title. “Both” "
 "means Website title followed by Gallery title"
 msgstr ""
+"Выберите то, что вы хотите использовать в качестве заголовка основного RSS-"
+"канала. “Оба” означает название веб-сайта, за которым следует название "
+"галереи."
 
 #: zp-core/zp-extensions/rss.php:172
 msgid "Portable RSS link"
-msgstr ""
+msgstr "Портативная RSS-ссылка"
 
 #: zp-core/zp-extensions/rss.php:176
 msgid ""
@@ -20830,24 +21010,32 @@ msgid ""
 "identifying the user. Use of that link when not logged‑in will give the same "
 "feed as if the user were logged‑in."
 msgstr ""
+"Если флажок установлен, ссылки, созданные для зарегистрированных "
+"пользователей, будут содержать маркер, идентифицирующий пользователя. "
+"Использование этой ссылки без входа в систему даст ту же ленту, что и при "
+"входе пользователя в систему."
 
 #: zp-core/zp-extensions/rss.php:180
 msgid "Feed text length"
-msgstr ""
+msgstr "Длина текста RSS-ленты"
 
 #: zp-core/zp-extensions/rss.php:184
 msgid ""
 "The text length of the Zenpage RSS feed items. No value for full length."
 msgstr ""
+"Длина текста элементов RSS-ленты Zenpage. Оставьте пустым для включение "
+"полного текста."
 
 #: zp-core/zp-extensions/rss.php:185
 msgid "Zenpage feed items"
-msgstr ""
+msgstr "Элементы RSS-ленты Zenpage"
 
 #: zp-core/zp-extensions/rss.php:189
 msgid ""
 "The number of news articles you want to appear in your site’s News RSS feed."
 msgstr ""
+"Количество новостных статей, которые вы хотите видеть в новостной RSS-ленте "
+"вашего сайта."
 
 #: zp-core/zp-extensions/rss.php:201
 #: zp-core/zp-extensions/static_html_cache.php:90
@@ -20859,6 +21047,8 @@ msgid ""
 "If a <em>type</em> is checked, the RSS caches for the item will be purged "
 "when the published state of an item of <em>type</em> changes."
 msgstr ""
+"Если установлен флажок <em>тип </em>, RSS-кэши для элемента будут очищены "
+"при изменении опубликованного состояния элемента <em>типа</em>."
 
 #: zp-core/zp-extensions/rss.php:207
 #: zp-core/zp-extensions/static_html_cache.php:96
@@ -20866,6 +21056,8 @@ msgid ""
 "<strong>NOTE:</strong> The entire cache is cleared since there is no way to "
 "ascertain if a gallery page contains dependencies on the item."
 msgstr ""
+"<strong>ПРИМЕЧАНИЕ:</strong> Очищается весь кэш, поскольку невозможно "
+"определить, содержит ли страница галереи зависимости от элемента."
 
 #: zp-core/zp-extensions/rss.php:509
 msgid " (Latest news)"
@@ -20951,34 +21143,44 @@ msgid ""
 "Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No share counts "
 "because of that!)."
 msgstr ""
+"Плагин Zenphoto, который предоставляет кнопки обмена без скриптов и для "
+"обеспечения конфиденциальности для Facebook, Twitter, Google+, Pinterest, "
+"Linkedin, Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (только для iOS) и "
+"электронной почты. (Примечание: из-за этого публикация не учитывается!)."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:62
 msgid "Social networks"
-msgstr ""
+msgstr "Социальные сети"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:85
 msgid ""
 "Select the social networks you wish buttons to appear for. Note: WhatsApp "
 "iOS only."
 msgstr ""
+"Выберите социальные сети, для которых вы хотите, чтобы отображались кнопки. "
+"Примечание: WhatsApp только для iOS."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:86
 msgid "Icon font and default CSS"
-msgstr ""
+msgstr "Шрифт значка и CSS по умолчанию"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:90
 msgid ""
 "Uncheck to disable loading the included font and CSS and use your own theme "
 "based icon font and CSS."
 msgstr ""
+"Снимите флажок, чтобы отключить загрузку включенного шрифта и CSS и "
+"использовать свой собственный тематический шрифт для значков и CSS."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:91
 msgid "Icons only"
-msgstr ""
+msgstr "Только иконки"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:95
 msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
+"Отметьте, чтобы скрыть название сервиса и отображались только кнопки со "
+"значками."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:96
 msgid "Twitter user name"
@@ -20989,6 +21191,8 @@ msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
 msgstr ""
+"Введите свое имя в Twitter без @ здесь, если вы хотите, чтобы оно "
+"добавлялось к созданным твитам."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:325
 msgid "e-mail"
@@ -21007,6 +21211,8 @@ msgid ""
 "Show the top <em>Threshold</em> criteria of successful searches. (Searches "
 "which returned at least one result.)"
 msgstr ""
+"Показать верхние <em>Пороговые</em> критерии успешного поиска. (Поиск, "
+"который вернул хотя бы один результат.)"
 
 #: zp-core/zp-extensions/search_statistics.php:61
 msgid "Threshold (failed)"
@@ -21014,7 +21220,7 @@ msgstr "Порог"
 
 #: zp-core/zp-extensions/search_statistics.php:63
 msgid "Show the top <em>Threshold</em> criteria of searches that failed."
-msgstr ""
+msgstr "Показывает верхние <em> Пороговые </em> критерии неудачных поисков."
 
 #: zp-core/zp-extensions/search_statistics.php:64
 msgid "Threshold (terms)"
@@ -21023,6 +21229,8 @@ msgstr "Порог"
 #: zp-core/zp-extensions/search_statistics.php:66
 msgid "Show the top <em>Threshold</em> terms used in searches."
 msgstr ""
+"Показывать верхние <em>Пороговые</em> значения терминов, используемых при "
+"поиске."
 
 #: zp-core/zp-extensions/search_statistics.php:67
 msgid "Threshold (IP)"
@@ -21031,6 +21239,7 @@ msgstr "Порог"
 #: zp-core/zp-extensions/search_statistics.php:69
 msgid "Show the top <em>Threshold</em> IPs that have performed searches."
 msgstr ""
+"Показывает верхние <em>Пороговые</em> IP-адреса, по которым выполнялся поиск."
 
 #: zp-core/zp-extensions/search_statistics.php:81
 msgid "Search statistics"
@@ -21055,7 +21264,7 @@ msgstr "Введите ваши критерии поиска."
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:136
 #, php-format
 msgid "Top %u successful search criteria"
-msgstr ""
+msgstr "Лучший %u успешных критериев поиска"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:138
 msgid "Successful search criteria"
@@ -21064,16 +21273,16 @@ msgstr "Успешный критерий поиска"
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:170
 #, php-format
 msgid "Top %u failed search criteria"
-msgstr ""
+msgstr "Топ %u неудачных критериев поиска"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:172
 msgid "Failed search criteria"
-msgstr ""
+msgstr "Неудачные критерии поиска"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:203
 #, php-format
 msgid "Top %u search terms used"
-msgstr ""
+msgstr "Самые %u часто используемые поисковые запросы"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:205
 msgid "Search terms used"
@@ -21082,7 +21291,7 @@ msgstr "Поиск осуществлялся"
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:236
 #, php-format
 msgid "Top %u Search IPs"
-msgstr ""
+msgstr "Лучшие %u IP-адреса для поиска"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:238
 msgid "Search IPs"
@@ -21090,11 +21299,11 @@ msgstr "Поиск"
 
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:270
 msgid "Change <em>Threshold</em> values"
-msgstr ""
+msgstr "Изменение <em>Пороговых</em> значений"
 
 #: zp-core/zp-extensions/security-logger.php:19
 msgid "Logs selected security events."
-msgstr ""
+msgstr "Регистрирует выбранные события безопасности."
 
 #: zp-core/zp-extensions/security-logger.php:70
 msgid "Record logon attempts of"
@@ -21115,7 +21324,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/security-logger.php:73
 msgid "Record failed admin access"
-msgstr ""
+msgstr "Запись попыток входа в систему"
 
 #: zp-core/zp-extensions/security-logger.php:74
 #: zp-core/zp-extensions/security-logger.php:77
@@ -21124,15 +21333,15 @@ msgstr "Все попытки"
 
 #: zp-core/zp-extensions/security-logger.php:74
 msgid "Only user attempts"
-msgstr ""
+msgstr "Попытки только пользователя"
 
 #: zp-core/zp-extensions/security-logger.php:75
 msgid "Record admin page access failures."
-msgstr ""
+msgstr "Фиксируйте сбои при доступе к странице администратора."
 
 #: zp-core/zp-extensions/security-logger.php:76
 msgid "Record logon"
-msgstr ""
+msgstr "Запись входа в систему"
 
 #: zp-core/zp-extensions/security-logger.php:77
 msgid "Successful attempts"
@@ -21173,7 +21382,7 @@ msgstr "[%u версия пропущена]"
 
 #: zp-core/zp-extensions/security-logger.php:141
 msgid "Protect setup scripts"
-msgstr ""
+msgstr "Защита скриптов установки"
 
 #: zp-core/zp-extensions/security-logger.php:144
 msgid "Request add user"
@@ -21189,7 +21398,7 @@ msgstr "Удаление пользователя"
 
 #: zp-core/zp-extensions/security-logger.php:153
 msgid "Cross Site Reference"
-msgstr ""
+msgstr "Межсайтовая ссылка"
 
 #: zp-core/zp-extensions/security-logger.php:156
 msgid "Album access"
@@ -21209,13 +21418,21 @@ msgstr "Логин администратора"
 
 #: zp-core/zp-extensions/security-logger.php:168
 msgid "Authorization cookie check"
-msgstr ""
+msgstr "Проверка файлов cookie авторизации"
 
 #: zp-core/zp-extensions/security-logger.php:185
 msgid ""
 "date\trequestor’s IP\ttype\tuser ID\tuser "
 "name\toutcome\tauthority\tadditional information\n"
 msgstr ""
+"дата\n"
+"IP-адрес отправителя запроса\n"
+"тип\n"
+"идентификатор пользователя\n"
+"имя пользователя\n"
+"полномочия\n"
+"результат\n"
+"дополнительная информация\n"
 
 #: zp-core/zp-extensions/security-logger.php:194
 #: zp-core/zp-extensions/security-logger.php:223
@@ -21237,24 +21454,24 @@ msgstr "Файлы ядра Zenphoto"
 #: zp-core/zp-extensions/security-logger.php:223
 #, php-format
 msgid "File permissions of Security log are %04o"
-msgstr ""
+msgstr "Права доступа к файлам журнала безопасности %04o"
 
 #: zp-core/zp-extensions/seo_cleanup.php:15
 msgid "Provides a utility SEO file/folder name clenser."
-msgstr ""
+msgstr "Предоставляет утилиту для переименования файлов/папок для SEO"
 
 #: zp-core/zp-extensions/seo_cleanup.php:24
 #: zp-core/zp-extensions/sitemap-extended.php:241
 msgid "Seo"
-msgstr ""
+msgstr "SEO"
 
 #: zp-core/zp-extensions/seo_cleanup.php:26
 msgid "SEO Cleaner"
-msgstr ""
+msgstr "SEO-очиститель"
 
 #: zp-core/zp-extensions/seo_cleanup.php:30
 msgid "Make file and folder names in the Gallery SEO friendly."
-msgstr ""
+msgstr "Сделайте названия файлов и папок в галерее удобными для SEO."
 
 #: zp-core/zp-extensions/seo_cleanup.php:50
 msgid "Image already exists."
@@ -21267,7 +21484,7 @@ msgstr "Альбом уже существует."
 #: zp-core/zp-extensions/seo_cleanup.php:62
 #, php-format
 msgid "There was an error #%d with the rename operation."
-msgstr ""
+msgstr "Произошла ошибка #%d при операции переименования."
 
 #: zp-core/zp-extensions/seo_cleanup.php:81
 #: zp-core/zp-extensions/seo_cleanup.php:117
@@ -21283,11 +21500,12 @@ msgstr "<em>%1$s</em> переименовано в <em>%2$s</em>"
 
 #: zp-core/zp-extensions/seo_cleanup.php:141
 msgid "SEO cleaner"
-msgstr ""
+msgstr "SEO-очиститель"
 
 #: zp-core/zp-extensions/seo_cleanup.php:166
 msgid "Cleanup album and image names to be SEO friendly"
 msgstr ""
+"Очистите названия альбомов и изображений, чтобы они были удобны для SEO"
 
 #: zp-core/zp-extensions/seo_cleanup.php:178
 #, php-format
@@ -21299,7 +21517,7 @@ msgstr[2] "%d альбомов очищено."
 
 #: zp-core/zp-extensions/seo_cleanup.php:180
 msgid "No albums cleaned."
-msgstr ""
+msgstr "Альбомы не были переименованы."
 
 #: zp-core/zp-extensions/seo_cleanup.php:187
 #, php-format
@@ -21311,11 +21529,11 @@ msgstr[2] "%d изображений очищено."
 
 #: zp-core/zp-extensions/seo_cleanup.php:189
 msgid "No images cleaned."
-msgstr ""
+msgstr "Изображения не были переименованы."
 
 #: zp-core/zp-extensions/seo_cleanup.php:197
 msgid "No albums or images cleaned up."
-msgstr ""
+msgstr "Альбомы и изображения не были переименованы."
 
 #: zp-core/zp-extensions/seo_locale.php:34
 msgid "Allows setting language locale through the URI."
@@ -21327,6 +21545,9 @@ msgid ""
 "em> (administrative) URLs. However, once activated, the language is "
 "remembered, even for the <em>back&#8209;end</em>."
 msgstr ""
+"<strong>Примечание:</strong> Этот плагин не активирован для <em>back&#8209;"
+"end</em> (административных) URL-адресов. Однако после активации язык "
+"запоминается даже для <em>back&#8209;end</em>."
 
 #: zp-core/zp-extensions/seo_locale.php:37
 msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
@@ -21338,16 +21559,20 @@ msgid ""
 "This plugin is not compatible with the <code>dynamic locale</code> <em>Use "
 "subdomains</em> option"
 msgstr ""
+"Этот плагин несовместим с опцией <code>dynamic locale</code>: "
+"<em>Использовать поддомены</em>"
 
 #: zp-core/zp-extensions/seo_null.php:10
 msgid "SEO <em>Null</em> filter."
-msgstr ""
+msgstr "SEO <em>Null</em>-фильтр."
 
 #: zp-core/zp-extensions/seo_null.php:11
 msgid ""
 "The only translation performed is one or more <em>white space</em> "
 "characters are converted to a <em>hyphen</em>."
 msgstr ""
+"Единственный выполняемый перевод - это преобразование одного или нескольких "
+"символов <em>пробела</em> в <em>дефис</em>."
 
 #: zp-core/zp-extensions/seo_null.php:13
 #: zp-core/zp-extensions/seo_zenphoto.php:12
@@ -21356,12 +21581,16 @@ msgid ""
 "Only one SEO filter plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
+"Может быть включен только один плагин SEO-фильтра. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> уже включен."
 
 #: zp-core/zp-extensions/seo_zenphoto.php:10
 msgid ""
 "SEO filter to translate extended characters into their basic alpha-numeric "
 "equivalents."
 msgstr ""
+"SEO-фильтр для перевода расширенных символов в их базовые буквенно-цифровые "
+"эквиваленты."
 
 #: zp-core/zp-extensions/seo_zenphoto.php:44
 msgid "Lowercase only"
@@ -21380,7 +21609,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/show_not_logged-in.php:48
 msgid "show_not_logged-in is active."
-msgstr ""
+msgstr "show_not_logged-in активен."
 
 #: zp-core/zp-extensions/simpleSpam.php:11
 msgid "Simple SPAM filter."
@@ -21393,6 +21622,8 @@ msgid ""
 "Only one SPAM handler plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
+"Может быть включен только один плагин для обработки спама. <a "
+"href=\"#%1$s\"><code>%1$s</code></a> уже включен."
 
 #: zp-core/zp-extensions/simpleSpam.php:56
 msgid "Words to die on"
@@ -21452,12 +21683,19 @@ msgid ""
 "option \"news on index\" that some themes provide! Also it does not \"know\" "
 "about \"custom pages\" outside Zenpage or any special custom theme setup!!"
 msgstr ""
+"<strong>Примечание: </strong> Ссылки на индекс могут не совпадать при "
+"использовании опции Zenpage \"новости на домашней странице\", которую "
+"предоставляют некоторые темы! Также он не \"знает\" о \"пользовательских "
+"страницах\" за пределами Zenpage или каких-либо специальных настройках "
+"пользовательской темы!"
 
 #: zp-core/zp-extensions/sitemap-extended.php:33
 msgid ""
 "sitemap cache folder could not be created. Please try to create it manually "
 "via FTP with chmod 0777."
 msgstr ""
+"не удалось создать папку с кэшем sitemap. Пожалуйста, попробуйте создать ее "
+"вручную через FTP с помощью chmod 0777."
 
 #: zp-core/zp-extensions/sitemap-extended.php:83
 msgid "always"
@@ -21473,7 +21711,7 @@ msgstr "ежедневно"
 
 #: zp-core/zp-extensions/sitemap-extended.php:86
 msgid "weekly"
-msgstr ""
+msgstr "еженедельно"
 
 #: zp-core/zp-extensions/sitemap-extended.php:87
 msgid "monthly"
@@ -21481,7 +21719,7 @@ msgstr "жемесячно"
 
 #: zp-core/zp-extensions/sitemap-extended.php:88
 msgid "yearly"
-msgstr ""
+msgstr "ежегодно"
 
 #: zp-core/zp-extensions/sitemap-extended.php:89
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:140
