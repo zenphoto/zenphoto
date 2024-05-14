@@ -4626,14 +4626,10 @@ msgstr ""
 "<em>шаблон</em>"
 
 #: zp-core/admin-options.php:1671
-#, fuzzy
 msgid "<em>partial word</em>"
-msgstr ""
-"<em>слово (частично)</em>\n"
-"\"<em>неполное слово</em>\""
+msgstr "<em>неполное слово</em>"
 
 #: zp-core/admin-options.php:1671 zp-core/admin-options.php:1677
-#, fuzzy
 msgid "<em>word</em>"
 msgstr "<em>слово</em>"
 
@@ -4661,12 +4657,10 @@ msgid "<em>space</em>"
 msgstr "<em>пробел</em>"
 
 #: zp-core/admin-options.php:1683
-#, fuzzy
 msgid "<em>OR</em>"
 msgstr "<em>ИЛИ</em>"
 
 #: zp-core/admin-options.php:1683
-#, fuzzy
 msgid "<em>AND</em>"
 msgstr "<em>И</em>"
 
@@ -4675,12 +4669,10 @@ msgid "Default search"
 msgstr "Поиск по умолчанию"
 
 #: zp-core/admin-options.php:1689
-#, fuzzy
 msgid "<em>New</em>"
 msgstr "<em>Новый</em>"
 
 #: zp-core/admin-options.php:1689
-#, fuzzy
 msgid "<em>Within</em>"
 msgstr "<em>В результатах</em>"
 
@@ -9408,613 +9400,491 @@ msgstr ""
 "резервной копии."
 
 #: zp-core/functions/functions-i18n.php:27
-#, fuzzy
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
 #: zp-core/functions/functions-i18n.php:28
-#, fuzzy
 msgid "Albanian"
 msgstr "Albanian"
 
 #: zp-core/functions/functions-i18n.php:29
-#, fuzzy
 msgid "Arabic (United Arab Emirates)"
 msgstr "Arabic (United Arab Emirates)"
 
 #: zp-core/functions/functions-i18n.php:30
-#, fuzzy
 msgid "Arabic (Bahrain)"
 msgstr "Arabic (Bahrain)"
 
 #: zp-core/functions/functions-i18n.php:31
-#, fuzzy
 msgid "Arabic (Algeria)"
 msgstr "Arabic (Algeria)"
 
 #: zp-core/functions/functions-i18n.php:32
-#, fuzzy
 msgid "Arabic (Egypt)"
 msgstr "Arabic (Egypt)"
 
 #: zp-core/functions/functions-i18n.php:33
-#, fuzzy
 msgid "Arabic (Iran)"
 msgstr "Arabic (Iran)"
 
 #: zp-core/functions/functions-i18n.php:34
-#, fuzzy
 msgid "Arabic (Iraq)"
 msgstr "Arabic (Iraq)"
 
 #: zp-core/functions/functions-i18n.php:35
-#, fuzzy
 msgid "Arabic (Jordan)"
 msgstr "Arabic (Jordan)"
 
 #: zp-core/functions/functions-i18n.php:36
-#, fuzzy
 msgid "Arabic (Kuwait)"
 msgstr "Arabic (Kuwait)"
 
 #: zp-core/functions/functions-i18n.php:37
-#, fuzzy
 msgid "Arabic (Lebanon)"
 msgstr "Arabic (Lebanon)"
 
 #: zp-core/functions/functions-i18n.php:38
-#, fuzzy
 msgid "Arabic (Libya)"
 msgstr "Arabic (Libya)"
 
 #: zp-core/functions/functions-i18n.php:39
-#, fuzzy
 msgid "Arabic (Morocco)"
 msgstr "Arabic (Morocco)"
 
 #: zp-core/functions/functions-i18n.php:40
-#, fuzzy
 msgid "Arabic (Oman)"
 msgstr "Arabic (Oman)"
 
 #: zp-core/functions/functions-i18n.php:41
-#, fuzzy
 msgid "Arabic (Qatar)"
 msgstr "Arabic (Qatar)"
 
 #: zp-core/functions/functions-i18n.php:42
-#, fuzzy
 msgid "Arabic (Saudi Arabia)"
 msgstr "Arabic (Saudi Arabia)"
 
 #: zp-core/functions/functions-i18n.php:43
-#, fuzzy
 msgid "Arabic (Sudan)"
 msgstr "Arabic (Sudan)"
 
 #: zp-core/functions/functions-i18n.php:44
-#, fuzzy
 msgid "Arabic (Syria)"
 msgstr "Arabic (Syria)"
 
 #: zp-core/functions/functions-i18n.php:45
-#, fuzzy
 msgid "Arabic (Tunisia)"
 msgstr "Arabic (Tunisia)"
 
 #: zp-core/functions/functions-i18n.php:46
-#, fuzzy
 msgid "Arabic (Yemen)"
 msgstr "Arabic (Yemen)"
 
 #: zp-core/functions/functions-i18n.php:47
-#, fuzzy
 msgid "Basque (Basque)"
 msgstr "Basque (Basque)"
 
 #: zp-core/functions/functions-i18n.php:48
-#, fuzzy
 msgid "Belarusian"
 msgstr "Belarusian"
 
 #: zp-core/functions/functions-i18n.php:49
-#, fuzzy
 msgid "Bengali"
 msgstr "Bengali"
 
 #: zp-core/functions/functions-i18n.php:50
-#, fuzzy
 msgid "Bulgarian"
 msgstr "Bulgarian"
 
 #: zp-core/functions/functions-i18n.php:51
-#, fuzzy
 msgid "Catalan"
 msgstr "Catalan"
 
 #: zp-core/functions/functions-i18n.php:52
-#, fuzzy
 msgid "Chinese (Simplified)"
 msgstr "Chinese (Simplified)"
 
 #: zp-core/functions/functions-i18n.php:53
-#, fuzzy
 msgid "Chinese (People’s Republic of China)"
 msgstr "Chinese (People’s Republic of China)"
 
 #: zp-core/functions/functions-i18n.php:54
-#, fuzzy
 msgid "Chinese (Hong Kong)"
 msgstr "Chinese (Hong Kong)"
 
 #: zp-core/functions/functions-i18n.php:55
-#, fuzzy
 msgid "Chinese (Taiwan)"
 msgstr "Chinese (Taiwan)"
 
 #: zp-core/functions/functions-i18n.php:56
-#, fuzzy
 msgid "Croatian"
 msgstr "Croatian"
 
 #: zp-core/functions/functions-i18n.php:57
-#, fuzzy
 msgid "Czech"
 msgstr "Czech"
 
 #: zp-core/functions/functions-i18n.php:58
-#, fuzzy
 msgid "Cambodian"
 msgstr "Cambodian"
 
 #: zp-core/functions/functions-i18n.php:59
-#, fuzzy
 msgid "Danish"
 msgstr "Danish"
 
 #: zp-core/functions/functions-i18n.php:60
-#, fuzzy
 msgid "Dutch (Belgium)"
 msgstr "Dutch (Belgium)"
 
 #: zp-core/functions/functions-i18n.php:61
-#, fuzzy
 msgid "Dutch (The Netherlands)"
 msgstr "Dutch (The Netherlands)"
 
 #: zp-core/functions/functions-i18n.php:62
-#, fuzzy
 msgid "English (Australia)"
 msgstr "English (Australia)"
 
 #: zp-core/functions/functions-i18n.php:63
-#, fuzzy
 msgid "English (Canada)"
 msgstr "English (Canada)"
 
 #: zp-core/functions/functions-i18n.php:64
-#, fuzzy
 msgid "English (United Kingdom)"
 msgstr "English (United Kingdom)"
 
 #: zp-core/functions/functions-i18n.php:65
-#, fuzzy
 msgid "English (India)"
 msgstr "English (India)"
 
 #: zp-core/functions/functions-i18n.php:66
-#, fuzzy
 msgid "English (New Zealand)"
 msgstr "English (New Zealand)"
 
 #: zp-core/functions/functions-i18n.php:67
-#, fuzzy
 msgid "English (Philippines)"
 msgstr "English (Philippines)"
 
 #: zp-core/functions/functions-i18n.php:68
-#, fuzzy
 msgid "English (United States)"
 msgstr "English (United States)"
 
 #: zp-core/functions/functions-i18n.php:69
-#, fuzzy
 msgid "English (South Africa)"
 msgstr "English (South Africa)"
 
 #: zp-core/functions/functions-i18n.php:70
-#, fuzzy
 msgid "English (Zimbabwe)"
 msgstr "English (Zimbabwe)"
 
 #: zp-core/functions/functions-i18n.php:71
-#, fuzzy
 msgid "Esperanto"
 msgstr "Esperanto"
 
 #: zp-core/functions/functions-i18n.php:72
-#, fuzzy
 msgid "Estonian"
 msgstr "Estonian"
 
 #: zp-core/functions/functions-i18n.php:73
-#, fuzzy
 msgid "Finnish"
 msgstr "Finnish"
 
 #: zp-core/functions/functions-i18n.php:74
-#, fuzzy
 msgid "Faroese"
 msgstr "Faroese"
 
 #: zp-core/functions/functions-i18n.php:75
-#, fuzzy
 msgid "French (Belgium)"
 msgstr "French (Belgium)"
 
 #: zp-core/functions/functions-i18n.php:76
-#, fuzzy
 msgid "French (Canada)"
 msgstr "French (Canada)"
 
 #: zp-core/functions/functions-i18n.php:77
-#, fuzzy
 msgid "French (Switzerland)"
 msgstr "French (Switzerland)"
 
 #: zp-core/functions/functions-i18n.php:78
-#, fuzzy
 msgid "French (France)"
 msgstr "French (France)"
 
 #: zp-core/functions/functions-i18n.php:79
-#, fuzzy
 msgid "French (Luxembourg)"
 msgstr "French (Luxembourg)"
 
 #: zp-core/functions/functions-i18n.php:80
-#, fuzzy
 msgid "Galician"
 msgstr "Galician"
 
 #: zp-core/functions/functions-i18n.php:81
-#, fuzzy
 msgid "Gujarati"
 msgstr "Gujarati"
 
 #: zp-core/functions/functions-i18n.php:82
-#, fuzzy
 msgid "Greek"
 msgstr "Greek"
 
 #: zp-core/functions/functions-i18n.php:83
-#, fuzzy
 msgid "German (Austria)"
 msgstr "German (Austria)"
 
 #: zp-core/functions/functions-i18n.php:84
-#, fuzzy
 msgid "German (Belgium)"
 msgstr "German (Belgium)"
 
 #: zp-core/functions/functions-i18n.php:85
-#, fuzzy
 msgid "German (Switzerland)"
 msgstr "German (Switzerland)"
 
 #: zp-core/functions/functions-i18n.php:86
-#, fuzzy
 msgid "German (Germany)"
 msgstr "German (Germany)"
 
 #: zp-core/functions/functions-i18n.php:87
-#, fuzzy
 msgid "German (Luxembourg)"
 msgstr "German (Luxembourg)"
 
 #: zp-core/functions/functions-i18n.php:88
-#, fuzzy
 msgid "Hebrew"
 msgstr "Hebrew"
 
 #: zp-core/functions/functions-i18n.php:89
-#, fuzzy
 msgid "Hindi"
 msgstr "Hindi"
 
 #: zp-core/functions/functions-i18n.php:90
-#, fuzzy
 msgid "Hungarian"
 msgstr "Hungarian"
 
 #: zp-core/functions/functions-i18n.php:91
-#, fuzzy
 msgid "Indonesian"
 msgstr "Indonesian"
 
 #: zp-core/functions/functions-i18n.php:92
-#, fuzzy
 msgid "Icelandic"
 msgstr "Icelandic"
 
 #: zp-core/functions/functions-i18n.php:93
-#, fuzzy
 msgid "Italian (Switzerland)"
 msgstr "Italian (Switzerland)"
 
 #: zp-core/functions/functions-i18n.php:94
-#, fuzzy
 msgid "Italian (Italy)"
 msgstr "Italian (Italy)"
 
 #: zp-core/functions/functions-i18n.php:95
-#, fuzzy
 msgid "Japanese"
 msgstr "Japanese"
 
 #: zp-core/functions/functions-i18n.php:96
-#, fuzzy
 msgid "Korean"
 msgstr "Korean"
 
 #: zp-core/functions/functions-i18n.php:97
-#, fuzzy
 msgid "Lithuanian"
 msgstr "Lithuanian"
 
 #: zp-core/functions/functions-i18n.php:98
-#, fuzzy
 msgid "Latvian"
 msgstr "Latvian"
 
 #: zp-core/functions/functions-i18n.php:99
-#, fuzzy
 msgid "Macedonian"
 msgstr "Macedonian"
 
 #: zp-core/functions/functions-i18n.php:100
-#, fuzzy
 msgid "Mongolian"
 msgstr "Mongolian"
 
 #: zp-core/functions/functions-i18n.php:101
-#, fuzzy
 msgid "Malay"
 msgstr "Malay"
 
 #: zp-core/functions/functions-i18n.php:102
-#, fuzzy
 msgid "Malagasy"
 msgstr "Malagasy"
 
 #: zp-core/functions/functions-i18n.php:103
-#, fuzzy
 msgid "Norwegian (Bokmål)"
-msgstr "Норвежский (букмол)"
+msgstr "Norwegian (Bokmål)"
 
 #: zp-core/functions/functions-i18n.php:104
-#, fuzzy
 msgid "Norwegian"
 msgstr "Norwegian"
 
 #: zp-core/functions/functions-i18n.php:105
-#, fuzzy
 msgid "Nias"
 msgstr "Nias"
 
 #: zp-core/functions/functions-i18n.php:106
-#, fuzzy
 msgid "Persian"
 msgstr "Persian"
 
 #: zp-core/functions/functions-i18n.php:107
-#, fuzzy
 msgid "Polish"
 msgstr "Polish"
 
 #: zp-core/functions/functions-i18n.php:108
-#, fuzzy
 msgid "Portuguese (Brazil)"
 msgstr "Portuguese (Brazil)"
 
 #: zp-core/functions/functions-i18n.php:109
-#, fuzzy
 msgid "Portuguese (Portugal)"
 msgstr "Portuguese (Portugal)"
 
 #: zp-core/functions/functions-i18n.php:110
-#, fuzzy
 msgid "Romanian"
 msgstr "Romanian"
 
 #: zp-core/functions/functions-i18n.php:111
-#, fuzzy
 msgid "Russian (Russia)"
 msgstr "Russian (Russia)"
 
 #: zp-core/functions/functions-i18n.php:112
-#, fuzzy
 msgid "Russian (Ukraine)"
 msgstr "Russian (Ukraine)"
 
 #: zp-core/functions/functions-i18n.php:113
-#, fuzzy
 msgid "Sinhala"
 msgstr "Sinhala"
 
 #: zp-core/functions/functions-i18n.php:114
-#, fuzzy
 msgid "Slovak"
-msgstr "Словацкий"
+msgstr "Slovak"
 
 #: zp-core/functions/functions-i18n.php:115
-#, fuzzy
 msgid "Slovenian"
 msgstr "Slovenian"
 
 #: zp-core/functions/functions-i18n.php:116
-#, fuzzy
 msgid "Spanish (Argentina)"
 msgstr "Spanish (Argentina)"
 
 #: zp-core/functions/functions-i18n.php:117
-#, fuzzy
 msgid "Spanish (Bolivia)"
 msgstr "Spanish (Bolivia)"
 
 #: zp-core/functions/functions-i18n.php:118
-#, fuzzy
 msgid "Spanish (Chile)"
 msgstr "Spanish (Chile)"
 
 #: zp-core/functions/functions-i18n.php:119
-#, fuzzy
 msgid "Spanish (Columbia)"
 msgstr "Spanish (Columbia)"
 
 #: zp-core/functions/functions-i18n.php:120
-#, fuzzy
 msgid "Spanish (Costa Rica)"
 msgstr "Spanish (Costa Rica)"
 
 #: zp-core/functions/functions-i18n.php:121
-#, fuzzy
 msgid "Spanish (Dominican Republic)"
 msgstr "Spanish (Dominican Republic)"
 
 #: zp-core/functions/functions-i18n.php:122
-#, fuzzy
 msgid "Spanish (Ecuador)"
 msgstr "Spanish (Ecuador)"
 
 #: zp-core/functions/functions-i18n.php:123
-#, fuzzy
 msgid "Spanish (Spain)"
 msgstr "Spanish (Spain)"
 
 #: zp-core/functions/functions-i18n.php:124
-#, fuzzy
 msgid "Spanish (Guatemala)"
 msgstr "Spanish (Guatemala)"
 
 #: zp-core/functions/functions-i18n.php:125
-#, fuzzy
 msgid "Spanish (Honduras)"
 msgstr "Spanish (Honduras)"
 
 #: zp-core/functions/functions-i18n.php:126
-#, fuzzy
 msgid "Spanish (Mexico)"
 msgstr "Spanish (Mexico)"
 
 #: zp-core/functions/functions-i18n.php:127
-#, fuzzy
 msgid "Spanish (Nicaragua)"
 msgstr "Spanish (Nicaragua)"
 
 #: zp-core/functions/functions-i18n.php:128
-#, fuzzy
 msgid "Spanish (Panama)"
 msgstr "Spanish (Panama)"
 
 #: zp-core/functions/functions-i18n.php:129
-#, fuzzy
 msgid "Spanish (Peru)"
 msgstr "Spanish (Peru)"
 
 #: zp-core/functions/functions-i18n.php:130
-#, fuzzy
 msgid "Spanish (Puerto Rico)"
 msgstr "Spanish (Puerto Rico)"
 
 #: zp-core/functions/functions-i18n.php:131
-#, fuzzy
 msgid "Spanish (Paraguay)"
 msgstr "Spanish (Paraguay)"
 
 #: zp-core/functions/functions-i18n.php:132
-#, fuzzy
 msgid "Spanish (El Salvador)"
 msgstr "Spanish (El Salvador)"
 
 #: zp-core/functions/functions-i18n.php:133
-#, fuzzy
 msgid "Spanish (United States)"
 msgstr "Spanish (United States)"
 
 #: zp-core/functions/functions-i18n.php:134
-#, fuzzy
 msgid "Spanish (Uruguay)"
 msgstr "Spanish (Uruguay)"
 
 #: zp-core/functions/functions-i18n.php:135
-#, fuzzy
 msgid "Spanish (Venezuela)"
 msgstr "Spanish (Venezuela)"
 
 #: zp-core/functions/functions-i18n.php:136
-#, fuzzy
 msgid "Spanish (Latin America)"
 msgstr "Spanish (Latin America)"
 
 #: zp-core/functions/functions-i18n.php:137
 #: zp-core/functions/functions-i18n.php:138
-#, fuzzy
 msgid "Serbian"
 msgstr "Serbian"
 
 #: zp-core/functions/functions-i18n.php:139
-#, fuzzy
 msgid "Swedish (Finland)"
 msgstr "Swedish (Finland)"
 
 #: zp-core/functions/functions-i18n.php:140
-#, fuzzy
 msgid "Swedish (Sweden)"
 msgstr "Swedish (Sweden)"
 
 #: zp-core/functions/functions-i18n.php:141
-#, fuzzy
 msgid "Tamil"
 msgstr "Tamil"
 
 #: zp-core/functions/functions-i18n.php:142
-#, fuzzy
 msgid "Telugu"
 msgstr "Telugu"
 
 #: zp-core/functions/functions-i18n.php:143 zp-core/libs/class-utf8.php:299
-#, fuzzy
 msgid "Thai"
 msgstr "Thai"
 
 #: zp-core/functions/functions-i18n.php:144
-#, fuzzy
 msgid "Turkish"
 msgstr "Turkish"
 
 #: zp-core/functions/functions-i18n.php:145
-#, fuzzy
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
 #: zp-core/functions/functions-i18n.php:146
-#, fuzzy
 msgid "Uzbek"
 msgstr "Uzbek"
 
 #: zp-core/functions/functions-i18n.php:147
-#, fuzzy
 msgid "Urdu (Pakistan)"
 msgstr "Urdu (Pakistan)"
 
 #: zp-core/functions/functions-i18n.php:148
-#, fuzzy
 msgid "Vietnamese"
 msgstr "Vietnamese"
 
 #: zp-core/functions/functions-i18n.php:149
-#, fuzzy
 msgid "Welsh"
 msgstr "Welsh"
 
@@ -10414,17 +10284,17 @@ msgid "Click to hide content"
 msgstr "Скрыть содержимое"
 
 #: zp-core/functions/functions.php:2597
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a number."
 msgstr "<em>[%1$s]</em> параметр %2$d должен быть числом."
 
 #: zp-core/functions/functions.php:2605
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> parameter %2$d should be a string."
 msgstr "<em>[%1$s]</em> параметр %2$d должен быть строкой."
 
 #: zp-core/functions/functions.php:2618
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<em>[%1$s]</em> parameter %2$d should be <code>true</code> or <code>false</"
 "code>."
@@ -10433,32 +10303,32 @@ msgstr ""
 "code>."
 
 #: zp-core/functions/functions.php:2637
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is incorrectly defined."
-msgstr "<em>[%1$s]</em> параметр %2$d определён не верно."
+msgstr "<em>[%1$s]</em> параметр %2$d определён неверно."
 
 #: zp-core/functions/functions.php:2643
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> parameter %2$d is missing."
 msgstr "<em>[%1$s]</em> параметр %2$d отсутствует."
 
 #: zp-core/functions/functions.php:2652
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> macro does not take parameters"
 msgstr "<em>[%1$s]</em> макрос не принимает параметры"
 
 #: zp-core/functions/functions.php:2675 zp-core/functions/functions.php:2702
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> retuned no data"
 msgstr "<em>[%1$s]</em> не вернул данных"
 
 #: zp-core/functions/functions.php:2680
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> <code>%2$s</code> is not callable"
 msgstr "<em>[%1$s]</em> <code>%2$s</code> нельзя вызвать"
 
 #: zp-core/functions/functions.php:2707
-#, fuzzy, php-format
+#, php-format
 msgid "<em>[%1$s]</em> takes %2$d parameter"
 msgid_plural "<em>[%1$s]</em> takes %2$d parameters"
 msgstr[0] "<em>[%1$s]</em> принимает %2$d параметр"
@@ -10466,22 +10336,18 @@ msgstr[1] "<em>[%1$s]</em> принимает %2$d параметра"
 msgstr[2] "<em>[%1$s]</em> принимает %2$d параметров"
 
 #: zp-core/functions/functions.php:2783
-#, fuzzy
 msgid "Camera Maker"
 msgstr "Производитель камеры"
 
 #: zp-core/functions/functions.php:2784
-#, fuzzy
 msgid "Camera Model"
 msgstr "Модель камеры"
 
 #: zp-core/functions/functions.php:2785
-#, fuzzy
 msgid "Image Title"
 msgstr "Название изображения"
 
 #: zp-core/functions/functions.php:2786
-#, fuzzy
 msgid "Object Name"
 msgstr "Название объекта"
 
@@ -10561,7 +10427,6 @@ msgstr "Изображения"
 #: zp-core/functions/functions.php:2802 zp-core/template-functions.php:469
 #: zp-core/zp-extensions/html_meta_tags.php:447
 #: zp-core/zp-extensions/scriptless-socialsharing.php:175
-#, fuzzy
 msgid "Contact"
 msgstr "Контакт"
 
@@ -10580,47 +10445,38 @@ msgid "Keywords"
 msgstr "Ключевые слова"
 
 #: zp-core/functions/functions.php:2806
-#, fuzzy
 msgid "Shutter Speed"
 msgstr "Выдержка"
 
 #: zp-core/functions/functions.php:2807
-#, fuzzy
 msgid "Aperture"
 msgstr "Диафрагма"
 
 #: zp-core/functions/functions.php:2808
-#, fuzzy
 msgid "ISO Sensitivity"
 msgstr "Чувствительность ISO"
 
 #: zp-core/functions/functions.php:2809
-#, fuzzy
 msgid "Exposure Compensation"
 msgstr "Поправка экспозиции"
 
 #: zp-core/functions/functions.php:2810
-#, fuzzy
 msgid "Metering Mode"
 msgstr "Замер экспозиции"
 
 #: zp-core/functions/functions.php:2811
-#, fuzzy
 msgid "Flash Fired"
 msgstr "Использование вспышки"
 
 #: zp-core/functions/functions.php:2812
-#, fuzzy
 msgid "Original Width"
 msgstr "Оригинальная ширина"
 
 #: zp-core/functions/functions.php:2813
-#, fuzzy
 msgid "Original Height"
 msgstr "Оригинальная высота"
 
 #: zp-core/functions/functions.php:2814
-#, fuzzy
 msgid "Orientation"
 msgstr "Ориентация"
 
@@ -10629,7 +10485,6 @@ msgid "Software"
 msgstr "Программное обеспечение"
 
 #: zp-core/functions/functions.php:2816
-#, fuzzy
 msgid "Contrast Setting"
 msgstr "Настройка контраста"
 
@@ -10638,22 +10493,18 @@ msgid "Sharpness Setting"
 msgstr "Настройка резкости"
 
 #: zp-core/functions/functions.php:2818
-#, fuzzy
 msgid "Saturation Setting"
 msgstr "Настройка насыщенности"
 
 #: zp-core/functions/functions.php:2819
-#, fuzzy
 msgid "White Balance"
 msgstr "Баланс белого"
 
 #: zp-core/functions/functions.php:2820
-#, fuzzy
 msgid "Subject Distance"
 msgstr "Расстояние до объекта съемки"
 
 #: zp-core/functions/functions.php:2821
-#, fuzzy
 msgid "Focal Length"
 msgstr "Фокусное расстояние"
 
@@ -10701,22 +10552,18 @@ msgid "Content Location Name"
 msgstr "Название местоположения контента"
 
 #: zp-core/functions/functions.php:2832
-#, fuzzy
 msgid "Latitude"
 msgstr "Широта"
 
 #: zp-core/functions/functions.php:2833
-#, fuzzy
 msgid "Latitude Reference"
 msgstr "Привязка к широте"
 
 #: zp-core/functions/functions.php:2834
-#, fuzzy
 msgid "Longitude"
 msgstr "Долгота"
 
 #: zp-core/functions/functions.php:2835
-#, fuzzy
 msgid "Longitude Reference"
 msgstr "Привязка к долготе"
 
@@ -10731,47 +10578,38 @@ msgid "Altitude Reference"
 msgstr "Ориентир Привязка по высоте"
 
 #: zp-core/functions/functions.php:2838
-#, fuzzy
 msgid "Originating Program"
 msgstr "Исходная программа"
 
 #: zp-core/functions/functions.php:2839
-#, fuzzy
 msgid "Program Version"
 msgstr "Версия программы"
 
 #: zp-core/functions/functions.php:2840
-#, fuzzy
 msgid "Video File Format"
 msgstr "Формат видеофайла"
 
 #: zp-core/functions/functions.php:2841
-#, fuzzy
 msgid "Video File Size"
-msgstr "Видео: размер файла"
+msgstr "Размер видеофайла"
 
 #: zp-core/functions/functions.php:2842
-#, fuzzy
 msgid "Video Artist"
-msgstr "Видео: автор"
+msgstr "Автор видео"
 
 #: zp-core/functions/functions.php:2843
-#, fuzzy
 msgid "Video Title"
-msgstr "Видео: название"
+msgstr "Название видео"
 
 #: zp-core/functions/functions.php:2844
-#, fuzzy
 msgid "Bitrate"
 msgstr "Битрейт"
 
 #: zp-core/functions/functions.php:2845
-#, fuzzy
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
 #: zp-core/functions/functions.php:2846
-#, fuzzy
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
@@ -10780,7 +10618,6 @@ msgid "Codec"
 msgstr "Кодек"
 
 #: zp-core/functions/functions.php:2848
-#, fuzzy
 msgid "Compression Ratio"
 msgstr "Степень сжатия"
 
@@ -10805,12 +10642,10 @@ msgid "Channel mode"
 msgstr "Cписок изменений"
 
 #: zp-core/functions/functions.php:2853
-#, fuzzy
 msgid "Format"
 msgstr "Формат"
 
 #: zp-core/functions/functions.php:2854
-#, fuzzy
 msgid "Channels"
 msgstr "Каналы"
 
@@ -10820,12 +10655,10 @@ msgid "Frame rate"
 msgstr "Скорость"
 
 #: zp-core/functions/functions.php:2856
-#, fuzzy
 msgid "X Resolution"
 msgstr "Разрешение по оси X"
 
 #: zp-core/functions/functions.php:2857
-#, fuzzy
 msgid "Y Resolution"
 msgstr "Разрешение по оси Y"
 
@@ -10839,7 +10672,6 @@ msgid "Play Time"
 msgstr "Воспроизведение"
 
 #: zp-core/functions/functions.php:2860
-#, fuzzy
 msgid "XMP Rating"
 msgstr "Рейтинг XMP"
 
@@ -11109,154 +10941,124 @@ msgid "'"
 msgstr "'"
 
 #: zp-core/libs/class-utf8.php:269
-#, fuzzy
 msgid "Chinese Traditional"
-msgstr "Китайская традиционная"
+msgstr "Chinese Traditional"
 
 #: zp-core/libs/class-utf8.php:270
-#, fuzzy
 msgid "Chinese Simplified (EUC)"
-msgstr "Китайская упрощённая (EUC)"
+msgstr "Chinese Simplified (EUC)"
 
 #: zp-core/libs/class-utf8.php:271
-#, fuzzy
 msgid "Japanese (EUC)"
-msgstr "Японская (EUC)"
+msgstr "Japanese (EUC)"
 
 #: zp-core/libs/class-utf8.php:272
-#, fuzzy
 msgid "Korean (EUC)"
-msgstr "Корейская (EUC)"
+msgstr "Korean (EUC)"
 
 #: zp-core/libs/class-utf8.php:273
-#, fuzzy
 msgid "Chinese (PRC new)"
 msgstr "Chinese (PRC new)"
 
 #: zp-core/libs/class-utf8.php:274
-#, fuzzy
 msgid "Chinese (PRC old)"
 msgstr "Chinese (PRC old)"
 
 #: zp-core/libs/class-utf8.php:275
-#, fuzzy
 msgid "Chinese (PRC simplified)"
 msgstr "Chinese (PRC simplified)"
 
 #: zp-core/libs/class-utf8.php:276
-#, fuzzy
 msgid "OEM United States"
-msgstr "English (United States)"
+msgstr "OEM United States"
 
 #: zp-core/libs/class-utf8.php:277
-#, fuzzy
 msgid "Baltic (DOS)"
-msgstr "Прибалтийская (DOS)"
+msgstr "Baltic (DOS)"
 
 #: zp-core/libs/class-utf8.php:278
-#, fuzzy
 msgid "Western European (DOS)"
 msgstr "Western European (DOS)"
 
 #: zp-core/libs/class-utf8.php:279
-#, fuzzy
 msgid "Central European (DOS)"
-msgstr "Центральноевропейская (DOS)"
+msgstr "Central European (DOS)"
 
 #: zp-core/libs/class-utf8.php:280
-#, fuzzy
 msgid "Turkish (DOS)"
 msgstr "Turkish (DOS)"
 
 #: zp-core/libs/class-utf8.php:281
-#, fuzzy
 msgid "Icelandic (DOS)"
-msgstr "Исландская (DOS)"
+msgstr "Icelandic (DOS)"
 
 #: zp-core/libs/class-utf8.php:282
-#, fuzzy
 msgid "Greek, Modern (DOS)"
-msgstr "Современный греческий (DOS)"
+msgstr "Greek, Modern (DOS)"
 
 #: zp-core/libs/class-utf8.php:283
-#, fuzzy
 msgid "Japanese (JIS)"
-msgstr "Японская (JIS)"
+msgstr "Japanese (JIS)"
 
 #: zp-core/libs/class-utf8.php:284
-#, fuzzy
 msgid "Western European (ISO)"
-msgstr "Западноевропейская (ISO)"
+msgstr "Western European (ISO)"
 
 #: zp-core/libs/class-utf8.php:285
-#, fuzzy
 msgid "Central European (ISO)"
-msgstr "Центральноевропейская (ISO)"
+msgstr "Central European (ISO)"
 
 #: zp-core/libs/class-utf8.php:286
-#, fuzzy
 msgid "Latin 3 (ISO)"
-msgstr "\"Латинский 3 (ISO)"
+msgstr "Latin 3 (ISO)"
 
 #: zp-core/libs/class-utf8.php:287
-#, fuzzy
 msgid "Cyrillic (ISO)"
-msgstr "Кириллица (ISO)"
+msgstr "Cyrillic (ISO)"
 
 #: zp-core/libs/class-utf8.php:288
-#, fuzzy
 msgid "Arabic (ISO)"
-msgstr "Арабская (ISO)"
+msgstr "Arabic (ISO)"
 
 #: zp-core/libs/class-utf8.php:289
-#, fuzzy
 msgid "Greek (ISO)"
-msgstr "Греческая (ISO)"
+msgstr "Greek (ISO)"
 
 #: zp-core/libs/class-utf8.php:290
-#, fuzzy
 msgid "Hebrew (ISO-Visual)"
-msgstr "Иврит (ISO-Visual)"
+msgstr "Hebrew (ISO-Visual)"
 
 #: zp-core/libs/class-utf8.php:291
-#, fuzzy
 msgid "Turkish (ISO)"
 msgstr "Turkish (ISO)"
 
 #: zp-core/libs/class-utf8.php:292
-#, fuzzy
 msgid "Baltic (ISO)"
-msgstr "Прибалтийская (ISO)"
+msgstr "Baltic (ISO)"
 
 #: zp-core/libs/class-utf8.php:293
-#, fuzzy
 msgid "Celtic (ISO)"
-msgstr "Прибалтийская (ISO)"
+msgstr "Celtic (ISO)"
 
 #: zp-core/libs/class-utf8.php:294
-#, fuzzy
 msgid "Latin 9 (ISO)"
-msgstr "\"Латинский 9 (ISO)"
+msgstr "Latin 9 (ISO)"
 
 #: zp-core/libs/class-utf8.php:295
-#, fuzzy
 msgid "South European (ISO)"
 msgstr "South European (ISO)"
 
 #: zp-core/libs/class-utf8.php:296
-#, fuzzy
 msgid "Cyrillic (KOI8-R)"
-msgstr "Кириллица (KOI8-R)"
+msgstr "Cyrillic (KOI8-R)"
 
 #: zp-core/libs/class-utf8.php:297
-#, fuzzy
 msgid "Cyrillic (KOI8-U)"
-msgstr "Кириллица (KOI8-U)"
+msgstr "Cyrillic (KOI8-U)"
 
 #: zp-core/libs/class-utf8.php:298
-#, fuzzy
 msgid "Japanese (Shift-JIS)"
-msgstr "Японская (Shift-JIS)"
+msgstr "Japanese (Shift-JIS)"
 
 #: zp-core/libs/class-utf8.php:300
 msgid "US-ASCII"
@@ -11275,62 +11077,51 @@ msgid "Unicode (UTF-16)"
 msgstr "Unicode (UTF-16)"
 
 #: zp-core/libs/class-utf8.php:304
-#, fuzzy
 msgid "Central European (Windows)"
-msgstr "Центральноевропейская (Windows)"
+msgstr "Central European (Windows)"
 
 #: zp-core/libs/class-utf8.php:305
-#, fuzzy
 msgid "Cyrillic (Windows)"
-msgstr "Кириллица (Windows)"
+msgstr "Cyrillic (Windows)"
 
 #: zp-core/libs/class-utf8.php:306
-#, fuzzy
 msgid "Western European (Windows)"
-msgstr "Западноевропейская (Windows)"
+msgstr "Western European (Windows)"
 
 #: zp-core/libs/class-utf8.php:307
-#, fuzzy
 msgid "Greek (Windows)"
-msgstr "Греческая (Windows)"
+msgstr "Greek (Windows)"
 
 #: zp-core/libs/class-utf8.php:308
-#, fuzzy
 msgid "Turkish (Windows)"
 msgstr "Turkish (Windows)"
 
 #: zp-core/libs/class-utf8.php:309
-#, fuzzy
 msgid "Hebrew (Windows)"
-msgstr "Иврит (Windows)"
+msgstr "Hebrew (Windows)"
 
 #: zp-core/libs/class-utf8.php:310
-#, fuzzy
 msgid "Arabic (Windows)"
-msgstr "Арабская (Windows)"
+msgstr "Arabic (Windows)"
 
 #: zp-core/libs/class-utf8.php:311
-#, fuzzy
 msgid "Baltic (Windows)"
-msgstr "Прибалтийская (Windows)"
+msgstr "Baltic (Windows)"
 
 #: zp-core/libs/class-utf8.php:312
-#, fuzzy
 msgid "Vietnamese (Windows)"
-msgstr "Вьетнамская (Windows)"
+msgstr "Vietnamese (Windows)"
 
 #: zp-core/libs/class-utf8.php:313
-#, fuzzy
 msgid "Thai (Windows)"
-msgstr "Тайская (Windows)"
+msgstr "Thai (Windows)"
 
 #: zp-core/license.php:37
-#, fuzzy
 msgid "Zenphoto License agreement"
 msgstr "Лицензионное соглашение Zenphoto"
 
 #: zp-core/license.php:40
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This license is in English because the <em>Free Software Foundation</em> "
 "does not approve translations as officially valid. Unofficial translations "
@@ -11341,7 +11132,6 @@ msgstr ""
 "переводы см. <a href=\"%s\">здесь</a>."
 
 #: zp-core/license.php:47
-#, fuzzy
 msgid "You must accept this license to continue to use Zenphoto."
 msgstr "Вы должны принять лицензию для продолжения работы с Zenphoto."
 
@@ -11439,7 +11229,6 @@ msgid "Testing %s."
 msgstr "Тестирую %s."
 
 #: zp-core/setup/class-setup.php:87
-#, fuzzy
 msgid "Fail: "
 msgstr "Сбой: "
 
@@ -11466,7 +11255,6 @@ msgid "Notice!"
 msgstr "Внимание!"
 
 #: zp-core/setup/class-setup.php:181
-#, fuzzy
 msgid "Autorun aborted"
 msgstr "Автозапуск прерван"
 
@@ -11630,7 +11418,6 @@ msgid "Reinstalling current Zenphoto release"
 msgstr "Повторная установка текущей версии Zenphoto"
 
 #: zp-core/setup/class-setup.php:932
-#, fuzzy
 msgid "reinstall"
 msgstr "переустановка"
 
@@ -11643,50 +11430,46 @@ msgstr[1] "[%u версии пропущено]"
 msgstr[2] "[%u версий пропущено]"
 
 #: zp-core/setup/class-setup.php:948
-#, fuzzy
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
 msgstr ""
-"Мы не тестируем обновления минующие предыдущие версии Zenphoto! "
+"Мы не тестируем обновления минующие предыдущие версии Zenphoto. "
 "Рекомендуется последовательная установка всех предыдущих выпусков."
 
 #: zp-core/setup/class-setup.php:952
-#, fuzzy, php-format
+#, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Обновление с версии Zenphoto v%s"
 
 #: zp-core/setup/class-setup.php:957
-#, fuzzy, php-format
+#, php-format
 msgid "Downgrade to Zenphoto v%s"
-msgstr "Обновление с версии Zenphoto v%s"
+msgstr "Понижение версии до Zenphoto v%s"
 
 #: zp-core/setup/class-setup.php:958
-#, fuzzy
 msgid ""
 "Downgrades are not recommended and supported and can have serious unwanted "
 "side effects especially regarding database changes in newer versions."
 msgstr ""
-"Понижение версии не рекомендуется и не поддерживается и может иметь "
+"Понижение версии не рекомендуется и не поддерживается и могут иметь "
 "серьезные нежелательные побочные эффекты, особенно в отношении изменений "
 "базы данных в более новых версиях."
 
 #: zp-core/setup/class-setup.php:959
-#, fuzzy
 msgid "Downgrade"
-msgstr "Скачать"
+msgstr "Понижение версии"
 
 #: zp-core/setup/index.php:22
-#, fuzzy, php-format
+#, php-format
 msgid "Zenphoto requires PHP version %s or greater"
-msgstr "Для Zenphoto требуется PHP версии %s или выше"
+msgstr "Zenphoto требуется PHP версии %s или выше"
 
 #: zp-core/setup/index.php:155
 msgid "db POST handling"
 msgstr "db POST handling"
 
 #: zp-core/setup/index.php:196
-#, fuzzy
 msgid "readonly"
 msgstr "только для чтения"
 
@@ -11706,7 +11489,6 @@ msgid "loose"
 msgstr "свободный"
 
 #: zp-core/setup/index.php:326
-#, fuzzy
 msgid ""
 "A corrupt configuration file was detected. You should remove or repair the "
 "file and re-run setup."
@@ -11715,7 +11497,6 @@ msgstr ""
 "восстановить файл и повторно запустить программу установки."
 
 #: zp-core/setup/index.php:354
-#, fuzzy
 msgid "upgrade"
 msgstr "обновление"
 
@@ -11840,7 +11621,6 @@ msgid "<em>SSL</em> connection [is not enabled]"
 msgstr "<em>SSL</em> соединение [не включено]."
 
 #: zp-core/setup/index.php:574
-#, fuzzy
 msgid ""
 "It is strongely recommended to use a secure https connection on your site."
 msgstr ""
@@ -11848,13 +11628,12 @@ msgstr ""
 "сайте."
 
 #: zp-core/setup/index.php:579
-#, fuzzy
 msgid ""
 "Server seems not to be <em>Apache</em>, <em>Nginx</em> or <em>compatible</"
 "em>. Zenphoto may not work correctly."
 msgstr ""
-"Сервер похоже не Apache (или совместимый с Apache), поэтому <code>.htaccess</"
-"code> не нужен."
+"Сервер не похож на <em>Apache</em>, <em>Nginx</em> или другой "
+"<em>совместимый</em>. Zenphoto может не заработать корректно."
 
 #: zp-core/setup/index.php:583
 #, php-format
@@ -11890,20 +11669,20 @@ msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHP Sessions требуются для работы административных функций Zenphoto."
 
 #: zp-core/setup/index.php:607
-#, fuzzy
 msgid "<code>Suhosin</code> module [is enabled]"
-msgstr "Модуль <code>Suhosin</code>  [включен]"
+msgstr "Модуль <code>Suhosin</code> [включен]"
 
 #: zp-core/setup/index.php:607
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
 "by Zenphoto. Other functions in the list may be used by Zenphoto, possibly "
 "causing reduced functionality or Zenphoto failures."
 msgstr ""
-"Заблокированы следующие функции PHP: %s. Для Zenphoto требуются отмеченные "
-"функции. Другие функции из списка могут использоваться Zenphoto, что может "
-"приводить к снижению функциональности или сбоям Zenphoto."
+"Заблокированы следующие функции PHP: %s. Отмеченные функции требуются для "
+"работы Zenphoto. Другие функции из списка также могут использоваться "
+"Zenphoto, что потенциально приведет снижению функциональности или сбоям в "
+"работе Zenphoto."
 
 #: zp-core/setup/index.php:632
 msgid "PHP <code>display_errors</code>"
@@ -11915,7 +11694,6 @@ msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [включено]"
 
 #: zp-core/setup/index.php:632
-#, fuzzy
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -11932,7 +11710,6 @@ msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP поддержка <code>gettext()</code> [отсутствует]"
 
 #: zp-core/setup/index.php:634
-#, fuzzy
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
@@ -11960,13 +11737,12 @@ msgid "PHP <code>tidy</code> support [is not present]"
 msgstr "PHP поддержка <code>tidy</code> [отсутствует]"
 
 #: zp-core/setup/index.php:638
-#, fuzzy
 msgid ""
 "<code>tidy</code> support is not critical but strongely recommended for "
 "properly truncating text containing HTML markup."
 msgstr ""
 "<code>tidy</code> - поддержка не критична, но настоятельно рекомендуется для "
-"правильного усечения текста, содержащего HTML-разметку."
+"правильного сокращения текста, содержащего HTML-разметку."
 
 #: zp-core/setup/index.php:639
 msgid "PHP <code>ZipArchive</code> support"
@@ -11977,7 +11753,6 @@ msgid "PHP <code>ZipArchive</code> support [is not present]"
 msgstr "PHP поддержка <code>ZipArchive</code> [отсутствует]"
 
 #: zp-core/setup/index.php:639
-#, fuzzy
 msgid ""
 "<code>ZipArchive</code> support is not critical and only required if you "
 "intend to upload zip archives with supported file types to the gallery."
@@ -11995,11 +11770,10 @@ msgid "PHP <code>JSON</code> support [is not present]"
 msgstr "PHP поддержка <code>JSON</code> [отсутствует]"
 
 #: zp-core/setup/index.php:641
-#, fuzzy
 msgid ""
 "<code>JSON</code> support is critical and required for some functionalty."
 msgstr ""
-"<code>JSON</code> -поддержка критична и необходима для некоторых функций."
+"<code>JSON</code> - поддержка критична и необходима для некоторых функций."
 
 #: zp-core/setup/index.php:643
 msgid "PHP <code>exif</code> support"
@@ -12010,7 +11784,6 @@ msgid "PHP <code>exif</code> support [is not present]"
 msgstr "PHP поддержка <code>exif</code> [отсутствует]"
 
 #: zp-core/setup/index.php:643
-#, fuzzy
 msgid ""
 "<code>exif</code> support is not critical but strongely recommended for "
 "properly handling exif data of images"
@@ -12027,13 +11800,12 @@ msgid "PHP <code>bz2</code> support [is not present]"
 msgstr "PHP поддержка <code>flock</code> [отсутствует]"
 
 #: zp-core/setup/index.php:644
-#, fuzzy
 msgid ""
 "<code>bz2</code> support is not critical but recommended for some optional "
 "bzcompression functionalty"
 msgstr ""
 "<code>bz2</code> - поддержка не критична, но рекомендуется для некоторых "
-"дополнительных функций bzcompression"
+"дополнительного функционала bzcompression"
 
 #: zp-core/setup/index.php:645
 msgid "PHP <code>fileinfo</code> support"
@@ -12044,7 +11816,6 @@ msgid "PHP <code>fileinfo</code> support [is not present]"
 msgstr "PHP поддержка <code>fileinfo</code> [отсутствует]"
 
 #: zp-core/setup/index.php:645
-#, fuzzy
 msgid ""
 "<code>fileinfo</code> support is not critical but strongely recommended for "
 "file system functionality"
@@ -12061,13 +11832,12 @@ msgid "PHP <code>intl</code> support [is not present]"
 msgstr "PHP поддержка <code>intl</code> [отсутствует]"
 
 #: zp-core/setup/index.php:646
-#, fuzzy
 msgid ""
 "<code>intl</code> support is strongely recommended for using locale-aware "
 "functionality."
 msgstr ""
 "<code>intl</code> - поддержка настоятельно рекомендуется для использования "
-"функций, использующих локализации."
+"функций, связанных с локализацией."
 
 #: zp-core/setup/index.php:647
 msgid "PHP <code>xml</code> support"
@@ -12078,7 +11848,6 @@ msgid "PHP <code>xml</code> support [is not present]"
 msgstr "PHP поддержка <code>xml</code> [отсутствует]"
 
 #: zp-core/setup/index.php:647
-#, fuzzy
 msgid ""
 "<code>xml</code> support is not criticaly but strongely recommended for some "
 "functionality for parsing XML contents like RSS feeds."
@@ -12096,13 +11865,12 @@ msgid "PHP <code>dom</code> support [is not present]"
 msgstr "PHP поддержка <code>dom</code> [отсутствует]"
 
 #: zp-core/setup/index.php:648
-#, fuzzy
 msgid ""
 "<code>dom</code> support is not criticaly but strongely recommended for some "
 "functionality processing and modifying HTML contents."
 msgstr ""
 "<code>dom</code> - поддержка не критична, но настоятельно рекомендуется для "
-"обработки некоторых функций и изменения содержимого HTML."
+"некоторых функций обработки и изменения содержимого HTML."
 
 #: zp-core/setup/index.php:649
 msgid "PHP <code>simplexml</code> support"
@@ -12113,7 +11881,6 @@ msgid "PHP <code>simplexml</code> support [is not present]"
 msgstr "PHP поддержка <code>simplexml</code> [отсутствует]"
 
 #: zp-core/setup/index.php:649
-#, fuzzy
 msgid ""
 "<code>simplexml</code> support is not criticaly but strongely recommended "
 "for some functionality processing XML contents like RSS feeds."
@@ -12131,7 +11898,6 @@ msgid "PHP <code>Reflection</code> support [is not present]"
 msgstr "PHP поддержка <code>Reflection</code> [отсутствует]"
 
 #: zp-core/setup/index.php:650
-#, fuzzy
 msgid ""
 "<code>Reflection</code> support is not criticaly but strongely recommended "
 "for some internal functionality."
@@ -12148,7 +11914,6 @@ msgid "PHP <code>Ctype</code> support [is not present]"
 msgstr "PHP поддержка <code>Ctype</code> [отсутствует]"
 
 #: zp-core/setup/index.php:651
-#, fuzzy
 msgid ""
 "<code>Ctype</code> support is required for internal character type checking "
 "e.g. for shortening text content."
@@ -12165,7 +11930,6 @@ msgid "PHP <code>filter</code> support [is not present]"
 msgstr "PHP поддержка <code>filter</code> [отсутствует]"
 
 #: zp-core/setup/index.php:652
-#, fuzzy
 msgid ""
 "<code>filter</code> support is required for filtering and clearing content."
 msgstr ""
@@ -12180,7 +11944,6 @@ msgid "PHP <code>session</code> support [is not present]"
 msgstr "PHP поддержка <code>session</code> [отсутствует]"
 
 #: zp-core/setup/index.php:653
-#, fuzzy
 msgid "<code>session</code> support is required session handling."
 msgstr "<code>session</code> - поддержка требуется для обработки сеансов."
 
@@ -12193,7 +11956,6 @@ msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> не удалось"
 
 #: zp-core/setup/index.php:656
-#, fuzzy
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -12202,7 +11964,6 @@ msgstr ""
 "локализация не существует. Перевод на данный язык может не работать."
 
 #: zp-core/setup/index.php:656
-#, fuzzy
 msgid ""
 "See the <a  href=\"https://www.zenphoto.org/news/problems-with-"
 "languages\">user guide</a> on zenphoto.org for details."
@@ -12211,12 +11972,10 @@ msgstr ""
 "zenphoto#24\">troubleshooting guide</a> (англ)."
 
 #: zp-core/setup/index.php:658
-#, fuzzy
 msgid "mb_strings"
 msgstr "mb_strings"
 
 #: zp-core/setup/index.php:666
-#, fuzzy
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is strongely recommended to insure accented and "
@@ -12224,8 +11983,8 @@ msgid ""
 msgstr ""
 "Настоятельно рекомендуется установить для <em>mbstring.internal_encoding</"
 "em> значение <strong>UTF-8</strong> в вашем файле <em>php.ini</em>, чтобы "
-"гарантировать правильную работу символов с ударением и много-байтовых "
-"символов."
+"гарантировать правильную работу с диакрити́ческими зна́ками и много-байтовыми "
+"символами."
 
 #: zp-core/setup/index.php:667
 msgid "PHP <code>mbstring</code> and <code>iconv</code> packages"
@@ -12241,7 +12000,6 @@ msgstr ""
 "символов <strong>%s</strong>]"
 
 #: zp-core/setup/index.php:671
-#, fuzzy
 msgid ""
 "You need to install the <code>mbstring</code> and <code>iconv</code> packages"
 msgstr ""
@@ -12253,7 +12011,6 @@ msgid ""
 msgstr "PHP пакеты <code>mbstring</code> и <code>iconv</code> [отсутствует]"
 
 #: zp-core/setup/index.php:674
-#, fuzzy
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
@@ -12261,17 +12018,14 @@ msgstr ""
 "(например, даты)"
 
 #: zp-core/setup/index.php:681
-#, fuzzy
 msgid "Graphics library"
 msgstr "Графическая библиотека"
 
 #: zp-core/setup/index.php:689
-#, fuzzy
 msgid "Graphics support:"
 msgstr "Поддержка графики:"
 
 #: zp-core/setup/index.php:692
-#, fuzzy
 msgid "[enabled]"
 msgstr "[включено]"
 
@@ -12280,12 +12034,10 @@ msgid "[available]"
 msgstr "[доступно]"
 
 #: zp-core/setup/index.php:697
-#, fuzzy
 msgid "Graphics support [is not installed]"
-msgstr "Счетчик посещений: <strong>%s</strong>"
+msgstr "Поддержка графики [не установлено]"
 
 #: zp-core/setup/index.php:697
-#, fuzzy
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -12294,17 +12046,16 @@ msgstr ""
 "library</em> в вашем PHP"
 
 #: zp-core/setup/index.php:712
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s или %2$s"
 
 #: zp-core/setup/index.php:714
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s"
 
 #: zp-core/setup/index.php:717
-#, fuzzy
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -12313,12 +12064,11 @@ msgstr ""
 "соответствующей поддержкой изображений в вашем PHP"
 
 #: zp-core/setup/index.php:719
-#, fuzzy, php-format
+#, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s, %2$s или %3$s"
 
 #: zp-core/setup/index.php:722
-#, fuzzy
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -12328,47 +12078,42 @@ msgstr ""
 
 #: zp-core/setup/index.php:724
 msgid "PHP graphics image support"
-msgstr "Поддержка графических изображений PHP"
+msgstr "Поддержка графики в PHP"
 
 #: zp-core/setup/index.php:725
-#, fuzzy
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr ""
 "Неподдерживаемые типы изображений не будут доступны для просмотра в ваших "
 "альбомах."
 
 #: zp-core/setup/index.php:729
-#, fuzzy
 msgid "Graphics Library rotation support [is not present]"
-msgstr "Счетчик посещений: <strong>%s</strong>"
+msgstr "Графическая библиотека: поворот изображения [отсутствует]"
 
 #: zp-core/setup/index.php:729
-#, fuzzy
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "Библиотека поддержки графики не поддерживает поворот изображения."
 
 #: zp-core/setup/index.php:737
-#, fuzzy
 msgid "Graphics support [configuration error]"
-msgstr "Счетчик посещений: <strong>%s</strong>"
+msgstr "Поддержка графики: [ошибка конфигурации]"
 
 #: zp-core/setup/index.php:737
-#, fuzzy
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
 msgstr ""
-"Библиотека обработки изображений Zenphoto загружена не была. Убедитесь, что "
-"ваш PHP поддерживает графику."
+"Библиотека обработки изображений для Zenphoto не была загружена. Убедитесь, "
+"что ваш PHP поддерживает графику."
 
 #: zp-core/setup/index.php:748
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> file"
 msgstr "<em>%1$s</em> файл"
 
 #: zp-core/setup/index.php:748
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "<em>%1$s</em> файл [не существует]"
 
@@ -12384,12 +12129,11 @@ msgstr ""
 "code>, а затем отредактировать его, как указано в комментариях к файлу."
 
 #: zp-core/setup/index.php:750
-#, fuzzy
 msgid "File permissions"
-msgstr "Права доступа"
+msgstr "Права доступа к файлам"
 
 #: zp-core/setup/index.php:752
-#, fuzzy, php-format
+#, php-format
 msgid "Set File permissions to %s."
 msgstr "Установите права доступа к файлам на %s."
 
@@ -12404,12 +12148,11 @@ msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>неизвестно</em> (<code>%o</code>)"
 
 #: zp-core/setup/index.php:768
-#, fuzzy, php-format
+#, php-format
 msgid "File Permissions [are %s]"
 msgstr "Права доступа к файлам [равны %s]"
 
 #: zp-core/setup/index.php:769
-#, fuzzy
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -12419,16 +12162,14 @@ msgstr ""
 "Если права доступа к файлам не установлены на <em>strict</em> или более "
 "жесткие, может возникнуть угроза безопасности. Однако на некоторых серверах "
 "Zenphoto работает некорректно с жесткими правами доступа к файлам. Если у "
-"Zenphoto возникли ошибки с разрешениями, запустите программу установки еще "
-"раз и выберите более упрощенное разрешение."
+"Zenphoto возникли ошибки с разрешениями доступа, запустите программу "
+"установки еще раз и выберите более упрощенное разрешение."
 
 #: zp-core/setup/index.php:775
-#, fuzzy
 msgid "Your filesystem is Macintosh"
 msgstr "У вас файловая система Макинтош"
 
 #: zp-core/setup/index.php:775
-#, fuzzy
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -12437,46 +12178,46 @@ msgstr ""
 "диакритические знаки. Вам следует избегать их."
 
 #: zp-core/setup/index.php:782
-#, fuzzy
 msgid "Character set"
 msgstr "Кодировка"
 
 #: zp-core/setup/index.php:823
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
 "and you create album or image filenames names containing characters with "
 "diacritical marks you may have problems with these objects."
 msgstr ""
-"Если набор символов файловой системы вашего сервера не <code>%s</code>."
+"Если набор символов файловой системы вашего сервера не <code>%s</code> и вы "
+"создадите папку или будете использовать имена файлов с диакритическими "
+"знаками, у вас могут появится проблемы с данными объектами."
 
 #: zp-core/setup/index.php:825
-#, fuzzy, php-format
+#, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Изменить кодировку на %1$s"
 
 #: zp-core/setup/index.php:839
-#, fuzzy, php-format
+#, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "Кодировка файловой системы Zenphoto %1$s [подтверждено]"
 
 #: zp-core/setup/index.php:844
-#, fuzzy
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr "Кодировка файловой системы Zenphoto ISO-8859-1 [предположительно]"
 
 #: zp-core/setup/index.php:849
-#, fuzzy, php-format
+#, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
-msgstr "Кодировка файловой системы Zenphoto %1$s [что похоже неверно]"
+msgstr "Кодировка файловой системы Zenphoto %1$s [возможно, неверно]"
 
 #: zp-core/setup/index.php:854
-#, fuzzy, php-format
+#, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr "Кодировка файловой системы Zenphoto %1$s [тест не производился]"
 
 #: zp-core/setup/index.php:855
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
 "setup to test for a proper definition by creating a file in your <code>%1$s</"
@@ -12488,34 +12229,27 @@ msgstr ""
 "code></strong> и повторно запустив программу установки."
 
 #: zp-core/setup/index.php:868
-#, fuzzy
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr ""
-"Для отображения URI изображений требуется набор символов <em>файловой "
-"системы</em>."
+"Для отображения URI изображений требуется набор символов <em>filesystem</em>."
 
 #: zp-core/setup/index.php:869
-#, fuzzy
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Для URI изображений, похоже, требуется набор символов UTF-8."
 
 #: zp-core/setup/index.php:889
-#, fuzzy
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
-msgstr "Необходимо включить URL параметр <em>UTF8 image URIs</em>."
+msgstr "Необходимо включить настройку URL <em>UTF8 image URIs</em>."
 
 #: zp-core/setup/index.php:889
-#, fuzzy
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Сделать!</a>"
 
 #: zp-core/setup/index.php:906
-#, fuzzy
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Необходимо отключить свойство URL: <em>UTF8 image URIs</em>."
 
 #: zp-core/setup/index.php:906
-#, fuzzy
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Сделать!</a>"
 
@@ -12525,9 +12259,8 @@ msgstr "<a href=\"javascript:uri(false)\">Сделать!</a>"
 #: zp-core/utilities/reset_albumthumbs.php:13
 #: zp-core/zp-extensions/hitcounter.php:207
 #: zp-core/zp-extensions/rating.php:187
-#, fuzzy
 msgid "Database"
-msgstr "База Данных"
+msgstr "База данных"
 
 #: zp-core/setup/index.php:942
 #, php-format
@@ -12535,7 +12268,7 @@ msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP поддержка <code>%s</code> для сконфигурированной базы данных"
 
 #: zp-core/setup/index.php:947
-#, fuzzy, php-format
+#, php-format
 msgid "<code>%1$s</code> support (experimental)"
 msgstr "<code>%s</code> поддержка (экспериментально)"
 
@@ -12550,23 +12283,22 @@ msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP поддержка <code>%s</code> [не установлена]"
 
 #: zp-core/setup/index.php:969
-#, fuzzy
 msgid "No database selected"
 msgstr "Не выбрана база данных"
 
 #: zp-core/setup/index.php:987
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s версия %2$s"
 
 #: zp-core/setup/index.php:987
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
 "preferred. Use a lower version at your own risk."
 msgstr ""
 "Необходима %1$s версии %2$s или выше. Настоятельно рекомендуется "
-"использовать версию %3$s или выше. <br />Вы рискуете, используя более ранние "
+"использовать версию %3$s или выше. Вы рискуете, используя более ранние "
 "версии."
 
 #: zp-core/setup/index.php:990
@@ -12580,7 +12312,7 @@ msgid "Database credentials in configuration file"
 msgstr "Параметры Базы Данных в файле конфигурации"
 
 #: zp-core/setup/index.php:996
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> сообщает: %2$s"
 
@@ -12620,7 +12352,7 @@ msgstr ""
 "<em>empty</em> в конфигурации вашей базы данных."
 
 #: zp-core/setup/index.php:1019
-#, fuzzy, php-format
+#, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mode</code> [запрос не выполнен]"
 
@@ -12950,12 +12682,10 @@ msgstr ""
 "получения подробной информации о требованиях к разрешениям Zenphoto."
 
 #: zp-core/setup/index.php:1370
-#, fuzzy
 msgid "<em>.htaccess</em> file"
 msgstr "файл <em>.htaccess</em>"
 
 #: zp-core/setup/index.php:1380
-#, fuzzy
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "файл <em>.htaccess</em> [пустой или не существует]"
 
@@ -13045,27 +12775,25 @@ msgstr ""
 "htaccess</em> на новую версию</a></p><br style=\"clear:both\" /><br />"
 
 #: zp-core/setup/index.php:1440
-#, fuzzy
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "файл <em>.htaccess</em> [неправильная версия]"
 
 #: zp-core/setup/index.php:1454
-#, fuzzy, php-format
+#, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr "Файл <em>.htaccess</em> (<em>RewriteEngine</em> <strong>%s</strong>)"
 
 #: zp-core/setup/index.php:1467
-#, fuzzy
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>отсутствует</em>]"
 
 #: zp-core/setup/index.php:1473
-#, fuzzy, php-format
+#, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 
 #: zp-core/setup/index.php:1474
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
 "folder]"
@@ -13074,7 +12802,7 @@ msgstr ""
 "инсталляционной директорией]"
 
 #: zp-core/setup/index.php:1481
-#, fuzzy, php-format
+#, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase <code>%s</code> (исправлено)"
 
@@ -13118,13 +12846,11 @@ msgstr ""
 
 #: zp-core/setup/index.php:1514 zp-core/setup/index.php:1517
 #: zp-core/setup/index.php:1530
-#, fuzzy
 msgid "<em>robots.txt</em> file"
 msgstr "файл <em>robots.txt</em>"
 
 #: zp-core/setup/index.php:1514 zp-core/setup/index.php:1517
 #: zp-core/setup/index.php:1530
-#, fuzzy
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Файл <em>robots.txt</em> [Не создан]"
 
@@ -17009,7 +16735,6 @@ msgid "Name%s"
 msgstr "Имя%s"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:19
-#, fuzzy
 msgid "<em>anonymous</em>"
 msgstr "<em>анонимно</em>"
 
@@ -17096,9 +16821,9 @@ msgid "<strong>database error</strong> "
 msgstr "<strong>ошибка базы данных</strong> "
 
 #: zp-core/zp-extensions/comment_form/functions.php:110
-#, fuzzy, php-format
+#, php-format
 msgid "<em>%1$s</em> commented on %2$s:"
-msgstr "<em>%1$s</em> добавил(а) комментарий к %2$s:"
+msgstr "<em>%1$s</em> добавили комментарий к %2$s:"
 
 #: zp-core/zp-extensions/comment_form/functions.php:167
 #: zp-core/zp-extensions/contact_form.php:447
@@ -19269,7 +18994,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/galleryArticles.php:71
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:103
-#, fuzzy
 msgid "Image title"
 msgstr "Название изображения"
 
@@ -21086,7 +20810,6 @@ msgid "Function menu item <em>%s</em> added"
 msgstr "Добавлен пункт функционального меню <em>%s</em>"
 
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:616
-#, fuzzy
 msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em> добавлен"
 
