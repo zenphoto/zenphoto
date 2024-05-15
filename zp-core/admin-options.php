@@ -864,10 +864,10 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php echo gettext('Formats for date and time. Select from the lists or set to <code>custom</code> and provide a <a href="https://www.php.net/manual/en/datetime.format.php">datetime</a> format string for date and time in the custom boxes.'); ?></p>
-										<p><?php echo gettext('If time is disabled for display standard theme and admin functions will not display it. The same applies if the <em>preferred date representation</em> format without time is selected.'); ?></p>
+										<p><?php echo gettext('If time is disabled for display standard theme and admin functions will not display it.'); ?></p>
 									<?php if (extension_loaded('intl')) { ?>
 										<p class="notebox">
-										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>. If you choose one of the <em>preferred date representation</em> formats the time format option is ignored for display.'); ?>
+										<?php echo gettext('NOTE: If localized dates are enabled and you are using a custom date format you need to provide an <a href="https://unicode-org.github.io/icu/userguide/format_parse/datetime/">ICU dateformat string</a>.'); ?>
 									</p>
 								<?php } else { ?>
 									<p class="warningbox">
