@@ -293,9 +293,9 @@ msgid "Tags: "
 msgstr "Теги: "
 
 #: themes/garland/album.php:137
-#, fuzzy, php-format
+#, php-format
 msgid "Latest Images for %s"
-msgstr "Последние изображения для %s"
+msgstr "Последние изображения %s"
 
 #: themes/garland/archive.php:45
 msgid "Images By Date"
@@ -307,15 +307,12 @@ msgid "News archive"
 msgstr "Архив новостей"
 
 #: themes/garland/functions.php:66
-#, fuzzy
 msgid "Garland image display handling."
-msgstr ""
-"Размер изображения по умолчанию. Обработка отображения изображения гирлянды."
+msgstr "Отображения изображений в Garland."
 
 #: themes/garland/functions.php:67
-#, fuzzy
 msgid "Personality"
-msgstr "Личность"
+msgstr "Фокус"
 
 #: themes/garland/functions.php:151
 msgid "album"
@@ -341,9 +338,8 @@ msgstr "новости"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:434
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:277
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:280
-#, fuzzy
 msgid "sticky"
-msgstr "закрепить"
+msgstr "закрепленное"
 
 #: themes/garland/functions.php:168 themes/garland/news.php:63
 #, php-format
@@ -366,18 +362,16 @@ msgid "Next image"
 msgstr "Следующее изображение"
 
 #: themes/garland/image.php:116
-#, fuzzy
 msgid "Next »"
-msgstr "Далее » Следующий »"
+msgstr "Далее »"
 
 #: themes/garland/image.php:125
 msgid "Previous image"
 msgstr "Предыдущее изображение"
 
 #: themes/garland/image.php:126
-#, fuzzy
 msgid "« Previous"
-msgstr "« Предыдущий « Предыдущее"
+msgstr "« Назад"
 
 #: themes/garland/image_gallery/functions.php:46
 msgid "Start"
@@ -399,12 +393,12 @@ msgstr "Для доступа к этой странице требуется п
 
 #: themes/garland/search.php:91 themes/zenpage/search.php:75
 #: themes/zpmobile/search.php:69
-#, fuzzy, php-format
+#, php-format
 msgid "%1$u Hit for <em>%2$s</em>"
 msgid_plural "%1$u Hits for <em>%2$s</em>"
-msgstr[0] "%1$u Хит для <em>%2$s</em>"
-msgstr[1] "%1$u просмотров за <em>%2$s</em>"
-msgstr[2] "%1$u просмотров за <em>%2$s</em>"
+msgstr[0] "%1$u совпадение для <em>%2$s</em>"
+msgstr[1] "%1$u совпадения за <em>%2$s</em>"
+msgstr[2] "%1$u совпадений за <em>%2$s</em>"
 
 #: themes/garland/search.php:96
 msgid "Sorry, no matches for your search."
@@ -436,19 +430,19 @@ msgstr "Статьи (%s)"
 #: themes/zpmobile/search.php:122
 #, php-format
 msgid "Images (%s)"
-msgstr "Изображения: (%s)"
+msgstr "Изображений: (%s)"
 
 #: themes/garland/search.php:184 themes/zenpage/search.php:133
 #: themes/zpmobile/search.php:127
-#, fuzzy, php-format
+#, php-format
 msgid "Albums (%s)"
-msgstr "Альбомы: (%s)"
+msgstr "Альбомов: (%s)"
 
 #: themes/garland/search.php:186 themes/zenpage/search.php:136
 #: themes/zpmobile/search.php:130
 #, php-format
 msgid "Albums (%1$s) &amp; Images (%2$s)"
-msgstr "Альбомы (%1$s) &amp; изображения (%2$s)"
+msgstr "Альбомов (%1$s) &amp; изображений (%2$s)"
 
 #: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
 #: zp-core/classes/class-userdataexport.php:467
@@ -464,9 +458,8 @@ msgstr "Все новости"
 
 #: themes/garland/sidebar.php:46 themes/garland/sidebar.php:66
 #: themes/zenpage/sidebar.php:27
-#, fuzzy
 msgid "Album index"
-msgstr "Дата альбома Индекс альбома"
+msgstr "Все альбомы"
 
 #: themes/garland/sidebar.php:46 themes/garland/sidebar.php:52
 #: themes/garland/themeoptions.php:68 themes/zenpage/sidebar.php:27
@@ -572,14 +565,12 @@ msgstr ""
 #: themes/garland/themeoptions.php:50 themes/zenpage/themeoptions.php:60
 #: zp-core/utilities/gallery_statistics.php:85
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:98
-#, fuzzy
 msgid "News Articles"
-msgstr "Новости Новостные статьи"
+msgstr "Новости"
 
 #: themes/garland/themeoptions.php:62
-#, fuzzy
 msgid "News Articles Rule"
-msgstr "Новости Правило новостных статей"
+msgstr "Правило для новостей"
 
 #: themes/garland/themeoptions.php:73 themes/zenpage/themeoptions.php:85
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:87
@@ -588,21 +579,19 @@ msgid "All Albums"
 msgstr "Все альбомы"
 
 #: themes/garland/themeoptions.php:79
-#, fuzzy
 msgid "Gallery Rule"
-msgstr "Название галереи Правило галереи"
+msgstr "Правило для галереи"
 
 #: themes/garland/themeoptions.php:90 themes/zenpage/themeoptions.php:98
 msgid "All pages"
 msgstr "Все страницы"
 
 #: themes/garland/themeoptions.php:96
-#, fuzzy
 msgid "Pages Rule"
-msgstr "Страницы (Правило)"
+msgstr "Правило для страниц"
 
 #: themes/garland/themeoptions.php:113
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
 "<em>print_album_menu</em> plugin."
@@ -615,12 +604,10 @@ msgid "Theme personality"
 msgstr "Персонализация темы"
 
 #: themes/garland/themeoptions.php:122
-#, fuzzy
 msgid "Select the theme personality"
-msgstr "Вернуться к списку персонализации тем"
+msgstr "Выбрать вариант персонализации темы оформления"
 
 #: themes/garland/themeoptions.php:126
-#, fuzzy
 msgid "Set to enable search form."
 msgstr "Установите, чтобы включить форму поиска."
 
@@ -629,87 +616,77 @@ msgid "Allow cloud"
 msgstr "Показывать облако тегов"
 
 #: themes/garland/themeoptions.php:130
-#, fuzzy
 msgid "Set to enable tag cloud for album page."
-msgstr "Включите облако тегов для страницы альбома."
+msgstr ""
+"Установите, чтобы включить отображение облака тегов для страницы альбома."
 
 #: themes/garland/themeoptions.php:131
 msgid "Custom menu"
 msgstr "Пользовательское меню"
 
 #: themes/garland/themeoptions.php:134
-#, fuzzy
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
-msgstr "Выберите <em>menu_manager</em> меню, которое вы хотите использовать."
+msgstr ""
+"Выберите меню плагина <em>menu_manager</em>, которое вы хотите использовать."
 
 #: themes/garland/themeoptions.php:142
-#, fuzzy
 msgid "Custom Homepage"
-msgstr "Пользовательская Домашняя страница"
+msgstr "Пользовательская домашняя страница"
 
 #: themes/garland/themeoptions.php:146 themes/zenpage/themeoptions.php:131
 #: zp-core/admin-options.php:2208 zp-core/admin-options.php:2221
 #: zp-core/admin-options.php:2249 zp-core/admin-options.php:3025
 #: zp-core/zp-extensions/slideshow2.php:119
 #: zp-core/zp-extensions/slideshow2.php:167
-#, fuzzy
 msgid "none"
 msgstr "нет"
 
 #: themes/garland/themeoptions.php:147
-#, fuzzy
 msgid ""
 "Select the <em>pages</em> titlelink for the home page. Only unpublished "
 "pages are offered for selection."
 msgstr ""
-"Выберите <em>страницы</em> ссылка на заголовок для домашней страницы. Для "
-"выбора предлагаются только неопубликованные страницы."
+"Выберите заголовок <em>страницы</em> для использования в качестве домашней. "
+"Для выбора предлагаются только неопубликованные страницы."
 
 #: themes/garland/themeoptions.php:150
-#, fuzzy
 msgid "Image gallery transition"
-msgstr "Переход из галереи изображений"
+msgstr "Эффект перехода для галереи"
 
 #: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5770
 #: zp-core/admin-functions.php:5823 zp-core/zp-extensions/GoogleMap.php:119
 #: zp-core/zp-extensions/downloadList.php:97
 #: zp-core/zp-extensions/user_login-out.php:40
-#, fuzzy
 msgid "None"
 msgstr "Нет"
 
 #: themes/garland/themeoptions.php:155
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:99
-#, fuzzy
 msgid "Fade"
-msgstr "Появление исчезновение"
+msgstr "Появление"
 
 #: themes/garland/themeoptions.php:156
-#, fuzzy
 msgid "Shrink/grow"
-msgstr "Уменьшаться / расти"
+msgstr "Уменьшаться/расти"
 
 #: themes/garland/themeoptions.php:157 zp-core/zp-extensions/GoogleMap.php:122
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:97
-#, fuzzy
 msgid "Horizontal"
-msgstr "Горизонтально Горизонтальное"
+msgstr "Горизонтальное"
 
 #: themes/garland/themeoptions.php:158
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:98
 #: zp-core/zp-extensions/slideshow2.php:136
-#, fuzzy
 msgid "Vertical"
-msgstr "Вертикальный Вертикальное"
+msgstr "Вертикальное"
 
 #: themes/garland/themeoptions.php:160
 msgid "Transition effect for Image gallery"
 msgstr "Эффекты перехода для галереи изображений"
 
 #: themes/garland/themeoptions.php:161
-#, fuzzy
 msgid "Image gallery caption"
-msgstr "Страница изображения"
+msgstr "Заголовоки изображений в галереи"
 
 #: themes/garland/themeoptions.php:165
 msgid "On image"
@@ -730,12 +707,10 @@ msgid "Omit"
 msgstr "Скрыть"
 
 #: themes/garland/themeoptions.php:169
-#, fuzzy
 msgid "Location for Image gallery picture caption"
 msgstr "Расположение подписи к изображению в галерее изображений"
 
 #: themes/garland/themeoptions.php:189
-#, fuzzy
 msgid "*standard menu"
 msgstr "*стандартное меню"
 
@@ -762,11 +737,10 @@ msgid "Gallery archive"
 msgstr "Архив галереи"
 
 #: themes/zenpage/footer.php:5
-#, fuzzy
 msgid ""
 "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
 msgstr ""
-"Тема Zenpage разработана <a href=\"http://www.maltem.de\">Мальте Мюллером</a>"
+"Тема Zenpage разработана <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
 #: themes/zenpage/gallery.php:70 themes/zenpage/news.php:58
 #: themes/zenpage/news.php:86
@@ -836,7 +810,6 @@ msgid "Slideshow"
 msgstr "Слайд-шоу"
 
 #: themes/zenpage/theme_description.php:10
-#, fuzzy
 msgid ""
 "The Zenpage CMS plugin default theme. It does also work without Zenpage "
 "installed as a normal theme. It contains extra support for print_album_menu "
@@ -846,67 +819,61 @@ msgid ""
 msgstr ""
 "Тема плагина Zenpage для CMS по умолчанию. Он также работает без "
 "установленной Zenpage в качестве обычной темы. Он содержит дополнительную "
-"поддержку плагина print_album_menu или плагина menu_manager (один из них "
-"должен быть включен для ссылок на альбомы на боковой панели), плагина "
-"dynamic_locale, нового плагина paged_thumbs_nav и плагина "
-"jCarousel_thumb_nav."
+"поддержку плагина <em>print_album_menu</em> или плагина <em>menu_manager</"
+"em> (один из них должен быть включен для ссылок на альбомы на боковой "
+"панели), плагина <em>dynamic_locale</em>, нового плагина "
+"<em>paged_thumbs_nav</em> и плагина <em>jCarousel_thumb_nav</em>."
 
 #: themes/zenpage/themeoptions.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:256
-#, fuzzy
 msgid "Gallery index"
-msgstr "Начало галереи Указатель галереи"
+msgstr "Начало галереи"
 
 #: themes/zenpage/themeoptions.php:119
 msgid "Use Colorbox"
 msgstr "Используйте Colorbox"
 
 #: themes/zenpage/themeoptions.php:122
-#, fuzzy
 msgid "Check to display of the full size image with Colorbox."
 msgstr ""
-"Установите флажок отображать изображение в натуральную величину с помощью "
-"Colorbox."
+"Отметьте, если вы хотите отображать изображение в натуральную величину с "
+"помощью Colorbox."
 
 #: themes/zenpage/themeoptions.php:123
-#, fuzzy
 msgid "News on index page"
 msgstr "Новости на домашней странице"
 
 #: themes/zenpage/themeoptions.php:126
-#, fuzzy
 msgid ""
 "Enable this if you want to show the news section’s first page on the "
 "<code>index.php</code> page."
 msgstr ""
-"Включите эту опцию, если вы хотите отображать первую страницу категорияа "
-"новостей на странице <code>index.php</code>."
+"Включите, если вы хотите отображать подборку новостей на странице домашней "
+"странице <code>index.php</code>."
 
 #: themes/zenpage/themeoptions.php:127
 msgid "Homepage"
 msgstr "Домашняя страница"
 
 #: themes/zenpage/themeoptions.php:132
-#, fuzzy
 msgid ""
 "Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</"
 "em>) to act as your site’s homepage instead the normal gallery index."
 msgstr ""
-"Выберите здесь любую <em>неопубликованную страницу Zenpage</em> (указана по "
-"<em>ссылке на заголовок</em>), которая будет использоваться в качестве "
-"домашней страницы вашего сайта вместо обычного индекса галереи."
+"Выберите здесь любую <em>неопубликованную страницу Zenpage</em> (перечислены "
+"их <em>заголовки</em>) и она будет использоваться в качестве домашней "
+"страницы вашего сайта вместо обычного индекса галереи."
 
 #: themes/zenpage/themeoptions.php:132
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> This of course overrides the <em>News on index page</"
 "em> option and your theme must be setup for this feature! Visit the theming "
 "tutorial for details."
 msgstr ""
 "<strong>Примечание: </strong> Это, конечно, переопределяет опцию <em>Новости "
-"на странице индекса</em>, и ваша тема должна быть настроена для этой "
-"функции! Посетите руководство по созданию темы для получения подробной "
+"на домашней странице</em>, и ваша тема должна быть настроена для этой "
+"функции! Посетите руководство по созданию темы для получения более подробной "
 "информации."
 
 #: themes/zenpage/themeoptions.php:133
@@ -929,23 +896,18 @@ msgid "Use custom menu"
 msgstr "Использовать пользовательское меню"
 
 #: themes/zenpage/themeoptions.php:140
-#, fuzzy
 msgid ""
 "Check this if you want to use the <em>menu_manager</em> plugin if enabled to "
 "build a custom menu instead of the separate standard ones. A standard menu "
 "named \"zenpage\" is created and used automatically."
 msgstr ""
-"Проверьте это, если вы хотите использовать плагин <em>menu_manager</em>, "
-"если он включен, для создания пользовательского меню вместо отдельных "
-"стандартных. Стандартное меню с именем\"zenpage\" создается и используется "
-"автоматически."
+"Отметьте, если вы хотите использовать плагин <em>menu_manager</em>, если он "
+"включен, для создания пользовательского меню вместо отдельных стандартных. "
+"Стандартное меню с именем \"zenpage\" создается и используется автоматически."
 
 #: themes/zpmobile/404.php:31
-#, fuzzy
 msgid "The Zenphoto object you are requesting cannot be found."
-msgstr ""
-"Ошибка Zenphoto: запрашиваемый объект не найден. Запрашиваемый вами объект "
-"Zenphoto не может быть найден."
+msgstr "Запрашиваемый вами объект Zenphoto не найден."
 
 #: themes/zpmobile/archive.php:26 zp-core/template-functions.php:472
 #: zp-core/zp-extensions/html_meta_tags.php:450
@@ -968,9 +930,8 @@ msgstr "Альбом"
 #: zp-core/zp-extensions/downloadList.php:336
 #: zp-core/zp-extensions/menu_manager.php:979
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
-#, fuzzy
 msgid "Home"
-msgstr "В начало Главная"
+msgstr "Главная"
 
 #: themes/zpmobile/functions.php:97
 msgid "Powered by"
@@ -987,12 +948,11 @@ msgstr "Избранное"
 
 #: themes/zpmobile/functions.php:188
 #: zp-core/utilities/gallery_statistics.php:873
-#, fuzzy
 msgid "Back to top"
 msgstr "Наверх"
 
 #: themes/zpmobile/functions.php:207
-#, fuzzy, php-format
+#, php-format
 msgid "%d album"
 msgid_plural "%d albums"
 msgstr[0] "%d альбом"
@@ -1000,7 +960,7 @@ msgstr[1] "%d альбома"
 msgstr[2] "%d альбомов"
 
 #: themes/zpmobile/functions.php:212
-#, fuzzy, php-format
+#, php-format
 msgid "%d image"
 msgid_plural "%d images"
 msgstr[0] "%d изображение"
@@ -1037,38 +997,35 @@ msgid "Malte Müller (acrylian)"
 msgstr "Malte Müller (acrylian)"
 
 #: themes/zpmobile/theme_description.php:10
-#, fuzzy
 msgid ""
 "A theme primarily meant for mobile/smartphone browsing using <a href='http://"
 "jQuerymobile.com'>jQuerymobile framework</a>."
 msgstr ""
-"Тема, предназначенная в первую очередь для просмотра с мобильных устройств / "
-"смартфонов с использованием <a href=\"http://jQuerymobile.com\">jQueryMobile "
-"framework</a>."
+"Тема, предназначенная в первую очередь для просмотра галереи с мобильных "
+"устройств/смартфонов с использованием <a href=\"http://jQuerymobile."
+"com\">jQueryMobile framework</a>."
 
 #: themes/zpmobile/themeoptions.php:48
 msgid "Allow direct link from multimedia"
-msgstr "Разрешить прямую ссылку из мультимедиа"
+msgstr "Разрешить прямую ссылку для мультимедиа"
 
 #: themes/zpmobile/themeoptions.php:51
-#, fuzzy
 msgid ""
 "Check to enable a direct link to multimedia items on the single image page "
 "in case the player is not supported by the device but the actual format is."
 msgstr ""
-"Убедитесь, что включена прямая ссылка на мультимедийные элементы на странице "
-"с одним изображением, на случай, если устройство не поддерживает "
-"проигрыватель, но фактический формат поддерживается."
+"Отметьте, если вы хотите включить прямую ссылку на мультимедийные элементы "
+"на странице, на случай, если устройство не поддерживает проигрыватель, но "
+"фактический формат поддерживается."
 
 #: zp-core/404.php:49 zp-core/setup/index.php:1049
-#, fuzzy
 msgid "Index"
-msgstr "Индекс Указатель"
+msgstr "Главная"
 
 #: zp-core/404.php:49
-#, fuzzy, php-format
+#, php-format
 msgid "Return to %s"
-msgstr "Вернуться в Возврат к %s"
+msgstr "Возврат к %s"
 
 #: zp-core/admin-albumsort.php:92 zp-core/admin-edit.php:564
 #: zp-core/zp-extensions/comment_form/admin-comments.php:356
@@ -7632,9 +7589,8 @@ msgid "Check your username and password and try again."
 msgstr "Проверьте имя пользователя, пароль и попробуйте снова."
 
 #: zp-core/classes/class-authority.php:941
-#, fuzzy
 msgid "Check password and try again."
-msgstr "Проверьте ваш пароль и попробуйте снова."
+msgstr "Проверьте пароль и попробуйте снова."
 
 #: zp-core/classes/class-authority.php:950
 #, fuzzy
@@ -14917,9 +14873,10 @@ msgstr "Водяной знак по умолчанию"
 #: zp-core/zp-extensions/class-WEBdocs.php:54
 #: zp-core/zp-extensions/class-textobject.php:79
 #: zp-core/zp-extensions/class-video.php:105
-#, fuzzy
 msgid "Check to place watermark image on default thumbnail images."
-msgstr "Добавлять водяной знак на типовые миниатюры обьектов."
+msgstr ""
+"Отметьте, если вы хотите добавлять водяной знак на типовые миниатюры "
+"обьектов."
 
 #: zp-core/zp-extensions/class-AnyFile.php:40
 msgid "Handled files"
@@ -16745,13 +16702,12 @@ msgid "Dismiss on Scroll"
 msgstr "Отклонить при прокрутке"
 
 #: zp-core/zp-extensions/cookieconsent.php:129
-#, fuzzy
 msgid ""
 "Check to dismiss when users scroll a page [other than <em>Learn more</em> "
 "page]."
 msgstr ""
-"Флажок отключается при прокрутке страницы [кроме страницы <em>Подробнее</"
-"em>]."
+"Отметьте, если вы хотите чтобы форма исчезала при прокрутке страницы [кроме "
+"страницы <em>Подробнее</em>]."
 
 #: zp-core/zp-extensions/cookieconsent.php:130
 msgid "Color - Popup"
@@ -16805,11 +16761,10 @@ msgid "Consent revokable"
 msgstr "Согласие может быть отозвано"
 
 #: zp-core/zp-extensions/cookieconsent.php:150
-#, fuzzy
 msgid "Check to allow revoking the consent as required in some jurisdictions."
 msgstr ""
-"Проверьте, разрешено ли отзывать согласие, как это требуется в некоторых "
-"юрисдикциях."
+"Отметьте, если вы хотите разрешить отзывать согласие, как это требуется в "
+"некоторых юрисдикциях."
 
 #: zp-core/zp-extensions/cookieconsent.php:151
 msgid "Scripts to allow or block"
@@ -17366,7 +17321,9 @@ msgstr "Права пользователя"
 #: zp-core/zp-extensions/downloadList.php:101
 #, fuzzy
 msgid "Check if users are required to have <em>file</em> rights to download."
-msgstr "Проверьте, должны ли пользователи иметь права на загрузку файлов."
+msgstr ""
+"Отметьте, если вы хотите чтобы скачивание было доступно только пользователям "
+"с правами на <em>доступ к файлам</em>."
 
 #: zp-core/zp-extensions/downloadList.php:104
 #, fuzzy
@@ -18008,13 +17965,12 @@ msgid "Disable inline CSS"
 msgstr "Отключить inline CSS"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:176
-#, fuzzy
 msgid ""
 "Check this to disable the default inline CSS styles for placing the flags so "
 "your theme can handle this."
 msgstr ""
-"Установите этот флажок, чтобы отключить встроенные стили CSS по умолчанию "
-"для размещения флагов, чтобы ваша тема могла взять это под контроль."
+"Отметьте, если вы хотите отключить встроенные стили CSS по умолчанию для "
+"размещения флагов, чтобы ваша тема могла взять это под контроль."
 
 #: zp-core/zp-extensions/galleryArticles.php:10
 #, fuzzy
@@ -18187,13 +18143,12 @@ msgid "Search Crawlers"
 msgstr "Поисковые роботы"
 
 #: zp-core/zp-extensions/hitcounter.php:71
-#, fuzzy
 msgid ""
 "Check to enable. If a filter is enabled, viewers from in its associated list "
 "will not count hits."
 msgstr ""
-"Счётчик посещений будет игнорировать указанные IP адреса и/или роботов "
-"поисковых машин."
+"Отметьте, если вы хотите чтобы счётчик посещений игнорировал указанные IP "
+"адреса и/или роботов поисковых машин."
 
 #: zp-core/zp-extensions/hitcounter.php:73
 msgid "Search Crawler list"
@@ -22357,8 +22312,8 @@ msgstr "Только иконки"
 #: zp-core/zp-extensions/scriptless-socialsharing.php:95
 msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
-"Отметьте, чтобы скрыть название сервиса и показывать только кнопки со "
-"иконками."
+"Отметьте, если вы хотите скрыть название сервиса и показывать только кнопки "
+"со иконками."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:96
 msgid "Twitter user name"
@@ -23620,9 +23575,8 @@ msgstr ""
 "Отметьте, если хотите исключить теги, не присвоенные ни одному элементу."
 
 #: zp-core/zp-extensions/tag_suggest.php:32
-#, fuzzy
 msgid "Check tag access"
-msgstr "Проверить доступ к тегу"
+msgstr "Проверить доступ к тегам"
 
 #: zp-core/zp-extensions/tag_suggest.php:36
 #, fuzzy
@@ -25133,11 +25087,10 @@ msgid "Export multilingual content"
 msgstr "Экспорт мульти-язычного контента"
 
 #: zp-core/zp-extensions/xmpMetadata.php:105
-#, fuzzy
 msgid "Check this to export the metadata in all activated languages."
 msgstr ""
-"Установите этот флажок, чтобы экспортировать метаданные на всех "
-"активированных языках."
+"Отметьте, если вы хотите экспортировать метаданные на всех активированных "
+"языках."
 
 #: zp-core/zp-extensions/xmpMetadata.php:761
 #, fuzzy
