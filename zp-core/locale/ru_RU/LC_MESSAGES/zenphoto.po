@@ -1084,9 +1084,8 @@ msgid "Clear tags"
 msgstr "Удалить теги"
 
 #: zp-core/admin-albumsort.php:98 zp-core/admin-edit.php:570
-#, fuzzy
 msgid "Change owner"
-msgstr "Автор изменения Сменить владельца"
+msgstr "Сменить владельца"
 
 #: zp-core/admin-albumsort.php:101 zp-core/admin-edit.php:573
 #: zp-core/admin-functions.php:2188
@@ -1122,10 +1121,8 @@ msgid "Reset hitcounter"
 msgstr "Сбросить счетчик посещений"
 
 #: zp-core/admin-albumsort.php:111
-#, fuzzy
 msgid "No album provided to sort."
-msgstr ""
-"Не выбран альбом для сортировки. Альбом для сортировки не предоставлен."
+msgstr "Не выбран альбом для сортировки."
 
 #: zp-core/admin-albumsort.php:129 zp-core/admin-edit.php:703
 #, php-format
@@ -1202,11 +1199,10 @@ msgid "View Album"
 msgstr "Просмотреть альбом"
 
 #: zp-core/admin-albumsort.php:176
-#, fuzzy
 msgid "Set the image order by dragging them to the positions you desire."
 msgstr ""
-"Для сортировки просто перетаскивайте изображения мышью. Установите порядок "
-"расположения изображений, перетащив их в нужное вам положение."
+"Установите порядок расположения изображений, перетащив их в нужное вам "
+"положение."
 
 #: zp-core/admin-albumsort.php:193 zp-core/admin-functions.php:3307
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:34
@@ -1215,25 +1211,20 @@ msgid "edit"
 msgstr "редактировать"
 
 #: zp-core/admin-dynamic-album.php:28
-#, fuzzy
 msgid "You do not have edit rights on this album."
-msgstr ""
-"Вы не имеете прав редактировать этот альбом. У вас нет прав на "
-"редактирование этого альбома."
+msgstr "У вас нет прав на редактирование этого альбома."
 
 #: zp-core/admin-dynamic-album.php:90 zp-core/admin-dynamic-album.php:230
 msgid "dynamic"
 msgstr "динамический"
 
 #: zp-core/admin-dynamic-album.php:98
-#, fuzzy
 msgid "Create Dynamic Album"
 msgstr "Создать динамический альбом"
 
 #: zp-core/admin-dynamic-album.php:102
-#, fuzzy
 msgid "Failed to save the album file"
-msgstr "Не удалось сохранить файл альбома"
+msgstr "Не удалось сохранить файл с конфигурацией альбома"
 
 #: zp-core/admin-dynamic-album.php:133
 msgid "Album name:"
@@ -1252,67 +1243,53 @@ msgid "Search criteria:"
 msgstr "Критерии поиска:"
 
 #: zp-core/admin-dynamic-album.php:209
-#, fuzzy
 msgid "Return albums found"
-msgstr "Вернуть найденные альбомы"
+msgstr "Показывать найденные альбомы"
 
 #: zp-core/admin-dynamic-album.php:210
-#, fuzzy
 msgid "Return images found"
-msgstr "Вернуть найденные изображения"
+msgstr "Показывать найденные изображения"
 
 #: zp-core/admin-dynamic-album.php:211
-#, fuzzy
 msgid "Return unpublished items"
-msgstr "Вернуть неопубликованные объекты"
+msgstr "Показывать неопубликованные объекты"
 
 #: zp-core/admin-dynamic-album.php:233
-#, fuzzy
 msgid "tagged"
-msgstr "отмеченный помечено"
+msgstr "с тегом"
 
 #: zp-core/admin-dynamic-album.php:240
 msgid "Album <em>Tag</em>"
-msgstr "Тег альбома"
+msgstr "<em>Тэг</em> альбома"
 
 #: zp-core/admin-dynamic-album.php:243
-#, fuzzy
 msgid ""
 "Select <em>tagged</em> to tag the current search results with this <em>tag</"
 "em> and use as the album criteria."
 msgstr ""
-"Выбрать <em>отмеченный</em> чтобы отметить текущие результаты поиска этой "
-"<em>меткой</em> и использовать как критерий альбома. Выберите "
-"<em>помеченный</em>, чтобы пометить текущие результаты поиска этим тегом "
-"<em></em> и использовать в качестве критерия альбома."
+"Выбрать <em>отмеченный</em> чтобы отметить текущие результаты поиска этим "
+"<em>тегом</em> и использовать в качестве критерия альбома."
 
 #: zp-core/admin-dynamic-album.php:247
 msgid "Search fields:"
 msgstr "Поля поиска:"
 
 #: zp-core/admin-dynamic-album.php:271
-#, fuzzy
 msgid "Create the album"
 msgstr "Создать альбом"
 
 #: zp-core/admin-edit.php:415
-#, fuzzy
 msgid ""
 "The album couldn’t be created in the “albums” folder. This is usually a "
 "permissions problem. Try setting the permissions on the albums and cache "
 "folders to be world-writable using a shell:"
 msgstr ""
 "Альбом не может быть создан в папке \"альбомы\". Обычно это проблема с "
-"правами доступа. Попробуйте установить права доступа на запись для папок "
-"альбомов и кэша с помощью консоли:\n"
-"Не удалось создать альбом в папке “альбомы”. Обычно это проблема с "
-"разрешениями. Попробуйте настроить разрешения для папок \"Альбомы\" и "
-"\"Кэш\" так, чтобы они были доступны для записи по всему миру с помощью "
-"командной строки:"
+"правами доступа. Попробуйте установить права доступа для папок \"Альбомы\" и "
+"\"Кэш\" так, чтобы они были доступны для записи с помощью командной строки:"
 
 #: zp-core/admin-edit.php:416
 #: zp-core/zp-extensions/uploader_http/uploader.php:80
-#, fuzzy
 msgid ""
 "or use your FTP program to give everyone write permissions to those folders."
 msgstr ""
@@ -1403,28 +1380,24 @@ msgstr ""
 "отображались."
 
 #: zp-core/admin-edit.php:761 zp-core/admin-edit.php:1662
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> Dragging an album under a different parent will move "
 "the album. You cannot move albums under a <em>dynamic</em> album."
 msgstr ""
-"<strong>Примечание: </strong> Для создания субальбома сместите его вправо "
-"при перетаскивании. Учитывайте, что при этом, директория на сервере также "
-"будет."
+"<strong>Примечание:</strong> Перетаскивание альбома под другой родительский "
+"элемент приведет к перемещению альбома на сервере. Вы не можете перемещать "
+"альбомы под <em> динамический</em> альбом."
 
 #: zp-core/admin-edit.php:767
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level "
 "subalbums."
 msgstr ""
-"Отметьте альбомы, которые вы хотите редактировать и в раскрывающемся списке "
-"справа выберите нужное действие или перейдите к странице <a href=\"?"
-"page=edit&amp;album=%s&amp;massedit\">массового редактирования</a> альбомов "
-"верхнего уровня вашей галереи. Выберите альбом, чтобы отредактировать его "
-"описание и данные, или массовое редактирование всех вложенных альбомов "
-"первого уровня."
+"Выберите альбом, чтобы отредактировать его описание и данные, или запустите "
+"<a href=\"?page=edit&amp;album=%s&amp;massedit\">массовое редактирование</a> "
+"всех вложенных альбомов первого уровня."
 
 #: zp-core/admin-edit.php:786 zp-core/admin-edit.php:788
 #: zp-core/admin-edit.php:848 zp-core/admin-edit.php:850
@@ -1438,7 +1411,6 @@ msgstr "Новый субальбом"
 #: zp-core/admin-edit.php:1734 zp-core/admin-functions.php:1240
 #: zp-core/admin-functions.php:1242 zp-core/admin-functions.php:1989
 #: zp-core/admin-functions.php:1991
-#, fuzzy
 msgid "New dynamic subalbum"
 msgstr "Новый динамический субальбом"
 
@@ -1447,14 +1419,12 @@ msgid "Edit this album"
 msgstr "Редактировать альбом"
 
 #: zp-core/admin-edit.php:812 zp-core/admin-edit.php:1704
-#, fuzzy
 msgid ""
 "Thumbnail generation may be time consuming on slow servers or when there are "
 "a lot of images."
 msgstr ""
 "Создание миниатюр может потребовать много времени на медленных серверах или "
-"если изображений много. Создание эскизов может занять много времени на "
-"медленных серверах или при большом количестве изображений."
+"при большом количестве изображений."
 
 #: zp-core/admin-edit.php:819 zp-core/admin-edit.php:1709
 #: zp-core/admin-functions.php:3910
@@ -1542,12 +1512,10 @@ msgstr "Владелец:"
 #: zp-core/classes/class-authority.php:648
 #: zp-core/classes/class-authority.php:649
 #: zp-core/zp-extensions/zenpage/admin-edit.php:630
-#, fuzzy
 msgid "General"
-msgstr "Общие Общая информация"
+msgstr "Общие"
 
 #: zp-core/admin-edit.php:1063 zp-core/admin-functions.php:1726
-#, fuzzy
 msgid "Publishing scheduled"
 msgstr "Запланирована публикация"
 
@@ -1600,30 +1568,25 @@ msgstr "Дата публикации (в будущем)."
 #: zp-core/admin-edit.php:1143 zp-core/admin-edit.php:1169
 #: zp-core/admin-functions.php:1806 zp-core/admin-functions.php:1832
 #: zp-core/zp-extensions/zenpage/admin-edit.php:620
-#, fuzzy
 msgid "Expired!"
-msgstr "Срок действия истёк!"
+msgstr "Срок публикации истёк!"
 
 #: zp-core/admin-edit.php:1151 zp-core/admin-functions.php:1814
 #: zp-core/admin-functions.php:5306
-#, fuzzy
 msgid "Publish date"
-msgstr "Опубликовано"
+msgstr "Дата публикации"
 
 #: zp-core/admin-edit.php:1161 zp-core/admin-functions.php:1824
-#, fuzzy
 msgid "Expiration date"
-msgstr "Срок действия"
+msgstr "Срок публикации"
 
 #: zp-core/admin-edit.php:1166 zp-core/admin-functions.php:1829
-#, fuzzy
 msgid "Expiration set"
-msgstr "Срок действия установлен"
+msgstr "Срок публикации установлен"
 
 #: zp-core/admin-edit.php:1177 zp-core/admin-functions.php:1840
-#, fuzzy
 msgid "Utilities"
-msgstr "Инструменты Служебные программы"
+msgstr "Инструменты"
 
 #: zp-core/admin-edit.php:1193
 msgid "Rename File"
@@ -1639,9 +1602,8 @@ msgid "Delete image"
 msgstr "Удалить изображение"
 
 #: zp-core/admin-edit.php:1202 zp-core/admin-edit.php:1226
-#, fuzzy
 msgid "to"
-msgstr "в для"
+msgstr "в"
 
 #: zp-core/admin-edit.php:1222 zp-core/admin-edit.php:1228
 #: zp-core/admin-edit.php:1234 zp-core/admin-functions.php:1883
@@ -1676,14 +1638,13 @@ msgstr ""
 "невозможно отменить!"
 
 #: zp-core/admin-edit.php:1261
-#, fuzzy, php-format
+#, php-format
 msgid "crop %s"
-msgstr "кадрировать %s процент обрезки"
+msgstr "кадрировать %s"
 
 #: zp-core/admin-edit.php:1263
-#, fuzzy
 msgid "Crop thumbnail"
-msgstr "Обрезать миниатюру"
+msgstr "Кадрировать миниатюру"
 
 #: zp-core/admin-edit.php:1288
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:311
@@ -1706,9 +1667,8 @@ msgstr "Водяной знак:"
 
 #: zp-core/admin-edit.php:1345 zp-core/admin-functions.php:1585
 #: zp-core/admin-functions.php:1600
-#, fuzzy
 msgid "*no watermark"
-msgstr "*нет водяного знака * без водяных знаков"
+msgstr "* без водяных знаков"
 
 #: zp-core/admin-edit.php:1346 zp-core/admin-functions.php:1586
 #: zp-core/admin-functions.php:1601
@@ -1720,17 +1680,14 @@ msgid "thumb"
 msgstr "миниатюра"
 
 #: zp-core/admin-edit.php:1361 zp-core/zp-extensions/slideshow2.php:174
-#, fuzzy
 msgid "full image"
-msgstr "изображение целиком полное изображение"
+msgstr "полное изображение"
 
 #: zp-core/admin-edit.php:1374
-#, fuzzy
 msgid "No tags assigned"
-msgstr "Метки не присвоены Теги не назначены"
+msgstr "Теги не присвоены"
 
 #: zp-core/admin-edit.php:1395 zp-core/admin-functions.php:1429
-#, fuzzy
 msgid "Custom data:"
 msgstr "Пользовательские данные:"
 
@@ -1754,14 +1711,12 @@ msgid "Country:"
 msgstr "Страна:"
 
 #: zp-core/admin-edit.php:1428
-#, fuzzy
 msgid "Credit:"
 msgstr "Участники:"
 
 #: zp-core/admin-edit.php:1434
-#, fuzzy
 msgid "Copyright:"
-msgstr "Автор: Авторские права:"
+msgstr "Авторские права:"
 
 #: zp-core/admin-edit.php:1443
 msgid "Metadata:"
@@ -1786,23 +1741,18 @@ msgid "Edit Gallery"
 msgstr "Редактировать галерею"
 
 #: zp-core/admin-edit.php:1656
-#, fuzzy, php-format
+#, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Текущая сортировка: <em>%1$s%2$s</em>."
 
 #: zp-core/admin-edit.php:1669
-#, fuzzy
 msgid ""
 "Select an album to edit its description and data, or <a href=\"?"
 "page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
 msgstr ""
-"Отметьте альбомы, которые вы хотите редактировать и в раскрывающемся списке "
-"справа выберите нужное <em>действие</em>; или перейдите к странице <a "
-"href=\"?page=edit&amp;album=%s&amp;massedit\">массового редактирования</a> "
-"всех альбомов верхнего уровня вашей галереи. Выберите альбом, чтобы "
-"отредактировать его описание и данные, или <a href=\"?страница=редактировать "
-"и массово редактировать\"> массовое редактирование</a> все альбомы уровня "
-"галереи."
+"Выберите альбом, чтобы отредактировать его описание и данные, или запустите "
+"<a href=\"?страница=редактировать и массово редактировать\">массовое "
+"редактирование</a> всех альбомов верхнего уровня."
 
 #: zp-core/admin-edit.php:1688 zp-core/admin-edit.php:1733
 #: zp-core/admin-edit.php:1752
@@ -1824,25 +1774,21 @@ msgid "Scroll to top"
 msgstr "Вернуться наверх"
 
 #: zp-core/admin-functions.php:28 zp-core/zp-extensions/cookieconsent.php:118
-#, fuzzy
 msgid "Top"
 msgstr "Наверх"
 
 #: zp-core/admin-functions.php:30
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<a href=\"https://www.zenphoto.org\" target=\"_blank\" rel=\"noopener "
 "noreferrer\" title=\"The simpler media website CMS\">Zen<strong>photo</"
 "strong></a> version %1$s"
 msgstr ""
 "<a href=\"https://www.zenphoto.org\" target=\"_blank\" rel=\"noopener "
-"noreferrer\" title=\"Простая CMS для галерей\">Zen<strong>photo</strong></a> "
-"версия %1$s <a href=\"https://www.zenphoto.org\" target=\"_blank\" "
-"rel=\"noopener noreferrer\" title=\"Более простая CMS для веб-сайта "
-"СМИ\">Zen<strong>фото</strong></a> версия %1$s"
+"noreferrer\" title=\"Простая CMS для медиа-галереи\">Zen<strong>фото</"
+"strong></a> версия %1$s"
 
 #: zp-core/admin-functions.php:35
-#, fuzzy
 msgid "Zenphoto licence"
 msgstr "Лицензия Zenphoto"
 
@@ -1859,7 +1805,6 @@ msgid "Forum"
 msgstr "Форум"
 
 #: zp-core/admin-functions.php:38
-#, fuzzy
 msgid "Bugtracker"
 msgstr "Bugtracker"
 
@@ -1877,31 +1822,28 @@ msgid "Server date: %s"
 msgstr "Дата (на сервере): %s"
 
 #: zp-core/admin-functions.php:134
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s %2$s: %3$s%4$s"
 msgstr "%1$s %2$s: %3$s%4$s"
 
 #: zp-core/admin-functions.php:134 zp-core/pluginDoc.php:134
 #: zp-core/zp-extensions/user-expiry.php:114
 #: zp-core/zp-extensions/user_groups.php:215
-#, fuzzy
 msgid "admin"
-msgstr "админ администратор"
+msgstr "админ"
 
 #: zp-core/admin-functions.php:158
-#, fuzzy
 msgid "You have unsaved changes!"
-msgstr "Есть несохраненённые изменения! У вас есть несохраненные изменения!"
+msgstr "Есть несохраненные изменения!"
 
 #: zp-core/admin-functions.php:256
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s administration:%2$s%3$s"
-msgstr "Панель управления администрирование: %1$s: %2$s%3$s"
+msgstr "%1$s Панель управления: %2$s%3$s"
 
 #: zp-core/admin-functions.php:257
-#, fuzzy
 msgid "Zenphoto Administration"
-msgstr "Панель управления Zenphoto администрирование"
+msgstr "Панель управления Zenphoto"
 
 #: zp-core/admin-functions.php:265
 #, php-format
@@ -1939,7 +1881,6 @@ msgid "Images"
 msgstr "Изображения"
 
 #: zp-core/admin-functions.php:461
-#, fuzzy
 msgid "Image order"
 msgstr "Порядок изображений"
 
@@ -1948,34 +1889,30 @@ msgid "Subalbums"
 msgstr "Субальбомы"
 
 #: zp-core/admin-functions.php:504
-#, fuzzy
 msgid "The global $zenphoto_tabs is deprecated. Use $_zp_admin_menu instead"
 msgstr ""
-"Глобальный файл $zenphoto_tabs устарел. Вместо него используйте "
+"Глобальная переменная $zenphoto_tabs устарела. Вместо него используйте "
 "$_zp_admin_menu"
 
 #: zp-core/admin-functions.php:508
-#, fuzzy
 msgid "The global $subtabs is deprecated. Use $_zp_admin_submenu instead"
 msgstr ""
-"Глобальные вложенные вкладки $ устарели. Вместо этого используйте "
+"Глобальная переменная $subtabs устарела. Вместо него используйте "
 "$_zp_admin_submenu"
 
 #: zp-core/admin-functions.php:512
-#, fuzzy
 msgid ""
 "The global $_zp_admin_tab is deprecated. Use $_zp_admin_current_page instead"
 msgstr ""
-"Глобальная вкладка $_zp_admin_tab устарела. Вместо нее используйте "
+"Глобальная переменная $_zp_admin_tab устарела. Вместо него используйте "
 "$_zp_admin_current_page"
 
 #: zp-core/admin-functions.php:516
-#, fuzzy
 msgid ""
 "The global $_zp_admin_subtab is deprecated. Use $_zp_admin_current_subpage "
 "instead"
 msgstr ""
-"Глобальная вкладка $_zp_admin_subtab устарела. Вместо нее используйте "
+"Глобальная переменная $_zp_admin_subtab устарела. Вместо него используйте "
 "$_zp_admin_current_subpage"
 
 #: zp-core/admin-functions.php:627
@@ -2018,14 +1955,12 @@ msgstr "Пароль к альбому:"
 #: zp-core/admin-options.php:1553 zp-core/admin-options.php:2401
 #: zp-core/zp-extensions/downloadList.php:129
 #: zp-core/zp-extensions/zenpage/admin-edit.php:476
-#, fuzzy
 msgid "clear password"
 msgstr "сбросить пароль"
 
 #: zp-core/admin-functions.php:1328
-#, fuzzy
 msgid "Album guest user:"
-msgstr "Гостевой пользователя альбома: Альбом приглашенного пользователя:"
+msgstr "Пользовател-гость:"
 
 #: zp-core/admin-functions.php:1349
 msgid "Repeat password:"
@@ -2050,21 +1985,18 @@ msgid "Sort subalbums by:"
 msgstr "Сортировать субальбомы:"
 
 #: zp-core/admin-functions.php:1449
-#, fuzzy
 msgid "*gallery album sort order"
-msgstr "*также как альбомы галереи * порядок сортировки альбомов в галерее"
+msgstr "* порядок сортировки в галерее"
 
 #: zp-core/admin-functions.php:1451
-#, fuzzy
 msgid "*parent album subalbum sort order"
-msgstr ""
-"*также как и альбомы * порядок сортировки родительских альбомов и субальбомов"
+msgstr "* порядок сортировки родительских альбомов"
 
 #: zp-core/admin-functions.php:1457 zp-core/admin-functions.php:1509
 #: zp-core/admin-options.php:1399 zp-core/admin-options.php:1776
 #: zp-core/admin-options.php:1823 zp-core/admin-options.php:1871
 #: zp-core/admin-options.php:1920 zp-core/admin-options.php:2026
-#, fuzzy, php-format
+#, php-format
 msgid "Custom (%s)"
 msgstr "Пользовательский (%s)"
 
@@ -2081,28 +2013,23 @@ msgstr "По убыванию"
 #: zp-core/admin-options.php:1998
 #: zp-core/zp-extensions/favoritesHandler.php:116
 msgid "Sort images by"
-msgstr "Сортировать изображения по"
+msgstr "Сортировать изображения"
 
 #: zp-core/admin-functions.php:1499
-#, fuzzy
 msgid "*gallery image sort order"
-msgstr "*как в настройках галереи * порядок сортировки изображений в галерее"
+msgstr "* порядок сортировки в галерее"
 
 #: zp-core/admin-functions.php:1501
-#, fuzzy
 msgid "*parent album image sort order"
-msgstr ""
-"*как в настройках родительского альбома * порядок сортировки изображений "
-"родительского альбома"
+msgstr "* порядок сортировки родительского альбома"
 
 #: zp-core/admin-functions.php:1548
 msgid "Album theme:"
 msgstr "Тема альбома:"
 
 #: zp-core/admin-functions.php:1560
-#, fuzzy
 msgid "*gallery theme"
-msgstr "*такая же, как у галереи * тема галереи"
+msgstr "* тема галереи"
 
 #: zp-core/admin-functions.php:1581
 msgid "Album watermarks:"
@@ -2117,9 +2044,9 @@ msgstr "Миниатюры"
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
-msgstr[0] "Сбросить счетчик посещений (%u просмотр)"
-msgstr[1] "Сбросить счетчик посещений (%u просмотра)"
-msgstr[2] "Сбросить счетчик посещений (%u просмотров)"
+msgstr[0] "Сбросить счетчик посещений<br /> (%u просмотр)"
+msgstr[1] "Сбросить счетчик посещений<br />(%u просмотра)"
+msgstr[2] "Сбросить счетчик посещений<br />(%u просмотров)"
 
 #: zp-core/admin-functions.php:1767
 #: zp-core/zp-extensions/zenpage/admin-edit.php:660
@@ -2140,9 +2067,8 @@ msgid "Album will be deleted when changes are applied."
 msgstr "Альбом будет удален, когда изменения будут применены."
 
 #: zp-core/admin-functions.php:1887 zp-core/admin-functions.php:1920
-#, fuzzy
 msgid "to:"
-msgstr "в для:"
+msgstr "в:"
 
 #: zp-core/admin-functions.php:1934 zp-core/classes/class-authority.php:575
 #: zp-core/classes/class-authority.php:595
@@ -2164,9 +2090,8 @@ msgid "Clears the album’s cached images."
 msgstr "Удаляет кэшированные изображения альбома."
 
 #: zp-core/admin-functions.php:2021
-#, fuzzy
 msgid "Clear album image cache"
-msgstr "Очистить кэш альбома Очистить кэш изображений альбома"
+msgstr "Очистить кэш альбома"
 
 #: zp-core/admin-functions.php:2025
 msgid "Resets album’s hit counters."
@@ -2174,7 +2099,7 @@ msgstr "Сбросить счетчики посещений альбома."
 
 #: zp-core/admin-functions.php:2027
 msgid "Reset album hit counters"
-msgstr "Сбросить счетчики посещений альбома"
+msgstr "Сбросить счетчики посещений"
 
 #: zp-core/admin-functions.php:2034
 msgid "Refreshes the metadata for the album."
@@ -2182,7 +2107,7 @@ msgstr "Обновляет метаданные для альбома."
 
 #: zp-core/admin-functions.php:2036
 msgid "Refresh album metadata"
-msgstr "Обновить метаданные альбома"
+msgstr "Обновить метаданные"
 
 #: zp-core/admin-functions.php:2055
 msgid "Albums (dynamic)"
@@ -2343,33 +2268,28 @@ msgid "Cannot find theme directory “%s” to copy!"
 msgstr "Не удается найти директорию темы “%s” для копирования!"
 
 #: zp-core/admin-functions.php:3026
-#, fuzzy
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Директория <tt>/themes</tt> недоступна для записи!"
 
 #: zp-core/admin-functions.php:3031
-#, fuzzy
 msgid "Could not create directory for the new theme"
-msgstr "Невозможно создать директорию для новой темы"
+msgstr "Не удалось создать директорию для новой темы"
 
 #: zp-core/admin-functions.php:3065
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "An error occurred while copying files. Please delete manually the new theme "
 "directory “%s” and retry or copy files manually."
 msgstr ""
-"Произошла ошибка при копировании файлов. Пожалуйста, удалите вручную "
-"директорию темы “%s” и попытайтесь вручную скопировать файлы. При "
-"копировании файлов произошла ошибка. Пожалуйста, удалите вручную каталог "
-"новой темы и повторите попытку или скопируйте файлы вручную."
+"При копировании файлов произошла ошибка. Пожалуйста, удалите вручную "
+"директорию темы “%s” и повторите попытку или скопируйте файлы вручную."
 
 #: zp-core/admin-functions.php:3073
-#, fuzzy, php-format
+#, php-format
 msgid "Your theme, based on theme %s"
-msgstr "Пользовательская тема, базируется на %s Ваша тема, основанная на theme"
+msgstr "Пользовательская тема, базируется на %s"
 
 #: zp-core/admin-functions.php:3075
-#, fuzzy
 msgid "Your theme"
 msgstr "Ваша тема"
 
@@ -3331,71 +3251,59 @@ msgid "mod rewrite"
 msgstr "mod rewrite"
 
 #: zp-core/admin-options.php:699
-#, fuzzy
 msgid "UTF8 image URIs"
-msgstr "URI изображений UTF8"
+msgstr "UTF8 в URI изображений"
 
 #: zp-core/admin-options.php:702
 msgid "mod_rewrite suffix:"
 msgstr "mod_rewrite окончание:"
 
 #: zp-core/admin-options.php:706
-#, fuzzy
 msgid ""
 "If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on "
 "the <em>mod rewrite</em> option and you will get nice cruft-free URLs."
 msgstr ""
-"Если имеется модуль Apache <em>mod rewrite</em> (или эквивалентный), "
-"поставте галочку напротив опции <em>mod rewrite</em> чтобы получить красивые "
-"URL без \"мусорных символов\" Если у вас есть Apache <em>mod rewrite</em> "
-"(или эквивалент), поставьте галочку напротив опции <em>mod rewrite</em>, и "
-"вы получите красивые URL-адреса без ошибок.."
+"Если на сервере установлен модуль Apache <em>mod rewrite</em> (или "
+"эквивалентный), поставьте галочку напротив опции <em>mod_rewrite</em> чтобы "
+"получить красивые URL без \"мусорных\" параметров."
 
 #: zp-core/admin-options.php:707
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The <em>tokens</em> used in rewritten URIs may be altered to your taste. See "
 "the <a href=\"%s\">plugin options</a> for <code>rewriteTokens</code>."
 msgstr ""
-"<em>Tokens (маркеры)</em>в переписанных URI можно настроить по желанию. См. "
-"<a href=\"%s\">опции плагинов</a>\n"
-"<code>rewriteTokens</code>. используемые в переписанных URI, могут быть "
-"изменены по вашему вкусу. Смотрите параметры плагина для "
+"<code>rewriteTokens</code>, используемые в переписанных URI, могут быть "
+"изменены по вашему вкусу. Смотрите <a href=\"%s\">настройки плагина</a> для "
 "<code>rewriteTokens</code>."
 
 #: zp-core/admin-options.php:710
-#, fuzzy
 msgid ""
 "Setup did not detect a working <em>mod_rewrite</em> facility. Since this "
 "test is not 100% reliable this may be a false report though."
 msgstr ""
-"Установщик не обнаружил действующий модуль <em>mod_rewrite</em>. Программа "
-"установки не обнаружила работающую функцию mod_rewrite. Поскольку этот тест "
-"не является надежным на 100%, это может быть ложное сообщение."
+"Установщик не обнаружил действующий модуль <em>mod_rewrite</em>. Поскольку "
+"этот тест не является надежным на 100%, это может быть ложное сообщение, "
+"уточните у службы поддержки вашего хостинга."
 
 #: zp-core/admin-options.php:713
-#, fuzzy
 msgid ""
 "If you are having problems with images whose names contain characters with "
 "diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr ""
 "Если у вас возникли проблемы с изображениями, названия которых содержат "
-"символы с диакритическими знаками, попробуйте изменить параметр URI "
-"изображения <em>UTF8</em>."
+"символы с диакритическими знаками, попробуйте изменить параметр <em>UTF8 в "
+"URI изображений</em>."
 
 #: zp-core/admin-options.php:714
-#, fuzzy
 msgid ""
 "If <em>mod_rewrite</em> is checked above, zenphoto will append the "
 "<em>mod_rewrite suffix</em> to the end of image URLs. (This helps search "
 "engines.) Examples: <em>.html, .php</em>, etc."
 msgstr ""
 "Если отмечен <em>mod_rewrite</em>, zenphoto будет добавлять <em>mod_rewrite "
-"suffix</em> в конце адресов изображений (это помогает поисковым машинам). "
-"Примеры: <em>.html, .php</em>, и т.д.\n"
-"Если <em>mod_rewrite</em> отмечен выше, zenphoto добавит суффикс "
-"<em>mod_rewrite</em> в конец URL-адресов изображений. (Это помогает "
-"поисковым системам.) Примеры: <em>.html, .php</em> и т.д."
+"окончание</em> в конце URL-адресов изображений изображений (это помогает "
+"SEO). Примеры: <em>.html, .php</em>, и т.д."
 
 #: zp-core/admin-options.php:718 zp-core/admin-users.php:753
 msgid "Language:"
@@ -3438,19 +3346,14 @@ msgid "Multi-lingual"
 msgstr "Мультиязычный"
 
 #: zp-core/admin-options.php:840
-#, fuzzy
 msgid ""
 "You can disable languages by unchecking their checkboxes. Only checked "
 "languages will be available to the installation."
 msgstr ""
-"Отключите ненужные языки, сняв соответствующие галочки. Вы можете отключить "
-"языки, сняв с них флажки. Для установки будут доступны только отмеченные "
-"языки.\n"
-"Вы можете отключить языки, сняв с них флажки. Для установки будут доступны "
-"только отмеченные языки."
+"Вы можете отключить языки, сняв с них флажки. Для использования будут "
+"доступны только отмеченные языки."
 
 #: zp-core/admin-options.php:841
-#, fuzzy
 msgid ""
 "Select the preferred language to display text in. (Set to "
 "<em>HTTP_Accept_Language</em> to use the language preference specified by "
@@ -3458,16 +3361,15 @@ msgid ""
 msgstr ""
 "Выберите предпочитаемый язык для отображения текста. (Установите значение "
 "<em>HTTP_Accept_Language</em>, чтобы использовать языковые предпочтения, "
-"указанные браузером программы просмотра.)"
+"указанные пользователем в браузером.)"
 
 #: zp-core/admin-options.php:842
-#, fuzzy
 msgid ""
 "Set <em>Multi-lingual</em> to enable multiple language input for options "
 "that provide theme text."
 msgstr ""
-"Установите <em>Многоязычный</em>, чтобы включить ввод на нескольких языках "
-"для параметров, которые предоставляют текст темы."
+"Установите <em>Многоязычный</em>, чтобы включить ввод текста на нескольких "
+"языках для параметров, которые предоставляют некоторые темы оформления."
 
 #: zp-core/admin-options.php:847
 msgid "Date and time formats:"
@@ -3482,34 +3384,27 @@ msgid "Disable time for display"
 msgstr "Отключить отображение времени"
 
 #: zp-core/admin-options.php:866
-#, fuzzy
 msgid ""
 "Formats for date and time. Select from the lists or set to <code>custom</"
 "code> and provide a <a href=\"https://www.php.net/manual/en/datetime.format."
 "php\">datetime</a> format string for date and time in the custom boxes."
 msgstr ""
-"Выберите из списка способ форматирования даты или установите "
-"<code>Пользовательский</code> и введите значение <a href=\"http://us2.php."
-"net/manual/en/function.strftime.php\"><span "
-"class=\"nowrap\"><code>strftime()</code></span></a> в текстовом поле ниже.\n"
 "Форматы даты и времени. Выберите из списков или установите значение "
-"<code>пользовательский</code> и укажите <a href=\"https://www.php.net/manual/"
-"en/datetime.format.php\">datetime</a> строку формата для даты и времени в "
-"пользовательских полях."
+"<code>Пользовательский</code> и укажите строку формата <a href=\"https://www."
+"php.net/manual/en/datetime.format.php\">datetime</a> для даты и времени в "
+"соответствующих полях."
 
 #: zp-core/admin-options.php:867
-#, fuzzy
 msgid ""
 "If time is disabled for display standard theme and admin functions will not "
 "display it. The same applies if the <em>preferred date representation</em> "
 "format without time is selected."
 msgstr ""
 "Если время отключено для отображения, стандартная тема и функции "
-"администратора не будут отображать его. samm радуется, если выбран "
-"<em>предпочтительный формат представления даты</em> без времени."
+"администратора не будут отображать его. То же самое произойдет, если выбран "
+"предпочтительный <em>формат представления даты</em> без времени."
 
 #: zp-core/admin-options.php:870
-#, fuzzy
 msgid ""
 "NOTE: If localized dates are enabled and you are using a custom date format "
 "you need to provide an <a href=\"https://unicode-org.github.io/icu/userguide/"
@@ -3518,58 +3413,51 @@ msgid ""
 "ignored for display."
 msgstr ""
 "ПРИМЕЧАНИЕ: Если включены локализованные даты и вы используете "
-"пользовательский формат даты, вам необходимо указать <a href=\"https://"
-"unicode-org.github.io/icu/userguide/format_parse/datetime/\"> Строку "
-"dateformat отделения интенсивной терапии</a>. Если вы выберете один из <em></"
-"em> предпочтительных форматов представления даты, параметр формата времени "
-"для отображения игнорируется."
+"пользовательский формат даты, вам необходимо указать строку формата <a "
+"href=\"https://unicode-org.github.io/icu/userguide/format_parse/datetime/\"> "
+"ICU dateformat</a>. Если вы выберете один из предпочтительных <em>форматов "
+"представления даты</em>, параметр для отображения формата времени "
+"игнорируется."
 
 #: zp-core/admin-options.php:874
-#, fuzzy
 msgid ""
 "The intl PHP extension is not installed and localized dates are not "
 "available on your system."
 msgstr ""
-"Международное расширение PHP не установлено, и локализованные даты "
-"недоступны в вашей системе."
+"Расширение <em>intl</em>PHP не установлено, и локализованные даты недоступны "
+"в вашей системе."
 
 #: zp-core/admin-options.php:880
-#, fuzzy
 msgid "Charset:"
 msgstr "Кодировка:"
 
 #: zp-core/admin-options.php:902
-#, fuzzy
 msgid ""
 "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> "
 "if you are unsure."
 msgstr ""
-"Кодировка текста вашей галереи. Если не уверены, оставьте <em>Юникод "
-"(UTF-8)</em>.\n"
 "Кодировка символов для внутреннего использования. Оставьте <em>Unicode "
 "(UTF-8)</em>, если вы не уверены."
 
 #: zp-core/admin-options.php:904 zp-core/admin-options.php:934
-#, fuzzy
 msgid ""
 "Character sets <span style=\"color:gray\">shown in gray</span> have no "
 "character translation support."
 msgstr ""
-"Кодировки Наборы символов <span style=\"color:gray\">, выделенные серым,</"
-"span> не поддерживают перевод символов."
+"Кодировки Наборы символов, выделенные <span style=\"color:gray\">серым</"
+"span>, не поддерживают перевод символов."
 
 #: zp-core/admin-options.php:910
 msgid "Filesystem Charset:"
 msgstr "Кодировка файловой системы:"
 
 #: zp-core/admin-options.php:932
-#, fuzzy
 msgid ""
 "The character encoding to use for the filesystem. Leave at <em>Unicode "
 "(UTF-8)</em> if you are unsure."
 msgstr ""
-"Кодировка символов, которую следует использовать для файловой системы. Если "
-"вы не уверены, оставьте <em>Unicode (UTF-8)</em>."
+"Кодировка, которую следует использовать для файловой системы. Если вы не "
+"уверены, оставьте <em>Unicode (UTF-8)</em>."
 
 #: zp-core/admin-options.php:941
 msgid "Allowed tags:"
@@ -3583,7 +3471,6 @@ msgstr ""
 "других полях."
 
 #: zp-core/admin-options.php:969
-#, fuzzy
 msgid ""
 "Follow the form: <em>tag</em> =&gt; (<em>attribute</em> =&gt;() "
 "<em>attribute</em>=&gt;() <em>attribute</em> =&gt;()....etc.)"
@@ -3596,8 +3483,8 @@ msgid ""
 "<strong>Note:</strong> visual editing is enabled so the editor overrides "
 "these settings on tags where it is active."
 msgstr ""
-"<strong>Примечание:</strong> визуальное редактирование включено, поэтому "
-"редактор переопределяет эти настройки для тегов, где он активен."
+"<strong>Примечание:</strong> Если включено визуальное редактирование, "
+"редактор переопределяет эти настройки для тегов, в полях, где он активирован."
 
 #: zp-core/admin-options.php:974
 msgid "reset to default"
@@ -3620,34 +3507,31 @@ msgid "enable gallery sessions"
 msgstr "использовать сессии"
 
 #: zp-core/admin-options.php:1008
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The <em>path</em> Zenphoto will use when storing cookies. (Leave empty to "
 "default to <em>%s</em>)"
 msgstr ""
-"Путь <em></em> Zenphoto будет использоваться при хранении файлов cookie. "
-"(Оставьте пустым значение по умолчанию <em>%s</em>)"
+"Zenphoto будет использовать <em>Путь</em> при сохранении файлов cookie. "
+"(Оставьте пустым для значение по умолчанию <em>%s</em>)"
 
 #: zp-core/admin-options.php:1009
-#, fuzzy
 msgid "Set to the time in seconds that cookies should be kept by browsers."
 msgstr ""
 "Установите время в секундах, в течение которого браузеры должны сохранять "
 "файлы cookie."
 
 #: zp-core/admin-options.php:1013
-#, fuzzy
 msgid ""
 "If this option is selected Zenphoto will use <a href=\"https://www.php.net/"
 "manual/en/intro.session.php\">PHP sessions</a> instead of cookies to make "
 "visitor settings persistent."
 msgstr ""
 "Если выбран этот параметр, Zenphoto будет использовать <a href=\"https://www."
-"php.net/manual/en/intro.session.php\">Сеансы PHP</a> вместо файлов cookie, "
-"чтобы сохранить настройки посетителя постоянными."
+"php.net/manual/en/intro.session.php\">PHP sessions</a> вместо файлов cookie, "
+"чтобы сохранить настройки посетителя."
 
 #: zp-core/admin-options.php:1014
-#, fuzzy
 msgid ""
 "<strong>NOTE</strong>: Sessions will normally close when the browser closes "
 "causing all password and other data to be discarded. They may close more "
@@ -3656,34 +3540,29 @@ msgid ""
 "Cookies are the prefered storage option since their duration is determined "
 "by the <em>Cookie duration</em> option. "
 msgstr ""
-"<strong>Примечание: </strong>: Сеансы обычно закрываются при закрытии "
+"<strong>Примечание: </strong>: Сеансы обычно заканчиваются при закрытии "
 "браузера, в результате чего все пароли и другие данные удаляются. Они могут "
-"закрываться чаще в зависимости от конфигурации среды выполнения. Более "
-"длительный <em>срок службы</em> сеансов, как правило, более благоприятен для "
-"приятного взаимодействия с пользователем. Файлы cookie являются "
-"предпочтительным вариантом хранения, поскольку их продолжительность "
-"определяется параметром <em>Длительность файлов cookie</em>. "
+"заканчиваться чаще в зависимости от конфигурации среды. Более длительный "
+"<em>срок жизни</em> сеансов, как правило, более благоприятен для работы "
+"пользователя с сайтом. Файлы cookie являются предпочтительным вариантом "
+"хранения, поскольку их продолжительность определяется параметром "
+"<em>Длительность</em> файлов cookie. "
 
 #: zp-core/admin-options.php:1019
-#, fuzzy
 msgid "Name:"
 msgstr "Имя:"
 
 #: zp-core/admin-options.php:1020
-#, fuzzy
 msgid "Email:"
 msgstr "E-Mail:"
 
 #: zp-core/admin-options.php:1026
-#, fuzzy
 msgid ""
 "This email name and address will be used as the <em>From</em> address for "
 "all mails sent by Zenphoto."
 msgstr ""
-"Это имя и адрес будут указываться в поле <em>От</em> всех писем, "
-"отправляемых Zenphoto.\n"
-"Это имя и адрес электронной почты будут использоваться в качестве адреса "
-"<em>From</em> для всех писем, отправляемых Zenphoto."
+"Это имя и адрес электронной почты будут использоваться в поле <em>От</em> "
+"для всех писем, отправляемых Zenphoto."
 
 #: zp-core/admin-options.php:1030
 msgid "Users per page:"
@@ -3709,34 +3588,30 @@ msgstr ""
 #: zp-core/admin-options.php:1063
 #, php-format
 msgid "<p>%s log limit</p>"
-msgstr "<p>%s лимит журнала</p>"
+msgstr "<p>Размер журнала \"%s\"</p>"
 
 #: zp-core/admin-options.php:1075
 msgid "e-mail when exceeded"
-msgstr "отправить уведомление на e-mail при превышении"
+msgstr "e-mail уведомление при превышении"
 
 #: zp-core/admin-options.php:1082
-#, fuzzy
 msgid ""
 "Logs will be \"rolled\" over when they exceed the specified size. If "
 "checked, the administrator will be e-mailed when this occurs."
 msgstr ""
-"Отчеты Журналы будут\"свернуты\", когда они превысят указанный размер. Если "
-"установлен флажок, администратор получит электронное письмо, когда это "
+"Журналы будут \"перезаписаны\", когда они превысят указанный размер. Если "
+"установлен флажок, администратор сайта получит электронное письмо, когда это "
 "произойдет."
 
 #: zp-core/admin-options.php:1087
-#, fuzzy
 msgid "Daily logs:"
-msgstr "Ежедневные журналы отчеты:"
+msgstr "Ежедневные журналы:"
 
 #: zp-core/admin-options.php:1092
-#, fuzzy
 msgid "Enable daily logs"
-msgstr "Включить ежедневные журналы отчеты"
+msgstr "Включить создание ежедневных журналов"
 
 #: zp-core/admin-options.php:1095
-#, fuzzy
 msgid ""
 "If checked logs will be created daily by appending the dateformat YYYY-mm-dd "
 "to the filename."
@@ -3755,38 +3630,28 @@ msgid "Gallery title:"
 msgstr "Название галереи:"
 
 #: zp-core/admin-options.php:1137
-#, fuzzy
 msgid "What you want to call your Zenphoto site."
-msgstr ""
-"Как вы хотите назвать свой сайт Zenphoto. Общее название вашей галереи "
-"Zenphoto."
+msgstr "Как вы хотите назвать свой сайт Zenphoto."
 
 #: zp-core/admin-options.php:1140
 msgid "Gallery description:"
 msgstr "Описание галереи:"
 
 #: zp-core/admin-options.php:1144
-#, fuzzy
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr ""
-"Краткое описание галереи. Некоторые темы оформления могут показывать этот "
-"текст.\n"
-"Краткое описание вашей галереи. В некоторых темах может отображаться этот "
-"текст."
+"Краткое описание вашей галереи. Некоторые темы оформления могут показывать "
+"этот текст."
 
 #: zp-core/admin-options.php:1148
-#, fuzzy
 msgid "Site copyright notice"
-msgstr ""
-"Уведомление об авторских правах\n"
-"Уведомление об авторских правах на Сайт"
+msgstr "Уведомление об авторских правах"
 
 #: zp-core/admin-options.php:1150 zp-core/admin-options.php:2589
 msgid "Notice"
 msgstr "Уведомление"
 
 #: zp-core/admin-options.php:1154 zp-core/admin-options.php:2593
-#, fuzzy
 msgid ""
 "The notice will be used by the html_meta_tags plugin. If not set the image "
 "meta data is tried instead."
@@ -3795,12 +3660,10 @@ msgstr ""
 "установлен, вместо него будут использоваться метаданные изображения."
 
 #: zp-core/admin-options.php:1159
-#, fuzzy
 msgid "Site copyright URL"
 msgstr "URL страницы с описанием политики авторских прав на сайт"
 
 #: zp-core/admin-options.php:1164 zp-core/admin-options.php:2602
-#, fuzzy
 msgid ""
 "Choose a Zenpage page or define a custom URL. The URL maybe used to point to "
 "some specific copyright info source. Must be an absolute URL address of the "
@@ -3808,14 +3671,12 @@ msgid ""
 msgstr ""
 "Выберите страницу Zenpage или задайте пользовательский URL. URL может "
 "использоваться для указания на какой-либо конкретный источник информации об "
-"авторских правах. Должен быть абсолютным URL-адресом формы: http://mydomain."
+"авторских правах. Должен быть абсолютным URL-адресом вида: http://mydomain."
 "com/license.html."
 
 #: zp-core/admin-options.php:1169
-#, fuzzy
 msgid "Display copyright notice"
-msgstr ""
-"Уведомление об авторских правах Отображать уведомление об авторских правах"
+msgstr "Отображать уведомление об авторских правах"
 
 #: zp-core/admin-options.php:1171 zp-core/admin-options.php:2609
 #: zp-core/zp-extensions/http_security_headers.php:345
@@ -3824,50 +3685,43 @@ msgid "Enable"
 msgstr "Включить"
 
 #: zp-core/admin-options.php:1173
-#, fuzzy
 msgid ""
 "Enable to display the copyright notice. This may usually be in the theme "
 "footer but is up to the theme."
 msgstr ""
-"Включить отображение уведомления об авторских правах. Обычно это может быть "
-"в нижнем колонтитуле темы, но зависит от темы."
+"Включить отображение уведомления об авторских правах. Обычно это уведомление "
+"располагается может быть в <em>footer</em> темы, но возможны и другие "
+"варианты."
 
 #: zp-core/admin-options.php:1177
-#, fuzzy
 msgid "Site copyright rightsholder"
-msgstr "Авторские права Правообладатель авторских прав на Сайт"
+msgstr "Правообладатель авторских прав на сайт"
 
 #: zp-core/admin-options.php:1182 zp-core/admin-options.php:2620
-#, fuzzy
 msgid ""
 "The rights holder will be used by the html_meta_tags plugin. If set to "
 "<em>none</em> the image metadata fields \"copyright\" or \"owner\" are used "
 "as fallbacks, if available."
 msgstr ""
 "Правообладатель будет использоваться плагином html_meta_tags. Если "
-"установлено значение <em>нет</em>, поля метаданных изображения\"авторское "
-"право\" или\"владелец\" используются в качестве резервных, если таковые "
-"имеются."
+"установлено значение <em>нет</em>, поля метаданных изображения \"copyright\" "
+"или \"owner\" используются в качестве резервных."
 
 #: zp-core/admin-options.php:1187
 msgid "Gallery type"
 msgstr "Тип галереи"
 
 #: zp-core/admin-options.php:1189
-#, fuzzy
 msgid "public"
 msgstr "публичная"
 
 #: zp-core/admin-options.php:1190
-#, fuzzy
 msgid "private"
 msgstr "частная"
 
 #: zp-core/admin-options.php:1193
-#, fuzzy
 msgid "Private galleries are viewable only by registered users."
 msgstr ""
-"Частная галерея доступна только для зарегистрированных пользователей.\n"
 "Частные галереи доступны для просмотра только зарегистрированным "
 "пользователям."
 
@@ -3876,41 +3730,32 @@ msgid "Gallery password:"
 msgstr "Пароль галереи:"
 
 #: zp-core/admin-options.php:1226
-#, fuzzy
 msgid ""
 "Master password for the gallery. Click on <em>Gallery password</em> to "
 "change."
 msgstr ""
-"Основной пароль галереи. Если он установлен, то пользователи должны его "
-"знать для просмотра галереи.\n"
 "Мастер-пароль для галереи. Нажмите на <em>Пароль галереи</em>, чтобы "
 "изменить."
 
 #: zp-core/admin-options.php:1234
-#, fuzzy
 msgid "Gallery guest user:"
 msgstr "Гостевое имя пользователя:"
 
 #: zp-core/admin-options.php:1249
-#, fuzzy
 msgid "User ID for the gallery guest user"
 msgstr "Идентификатор пользователя-гостя для галереи"
 
 #: zp-core/admin-options.php:1259 zp-core/admin-options.php:1588
 #: zp-core/admin-options.php:2429 zp-core/zp-extensions/downloadList.php:154
 #: zp-core/zp-extensions/zenpage/admin-edit.php:507
-#, fuzzy
 msgid "(repeat)"
-msgstr "(повторно) (повтор)"
+msgstr "(повтор)"
 
 #: zp-core/admin-options.php:1288
-#, fuzzy
 msgid ""
 "Master password for the gallery. If this is set, visitors must know this "
 "password to view the gallery."
 msgstr ""
-"Основной пароль для галереи. Если он установлен, то пользователи должны "
-"знать его для просмотра галереи.\n"
 "Мастер-пароль для галереи. Если этот параметр установлен, посетители должны "
 "знать этот пароль для просмотра галереи."
 
@@ -3919,100 +3764,73 @@ msgid "Gallery password hint:"
 msgstr "Подсказка для пароля:"
 
 #: zp-core/admin-options.php:1299 zp-core/admin-options.php:1627
-#, fuzzy
 msgid "A reminder hint for the password."
-msgstr ""
-"Подсказка-напоминание для пароля.\n"
-"Напоминающая подсказка для ввода пароля."
+msgstr "Подсказка-напоминание для пароля."
 
 #: zp-core/admin-options.php:1306
 msgid "Unprotected pages:"
 msgstr "Незащищенные страницы:"
 
 #: zp-core/admin-options.php:1335
-#, fuzzy
 msgid ""
 "Place a checkmark on any page scripts which should not be protected by the "
 "gallery password."
 msgstr ""
-"Отметьте страницы (скрипты), которые НЕ будут защищены паролем галереи.\n"
-"Установите флажки на любых скриптах страниц, которые не должны быть защищены "
-"паролем галереи."
+"Отметьте страницы (скрипты), которые будет доступны к просмотру без ввода "
+"пароля даже у частной галереи."
 
 #: zp-core/admin-options.php:1338
-#, fuzzy
 msgid "Parent website title:"
-msgstr ""
-"Название сайта:\n"
-"Название Родительского сайта:"
+msgstr "Название родительского сайта:"
 
 #: zp-core/admin-options.php:1342
-#, fuzzy
 msgid ""
 "Your parent website title for use in e.g. breadcrumbs if you use Zenphoto as "
 "part of a bigger site run by another CMS. Not needed on plain Zenphoto sites."
 msgstr ""
 "Название вашего родительского веб-сайта для использования, например, в "
-"breadcrumbs, если вы используете Zenphoto как часть более крупного сайта, "
-"управляемого другой CMS. Не требуется на обычных сайтах Zenphoto."
+"<em>breadcrumbs</em>, если вы используете Zenphoto как часть более крупного "
+"сайта, управляемого другой CMS. Не требуется на обычных сайтах Zenphoto."
 
 #: zp-core/admin-options.php:1345
-#, fuzzy
 msgid "Parent website URL:"
-msgstr ""
-"URL сайта:\n"
-"ССЫЛКА на родительский сайт:"
+msgstr "URL родительского сайта:"
 
 #: zp-core/admin-options.php:1348
-#, fuzzy
 msgid ""
 "This URL is used to link back to your parent website in e.g. breadcrumbs, "
 "but your theme must support it. Not needed on plain Zenphoto sites."
 msgstr ""
-"Адрес сайта используется для обратной связи с вашим основным сайтом, при "
-"условии, что текущая тема поддерживает эту функцию.\n"
 "Этот URL используется для обратной ссылки на ваш родительский сайт, "
-"например, в breadcrumbs, но ваша тема должна его поддерживать. Не требуется "
-"на обычных сайтах Zenphoto."
+"например, в <em>breadcrumbs</em>, но ваша тема должна его поддерживать. Не "
+"требуется на обычных сайтах Zenphoto."
 
 #: zp-core/admin-options.php:1351
 msgid "Album thumbnails:"
 msgstr "Миниатюры альбомов:"
 
 #: zp-core/admin-options.php:1365
-#, fuzzy
 msgid "Default thumbnail selection for albums."
-msgstr ""
-"Определяет, какое изображение использовать для миниатюры альбома (по "
-"умолчанию)\n"
-"Выбор миниатюр по умолчанию для альбомов."
+msgstr "Определяет сценарий выбора миниатюр для альбомов по умолчанию."
 
 #: zp-core/admin-options.php:1368
 msgid "Sort gallery by:"
-msgstr "Сортировать галерею по:"
+msgstr "Сортировать галерею:"
 
 #: zp-core/admin-options.php:1419
-#, fuzzy
 msgid ""
 "Sort order for the albums on the index of the gallery. Custom sort values "
 "must be database field names. You can have multiple fields separated by "
 "commas. This option is also the default sort for albums and subalbums."
 msgstr ""
-"Порядок сортировки альбомов на главной странице галереи. Пользовательские "
-"значения - это имена полей базы данных. Можно задать несколько полей через "
-"запятую. Параметр также определяет сортировку по умолчанию для альбомов и "
-"субальбомов.\n"
 "Порядок сортировки альбомов по индексу галереи. Значениями пользовательской "
 "сортировки должны быть имена полей базы данных. У вас может быть несколько "
-"полей, категорияенных запятыми. Этот параметр также используется по "
-"умолчанию для альбомов и вложенных альбомов."
+"полей, разделенных запятыми. Этот параметр также используется по умолчанию "
+"для альбомов и вложенных альбомов."
 
 #: zp-core/admin-options.php:1424
-#, fuzzy
 msgid "Gallery behavior:"
-msgstr ""
-"Свойства:\n"
-"Поведение в галерее:"
+msgstr "Правила галереи:"
 
 #: zp-core/admin-options.php:1429
 #: zp-core/zp-extensions/publishContent/publishContent.php:206
@@ -4026,7 +3844,7 @@ msgstr "Публиковать изображения по умолчанию"
 
 #: zp-core/admin-options.php:1442
 msgid "use latest image date as album date"
-msgstr "использовать дату последнего изображения в качестве даты альбома"
+msgstr "датировать альбом новейшим изображением"
 
 #: zp-core/admin-options.php:1449
 msgid "visual thumb selection"
@@ -4037,89 +3855,78 @@ msgid "show subalbum thumbs"
 msgstr "показывать миниатюры субальбомов"
 
 #: zp-core/admin-options.php:1461
-#, fuzzy
 msgid ""
 "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish "
 "albums by default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumpub');\" >Подробнее</a> о <em>публиковать "
-"альбомы по умолчанию</em> публикации альбомов по умолчанию"
+"<a href=\"javascript:toggle('albumpub');\" >Подробнее</a> об опции "
+"<em>Публиковать альбомы по умолчанию</em>"
 
 #: zp-core/admin-options.php:1463
-#, fuzzy
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an album. If "
 "checked, the album will be published, if unchecked it will be unpublished."
 msgstr ""
-"Этот параметр устанавливает поведение по умолчанию для обнаружения альбома "
-"Zenphoto. Если флажок установлен, альбом будет опубликован, если флажок "
-"снят, он будет неопубликованным."
+"Этот параметр устанавливает поведение по умолчанию при обнаружении Zenphoto "
+"нового альбома. Если флажок установлен, альбом будет опубликован, если "
+"флажок снят, он останется неопубликованным до соответствующей команды "
+"пользователя-владельца."
 
 #: zp-core/admin-options.php:1465
-#, fuzzy
 msgid ""
 "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish "
 "images by default</em>"
 msgstr ""
-"<a href=\"javascript:toggle('imagepub');\" >Подробнее</a> о <em>публиковать "
-"изображения по умолчанию</em> публикации изображений по умолчанию"
+"<a href=\"javascript:toggle('imagepub');\" >Подробнее</a> об опции "
+"<em>Публиковать изображения по умолчанию</em>"
 
 #: zp-core/admin-options.php:1467
-#, fuzzy
 msgid ""
 "This sets the default behavior for when Zenphoto discovers an image. If "
 "checked, the image will be published, if unchecked it will be unpublished."
 msgstr ""
-"Этот параметр устанавливает поведение по умолчанию для обнаружения "
-"изображения Zenphoto. Если флажок установлен, изображение будет "
-"опубликовано, если флажок снят, оно не будет опубликовано."
+"Этот параметр устанавливает поведение по умолчанию при обнаружении Zenphoto "
+"нового изображения. Если флажок установлен, изображение будет опубликовано, "
+"если флажок снят, оно останется неопубликованным до соответствующей команды "
+"пользователя-владельца."
 
 #: zp-core/admin-options.php:1469
-#, fuzzy
 msgid ""
 "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest "
 "image date as album date</em>"
 msgstr ""
-"<a href=\"javascript:toggle('albumdate');\" >Подробнее</a> о <em>датировать "
-"альбом новейшим изображением</em>\n"
-"используйте последнюю дату изображения в качестве даты альбома"
+"<a href=\"javascript:toggle('albumdate');\" >Подробнее</a> об опции "
+"<em>датировать альбом новейшим изображением</em>"
 
 #: zp-core/admin-options.php:1472
-#, fuzzy
 msgid ""
 "If you wish your album date to reflect the date of the latest image uploaded "
 "set this option. Otherwise the date will be set initially to the date the "
 "album was created."
 msgstr ""
-"Отметьте, если хотите, чтобы дата альбома соответствовала последнему "
-"загруженному в него изображению. В противном случае, используется дата "
-"создания альбома.\n"
-"Если вы хотите, чтобы дата вашего альбома совпадала с датой последнего "
-"загруженного изображения, установите этот параметр. В противном случае "
-"изначально дата будет соответствовать дате создания альбома."
+"Отметьте, если хотите, чтобы дата альбома совпадала с датой последнего "
+"загруженного в альбом изображения. В противном случае, используется дата "
+"создания альбома."
 
 #: zp-core/admin-options.php:1475
-#, fuzzy
 msgid ""
 "<strong>NOTE</strong>: Zenphoto will update the album date only if an image "
 "is discovered which is newer than the current date of the album.<br>Be sure "
 "to refresh image metadata for this option to have effect."
 msgstr ""
 "<strong>Примечание: </strong>: Zenphoto обновит дату альбома, только если "
-"будет обнаружено изображение, более новое, чем текущая дата альбома.<br>\n"
-"Обязательно обновите метаданные изображения, чтобы эта опция заработала."
+"будет обнаружено изображение, более новое, чем текущая дата альбома."
+"<br>Обязательно обновите метаданные альбомов, чтобы эта опция заработала."
 
 #: zp-core/admin-options.php:1479
-#, fuzzy
 msgid ""
 "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual "
 "thumb selection</em>"
 msgstr ""
 "<a href=\"javascript:toggle('visualthumb');\" >Подробнее</a> о "
-"<em>визуальный выбор миниатюр</em> визуального выбора"
+"<em>визуальный выбор миниатюр</em>"
 
 #: zp-core/admin-options.php:1481
-#, fuzzy
 msgid ""
 "Setting this option places thumbnails in the album thumbnail selection list "
 "(the dropdown list on each album’s edit page). In Firefox the dropdown shows "
@@ -4130,23 +3937,21 @@ msgid ""
 msgstr ""
 "Установка этого параметра помещает миниатюры в список выбора миниатюр "
 "альбома (выпадающий список на странице редактирования каждого альбома). В "
-"Firefox в раскрывающемся списке отображаются большие буквы, но в IE и Safari "
-"отображаются только имена (даже если большие буквы загружены!). В альбомах с "
+"Firefox в раскрывающемся списке отображаются миниатюры, но в IE и Safari "
+"отображаются только имена (даже если миниатюры загружены!). В альбомах с "
 "большим количеством изображений загрузка этих изображений занимает много "
 "времени и не является необходимой, если браузер их не отображает. Снимите "
 "этот флажок, и изображения загружаться не будут."
 
 #: zp-core/admin-options.php:1484
-#, fuzzy
 msgid ""
 "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum "
 "thumb selection</em>"
 msgstr ""
 "<a href=\"javascript:toggle('visualthumb');\" >Подробнее</a> о <em>выбор "
-"миниатюр дочернего альбома</em> подальбома"
+"миниатюр субальбомов</em>"
 
 #: zp-core/admin-options.php:1486
-#, fuzzy
 msgid ""
 "Setting this option allows selecting images from subalbums as well as from "
 "the album. Naturally populating these images adds overhead. If your album "
@@ -4154,44 +3959,34 @@ msgid ""
 msgstr ""
 "Установка этого параметра позволяет выбирать изображения как из вложенных "
 "альбомов, так и из альбома. Естественно, заполнение этих изображений "
-"увеличивает накладные расходы. Если вкладки редактирования альбома "
-"загружаются слишком медленно, не выбирайте этот параметр."
+"увеличивает время обработки страницы сервером. Если вкладки редактирования "
+"альбома загружаются слишком медленно, выключите эту опцию."
 
 #: zp-core/admin-options.php:1539 zp-core/admin-options.php:1584
 msgid "Search password:"
 msgstr "Пароль для поиска:"
 
 #: zp-core/admin-options.php:1559
-#, fuzzy
 msgid ""
 "Password for the search guest user. click on <em>Search password</em> to "
 "change."
 msgstr ""
-"Пароль для пользователя search guest. нажмите <em>Пароль для поиска</em>, "
-"чтобы изменить."
+"Пароль для \"Пользователя-гостя\". Нажмите <em>Пароль для поиска</em>, чтобы "
+"изменить."
 
 #: zp-core/admin-options.php:1565
-#, fuzzy
 msgid "Search guest user:"
-msgstr ""
-"Имя пользователя:\n"
-"Поиск приглашенного пользователя:"
+msgstr "Поиск для пользователя-гостя:"
 
 #: zp-core/admin-options.php:1578
-#, fuzzy
 msgid "User ID for the search guest user"
-msgstr ""
-"Гостевое имя пользователя поиска\n"
-"Идентификатор пользователя для поиска гостевого пользователя"
+msgstr "ID пользователя-гостя поиска"
 
 #: zp-core/admin-options.php:1616
-#, fuzzy
 msgid ""
 "Password for the search guest user. If this is set, visitors must know this "
 "password to view search results."
 msgstr ""
-"Если пароль установлен, то пользователи должны его знать, чтобы увидеть "
-"результаты поиска.\n"
 "Пароль для пользователя search guest. Если этот параметр установлен, "
 "посетители должны знать этот пароль для просмотра результатов поиска."
 
@@ -4204,22 +3999,16 @@ msgid "Search behavior settings:"
 msgstr "Настройки поиска:"
 
 #: zp-core/admin-options.php:1652
-#, fuzzy
 msgid "Fields list:"
-msgstr ""
-"Поля:\n"
-"Список полей:"
+msgstr "Список полей:"
 
 #: zp-core/admin-options.php:1670
 msgid "String matching:"
-msgstr "Сопоставление строк:"
+msgstr "Соответствия строк:"
 
 #: zp-core/admin-options.php:1671
-#, fuzzy
 msgid "<em>pattern</em>"
-msgstr ""
-"<em>паттерн</em>\n"
-"<em>шаблон</em>"
+msgstr "<em>паттерн</em>"
 
 #: zp-core/admin-options.php:1671
 msgid "<em>partial word</em>"
@@ -4234,12 +4023,10 @@ msgid "Tag matching:"
 msgstr "Соответствие тегов:"
 
 #: zp-core/admin-options.php:1677
-#, fuzzy
 msgid "<em>partial</em>"
 msgstr "<em>частичное</em>"
 
 #: zp-core/admin-options.php:1677
-#, fuzzy
 msgid "<em>exact</em>"
 msgstr "<em>точное</em>"
 
@@ -4288,57 +4075,41 @@ msgid "Do not return <em>page</em> matches"
 msgstr "Не возвращать результаты по <em>страницам</em>"
 
 #: zp-core/admin-options.php:1724
-#, fuzzy
 msgid ""
 "<em>Field list</em> is the set of fields on which searches may be performed."
 msgstr ""
-"<em>Поля</em> - выберите по каким критериям может производится поиск на "
-"страницах галереи.\n"
 "<em>Список полей</em> - это набор полей, по которым может выполняться поиск."
 
 #: zp-core/admin-options.php:1727
-#, fuzzy
 msgid ""
 "Search does matches on all fields chosen based on the matching criteria "
 "selected. The <em>string matching</em> criteria is used for all fields "
 "except <em>tags</em>. The <em>tag matching</em> criteria is used for them."
 msgstr ""
-"Поиск осуществляется во всех полях на основе выбранного критерия. "
-"<em>Соответсвие строки</em> используется для всех полей, кроме <em>меток</"
-"em>.\n"
 "Поиск находит совпадения по всем выбранным полям на основе выбранных "
-"критериев соответствия. <em>Критерии соответствия строк</em> используются "
-"для всех полей, кроме <em>тегов</em>. Для них используется тег <em>, "
-"соответствующий критериям</em>."
+"критериев соответствия. Критерии <em>Соответствия строк</em> используются "
+"для всех полей, кроме <em>тегов</em>. Для них используется настройка "
+"<em>Соответствие тегов</em>."
 
 #: zp-core/admin-options.php:1730
-#, fuzzy
 msgid "<code>pattern</code>: match the target anywhere within the field"
 msgstr "<code>паттерн</code>: совпадение с любой частью поля"
 
 #: zp-core/admin-options.php:1731
-#, fuzzy
 msgid "<code>exact</code>: match the target with the whole field"
 msgstr "<code>точно</code>: точное совпадение со всем полем"
 
 #: zp-core/admin-options.php:1732
-#, fuzzy
 msgid "<code>word</code>: match the target with whole words in the field"
-msgstr ""
-"<code>слово</code>: совпадение со всеми словами в поле\n"
-"с целыми словами в поле"
+msgstr "<code>слово</code>: с целыми словами в поле"
 
 #: zp-core/admin-options.php:1733
-#, fuzzy
 msgid ""
 "<code>partial word</code>: match the target with the start of words in the "
 "field"
-msgstr ""
-"<code>слово (частично)</code>: совпадение с начальными словами в поле "
-"началом слов в поле"
+msgstr "<code>неполное слово</code>: совпадение с началом слов в поле"
 
 #: zp-core/admin-options.php:1736
-#, fuzzy
 msgid ""
 "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to "
 "trigger on any of the words in a string separated by spaces. Setting it to "
@@ -4346,67 +4117,56 @@ msgid ""
 "present. Leaving the option unchecked will treat the whole string as a "
 "search target."
 msgstr ""
-"Настройка <code>Обрабатывать пробелы как</code> в <em>Или</em> приведет к "
-"запуску поиска по любому слову в строке, категорияенному пробелами. "
-"Установка значений <em>И</em> приведет к запуску поиска только при наличии "
-"всех строк. Если оставить параметр непроверенным, вся строка будет "
-"рассматриваться как цель поиска."
+"Установка <code>Трактовать пробелы как</code> в режим <em>ИЛИ</em> приведет "
+"к запуску поиска по любым словам в строке, разделенным пробелами."
+"<br>Установка значений <em>И</em> приведет к отображению резульатов поиска "
+"только при обнаружении всех введенных строк.<br>Если оставить параметр "
+"непроверенным, вся строка будет рассматриваться как цель поиска."
 
 #: zp-core/admin-options.php:1737
-#, fuzzy
 msgid ""
 "<code>Default search</code> sets how searches from search page results "
 "behave. The search will either be from <em>within</em> the results of the "
 "previous search or will be a fresh <em>new</em> search."
 msgstr ""
-"<code>Поиск по умолчанию</code> определяет повторный поиск на странице "
-"результатов: <em>новый</em> поиск или <em>в результатах</em> предыдущего "
-"поиска.\n"
-"<code>Поиск по умолчанию</code> задает поведение результатов поиска на "
-"странице поиска. Поиск будет осуществляться либо по <em>в</em> результатах "
-"предыдущего поиска, либо по новому <em>поиску</em>."
+"<code>Поиск по умолчанию</code> задает поведение поиска на странице "
+"результатов. Поиск будет осуществляться либо по <em>в результатах</em> "
+"предыдущего поиска, либо по <em>новому</em> запросу."
 
 #: zp-core/admin-options.php:1738
-#, fuzzy
 msgid ""
 "Setting <code>Do not return <em>{item}</em> matches</code> will cause search "
 "to ignore <em>{items}</em> when looking for matches."
 msgstr ""
-"Отметьте <code>Не возвращать результаты по <em>{item}</em></code>, чтобы "
-"проигнорировать <em>{items}</em> в результатах поиска совпадения.\n"
-"Настройка <code>Не возвращать</code> <em>{item}</em> совпадения приведет к "
-"игнорированию поиском <em>{items}</em> при поиске совпадений."
+"Настройка <code>Не возвращать результаты</code> <em>{item}</em> совпадения "
+"приведет к игнорированию поиском <em>{items}</em> при поиске совпадений."
 
 #: zp-core/admin-options.php:1742
 msgid "Search fields selector"
 msgstr "Выбор полей поиска"
 
 #: zp-core/admin-options.php:1747
-#, fuzzy
 msgid "Enable selector"
 msgstr "Включить селектор"
 
 #: zp-core/admin-options.php:1752
-#, fuzzy
 msgid ""
 "If enabled the search form will feature a selector for all currently enabled "
 "search fields above."
 msgstr ""
 "Если функция включена, в форме поиска будет отображаться селектор для всех "
-"включенных в данный момент полей поиска выше."
+"включенных в данный момент полей для поиска."
 
 #: zp-core/admin-options.php:1757
-#, fuzzy
 msgid "Cache expiry"
-msgstr "Срок действия кэша истек"
+msgstr "Срок действия кэша поиска"
 
 #: zp-core/admin-options.php:1759
-#, fuzzy, php-format
+#, php-format
 msgid "Redo search after %s minutes."
 msgstr "Повторите поиск через %s минут."
 
 #: zp-core/admin-options.php:1762
-#, fuzzy
 msgid ""
 "Search will remember the results of particular searches so that it can "
 "quickly serve multiple pages, etc. Over time this remembered result can "
@@ -4424,49 +4184,41 @@ msgstr ""
 #: zp-core/admin-options.php:1767
 #: zp-core/zp-extensions/favoritesHandler.php:113
 msgid "Sort albums by"
-msgstr "Сортировать альбомы по"
+msgstr "Сортировать альбомы"
 
 #: zp-core/admin-options.php:1862
 msgid "Sort news articles by"
-msgstr "Сортировать новости по"
+msgstr "Сортировать новости"
 
 #: zp-core/admin-options.php:1912
 msgid "Sort pages by"
-msgstr "Сортировать страницы по"
+msgstr "Сортировать страницы"
 
 #: zp-core/admin-options.php:1980
-#, fuzzy
 msgid ""
 "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific "
 "image options."
 msgstr ""
-"Смотри также категория <a href=\"?tab=theme\">тема</a> для настройки свойств "
-"изображений, связанных с выбранной темой оформления.\n"
-"Смотрите также вкладку Параметры темы, чтобы узнать параметры изображения "
-"для конкретной темы."
+"Смотрите также вкладку <a href=\"?tab=theme\">Настройки темы</a>, чтобы "
+"указать параметры изображений для конкретной темы."
 
 #: zp-core/admin-options.php:2039
-#, fuzzy
 msgid "Default sort order for images."
 msgstr "Порядок сортировки изображений по умолчанию."
 
 #: zp-core/admin-options.php:2040
-#, fuzzy
 msgid ""
 "Custom sort values must be database field names. You can have multiple "
 "fields separated by commas."
 msgstr ""
-"Пользовательские значения - это имена полей базы данных. Можно задать "
-"несколько полей через запятую.\n"
 "Значения пользовательской сортировки должны быть именами полей базы данных. "
-"Вы можете использовать несколько полей, категорияенных запятыми."
+"Вы можете использовать несколько полей, разделенных запятыми."
 
 #: zp-core/admin-options.php:2044
 msgid "Maximum image size"
 msgstr "Максимальный размер изображения"
 
 #: zp-core/admin-options.php:2048
-#, fuzzy
 msgid ""
 "The limit on how large an image may be resized. Too large and your server "
 "will spend all its time sizing images."
@@ -4475,19 +4227,16 @@ msgstr ""
 "будет тратить все свое время на изменение размера изображений."
 
 #: zp-core/admin-options.php:2051
-#, fuzzy
 msgid "Image quality:"
 msgstr "Качество изображения:"
 
 #: zp-core/admin-options.php:2054
-#, fuzzy
 msgid "Normal Image"
 msgstr "Изображение"
 
 #: zp-core/admin-options.php:2073
-#, fuzzy
 msgid "<em>full</em> Image"
-msgstr "Оригинал <em>FULL</em> изображение"
+msgstr "<em>FULL</em> изображение"
 
 #: zp-core/admin-options.php:2092
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:115
@@ -4499,56 +4248,42 @@ msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr "Качество сжатия изображений и миниатюр, созданных Zenphoto."
 
 #: zp-core/admin-options.php:2113
-#, fuzzy
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
 "biggest file)."
 msgstr ""
-"Диапазон от 0 (низкое качество, маленький файл) до 100 (высокое качество, "
-"большой файл).\n"
-"Качество варьируется от 0 (худшее качество, самый маленький файл) до 100 "
-"(лучшее качество, самый большой файл)."
+"Диапазон качества варьируется от 0 (худшее качество, самый маленький файл) "
+"до 100 (лучшее качество, самый большой файл)."
 
 #: zp-core/admin-options.php:2117
-#, fuzzy
 msgid "Interlace:"
-msgstr "Чередование: Чересстрочная развертка:"
+msgstr "Чересстрочная развертка:"
 
 #: zp-core/admin-options.php:2119
-#, fuzzy
 msgid ""
 "If checked, resized images will be created <em>interlaced</em> (if the "
 "format permits)."
 msgstr ""
-"<em>Чередование</em> позволяет выводить изображение на экран в несколько "
-"проходов. Если галка установлена, то изображение будет сохранено с "
-"<em>Чередованием</em> (interlaced), при условии, что формат поддерживает эту "
-"функцию.\n"
-"Если установлен этот флажок, изображения с измененным размером будут "
+"Если установлен эта отметка, изображения с измененным размером будут "
 "создаваться с чересстрочной разверткой (если позволяет формат)."
 
 #: zp-core/admin-options.php:2122
 msgid "Use embedded thumbnail"
-msgstr "Использовать встроенную миниатюру"
+msgstr "Встроенная миниатюра"
 
 #: zp-core/admin-options.php:2133
-#, fuzzy
 msgid ""
 "If set, Zenphoto will use the thumbnail embedded in the image when creating "
 "a cached image that is equal or smaller in size. Note: the quality of this "
 "image varies by camera and its orientation may not match the master image."
 msgstr ""
-"Использовать встроенные в изображения миниатюры при создании кэш-копий. <br /"
-"><strong>Замечание:</strong> качество этих миниатюр зависит от камеры на "
-"которую производилась сьёмка, кроме того их ориентация может не "
-"соответствовать изображению.\n"
 "Если этот параметр установлен, Zenphoto будет использовать миниатюру, "
 "встроенную в изображение, при создании кэшированного изображения такого же "
-"или меньшего размера. Примечание: качество этого изображения зависит от "
-"камеры, и его ориентация может не совпадать с основным изображением."
+"или меньшего размера. <br /><strong>Примечание:</strong> качество этого "
+"изображения зависит от камеры, и его ориентация может не совпадать с "
+"основным изображением."
 
 #: zp-core/admin-options.php:2137
-#, fuzzy
 msgid "The PHP EXIF extension is required for this option."
 msgstr "Для этой опции требуется расширение PHP EXIF."
 
@@ -4569,132 +4304,106 @@ msgid "Sharpen:"
 msgstr "Увеличить резкость:"
 
 #: zp-core/admin-options.php:2162
-#, fuzzy
 msgid "Amount"
-msgstr "Эффект Количество"
+msgstr "Количество"
 
 #: zp-core/admin-options.php:2183
-#, fuzzy
 msgid "Radius"
 msgstr "Радиус действия"
 
 #: zp-core/admin-options.php:2187
-#, fuzzy
 msgid "Threshold"
-msgstr "Порог Пороговое значение"
+msgstr "Пороговое значение"
 
 #: zp-core/admin-options.php:2193
-#, fuzzy
 msgid "Add an unsharp mask to images and/or thumbnails."
-msgstr ""
-"Позволяет увеличить резкость изображений и/или миниатюр с помощью фильтра "
-"<em>нерезкая маска</em>.\n"
-"Добавьте нерезкую маску к изображениям и / или миниатюрам."
+msgstr "Добавьте нерезкую маску к изображениям и/или миниатюрам."
 
 #: zp-core/admin-options.php:2193
-#, fuzzy
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr ""
-"<strong>Предупреждение:</strong>: может создавать сильную нагрузку на "
-"сервер.\n"
-"<strong>ПРЕДУПРЕЖДЕНИЕ</strong>: может привести к перегрузке медленных "
-"серверов."
+"<strong>Предупреждение:</strong>: может создавать сильную нагрузку на сервер."
 
 #: zp-core/admin-options.php:2194
-#, fuzzy
 msgid ""
 "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 "
 "(least sharpening) and 100 (most sharpening)."
 msgstr ""
-"<em>Эффект</em>: сила воздействия фильтра <em>нерезкая маска</em> в "
-"процентах. Значения от 0 (мин. резкость) до 100 (макс. резкость).\n"
-"<em>Величина</em>: сила эффекта повышения резкости. Значения находятся в "
-"диапазоне от 0 (наименьшая резкость) до 100 (наибольшая резкость)."
+"<em>Количество</em> означает силe эффекта повышения резкости. Значения "
+"находятся в диапазоне от 0 (наименьшая резкость) до 100 (наибольшая "
+"резкость)."
 
 #: zp-core/admin-options.php:2195
-#, fuzzy
 msgid ""
 "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius "
 "sharpens smaller details, and a larger radius sharpens larger details."
 msgstr ""
-"<em>Радиус</em>: увеличивая радиус можно исключить малые обьекты (например: "
-"зерно фотоплёнки или цифровой шум матрицы) из зоны воздействия фильтра.\n"
 "<em>Радиус</em>: радиус пикселя маски повышения резкости. Меньший радиус "
-"позволяет заострить мелкие детали, а больший - более крупные."
+"позволяет заострить мелкие детали, а больший - более крупные.<br>Увеличивая "
+"радиус можно исключить малые обьекты (например: зерно фотоплёнки или "
+"цифровой шум матрицы) из зоны воздействия фильтра."
 
 #: zp-core/admin-options.php:2196
-#, fuzzy
 msgid ""
 "<em>Threshold</em>: the color difference threshold required for sharpening. "
 "A low threshold sharpens all edges including faint ones, while a higher "
 "threshold only sharpens more distinct edges."
 msgstr ""
-"<em>Порог</em>: порог срабатывания фильтра, т.е. степень цветового "
-"контраста, который будет идентифицироваться, как граница обьекта, требующая "
-"повышения резкости. При малых значениях, даже самые вялые контрасты будут "
-"учитываться, при больших значениях параметра, только сильные контрасты.\n"
-"<em>Пороговое значение</em>: пороговое значение разницы цветов, необходимое "
-"для повышения резкости. При низком пороговом значении все грани становятся "
-"четкими, включая слабые, в то время как при более высоком пороговом значении "
-"только более четкие грани."
+"<em>Пороговое значение</em>: порог срабатывания фильтра, т.е. степень "
+"цветового контраста, который будет идентифицироваться, как граница обьекта, "
+"требующая повышения резкости. При низком пороговом значении все грани "
+"становятся четкими, включая слабые, в то время как при более высоком "
+"пороговом значении только более четкие грани."
 
 #: zp-core/admin-options.php:2200
 msgid "Watermarks:"
 msgstr "Водяные знаки:"
 
 #: zp-core/admin-options.php:2217
-#, fuzzy
 msgid "Full sized images"
-msgstr "Оригиналы Полноразмерные изображения"
+msgstr "Оригиналы"
 
 #: zp-core/admin-options.php:2240
-#, fuzzy, php-format
+#, php-format
 msgid "%s thumbnails"
 msgstr "Миниатюры (%s)"
 
 #: zp-core/admin-options.php:2251
-#, fuzzy
 msgid "image thumb"
 msgstr "миниатюра"
 
 #: zp-core/admin-options.php:2266
-#, fuzzy
 msgid "cover"
-msgstr "обложка"
+msgstr "покрытие"
 
 #: zp-core/admin-options.php:2268
-#, fuzzy, no-php-format
+#, no-php-format
 msgid "% of image"
 msgstr "% изображения"
 
 #: zp-core/admin-options.php:2271
-#, fuzzy
 msgid "offset h"
 msgstr "смещение по высоте"
 
 #: zp-core/admin-options.php:2273
-#, fuzzy, no-php-format
+#, no-php-format
 msgid "% w, "
 msgstr "% смещения по ширине "
 
 #: zp-core/admin-options.php:2275
-#, fuzzy, no-php-format
+#, no-php-format
 msgid "%"
 msgstr "%"
 
 #: zp-core/admin-options.php:2279
-#, fuzzy
 msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
 msgstr ""
-"<em>покрывать % изображения</em> регулирует размер водяного знака. Водяной "
-"знак размещается относительно верхнего левого угла изображения.\n"
-"Изображение водяного знака масштабируется на величину <em>процент покрытия </"
-"em> изображения и размещается относительно верхнего левого угла изображения."
+"Изображение водяного знака масштабируется на величину <em>% покрытия </em> "
+"изображения и размещается относительно верхнего левого угла изображения."
 
 #: zp-core/admin-options.php:2280
-#, fuzzy
 msgid ""
 "It is offset from there (moved toward the lower right corner) by the "
 "<em>offset</em> percentages of the height and width difference between the "
@@ -4705,44 +4414,38 @@ msgstr ""
 "изображением и водяным знаком."
 
 #: zp-core/admin-options.php:2281
-#, fuzzy
 msgid ""
 "The watermark will not be made larger than the original watermark image."
 msgstr ""
-"Водяной знак не превысит размеров своего его исходного изображения.\n"
-"Водяной знак не будет увеличен по размеру, чем исходное изображение водяного "
-"знака."
+"Водяной знак на изображении не будет увеличен больше размера исходного "
+"изображения водяного знака."
 
 #: zp-core/admin-options.php:2282
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
 "folder. The images must be in png-24 format."
 msgstr ""
-"Пользовательские водяные знаки нужно поместить в каталог: <code>/%s/"
-"watermarks/</code>. Изображения должны быть в формате png-24.\n"
-"Пользовательские водяные знаки должны быть размещены в папке <code></code>. "
-"Изображения должны быть в формате png-24."
+"Пользовательские водяные знаки должны быть размещены в папке: <code>/%s/"
+"watermarks/</code>. Изображения должны быть в формате png-24."
 
 #: zp-core/admin-options.php:2286
-#, fuzzy
 msgid ""
 "If a watermark image is selected for these <em>images classes</em> it will "
 "be used in place of the image thumbnail watermark."
 msgstr ""
-"Если для этих классов изображений выбрано изображение водяного знака, оно "
-"будет использоваться вместо водяного знака миниатюры изображения."
+"Если для этих <em>классов изображений</em> выбрано изображение водяного "
+"знака, оно будет использоваться вместо водяного знака миниатюры изображения."
 
 #: zp-core/admin-options.php:2291
-#, fuzzy
 msgid ""
 "<strong>NOTE:</strong> If you want to watermark <em>Full sized images</em> "
 "you have to enable <em>cache the full image</em> from the <em>Full image "
 "protection</em> option below."
 msgstr ""
 "<strong>Примечание: </strong> Если вы хотите использовать водяные знаки на "
-"<em>полноразмерных изображениях</em>, вы должны включить <em>кэширование "
-"полного изображения</em> в <em>опции Полной защиты изображения</em> ниже."
+"<em>оригиналах</em>, вы должны включить <em>кэширование оригинала</em> в "
+"опции <em>Защита оригиналов</em> ниже."
 
 #: zp-core/admin-options.php:2297
 msgid "Caching concurrency:"
@@ -4756,54 +4459,48 @@ msgstr ""
 "кэша. Текущий лимит: %s."
 
 #: zp-core/admin-options.php:2322
-#, fuzzy
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
 msgstr ""
-"Большее количество сотрудников будет выполнять работу быстрее, если ваш "
-"сервер не будет перегружен или у него не закончится память."
+"Большее количество рабочих процессов будет выполнять работу быстрее, но "
+"только если ваш сервер не окажется перегружен или у него не закончится "
+"память."
 
 #: zp-core/admin-options.php:2327
 msgid "Cache as:"
 msgstr "Кэшировать как:"
 
 #: zp-core/admin-options.php:2330
-#, fuzzy
 msgid "Original"
 msgstr "Оригинал"
 
 #: zp-core/admin-options.php:2340
-#, fuzzy
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image’s type."
 msgstr ""
-"Выберите тип изображений, которые сохраняются в кеше. Оставьте <em>Оригинал</"
-"em> чтобы сохранить исходный тип изображений.\n"
-"Выберите тип для изображений, хранящихся в кэше изображений. Выберите "
-"<em>Оригинал</em>, чтобы сохранить тип исходного изображения."
+"Выберите файловый формат для изображений, хранящихся в кэше изображений. "
+"Выберите <em>Оригинал</em>, чтобы сохранить тип исходного изображения."
 
 #: zp-core/admin-options.php:2343
 msgid "Protect image cache"
-msgstr "Защитить кэша изображений"
+msgstr "Защита кэша изображений"
 
 #: zp-core/admin-options.php:2349
-#, fuzzy
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
 "are still cached but the image processor is used to serve the image rather "
 "than allowing the browser to fetch the file."
 msgstr ""
-"Если флажок установлен, все URI изображений будут связаны с процессором "
-"обработки изображений, а кэш изображений будет отключен для браузеров через "
-"файл <em>.htaccess</em>. Изображения по-прежнему кэшируются, но процессор "
-"обработки изображений используется для обработки изображения, а не позволяет "
-"браузеру извлекать файл."
+"Если отмечено, то все URI изображений будут связаны с процессором обработки "
+"изображений, а кэш изображений будет отключен для браузеров через файл <em>."
+"htaccess</em>. Изображения по-прежнему кэшируются, но процессор обработки "
+"изображений используется для обработки изображения, а не позволяет браузеру "
+"самому извлекать файл."
 
 #: zp-core/admin-options.php:2350
-#, fuzzy
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -4811,36 +4508,34 @@ msgid ""
 "processor URI and are incompatible with this option."
 msgstr ""
 "<strong>Предупреждение:</strong> Этот параметр увеличивает значительные "
-"накладные расходы на <strong> каждую ссылку на изображение </strong>! "
+"накладные расходы на <strong>каждую ссылку</strong> на изображение! "
 "Некоторые обработчики изображений на основе <em>JavaScript</em> и <em>Flash</"
 "em> не будут работать с URI процессора изображений и несовместимы с этой "
 "опцией."
 
 #: zp-core/admin-options.php:2354
 msgid "Secure image processor"
-msgstr "Защитить процессор обработки изображений"
+msgstr "Защита процессора обработки изображений"
 
 #: zp-core/admin-options.php:2360
-#, fuzzy
 msgid "When enabled, the image processor will check album access credentials."
 msgstr ""
 "При включении обработчик изображений проверяет учетные данные для доступа к "
 "альбому."
 
 #: zp-core/admin-options.php:2361
-#, fuzzy
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
 "memory availability."
 msgstr ""
 "<strong>Предупреждение:</strong> Этот параметр увеличивает нагрузку на "
-"память при кэшировании изображений! Возможно, вам не удастся кэшировать "
-"некоторые изображения в зависимости от наличия памяти на вашем сервере."
+"сервер при кэшировании изображений! Возможно, вам не удастся кэшировать "
+"некоторые изображения в зависимости от объема памяти на вашем сервере."
 
 #: zp-core/admin-options.php:2365
 msgid "Full image protection:"
-msgstr "Защита полноразмерных изображений:"
+msgstr "Защита оригиналов:"
 
 #: zp-core/admin-options.php:2370
 msgid "Disable hotlinking"
@@ -4848,22 +4543,21 @@ msgstr "Отключить горячие ссылки"
 
 #: zp-core/admin-options.php:2375
 msgid "cache the full image"
-msgstr "кэшировать полное изображение"
+msgstr "Кэшировать оригинал"
 
 #: zp-core/admin-options.php:2388 zp-core/admin-options.php:2425
 msgid "password:"
-msgstr "пароль:"
+msgstr "Пароль:"
 
 #: zp-core/admin-options.php:2410
 msgid "user:"
-msgstr "пользователь:"
+msgstr "Пользователь:"
 
 #: zp-core/admin-options.php:2460
 msgid "hint:"
-msgstr "подсказка:"
+msgstr "Подсказка:"
 
 #: zp-core/admin-options.php:2474
-#, fuzzy
 msgid "Protected view"
 msgstr "Защищенный вид"
 
@@ -4891,7 +4585,6 @@ msgstr ""
 "полноразмерных изображений:</em> и в случае, если изображение кэшировано."
 
 #: zp-core/admin-options.php:2485
-#, fuzzy
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -4899,33 +4592,24 @@ msgid ""
 "the image to be cached. However, once cached, no protections are applied to "
 "the image."
 msgstr ""
-"<em>Кэшировать оригиналы</em> означает, что полноразмерные изображения по "
-"первому запросу будут загружены в кэш и в дальнейшем будет выводится их "
-"копия.  Для кэширования оригиналов следует выбрать режим <em>Защищённый вид</"
-"em> в раскрывающемся списке. Учитывайте, что защита оригинала изображения "
-"будет невозможна после создания его кэш-копии.\n"
-"Если установлен флажок <em>Кэшировать полное изображение</em>, полное "
-"изображение будет загружено в кэш и отправлено оттуда после первой ссылки. "
-"<em>Полная защита изображения</em> должно быть установлено значение "
+"Если отмечено значение <em>Кэшировать оригинал</em>, полное изображение "
+"будет загружено в кэш и будет загружаться оттуда после первого просмотра.\n"
+"Для <em>Защиты оригиналов</em> должно быть установлено значение "
 "<em>Защищенный вид</em>, чтобы изображение было кэшировано. Однако после "
 "кэширования никакие средства защиты к изображению не применяются."
 
 #: zp-core/admin-options.php:2486
-#, fuzzy
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
 "is a password set, the viewer must supply this password to access the image."
 msgstr ""
-"Использование пароля актуально в режимах <em>Скачать</em> и <em>Защищённый "
-"вид</em>. Для доступа к изображению, посетитель будет обязан ввести пароль.\n"
 "<em>Пользователь</em>, <em>пароль</em> и <em>подсказка</em> применяются к "
 "уровням защиты <em>Загрузка</em> и <em>Защищенный просмотр</em>. Если "
 "установлен пароль, зритель должен ввести этот пароль для доступа к "
 "изображению."
 
 #: zp-core/admin-options.php:2487
-#, fuzzy
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -4934,42 +4618,30 @@ msgid ""
 "displayed, for instance to apply a watermark or to check passwords. "
 "<em>Unprotected</em> allows direct display of the image."
 msgstr ""
-"Выберите вид доступа к полноразмерным изображениям (оригиналам):<br /> "
-"<em>Скачать</em> - вызывает диалог загрузки вместо показа изображения.<br /> "
-"<em>Нет доступа</em> - убирает ссылку к оригиналу изображения со страниц "
-"галереи.<br /> <em>Защищенный вид</em> - прежде, чем отобразить оригинал, "
-"происходит его обработка, например, добавляется водяной знак или происходит "
-"проверка пароля.<br> <em>Нет защиты</em> - разрешает показ оригиналов "
-"изображения напрямую.\n"
-"Выберите уровень защиты для изображений в натуральную величину. "
+"Выберите уровень защиты для оригиналов изображений.\n"
 "<em>Загрузка</em> вызывает диалоговое окно загрузки, а не отображение "
 "изображения. Отсутствие доступа предотвращает отображение ссылки на "
-"изображение. <em>Защищенный вид</em> принудительно обрабатывает изображение "
-"перед отображением, например, для нанесения водяного знака или проверки "
-"паролей. <em>Незащищенный режим</em> позволяет отображать изображение "
-"напрямую."
+"изображение.\n"
+"<em>Защищенный вид</em> принудительно обрабатывает изображение перед "
+"отображением, например, для нанесения водяного знака или проверки паролей.\n"
+"<em>Нет защиты</em> позволяет отображать изображение напрямую."
 
 #: zp-core/admin-options.php:2491
 msgid "Use lock image"
-msgstr "Использовать заглушку для защищенных паролем объектов"
+msgstr "Использовать заглушку"
 
 #: zp-core/admin-options.php:2496
-#, fuzzy
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
 "<code>images_errors/err-passwordprotected.png</code> image, it will be "
 "shown. Otherwise the zenphoto default lock image is displayed."
 msgstr ""
-"Запрещает отображение миниатюр для закрытых паролем альбомов, если "
-"пользователь не прошёл аутентификацию. Вместо этого, выводится миниатюра в "
-"виде <em>замка</em> или (если ваша тема содержит) <code>images/err-"
-"passwordprotected.png</code>.\n"
-"Замените изображение <em>блокировки</em> миниатюрами альбомов, защищенных "
-"паролем, если пользователь не ввел пароль. Если ваша тема содержит "
-"изображение <code>images_errors/err-passwordprotected.png</code>, оно будет "
-"показано. В противном случае отображается изображение блокировки zenphoto по "
-"умолчанию."
+"Заменяет миниатюру изображением <em>заглушки</em> для альбомов, защищенных "
+"паролем, если пользователь не ввел пароль. \n"
+"Если ваша тема содержит изображение <code>images_errors/err-"
+"passwordprotected.png</code>, оно будет показано. В противном случае "
+"отображается изображение блокировки zenphoto по умолчанию."
 
 #: zp-core/admin-options.php:2509
 msgid "Metadata"
@@ -4997,11 +4669,9 @@ msgid "disabled"
 msgstr "отключено"
 
 #: zp-core/admin-options.php:2544
-#, fuzzy
 msgid "Select how image metadata fields are handled."
 msgstr ""
-"Политика обработки метаданных, содержащихся в изображении (EXIF и т.п.).\n"
-"Выберите способ обработки полей метаданных изображения."
+"Политика обработки метаданных, содержащихся в изображении (EXIF и т.д.)"
 
 #: zp-core/admin-options.php:2546
 msgid "Show the field and import data"
@@ -5012,12 +4682,10 @@ msgid "Hide the field but import data"
 msgstr "Скрыть поле, но импортировать данные"
 
 #: zp-core/admin-options.php:2548
-#, fuzzy
 msgid "No display and import"
 msgstr "Не показывать и не импортировать"
 
 #: zp-core/admin-options.php:2552
-#, fuzzy
 msgid ""
 "<strong>Important:</strong> The \"Refresh metadata\" utility which is "
 "accessible from the backend \"Overview\" page, every album-edit page and "
@@ -5025,10 +4693,10 @@ msgid ""
 "metadata embedded in the image/album for all fields enabled. This cannot be "
 "undone!"
 msgstr ""
-"<strong>Важно:</strong> Утилита\"Обновить метаданные\", доступная на "
-"внутренней странице\"Обзор\", на каждой странице редактирования альбома и на "
-"каждой странице редактирования изображения, перезапишет все добавленные "
-"вручную метаданные метаданными, встроенными в изображение / альбом, для всех "
+"<strong>Важно:</strong> Утилита \"Обновить метаданные\", доступная на "
+"внутренней странице \"Обзор\", на каждой странице редактирования альбома и "
+"на каждой странице редактирования изображения, перезапишет все добавленные "
+"вручную данные метаданными, встроенными в изображение/альбом, для всех "
 "включенных полей. Это невозможно отменить!"
 
 #: zp-core/admin-options.php:2562
@@ -5036,60 +4704,45 @@ msgid "IPTC encoding:"
 msgstr "Кодировка IPTC:"
 
 #: zp-core/admin-options.php:2569
-#, fuzzy
 msgid "The default character encoding of image IPTC metadata."
-msgstr ""
-"Кодировка по умолчанию для метаданных стандарта IPTC.\n"
-"Кодировка символов по умолчанию для метаданных IPTC изображения."
+msgstr "Кодировка по умолчанию для метаданных изображения стандарта IPTC ."
 
 #: zp-core/admin-options.php:2571
-#, fuzzy
 msgid ""
 "<strong>NOTE:</strong> If you notice unexpected behaviour, especially with "
 "non-ASCII characters (Cyrillic for example), try again with the "
 "<code>xmpMetadata</code> plugin enabled."
 msgstr ""
-"<strong>Примечание: </strong> Если вы заметили неожиданное поведение, "
-"особенно с символами, отличными от ASCII (например, кириллицей), попробуйте "
-"еще раз с включенным плагином <code>xmpMetadata</code>."
+"<strong>Примечание:</strong> Если вы заметили странное поведение, особенно с "
+"символами, отличными от ASCII (например, кириллицей и другими), попробуйте "
+"обновить метаданные файлов еще раз с включенным плагином <code>xmpMetadata</"
+"code>."
 
 #: zp-core/admin-options.php:2579
 msgid "IPTC caption linebreaks:"
 msgstr "Разрывы строк в заголовках IPTC:"
 
 #: zp-core/admin-options.php:2583
-#, fuzzy
 msgid ""
 "If checked line breaks embeded in the IPTCcaption field will be converted to "
 "<code>&lt;br&gt;</code> on image importing."
 msgstr ""
-"Если флажок установлен, то разрывы строк, встроенные в поле IPTCcaption, "
-"будут преобразованы в <code><br>\n"
-"</code> при импорте изображения."
+"Если отмечено, то разрывы строк, встроенные в поле IPTCcaption, будут "
+"преобразованы в <code>&lt;br&gt;</code> при импорте изображения."
 
 #: zp-core/admin-options.php:2587
-#, fuzzy
 msgid "Image copyright notice"
-msgstr ""
-"Уведомление об авторских правах\n"
-"Уведомление об авторских правах на изображения"
+msgstr "Уведомление об авторских правах"
 
 #: zp-core/admin-options.php:2597
-#, fuzzy
 msgid "Image Copyright URL"
-msgstr ""
-"Авторское право\n"
-"URL авторских прав на изображение"
+msgstr "URL сообщения об авторских правах"
 
 #: zp-core/admin-options.php:2607
-#, fuzzy
 msgid "Display Image copyright notice"
-msgstr ""
-"Уведомление об авторских правах\n"
-"Уведомление об авторских правах на отображение изображений"
+msgstr "Уведомление об авторских правах на изображения"
 
 #: zp-core/admin-options.php:2611
-#, fuzzy
 msgid ""
 "Enable to display the image copyright notice. This may usually be in the "
 "theme below the image but is up to the theme where and if used at all.."
@@ -5099,22 +4752,19 @@ msgstr ""
 "используется ли вообще."
 
 #: zp-core/admin-options.php:2615
-#, fuzzy
 msgid "Image copyright rightsholder"
 msgstr "Правообладатель авторских прав на изображения"
 
 #: zp-core/admin-options.php:2629
-#, fuzzy
 msgid "Embed IPTC copyright"
-msgstr "Авторские права на встраивание IPTC"
+msgstr "Авторские права в IPTC"
 
 #: zp-core/admin-options.php:2630
-#, fuzzy
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be embedded "
 "in cached copies."
 msgstr ""
-"Если флажок установлен и изображение не содержит IPTC-данных, уведомление об "
+"Если отмечено и изображение не содержит IPTC-данных, уведомление об "
 "авторских правах будет встроено в кэшированные копии."
 
 #: zp-core/admin-options.php:2632
@@ -5122,81 +4772,67 @@ msgid "Replicate IPTC metadata"
 msgstr "Копировать метаданные IPTC"
 
 #: zp-core/admin-options.php:2633
-#, fuzzy
 msgid ""
 "If checked IPTC data from the original image will be embedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be embedded. "
 "(The text supplied will be used if the orginal image has no copyright.)"
 msgstr ""
-"Если отмечено, то IPTC данные исходного изображения будут скопированы в кэш-"
-"копии. Если изображение не содержит IPTC данных В текстовом поле ниже "
-"укажите, какая информация будет внедряться при отсутствии IPTC данных.\n"
-"Если флажок установлен, данные IPTC исходного изображения будут встроены в "
+"Если отмечено, данные IPTC исходного изображения будут встроены в "
 "кэшированные копии. Если изображение не содержит данных IPTC, будет встроено "
-"уведомление об авторских правах. (Предоставленный текст будет использован, "
-"если оригинальное изображение не защищено авторскими правами.)"
+"уведомление об авторских правах.\n"
+"(Предоставленный текст будет использован, если оригинальное изображение не "
+"защищено авторскими правами.)"
 
 #: zp-core/admin-options.php:2636
-#, fuzzy
 msgid "IPTC copyright embedding"
-msgstr "Внедрение IPTC"
+msgstr "Авторские права в IPTC"
 
 #: zp-core/admin-options.php:2643
-#, fuzzy
 msgid ""
 "<strong>NOTE:</strong> This option applies only to JPEG format cached images."
 msgstr ""
-"<strong>Примечание: </strong> Доступно только для кэш-копий формата JPEG.\n"
-"<strong>ПРИМЕЧАНИЕ:</strong> Этот параметр применяется только к кэшированным "
-"изображениям формата JPEG."
+"<strong>Примечание: </strong> Этот параметр применяется только к "
+"кэшированным изображениям формата JPEG."
 
 #: zp-core/admin-options.php:2739 zp-core/admin-themes.php:150
 msgid "There are no themes for which you have rights to administer."
 msgstr "Отсутствуют темы, которыми вы могли бы управлять."
 
 #: zp-core/admin-options.php:2754
-#, fuzzy, php-format
+#, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
-msgstr "Параметры <code><strong>%1$s</strong></code>: <em>%2$s</em>"
+msgstr "Настройки <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
 #: zp-core/admin-options.php:2756
-#, fuzzy, php-format
+#, php-format
 msgid "Options for <em>%s</em>"
-msgstr "Параметры для <em>%s</em>"
+msgstr "Настройки для <em>%s</em>"
 
 #: zp-core/admin-options.php:2764
 msgid "Show theme for:"
 msgstr "Показывать тему для:"
 
 #: zp-core/admin-options.php:2780 zp-core/admin-options.php:3063
-#, fuzzy
 msgid "Revert to default"
-msgstr "Значения по умолчанию Вернуться к значению по умолчанию"
+msgstr "Значения по умолчанию"
 
 #: zp-core/admin-options.php:2787
-#, fuzzy
 msgid "<strong>Standard options</strong>"
-msgstr "<strong>Стандартные</strong> параметры"
+msgstr "<strong>Стандартные</strong> настройки"
 
 #: zp-core/admin-options.php:2789
-#, fuzzy
 msgid ""
 "<em>Image and album presentation options provided by the Zenphoto core for "
 "all themes.</em>"
 msgstr ""
-"<em>Стандартные параметры изображений и альбомов для всех тем оформления "
-"Zenphoto.</em>\n"
-"<em>Опции представления изображений и альбомов, предоставляемые ядром "
-"Zenphoto core для всех тем.</em>"
+"<em>Стандартные настрйоки представления изображений и альбомов, "
+"предоставляемые ядром Zenphoto core для всех тем.</em>"
 
 #: zp-core/admin-options.php:2789
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
 msgstr ""
-"<strong>Примечание: </strong> Настройки тем оформления могут перекрывать эти "
-"параметры по соображениям дизайна\n"
 "<strong>Примечание: </strong> Это <em>рекомендации</em>, поскольку темы "
 "могут переопределять их по соображениям дизайна"
 
@@ -5210,9 +4846,9 @@ msgid "thumbnails per page"
 msgstr "миниатюр на странице"
 
 #: zp-core/admin-options.php:2807
-#, fuzzy
 msgid "Set how many albums should appear on an album page"
-msgstr "Укажите, сколько альбомов должно отображаться на странице альбома"
+msgstr ""
+"Укажите, сколько альбомов должно отображаться на странице галереи или альбома"
 
 #: zp-core/admin-options.php:2811
 #: zp-core/zp-extensions/publishContent/publishContent.php:379
@@ -5220,27 +4856,25 @@ msgid "Images:"
 msgstr "Изображения:"
 
 #: zp-core/admin-options.php:2824
-#, fuzzy
 msgid "Set how many images (thumbs) should appear on an image page"
 msgstr ""
-"Укажите, сколько изображений (больших пальцев) должно отображаться на "
-"странице изображений"
+"Укажите, сколько изображений (миниатюр) должно отображаться на странице "
+"альбома"
 
 #: zp-core/admin-options.php:2829
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
 "to the next multiple of it."
 msgstr ""
-"<strong>Примечание:</strong> Если <em>миниатюр в строке</em> больше 1, "
+"<strong>Примечание:</strong> Если <em>миниатюр</em> в ряду больше 1, "
 "фактическое количество миниатюр, отображаемых на странице, будет округлено в "
 "большую сторону до следующего кратного."
 
 #: zp-core/admin-options.php:2830
-#, fuzzy, php-format
+#, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
-msgstr "Для страниц, содержащих изображения, будет %1$u строк миниатюр."
+msgstr "Для страниц, содержащих изображения, будет %1$u рядов миниатюр."
 
 #: zp-core/admin-options.php:2846
 msgid "Transition:"
@@ -5248,7 +4882,7 @@ msgstr "Переход:"
 
 #: zp-core/admin-options.php:2856
 msgid "Enable transition page"
-msgstr "Использовать страницу перехода"
+msgstr "Использовать переходную страницу"
 
 #: zp-core/admin-options.php:2865
 msgid "Minimum number of image thumbs"
@@ -5259,7 +4893,6 @@ msgid "Maximum number of image thumbs"
 msgstr "Максимальное количество миниатюр"
 
 #: zp-core/admin-options.php:2879
-#, fuzzy
 msgid ""
 "If the last page with albums has less albums than the albums per page value, "
 "image thumbs share the page with the album thumbs. Their number is "
@@ -5268,15 +4901,15 @@ msgid ""
 "is 70&percnt; of their images per page value. The minimum and maximum can be "
 "defined. Set both options to the same value to always get a fixed value."
 msgstr ""
-"Если на последней странице с альбомами меньше альбомов, чем указано "
-"в\"Альбомах на страницу\", большие пальцы изображения категорияяют страницу "
-"с большими пальцами альбома. Их количество рассчитывается исходя из "
-"значения\"Изображение на страницу\" и их общего количества. Таким образом, "
-"если в альбомах используется значение 30 & percnt; от их альбомов на "
-"страницу, используемое количество изображений равно 70 & percnt; от их "
-"изображений на страницу. Минимальное и максимальное значения могут быть "
-"определены. Установите для обоих параметров одинаковое значение, чтобы "
-"всегда получать фиксированное значение."
+"Если на последней странице с альбомами меньше альбомов, чем указано в "
+"\"<em>Альбомах на страницу</em>\", миниатюры изображения разделят страницу с "
+"миниатюрами альбомов. Их количество рассчитывается исходя из значения "
+"\"<em>Изображений на страницу</em>\" и их общего количества.<br>Таким "
+"образом, если в альбомах используется значение 30&percnt; от числа "
+"\"альбомов на страницу\", оставшиеся 70&percnt; будут добраны за счет будет "
+"использовано миниатюр изображений.<br>Минимальное и максимальное значения "
+"могут быть определены.<br>Установите для обоих параметров одинаковое "
+"значение, чтобы всегда получать фиксированное значение."
 
 #: zp-core/admin-options.php:2895
 msgid "Thumb size:"
@@ -5295,7 +4928,6 @@ msgid "shortest side"
 msgstr "короткая сторона"
 
 #: zp-core/admin-options.php:2920 zp-core/admin-options.php:3004
-#, fuzzy
 msgid "longest side"
 msgstr "длинная сторона"
 
@@ -5305,46 +4937,39 @@ msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Стандартные миниатюры будут уменьшены до %u пикселей."
 
 #: zp-core/admin-options.php:2926
-#, fuzzy
 msgid ""
 "If cropping is disabled the thumbs will be sized so that the <em>height</"
 "em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> "
 "will be equal to <em>thumb size</em>."
 msgstr ""
-"Изображение будет преобразовано таким образом, чтобы одна из выбранных "
-"сторон соответствовала указанному значению (в пикселах).\n"
-"Если обрезка отключена, большие пальцы будут иметь такой размер, что "
+"Если кадрирование отключено, миниатюры будут иметь такой размер, что "
 "<em>высота</em>, <em>ширина</em>, <em>самая короткая сторона</em> или "
-"<em>самая длинная сторона</em> будут равны <em>размеру большого пальца</em>."
+"<em>самая длинная сторона</em> будут равны <em>размеру миниатюр</em>."
 
 #: zp-core/admin-options.php:2937
-#, fuzzy
 msgid "Crop thumbnails:"
-msgstr "Обрезать миниатюры:"
+msgstr "Кадрировать миниатюры:"
 
 #: zp-core/admin-options.php:2942
-#, fuzzy, php-format
+#, php-format
 msgid "%s%% left &amp; right"
-msgstr "%s%% слева и справа"
+msgstr "%s%% слева/справа"
 
 #: zp-core/admin-options.php:2946
-#, fuzzy, php-format
+#, php-format
 msgid "%s%% top &amp; bottom"
-msgstr "%s%% сверху и снизу"
+msgstr "%s%% сверху/снизу"
 
 #: zp-core/admin-options.php:2951
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
 "bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr ""
 "Если отмечено, то миниатюры будут кадрированы на %1$.1f%% от верхней и "
-"нижней границы изображения и на %2$.1f%% от левой и правой границы.\n"
-"Если флажок установлен, миниатюра будет обрезана с верхнего и нижнего полей "
-"и с левого и правого полей."
+"нижней границы изображения и на %2$.1f%% от левой и правой границы."
 
 #: zp-core/admin-options.php:2953
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
@@ -5360,12 +4985,9 @@ msgid "thumbnail"
 msgstr "миниатюра"
 
 #: zp-core/admin-options.php:2968
-#, fuzzy
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr ""
-"Позволяет создавать чёрно-белые изображения и миниатюры, вместо цветных.\n"
-"Если установлен этот флажок, изображения / миниатюры будут создаваться в "
-"серой гамме."
+"Если отмечено, изображения и миниатюры будут создаваться в монохромной гамме."
 
 #: zp-core/admin-options.php:2978
 msgid "Image size:"
@@ -5376,25 +4998,20 @@ msgid "Default image display size."
 msgstr "Размер изображения по умолчанию."
 
 #: zp-core/admin-options.php:3010
-#, fuzzy
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
 "<em>image size</em>."
 msgstr ""
-"Изображение будет преобразовано таким образом, чтобы одна из выбранных "
-"сторон соответствовала указанному значению (в пикселах).\n"
-"Размер изображения будет таким, чтобы <em>высота</em>, <em>ширина</em>, "
-"<em>кратчайшая сторона</em> или <em>самая длинная сторона</em> были равны "
-"<em>размеру изображения</em>."
+"Изображение будет преобразовано таким образом, чтобы <em>высота</em>, "
+"<em>ширина</em>, <em>кратчайшая сторона</em> или <em>самая длинная сторона</"
+"em> были равны <em>размеру изображения</em>."
 
 #: zp-core/admin-options.php:3022
-#, fuzzy
 msgid "Gallery index page link:"
-msgstr "Ссылка на страницу с индексом галереи:"
+msgstr "URL страницы с индексом галереи:"
 
 #: zp-core/admin-options.php:3042
-#, fuzzy
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -5406,37 +5023,33 @@ msgstr ""
 "ссылается на скрипт theme <code>index.php</code>, вместо этого будет "
 "ссылаться на этот скрипт. Это освобождает <code>index.php</code> скрипт , "
 "так что вы можете создать настраиваемый скрипт <em>домашней страницы</em>. "
-"Этот параметр применяется только к основной теме для галереи <em></em>."
+"Этот параметр применяется только к основной теме <em>Галереи</em>."
 
 #: zp-core/admin-options.php:3051
-#, fuzzy
 msgid "<strong>Custom theme options</strong>"
-msgstr ""
-"<strong>Дополнительные</strong>\n"
-"<strong>Пользовательские настройки темы </strong>"
+msgstr "<strong>Дополнительные настройки</strong>"
 
 #: zp-core/admin-options.php:3053
-#, fuzzy, php-format
+#, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr ""
-"Данные настройки реализуются темой %s.\n"
-"Ниже приведены опции, специально реализованные."
+"Ниже приведены дополнительные настройки, специально реализованные темой "
+"оформления %s."
 
 #: zp-core/admin-options.php:3171 zp-core/admin-plugins.php:187
-#, fuzzy
 msgid "This plugin will be removed in future versions."
-msgstr "Этот плагин будет удален в будущих версиях."
+msgstr "Этот плагин будет удален в будущих версиях Zenphoto."
 
 #: zp-core/admin-options.php:3186 zp-core/admin-plugins.php:265
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
 "may cause performance issues. You should instead set "
 "<code>$option_interface</code> to the name of the class as a string."
 msgstr ""
-"<strong>Примечание:</strong> Создание экземпляра интерфейса option в плагине "
-"может вызвать проблемы с производительностью. Вместо этого вам следует "
-"задать <code>$option_interface</code> в качестве имени класса в виде строки."
+"<strong>Примечание:</strong> Создание экземпляра интерфейса настроек в "
+"плагине может вызвать проблемы с производительностью. Вместо этого вам "
+"следует задать <code>$option_interface</code> в качестве имени класса в виде "
+"строки."
 
 #: zp-core/admin-options.php:3214 zp-core/admin-plugins.php:369
 #, php-format
@@ -5455,26 +5068,22 @@ msgstr "Устарело"
 
 #: zp-core/admin-options.php:3273
 msgid "There are no plugin options to administer."
-msgstr "Нет настроек плагина для администрирования."
+msgstr "Нет настроек плагинов для администрирования."
 
 #: zp-core/admin-options.php:3323
 msgid "Server protocol:"
 msgstr "Протокол сервера:"
 
 #: zp-core/admin-options.php:3331
-#, fuzzy
 msgid ""
 "Normally this option should be set to <em>http</em>. If you are running a "
 "secure server, change this to <em>https</em>."
 msgstr ""
-"Обычно установлен параметр <em>http</em>. Если у вас безопасный сервер "
-"измените на <em>https</em>. Выберите <em>secure admin</em>если необходим "
-"безопасный доступ только к <code>admin</code> страницам.\n"
 "Обычно для этого параметра следует установить значение <em>http</em>. Если "
-"вы используете защищенный сервер, измените это значение на <em>https</em>."
+"ваш сервер использует защищенный протокол, измените это значение на "
+"<em>https</em>."
 
 #: zp-core/admin-options.php:3333
-#, fuzzy
 msgid ""
 "<strong>Warning:</strong> If you select <em>https</em> your server "
 "<strong>MUST</strong> support <em>https</em>. If you set <em>https</em> on a "
@@ -5483,33 +5092,23 @@ msgid ""
 "is to set or add <code>$conf[\"server_protocol\"] = \"http\";</code> to your "
 "<code>zenphoto.cfg.php</code> file ."
 msgstr ""
-"<strong>Предупреждение:</strong><br />Безопасная аутентификация через front-"
-"end форму, возможна только при использовании протокола <em>https</em>.<br /"
-">Для работы в режиме <em>https</em> или <em>secure admin</em> ваш сервер "
-"<strong>ДОЛЖЕН</strong> поддерживать <em>https</em>.  При выборе этих "
-"параметров на сервере, который не поддерживает <em>https</em>, вы потеряете "
-"доступ к панели управления и отменить это действие будет возможно только "
-"через редактирование базы данных: параметр <span "
-"class=\"inlinecode\">server_protocol</span> в таблице <em>options</em>.\n"
 "<strong>Предупреждение:</strong> Если вы выберете <em>https</em>, ваш сервер "
 "<strong> ДОЛЖЕН</strong> поддерживать <em>https</em>. Если вы установите "
 "<em>https</em> на сервере, который не поддерживает <em>https</em>, вы не "
 "сможете получить доступ к страницам <code>администратора</code> для сброса "
 "параметра! Ваша единственная возможность - установить или добавить "
-"<code>$conf[\"server_protocol\"] =\"http\";</code> в ваш <code>файлzenphoto."
-"cfg.php</code> ."
+"<code>$conf[\"server_protocol\"] = \"http\";</code> в ваш файл "
+"<code>zenphoto.cfg.php</code> ."
 
 #: zp-core/admin-options.php:3341
 msgid "Cookie security"
 msgstr "Безопасность cookie-файлов"
 
 #: zp-core/admin-options.php:3346
-#, fuzzy
 msgid "Tie cookies to the IP address of the browser."
-msgstr "Привязывайте файлы cookie к IP-адресу браузера."
+msgstr "Привязывает файлы cookie к IP-адресу браузера."
 
 #: zp-core/admin-options.php:3350
-#, fuzzy
 msgid ""
 "<strong>Warning</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -5520,16 +5119,12 @@ msgstr ""
 "сайт, когда эта опция включена."
 
 #: zp-core/admin-options.php:3353
-#, fuzzy
 msgid "You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
-"Вам <strong>небходимо будет</strong> войти на сайт после изменения этой "
-"опции.\n"
 "Вам <strong> придется</strong> войти в систему после изменения этого "
 "параметра."
 
 #: zp-core/admin-options.php:3356
-#, fuzzy
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -5537,11 +5132,10 @@ msgid ""
 msgstr ""
 "Если вы установили опцию и не можете войти в систему, вам придется "
 "восстановить свою базу данных до того момента, когда опция не была "
-"установлена, поэтому вы можете сначала создать резервную копию своей базы "
-"данных."
+"установлена, поэтому рекомендуется сначала создать резервную копию своей "
+"базы данных."
 
 #: zp-core/admin-options.php:3358
-#, fuzzy
 msgid ""
 "This will not work properly if Zenphoto is set to anonymize the IP address "
 "which is strongly advised for privacy concerns in many jurisdictions."
@@ -5559,23 +5153,20 @@ msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
 msgstr ""
-"Приводит к скрытию имени файла кэшированных элементов. Это затрудняет "
+"Приводит к сокрытию имени файла кэшированных элементов. Это затрудняет "
 "\"угадывание\" имени в URL-адресе."
 
 #: zp-core/admin-options.php:3372
-#, fuzzy
 msgid "Image Processor security"
 msgstr "Безопасность процессора обработки изображений"
 
 #: zp-core/admin-options.php:3377
-#, fuzzy
 msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
 msgstr ""
 "Добавьте параметр безопасности в URI процессора обработки изображений, чтобы "
-"предотвратить атаки типа\"отказ в обслуживании\", запрашивающие изображения "
-"произвольного размера."
+"предотвратить DOS-атаки, запрашивающие изображения произвольного размера."
 
 #: zp-core/admin-options.php:3386 zp-core/classes/class-userdataexport.php:228
 #: zp-core/utilities/user-data-export.php:79
@@ -5583,7 +5174,6 @@ msgid "User name"
 msgstr "Имя пользователя"
 
 #: zp-core/admin-options.php:3407
-#, fuzzy
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -5593,13 +5183,12 @@ msgstr ""
 "систему из формы."
 
 #: zp-core/admin-options.php:3409
-#, fuzzy
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
 msgstr ""
 "<strong>Примечание</strong>: Это поле обязательно для заполнения, поскольку "
-"с одним или несколькими <em>гостевыми</em> паролями связано имя пользователя."
+"с одним или несколькими <em>гостевыми</em> паролями связано Имя пользователя."
 
 #: zp-core/admin-options.php:3424
 msgid "Anonymize IP"
@@ -5630,7 +5219,6 @@ msgid "Anonymize level"
 msgstr "Уровень анонимности"
 
 #: zp-core/admin-options.php:3445
-#, fuzzy
 msgid ""
 "Zenphoto stores the IP address of visitors on several occasions (e.g. "
 "rating, spam filtering, comment posting). In some jurisdictions like the EU "
@@ -5640,14 +5228,14 @@ msgid ""
 "(1.1.1.0) and IPv6 (1:1:1:1:1:1:0:0) addresses."
 msgstr ""
 "Zenphoto сохраняет IP-адреса посетителей в нескольких случаях (например, для "
-"оценки, фильтрации спама, публикации комментариев). В некоторых юрисдикциях, "
-"таких как ЕС и его GDPR, IP-адрес считается частной информацией, и поэтому "
-"не требуется хранить полный IP-адрес или вообще никакого IP-адреса.Выберите "
-"свой уровень анонимизации, чтобы отдельные части были заменены на 0. Это "
-"относится как к IPv4 (1.1.1.0), так и к IPv6 (1:1:1:1:1:1:0:0) адреса."
+"выставления оценки, фильтрации спама, публикации комментариев). В некоторых "
+"юрисдикциях, таких как ЕС и зоне действия GDPR, IP-адрес считается частной "
+"информацией, и поэтому требуется не хранить полный IP-адрес или вообще "
+"никакого IP-адреса. Выберите свой уровень анонимизации, чтобы отдельные "
+"части IP-адреса были заменены на 0. Это относится к адресам как IPv4 "
+"(1.1.1.0), так и к IPv6 (1:1:1:1:1:1:0:0)."
 
 #: zp-core/admin-options.php:3452
-#, fuzzy
 msgid ""
 "This is used by the official plugins <em>comment_form</em>, "
 "<em>contact_form</em> and <em>register_user</em> plugins if the data usage "
@@ -5655,78 +5243,70 @@ msgid ""
 "<code>getDataUsageNotice()/printDataUsageNotice()</code> specifially."
 msgstr ""
 "Это используется официальными плагинами <em>comment_form</em>, "
-"<em>contact_form</em> и <em>register_user</em>, если включено подтверждение "
-"использования данных. Другие плагины или способы использования должны "
-"специально реализовывать <code>getDataUsageNotice()/printDataUsageNotice()</"
-"code>."
+"<em>contact_form</em> и <em>register_user</em>, если включена опция запроса "
+"согласия на использования данных. Другие плагины или способы использования "
+"должны специально реализовывать <code>getDataUsageNotice()/"
+"printDataUsageNotice()</code>."
 
 #: zp-core/admin-options.php:3456
-#, fuzzy
 msgid "Data privacy usage notice"
-msgstr "Уведомление об использовании конфиденциальности данных"
+msgstr "Уведомление об использовании конфиденциальных данных"
 
 #: zp-core/admin-options.php:3462
-#, fuzzy
 msgid ""
 "Here you can define the data usage confirmation notice that is recommended "
 "if your site is using forms submitting data in some jurisdictions like the "
 "EU and its GDPR. Leave empty to use the default text:"
 msgstr ""
-"Здесь вы можете указать уведомление о подтверждении использования данных, "
-"которое рекомендуется использовать, если ваш сайт использует формы отправки "
-"данных в некоторых юрисдикциях, таких как ЕС и его GDPR. Оставьте пустым, "
-"чтобы использовать текст по умолчанию.:"
+"Здесь вы можете оформить уведомление пользователей о вашей политике "
+"использования данных, если ваш сайт использует формы отправки данных в "
+"некоторых юрисдикциях, таких как ЕС и зоне действия GDPR. Оставьте пустым, "
+"чтобы использовать текст по умолчанию:"
 
 #: zp-core/admin-options.php:3463 zp-core/functions/functions.php:3049
-#, fuzzy
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
 msgstr ""
-"Используя эту форму, вы соглашаетесь с хранением и обработкой ваших данных "
-"этим сайтом."
+"Текст по умолчанию: Используя эту форму, вы соглашаетесь с условиями "
+"хранением и обработкой ваших данных этим сайтом."
 
 #: zp-core/admin-options.php:3471
-#, fuzzy
 msgid "Data privacy policy page"
 msgstr "Страница политики конфиденциальности данных"
 
 #: zp-core/admin-options.php:3478
-#, fuzzy
 msgid "Custom link text"
-msgstr "Пользовательская ссылка Пользовательский текст ссылки"
+msgstr "Текст ссылки"
 
 #: zp-core/admin-options.php:3483
-#, fuzzy
 msgid ""
 "Here you can define your data policy statement page that is recommended to "
 "have in jurisdictions like the EU and its GDPR."
 msgstr ""
 "Здесь вы можете указать страницу с заявлением о вашей политике в отношении "
-"персональных данных, которую рекомендуется иметь в таких юрисдикциях, как "
-"ЕС, и ее GDPR."
+"персональных данных, если ваш сайт использует формы отправки данных в "
+"некоторых юрисдикциях, таких как ЕС и зоне действия GDPR."
 
 #: zp-core/admin-options.php:3484
-#, fuzzy
 msgid ""
 "If the Zenpage CMS plugin is enabled and also its pages feature you can "
 "select one of its pages, otherwise enter a full custom page url manually "
 "which would also override the Zenpage page selection."
 msgstr ""
-"Если включен плагин Zenpage CMS, а также функция его страниц, вы можете "
-"выбрать одну из его страниц, в противном случае введите полный "
+"Если включен плагин Zenpage, а также активирована функция страниц, вы можете "
+"выбрать одну из страниц Zenpage, в противном случае введите полный "
 "пользовательский URL страницы вручную, что также переопределит выбор "
 "страницы Zenpage."
 
 #: zp-core/admin-options.php:3485
-#, fuzzy
 msgid ""
 "Additionally you can define a custom text for the page link. If not set the "
 "default text <em>More info on our data privacy policy.</em> is used."
 msgstr ""
 "Дополнительно вы можете задать пользовательский текст для ссылки на "
-"страницу. Если нет, установите текст по умолчанию. <em>Подробнее о нашей "
-"политике конфиденциальности данных.</em> используется."
+"страницу. Если поле оставлено пустым, используется текст по умолчанию: "
+"<em>Подробнее о нашей политике конфиденциальности данных</em>."
 
 #: zp-core/admin-plugins.php:109 zp-core/template-functions.php:162
 msgid "Plugins"
@@ -5754,37 +5334,30 @@ msgstr ""
 "автоматически."
 
 #: zp-core/admin-plugins.php:128
-#, fuzzy
 msgid ""
 "If the plugin checkbox is checked, the plugin will be loaded and its "
 "functions made available. If the checkbox is not checked the plugin is "
 "disabled and occupies no resources."
 msgstr ""
-"Если флажок плагина установлен, плагин будет загружен и его функции станут "
-"доступными. Если флажок не установлен, плагин отключен и не занимает никаких "
-"ресурсов."
+"Если плагин отмечен, то плагин будет активирован и его функции станут "
+"доступными. Если снять отметку, плагин будет отключен и не будет занимать "
+"никаких ресурсов."
 
 #: zp-core/admin-plugins.php:130
-#, fuzzy
 msgid "Find more plugins"
-msgstr "Найти еще плагинов"
+msgstr "Найти другие плагины"
 
 #: zp-core/admin-plugins.php:132
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> Support for a particular plugin may be theme "
 "dependent! You may need to add the plugin theme functions if the theme does "
 "not currently provide support."
 msgstr ""
-"<strong>Примечание: </strong> Поддержка плагина должна быть реализована  в "
-"теме оформления! В противном случае, вам необходимо самостоятельно внедрить "
-"в тему функции конкретного плагина.\n"
 "<strong>Примечание</strong>: Поддержка определенного плагина может зависеть "
-"от темы! Возможно, вам потребуется добавить функции темы плагина, если тема "
-"в данный момент не поддерживает."
+"от темы! Возможно, вам потребуется добавить самостоятельно внедрить в тему "
+"функции конкретного плагина, если тема в данный момент не поддерживает."
 
 #: zp-core/admin-plugins.php:149
-#, fuzzy
 msgid "Available Plugins"
 msgstr "Доступные плагины"
 
@@ -5838,23 +5411,18 @@ msgid "theme plugin"
 msgstr "тематический плагин"
 
 #: zp-core/admin-plugins.php:320
-#, fuzzy
 msgid "admin plugin"
-msgstr ""
-"плагин администратора\n"
-"плагин для администратора"
+msgstr "плагин для администратора"
 
 #: zp-core/admin-plugins.php:365
-#, fuzzy, php-format
+#, php-format
 msgid "More information on %s"
-msgstr ""
-"Дополнительные сведения о %s\n"
-"Дополнительная информация о"
+msgstr "Дополнительная информация о %s"
 
 #: zp-core/admin-plugins.php:398 zp-core/admin-themes.php:275
-#, fuzzy, php-format
+#, php-format
 msgid "by %s"
-msgstr "от, авторства %s"
+msgstr "от %s"
 
 #: zp-core/admin-plugins.php:400
 msgid "Visit plugin site"
@@ -5890,7 +5458,6 @@ msgid "Finished refreshing the database"
 msgstr "Обновление базы данных завершено"
 
 #: zp-core/admin-refresh-metadata.php:40
-#, fuzzy
 msgid "Database refresh is incomplete"
 msgstr "Обновление базы данных не завершено"
 
@@ -7123,7 +6690,6 @@ msgstr ""
 "алгоритмов: %s"
 
 #: zp-core/classes/class-authority.php:95
-#, fuzzy
 msgid "User last visit - store"
 msgstr "Сохранять дату последнего посещение пользователем"
 
@@ -7135,7 +6701,6 @@ msgstr ""
 "в базе данных."
 
 #: zp-core/classes/class-authority.php:99
-#, fuzzy
 msgid "User last visit - time frame"
 msgstr "Последнее посещение пользователя - временные рамки"
 
