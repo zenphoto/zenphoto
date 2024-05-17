@@ -2124,7 +2124,7 @@ msgstr "Пароль/Наследует пароль"
 #: zp-core/admin-functions.php:2066
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1419
 msgid "Published/Unpublished/Unpublished by parent"
-msgstr "Опубликовано/Неопубликовано/Наследует"
+msgstr "Опубликовано/Не опубликовано/Наследует"
 
 #: zp-core/admin-functions.php:2067
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1420
@@ -3049,12 +3049,12 @@ msgstr "Страницы"
 #: zp-core/zp-extensions/zenpage/admin-edit.php:185
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:995
 msgid "articles"
-msgstr "статьи"
+msgstr "Статьи"
 
 #: zp-core/admin-globals.php:76
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:467
 msgid "categories"
-msgstr "категории"
+msgstr "Категории"
 
 #: zp-core/admin-globals.php:83
 msgid "tags"
@@ -6191,7 +6191,7 @@ msgstr "У вас нет надлежащих прав доступа к %s."
 
 #: zp-core/admin.php:247
 msgid "Setup » restore scripts"
-msgstr "Установка » восстановить скрипты"
+msgstr "Восстановить установочные файлы"
 
 #: zp-core/admin.php:252
 msgid "Restores setup files so setup can be run."
@@ -6201,7 +6201,7 @@ msgstr ""
 
 #: zp-core/admin.php:262
 msgid "Setup » protect scripts"
-msgstr "Установка » защитить скрипты"
+msgstr "Защитить установочные файлы"
 
 #: zp-core/admin.php:267
 msgid "Protects setup files so setup cannot be run."
@@ -6413,9 +6413,9 @@ msgstr "Статистика галереи"
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> Images (<strong>%2$u</strong> un-published)"
-msgstr[0] "<strong>%1$u</strong> изображение (%2$u неопубликовано)"
-msgstr[1] "<strong>%1$u</strong> изображения (%2$u неопубликовано)"
-msgstr[2] "<strong>%1$u</strong> изображений (%2$u неопубликовано)"
+msgstr[0] "<strong>%1$u</strong> изображение (не опубликовано %2$u)"
+msgstr[1] "<strong>%1$u</strong> изображения (не опубликовано %2$u)"
+msgstr[2] "<strong>%1$u</strong> изображений (не опубликовано %2$u)"
 
 #: zp-core/admin.php:657
 #, php-format
@@ -6430,9 +6430,9 @@ msgstr[2] "<strong>%u</strong> изображений"
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> Albums (<strong>%2$u</strong> un-published)"
-msgstr[0] "<strong>%1$u</strong> альбом (%2$u неопубликовано)"
-msgstr[1] "<strong>%1$u</strong> альбома (%2$u неопубликовано)"
-msgstr[2] "<strong>%1$u</strong> альбомов (%2$u неопубликовано)"
+msgstr[0] "<strong>%1$u</strong> альбом (не опубликовано %2$u)"
+msgstr[1] "<strong>%1$u</strong> альбома (не опубликовано %2$u)"
+msgstr[2] "<strong>%1$u</strong> альбомов (не опубликовано %2$u)"
 
 #: zp-core/admin.php:668
 #, php-format
@@ -12056,7 +12056,7 @@ msgstr "Страница: %s"
 
 #: zp-core/utilities/backup_restore.php:20
 msgid "Backup/Restore"
-msgstr "Резервное копирование/Восстановление"
+msgstr "Бекап/Восстановление"
 
 #: zp-core/utilities/backup_restore.php:24
 msgid "Backup and restore your gallery database."
@@ -12417,7 +12417,7 @@ msgstr ""
 #: zp-core/utilities/gallery_statistics.php:506
 #, php-format
 msgid "<strong>%1$u</strong> images (%2$u un-published)"
-msgstr "Изображений: <strong>%1$u</strong> (%2$u неопубликовано)"
+msgstr "Изображений: <strong>%1$u</strong> (не опубликовано %2$u)"
 
 #: zp-core/utilities/gallery_statistics.php:508
 #, php-format
@@ -12427,7 +12427,7 @@ msgstr "Изображений: <strong>%u</strong>"
 #: zp-core/utilities/gallery_statistics.php:514
 #, php-format
 msgid "<strong>%1$u</strong> albums (%2$u un-published)"
-msgstr "Альбомов: <strong>%1$u</strong> (%2$u неопубликовано)"
+msgstr "Альбомов: <strong>%1$u</strong> (не опубликовано %2$u)"
 
 #: zp-core/utilities/gallery_statistics.php:516
 #, php-format
@@ -12461,7 +12461,7 @@ msgstr "Страниц: <strong>%1$u</strong>"
 #: zp-core/utilities/gallery_statistics.php:546
 #, php-format
 msgid "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr "Страниц: <strong>%1$u</strong> (%2$u не опубликовано)"
+msgstr "Страниц: <strong>%1$u</strong> (не опубликовано %2$u)"
 
 #: zp-core/utilities/gallery_statistics.php:554
 #, php-format
@@ -12471,7 +12471,7 @@ msgstr "Новостей: <strong>%1$u</strong>"
 #: zp-core/utilities/gallery_statistics.php:556
 #, php-format
 msgid "<strong>%1$u</strong> News articles (%2$u un-published)"
-msgstr "Новостей: <strong>%1$u</strong> (%2$u не опубликовано)"
+msgstr "Новостей: <strong>%1$u</strong> (не опубликовано %2$u)"
 
 #: zp-core/utilities/gallery_statistics.php:563
 #, php-format
@@ -12763,7 +12763,7 @@ msgstr "Запускает обновление метаданных всех и
 
 #: zp-core/utilities/reset_albumthumbs.php:15
 msgid "Reset album thumbs"
-msgstr "Сбросить выбор миниатюр для альбомов"
+msgstr "Сбросить выбор миниатюр альбомов"
 
 #: zp-core/utilities/reset_albumthumbs.php:19
 msgid "Reset album thumbnails to either random or most recent"
@@ -12771,7 +12771,7 @@ msgstr "Сбросить миниатюры всех альбомов на но�
 
 #: zp-core/utilities/reset_albumthumbs.php:48
 msgid "Reset your album thumbnails"
-msgstr "Сбросить выбора миниатюр для альбомов"
+msgstr "Сбросить выбор миниатюр альбомов"
 
 #: zp-core/utilities/reset_albumthumbs.php:58
 #, php-format
@@ -13506,7 +13506,7 @@ msgstr "Удалить все файлы из кэша изображений"
 
 #: zp-core/zp-extensions/cacheManager.php:682
 msgid "Cleanup image cache sizes"
-msgstr "Очистить кэш неиспользуемых размеров изображений"
+msgstr "Очистить кэш неиспользуемых размеров"
 
 #: zp-core/zp-extensions/cacheManager.php:686
 msgid ""
@@ -14782,7 +14782,7 @@ msgstr "Удалить этот комментарий."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:487
 msgid "Marked as spam/approved"
-msgstr "Помечено как спам/одобрено"
+msgstr "Помечено как спам/Одобрено"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:489
 msgid "Edit comment"
@@ -14857,7 +14857,7 @@ msgstr "Введите CAPTCHA<strong>*</strong>"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:86
 msgid "Private comment (do not publish)"
-msgstr "Приватный комментарий (не публиковать)"
+msgstr "Приватный комментарий<br>(не публиковать)"
 
 #: zp-core/zp-extensions/comment_form/comment_form.php:94
 msgid "Remember me"
@@ -15855,7 +15855,7 @@ msgstr "Разработка"
 #: zp-core/zp-extensions/deprecated-functions.php:93
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
 msgid "deprecated"
-msgstr "устарело"
+msgstr "Устарело"
 
 #: zp-core/zp-extensions/deprecated-functions.php:107
 msgid "Use deprecationNotice() instead"
@@ -19475,7 +19475,7 @@ msgstr "Опубликовать альбомы"
 #: zp-core/zp-extensions/publishContent/publishContent.php:295
 msgid "Set all subalbums of an un-published album to un-published."
 msgstr ""
-"Установить статус 'Неопубликовано' на субальбомы неопубликованного альбома."
+"Установить статус 'Не опубликовано' на субальбомы неопубликованного альбома."
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:297
 msgid "Propagate un-published state"
@@ -20339,7 +20339,7 @@ msgstr "Вкладка для \"RewriteRules\" сайта."
 #: zp-core/zp-extensions/rewriteRules.php:33
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:13
 msgid "rewrite"
-msgstr "переписать"
+msgstr "Rewrite"
 
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:25
 msgid "Rewrite Rules"
@@ -20407,7 +20407,7 @@ msgstr "Ссылка для правила <em>%s</em>."
 
 #: zp-core/zp-extensions/rewriteTokens.php:209
 msgid "tokens"
-msgstr "токены"
+msgstr "Tokens"
 
 #: zp-core/zp-extensions/rewriteTokens/admin_tab.php:9
 msgid "rewriteTokens"
@@ -24272,11 +24272,11 @@ msgstr[2] "<strong>%1$u</strong> страниц"
 msgid "<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)"
 msgid_plural "<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
-"<strong>%1$u</strong> страница (<strong>%2$u</strong> неопубликована)"
+"<strong>%1$u</strong> страница (не опубликовано <strong>%2$u</strong>)"
 msgstr[1] ""
-"<strong>%1$u</strong> страницы (<strong>%2$u</strong> неопубликованы)"
+"<strong>%1$u</strong> страницы (не опубликовано <strong>%2$u</strong>)"
 msgstr[2] ""
-"<strong>%1$u</strong> страниц (<strong>%2$u</strong> неопубликовано)"
+"<strong>%1$u</strong> страниц (не опубликовано <strong>%2$u</strong>)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1377
 #, php-format
@@ -24291,9 +24291,12 @@ msgstr[2] "<strong>%1$u</strong> статей"
 msgid "<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)"
-msgstr[0] "<strong>%1$u</strong> статья (<strong>%2$u</strong> неопубликована)"
-msgstr[1] "<strong>%1$u</strong> статьи (<strong>%2$u</strong> неопубликовано)"
-msgstr[2] "<strong>%1$u</strong> статей (<strong>%2$u</strong> неопубликовано)"
+msgstr[0] ""
+"<strong>%1$u</strong> статья (не опубликовано <strong>%2$u</strong>)"
+msgstr[1] ""
+"<strong>%1$u</strong> статьи (не опубликовано <strong>%2$u</strong>)"
+msgstr[2] ""
+"<strong>%1$u</strong> статей (не опубликовано <strong>%2$u</strong>)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1386
 #, php-format
@@ -24309,11 +24312,11 @@ msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
-"<strong>%1$u</strong> категория (<strong>%2$u</strong> неопубликован)"
+"<strong>%1$u</strong> категория (не опубликовано <strong>%2$u</strong>)"
 msgstr[1] ""
-"<strong>%1$u</strong> категории (<strong>%2$u</strong> неопубликованы)"
+"<strong>%1$u</strong> категории (не опубликовано <strong>%2$u</strong>)"
 msgstr[2] ""
-"<strong>%1$u</strong> категорий (<strong>%2$u</strong> неопубликовано)"
+"<strong>%1$u</strong> категорий (не опубликовано <strong>%2$u</strong>)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1495
 msgid "Publish immediately (skip scheduling)"
@@ -26205,9 +26208,9 @@ msgstr ""
 
 #~ msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 #~ msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Страница (%2$u не опубликована)"
-#~ msgstr[1] "<strong>%1$u</strong> Страницы (%2$u не опубликовано)"
-#~ msgstr[2] "<strong>%1$u</strong> Страниц (%2$u не опубликовано)"
+#~ msgstr[0] "<strong>%1$u</strong> Страница (не опубликовано %2$u)"
+#~ msgstr[1] "<strong>%1$u</strong> Страницы (не опубликовано %2$u)"
+#~ msgstr[2] "<strong>%1$u</strong> Страниц (не опубликовано %2$u)"
 
 #~ msgid "<strong>%1$u</strong> News"
 #~ msgid_plural "<strong>%1$u</strong> News"
@@ -26217,9 +26220,9 @@ msgstr ""
 
 #~ msgid "<strong>%1$u</strong> News (%2$u un-published)"
 #~ msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-#~ msgstr[0] "<strong>%1$u</strong> Новость (%2$u не опубликована)"
-#~ msgstr[1] "<strong>%1$u</strong> Новости (%2$u не опубликовано)"
-#~ msgstr[2] "<strong>%1$u</strong> Новостей (%2$u не опубликовано)"
+#~ msgstr[0] "<strong>%1$u</strong> Новость (не опубликовано %2$u)"
+#~ msgstr[1] "<strong>%1$u</strong> Новости (не опубликовано %2$u)"
+#~ msgstr[2] "<strong>%1$u</strong> Новостей (не опубликовано %2$u)"
 
 #~ msgid "<strong>%1$u</strong> Category"
 #~ msgid_plural "<strong>%1$u</strong> Categories"
