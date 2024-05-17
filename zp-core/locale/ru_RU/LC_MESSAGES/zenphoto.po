@@ -111,7 +111,7 @@ msgstr "Популярные теги"
 #: themes/garland/functions.php:129 themes/zenpage/contact.php:37
 #: themes/zenpage/sidebar.php:110 themes/zenpage/sidebar.php:112
 msgid "Contact us"
-msgstr "Контакт"
+msgstr "Связаться"
 
 #: themes/basic/favorites.php:46 themes/basic/favorites.php:61
 #: themes/garland/favorites.php:62 themes/garland/favorites.php:80
@@ -187,9 +187,7 @@ msgstr "Дата:"
 
 #: themes/basic/search.php:84
 msgid "Sorry, no image matches found. Try refining your search."
-msgstr ""
-"Извините, совпадений среди изображений не найдено. Попробуйте уточнить "
-"критерии поиска."
+msgstr "Извините, совпадений не найдено. Попробуйте уточнить критерии поиска."
 
 #: themes/basic/theme_description.php:5
 msgid ""
@@ -206,8 +204,9 @@ msgid ""
 "the link below) and changing the <em>Theme colors</em> option."
 msgstr ""
 "Самая простая тема Zenphoto в 4 различных вариантах. После выбора этой темы "
-"вы можете выбрать цвет темы, перейдя на вкладку Администратор -> Настройки "
-"(или нажав на ссылку ниже) и изменив опцию <em>Цвета темы</em>."
+"вы можете выбрать цвет темы, перейдя на вкладку Панель управления -> "
+"Настройки (или нажав на ссылку ниже) и изменив опцию <em>Цвета темы "
+"оформления</em>."
 
 #: themes/basic/themeoptions.php:42 themes/garland/themeoptions.php:123
 #: themes/zenpage/themeoptions.php:115 themes/zpmobile/themeoptions.php:44
@@ -322,7 +321,7 @@ msgstr "альбом"
 #: zp-core/admin-globals.php:109 zp-core/admin-options.php:2960
 #: zp-core/zp-extensions/image_album_statistics.php:286
 msgid "image"
-msgstr "изображение"
+msgstr "Изображение"
 
 #: themes/garland/functions.php:151
 msgid "video"
@@ -332,7 +331,7 @@ msgstr "видео"
 #: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:72
 #: zp-core/zp-extensions/tinyURL.php:83
 msgid "news"
-msgstr "новости"
+msgstr "Новости"
 
 #: themes/garland/functions.php:155
 #: zp-core/zp-extensions/zenpage/admin-edit.php:434
@@ -1335,7 +1334,7 @@ msgstr "Вы уверены, что хотите удалить отмеченн
 
 #: zp-core/admin-edit.php:558
 msgid "Show thumbnail stand-in"
-msgstr "Показывать миниатюру-заглушку"
+msgstr "Показывать иконку"
 
 #: zp-core/admin-edit.php:561
 msgid "Show album thumb"
@@ -1473,7 +1472,7 @@ msgstr "Сбросить"
 
 #: zp-core/admin-edit.php:1030
 msgid "View image"
-msgstr "Просмотреть изображение"
+msgstr "Просмотр"
 
 #: zp-core/admin-edit.php:1034
 msgid "<strong>Filename:</strong>"
@@ -1517,7 +1516,7 @@ msgstr "Общие"
 
 #: zp-core/admin-edit.php:1063 zp-core/admin-functions.php:1726
 msgid "Publishing scheduled"
-msgstr "Запланирована публикация"
+msgstr "Публикация запланирована"
 
 #: zp-core/admin-edit.php:1065 zp-core/admin-functions.php:1728
 #: zp-core/admin-functions.php:5264 zp-core/admin-functions.php:5341
@@ -1535,9 +1534,9 @@ msgstr "Комментарии включены"
 #, php-format
 msgid "Reset hitcounter (%u hit)"
 msgid_plural "Reset hitcounter (%u hits)"
-msgstr[0] "Сбросить счетчик посещений (%u просмотр)"
-msgstr[1] "Сбросить счетчик посещений (%u просмотра)"
-msgstr[2] "Сбросить счетчик посещений (%u просмотров)"
+msgstr[0] "Сбросить счетчик посещений<br>(%u просмотр)"
+msgstr[1] "Сбросить счетчик посещений<br>(%u просмотра)"
+msgstr[2] "Сбросить счетчик посещений<br>(%u просмотров)"
 
 #: zp-core/admin-edit.php:1104
 #, php-format
@@ -1659,7 +1658,7 @@ msgstr "Описание:"
 
 #: zp-core/admin-edit.php:1302
 msgid "Set as thumbnail for:"
-msgstr "Установить в качестве миниатюры для:"
+msgstr "Миниатюра для:"
 
 #: zp-core/admin-edit.php:1342
 msgid "Image watermark:"
@@ -1927,7 +1926,7 @@ msgstr "Устарело."
 #: zp-core/zp-extensions/publishContent/publishContent.php:575
 #: zp-core/zp-extensions/publishContent/publishContent.php:630
 msgid "all"
-msgstr "все"
+msgstr "Все"
 
 #: zp-core/admin-functions.php:1143 zp-core/admin-functions.php:1144
 msgid "add tag"
@@ -2044,9 +2043,9 @@ msgstr "Миниатюры"
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
-msgstr[0] "Сбросить счетчик посещений<br /> (%u просмотр)"
-msgstr[1] "Сбросить счетчик посещений<br />(%u просмотра)"
-msgstr[2] "Сбросить счетчик посещений<br />(%u просмотров)"
+msgstr[0] "Сбросить счетчик посещений<br> (%u просмотр)"
+msgstr[1] "Сбросить счетчик посещений<br>(%u просмотра)"
+msgstr[2] "Сбросить счетчик посещений<br>(%u просмотров)"
 
 #: zp-core/admin-functions.php:1767
 #: zp-core/zp-extensions/zenpage/admin-edit.php:660
@@ -2120,17 +2119,17 @@ msgstr "Изображения (динамические)"
 #: zp-core/admin-functions.php:2062
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1418
 msgid "Password protected/Password protected by parent"
-msgstr "Защищено паролем/Защищено паролем по наследству"
+msgstr "Пароль/Наследует пароль"
 
 #: zp-core/admin-functions.php:2066
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1419
 msgid "Published/Unpublished/Unpublished by parent"
-msgstr "Опубликовано / Неопубликовано / Неопубликовано по наследству"
+msgstr "Опубликовано/Неопубликовано/Наследует"
 
 #: zp-core/admin-functions.php:2067
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1420
 msgid "Scheduled publishing/Scheduled expiration/Expired"
-msgstr "Публикация запланирована / Публикация по расписанию / Срок истек"
+msgstr "Публикация запланирована/Срок публикации/Срок истек"
 
 #: zp-core/admin-functions.php:2068
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1424
@@ -2170,7 +2169,7 @@ msgstr "изображения"
 #: zp-core/admin-functions.php:2140 zp-core/admin-functions.php:2143
 #: zp-core/admin-globals.php:59 zp-core/zp-extensions/tinyURL.php:78
 msgid "albums"
-msgstr "альбомы"
+msgstr "Альбомы"
 
 #: zp-core/admin-functions.php:2148 zp-core/admin-functions.php:2153
 msgid "Subalbum List"
@@ -2330,7 +2329,7 @@ msgstr "Основной альбом"
 #: zp-core/zp-extensions/uploader_http.php:34
 #: zp-core/zp-extensions/uploader_jQuery.php:69
 msgid "upload"
-msgstr "загрузка"
+msgstr "Загрузка"
 
 #: zp-core/admin-functions.php:3311
 msgid "view unpublished"
@@ -2422,18 +2421,18 @@ msgstr "Использование Codeblock 0 устарело."
 
 #: zp-core/admin-functions.php:4606
 msgid "setup"
-msgstr "установка"
+msgstr "Установка"
 
 #: zp-core/admin-functions.php:4607 zp-core/admin-globals.php:107
 #: zp-core/admin-options.php:1056
 #: zp-core/zp-extensions/http_security_headers.php:24
 msgid "security"
-msgstr "безопасность"
+msgstr "Безопасность"
 
 #: zp-core/admin-functions.php:4608 zp-core/admin-options.php:1056
 #: zp-core/zp-extensions/markRelease.php:44
 msgid "debug"
-msgstr "отладка"
+msgstr "Отладка"
 
 #: zp-core/admin-functions.php:4673
 msgid "Select the logfile to view"
@@ -2486,7 +2485,7 @@ msgstr "Все"
 #: zp-core/zp-extensions/zenphotoDonate.php:11
 #: zp-core/zp-extensions/zenphoto_news.php:14
 msgid "Admin"
-msgstr "Администрирование"
+msgstr "Админ"
 
 #: zp-core/admin-functions.php:4714
 msgid "Demo"
@@ -3038,12 +3037,12 @@ msgstr "Формат времени"
 
 #: zp-core/admin-globals.php:51
 msgid "overview"
-msgstr "обзор"
+msgstr "Обзор"
 
 #: zp-core/admin-globals.php:66 zp-core/zp-extensions/tinyURL.php:87
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:465
 msgid "pages"
-msgstr "страницы"
+msgstr "Страницы"
 
 #: zp-core/admin-globals.php:75
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:466
@@ -3059,49 +3058,49 @@ msgstr "категории"
 
 #: zp-core/admin-globals.php:83
 msgid "tags"
-msgstr "теги"
+msgstr "Теги"
 
 #: zp-core/admin-globals.php:90 zp-core/zp-extensions/user-expiry.php:101
 #: zp-core/zp-extensions/user-expiry.php:111
 #: zp-core/zp-extensions/user_groups.php:211
 msgid "users"
-msgstr "пользователи"
+msgstr "Пользователи"
 
 #: zp-core/admin-globals.php:101
 msgid "general"
-msgstr "общее"
+msgstr "Общее"
 
 #: zp-core/admin-globals.php:105
 msgid "gallery"
-msgstr "галерея"
+msgstr "Галерея"
 
 #: zp-core/admin-globals.php:114
 msgid "plugin"
-msgstr "плагин"
+msgstr "Плагин"
 
 #: zp-core/admin-globals.php:117
 msgid "search"
-msgstr "поиск"
+msgstr "Поиск"
 
 #: zp-core/admin-globals.php:121
 msgid "theme"
-msgstr "тема"
+msgstr "Тема"
 
 #: zp-core/admin-globals.php:124
 msgid "options"
-msgstr "настройки"
+msgstr "Настройки"
 
 #: zp-core/admin-globals.php:132
 msgid "themes"
-msgstr "темы"
+msgstr "Темы"
 
 #: zp-core/admin-globals.php:140
 msgid "plugins"
-msgstr "плагины"
+msgstr "Плагины"
 
 #: zp-core/admin-globals.php:149 zp-core/admin-logs.php:104
 msgid "logs"
-msgstr "лог-журналы"
+msgstr "Лог-журналы"
 
 #: zp-core/admin-globals.php:158
 msgid "Restore"
@@ -3616,8 +3615,8 @@ msgid ""
 "If checked logs will be created daily by appending the dateformat YYYY-mm-dd "
 "to the filename."
 msgstr ""
-"Если флажок установлен, журналы будут создаваться ежедневно путем добавления "
-"формата даты ГГГГ-мм-дд к имени файла."
+"Если отмечено, журналы будут создаваться ежедневно путем добавления формата "
+"даты ГГГГ-мм-дд к имени файла."
 
 #: zp-core/admin-options.php:1102 zp-core/admin-options.php:3119
 #: zp-core/admin-options.php:3290 zp-core/admin-options.php:3317
@@ -5404,7 +5403,7 @@ msgstr "сторонний плагин"
 
 #: zp-core/admin-plugins.php:302 zp-core/admin-themes.php:233
 msgid "logo"
-msgstr "лого"
+msgstr "Лого"
 
 #: zp-core/admin-plugins.php:311
 msgid "theme plugin"
@@ -9165,7 +9164,7 @@ msgstr "Месторасположение"
 
 #: zp-core/functions/functions.php:2826
 msgid "Province/State"
-msgstr "Область/Край/Провинция/Штат"
+msgstr "Область/Край/Регион/Штат"
 
 #: zp-core/functions/functions.php:2827
 msgid "Country/Primary Location Code"
@@ -9177,11 +9176,11 @@ msgstr "Страна: Название"
 
 #: zp-core/functions/functions.php:2829
 msgid "Content Location Code"
-msgstr "Местоположения контента: Код"
+msgstr "Местоположение контента: Код"
 
 #: zp-core/functions/functions.php:2830
 msgid "Content Location Name"
-msgstr "Местоположения контента: Название"
+msgstr "Местоположение контента: Название"
 
 #: zp-core/functions/functions.php:2831
 msgid "Latitude"
@@ -13520,7 +13519,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/cacheManager.php:705
 msgid "Cache album images"
-msgstr "Кэшировать изображения альбома"
+msgstr "Кэшировать изображения"
 
 #: zp-core/zp-extensions/cacheManager.php:743
 msgid ""
@@ -14551,7 +14550,7 @@ msgstr ""
 #: zp-core/zp-extensions/comment_form.php:210
 #: zp-core/zp-extensions/comment_form.php:225
 msgid "comments"
-msgstr "комментарии"
+msgstr "Комментарии"
 
 #: zp-core/zp-extensions/comment_form.php:252
 msgid "Add a comment:"
@@ -15280,7 +15279,7 @@ msgstr "город"
 
 #: zp-core/zp-extensions/contact_form.php:272
 msgid "a state"
-msgstr "область"
+msgstr "область/край/регион/штат"
 
 #: zp-core/zp-extensions/contact_form.php:275
 msgid "a country"
@@ -15851,7 +15850,7 @@ msgstr ""
 #: zp-core/zp-extensions/rewriteRules.php:30
 #: zp-core/zp-extensions/rewriteTokens.php:206
 msgid "development"
-msgstr "разработка"
+msgstr "Разработка"
 
 #: zp-core/zp-extensions/deprecated-functions.php:93
 #: zp-core/zp-extensions/deprecated-functions/admin_tab.php:10
@@ -18200,7 +18199,7 @@ msgstr "Меню"
 
 #: zp-core/zp-extensions/menu_manager.php:111
 msgid "menu"
-msgstr "меню"
+msgstr "Меню"
 
 #: zp-core/zp-extensions/menu_manager.php:781
 #, php-format
@@ -19855,7 +19854,7 @@ msgstr "убрать"
 
 #: zp-core/zp-extensions/rating.php:159
 msgid "Vote Status:"
-msgstr "Статус голосования:"
+msgstr "<br />Статус голосования:"
 
 #: zp-core/zp-extensions/rating.php:189
 msgid "Reset all ratings"
@@ -20615,10 +20614,9 @@ msgid ""
 "identifying the user. Use of that link when not logged‑in will give the same "
 "feed as if the user were logged‑in."
 msgstr ""
-"Если флажок установлен, ссылки, созданные для зарегистрированных "
-"пользователей, будут содержать маркер, идентифицирующий пользователя. "
-"Использование этой ссылки без входа в систему даст ту же ленту, что и при "
-"входе пользователя в систему."
+"Если отмечено, ссылки, созданные для зарегистрированных пользователей, будут "
+"содержать маркер, идентифицирующий пользователя. Использование этой ссылки "
+"без входа в систему даст ту же ленту, что и при входе пользователя в систему."
 
 #: zp-core/zp-extensions/rss.php:180
 msgid "Feed text length"
