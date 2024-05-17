@@ -7957,6 +7957,9 @@ msgid ""
 "'locale_preferreddate_notime' are deprecated and will be removed in Zenphoto "
 "1.7. Please set individual date and time formats."
 msgstr ""
+"Опции формата даты <em>locale_preferreddate_time</em> and "
+"<em>locale_preferreddate_notime</em> устарели и будут удалены из Zenphoto "
+"1.7. Пожалуйста, установите индивидуальные форматы дат и времени."
 
 #: zp-core/functions/functions-basic.php:1483
 #, php-format
@@ -12338,9 +12341,8 @@ msgstr "по количеству изображений"
 #: zp-core/utilities/gallery_statistics.php:225
 #: zp-core/utilities/gallery_statistics.php:582
 #: zp-core/utilities/gallery_statistics.php:591
-#, fuzzy
 msgid "latest"
-msgstr "новейшие"
+msgstr "последние"
 
 #: zp-core/utilities/gallery_statistics.php:243
 #: zp-core/utilities/gallery_statistics.php:592
@@ -14000,8 +14002,8 @@ msgstr "Видео-постер"
 #: zp-core/zp-extensions/class-video.php:66
 msgid "If a sidecar image should be used as the poster of the video. ."
 msgstr ""
-"Отметьте, если в качестве видео-постера следует использовать sidecar-"
-"изображение"
+"Отметьте, если в качестве видео-постера следует использовать "
+"сопроводительное изображение."
 
 #: zp-core/zp-extensions/class-video.php:67
 msgid "Video player width"
@@ -14051,8 +14053,8 @@ msgid ""
 "If a sidecar image should be shown with audio files. You need to set the "
 "width/height. ."
 msgstr ""
-"Отметьте, если в качестве аудио-постера следует использовать sidecar-"
-"изображение"
+"Отметьте, если в качестве аудио-постера следует использовать "
+"сопроводительное изображение. Вам нужно задать параметры ширины/высоты."
 
 #: zp-core/zp-extensions/class-video.php:83
 msgid "Audio poster width"
@@ -20729,7 +20731,7 @@ msgstr "Дата: %s"
 
 #: zp-core/zp-extensions/rss.php:845
 msgid "No items available."
-msgstr "нет доступных объектов."
+msgstr "Нет доступных объектов."
 
 #: zp-core/zp-extensions/rss.php:869
 msgid "Purge RSS cache"
@@ -20804,7 +20806,7 @@ msgstr "e-mail"
 
 #: zp-core/zp-extensions/search_statistics.php:24
 msgid "Collects and displays search criteria."
-msgstr "Собирает и отображает критерии поиска.\""
+msgstr "Собирает и отображает критерии поиска."
 
 #: zp-core/zp-extensions/search_statistics.php:58
 msgid "Threshold (success)"
@@ -21874,7 +21876,7 @@ msgstr ""
 "Если вы хотите исключить страницу по определенному заголовку, имени файла "
 "изображения или имени папки альбома, введите <em>имя_файла_страницы.php/"
 "titlelink</em> или <em>имени файла изображения</em> или <em>папки альбома</"
-"em>. Разделите несколько записей запятой."
+"em>. Разделите несколько записей запятой.<br />"
 
 #: zp-core/zp-extensions/static_html_cache.php:89
 msgid ""
@@ -22608,16 +22610,14 @@ msgid "moderate"
 msgstr "модерировать"
 
 #: zp-core/zp-extensions/trivialSpam.php:62
-#, fuzzy
 msgid "reject"
-msgstr "отвергать все"
+msgstr "отвергать"
 
 #: zp-core/zp-extensions/trivialSpam.php:63
 msgid "This action will be taken for all messages."
 msgstr "Это действие будет применено ко всем сообщениям."
 
 #: zp-core/zp-extensions/uploader_http.php:12
-#, fuzzy
 msgid "<em>http</em> image upload handler."
 msgstr "Загрузчик изображений <em>http</em>."
 
@@ -22632,47 +22632,41 @@ msgid "Does not reload!"
 msgstr "Не перезагружается!"
 
 #: zp-core/zp-extensions/uploader_http/upload_form.php:58
-#, fuzzy
 msgid "Add more upload boxes"
-msgstr "Добавить больше форм для загрузки"
+msgstr "Добавить больше полей для загрузки"
 
 #: zp-core/zp-extensions/uploader_http/upload_form.php:59
-#, fuzzy
 msgid "(will not reload the page, but remember your upload limits!)"
-msgstr "(не будет перезагружать страницу, а запомнит ваши лимиты загрузки!)"
+msgstr ""
+"(не будет перезагружать страницу, но помните о ваших лимитах загрузки!)"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:79
-#, fuzzy
 msgid ""
 "The album could not be created in the “albums” folder. This is usually a "
 "permissions problem. Try setting the permissions on the “albums” and “cache” "
 "folders to be world-writable using a shell:"
 msgstr ""
-"Не удалось создать альбом в папке “альбомы”. Обычно это проблема с "
+"Не удалось создать альбом в директории “альбомы”. Обычно это проблема с "
 "разрешениями. Попробуйте установить разрешения для папок “альбомы” и “кэш”, "
-"чтобы они были доступны для записи по всему миру, используя оболочку:"
+"чтобы они были доступны для записи."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:136
-#, fuzzy
 msgid ""
 "You have most likely exceeded the upload limits. Try uploading fewer files "
 "at a time, or use a ZIP file."
 msgstr ""
 "Скорее всего, вы превысили лимиты загрузки. Попробуйте загружать меньше "
-"файлов за раз или используйте ZIP-файл."
+"файлов за раз или используйте ZIP-архив."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:138
-#, fuzzy
 msgid "You must upload at least one file."
 msgstr "Необходимо загрузить, как минимум один файл."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:140
-#, fuzzy
 msgid "You must enter a folder name for your new album."
-msgstr "Введите имя директории для нового альбома."
+msgstr "Введите имя папки для нового альбома."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:144
-#, fuzzy
 msgid ""
 "You have attempted to upload to an album for which you do not have upload "
 "rights"
@@ -22680,29 +22674,27 @@ msgstr ""
 "Вы попытались загрузить в альбом, для которого у вас нет прав на загрузку"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:147
-#, fuzzy
 msgid ""
 "You have attempted to upload one or more files which are not Zenphoto "
 "supported file types"
-msgstr "Zenphoto не поддерживает формат файлов, которые вы пытаетесь загрузить"
+msgstr ""
+"Вы попытались загрузить один или несколько файлов, которые не относятся к "
+"поддерживаемым Zenphoto типам файлов"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:150
-#, fuzzy
 msgid "The uploader could not write the file."
 msgstr "Загрузчик не смог записать файл."
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:154
-#, fuzzy
 msgid "You have attempted to upload too large a file"
 msgstr "Вы пытались загрузить файл слишком большого размера"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:157
-#, fuzzy
 msgid "You have exceeded your upload quota"
 msgstr "Вы превысили свою квоту загрузки"
 
 #: zp-core/zp-extensions/uploader_http/uploader.php:160
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The error %s was reported when submitting the form. Please try again. If "
 "this keeps happening, check your server and PHP configuration (make sure "
@@ -22716,7 +22708,6 @@ msgstr ""
 "отчет об ошибке. Спасибо!"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:15
-#, fuzzy
 msgid "<em>jQuery</em> image upload handler."
 msgstr "Загрузчик изображений <em>jQuery</em>."
 
@@ -22741,50 +22732,42 @@ msgid "Overwrite"
 msgstr "Перезаписать"
 
 #: zp-core/zp-extensions/uploader_jQuery.php:53
-#, fuzzy
 msgid "Define how the uploader should treat filename duplicates on upload."
 msgstr ""
 "Определите, как загрузчик должен обрабатывать дубликаты имен файлов при "
 "загрузке."
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:33
-#, fuzzy
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
 msgstr "Загружаемый файл превышает лимит upload_max_filesize в php.ini"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:34
-#, fuzzy
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form"
-msgstr "Загруженный файл превышает лимит MAX_FILE_SIZE, указанную в HTML-форме"
+msgstr "Загружаемый файл превышает лимит MAX_FILE_SIZE, указанную в HTML-форме"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:35
-#, fuzzy
 msgid "The uploaded file was only partially uploaded"
 msgstr "Загружаемый файл был загружен только частично"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:36
-#, fuzzy
 msgid "No file was uploaded"
-msgstr "Ваши файлы не были загружены"
+msgstr "Файлы не были загружены"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:37
 msgid "Missing a temporary folder"
 msgstr "Отсутствует временная папка"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:38
-#, fuzzy
 msgid "Failed to write file to disk"
-msgstr "Невозможно записать файл на диск"
+msgstr "Не удалось записать файл на диск"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:39
-#, fuzzy
 msgid "A PHP extension stopped the file upload"
 msgstr "Расширение PHP остановило загрузку файла"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:40
-#, fuzzy
 msgid "The uploaded file exceeds the post_max_size directive in php.ini"
 msgstr "Загружаемый файл превышает лимит post_max_size в php.ini"
 
@@ -22797,31 +22780,26 @@ msgid "File is too small"
 msgstr "Файл слишком маленький"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:43
-#, fuzzy
 msgid "Filetype not allowed"
-msgstr "Неразрешенный тип файла"
+msgstr "Запрещенный тип файла"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:44
 msgid "Maximum number of files exceeded"
 msgstr "Превышено максимальное количество файлов"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:45
-#, fuzzy
 msgid "Image exceeds maximum width"
 msgstr "Изображение превышает максимальную ширину"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:46
-#, fuzzy
 msgid "Image requires a minimum width"
 msgstr "Для изображения требуется минимальная ширина"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:47
-#, fuzzy
 msgid "Image exceeds maximum height"
 msgstr "Изображение превышает максимальную высоту"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:48
-#, fuzzy
 msgid "Image requires a minimum height"
 msgstr "Для изображения требуется минимальная высота"
 
@@ -22830,9 +22808,8 @@ msgid "File upload aborted"
 msgstr "Загрузка файла прервана"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:50
-#, fuzzy
 msgid "Failed to resize image"
-msgstr "Оригиналы"
+msgstr "Не удалось изменить размеры изображений"
 
 #: zp-core/zp-extensions/uploader_jQuery/class-uploadhandlerZP.php:51
 msgid "File not uploaded. Duplicates are not allowed"
@@ -22845,7 +22822,6 @@ msgstr ""
 "строки."
 
 #: zp-core/zp-extensions/uploader_jQuery/upload_form.php:128
-#, fuzzy
 msgid "NOTE: Duplicate filenames are not allowed to upload."
 msgstr "ПРИМЕЧАНИЕ: Повторяющиеся имена файлов не допускаются к загрузке."
 
@@ -22882,7 +22858,6 @@ msgid "Edit file"
 msgstr "Редактировать файл"
 
 #: zp-core/zp-extensions/user-expiry.php:30
-#, fuzzy
 msgid "Provides management of users based on when they were created."
 msgstr "Управление пользователями на основании даты их создания."
 
@@ -22891,21 +22866,19 @@ msgid "Days until expiration"
 msgstr "Дни до истечения срока действия"
 
 #: zp-core/zp-extensions/user-expiry.php:73
-#, fuzzy
 msgid ""
 "The number of days until a user is flagged as expired. Set to zero for no "
 "expiry."
 msgstr ""
 "Количество дней до того, как аккаунт пользователь будет помечен как "
 "\"аккаунт с истекшим сроком действия\". Установите нулевое значение для "
-"значения без ограничения срока действия аккаунтов."
+"отсутствия ограничения срока действия аккаунтов."
 
 #: zp-core/zp-extensions/user-expiry.php:74
 msgid "Warning interval"
-msgstr "Частота предупреждения"
+msgstr "Интервал предупреждения"
 
 #: zp-core/zp-extensions/user-expiry.php:78
-#, fuzzy
 msgid ""
 "The period in days before the expiry during which a warning message will be "
 "sent to the user. (If set to zero, no warning occurs.)"
@@ -22915,12 +22888,10 @@ msgstr ""
 "значение, предупреждение не появляется.)"
 
 #: zp-core/zp-extensions/user-expiry.php:79
-#, fuzzy
 msgid "Auto renew"
-msgstr "Автор"
+msgstr "Автопродление"
 
 #: zp-core/zp-extensions/user-expiry.php:83
-#, fuzzy
 msgid ""
 "Automatically renew the subscription if the user visits during the warning "
 "period."
@@ -22929,9 +22900,8 @@ msgstr ""
 "периода предупреждения."
 
 #: zp-core/zp-extensions/user-expiry.php:84
-#, fuzzy
 msgid "Password cycle"
-msgstr "Пароль"
+msgstr "Срок действия паролей"
 
 #: zp-core/zp-extensions/user-expiry.php:88
 msgid ""
@@ -22942,24 +22912,20 @@ msgstr ""
 "значение для отмены обязательной смены пароля."
 
 #: zp-core/zp-extensions/user-expiry.php:112
-#, fuzzy
 msgid "expiry"
 msgstr "истекает"
 
 #: zp-core/zp-extensions/user-expiry.php:163
-#, fuzzy, php-format
+#, php-format
 msgid "Your user id for the Zenphoto site %s will expire on %s."
 msgstr ""
-"Срок действия вашего идентификатора пользователя для сайта Zenphoto %s "
-"истекает в %s."
+"Срок действия вашего ID пользователя для сайта Zenphoto %s истекает в %s."
 
 #: zp-core/zp-extensions/user-expiry.php:164
-#, fuzzy
 msgid "User id expiration"
-msgstr "Регистрация нового пользователя"
+msgstr "Срок действия ID пользователя"
 
 #: zp-core/zp-extensions/user-expiry.php:208
-#, fuzzy
 msgid ""
 "You have used that password recently. Please choose a different password."
 msgstr ""
@@ -22967,28 +22933,25 @@ msgstr ""
 
 #: zp-core/zp-extensions/user-expiry.php:291
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:155
-#, fuzzy
 msgid "Expires soon"
-msgstr "Истекает: %s"
+msgstr "Истекает скоро"
 
 #: zp-core/zp-extensions/user-expiry.php:293
-#, fuzzy, php-format
+#, php-format
 msgid "Your subscription expires on %s"
 msgstr "Срок действия вашей подписки истекает %s"
 
 #: zp-core/zp-extensions/user-expiry.php:307
-#, fuzzy
 msgid "You must change your password."
 msgstr "Необходимо изменить пароль."
 
 #: zp-core/zp-extensions/user-expiry.php:310
-#, fuzzy
 msgid "You have users whose credentials have expired."
 msgstr ""
 "У вас есть пользователи, у которых истек срок действия учетных записей."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:70
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Your %1$s credentials need to be renewed. Visit %2$s to renew your logon "
 "credentials."
@@ -22997,33 +22960,30 @@ msgstr ""
 "учетные данные для входа."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:71
-#, fuzzy, php-format
+#, php-format
 msgid "%s renewal required"
-msgstr "%s требуется возобновление"
+msgstr "%s требуется продление"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:101
-#, fuzzy
 msgid "Processed"
-msgstr "Обработанный"
+msgstr "Обработанно"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:116
-#, fuzzy
 msgid "Manage user expiry."
 msgstr "Управление сроком действия аккаунтов пользователей."
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:152
-#, fuzzy, php-format
+#, php-format
 msgid "Expired:%s; "
 msgstr "Срок действия истёк: %s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:155
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:157
-#, fuzzy, php-format
+#, php-format
 msgid "Expires:%s; "
 msgstr "Истекает: %s "
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:173
-#, fuzzy
 msgid "User id has been preempted"
 msgstr "ID пользователя был удален"
 
@@ -23040,18 +23000,16 @@ msgid "renew"
 msgstr "возобновить"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:188
-#, fuzzy
 msgid "Email renewal"
-msgstr "E-mail"
+msgstr "E-mail продление"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:191
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:210
-#, fuzzy
 msgid "Force password renewal"
-msgstr "Получить новый пароль"
+msgstr "Принудительное продление пароля"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:197
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)"
 msgstr "%1$s <strong>%2$s</strong> (%3$sпоследнее посещение:%4$s)"
 
@@ -23064,42 +23022,34 @@ msgid "Renew"
 msgstr "Возобновить"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:216
-#, fuzzy
 msgid "Email renewal link"
 msgstr "Ссылка для обновления электронной почты"
 
 #: zp-core/zp-extensions/userAddressFields.php:15
-#, fuzzy
 msgid "Adds user address fields"
 msgstr "Добавляет поля адреса пользователя"
 
 #: zp-core/zp-extensions/user_groups.php:16
-#, fuzzy
 msgid "Provides rudimentary user groups."
-msgstr "Базовое категорияение пользователей на группы."
+msgstr "Базовое разделение пользователей на группы."
 
 #: zp-core/zp-extensions/user_groups.php:116
-#, fuzzy
 msgid "no groups established"
-msgstr "*группа не выбрана"
+msgstr "групп не создано"
 
 #: zp-core/zp-extensions/user_groups.php:142
-#, fuzzy
 msgid "*no group affiliation"
-msgstr "*не состоит в группах"
+msgstr "* не состоит в группах"
 
 #: zp-core/zp-extensions/user_groups.php:142
-#, fuzzy
 msgid "*no group selected"
-msgstr "*группа не выбрана"
+msgstr "* группа не выбрана"
 
 #: zp-core/zp-extensions/user_groups.php:146
-#, fuzzy
 msgid " (Template)"
 msgstr " (Шаблон)"
 
 #: zp-core/zp-extensions/user_groups.php:183
-#, fuzzy
 msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
@@ -23108,7 +23058,6 @@ msgstr ""
 "<em>объектами</em>."
 
 #: zp-core/zp-extensions/user_groups.php:193
-#, fuzzy
 msgid "no group affiliation"
 msgstr "не состоит в группах"
 
@@ -23118,24 +23067,21 @@ msgid "User group membership: %s"
 msgstr "Членство в группах: %s"
 
 #: zp-core/zp-extensions/user_groups.php:198
-#, fuzzy
 msgid "Templates are highlighted."
 msgstr "Шаблоны выделены."
 
 #: zp-core/zp-extensions/user_groups.php:198
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:460
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
 "<em>managed objects</em> are determined by the group!"
 msgstr ""
-"<strong>Примечание:</strong> Когда группе назначаются <em>права</em> и "
+"<strong>Примечание:</strong> Когда группе назначаются, <em>права</em> и "
 "<em>управляемые объекты</em> определяются группой!"
 
 #: zp-core/zp-extensions/user_groups.php:212
-#, fuzzy
 msgid "assignments"
-msgstr "распределение по группам"
+msgstr "распределение"
 
 #: zp-core/zp-extensions/user_groups.php:213
 msgid "groups"
@@ -23146,15 +23092,16 @@ msgid "Deleted"
 msgstr "Удалено"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:193
-#, fuzzy
 msgid ""
 "Set group rights and select one or more albums for the users in the group to "
 "manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights "
 "can manage all albums. All others may manage only those that are selected."
 msgstr ""
-"Пользователи с правами <em>Администратор</em> или <em>Управление всеми "
-"альбомами</em> могут управлять всеми альбомами. Все остальные могут "
-"управлять только теми, которые выбраны."
+"Установите права группы и выберите один или несколько альбомов для "
+"управления пользователями в группе.<br>Пользователи с правами "
+"<em>Администратор</em> или <em>Управление всеми альбомами</em> могут "
+"управлять всеми альбомами. Все остальные могут управлять только теми, "
+"которые были им назначены."
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:232
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:249
@@ -23163,9 +23110,8 @@ msgstr "группа"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:234
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:251
-#, fuzzy
 msgid "template"
-msgstr "шаблон группы"
+msgstr "шаблон"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:295
 msgid "clone:"
@@ -23176,7 +23122,6 @@ msgid "description:"
 msgstr "описание:"
 
 #: zp-core/zp-extensions/user_groups/user_groups-tab.php:323
-#, fuzzy
 msgid "Assign users"
 msgstr "Добавить пользователей"
 
@@ -23207,14 +23152,12 @@ msgid "Assign users to groups."
 msgstr "Распределить пользователей по группам."
 
 #: zp-core/zp-extensions/user_login-out.php:11
-#, fuzzy
 msgid "Provides a means for users to login/out from your theme pages."
 msgstr ""
 "Предоставляет пользователям возможность входить в систему или выходить из "
 "системы на страницах вашей темы."
 
 #: zp-core/zp-extensions/user_login-out.php:36
-#, fuzzy
 msgid "Login form"
 msgstr "Форма входа на сайт"
 
@@ -23227,7 +23170,6 @@ msgid "Colorbox"
 msgstr "Colorbox"
 
 #: zp-core/zp-extensions/user_login-out.php:43
-#, fuzzy
 msgid ""
 "If the user is not logged-in display an <em>in-line</em> logon form or a "
 "link to a modal <em>Colorbox</em> form."
@@ -23236,52 +23178,46 @@ msgstr ""
 "входа в систему или ссылку на модальную форму <em>Colorbox</em>."
 
 #: zp-core/zp-extensions/user_mailing_list.php:13
-#, fuzzy
 msgid ""
 "Provides a utility function to send e-mails to all users who have provided "
 "an e-mail address."
 msgstr ""
 "Утилита для рассылки писем всем зарегистрированным пользователям, которые "
-"сообщили свой  e-mail адрес."
+"сообщили свой e-mail адрес."
 
 #: zp-core/zp-extensions/user_mailing_list.php:24
 #: zp-core/zp-extensions/user_mailing_list.php:74
-#, fuzzy
 msgid "User mailing list"
-msgstr "Использовать flv-плейлист"
+msgstr "Список рассылки"
 
 #: zp-core/zp-extensions/user_mailing_list.php:28
 msgid ""
 "There are no other registered users who have provided an e-mail address."
-msgstr "Нет других пользователей, которые сообщили свой e-mail адрес."
+msgstr "Нет других пользователей, которые бы сообщили свой e-mail адрес."
 
 #: zp-core/zp-extensions/user_mailing_list.php:38
-#, fuzzy
 msgid ""
 "A tool to send e-mails to all registered users who have provided an e-mail "
 "address."
 msgstr ""
 "Утилита для рассылки писем всем зарегистрированным пользователям, которые "
-"сообщили свой  e-mail адрес."
+"сообщили свой e-mail адрес."
 
 #: zp-core/zp-extensions/user_mailing_list.php:61
-#, fuzzy
 msgid "Mailing"
 msgstr "Рассылка почтовых сообщений"
 
 #: zp-core/zp-extensions/user_mailing_list.php:75
-#, fuzzy
 msgid ""
 "A tool to send e-mails to all registered users who have provided an e-mail "
 "address. There is always a copy sent to the current admin and all e-mails "
 "are sent as <em>blind copies</em>."
 msgstr ""
 "Утилита для рассылки писем всем зарегистрированным пользователям, которые "
-"сообщили свой  e-mail адрес. Копии писем в обязательном порядке отсылаются "
+"сообщили свой e-mail адрес. Копии писем в обязательном порядке отсылаются "
 "администратору и все письма посылаются как <em>blind copies</em>."
 
 #: zp-core/zp-extensions/user_mailing_list.php:82
-#, fuzzy
 msgid ""
 "<strong>Note: </strong>No <em>sendmail</em> filter is registered. You must "
 "activate and configure a mailer plugin."
@@ -23290,7 +23226,6 @@ msgstr ""
 "Необходимо активировать и настроить плагин почтовой программы."
 
 #: zp-core/zp-extensions/user_mailing_list.php:115
-#, fuzzy
 msgid "Mail sent."
 msgstr "Почта отправлена."
 
@@ -23300,7 +23235,6 @@ msgid "Subject:"
 msgstr "Тема:"
 
 #: zp-core/zp-extensions/user_mailing_list.php:118
-#, fuzzy
 msgid "To:"
 msgstr "Кому:"
 
@@ -23327,7 +23261,6 @@ msgid "Send mail"
 msgstr "Отправить e-mail"
 
 #: zp-core/zp-extensions/xmpMetadata.php:35
-#, fuzzy
 msgid ""
 "Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar "
 "files."
@@ -23336,41 +23269,37 @@ msgstr ""
 "<code>XMP</code> файлов."
 
 #: zp-core/zp-extensions/xmpMetadata.php:93
-#, fuzzy
 msgid "Sidecar file extension"
 msgstr "Расширение сопроводительного файла"
 
 #: zp-core/zp-extensions/xmpMetadata.php:96
-#, fuzzy
 msgid ""
 "The plugin will look for files with <em>image_name.extension</em> and "
 "extract XMP metadata from them into the <em>image_name</em> record."
 msgstr ""
 "Плагин будет отслеживать файлы вида <em>имя_изображения.расширение</em> и "
-"экспортировать метаданные XMP из них  в запись <em>имя_изображения</em>."
+"экспортировать метаданные XMP из них в запись <em>имя_изображения</em>."
 
 #: zp-core/zp-extensions/xmpMetadata.php:97
-#, fuzzy
 msgid "Process extensions"
 msgstr "Обрабатывать расширения"
 
 #: zp-core/zp-extensions/xmpMetadata.php:101
-#, fuzzy
 msgid ""
 "If no sidecar file exists and the extension is enabled, the plugin will "
 "search within that type <em>image</em> file for an <code>XMP</code> block. "
 "<strong>Warning</strong> do not set this option unless you require it. "
 "Searching image files can be computationally intensive."
 msgstr ""
-"Если для подключенного расширения сопроводительный файл отсутствует, то "
+"Если для подключенного расширения отсутствует сопроводительный файл, то "
 "плагин будет проверять само изображение на наличие <code>XMP</code> блока."
-"<br /> <strong>Внимание:</strong> данная процедура может создавать "
-"значительную нагрузку на сервер."
+"<br />\n"
+"<strong>Внимание:</strong> данная процедура может создавать значительную "
+"нагрузку на сервер."
 
 #: zp-core/zp-extensions/xmpMetadata.php:102
-#, fuzzy
 msgid "Export multilingual content"
-msgstr "Экспорт мульти-язычного контента"
+msgstr "Экспорт мультиязычного контента"
 
 #: zp-core/zp-extensions/xmpMetadata.php:105
 msgid "Check this to export the metadata in all activated languages."
@@ -23379,31 +23308,26 @@ msgstr ""
 "языках."
 
 #: zp-core/zp-extensions/xmpMetadata.php:761
-#, fuzzy
 msgid "Bulb"
-msgstr "Пузырь"
+msgstr "Bulb"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1170
 msgid "Metadata exported"
 msgstr "Метаданные экспортированы"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1176
-#, fuzzy
 msgid "Export metadata info to XMP sidecar."
-msgstr "Экспортируйте метаданные в XMP sidecar-файл."
+msgstr "Экспортируйте метаданные в сопроводительные файлы XMP."
 
 #: zp-core/zp-extensions/xmpMetadata.php:1178
-#, fuzzy
 msgid "Only content of current user's language is exported"
 msgstr "Экспортируется только содержимое на языке текущего пользователя"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1184
-#, fuzzy
 msgid "Export Metadata"
 msgstr "Экспорт метаданных"
 
 #: zp-core/zp-extensions/zenpage.php:39
-#, fuzzy
 msgid ""
 "A CMS plugin that adds the capability to run an entire gallery focused "
 "website with zenphoto."
@@ -23411,7 +23335,6 @@ msgstr ""
 "CMS плагин, дающий возможность создавать полноценные сайты на базе Zenphoto."
 
 #: zp-core/zp-extensions/zenpage.php:40
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> This feature must be integrated into your theme. It "
 "is not supported by the <em>basic</em> theme."
@@ -23421,7 +23344,6 @@ msgstr ""
 "поддерживают zenpage."
 
 #: zp-core/zp-extensions/zenpage.php:150 zp-core/zp-extensions/zenpage.php:193
-#, fuzzy
 msgid "Read more"
 msgstr "Читать далее"
 
@@ -23442,7 +23364,6 @@ msgid "Enable pages"
 msgstr "Страницы"
 
 #: zp-core/zp-extensions/zenpage.php:175
-#, fuzzy
 msgid ""
 "This enables or disables the admin tabs for pages and/or news articles. To "
 "hide news and/or pages content on the front end as well, themes must be "
@@ -23452,13 +23373,14 @@ msgid ""
 "direct links. <p class=\"notebox\"><strong>NOTE:</strong> This does not "
 "delete content and is not related to management rights.</p>"
 msgstr ""
-"Это включает или отключает вкладки администратора для страниц и / или "
-"новостных статей. Чтобы скрыть содержимое новостей и / или страниц во "
-"внешнем интерфейсе, темы также должны быть настроены на использование <br>\n"
-"<code>if(ZP_NEWS_ENABLED) { … }</code> или <br>\n"
-"<code>if(ZP_PAGES_ENABLED) { … }</code> в соответствующих местах. То же "
-"самое, если отключенные материалы должны быть заблокированы, поскольку в "
-"противном случае к ним все равно можно получить доступ по прямым ссылкам.\n"
+"Это включает или отключает вкладки администратора для страниц и/или "
+"новостных статей. Чтобы скрыть содержимое новостей и/или страниц во внешнем "
+"интерфейсе, темы также должны быть настроены на использование "
+"<br><code>if(ZP_NEWS_ENABLED) { … }</code> или <code>if(ZP_PAGES_ENABLED) "
+"{ … }</code> в соответствующих местах.<br>\n"
+"То же самое, если отключенные материалы должны быть заблокированы, поскольку "
+"в противном случае к ним все равно можно получить доступ по прямым ссылкам."
+"<br>\n"
 "<p class=\"notebox\"><strong>ПРИМЕЧАНИЕ:</strong> Это не удаляет содержимое "
 "и не связано с правами управления.</p>"
 
@@ -23467,31 +23389,27 @@ msgid "Articles per page (theme)"
 msgstr "Статей на странице (тема)"
 
 #: zp-core/zp-extensions/zenpage.php:181
-#, fuzzy
 msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
 msgstr ""
-"Количество статей на одной странице на страницах новостей и категорияов "
+"Количество статей на одной странице на страницах новостей и категорий "
 "новостей."
 
 #: zp-core/zp-extensions/zenpage.php:182
-#, fuzzy
 msgid "News article text length"
 msgstr "Длина фрагмента новости"
 
 #: zp-core/zp-extensions/zenpage.php:186
-#, fuzzy
 msgid ""
 "The length of news article excerpts in news or news category pages. Leave "
 "empty for full text."
 msgstr ""
 "Размер фрагмента статьи (количество знаков) на страницах новостей и "
-"категорияов новостей. Оставьте поле пустым, если хотите, чтобы текст "
+"категорий новостей. Оставьте поле пустым, если хотите, чтобы текст "
 "отображался полностью."
 
 #: zp-core/zp-extensions/zenpage.php:187
-#, fuzzy
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
@@ -23499,13 +23417,14 @@ msgid ""
 "set, this will override this option."
 msgstr ""
 "<em>Пользовательское сокращение статьи:</em> Можно установить индивидуальную "
-"длину вводного текста для блока новостей используя в TinyMCE кнопку <em>page "
-"break</em>. Это переопределит стандартную длину сокращений в опциях плагина."
+"длину вводного текста для блока новостей используя в TinyMCE кнопку "
+"<em>разрыв страницы</em> (или вручную, используя HTML <code>&lt;!-- "
+"pagebreak --&gt;</code>). Это переопределит стандартную длину сокращений в "
+"опциях плагина."
 
 #: zp-core/zp-extensions/zenpage.php:188
-#, fuzzy
 msgid "News article text shorten indicator"
-msgstr "Индикатор сокращённой статьи"
+msgstr "Индикатор сокращенной статьи"
 
 #: zp-core/zp-extensions/zenpage.php:192
 msgid ""
@@ -23516,17 +23435,14 @@ msgstr ""
 "умолчанию: “(...)”."
 
 #: zp-core/zp-extensions/zenpage.php:198
-#, fuzzy
 msgid "The text for the link to the full article."
 msgstr "Текст для ссылки на полную версию статьи."
 
 #: zp-core/zp-extensions/zenpage.php:199
-#, fuzzy
 msgid "New titlelink with date: Item types"
 msgstr "Новая ссылка на заголовок с датой: типы объектов"
 
 #: zp-core/zp-extensions/zenpage.php:208
-#, fuzzy
 msgid ""
 "Select the item type where the date always should be appended or prepended "
 "to the titlelink of newly created items."
@@ -23535,7 +23451,6 @@ msgstr ""
 "на заголовок вновь созданных элементов."
 
 #: zp-core/zp-extensions/zenpage.php:208
-#, fuzzy
 msgid ""
 "A date will automatically be added if you are creating an item with an "
 "already used titlelink."
@@ -23544,12 +23459,10 @@ msgstr ""
 "используемой ссылкой на заголовок."
 
 #: zp-core/zp-extensions/zenpage.php:209
-#, fuzzy
 msgid "New titlelink with date: Date location"
 msgstr "Новая ссылка на заголовок с датой: Местоположение даты"
 
 #: zp-core/zp-extensions/zenpage.php:213
-#, fuzzy
 msgid "Before"
 msgstr "До"
 
@@ -23562,27 +23475,22 @@ msgid "Choose where to add the date to the titlelink of newly created items."
 msgstr "Выберите, куда добавлять дату в URL новых объектов."
 
 #: zp-core/zp-extensions/zenpage.php:218
-#, fuzzy
 msgid "New titlelink with date: Date format"
 msgstr "Новая ссылка на заголовок с датой: формат даты"
 
 #: zp-core/zp-extensions/zenpage.php:222
-#, fuzzy
 msgid "Y-m-d"
 msgstr "Y-m-d"
 
 #: zp-core/zp-extensions/zenpage.php:223
-#, fuzzy
 msgid "Ymd"
 msgstr "Ymd"
 
 #: zp-core/zp-extensions/zenpage.php:224
-#, fuzzy
 msgid "Y-m-d_H-i-s"
 msgstr "Y-m-d_H-i-s"
 
 #: zp-core/zp-extensions/zenpage.php:225
-#, fuzzy
 msgid "YmdHis"
 msgstr "YmdHis"
 
@@ -23597,7 +23505,6 @@ msgid ""
 msgstr "Выберите формат даты для добавления к URL новых объектов."
 
 #: zp-core/zp-extensions/zenpage.php:251
-#, fuzzy
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
@@ -23606,7 +23513,6 @@ msgstr ""
 "href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a>."
 
 #: zp-core/zp-extensions/zenpage.php:304
-#, fuzzy
 msgid "Enable Zenpage CMS plugin"
 msgstr "Включить плагин Zenpage"
 
@@ -23712,7 +23618,6 @@ msgid "Clear tags of articles"
 msgstr "Удалить теги из статей"
 
 #: zp-core/zp-extensions/zenpage/admin-categories.php:171
-#, fuzzy
 msgid ""
 "The sort position of the indicated items cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
@@ -23736,7 +23641,6 @@ msgid "copy of %s"
 msgstr "копия %s"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:142
-#, fuzzy
 msgid "This is not a future date!"
 msgstr "Введите дату в будущем!"
 
@@ -23782,7 +23686,6 @@ msgid "Usage tips"
 msgstr "Справка"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:366
-#, fuzzy
 msgid ""
 "Check <em>Edit Titlelink</em> if you need to customize how the title appears "
 "in URLs. Otherwise it will be automatically updated to any changes made to "
@@ -23790,22 +23693,20 @@ msgid ""
 "and the titlelink stays always the same (recommended if you use Zenphoto’s "
 "multilingual mode)."
 msgstr ""
-"Установите флажок <em>Редактировать ссылку на заголовок</em>, если вам нужно "
+"Отметьте <em>Редактировать ссылку ан заголовок</em>, если вам нужно "
 "настроить отображение заголовка в URL-адресах. В противном случае он будет "
 "автоматически обновляться с учетом любых изменений, внесенных в заголовок. "
-"Если вы хотите предотвратить эту проверку, <em>Включите permaTitlelink</em> "
-"и ссылка на заголовок останется неизменной (рекомендуется, если вы "
+"Если вы хотите предотвратить эту проверку, <em>Включите постоянную ссылку</"
+"em> и ссылка на заголовок останется неизменной (рекомендуется, если вы "
 "используете многоязычный режим Zenphoto)."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:367
-#, fuzzy
 msgid "<strong>Note:</strong> Edit titlelink overrides the permalink setting."
 msgstr ""
 "<strong>Примечание: </strong> Редактирование ссылки перекрывает параметр "
 "<em>Включить постоянную ссылку</em>."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:368
-#, fuzzy
 msgid ""
 "<strong>Important:</strong> If you are using Zenphoto’s multi-lingual mode "
 "the Titlelink is generated from the Title of the currently selected language."
@@ -23815,7 +23716,6 @@ msgstr ""
 "момент языке."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:369
-#, fuzzy
 msgid ""
 "If you lock an article only the current active author/user or any user with "
 "full admin rights will be able to edit it later again!"
@@ -23824,7 +23724,6 @@ msgstr ""
 "администратора смогут позднее редактировать страницу!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:373
-#, fuzzy
 msgid ""
 "<em>Custom article shortening:</em> You can set a custom article shorten "
 "length for the news loop excerpts by using the standard TinyMCE <em>page "
@@ -23832,11 +23731,11 @@ msgid ""
 "on the plugin option then."
 msgstr ""
 "<em>Пользовательское сокращение статьи:</em> Можно установить индивидуальную "
-"длину вводного текста для блока новостей используя в TinyMCE кнопку <em>page "
-"break</em>. Это переопределит стандартную длину сокращений в опциях плагина."
+"длину вводного текста для блока новостей используя в TinyMCE кнопку "
+"<em>разрыв страницы</em>. Это переопределит стандартную длину сокращений в "
+"опциях плагина."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:377
-#, fuzzy
 msgid ""
 "<em>Scheduled publishing:</em> To automatically publish a page/news article "
 "in the future set it to “published” and enter a future date in the date "
@@ -23844,24 +23743,21 @@ msgid ""
 msgstr ""
 "<em>Публикация по расписанию:</em> Чтобы автоматически публиковать страницы/"
 "новости в будущем, установите для них состояние \"опубликовано\" и вручную "
-"укажите будущую дату публикации вручную. Внимание: Работает по времени "
-"сервера!"
+"укажите будущую дату публикации. Внимание: Работает по времени сайта!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:378
-#, fuzzy
 msgid ""
 "<em>Expiration date:</em> Enter a future date in the date field manually to "
 "set a date the page or article will be set un-published automatically. After "
 "the page/article has been expired it can only be published again if the "
 "expiration date is deleted. Note this works on server time!"
 msgstr ""
-"<em>Срок действия:</em> Задаёт дату окончания публикации, по истечении "
-"которой, страница/статья будет автоматически помечена, как неопубликованная. "
-"При повторной публикации страницы/статьи не забудьте очистить поле <em>Срок "
-"действия</em>. Дата отсчитывается по времени сервера!"
+"<em>Срок публикации:</em> Задайте дату окончания публикации в будущем, по "
+"истечении которой, страница/статья будет автоматически помечена, как "
+"неопубликованная. При повторной публикации страницы/статьи не забудьте "
+"очистить поле <em>Срок действия</em>. Дата отсчитывается по времени сайта!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:379
-#, fuzzy
 msgid ""
 "<em>ExtraContent:</em> Here you can enter extra content for example to be "
 "printed on the sidebar"
@@ -23870,7 +23766,6 @@ msgstr ""
 "текст, например, для вывода в боковой колонке"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:382
-#, fuzzy
 msgid ""
 "<em>Codeblocks:</em> Use these fields if you need to enter php code (for "
 "example Zenphoto functions) or JavaScript code."
@@ -23879,12 +23774,10 @@ msgstr ""
 "JavaScript, HTML и тп. (например функций Zenphoto)."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:383
-#, fuzzy
 msgid "You also can use the codeblock fields as custom fields."
 msgstr "Можно использовать блоки кода и как пользовательские текстовые поля."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:384
-#, fuzzy
 msgid ""
 "Note that your theme must be setup to use the codeblock functions. Note also "
 "that codeblock fields are not multi-lingual."
@@ -23893,12 +23786,11 @@ msgstr ""
 "кода. Блоки кода не могут быть многоязычными."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:387
-#, fuzzy
 msgid ""
 "<strong>Important:</strong> If setting a password for a page its subpages "
 "inherit the protection."
 msgstr ""
-"<strong>Важно:</strong> При установке пароля на страницу, вложенныё в неё "
+"<strong>Важно:</strong> При установке пароля на страницу, вложенные в неё "
 "страницы, также будут защищены этим паролем."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:388
@@ -23919,16 +23811,14 @@ msgid "Enable permaTitlelink"
 msgstr "Использовать постоянную ссылку"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:429
-#, fuzzy
 msgid "Truncate at <em>pagebreak</em>"
-msgstr "Вставить \"Далее\" на <em>разрыв страницы</em>"
+msgstr "Прервать на <em>разрыв страницы</em>"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:431
 msgid "Position:"
 msgstr "Расположение:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:433
-#, fuzzy
 msgid "normal"
 msgstr "обычное"
 
@@ -23937,7 +23827,6 @@ msgid "Stick to top"
 msgstr "Закрепить наверху"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:446
-#, fuzzy
 msgid "Locked for changes"
 msgstr "Запретить изменение"
 
@@ -23952,27 +23841,23 @@ msgid "copy as: %s"
 msgstr "копировать как: %s"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:550
-#, fuzzy, php-format
+#, php-format
 msgid "%s will be deleted when changes are applied."
 msgstr "%s будет удалено после сохранения изменений."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:611
-#, fuzzy
 msgid "Expiration date:"
-msgstr "Срок действия:"
+msgstr "Срок публикации:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:622
-#, fuzzy
 msgid "Expiration date set!"
-msgstr "Срок активности установлен!"
+msgstr "Срок публикации установлен!"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:714
-#, fuzzy
 msgid "TitleLink:"
 msgstr "Ссылка:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:718
-#, fuzzy
 msgid ""
 "A search engine friendly <em>titlelink</em> (aka slug) without special "
 "characters to be used in URLs is generated from the title of the currently "
@@ -23981,21 +23866,18 @@ msgid ""
 msgstr ""
 "Ссылка без специальных знаков, понятная роботам поисковых машин, "
 "автоматически генерируется из названия текущего языка и используется в "
-"адресах страниц (URLs). Вы можете редактировать её позднее, после сохранения "
-"документа."
+"адресах страниц (URLs). Вы можете отредактировать её позднее, после "
+"сохранения документа."
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:728
-#, fuzzy
 msgid "Content:"
 msgstr "Содержимое:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:743
-#, fuzzy
 msgid "ExtraContent:"
-msgstr "Дополнительно:"
+msgstr "Дополнительное содержимое:"
 
 #: zp-core/zp-extensions/zenpage/admin-edit.php:766
-#, fuzzy
 msgid "Custom:"
 msgstr "Пользовательские<br /> данные:"
 
@@ -24019,7 +23901,6 @@ msgid "Add categories"
 msgstr "Добавить категории"
 
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:249
-#, fuzzy
 msgid "Clear categories"
 msgstr "Удалить категории"
 
@@ -24034,7 +23915,6 @@ msgstr "Удалить категории"
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:303
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:306
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1007
-#, fuzzy
 msgid "locked"
 msgstr "заблокирован"
 
@@ -24049,7 +23929,6 @@ msgid "Delete article"
 msgstr "Удалить статью"
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:113
-#, fuzzy
 msgid ""
 "Select a page to edit or drag the pages into the order, including subpage "
 "levels, you wish them displayed."
@@ -24058,20 +23937,18 @@ msgstr ""
 "страниц и создавать вложенные страницы простым перетаскиванием мышью."
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:117
-#, fuzzy
 msgid ""
 "<strong>Note:</strong> Subpages of password protected pages inherit the "
 "protection."
 msgstr ""
 "<strong>Примечание: </strong> Вложенные страницы защищённых страниц "
-"наследуют защиту."
+"наследуют защиту \"родителей\"."
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:142
 msgid "Edit this page"
 msgstr "Редактировать страницу"
 
 #: zp-core/zp-extensions/zenpage/admin-pages.php:175
-#, fuzzy
 msgid ""
 "The sort position of the indicated pages cannot be recorded because the "
 "nesting is too deep. Please move them to a higher level and save your order."
@@ -24081,7 +23958,6 @@ msgstr ""
 "сохраните ваш порядок сортировки."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:617
-#, fuzzy
 msgid ""
 "Unused and obsolete method - articles are already filtered via getArticles()"
 msgstr ""
@@ -24089,7 +23965,6 @@ msgstr ""
 "getArticles()"
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:679
-#, fuzzy
 msgid ""
 "Zenpage::getAllCategories() - The value \"asc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use false instead."
@@ -24099,7 +23974,6 @@ msgstr ""
 "значение false."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:682
-#, fuzzy
 msgid ""
 "Zenpage::getAllCategories() - The value \"desc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use true instead."
@@ -24109,21 +23983,19 @@ msgstr ""
 "значение true."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:308
-#, fuzzy
 msgid ""
 "class ZenpageCategory getParents(): The parameters $parentid and "
 "$initparents have been removed in Zenphoto 1.5.5."
 msgstr ""
-"class ZenpageCategory getParents(): Параметры $parentid и $initparents были "
+"класс ZenpageCategory getParents(): Параметры $parentid и $initparents были "
 "упразднены в Zenphoto 1.5.5."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:237
-#, fuzzy
 msgid ""
 "class ZenpagePage getParents(): The parameters $parentid and $initparents "
 "have been removed in Zenphoto 1.5.5."
 msgstr ""
-"class ZenpagePage getParents(): Параметры $parentid and $initparents были "
+"класс ZenpagePage getParents(): Параметры $parentid и $initparents были "
 "упразднены в Zenphoto 1.5.5."
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpageroot.php:60
@@ -24166,9 +24038,8 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:147
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:161
-#, fuzzy
 msgid "You must supply a password for the Protected Page user"
-msgstr "Вы должны ввести гостевой пароль для Страницы"
+msgstr "Вы должны ввести гостевой пароль для страницы"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:149
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:163
@@ -24271,7 +24142,6 @@ msgid "All articles"
 msgstr "Все статьи"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:665
-#, fuzzy
 msgid "Sticky"
 msgstr "Закреплено"
 
@@ -24323,7 +24193,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:920
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:933
-#, fuzzy
 msgid "You must supply a password for the Protected Category user"
 msgstr "Вы должны ввести гостевой пароль для Категории"
 
@@ -24364,7 +24233,6 @@ msgid "View category"
 msgstr "Просмотр категории"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1090
-#, fuzzy
 msgid ""
 "The 2nd parameter of printNestedItemsList() should be a Zenpage news or page "
 "object and not an integer (to be removed in ZenphotoCMS 2.0"
@@ -24393,7 +24261,7 @@ msgid "hits"
 msgstr "просмотров"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1368
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> page"
 msgid_plural "<strong>%1$u</strong> pages"
 msgstr[0] "<strong>%1$u</strong> страница"
@@ -24401,7 +24269,7 @@ msgstr[1] "<strong>%1$u</strong> страницы"
 msgstr[2] "<strong>%1$u</strong> страниц"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1370
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> page (<strong>%2$u</strong> un-published)"
 msgid_plural "<strong>%1$u</strong> pages (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
@@ -24412,7 +24280,7 @@ msgstr[2] ""
 "<strong>%1$u</strong> страниц (<strong>%2$u</strong> неопубликовано)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1377
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> article"
 msgid_plural "<strong>%1$u</strong> articles"
 msgstr[0] "<strong>%1$u</strong> статья"
@@ -24420,7 +24288,7 @@ msgstr[1] "<strong>%1$u</strong> статьи"
 msgstr[2] "<strong>%1$u</strong> статей"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1379
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> article (<strong>%2$u</strong> un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> articles (<strong>%2$u</strong> un-published)"
@@ -24429,34 +24297,32 @@ msgstr[1] "<strong>%1$u</strong> статьи (<strong>%2$u</strong> неопу�
 msgstr[2] "<strong>%1$u</strong> статей (<strong>%2$u</strong> неопубликовано)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1386
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> category"
 msgid_plural "<strong>%1$u</strong> categories"
 msgstr[0] "<strong>%1$u</strong> категория"
-msgstr[1] "<strong>%1$u</strong> категорияа"
-msgstr[2] "<strong>%1$u</strong> категорияов"
+msgstr[1] "<strong>%1$u</strong> категории"
+msgstr[2] "<strong>%1$u</strong> категорий"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1388
-#, fuzzy, php-format
+#, php-format
 msgid "<strong>%1$u</strong> category (<strong>%2$u</strong> un-published)"
 msgid_plural ""
 "<strong>%1$u</strong> categories (<strong>%2$u</strong> un-published)"
 msgstr[0] ""
 "<strong>%1$u</strong> категория (<strong>%2$u</strong> неопубликован)"
 msgstr[1] ""
-"<strong>%1$u</strong> категорияа (<strong>%2$u</strong> неопубликованы)"
+"<strong>%1$u</strong> категории (<strong>%2$u</strong> неопубликованы)"
 msgstr[2] ""
-"<strong>%1$u</strong> категорияов (<strong>%2$u</strong> неопубликовано)"
+"<strong>%1$u</strong> категорий (<strong>%2$u</strong> неопубликовано)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1495
-#, fuzzy
 msgid "Publish immediately (skip scheduling)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать сейчас (игнорировать дату публикации)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1498
-#, fuzzy
 msgid "Skip scheduled expiration"
-msgstr "Регистрация нового пользователя"
+msgstr "Игнорировать срок публикации"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1502
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1505
@@ -24464,9 +24330,8 @@ msgid "Unpublish"
 msgstr "Отменить публикацию"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1510
-#, fuzzy
 msgid "Publish immediately (skip expiration)"
-msgstr "Опубликовать сейчас (игнорировать ожидание)"
+msgstr "Опубликовать сейчас (игнорировать срок публикации)"
 
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1711
 msgid "Tags added to selected items"
@@ -24520,7 +24385,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1469
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1512
-#, fuzzy, php-format
+#, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u статья"
@@ -24552,21 +24417,20 @@ msgid "View %s"
 msgstr "Просмотр %s"
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2247
-#, fuzzy, php-format
+#, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr ""
 "<code>zenpageAlbumImage()</code> - не найдено изображение %1$s %1$s:%2$s"
 
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2256
-#, fuzzy, php-format
+#, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> - не найден альбом %1$s"
 
 #: zp-core/zp-extensions/zenphotoDonate.php:9
-#, fuzzy
 msgid "Adds a Zenphoto donations block to the admin overview page."
 msgstr ""
-"Помещает блок сбора пожертвований на закладке <em>Общие</em> панели "
+"Помещает блок сбора пожертвований на закладке <em>Обзор</em> Панели "
 "управления."
 
 #: zp-core/zp-extensions/zenphotoDonate.php:20
@@ -24574,7 +24438,6 @@ msgid "Like using Zenphoto? Donate!"
 msgstr "Нравится Zenphoto? Поддержи!"
 
 #: zp-core/zp-extensions/zenphotoDonate.php:29
-#, fuzzy
 msgid ""
 "Your support helps pay for the Zenphoto site server and helps development of "
 "Zenphoto. Thank you!"
@@ -24583,16 +24446,14 @@ msgstr ""
 "проекта. Спасибо!"
 
 #: zp-core/zp-extensions/zenphoto_news.php:10
-#, fuzzy
 msgid ""
 "Places the latest 3 news articles from Zenphoto.org on the admin overview "
 "page."
 msgstr ""
-"Помещает 3 последних новости сайта Zenphoto.org на закладке <em>Общие</em> "
-"панели управления."
+"Помещает 3 последних новости сайта Zenphoto.org на закладке <em>Обзор</em> "
+"Панели управления."
 
 #: zp-core/zp-extensions/zenphoto_news.php:13
-#, fuzzy
 msgid ""
 "Privacy note: This plugin performs external checks for new releases using "
 "the RSS feed from zenphoto.org. No data from your install is submitted or "
@@ -24604,10 +24465,9 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenphoto_news.php:26
 msgid "Truncation"
-msgstr "Truncation"
+msgstr "Сокращение"
 
 #: zp-core/zp-extensions/zenphoto_news.php:27
-#, fuzzy
 msgid "The length of the article to display."
 msgstr "Длина статьи для отображения."
 
@@ -24616,22 +24476,20 @@ msgid "News from Zenphoto.org"
 msgstr "Новости Zenphoto.org"
 
 #: zp-core/zp-extensions/zenphoto_news.php:100
-#, fuzzy, php-format
+#, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Не удалось извлечь ссылку <em>%s</em>\""
 
 #: zp-core/zp-extensions/zenphoto_news.php:107
-#, fuzzy
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
 msgstr "Соединение с <em>Zenphoto.org</em> не установлено."
 
 #: zp-core/zp-extensions/zenphoto_sendmail.php:10
-#, fuzzy
 msgid "Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility."
-msgstr "Обработчик исходящей почты Zenphoto на основе PHP <em>mail</em>."
+msgstr "Обработчик исходящей почты Zenphoto на основе <em>PHPmail</em>."
 
 #: zp-core/zp-extensions/zenphoto_sendmail.php:39
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "<code>zenphoto_sendmail</code> failed to send <em>%s</em> to one or more "
 "recipients."
