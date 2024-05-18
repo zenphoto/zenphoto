@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 15:07+0200\n"
-"PO-Revision-Date: 2024-05-12 15:26+0200\n"
+"POT-Creation-Date: 2024-05-18 15:41+0200\n"
+"PO-Revision-Date: 2024-05-18 15:50+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SearchPath-0: themes\n"
 "X-Poedit-SearchPath-1: zp-core\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -664,9 +664,7 @@ msgid "Image gallery transition"
 msgstr "Transition entre les images de la galerie"
 
 #: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5770
-#: zp-core/admin-functions.php:5823 zp-core/libs/exif/makers/canon.php:220
-#: zp-core/libs/exif/makers/nikon.php:318
-#: zp-core/zp-extensions/GoogleMap.php:119
+#: zp-core/admin-functions.php:5823 zp-core/zp-extensions/GoogleMap.php:119
 #: zp-core/zp-extensions/downloadList.php:97
 #: zp-core/zp-extensions/user_login-out.php:40
 msgid "None"
@@ -2846,16 +2844,7 @@ msgstr "Date de la dernière mise à jour"
 #: zp-core/admin-functions.php:5287 zp-core/admin-functions.php:5289
 #: zp-core/admin-functions.php:5296 zp-core/admin-functions.php:5299
 #: zp-core/admin-functions.php:5311 zp-core/admin-functions.php:5321
-#: zp-core/admin-functions.php:5324 zp-core/libs/exif/exif.php:713
-#: zp-core/libs/exif/makers/canon.php:192
-#: zp-core/libs/exif/makers/canon.php:293
-#: zp-core/libs/exif/makers/canon.php:329
-#: zp-core/libs/exif/makers/fujifilm.php:181
-#: zp-core/libs/exif/makers/nikon.php:365
-#: zp-core/libs/exif/makers/panasonic.php:150
-#: zp-core/libs/exif/makers/panasonic.php:156
-#: zp-core/libs/exif/makers/panasonic.php:165
-#: zp-core/libs/exif/makers/panasonic.php:214
+#: zp-core/admin-functions.php:5324
 msgid "Manual"
 msgstr "Manuel"
 
@@ -2976,8 +2965,6 @@ msgstr "Publier l’image %s"
 
 #: zp-core/admin-functions.php:5729 zp-core/admin-functions.php:5851
 #: zp-core/admin-functions.php:5953 zp-core/admin-functions.php:5987
-#: zp-core/libs/exif/makers/canon.php:428
-#: zp-core/libs/exif/makers/fujifilm.php:128
 #: zp-core/zp-extensions/favoritesHandler.php:134
 msgid "Custom"
 msgstr "Personnalisé"
@@ -2994,7 +2981,7 @@ msgstr "Url de la page personnalisée"
 msgid "Select a user"
 msgstr "Choisir l’utilisateurs"
 
-#: zp-core/admin-functions.php:5917 zp-core/libs/exif/makers/panasonic.php:317
+#: zp-core/admin-functions.php:5917
 msgid "Horizontal (normal)"
 msgstr "Horizontal (normal)"
 
@@ -3403,28 +3390,21 @@ msgstr ""
 #: zp-core/admin-options.php:867
 msgid ""
 "If time is disabled for display standard theme and admin functions will not "
-"display it. The same applies if the <em>preferred date representation</em> "
-"format without time is selected."
+"display it."
 msgstr ""
-"Si l’affichage de l’heure est désactivée, elle ne sera plus visible dans "
-"l’administration ni dans les thèmes par défaut. Cela s’applique également si "
-"l’option <em>Format préféré pour la représentation des dates</em> est "
-"sélectionné sans l’affichage des heures."
+"Si l’affichage de l’heure est désactivé, elle ne sera plus visible dans "
+"l’administration ni dans les thèmes par défaut."
 
 #: zp-core/admin-options.php:870
 msgid ""
 "NOTE: If localized dates are enabled and you are using a custom date format "
 "you need to provide an <a href=\"https://unicode-org.github.io/icu/userguide/"
-"format_parse/datetime/\">ICU dateformat string</a>. If you choose one of the "
-"<em>preferred date representation</em> formats the time format option is "
-"ignored for display."
+"format_parse/datetime/\">ICU dateformat string</a>."
 msgstr ""
 "NOTE : Si les dates localisées sont actives et que vous utilisez un format "
-"de date personnalisé, vous devez fournir une <a href=\"https://unicode-org."
-"github.io/icu/userguide/format_parse/datetime/\">une chaîne normalisée "
-"« DateFormat » ICU</a>. Si vous utilisez un format de date personnalisé, ou "
-"une des options de <em>Format préféré pour la représentation des dates</em>, "
-"le formatage de l’heure est ignoré. "
+"de date personnalisé, vous devez fournir une une chaîne normalisée <a "
+"href=\"https://unicode-org.github.io/icu/userguide/format_parse/datetime/"
+"\">« DateFormat » ICU</a>."
 
 #: zp-core/admin-options.php:874
 msgid ""
@@ -7355,59 +7335,7 @@ msgstr "Erreur : le dossier « albums » (%s) est introuvable."
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Erreur : le dossier « albums » (%s) est illisible."
 
-#: zp-core/classes/class-gallery.php:529 zp-core/libs/exif/exif.php:729
-#: zp-core/libs/exif/exif.php:749 zp-core/libs/exif/exif.php:769
-#: zp-core/libs/exif/exif.php:809 zp-core/libs/exif/exif.php:858
-#: zp-core/libs/exif/exif.php:879 zp-core/libs/exif/exif.php:899
-#: zp-core/libs/exif/exif.php:911 zp-core/libs/exif/makers/canon.php:101
-#: zp-core/libs/exif/makers/canon.php:119
-#: zp-core/libs/exif/makers/canon.php:140
-#: zp-core/libs/exif/makers/canon.php:149
-#: zp-core/libs/exif/makers/canon.php:170
-#: zp-core/libs/exif/makers/canon.php:185
-#: zp-core/libs/exif/makers/canon.php:214
-#: zp-core/libs/exif/makers/canon.php:226
-#: zp-core/libs/exif/makers/canon.php:237
-#: zp-core/libs/exif/makers/canon.php:248
-#: zp-core/libs/exif/makers/canon.php:259
-#: zp-core/libs/exif/makers/canon.php:277
-#: zp-core/libs/exif/makers/canon.php:288
-#: zp-core/libs/exif/makers/canon.php:301
-#: zp-core/libs/exif/makers/canon.php:316
-#: zp-core/libs/exif/makers/canon.php:333
-#: zp-core/libs/exif/makers/canon.php:359
-#: zp-core/libs/exif/makers/canon.php:392
-#: zp-core/libs/exif/makers/canon.php:430
-#: zp-core/libs/exif/makers/canon.php:506
-#: zp-core/libs/exif/makers/fujifilm.php:109
-#: zp-core/libs/exif/makers/fujifilm.php:130
-#: zp-core/libs/exif/makers/nikon.php:242
-#: zp-core/libs/exif/makers/nikon.php:254
-#: zp-core/libs/exif/makers/nikon.php:272
-#: zp-core/libs/exif/makers/nikon.php:288
-#: zp-core/libs/exif/makers/nikon.php:310
-#: zp-core/libs/exif/makers/nikon.php:322
-#: zp-core/libs/exif/makers/nikon.php:375
-#: zp-core/libs/exif/makers/nikon.php:386
-#: zp-core/libs/exif/makers/nikon.php:392
-#: zp-core/libs/exif/makers/olympus.php:94
-#: zp-core/libs/exif/makers/olympus.php:103
-#: zp-core/libs/exif/makers/panasonic.php:137
-#: zp-core/libs/exif/makers/panasonic.php:158
-#: zp-core/libs/exif/makers/panasonic.php:171
-#: zp-core/libs/exif/makers/panasonic.php:182
-#: zp-core/libs/exif/makers/panasonic.php:191
-#: zp-core/libs/exif/makers/panasonic.php:238
-#: zp-core/libs/exif/makers/panasonic.php:247
-#: zp-core/libs/exif/makers/panasonic.php:268
-#: zp-core/libs/exif/makers/panasonic.php:279
-#: zp-core/libs/exif/makers/panasonic.php:290
-#: zp-core/libs/exif/makers/panasonic.php:301
-#: zp-core/libs/exif/makers/panasonic.php:312
-#: zp-core/libs/exif/makers/panasonic.php:323
-#: zp-core/libs/exif/makers/panasonic.php:332
-#: zp-core/libs/exif/makers/sanyo.php:72 zp-core/libs/exif/makers/sanyo.php:79
-#: zp-core/libs/exif/makers/sanyo.php:86 zp-core/setup/class-setup.php:373
+#: zp-core/classes/class-gallery.php:529 zp-core/setup/class-setup.php:373
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -9170,7 +9098,7 @@ msgstr "Correction de l’exposition"
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: zp-core/functions/functions.php:2810 zp-core/libs/exif/makers/canon.php:357
+#: zp-core/functions/functions.php:2810
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
@@ -9777,1055 +9705,6 @@ msgstr "Vietnamien (Windows)"
 #: zp-core/libs/class-utf8.php:313
 msgid "Thai (Windows)"
 msgstr "Thaï (Windows)"
-
-#: zp-core/libs/exif/exif.php:667
-msgid "1: Horizontal (normal)"
-msgstr "1 : Horizontal (normal)"
-
-#: zp-core/libs/exif/exif.php:669
-msgid "2: Mirror horizontal"
-msgstr "2 : Miroir horizontal"
-
-#: zp-core/libs/exif/exif.php:671
-msgid "3: Rotate 180 CW"
-msgstr "3 : Rotation de 180° horaire"
-
-#: zp-core/libs/exif/exif.php:673
-msgid "4: Mirror vertical"
-msgstr "4 : Miroir vertical"
-
-#: zp-core/libs/exif/exif.php:675
-msgid "5: Mirror horizontal and rotate 270 CW"
-msgstr "5 : Miroir horizontal et rotation de 270° horaire"
-
-#: zp-core/libs/exif/exif.php:677
-msgid "6: Rotate 90 CW"
-msgstr "6 : Rotation de 90° horaire"
-
-#: zp-core/libs/exif/exif.php:679
-msgid "7: Mirror horizontal and rotate 90 CW"
-msgstr "7 : Miroir horizontal et rotation de 90° horaire"
-
-#: zp-core/libs/exif/exif.php:681
-msgid "8: Rotate 270 CW"
-msgstr "8 : Rotation de 270° horaire"
-
-#: zp-core/libs/exif/exif.php:683
-#, php-format
-msgid "%d: Unknown"
-msgstr "%d : inconnu"
-
-#: zp-core/libs/exif/exif.php:691 zp-core/libs/exif/exif.php:1511
-msgid "No Unit"
-msgstr "Pas d’unité"
-
-#: zp-core/libs/exif/exif.php:693 zp-core/libs/exif/exif.php:1499
-msgid "Inch"
-msgstr "Pouce"
-
-#: zp-core/libs/exif/exif.php:695 zp-core/libs/exif/exif.php:1502
-msgid "Centimeter"
-msgstr "Centimètre"
-
-#: zp-core/libs/exif/exif.php:697 zp-core/libs/exif/exif.php:1505
-msgid "Millimeter"
-msgstr "Millimètre"
-
-#: zp-core/libs/exif/exif.php:699 zp-core/libs/exif/exif.php:1508
-msgid "Micrometer"
-msgstr "Micromètre"
-
-#: zp-core/libs/exif/exif.php:705
-msgid "Center of Pixel Array"
-msgstr "Centre du tableau de pixels"
-
-#: zp-core/libs/exif/exif.php:707
-msgid "Datum Point"
-msgstr "Point de référence"
-
-#: zp-core/libs/exif/exif.php:715 zp-core/libs/exif/makers/canon.php:323
-#: zp-core/libs/exif/makers/panasonic.php:206
-msgid "Program"
-msgstr "Programmée"
-
-#: zp-core/libs/exif/exif.php:717 zp-core/libs/exif/makers/panasonic.php:208
-msgid "Aperture Priority"
-msgstr "Priorité à l’ouverture"
-
-#: zp-core/libs/exif/exif.php:719 zp-core/libs/exif/makers/fujifilm.php:211
-#: zp-core/libs/exif/makers/panasonic.php:210
-msgid "Shutter Priority"
-msgstr "Priorité à la vitesse"
-
-#: zp-core/libs/exif/exif.php:721
-msgid "Program Creative"
-msgstr "Programme de priorité à la création"
-
-#: zp-core/libs/exif/exif.php:723
-msgid "Program Action"
-msgstr "Programme de priorité à l’action"
-
-#: zp-core/libs/exif/exif.php:725 zp-core/libs/exif/makers/canon.php:206
-#: zp-core/libs/exif/makers/fujifilm.php:199
-#: zp-core/libs/exif/makers/panasonic.php:198
-msgid "Portrait"
-msgstr "Portrait"
-
-#: zp-core/libs/exif/exif.php:727 zp-core/libs/exif/makers/canon.php:194
-#: zp-core/libs/exif/makers/fujifilm.php:201
-msgid "Landscape"
-msgstr "Paysage"
-
-#: zp-core/libs/exif/exif.php:735
-msgid "Standard Output Sensitivity"
-msgstr "Sensibilité normale de sortie"
-
-#: zp-core/libs/exif/exif.php:737
-msgid "Recommended Exposure Index"
-msgstr "Indice d’exposition recommandé"
-
-#: zp-core/libs/exif/exif.php:739
-msgid "ISO Speed"
-msgstr "Sensibilité ISO"
-
-#: zp-core/libs/exif/exif.php:741
-msgid "Standard Output Sensitivity and Recommended Exposure Index"
-msgstr "Sensibilité normale de sortie et indice d’exposition recommandé"
-
-#: zp-core/libs/exif/exif.php:743
-msgid "Standard Output Sensitivity and ISO Speed"
-msgstr "Sensibilité normale de sortie et sensibilité ISO"
-
-#: zp-core/libs/exif/exif.php:745
-msgid "Recommended Exposure Index and ISO Speed"
-msgstr "Indice d’exposition recommandé et sensibilité ISO"
-
-#: zp-core/libs/exif/exif.php:747
-msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
-msgstr ""
-"Sensibilité normale de sortie, indice d’exposition recommandé et sensibilité "
-"ISO"
-
-#: zp-core/libs/exif/exif.php:755
-msgid "Average"
-msgstr "Moyenne"
-
-#: zp-core/libs/exif/exif.php:757
-msgid "Center Weighted Average"
-msgstr "Mesure pondérée au centre"
-
-#: zp-core/libs/exif/exif.php:759
-msgid "Spot"
-msgstr "Point"
-
-#: zp-core/libs/exif/exif.php:761
-msgid "Multi-Spot"
-msgstr "Multi-point"
-
-#: zp-core/libs/exif/exif.php:763
-msgid "Pattern"
-msgstr "Motif"
-
-#: zp-core/libs/exif/exif.php:765 zp-core/libs/exif/makers/canon.php:284
-msgid "Partial"
-msgstr "Partiel"
-
-#: zp-core/libs/exif/exif.php:767 zp-core/libs/exif/exif.php:807
-msgid "Other"
-msgstr "Autre"
-
-#: zp-core/libs/exif/exif.php:775 zp-core/libs/exif/makers/fujifilm.php:116
-#: zp-core/libs/exif/makers/nikon.php:300
-#: zp-core/libs/exif/makers/panasonic.php:144
-msgid "Daylight"
-msgstr "Lumière du jour"
-
-#: zp-core/libs/exif/exif.php:777 zp-core/libs/exif/makers/canon.php:424
-msgid "Fluorescent"
-msgstr "Fluorescent"
-
-#: zp-core/libs/exif/exif.php:779 zp-core/libs/exif/makers/canon.php:422
-msgid "Tungsten"
-msgstr "Éclairage au tungstène"
-
-#: zp-core/libs/exif/exif.php:783 zp-core/libs/exif/exif.php:822
-#: zp-core/libs/exif/makers/canon.php:426
-#: zp-core/libs/exif/makers/panasonic.php:152
-msgid "Flash"
-msgstr "Flash"
-
-#: zp-core/libs/exif/exif.php:791
-msgid "Standard Light A"
-msgstr "Lumière standard A"
-
-#: zp-core/libs/exif/exif.php:793
-msgid "Standard Light B"
-msgstr "Lumière standard B"
-
-#: zp-core/libs/exif/exif.php:795
-msgid "Standard Light C"
-msgstr "Lumière standard C"
-
-#: zp-core/libs/exif/exif.php:797
-msgid "D55"
-msgstr "D55"
-
-#: zp-core/libs/exif/exif.php:799
-msgid "D65"
-msgstr "D65"
-
-#: zp-core/libs/exif/exif.php:801
-msgid "D75"
-msgstr "D75"
-
-#: zp-core/libs/exif/exif.php:803
-msgid "D50"
-msgstr "D50"
-
-#: zp-core/libs/exif/exif.php:805
-msgid "ISO Studio Tungsten"
-msgstr "ISO Studio Tungstène"
-
-#: zp-core/libs/exif/exif.php:820
-msgid "No Flash"
-msgstr "Sans flash"
-
-#: zp-core/libs/exif/exif.php:824
-msgid "Flash, strobe return light not detected"
-msgstr "Flash, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:826
-msgid "Flash, strobe return light detected"
-msgstr "Flash, lumière de retour du flash détectée"
-
-#: zp-core/libs/exif/exif.php:828
-msgid "Compulsory Flash"
-msgstr "Flash obligatoire"
-
-#: zp-core/libs/exif/exif.php:830
-msgid "Compulsory Flash, Return light not detected"
-msgstr "Flash obligatoire, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:832
-msgid "Compulsory Flash, Return light detected"
-msgstr "Flash obligatoire, lumière de retour"
-
-#: zp-core/libs/exif/exif.php:834
-msgid "Flash, Auto-Mode"
-msgstr "Flash, mode automatique"
-
-#: zp-core/libs/exif/exif.php:836
-msgid "Flash, Auto-Mode, Return light not detected"
-msgstr "Flash, mode automatique, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:838
-msgid "Flash, Auto-Mode, Return light detected"
-msgstr "Flash, mode automatique, lumière de retour du flash détectée"
-
-#: zp-core/libs/exif/exif.php:840
-msgid "Red Eye"
-msgstr "Anti yeux-rouges"
-
-#: zp-core/libs/exif/exif.php:842
-msgid "Red Eye, Return light not detected"
-msgstr "Anti-yeux rouges, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:844
-msgid "Red Eye, Return light detected"
-msgstr "Anti-yeux rouges, lumière de retour du flash détectée"
-
-#: zp-core/libs/exif/exif.php:846
-msgid "Red Eye, Compulsory Flash"
-msgstr "Anti-yeux rouges, flash obligatoire"
-
-#: zp-core/libs/exif/exif.php:848
-msgid "Red Eye, Compulsory Flash, Return light not detected"
-msgstr ""
-"Anti-yeux rouges, flash obligatoire, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:850
-msgid "Red Eye, Compulsory Flash, Return light detected"
-msgstr ""
-"Anti-yeux rouges, flash obligatoire, lumière de retour du flash détectée"
-
-#: zp-core/libs/exif/exif.php:852
-msgid "Red Eye, Auto-Mode"
-msgstr "Anti-yeux rouges, mode automatique"
-
-#: zp-core/libs/exif/exif.php:854
-msgid "Red Eye, Auto-Mode, Return light not detected"
-msgstr ""
-"Anti-yeux rouges, mode automatique, lumière de retour du flash non détectée"
-
-#: zp-core/libs/exif/exif.php:856
-msgid "Red Eye, Auto-Mode, Return light detected"
-msgstr ""
-"Anti-yeux rouges, mode automatique, lumière de retour du flash détectée"
-
-#: zp-core/libs/exif/exif.php:864
-msgid "sRGB"
-msgstr "sRVB"
-
-#: zp-core/libs/exif/exif.php:866
-msgid "Uncalibrated"
-msgstr "Non étalonné"
-
-#: zp-core/libs/exif/exif.php:871
-msgid "pixels"
-msgstr "pixels"
-
-#: zp-core/libs/exif/exif.php:875
-msgid "No Compression"
-msgstr "Aucune compression"
-
-#: zp-core/libs/exif/exif.php:877
-msgid "Jpeg Compression"
-msgstr "Compression jpeg"
-
-#: zp-core/libs/exif/exif.php:885
-msgid "Not defined"
-msgstr "Non définie"
-
-#: zp-core/libs/exif/exif.php:887
-msgid "One Chip Color Area Sensor"
-msgstr "Capteur de couleur à une puce"
-
-#: zp-core/libs/exif/exif.php:889
-msgid "Two Chip Color Area Sensor"
-msgstr "Capteur de couleur à deux puces"
-
-#: zp-core/libs/exif/exif.php:891
-msgid "Three Chip Color Area Sensor"
-msgstr "Capteur de couleur à trois puces"
-
-#: zp-core/libs/exif/exif.php:893
-msgid "Color Sequential Area Sensor"
-msgstr "Capteur de couleur de surface séquentiel"
-
-#: zp-core/libs/exif/exif.php:895
-msgid "Trilinear Sensor"
-msgstr "Capteur trilinéaire"
-
-#: zp-core/libs/exif/exif.php:897
-msgid "Color Sequential Linear Sensor"
-msgstr "Capteur de couleur linéaire séquentiel"
-
-#: zp-core/libs/exif/exif.php:905 zp-core/libs/exif/makers/nikon.php:252
-msgid "Monochrome"
-msgstr "Monochrome"
-
-#: zp-core/libs/exif/exif.php:907
-msgid "RGB"
-msgstr "RVB"
-
-#: zp-core/libs/exif/exif.php:909
-msgid "YCbCr"
-msgstr "YCbCr"
-
-#: zp-core/libs/exif/exif.php:947 zp-core/zp-extensions/security-logger.php:132
-msgid "version"
-msgstr "version"
-
-#: zp-core/libs/exif/exif.php:952
-msgid "Digital Still Camera"
-msgstr "Caméra en mode photo"
-
-#: zp-core/libs/exif/exif.php:957
-msgid "Directly Photographed"
-msgstr "Photographié directement"
-
-#: zp-core/libs/exif/exif.php:1002 zp-core/zp-extensions/xmpMetadata.php:761
-msgid "Bulb"
-msgstr "Bulb"
-
-#: zp-core/libs/exif/exif.php:1166
-msgid "The file could not be found."
-msgstr "Le fichier ne peut être trouvé."
-
-#: zp-core/libs/exif/exif.php:1345
-msgid "Could not Find SubIFD"
-msgstr "Impossible de trouver la valeur SubIFD"
-
-#: zp-core/libs/exif/exif.php:1363
-msgid "Illegal size for SubIFD"
-msgstr "Taille non autorisée pour SubIFD"
-
-#: zp-core/libs/exif/exif.php:1384
-msgid "Could not Find IFD1"
-msgstr "Impossible de trouver IFD1"
-
-#: zp-core/libs/exif/exif.php:1402
-msgid "Illegal size for IFD1"
-msgstr "Dimension illégale pour IFD1"
-
-#: zp-core/libs/exif/exif.php:1426
-msgid "Could not Find InteroperabilityIFD"
-msgstr "Impossible de trouver InteroperabilityIFD"
-
-#: zp-core/libs/exif/exif.php:1444
-msgid "Illegal size for InteroperabilityIFD"
-msgstr "Taille non autorisée pour InteroperabilityIFD"
-
-#: zp-core/libs/exif/makers/canon.php:97
-#: zp-core/libs/exif/makers/panasonic.php:212
-msgid "Macro"
-msgstr "Macro"
-
-#: zp-core/libs/exif/makers/canon.php:99 zp-core/libs/exif/makers/canon.php:113
-#: zp-core/libs/exif/makers/canon.php:231
-#: zp-core/libs/exif/makers/canon.php:242
-#: zp-core/libs/exif/makers/canon.php:253
-#: zp-core/libs/exif/makers/fujifilm.php:103
-#: zp-core/libs/exif/makers/nikon.php:262
-#: zp-core/libs/exif/makers/panasonic.php:196
-#: zp-core/libs/exif/makers/panasonic.php:328
-#: zp-core/libs/exif/makers/sanyo.php:70 zp-core/libs/exif/makers/sanyo.php:84
-#: zp-core/zp-extensions/reCaptcha.php:85
-msgid "Normal"
-msgstr "Normal"
-
-#: zp-core/libs/exif/makers/canon.php:106
-#: zp-core/libs/exif/makers/canon.php:124
-#: zp-core/libs/exif/makers/fujifilm.php:161
-#: zp-core/libs/exif/makers/fujifilm.php:170
-#: zp-core/libs/exif/makers/fujifilm.php:188
-#: zp-core/libs/exif/makers/fujifilm.php:220
-#: zp-core/libs/exif/makers/panasonic.php:178
-#: zp-core/libs/exif/makers/panasonic.php:189
-#: zp-core/libs/exif/makers/panasonic.php:258
-#: zp-core/libs/exif/makers/panasonic.php:273
-#: zp-core/libs/exif/makers/panasonic.php:306
-msgid "Off"
-msgstr "Non"
-
-#: zp-core/libs/exif/makers/canon.php:108
-msgid "/10s"
-msgstr "/10s"
-
-#: zp-core/libs/exif/makers/canon.php:115
-msgid "Fine"
-msgstr "Fin"
-
-#: zp-core/libs/exif/makers/canon.php:117
-msgid "Superfine"
-msgstr "Superfin"
-
-#: zp-core/libs/exif/makers/canon.php:126
-#: zp-core/libs/exif/makers/canon.php:267
-#: zp-core/libs/exif/makers/canon.php:295
-#: zp-core/libs/exif/makers/canon.php:416
-#: zp-core/libs/exif/makers/fujifilm.php:114
-#: zp-core/libs/exif/makers/fujifilm.php:157
-#: zp-core/libs/exif/makers/fujifilm.php:179
-#: zp-core/libs/exif/makers/fujifilm.php:197
-#: zp-core/libs/exif/makers/nikon.php:296
-#: zp-core/libs/exif/makers/panasonic.php:142
-#: zp-core/libs/exif/makers/panasonic.php:163
-msgid "Auto"
-msgstr "Auto"
-
-#: zp-core/libs/exif/makers/canon.php:128
-#: zp-core/libs/exif/makers/fujifilm.php:159
-#: zp-core/libs/exif/makers/fujifilm.php:172
-#: zp-core/libs/exif/makers/fujifilm.php:190
-#: zp-core/libs/exif/makers/fujifilm.php:222
-#: zp-core/libs/exif/makers/panasonic.php:187
-msgid "On"
-msgstr "Activé"
-
-#: zp-core/libs/exif/makers/canon.php:130
-msgid "Red Eye Reduction"
-msgstr "Réduction des yeux rouges"
-
-#: zp-core/libs/exif/makers/canon.php:132
-msgid "Slow Synchro"
-msgstr "Synchro lente"
-
-#: zp-core/libs/exif/makers/canon.php:134
-msgid "Auto + Red Eye Reduction"
-msgstr "Automatique + réduction des yeux rouges"
-
-#: zp-core/libs/exif/makers/canon.php:136
-msgid "On + Red Eye Reduction"
-msgstr "Activé + réduction des yeux rouges"
-
-#: zp-core/libs/exif/makers/canon.php:138
-msgid "External Flash"
-msgstr "Flash externe"
-
-#: zp-core/libs/exif/makers/canon.php:145
-msgid "Single/Timer"
-msgstr "Ponctuel/retardateur"
-
-#: zp-core/libs/exif/makers/canon.php:147
-#: zp-core/libs/exif/makers/canon.php:166
-#: zp-core/libs/exif/makers/canon.php:390
-msgid "Continuous"
-msgstr "Continu"
-
-#: zp-core/libs/exif/makers/canon.php:156
-msgid "One-Shot"
-msgstr "Unique"
-
-#: zp-core/libs/exif/makers/canon.php:158
-msgid "AI Servo"
-msgstr "Servo AI"
-
-#: zp-core/libs/exif/makers/canon.php:160
-msgid "AI Focus"
-msgstr "Mise au point AI"
-
-#: zp-core/libs/exif/makers/canon.php:162
-#: zp-core/libs/exif/makers/canon.php:168
-#: zp-core/libs/exif/makers/canon.php:306
-msgid "Manual Focus"
-msgstr "Mise au point manuelle"
-
-#: zp-core/libs/exif/makers/canon.php:164
-#: zp-core/libs/exif/makers/canon.php:388
-msgid "Single"
-msgstr "Ponctuel"
-
-#: zp-core/libs/exif/makers/canon.php:179
-#: zp-core/zp-extensions/GoogleMap.php:131
-msgid "Large"
-msgstr "Grand"
-
-#: zp-core/libs/exif/makers/canon.php:181
-msgid "Medium"
-msgstr "Moyenne"
-
-#: zp-core/libs/exif/makers/canon.php:183
-#: zp-core/zp-extensions/GoogleMap.php:129
-msgid "Small"
-msgstr "Petit"
-
-#: zp-core/libs/exif/makers/canon.php:190
-msgid "Full Auto"
-msgstr "Tout automatique"
-
-#: zp-core/libs/exif/makers/canon.php:196
-msgid "Fast Shutter"
-msgstr "Obturateur rapide"
-
-#: zp-core/libs/exif/makers/canon.php:198
-msgid "Slow Shutter"
-msgstr "Obturateur lent"
-
-#: zp-core/libs/exif/makers/canon.php:200
-#: zp-core/libs/exif/makers/fujifilm.php:205
-msgid "Night"
-msgstr "Nuit"
-
-#: zp-core/libs/exif/makers/canon.php:202
-msgid "Black & White"
-msgstr "Noir et blanc"
-
-#: zp-core/libs/exif/makers/canon.php:204
-#: zp-core/libs/exif/makers/panasonic.php:266
-msgid "Sepia"
-msgstr "Sépia"
-
-#: zp-core/libs/exif/makers/canon.php:208
-msgid "Sport"
-msgstr "Sport"
-
-#: zp-core/libs/exif/makers/canon.php:210
-msgid "Macro/Close-Up"
-msgstr "Macro/de près"
-
-#: zp-core/libs/exif/makers/canon.php:212
-msgid "Pan Focus"
-msgstr "Mise au point panoramique"
-
-#: zp-core/libs/exif/makers/canon.php:222
-msgid "2x"
-msgstr "2x"
-
-#: zp-core/libs/exif/makers/canon.php:224
-msgid "4x"
-msgstr "4x"
-
-#: zp-core/libs/exif/makers/canon.php:233
-#: zp-core/libs/exif/makers/canon.php:244
-#: zp-core/libs/exif/makers/canon.php:255
-#: zp-core/libs/exif/makers/panasonic.php:129
-#: zp-core/libs/exif/makers/panasonic.php:288
-#: zp-core/libs/exif/makers/panasonic.php:299
-#: zp-core/libs/exif/makers/sanyo.php:77
-msgid "High"
-msgstr "Élevé"
-
-#: zp-core/libs/exif/makers/canon.php:235
-#: zp-core/libs/exif/makers/canon.php:246
-#: zp-core/libs/exif/makers/canon.php:257
-#: zp-core/libs/exif/makers/panasonic.php:286
-#: zp-core/libs/exif/makers/panasonic.php:297
-msgid "Low"
-msgstr "Faible"
-
-#: zp-core/libs/exif/makers/canon.php:269
-msgid "50"
-msgstr "50"
-
-#: zp-core/libs/exif/makers/canon.php:271
-msgid "100"
-msgstr "100"
-
-#: zp-core/libs/exif/makers/canon.php:273
-msgid "200"
-msgstr "200"
-
-#: zp-core/libs/exif/makers/canon.php:275
-msgid "400"
-msgstr "400"
-
-#: zp-core/libs/exif/makers/canon.php:282
-msgid "Evaluative"
-msgstr "Évaluatif"
-
-#: zp-core/libs/exif/makers/canon.php:286
-msgid "Center-weighted"
-msgstr "Mesure au centre"
-
-#: zp-core/libs/exif/makers/canon.php:297
-msgid "Close-up (Macro)"
-msgstr "Photo de près (macro)"
-
-#: zp-core/libs/exif/makers/canon.php:299
-msgid "Locked (Pan Mode)"
-msgstr "Verrouillé (mode panorama)"
-
-#: zp-core/libs/exif/makers/canon.php:308
-msgid "Auto Selected"
-msgstr "Auto-sélectionné"
-
-#: zp-core/libs/exif/makers/canon.php:310
-#: zp-core/libs/exif/makers/canon.php:448
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:158
-msgid "Right"
-msgstr "Droite"
-
-#: zp-core/libs/exif/makers/canon.php:312
-#: zp-core/libs/exif/makers/canon.php:451
-#: zp-core/libs/exif/makers/nikon.php:339
-msgid "Center"
-msgstr "Centré"
-
-#: zp-core/libs/exif/makers/canon.php:314
-#: zp-core/libs/exif/makers/canon.php:454
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:159
-msgid "Left"
-msgstr "Gauche"
-
-#: zp-core/libs/exif/makers/canon.php:321
-msgid "EasyShoot"
-msgstr "Mode « EasyShoot »"
-
-#: zp-core/libs/exif/makers/canon.php:325
-msgid "Tv"
-msgstr "Tv"
-
-#: zp-core/libs/exif/makers/canon.php:327
-msgid "Av"
-msgstr "Av"
-
-#: zp-core/libs/exif/makers/canon.php:331
-msgid "Auto-DEP"
-msgstr "Mode DEP automatique"
-
-#: zp-core/libs/exif/makers/canon.php:355
-msgid "Flash Did Not Fire"
-msgstr "Le flash ne s’est pas déclenché"
-
-#: zp-core/libs/exif/makers/canon.php:365
-msgid "External E-TTL"
-msgstr "E-TTL externe"
-
-#: zp-core/libs/exif/makers/canon.php:368
-msgid "Internal Flash"
-msgstr "Flash interne"
-
-#: zp-core/libs/exif/makers/canon.php:371
-msgid "FP sync used"
-msgstr "Synchronisation sur plan focal"
-
-#: zp-core/libs/exif/makers/canon.php:374
-msgid "2nd(rear)-curtain sync used"
-msgstr "Synchro sur la fermeture de l’obturateur (2e rideau)"
-
-#: zp-core/libs/exif/makers/canon.php:377
-msgid "1st curtain sync"
-msgstr "Synchro sur l’ouverture de l’obturateur (1er rideau)"
-
-#: zp-core/libs/exif/makers/canon.php:418
-msgid "Sunny"
-msgstr "Ensoleillé"
-
-#: zp-core/libs/exif/makers/canon.php:420
-#: zp-core/libs/exif/makers/fujifilm.php:118
-#: zp-core/libs/exif/makers/nikon.php:306
-#: zp-core/libs/exif/makers/panasonic.php:146
-msgid "Cloudy"
-msgstr "Nuageux"
-
-#: zp-core/libs/exif/makers/canon.php:457
-msgid "12"
-msgstr "12"
-
-#: zp-core/libs/exif/makers/canon.php:460
-msgid "13"
-msgstr "13"
-
-#: zp-core/libs/exif/makers/canon.php:463
-msgid "14"
-msgstr "14"
-
-#: zp-core/libs/exif/makers/canon.php:466
-msgid "15"
-msgstr "15"
-
-#: zp-core/libs/exif/makers/fujifilm.php:99
-#: zp-core/libs/exif/makers/fujifilm.php:101
-msgid "Soft"
-msgstr "Doux"
-
-#: zp-core/libs/exif/makers/fujifilm.php:105
-#: zp-core/libs/exif/makers/fujifilm.php:107
-msgid "Hard"
-msgstr "Dure"
-
-#: zp-core/libs/exif/makers/fujifilm.php:120
-msgid "DaylightColor-fluorescence"
-msgstr "Fluorescent lumière du jour"
-
-#: zp-core/libs/exif/makers/fujifilm.php:122
-msgid "DaywhiteColor-fluorescence"
-msgstr "Fluorescent blanc jour"
-
-#: zp-core/libs/exif/makers/fujifilm.php:124
-msgid "White-fluorescence"
-msgstr "Fluorescent blanc"
-
-#: zp-core/libs/exif/makers/fujifilm.php:126
-#: zp-core/libs/exif/makers/nikon.php:302
-msgid "Incandescence"
-msgstr "Incandescent"
-
-#: zp-core/libs/exif/makers/fujifilm.php:135
-msgid "Chroma Saturation Normal(STD)"
-msgstr "Saturation chromatique normale (STD)"
-
-#: zp-core/libs/exif/makers/fujifilm.php:137
-msgid "Chroma Saturation High"
-msgstr "Saturation chromatique élevée"
-
-#: zp-core/libs/exif/makers/fujifilm.php:139
-msgid "Chroma Saturation Low(ORG)"
-msgstr "Saturation chromatique faible (ORG)"
-
-#: zp-core/libs/exif/makers/fujifilm.php:141
-#: zp-core/libs/exif/makers/fujifilm.php:152
-#: zp-core/libs/exif/makers/fujifilm.php:165
-#: zp-core/libs/exif/makers/fujifilm.php:174
-#: zp-core/libs/exif/makers/fujifilm.php:183
-#: zp-core/libs/exif/makers/fujifilm.php:192
-#: zp-core/libs/exif/makers/fujifilm.php:215
-#: zp-core/libs/exif/makers/fujifilm.php:224
-#: zp-core/libs/exif/makers/fujifilm.php:233
-#: zp-core/libs/exif/makers/fujifilm.php:242
-#: zp-core/libs/exif/makers/fujifilm.php:251
-msgid "Unknown: "
-msgstr "Inconnu : "
-
-#: zp-core/libs/exif/makers/fujifilm.php:146
-msgid "Contrast Normal(STD)"
-msgstr "Contraste normal (STD)"
-
-#: zp-core/libs/exif/makers/fujifilm.php:148
-msgid "Contrast High(HARD)"
-msgstr "Contraste élevé"
-
-#: zp-core/libs/exif/makers/fujifilm.php:150
-msgid "Contrast Low(ORG)"
-msgstr "Contraste faible (ORG)"
-
-#: zp-core/libs/exif/makers/fujifilm.php:163
-msgid "Red-Eye Reduction"
-msgstr "Anti-yeux rouges"
-
-#: zp-core/libs/exif/makers/fujifilm.php:203
-#: zp-core/libs/exif/makers/panasonic.php:202
-msgid "Sports"
-msgstr "Sports"
-
-#: zp-core/libs/exif/makers/fujifilm.php:207
-msgid "Program AE"
-msgstr "Auto-exposition programmée"
-
-#: zp-core/libs/exif/makers/fujifilm.php:209
-msgid "Aperture Priority AE"
-msgstr "Priorité à l’ouverture AE"
-
-#: zp-core/libs/exif/makers/fujifilm.php:213
-msgid "Manual Exposure"
-msgstr "Exposition manuelle"
-
-#: zp-core/libs/exif/makers/fujifilm.php:229
-msgid "No Warning"
-msgstr "Pas d’alerte"
-
-#: zp-core/libs/exif/makers/fujifilm.php:231
-msgid "Warning"
-msgstr "Avertissement"
-
-#: zp-core/libs/exif/makers/fujifilm.php:238
-msgid "Auto Focus Good"
-msgstr "Mise au point automatique correcte"
-
-#: zp-core/libs/exif/makers/fujifilm.php:240
-msgid "Out of Focus"
-msgstr "Hors foyer"
-
-#: zp-core/libs/exif/makers/fujifilm.php:247
-msgid "AE Good"
-msgstr "Auto-exposition correcte"
-
-#: zp-core/libs/exif/makers/fujifilm.php:249
-msgid "Over Exposure"
-msgstr "Sur-exposition"
-
-#: zp-core/libs/exif/makers/nikon.php:51
-msgid "Converter"
-msgstr "Lentille additionnelle"
-
-#: zp-core/libs/exif/makers/nikon.php:230
-msgid "VGA Basic"
-msgstr "VGA de base"
-
-#: zp-core/libs/exif/makers/nikon.php:232
-msgid "VGA Normal"
-msgstr "VGA normal"
-
-#: zp-core/libs/exif/makers/nikon.php:234
-msgid "VGA Fine"
-msgstr "VGA fin"
-
-#: zp-core/libs/exif/makers/nikon.php:236
-msgid "SXGA Basic"
-msgstr "SXGA de base"
-
-#: zp-core/libs/exif/makers/nikon.php:238
-msgid "SXGA Normal"
-msgstr "SXGA normal"
-
-#: zp-core/libs/exif/makers/nikon.php:240
-msgid "SXGA Fine"
-msgstr "SWGA fin"
-
-#: zp-core/libs/exif/makers/nikon.php:250
-msgid "Color"
-msgstr "Couleur"
-
-#: zp-core/libs/exif/makers/nikon.php:264
-msgid "Bright+"
-msgstr "Luminosité+"
-
-#: zp-core/libs/exif/makers/nikon.php:266
-msgid "Bright-"
-msgstr "Luminosité-"
-
-#: zp-core/libs/exif/makers/nikon.php:268
-msgid "Contrast+"
-msgstr "Constraste+"
-
-#: zp-core/libs/exif/makers/nikon.php:270
-msgid "Contrast-"
-msgstr "Constraste-"
-
-#: zp-core/libs/exif/makers/nikon.php:298
-msgid "Preset"
-msgstr "Pré-réglage"
-
-#: zp-core/libs/exif/makers/nikon.php:304
-msgid "Fluorescence"
-msgstr "Fluorescent"
-
-#: zp-core/libs/exif/makers/nikon.php:308
-msgid "SpeedLight"
-msgstr "Réglage SpeedLight"
-
-#: zp-core/libs/exif/makers/nikon.php:320
-msgid "Fisheye"
-msgstr "Fisheye"
-
-#: zp-core/libs/exif/makers/nikon.php:363
-msgid "AF non D"
-msgstr "Auto-focus sans mesure de distance"
-
-#: zp-core/libs/exif/makers/nikon.php:384
-msgid "Did Not Fire"
-msgstr "Ne s’est pas déclenché"
-
-#: zp-core/libs/exif/makers/nikon.php:388
-msgid "External"
-msgstr "Externe"
-
-#: zp-core/libs/exif/makers/nikon.php:390
-msgid "On Camera"
-msgstr "Sur l’appareil"
-
-#: zp-core/libs/exif/makers/panasonic.php:111
-msgid "3-area-focusing (High speed)"
-msgstr "Mise au point 3 zones (haute vitesse)"
-
-#: zp-core/libs/exif/makers/panasonic.php:113
-msgid "1-area-focusing (High speed)"
-msgstr "Mise au point 1 zone (haute vitesse)"
-
-#: zp-core/libs/exif/makers/panasonic.php:115
-msgid "1-area-focusing"
-msgstr "Mise au point 1 zone"
-
-#: zp-core/libs/exif/makers/panasonic.php:117
-msgid "Spot-focusing"
-msgstr "Mise au point ponctuelle"
-
-#: zp-core/libs/exif/makers/panasonic.php:131
-#: zp-core/libs/exif/makers/panasonic.php:284
-#: zp-core/libs/exif/makers/panasonic.php:295
-msgid "Standard"
-msgstr "Standard"
-
-#: zp-core/libs/exif/makers/panasonic.php:133
-msgid "Very High"
-msgstr "Très élevée"
-
-#: zp-core/libs/exif/makers/panasonic.php:135
-msgid "RAW"
-msgstr "RAW"
-
-#: zp-core/libs/exif/makers/panasonic.php:148
-msgid "Halogen"
-msgstr "halogène"
-
-#: zp-core/libs/exif/makers/panasonic.php:154
-#: zp-core/libs/exif/makers/panasonic.php:264
-msgid "Black and White"
-msgstr "Noir et blanc"
-
-#: zp-core/libs/exif/makers/panasonic.php:167
-msgid "Auto, Focus button"
-msgstr "Mode automatique, mise au point au bouton"
-
-#: zp-core/libs/exif/makers/panasonic.php:169
-msgid "Auto, Continuous"
-msgstr "Automatique, continu"
-
-#: zp-core/libs/exif/makers/panasonic.php:176
-msgid "Mode 1"
-msgstr "Mode 1"
-
-#: zp-core/libs/exif/makers/panasonic.php:180
-msgid "Mode 2"
-msgstr "Mode 2"
-
-#: zp-core/libs/exif/makers/panasonic.php:200
-msgid "Scenery"
-msgstr "Mode scène"
-
-#: zp-core/libs/exif/makers/panasonic.php:204
-msgid "Night Portrait"
-msgstr "Portrait de nuit"
-
-#: zp-core/libs/exif/makers/panasonic.php:216
-msgid "Panning"
-msgstr "Balayage de panorama"
-
-#: zp-core/libs/exif/makers/panasonic.php:218
-msgid "Simple"
-msgstr "Simple"
-
-#: zp-core/libs/exif/makers/panasonic.php:220
-msgid "Fireworks"
-msgstr "Feu d’artifice"
-
-#: zp-core/libs/exif/makers/panasonic.php:222
-msgid "Party"
-msgstr "Soirée"
-
-#: zp-core/libs/exif/makers/panasonic.php:224
-msgid "Snow"
-msgstr "Neige"
-
-#: zp-core/libs/exif/makers/panasonic.php:226
-msgid "Night Scenery"
-msgstr "Scène de nuit"
-
-#: zp-core/libs/exif/makers/panasonic.php:228
-msgid "Food"
-msgstr "Nourriture"
-
-#: zp-core/libs/exif/makers/panasonic.php:230
-msgid "Baby"
-msgstr "Bébé"
-
-#: zp-core/libs/exif/makers/panasonic.php:232
-msgid "High Sensitivity"
-msgstr "Haute sensibilité"
-
-#: zp-core/libs/exif/makers/panasonic.php:234
-msgid "Underwater"
-msgstr "Sous l’eau"
-
-#: zp-core/libs/exif/makers/panasonic.php:236
-msgid "Pet"
-msgstr "Animal"
-
-#: zp-core/libs/exif/makers/panasonic.php:243
-msgid "Yes"
-msgstr "Oui"
-
-#: zp-core/libs/exif/makers/panasonic.php:245
-#: zp-core/zp-extensions/rating.php:118
-msgid "No"
-msgstr "Non"
-
-#: zp-core/libs/exif/makers/panasonic.php:260
-msgid "Warm"
-msgstr "Chaud"
-
-#: zp-core/libs/exif/makers/panasonic.php:262
-msgid "Cool"
-msgstr "Froid"
-
-#: zp-core/libs/exif/makers/panasonic.php:275
-msgid "Low/High Quality"
-msgstr "Basse/Haute Qualité"
-
-#: zp-core/libs/exif/makers/panasonic.php:277
-msgid "Infinite"
-msgstr "Infini"
-
-#: zp-core/libs/exif/makers/panasonic.php:308
-msgid "10s"
-msgstr "10s"
-
-#: zp-core/libs/exif/makers/panasonic.php:310
-msgid "2s"
-msgstr "2s"
-
-#: zp-core/libs/exif/makers/panasonic.php:319
-msgid "Rotate 90 CW"
-msgstr "Rotation à 90°"
-
-#: zp-core/libs/exif/makers/panasonic.php:321
-msgid "Rotate 270 CW"
-msgstr "Rotation à 270°"
-
-#: zp-core/libs/exif/makers/panasonic.php:330
-msgid "Natural"
-msgstr "Naturel"
 
 #: zp-core/license.php:37
 msgid "Zenphoto License agreement"
@@ -14189,6 +13068,14 @@ msgstr "Mode d’affichage des sélecteurs de type de carte."
 msgid "Zoom controls"
 msgstr "Sélecteurs d’agrandissement"
 
+#: zp-core/zp-extensions/GoogleMap.php:129
+msgid "Small"
+msgstr "Petit"
+
+#: zp-core/zp-extensions/GoogleMap.php:131
+msgid "Large"
+msgstr "Grand"
+
 #: zp-core/zp-extensions/GoogleMap.php:132
 msgid "Display options for the Zoom control."
 msgstr "Paramètres d’affichage du sélecteur d’agrandissement."
@@ -15688,6 +14575,7 @@ msgstr ""
 "l’UE."
 
 #: zp-core/zp-extensions/comment_form.php:190
+#: zp-core/zp-extensions/contact_form.php:185
 msgid "Autocomplete"
 msgstr "Auto-complétion"
 
@@ -16402,10 +15290,6 @@ msgstr "Téléphone"
 #: zp-core/zp-extensions/contact_form.php:180
 msgid "Phone number"
 msgstr "Numéro de téléphone"
-
-#: zp-core/zp-extensions/contact_form.php:185
-msgid "Automcomplete"
-msgstr "Auto-complétion"
 
 #: zp-core/zp-extensions/contact_form.php:257
 msgid "a title"
@@ -20962,6 +19846,10 @@ msgstr "Permet d’activer le contrôle des votes sur les images individuelles."
 msgid "Recast vote"
 msgstr "Changer son vote"
 
+#: zp-core/zp-extensions/rating.php:118
+msgid "No"
+msgstr "Non"
+
 #: zp-core/zp-extensions/rating.php:119
 msgid "Show rating"
 msgstr "Afficher les votes"
@@ -21111,6 +19999,10 @@ msgstr ""
 #: zp-core/zp-extensions/reCaptcha.php:80
 msgid "Widget Size:"
 msgstr "Taille du widget :"
+
+#: zp-core/zp-extensions/reCaptcha.php:85
+msgid "Normal"
+msgstr "Normal"
 
 #: zp-core/zp-extensions/reCaptcha.php:86
 msgid "Compact"
@@ -21965,8 +20857,8 @@ msgid ""
 "Show the top <em>Threshold</em> criteria of successful searches. (Searches "
 "which returned at least one result.)"
 msgstr ""
-"Affiche le critère de <em>Seuil haut</em> pour les recherches "
-"« réussies » (les recherches ayant retourné au moins un résultat)."
+"Affiche le critère de <em>Seuil haut</em> pour les recherches « réussies » "
+"(les recherches ayant retourné au moins un résultat)."
 
 #: zp-core/zp-extensions/search_statistics.php:61
 msgid "Threshold (failed)"
@@ -22129,6 +21021,10 @@ msgstr "Log téléchargé"
 #: zp-core/zp-extensions/security-logger.php:131
 msgid "Install"
 msgstr "Installation"
+
+#: zp-core/zp-extensions/security-logger.php:132
+msgid "version"
+msgstr "version"
 
 #: zp-core/zp-extensions/security-logger.php:138
 msgid "Setup run request skipped."
@@ -23453,6 +22349,14 @@ msgstr "Habillage du texte"
 msgid "No wrap"
 msgstr "Aucun habillage"
 
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:158
+msgid "Right"
+msgstr "Droite"
+
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:159
+msgid "Left"
+msgstr "Gauche"
+
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:176
 msgid ""
 "This provides access to your images and albums (select from the "
@@ -24296,6 +23200,10 @@ msgid "Check this to export the metadata in all activated languages."
 msgstr ""
 "Cochez cette case pour exporter les métadonnées dans toutes les langues "
 "actives."
+
+#: zp-core/zp-extensions/xmpMetadata.php:761
+msgid "Bulb"
+msgstr "Bulb"
 
 #: zp-core/zp-extensions/xmpMetadata.php:1170
 msgid "Metadata exported"
@@ -25478,6 +24386,709 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid "1: Horizontal (normal)"
+#~ msgstr "1 : Horizontal (normal)"
+
+#~ msgid "2: Mirror horizontal"
+#~ msgstr "2 : Miroir horizontal"
+
+#~ msgid "3: Rotate 180 CW"
+#~ msgstr "3 : Rotation de 180° horaire"
+
+#~ msgid "4: Mirror vertical"
+#~ msgstr "4 : Miroir vertical"
+
+#~ msgid "5: Mirror horizontal and rotate 270 CW"
+#~ msgstr "5 : Miroir horizontal et rotation de 270° horaire"
+
+#~ msgid "6: Rotate 90 CW"
+#~ msgstr "6 : Rotation de 90° horaire"
+
+#~ msgid "7: Mirror horizontal and rotate 90 CW"
+#~ msgstr "7 : Miroir horizontal et rotation de 90° horaire"
+
+#~ msgid "8: Rotate 270 CW"
+#~ msgstr "8 : Rotation de 270° horaire"
+
+#, php-format
+#~ msgid "%d: Unknown"
+#~ msgstr "%d : inconnu"
+
+#~ msgid "No Unit"
+#~ msgstr "Pas d’unité"
+
+#~ msgid "Inch"
+#~ msgstr "Pouce"
+
+#~ msgid "Centimeter"
+#~ msgstr "Centimètre"
+
+#~ msgid "Millimeter"
+#~ msgstr "Millimètre"
+
+#~ msgid "Micrometer"
+#~ msgstr "Micromètre"
+
+#~ msgid "Center of Pixel Array"
+#~ msgstr "Centre du tableau de pixels"
+
+#~ msgid "Datum Point"
+#~ msgstr "Point de référence"
+
+#~ msgid "Program"
+#~ msgstr "Programmée"
+
+#~ msgid "Aperture Priority"
+#~ msgstr "Priorité à l’ouverture"
+
+#~ msgid "Shutter Priority"
+#~ msgstr "Priorité à la vitesse"
+
+#~ msgid "Program Creative"
+#~ msgstr "Programme de priorité à la création"
+
+#~ msgid "Program Action"
+#~ msgstr "Programme de priorité à l’action"
+
+#~ msgid "Portrait"
+#~ msgstr "Portrait"
+
+#~ msgid "Landscape"
+#~ msgstr "Paysage"
+
+#~ msgid "Standard Output Sensitivity"
+#~ msgstr "Sensibilité normale de sortie"
+
+#~ msgid "Recommended Exposure Index"
+#~ msgstr "Indice d’exposition recommandé"
+
+#~ msgid "ISO Speed"
+#~ msgstr "Sensibilité ISO"
+
+#~ msgid "Standard Output Sensitivity and Recommended Exposure Index"
+#~ msgstr "Sensibilité normale de sortie et indice d’exposition recommandé"
+
+#~ msgid "Standard Output Sensitivity and ISO Speed"
+#~ msgstr "Sensibilité normale de sortie et sensibilité ISO"
+
+#~ msgid "Recommended Exposure Index and ISO Speed"
+#~ msgstr "Indice d’exposition recommandé et sensibilité ISO"
+
+#~ msgid ""
+#~ "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
+#~ msgstr ""
+#~ "Sensibilité normale de sortie, indice d’exposition recommandé et "
+#~ "sensibilité ISO"
+
+#~ msgid "Average"
+#~ msgstr "Moyenne"
+
+#~ msgid "Center Weighted Average"
+#~ msgstr "Mesure pondérée au centre"
+
+#~ msgid "Spot"
+#~ msgstr "Point"
+
+#~ msgid "Multi-Spot"
+#~ msgstr "Multi-point"
+
+#~ msgid "Pattern"
+#~ msgstr "Motif"
+
+#~ msgid "Partial"
+#~ msgstr "Partiel"
+
+#~ msgid "Other"
+#~ msgstr "Autre"
+
+#~ msgid "Daylight"
+#~ msgstr "Lumière du jour"
+
+#~ msgid "Fluorescent"
+#~ msgstr "Fluorescent"
+
+#~ msgid "Tungsten"
+#~ msgstr "Éclairage au tungstène"
+
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#~ msgid "Standard Light A"
+#~ msgstr "Lumière standard A"
+
+#~ msgid "Standard Light B"
+#~ msgstr "Lumière standard B"
+
+#~ msgid "Standard Light C"
+#~ msgstr "Lumière standard C"
+
+#~ msgid "D55"
+#~ msgstr "D55"
+
+#~ msgid "D65"
+#~ msgstr "D65"
+
+#~ msgid "D75"
+#~ msgstr "D75"
+
+#~ msgid "D50"
+#~ msgstr "D50"
+
+#~ msgid "ISO Studio Tungsten"
+#~ msgstr "ISO Studio Tungstène"
+
+#~ msgid "No Flash"
+#~ msgstr "Sans flash"
+
+#~ msgid "Flash, strobe return light not detected"
+#~ msgstr "Flash, lumière de retour du flash non détectée"
+
+#~ msgid "Flash, strobe return light detected"
+#~ msgstr "Flash, lumière de retour du flash détectée"
+
+#~ msgid "Compulsory Flash"
+#~ msgstr "Flash obligatoire"
+
+#~ msgid "Compulsory Flash, Return light not detected"
+#~ msgstr "Flash obligatoire, lumière de retour du flash non détectée"
+
+#~ msgid "Compulsory Flash, Return light detected"
+#~ msgstr "Flash obligatoire, lumière de retour"
+
+#~ msgid "Flash, Auto-Mode"
+#~ msgstr "Flash, mode automatique"
+
+#~ msgid "Flash, Auto-Mode, Return light not detected"
+#~ msgstr "Flash, mode automatique, lumière de retour du flash non détectée"
+
+#~ msgid "Flash, Auto-Mode, Return light detected"
+#~ msgstr "Flash, mode automatique, lumière de retour du flash détectée"
+
+#~ msgid "Red Eye"
+#~ msgstr "Anti yeux-rouges"
+
+#~ msgid "Red Eye, Return light not detected"
+#~ msgstr "Anti-yeux rouges, lumière de retour du flash non détectée"
+
+#~ msgid "Red Eye, Return light detected"
+#~ msgstr "Anti-yeux rouges, lumière de retour du flash détectée"
+
+#~ msgid "Red Eye, Compulsory Flash"
+#~ msgstr "Anti-yeux rouges, flash obligatoire"
+
+#~ msgid "Red Eye, Compulsory Flash, Return light not detected"
+#~ msgstr ""
+#~ "Anti-yeux rouges, flash obligatoire, lumière de retour du flash non "
+#~ "détectée"
+
+#~ msgid "Red Eye, Compulsory Flash, Return light detected"
+#~ msgstr ""
+#~ "Anti-yeux rouges, flash obligatoire, lumière de retour du flash détectée"
+
+#~ msgid "Red Eye, Auto-Mode"
+#~ msgstr "Anti-yeux rouges, mode automatique"
+
+#~ msgid "Red Eye, Auto-Mode, Return light not detected"
+#~ msgstr ""
+#~ "Anti-yeux rouges, mode automatique, lumière de retour du flash non "
+#~ "détectée"
+
+#~ msgid "Red Eye, Auto-Mode, Return light detected"
+#~ msgstr ""
+#~ "Anti-yeux rouges, mode automatique, lumière de retour du flash détectée"
+
+#~ msgid "sRGB"
+#~ msgstr "sRVB"
+
+#~ msgid "Uncalibrated"
+#~ msgstr "Non étalonné"
+
+#~ msgid "pixels"
+#~ msgstr "pixels"
+
+#~ msgid "No Compression"
+#~ msgstr "Aucune compression"
+
+#~ msgid "Jpeg Compression"
+#~ msgstr "Compression jpeg"
+
+#~ msgid "Not defined"
+#~ msgstr "Non définie"
+
+#~ msgid "One Chip Color Area Sensor"
+#~ msgstr "Capteur de couleur à une puce"
+
+#~ msgid "Two Chip Color Area Sensor"
+#~ msgstr "Capteur de couleur à deux puces"
+
+#~ msgid "Three Chip Color Area Sensor"
+#~ msgstr "Capteur de couleur à trois puces"
+
+#~ msgid "Color Sequential Area Sensor"
+#~ msgstr "Capteur de couleur de surface séquentiel"
+
+#~ msgid "Trilinear Sensor"
+#~ msgstr "Capteur trilinéaire"
+
+#~ msgid "Color Sequential Linear Sensor"
+#~ msgstr "Capteur de couleur linéaire séquentiel"
+
+#~ msgid "Monochrome"
+#~ msgstr "Monochrome"
+
+#~ msgid "RGB"
+#~ msgstr "RVB"
+
+#~ msgid "YCbCr"
+#~ msgstr "YCbCr"
+
+#~ msgid "Digital Still Camera"
+#~ msgstr "Caméra en mode photo"
+
+#~ msgid "Directly Photographed"
+#~ msgstr "Photographié directement"
+
+#~ msgid "The file could not be found."
+#~ msgstr "Le fichier ne peut être trouvé."
+
+#~ msgid "Could not Find SubIFD"
+#~ msgstr "Impossible de trouver la valeur SubIFD"
+
+#~ msgid "Illegal size for SubIFD"
+#~ msgstr "Taille non autorisée pour SubIFD"
+
+#~ msgid "Could not Find IFD1"
+#~ msgstr "Impossible de trouver IFD1"
+
+#~ msgid "Illegal size for IFD1"
+#~ msgstr "Dimension illégale pour IFD1"
+
+#~ msgid "Could not Find InteroperabilityIFD"
+#~ msgstr "Impossible de trouver InteroperabilityIFD"
+
+#~ msgid "Illegal size for InteroperabilityIFD"
+#~ msgstr "Taille non autorisée pour InteroperabilityIFD"
+
+#~ msgid "Macro"
+#~ msgstr "Macro"
+
+#~ msgid "Off"
+#~ msgstr "Non"
+
+#~ msgid "/10s"
+#~ msgstr "/10s"
+
+#~ msgid "Fine"
+#~ msgstr "Fin"
+
+#~ msgid "Superfine"
+#~ msgstr "Superfin"
+
+#~ msgid "Auto"
+#~ msgstr "Auto"
+
+#~ msgid "On"
+#~ msgstr "Activé"
+
+#~ msgid "Red Eye Reduction"
+#~ msgstr "Réduction des yeux rouges"
+
+#~ msgid "Slow Synchro"
+#~ msgstr "Synchro lente"
+
+#~ msgid "Auto + Red Eye Reduction"
+#~ msgstr "Automatique + réduction des yeux rouges"
+
+#~ msgid "On + Red Eye Reduction"
+#~ msgstr "Activé + réduction des yeux rouges"
+
+#~ msgid "External Flash"
+#~ msgstr "Flash externe"
+
+#~ msgid "Single/Timer"
+#~ msgstr "Ponctuel/retardateur"
+
+#~ msgid "Continuous"
+#~ msgstr "Continu"
+
+#~ msgid "One-Shot"
+#~ msgstr "Unique"
+
+#~ msgid "AI Servo"
+#~ msgstr "Servo AI"
+
+#~ msgid "AI Focus"
+#~ msgstr "Mise au point AI"
+
+#~ msgid "Manual Focus"
+#~ msgstr "Mise au point manuelle"
+
+#~ msgid "Single"
+#~ msgstr "Ponctuel"
+
+#~ msgid "Medium"
+#~ msgstr "Moyenne"
+
+#~ msgid "Full Auto"
+#~ msgstr "Tout automatique"
+
+#~ msgid "Fast Shutter"
+#~ msgstr "Obturateur rapide"
+
+#~ msgid "Slow Shutter"
+#~ msgstr "Obturateur lent"
+
+#~ msgid "Night"
+#~ msgstr "Nuit"
+
+#~ msgid "Black & White"
+#~ msgstr "Noir et blanc"
+
+#~ msgid "Sepia"
+#~ msgstr "Sépia"
+
+#~ msgid "Sport"
+#~ msgstr "Sport"
+
+#~ msgid "Macro/Close-Up"
+#~ msgstr "Macro/de près"
+
+#~ msgid "Pan Focus"
+#~ msgstr "Mise au point panoramique"
+
+#~ msgid "2x"
+#~ msgstr "2x"
+
+#~ msgid "4x"
+#~ msgstr "4x"
+
+#~ msgid "High"
+#~ msgstr "Élevé"
+
+#~ msgid "Low"
+#~ msgstr "Faible"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "400"
+#~ msgstr "400"
+
+#~ msgid "Evaluative"
+#~ msgstr "Évaluatif"
+
+#~ msgid "Center-weighted"
+#~ msgstr "Mesure au centre"
+
+#~ msgid "Close-up (Macro)"
+#~ msgstr "Photo de près (macro)"
+
+#~ msgid "Locked (Pan Mode)"
+#~ msgstr "Verrouillé (mode panorama)"
+
+#~ msgid "Auto Selected"
+#~ msgstr "Auto-sélectionné"
+
+#~ msgid "Center"
+#~ msgstr "Centré"
+
+#~ msgid "EasyShoot"
+#~ msgstr "Mode « EasyShoot »"
+
+#~ msgid "Tv"
+#~ msgstr "Tv"
+
+#~ msgid "Av"
+#~ msgstr "Av"
+
+#~ msgid "Auto-DEP"
+#~ msgstr "Mode DEP automatique"
+
+#~ msgid "Flash Did Not Fire"
+#~ msgstr "Le flash ne s’est pas déclenché"
+
+#~ msgid "External E-TTL"
+#~ msgstr "E-TTL externe"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Flash interne"
+
+#~ msgid "FP sync used"
+#~ msgstr "Synchronisation sur plan focal"
+
+#~ msgid "2nd(rear)-curtain sync used"
+#~ msgstr "Synchro sur la fermeture de l’obturateur (2e rideau)"
+
+#~ msgid "1st curtain sync"
+#~ msgstr "Synchro sur l’ouverture de l’obturateur (1er rideau)"
+
+#~ msgid "Sunny"
+#~ msgstr "Ensoleillé"
+
+#~ msgid "Cloudy"
+#~ msgstr "Nuageux"
+
+#~ msgid "12"
+#~ msgstr "12"
+
+#~ msgid "13"
+#~ msgstr "13"
+
+#~ msgid "14"
+#~ msgstr "14"
+
+#~ msgid "15"
+#~ msgstr "15"
+
+#~ msgid "Soft"
+#~ msgstr "Doux"
+
+#~ msgid "Hard"
+#~ msgstr "Dure"
+
+#~ msgid "DaylightColor-fluorescence"
+#~ msgstr "Fluorescent lumière du jour"
+
+#~ msgid "DaywhiteColor-fluorescence"
+#~ msgstr "Fluorescent blanc jour"
+
+#~ msgid "White-fluorescence"
+#~ msgstr "Fluorescent blanc"
+
+#~ msgid "Incandescence"
+#~ msgstr "Incandescent"
+
+#~ msgid "Chroma Saturation Normal(STD)"
+#~ msgstr "Saturation chromatique normale (STD)"
+
+#~ msgid "Chroma Saturation High"
+#~ msgstr "Saturation chromatique élevée"
+
+#~ msgid "Chroma Saturation Low(ORG)"
+#~ msgstr "Saturation chromatique faible (ORG)"
+
+#~ msgid "Unknown: "
+#~ msgstr "Inconnu : "
+
+#~ msgid "Contrast Normal(STD)"
+#~ msgstr "Contraste normal (STD)"
+
+#~ msgid "Contrast High(HARD)"
+#~ msgstr "Contraste élevé"
+
+#~ msgid "Contrast Low(ORG)"
+#~ msgstr "Contraste faible (ORG)"
+
+#~ msgid "Red-Eye Reduction"
+#~ msgstr "Anti-yeux rouges"
+
+#~ msgid "Sports"
+#~ msgstr "Sports"
+
+#~ msgid "Program AE"
+#~ msgstr "Auto-exposition programmée"
+
+#~ msgid "Aperture Priority AE"
+#~ msgstr "Priorité à l’ouverture AE"
+
+#~ msgid "Manual Exposure"
+#~ msgstr "Exposition manuelle"
+
+#~ msgid "No Warning"
+#~ msgstr "Pas d’alerte"
+
+#~ msgid "Warning"
+#~ msgstr "Avertissement"
+
+#~ msgid "Auto Focus Good"
+#~ msgstr "Mise au point automatique correcte"
+
+#~ msgid "Out of Focus"
+#~ msgstr "Hors foyer"
+
+#~ msgid "AE Good"
+#~ msgstr "Auto-exposition correcte"
+
+#~ msgid "Over Exposure"
+#~ msgstr "Sur-exposition"
+
+#~ msgid "Converter"
+#~ msgstr "Lentille additionnelle"
+
+#~ msgid "VGA Basic"
+#~ msgstr "VGA de base"
+
+#~ msgid "VGA Normal"
+#~ msgstr "VGA normal"
+
+#~ msgid "VGA Fine"
+#~ msgstr "VGA fin"
+
+#~ msgid "SXGA Basic"
+#~ msgstr "SXGA de base"
+
+#~ msgid "SXGA Normal"
+#~ msgstr "SXGA normal"
+
+#~ msgid "SXGA Fine"
+#~ msgstr "SWGA fin"
+
+#~ msgid "Color"
+#~ msgstr "Couleur"
+
+#~ msgid "Bright+"
+#~ msgstr "Luminosité+"
+
+#~ msgid "Bright-"
+#~ msgstr "Luminosité-"
+
+#~ msgid "Contrast+"
+#~ msgstr "Constraste+"
+
+#~ msgid "Contrast-"
+#~ msgstr "Constraste-"
+
+#~ msgid "Preset"
+#~ msgstr "Pré-réglage"
+
+#~ msgid "Fluorescence"
+#~ msgstr "Fluorescent"
+
+#~ msgid "SpeedLight"
+#~ msgstr "Réglage SpeedLight"
+
+#~ msgid "Fisheye"
+#~ msgstr "Fisheye"
+
+#~ msgid "AF non D"
+#~ msgstr "Auto-focus sans mesure de distance"
+
+#~ msgid "Did Not Fire"
+#~ msgstr "Ne s’est pas déclenché"
+
+#~ msgid "External"
+#~ msgstr "Externe"
+
+#~ msgid "On Camera"
+#~ msgstr "Sur l’appareil"
+
+#~ msgid "3-area-focusing (High speed)"
+#~ msgstr "Mise au point 3 zones (haute vitesse)"
+
+#~ msgid "1-area-focusing (High speed)"
+#~ msgstr "Mise au point 1 zone (haute vitesse)"
+
+#~ msgid "1-area-focusing"
+#~ msgstr "Mise au point 1 zone"
+
+#~ msgid "Spot-focusing"
+#~ msgstr "Mise au point ponctuelle"
+
+#~ msgid "Standard"
+#~ msgstr "Standard"
+
+#~ msgid "Very High"
+#~ msgstr "Très élevée"
+
+#~ msgid "RAW"
+#~ msgstr "RAW"
+
+#~ msgid "Halogen"
+#~ msgstr "halogène"
+
+#~ msgid "Black and White"
+#~ msgstr "Noir et blanc"
+
+#~ msgid "Auto, Focus button"
+#~ msgstr "Mode automatique, mise au point au bouton"
+
+#~ msgid "Auto, Continuous"
+#~ msgstr "Automatique, continu"
+
+#~ msgid "Mode 1"
+#~ msgstr "Mode 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Mode 2"
+
+#~ msgid "Scenery"
+#~ msgstr "Mode scène"
+
+#~ msgid "Night Portrait"
+#~ msgstr "Portrait de nuit"
+
+#~ msgid "Panning"
+#~ msgstr "Balayage de panorama"
+
+#~ msgid "Simple"
+#~ msgstr "Simple"
+
+#~ msgid "Fireworks"
+#~ msgstr "Feu d’artifice"
+
+#~ msgid "Party"
+#~ msgstr "Soirée"
+
+#~ msgid "Snow"
+#~ msgstr "Neige"
+
+#~ msgid "Night Scenery"
+#~ msgstr "Scène de nuit"
+
+#~ msgid "Food"
+#~ msgstr "Nourriture"
+
+#~ msgid "Baby"
+#~ msgstr "Bébé"
+
+#~ msgid "High Sensitivity"
+#~ msgstr "Haute sensibilité"
+
+#~ msgid "Underwater"
+#~ msgstr "Sous l’eau"
+
+#~ msgid "Pet"
+#~ msgstr "Animal"
+
+#~ msgid "Yes"
+#~ msgstr "Oui"
+
+#~ msgid "Warm"
+#~ msgstr "Chaud"
+
+#~ msgid "Cool"
+#~ msgstr "Froid"
+
+#~ msgid "Low/High Quality"
+#~ msgstr "Basse/Haute Qualité"
+
+#~ msgid "Infinite"
+#~ msgstr "Infini"
+
+#~ msgid "10s"
+#~ msgstr "10s"
+
+#~ msgid "2s"
+#~ msgstr "2s"
+
+#~ msgid "Rotate 90 CW"
+#~ msgstr "Rotation à 90°"
+
+#~ msgid "Rotate 270 CW"
+#~ msgstr "Rotation à 270°"
+
+#~ msgid "Natural"
+#~ msgstr "Naturel"
+
+#~ msgid "Automcomplete"
+#~ msgstr "Auto-complétion"
 
 #~ msgid "Preferred date representation with time"
 #~ msgstr "Format préféré pour la représentation des dates avec l’heure"
@@ -29691,10 +29302,10 @@ msgstr ""
 #~ msgstr ""
 #~ "L'ordre de tri des éléments de la galerie qui s'affichent dans CombiNews, "
 #~ "sauf pour <em>images récentes par album</em> qui sont triées par date ou "
-#~ "date de modification seulement.<ul><li>« date » : par date</li><li>« id "
-#~ "» : par ordre d'ajout à la base de données</li><li>« mtime » : par ordre "
-#~ "de chargement sur le serveur</li><li>« date de publication » : par date "
-#~ "de publication (définie manuellement) (vous aurez des résultats "
+#~ "date de modification seulement.<ul><li>« date » : par date</li><li>« "
+#~ "id » : par ordre d'ajout à la base de données</li><li>« mtime » : par "
+#~ "ordre de chargement sur le serveur</li><li>« date de publication » : par "
+#~ "date de publication (définie manuellement) (vous aurez des résultats "
 #~ "surprenants si cette date n'est pas définie)</li></ul>"
 
 #~ msgid ""
@@ -30746,10 +30357,10 @@ msgstr ""
 #~ "métadonnées du fichier ; <br /><em>demi-taille</em> : taille réduite de "
 #~ "moitié (préserve les proportions) ; <br />taille originale</em> : utilise "
 #~ "les dimensions encodées dans le fichier ; si la vidéo est trop grande "
-#~ "pour l'espace disponible, la vidéo est redimensionnée selon l'option « "
-#~ "ajustement proportionnnel » ;<br /><em>à l'échelle</em> : ajuste la vidéo "
-#~ "à la taille de la fenêtre pour remplir tout l'espace disponible ; c'est "
-#~ "le paramétrage par défaut."
+#~ "pour l'espace disponible, la vidéo est redimensionnée selon l'option "
+#~ "« ajustement proportionnnel » ;<br /><em>à l'échelle</em> : ajuste la "
+#~ "vidéo à la taille de la fenêtre pour remplir tout l'espace disponible ; "
+#~ "c'est le paramétrage par défaut."
 
 #~ msgid "MP3 cover image"
 #~ msgstr "Image de présentation des mp3"
@@ -31685,8 +31296,8 @@ msgstr ""
 #~ msgid ""
 #~ "Select first the items type using the 'Zenphoto' or 'Zenpage' drop down"
 #~ msgstr ""
-#~ "Choisir d'abord le type d'éléments en utilisant le menu déroulant « "
-#~ "Zenphoto » ou « Zenpage »."
+#~ "Choisir d'abord le type d'éléments en utilisant le menu déroulant "
+#~ "« Zenphoto » ou « Zenpage »."
 
 #~ msgid "Set the options as wished and explained below."
 #~ msgstr "Règle les options telles que défini et expliqué ci-dessous."
