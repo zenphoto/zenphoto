@@ -34,10 +34,13 @@ if (getOption('WEBdocs_tif_provider')) {
 
 /**
  * Option class for textobjects objects
- *
+  * @deprecated 2.0
  */
 class WEBdocs_Options {
 
+	/**
+	  * @deprecated 2.0
+	 */
 	function __construct() {
 		setOptionDefault('WEBdocs_pdf_provider', 'local');
 		setOptionDefault('WEBdocs_pps_provider', 'google');
@@ -46,7 +49,7 @@ class WEBdocs_Options {
 
 	/**
 	 * Standard option interface
-	 *
+	  * @deprecated 2.0
 	 * @return array
 	 */
 	function getOptionsSupported() {
@@ -87,7 +90,7 @@ class WEBdocs extends TextObject {
 
 	/**
 	 * creates a WEBdocs (image standin)
-	 *
+	 * @deprecated 2.0
 	 * @param object $album the owner album
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
@@ -102,7 +105,7 @@ class WEBdocs extends TextObject {
 
 	/**
 	 * Returns the image file name for the thumbnail image.
-	 *
+	 * @deprecated 2.0
 	 * @param string $path override path
 	 *
 	 * @return s
@@ -138,7 +141,8 @@ class WEBdocs extends TextObject {
 
 	/**
 	 * Returns the content of the text file
-	 *
+	 * @deprecated 2.0
+	 * 
 	 * @param int $w optional width
 	 * @param int $h optional height
 	 * @return string

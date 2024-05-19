@@ -20,10 +20,13 @@ $option_interface = 'bxslider';
 
 /**
  * Plugin option handling class
- *
+ * @deprecated 2.0
  */
 class bxslider {
 
+	/**
+	 * @deprecated 2.0
+	 */
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
@@ -46,7 +49,10 @@ class bxslider {
 			}
 		}
 	}
-
+	
+	/**
+	 * @deprecated 2.0
+	 */
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$options = array(
@@ -103,7 +109,10 @@ class bxslider {
 		
 		return $options;
 	}
-
+	
+	/**
+	 * @deprecated 2.0
+	 */
 	static function themeJS() {
 		$theme = getCurrentTheme();
 		$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($theme) . '/jquery.bxslider.css';
@@ -124,8 +133,9 @@ class bxslider {
 if (!$plugin_disable && !OFFSET_PATH) {
 	zp_register_filter('theme_head', 'bxslider::themeJS');
 
-	/** Prints the jQuery bxslider HTML setup to be replaced by JS
-	 *
+	/** 
+	 * Prints the jQuery bxslider HTML setup to be replaced by JS
+	 * @deprecated 2.0
 	 * @param int $minitems The minimum number of thumbs to be visible always if resized regarding responsiveness.
 	 * @param int $maxitems The maximum number of thumbs to be visible always if resized regarding responsiveness.
 	 * @param int $width Width Set to NULL if you want to use the backend plugin options.

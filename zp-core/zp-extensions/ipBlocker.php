@@ -49,7 +49,7 @@ class ipBlocker {
 
 	/**
 	 * class instantiation function
-	 *
+	  * @deprecated 2.0
 	 * @return security_logger
 	 */
 	function __construct() {
@@ -61,7 +61,7 @@ class ipBlocker {
 
 	/**
 	 * Reports the supported options
-	 *
+	  * @deprecated 2.0
 	 * @return array
 	 */
 	function getOptionsSupported() {
@@ -103,6 +103,9 @@ class ipBlocker {
 		return $options;
 	}
 
+	/**
+	 * @deprecated 2.0
+	 */
 	function handleOption($option, $currentValue) {
 		$list = getSerializedArray(getOption('ipBlocker_list'));
 		if (extensionEnabled('ipBlocker')) {
@@ -159,6 +162,12 @@ class ipBlocker {
 		}
 	}
 
+	/**
+	  * @deprecated 2.0
+	 * @param type $themename
+	 * @param type $themealbum
+	 * @return bool
+	 */
 	function handleOptionSave($themename, $themealbum) {
 		$notify = '';
 		$list = array();
@@ -275,6 +284,7 @@ class ipBlocker {
 
 	/**
 	 * Monitors Login attempts
+	 * @deprecated 2.0 
 	 * @param bit $loggedin will be "false" if the login failed
 	 * @param string $user ignored
 	 * @param string $pass ignored
@@ -286,6 +296,9 @@ class ipBlocker {
 		return $loggedin;
 	}
 
+	/**
+	 * @deprecated 2.0
+	 */
 	static function suspended() {
 		if ($block = getOption('ipBlocker_forbidden')) {
 			$block = getSerializedArray($block);
@@ -308,6 +321,8 @@ class ipBlocker {
 
 	/**
 	 * Monitors blocked accesses to Admin pages
+	 * 
+	 * @deprecated 2.0
 	 * @param bool $allow ignored
 	 * @param string $page ignored
 	 */
@@ -337,6 +352,8 @@ class ipBlocker {
 	/**
 	 *
 	 * Monitors front end access and excludes access as defined by the options
+	 * 
+	 * @deprecated 2.0
 	 * @param string $path
 	 * @return string
 	 */

@@ -62,7 +62,9 @@
  * [MEDIAPLAYER album2 video2.mp4 <var>2</var>]
  *
  * <b>NOTE:</b> This player does not support external albums!
- *
+ * 
+ * @deprecated 2.0
+ * 
  * @author Malte Müller (acrylian)
  * @package zpcore\plugins\jplayer
  */
@@ -96,10 +98,16 @@ if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 	zp_register_filter('content_macro', 'jPlayer::macro');
 }
 
+/**
+ * @deprecated 2.0 
+ */
 class jplayer_options {
 
 	public $name = 'jPlayer';
 
+	/**
+	 * @deprecated 2.0 
+	 */
 	function __construct() {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('jplayer_autoplay', '');
@@ -116,6 +124,9 @@ class jplayer_options {
 		}
 	}
 
+	/**
+	 * @deprecated 2.0 
+	 */
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
 		/*
@@ -178,7 +189,7 @@ class jplayer_options {
 
 /**
  * Gets the skin names and css files
- *
+ * @deprecated 2.0 
  */
 function getjPlayerSkins() {
 	$default_skins_dir = SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/jplayer/skin/';
@@ -202,7 +213,7 @@ function getjPlayerSkins() {
 
 /**
  * Gets the css files for a skin. Helper function for getjPlayerSkins().
- *
+ * @deprecated 2.0 
  */
 function getjPlayerSkinCSS($skins, $dir) {
 	$skin_css = array();
@@ -215,6 +226,9 @@ function getjPlayerSkinCSS($skins, $dir) {
 	return $skin_css;
 }
 
+/**
+ * @deprecated 2.0  
+ */
 class jPlayer {
 
 	public $width = '';
@@ -224,6 +238,9 @@ class jPlayer {
 	public $supplied = '';
 	public $supplied_counterparts = '';
 
+	/**
+	 * @deprecated 2.0 
+	 */
 	function __construct() {
 		$this->playersize = getOption('jplayer_size');
 		switch ($this->playersize) {
@@ -249,7 +266,10 @@ class jPlayer {
 				break;
 		}
 	}
-
+	
+	/**
+	 * @deprecated 2.0 
+	 */
 	static function getMacrojplayer($albumname, $imagename, $count = 1) {
 		global $_zp_multimedia_extension;
 		$movie = Image::newImage(NULL, array('folder' => $albumname, 'filename' => $imagename), true);
@@ -260,6 +280,9 @@ class jPlayer {
 		}
 	}
 
+	/**
+	 * @deprecated 2.0 
+	 */
 	static function macro($macros) {
 		$macros['MEDIAPLAYER'] = array(
 						'class'	 => 'function',
@@ -271,6 +294,9 @@ class jPlayer {
 		return $macros;
 	}
 
+	/**
+	 * @deprecated 2.0 
+	 */
 	static function headJS() {
 		$skin = @array_shift(getPluginFiles('*.css', 'jplayer/skin/' . getOption('jplayer_skin')));
 		if (is_string($skin) && file_exists($skin)) {
@@ -292,7 +318,7 @@ class jPlayer {
 
 	/**
 	 * Get the JS configuration of jplayer
-	 *
+	 * @deprecated 2.0 
 	 * @param mixed $movie the image object
 	 * @param string $movietitle the title of the movie
 	 * @param string $count number (preferredly the id) of the item to append to the css for multiple players on one page
@@ -460,7 +486,7 @@ class jPlayer {
 
 	/**
 	 * outputs the player configuration HTML
-	 *
+		 * @deprecated 2.0 
 	 * @param mixed $movie the image object if empty (within albums) the current image is used
 	 * @param string $movietitle the title of the movie. if empty the Image Title is used
 	 * @param string $count unique text for when there are multiple player items on a page
@@ -475,7 +501,7 @@ class jPlayer {
 
 	/**
 	 * gets commonly used html parts for the player config
-	 *
+	 * @deprecated 2.0 
 	 * @param string $mode 'video' or 'audio'
 	 * @param string $part part to get: 'controls', 'controls-playlist', 'toggles', 'toggles-playlist','no-solution'
 	 */
@@ -520,6 +546,8 @@ class jPlayer {
 
 	/**
 	 * Returns the width of the player
+	 * 
+	 * @deprecated 2.0 
 	 * @param object $image the image for which the width is requested
 	 *
 	 * @return int
@@ -533,6 +561,8 @@ class jPlayer {
 
 	/**
 	 * Returns the height of the player
+	 * 
+	 * @deprecated 2.0 
 	 * @param object $image the image for which the height is requested
 	 *
 	 * @return int
@@ -546,7 +576,7 @@ class jPlayer {
 
 	/**
 	 * Sets the properties $mode, $supplied and $supplied_counterparts
-	 *
+	 * @deprecated 2.0 
 	 */
 	function setModeAndSuppliedFormat($ext) {
 		switch ($ext) {
@@ -586,7 +616,7 @@ class jPlayer {
 	/** TODO: Could not get this to work with Firefox. Low priority so postponed for sometime later...
 	 * Gets the mp3, m4v,m4a,mp4 counterpart formats (webm,ogg) for html5 browser compatibilty
 	 * NOTE: THese formats need to be uploaded via FTP as they are not valid file types for Zenphoto to avoid confusion
-	 *
+		 * @deprecated 2.0 
 	 * @param string $moviepath full link to the multimedia file to get counterpart formats to.
 	 * @param string $ext the file format extention to search the counterpart for (as we already have fetched that)
 	 */
@@ -629,7 +659,7 @@ class jPlayer {
 	 * It can be used with a special 'album theme' that can be assigned to media albums with with .flv/.mp4/.mp3s, although Flowplayer 3 also supports images
 	 * Replace the entire 'next_image()' loop on album.php with this:
 	 * <?php printjPlayerPlaylist("playlist"); ?> or <?php printjPlayerPlaylist("playlist-audio"); ?>
-	 *
+		 * @deprecated 2.0 
 	 * @param string $option "playlist" use for pure video and mixed video/audio playlists or if you want to show the poster/videothumb with audio only playlists,
 	 * 											 "playlist-audio" use for pure audio playlists (m4a,mp3,fla supported only) if you don't need the poster/videothumb to be shown only.
 	 * @param string $albumfolder album name to get a playlist from directly
@@ -833,8 +863,14 @@ class jPlayer {
 // function playlist
 }
 
-// jplayer class
-// theme function wrapper for user convenience
+/**
+ * jplayer class
+ * theme function wrapper for user convenience
+ * @deprecated 2.0 
+ * @global jPlayer $_zp_multimedia_extension
+ * @param type $option
+ * @param type $albumfolder
+ */
 function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
 	global $_zp_multimedia_extension;
 	$_zp_multimedia_extension->printjPlayerPlaylist($option, $albumfolder);

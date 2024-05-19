@@ -11,13 +11,27 @@ $plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !extensionEnabled('zenphoto_sendmail')) ? sprintf(gettext('Only one Email handler plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('sendmail'))) : '';
 $plugin_category = gettext('Mail');
+$plugin_deprecated = true;
 if ($plugin_disable) {
 	enableExtension('zenphoto_sendmail', 0);
 } else {
 	zp_register_filter('sendmail', 'zenphoto_sendmail');
 }
 
+/**
+ * @deprecatd 2.0 - Use the phpMailer plugin instead 
+ * @param type $msg
+ * @param type $email_list
+ * @param type $subject
+ * @param type $message
+ * @param type $from_mail
+ * @param type $from_name
+ * @param type $cc_addresses
+ * @param type $replyTo
+ * @return type
+ */
 function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
+	deprecationNotice(gettext('Please the phpMailer plugin and its sendmail option instead'));
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 	if (count($cc_addresses) > 0) {
 		$cclist = '';

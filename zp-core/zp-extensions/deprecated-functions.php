@@ -24,7 +24,7 @@
  *
  * A utility button is provided that allows you to search themes and plugins for uses of functions which have been deprecated.
  * Use it to be proactive in replacing or changing these items.
- *
+ * @deprecated 2.0 
  * @author Stephen Billard (sbillard)
  * @package zpcore\plugins\deprecatedfunctions
  */
@@ -43,11 +43,17 @@ if (OFFSET_PATH == 2)
 zp_register_filter('admin_utilities_buttons', 'deprecated_functions::button');
 zp_register_filter('admin_tabs', 'deprecated_functions::tabs');
 
+/**
+ * @deprecated 2.0 
+ */
 class deprecated_functions {
 
 	public $listed_functions = array();
 	public $unique_functions = array();
 
+	/**
+	 * @deprecated 2.0  
+	 */
 	function __construct() {
 		foreach (getPluginFiles('*.php') as $extension => $plugin) {
 			$deprecated = stripSuffix($plugin) . '/deprecated-functions.php';
@@ -83,6 +89,11 @@ class deprecated_functions {
 		}
 	}
 
+	/**
+	 * @deprecated 2.0 
+	 * @param type $tabs
+	 * @return type
+	 */
 	static function tabs($tabs) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if (!isset($tabs['development'])) {
@@ -104,10 +115,15 @@ class deprecated_functions {
 	 * @deprecated 2.0
 	 */
 	static function notify($use) {
-	 deprecationNotice(gettext('Use deprecationNotice() instead'));
-	 deprecationNotice($use);
+		deprecationNotice(gettext('Use deprecationNotice() instead'));
+		deprecationNotice($use);
 	}
 
+	/**
+	 * @deprecated 2.0  
+	 * @param type $buttons
+	 * @return string
+	 */
 	static function button($buttons) {
 		$buttons[] = array(
 				'category' => gettext('Development'),
@@ -124,6 +140,10 @@ class deprecated_functions {
 		return $buttons;
 	}
 
+	/**
+	 * @deprecated 2.0 
+	 * @global type $_zp_plugin_scripts
+	 */
 	static function addPluginScript() {
 		global $_zp_plugin_scripts;
 		if (is_array($_zp_plugin_scripts)) {
