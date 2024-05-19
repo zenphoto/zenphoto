@@ -1425,33 +1425,41 @@ function printSearchBreadcrumb($between = NULL, $class = NULL, $search = NULL, $
 	if ($class) {
 		$class = ' class="' . $class . '"';
 	}
-	if ($d = $_zp_current_search->getSearchDate()) {
-		if (is_null($archive)) {
-			$text = gettext('Archive');
+	$searchmode = $_zp_current_search->getMode();
+	switch($searchmode) {
+		default:
+		case 'search':
+		case 'tag':
+			if (is_null($search)) {
+				$text = gettext('Search');
+				$textdecoration = true;
+			} else {
+				$text = getBare(html_encode($search));
+				$textdecoration = false;
+			}
+			$date = '';
+			$link = sprintf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');
+			break;
+		case 'archive':
+			if (is_null($archive)) {
+				$text = gettext('Archive');
+			} else {
+				$text = getBare(html_encode($archive));
+			}
+			if ($format) {
+				$date = zpFormattedDate($format, $_zp_current_search->getSearchDate());
+			} else {
+				$date = zpFormattedDate('F Y', $_zp_current_search->getSearchDate());
+			}
 			$textdecoration = true;
-		} else {
-			$text = getBare(html_encode($archive));
-			$textdecoration = false;
-		}
-		echo "<a href=\"" . html_encode(getCustomPageURL('archive', NULL)) . "\"$class title=\"" . $text . "\">";
-		printf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');
-		echo "</a>";
-		echo '<span class="betweentext">' . html_encode($between) . '</span>';
-		if ($format) {
-			echo zpFormattedDate($format, $d);
-		} else {
-			echo zpFormattedDate('F Y', $d);
-		}
-	} else {
-		if (is_null($search)) {
-			$text = gettext('Search');
-			$textdecoration = true;
-		} else {
-			$text = getBare(html_encode($search));
-			$textdecoration = false;
-		}
-		printf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');
+			$link = '<a href="' . html_encode(getCustomPageURL('archive', NULL)) . '"'.$class.' title="'. html_encode(strip_tags($text)) . '">';
+			$link .= sprintf('%s' . $text . '%s', $textdecoration ? '<em>' : '', $textdecoration ? '</em>' : '');
+			$link .= '</a>';
+			$link .= '<span class="betweentext">' . html_encode($between) . '</span>';
+			$link .= $date;
+			break;
 	}
+	echo $link;
 }
 
 /**
