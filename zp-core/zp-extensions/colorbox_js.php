@@ -16,7 +16,7 @@
  * If you select <i>custom (within theme)</i> on the plugin option for Colorbox you need to place a folder
  * <i>colorbox</i> containing a <i>colorbox.css</i> file and a folder <i>images</i> within the current theme
  * to use a custom Colorbox theme.
- *
+  * @deprecated 2.0
  * @author Stephen Billard (sbillard)
  * @package zpcore\plugins\colorboxjs
  */
@@ -36,8 +36,14 @@ if (OFFSET_PATH) {
 	zp_register_filter('theme_head', 'colorbox::css');
 }
 
+/**
+ * @deprecated 2.0
+ */
 class colorbox {
 
+	/**
+	 * @deprecated 2.0
+	 */
 	function __construct() {
 		//	These are best set by the theme itself!
 		foreach (getThemeFiles(array('404.php', 'themeoptions.php', 'theme_description.php', 'slideshow.php', 'functions.php', 'password.php', 'sidebar.php', 'register.php', 'contact.php')) as $theme => $scripts) {
@@ -47,7 +53,10 @@ class colorbox {
 		}
 		setOptionDefault('colorbox_theme', 'example1');
 	}
-
+	
+	/**
+	 * @deprecated 2.0
+	 */
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$themes = getPluginFiles('colorbox_js/themes/*.*');
@@ -66,10 +75,16 @@ class colorbox {
 		return $opts;
 	}
 
+		/**
+	 * @deprecated 2.0
+	 */
 	function handleOption($option, $currentValue) {
 		
 	}
 
+	/**
+	 * @deprecated 2.0
+	 */
 	static function css() {
 		global $_zp_gallery;
 		$inTheme = false;

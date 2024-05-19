@@ -2467,7 +2467,7 @@ function read_exif_data_protected($path) {
 			$start = microtime(true);
 		}
 		try {
-			$rslt = exif_read_data($path);
+			$rslt = @exif_read_data($path);
 		} catch (Exception $e) {
 			if (DEBUG_EXIF) {
 				debugLog("read_exif_data($path) exception: " . $e->getMessage());

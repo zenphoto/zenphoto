@@ -41,7 +41,7 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 
 /**
  * googleMap
- *
+ * @deprecated 2.0
  */
 class GoogleMap {
 
@@ -66,6 +66,10 @@ class GoogleMap {
 		}
 	}
 
+	/**
+	 * @deprecated 2.0
+	 * @return type
+	 */
 	function getOptionsSupported() {
 
 		$MapTypes = array(); // order matters here because the first allowed map is selected if the 'gmap_starting_map' is not allowed
@@ -154,6 +158,7 @@ class GoogleMap {
 
 	/**
 	 * Add required informations in the header
+	  * @deprecated 2.0 
 	 */
 	static function js() {
 
@@ -186,6 +191,9 @@ class GoogleMap {
 // codeIgniter stuff
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER . '/jsMin/JSMin.php');
 
+/**
+ * @deprecated 2.0
+ */
 class CI_load {
 
 	function library($library) {
@@ -194,7 +202,9 @@ class CI_load {
 	}
 
 }
-
+/**
+ * @deprecated 2.0
+ */
 class CI_jsmin {
 
 	function min($js) {
@@ -202,12 +212,17 @@ class CI_jsmin {
 	}
 
 }
-
+/**
+ * @deprecated 2.0
+ */
 class codeIgniter_kludge { //	dummy for all the CI stuff in the CodeIngnter-Google_maps script
 
 	public $load;
 	public $jsmin;
 
+	/**
+ * @deprecated 2.0
+ */
 	function __construct() {
 		$this->load = new CI_load();
 		$this->jsmin = new CI_jsmin();
@@ -215,15 +230,24 @@ class codeIgniter_kludge { //	dummy for all the CI stuff in the CodeIngnter-Goog
 
 }
 
+/**
+ * @deprecated 2.0
+ */
 function log_message($class, $msg) {
 	// do nothing
 }
 
+/**
+ * @deprecated 2.0
+ */
 function get_instance() {
 	// standin for CI library
 	return new codeIgniter_kludge();
 }
 
+/**
+ * @deprecated 2.0
+ */
 function omsAdditions() {
 	// maybe we can move some of the zenphoto hacks here.
 	return '';
@@ -231,6 +255,7 @@ function omsAdditions() {
 
 /**
  * $returns coordinate informations for an image
+ * @deprecated 2.0 
  * @param $image		image object
  */
 function getGeoCoord($image) {
@@ -253,6 +278,7 @@ function getGeoCoord($image) {
 
 /**
  * Add a point to a map object
+ * @deprecated 2.0
  * @param $map			google map object
  * @param $coord		coordinates array
  */
@@ -289,6 +315,7 @@ function addGeoCoord($map, $coord) {
 
 /**
  * Gathers the data for an image
+  * @deprecated 2.0
  * @param $image		image object
  * @param $map			google map object
  */
@@ -302,6 +329,7 @@ function getImageGeodata($image, $map) {
 
 /**
  * Gathers the map data for an album
+ * @deprecated 2.0
  * @param $album		album object
  * @param $map			google map object
  */
@@ -321,6 +349,7 @@ function getAlbumGeodata($album, $map) {
 
 /**
  * Output the google map
+ * @deprecated 2.0
  *
  * @param string $text text for the "toggle" link that shows/hides the map. Set empty to omit (then Map is always displayed)
  * @param string $id used to set the IDs for the toggle href element ($id_toggle) and the map element ($id_data)

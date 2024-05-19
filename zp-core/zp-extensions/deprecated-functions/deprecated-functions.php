@@ -615,6 +615,8 @@ function checkPublishDates($row) {
 
 /**
  * Zenphoto general deprecated functions
+ * 
+	* @deprecated 2.0  
  * @package zpcore\plugins\deprecatedfunctions
  */
 class internal_deprecations {
