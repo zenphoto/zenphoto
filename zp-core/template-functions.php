@@ -3015,14 +3015,18 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 
 /**
  * Returns the url to the thumbnail of the current image.
- *
+ * @param obj $image optional image object, null means current image
  * @return string
  */
-function getImageThumb() {
+function getImageThumb($image = null) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	if (is_null($image)) {
 		return false;
-	return $_zp_current_image->getThumb();
+	}
+	return $image->getThumb();
 }
 
 /**

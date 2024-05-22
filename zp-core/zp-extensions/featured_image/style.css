@@ -1,0 +1,110 @@
+#fi_albumlist {
+  text-align:left; 
+  float: left;
+  width: 23%;
+  margin-right: 2%;
+  height: auto;
+  font-size: 13px;
+  overflow: auto;
+}
+
+#fi_albumlist > ul {
+  margin: 10px 0 0 -24px;
+  overflow: auto;
+}
+
+#fi_albumlist ul li ul li {
+  margin: 2px 0 2px -24px;
+}
+
+#fi_albumlist a {
+color: #4D76CF;
+}
+#fi_albumlist a:hover,
+#fi_albumlist a:active,
+#fi_albumlist a.active {
+  color: #FF8A00;
+}
+
+#fi_content { 
+  width: 75%; 
+  float:left; 
+  height:auto; 
+  text-align:left;
+  font-size: 13px;
+}
+
+#fi_content h4 {
+  margin-top: 10px;
+}
+
+ img.fi_thumb,
+.fi_thumb img {
+  border: 2px solid lightgray;
+}
+
+.fi_thumb.nonimagetype img {
+  border: 2px solid darkred;
+}
+
+.fi_thumb:hover img,
+.fi_thumb:active img {
+  border: 2px solid orange;
+}
+
+.fi_pagenav {
+  margin-left: -40px;
+}
+
+.fi_pagenav li {
+  font-size: 13px;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.fi_pagenav li a {
+  display: block-inline;
+  padding: 3px 5px 3px 5px;
+  margin-right: 4px;
+  background: lightgray;
+  color: #4D76CF;
+}
+
+.fi_pagenav li a:hover,
+.fi_pagenav li a:active,
+.fi_pagenav li a.active {
+	background: #FF8A00;
+}
+
+#fi_imagepreview {
+width: 60%;
+float: left;
+}
+
+#fi_imagepreview img {
+max-width: 100%;
+height: auto;
+}
+
+#fi_imageinfo {
+width: 35%;
+float: left;
+text-align: left;
+padding-left: 5%;
+}
+
+#fi_imageinfo h5 {
+font-size: 13px !important;
+}
+
+.fi_adminbuttons  {
+  clear: left !important;
+    margin-bottom: 15px !important;
+    min-height: 25px;
+}  
+
+#fi_adminthumb img  {
+    max-width:100%;
+    height:auto;
+}

@@ -431,12 +431,26 @@ class htmlmetatags {
 					if ($_zp_page != 1) {
 						$canonicalurl .= $_zp_page . '/';
 					}
+					if ((is_NewsArticle() || is_NewsCategory()) && (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard'))) {
+						$featuredimage = getSizedFeaturedImage(null, null, $ogimage_width, $ogimage_height, null, null, null, null, false, null, true);
+						if($featuredimage) {
+							$thumb =  $host . html_pathurlencode($featuredimage);
+							$twittercard_type = 'summary_large_image';
+						}
+					}
 				}
 				break;
 			case 'pages.php':
 				$pagetitle = getBarePageTitle() . " - ";
 				$date = getPageDate();
 				$desc = trim(getBare(getPageContent()));
+				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
+					$featuredimage = getSizedFeaturedImage(null, null, $ogimage_width, $ogimage_height, null, null, null, null, false, null, true);
+					if ($featuredimage) {
+						$thumb =  $host . html_pathurlencode($featuredimage);
+						$twittercard_type = 'summary_large_image';
+					}
+				}
 				$canonicalurl = $host . $_zp_current_zenpage_page->getLink();
 				$author = $_zp_current_zenpage_page->getAuthor(true);
 				$public = $_zp_current_zenpage_page->isPublic();

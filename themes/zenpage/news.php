@@ -49,14 +49,19 @@ if (!defined('WEBPATH'))
 // single news article
 						if (is_NewsArticle()) {
 							if (getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php }
-       if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php }
-       if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php }
-       ?>
+							if (getNextNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php }
+							if (getPrevNewsURL() OR getNextNewsURL()) { ?><br style="clear:both" /><?php }
+							?>
 							<h3><?php printNewsTitle(); ?></h3>
 							<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate(); ?> | <?php
 									if (function_exists('getCommentCount')) {
 										echo gettext("Comments:");
 										?> <?php echo getCommentCount(); ?> |<?php } ?> </span> <?php printNewsCategories(", ", gettext("Categories: "), "newscategories"); ?></div>
+								<?php
+							if (function_exists('printSizedFeaturedImage')) {
+								printSizedFeaturedImage(null,'', null, 580, 580, null, null, null, null, 'featuredimage_singlenews', null, false, null, true);
+							}
+							?>
 							<?php
 							printNewsContent();
 							printCodeblock(1);
@@ -68,13 +73,18 @@ if (!defined('WEBPATH'))
 							// COMMENTS TEST
 							callUserFunction('printCommentForm');
 						} else {
+							if (function_exists('printSizedFeaturedImage') && is_NewsCategory()) { // category featured image
+								printSizedFeaturedImage($_zp_current_category,'', null, 580, 580, null, null, null, null, 'featuredimage_singlecategory', null, false, null, true);
+							}
 							printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
 							echo "<hr />";
 // news article loop
-							while (next_news()):;
+							while (next_news()):
 								?>
 								<div class="newsarticle">
+								
 									<h3><?php printNewsURL(); ?></h3>
+									
 									<div class="newsarticlecredit">
 										<span class="newsarticlecredit-left">
 											<?php
@@ -95,8 +105,13 @@ if (!defined('WEBPATH'))
 										?>
 									</div>
 									<?php
-         printNewsContent();
-         printCodeblock(1);
+									if (function_exists('printSizedFeaturedImage')) {
+										printSizedFeaturedImage(null,'', null, 95, 95, 95, 95, null, null, 'featuredimage_newslist', null, true, null);
+									}
+									?>
+									<?php
+									printNewsContent();
+									printCodeblock(1);
 									if (getTags()) {
 										echo gettext('<strong>Tags:</strong>');
 									} printTags('links', '', 'taglist', ', ');
@@ -111,15 +126,11 @@ if (!defined('WEBPATH'))
 							ScriptlessSocialSharing::printButtons();
 						}	
 						?>
-
-
 					</div><!-- content left-->
-
 
 					<div id="sidebar">
 						<?php include("sidebar.php"); ?>
 					</div><!-- sidebar -->
-
 
 					<div id="footer">
 						<?php include("footer.php"); ?>

@@ -44,6 +44,9 @@ if (!defined('WEBPATH'))
 				<div id="content-left">
 					<h2><?php printPageTitle(); ?></h2>
 					<?php
+					if (function_exists('printSizedFeaturedImage')) {
+						printSizedFeaturedImage(null,'', null, 580, 580, null, null, null, null, 'singlepage_featuredimage', null, false, null, true);
+					}
 					printPageContent();
 					printCodeblock(1);
 					if (getTags()) {
