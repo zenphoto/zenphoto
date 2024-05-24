@@ -1836,6 +1836,36 @@ function restore_context() {
 }
 
 /**
+ * Returns the current item object (image, album and Zenpage page, article, category) of the current theme context
+ * or false if no context is set or matches
+ *
+ * @since 1.6.3
+ * @global obj $_zp_current_album
+ * @global obj $_zp_current_image
+ * @global obj $_zp_current_zenpage_page
+ * @global obj $_zp_current_category
+ * @global obj $_zp_current_zenpage_news
+ * @return boolean|obj
+ */
+function getContextObject() {
+	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news;
+	if (in_context(ZP_IMAGE)) {
+		$obj = $_zp_current_image;
+	} elseif (in_context(ZP_ALBUM)) {
+		$obj = $_zp_current_album;
+	} elseif (in_context(ZP_ZENPAGE_PAGE)) {
+		$obj = $_zp_current_zenpage_page;
+	} elseif (in_context(ZP_ZENPAGE_NEWS_ARTICLE) || in_context(ZP_ZENPAGE_SINGLE)) {
+		$obj = $_zp_current_zenpage_news;
+	} elseif (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+		$obj = $_zp_current_category;
+	}  else {
+		$obj = false;
+	}
+	return $obj;
+}
+
+/**
  * checks password posting
  *
  * @param string $authType override of athorization type

@@ -160,6 +160,10 @@ body {
 	clear: both;
 }
 
+#content-left .newsarticle p {
+	clear: none;
+}
+
 #content-left ul.searchresults li {
 	margin-bottom: 8px;
 }
@@ -1445,4 +1449,18 @@ clear: right !important;
 ------------------------------ */
 .g-recaptcha {
 	display: inline-block;
+}
+
+/* Featured image
+-------------------------------*/
+
+.featurediamge_newslist {
+	display: block;
+	float: left;
+	margin-right: 20px;
+
+}
+
+.featuredimage_singlenews {
+	margin-top: 10px;
 }

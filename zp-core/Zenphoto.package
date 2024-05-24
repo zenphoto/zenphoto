@@ -1195,6 +1195,10 @@ zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/favoritesHandler
 zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/favoritesHandler/class-favorites.php
+zp-core/zp-extensions/featured_image
+zp-core/zp-extensions/featured_image.php
+zp-core/zp-extensions/featured_image/process_selection.php
+zp-core/zp-extensions/featured_image/style.css
 zp-core/zp-extensions/flag_thumbnail
 zp-core/zp-extensions/flag_thumbnail.php
 zp-core/zp-extensions/flag_thumbnail/action.png
@@ -1887,4 +1891,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1889
+1893

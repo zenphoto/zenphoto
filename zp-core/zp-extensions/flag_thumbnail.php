@@ -180,10 +180,13 @@ class flag_thumbnail {
 	private static function insert_class($html) {
 		global $_zp_current_album, $_zp_current_image;
 		if (getOption('flag_thumbnail_flag_new')) {
+			$obj = '';
 			if (isset($_zp_current_image)) {
 				$obj = $_zp_current_image;
-			} else {
+			} if (isset($_zp_current_album)) {
 				$obj = $_zp_current_album;
+			} else {
+				return;
 			}
 			if (getOption('flag_thumbnail_disableinlinecss')) {
 				$html = '<span class="flag_thumbnail">' . "\n" . $html . "\n";
