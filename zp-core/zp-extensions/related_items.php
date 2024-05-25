@@ -156,7 +156,7 @@ function printRelatedItems($number = 5, $type = 'news', $specific = NULL, $excer
 			'images' => gettext('Related images'),
 			'news' => gettext('Related news'),
 			'pages' => gettext('Related pages'),
-			'all' => gettext('Related')
+			'all' => gettext('Related contents')
 	);
 	$result = getRelatedItems($type, $specific);
 	$resultcount = count($result);
