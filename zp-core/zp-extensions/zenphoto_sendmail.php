@@ -31,7 +31,7 @@ if ($plugin_disable) {
  * @return type
  */
 function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
-	deprecationNotice(gettext('Please the phpMailer plugin and its sendmail option instead'));
+	deprecationNotice(gettext('Please use the PHPMailer plugin and its sendmail option instead'));
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 	if (count($cc_addresses) > 0) {
 		$cclist = '';
