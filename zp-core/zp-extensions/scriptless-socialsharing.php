@@ -3,7 +3,7 @@
  * A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for:
  * 
  * - Facebook
- * - Twitter
+ * - X (formerly Twitter)
  * - Pinterest 
  * - Linkedin
  * - Xing
@@ -215,7 +215,7 @@ class scriptlessSocialsharing {
 				$via = '&amp;via=' . html_encode(getOption('scriptless_socialsharing_twittername'));
 			}
 			$buttons[] = array(
-					'class' => 'sharingicon-twitter',
+					'class' => 'sharingicon-x',
 					'title' => 'Twitter',
 					'url' => 'https://twitter.com/intent/tweet?text=' . $title . $via . '&amp;url=' . $url
 			);

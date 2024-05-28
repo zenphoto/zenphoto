@@ -1,85 +1,86 @@
 @font-face {
-    font-family: 'scriptless-socialbuttons';
-    src:    url('fonts/scriptless-socialbuttons.eot?bjwlwc');
-    src:    url('fonts/scriptless-socialbuttons.eot?bjwlwc#iefix') format('embedded-opentype'),
-        url('fonts/scriptless-socialbuttons.ttf?bjwlwc') format('truetype'),
-        url('fonts/scriptless-socialbuttons.woff?bjwlwc') format('woff'),
-        url('fonts/scriptless-socialbuttons.svg?bjwlwc#scriptless-socialbuttons') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'scriptless-socialbuttons';
+  src:
+    url('fonts/scriptless-socialbuttons.ttf?lmxrfp') format('truetype'),
+    url('fonts/scriptless-socialbuttons.woff?lmxrfp') format('woff'),
+    url('fonts/scriptless-socialbuttons.svg?lmxrfp#scriptless-socialbuttons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
 }
 
 [class^="sharingicon-"], [class*=" sharingicon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'scriptless-socialbuttons' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'scriptless-socialbuttons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.sharingicon-evernote:before {
-    content: "\e901";
-}
+
 .sharingicon-stack:before {
-    content: "\e900";
+  content: "\e900";
+}
+.sharingicon-evernote:before {
+  content: "\e901";
 }
 .sharingicon-envelope-o:before {
-    content: "\f003";
+  content: "\f003";
 }
 .sharingicon-pencil:before {
-    content: "\f040";
-}
-.sharingicon-twitter:before {
-    content: "\f099";
+  content: "\f040";
 }
 .sharingicon-facebook:before {
-    content: "\f09a";
+  content: "\f09a";
 }
 .sharingicon-facebook-f:before {
-    content: "\f09a";
-}
-.sharingicon-google-plus:before {
-    content: "\f0d5";
+  content: "\f09a";
 }
 .sharingicon-linkedin:before {
-    content: "\f0e1";
+  content: "\f0e1";
 }
 .sharingicon-xing:before {
-    content: "\f168";
+  content: "\f168";
 }
 .sharingicon-tumblr:before {
-    content: "\f173";
+  content: "\f173";
 }
 .sharingicon-wordpress:before {
-    content: "\f19a";
+  content: "\f19a";
 }
 .sharingicon-stumbleupon:before {
-    content: "\f1a4";
+  content: "\f1a4";
 }
 .sharingicon-delicious:before {
-    content: "\f1a5";
+  content: "\f1a5";
 }
 .sharingicon-digg:before {
-    content: "\f1a6";
+  content: "\f1a6";
 }
 .sharingicon-pinterest-p:before {
-    content: "\f231";
+  content: "\f231";
 }
 .sharingicon-whatsapp:before {
-    content: "\f232";
+  content: "\f232";
 }
 .sharingicon-get-pocket:before {
-    content: "\f265";
+  content: "\f265";
 }
 .sharingicon-reddit-alien:before {
-    content: "\f281";
+  content: "\f281";
+}
+.sharingicon-x:before {
+  content: "\e902";
+}
+.sharingicon-twitter:before {
+  content: "\e902";
 }
 
 /*
@@ -127,7 +128,7 @@ ul.scriptless_socialsharing a.sharingicon-facebook-f {
   background: #3B5998;
 }
 
-ul.scriptless_socialsharing a.sharingicon-twitter {
+ul.scriptless_socialsharing a.sharingicon-x {
   background: #55acee;
 }
 
