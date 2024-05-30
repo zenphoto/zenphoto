@@ -685,11 +685,9 @@ function getFeaturedImageThumb($obj = null) {
 	if (is_null($obj)) {
 		$obj = getContextObject();
 	}
-	if ($obj) {
-		$imageobj = $obj->getFeaturedImage();
-		if ($imageobj) {
-			return getImageThumb($imageobj);
-		}
+	$imageobj = getFeaturedImage($obj);
+	if ($imageobj) {
+		return getImageThumb($imageobj);
 	}
 }
 
@@ -709,19 +707,17 @@ function printFeaturedImageThumb($alt = null, $class = null, $id = NULL, $title 
 	if (is_null($obj)) {
 		$obj = getContextObject();
 	}
-	if ($obj) {
-		$imageobj = $obj->getFeaturedImage();
-		if ($imageobj) {
-			if ($obj->checkAccess()) {
-				if (empty($alt)) {
-					$alt = $imageobj->getTitle();
-				}
-				printImageThumb($alt, $class, $id, $title, $imageobj);
-			} else {
-				$sizes = getSizeDefaultThumb($imageobj);
-				$size = ' width="' . $sizes[0] . '"';
-				printPasswordProtectedImage($size);
+	$imageobj = getFeaturedImage($obj);
+	if ($imageobj) {
+		if ($obj->checkAccess()) {
+			if (empty($alt)) {
+				$alt = $imageobj->getTitle();
 			}
+				printImageThumb($alt, $class, $id, $title, $imageobj);
+		} else {
+			$sizes = getSizeDefaultThumb($imageobj);
+			$size = ' width="' . $sizes[0] . '"';
+			printPasswordProtectedImage($size);
 		}
 	}
 }
