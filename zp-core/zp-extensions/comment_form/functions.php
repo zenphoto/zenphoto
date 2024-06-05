@@ -1103,7 +1103,7 @@ function fetchComments($number) {
  * @return bool
  */
 function isCommentFormRequiredField($option) {
-	if (getOption('comment_name_required') == 'required') {
+	if (getOption($option) == 'required') {
 		return true;
 	}
 	return false;
