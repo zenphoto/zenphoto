@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.3\n"
+"Project-Id-Version: Zenphoto 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-27 14:33+0200\n"
-"PO-Revision-Date: 2024-05-27 14:46+0200\n"
+"POT-Creation-Date: 2024-06-05 14:44+0200\n"
+"PO-Revision-Date: 2024-06-05 14:48+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -177,7 +177,7 @@ msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 #: zp-core/template-functions.php:470
 #: zp-core/zp-extensions/html_meta_tags.php:462
 #: zp-core/zp-extensions/register_user.php:64
-#: zp-core/zp-extensions/scriptless-socialsharing.php:181
+#: zp-core/zp-extensions/scriptless-socialsharing.php:180
 msgid "Register"
 msgstr "Inscrivez-vous"
 
@@ -330,7 +330,7 @@ msgid "album"
 msgstr "album"
 
 #: themes/garland/functions.php:151 zp-core/admin-edit.php:1359
-#: zp-core/admin-globals.php:109 zp-core/admin-options.php:2960
+#: zp-core/admin-globals.php:109 zp-core/admin-options.php:2959
 #: zp-core/zp-extensions/image_album_statistics.php:286
 msgid "image"
 msgstr "image"
@@ -479,8 +479,8 @@ msgstr "Racine des albums"
 #: themes/zpmobile/album.php:27 themes/zpmobile/favorites.php:28
 #: themes/zpmobile/functions.php:40 themes/zpmobile/functions.php:71
 #: themes/zpmobile/functions.php:168 themes/zpmobile/image.php:28
-#: zp-core/admin-edit.php:1579 zp-core/admin-options.php:2669
-#: zp-core/admin-options.php:2670 zp-core/admin-themes.php:101
+#: zp-core/admin-edit.php:1579 zp-core/admin-options.php:2668
+#: zp-core/admin-options.php:2669 zp-core/admin-themes.php:101
 #: zp-core/admin-themes.php:102 zp-core/classes/class-authority.php:582
 #: zp-core/classes/class-authority.php:583
 #: zp-core/classes/class-authority.php:584
@@ -644,9 +644,9 @@ msgid "Custom Homepage"
 msgstr "Page d’accueil personnalisée"
 
 #: themes/garland/themeoptions.php:146 themes/horizon/themeoptions.php:73
-#: themes/zenpage/themeoptions.php:131 zp-core/admin-options.php:2208
-#: zp-core/admin-options.php:2221 zp-core/admin-options.php:2249
-#: zp-core/admin-options.php:3025 zp-core/zp-extensions/slideshow2.php:128
+#: themes/zenpage/themeoptions.php:131 zp-core/admin-options.php:2207
+#: zp-core/admin-options.php:2220 zp-core/admin-options.php:2248
+#: zp-core/admin-options.php:3024 zp-core/zp-extensions/slideshow2.php:128
 #: zp-core/zp-extensions/slideshow2.php:176
 msgid "none"
 msgstr "aucune"
@@ -760,7 +760,7 @@ msgstr ""
 #: zp-core/template-functions.php:3855
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
 #: zp-core/zp-extensions/html_meta_tags.php:463
-#: zp-core/zp-extensions/scriptless-socialsharing.php:184
+#: zp-core/zp-extensions/scriptless-socialsharing.php:183
 #: zp-core/zp-extensions/slideshow2.php:817
 msgid "Search"
 msgstr "Recherche"
@@ -795,7 +795,7 @@ msgstr "Désolé, aucune correspondance. Essayez de préciser votre recherche."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
 #: zp-core/template-functions.php:1445 zp-core/template-functions.php:1493
-#: zp-core/zp-extensions/scriptless-socialsharing.php:178
+#: zp-core/zp-extensions/scriptless-socialsharing.php:177
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:787
 msgid "Archive"
 msgstr "Archive"
@@ -832,7 +832,7 @@ msgstr "Flux RSS de l’album"
 #: zp-core/zp-extensions/multiple_layouts.php:99
 #: zp-core/zp-extensions/related_items.php:193
 #: zp-core/zp-extensions/rss.php:195
-#: zp-core/zp-extensions/scriptless-socialsharing.php:159
+#: zp-core/zp-extensions/scriptless-socialsharing.php:158
 #: zp-core/zp-extensions/static_html_cache.php:74
 #: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:794
@@ -1164,10 +1164,10 @@ msgstr "Retour"
 #: zp-core/admin-options.php:656 zp-core/admin-options.php:1102
 #: zp-core/admin-options.php:1127 zp-core/admin-options.php:1504
 #: zp-core/admin-options.php:1527 zp-core/admin-options.php:1960
-#: zp-core/admin-options.php:1987 zp-core/admin-options.php:2650
-#: zp-core/admin-options.php:2779 zp-core/admin-options.php:3062
-#: zp-core/admin-options.php:3119 zp-core/admin-options.php:3290
-#: zp-core/admin-options.php:3317 zp-core/admin-options.php:3501
+#: zp-core/admin-options.php:1987 zp-core/admin-options.php:2649
+#: zp-core/admin-options.php:2778 zp-core/admin-options.php:3061
+#: zp-core/admin-options.php:3118 zp-core/admin-options.php:3289
+#: zp-core/admin-options.php:3316 zp-core/admin-options.php:3500
 #: zp-core/admin-plugins.php:139 zp-core/admin-plugins.php:423
 #: zp-core/admin-thumbcrop.php:268 zp-core/admin-users.php:468
 #: zp-core/admin-users.php:841 zp-core/utilities/maintenance_mode.php:89
@@ -1451,10 +1451,10 @@ msgstr "Cliquer sur l’image pour changer le rognage de la vignette."
 #: zp-core/admin-options.php:1103 zp-core/admin-options.php:1128
 #: zp-core/admin-options.php:1505 zp-core/admin-options.php:1528
 #: zp-core/admin-options.php:1961 zp-core/admin-options.php:1988
-#: zp-core/admin-options.php:2651 zp-core/admin-options.php:2781
-#: zp-core/admin-options.php:3064 zp-core/admin-options.php:3120
-#: zp-core/admin-options.php:3291 zp-core/admin-options.php:3318
-#: zp-core/admin-options.php:3502 zp-core/admin-plugins.php:140
+#: zp-core/admin-options.php:2650 zp-core/admin-options.php:2780
+#: zp-core/admin-options.php:3063 zp-core/admin-options.php:3119
+#: zp-core/admin-options.php:3290 zp-core/admin-options.php:3317
+#: zp-core/admin-options.php:3501 zp-core/admin-plugins.php:140
 #: zp-core/admin-plugins.php:424 zp-core/admin-themes-editor.php:155
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:469
 #: zp-core/admin-users.php:842 zp-core/classes/class-authority.php:1130
@@ -1871,8 +1871,8 @@ msgid "View gallery index"
 msgstr "Voir l’accueil de la galerie"
 
 #: zp-core/admin-functions.php:455 zp-core/admin-functions.php:1592
-#: zp-core/admin-functions.php:2054 zp-core/admin-options.php:2154
-#: zp-core/admin-options.php:2204 zp-core/utilities/gallery_statistics.php:77
+#: zp-core/admin-functions.php:2054 zp-core/admin-options.php:2153
+#: zp-core/admin-options.php:2203 zp-core/utilities/gallery_statistics.php:77
 #: zp-core/utilities/gallery_statistics.php:580
 #: zp-core/zp-extensions/comment_form.php:85
 #: zp-core/zp-extensions/galleryArticles.php:65
@@ -1954,7 +1954,7 @@ msgid "Album password:"
 msgstr "Mot de passe de l’album :"
 
 #: zp-core/admin-functions.php:1317 zp-core/admin-options.php:1218
-#: zp-core/admin-options.php:1553 zp-core/admin-options.php:2401
+#: zp-core/admin-options.php:1553 zp-core/admin-options.php:2400
 #: zp-core/zp-extensions/downloadList.php:129
 #: zp-core/zp-extensions/zenpage/admin-edit.php:476
 msgid "clear password"
@@ -1969,7 +1969,7 @@ msgid "Repeat password:"
 msgstr "Saisir le mot de passe de nouveau :"
 
 #: zp-core/admin-functions.php:1369 zp-core/admin-options.php:1284
-#: zp-core/admin-options.php:1613 zp-core/admin-options.php:2455
+#: zp-core/admin-options.php:1613 zp-core/admin-options.php:2454
 #: zp-core/classes/class-authority.php:1125
 #: zp-core/classes/class-authority.php:1319
 #: zp-core/zp-extensions/downloadList.php:151
@@ -2037,7 +2037,7 @@ msgstr "*thème de la galerie"
 msgid "Album watermarks:"
 msgstr "Filigranes de l’album :"
 
-#: zp-core/admin-functions.php:1607 zp-core/admin-options.php:2158
+#: zp-core/admin-functions.php:1607 zp-core/admin-options.php:2157
 #: zp-core/utilities/reset_albumthumbs.php:34
 msgid "Thumbs"
 msgstr "Vignettes"
@@ -2451,7 +2451,7 @@ msgstr "Sélection du fichier de log à visualiser"
 #: zp-core/zp-extensions/mobileTheme.php:80
 #: zp-core/zp-extensions/multiple_layouts.php:44
 #: zp-core/zp-extensions/openstreetmap.php:22
-#: zp-core/zp-extensions/scriptless-socialsharing.php:48
+#: zp-core/zp-extensions/scriptless-socialsharing.php:47
 #: zp-core/zp-extensions/tag_extras.php:14
 #: zp-core/zp-extensions/tag_suggest.php:13
 msgid "Misc"
@@ -3128,7 +3128,7 @@ msgstr "Le journal %s n’a pu être enlevé."
 msgid "View logs:"
 msgstr "Voir les journaux :"
 
-#: zp-core/admin-logs.php:163 zp-core/admin-options.php:2474
+#: zp-core/admin-logs.php:163 zp-core/admin-options.php:2473
 #: zp-core/utilities/user-data-export.php:87
 #: zp-core/zp-extensions/downloadList/download_statistics.php:22
 msgid "Download"
@@ -3205,10 +3205,10 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: zp-core/admin-options.php:657 zp-core/admin-options.php:1103
 #: zp-core/admin-options.php:1128 zp-core/admin-options.php:1505
 #: zp-core/admin-options.php:1528 zp-core/admin-options.php:1961
-#: zp-core/admin-options.php:1988 zp-core/admin-options.php:2651
-#: zp-core/admin-options.php:2781 zp-core/admin-options.php:3064
-#: zp-core/admin-options.php:3120 zp-core/admin-options.php:3291
-#: zp-core/admin-options.php:3318 zp-core/admin-options.php:3502
+#: zp-core/admin-options.php:1988 zp-core/admin-options.php:2650
+#: zp-core/admin-options.php:2780 zp-core/admin-options.php:3063
+#: zp-core/admin-options.php:3119 zp-core/admin-options.php:3290
+#: zp-core/admin-options.php:3317 zp-core/admin-options.php:3501
 #: zp-core/admin-users.php:469
 #: zp-core/zp-extensions/search_statistics/search_analysis.php:266
 msgid "reset"
@@ -3605,9 +3605,9 @@ msgstr ""
 "Si coché, les logs quotidiens seront enregistrés dans des fichiers "
 "individuels au format YYYY-mm-dd."
 
-#: zp-core/admin-options.php:1102 zp-core/admin-options.php:3119
-#: zp-core/admin-options.php:3290 zp-core/admin-options.php:3317
-#: zp-core/admin-options.php:3501 zp-core/setup/setup-sqlform.php:106
+#: zp-core/admin-options.php:1102 zp-core/admin-options.php:3118
+#: zp-core/admin-options.php:3289 zp-core/admin-options.php:3316
+#: zp-core/admin-options.php:3500 zp-core/setup/setup-sqlform.php:106
 msgid "save"
 msgstr "enregistrer"
 
@@ -3633,11 +3633,11 @@ msgstr ""
 msgid "Site copyright notice"
 msgstr "Informations de copyright"
 
-#: zp-core/admin-options.php:1150 zp-core/admin-options.php:2589
+#: zp-core/admin-options.php:1150 zp-core/admin-options.php:2588
 msgid "Notice"
 msgstr "Attention"
 
-#: zp-core/admin-options.php:1154 zp-core/admin-options.php:2593
+#: zp-core/admin-options.php:1154 zp-core/admin-options.php:2592
 msgid ""
 "The notice will be used by the html_meta_tags plugin. If not set the image "
 "meta data is tried instead."
@@ -3649,7 +3649,7 @@ msgstr ""
 msgid "Site copyright URL"
 msgstr "URL des copyrights du site"
 
-#: zp-core/admin-options.php:1164 zp-core/admin-options.php:2602
+#: zp-core/admin-options.php:1164 zp-core/admin-options.php:2601
 msgid ""
 "Choose a Zenpage page or define a custom URL. The URL maybe used to point to "
 "some specific copyright info source. Must be an absolute URL address of the "
@@ -3663,7 +3663,7 @@ msgstr ""
 msgid "Display copyright notice"
 msgstr "Afficher les informations de copyright"
 
-#: zp-core/admin-options.php:1171 zp-core/admin-options.php:2609
+#: zp-core/admin-options.php:1171 zp-core/admin-options.php:2608
 #: zp-core/zp-extensions/http_security_headers.php:345
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:206
 msgid "Enable"
@@ -3681,7 +3681,7 @@ msgstr ""
 msgid "Site copyright rightsholder"
 msgstr "Titulaire du copyright"
 
-#: zp-core/admin-options.php:1182 zp-core/admin-options.php:2620
+#: zp-core/admin-options.php:1182 zp-core/admin-options.php:2619
 msgid ""
 "The rights holder will be used by the html_meta_tags plugin. If set to "
 "<em>none</em> the image metadata fields \"copyright\" or \"owner\" are used "
@@ -3729,7 +3729,7 @@ msgid "User ID for the gallery guest user"
 msgstr "Identifiant de l’utilisateur invité de la Galerie"
 
 #: zp-core/admin-options.php:1259 zp-core/admin-options.php:1588
-#: zp-core/admin-options.php:2429 zp-core/zp-extensions/downloadList.php:154
+#: zp-core/admin-options.php:2428 zp-core/zp-extensions/downloadList.php:154
 #: zp-core/zp-extensions/zenpage/admin-edit.php:507
 msgid "(repeat)"
 msgstr "(saisir de nouveau)"
@@ -3801,15 +3801,8 @@ msgid "Sort gallery by:"
 msgstr "Trier la galerie par :"
 
 #: zp-core/admin-options.php:1419
-msgid ""
-"Sort order for the albums on the index of the gallery. Custom sort values "
-"must be database field names. You can have multiple fields separated by "
-"commas. This option is also the default sort for albums and subalbums."
-msgstr ""
-"Ordre de tri des albums de la page d’accueil de la galerie. Les valeurs de "
-"tri personnalisées doivent correspondre à des champs de la base de données "
-"(pour en spécifier plusieurs, séparez-les par des virgules). Cette option "
-"définit aussi l’ordre de tri par défaut des albums et des sous-albums."
+msgid "Sort order for all albums and subalbums."
+msgstr "Type de tri pour les albums et sous-albums."
 
 #: zp-core/admin-options.php:1424
 msgid "Gallery behavior:"
@@ -4193,19 +4186,11 @@ msgstr ""
 msgid "Default sort order for images."
 msgstr "Ordre de tri par défaut des images."
 
-#: zp-core/admin-options.php:2040
-msgid ""
-"Custom sort values must be database field names. You can have multiple "
-"fields separated by commas."
-msgstr ""
-"Les valeurs de tri personnalisées doivent correspondre à des champs de base "
-"de données (pour en spécifier plusieurs, séparez-les par des virgules)."
-
-#: zp-core/admin-options.php:2044
+#: zp-core/admin-options.php:2043
 msgid "Maximum image size"
 msgstr "Taille maximale de l’image"
 
-#: zp-core/admin-options.php:2048
+#: zp-core/admin-options.php:2047
 msgid ""
 "The limit on how large an image may be resized. Too large and your server "
 "will spend all its time sizing images."
@@ -4214,30 +4199,30 @@ msgstr ""
 "valeur est trop élevée, le serveur prendra trop de temps pour redimensionner "
 "les images."
 
-#: zp-core/admin-options.php:2051
+#: zp-core/admin-options.php:2050
 msgid "Image quality:"
 msgstr "Qualité de l’image :"
 
-#: zp-core/admin-options.php:2054
+#: zp-core/admin-options.php:2053
 msgid "Normal Image"
 msgstr "Images normales"
 
-#: zp-core/admin-options.php:2073
+#: zp-core/admin-options.php:2072
 msgid "<em>full</em> Image"
 msgstr "Images <em>pleine grandeur</em> (originales)"
 
-#: zp-core/admin-options.php:2092
+#: zp-core/admin-options.php:2091
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:115
 msgid "Thumbnail"
 msgstr "Vignettes"
 
-#: zp-core/admin-options.php:2112
+#: zp-core/admin-options.php:2111
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr ""
 "Qualité de compression pour les images et les vignettes générées par "
 "Zenphoto."
 
-#: zp-core/admin-options.php:2113
+#: zp-core/admin-options.php:2112
 msgid ""
 "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, "
 "biggest file)."
@@ -4245,11 +4230,11 @@ msgstr ""
 "La qualité va de 0 (piètre qualité, petit fichier) à 100 (meilleure qualité, "
 "gros fichier)."
 
-#: zp-core/admin-options.php:2117
+#: zp-core/admin-options.php:2116
 msgid "Interlace:"
 msgstr "Images entrelacées :"
 
-#: zp-core/admin-options.php:2119
+#: zp-core/admin-options.php:2118
 msgid ""
 "If checked, resized images will be created <em>interlaced</em> (if the "
 "format permits)."
@@ -4257,11 +4242,11 @@ msgstr ""
 "Si cette option est cochée, les images redimensionnées sont crées "
 "<em>entrelacées<em> (si le format le permet)."
 
-#: zp-core/admin-options.php:2122
+#: zp-core/admin-options.php:2121
 msgid "Use embedded thumbnail"
 msgstr "Utiliser la vignette intégrée"
 
-#: zp-core/admin-options.php:2133
+#: zp-core/admin-options.php:2132
 msgid ""
 "If set, Zenphoto will use the thumbnail embedded in the image when creating "
 "a cached image that is equal or smaller in size. Note: the quality of this "
@@ -4272,15 +4257,15 @@ msgstr ""
 "la vignette. Note : la qualité de l’image varie selon l’appareil photo et "
 "l’orientation peut ne pas être celle de l’image elle-même."
 
-#: zp-core/admin-options.php:2137
+#: zp-core/admin-options.php:2136
 msgid "The PHP EXIF extension is required for this option."
 msgstr "L’extension EXIF de PHP est requise pour utiliser cette option."
 
-#: zp-core/admin-options.php:2144
+#: zp-core/admin-options.php:2143
 msgid "Allow upscale:"
 msgstr "Autoriser l’agrandissement :"
 
-#: zp-core/admin-options.php:2146
+#: zp-core/admin-options.php:2145
 msgid ""
 "Allow images to be scaled up to the requested size. This could result in "
 "loss of quality, so it is off by default."
@@ -4289,39 +4274,39 @@ msgstr ""
 "grande que la taille originale). Une perte de qualité peut en découler ; ce "
 "paramètre est donc désactivé par défaut."
 
-#: zp-core/admin-options.php:2149
+#: zp-core/admin-options.php:2148
 msgid "Sharpen:"
 msgstr "Renforcement :"
 
-#: zp-core/admin-options.php:2162
+#: zp-core/admin-options.php:2161
 msgid "Amount"
 msgstr "Force"
 
-#: zp-core/admin-options.php:2183
+#: zp-core/admin-options.php:2182
 msgid "Radius"
 msgstr "Rayon"
 
-#: zp-core/admin-options.php:2187
+#: zp-core/admin-options.php:2186
 msgid "Threshold"
 msgstr "Seuil"
 
-#: zp-core/admin-options.php:2193
+#: zp-core/admin-options.php:2192
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Ajouter un masque d’atténuation aux images et/ou aux vignettes."
 
-#: zp-core/admin-options.php:2193
+#: zp-core/admin-options.php:2192
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr ""
 "<strong>Attention</strong> : cela peut surcharger les serveurs peu rapides."
 
-#: zp-core/admin-options.php:2194
+#: zp-core/admin-options.php:2193
 msgid ""
 "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 "
 "(least sharpening) and 100 (most sharpening)."
 msgstr ""
 "<em>Force</em> : la puissance de l’effet de renforcement (entre 0 et 100)."
 
-#: zp-core/admin-options.php:2195
+#: zp-core/admin-options.php:2194
 msgid ""
 "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius "
 "sharpens smaller details, and a larger radius sharpens larger details."
@@ -4329,7 +4314,7 @@ msgstr ""
 "<em>Rayon</em> : le rayon en pixels du masque de renforcement (plus le rayon "
 "est petit, plus petits sont les détails renforcés, et vice-versa)."
 
-#: zp-core/admin-options.php:2196
+#: zp-core/admin-options.php:2195
 msgid ""
 "<em>Threshold</em>: the color difference threshold required for sharpening. "
 "A low threshold sharpens all edges including faint ones, while a higher "
@@ -4339,47 +4324,47 @@ msgstr ""
 "renforcement. Un seuil bas renforce tous les cotés, même ceux peux visibles "
 "(et vice-versa)."
 
-#: zp-core/admin-options.php:2200
+#: zp-core/admin-options.php:2199
 msgid "Watermarks:"
 msgstr "Filigranes :"
 
-#: zp-core/admin-options.php:2217
+#: zp-core/admin-options.php:2216
 msgid "Full sized images"
 msgstr "Images pleine grandeur (originales)"
 
-#: zp-core/admin-options.php:2240
+#: zp-core/admin-options.php:2239
 #, php-format
 msgid "%s thumbnails"
 msgstr "vignettes %s"
 
-#: zp-core/admin-options.php:2251
+#: zp-core/admin-options.php:2250
 msgid "image thumb"
 msgstr "vignette d’image"
 
-#: zp-core/admin-options.php:2266
+#: zp-core/admin-options.php:2265
 msgid "cover"
 msgstr "couvre"
 
-#: zp-core/admin-options.php:2268
+#: zp-core/admin-options.php:2267
 #, no-php-format
 msgid "% of image"
 msgstr "% de l’image"
 
-#: zp-core/admin-options.php:2271
+#: zp-core/admin-options.php:2270
 msgid "offset h"
 msgstr "décalage en hauteur"
 
-#: zp-core/admin-options.php:2273
+#: zp-core/admin-options.php:2272
 #, no-php-format
 msgid "% w, "
 msgstr "% l, "
 
-#: zp-core/admin-options.php:2275
+#: zp-core/admin-options.php:2274
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: zp-core/admin-options.php:2279
+#: zp-core/admin-options.php:2278
 msgid ""
 "The watermark image is scaled by to cover <em>cover percentage</em> of the "
 "image and placed relative to the upper left corner of the image."
@@ -4388,7 +4373,7 @@ msgstr ""
 "<em>pourcentage de couverture</em> de l’image et placée dans le coin "
 "supérieur gauche de la photo."
 
-#: zp-core/admin-options.php:2280
+#: zp-core/admin-options.php:2279
 msgid ""
 "It is offset from there (moved toward the lower right corner) by the "
 "<em>offset</em> percentages of the height and width difference between the "
@@ -4398,14 +4383,14 @@ msgstr ""
 "inférieur droit) selon la différence de pourcentage de <em>décalage</em> de "
 "la largeur et de la hauteur entre l’image et le filigrane."
 
-#: zp-core/admin-options.php:2281
+#: zp-core/admin-options.php:2280
 msgid ""
 "The watermark will not be made larger than the original watermark image."
 msgstr ""
 "Le filigrane ne sera pas agrandi par rapport à l’image originale du "
 "filigrane."
 
-#: zp-core/admin-options.php:2282
+#: zp-core/admin-options.php:2281
 #, php-format
 msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
@@ -4414,7 +4399,7 @@ msgstr ""
 "Les filigranes personnalisés doivent être placés dans le dossier <code>/%s/"
 "watermarks/</code>. Les images doivent être au format png-24."
 
-#: zp-core/admin-options.php:2286
+#: zp-core/admin-options.php:2285
 msgid ""
 "If a watermark image is selected for these <em>images classes</em> it will "
 "be used in place of the image thumbnail watermark."
@@ -4422,7 +4407,7 @@ msgstr ""
 "Si un filigrane est choisi pour ces <em>classes d’images</em>, il sera "
 "utilisé au lieu du filigrane des vignettes."
 
-#: zp-core/admin-options.php:2291
+#: zp-core/admin-options.php:2290
 msgid ""
 "<strong>NOTE:</strong> If you want to watermark <em>Full sized images</em> "
 "you have to enable <em>cache the full image</em> from the <em>Full image "
@@ -4433,16 +4418,16 @@ msgstr ""
 "images pleine grandeur</em> dans la section suivante <em>Protection de "
 "l’affichage d’images pleine grandeur</em>."
 
-#: zp-core/admin-options.php:2297
+#: zp-core/admin-options.php:2296
 msgid "Caching concurrency:"
 msgstr "Processus concurrents de mise en cache :"
 
-#: zp-core/admin-options.php:2321
+#: zp-core/admin-options.php:2320
 #, php-format
 msgid "Cache processing worker limit: %s."
 msgstr "Nombre maximal de processus de mise en cache : %s."
 
-#: zp-core/admin-options.php:2322
+#: zp-core/admin-options.php:2321
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
@@ -4451,15 +4436,15 @@ msgstr ""
 "réalisée rapidement… à condition que le serveur ne soit pas sursollicité ou "
 "à court de mémoire."
 
-#: zp-core/admin-options.php:2327
+#: zp-core/admin-options.php:2326
 msgid "Cache as:"
 msgstr "Format de la mise en cache :"
 
-#: zp-core/admin-options.php:2330
+#: zp-core/admin-options.php:2329
 msgid "Original"
 msgstr "Format d’origine"
 
-#: zp-core/admin-options.php:2340
+#: zp-core/admin-options.php:2339
 msgid ""
 "Select a type for the images stored in the image cache. Select <em>Original</"
 "em> to preserve the original image’s type."
@@ -4468,11 +4453,11 @@ msgstr ""
 "Sélectionnez <em>Format d’origine</em> pour les enregistrer dans le format "
 "de l’image source."
 
-#: zp-core/admin-options.php:2343
+#: zp-core/admin-options.php:2342
 msgid "Protect image cache"
 msgstr "Protège le cache d’images"
 
-#: zp-core/admin-options.php:2349
+#: zp-core/admin-options.php:2348
 msgid ""
 "If checked all image URIs will link to the image processor and the image "
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
@@ -4485,7 +4470,7 @@ msgstr ""
 "processeur d’images qui sera utilisé pour livrer l’image servie au "
 "navigateur client."
 
-#: zp-core/admin-options.php:2350
+#: zp-core/admin-options.php:2349
 msgid ""
 "<strong>WARNING\t:</strong> This option adds significant overhead to "
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
@@ -4498,16 +4483,16 @@ msgstr ""
 "ou le <em>Flash</em> ne fonctionnent pas avec une adresse URI de processeur "
 "d’image et sont incompatibles avec ce paramètre."
 
-#: zp-core/admin-options.php:2354
+#: zp-core/admin-options.php:2353
 msgid "Secure image processor"
 msgstr "Processeur d’images sécurisé"
 
-#: zp-core/admin-options.php:2360
+#: zp-core/admin-options.php:2359
 msgid "When enabled, the image processor will check album access credentials."
 msgstr ""
 "Lorsque activé, le processeur d’images vérifie les droits d’accès de l’album."
 
-#: zp-core/admin-options.php:2361
+#: zp-core/admin-options.php:2360
 msgid ""
 "<strong>WARNING\t:</strong> This option adds memory overhead to image "
 "caching! You may be unable to cache some images depending on your server "
@@ -4517,43 +4502,43 @@ msgstr ""
 "pour la mise en cache des images. Selon la disponibilité de mémoire du "
 "serveur, vous serez peut-être incapable de mettre certaines images en cache."
 
-#: zp-core/admin-options.php:2365
+#: zp-core/admin-options.php:2364
 msgid "Full image protection:"
 msgstr "Protection de l’affichage d’images pleine grandeur :"
 
-#: zp-core/admin-options.php:2370
+#: zp-core/admin-options.php:2369
 msgid "Disable hotlinking"
 msgstr "Désactiver les liens directs de sites externes"
 
-#: zp-core/admin-options.php:2375
+#: zp-core/admin-options.php:2374
 msgid "cache the full image"
 msgstr "mettre en cache les images pleine grandeur"
 
-#: zp-core/admin-options.php:2388 zp-core/admin-options.php:2425
+#: zp-core/admin-options.php:2387 zp-core/admin-options.php:2424
 msgid "password:"
 msgstr "mot de passe :"
 
-#: zp-core/admin-options.php:2410
+#: zp-core/admin-options.php:2409
 msgid "user:"
 msgstr "utilisateur :"
 
-#: zp-core/admin-options.php:2460
+#: zp-core/admin-options.php:2459
 msgid "hint:"
 msgstr "astuce :"
 
-#: zp-core/admin-options.php:2474
+#: zp-core/admin-options.php:2473
 msgid "Protected view"
 msgstr "Affichage protégé"
 
-#: zp-core/admin-options.php:2474
+#: zp-core/admin-options.php:2473
 msgid "No access"
 msgstr "Aucun accès"
 
-#: zp-core/admin-options.php:2476
+#: zp-core/admin-options.php:2475
 msgid "Unprotected"
 msgstr "Aucune protection"
 
-#: zp-core/admin-options.php:2484
+#: zp-core/admin-options.php:2483
 msgid ""
 "Disabling hotlinking prevents linking to the full image from other domains. "
 "If enabled, external links are redirect to the image page. If you are having "
@@ -4569,7 +4554,7 @@ msgstr ""
 "<em>protection des images pleine grandeur</em> est sur <em>aucune "
 "protection</em> ou si l’image est déjà mise en cache."
 
-#: zp-core/admin-options.php:2485
+#: zp-core/admin-options.php:2484
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to "
 "the cache and served from there after the first reference. <em>Full&nbsp;"
@@ -4583,7 +4568,7 @@ msgstr ""
 "<em>Affichage protégé</em> pour que l’image soit mise en cache. Sinon, une "
 "fois l’image mise en cache, celle-ci ne sera plus protégée."
 
-#: zp-core/admin-options.php:2486
+#: zp-core/admin-options.php:2485
 msgid ""
 "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the "
 "<em>Download</em> and <em>Protected view</em> level of protection. If there "
@@ -4594,7 +4579,7 @@ msgstr ""
 "<em>Affichage protégé</em>. Si un mot de passe est spécifié, le visiteur "
 "doit le saisir pour accéder à l’image."
 
-#: zp-core/admin-options.php:2487
+#: zp-core/admin-options.php:2486
 msgid ""
 "Select the level of protection for full sized images. <em>Download</em> "
 "forces a download dialog rather than displaying the image. <em>No&nbsp;"
@@ -4611,11 +4596,11 @@ msgstr ""
 "pour vérifier le mot de passe). <br /><em>Aucune protection</em> affiche "
 "l’image sans restriction."
 
-#: zp-core/admin-options.php:2491
+#: zp-core/admin-options.php:2490
 msgid "Use lock image"
 msgstr "Utiliser une image de cadenas"
 
-#: zp-core/admin-options.php:2496
+#: zp-core/admin-options.php:2495
 msgid ""
 "Substitute a <em>lock</em> image for thumbnails of password protected albums "
 "when the viewer has not supplied the password. If your theme supplies an "
@@ -4627,12 +4612,12 @@ msgstr ""
 "passwordprotected.png</code>, elle sera utilisée. Sinon l’icône par défaut "
 "de Zenphoto sera utilisée."
 
-#: zp-core/admin-options.php:2509
+#: zp-core/admin-options.php:2508
 msgid "Metadata"
 msgstr "Métadonnées"
 
-#: zp-core/admin-options.php:2531 zp-core/admin-options.php:2546
-#: zp-core/admin-options.php:2547 zp-core/admin-options.php:2548
+#: zp-core/admin-options.php:2530 zp-core/admin-options.php:2545
+#: zp-core/admin-options.php:2546 zp-core/admin-options.php:2547
 #: zp-core/admin-users.php:486 zp-core/zp-extensions/GoogleMap.php:114
 #: zp-core/zp-extensions/contact_form.php:84
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
@@ -4640,35 +4625,35 @@ msgstr "Métadonnées"
 msgid "show"
 msgstr "afficher"
 
-#: zp-core/admin-options.php:2532 zp-core/zp-extensions/GoogleMap.php:115
+#: zp-core/admin-options.php:2531 zp-core/zp-extensions/GoogleMap.php:115
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:110
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:111
 msgid "hide"
 msgstr "masquer"
 
-#: zp-core/admin-options.php:2533
+#: zp-core/admin-options.php:2532
 #: zp-core/zp-extensions/http_security_headers.php:357
 #: zp-core/zp-extensions/http_security_headers.php:464
 msgid "disabled"
 msgstr "désactivé"
 
-#: zp-core/admin-options.php:2544
+#: zp-core/admin-options.php:2543
 msgid "Select how image metadata fields are handled."
 msgstr "Choisir comment sont traités les champs de métadonnées des images."
 
-#: zp-core/admin-options.php:2546
+#: zp-core/admin-options.php:2545
 msgid "Show the field and import data"
 msgstr "Afficher le champ et importer la donnée"
 
-#: zp-core/admin-options.php:2547
+#: zp-core/admin-options.php:2546
 msgid "Hide the field but import data"
 msgstr "Masquer le champ mais importer la donnée"
 
-#: zp-core/admin-options.php:2548
+#: zp-core/admin-options.php:2547
 msgid "No display and import"
 msgstr "Ne pas afficher ni importer"
 
-#: zp-core/admin-options.php:2552
+#: zp-core/admin-options.php:2551
 msgid ""
 "<strong>Important:</strong> The \"Refresh metadata\" utility which is "
 "accessible from the backend \"Overview\" page, every album-edit page and "
@@ -4681,15 +4666,15 @@ msgstr ""
 "images, écrasera toutes les métadonnées sélectionnées ici et entrées "
 "manuellement. Ceci ne peut être annulé !"
 
-#: zp-core/admin-options.php:2562
+#: zp-core/admin-options.php:2561
 msgid "IPTC encoding:"
 msgstr "Encodage des métadonnées IPTC :"
 
-#: zp-core/admin-options.php:2569
+#: zp-core/admin-options.php:2568
 msgid "The default character encoding of image IPTC metadata."
 msgstr "L’encodage par défaut des métadonnées IPTC."
 
-#: zp-core/admin-options.php:2571
+#: zp-core/admin-options.php:2570
 msgid ""
 "<strong>NOTE:</strong> If you notice unexpected behaviour, especially with "
 "non-ASCII characters (Cyrillic for example), try again with the "
@@ -4699,11 +4684,11 @@ msgstr ""
 "notamment avec les caractères non-ASCII (ex : cyrillique), essayez de "
 "nouveau avec l’extension <code>xmpMetadata</code> activée."
 
-#: zp-core/admin-options.php:2579
+#: zp-core/admin-options.php:2578
 msgid "IPTC caption linebreaks:"
 msgstr "Fins de ligne de la légende IPTC :"
 
-#: zp-core/admin-options.php:2583
+#: zp-core/admin-options.php:2582
 msgid ""
 "If checked line breaks embeded in the IPTCcaption field will be converted to "
 "<code>&lt;br&gt;</code> on image importing."
@@ -4711,19 +4696,19 @@ msgstr ""
 "Si coché, les fins de ligne présents dans le texte de la légende IPTC seront "
 "convertis en <code>&lt;br&gt;</code> lorsque l’image sera importée."
 
-#: zp-core/admin-options.php:2587
+#: zp-core/admin-options.php:2586
 msgid "Image copyright notice"
 msgstr "Informations de copyright de l’image"
 
-#: zp-core/admin-options.php:2597
+#: zp-core/admin-options.php:2596
 msgid "Image Copyright URL"
 msgstr "URL des copyrights de l’image"
 
-#: zp-core/admin-options.php:2607
+#: zp-core/admin-options.php:2606
 msgid "Display Image copyright notice"
 msgstr "Afficher le copyright de l’image"
 
-#: zp-core/admin-options.php:2611
+#: zp-core/admin-options.php:2610
 msgid ""
 "Enable to display the image copyright notice. This may usually be in the "
 "theme below the image but is up to the theme where and if used at all.."
@@ -4731,15 +4716,15 @@ msgstr ""
 "Cochez pour afficher les informations de copyright de l’image. Les thèmes "
 "l’affichent généralement sous l’image. Cela dépend de ce dernier."
 
-#: zp-core/admin-options.php:2615
+#: zp-core/admin-options.php:2614
 msgid "Image copyright rightsholder"
 msgstr "Propriétaire du copyright"
 
-#: zp-core/admin-options.php:2629
+#: zp-core/admin-options.php:2628
 msgid "Embed IPTC copyright"
 msgstr "Copyright IPTC intégré"
 
-#: zp-core/admin-options.php:2630
+#: zp-core/admin-options.php:2629
 msgid ""
 "If checked and an image has no IPTC data a copyright notice will be embedded "
 "in cached copies."
@@ -4747,11 +4732,11 @@ msgstr ""
 "Si coché, une image n’ayant pas de données IPTC concernant son copyright, en "
 "aura une dans sa version en cache."
 
-#: zp-core/admin-options.php:2632
+#: zp-core/admin-options.php:2631
 msgid "Replicate IPTC metadata"
 msgstr "Dupliquer les métadonnées IPTC"
 
-#: zp-core/admin-options.php:2633
+#: zp-core/admin-options.php:2632
 msgid ""
 "If checked IPTC data from the original image will be embedded in cached "
 "copies. If the image has no IPTC data a copyright notice will be embedded. "
@@ -4762,44 +4747,44 @@ msgstr ""
 "information de copyright IPTC sera intégrée (à partir de la mention "
 "renseignée plus haut)."
 
-#: zp-core/admin-options.php:2636
+#: zp-core/admin-options.php:2635
 msgid "IPTC copyright embedding"
 msgstr "Incorporer des mentions IPTC de copyright"
 
-#: zp-core/admin-options.php:2643
+#: zp-core/admin-options.php:2642
 msgid ""
 "<strong>NOTE:</strong> This option applies only to JPEG format cached images."
 msgstr ""
 "<strong>Note :</strong> Ce paramètre s’applique uniquement aux images mises "
 "en cache au format JPEG."
 
-#: zp-core/admin-options.php:2739 zp-core/admin-themes.php:150
+#: zp-core/admin-options.php:2738 zp-core/admin-themes.php:150
 msgid "There are no themes for which you have rights to administer."
 msgstr "Vous n’avez le droit d’administrer aucun thème."
 
-#: zp-core/admin-options.php:2754
+#: zp-core/admin-options.php:2753
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Options pour <code><strong>%1$s</strong></code> : <em>%2$s</em>"
 
-#: zp-core/admin-options.php:2756
+#: zp-core/admin-options.php:2755
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Options pour <em>%s</em>"
 
-#: zp-core/admin-options.php:2764
+#: zp-core/admin-options.php:2763
 msgid "Show theme for:"
 msgstr "Afficher le thème pour :"
 
-#: zp-core/admin-options.php:2780 zp-core/admin-options.php:3063
+#: zp-core/admin-options.php:2779 zp-core/admin-options.php:3062
 msgid "Revert to default"
 msgstr "Réinitialiser aux valeurs par défaut"
 
-#: zp-core/admin-options.php:2787
+#: zp-core/admin-options.php:2786
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Options standards</strong>"
 
-#: zp-core/admin-options.php:2789
+#: zp-core/admin-options.php:2788
 msgid ""
 "<em>Image and album presentation options provided by the Zenphoto core for "
 "all themes.</em>"
@@ -4807,7 +4792,7 @@ msgstr ""
 "<em>Paramètres de présentation d’images et d’albums déterminés par le cœur "
 "de Zenphoto. Communs à tous les thèmes.</em>"
 
-#: zp-core/admin-options.php:2789
+#: zp-core/admin-options.php:2788
 msgid ""
 "<strong>Note:</strong> These are <em>recommendations</em> as themes may "
 "choose to override them for design reasons"
@@ -4816,29 +4801,29 @@ msgstr ""
 "générale par Zenphoto. Certains thèmes les supplantent pour des raisons de "
 "design."
 
-#: zp-core/admin-options.php:2792
+#: zp-core/admin-options.php:2791
 #: zp-core/zp-extensions/publishContent/publishContent.php:257
 msgid "Albums:"
 msgstr "Albums :"
 
-#: zp-core/admin-options.php:2802 zp-core/admin-options.php:2820
+#: zp-core/admin-options.php:2801 zp-core/admin-options.php:2819
 msgid "thumbnails per page"
 msgstr "vignettes par page"
 
-#: zp-core/admin-options.php:2807
+#: zp-core/admin-options.php:2806
 msgid "Set how many albums should appear on an album page"
 msgstr "Définit le nombre d’albums par page"
 
-#: zp-core/admin-options.php:2811
+#: zp-core/admin-options.php:2810
 #: zp-core/zp-extensions/publishContent/publishContent.php:379
 msgid "Images:"
 msgstr "Images :"
 
-#: zp-core/admin-options.php:2824
+#: zp-core/admin-options.php:2823
 msgid "Set how many images (thumbs) should appear on an image page"
 msgstr "Définit le nombre d’images (vignettes) par page"
 
-#: zp-core/admin-options.php:2829
+#: zp-core/admin-options.php:2828
 msgid ""
 "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The "
 "actual number of thumbnails that are displayed on a page will be rounded up "
@@ -4848,28 +4833,28 @@ msgstr ""
 "supérieur à 1, le nombre de vignettes affichées dans une page est arrondi au "
 "prochain multiple de cette valeur."
 
-#: zp-core/admin-options.php:2830
+#: zp-core/admin-options.php:2829
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Dans les pages d’images, il y a %1$u rangées de vignettes."
 
-#: zp-core/admin-options.php:2846
+#: zp-core/admin-options.php:2845
 msgid "Transition:"
 msgstr "Transition :"
 
-#: zp-core/admin-options.php:2856
+#: zp-core/admin-options.php:2855
 msgid "Enable transition page"
 msgstr "Activer les transitions de pages"
 
-#: zp-core/admin-options.php:2865
+#: zp-core/admin-options.php:2864
 msgid "Minimum number of image thumbs"
 msgstr "Nombre minimal de vignettes"
 
-#: zp-core/admin-options.php:2875
+#: zp-core/admin-options.php:2874
 msgid "Maximum number of image thumbs"
 msgstr "Nombre maximal de vignettes"
 
-#: zp-core/admin-options.php:2879
+#: zp-core/admin-options.php:2878
 msgid ""
 "If the last page with albums has less albums than the albums per page value, "
 "image thumbs share the page with the album thumbs. Their number is "
@@ -4886,32 +4871,32 @@ msgstr ""
 "sera utilisée. Un minimum et un maximum peuvent être déterminés. Définissez "
 "les deux options sur la même valeur pour toujours obtenir une valeur fixe."
 
-#: zp-core/admin-options.php:2895
+#: zp-core/admin-options.php:2894
 msgid "Thumb size:"
 msgstr "Taille des vignettes :"
 
-#: zp-core/admin-options.php:2905 zp-core/admin-options.php:2989
+#: zp-core/admin-options.php:2904 zp-core/admin-options.php:2988
 msgid "height"
 msgstr "hauteur"
 
-#: zp-core/admin-options.php:2909 zp-core/admin-options.php:2993
+#: zp-core/admin-options.php:2908 zp-core/admin-options.php:2992
 msgid "width"
 msgstr "largeur"
 
-#: zp-core/admin-options.php:2916 zp-core/admin-options.php:3000
+#: zp-core/admin-options.php:2915 zp-core/admin-options.php:2999
 msgid "shortest side"
 msgstr "plus petit côté"
 
-#: zp-core/admin-options.php:2920 zp-core/admin-options.php:3004
+#: zp-core/admin-options.php:2919 zp-core/admin-options.php:3003
 msgid "longest side"
 msgstr "plus grand côté"
 
-#: zp-core/admin-options.php:2925
+#: zp-core/admin-options.php:2924
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Les vignettes standards sont redimensionnées à %u pixels."
 
-#: zp-core/admin-options.php:2926
+#: zp-core/admin-options.php:2925
 msgid ""
 "If cropping is disabled the thumbs will be sized so that the <em>height</"
 "em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> "
@@ -4922,21 +4907,21 @@ msgstr ""
 "em>, ou le côté le <em>plus long</em> sera égal à <em>la taille des "
 "vignette</em>."
 
-#: zp-core/admin-options.php:2937
+#: zp-core/admin-options.php:2936
 msgid "Crop thumbnails:"
 msgstr "Rogner les vignettes :"
 
-#: zp-core/admin-options.php:2942
+#: zp-core/admin-options.php:2941
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% à gauche et à droite<br />"
 
-#: zp-core/admin-options.php:2946
+#: zp-core/admin-options.php:2945
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% en haut et en bas"
 
-#: zp-core/admin-options.php:2951
+#: zp-core/admin-options.php:2950
 #, php-format
 msgid ""
 "If checked the thumbnail will be cropped %1$.1f%% in from the top and the "
@@ -4945,35 +4930,35 @@ msgstr ""
 "Si cette option est activée, la vignette sera rognée de %1$.1f%% en haut et "
 "en bas, et de %2$.1f%% à gauche et à droite."
 
-#: zp-core/admin-options.php:2953
+#: zp-core/admin-options.php:2952
 msgid ""
 "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr ""
 "<strong>Note :</strong> Changer les hauteur ou largeur de rognage invalidera "
 "tous les rognages existants."
 
-#: zp-core/admin-options.php:2957
+#: zp-core/admin-options.php:2956
 msgid "Gray scale conversion:"
 msgstr "Conversion en teintes de gris :"
 
-#: zp-core/admin-options.php:2964
+#: zp-core/admin-options.php:2963
 msgid "thumbnail"
 msgstr "vignette"
 
-#: zp-core/admin-options.php:2968
+#: zp-core/admin-options.php:2967
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr ""
 "Si coché, les images ou les vignettes seront générées en teintes de gris."
 
-#: zp-core/admin-options.php:2978
+#: zp-core/admin-options.php:2977
 msgid "Image size:"
 msgstr "Taille de l’image :"
 
-#: zp-core/admin-options.php:3009
+#: zp-core/admin-options.php:3008
 msgid "Default image display size."
 msgstr "Taille d’affichage par défaut des images."
 
-#: zp-core/admin-options.php:3010
+#: zp-core/admin-options.php:3009
 msgid ""
 "The image will be sized so that the <em>height</em>, <em>width</em>, "
 "<em>shortest side</em>, or the <em>longest side</em> will be equal to "
@@ -4983,11 +4968,11 @@ msgstr ""
 "largeur</em>, <em>le plus court</em> ou <em>le plus long côté</em> soient "
 "égaux à <em>la taille de l’image</em>."
 
-#: zp-core/admin-options.php:3022
+#: zp-core/admin-options.php:3021
 msgid "Gallery index page link:"
 msgstr "Lien vers l’accueil de la galerie :"
 
-#: zp-core/admin-options.php:3042
+#: zp-core/admin-options.php:3041
 msgid ""
 "If this option is not empty, the Gallery Index URL that would normally link "
 "to the theme <code>index.php</code> script will instead link to this script. "
@@ -5000,20 +4985,20 @@ msgstr ""
 "Cela vous permet de personnaliser la <em>page d’accueil</em>. Cette option "
 "n’est valable que pour le thème principal de la <em>galerie</em>."
 
-#: zp-core/admin-options.php:3051
+#: zp-core/admin-options.php:3050
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Options propres au thème</strong>"
 
-#: zp-core/admin-options.php:3053
+#: zp-core/admin-options.php:3052
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "Les options qui suivent sont spécifiquement utilisées par le thème %s."
 
-#: zp-core/admin-options.php:3171 zp-core/admin-plugins.php:187
+#: zp-core/admin-options.php:3170 zp-core/admin-plugins.php:187
 msgid "This plugin will be removed in future versions."
 msgstr "Cette extension sera retirée dans une version ultérieure."
 
-#: zp-core/admin-options.php:3186 zp-core/admin-plugins.php:265
+#: zp-core/admin-options.php:3185 zp-core/admin-plugins.php:265
 msgid ""
 "<strong>Note:</strong> Instantiating the option interface within the plugin "
 "may cause performance issues. You should instead set "
@@ -5024,30 +5009,30 @@ msgstr ""
 "devriez définir <code>$option_interface</code> à la valeur de la classe "
 "(sous forme de chaîne)."
 
-#: zp-core/admin-options.php:3214 zp-core/admin-plugins.php:369
+#: zp-core/admin-options.php:3213 zp-core/admin-plugins.php:369
 #, php-format
 msgid "Change %s options"
 msgstr "Modifier les paramètres de %s"
 
-#: zp-core/admin-options.php:3231
+#: zp-core/admin-options.php:3230
 msgid "warning"
 msgstr "avertissement"
 
-#: zp-core/admin-options.php:3240 zp-core/admin-plugins.php:378
+#: zp-core/admin-options.php:3239 zp-core/admin-plugins.php:378
 #: zp-core/admin-themes.php:256
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:31
 msgid "Deprecated"
 msgstr "Obsolète"
 
-#: zp-core/admin-options.php:3273
+#: zp-core/admin-options.php:3272
 msgid "There are no plugin options to administer."
 msgstr "Il n’y a aucune option d’extension à gérer."
 
-#: zp-core/admin-options.php:3323
+#: zp-core/admin-options.php:3322
 msgid "Server protocol:"
 msgstr "Protocole du serveur :"
 
-#: zp-core/admin-options.php:3331
+#: zp-core/admin-options.php:3330
 msgid ""
 "Normally this option should be set to <em>http</em>. If you are running a "
 "secure server, change this to <em>https</em>."
@@ -5055,7 +5040,7 @@ msgstr ""
 "Généralement cette option devrait être sur <em>http</em>. Si vous êtes sur "
 "un serveur sécurisé, optez pour <em>https</em>."
 
-#: zp-core/admin-options.php:3333
+#: zp-core/admin-options.php:3332
 msgid ""
 "<strong>Warning:</strong> If you select <em>https</em> your server "
 "<strong>MUST</strong> support <em>https</em>. If you set <em>https</em> on a "
@@ -5071,15 +5056,15 @@ msgstr ""
 "<code>$conf[\"server_protocol\"] = \"http\";</code> à votre fichier "
 "<code>zenphoto.cfg.php</code>."
 
-#: zp-core/admin-options.php:3341
+#: zp-core/admin-options.php:3340
 msgid "Cookie security"
 msgstr "Sécurité des cookies"
 
-#: zp-core/admin-options.php:3346
+#: zp-core/admin-options.php:3345
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Rattache les cookies à l’adresse IP du navigateur."
 
-#: zp-core/admin-options.php:3350
+#: zp-core/admin-options.php:3349
 msgid ""
 "<strong>Warning</strong>: If your browser does not present a consistant IP "
 "address during a session you may not be able to log into your site when this "
@@ -5089,13 +5074,13 @@ msgstr ""
 "durant une session, vous pourriez ne pas pouvoir vous connecter à votre site "
 "lorsque cette option est activée."
 
-#: zp-core/admin-options.php:3353
+#: zp-core/admin-options.php:3352
 msgid "You <strong>WILL</strong> have to login after changing this option."
 msgstr ""
 "Vous <strong>DEVREZ</strong> vous connecter de nouveau après avoir activé "
 "cette option."
 
-#: zp-core/admin-options.php:3356
+#: zp-core/admin-options.php:3355
 msgid ""
 "If you set the option and cannot login, you will have to restore your "
 "database to a point when the option was not set, so you might want to backup "
@@ -5106,7 +5091,7 @@ msgstr ""
 "l’activation de cette option. Vous devriez donc faire d’abord une copie de "
 "sauvegarde de la base de données."
 
-#: zp-core/admin-options.php:3358
+#: zp-core/admin-options.php:3357
 msgid ""
 "This will not work properly if Zenphoto is set to anonymize the IP address "
 "which is strongly advised for privacy concerns in many jurisdictions."
@@ -5115,11 +5100,11 @@ msgstr ""
 "sont activées sur Zenphoto. L’anonymisation est recommandée pour des raisons "
 "de vie privée sous de nombreuses juridictions."
 
-#: zp-core/admin-options.php:3365
+#: zp-core/admin-options.php:3364
 msgid "Obscure cache filenames"
 msgstr "Masquer les noms des fichiers mis en cache"
 
-#: zp-core/admin-options.php:3369
+#: zp-core/admin-options.php:3368
 msgid ""
 "Cause the filename of cached items to be obscured. This makes it difficult "
 "for someone to \"guess\" the name in a URL."
@@ -5127,11 +5112,11 @@ msgstr ""
 "Masque les noms des éléments mis en cache. Il est alors plus difficile d’en "
 "« deviner » le nom dans l’URL."
 
-#: zp-core/admin-options.php:3372
+#: zp-core/admin-options.php:3371
 msgid "Image Processor security"
 msgstr "Sécurité du processeur d’images"
 
-#: zp-core/admin-options.php:3377
+#: zp-core/admin-options.php:3376
 msgid ""
 "Add a security parameter to image processor URIs to prevent denial of "
 "service attacks requesting arbitrary sized images."
@@ -5140,12 +5125,12 @@ msgstr ""
 "les attaques de déni de service consistant à faire des requêtes d’images de "
 "tailles arbitraires."
 
-#: zp-core/admin-options.php:3386 zp-core/classes/class-userdataexport.php:228
+#: zp-core/admin-options.php:3385 zp-core/classes/class-userdataexport.php:228
 #: zp-core/utilities/user-data-export.php:79
 msgid "User name"
 msgstr "Nom de l’utilisateur"
 
-#: zp-core/admin-options.php:3407
+#: zp-core/admin-options.php:3406
 msgid ""
 "If enabled guest logon forms will include the <em>User Name</em> field. This "
 "allows <em>Zenphoto</em> users to logon from the form."
@@ -5154,7 +5139,7 @@ msgstr ""
 "champ pour le <em>Nom de l’utilisateur</em>. Cela permet aux utilisateurs de "
 "<em>Zenphoto</em> de se connecter à partir du formulaire."
 
-#: zp-core/admin-options.php:3409
+#: zp-core/admin-options.php:3408
 msgid ""
 "<strong>Note</strong>: This field is required because one or more of the "
 "<em>Guest</em> passwords has a user name associated."
@@ -5162,35 +5147,35 @@ msgstr ""
 "<strong>Note :</strong> Ce champ est requis parce qu’un ou plusieurs des "
 "mots de passe <em>Invité</em> sont associés à un nom d’utilisateur."
 
-#: zp-core/admin-options.php:3424
+#: zp-core/admin-options.php:3423
 msgid "Anonymize IP"
 msgstr "Anonymise les IP"
 
-#: zp-core/admin-options.php:3431
+#: zp-core/admin-options.php:3430
 msgid "0 - No anonymizing"
 msgstr "0 - Aucune anonymisation"
 
-#: zp-core/admin-options.php:3432
+#: zp-core/admin-options.php:3431
 msgid "1 - Last fourth anonymized"
 msgstr "1 - Dernier octet anonymisé"
 
-#: zp-core/admin-options.php:3433
+#: zp-core/admin-options.php:3432
 msgid "2 - Last half anonymized"
 msgstr "2 - Deux derniers octets anonymisés"
 
-#: zp-core/admin-options.php:3434
+#: zp-core/admin-options.php:3433
 msgid "3 - Last three fourths anonymized"
 msgstr "3 - Trois derniers octets anonymisés"
 
-#: zp-core/admin-options.php:3435
+#: zp-core/admin-options.php:3434
 msgid "4 - Full anonymization, no IP stored"
 msgstr "4 - Anonymisation complète, pas de stockage des adresses IP"
 
-#: zp-core/admin-options.php:3441
+#: zp-core/admin-options.php:3440
 msgid "Anonymize level"
 msgstr "Niveau d’anonymisation"
 
-#: zp-core/admin-options.php:3445
+#: zp-core/admin-options.php:3444
 msgid ""
 "Zenphoto stores the IP address of visitors on several occasions (e.g. "
 "rating, spam filtering, comment posting). In some jurisdictions like the EU "
@@ -5207,7 +5192,7 @@ msgstr ""
 "afin que les parties soient remplacées par 0. Cela couvre IPv4 (1.1.1.0) et "
 "IPv6 (1: 1: 1: 1: 1: 1: 0: 0)."
 
-#: zp-core/admin-options.php:3452
+#: zp-core/admin-options.php:3451
 msgid ""
 "This is used by the official plugins <em>comment_form</em>, "
 "<em>contact_form</em> and <em>register_user</em> plugins if the data usage "
@@ -5220,11 +5205,11 @@ msgstr ""
 "doivent implémenter <code>getDataUsageNotice()/printDataUsageNotice()</code> "
 "pour ce faire."
 
-#: zp-core/admin-options.php:3456
+#: zp-core/admin-options.php:3455
 msgid "Data privacy usage notice"
 msgstr "Note d’utilisation des données personnelles"
 
-#: zp-core/admin-options.php:3462
+#: zp-core/admin-options.php:3461
 msgid ""
 "Here you can define the data usage confirmation notice that is recommended "
 "if your site is using forms submitting data in some jurisdictions like the "
@@ -5235,7 +5220,7 @@ msgstr ""
 "certains pays comme l’UE et son RGPD. Laisser vide pour utiliser le texte "
 "par défaut :"
 
-#: zp-core/admin-options.php:3463 zp-core/functions/functions.php:3079
+#: zp-core/admin-options.php:3462 zp-core/functions/functions.php:3079
 msgid ""
 "By using this form you agree with the storage and handling of your data by "
 "this website."
@@ -5243,15 +5228,15 @@ msgstr ""
 "En utilisant ce formulaire, vous acceptez le stockage et le traitement de "
 "vos données par ce site."
 
-#: zp-core/admin-options.php:3471
+#: zp-core/admin-options.php:3470
 msgid "Data privacy policy page"
 msgstr "Page de Politique de confidentialité"
 
-#: zp-core/admin-options.php:3478
+#: zp-core/admin-options.php:3477
 msgid "Custom link text"
 msgstr "Texte de la page personnalisée"
 
-#: zp-core/admin-options.php:3483
+#: zp-core/admin-options.php:3482
 msgid ""
 "Here you can define your data policy statement page that is recommended to "
 "have in jurisdictions like the EU and its GDPR."
@@ -5260,7 +5245,7 @@ msgstr ""
 "données qu’il est recommandé d’avoir dans des juridictions comme l’UE et son "
 "RGPD."
 
-#: zp-core/admin-options.php:3484
+#: zp-core/admin-options.php:3483
 msgid ""
 "If the Zenpage CMS plugin is enabled and also its pages feature you can "
 "select one of its pages, otherwise enter a full custom page url manually "
@@ -5271,7 +5256,7 @@ msgstr ""
 "page personnalisée complète qui remplacerait également la sélection de page "
 "Zenpage."
 
-#: zp-core/admin-options.php:3485
+#: zp-core/admin-options.php:3484
 msgid ""
 "Additionally you can define a custom text for the page link. If not set the "
 "default text <em>More info on our data privacy policy.</em> is used."
@@ -9062,7 +9047,7 @@ msgstr "Source de l’image"
 
 #: zp-core/functions/functions.php:2831 zp-core/template-functions.php:469
 #: zp-core/zp-extensions/html_meta_tags.php:461
-#: zp-core/zp-extensions/scriptless-socialsharing.php:175
+#: zp-core/zp-extensions/scriptless-socialsharing.php:174
 msgid "Contact"
 msgstr "Contact"
 
@@ -15270,7 +15255,7 @@ msgstr "Code postal"
 
 #: zp-core/zp-extensions/contact_form.php:161
 #: zp-core/zp-extensions/contact_form.php:165
-#: zp-core/zp-extensions/scriptless-socialsharing.php:83
+#: zp-core/zp-extensions/scriptless-socialsharing.php:82
 msgid "E-mail"
 msgstr "Email"
 
@@ -20844,7 +20829,7 @@ msgstr "Vider le cache RSS"
 msgid "Delete all files from the RSS cache"
 msgstr "Effacer tous les fichiers du cache de flux RSS"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:46
+#: zp-core/zp-extensions/scriptless-socialsharing.php:45
 msgid ""
 "A Zenphoto plugin that provides scriptless and privacy friendly sharing "
 "buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, "
@@ -20856,11 +20841,11 @@ msgstr ""
 "Linkedin, Xing, Reddit, Stumbleupon, Tumblr, WhatsApp (iOS uniquement) et "
 "email. (Note : aucun décompte de partage à cause de cela !)."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:62
+#: zp-core/zp-extensions/scriptless-socialsharing.php:61
 msgid "Social networks"
 msgstr "Réseaux sociaux"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:85
+#: zp-core/zp-extensions/scriptless-socialsharing.php:84
 msgid ""
 "Select the social networks you wish buttons to appear for. Note: WhatsApp "
 "iOS only."
@@ -20868,11 +20853,11 @@ msgstr ""
 "Sélectionnez les sites de réseaux sociaux pour lesquels vous souhaitez "
 "afficher le bouton. Note : pour WhatsApp, iOS uniquement."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:86
+#: zp-core/zp-extensions/scriptless-socialsharing.php:85
 msgid "Icon font and default CSS"
 msgstr "Icones et CSS par défaut"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:90
+#: zp-core/zp-extensions/scriptless-socialsharing.php:89
 msgid ""
 "Uncheck to disable loading the included font and CSS and use your own theme "
 "based icon font and CSS."
@@ -20880,20 +20865,20 @@ msgstr ""
 "Décochez pour désactiver le chargement des polices et CSS inclus, afin "
 "d’utiliser les icones et CSS de votre thème personnel."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:91
+#: zp-core/zp-extensions/scriptless-socialsharing.php:90
 msgid "Icons only"
 msgstr "Icones seulement"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:95
+#: zp-core/zp-extensions/scriptless-socialsharing.php:94
 msgid "Check to hide the service name and only show icon buttons."
 msgstr ""
 "Cochez pour masquer le nom du service et afficher uniquement les icônes."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:96
+#: zp-core/zp-extensions/scriptless-socialsharing.php:95
 msgid "Twitter user name"
 msgstr "Nom d’utilisateur Twitter"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:100
+#: zp-core/zp-extensions/scriptless-socialsharing.php:99
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
@@ -20901,7 +20886,7 @@ msgstr ""
 "Entrez votre nom Twitter sans @, si vous souhaitez le voir apparaitre dans "
 "les tweets envoyés."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:325
+#: zp-core/zp-extensions/scriptless-socialsharing.php:324
 msgid "e-mail"
 msgstr "email"
 
@@ -24451,6 +24436,25 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid ""
+#~ "Sort order for the albums on the index of the gallery. Custom sort values "
+#~ "must be database field names. You can have multiple fields separated by "
+#~ "commas. This option is also the default sort for albums and subalbums."
+#~ msgstr ""
+#~ "Ordre de tri des albums de la page d’accueil de la galerie. Les valeurs "
+#~ "de tri personnalisées doivent correspondre à des champs de la base de "
+#~ "données (pour en spécifier plusieurs, séparez-les par des virgules). "
+#~ "Cette option définit aussi l’ordre de tri par défaut des albums et des "
+#~ "sous-albums."
+
+#~ msgid ""
+#~ "Custom sort values must be database field names. You can have multiple "
+#~ "fields separated by commas."
+#~ msgstr ""
+#~ "Les valeurs de tri personnalisées doivent correspondre à des champs de "
+#~ "base de données (pour en spécifier plusieurs, séparez-les par des "
+#~ "virgules)."
 
 #~ msgid "1: Horizontal (normal)"
 #~ msgstr "1 : Horizontal (normal)"
