@@ -1416,7 +1416,7 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<?php
-										echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
+										echo gettext('Sort order for all albums and subalbums.');
 										?>
 									</td>
 								</tr>
@@ -2037,7 +2037,6 @@ Authority::printPasswordFormJS();
 									</td>
 									<td>
 										<p><?php echo gettext("Default sort order for images."); ?></p>
-										<p><?php echo gettext('Custom sort values must be database field names. You can have multiple fields separated by commas.') ?></p>
 									</td>
 								</tr>
 								<tr>
