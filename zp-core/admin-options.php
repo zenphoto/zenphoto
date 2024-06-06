@@ -2269,7 +2269,7 @@ Authority::printPasswordFormJS();
 										<p class="nowrap">
 											<?php echo gettext("offset h"); ?>
 											<input type="text" size="2" name="watermark_h_offset"
-														 value="<?php echo html_encode(getOption('watermark_h_offset')); ?>" /><?php echo /* xgettext:no-php-format */ gettext("% w, "); ?>
+														 value="<?php echo html_encode(getOption('watermark_h_offset')); ?>" /><?php echo /* xgettext:no-php-format */ gettext("% , w "); ?>
 											<input type="text" size="2" name="watermark_w_offset"
 														 value="<?php echo html_encode(getOption('watermark_w_offset')); ?>" /><?php /* xgettext:no-php-format */ echo gettext("%"); ?>
 										</p>
