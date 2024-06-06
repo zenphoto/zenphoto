@@ -42,7 +42,7 @@
 		?>
 		<p>
 			<label for="street"><?php printf(gettext("Street%s"), contactForm::getRequiredFieldMark('contactform_street')); ?></label>
-			<input type="text" id="street" name="street""<?php contactForm::printAutocompleteAttr('street-address'); ?> size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php contactForm::printAttributes('contactform_street'); ?> />
+			<input type="text" id="street" name="street"<?php contactForm::printAutocompleteAttr('street-address'); ?> size="50" value="<?php echo html_encode($mailcontent['street']); ?>"<?php contactForm::printAttributes('contactform_street'); ?> />
 		</p>
 		<?php
 	}
@@ -50,7 +50,7 @@
 		?>
 		<p>
 			<label for="city"><?php printf(gettext("City%s"), contactForm::getRequiredFieldMark('contactform_city')); ?></label>
-			<input type="text" id="city" name="city""<?php contactForm::printAutocompleteAttr('address-level2'); ?> size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_city'); ?> />
+			<input type="text" id="city" name="city"<?php contactForm::printAutocompleteAttr('address-level2'); ?> size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_city'); ?> />
 		</p>
 		<?php
 	}
@@ -90,7 +90,7 @@
 		?>
 		<p>
 			<label for="website"><?php printf(gettext("Website%s"), contactForm::getRequiredFieldMark('contactform_website')); ?></label>
-			<input type="text" id="website" name="website"<?php contactForm::printAutocompleteAttr('url'); ?> size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php contactForm::printAttributes('contactform_website'); ?> />
+			<input type="url" id="website" name="website"<?php contactForm::printAutocompleteAttr('url'); ?> size="50" value="<?php echo html_encode($mailcontent['website']); ?>"<?php contactForm::printAttributes('contactform_website'); ?> />
 		</p>
 		<?php
 	}
