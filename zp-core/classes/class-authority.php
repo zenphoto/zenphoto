@@ -1309,7 +1309,6 @@ class Authority {
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass<?php echo $id; ?>"
-						 required
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onclick="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordStrength('<?php echo $id; ?>');"
@@ -1325,7 +1324,6 @@ class Authority {
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 						 name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
 						 id="pass_r<?php echo $id; ?>" disabled="disabled"
-						 required
 						 onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 						 onkeydown="passwordClear('<?php echo $id; ?>');"
 						 onkeyup="passwordMatch('<?php echo $id; ?>');" />

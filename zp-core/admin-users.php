@@ -599,7 +599,7 @@ echo $refresh;
 
 															<em><?php echo gettext("New User"); ?></em>
 															<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
-																		 required onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
+																	onclick="toggleExtraInfo('<?php echo $id; ?>', 'user', visible);
 																						 $('#adminuser<?php echo $id; ?>').focus();" />
 
 															<?php
@@ -717,7 +717,7 @@ echo $refresh;
 													<p>
 														<?php echo gettext("Email"); ?>
 														<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-																	 required value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+																	 value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 													</p>
 													<?php
 													$primeAlbum = $userobj->getAlbum();
