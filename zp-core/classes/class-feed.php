@@ -286,7 +286,7 @@ class feed {
 	protected function getCommentFeedType() {
 		$valid = false;
 		if (isset($this->options['type'])) {
-			$valid = array( 'all', 'album' , 'image', 'news', 'page');
+			$valid = array('all', 'album', 'image', 'news', 'page', 'zenpage', 'gallery');
 			if (in_array($this->options['type'], $valid)) {
 				return $this->options['type'];
 			}
@@ -496,18 +496,14 @@ class feed {
 							$items = getLatestZenpageComments($this->itemnumber, $this->commentfeedtype, $this->id);
 						}
 						break;
-					case 'gallery':
-					case 'allcomments':
 					case 'all':
-						$items_alb = getLatestComments($this->itemnumber, 'album');
-						$items_img = getLatestComments($this->itemnumber, 'image');
-						$items_zenpage = array();
-						if (function_exists('getLatestZenpageComments')) {
-							$items_zenpage = getLatestZenpageComments($this->itemnumber);
-						}
-						$items = array_merge($items_alb, $items_img, $items_zenpage);
-						$items = sortMultiArray($items, 'date', true);
-						$items = array_slice($items, 0, $this->itemnumber);
+						$items = getLatestComments($this->itemnumber);
+						break;
+					case 'gallery':
+						$items = getLatestComments($this->itemnumber, ['albums', 'images']);
+						break;
+					case 'zenpage':
+						$items = getLatestZenpageComments($this->itemnumber);
 						break;
 				}
 				break;

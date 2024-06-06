@@ -699,7 +699,7 @@ function printEditCommentLink($text, $before = '', $after = '', $title = NULL, $
  * Gets latest comments for images, albums, news and pages
  *
  * @param int $number how many comments you want.
- * @param string $type	"all" for all latest comments of all images, albums, news and pages
+ * @param string|array $type	"all" for all latest comments of all images, albums, news and pages
  * 											an array of table items e.g. array('images','albums') for all images, albums, news and pages
  * 											"image" for the lastest comments of one specific image
  * 											"album" for the latest comments of one specific album

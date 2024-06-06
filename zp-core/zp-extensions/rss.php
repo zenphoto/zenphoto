@@ -245,7 +245,7 @@ class rss_options {
  * @param string $option type of RSS: "Gallery" feed for latest images of the whole gallery
  * 																		"Album" for latest images only of the album it is called from
  * 																		"Collection" for latest images of the album it is called from and all of its subalbums
- * 																		"Comments" for all comments of all albums and images
+ * 																		"Comments-gallery" for all comments of all albums and images
  * 																		"Comments-image" for latest comments of only the image it is called from
  * 																		"Comments-album" for latest comments of only the album it is called from
  * 																		"AlbumsRSS" for latest albums
@@ -254,7 +254,7 @@ class rss_options {
  * 																		"News" feed for all news articles
  * 																		"Category" for only the news articles of the category that is currently selected
  * 																		"NewsWithImages" for all news articles and latest images
- * 																		"Comments" for all news articles and pages
+ * 																		"Comments-zenpage" for all comments of all news articles and pages
  * 																		"Comments-news" for comments of only the news article it is called from
  * 																		"Comments-page" for comments of only the page it is called from
  * 																		"Comments-all" for comments from all albums, images, news articels and pages
@@ -294,7 +294,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				$link = array('rss' => 'gallery', 'folder' => $album->getName());
 			}
 			break;
-		case 'comments':
+		case 'comments-gallery':
 			if (getOption('RSS_comments')) {
 				$link = array('rss' => 'comments', 'type' => 'gallery');
 			}
@@ -346,9 +346,9 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 				$link = array('rss' => 'news', 'withimages' => '');
 			}
 			break;
-		case 'comments':
+		case 'comments-zenpage':
 			if (getOption('RSS_article_comments')) {
-				$link = array('comments' => 1, 'type' => 'zenpage');
+				$link = array('rss' => 'comments', 'type' => 'zenpage');
 			}
 			break;
 		case 'comments-news':
@@ -362,7 +362,7 @@ function getRSSLink($option, $lang = NULL, $addl = NULL) {
 			}
 			break;
 		case 'comments-all':
-			if (getOption('RSS_article_comments')) {
+			if (getOption('RSS_article_comments') && getOption('RSS_comments')) {
 				$link = array('rss' => 'comments', 'type' => 'allcomments');
 			}
 			break;
