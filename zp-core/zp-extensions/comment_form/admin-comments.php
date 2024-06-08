@@ -113,7 +113,7 @@ echo "\n" . '<div id="content">';
 if ($page == "editcomment" && isset($_GET['id'])) {
 	zp_apply_filter('admin_note', 'comments', 'edit');
 	?>
-	<h1><?php echo gettext("edit comment"); ?></h1>
+	<h1><?php echo gettext("Edit comment"); ?></h1>
 	<div class="box" style="padding: 10px">
 		<?php
 		$id = sanitize_numeric($_GET['id']);
@@ -350,7 +350,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 			?>
 				
 			<tr>
-				<th colspan="11"><?php echo gettext("Edit this comment"); ?>
+				<th colspan="11"><?php echo gettext("Edit comments"); ?>
 					<?php
 					$checkarray = array(
 									gettext('*Bulk actions*')	 => 'noaction',
