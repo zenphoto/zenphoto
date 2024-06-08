@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 14:37+0200\n"
+"POT-Creation-Date: 2024-06-08 17:19+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -1960,7 +1960,7 @@ msgstr "Herhaal wachtwoord:"
 #: zp-core/admin-functions.php:1369 zp-core/admin-options.php:1284
 #: zp-core/admin-options.php:1613 zp-core/admin-options.php:2454
 #: zp-core/classes/class-authority.php:1125
-#: zp-core/classes/class-authority.php:1319
+#: zp-core/classes/class-authority.php:1318
 #: zp-core/zp-extensions/downloadList.php:151
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
@@ -4318,8 +4318,8 @@ msgstr "offset h"
 
 #: zp-core/admin-options.php:2272
 #, no-php-format
-msgid "% w, "
-msgstr "% w,"
+msgid "% , w "
+msgstr "% , w "
 
 #: zp-core/admin-options.php:2274
 #, no-php-format
@@ -7027,17 +7027,17 @@ msgstr "wachtwoorden komen overeen"
 msgid "passwords do not match"
 msgstr "wachtwoorden komen niet overeen"
 
-#: zp-core/classes/class-authority.php:1324
+#: zp-core/classes/class-authority.php:1323
 msgid "Repeat password"
 msgstr "Herhaal wachtwoord"
 
-#: zp-core/classes/class-authority.php:1398
+#: zp-core/classes/class-authority.php:1396
 msgid "Use the method isUniqueMailaddress() instead"
 msgstr ""
 "De functie <code>checkUniqueMailaddress()</code> is verouderd. Gebruik in "
 "plaats hiervan de methode <code>isUniqueMailaddress()</code>"
 
-#: zp-core/classes/class-authority.php:1495
+#: zp-core/classes/class-authority.php:1493
 msgid "Use the Authority class instead"
 msgstr ""
 "De class <em>Zenphoto_Authority</em> is verouderd. Gebruik in plaats hiervan "
@@ -7216,11 +7216,11 @@ msgstr "Willekeurige albums"
 msgid "Random images"
 msgstr "Willekeurige afbeeldingen."
 
-#: zp-core/classes/class-feed.php:519
+#: zp-core/classes/class-feed.php:515
 msgid "Bad "
 msgstr "Slechte "
 
-#: zp-core/classes/class-feed.php:556
+#: zp-core/classes/class-feed.php:552
 #: zp-core/zp-extensions/comment_form/functions.php:833
 msgid "by"
 msgstr "door"
@@ -14441,7 +14441,8 @@ msgid "Closed for comments."
 msgstr "Gesloten voor reacties."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:116
-msgid "edit comment"
+#: zp-core/zp-extensions/comment_form/admin-comments.php:489
+msgid "Edit comment"
 msgstr "Bewerk reactie"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
@@ -14559,7 +14560,7 @@ msgid "View full text"
 msgstr "Volledige tekst"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:353
-msgid "Edit this comment"
+msgid "Edit comments"
 msgstr "Bewerk reacties"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:358
@@ -14626,10 +14627,6 @@ msgstr "Verwijder deze reactie."
 #: zp-core/zp-extensions/comment_form/admin-comments.php:487
 msgid "Marked as spam/approved"
 msgstr "Gemarkeerd als spam/goedgekeurd"
-
-#: zp-core/zp-extensions/comment_form/admin-comments.php:489
-msgid "Edit comment"
-msgstr "Bewerk reactie"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:490
 msgid "E-mail comment author"
@@ -24157,6 +24154,16 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "edit comment"
+#~ msgstr "Bewerk reactie"
+
+#~ msgid "Edit this comment"
+#~ msgstr "Bewerk reacties"
+
+#, no-php-format
+#~ msgid "% w, "
+#~ msgstr "% w,"
 
 #~ msgid ""
 #~ "Sort order for the albums on the index of the gallery. Custom sort values "
