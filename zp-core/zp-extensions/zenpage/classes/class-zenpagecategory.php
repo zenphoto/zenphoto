@@ -231,7 +231,7 @@ class ZenpageCategory extends ZenpageRoot {
 		global $_zp_zenpage;
 		$categories = array();
 		foreach ($_zp_zenpage->getAllCategories($visible, $sorttype, $sortdirection, false) as $cat) {
-			if ($cat['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos($cat['sort_order'], $this->getSortOrder()) === 0) || $cat['parentid'] == $this->getID()) {
+			if ($cat['sort_order'] != $this->getSortOrder() && (!$directchilds && stripos(strval($cat['sort_order']), strval($this->getSortOrder())) === 0) || $cat['parentid'] == $this->getID()) {
 				array_push($categories, $cat);
 			}
 		}
