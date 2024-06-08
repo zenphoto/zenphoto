@@ -112,7 +112,7 @@
 	<?php
 	?>
 	<br />
-	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox" required><?php
+	<textarea name="comment" rows="6" cols="42" class="textarea_inputbox" <?php if(!getOption('tinymce4_comments')) echo 'required'; ?>><?php
 		echo $stored['comment'];
 		echo $disabled['comment'];
 ?></textarea>
