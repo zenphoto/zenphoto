@@ -1171,10 +1171,12 @@ function getCommentFormReadonlyFieldAttr($disabled) {
  * @since 1.6.3
  * @param string $option The field option name
  * @param bool $disabled
+ * @param string $autocomplete_value Default "on" if autocomplete is ebabled
  */
-function printCommentFormFieldAttributes($option, $disabled) {
+function printCommentFormFieldAttributes($option, $disabled, $autocomplete_value = 'on') {
 	echo getCommentFormRequiredFieldAttr($option);
 	echo getCommentFormReadonlyFieldAttr($disabled);
+	printCommentformAutocompleteAttr($autocomplete_value, true);
 }
 
 /**
@@ -1188,7 +1190,7 @@ function getCommentformFormAutocompleteAttr() {
 	if (getOption('comment_form_autocomplete')) {
 		return getCommentformAutocompleteAttr('on');
 	}
-	return getCommentformAutocompleteAttr('off');
+	return getCommentformAutocompleteAttr();
 }
 
 /**
@@ -1197,14 +1199,17 @@ function getCommentformFormAutocompleteAttr() {
  *  
  * @since 1.6.3
  * 
- * @param string $value 
+ * @param string $value Default "on" if autocomplete is ebabled
+ * @param bool $skip_off Set to true to skip returing autocomplete="off"
  * @return string
  */
-function getCommentformAutocompleteAttr($value) {
+function getCommentformAutocompleteAttr($value = "on", $skip_off = false) {
 	if (getOption('comment_form_autocomplete')) {
 		return ' autocomplete="' . sanitize($value) . '"';
 	}
-	return ' autocomplete="off"';
+	if (!$skip_off) {
+		return ' autocomplete="off"';
+	}
 }
 
 /**
@@ -1213,8 +1218,9 @@ function getCommentformAutocompleteAttr($value) {
  *  
  * @since 1.6.3
  * 
- * @param string $value 
+ * @param string $value Default "on" if autocomplete is ebabled
+ * @param bool $skip_off Set to true to skip printing autocomplete="off"
  */
-function printCommentformAutocompleteAttr($value) {
-	echo getCommentformAutocompleteAttr($value);
+function printCommentformAutocompleteAttr($value = "on", $skip_off = false) {
+	echo getCommentformAutocompleteAttr($value, $skip_off);
 }

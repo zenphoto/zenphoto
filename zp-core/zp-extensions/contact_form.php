@@ -610,7 +610,7 @@ class contactForm {
 		if (getOption('contactform_autocomplete')) {
 			return self::getAutocompleteAttr('on');
 		}
-		return self::getAutocompleteAttr('off');
+		return self::getAutocompleteAttr();
 	}
 
 	/**
@@ -619,14 +619,17 @@ class contactForm {
 	 *  
 	 * @since 1.6.3
 	 * 
-	 * @param string $value 
+	 * @param string $value Default "on" if autocomplete is ebabled
+	 * @param bool $skip_off Set to true to skip returing autocomplete="off"
 	 * @return string
 	 */
-	static function getAutocompleteAttr($value) {
+	static function getAutocompleteAttr($value = 'on', $skip_off = false) {
 		if (getOption('contactform_autocomplete')) {
 			return ' autocomplete="' . sanitize($value) . '"';
 		}
-		return ' autocomplete="off"';
+		if (!$skip_off) {
+			return ' autocomplete="off"';
+		}
 	}
 
 	/**
@@ -635,21 +638,26 @@ class contactForm {
 	 *  
 	 * @since 1.6.3
 	 * 
-	 * @param string $value 
+	 * @param string $value Default "on" if autocomplete is ebabled
+	 * @param bool $skip_off Set to true to skip printing autocomplete="off"
 	 */
-	static function printAutocompleteAttr($value) {
-		echo self::getAutocompleteAttr($value);
+	static function printAutocompleteAttr($value = "on", $skip_off = false) {
+		echo self::getAutocompleteAttr($value, $skip_off);
 	}
 
 	/**
 	 * Wrapper for printing the disabled and required attributes as needed
 	 * @param string $option The field option name or the field option value (legacy)
+	 * @param string $autocomplete_value Default "on" if autocomplete is ebabled
+	 * 
+	 * @since 1.6.3
 	 */
-	static function printAttributes($option) {
+	static function printAttributes($option, $autocomplete_value = 'on') {
 		echo self::getProcessedFieldDisabledAttr();
 		echo self::getRequiredAttr($option);
+		self::printAutocompleteAttr($autocomplete_value, true);
 	}
-	
+
 	/**
 	 * Compatibility helper for parameters that formerly required the field visibility option values to be passed via e.g. getOption('contactform_title');
 	 * 

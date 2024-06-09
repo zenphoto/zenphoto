@@ -10,7 +10,7 @@
 		?>
 		<p>
 			<label for="name"><?php printf(gettext("Name%s"), getCommentFormRequiredFieldMark('comment_name_required')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_name_required', $disabled['name']); ?> type="text" id="name" name="name"<?php printCommentformAutocompleteAttr('name'); ?> size="22" value="<?php echo html_encode($stored['name']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_name_required', $disabled['name'], 'name'); ?> type="text" id="name" name="name" size="22" value="<?php echo html_encode($stored['name']); ?>" />
 		</p>
 		<?php
 		if (getOption('comment_form_anon') && !$disabled['anon']) {
@@ -29,7 +29,7 @@
 		?>
 		<p>
 			<label for="email"><?php printf(gettext("E-Mail%s"), getCommentFormRequiredFieldMark('comment_email_required')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_email_required', $disabled['email']); ?> type="email" id="email" name="email"<?php printCommentformAutocompleteAttr('email'); ?> size="22" value="<?php echo html_encode($stored['email']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_email_required', $disabled['email'], 'email'); ?> type="email" id="email" name="email" size="22" value="<?php echo html_encode($stored['email']); ?>" />
 		</p>
 		<?php
 	}
@@ -37,7 +37,7 @@
 		?>
 		<p>
 			<label for="website"><?php printf(gettext("Website%s"), getCommentFormRequiredFieldMark('comment_web_required')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_web_required', $disabled['website']); ?> type="url" id="website" name="website"<?php printCommentformAutocompleteAttr('url'); ?> size="22" value="<?php echo html_encode($stored['website']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_web_required', $disabled['website'], 'url'); ?> type="url" id="website" name="website" size="22" value="<?php echo html_encode($stored['website']); ?>" />
 		</p>
 		<?php
 	}
@@ -45,23 +45,23 @@
 		?>
 		<p>
 			<label for="comment_form_street"><?php printf(gettext('Street%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street']); ?> type="text" id="comment_form_street" name="0-comment_form_street"<?php printCommentformAutocompleteAttr('street-address'); ?> size="22" value="<?php echo html_encode($stored['street']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street']); ?> type="text" id="comment_form_street" name="0-comment_form_street"<?php printCommentformAutocompleteAttr('street-address', true); ?> size="22" value="<?php echo html_encode($stored['street']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_city"><?php printf(gettext('City%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city']); ?> type="text" id="comment_form_city" name="0-comment_form_city"<?php printCommentformAutocompleteAttr('address-level2'); ?> size="22" value="<?php echo html_encode($stored['city']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city']); ?> type="text" id="comment_form_city" name="0-comment_form_city"<?php printCommentformAutocompleteAttr('address-level2', true); ?> size="22" value="<?php echo html_encode($stored['city']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_state"><?php printf(gettext('State%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state']); ?> type="text" id="comment_form_state" name="0-comment_form_state"<?php printCommentformAutocompleteAttr('address-level1'); ?> size="22" value="<?php echo html_encode($stored['state']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state']); ?> type="text" id="comment_form_state" name="0-comment_form_state"<?php printCommentformAutocompleteAttr('address-level1', true); ?> size="22" value="<?php echo html_encode($stored['state']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_country"><?php printf(gettext('Country%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country']); ?> type="text" id="comment_form_country" name="0-comment_form_country"<?php printCommentformAutocompleteAttr('country'); ?> size="22" value="<?php echo html_encode($stored['country']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country']); ?> type="text" id="comment_form_country" name="0-comment_form_country"<?php printCommentformAutocompleteAttr('country', true); ?> size="22" value="<?php echo html_encode($stored['country']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_postal"><?php printf(gettext('Postal code%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal']); ?> type="text" id="comment_form_postal" name="0-comment_form_postal"<?php printCommentformAutocompleteAttr('postal-code'); ?> size="22" value="<?php echo html_encode($stored['postal']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal']); ?> type="text" id="comment_form_postal" name="0-comment_form_postal"<?php printCommentformAutocompleteAttr('postal-code', true); ?> size="22" value="<?php echo html_encode($stored['postal']); ?>" />
 		</p>
 		<?php
 	}
