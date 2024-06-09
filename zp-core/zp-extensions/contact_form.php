@@ -626,6 +626,7 @@ class contactForm {
 		if (getOption('contactform_autocomplete')) {
 			return ' autocomplete="' . sanitize($value) . '"';
 		}
+		return ' autocomplete="off"';
 	}
 
 	/**
