@@ -549,7 +549,7 @@ class contactForm {
 		if (self::isRequiredField($option)) {
 			return "<strong>*</strong>";
 		} else {
-			return "";
+			return '';
 		}
 	}
 	
@@ -583,6 +583,7 @@ class contactForm {
 		if (self::isRequiredField($option)) {
 			return ' required';
 		}
+		return '';
 	}
 	
 	/**
@@ -597,6 +598,7 @@ class contactForm {
 		if (self::isProcessingPost()) {
 			return ' disabled'; 
 		}
+		return '';
 	}
 
 	/**
@@ -630,6 +632,7 @@ class contactForm {
 		if (!$skip_off) {
 			return ' autocomplete="off"';
 		}
+		return '';
 	}
 
 	/**

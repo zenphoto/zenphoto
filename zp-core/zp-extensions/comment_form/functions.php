@@ -1121,6 +1121,7 @@ function getCommentFormRequiredFieldMark($option) {
 	if (isCommentFormRequiredField($option)) {
 		return '<strong>*</strong>';
 	}
+	return '';
 }
 
 /**
@@ -1135,6 +1136,7 @@ function getCommentFormRequiredFieldAttr($option) {
 	if (isCommentFormRequiredField($option)) {
 		return ' required';
 	}
+	return '';
 }
 
 /**
@@ -1164,6 +1166,7 @@ function getCommentFormReadonlyFieldAttr($disabled) {
 	if(isCommentFormReadonlyField($disabled)) {
 		return ' readonly';
 	}
+	return '';
 }
 
 /**
@@ -1210,6 +1213,7 @@ function getCommentformAutocompleteAttr($value = "on", $skip_off = false) {
 	if (!$skip_off) {
 		return ' autocomplete="off"';
 	}
+	return '';
 }
 
 /**
