@@ -1204,6 +1204,7 @@ function getCommentformAutocompleteAttr($value) {
 	if (getOption('comment_form_autocomplete')) {
 		return ' autocomplete="' . sanitize($value) . '"';
 	}
+	return ' autocomplete="off"';
 }
 
 /**
