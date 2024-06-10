@@ -850,7 +850,9 @@ class Authority {
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
 		zp_session_destroy();
-		header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
+		if (secureServer()) {
+			header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
+		}
 		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
