@@ -338,8 +338,8 @@ define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
 define('IMAGE_CACHE_SUFFIX', getOption('image_cache_suffix'));
 
 $time_display_disabled = getOption('time_display_disabled');
-define('DATE_FORMAT', strval(trim(getOption('date_format'))));
-define('TIME_FORMAT', strval(trim(getOption('time_format'))));
+define('DATE_FORMAT', trim(strval(getOption('date_format'))));
+define('TIME_FORMAT', trim(strval(getOption('time_format'))));
 define('DATETIME_FORMAT', DATE_FORMAT . ' ' . TIME_FORMAT);
 if (getOption('date_format_localized') && in_array(DATE_FORMAT, array('locale_preferreddate_time', 'locale_preferreddate_notime'))) {
 	deprecationNotice(gettext("The date format options 'locale_preferreddate_time' and 'locale_preferreddate_notime' are deprecated and will be removed in Zenphoto 1.7. Please set individual date and time formats."));
