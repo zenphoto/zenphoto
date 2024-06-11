@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 14:44+0200\n"
-"PO-Revision-Date: 2024-06-05 14:48+0200\n"
+"POT-Creation-Date: 2024-06-11 21:00+0200\n"
+"PO-Revision-Date: 2024-06-11 21:01+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -1457,7 +1457,7 @@ msgstr "Cliquer sur l’image pour changer le rognage de la vignette."
 #: zp-core/admin-options.php:3501 zp-core/admin-plugins.php:140
 #: zp-core/admin-plugins.php:424 zp-core/admin-themes-editor.php:155
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:469
-#: zp-core/admin-users.php:842 zp-core/classes/class-authority.php:1130
+#: zp-core/admin-users.php:842 zp-core/classes/class-authority.php:1132
 #: zp-core/zp-extensions/contact_form/form.php:150
 #: zp-core/zp-extensions/crop_image.php:339
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:400
@@ -1970,8 +1970,8 @@ msgstr "Saisir le mot de passe de nouveau :"
 
 #: zp-core/admin-functions.php:1369 zp-core/admin-options.php:1284
 #: zp-core/admin-options.php:1613 zp-core/admin-options.php:2454
-#: zp-core/classes/class-authority.php:1125
-#: zp-core/classes/class-authority.php:1319
+#: zp-core/classes/class-authority.php:1127
+#: zp-core/classes/class-authority.php:1320
 #: zp-core/zp-extensions/downloadList.php:151
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
@@ -4356,8 +4356,8 @@ msgstr "décalage en hauteur"
 
 #: zp-core/admin-options.php:2272
 #, no-php-format
-msgid "% w, "
-msgstr "% l, "
+msgid "% , w "
+msgstr "% , l "
 
 #: zp-core/admin-options.php:2274
 #, no-php-format
@@ -5458,8 +5458,8 @@ msgid "Continue refreshing the metadata."
 msgstr "Poursuivre l’actualisation des métadonnées."
 
 #: zp-core/admin-refresh-metadata.php:128
-#: zp-core/classes/class-authority.php:1014
-#: zp-core/classes/class-authority.php:1015 zp-core/setup/index.php:1584
+#: zp-core/classes/class-authority.php:1016
+#: zp-core/classes/class-authority.php:1017 zp-core/setup/index.php:1584
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -6901,9 +6901,9 @@ msgid "Manage all"
 msgstr "Tout gérer"
 
 #: zp-core/classes/class-authority.php:627
-#: zp-core/classes/class-authority.php:973
-#: zp-core/classes/class-authority.php:1047
-#: zp-core/classes/class-authority.php:1117
+#: zp-core/classes/class-authority.php:975
+#: zp-core/classes/class-authority.php:1049
+#: zp-core/classes/class-authority.php:1119
 msgid "User"
 msgstr "Utilisateur"
 
@@ -6980,23 +6980,23 @@ msgstr "Les informations que vous avez demandé sur Zenphoto"
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: zp-core/classes/class-authority.php:936
+#: zp-core/classes/class-authority.php:938
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: zp-core/classes/class-authority.php:939
+#: zp-core/classes/class-authority.php:941
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: zp-core/classes/class-authority.php:941
+#: zp-core/classes/class-authority.php:943
 msgid "Check password and try again."
 msgstr "Vérifiez votre mot de passe et essayez de nouveau."
 
-#: zp-core/classes/class-authority.php:950
+#: zp-core/classes/class-authority.php:952
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: zp-core/classes/class-authority.php:980
+#: zp-core/classes/class-authority.php:982
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
@@ -7004,31 +7004,31 @@ msgstr ""
 "Répondez correctement à la question qui suit et vous serez redirigé vers une "
 "page où vous pourrez modifier votre mot de passe."
 
-#: zp-core/classes/class-authority.php:981
+#: zp-core/classes/class-authority.php:983
 msgid "<br />You may also use the link below to request a reset by e-mail."
 msgstr ""
 "<br />Vous pouvez aussi utiliser le lien ci-dessous pour demander la "
 "réinitialisation par email."
 
-#: zp-core/classes/class-authority.php:983
+#: zp-core/classes/class-authority.php:985
 msgid "Challenge question:"
 msgstr "Question défi :"
 
-#: zp-core/classes/class-authority.php:988
+#: zp-core/classes/class-authority.php:990
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: zp-core/classes/class-authority.php:994
+#: zp-core/classes/class-authority.php:996
 msgid "A password reset is not possible."
 msgstr "La réinitialisation du mot de passe est impossible."
 
-#: zp-core/classes/class-authority.php:996
+#: zp-core/classes/class-authority.php:998
 msgid "Please request a reset by e-mail by clicking the link below."
 msgstr ""
 "Veuillez demander la réinitialisation par email en cliquant sur le lien ci-"
 "dessous."
 
-#: zp-core/classes/class-authority.php:1004
+#: zp-core/classes/class-authority.php:1006
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question and/or get a link to request a reset by e-mail."
@@ -7037,86 +7037,86 @@ msgstr ""
 "afin d’obtenir votre question secrète ou pour afficher un lien permettant de "
 "demander la réinitialisation du mot de passe par email."
 
-#: zp-core/classes/class-authority.php:1011
-#: zp-core/classes/class-authority.php:1012
+#: zp-core/classes/class-authority.php:1013
+#: zp-core/classes/class-authority.php:1014
 #: zp-core/zp-extensions/register_user/register_user_form.php:121
 msgid "Submit"
 msgstr "Soumettre"
 
-#: zp-core/classes/class-authority.php:1017
-#: zp-core/classes/class-authority.php:1018
-#: zp-core/classes/class-authority.php:1066
-#: zp-core/classes/class-authority.php:1067
+#: zp-core/classes/class-authority.php:1019
+#: zp-core/classes/class-authority.php:1020
+#: zp-core/classes/class-authority.php:1068
+#: zp-core/classes/class-authority.php:1069
 msgid "Return"
 msgstr "Retour"
 
-#: zp-core/classes/class-authority.php:1029
+#: zp-core/classes/class-authority.php:1031
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: zp-core/classes/class-authority.php:1054
+#: zp-core/classes/class-authority.php:1056
 msgid "Enter CAPTCHA"
 msgstr "Saisir le Captcha"
 
-#: zp-core/classes/class-authority.php:1063
+#: zp-core/classes/class-authority.php:1065
 msgid "Request"
 msgstr "Demande"
 
-#: zp-core/classes/class-authority.php:1064
+#: zp-core/classes/class-authority.php:1066
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
-#: zp-core/classes/class-authority.php:1077
+#: zp-core/classes/class-authority.php:1079
 #: zp-core/zp-extensions/user_login-out.php:69
 msgid "Login"
 msgstr "Connexion"
 
-#: zp-core/classes/class-authority.php:1097
+#: zp-core/classes/class-authority.php:1099
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: zp-core/classes/class-authority.php:1123
-#: zp-core/classes/class-authority.php:1204
-#: zp-core/classes/class-authority.php:1308
+#: zp-core/classes/class-authority.php:1125
+#: zp-core/classes/class-authority.php:1206
+#: zp-core/classes/class-authority.php:1310
 msgid "Password"
 msgstr "Mot de passe"
 
-#: zp-core/classes/class-authority.php:1129
+#: zp-core/classes/class-authority.php:1131
 msgid "Log in"
 msgstr "Se connecter"
 
-#: zp-core/classes/class-authority.php:1143
+#: zp-core/classes/class-authority.php:1145
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "J’ai oublié mon <strong>identifiant</strong> ou mon <strong>mot de passe</"
 "strong>"
 
-#: zp-core/classes/class-authority.php:1209
+#: zp-core/classes/class-authority.php:1211
 msgid "password strength weak"
 msgstr "mot de passe faible"
 
-#: zp-core/classes/class-authority.php:1212
+#: zp-core/classes/class-authority.php:1214
 msgid "password strength good"
 msgstr "mot de passe valide"
 
-#: zp-core/classes/class-authority.php:1215
+#: zp-core/classes/class-authority.php:1217
 msgid "password strength strong"
 msgstr "mot de passe fort"
 
-#: zp-core/classes/class-authority.php:1220
+#: zp-core/classes/class-authority.php:1222
 msgid "password strength too weak"
 msgstr "mot de passe trop faible"
 
-#: zp-core/classes/class-authority.php:1240
+#: zp-core/classes/class-authority.php:1242
 msgid "passwords match"
 msgstr "Vos mots de passe correspondent"
 
-#: zp-core/classes/class-authority.php:1244
+#: zp-core/classes/class-authority.php:1246
 msgid "passwords do not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: zp-core/classes/class-authority.php:1324
+#: zp-core/classes/class-authority.php:1325
 msgid "Repeat password"
 msgstr "Inscrivez de nouveau le mot de passe"
 
@@ -7301,11 +7301,11 @@ msgstr "Albums choisis aléatoirement"
 msgid "Random images"
 msgstr "Images aléatoires"
 
-#: zp-core/classes/class-feed.php:519
+#: zp-core/classes/class-feed.php:515
 msgid "Bad "
 msgstr "Mauvais "
 
-#: zp-core/classes/class-feed.php:556
+#: zp-core/classes/class-feed.php:552
 #: zp-core/zp-extensions/comment_form/functions.php:833
 msgid "by"
 msgstr "par"
@@ -14624,8 +14624,9 @@ msgid "Closed for comments."
 msgstr "Fermé aux commentaires."
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:116
-msgid "edit comment"
-msgstr "modifier le commentaire"
+#: zp-core/zp-extensions/comment_form/admin-comments.php:489
+msgid "Edit comment"
+msgstr "Modifier le commentaire"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:130
 #: zp-core/zp-extensions/comment_form/admin-comments.php:463
@@ -14742,8 +14743,8 @@ msgid "View full text"
 msgstr "Voir le texte complet"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:353
-msgid "Edit this comment"
-msgstr "Modifier ce commentaire"
+msgid "Edit comments"
+msgstr "Modifier les commentaires"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:358
 msgid "Mark as spam"
@@ -14809,10 +14810,6 @@ msgstr "Supprimer ce commentaire."
 #: zp-core/zp-extensions/comment_form/admin-comments.php:487
 msgid "Marked as spam/approved"
 msgstr "Marqué comme spam/approuvé"
-
-#: zp-core/zp-extensions/comment_form/admin-comments.php:489
-msgid "Edit comment"
-msgstr "Modifier le commentaire"
 
 #: zp-core/zp-extensions/comment_form/admin-comments.php:490
 msgid "E-mail comment author"
@@ -15368,31 +15365,31 @@ msgid_plural "Errors sending mail:"
 msgstr[0] "Erreur lors de l’envoi du message :"
 msgstr[1] "Erreurs lors de l’envoi du message :"
 
-#: zp-core/zp-extensions/contact_form.php:693
+#: zp-core/zp-extensions/contact_form.php:705
 msgid "Set %1 to optionally override the subject."
 msgstr "Définissez %1 pour le remplacement facultatif du sujet."
 
-#: zp-core/zp-extensions/contact_form.php:710
+#: zp-core/zp-extensions/contact_form.php:722
 msgid "Use contactForm::getField() instead"
 msgstr "Utilisez plutôt contactForm::getField()"
 
-#: zp-core/zp-extensions/contact_form.php:723
+#: zp-core/zp-extensions/contact_form.php:735
 msgid "Use contactForm::printContactForm() instead"
 msgstr "Utilisez plutôt contactForm::printContactForm()"
 
-#: zp-core/zp-extensions/contact_form.php:738
+#: zp-core/zp-extensions/contact_form.php:750
 msgid "Use contactForm::isVisibleField() instead."
 msgstr "Utilisez plutôt contactForm::isVisibleField()"
 
-#: zp-core/zp-extensions/contact_form.php:752
+#: zp-core/zp-extensions/contact_form.php:764
 msgid "Use contactForm::getRequiredFieldMark() instead"
 msgstr "Utilisez plutôt contactForm::getRequiredFieldMark()"
 
-#: zp-core/zp-extensions/contact_form.php:765
+#: zp-core/zp-extensions/contact_form.php:777
 msgid "Use contactForm::printMacro() instead"
 msgstr "Utilisez plutôt contactForm::printMacro()"
 
-#: zp-core/zp-extensions/contact_form.php:778
+#: zp-core/zp-extensions/contact_form.php:790
 msgid "Use contactForm::getMacros() instead"
 msgstr "Utilisez plutôt contactForm::getMacros()"
 
@@ -24436,6 +24433,16 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#, no-php-format
+#~ msgid "% w, "
+#~ msgstr "% l, "
+
+#~ msgid "edit comment"
+#~ msgstr "modifier le commentaire"
+
+#~ msgid "Edit this comment"
+#~ msgstr "Modifier ce commentaire"
 
 #~ msgid ""
 #~ "Sort order for the albums on the index of the gallery. Custom sort values "
