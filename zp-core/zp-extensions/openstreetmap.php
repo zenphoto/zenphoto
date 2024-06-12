@@ -569,7 +569,7 @@ class openStreetMap {
 		$result = array();
 		$gps = $image->getGeodata();
 		if ($gps) {
-			$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='" . $image->getTitle() . "' /></a>";
+			$thumb = "<a href='" . $image->getLink() . "'><img src='" . $image->getCustomImage(150, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='" . $image->getTitle() . "' class='openstreetmap-thumbs' /></a>";
 			$current = 0;
 			if ($this->mode == 'single-cluster' && isset($_zp_current_image) && ($image->filename == $_zp_current_image->filename && $image->getAlbumname() == $_zp_current_image->getAlbumname())) {
 				$current = 1;
