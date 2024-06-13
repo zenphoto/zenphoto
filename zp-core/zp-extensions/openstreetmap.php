@@ -158,12 +158,12 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 14.2,
 						'desc' => gettext("Set the width of the Custom Image to be used as thumb in the marker popups. Works if Custom image is selected in the previous option. Default size is 120px.")),
-				gettext('Lenth of Image title') => array(
+				gettext('Length of Image title') => array(
 						'key' => 'osmap_markerpopup_title-length',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 14.3,
 						'desc' => gettext("Set the length of the Image title to show in the marker popups. Leave EMPTY to display in full. Default is 50 characters.")),
-				gettext('Lenth of Image description') => array(
+				gettext('Length of Image description') => array(
 						'key' => 'osmap_markerpopup_desc-length',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 14.4,
