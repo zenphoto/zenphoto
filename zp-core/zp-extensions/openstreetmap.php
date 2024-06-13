@@ -152,7 +152,7 @@ class openStreetMapOptions {
 						'buttons' => array(
 								gettext('Default thumb size') => 'default',
 								gettext('Custom image') => 'custom'),
-						'desc' => gettext('Choose the size of the thumb to be displayed in the marker popups. Default thumb size is determined by the theme (See Options->Theme->Standard options:Thumb size). Custom image size can be set below.')),
+						'desc' => gettext('Choose the size of the thumb to be displayed in the marker popups. Default thumb size is determined by the theme (See Options->Theme->Standard options: Thumb size). Custom image size can be set below.')),
 				gettext('Custom image thumb size') => array(
 						'key' => 'osmap_markerpopup_thumb-size',
 						'type' => OPTION_TYPE_TEXTBOX,
