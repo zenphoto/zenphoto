@@ -43,6 +43,11 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_markerpopup_title', 1);
 		setOptionDefault('osmap_markerpopup_desc', 1);
 		setOptionDefault('osmap_markerpopup_thumb', 1);
+		setOptionDefault('osmap_markerpopup_thumb-type', 'custom');
+		setOptionDefault('osmap_markerpopup_thumb-size', 120);
+		setOptionDefault('osmap_markerpopup_title-length', 50);
+		setOptionDefault('osmap_markerpopup_desc-length', 100);
+		setOptionDefault('osmap_markerpopup_css-default', 1);
 		setOptionDefault('osmap_showlayerscontrol', 0);
 		setOptionDefault('osmap_layerscontrolpos', 'topright');
 		$layerslist = openStreetMap::getLayersList();
@@ -58,7 +63,7 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('openstreetmap');
-			cacheManager::addCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addCacheSize('openstreetmap', 120, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 
@@ -141,21 +146,48 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14,
 						'desc' => gettext("Enable if you want to show desc of images in the marker popups. Only for album context.")),
+				gettext('Image thumbs') => array('key' => 'osmap_markerpopup_thumb-type',
+						'type' => OPTION_TYPE_RADIO,
+						'order' => 14.1,
+						'buttons' => array(
+								gettext('Default thumb size') => 'default',
+								gettext('Custom image') => 'custom'),
+						'desc' => gettext('Choose the size of the thumb to be displayed in the marker popups. Default thumb size is determined by the theme (See Options->Theme->Standard options:Thumb size). Custom image size can be set below.')),
+				gettext('Custom image thumb size') => array(
+						'key' => 'osmap_markerpopup_thumb-size',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 14.2,
+						'desc' => gettext("Set the width of the Custom Image to be used as thumb in the marker popups. Works if Custom image is selected in the previous option. Default size is 120px.")),
+				gettext('Lenth of Image title') => array(
+						'key' => 'osmap_markerpopup_title-length',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 14.3,
+						'desc' => gettext("Set the length of the Image title to show in the marker popups. Leave EMPTY to display in full. Default is 50 characters.")),
+				gettext('Lenth of Image description') => array(
+						'key' => 'osmap_markerpopup_desc-length',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 14.4,
+						'desc' => gettext("Set the length of the Image description to show in the marker popups. Leave EMPTY to display in full (not recommended if you have very long descriptions - they might not fit in the small popup space). Default is 100 characters.")),
+				gettext('Use default openstreetmap CSS') => array(
+						'key' => 'osmap_markerpopup_css-default',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 14.5,
+						'desc' => gettext("Check to use default openstreetmap CSS (located in 'PLUGIN_FOLDER/openstreetmap/openstreetmap.css'). Default is Enabled.<br>Removing checkmark will DISABLE default plugin CSS - this will allow to change popup markers presentation completely, make sure to include relevant rules in your theme CSS file.")),
 				gettext('Show layers controls') => array(
 						'key' => 'osmap_showlayerscontrol',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 14.2,
+						'order' => 14.6,
 						'desc' => gettext("Enable if you want to show layers controls with selected layers list below.")),
 				gettext('Layers list') => array(
 						'key' => 'osmap_layerslist',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
-						'order' => 14.4,
+						'order' => 14.7,
 						'checkboxes' => $layerslist,
 						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be de-duplicated.")),
 				gettext('Layers controls position') => array(
 						'key' => 'osmap_layerscontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 14.6,
+						'order' => 14.8,
 						'selections' => array(
 								gettext('Top left') => 'topleft',
 								gettext('Top right') => 'topright',
@@ -530,8 +562,12 @@ class openStreetMap {
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/leaflet.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/MarkerCluster.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/MarkerCluster.Default.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/openstreetmap.css" />
 		<?php
+		if (getOption('osmap_markerpopup_css-default')) {
+			?>
+			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/openstreetmap.css" />
+			<?php
+		}
 		if (getOption('osmap_showcursorpos')) {
 			?>
 			<link rel="stylesheet" type="text/css" href="<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/openstreetmap/L.Control.MousePosition.css" />
@@ -568,8 +604,15 @@ class openStreetMap {
 		global $_zp_current_image;
 		$result = array();
 		$gps = $image->getGeodata();
+		$title_length = getOption('osmap_markerpopup_title-length');
+		$desc_length = getOption('osmap_markerpopup_desc-length');
+		$thumb_type = getOption('osmap_markerpopup_thumb-type');
+		$thumb_size = getOption('osmap_markerpopup_thumb-size');
 		if ($gps) {
-			$thumb = "<a href='" . $image->getLink() . "' title='" . $image->getTitle() . "'><img src='" . $image->getThumb() . "' alt='" . $image->getTitle() . "' class='openstreetmap-thumb' /></a>";
+			if ($thumb_type == 'default') {
+				$thumb = "<a href='" . $image->getLink() . "' title='" . $image->getTitle() . "'><img src='" . $image->getThumb() . "' alt='" . $image->getTitle() . "' class='openstreetmap-thumb' /></a>";
+			} else {
+				$thumb = "<a href='" . $image->getLink() . "' title='" . $image->getTitle() . "'><img src='" . $image->getCustomImage($thumb_size, NULL, NULL, NULL, NULL, NULL, NULL, true) . "' alt='" . $image->getTitle() . "' class='openstreetmap-thumb' /></a>"; }
 			$current = 0;
 			if ($this->mode == 'single-cluster' && isset($_zp_current_image) && ($image->filename == $_zp_current_image->filename && $image->getAlbumname() == $_zp_current_image->getAlbumname())) {
 				$current = 1;
@@ -577,8 +620,8 @@ class openStreetMap {
 			$result = array(
 					'lat' => $gps['lat'],
 					'long' => $gps['long'],
-					'title' => "<a href='" . $image->getLink() . "' title='" . $image->getTitle() . "' class='openstreetmap-title'>". js_encode(shortenContent($image->getTitle(), 50, '...')) . "</a>",
-					'desc' => js_encode(shortenContent($image->getDesc(), 100, '...')),
+					'title' => "<a href='" . $image->getLink() . "' title='" . $image->getTitle() . "' class='openstreetmap-title'>". js_encode(shortenContent($image->getTitle(), $title_length, '...')) . "</a>",
+					'desc' => js_encode(shortenContent($image->getDesc(), $desc_length, '...')),
 					'thumb' => $thumb,
 					'current' => $current
 			);
