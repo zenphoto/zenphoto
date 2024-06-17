@@ -2588,6 +2588,7 @@ function reveal($content, $visible = false) {
  * @return string
  */
 function applyMacros($text) {
+	global $_zp_db;
 	$text = strval($text);
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
