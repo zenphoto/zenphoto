@@ -4771,37 +4771,33 @@ function getAdminThumbSizes($imageobj, $size = 'small') {
 			$sizes['thumbsize'] = 80;
 			$sizes['cropwidth'] = 80;
 			$sizes['cropheight'] = 80;
-			return $sizes;
+			break;
 		case 'small':
 		default:
 			$sizes['thumbsize'] = 40;
 			$sizes['cropwidth'] = 40;
 			$sizes['cropheight'] = 40;
-			return $sizes;
+			break;
 		case 'large-uncropped':
+			if ($imageobj->isSquare('thumb')) {
+				$sizes['thumbsize'] = 135;
+			} else if ($imageobj->isLandscape('thumb')) {
+				$sizes['width'] = 135;
+			} else if ($imageobj->isPortrait('thumb')) {
+				$sizes['height'] = 135;
+			}
+			break;
 		case 'small-uncropped':
-			switch ($size) {
-				case 'large-uncropped':
-					if ($imageobj->isSquare('thumb')) {
-						$sizes['thumbsize'] = 135;
-					} else if ($imageobj->isLandscape('thumb')) {
-						$sizes['width'] = 135;
-					} else if ($imageobj->isPortrait('thumb')) {
-						$sizes['height'] = 135;
-					}
-					return $sizes;
-				case 'small-uncropped':
-					if ($imageobj->isSquare('thumb')) {
-						$sizes['thumbsize'] = 110;
-					} else if ($imageobj->isLandscape('thumb')) {
-						$sizes['width'] = 110;
-					} else if ($imageobj->isPortrait('thumb')) {
-						$sizes['height'] = 110;
-					}
-					return $sizes;
+			if ($imageobj->isSquare('thumb')) {
+				$sizes['thumbsize'] = 110;
+			} else if ($imageobj->isLandscape('thumb')) {
+				$sizes['width'] = 110;
+			} else if ($imageobj->isPortrait('thumb')) {
+				$sizes['height'] = 110;
 			}
 			break;
 	}
+	return $sizes;
 }
 
 /**
