@@ -170,11 +170,11 @@ class featuredImage {
 	 * Gets the subalbums of the album object $albobj recursively
 	 * @param object $albobj album object
 	 */
-	private static function getFeaturedImageSubalbums(&$albobj) {
+	private static function getFeaturedImageSubalbums($albobj) {
 		global $_zp_gallery;
 		if ($albobj->getNumAlbums() != 0) {
 			$html = '<ul>';
-			$albums = $_zp_gallery->getAllAlbumsFromDB(true, $albobj, UPLOAD_RIGHTS, false);
+			$albums = $_zp_gallery->getAllAlbumsFromDB(true, $albobj, UPLOAD_RIGHTS, false, true);
 			//$albums = $albobj->getAlbums();
 			foreach ($albums as $album) {
 				$obj = AlbumBase::newAlbum($album);
