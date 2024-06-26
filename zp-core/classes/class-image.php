@@ -368,18 +368,14 @@ class Image extends MediaObject {
 
 		if (!empty($localpath)) { // there is some kind of image to get metadata from
 			$exifraw = read_exif_data_protected($localpath);
-			if (isset($exifraw['ValidEXIFData'])) {
+			if ($exifraw) {
 				$this->set('hasMetadata', 1);
 				foreach ($_zp_exifvars as $field => $exifvar) {
 					$exif = NULL;
-					if ($exifvar[5]) { // enabled field
-						if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
-							$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]], 1));
-						} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
-							$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]], 1));
-						}
+					if ($exifvar[5] && isset($exifraw[$exifvar[1]])) {
+						$exif = trim(sanitize($exifraw[$exifvar[1]], 1));
+						$this->set($field, $exif);
 					}
-					$this->set($field, $exif);
 				}
 			}
 			/* check IPTC data */
