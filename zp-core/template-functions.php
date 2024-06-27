@@ -1993,7 +1993,7 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
 		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
-		$size = ' width="' . $attr['width'] . '"';
+		$size = ' width="' . $attr['width'] . '" height="' . $attr['height'] . '"';
 		printPasswordProtectedImage($size);
 	}
 }
