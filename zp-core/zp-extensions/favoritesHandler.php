@@ -278,6 +278,13 @@ if (OFFSET_PATH) {
 			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
 			if (isset($_POST['instance']) && $_POST['instance']) {
 				$___Favorites->instance = trim(sanitize($_POST['instance']));
+				// Use an existing instance if the posted one differs only in uppercase or lowercase letters, since the instance options and tag_suggest suggestions are case-insensitive. 
+				foreach ($___Favorites->getList() as $value) {
+					if ($value && strtolower($value) === strtolower($___Favorites->instance)) {
+						$___Favorites->instance = $value;
+						break;
+					}
+				}
 				unset($_POST['instance']);
 			}
 			$id = sanitize($_POST['id']);
@@ -337,14 +344,15 @@ if (OFFSET_PATH) {
 				} else {
 					$list = array('');
 				}
-				if (extensionEnabled('tag_suggest') && !$_zp_myfavorites_button_count) {
+				$favList = array_slice($list, 1);
+				if (!empty($favList) && extensionEnabled('tag_suggest') && !$_zp_myfavorites_button_count) {
 					$_zp_myfavorites_button_count++;
-					$favList = array_slice($list, 1);
 					?>
 					<script>
 						var _favList = ['<?php echo implode("','", $favList); ?>'];
 						$(function() {
-							$('.favorite_instance').tagSuggest({tags: _favList})
+							var _favList = ['<?php echo implode("','", $favList); ?>'];
+							$('.favorite_instance').tagSuggest({tags: _favList});
 						});
 					</script>
 					<?php
@@ -409,10 +417,9 @@ if (OFFSET_PATH) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
 				}
-				$list = $_zp_myfavorites->getList();
 				$betwixt = NULL;
 				echo $before;
-				foreach ($_zp_myfavorites->getList()as $instance) {
+				foreach ($_zp_myfavorites->getList() as $instance) {
 					$link = $_zp_myfavorites->getLink(NULL, $instance);
 					$display = $text;
 					if ($instance) {

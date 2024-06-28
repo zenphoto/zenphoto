@@ -472,7 +472,11 @@ function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparent
 					'archive' => gettext('Archive view'), 
 					'password' => gettext('Password required'));
 			if (is_object($_zp_myfavorites)) {
-				$standard['favorites'] = gettext('My favorites');
+				$instance = '';
+				if ($_zp_myfavorites->instance) {
+					$instance = ' [' . $_zp_myfavorites->instance . ']';
+				} 
+				$standard['favorites'] = gettext('My favorites') . $instance;
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
