@@ -476,7 +476,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparent
 				if ($_zp_myfavorites->instance) {
 					$instance = ' [' . $_zp_myfavorites->instance . ']';
 				} 
-				$standard['favorites'] = gettext('My favorites') . $instance;
+				$standard['favorites'] = get_language_string(getOption('favorites_title')) . $instance;
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
