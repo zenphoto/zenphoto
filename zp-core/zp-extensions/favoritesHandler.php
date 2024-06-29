@@ -87,41 +87,48 @@ class favoritesOptions {
 		}
 		$list = array_diff($list, standardScripts());
 
-		$options = array(gettext('Link text')			 => array('key'					 => 'favorites_linktext', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 2,
-										'desc'				 => gettext('The text for the link to the favorites page.')),
-						gettext('Multiple sets')	 => array('key'		 => 'favorites_multi', 'type'	 => OPTION_TYPE_CHECKBOX,
-										'order'	 => 6,
-										'desc'	 => gettext('If enabled a user may have multiple (named) favorites.')),
-						gettext('Add button')			 => array('key'					 => 'favorites_add_button', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 6,
-										'desc'				 => gettext('Default text for the <em>add to favorites</em> button.')),
-						gettext('Remove button')	 => array('key'					 => 'favorites_remove_button', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 7,
-										'desc'				 => gettext('Default text for the <em>remove from favorites</em> button.')),
-						gettext('Title')					 => array('key'					 => 'favorites_title', 'type'				 => OPTION_TYPE_TEXTBOX,
-										'multilingual' => true,
-										'order'				 => 3,
-										'desc'				 => gettext('The favorites page title text.')),
-						gettext('Description')		 => array('key'					 => 'favorites_desc', 'type'				 => OPTION_TYPE_TEXTAREA,
-										'multilingual' => true,
-										'order'				 => 5,
-										'desc'				 => gettext('The favorites page description text.')),
-						gettext('Sort albums by')	 => array('key'		 => 'favorites_albumsort', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 9,
-										'desc'	 => ''),
-						gettext('Sort images by')	 => array('key'		 => 'favorites_imagesort', 'type'	 => OPTION_TYPE_CUSTOM,
-										'order'	 => 10,
-										'desc'	 => '')
+		$options = array(
+				gettext('Link text') => array(
+						'key' => 'favorites_linktext',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'desc' => gettext('The text for the link to the favorites page.')),
+				gettext('Multiple sets') => array(
+						'key' => 'favorites_multi',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If enabled a user may have multiple (named) favorites.')),
+				gettext('Add button') => array(
+						'key' => 'favorites_add_button',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'desc' => gettext('Default text for the <em>add to favorites</em> button.')),
+				gettext('Remove button') => array(
+						'key' => 'favorites_remove_button',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'desc' => gettext('Default text for the <em>remove from favorites</em> button.')),
+				gettext('Title') => array(
+						'key' => 'favorites_title', 'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => true,
+						'desc' => gettext('The favorites page title text.')),
+				gettext('Description') => array(
+						'key' => 'favorites_desc',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'multilingual' => true,
+						'desc' => gettext('The favorites page description text.')),
+				gettext('Sort albums by') => array(
+						'key' => 'favorites_albumsort',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => ''),
+				gettext('Sort images by') => array(
+						'key' => 'favorites_imagesort',
+						'type' => OPTION_TYPE_CUSTOM,
+						'desc' => '')
 		);
 		if (!MOD_REWRITE) {
 			$options['note'] = array(
 							'key'		 => 'favorites_note',
 							'type'	 => OPTION_TYPE_NOTE,
-							'order'	 => 0,
 							'desc'	 => gettext('<p class="notebox">Favorites requires the <code>mod_rewrite</code> option be enabled.</p>')
 			);
 		}
@@ -275,13 +282,13 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
-			$___Favorites = new favorites($_zp_current_admin_obj->getUser());
+			$favorites = new favorites($_zp_current_admin_obj->getUser());
 			if (isset($_POST['instance']) && $_POST['instance']) {
-				$___Favorites->instance = trim(sanitize($_POST['instance']));
+				$favorites->instance = trim(sanitize($_POST['instance']));
 				// Use an existing instance if the posted one differs only in uppercase or lowercase letters, since the instance options and tag_suggest suggestions are case-insensitive. 
-				foreach ($___Favorites->getList() as $value) {
-					if ($value && strtolower($value) === strtolower($___Favorites->instance)) {
-						$___Favorites->instance = $value;
+				foreach ($favorites->getList() as $value) {
+					if ($value && strtolower($value) === strtolower($favorites->instance)) {
+						$favorites->instance = $value;
 						break;
 					}
 				}
@@ -293,24 +300,24 @@ if (OFFSET_PATH) {
 					$img = Image::newImage(NULL, array('folder' => dirname($id), 'filename' => basename($id)));
 					if ($_POST['addToFavorites']) {
 						if ($img->loaded) {
-							$___Favorites->addImage($img);
+							$favorites->addImage($img);
 						}
 					} else {
-						$___Favorites->removeImage($img);
+						$favorites->removeImage($img);
 					}
 					break;
 				case 'albums':
 					$alb = AlbumBase::newAlbum($id);
 					if ($_POST['addToFavorites']) {
 						if ($alb->loaded) {
-							$___Favorites->addAlbum($alb);
+							$avorites->addAlbum($alb);
 						}
 					} else {
-						$___Favorites->removeAlbum($alb);
+						$avorites->removeAlbum($alb);
 					}
 					break;
 			}
-			unset($___Favorites);
+			unset($favorites);
 			if (isset($_instance)) {
 				unset($_instance);
 			}
@@ -374,8 +381,9 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if ($multi || in_array(false, $seen))
+					if ($multi || in_array(false, $seen)) {
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+					}
 					break;
 				case 'albums':
 					$id = $obj->name;
@@ -391,8 +399,9 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if ($multi || in_array(false, $seen))
+					if ($multi || in_array(false, $seen)) {
 						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+					}
 					break;
 				default:
 //We do not handle these.
