@@ -137,7 +137,7 @@ class favorites extends AlbumBase {
 						<?php
 						foreach ($watchers as $watchee) {
 							if ($serialized = @unserialize($watchee)) {
-								$watchee = $serialized[0] . "[" . $serialized[1] . "]";
+								$watchee = $serialized[0] . " [" . $serialized[1] . "]";
 							}
 							?>
 							<li>
