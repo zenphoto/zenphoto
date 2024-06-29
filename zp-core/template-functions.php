@@ -476,7 +476,11 @@ function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparent
 				if ($_zp_myfavorites->instance) {
 					$instance = ' [' . $_zp_myfavorites->instance . ']';
 				} 
-				$standard['favorites'] = get_language_string(getOption('favorites_title')) . $instance;
+				$favorites_title = get_language_string(getOption('favorites_title'));
+				if (!$favorites_title) {
+					$favorites_title =  gettext('My favorites');
+				}
+				$standard['favorites'] = $favorites_title . $instance;
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
