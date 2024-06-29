@@ -57,11 +57,16 @@ class favorites extends AlbumBase {
 
 	function addImage($img) {
 		global $_zp_db;
-		$folder = $img->imagefolder;
-		$filename = $img->filename;
-		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . $_zp_db->quote($this->getInstance()) . ',' . $_zp_db->quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename))) . ')';
-		$_zp_db->query($sql);
-		zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
+		$id = $img->imagefolder . "/" . $img->filename;
+		$table = $_zp_db->prefix('plugin_storage');
+		$aux = $_zp_db->quote($this->getInstance());
+		$data = $_zp_db->quote(serialize(array('type' => 'images', 'id' => $id)));
+		$record_exists = $_zp_db->querySingleRow('SELECT * FROM ' . $table . ' WHERE `type`="favorites" AND `aux`=' . $aux . ' AND `data`=' . $data);
+		if (!$record_exists) {
+			$sql = 'INSERT INTO ' . $table . ' (`type`, `aux`, `data`) VALUES ("favorites",' . $aux . ',' . $data . ')';
+			$_zp_db->query($sql);
+			zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
+		}
 	}
 
 	function removeImage($img) {
@@ -75,10 +80,16 @@ class favorites extends AlbumBase {
 
 	function addAlbum($alb) {
 		global $_zp_db;
-		$folder = $alb->name;
-		$sql = 'INSERT INTO ' . $_zp_db->prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("favorites",' . $_zp_db->quote($this->getInstance()) . ',' . $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $folder))) . ')';
-		$_zp_db->query($sql);
-		zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
+		$id = $alb->name;
+		$table = $_zp_db->prefix('plugin_storage');
+		$aux = $_zp_db->quote($this->getInstance());
+		$data = $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $id)));
+		$record_exists = $_zp_db->querySingleRow('SELECT * FROM ' . $table . ' WHERE `type`="favorites" AND `aux`=' . $aux . ' AND `data`=' . $data);
+		if (!$record_exists) {
+			$sql = 'INSERT INTO ' . $table . ' (`type`, `aux`, `data`) VALUES ("favorites",' . $aux . ',' . $data . ')';
+			$_zp_db->query($sql);
+			zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
+		}
 	}
 
 	function removeAlbum($alb) {
@@ -125,6 +136,9 @@ class favorites extends AlbumBase {
 					<ul class="userlist">
 						<?php
 						foreach ($watchers as $watchee) {
+							if ($serialized = @unserialize($watchee)) {
+								$watchee = $serialized[0] . " [" . $serialized[1] . "]";
+							}
 							?>
 							<li>
 								<?php echo html_encode($watchee); ?>
@@ -256,7 +270,7 @@ class favorites extends AlbumBase {
 		if ($_zp_myfavorites && isset($_REQUEST['instance'])) {
 			$_zp_myfavorites->instance = sanitize(rtrim($_REQUEST['instance'], '/'));
 			if ($_zp_myfavorites->instance)
-				$_zp_myfavorites->setTitle($_zp_myfavorites->getTitle() . '[' . $_zp_myfavorites->instance . ']');
+				$_zp_myfavorites->setTitle($_zp_myfavorites->getTitle() . ' [' . $_zp_myfavorites->instance . ']');
 		}
 		if ($_zp_gallery_page == "favorites.php") {
 			if (zp_loggedin()) {
@@ -272,7 +286,7 @@ class favorites extends AlbumBase {
 	}
 
 	static function pageCount($count, $gallery_page, $page) {
-		global $_zp_first_page_images, $_zp_one_image_page;
+		global $_zp_one_image_page;
 		if (stripSuffix($gallery_page) == 'favorites') {
 			$albums_per_page = max(1, getOption('albums_per_page'));
 			$pageCount = (int) ceil(getNumAlbums() / $albums_per_page);
@@ -285,11 +299,11 @@ class favorites extends AlbumBase {
 				}
 			}
 			$images_per_page = max(1, getOption('images_per_page'));
-			$count = ($pageCount + (int) ceil(($imageCount - $_zp_first_page_images) / $images_per_page));
+			$count = ($pageCount + (int) ceil(($imageCount - getFirstPageImages()) / $images_per_page));
 			if ($count < $page && isset($_POST['addToFavorites']) && !$_POST['addToFavorites']) {
-//We've deleted last item on page, need a place to land when we return
-				global $_zp_page;
-				redirectURL(FULLWEBPATH . '/' . $this->getLink($_zp_page - 1));
+				//We've deleted last item on page, need a place to land when we return
+				global $_zp_page, $_zp_myfavorites;
+				redirectURL(FULLWEBPATH . '/' . $_zp_myfavorites->getLink($_zp_page - 1));
 			}
 		}
 		return $count;
@@ -326,7 +340,7 @@ class favorites extends AlbumBase {
 			$tag = '_remove';
 		}
 		if ($instance && $multi) {
-			$add .= '[' . $instance . ']';
+			$add .= ' [' . $instance . ']';
 		}
 		?>
 		<form name="<?php echo $table . $obj->getID(); ?>Favorites_<?php echo $instance . $tag; ?>" class = "<?php echo $table; ?>Favorites<?php echo $tag; ?>"  action = "<?php echo html_encode(getRequestURI()); ?>" method = "post" accept-charset = "UTF-8">
