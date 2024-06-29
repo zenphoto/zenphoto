@@ -310,10 +310,10 @@ if (OFFSET_PATH) {
 					$alb = AlbumBase::newAlbum($id);
 					if ($_POST['addToFavorites']) {
 						if ($alb->loaded) {
-							$avorites->addAlbum($alb);
+							$favorites->addAlbum($alb);
 						}
 					} else {
-						$avorites->removeAlbum($alb);
+						$favorites->removeAlbum($alb);
 					}
 					break;
 			}
