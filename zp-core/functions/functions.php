@@ -2791,10 +2791,6 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 	return $list;
 }
 
-function getImageMetaDataFieldFormatted() {
-	
-}
-
 /**
  * initializes the $_zp_exifvars array display state
  *
@@ -2840,14 +2836,14 @@ function setexifvars() {
 			'EXIFMeteringMode' => array('SubIFD', 'MeteringMode', gettext('Metering Mode'), true, 52, true, 'string'),
 			'EXIFFlash' => array('SubIFD', 'Flash', gettext('Flash Fired'), true, 52, true, 'string'),
 			'EXIFImageWidth' => array('SubIFD', 'ExifImageWidth', gettext('Original Width'), false, 52, true, 'number'),
-			'EXIFImageHeight' => array('SubIFD', 'ExifImageHeight', gettext('Original Height'), false, 52, true, 'number'),
+			'EXIFImageHeight' => array('SubIFD', 'ExifImageLength', gettext('Original Height'), false, 52, true, 'number'),
 			'EXIFOrientation' => array('IFD0', 'Orientation', gettext('Orientation'), false, 52, true, 'string'),
 			'EXIFSoftware' => array('IFD0', 'Software', gettext('Software'), false, 999, true, 'string'),
 			'EXIFContrast' => array('SubIFD', 'Contrast', gettext('Contrast Setting'), false, 52, true, 'string'),
 			'EXIFSharpness' => array('SubIFD', 'Sharpness', gettext('Sharpness Setting'), false, 52, true, 'string'),
 			'EXIFSaturation' => array('SubIFD', 'Saturation', gettext('Saturation Setting'), false, 52, true, 'string'),
 			'EXIFWhiteBalance' => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
-			'EXIFSubjectDistance' => array('SubIFD', 'SubjectDistance', gettext('Subject Distance'), false, 52, true, 'number'),
+			'EXIFSubjectDistance' => array('SubIFD', 'SubjectDistanceRange', gettext('Subject Distance'), false, 52, true, 'number'),
 			'EXIFFocalLength' => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
 			'EXIFLensType' => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
 			'EXIFLensInfo' => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
@@ -2859,12 +2855,12 @@ function setexifvars() {
 			'IPTCLocationName' => array('IPTC', 'LocationName', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
 			'IPTCContentLocationCode' => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
 			'IPTCContentLocationName' => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
-			'EXIFGPSLatitude' => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
-			'EXIFGPSLatitudeRef' => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
-			'EXIFGPSLongitude' => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
-			'EXIFGPSLongitudeRef' => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
-			'EXIFGPSAltitude' => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
-			'EXIFGPSAltitudeRef' => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSLatitude' => array('GPS', 'GPSLatitude', gettext('Latitude'), false, 52, true, 'number'),
+			'EXIFGPSLatitudeRef' => array('GPS', 'GPSLatitudeRef', gettext('Latitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSLongitude' => array('GPS', 'GPSLongitude', gettext('Longitude'), false, 52, true, 'number'),
+			'EXIFGPSLongitudeRef' => array('GPS', 'GPSLongitudeRef', gettext('Longitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSAltitude' => array('GPS', 'GPSAltitude', gettext('Altitude'), false, 52, true, 'number'),
+			'EXIFGPSAltitudeRef' => array('GPS', 'GPSAltitudeRef', gettext('Altitude Reference'), false, 52, true, 'string'),
 			'IPTCOriginatingProgram' => array('IPTC', 'OriginatingProgram', gettext('Originating Program'), false, 32, true, 'string'),
 			'IPTCProgramVersion' => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
 			'VideoFormat' => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),

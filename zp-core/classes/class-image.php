@@ -306,6 +306,7 @@ class Image extends MediaObject {
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars, $_zp_gallery, $_zp_graphics;
+		require_once SERVERPATH. '/'. ZENFOLDER  .'/classes/class-imagemetaformatter.php';
 		$IPTCtags = array(
 						'SKIP'								 => '2#000', //	Record Version										Size:64
 						'ObjectType'					 => '2#003', //	Object Type	Ref										Size:67
@@ -373,8 +374,11 @@ class Image extends MediaObject {
 				foreach ($_zp_exifvars as $field => $exifvar) {
 					$exif = NULL;
 					if ($exifvar[5] && isset($exifraw[$exifvar[1]])) {
-						$exif = trim(sanitize($exifraw[$exifvar[1]], 1));
-						$this->set($field, $exif);
+						$value = imageMetaFormatter::formatData($exifvar[1], $exifraw[$exifvar[1]], $exifraw);
+						if ($value) {
+							$exif = trim(sanitize($value));
+							$this->set($field, $exif);
+						}
 					}
 				}
 			}
