@@ -38,7 +38,6 @@ class imageMetaFormatter {
 					$data = serialize($data); // we might not know what to do else but we can at least store it
 				} 
 				break;
-			case 'ImageCaption': // IPTC
 			case 'XResolution':
 			case 'YResolution':
 				$data = self::rationalNum($data);

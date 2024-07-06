@@ -2522,9 +2522,6 @@ Authority::printPasswordFormJS();
 															$checked_hide = ' checked="checked"';
 														}
 													}
-													if (!$item[4]) {
-														$checked_show = ' disabled="disabled"';
-													}
 													?>
 													<li>
 														<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show ?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
