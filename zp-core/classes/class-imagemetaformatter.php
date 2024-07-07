@@ -36,7 +36,7 @@ class imageMetaFormatter {
 			default:
 				if (is_array($data)) {
 					$data = serialize($data); // we might not know what to do else but we can at least store it
-				} 
+				}
 				break;
 			case 'XResolution':
 			case 'YResolution':
@@ -310,9 +310,11 @@ class imageMetaFormatter {
 				}
 				break;
 			case 'ExifImageWidth':
+				$data = self::getImageWidth($exifdata) . ' ' . gettext('px');
+				break;
 			case 'ExifImageHeight':
 			case 'ExifImageLength': // PHP follows EXif spec and uses this instead of ExifImageHeight
-				$data = $data . ' ' . gettext('px');
+				$data = self::getImageHeight($exifdata) . ' ' . gettext('px');
 				break;
 			case 'Compression': // Compression
 				switch ($data) {
@@ -413,6 +415,36 @@ class imageMetaFormatter {
 	}
 
 	/**
+	 * Returns the image width from the COMPUTED array or if present for EXIFImageWidth
+	 * @param array $exifdata The full Exif data as returnd by exif_read_data();
+	 * @return int
+	 */
+	static function getImageWidth($exifdata) {
+		if (isset($exifdata['COMPUTED']['Width'])) {
+			return $exifdata['COMPUTED']['Width'];
+		} if (isset($exifdata['EXIFImageWidth'])) {
+			return $exifdata['EXIFImageWidth'];
+		}
+		return 0;
+	}
+
+	/**
+	 * Returns the image height from the COMPUTED array or if present for EXIFImageLength or EXIFImageHeight
+	 * @param array $exifdata The full Exif data as returnd by exif_read_data();
+	 * @return int
+	 */
+	static function getImageHeight($exifdata) {
+		if (isset($exifdata['COMPUTED']['Height'])) {
+			return $exifdata['COMPUTED']['Height'];
+		} if (isset($exifdata['EXIFImageLength'])) {
+			return $exifdata['EXIFImageLength'];
+		} if (isset($exifdata['EXIFImageHeight'])) {
+			return $exifdata['EXIFImageHeight'];
+		}
+		return 0;
+	}
+
+	/**
 	 * Formats the exposure value.
 	 * 
 	 * @since 1.6.3 
@@ -453,16 +485,8 @@ class imageMetaFormatter {
 	 * @return int
 	 */
 	static function get35mmEquivFocalLength($exifdata) {
-		if (isset($exifdata['ExifImageWidth'])) {
-			$width = $exifdata['ExifImageWidth'];
-		} else {
-			$width = 0;
-		}
-		if (isset($exifdata['ExifImageLength'])) {
-			$height = $exifdata['ExifImageLength'];
-		} else {
-			$height = 0;
-		}
+		$width = self::getImageWidth($exifdata);
+		$height = self::getImageHeight($exifdata);
 		if (isset($exifdata['FocalPlaneResolutionUnit'])) {
 			$units = $exifdata['FocalPlaneResolutionUnit'];
 		} else {
@@ -519,7 +543,6 @@ class imageMetaFormatter {
 		}
 		return null;
 	}
-
 
 	/**
 	 * Formats GPS data
