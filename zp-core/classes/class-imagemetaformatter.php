@@ -433,7 +433,7 @@ class imageMetaFormatter {
 				$n = 0;
 				$d = 0;
 				self::ConvertToFraction($data, $n, $d);
-				return $n . '/' . $d . ' sec';
+				return $n / $n . '/' . round($d / $n, 0) . ' sec';
 			}
 		} else {
 			return gettext('Bulb');
