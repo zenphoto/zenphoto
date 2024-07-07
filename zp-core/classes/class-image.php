@@ -370,6 +370,7 @@ class Image extends MediaObject {
 		if (!empty($localpath)) { // there is some kind of image to get metadata from
 			$exifraw = read_exif_data_protected($localpath);
 			if ($exifraw) {
+				$exifraw = imageMetaFormatter::setImageWidthAndHeight($exifraw);
 				$this->set('hasMetadata', 1);
 				foreach ($_zp_exifvars as $field => $exifvar) {
 					$exif = NULL;
