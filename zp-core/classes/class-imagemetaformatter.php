@@ -410,22 +410,6 @@ class imageMetaFormatter {
 		}
 		return $data;
 	}
-	/**
-	 * Updates the raw $exifdata with "ExifImageWidth" and/or "ExifImageHeigh" values from the COMPUTED array if missing
-	 * Also handles off standard use of "ExifImageHeight"
-	 * 
-	 * @param array $exifdata
-	 * return array
-	 */
-	static function setImageWidthAndHeight($exifdata) {
-		if (!isset($exifdata['ExifImageWidth']) && isset($exifdata['COMPUTED']['Width'])) {
-			$exifdata['ExifImageWidth'] = self::getImageWidth($exifdata);
-		}
-		if (!isset($exifdata['EXIFImageLength'])) {
-			$exifdata['ExifImageLength'] = self::getImageHeight($exifdata);
-		}
-		return $exifdata;
-	}
 
 	/**
 	 * Returns the image width from the COMPUTED array or if present for EXIFImageWidth
@@ -433,8 +417,10 @@ class imageMetaFormatter {
 	 * @return int
 	 */
 	static function getImageWidth($exifdata) {
-		if (!isset($exifdata['ExifImageWidth']) && isset($exifdata['COMPUTED']['Width'])) {
+		if (isset($exifdata['COMPUTED']['Width'])) {
 			return $exifdata['COMPUTED']['Width'];
+		} else if (isset($exifdata['ExifImageWidth'])) {
+			return $exifdata['ExifImageWidth'];
 		}
 	}
 
@@ -445,12 +431,12 @@ class imageMetaFormatter {
 	 * @return int
 	 */
 	static function getImageHeight($exifdata) {
-		if (!isset($exifdata['EXIFImageLength'])) {
-			if(isset($exifdata['COMPUTED']['Height'])) {
-				return $exifdata['COMPUTED']['Height'];
-			} else if(isset($exifdata['ExifImageHeight'])) {
-				return $exifdata['ExifImageHeight'];
-			}
+		if (isset($exifdata['COMPUTED']['Height'])) {
+			return $exifdata['COMPUTED']['Height'];
+		} else if (!isset($exifdata['EXIFImageLength'])) {
+			return $exifdata['EXIFImageLength'];
+		} else if (isset($exifdata['ExifImageHeight'])) {
+			return $exifdata['ExifImageHeight'];
 		}
 	}
 
