@@ -408,6 +408,7 @@ class imageMetaFormatter {
 				$data = self::formatGPS($tag, $data);
 				break;
 		}
+		return $data;
 	}
 
 	/**
