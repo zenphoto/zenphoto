@@ -408,7 +408,6 @@ class imageMetaFormatter {
 				$data = self::formatGPS($tag, $data);
 				break;
 		}
-		return $data;
 	}
 
 	/**
@@ -422,6 +421,7 @@ class imageMetaFormatter {
 		} else if (isset($exifdata['ExifImageWidth'])) {
 			return $exifdata['ExifImageWidth'];
 		}
+		return 0;
 	}
 
 	/**
@@ -438,6 +438,7 @@ class imageMetaFormatter {
 		} else if (isset($exifdata['ExifImageHeight'])) {
 			return $exifdata['ExifImageHeight'];
 		}
+		return 0;
 	}
 
 	/**
