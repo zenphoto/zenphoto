@@ -483,6 +483,9 @@ class imageMetaFormatter {
 	 * @return int
 	 */
 	static function get35mmEquivFocalLength($exifdata) {
+		if (is_numeric($exifdata['FocalLengthIn35mmFilm'])) {
+			return intval($exifdata['FocalLengthIn35mmFilm']);
+		}
 		$width = self::getImageWidth($exifdata);
 		$height = self::getImageHeight($exifdata);
 		if (isset($exifdata['FocalPlaneResolutionUnit'])) {
