@@ -396,7 +396,7 @@ class imageMetaFormatter {
 				}
 				break;
 			case 'FocalLengthIn35mmFilm':
-				$data = self::get35mmEquivFocalLength($exifdata);
+				$data = self::get35mmEquivFocalLength($exifdata) . ' mm';
 				break;
 			case 'GPSLatitudeRef':
 			case 'GPSLongitudeRef':
