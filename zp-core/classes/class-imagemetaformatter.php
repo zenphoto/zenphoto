@@ -636,6 +636,9 @@ class imageMetaFormatter {
 	static function rationalNum($data) {
 		// deal with the fractional representation
 		$n = explode('/', $data);
+		if ( $n[1] == '0' ) {
+			return;
+		}
 		$v = sprintf('%f', $n[0] / $n[1]);
 		for ($i = strlen($v) - 1; $i > 1; $i--) {
 			if ($v[$i] != '0') {
