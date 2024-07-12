@@ -2491,6 +2491,7 @@ function zp_loggedin($rights = ALL_RIGHTS) {
  *
  */
 function read_exif_data_protected($path) {
+	$rslt = array();
 	if (@exif_imagetype($path) !== false) {
 		if (DEBUG_EXIF) {
 			debugLog("Begin read_exif_data_protected($path)");
