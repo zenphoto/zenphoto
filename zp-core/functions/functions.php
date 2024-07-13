@@ -926,11 +926,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
-			$save_logon = $_zp_loggedin;
-			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
-			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
 					if ($searchparent == 'searchresults_album') {

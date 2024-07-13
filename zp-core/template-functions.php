@@ -1386,7 +1386,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link' => $album->getLink(), 'text' => $title, 'title' => getBare($title));
+		return array('link' => $album->getLink(getAlbumPage()), 'text' => $title, 'title' => getBare($title));
 	}
 	return false;
 }
@@ -1479,15 +1479,17 @@ function getParentBreadcrumb() {
 	global $_zp_gallery, $_zp_current_search, $_zp_current_album, $_zp_last_album;
 	$parents = $output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
-		$page = $_zp_current_search->page;
+		if (in_context(ZP_IMAGE) && !in_context(ZP_ALBUM_LINKED)) {
+			$alb_pages = ceil($_zp_current_search->getNumAlbums() / max(1, getOption('albums_per_page')));
+			$img_pages = ceil((imageNumber() - getFirstPageImages()) / max(1, getOption('images_per_page')));
+			$page = $alb_pages + $img_pages;
+		} else {
+			$page = $_zp_current_search->page;
+		}
 		$searchwords = $_zp_current_search->getSearchWords();
 		$searchdate = $_zp_current_search->getSearchDate();
 		$searchfields = $_zp_current_search->getSearchFields(true);
-		$search_album_list = $_zp_current_search->getAlbumList();
-		if (!is_array($search_album_list)) {
-			$search_album_list = array();
-		}
-		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $search_album_list));
+		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page);
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			if (empty($searchdate)) {
@@ -1505,13 +1507,6 @@ function getParentBreadcrumb() {
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
-			}
-		}
-// remove parent links that are not in the search path
-		foreach ($parents as $key => $analbum) {
-			$target = $analbum->name;
-			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
-				unset($parents[$key]);
 			}
 		}
 	} else {
