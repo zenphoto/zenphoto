@@ -1215,13 +1215,12 @@ function getTagCountByAccess($tag) {
 function storeTags($tags, $id, $tbl) {
 	global $_zp_db;
 	if ($id) {
-		$tagsLC = array();
+		$not_empty_tags = array();
 		foreach ($tags as $key => $tag) {
 			$tag = trim($tag);
 			if (!empty($tag)) {
-				$lc_tag = mb_strtolower($tag);
-				if (!in_array($lc_tag, $tagsLC)) {
-					$tagsLC[$tag] = $lc_tag;
+				if (!in_array($tag, $not_empty_tags)) {
+					$not_empty_tags[$tag] = $tag;
 				}
 			}
 		}
@@ -1231,23 +1230,25 @@ function storeTags($tags, $id, $tbl) {
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$dbtag = $_zp_db->querySingleRow("SELECT `name` FROM " . $_zp_db->prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
-				$existingLC = mb_strtolower($dbtag['name']);
-				if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
-					$existing[] = $existingLC;
+				$existing_name = $dbtag['name'];
+				if (in_array($existing_name, $not_empty_tags)) { // tag already set no action needed
+					$existing[] = $existing_name;
 				} else { // tag no longer set, remove it
 					$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
 				}
 			}
 			$_zp_db->freeResult($result);
 		}
-		$tags = array_diff($tagsLC, $existing); // new tags for the object
+		$tags = array_diff($not_empty_tags, $existing); // new tags for the object
 		foreach ($tags as $key => $tag) {
-			$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `name`=" . $_zp_db->quote($key));
+			$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `name` COLLATE utf8mb4_bin =" . $_zp_db->quote($key));
 			if (!is_array($dbtag)) { // tag does not exist
 				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('tags') . " (name) VALUES (" . $_zp_db->quote($key) . ")", false);
 				$dbtag = array('id' => $_zp_db->insertID());
 			}
-			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
+			if ($dbtag['id']) {
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
+			}
 		}
 	}
 }
