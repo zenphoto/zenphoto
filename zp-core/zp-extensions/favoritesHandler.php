@@ -376,13 +376,13 @@ if (OFFSET_PATH) {
 						foreach ($images as $image) {
 							if ($image['folder'] == $obj->imagefolder && $image['filename'] == $obj->filename) {
 								$seen[$instance] = true;
-								favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
+								favorites::printAddRemoveButton($obj, $id, 0, $remove, $instance, $multi);
 								break;
 							}
 						}
 					}
 					if ($multi || in_array(false, $seen)) {
-						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+						favorites::printAddRemoveButton($obj, $id, 1, $add, NULL, $multi);
 					}
 					break;
 				case 'albums':
@@ -394,13 +394,13 @@ if (OFFSET_PATH) {
 						foreach ($albums as $album) {
 							if ($album == $id) {
 								$seen[$instance] = true;
-								favorites::ad_removeButton($obj, $id, 0, $remove, $instance, $multi);
+								favorites::printAddRemoveButton($obj, $id, 0, $remove, $instance, $multi);
 								break;
 							}
 						}
 					}
 					if ($multi || in_array(false, $seen)) {
-						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
+						favorites::printAddRemoveButton($obj, $id, 1, $add, NULL, $multi);
 					}
 					break;
 				default:

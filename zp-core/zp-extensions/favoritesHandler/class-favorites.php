@@ -330,8 +330,16 @@ class favorites extends AlbumBase {
 		}
 		return zp_apply_filter('getLink', rewrite_path($link, $link_no, $path), 'favorites.php', $page);
 	}
-
+	
+	/**
+	 * @deprecated 2.0 - Use the properly named printAddRemoveButton() method instead
+	 */
 	static function ad_removeButton($obj, $id, $v, $add, $instance, $multi) {
+		deprecationNotice('Use the properly named printAddRemoveButton() method instead');
+		self::printAddRemoveButton($obj, $id, $v, $add, $instance, $multi);
+	}
+
+	static function printAddRemoveButton($obj, $id, $v, $add, $instance, $multi) {
 		global $_zp_myfavorites;
 		$table = $obj->table;
 		if ($v) {
