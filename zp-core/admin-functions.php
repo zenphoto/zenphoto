@@ -4823,7 +4823,7 @@ function getAdminThumb($imageobj, $size = 'small') {
  */
 function getSizeAdminThumb($imageobj, $size = 'small') {
 	$values = getAdminThumbSizes($imageobj, $size);
-	return getSizeCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, $imageobj, 'thumb');
+	return $imageobj->getSizeCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, 'thumb');
 }
 
 /**

@@ -1355,7 +1355,7 @@ class Image extends MediaObject {
 	function getFullImageURL($path = WEBPATH) {
 		return $this->getFullImage($path);
 	}
-
+	
 	/**
 	 * Returns a path to a sized version of the image
 	 *
@@ -1366,6 +1366,23 @@ class Image extends MediaObject {
 		$wmt = getWatermarkParam($this, WATERMARK_IMAGE);
 		$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $this->album->name);
 		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
+	}
+	
+	/**
+	 * Returns an array [width, height] of the default-sized image.
+	 * 
+	 * @since 1.6.5
+	 *
+	 * @param int $size override the 'image_zize' option
+	 * @param $image object the image for which the size is desired. NULL means the current image
+	 *
+	 * @return array
+	 */
+	function getSizeDefaultImage($size = NULL) {
+		if (is_null($size)) {
+			$size = getOption('image_size');
+		}
+		return $this->getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL);
 	}
 
 	/**
@@ -1394,6 +1411,159 @@ class Image extends MediaObject {
 		}
 		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
 		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
+	}
+	
+	/**
+	 * Returns an array with the height & width
+	 * 
+	 * @since 1.6.5
+	 *
+	 * @param int $size size
+	 * @param int $width width
+	 * @param int $height height
+	 * @param int $cw crop width
+	 * @param int $ch crop height
+	 * @param int $cx crop x axis
+	 * @param int $cy crop y axis
+	 * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
+	 * @return array
+	 */
+	function getSizeCustomImage($size = null, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $type = 'image') {
+		//if we set width/height we are cropping and those are the sizes already
+		if (!is_null($width) && !is_null($height)) {
+			return array($width, $height);
+		}
+		switch ($type) {
+			case 'thumb':
+				$h = $this->getThumbHeight();
+				$w = $this->getThumbWidth();
+				$thumb = true;
+				$side = getOption('thumb_use_side');
+				break;
+			default:
+			case 'image':
+				$h = $this->getHeight();
+				$w = $this->getWidth();
+				$thumb = false;
+				if ($this->isVideo()) { // size is determined by the player
+					return array($w, $h);
+				}
+				$side = getOption('image_use_side');
+				break;
+		}
+		$us = getOption('image_allow_upscale');
+		$args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumb, NULL, $thumb, NULL, NULL, NULL), $this->album->name);
+		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+		if (!empty($size)) {
+			$dim = $size;
+			$width = $height = false;
+		} else if (!empty($width)) {
+			$dim = $width;
+			$size = $height = false;
+		} else if (!empty($height)) {
+			$dim = $height;
+			$size = $width = false;
+		} else {
+			$dim = 1;
+		}
+
+		if ($w == 0) {
+			$hprop = 1;
+		} else {
+			$hprop = round(($h / $w) * $dim);
+		}
+		if ($h == 0) {
+			$wprop = 1;
+		} else {
+			$wprop = round(($w / $h) * $dim);
+		}
+		if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
+// Scale the height
+			$newh = $dim;
+			$neww = $wprop;
+		} else {
+// Scale the width
+			$neww = $dim;
+			$newh = $hprop;
+		}
+		if (!$us && $newh >= $h && $neww >= $w) {
+			return array($w, $h);
+		} else {
+			if ($cw && $cw < $neww) {
+				$neww = $cw;
+			}
+			if ($ch && $ch < $newh) {
+				$newh = $ch;
+			}
+			if ($size && $ch && $cw) {
+				$neww = $cw;
+				$newh = $ch;
+			}
+			return array($neww, $newh);
+		}
+	}
+
+	/**
+	 * Called by ***MaxSpace functions to compute the parameters to be passed to xxCustomyyy functions.
+	 * 
+	 * @since 1.6.5
+	 *
+	 * @param int $width maxspace width by reference
+	 * @param int $height maxspace height by reference
+	 * @param bool $thumb true if for a thumbnail
+	 */
+	function getMaxSpaceContainer(&$width, &$height, $thumb = false) {
+		$upscale = getOption('image_allow_upscale');
+		$imagename = $this->filename;
+		if ($thumb) {
+			$s_width = $this->getThumbWidth();
+			$s_height = $this->getThumbHeight();
+		} else {
+			$s_width = $this->get('width');
+			if ($s_width == 0) {
+				$s_width = max($width, $height);
+			}
+			$s_height = $this->get('height');
+			if ($s_height == 0) {
+				$s_height = max($width, $height);
+			}
+		}
+		$newW = round($height / $s_height * $s_width);
+		$newH = round($width / $s_width * $s_height);
+		if (DEBUG_IMAGE) {
+			debugLog("Image::getMaxSpaceContainer($width, $height, $imagename, $thumb): \$s_width=$s_width; \$s_height=$s_height; \$newW=$newW; \$newH=$newH; \$upscale=$upscale;");
+		}
+		if ($newW > $width) {
+			if ($upscale || $s_height > $newH) {
+				$height = $newH;
+			} else {
+				$height = $s_height;
+				$width = $s_width;
+			}
+		} else {
+			if ($upscale || $s_width > $newW) {
+				$width = $newW;
+			} else {
+				$height = $s_height;
+				$width = $s_width;
+			}
+		}
+	}
+	
+	/**
+	 * Returns a link to a un-cropped custom sized version of the current image within the given height and width dimensions.
+	 * Use for sized images.
+	 * 
+	 * @since 1.6.5
+	 *
+	 * @param int $width width
+	 * @param int $height height
+	 * @param bool $thumb
+	 * @return string
+	 */
+	function getCustomSizedImageMaxSpace($width, $height, $thumb = false) {
+		$this->getMaxSpaceContainer($width, $height, $thumb);
+		return $this->getCustomImage(null, $width, $height, null, null, null, null, $thumb, null);
 	}
 
 	/**
@@ -1513,6 +1683,27 @@ class Image extends MediaObject {
 			$sw = $sh = $cw = $ch = $cx = $cy = null;
 		}
 		return $this->getCustomImage($ts, $sw, $sh, $cw, $ch, $cx, $cy, true);
+	}
+	
+	/**
+	 * Gets the width and height of a default thumb for the <img> tag height/width
+	 * 
+	 * @since 1.6.5
+	 * 
+	 * @global type $_zp_current_image
+	 * @return array
+	 */
+	function getSizeDefaultThumb() {
+		$s = getOption('thumb_size');
+		if (getOption('thumb_crop')) {
+			$w = getOption('thumb_crop_width');
+			$h = getOption('thumb_crop_height');
+			$sizes = $this->getSizeCustomImage($s, $w, $h, $w, $h, null, null, 'thumb');
+		} else {
+			$w = $h = $s;
+			$sizes = $this->getSizeCustomImage($s, NULL, NULL, NULL, NULL, NULL, NULL, 'thumb');
+		}
+		return $sizes;
 	}
 
 	/**
@@ -1719,7 +1910,6 @@ class Image extends MediaObject {
 	 * @return int|false
 	 */
 	function getFilesize() {
-		$album = $this->getAlbum();
 		$filesize = filesize($this->getFullImage(SERVERPATH));
 		return $filesize;
 	}
