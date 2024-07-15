@@ -288,6 +288,7 @@ if (isset($_GET['action'])) {
 			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
 			setOption('EmbedIPTC', (int) isset($_POST['EmbedIPTC']));
+			setOption('metadata_refresh_behaviour', sanitize($_POST['metadata_refresh_behaviour'], 3));
 
 			setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
 			setOption('display_copyright_image_notice', (int) isset($_POST['display_copyright_image_notice']));
@@ -2571,7 +2572,22 @@ Authority::printPasswordFormJS();
 									<?php
 								}
         ?>
-         <tr>
+									<tr>
+											<td><?php echo gettext("Metadata refresh behaviour:"); ?></td>
+											<td>
+												<?php $metarefresh_behaviour = getOption('metadata_refresh_behaviour'); ?>
+												<ul class="optionlist">
+													<li><label><input type="radio" name="metadata_refresh_behaviour" value="full-refresh"	<?php checked('full-refresh', $metarefresh_behaviour); ?> /> <?php echo gettext('Full metadata refresh'); ?></label></li>
+													<li><label><input type="radio" name="metadata_refresh_behaviour" value="skip-title-and-desc" <?php checked('skip-title-and-desc', $metarefresh_behaviour); ?> /> <?php echo gettext('Skip title and description admin fields'); ?></label></li>
+													<li><label><input type="radio" name="metadata_refresh_behaviour" value="metadata-fields-only"	<?php checked('metadata-fields-only', $metarefresh_behaviour); ?> /> <?php echo gettext('Skip all admin fields'); ?></label></li>
+												</ul>
+											</td>
+											
+											<td><?php echo gettext("Image metadata like EXIF or IPTC data is stored in separate database columns and have no interface to edit. By default a metadata refresh also sets various fields like the title, description or extra fields like location, state etc. based on this data. Date and tags are always updated."); ?></td>
+										</tr>		
+										
+										
+										<tr>
 										<td><?php echo gettext("IPTC caption linebreaks:"); ?></td>
 										<td>
            <label><input type="checkbox" name="IPTC_convert_linebreaks" value="1"	<?php checked('1', getOption('IPTC_convert_linebreaks')); ?> /></label>

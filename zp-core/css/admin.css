@@ -2844,3 +2844,18 @@ form.dirty input[type=submit]:active{
 	z-index: 1000;
 	background: white;
 }
+
+
+/* various
+----------------------_*/
+.optionlist {
+	list-style: none;
+	padding:0;
+	margin: 0;
+
+}
+
+.optionlist li {
+	list-style: none;
+	padding-left: 0;
+}
