@@ -27,6 +27,7 @@ class Image extends MediaObject {
 	public $thumbdimensions = null;
 	public $encwebpath = '';
 	public $imagetype = '';
+	public $metadata_refresh_behaviour = 'full-refresh';
 
 	/**
 	 * Constructor for class-image
@@ -70,9 +71,11 @@ class Image extends MediaObject {
 			$this->updateDimensions(); // deal with rotation issues
 			$this->set('mtime', $this->filemtime);
 			$this->save();
-			if ($new)
+			if ($new) {
 				zp_apply_filter('new_image', $this);
+			}
 		}
+		$this->metadata_refresh_behaviour = getOption('metadata_refresh_behaviour');
 	}
 	
 	/**
@@ -470,7 +473,7 @@ class Image extends MediaObject {
 		if (empty($title)) {
 			$title = $this->get('EXIFDescription');
 		}
-		if (!empty($title)) {
+		if (!empty($title) && $this->metadata_refresh_behaviour == 'full-refresh') {
 			$this->setTitle($title);
 		}
 
@@ -480,24 +483,26 @@ class Image extends MediaObject {
 			if (getOption('IPTC_convert_linebreaks')) {
 				$desc = nl2br(html_decode($desc));
 			}
-			$this->setDesc($desc);
-		} 
+			if ($this->metadata_refresh_behaviour == 'full-refresh') {
+				$this->setDesc($desc);
+			}
+		}
 
 		/* iptc location, state, country */
 		$loc = $this->get('IPTCSubLocation');
-		if (!empty($loc)) {
+		if (!empty($loc) && $this->metadata_refresh_behaviour != 'metadata-fields-only') {
 			$this->setLocation($loc);
 		}
 		$city = $this->get('IPTCCity');
-		if (!empty($city)) {
+		if (!empty($city) && $this->metadata_refresh_behaviour != 'metadata-fields-only') {
 			$this->setCity($city);
 		}
 		$state = $this->get('IPTCState');
-		if (!empty($state)) {
+		if (!empty($state) && $this->metadata_refresh_behaviour != 'metadata-fields-only') {
 			$this->setState($state);
 		}
 		$country = $this->get('IPTCLocationName');
-		if (!empty($country)) {
+		if (!empty($country) && $this->metadata_refresh_behaviour != 'metadata-fields-only') {
 			$this->setCountry($country);
 		}
 
@@ -509,12 +514,14 @@ class Image extends MediaObject {
 		if (empty($credit)) {
 			$credit = $this->get('IPTCSource');
 		}
-		if (!empty($credit)) {
+		if (!empty($credit) && $this->metadata_refresh_behaviour != 'metadata-fields-only') {
 			$this->setCredit($credit);
 		}
 
 		/* iptc copyright */
-		$this->setCopyright($this->get('IPTCCopyright'));
+		if ($this->metadata_refresh_behaviour != 'metadata-fields-only') {
+			$this->setCopyright($this->get('IPTCCopyright'));
+		}
 
 		if (empty($xdate)) {
 			$dateformatted = zpFormattedDate('Y-m-d H:i:s', $this->filemtime);

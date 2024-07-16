@@ -449,8 +449,10 @@ class Video extends Image {
 						}
 					}
 				}
+				
+				
 				$title = $this->get('VideoTitle');
-				if (!empty($title)) {
+				if (!empty($title) && $this->metadata_refresh_behaviour == 'full-refresh') {
 					$this->setTitle($title);
 				}
 			}
