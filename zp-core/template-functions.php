@@ -2763,7 +2763,10 @@ function getSizeDefaultImage($size = NULL, $image = NULL) {
 	if (is_null($image)) {
 		return false;
 	}
-  return $this->getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL);
+	if (is_null($size)) {
+		$size = getOption('image_size');
+	}
+	return $image->getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
 /**
