@@ -64,7 +64,7 @@ printLogoAndLinks();
 		//	remove dynamic albums--can't upload to them
 		foreach ($albumlist as $key => $albumtitle) {
 			$albumlistobj = AlbumBase::newAlbum($key);
-			if (!($albumlistobj->albumSubRights() & MANAGED_OBJECT_RIGHTS_UPLOAD) || $albumlistobj->isDynamic() && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
+			if ($albumlistobj->isDynamic() && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
 				unset($albumlist[$key]);
 			}
 		}

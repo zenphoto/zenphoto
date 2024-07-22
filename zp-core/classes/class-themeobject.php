@@ -161,7 +161,7 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function isVisible($action = LIST_RIGHTS) {
-		if ($this->isMyItem($action) || ($this->isPublic() && !$this->isProtectedByParent())) {
+		if ($this->isMyItem($action) || ($action != UPLOAD_RIGHTS && $this->isPublic() && !$this->isProtectedByParent())) {
 			return true;
 		}
 		return false;
