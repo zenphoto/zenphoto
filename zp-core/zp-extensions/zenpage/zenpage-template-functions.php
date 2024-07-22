@@ -1525,9 +1525,6 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				
 				break;
 		}
-		if ($mode == 'categories') {
-			debuglog($itemtitle);
-		}
 		if ($catcount) {
 
 			$level = max(1, count(explode('-', strval($itemsortorder))));
