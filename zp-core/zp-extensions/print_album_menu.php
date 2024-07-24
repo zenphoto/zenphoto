@@ -292,7 +292,7 @@ function printAlbumMenuListAlbum($albums, $folder, $option, $showcount, $showsub
 			}
 			echo $link;
 		}
-		if ($process) { // listing subalbums
+		if ($process && (!$albumobj->isProtected() || $albumobj->isMyItem(LIST_RIGHTS))) { // listing subalbums
 			$subalbums = $albumobj->getAlbums();
 			if (!empty($subalbums)) {
 				echo "\n".'<ul class="' . $css_class . '">'."\n";
