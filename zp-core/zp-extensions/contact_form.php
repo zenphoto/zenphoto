@@ -72,6 +72,11 @@ class contactformOptions {
 		}
 		setOptionDefault('contactform_dataconfirmation', 0);
 		setOptionDefault('contactform_autocomplete', 0);
+		setOptionDefault('contactform_textquiz', 0);
+		setOptionDefault('contactform_textquiz_question', '');
+		setOptionDefault('contactform_textquiz_answer', '');
+		setOptionDefault('contactform_mathquiz', 0);
+		setOptionDefault('contactform_mathquiz_question', '');
 	}
 
 	function getOptionsSupported() {
@@ -168,11 +173,6 @@ class contactformOptions {
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => $list,
 						'desc' => sprintf($mailfieldinstruction, gettext("Website"))),
-				gettext('CAPTCHA') => array(
-						'key' => 'contactform_captcha',
-						'type' => OPTION_TYPE_CHECKBOX,
-						'disabled' => ($_zp_captcha->name) ? false : true,
-						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="warningbox">' . gettext('No captcha handler is enabled.') . '</span>'),
 				gettext('Phone') => array(
 						'key' => 'contactform_phone',
 						'type' => OPTION_TYPE_RADIO,
@@ -185,7 +185,35 @@ class contactformOptions {
 				gettext('Autocomplete') => array(
 						'key' => 'contactform_autocomplete',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.'))
+						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.')),
+				gettext('CAPTCHA') => array(
+						'key' => 'contactform_captcha',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'disabled' => ($_zp_captcha->name) ? false : true,
+						'desc' => ($_zp_captcha->name) ? gettext('If checked, the form will include a Captcha verification.') : '<span class="warningbox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Math quiz') => array(
+						'key' => 'contactform_mathquiz',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enables a mandatory input field so users have to answer a math question before they can send any mail.')),
+				gettext('Math quiz question') => array(
+						'key' => 'contactform_mathquiz_question',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The question for the math quiz. Enter a valid PHP expression like 2+3*2. Allowed chars: <code>0-9+-*/.()</code>.')),
+				gettext('Text quiz') => array(
+						'key' => 'contactform_textquiz',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enables a mandatory input field so users have to answer a text question before they can send any mail.')),
+				gettext('Text quiz question') => array(
+						'key' => 'contactform_textquiz_question',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => 1,
+						'desc' => gettext('The question for the text quiz.')),
+				gettext('Text quiz answer') => array(
+						'key' => 'contactform_textquiz_answer',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => 1,
+						'desc' => gettext('The answer to the text quiz question.'))
+				
 		);
 		return $options;
 	}
@@ -251,7 +279,9 @@ class contactForm {
 			$mailcontent['subject'] = self::getField('subject');
 			$mailcontent['message'] = self::getField('message', 1);
 			$mailcontent['dataconfirmation'] = self::getField('dataconfirmation', 1);
-
+			$mailcontent['textquiz'] = self::getField('textquiz');
+			$mailcontent['mathquiz'] = self::getField('mathquiz');
+			
 			// if you want other required fields or less add/modify their checks here
 			if (getOption('contactform_title') == "required" && empty($mailcontent['title'])) {
 				$error[1] = gettext("a title");
@@ -298,6 +328,7 @@ class contactForm {
 			if (empty($mailcontent['message'])) {
 				$error[13] = gettext("a message");
 			}
+
 			// CAPTCHA start
 			if ($_zp_captcha->name && getOption("contactform_captcha")) {
 				$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
@@ -310,6 +341,23 @@ class contactForm {
 			if (getOption('contactform_dataconfirmation') && empty($mailcontent['dataconfirmation'])) {
 				$error_dataconfirmation = $error[15] = gettext('Please agree to storage and handling of your data by this website.');
 			}
+			
+			// Quizes
+			if (contactForm::getQuizFieldQuestion('contactform_textquiz')) {
+				$textquiz_answer = trim(get_language_string(getOption('contactform_textquiz_answer')));
+				$textquiz_answer_user = trim($mailcontent['textquiz']);
+				if (empty($textquiz_answer_user) || $textquiz_answer_user != $textquiz_answer) {
+					$error[16] = gettext("the correct text quiz answer");
+				}
+			}
+			if (contactForm::getQuizFieldQuestion('contactform_mathquiz')) {
+				$mathquiz_answer = eval('return ' . contactForm::getQuizFieldQuestion('contactform_mathquiz') . ';');
+				$mathquiz_answer_user = trim($mailcontent['mathquiz']);
+				if (empty($mathquiz_answer_user) || $mathquiz_answer_user != $mathquiz_answer) {
+					$error[17] = gettext("the correct math quiz answer");
+				}
+			}
+
 			// If required fields are empty or not valide print note
 			if (count($error) != 0) {
 				?>
@@ -479,7 +527,11 @@ class contactForm {
 							'email' => $_zp_current_admin_obj->getEmail(),
 							'website' => '', 'phone' => '',
 							'subject' => $subject_override,
-							'message' => '', 'honeypot' => '');
+							'message' => '',
+							'honeypot' => '',
+							'textquiz' => '',
+							'mathquiz' => ''
+					);
 					if (extensionEnabled('comment_form')) {
 						$address = getSerializedArray($_zp_current_admin_obj->getCustomData());
 						foreach ($address as $key => $field) {
@@ -501,7 +553,10 @@ class contactForm {
 							'phone' => '',
 							'subject' => $subject_override,
 							'message' => '',
-							'honeypot' => '');
+							'honeypot' => '',
+							'textquiz' => '',
+							'mathquiz' => ''
+					);
 				}
 			}
 			echo get_language_string(getOption("contactform_introtext"));
@@ -675,6 +730,40 @@ class contactForm {
 		} else {
 			return getOption($value);
 		}
+	}
+	
+	/**
+	 * Gets the the question to a quiz field if the field is enabled and setup correctly
+	 * 
+	 * @since 1.6.5 
+	 * 
+	 * @param type $which
+	 * @return string|bool
+	 */
+	static function getQuizFieldQuestion($which = '') {
+		$data = array();
+		switch ($which) {
+			case 'contactform_textquiz':
+				if (getOption($which)) {
+					$question = trim(get_language_string(getOption('contactform_textquiz_question')));
+					$answer = trim(get_language_string(getOption('contactform_textquiz_question')));
+					if (!empty($question) && !empty($answer)) {
+						return $question;
+					}
+				}
+				break;
+			case 'contactform_mathquiz':
+				if (getOption($which)) {
+					$question = get_language_string(getOption('contactform_mathquiz_question'));
+					// filter in case a user entered invalid expression
+					$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
+					if (!empty($question_filtered)) {
+						return $question_filtered;
+					}
+				}
+				break;
+		}
+		return false;
 	}
 
 	/**

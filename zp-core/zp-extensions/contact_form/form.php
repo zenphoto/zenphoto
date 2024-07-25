@@ -130,7 +130,7 @@
 		<textarea id="message" name="message" <?php echo contactForm::getProcessedFieldDisabledAttr(); ?> required><?php echo $mailcontent['message']; ?></textarea>
 	</p>
 	<?php 
-	if(getOption('contactform_dataconfirmation')) { 
+	if (getOption('contactform_dataconfirmation')) { 
 		$dataconfirmation_checked = '';
 		if(!empty($mailcontent['dataconfirmation'])) {
 			$dataconfirmation_checked = ' checked="checked"';
@@ -142,7 +142,23 @@
 				<?php printDataUsageNotice(); echo '<strong>*</strong>'; ?>
 			</label>
 		</p>
-	<?php } 
+	<?php } ?>
+	<?php 
+	$textquiz_question = contactForm::getQuizFieldQuestion('contactform_textquiz');
+	if ($textquiz_question && !contactForm::isProcessingPost()) { ?>
+		<p>
+			<label for="textquiz"><?php echo html_encode($textquiz_question); ?><strong>*</strong></label>
+			<input type="text" id="textquiz" name="textquiz" size="50" value="<?php echo $mailcontent['textquiz']; ?>" required />
+		</p>
+	<?php } ?>
+	<?php $mathquiz_question = contactForm::getQuizFieldQuestion('contactform_mathquiz');
+	if ($mathquiz_question && !contactForm::isProcessingPost()) { ?>
+		<p>
+			<label for="mathquiz"><?php echo html_encode($mathquiz_question); ?>=<strong>*</strong></label>
+			<input type="text" id="mathquiz" name="mathquiz" size="50" value="<?php echo $mailcontent['mathquiz']; ?>" required />
+		</p>
+	<?php } ?>
+	<?php
 	if (!contactForm::isProcessingPost()) {
 		?>
 		<p>
