@@ -148,14 +148,14 @@
 	if ($textquiz_question && !contactForm::isProcessingPost()) { ?>
 		<p>
 			<label for="textquiz"><?php echo html_encode($textquiz_question); ?><strong>*</strong></label>
-			<input type="text" id="textquiz" name="textquiz" size="50" value="<?php echo $mailcontent['textquiz']; ?>" required />
+			<input type="text" id="textquiz" name="textquiz" size="50" value="<?php echo $mailcontent['textquiz']; ?>" required autocomplete="off" />
 		</p>
 	<?php } ?>
 	<?php $mathquiz_question = contactForm::getQuizFieldQuestion('contactform_mathquiz');
 	if ($mathquiz_question && !contactForm::isProcessingPost()) { ?>
 		<p>
 			<label for="mathquiz"><?php echo html_encode($mathquiz_question); ?>=<strong>*</strong></label>
-			<input type="text" id="mathquiz" name="mathquiz" size="50" value="<?php echo $mailcontent['mathquiz']; ?>" required />
+			<input type="text" id="mathquiz" name="mathquiz" size="50" value="<?php echo $mailcontent['mathquiz']; ?>" required autocomplete="off" />
 		</p>
 	<?php } ?>
 	<?php

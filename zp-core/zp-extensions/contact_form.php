@@ -331,8 +331,8 @@ class contactForm {
 
 			// CAPTCHA start
 			if ($_zp_captcha->name && getOption("contactform_captcha")) {
-				$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : NULL));
-				$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : NULL));
+				$code_ok = trim(sanitize(isset($_POST['code_h']) ? $_POST['code_h'] : ''));
+				$code = trim(sanitize(isset($_POST['code']) ? $_POST['code'] : ''));
 				if (!$_zp_captcha->checkCaptcha($code, $code_ok)) {
 					$error[14] = gettext("the correct CAPTCHA verification code");
 				} // no ticket
@@ -518,14 +518,15 @@ class contactForm {
 					$mailcontent = array(
 							'title' => '',
 							'name' => $_zp_current_admin_obj->getName(),
-							'company' => '',
-							'street' => '',
-							'city' => '',
-							'state' => '',
-							'country' => '',
-							'postal' => '',
+							'company' => $_zp_current_admin_obj->get('company'),
+							'street' => $_zp_current_admin_obj->get('street'),
+							'city' =>  $_zp_current_admin_obj->get('city'),
+							'state' =>  $_zp_current_admin_obj->get('state'),
+							'country' => $_zp_current_admin_obj->get('country'),
+							'postal' => $_zp_current_admin_obj->get('postal'),
 							'email' => $_zp_current_admin_obj->getEmail(),
-							'website' => '', 'phone' => '',
+							'website' => $_zp_current_admin_obj->get('website'),
+							'phone' => '',
 							'subject' => $subject_override,
 							'message' => '',
 							'honeypot' => '',
