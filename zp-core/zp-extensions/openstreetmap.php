@@ -44,7 +44,7 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_markerpopup_desc', 1);
 		setOptionDefault('osmap_markerpopup_thumb', 1);
 		setOptionDefault('osmap_markerpopup_thumb-type', 'custom');
-		setOptionDefault('osmap_markerpopup_thumb-size', 120);
+		setOptionDefault('osmap_markerpopup_thumb-size', 150);
 		setOptionDefault('osmap_markerpopup_title-length', 50);
 		setOptionDefault('osmap_markerpopup_desc-length', 100);
 		setOptionDefault('osmap_markerpopup_css-default', 1);
@@ -63,7 +63,7 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('openstreetmap');
-			cacheManager::addCacheSize('openstreetmap', 120, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addCacheSize('openstreetmap', 150, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 
@@ -157,7 +157,7 @@ class openStreetMapOptions {
 						'key' => 'osmap_markerpopup_thumb-size',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 14.2,
-						'desc' => gettext("Set the width of the Custom Image to be used as thumb in the marker popups. Works if Custom image is selected in the previous option. Default size is 120px.<br>If Custom Image size is larger than 120px, you might need to use custom CSS to display them in full (see option below to disable default CSS file).")),
+						'desc' => gettext("Set the width of the Custom Image to be used as thumb in the marker popups. Works if Custom image is selected in the previous option. Default size is 150px.<br>If Custom Image size is larger than 120px, the image will be shrinked to 120px, if you want to display them in full - you might need to use custom CSS (see option below to disable default CSS file).")),
 				gettext('Length of Image title') => array(
 						'key' => 'osmap_markerpopup_title-length',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -172,7 +172,7 @@ class openStreetMapOptions {
 						'key' => 'osmap_markerpopup_css-default',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 14.5,
-						'desc' => gettext("Check to use default openstreetmap CSS (located in 'PLUGIN_FOLDER/openstreetmap/openstreetmap.css'). Default is Enabled.<br>Removing checkmark will DISABLE default plugin CSS - this will allow to change popup markers presentation completely, make sure to include relevant rules in your theme CSS file.")),
+						'desc' => gettext("Check to use default openstreetmap CSS (located in 'PLUGIN_FOLDER/openstreetmap/openstreetmap.css'). Default is Enabled.<br>Removing checkmark will DISABLE default plugin CSS - this option is intended for experienced users, who want to have full control and will allow to change map and popup markers presentation completely, so make sure to include relevant rules in your theme CSS file.")),
 				gettext('Show layers controls') => array(
 						'key' => 'osmap_showlayerscontrol',
 						'type' => OPTION_TYPE_CHECKBOX,
