@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-20 13:26+0200\n"
-"PO-Revision-Date: 2024-07-20 13:31+0200\n"
+"POT-Creation-Date: 2024-07-27 21:36+0200\n"
+"PO-Revision-Date: 2024-07-27 21:47+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -757,7 +757,7 @@ msgstr ""
 #: themes/zpmobile/search.php:46 themes/zpmobile/search.php:51
 #: themes/zpmobile/search.php:53 zp-core/template-functions.php:471
 #: zp-core/template-functions.php:1442 zp-core/template-functions.php:1496
-#: zp-core/template-functions.php:3754
+#: zp-core/template-functions.php:3757
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
 #: zp-core/zp-extensions/html_meta_tags.php:463
 #: zp-core/zp-extensions/scriptless-socialsharing.php:183
@@ -1458,7 +1458,7 @@ msgstr "Cliquer sur l’image pour changer le rognage de la vignette."
 #: zp-core/admin-plugins.php:424 zp-core/admin-themes-editor.php:155
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:469
 #: zp-core/admin-users.php:842 zp-core/classes/class-authority.php:1132
-#: zp-core/zp-extensions/contact_form/form.php:150
+#: zp-core/zp-extensions/contact_form/form.php:166
 #: zp-core/zp-extensions/crop_image.php:339
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:400
 #: zp-core/zp-extensions/rewriteTokens.php:118
@@ -2778,8 +2778,8 @@ msgstr "Dernier changement par : %s"
 
 #: zp-core/admin-functions.php:5257 zp-core/admin-upload.php:280
 #: zp-core/classes/class-searchengine.php:91
-#: zp-core/zp-extensions/contact_form.php:121
-#: zp-core/zp-extensions/contact_form.php:125
+#: zp-core/zp-extensions/contact_form.php:126
+#: zp-core/zp-extensions/contact_form.php:130
 #: zp-core/zp-extensions/favoritesHandler.php:110
 #: zp-core/zp-extensions/favoritesHandler.php:143
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:61
@@ -4621,7 +4621,7 @@ msgstr "Métadonnées"
 #: zp-core/admin-options.php:2528 zp-core/admin-options.php:2543
 #: zp-core/admin-options.php:2544 zp-core/admin-options.php:2545
 #: zp-core/admin-users.php:486 zp-core/zp-extensions/GoogleMap.php:114
-#: zp-core/zp-extensions/contact_form.php:84
+#: zp-core/zp-extensions/contact_form.php:89
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:116
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:117
 msgid "show"
@@ -6489,7 +6489,7 @@ msgstr ""
 
 #: zp-core/classes/class-_zp_captcha.php:12
 #: zp-core/zp-extensions/comment_form.php:130
-#: zp-core/zp-extensions/contact_form.php:175
+#: zp-core/zp-extensions/contact_form.php:193
 #: zp-core/zp-extensions/register_user.php:115
 msgid "No captcha handler is enabled."
 msgstr "Aucun gestionnaire de captcha n’est activé."
@@ -7945,22 +7945,22 @@ msgstr "Lieu"
 
 #: zp-core/classes/class-searchengine.php:99
 #: zp-core/functions/functions.php:2849
-#: zp-core/zp-extensions/contact_form.php:141
-#: zp-core/zp-extensions/contact_form.php:145
+#: zp-core/zp-extensions/contact_form.php:146
+#: zp-core/zp-extensions/contact_form.php:150
 #: zp-core/zp-extensions/userAddressFields.php:64
 msgid "City"
 msgstr "Ville"
 
 #: zp-core/classes/class-searchengine.php:100
-#: zp-core/zp-extensions/contact_form.php:146
-#: zp-core/zp-extensions/contact_form.php:150
+#: zp-core/zp-extensions/contact_form.php:151
+#: zp-core/zp-extensions/contact_form.php:155
 #: zp-core/zp-extensions/userAddressFields.php:66
 msgid "State"
 msgstr "État, province"
 
 #: zp-core/classes/class-searchengine.php:101
-#: zp-core/zp-extensions/contact_form.php:156
-#: zp-core/zp-extensions/contact_form.php:160
+#: zp-core/zp-extensions/contact_form.php:161
+#: zp-core/zp-extensions/contact_form.php:165
 #: zp-core/zp-extensions/userAddressFields.php:65
 msgid "Country"
 msgstr "Pays"
@@ -8035,8 +8035,8 @@ msgid "User mail"
 msgstr "E-mail de l’utilisateur"
 
 #: zp-core/classes/class-userdataexport.php:230
-#: zp-core/zp-extensions/contact_form.php:166
-#: zp-core/zp-extensions/contact_form.php:170
+#: zp-core/zp-extensions/contact_form.php:171
+#: zp-core/zp-extensions/contact_form.php:175
 #: zp-core/zp-extensions/userAddressFields.php:63
 msgid "Website"
 msgstr "Site internet"
@@ -12411,15 +12411,15 @@ msgstr "<em>Cette image est protégée par mot de passe.</em>"
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: zp-core/template-functions.php:3523
+#: zp-core/template-functions.php:3526
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: zp-core/template-functions.php:3710
+#: zp-core/template-functions.php:3713
 msgid "Use SearchEngine::getSearchURL() instead"
 msgstr "Utilisez plutôt SearchEngine::getSearchURL()"
 
-#: zp-core/template-functions.php:3749
+#: zp-core/template-functions.php:3752
 msgid ""
 "printSearchForm $album_list parameter is deprecated. Pass "
 "array(\"albums\"=>array(album, album, ...)) instead."
@@ -12427,45 +12427,45 @@ msgstr ""
 "Le paramètre $album_list de printSearchForm est obsolète. A la place, "
 "utilisez un tableau array(\"albums\"=>array(album, album, ...))."
 
-#: zp-core/template-functions.php:3764 zp-core/template-functions.php:3770
+#: zp-core/template-functions.php:3767 zp-core/template-functions.php:3773
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: zp-core/template-functions.php:3845
+#: zp-core/template-functions.php:3848
 msgid "search options"
 msgstr "options de recherche"
 
-#: zp-core/template-functions.php:3845
+#: zp-core/template-functions.php:3848
 msgid "fields"
 msgstr "champs"
 
-#: zp-core/template-functions.php:3891
+#: zp-core/template-functions.php:3894
 msgid "Within"
 msgstr "Parmi"
 
-#: zp-core/template-functions.php:3895
+#: zp-core/template-functions.php:3898
 #: zp-core/zp-extensions/flag_thumbnail.php:112
 msgid "New"
 msgstr "Nouveau"
 
-#: zp-core/template-functions.php:3902
+#: zp-core/template-functions.php:3905
 msgid "Check/uncheck all"
 msgstr "Tout cocher / tout décocher"
 
-#: zp-core/template-functions.php:4149
+#: zp-core/template-functions.php:4152
 msgid "You are successfully logged in."
 msgstr "Vous êtes connecté avec succès."
 
-#: zp-core/template-functions.php:4154
+#: zp-core/template-functions.php:4157
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: zp-core/template-functions.php:4159
+#: zp-core/template-functions.php:4162
 msgid "login"
 msgstr "Connexion"
 
-#: zp-core/template-functions.php:4177
+#: zp-core/template-functions.php:4180
 msgid ""
 "Powered by <a href=\"https://www.zenphoto.org\" target=\"_blank\" "
 "rel=\"noopener noreferrer\" title=\"The simpler media website "
@@ -12475,21 +12475,21 @@ msgstr ""
 "rel=\"noopener noreferrer\" title=\"Le système de gestion de contenu média "
 "le plus simple\">Zenphoto</a>"
 
-#: zp-core/template-functions.php:4342
+#: zp-core/template-functions.php:4345
 msgid "Zenphoto Error:</strong> the requested object was not found."
 msgstr "Erreur Zenphoto :</strong> l’objet demandé n’a pas été trouvé."
 
-#: zp-core/template-functions.php:4344
+#: zp-core/template-functions.php:4347
 #, php-format
 msgid "Album: %s"
 msgstr "Album : %s"
 
-#: zp-core/template-functions.php:4347
+#: zp-core/template-functions.php:4350
 #, php-format
 msgid "Image: %s"
 msgstr "Image : %s"
 
-#: zp-core/template-functions.php:4350
+#: zp-core/template-functions.php:4353
 #, php-format
 msgid "Page: %s"
 msgstr "Page : %s"
@@ -15325,7 +15325,7 @@ msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> a commenté sur %2$s  :"
 
 #: zp-core/zp-extensions/comment_form/functions.php:167
-#: zp-core/zp-extensions/contact_form.php:447
+#: zp-core/zp-extensions/contact_form.php:495
 msgid "Mail send failed"
 msgstr "L’envoi du mail a échoué"
 
@@ -15356,7 +15356,7 @@ msgid "You must enter some text in the comment field."
 msgstr "Vous devez entrer du texte dans le champ de commentaire."
 
 #: zp-core/zp-extensions/comment_form/functions.php:307
-#: zp-core/zp-extensions/contact_form.php:311
+#: zp-core/zp-extensions/contact_form.php:342
 msgid "Please agree to storage and handling of your data by this website."
 msgstr ""
 "Veuillez accepter le stockage et le traitement de vos données par ce site "
@@ -15531,15 +15531,15 @@ msgstr ""
 "<p>Pour vos archives, une copie de votre email sera automatiquement envoyée "
 "à l’adresse que vous avez fournie.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:83
+#: zp-core/zp-extensions/contact_form.php:88
 msgid "required"
 msgstr "obligatoire"
 
-#: zp-core/zp-extensions/contact_form.php:85
+#: zp-core/zp-extensions/contact_form.php:90
 msgid "omitted"
 msgstr "omis"
 
-#: zp-core/zp-extensions/contact_form.php:87
+#: zp-core/zp-extensions/contact_form.php:92
 #, php-format
 msgid ""
 "Set if the <code>%s</code> field should be required, just shown or omitted"
@@ -15547,19 +15547,19 @@ msgstr ""
 " <code>%s</code> : détermine si ce champ est obligatoire, affiché et "
 "optionnel, ou omis"
 
-#: zp-core/zp-extensions/contact_form.php:89
+#: zp-core/zp-extensions/contact_form.php:94
 msgid "Intro text"
 msgstr "Texte d’introduction"
 
-#: zp-core/zp-extensions/contact_form.php:92
+#: zp-core/zp-extensions/contact_form.php:97
 msgid "The intro text for your contact form"
 msgstr "Le texte d’introduction du formulaire de contact."
 
-#: zp-core/zp-extensions/contact_form.php:93
+#: zp-core/zp-extensions/contact_form.php:98
 msgid "Confirm text"
 msgstr "Texte de confirmation"
 
-#: zp-core/zp-extensions/contact_form.php:96
+#: zp-core/zp-extensions/contact_form.php:101
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
 "message."
@@ -15567,20 +15567,20 @@ msgstr ""
 "Le texte qui demande au visiteur de confirmer s’il veut réellement envoyer "
 "le message."
 
-#: zp-core/zp-extensions/contact_form.php:97
+#: zp-core/zp-extensions/contact_form.php:102
 msgid "Thanks text"
 msgstr "Texte de remerciement"
 
-#: zp-core/zp-extensions/contact_form.php:100
+#: zp-core/zp-extensions/contact_form.php:105
 msgid "The text that is shown after a message has been confirmed and sent."
 msgstr ""
 "Le texte qui est affiché après qu’un message ait été confirmé et envoyé."
 
-#: zp-core/zp-extensions/contact_form.php:101
+#: zp-core/zp-extensions/contact_form.php:106
 msgid "New message link text"
 msgstr "Texte pour le lien Nouveau message"
 
-#: zp-core/zp-extensions/contact_form.php:104
+#: zp-core/zp-extensions/contact_form.php:109
 msgid ""
 "The text for the link after the thanks text to return to the contact page to "
 "send another message."
@@ -15588,11 +15588,11 @@ msgstr ""
 "Le texte du lien qui suit le texte de remerciement, et qui permet de "
 "retourner à la page de contact pour envoyer un autre message."
 
-#: zp-core/zp-extensions/contact_form.php:105
+#: zp-core/zp-extensions/contact_form.php:110
 msgid "Require confirmation"
 msgstr "Confirmation de l’envoi requise"
 
-#: zp-core/zp-extensions/contact_form.php:108
+#: zp-core/zp-extensions/contact_form.php:113
 msgid ""
 "If checked, a confirmation form will be presented before sending the contact "
 "message."
@@ -15600,11 +15600,11 @@ msgstr ""
 "Si coché, un formulaire de confirmation sera présenté avant l’envoi du "
 "message au contact."
 
-#: zp-core/zp-extensions/contact_form.php:109
+#: zp-core/zp-extensions/contact_form.php:114
 msgid "Send copy"
 msgstr "Envoyer une copie"
 
-#: zp-core/zp-extensions/contact_form.php:112
+#: zp-core/zp-extensions/contact_form.php:117
 msgid ""
 "If checked, a copy of the message will be sent to the address provided. <p "
 "class='notebox'><strong>Caution: </strong> If you check this option it is "
@@ -15620,11 +15620,11 @@ msgstr ""
 "pays – comme dans la plupart des pays européens – vous pouvez en être tenu "
 "responsable !)</p>"
 
-#: zp-core/zp-extensions/contact_form.php:113
+#: zp-core/zp-extensions/contact_form.php:118
 msgid "Send copy note text"
 msgstr "Texte pour l’envoi en copie"
 
-#: zp-core/zp-extensions/contact_form.php:116
+#: zp-core/zp-extensions/contact_form.php:121
 msgid ""
 "The text for the note about sending a copy to the address provided in case "
 "that option is set."
@@ -15632,11 +15632,11 @@ msgstr ""
 "Le texte de la note affichée lorsqu’une copie est envoyée à une adresse "
 "spécifiée."
 
-#: zp-core/zp-extensions/contact_form.php:117
+#: zp-core/zp-extensions/contact_form.php:122
 msgid "Contact recipients"
 msgstr "Contact des récipiendaires"
 
-#: zp-core/zp-extensions/contact_form.php:120
+#: zp-core/zp-extensions/contact_form.php:125
 msgid ""
 "The e-mail address the messages should be sent to. Enter one or more address "
 "separated by semicolons."
@@ -15644,44 +15644,34 @@ msgstr ""
 "L’adresse email à laquelle les messages doivent être envoyés. Saisissez une "
 "ou plusieurs adresses séparées par des points-virgules (sans espace)."
 
-#: zp-core/zp-extensions/contact_form.php:126
-#: zp-core/zp-extensions/contact_form.php:130
+#: zp-core/zp-extensions/contact_form.php:131
+#: zp-core/zp-extensions/contact_form.php:135
 #: zp-core/zp-extensions/register_user/register_user_form.php:31
 msgid "Name"
 msgstr "Nom"
 
-#: zp-core/zp-extensions/contact_form.php:131
-#: zp-core/zp-extensions/contact_form.php:135
+#: zp-core/zp-extensions/contact_form.php:136
+#: zp-core/zp-extensions/contact_form.php:140
 msgid "Company"
 msgstr "Entreprise"
 
-#: zp-core/zp-extensions/contact_form.php:136
-#: zp-core/zp-extensions/contact_form.php:140
+#: zp-core/zp-extensions/contact_form.php:141
+#: zp-core/zp-extensions/contact_form.php:145
 #: zp-core/zp-extensions/userAddressFields.php:62
 msgid "Street"
 msgstr "Rue"
 
-#: zp-core/zp-extensions/contact_form.php:151
-#: zp-core/zp-extensions/contact_form.php:155
+#: zp-core/zp-extensions/contact_form.php:156
+#: zp-core/zp-extensions/contact_form.php:160
 #: zp-core/zp-extensions/userAddressFields.php:67
 msgid "Postal code"
 msgstr "Code postal"
 
-#: zp-core/zp-extensions/contact_form.php:161
-#: zp-core/zp-extensions/contact_form.php:165
+#: zp-core/zp-extensions/contact_form.php:166
+#: zp-core/zp-extensions/contact_form.php:170
 #: zp-core/zp-extensions/scriptless-socialsharing.php:82
 msgid "E-mail"
 msgstr "Email"
-
-#: zp-core/zp-extensions/contact_form.php:171
-#: zp-core/zp-extensions/register_user.php:111
-msgid "CAPTCHA"
-msgstr "Captcha"
-
-#: zp-core/zp-extensions/contact_form.php:175
-#: zp-core/zp-extensions/register_user.php:115
-msgid "If checked, the form will include a Captcha verification."
-msgstr "Si coché, le formulaire comportera une validation par Captcha."
 
 #: zp-core/zp-extensions/contact_form.php:176
 #: zp-core/zp-extensions/mobileTheme.php:126
@@ -15692,121 +15682,191 @@ msgstr "Téléphone"
 msgid "Phone number"
 msgstr "Numéro de téléphone"
 
-#: zp-core/zp-extensions/contact_form.php:257
+#: zp-core/zp-extensions/contact_form.php:189
+#: zp-core/zp-extensions/register_user.php:111
+msgid "CAPTCHA"
+msgstr "Captcha"
+
+#: zp-core/zp-extensions/contact_form.php:193
+#: zp-core/zp-extensions/register_user.php:115
+msgid "If checked, the form will include a Captcha verification."
+msgstr "Si coché, le formulaire comportera une validation par Captcha."
+
+#: zp-core/zp-extensions/contact_form.php:194
+msgid "Math quiz"
+msgstr "Devinette mathématique"
+
+#: zp-core/zp-extensions/contact_form.php:197
+msgid ""
+"Enables a mandatory input field so users have to answer a math question "
+"before they can send any mail."
+msgstr ""
+"Affiche une devinette mathématique à laquelle les utilisateurs ont "
+"obligation de répondre pour envoyer leur email."
+
+#: zp-core/zp-extensions/contact_form.php:198
+msgid "Math quiz question"
+msgstr "Question de la devinette mathématique"
+
+#: zp-core/zp-extensions/contact_form.php:201
+msgid ""
+"The question for the math quiz. Enter a valid PHP expression like 2+3*2. "
+"Allowed chars: <code>0-9+-*/.()</code>."
+msgstr ""
+"Le sujet de la question mathématique. Entrez une expression PHP valide de "
+"type 2+3*2. Caractères autorisés : <code>0-9+-*/.()</code>."
+
+#: zp-core/zp-extensions/contact_form.php:202
+msgid "Text quiz"
+msgstr "Devinette textuelle"
+
+#: zp-core/zp-extensions/contact_form.php:205
+msgid ""
+"Enables a mandatory input field so users have to answer a text question "
+"before they can send any mail."
+msgstr ""
+"Affiche une devinette à laquelle les utilisateurs ont obligation de répondre "
+"pour envoyer leur email."
+
+#: zp-core/zp-extensions/contact_form.php:206
+msgid "Text quiz question"
+msgstr "Question de la devinette textuelle"
+
+#: zp-core/zp-extensions/contact_form.php:210
+msgid "The question for the text quiz."
+msgstr "Question de la devinette textuelle."
+
+#: zp-core/zp-extensions/contact_form.php:211
+msgid "Text quiz answer"
+msgstr "Réponse de la devinette"
+
+#: zp-core/zp-extensions/contact_form.php:215
+msgid "The answer to the text quiz question."
+msgstr "Réponse de la devinette textuelle."
+
+#: zp-core/zp-extensions/contact_form.php:287
 msgid "a title"
 msgstr "un titre"
 
-#: zp-core/zp-extensions/contact_form.php:260
+#: zp-core/zp-extensions/contact_form.php:290
 msgid "a name"
 msgstr "un nom"
 
-#: zp-core/zp-extensions/contact_form.php:263
+#: zp-core/zp-extensions/contact_form.php:293
 msgid "a company"
 msgstr "une entreprise"
 
-#: zp-core/zp-extensions/contact_form.php:266
+#: zp-core/zp-extensions/contact_form.php:296
 msgid "a street"
 msgstr "une rue"
 
-#: zp-core/zp-extensions/contact_form.php:269
+#: zp-core/zp-extensions/contact_form.php:299
 msgid "a city"
 msgstr "une ville"
 
-#: zp-core/zp-extensions/contact_form.php:272
+#: zp-core/zp-extensions/contact_form.php:302
 msgid "a state"
 msgstr "un état ou une province"
 
-#: zp-core/zp-extensions/contact_form.php:275
+#: zp-core/zp-extensions/contact_form.php:305
 msgid "a country"
 msgstr "un pays"
 
-#: zp-core/zp-extensions/contact_form.php:278
+#: zp-core/zp-extensions/contact_form.php:308
 msgid "a postal code"
 msgstr "un code postal"
 
-#: zp-core/zp-extensions/contact_form.php:281
+#: zp-core/zp-extensions/contact_form.php:311
 msgid "a valid email address"
 msgstr "une adresse email valide"
 
-#: zp-core/zp-extensions/contact_form.php:284
+#: zp-core/zp-extensions/contact_form.php:314
 msgid "a website"
 msgstr "un site internet"
 
-#: zp-core/zp-extensions/contact_form.php:293
+#: zp-core/zp-extensions/contact_form.php:323
 msgid "a phone number"
 msgstr "un numéro de téléphone"
 
-#: zp-core/zp-extensions/contact_form.php:296
+#: zp-core/zp-extensions/contact_form.php:326
 msgid "a subject"
 msgstr "un sujet"
 
-#: zp-core/zp-extensions/contact_form.php:299
+#: zp-core/zp-extensions/contact_form.php:329
 msgid "a message"
 msgstr "un message"
 
-#: zp-core/zp-extensions/contact_form.php:306
+#: zp-core/zp-extensions/contact_form.php:337
 msgid "the correct CAPTCHA verification code"
 msgstr "le bon code de vérification du Captcha"
 
-#: zp-core/zp-extensions/contact_form.php:326
+#: zp-core/zp-extensions/contact_form.php:350
+msgid "the correct text quiz answer"
+msgstr "la réponse correcte à la devinette textuelle"
+
+#: zp-core/zp-extensions/contact_form.php:357
+msgid "the correct math quiz answer"
+msgstr "la réponse correcte à la devinette mathématique"
+
+#: zp-core/zp-extensions/contact_form.php:374
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Veuillez saisir %s. Merci."
 
-#: zp-core/zp-extensions/contact_form.php:329
+#: zp-core/zp-extensions/contact_form.php:377
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Veuillez saisir %1$s et %2$s. Merci."
 
-#: zp-core/zp-extensions/contact_form.php:338
+#: zp-core/zp-extensions/contact_form.php:386
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "Veuillez saisir : %sMerci."
 
-#: zp-core/zp-extensions/contact_form.php:385
+#: zp-core/zp-extensions/contact_form.php:433
 msgid "I agree to storage and handling of my data by this website."
 msgstr ""
 "J’accepte pour le stockage et le traitement de mes données par ce site Web."
 
-#: zp-core/zp-extensions/contact_form.php:408
+#: zp-core/zp-extensions/contact_form.php:456
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: zp-core/zp-extensions/contact_form.php:412
+#: zp-core/zp-extensions/contact_form.php:460
 msgid "Discard"
 msgstr "Annuler"
 
-#: zp-core/zp-extensions/contact_form.php:453
+#: zp-core/zp-extensions/contact_form.php:501
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Erreur lors de l’envoi du message :"
 msgstr[1] "Erreurs lors de l’envoi du message :"
 
-#: zp-core/zp-extensions/contact_form.php:705
+#: zp-core/zp-extensions/contact_form.php:795
 msgid "Set %1 to optionally override the subject."
 msgstr "Définissez %1 pour le remplacement facultatif du sujet."
 
-#: zp-core/zp-extensions/contact_form.php:722
+#: zp-core/zp-extensions/contact_form.php:812
 msgid "Use contactForm::getField() instead"
 msgstr "Utilisez plutôt contactForm::getField()"
 
-#: zp-core/zp-extensions/contact_form.php:735
+#: zp-core/zp-extensions/contact_form.php:825
 msgid "Use contactForm::printContactForm() instead"
 msgstr "Utilisez plutôt contactForm::printContactForm()"
 
-#: zp-core/zp-extensions/contact_form.php:750
+#: zp-core/zp-extensions/contact_form.php:840
 msgid "Use contactForm::isVisibleField() instead."
 msgstr "Utilisez plutôt contactForm::isVisibleField()"
 
-#: zp-core/zp-extensions/contact_form.php:764
+#: zp-core/zp-extensions/contact_form.php:854
 msgid "Use contactForm::getRequiredFieldMark() instead"
 msgstr "Utilisez plutôt contactForm::getRequiredFieldMark()"
 
-#: zp-core/zp-extensions/contact_form.php:777
+#: zp-core/zp-extensions/contact_form.php:867
 msgid "Use contactForm::printMacro() instead"
 msgstr "Utilisez plutôt contactForm::printMacro()"
 
-#: zp-core/zp-extensions/contact_form.php:790
+#: zp-core/zp-extensions/contact_form.php:880
 msgid "Use contactForm::getMacros() instead"
 msgstr "Utilisez plutôt contactForm::getMacros()"
 
@@ -15837,7 +15897,7 @@ msgstr "Sujet<strong>*</strong>"
 msgid "Message<strong>*</strong>"
 msgstr "Message<strong>*</strong>"
 
-#: zp-core/zp-extensions/contact_form/form.php:149
+#: zp-core/zp-extensions/contact_form/form.php:165
 msgid "Send e-mail"
 msgstr "Envoyer l’email"
 
@@ -24733,44 +24793,44 @@ msgstr ""
 "getZenpageStatistic - La valeur \"desc\" attribuée à $sortdirection est "
 "obsolète depuis ZenphotoCMS 1.5.8. Remplacé par \"true\"."
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1469
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1512
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1471
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1520
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u article"
 msgstr[1] "%u articles"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1901
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1910
 msgid "<em>This page is protected.</em>"
 msgstr "<em>Cette page est protégée.</em>"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2063
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2072
 msgid "This page is password protected"
 msgstr "Cette page est protégée par mot de passe"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2232
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2241
 #, php-format
 msgid "View the %s album"
 msgstr "Voir l’album %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2234
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2243
 #, php-format
 msgid "View the album %s"
 msgstr "Voir l’album %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2238
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2239
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2247
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2248
 #, php-format
 msgid "View %s"
 msgstr "Voir %s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2247
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2256
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 
-#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2256
+#: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2265
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
