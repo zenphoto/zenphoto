@@ -575,15 +575,15 @@ function comment_form_handle_comment() {
 			$p_anon = isset($_POST['anon']);
 			$p_dataconfirmation = isset($_POST['comment_dataconfirmation']);
 
-			if (isset($_POST['comment_form_textquiz_answer'])) {
-				$p_textquiz_answer = sanitize($_POST['comment_form_textquiz_answer'], 3);
+			if (isset($_POST['comment_textquiz'])) {
+				$p_textquiz_answer = sanitize($_POST['comment_textquiz'], 3);
 			} else {
 				$p_textquiz_answer = NULL;
 			}
-			if (isset($_POST['comment_form_mathquiz_answer'])) {
-				$p_mathquiz_answer = sanitize($_POST['comment_form_mathquiz_answer'], 3);
+			if (isset($_POST['comment_mathquiz'])) {
+				$p_mathquiz_answer = sanitize($_POST['comment_mathquiz'], 3);
 			} else {
-				$p_mathquiz_answer = NULL;
+				$p_mathquiz_answer = NULL; 
 			}
 
 			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)), $p_dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer);

@@ -111,7 +111,7 @@
 	if ($textquiz_question) { ?>
 		<p>
 			<label for="textquiz"><?php echo html_encode($textquiz_question); ?><strong>*</strong></label>
-			<input type="text" id="textquiz" name="textquiz" size="50" value="<?php echo $stored['textquiz']; ?>" required autocomplete="off" />
+			<input type="text" id="textquiz" name="comment_textquiz" size="50" value="<?php echo $stored['textquiz']; ?>" required autocomplete="off" />
 		</p>
 	<?php 
 	} 
@@ -119,7 +119,7 @@
 	if ($mathquiz_question) { ?>
 		<p>
 			<label for="mathquiz"><?php echo html_encode($mathquiz_question); ?>=<strong>*</strong></label>
-			<input type="text" id="mathquiz" name="mathquiz" size="50" value="<?php echo $stored['mathquiz']; ?>" required autocomplete="off" />
+			<input type="text" id="mathquiz" name="comment_mathquiz" size="50" value="<?php echo $stored['mathquiz']; ?>" required autocomplete="off" />
 		</p>
 	<?php } ?>
 	<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>

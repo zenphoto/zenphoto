@@ -206,4 +206,4 @@ class Comment extends PersistentObject {
 	 */
 	function setCustomData($value) { $this->set('custom_data', $value); }
 }
-?>
+
