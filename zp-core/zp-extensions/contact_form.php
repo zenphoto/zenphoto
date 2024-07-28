@@ -314,7 +314,7 @@ class contactForm {
 				$error[10] = gettext('a website');
 			} else {
 				if (!empty($mailcontent['website'])) {
-					if (substr($mailcontent['website'], 0, 7) != "http://" || substr($mailcontent['website'], 0, 8) != "https://") {
+					if (substr($mailcontent['website'], 0, 7) != "http://" && substr($mailcontent['website'], 0, 8) != "https://") {
 						$mailcontent['website'] = "http://" . $mailcontent['website'];
 					}
 				}
