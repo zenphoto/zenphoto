@@ -742,7 +742,6 @@ class contactForm {
 	 * @return string|bool
 	 */
 	static function getQuizFieldQuestion($which = '') {
-		$data = array();
 		switch ($which) {
 			case 'contactform_textquiz':
 				if (getOption($which)) {
