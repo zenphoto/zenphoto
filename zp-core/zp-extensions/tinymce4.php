@@ -32,6 +32,9 @@ class tinymce4Options {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
 		setOptionDefault('tinymce4_entitiyencoding', 'raw');
+		setOptionDefault('tinymce4_textfield-height', '400');
+		setOptionDefault('tinymce4_browser-spellcheck', false);
+		setOptionDefault('tinymce4_browser-menu', false);
 		if (getOption('zp_plugin_tiny_mce')) {
 			setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
 			purgeOption('zp_plugin_tiny_mce');
@@ -112,7 +115,7 @@ class tinymce4Options {
 						'key' => 'tinymce4_browser-menu',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 4,
-						'desc' => gettext('Check to disable TinyMCE right-click menu, browser right-click menu will be used instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used - browser right-click menu can still ne accessed by pressing <em>Ctrl+Right click</em>.')),
+						'desc' => gettext('Check to disable TinyMCE right-click menu, browser right-click menu will be used instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used - browser right-click menu can still be accessed by pressing <em>Ctrl+Right click</em>.')),
 		);
 		return $options;
 	}
