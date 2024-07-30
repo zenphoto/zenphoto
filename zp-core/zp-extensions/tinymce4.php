@@ -32,7 +32,7 @@ class tinymce4Options {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
 		setOptionDefault('tinymce4_entitiyencoding', 'raw');
-		setOptionDefault('tinymce4_textfield-height', '400');
+		setOptionDefault('tinymce4_textfield-height', 400);
 		setOptionDefault('tinymce4_browser-spellcheck', false);
 		setOptionDefault('tinymce4_browser-menu', false);
 		if (getOption('zp_plugin_tiny_mce')) {
@@ -61,9 +61,9 @@ class tinymce4Options {
 						'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
 				gettext('Text editor height') => array(
 						'key' => 'tinymce4_textfield-height',
-						'type' => OPTION_TYPE_TEXTBOX,
+						'type' => OPTION_TYPE_CLEARTEXT,
 						'order' => 1,
-						'desc' => gettext('Predefined height (without px) for Zenphoto and Zenpage textfields. Default is 400px.')),
+						'desc' => gettext('Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px.')),
 				gettext('Custom image size') => array(
 						'key' => 'tinymce_tinyzenpage_customimagesize',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -106,7 +106,7 @@ class tinymce4Options {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
 						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
-            gettext('Browser spellchecker') => array(
+            gettext('Browser spellcheck') => array(
 						'key' => 'tinymce4_browser-spellcheck',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 4,
