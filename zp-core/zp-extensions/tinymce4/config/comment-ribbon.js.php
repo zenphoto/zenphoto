@@ -14,15 +14,30 @@
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
-		<?php } ?>	
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-spellcheck')) { ?>
+		browser_spellcheck: true,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-menu')) { ?>
+		contextmenu: false,
+		<?php } ?>
 		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		relative_urls: false,
+<?php if (getOption('tinymce4_browser-menu')) { ?>
+		plugins: [
+			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+			"searchreplace wordcount visualblocks visualchars code fullscreen",
+			"insertdatetime save table directionality",
+			"emoticons paste"
+		],
+<?php } else { ?>
 		plugins: [
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars code fullscreen",
 			"insertdatetime save table contextmenu directionality",
 			"emoticons paste"
 		],
+<?php } ?>
 		menubar: "edit insert view format tools",
 		toolbar: false,
 		statusbar: false,

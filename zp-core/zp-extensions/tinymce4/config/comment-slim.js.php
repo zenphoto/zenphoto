@@ -15,15 +15,29 @@ global $_zp_rtl_css;
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
-		<?php } ?>	
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-spellcheck')) { ?>
+		browser_spellcheck: true,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-menu')) { ?>
+		contextmenu: false,
+		<?php } ?>
 		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
+<?php if (getOption('tinymce4_browser-menu')) { ?>
+		plugins: [
+			"advlist autolink lists link image charmap print preview anchor",
+			"searchreplace visualblocks code directionality",
+			"insertdatetime media table paste"
+		],
+<?php } else { ?>
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"searchreplace visualblocks code directionality",
 			"insertdatetime media table contextmenu paste"
 		],
+<?php } ?>
 		statusbar: false,
 		content_css: "<?php echo getPlugin('tinymce4/config/content.css', true, FULLWEBPATH); ?>",
 		toolbar: "bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code | ltr rtl"

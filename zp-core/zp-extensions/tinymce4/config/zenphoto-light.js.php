@@ -21,7 +21,16 @@ global $_zp_rtl_css;
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
-		<?php } ?>	
+		<?php } ?>
+		<?php if (getOption('tinymce4_textfield-height')) { ?>
+		min_height: <?php echo getOption('tinymce4_textfield-height'); ?>,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-spellcheck')) { ?>
+		browser_spellcheck: true,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-menu')) { ?>
+		contextmenu: false,
+		<?php } ?>
 		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		menubar: false,
 		relative_urls: false,
@@ -35,11 +44,19 @@ if ($filehandler) {
 	<?php
 }
 ?>
+<?php if (getOption('tinymce4_browser-menu')) { ?>
+		plugins: [
+			"advlist autolink lists link image charmap print preview anchor pagebreak",
+			"searchreplace visualblocks code fullscreen directionality",
+			"insertdatetime media table paste textpattern imagetools tinyzenpage"
+		],
+<?php } else { ?>
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor pagebreak",
 			"searchreplace visualblocks code fullscreen directionality",
 			"insertdatetime media table contextmenu paste textpattern imagetools tinyzenpage"
 		],
+<?php } ?>
 		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image | code fullscreen | pagebreak tinyzenpage | ltr rtl",
 		setup: function(ed) {
 			ed.on('change', function(e) {
