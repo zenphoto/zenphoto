@@ -3282,7 +3282,7 @@ function getCustomSizedImageMaxSpace($width, $height) {
 	if (is_null($_zp_current_image)) {
 		return false;
 	}
-	$_zp_current_image->getCustomSizedImageMaxSpace($width, $height, false);
+	return $_zp_current_image->getCustomSizedImageMaxSpace($width, $height, false);
 }
 
 /**
@@ -3298,7 +3298,7 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
 	if (is_null($_zp_current_image)) {
 		return false;
 	}
-	$_zp_current_image->getCustomSizedImageMaxSpace($width, $height, true);
+	return $_zp_current_image->getCustomSizedImageMaxSpace($width, $height, true);
 }
 
 /**
