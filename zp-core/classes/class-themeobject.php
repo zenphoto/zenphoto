@@ -351,8 +351,8 @@ class ThemeObject extends PersistentObject {
 	 * @param bool $dataconfirmation true or false if data privacy confirmation was required
 	 * @return object
 	 */
-	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata, $dataconfirmation) {
-		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata, false, $dataconfirmation);
+	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata, $dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer) {
+		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata, false, $dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer);
 		return $goodMessage;
 	}
 
