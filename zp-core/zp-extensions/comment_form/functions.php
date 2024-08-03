@@ -256,10 +256,10 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		if(getOption('comment_form_dataconfirmation'))  {
 			$whattocheck = $whattocheck | COMMENT_DATACONFIRMATION;
 		}
-		if (getQuizFieldQuestion('comment_form_textquiz') && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+		if (getQuizFieldQuestion('comment_form_textquiz')) {
 			$whattocheck = $whattocheck | COMMENT_TEXTQUIZ;
 		}
-		if (getQuizFieldQuestion('comment_form_mathquiz') && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+		if (getQuizFieldQuestion('comment_form_mathquiz')) {
 			$whattocheck = $whattocheck | COMMENT_MATHQUIZ;
 		}
 	} else {
@@ -1295,26 +1295,28 @@ function printCommentformAutocompleteAttr($value = "on", $skip_off = false) {
  * @return string|bool
  */
 function getQuizFieldQuestion($which = '') {
-	switch ($which) {
-		case 'comment_form_textquiz':
-			if (getOption($which)) {
-				$question = trim(get_language_string(getOption('comment_form_textquiz_question')));
-				$answer = trim(get_language_string(getOption('comment_form_textquiz_question')));
-				if (!empty($question) && !empty($answer)) {
-					return $question;
+	if (!zp_loggedin()) {
+		switch ($which) {
+			case 'comment_form_textquiz':
+				if (getOption($which)) {
+					$question = trim(get_language_string(getOption('comment_form_textquiz_question')));
+					$answer = trim(get_language_string(getOption('comment_form_textquiz_question')));
+					if (!empty($question) && !empty($answer)) {
+						return $question;
+					}
 				}
-			}
-			break;
-		case 'comment_form_mathquiz':
-			if (getOption($which)) {
-				$question = get_language_string(getOption('comment_form_mathquiz_question'));
-				// filter in case a user entered invalid expression
-				$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
-				if (!empty($question_filtered)) {
-					return $question_filtered;
+				break;
+			case 'comment_form_mathquiz':
+				if (getOption($which)) {
+					$question = get_language_string(getOption('comment_form_mathquiz_question'));
+					// filter in case a user entered invalid expression
+					$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
+					if (!empty($question_filtered)) {
+						return $question_filtered;
+					}
 				}
-			}
-			break;
+				break;
+		}
 	}
 	return false;
 }
