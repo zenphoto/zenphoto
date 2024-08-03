@@ -388,7 +388,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				echo gettext('Only registered users may post comments.');
 			} else {
 				$disabled = array('name'		 => '', 'website'	 => '', 'anon'		 => '', 'private'	 => '', 'comment'	 => '',
-								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '');
+								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '', 'mathquiz' => '', 'textquiz' => '');
 				$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
 				$custom = getSerializedArray($stored['custom']);
 				foreach ($custom as $key => $value) {

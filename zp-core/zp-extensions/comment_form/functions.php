@@ -219,11 +219,11 @@ define('COMMENT_MATHQUIZ', 256);
  * @param string $customdata
  * @param bit $check bitmask of which fields must be checked. If set overrides the options
  * @param bool $dataconfirmation True if data privacy confirmation required
- * @param string $textquiz_answer
- * @param string $mathquiz_answer
+ * @param string $textquiz_answer_user
+ * @param string $mathquiz_answer_user
  * @return object
  */
-function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null, $textquiz_answer = null, $mathquiz_answer = null) {
+function comment_form_addComment($name, $email, $website, $comment, $code, $code_ok, $receiver, $ip, $private, $anon, $customdata, $check = false, $dataconfirmation = null, $textquiz_answer_user = '', $mathquiz_answer_user = '') {
 	global $_zp_captcha, $_zp_gallery, $_zp_authority, $_zp_comment_on_hold, $_zp_spamFilter, $_zp_db;
 	if ($check === false) {
 		$whattocheck = 0;
@@ -256,10 +256,10 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		if(getOption('comment_form_dataconfirmation'))  {
 			$whattocheck = $whattocheck | COMMENT_DATACONFIRMATION;
 		}
-		if (getQuizFieldQuestion('comment_form_textquiz') && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+		if (getQuizFieldQuestion('comment_form_textquiz')) {
 			$whattocheck = $whattocheck | COMMENT_TEXTQUIZ;
 		}
-		if (getQuizFieldQuestion('comment_form_mathquiz') && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+		if (getQuizFieldQuestion('comment_form_mathquiz')) {
 			$whattocheck = $whattocheck | COMMENT_MATHQUIZ;
 		}
 	} else {
@@ -333,18 +333,22 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	}
 	
 	// Quizes
-	if ($whattocheck = $whattocheck | COMMENT_TEXTQUIZ) {
+	if ($whattocheck & COMMENT_TEXTQUIZ) {
 		$textquiz_answer = trim(get_language_string(getOption('comment_form_textquiz_answer')));
-		$textquiz_answer_user = trim($textquiz_answer);
-		if (empty($textquiz_answer_user) || $textquiz_answer_user != $textquiz_answer) {
-			$commentobj->comment_error_text .= gettext("the correct text quiz answer");
+		$textquiz_answer_user = trim($textquiz_answer_user);
+		if (empty($textquiz_answer_user) || $textquiz_answer != $textquiz_answer_user) {
+			$commentobj->setInModeration(-8);
+			$commentobj->comment_error_text .= ' ' . gettext("the correct text quiz answer") . '.';
+			$goodMessage = false;
 		}
 	}
-	if ($whattocheck = $whattocheck | COMMENT_MATHQUIZ) {
+	if ($whattocheck & COMMENT_MATHQUIZ) {
 		$mathquiz_answer = eval('return ' . getQuizFieldQuestion('comment_form_mathquiz') . ';');
-		$mathquiz_answer_user = trim($mathquiz_answer);
-		if (empty($mathquiz_answer_user) || $mathquiz_answer_user != $mathquiz_answer) {
-			$commentobj->comment_error_text .= gettext("the correct math quiz answer");
+		$mathquiz_answer_user = trim($mathquiz_answer_user);
+		if (empty($mathquiz_answer_user) || $mathquiz_answer != $mathquiz_answer_user) {
+			$commentobj->setInModeration(-8);
+			$commentobj->comment_error_text .= ' ' . gettext("the correct math quiz answer") . '.';
+			$goodMessage = false;
 		}
 	}
 
@@ -576,17 +580,17 @@ function comment_form_handle_comment() {
 			$p_dataconfirmation = isset($_POST['comment_dataconfirmation']);
 
 			if (isset($_POST['comment_textquiz'])) {
-				$p_textquiz_answer = sanitize($_POST['comment_textquiz'], 3);
+				$p_textquiz_answer_user = sanitize($_POST['comment_textquiz'], 3);
 			} else {
-				$p_textquiz_answer = NULL;
+				$p_textquiz_answer_user = NULL;
 			}
 			if (isset($_POST['comment_mathquiz'])) {
-				$p_mathquiz_answer = sanitize($_POST['comment_mathquiz'], 3);
+				$p_mathquiz_answer_user = sanitize($_POST['comment_mathquiz'], 3);
 			} else {
-				$p_mathquiz_answer = NULL; 
+				$p_mathquiz_answer_user = NULL; 
 			}
 
-			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)), $p_dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer);
+			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment, $code1, $code2, $p_server, $p_private, $p_anon, serialize(getCommentAddress(0)), $p_dataconfirmation, $p_textquiz_answer_user, $p_mathquiz_answer_user);
 
 			$comment_error = $commentadded->getInModeration();
 			$_zp_comment_stored = array(
@@ -1287,30 +1291,32 @@ function printCommentformAutocompleteAttr($value = "on", $skip_off = false) {
  * 
  * @since 1.6.5 
  * 
- * @param type $which
+ * @param string $which
  * @return string|bool
  */
 function getQuizFieldQuestion($which = '') {
-	switch ($which) {
-		case 'comment_form_textquiz':
-			if (getOption($which)) {
-				$question = trim(get_language_string(getOption('comment_form_textquiz_question')));
-				$answer = trim(get_language_string(getOption('comment_form_textquiz_question')));
-				if (!empty($question) && !empty($answer)) {
-					return $question;
+	if (!zp_loggedin()) {
+		switch ($which) {
+			case 'comment_form_textquiz':
+				if (getOption($which)) {
+					$question = trim(get_language_string(getOption('comment_form_textquiz_question')));
+					$answer = trim(get_language_string(getOption('comment_form_textquiz_question')));
+					if (!empty($question) && !empty($answer)) {
+						return $question;
+					}
 				}
-			}
-			break;
-		case 'comment_form_mathquiz':
-			if (getOption($which)) {
-				$question = get_language_string(getOption('comment_form_mathquiz_question'));
-				// filter in case a user entered invalid expression
-				$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
-				if (!empty($question_filtered)) {
-					return $question_filtered;
+				break;
+			case 'comment_form_mathquiz':
+				if (getOption($which)) {
+					$question = get_language_string(getOption('comment_form_mathquiz_question'));
+					// filter in case a user entered invalid expression
+					$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
+					if (!empty($question_filtered)) {
+						return $question_filtered;
+					}
 				}
-			}
-			break;
+				break;
+		}
 	}
 	return false;
 }
