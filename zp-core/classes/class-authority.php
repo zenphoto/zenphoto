@@ -1259,7 +1259,7 @@ class Authority {
 				}
 			}
 			function togglePassword(id) {
-				if ($('#pass' + id).attr('type') == 'password') {
+				if ($('#pass' + id).attr('type') === 'password') {
 					var oldp = $('#pass' + id);
 					var newp = oldp.clone();
 					newp.attr('type', 'text');
@@ -1281,7 +1281,7 @@ class Authority {
 				'logonstep_captcha_js' : $('#logonstep_captcha_js').attr('href'),
 				'logonstep_return_js' : $('#logonstep_return_js').attr('href')
 			};
-			setLogonStepURL(logonsteps)
+			setLogonStepURL(logonsteps);
 			$( "#user" ).keyup(function() {
 				setLogonStepURL(logonsteps);
 			});

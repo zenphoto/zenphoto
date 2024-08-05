@@ -12,7 +12,7 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		<input type="hidden" name="register_user" value="yes" />
 		<p style="display:none;">
 			<label for="username"><?php echo gettext("Username* (this will be your user username)"); ?></label>
-			<input type="text" id="username" name="username" value="" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
+			<input type="text" id="username" name="username" value="" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</p>
 		<p>
 			<label for="adminuser">
