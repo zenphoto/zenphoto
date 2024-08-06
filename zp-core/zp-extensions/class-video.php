@@ -167,8 +167,8 @@ class Video extends Image {
 	function updateDimensions() {
 		global $_zp_multimedia_extension;
 		$ext = getSuffix($this->filename);
-		$h = $_zp_multimedia_extension->getHeight($this);
-		$w = $_zp_multimedia_extension->getWidth($this);
+		$h = $_zp_multimedia_extension->getHeight();
+		$w = $_zp_multimedia_extension->getWidth();
 		$this->set('width', $w);
 		$this->set('height', $h);
 	}
@@ -469,11 +469,11 @@ class pseudoPlayer {
 	private $height = 720;
 
 
-	function getWidth($dummy) {
+	function getWidth() {
 		return $this->width;
 	}
 
-	function getHeight($dummy) {
+	function getHeight() {
 		return $this->height;
 	}
 	
