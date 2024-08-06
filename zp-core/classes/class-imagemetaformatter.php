@@ -463,7 +463,10 @@ class imageMetaFormatter {
 				$n = 0;
 				$d = 0;
 				self::ConvertToFraction($data, $n, $d);
-				return $n / $n . '/' . round($d / $n, 0) . ' sec';
+				if ( $n == 0 ) {
+					return;
+				}
+				return '1' . '/' . round($d / $n, 0) . ' sec';
 			}
 		} else {
 			return gettext('Bulb');
@@ -636,7 +639,7 @@ class imageMetaFormatter {
 	static function rationalNum($data) {
 		// deal with the fractional representation
 		$n = explode('/', $data);
-		if ( $n[1] == '0' ) {
+		if ( $n[1] == 0 ) {
 			return;
 		}
 		$v = sprintf('%f', $n[0] / $n[1]);
