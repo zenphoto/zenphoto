@@ -91,6 +91,10 @@ class ThemeObject extends PersistentObject {
 	 * @return bool
 	 */
 	function isPublished($use_dbvalue = false) {
+		// schecudled items are technically already published so override
+		if ($this->hasPublishSchedule()) { 
+			return false;
+		}
 		if ($use_dbvalue) {
 			return $this->get('show', false);
 		}
