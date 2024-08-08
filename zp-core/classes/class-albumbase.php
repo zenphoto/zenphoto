@@ -1348,10 +1348,14 @@ class AlbumBase extends MediaObject {
 			// check for visible
 			switch (themeObject::checkScheduledPublishing($row)) {
 				case 1:
+					// permanent as expired
 					$imageobj = Image::newImage($this, $row['filename']);
 					$imageobj->setPublished(0);
 					$imageobj->save();
+					$row['show'] = 0;
+					break;
 				case 2:
+					// temporary as future published
 					$row['show'] = 0;
 					break;
 			}

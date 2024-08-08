@@ -1430,10 +1430,14 @@ class SearchEngine {
 								$album = AlbumBase::newAlbum($albumname);
 								switch (themeObject::checkScheduledPublishing($row)) {
 									case 1:
+										// permanent as expired
 										$album->setPublished(0);
 										$album->save();
+										break;
 									case 2:
-										$row['show'] = 0;
+										// temporary as future published
+										$album->setPublished(0);
+										break;
 								}
 								if ($mine || (is_null($mine) && $album->isVisible())) {		
 									if ((empty($this->album_list) || in_array($albumname, $this->album_list)) && !$this->excludeAlbum($albumname)) {
