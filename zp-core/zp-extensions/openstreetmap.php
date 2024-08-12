@@ -63,7 +63,14 @@ class openStreetMapOptions {
 		setOptionDefault('osmap_cluster_showcoverage_on_hover', 0);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('openstreetmap');
-			cacheManager::addCacheSize('openstreetmap', 120, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			$thumbtype = getOption('osmap_markerpopup_thumb-type');
+			if ($thumbtype == 'custom') {
+				$thumbsize = getOption('osmap_markerpopup_thumb-size');
+				if (!$thumbsize) {
+					$thumbsize = 120;
+				}
+				cacheManager::addCacheSize('openstreetmap', $thumbsize, NULL, NULL, NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
+			}
 		}
 	}
 
@@ -75,27 +82,22 @@ class openStreetMapOptions {
 				gettext('Map dimensions—width') => array(
 						'key' => 'osmap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'desc' => gettext("Width of the map including the unit name e.g 100% (default for responsive map), 100px or 100em.")),
 				gettext('Map dimensions—height') => array(
 						'key' => 'osmap_height',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
 						'desc' => gettext("Height of the map including the unit name e.g 100% (default for responsive map), 100px or 100em.")),
 				gettext('Map zoom') => array(
 						'key' => 'osmap_zoom',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
 						'desc' => gettext("Default zoom level.")),
 				gettext('Map minimum zoom') => array(
 						'key' => 'osmap_minzoom',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 5,
 						'desc' => gettext("Default minimum zoom level possible.")),
 				gettext('Map maximum zoom') => array(
 						'key' => 'osmap_maxzoom',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 6,
 						'desc' => gettext("Default maximum zoom level possible. If no value is defined, use the maximum zoom level of the map used (may be different for each map).")),
 				gettext('Default layer') => array(
 						'key' => 'osmap_defaultlayer',
@@ -108,7 +110,6 @@ class openStreetMapOptions {
 				gettext('Zoom controls position') => array(
 						'key' => 'osmap_zoomcontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 8,
 						'selections' => array(
 								gettext('Top left') => 'topleft',
 								gettext('Top right') => 'topright',
@@ -119,36 +120,29 @@ class openStreetMapOptions {
 				gettext('Cluster radius') => array(
 						'key' => 'osmap_clusterradius',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 9,
 						'desc' => gettext("The radius when marker clusters should be used.")),
 				gettext('Show cluster coverage on hover') => array(
 						'key' => 'osmap_cluster_showcoverage_on_hover',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 10,
 						'desc' => gettext("Enable if you want to the bounds of a marker cluster on hover.")),
 				gettext('Marker popups') => array(
 						'key' => 'osmap_markerpopup',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 11,
 						'desc' => gettext("Enable this if you wish info popups on the map markers. Only for album context or custom geodata.")),
 				gettext('Marker popups with thumbs') => array(
 						'key' => 'osmap_markerpopup_thumb',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 12,
 						'desc' => gettext("Enable if you want to show thumb of images in the marker popups. Only for album context.")),
 				gettext('Marker popups with title') => array(
 						'key' => 'osmap_markerpopup_title',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 13,
 						'desc' => gettext("Enable if you want to show title of images in the marker popups. Only for album context.")),
 				gettext('Marker popups with description') => array(
 						'key' => 'osmap_markerpopup_desc',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 14,
 						'desc' => gettext("Enable if you want to show desc of images in the marker popups. Only for album context.")),
 				gettext('Image thumbs') => array('key' => 'osmap_markerpopup_thumb-type',
 						'type' => OPTION_TYPE_RADIO,
-						'order' => 14.1,
 						'buttons' => array(
 								gettext('Default thumb size') => 'default',
 								gettext('Custom image') => 'custom'),
@@ -156,38 +150,31 @@ class openStreetMapOptions {
 				gettext('Custom image thumb size') => array(
 						'key' => 'osmap_markerpopup_thumb-size',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 14.2,
 						'desc' => gettext("Set the width of the Custom Image to be used as thumb in the marker popups. Works if Custom image is selected in the previous option. Default size is 120px.<br>If Custom Image size is larger than 120px, you might need to use custom CSS to display them in full (see option below to disable default CSS files).")),
 				gettext('Length of Image title') => array(
 						'key' => 'osmap_markerpopup_title-length',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 14.3,
 						'desc' => gettext("Set the length of the Image title to show in the marker popups. Leave EMPTY to display in full. Default is 50 characters.")),
 				gettext('Length of Image description') => array(
 						'key' => 'osmap_markerpopup_desc-length',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 14.4,
 						'desc' => gettext("Set the length of the Image description to show in the marker popups. Leave EMPTY to display in full (not recommended if you have very long descriptions - they might not fit in the small popup space). Default is 100 characters.")),
 				gettext('Use default openstreetmap CSS') => array(
 						'key' => 'osmap_markerpopup_css-default',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 14.5,
 						'desc' => gettext("Check to use default openstreetmap CSS files (located in '/zp-core/zp-extensions/openstreetmap/'). Default is Enabled.<br>Removing checkmark will DISABLE default CSS rules for Openstreetmap plugin - this option is intended for experienced users, who want to have full control and will allow to change map and popup markers presentation completely, so make sure to include relevant rules from openstreetmap.css, leaflet.css, MarkerCluster.css, MarkerCluster.Default.css in your theme CSS file and add custom images and icons.")),
 				gettext('Show layers controls') => array(
 						'key' => 'osmap_showlayerscontrol',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 14.6,
 						'desc' => gettext("Enable if you want to show layers controls with selected layers list below.")),
 				gettext('Layers list') => array(
 						'key' => 'osmap_layerslist',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
-						'order' => 14.7,
 						'checkboxes' => $layerslist,
 						'desc' => gettext("Choose layers list to show in layers controls. No need to select the default layer again, otherwise it will be de-duplicated.")),
 				gettext('Layers controls position') => array(
 						'key' => 'osmap_layerscontrolpos',
 						'type' => OPTION_TYPE_SELECTOR,
-						'order' => 14.8,
 						'selections' => array(
 								gettext('Top left') => 'topleft',
 								gettext('Top right') => 'topright',
@@ -198,62 +185,50 @@ class openStreetMapOptions {
 				gettext('Show scale') => array(
 						'key' => 'osmap_showscale',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 15,
 						'desc' => gettext("Enable if you want to show scale overlay (kilometers and miles).")),
 				gettext('Show cursor position') => array(
 						'key' => 'osmap_showcursorpos',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 16,
 						'desc' => gettext("Enable if you want to show the coordinates if moving the cursor over the map.")),
 				gettext('Show album markers') => array(
 						'key' => 'osmap_showalbummarkers',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 17,
 						'desc' => gettext("Enable if you want to show the map on the single image page not only the marker of the current image but all markers from the album. The current position will be highlighted.")),
 				gettext('Mini map') => array(
 						'key' => 'osmap_showminimap',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 18,
 						'desc' => gettext("Enable if you want to show an overview mini map in the lower right corner.")),
 				gettext('Mini map: width') => array(
 						'key' => 'osmap_minimap_width',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 19,
 						'desc' => gettext("Pixel width")),
 				gettext('Mini map: height') => array(
 						'key' => 'osmap_minimap_height',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 20,
 						'desc' => gettext("Pixel height")),
 				gettext('Mini map: Zoom level') => array(
 						'key' => 'osmap_minimap_zoom',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 21,
 						'desc' => gettext("The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.")),
 				gettext('HERE - App id') => array(
 						'key' => 'osmap_here_appid',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 22,
 						'desc' => ''),
 				gettext('HERE - App code') => array(
 						'key' => 'osmap_here_appcode',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 23,
 						'desc' => ''),
 				gettext('Mapbox - Access token') => array(
 						'key' => 'osmap_mapbox_accesstoken',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 24,
 						'desc' => ''),
 				gettext('Thunderforest - ApiKey') => array(
 						'key' => 'osmap_thunderforest_apikey',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 25,
 						'desc' => ''),
 				gettext('GeoportailFrance - ApiKey') => array(
 						'key' => 'osmap_geoportailfrance_apikey',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 26,
 						'desc' => ''),
 		);
 		return $options;
