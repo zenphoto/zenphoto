@@ -1338,7 +1338,6 @@ zp-core/zp-extensions/mobileTheme/vendor/mobiledetect/mobiledetectlib/src/Except
 zp-core/zp-extensions/mobileTheme/vendor/mobiledetect/mobiledetectlib/src/MobileDetect.php
 zp-core/zp-extensions/mobileTheme/vendor/psr
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache
-zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/.editorconfig
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/composer.json
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/LICENSE.md
 zp-core/zp-extensions/mobileTheme/vendor/psr/simple-cache/README.md
@@ -1357,8 +1356,6 @@ zp-core/zp-extensions/openstreetmap/images/layers.png
 zp-core/zp-extensions/openstreetmap/images/marker-icon-2x.png
 zp-core/zp-extensions/openstreetmap/images/marker-icon.png
 zp-core/zp-extensions/openstreetmap/images/marker-shadow.png
-zp-core/zp-extensions/openstreetmap/images/toggle.png
-zp-core/zp-extensions/openstreetmap/images/toggle.svg
 zp-core/zp-extensions/openstreetmap/L.Control.MousePosition.css
 zp-core/zp-extensions/openstreetmap/L.Control.MousePosition.js
 zp-core/zp-extensions/openstreetmap/leaflet-providers.js
@@ -1891,4 +1888,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1893
+1890
