@@ -19525,7 +19525,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:154
 msgid "Length of Image title"
-msgstr "Lengte titel thumbnail"
+msgstr "Lengte titel afbeelding"
 
 #: zp-core/zp-extensions/openstreetmap.php:157
 msgid ""
@@ -19537,7 +19537,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/openstreetmap.php:158
 msgid "Length of Image description"
-msgstr "Lengte beschrijving thumbnail"
+msgstr "Lengte beschrijving afbeelding"
 
 #: zp-core/zp-extensions/openstreetmap.php:161
 msgid ""
@@ -19563,10 +19563,10 @@ msgid ""
 "css, MarkerCluster.Default.css in your theme CSS file and add custom images "
 "and icons."
 msgstr ""
-"Vink aan om de standaard CSS voor de OpenStreetMap te gebuiken. Het gaat om "
-"openstreetmap.css, leaflet.css, MarkerCluster.css en MarkerCluster.Default."
-"css. het uitvinken van de optie maakt het voor ervaren gebruikers mogelijk "
-"om zelf de gewenste CSS samen te stellen."
+"Vink aan om de standaard CSS stylesheets voor de OpenStreetMap te gebuiken. "
+"Het gaat om <em>openstreetmap.css, leaflet.css, MarkerCluster.css</em> en "
+"<em>MarkerCluster.Default.css</em>. Het uitvinken van de optie maakt het "
+"voor ervaren gebruikers mogelijk om zelf de gewenste CSS samen te stellen."
 
 #: zp-core/zp-extensions/openstreetmap.php:166
 msgid "Show layers controls"
