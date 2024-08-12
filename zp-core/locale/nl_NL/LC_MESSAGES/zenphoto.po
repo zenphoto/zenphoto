@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-05 16:26+0200\n"
+"POT-Creation-Date: 2024-08-12 14:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -7472,27 +7472,27 @@ msgid "%d: Unknown"
 msgstr "%d: Onbekend"
 
 #: zp-core/classes/class-imagemetaformatter.php:134
-#: zp-core/classes/class-imagemetaformatter.php:510
+#: zp-core/classes/class-imagemetaformatter.php:513
 msgid "No Unit"
 msgstr "Geen Eenheid"
 
 #: zp-core/classes/class-imagemetaformatter.php:136
-#: zp-core/classes/class-imagemetaformatter.php:498
+#: zp-core/classes/class-imagemetaformatter.php:501
 msgid "Inch"
 msgstr "Inch"
 
 #: zp-core/classes/class-imagemetaformatter.php:138
-#: zp-core/classes/class-imagemetaformatter.php:501
+#: zp-core/classes/class-imagemetaformatter.php:504
 msgid "Centimeter"
 msgstr "Centimeter"
 
 #: zp-core/classes/class-imagemetaformatter.php:140
-#: zp-core/classes/class-imagemetaformatter.php:504
+#: zp-core/classes/class-imagemetaformatter.php:507
 msgid "Millimeter"
 msgstr "Millimeter"
 
 #: zp-core/classes/class-imagemetaformatter.php:142
-#: zp-core/classes/class-imagemetaformatter.php:507
+#: zp-core/classes/class-imagemetaformatter.php:510
 msgid "Micrometer"
 msgstr "Micrometer"
 
@@ -7797,7 +7797,7 @@ msgstr "Laag"
 msgid "High"
 msgstr "Hoog"
 
-#: zp-core/classes/class-imagemetaformatter.php:469
+#: zp-core/classes/class-imagemetaformatter.php:472
 msgid "Bulb"
 msgstr "Flitslamp"
 
@@ -7910,17 +7910,17 @@ msgstr "Extra content"
 msgid "Categories"
 msgstr "Categorieën"
 
-#: zp-core/classes/class-searchengine.php:2063
+#: zp-core/classes/class-searchengine.php:2067
 msgid "no date"
 msgstr "geen datum"
 
-#: zp-core/classes/class-themeobject.php:177
+#: zp-core/classes/class-themeobject.php:181
 msgid "Use isPublished() instead"
 msgstr ""
 "De functie <code>getShow()</code> is verouderd. Gebruik in plaats hiervan "
 "<code>isPublished()<code>"
 
-#: zp-core/classes/class-themeobject.php:188
+#: zp-core/classes/class-themeobject.php:192
 msgid "Use setPublished() instead"
 msgstr ""
 "De functie <code>setShow()</code> is verouderd. Gebruik in plaats hiervan "
@@ -13688,8 +13688,9 @@ msgid "Cache default sizes"
 msgstr "Standaard formaten cachen"
 
 #: zp-core/zp-extensions/cacheManager.php:129
+#: zp-core/zp-extensions/openstreetmap.php:147
 msgid "Default thumb size"
-msgstr "Standaard thumbnail formaat"
+msgstr "Standaard formaat thumbnail"
 
 #: zp-core/zp-extensions/cacheManager.php:130
 msgid "Default sized image"
@@ -15925,14 +15926,14 @@ msgid "Position"
 msgstr "Positie"
 
 #: zp-core/zp-extensions/cookieconsent.php:119
-#: zp-core/zp-extensions/openstreetmap.php:108
-#: zp-core/zp-extensions/openstreetmap.php:160
+#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:179
 msgid "Top left"
 msgstr "Linksboven"
 
 #: zp-core/zp-extensions/cookieconsent.php:120
-#: zp-core/zp-extensions/openstreetmap.php:109
-#: zp-core/zp-extensions/openstreetmap.php:161
+#: zp-core/zp-extensions/openstreetmap.php:115
+#: zp-core/zp-extensions/openstreetmap.php:180
 msgid "Top right"
 msgstr "Rechtsboven"
 
@@ -15941,14 +15942,14 @@ msgid "Bottom"
 msgstr "Onder"
 
 #: zp-core/zp-extensions/cookieconsent.php:122
-#: zp-core/zp-extensions/openstreetmap.php:110
-#: zp-core/zp-extensions/openstreetmap.php:162
+#: zp-core/zp-extensions/openstreetmap.php:116
+#: zp-core/zp-extensions/openstreetmap.php:181
 msgid "Bottom left"
 msgstr "Linksonder"
 
 #: zp-core/zp-extensions/cookieconsent.php:123
-#: zp-core/zp-extensions/openstreetmap.php:111
-#: zp-core/zp-extensions/openstreetmap.php:163
+#: zp-core/zp-extensions/openstreetmap.php:117
+#: zp-core/zp-extensions/openstreetmap.php:182
 msgid "Bottom right"
 msgstr "Rechtsonder"
 
@@ -19348,11 +19349,11 @@ msgstr ""
 "Een Zenphoto plugin voor het tonen van OpenStreetMap kaarten (gebruikt "
 "Leaflet JS) voor afbeeldingen met geodata."
 
-#: zp-core/zp-extensions/openstreetmap.php:70
+#: zp-core/zp-extensions/openstreetmap.php:82
 msgid "Map dimensions—width"
 msgstr "Breedte van de kaart"
 
-#: zp-core/zp-extensions/openstreetmap.php:74
+#: zp-core/zp-extensions/openstreetmap.php:85
 msgid ""
 "Width of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
@@ -19360,38 +19361,38 @@ msgstr ""
 "Breedte van de kaart inclusief de eenheid (bijvoorbeeld 100%, 100px of "
 "100em)."
 
-#: zp-core/zp-extensions/openstreetmap.php:75
+#: zp-core/zp-extensions/openstreetmap.php:86
 msgid "Map dimensions—height"
 msgstr "Hoogte van de kaart"
 
-#: zp-core/zp-extensions/openstreetmap.php:79
+#: zp-core/zp-extensions/openstreetmap.php:89
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
 msgstr ""
 "Hoogte van de kaart inclusief de eenheid (bijvoorbeeld 100%, 100px of 100em)."
 
-#: zp-core/zp-extensions/openstreetmap.php:80
+#: zp-core/zp-extensions/openstreetmap.php:90
 msgid "Map zoom"
 msgstr "Map zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:84
+#: zp-core/zp-extensions/openstreetmap.php:93
 msgid "Default zoom level."
 msgstr "Staandaard zoom niveau"
 
-#: zp-core/zp-extensions/openstreetmap.php:85
+#: zp-core/zp-extensions/openstreetmap.php:94
 msgid "Map minimum zoom"
 msgstr "Minimale zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:89
+#: zp-core/zp-extensions/openstreetmap.php:97
 msgid "Default minimum zoom level possible."
 msgstr "Minimale zoom."
 
-#: zp-core/zp-extensions/openstreetmap.php:90
+#: zp-core/zp-extensions/openstreetmap.php:98
 msgid "Map maximum zoom"
 msgstr "Maximale zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:94
+#: zp-core/zp-extensions/openstreetmap.php:101
 msgid ""
 "Default maximum zoom level possible. If no value is defined, use the maximum "
 "zoom level of the map used (may be different for each map)."
@@ -19399,11 +19400,11 @@ msgstr ""
 "Maximaal mogelijke zoom. Als niets is ingevuld wordt de maximale zoom van de "
 "map gebruikt. Dat kan voor elke map anders zijn."
 
-#: zp-core/zp-extensions/openstreetmap.php:95
+#: zp-core/zp-extensions/openstreetmap.php:102
 msgid "Default layer"
 msgstr "Standaard laag"
 
-#: zp-core/zp-extensions/openstreetmap.php:100
+#: zp-core/zp-extensions/openstreetmap.php:107
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
 "providers (Here, Mapbox, Thunderforest, Geoportail) require access "
@@ -19415,35 +19416,35 @@ msgstr ""
 "moet je je registreren. Meer info op <a href=\"https://github.com/leaflet-"
 "extras/leaflet-providers\">leaflet-providers</a>"
 
-#: zp-core/zp-extensions/openstreetmap.php:103
+#: zp-core/zp-extensions/openstreetmap.php:110
 msgid "Zoom controls position"
 msgstr "Positie zoom knoppen"
 
-#: zp-core/zp-extensions/openstreetmap.php:113
+#: zp-core/zp-extensions/openstreetmap.php:119
 msgid "Position of the zoom controls"
 msgstr "De positie van de zoom knoppen."
 
-#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:120
 msgid "Cluster radius"
 msgstr "Cluster radius"
 
-#: zp-core/zp-extensions/openstreetmap.php:118
+#: zp-core/zp-extensions/openstreetmap.php:123
 msgid "The radius when marker clusters should be used."
 msgstr "De straal voor het gebruik van marker clusters."
 
-#: zp-core/zp-extensions/openstreetmap.php:119
+#: zp-core/zp-extensions/openstreetmap.php:124
 msgid "Show cluster coverage on hover"
 msgstr "Toon bereik cluster bij mouseover"
 
-#: zp-core/zp-extensions/openstreetmap.php:123
+#: zp-core/zp-extensions/openstreetmap.php:127
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr "Vink aan als je het bereik van een cluster wilt tonen bij mouseover."
 
-#: zp-core/zp-extensions/openstreetmap.php:124
+#: zp-core/zp-extensions/openstreetmap.php:128
 msgid "Marker popups"
 msgstr "Marker popups"
 
-#: zp-core/zp-extensions/openstreetmap.php:128
+#: zp-core/zp-extensions/openstreetmap.php:131
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album "
 "context or custom geodata."
@@ -19451,11 +19452,11 @@ msgstr ""
 "Vink aan als je info popups wilt tonen op markers. Alleen in albumcontext of "
 "voor custom geodata."
 
-#: zp-core/zp-extensions/openstreetmap.php:129
+#: zp-core/zp-extensions/openstreetmap.php:132
 msgid "Marker popups with thumbs"
 msgstr "Marker popups met thumbnails"
 
-#: zp-core/zp-extensions/openstreetmap.php:133
+#: zp-core/zp-extensions/openstreetmap.php:135
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for "
 "album context."
@@ -19463,11 +19464,11 @@ msgstr ""
 "Vink aan als je thumbnails wilt tonen in de marker popups. Alleen voor "
 "albumcontext."
 
-#: zp-core/zp-extensions/openstreetmap.php:134
+#: zp-core/zp-extensions/openstreetmap.php:136
 msgid "Marker popups with title"
 msgstr "Marker popups met titel"
 
-#: zp-core/zp-extensions/openstreetmap.php:138
+#: zp-core/zp-extensions/openstreetmap.php:139
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for "
 "album context."
@@ -19475,7 +19476,7 @@ msgstr ""
 "Vink aan als je titels van afbeeldingen wilt tonen in de marker popups. "
 "Alleen voor albumcontext."
 
-#: zp-core/zp-extensions/openstreetmap.php:139
+#: zp-core/zp-extensions/openstreetmap.php:140
 msgid "Marker popups with description"
 msgstr "Marker popups met beschrijving"
 
@@ -19488,21 +19489,101 @@ msgstr ""
 "popups. Alleen voor albumcontext."
 
 #: zp-core/zp-extensions/openstreetmap.php:144
+msgid "Image thumbs"
+msgstr "Formaat marker popups thumbnail"
+
+#: zp-core/zp-extensions/openstreetmap.php:148
+msgid "Custom image"
+msgstr "Custom formaat thumbnail"
+
+#: zp-core/zp-extensions/openstreetmap.php:149
+msgid ""
+"Choose the size of the thumb to be displayed in the marker popups. Default "
+"thumb size is determined by the theme (See Options->Theme->Standard options: "
+"Thumb size). Custom image size can be set below.<br>If Default thumb size is "
+"larger than 120px, you might need to use custom CSS to display them in full "
+"(see option below to disable default CSS files)."
+msgstr ""
+"Kies voor het standaard thumbnailformaat in de marker popus (bepaald door "
+"het thema) of een custom thumbnailformaat. Het custom formaat kan hieronder "
+"ingevuld worden."
+
+#: zp-core/zp-extensions/openstreetmap.php:150
+msgid "Custom image thumb size"
+msgstr "Custom formaat thumbnail"
+
+#: zp-core/zp-extensions/openstreetmap.php:153
+msgid ""
+"Set the width of the Custom Image to be used as thumb in the marker popups. "
+"Works if Custom image is selected in the previous option. Default size is "
+"120px.<br>If Custom Image size is larger than 120px, you might need to use "
+"custom CSS to display them in full (see option below to disable default CSS "
+"files)."
+msgstr ""
+"Stel hier de custom breedte in voor de thumbnail. Standaard is dit 120px. "
+"Als de breedte groter is dan 120px kan het zijn dat je de CSS moet aanpassen."
+
+#: zp-core/zp-extensions/openstreetmap.php:154
+msgid "Length of Image title"
+msgstr "Lengte titel thumbnail"
+
+#: zp-core/zp-extensions/openstreetmap.php:157
+msgid ""
+"Set the length of the Image title to show in the marker popups. Leave EMPTY "
+"to display in full. Default is 50 characters."
+msgstr ""
+"Stel de lengte in van de afbeeldingstitel die getoond wordt in de marker "
+"popups. Laat leeg om de volledige titel te tonen."
+
+#: zp-core/zp-extensions/openstreetmap.php:158
+msgid "Length of Image description"
+msgstr "Lengte beschrijving thumbnail"
+
+#: zp-core/zp-extensions/openstreetmap.php:161
+msgid ""
+"Set the length of the Image description to show in the marker popups. Leave "
+"EMPTY to display in full (not recommended if you have very long descriptions "
+"- they might not fit in the small popup space). Default is 100 characters."
+msgstr ""
+"Stel de lengte in van de afbeeldingsbeschrijving die getoond wordt in de "
+"marker popups. Laat leeg om de volledige beschrijving te tonen."
+
+#: zp-core/zp-extensions/openstreetmap.php:162
+msgid "Use default openstreetmap CSS"
+msgstr "Gebruik standaard OpenStreetMap CSS"
+
+#: zp-core/zp-extensions/openstreetmap.php:165
+msgid ""
+"Check to use default openstreetmap CSS files (located in '/zp-core/zp-"
+"extensions/openstreetmap/'). Default is Enabled.<br>Removing checkmark will "
+"DISABLE default CSS rules for Openstreetmap plugin - this option is intended "
+"for experienced users, who want to have full control and will allow to "
+"change map and popup markers presentation completely, so make sure to "
+"include relevant rules from openstreetmap.css, leaflet.css, MarkerCluster."
+"css, MarkerCluster.Default.css in your theme CSS file and add custom images "
+"and icons."
+msgstr ""
+"Vink aan om de standaard CSS voor de OpenStreetMap te gebuiken. Het gaat om "
+"openstreetmap.css, leaflet.css, MarkerCluster.css en MarkerCluster.Default."
+"css. het uitvinken van de optie maakt het voor ervaren gebruikers mogelijk "
+"om zelf de gewenste CSS samen te stellen."
+
+#: zp-core/zp-extensions/openstreetmap.php:166
 msgid "Show layers controls"
 msgstr "Toon lagen-knop"
 
-#: zp-core/zp-extensions/openstreetmap.php:148
+#: zp-core/zp-extensions/openstreetmap.php:169
 msgid ""
 "Enable if you want to show layers controls with selected layers list below."
 msgstr ""
 "Vink aan om de een knop te plaatsen die het mogelijk maakt een laag te "
 "kiezen uit de selectie die hieronder bij <em>Lagen lijst</em> gemaakt is."
 
-#: zp-core/zp-extensions/openstreetmap.php:149
+#: zp-core/zp-extensions/openstreetmap.php:170
 msgid "Layers list"
 msgstr "Lagen lijst"
 
-#: zp-core/zp-extensions/openstreetmap.php:154
+#: zp-core/zp-extensions/openstreetmap.php:174
 msgid ""
 "Choose layers list to show in layers controls. No need to select the default "
 "layer again, otherwise it will be de-duplicated."
@@ -19510,36 +19591,36 @@ msgstr ""
 "Kies de “lagen” (kaarten) om te tonen in de lagen-knop. (<em>Toon lagen-"
 "knop</em> moet aangevinkt zijn)."
 
-#: zp-core/zp-extensions/openstreetmap.php:155
+#: zp-core/zp-extensions/openstreetmap.php:175
 msgid "Layers controls position"
 msgstr "Positie lagen-knop"
 
-#: zp-core/zp-extensions/openstreetmap.php:165
+#: zp-core/zp-extensions/openstreetmap.php:184
 msgid "Position of the layers controls"
 msgstr "De positie van de lagen-knop."
 
-#: zp-core/zp-extensions/openstreetmap.php:166
+#: zp-core/zp-extensions/openstreetmap.php:185
 msgid "Show scale"
 msgstr "Toon schaal"
 
-#: zp-core/zp-extensions/openstreetmap.php:170
+#: zp-core/zp-extensions/openstreetmap.php:188
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr "Vink aan om de schaal in kilometers en mijlen te tonen."
 
-#: zp-core/zp-extensions/openstreetmap.php:171
+#: zp-core/zp-extensions/openstreetmap.php:189
 msgid "Show cursor position"
 msgstr "Toon positie cursor"
 
-#: zp-core/zp-extensions/openstreetmap.php:175
+#: zp-core/zp-extensions/openstreetmap.php:192
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr "Vink aan om de coordinaten te tonen bij het bewegen van de cursor."
 
-#: zp-core/zp-extensions/openstreetmap.php:176
+#: zp-core/zp-extensions/openstreetmap.php:193
 msgid "Show album markers"
 msgstr "Toon album markers"
 
-#: zp-core/zp-extensions/openstreetmap.php:180
+#: zp-core/zp-extensions/openstreetmap.php:196
 msgid ""
 "Enable if you want to show the map on the single image page not only the "
 "marker of the current image but all markers from the album. The current "
@@ -19548,36 +19629,36 @@ msgstr ""
 "Vink aan om op de afbeeldingspagina de kaart te tonen met behalve de marker "
 "van de huidige afbeelding óók alle markers van het album."
 
-#: zp-core/zp-extensions/openstreetmap.php:181
+#: zp-core/zp-extensions/openstreetmap.php:197
 msgid "Mini map"
 msgstr "Mini-map"
 
-#: zp-core/zp-extensions/openstreetmap.php:185
+#: zp-core/zp-extensions/openstreetmap.php:200
 msgid ""
 "Enable if you want to show an overview mini map in the lower right corner."
 msgstr "Vink aan om rechtsonder een overzicht-mini-map te tonen."
 
-#: zp-core/zp-extensions/openstreetmap.php:186
+#: zp-core/zp-extensions/openstreetmap.php:201
 msgid "Mini map: width"
 msgstr "Mini-map: breedte"
 
-#: zp-core/zp-extensions/openstreetmap.php:190
+#: zp-core/zp-extensions/openstreetmap.php:204
 msgid "Pixel width"
 msgstr "Breedte in pixels"
 
-#: zp-core/zp-extensions/openstreetmap.php:191
+#: zp-core/zp-extensions/openstreetmap.php:205
 msgid "Mini map: height"
 msgstr "Mini-map: hoogte"
 
-#: zp-core/zp-extensions/openstreetmap.php:195
+#: zp-core/zp-extensions/openstreetmap.php:208
 msgid "Pixel height"
 msgstr "Hoogte in pixels"
 
-#: zp-core/zp-extensions/openstreetmap.php:196
+#: zp-core/zp-extensions/openstreetmap.php:209
 msgid "Mini map: Zoom level"
 msgstr "Mini-map: zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:200
+#: zp-core/zp-extensions/openstreetmap.php:212
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the "
 "main map. Can be positive or negative, defaults to -5."
@@ -19585,27 +19666,27 @@ msgstr ""
 "Het verschil in zoomniveau tussen de mini-map en de grote map. Kan positief "
 "of negatief zijn. Standaard is -5."
 
-#: zp-core/zp-extensions/openstreetmap.php:201
+#: zp-core/zp-extensions/openstreetmap.php:213
 msgid "HERE - App id"
 msgstr "HERE - App id"
 
-#: zp-core/zp-extensions/openstreetmap.php:206
+#: zp-core/zp-extensions/openstreetmap.php:217
 msgid "HERE - App code"
 msgstr "HERE - App code"
 
-#: zp-core/zp-extensions/openstreetmap.php:211
+#: zp-core/zp-extensions/openstreetmap.php:221
 msgid "Mapbox - Access token"
 msgstr "Mapbox - Toegangstoken"
 
-#: zp-core/zp-extensions/openstreetmap.php:216
+#: zp-core/zp-extensions/openstreetmap.php:225
 msgid "Thunderforest - ApiKey"
 msgstr "Thunderforest - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:221
+#: zp-core/zp-extensions/openstreetmap.php:229
 msgid "GeoportailFrance - ApiKey"
 msgstr "GeoportailFrance - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:1094
+#: zp-core/zp-extensions/openstreetmap.php:1112
 msgid "Use openStreetMap::printOpenStreetMap() instead"
 msgstr ""
 "De functie <code>printOpenStreetMap()</code> is verouderd. Gebruik in plaats "
