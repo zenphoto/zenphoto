@@ -70,6 +70,11 @@ class comment_form {
 		setOptionDefault('comment_form_dataconfirmation', 0);
 		setOptionDefault('comment_form_remember', 0);
 		setOptionDefault('comment_form_autocomplete', 0);
+		setOptionDefault('comment_form_textquiz', 0);
+		setOptionDefault('comment_form_textquiz_question', '');
+		setOptionDefault('comment_form_textquiz_answer', '');
+		setOptionDefault('comment_form_mathquiz', 0);
+		setOptionDefault('comment_form_mathquiz_question', '');
 	}
 
 	/**
@@ -119,15 +124,7 @@ class comment_form {
 								gettext('Show') => 1,
 								gettext('Require') => 'required'),
 						'desc' => gettext('If the <em>Website</em> field is required, the poster must provide a website.')),
-				gettext('Captcha field') => array(
-						'key' => 'Use_Captcha',
-						'type' => OPTION_TYPE_RADIO,
-						'buttons' => array(
-								gettext('Omit') => 0,
-								gettext('For guests') => 2,
-								gettext('Require') => 1),
-						'disabled' => ($_zp_captcha->name) ? false : true,
-						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				
 				gettext('Remember field') => array(
 						'key' => 'comment_form_remember',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -190,7 +187,38 @@ class comment_form {
 				gettext('Autocomplete') => array(
 						'key' => 'comment_form_autocomplete',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.'))
+						'desc' => gettext('If checked the form allows autocompletion by the browser. Note that this may be of privacy concerns.')),
+				gettext('Captcha field') => array(
+						'key' => 'Use_Captcha',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('Omit') => 0,
+								gettext('For guests') => 2,
+								gettext('Require') => 1),
+						'disabled' => ($_zp_captcha->name) ? false : true,
+						'desc' => ($_zp_captcha->name) ? gettext('If <em>Captcha</em> is required, the form will include a Captcha verification.') : '<span class="notebox">' . gettext('No captcha handler is enabled.') . '</span>'),
+				gettext('Math quiz') => array(
+						'key' => 'comment_form_mathquiz',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enables a mandatory input field so users have to answer a math question before they can send any comment.')),
+				gettext('Math quiz question') => array(
+						'key' => 'comment_form_mathquiz_question',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The question for the math quiz. Enter a valid PHP expression like 2+3*2. Allowed chars: <code>0-9+-*/.()</code>.')),
+				gettext('Text quiz') => array(
+						'key' => 'comment_form_textquiz',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Enables a mandatory input field so users have to answer a text question before they can send any comment.')),
+				gettext('Text quiz question') => array(
+						'key' => 'comment_form_textquiz_question',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => 1,
+						'desc' => gettext('The question for the text quiz.')),
+				gettext('Text quiz answer') => array(
+						'key' => 'comment_form_textquiz_answer',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'multilingual' => 1,
+						'desc' => gettext('The answer to the text quiz question.'))
 		);
 		return $options;
 	}
@@ -360,7 +388,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				echo gettext('Only registered users may post comments.');
 			} else {
 				$disabled = array('name'		 => '', 'website'	 => '', 'anon'		 => '', 'private'	 => '', 'comment'	 => '',
-								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '');
+								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '', 'mathquiz' => '', 'textquiz' => '');
 				$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
 				$custom = getSerializedArray($stored['custom']);
 				foreach ($custom as $key => $value) {

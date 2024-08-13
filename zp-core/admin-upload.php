@@ -62,8 +62,9 @@ printLogoAndLinks();
 		}
 		$albumlist = $_zp_gallery->getAllAlbumsFromDB();
 		//	remove dynamic albums--can't upload to them
-		foreach ($albumlist as $key => $albumname) {
-			if (hasDynamicAlbumSuffix($key) && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
+		foreach ($albumlist as $key => $albumtitle) {
+			$albumlistobj = AlbumBase::newAlbum($key);
+			if ($albumlistobj->isDynamic() && !is_dir(ALBUM_FOLDER_SERVERPATH . $key)) {
 				unset($albumlist[$key]);
 			}
 		}

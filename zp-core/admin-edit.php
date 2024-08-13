@@ -9,6 +9,7 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
+//require_once(dirname(__FILE__) . '/template-functions.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest.php');
 
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());

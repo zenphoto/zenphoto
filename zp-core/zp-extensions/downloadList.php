@@ -546,7 +546,7 @@ class AlbumZip {
 			self::pageError(404, gettext('Album not found'));
 		}
 		$album = AlbumBase::newAlbum($albumname);
-		if (!$album->isMyItem(LIST_RIGHTS) && !$album->isProtected()) {
+		if (!$album->isMyItem(LIST_RIGHTS) && $album->isProtected()) {
 			self::pageError(403, gettext("Forbidden"));
 		}
 		$_zp_zip_list = array();

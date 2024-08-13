@@ -349,9 +349,10 @@ class Gallery {
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS. Set to null to disable rights check
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
+	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false 
 	 * @return array
 	 */
-	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
+	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false) {
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all albums
 		if (AlbumBase::isAlbumClass($albumobj)) {
@@ -377,11 +378,14 @@ class Gallery {
 						} else {
 							$allalbums[] = $album->getName();
 						}
-						$allalbums = array_merge($allalbums, $this->getAllAlbums($album, $rights));
+						if (!$direct_sublevel) {
+							$allalbums = array_merge($allalbums, $this->getAllAlbums($album, $rights, $includetitles));
+						}
 					}
 				}
 			}
 		}
+
 		return $allalbums;
 	}
 
@@ -404,9 +408,10 @@ class Gallery {
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
+	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false
 	 * @return array
 	 */
-	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true) {
+	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false) {
 		global $_zp_db;
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
@@ -415,7 +420,7 @@ class Gallery {
 		$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums');
 		if (AlbumBase::isAlbumClass($albumobj)) {
 			// subalbums of an album
-			$sql .= " WHERE `folder` like '" . $albumobj->name . "/%'";
+			$sql .= " WHERE `parentid` = '" . $albumobj->getID() . "'";
 			if ($keeplevel_sortorder) {
 				$sorttype = $albumobj->getSortType('album');
 				if ($albumobj->getSortDirection('album')) {
@@ -425,8 +430,8 @@ class Gallery {
 				}
 			}
 		} else {
+			$sql .= " WHERE `parentid` IS NULL";
 			if ($keeplevel_sortorder) {
-				$sql .= " WHERE `parentid` IS NULL";
 				$sorttype = $this->getSortType();
 				if ($this->getSortDirection()) {
 					$sortdirection = ' DESC';
@@ -458,7 +463,7 @@ class Gallery {
 						} else {
 							$allalbums[] = $album->getName();
 						}
-						if ($keeplevel_sortorder) {
+						if (!$direct_sublevel) {
 							$allalbums = array_merge($allalbums, $this->getAllAlbumsFromDB($keeplevel_sortorder, $album, $rights, $includetitles));
 						}
 					}

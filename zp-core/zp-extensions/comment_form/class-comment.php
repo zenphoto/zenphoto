@@ -9,6 +9,8 @@ class Comment extends PersistentObject {
 
 	public $comment_error_text = NULL;
 	public $dataconfirmation = null;
+	public $mathquiz = null;
+	public $textquiz = null;
 
 	/**
 	 * This is a simple class so that we have a convienient "handle" for manipulating comments.
@@ -204,4 +206,4 @@ class Comment extends PersistentObject {
 	 */
 	function setCustomData($value) { $this->set('custom_data', $value); }
 }
-?>
+

@@ -376,7 +376,11 @@ class htmlmetatags {
 					$canonicalurl = $host . getImageURL();
 				}
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
-					$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					if ($_zp_current_image->isPhoto()) {
+						$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
+					} else {
+						$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
+					}
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-image')) {

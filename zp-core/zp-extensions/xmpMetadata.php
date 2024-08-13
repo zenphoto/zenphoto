@@ -50,6 +50,8 @@ zp_register_filter('edit_image_utilities', 'xmpMetadata::create');
 zp_register_filter('bulk_image_actions', 'xmpMetadata::bulkActions');
 zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
+require_once SERVERPATH. '/'. ZENFOLDER  .'/classes/class-imagemetaformatter.php';
+
 define('XMP_EXTENSION', strtolower(strval(getOption('xmpMetadata_suffix'))));
 
 
@@ -743,23 +745,13 @@ class xmpMetadata {
 	
 	/**
 	 * @since 1.6.3 ported from Exifer library
+	 * @deprecated 2.0 - Use imageMetaFormatter::formatExposure() instead
 	 * @param type $data
 	 * @return type
 	 */
 	static function formatExposure($data) {
-		if (strpos($data, '/') === false) {
-			$data = floatval($data);
-			if ($data >= 1) {
-				return round($data, 2) . ' sec';
-			} else {
-				$n = 0;
-				$d = 0;
-				self::ConvertToFraction($data, $n, $d);
-				return $n . '/' . $d . ' sec';
-			}
-		} else {
-			return gettext('Bulb');
-		}
+		deprecationNotice(gettext('Use imageMetaFormatter::formatExposure() instead'));
+		return imageMetaFormatter::formatExposure($data);
 	}
 
 	/**
@@ -767,24 +759,16 @@ class xmpMetadata {
 	 * 
 	 * @since 1.6.3 ported from Exifer library
 	 * 
-	 * @param type $v
+	 * @deprecated 2.0 - Use imageMetaFormatter::convertToFraction() instead
+	 * 
+	 * @param type $value
 	 * @param type $n
 	 * @param type $d
 	 * @return type
 	 */
-	static function ConvertToFraction($v, &$n, &$d) {
-		if ($v == 0) {
-			$n = 0;
-			$d = 1;
-			return;
-		}
-		for ($n = 1; $n < 100; $n++) {
-			$v1 = 1 / $v * $n;
-			$d = round($v1, 0);
-			if (abs($d - $v1) < 0.02) {
-				return; // within tolarance
-			}
-		}
+	static function ConvertToFraction($value, &$n, &$d) {
+		deprecationNotice(gettext('Use imageMetaFormatter::convertToFraction() instead'));
+		return imageMetaFormatter::convertToFraction($value, $n, $d);
 	}
 
 	/**
@@ -887,21 +871,15 @@ class xmpMetadata {
 
 	/**
 	 * convert a fractional representation to something more user friendly
+	 * 
+	 * @deprecated 2.0 – Use imageMetaFormatter::rationalNum() instead
 	 *
 	 * @param $element string
 	 * @return string
 	 */
 	private static function rationalNum($element) {
-		// deal with the fractional representation
-		$n = explode('/', $element);
-		$v = sprintf('%f', $n[0] / $n[1]);
-		for ($i = strlen($v) - 1; $i > 1; $i--) {
-			if ($v[$i] != '0')
-				break;
-		}
-		if ($v[$i] == '.')
-			$i--;
-		return substr($v, 0, $i + 1);
+		deprecationNotice(gettext('Use imageMetaFormatter::rationalNum() instead'));
+		return imageMetaFormatter::rationalNum($element);
 	}
 
 	private static function encode($str) {
@@ -1000,18 +978,18 @@ class xmpMetadata {
 						$image->setLocation($v);
 						break;
 					case 'EXIFExposureTime':
-						$v = self::formatExposure(self::rationalNum($element));
+						$v = imageMetaFormatter::formatExposure(imageMetaFormatter::rationalNum($element));
 						break;
 					case 'EXIFFocalLength':
-						$v = self::rationalNum($element) . ' mm';
+						$v = imageMetaFormatter::rationalNum($element) . ' mm';
 						break;
 					case 'EXIFApertureValue':
 					case 'EXIFFNumber':
-						$v = 'f/' . self::rationalNum($element);
+						$v = 'f/' .imageMetaFormatter::rationalNum($element);
 						break;
 					case 'EXIFExposureBiasValue':
 					case 'EXIFGPSAltitude':
-						$v = self::rationalNum($element);
+						$v = imageMetaFormatter::rationalNum($element);
 						break;
 					case 'EXIFGPSLatitude':
 					case 'EXIFGPSLongitude':

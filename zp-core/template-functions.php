@@ -472,7 +472,15 @@ function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparent
 					'archive' => gettext('Archive view'), 
 					'password' => gettext('Password required'));
 			if (is_object($_zp_myfavorites)) {
-				$standard['favorites'] = gettext('My favorites');
+				$instance = '';
+				if ($_zp_myfavorites->instance) {
+					$instance = ' [' . $_zp_myfavorites->instance . ']';
+				} 
+				$favorites_title = get_language_string(getOption('favorites_title'));
+				if (!$favorites_title) {
+					$favorites_title =  gettext('My favorites');
+				}
+				$standard['favorites'] = $favorites_title . $instance;
 			}
 			if (array_key_exists($custompage, $standard)) {
 				return $standard[$custompage] . $pagenumber . $separator . $gallerytitle . $mainsitetitle;
@@ -1378,7 +1386,7 @@ function getAlbumBreadcrumb($title = NULL) {
 				$title = gettext('Album Thumbnails');
 			}
 		}
-		return array('link' => $album->getLink(), 'text' => $title, 'title' => getBare($title));
+		return array('link' => $album->getLink(getAlbumPage()), 'text' => $title, 'title' => getBare($title));
 	}
 	return false;
 }
@@ -1471,15 +1479,17 @@ function getParentBreadcrumb() {
 	global $_zp_gallery, $_zp_current_search, $_zp_current_album, $_zp_last_album;
 	$parents = $output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
-		$page = $_zp_current_search->page;
+		if (in_context(ZP_IMAGE) && !in_context(ZP_ALBUM_LINKED)) {
+			$alb_pages = ceil($_zp_current_search->getNumAlbums() / max(1, getOption('albums_per_page')));
+			$img_pages = ceil((imageNumber() - getFirstPageImages()) / max(1, getOption('images_per_page')));
+			$page = $alb_pages + $img_pages;
+		} else {
+			$page = $_zp_current_search->page;
+		}
 		$searchwords = $_zp_current_search->getSearchWords();
 		$searchdate = $_zp_current_search->getSearchDate();
 		$searchfields = $_zp_current_search->getSearchFields(true);
-		$search_album_list = $_zp_current_search->getAlbumList();
-		if (!is_array($search_album_list)) {
-			$search_album_list = array();
-		}
-		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums' => $search_album_list));
+		$searchpagepath = SearchEngine::getSearchURL($searchwords, $searchdate, $searchfields, $page);
 		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			if (empty($searchdate)) {
@@ -1497,13 +1507,6 @@ function getParentBreadcrumb() {
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
-			}
-		}
-// remove parent links that are not in the search path
-		foreach ($parents as $key => $analbum) {
-			$target = $analbum->name;
-			if ($target !== $dynamic_album && !in_array($target, $search_album_list)) {
-				unset($parents[$key]);
 			}
 		}
 	} else {
@@ -1993,7 +1996,7 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
 		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
-		$size = ' width="' . $attr['width'] . '"';
+		$size = ' width="' . $attr['width'] . '" height="' . $attr['height'] . '"';
 		printPasswordProtectedImage($size);
 	}
 }
@@ -2007,40 +2010,7 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
  * @param bool $thumb true if for a thumbnail
  */
 function getMaxSpaceContainer(&$width, &$height, $image, $thumb = false) {
-	global $_zp_gallery;
-	$upscale = getOption('image_allow_upscale');
-	$imagename = $image->filename;
-	if ($thumb) {
-		$s_width = $image->getThumbWidth();
-		$s_height = $image->getThumbHeight();
-	} else {
-		$s_width = $image->get('width');
-		if ($s_width == 0)
-			$s_width = max($width, $height);
-		$s_height = $image->get('height');
-		if ($s_height == 0)
-			$s_height = max($width, $height);
-	}
-
-	$newW = round($height / $s_height * $s_width);
-	$newH = round($width / $s_width * $s_height);
-	if (DEBUG_IMAGE)
-		debugLog("getMaxSpaceContainer($width, $height, $imagename, $thumb): \$s_width=$s_width; \$s_height=$s_height; \$newW=$newW; \$newH=$newH; \$upscale=$upscale;");
-	if ($newW > $width) {
-		if ($upscale || $s_height > $newH) {
-			$height = $newH;
-		} else {
-			$height = $s_height;
-			$width = $s_width;
-		}
-	} else {
-		if ($upscale || $s_width > $newW) {
-			$width = $newW;
-		} else {
-			$height = $s_height;
-			$width = $s_width;
-		}
-	}
+	$image->getMaxSpaceContainer($width, $height, $thumb);
 }
 
 /**
@@ -2768,81 +2738,13 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
  */
 function getSizeCustomImage($size = null, $width = NULL, $height = NULL, $cw = NULL, $ch = NULL, $cx = NULL, $cy = NULL, $image = NULL, $type = 'image') {
   global $_zp_current_image;
-  if (is_null($image))
+  if (is_null($image)) {
     $image = $_zp_current_image;
-  if (is_null($image))
-    return false;
-	
-  //if we set width/height we are cropping and those are the sizes already
-  if (!is_null($width) && !is_null($height)) {
-    return array($width, $height);
-  }
-	switch ($type) {
-		case 'thumb':
-			$h = $image->getThumbHeight();
-			$w = $image->getThumbWidth();
-			$thumb = true;
-			$side = getOption('thumb_use_side');
-			break;
-		default:
-		case 'image':
-			$h = $image->getHeight();
-			$w = $image->getWidth();
-			$thumb = false;
-			if ($image->isVideo()) { // size is determined by the player
-				return array($w, $h);
-			}
-			$side = getOption('image_use_side');
-			break;
 	}
-	$us = getOption('image_allow_upscale');
-  $args = getImageParameters(array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumb, NULL, $thumb, NULL, NULL, NULL), $image->album->name);
-  @list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-  if (!empty($size)) {
-    $dim = $size;
-    $width = $height = false;
-  } else if (!empty($width)) {
-    $dim = $width;
-    $size = $height = false;
-  } else if (!empty($height)) {
-    $dim = $height;
-    $size = $width = false;
-  } else {
-    $dim = 1;
-  }
-
-  if ($w == 0) {
-    $hprop = 1;
-  } else {
-    $hprop = round(($h / $w) * $dim);
-  }
-  if ($h == 0) {
-    $wprop = 1;
-  } else {
-    $wprop = round(($w / $h) * $dim);
-  }
-  if (($size && ($side == 'longest' && $h > $w) || ($side == 'height') || ($side == 'shortest' && $h < $w)) || $height) {
-// Scale the height
-    $newh = $dim;
-    $neww = $wprop;
-  } else {
-// Scale the width
-    $neww = $dim;
-    $newh = $hprop;
-  } 
-  if (!$us && $newh >= $h && $neww >= $w) {
-    return array($w, $h);
-  } else {
-    if ($cw && $cw < $neww)
-      $neww = $cw;
-    if ($ch && $ch < $newh)
-      $newh = $ch;
-    if ($size && $ch && $cw) {
-      $neww = $cw;
-      $newh = $ch;
-    }
-    return array($neww, $newh);
-  }
+  if (is_null($image)) {
+    return false;
+	}
+  return $image->getSizeCustomImage($size, $width, $height, $cw, $ch, $cx, $cy, $type);
 }
 
 /**
@@ -2854,9 +2756,17 @@ function getSizeCustomImage($size = null, $width = NULL, $height = NULL, $cw = N
  * @return array
  */
 function getSizeDefaultImage($size = NULL, $image = NULL) {
-  if (is_null($size))
-    $size = getOption('image_size');
-  return getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, $image);
+	global $_zp_current_image;
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	if (is_null($image)) {
+		return false;
+	}
+	if (is_null($size)) {
+		$size = getOption('image_size');
+	}
+	return $image->getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
 /**
@@ -3013,6 +2923,7 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 	}
 }
 
+
 /**
  * Returns the url to the thumbnail of the current image.
  * @param obj $image optional image object, null means current image
@@ -3063,7 +2974,7 @@ function printImageThumb($alt, $class = null, $id = null, $title = null, $image 
 		$attr['class'] .= " password_protected";
 	}
 	$attr['src'] = html_pathurlencode($image->getThumb());
-	$sizes = getSizeDefaultThumb($image);
+	$sizes = $image->getSizeDefaultThumb();
 	$attr['width'] = $sizes[0];
 	$attr['height'] = $sizes[1];
 	$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);
@@ -3084,16 +2995,7 @@ function getSizeDefaultThumb($image = NULL) {
 	if (is_null($image)) {
 		$image = $_zp_current_image;
 	}
-	$s = getOption('thumb_size');
-	if (getOption('thumb_crop')) {
-		$w = getOption('thumb_crop_width');
-		$h = getOption('thumb_crop_height');
-		$sizes = getSizeCustomImage($s, $w, $h, $w, $h, null, null, $image, 'thumb');
-	} else {
-		$w = $h = $s;
-		$sizes = getSizeCustomImage($s, NULL, NULL, NULL, NULL, NULL, NULL, $image, 'thumb');
-	}
-	return $sizes;
+	return $image->getSizeDefaultThumb();
 }
 
 /**
@@ -3377,10 +3279,10 @@ function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height =
  */
 function getCustomSizedImageMaxSpace($width, $height) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($_zp_current_image)) {
 		return false;
-	getMaxSpaceContainer($width, $height, $_zp_current_image);
-	return getCustomImageURL(NULL, $width, $height);
+	}
+	return $_zp_current_image->getCustomSizedImageMaxSpace($width, $height, false);
 }
 
 /**
@@ -3393,10 +3295,10 @@ function getCustomSizedImageMaxSpace($width, $height) {
  */
 function getCustomSizedImageThumbMaxSpace($width, $height) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image))
+	if (is_null($_zp_current_image)) {
 		return false;
-	getMaxSpaceContainer($width, $height, $_zp_current_image, true);
-	return getCustomImageURL(NULL, $width, $height, NULL, NULL, NULL, NULL, true);
+	}
+	return $_zp_current_image->getCustomSizedImageMaxSpace($width, $height, true);
 }
 
 /**

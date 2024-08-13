@@ -45,23 +45,23 @@
 		?>
 		<p>
 			<label for="comment_form_street"><?php printf(gettext('Street%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street']); ?> type="text" id="comment_form_street" name="0-comment_form_street"<?php printCommentformAutocompleteAttr('street-address', true); ?> size="22" value="<?php echo html_encode($stored['street']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['street'], 'street-address'); ?> type="text" id="comment_form_street" name="0-comment_form_street" size="22" value="<?php echo html_encode($stored['street']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_city"><?php printf(gettext('City%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city']); ?> type="text" id="comment_form_city" name="0-comment_form_city"<?php printCommentformAutocompleteAttr('address-level2', true); ?> size="22" value="<?php echo html_encode($stored['city']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city'], 'address-level2'); ?> type="text" id="comment_form_city" name="0-comment_form_city size="22" value="<?php echo html_encode($stored['city']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_state"><?php printf(gettext('State%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state']); ?> type="text" id="comment_form_state" name="0-comment_form_state"<?php printCommentformAutocompleteAttr('address-level1', true); ?> size="22" value="<?php echo html_encode($stored['state']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['state'], 'address-level1'); ?> type="text" id="comment_form_state" name="0-comment_form_state" size="22" value="<?php echo html_encode($stored['state']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_country"><?php printf(gettext('Country%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country']); ?> type="text" id="comment_form_country" name="0-comment_form_country"<?php printCommentformAutocompleteAttr('country', true); ?> size="22" value="<?php echo html_encode($stored['country']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['country'], 'country'); ?> type="text" id="comment_form_country" name="0-comment_form_country" size="22" value="<?php echo html_encode($stored['country']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_postal"><?php printf(gettext('Postal code%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal']); ?> type="text" id="comment_form_postal" name="0-comment_form_postal"<?php printCommentformAutocompleteAttr('postal-code', true); ?> size="22" value="<?php echo html_encode($stored['postal']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['postal'], 'postal-code'); ?> type="text" id="comment_form_postal" name="0-comment_form_postal" size="22" value="<?php echo html_encode($stored['postal']); ?>" />
 		</p>
 		<?php
 	}
@@ -107,7 +107,21 @@
 		</p>
 		<?php
 	}
-	?>
+	$textquiz_question = getQuizFieldQuestion('comment_form_textquiz');
+	if ($textquiz_question) { ?>
+		<p>
+			<label for="comment_textquiz"><?php echo html_encode($textquiz_question); ?><strong>*</strong></label>
+			<input type="text" id="comment_textquiz" name="comment_textquiz" size="50" value="<?php echo $stored['textquiz']; ?>" required autocomplete="off" />
+		</p>
+	<?php 
+	} 
+	$mathquiz_question = getQuizFieldQuestion('comment_form_mathquiz');
+	if ($mathquiz_question) { ?>
+		<p>
+			<label for="comment_mathquiz"><?php echo html_encode($mathquiz_question); ?>=<strong>*</strong></label>
+			<input type="text" id="comment_mathquiz" name="comment_mathquiz" size="50" value="<?php echo $stored['mathquiz']; ?>" required autocomplete="off" />
+		</p>
+	<?php } ?>
 	<p><?php echo gettext('<strong>*</strong>Required fields'); ?></p>
 	<?php
 	?>

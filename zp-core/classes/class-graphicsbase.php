@@ -150,8 +150,10 @@ class graphicsBase {
 	}
 
 	function imageDims($filename) {
-		$imageinfo = NULL;
-		$rslt = getimagesize($filename, $imageinfo);
+		$imageinfo = $rslt = NULL;
+		if (function_exists('getimagesize')) {
+			$rslt = getimagesize($filename, $imageinfo);
+		}
 		if (is_array($rslt)) {
 			return array('width' => $rslt[0], 'height' => $rslt[1]);
 		} else {
@@ -160,8 +162,10 @@ class graphicsBase {
 	}
 
 	function imageIPTC($filename) {
-		$imageinfo = NULL;
-		$rslt = getimagesize($filename, $imageinfo);
+		$imageinfo = $rslt = NULL;
+		if (function_exists('getimagesize')) {
+			$rslt = getimagesize($filename, $imageinfo);
+		}
 		if (is_array($rslt) && isset($imageinfo['APP13'])) {
 			return $imageinfo['APP13'];
 		} else {

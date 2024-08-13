@@ -926,11 +926,7 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 			if (hasDynamicAlbumSuffix($albumname) && !is_dir(ALBUM_FOLDER_SERVERPATH . $albumname)) {
 				$albumname = stripSuffix($albumname); // strip off the suffix as it will not be reflected in the search path
 			}
-			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
-			$save_logon = $_zp_loggedin;
-			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
-			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
 					if ($searchparent == 'searchresults_album') {
@@ -949,9 +945,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_zenpage_page)) {
 			$pages = $_zp_current_search->getPages();
 			if (!empty($pages)) {
-				$tltlelink = $_zp_current_zenpage_page->getName();
+				$titlelink = $_zp_current_zenpage_page->getName();
 				foreach ($pages as $apage) {
-					if ($apage == $tltlelink) {
+					if ($apage == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
@@ -961,9 +957,9 @@ function handleSearchParms($what, $album = NULL, $image = NULL) {
 		if (!is_null($_zp_current_zenpage_news)) {
 			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
-				$tltlelink = $_zp_current_zenpage_news->getName();
+				$titlelink = $_zp_current_zenpage_news->getName();
 				foreach ($news as $anews) {
-					if ($anews['titlelink'] == $tltlelink) {
+					if ($anews['titlelink'] == $titlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
@@ -1215,13 +1211,12 @@ function getTagCountByAccess($tag) {
 function storeTags($tags, $id, $tbl) {
 	global $_zp_db;
 	if ($id) {
-		$tagsLC = array();
+		$not_empty_tags = array();
 		foreach ($tags as $key => $tag) {
 			$tag = trim($tag);
 			if (!empty($tag)) {
-				$lc_tag = mb_strtolower($tag);
-				if (!in_array($lc_tag, $tagsLC)) {
-					$tagsLC[$tag] = $lc_tag;
+				if (!in_array($tag, $not_empty_tags)) {
+					$not_empty_tags[$tag] = $tag;
 				}
 			}
 		}
@@ -1231,23 +1226,25 @@ function storeTags($tags, $id, $tbl) {
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$dbtag = $_zp_db->querySingleRow("SELECT `name` FROM " . $_zp_db->prefix('tags') . " WHERE `id`='" . $row['tagid'] . "'");
-				$existingLC = mb_strtolower($dbtag['name']);
-				if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
-					$existing[] = $existingLC;
+				$existing_name = $dbtag['name'];
+				if (in_array($existing_name, $not_empty_tags)) { // tag already set no action needed
+					$existing[] = $existing_name;
 				} else { // tag no longer set, remove it
 					$_zp_db->query("DELETE FROM " . $_zp_db->prefix('obj_to_tag') . " WHERE `id`='" . $row['id'] . "'");
 				}
 			}
 			$_zp_db->freeResult($result);
 		}
-		$tags = array_diff($tagsLC, $existing); // new tags for the object
+		$tags = array_diff($not_empty_tags, $existing); // new tags for the object
 		foreach ($tags as $key => $tag) {
-			$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `name`=" . $_zp_db->quote($key));
+			$dbtag = $_zp_db->querySingleRow("SELECT `id` FROM " . $_zp_db->prefix('tags') . " WHERE `name` COLLATE utf8mb4_bin =" . $_zp_db->quote($key));
 			if (!is_array($dbtag)) { // tag does not exist
 				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('tags') . " (name) VALUES (" . $_zp_db->quote($key) . ")", false);
 				$dbtag = array('id' => $_zp_db->insertID());
 			}
-			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
+			if ($dbtag['id']) {
+				$_zp_db->query("INSERT INTO " . $_zp_db->prefix('obj_to_tag') . "(`objectid`, `tagid`, `type`) VALUES (" . $id . "," . $dbtag['id'] . ",'" . $tbl . "')");
+			}
 		}
 	}
 }
@@ -2491,6 +2488,7 @@ function zp_loggedin($rights = ALL_RIGHTS) {
  *
  */
 function read_exif_data_protected($path) {
+	$rslt = array();
 	if (@exif_imagetype($path) !== false) {
 		if (DEBUG_EXIF) {
 			debugLog("Begin read_exif_data_protected($path)");
@@ -2588,6 +2586,7 @@ function reveal($content, $visible = false) {
  * @return string
  */
 function applyMacros($text) {
+	global $_zp_db;
 	$text = strval($text);
 	$content_macros = getMacros();
 	preg_match_all('/\[(\w+)(.*?)\]/i', $text, $instances);
@@ -2790,10 +2789,6 @@ function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level
 	return $list;
 }
 
-function getImageMetaDataFieldFormatted() {
-	
-}
-
 /**
  * initializes the $_zp_exifvars array display state
  *
@@ -2839,14 +2834,14 @@ function setexifvars() {
 			'EXIFMeteringMode' => array('SubIFD', 'MeteringMode', gettext('Metering Mode'), true, 52, true, 'string'),
 			'EXIFFlash' => array('SubIFD', 'Flash', gettext('Flash Fired'), true, 52, true, 'string'),
 			'EXIFImageWidth' => array('SubIFD', 'ExifImageWidth', gettext('Original Width'), false, 52, true, 'number'),
-			'EXIFImageHeight' => array('SubIFD', 'ExifImageHeight', gettext('Original Height'), false, 52, true, 'number'),
+			'EXIFImageHeight' => array('SubIFD', 'ExifImageLength', gettext('Original Height'), false, 52, true, 'number'),
 			'EXIFOrientation' => array('IFD0', 'Orientation', gettext('Orientation'), false, 52, true, 'string'),
 			'EXIFSoftware' => array('IFD0', 'Software', gettext('Software'), false, 999, true, 'string'),
 			'EXIFContrast' => array('SubIFD', 'Contrast', gettext('Contrast Setting'), false, 52, true, 'string'),
 			'EXIFSharpness' => array('SubIFD', 'Sharpness', gettext('Sharpness Setting'), false, 52, true, 'string'),
 			'EXIFSaturation' => array('SubIFD', 'Saturation', gettext('Saturation Setting'), false, 52, true, 'string'),
 			'EXIFWhiteBalance' => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
-			'EXIFSubjectDistance' => array('SubIFD', 'SubjectDistance', gettext('Subject Distance'), false, 52, true, 'number'),
+			'EXIFSubjectDistance' => array('SubIFD', 'SubjectDistanceRange', gettext('Subject Distance'), false, 52, true, 'number'),
 			'EXIFFocalLength' => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
 			'EXIFLensType' => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
 			'EXIFLensInfo' => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
@@ -2858,12 +2853,12 @@ function setexifvars() {
 			'IPTCLocationName' => array('IPTC', 'LocationName', gettext('Country/Primary Location Name'), false, 64, true, 'string'),
 			'IPTCContentLocationCode' => array('IPTC', 'ContentLocationCode', gettext('Content Location Code'), false, 3, true, 'string'),
 			'IPTCContentLocationName' => array('IPTC', 'ContentLocationName', gettext('Content Location Name'), false, 64, true, 'string'),
-			'EXIFGPSLatitude' => array('GPS', 'Latitude', gettext('Latitude'), false, 52, true, 'number'),
-			'EXIFGPSLatitudeRef' => array('GPS', 'Latitude Reference', gettext('Latitude Reference'), false, 52, true, 'string'),
-			'EXIFGPSLongitude' => array('GPS', 'Longitude', gettext('Longitude'), false, 52, true, 'number'),
-			'EXIFGPSLongitudeRef' => array('GPS', 'Longitude Reference', gettext('Longitude Reference'), false, 52, true, 'string'),
-			'EXIFGPSAltitude' => array('GPS', 'Altitude', gettext('Altitude'), false, 52, true, 'number'),
-			'EXIFGPSAltitudeRef' => array('GPS', 'Altitude Reference', gettext('Altitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSLatitude' => array('GPS', 'GPSLatitude', gettext('Latitude'), false, 52, true, 'number'),
+			'EXIFGPSLatitudeRef' => array('GPS', 'GPSLatitudeRef', gettext('Latitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSLongitude' => array('GPS', 'GPSLongitude', gettext('Longitude'), false, 52, true, 'number'),
+			'EXIFGPSLongitudeRef' => array('GPS', 'GPSLongitudeRef', gettext('Longitude Reference'), false, 52, true, 'string'),
+			'EXIFGPSAltitude' => array('GPS', 'GPSAltitude', gettext('Altitude'), false, 52, true, 'number'),
+			'EXIFGPSAltitudeRef' => array('GPS', 'GPSAltitudeRef', gettext('Altitude Reference'), false, 52, true, 'string'),
 			'IPTCOriginatingProgram' => array('IPTC', 'OriginatingProgram', gettext('Originating Program'), false, 32, true, 'string'),
 			'IPTCProgramVersion' => array('IPTC', 'ProgramVersion', gettext('Program Version'), false, 10, true, 'string'),
 			'VideoFormat' => array('VIDEO', 'fileformat', gettext('Video File Format'), false, 32, true, 'string'),

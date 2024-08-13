@@ -1435,11 +1435,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$css_class_active = "";
 		rem_context(ZP_ZENPAGE_PAGE);
 	}
-	if (0 == count($items) + (int) ($mode == 'categories'))
+	if (0 == count($items) + (int) ($mode == 'categories')) {
 		return; // nothing to do
+	}
 	$startlist = $startlist && !($option == 'omit-top' || $option == 'list-sub');
-	if ($startlist)
+	if ($startlist) {
 		echo '<ul id="' . $css_id . '">';
+	}
 	// if index link and if if with count
 	if (!empty($indexname)) {
 		if ($limit) {
@@ -1483,6 +1485,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 		$parents[$c] = NULL;
 	}
 	foreach ($items as $item) {
+
 		$password_class = '';
 		switch ($mode) {
 			case 'pages':
@@ -1508,17 +1511,22 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				$itemtitlelink = $catobj->getName();
 				$itemurl = $catobj->getLink();
 				$catcount = count($catobj->getArticles());
+				if (!$catobj->isMyItem(LIST_RIGHTS) && $catobj->isProtected()) {
+					$catcount = 1; // count for protected is 0 but we want to show them
+					$counter = false; // disable counter for protected items 
+					$password_class = ' has_password';
+				}
 				if ($counter) {
 					$count = ' <span style="white-space:nowrap;"><small>(' . sprintf(ngettext('%u article', '%u articles', $catcount), $catcount) . ')</small></span>';
 				} else {
 					$count = '';
 				}
-				if (!$catobj->isMyItem(LIST_RIGHTS) && $catobj->isProtected()) {
-					$password_class = ' has_password';
-				}
+
+				
 				break;
 		}
 		if ($catcount) {
+
 			$level = max(1, count(explode('-', strval($itemsortorder))));
 			$process = (($level <= $showsubs && $option == "list") // user wants all the pages whose level is <= to the parameter
 							|| ($option == 'list' || $option == 'list-top') && $level == 1 // show the top level
@@ -1533,7 +1541,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 
 			if ($process) {
 				if ($level > $indent) {
-					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">'."\n";
+					echo "\n" . str_pad("\t", $indent, "\t") . '<ul class="' . $css_class . '">' . "\n";
 					$indent++;
 					$parents[$indent] = NULL;
 					$open[$indent] = 0;
@@ -1541,7 +1549,7 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 					$parents[$indent] = NULL;
 					while ($indent > $level) {
 						if ($open[$indent]) {
-							$open[$indent] --;
+							$open[$indent]--;
 							echo "</li>\n";
 						}
 						$indent--;
@@ -1550,17 +1558,17 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 				} else { // level == indent, have not changed
 					if ($open[$indent]) { // level = indent
 						echo str_pad("\t", $indent, "\t") . "</li>\n";
-						$open[$indent] --;
+						$open[$indent]--;
 					} else {
 						echo "\n";
 					}
 				}
 				if ($open[$indent]) { // close an open LI if it exists
 					echo "</li>\n";
-					$open[$indent] --;
+					$open[$indent]--;
 				}
 				echo str_pad("\t", $indent - 1, "\t");
-				$open[$indent] ++;
+				$open[$indent]++;
 				$parents[$indent] = $itemid;
 				if ($level == 1) { // top level
 					$class = $css_class_topactive . $password_class;
@@ -1592,13 +1600,13 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 							break;
 					}
 				}
-				if(empty($current)) {
-					$current =  trim($password_class);
+				if (empty($current)) {
+					$current = trim($password_class);
 				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo '<li class="' . $current. '"><a href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
+				echo '<li class="' . $current . '"><a href="' . html_encode($itemurl) . '" title="' . html_encode(getBare($itemtitle)) . '">' . html_encode($itemtitle) . '</a>' . $count;
 			}
 		}
 	}
@@ -1606,19 +1614,20 @@ function printNestedMenu($option = 'list', $mode = NULL, $counter = TRUE, $css_i
 	while ($indent > 1) {
 		if ($open[$indent]) {
 			echo "</li>\n";
-			$open[$indent] --;
+			$open[$indent]--;
 		}
 		$indent--;
 		echo str_pad("\t", $indent, "\t") . "</ul>";
 	}
 	if ($open[$indent]) {
 		echo "</li>\n";
-		$open[$indent] --;
+		$open[$indent]--;
 	} else {
 		echo "\n";
 	}
-	if ($startlist)
+	if ($startlist) {
 		echo "</ul>\n";
+	}
 }
 
 /**
