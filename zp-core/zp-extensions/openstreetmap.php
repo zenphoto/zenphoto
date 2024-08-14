@@ -1021,7 +1021,7 @@ class openStreetMap {
 				'BasemapAT.highdpi',
 				'BasemapAT.orthofoto',
 				'NLS',
-				'GeoportailFrance.ignMaps',
+				'GeoportailFrance.parcels',
 				'GeoportailFrance.orthos',
 		);
 	}
