@@ -230,6 +230,10 @@ class openStreetMapOptions {
 						'key' => 'osmap_geoportailfrance_apikey',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => ''),
+				gettext('Jawg - Access token') => array(
+						'key' => 'osmap_jawg_accesstoken',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => ''),
 		);
 		return $options;
 	}
@@ -778,6 +782,10 @@ class openStreetMap {
 				return "L.tileLayer.provider('" . $this->layer . "', {"
 								. "apikey: '" . getOption('osmap_geoportailfrance_apikey') . "'"
 								. "})";
+			case 'Jawg':
+				return "L.tileLayer.provider('" . $this->layer . "', {"
+								. "apikey: '" . getOption('osmap_jawg_accesstoken') . "'"
+								. "})";
 			default:
 				return "L.tileLayer.provider('" . $this->layer . "')";
 		}
@@ -1026,8 +1034,6 @@ class openStreetMap {
 				'CartoDB.VoyagerNoLabels',
 				'CartoDB.VoyagerOnlyLabels',
 				'CartoDB.VoyagerLabelsUnder',
-				'HikeBike.HikeBike',
-				'HikeBike.HillShading',
 				'GeoportailFrance.plan',
 				'GeoportailFrance.orthos',
 				'BaseMapDE.Color',
