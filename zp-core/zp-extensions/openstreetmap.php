@@ -985,7 +985,6 @@ class openStreetMap {
 				'Stadia.StamenTerrain',
 				'Stadia.StamenTerrainBackground',
 				'Esri.WorldStreetMap',
-				//'Esri.DeLorme',// retired
 				'Esri.WorldTopoMap',
 				'Esri.WorldImagery',
 				'Esri.WorldTerrain',
@@ -1016,7 +1015,6 @@ class openStreetMap {
 				'HEREv3.satelliteDay',
 				'HEREv3.terrainDay',
 				'HEREv3.terrainDayMobile',
-				//'FreeMapSK',
 				'MtbMap',
 				'CartoDB.Positron',
 				'CartoDB.PositronNoLabels',
@@ -1030,35 +1028,19 @@ class openStreetMap {
 				'CartoDB.VoyagerLabelsUnder',
 				'HikeBike.HikeBike',
 				'HikeBike.HillShading',
-				//'BasemapAT.basemap',// Austria only
-				//'BasemapAT.grau',// Austria only
-				//'BasemapAT.highdpi',// Austria only
-				//'BasemapAT.orthofoto',// Austria only
-				//'NLS.osgb63k1885',// Scotland only - needs valid key
-				//'NLS.osgb1888',// Scotland only - needs valid key
-				//'NLS.osgb10k1888',// Scotland only - needs valid key
-				//'NLS.osgb1919',// Scotland only - needs valid key
-				//'NLS.osgb25k1937',// Scotland only - needs valid key
-				//'NLS.osgb63k1955',// Scotland only - needs valid key
-				//'NLS.oslondon1k1893',// Scotland only - needs valid key
 				'GeoportailFrance.plan',
 				'GeoportailFrance.orthos',
-				//'BaseMapDE.Color',// latest js file
-				//'BaseMapDE.Grey',// latest js file
+				'BaseMapDE.Color',
+				'BaseMapDE.Grey',
 				'CyclOSM',
-				//'Jawg.Streets',// latest js file
-				//'Jawg.Terrain',// latest js file
-				//'Jawg.Lagoon',// latest js file
-				//'Jawg.Sunny',// latest js file
-				//'Jawg.Dark',// latest js file
-				//'Jawg.Light',// latest js file
-				//'Jawg.Matrix',// latest js file
+				'Jawg.Streets',
+				'Jawg.Terrain',
+				'Jawg.Lagoon',
+				'Jawg.Sunny',
+				'Jawg.Dark',
+				'Jawg.Light',
+				'Jawg.Matrix',
 				'MapBox',
-				//'nlmaps.standaard',// Netherlands only
-				//'nlmaps.pastel',// Netherlands only
-				//'nlmaps.grijs',// Netherlands only
-				//'nlmaps.water',// Netherlands only
-				//'nlmaps.luchtfoto',// Netherlands only
 				'NASAGIBS.ModisTerraTrueColorCR',
 				'NASAGIBS.ModisTerraBands367CR',
 				'NASAGIBS.ModisTerraLSTDay',
