@@ -784,7 +784,7 @@ class openStreetMap {
 								. "})";
 			case 'Jawg':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
-								. "apikey: '" . getOption('osmap_jawg_accesstoken') . "'"
+								. "accessToken: '" . getOption('osmap_jawg_accesstoken') . "'"
 								. "})";
 			default:
 				return "L.tileLayer.provider('" . $this->layer . "')";
