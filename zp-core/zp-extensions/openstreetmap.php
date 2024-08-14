@@ -105,7 +105,7 @@ class openStreetMapOptions {
 						'order' => 7,
 						'selections' => $providers,
 						'desc' => gettext('The default map tile provider to use. Only free providers are included.'
-										. ' Some providers (Here, Mapbox, Thunderforest, Geoportail) require access credentials and registration.'
+										. ' Some providers (HEREv3, Mapbox, Thunderforest, Geoportail) require access credentials and registration.'
 										. ' More info on <a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a>')),
 				gettext('Zoom controls position') => array(
 						'key' => 'osmap_zoomcontrolpos',
@@ -210,12 +210,12 @@ class openStreetMapOptions {
 						'key' => 'osmap_minimap_zoom',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.")),
-				gettext('HERE - App id') => array(
-						'key' => 'osmap_here_appid',
+				gettext('HEREv3 - App id') => array(
+						'key' => 'osmap_HEREv3_appid',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => ''),
-				gettext('HERE - App code') => array(
-						'key' => 'osmap_here_appcode',
+				gettext('HEREv3 - App code') => array(
+						'key' => 'osmap_HEREv3_appcode',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => ''),
 				gettext('Mapbox - Access token') => array(
@@ -765,10 +765,10 @@ class openStreetMap {
 								. "id: '" . strtolower($this->layer) . "', "
 								. "accessToken: '" . getOption('osmap_mapbox_accesstoken') . "'"
 								. "})";
-			case 'HERE':
+			case 'HEREv3':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
-								. "app_id: '" . getOption('osmap_here_appid') . "', "
-								. "app_code: '" . getOption('osmap_here_appcode') . "'"
+								. "app_id: '" . getOption('osmap_HEREv3_appid') . "', "
+								. "app_code: '" . getOption('osmap_HEREv3_appcode') . "'"
 								. "})";
 			case 'Thunderforest':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
@@ -949,12 +949,16 @@ class openStreetMap {
 				'OpenStreetMap.France',
 				'OpenStreetMap.HOT',
 				'OpenTopoMap',
+				'OpenRailwayMap',
 				'Thunderforest.OpenCycleMap',
+				'Thunderforest.Transport',
 				'Thunderforest.TransportDark',
 				'Thunderforest.SpinalMap',
 				'Thunderforest.Landscape',
-				'Hydda.Full',
-				// should be mapbox.streets,... but follow leaflet-providers behavior
+				'Thunderforest.Outdoors',
+				'Thunderforest.Pioneer',
+				'Thunderforest.MobileAtlas',
+				'Thunderforest.Neighbourhood',
 				'MapBox.streets',
 				'MapBox.light',
 				'MapBox.dark',
@@ -969,13 +973,19 @@ class openStreetMap {
 				'MapBox.pirates',
 				'MapBox.emerald',
 				'MapBox.high-contrast',
-				'Stamen.Watercolor',
-				'Stamen.Terrain',
-				'Stamen.TerrainBackground',
-				'Stamen.TopOSMRelief',
-				'Stamen.TopOSMFeatures',
+				'Stadia.AlidadeSmooth',
+				'Stadia.AlidadeSmoothDark',
+				'Stadia.AlidadeSatellite',
+				'Stadia.OSMBright',
+				'Stadia.Outdoors',
+				'Stadia.StamenToner',
+				'Stadia.StamenTonerBackground',
+				'Stadia.StamenTonerLite',
+				'Stadia.StamenWatercolor',
+				'Stadia.StamenTerrain',
+				'Stadia.StamenTerrainBackground',
 				'Esri.WorldStreetMap',
-				'Esri.DeLorme',
+				//'Esri.DeLorme',// retired
 				'Esri.WorldTopoMap',
 				'Esri.WorldImagery',
 				'Esri.WorldTerrain',
@@ -984,29 +994,29 @@ class openStreetMap {
 				'Esri.OceanBasemap',
 				'Esri.NatGeoWorldMap',
 				'Esri.WorldGrayCanvas',
-				'HERE.normalDay',
-				'HERE.normalDayCustom',
-				'HERE.normalDayGrey',
-				'HERE.normalDayMobile',
-				'HERE.normalDayGreyMobile',
-				'HERE.normalDayTransit',
-				'HERE.normalDayTransitMobile',
-				'HERE.normalNight',
-				'HERE.normalNightMobile',
-				'HERE.normalNightGrey',
-				'HERE.normalNightGreyMobile',
-				'HERE.basicMap',
-				'HERE.mapLabels',
-				'HERE.trafficFlow',
-				'HERE.carnavDayGrey',
-				'HERE.hybridDay',
-				'HERE.hybridDayMobile',
-				'HERE.pedestrianDay',
-				'HERE.pedestrianNight',
-				'HERE.satelliteDay',
-				'HERE.terrainDay',
-				'HERE.terrainDayMobile',
-				'FreeMapSK',
+				'HEREv3.normalDay',
+				'HEREv3.normalDayCustom',
+				'HEREv3.normalDayGrey',
+				'HEREv3.normalDayMobile',
+				'HEREv3.normalDayGreyMobile',
+				'HEREv3.normalDayTransit',
+				'HEREv3.normalDayTransitMobile',
+				'HEREv3.normalNight',
+				'HEREv3.normalNightMobile',
+				'HEREv3.normalNightGrey',
+				'HEREv3.normalNightGreyMobile',
+				'HEREv3.basicMap',
+				'HEREv3.mapLabels',
+				'HEREv3.trafficFlow',
+				'HEREv3.carnavDayGrey',
+				'HEREv3.hybridDay',
+				'HEREv3.hybridDayMobile',
+				'HEREv3.pedestrianDay',
+				'HEREv3.pedestrianNight',
+				'HEREv3.satelliteDay',
+				'HEREv3.terrainDay',
+				'HEREv3.terrainDayMobile',
+				//'FreeMapSK',
 				'MtbMap',
 				'CartoDB.Positron',
 				'CartoDB.PositronNoLabels',
@@ -1014,15 +1024,52 @@ class openStreetMap {
 				'CartoDB.DarkMatter',
 				'CartoDB.DarkMatterNoLabels',
 				'CartoDB.DarkMatterOnlyLabels',
+				'CartoDB.Voyager',
+				'CartoDB.VoyagerNoLabels',
+				'CartoDB.VoyagerOnlyLabels',
+				'CartoDB.VoyagerLabelsUnder',
 				'HikeBike.HikeBike',
 				'HikeBike.HillShading',
-				'BasemapAT.basemap',
-				'BasemapAT.grau',
-				'BasemapAT.highdpi',
-				'BasemapAT.orthofoto',
-				'NLS',
+				//'BasemapAT.basemap',// Austria only
+				//'BasemapAT.grau',// Austria only
+				//'BasemapAT.highdpi',// Austria only
+				//'BasemapAT.orthofoto',// Austria only
+				//'NLS.osgb63k1885',// Scotland only - needs valid key
+				//'NLS.osgb1888',// Scotland only - needs valid key
+				//'NLS.osgb10k1888',// Scotland only - needs valid key
+				//'NLS.osgb1919',// Scotland only - needs valid key
+				//'NLS.osgb25k1937',// Scotland only - needs valid key
+				//'NLS.osgb63k1955',// Scotland only - needs valid key
+				//'NLS.oslondon1k1893',// Scotland only - needs valid key
 				'GeoportailFrance.plan',
 				'GeoportailFrance.orthos',
+				//'BaseMapDE.Color',// latest js file
+				//'BaseMapDE.Grey',// latest js file
+				'CyclOSM',
+				//'Jawg.Streets',// latest js file
+				//'Jawg.Terrain',// latest js file
+				//'Jawg.Lagoon',// latest js file
+				//'Jawg.Sunny',// latest js file
+				//'Jawg.Dark',// latest js file
+				//'Jawg.Light',// latest js file
+				//'Jawg.Matrix',// latest js file
+				'MapBox',
+				//'nlmaps.standaard',// Netherlands only
+				//'nlmaps.pastel',// Netherlands only
+				//'nlmaps.grijs',// Netherlands only
+				//'nlmaps.water',// Netherlands only
+				//'nlmaps.luchtfoto',// Netherlands only
+				'NASAGIBS.ModisTerraTrueColorCR',
+				'NASAGIBS.ModisTerraBands367CR',
+				'NASAGIBS.ModisTerraLSTDay',
+				'NASAGIBS.ModisTerraSnowCover',
+				'NASAGIBS.ModisTerraAOD',
+				'NASAGIBS.ModisTerraChlorophyll',
+				'USGS.USTopo',
+				'USGS.USImagery',
+				'USGS.USImageryTopo',
+				'TopPlusOpen.Color',
+				'TopPlusOpen.Grey',
 		);
 	}
 
