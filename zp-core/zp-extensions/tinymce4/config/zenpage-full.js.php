@@ -21,7 +21,16 @@ global $_zp_rtl_css;
 		entity_encoding: '<?php echo getOption('tinymce4_entityencoding'); ?>',
 		<?php if(!empty(trim(strval(getOption('tinymce4_entities'))))) { ?>
 			entities: '<?php echo getOption('tinymce4_entities'); ?>',
-		<?php } ?>	
+		<?php } ?>
+		<?php if (getOption('tinymce4_textfield-height')) { ?>
+		min_height: <?php echo getOption('tinymce4_textfield-height'); ?>,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-spellcheck')) { ?>
+		browser_spellcheck: true,
+		<?php } ?>
+		<?php if (getOption('tinymce4_browser-menu')) { ?>
+		contextmenu: false,
+		<?php } ?>
 		directionality: "<?php echo $_zp_rtl_css ? 'rtl' : 'ltr'; ?>",
 		relative_urls: false,
 		image_advtab: true,
@@ -34,12 +43,21 @@ if ($filehandler) {
 	<?php
 }
 ?>
+<?php if (getOption('tinymce4_browser-menu')) { ?>
+		plugins: [
+			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
+			"searchreplace wordcount visualblocks visualchars code fullscreen",
+			"insertdatetime media nonbreaking save table directionality",
+			"emoticons template paste textpattern imagetools colorpicker textcolor tinyzenpage"
+		],
+<?php } else { ?>
 		plugins: [
 			"advlist autolink lists link image charmap print preview hr anchor pagebreak",
 			"searchreplace wordcount visualblocks visualchars code fullscreen",
 			"insertdatetime media nonbreaking save table contextmenu directionality",
 			"emoticons template paste textpattern imagetools colorpicker textcolor tinyzenpage"
 		],
+<?php } ?>
 		toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image",
 		toolbar2: "print preview media | forecolor backcolor emoticons | pagebreak tinyzenpage | code fullscreen | ltr rtl",
 		setup: function(ed) {

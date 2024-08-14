@@ -5,7 +5,7 @@
  *
  * You can place your own additional custom configuration files within
  * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var>
- * There is a naming convention since there is a difference between Zenphoto (gallery) and Zenpag (news/pages) editor configurations.
+ * There is a naming convention since there is a difference between Zenphoto (gallery) and Zenpage (news/pages) editor configurations.
  * <var>zenphoto-<yourcustomname>.js.php</var>
  * <var>zenpage-<yourcustomname>.js.php</var>
  *
@@ -32,6 +32,9 @@ class tinymce4Options {
 		setOptionDefault('tinymce4_zenphoto', 'zenphoto-ribbon.js.php');
 		setOptionDefault('tinymce4_zenpage', 'zenpage-slim.js.php');
 		setOptionDefault('tinymce4_entitiyencoding', 'raw');
+		setOptionDefault('tinymce4_textfield-height', 400);
+		setOptionDefault('tinymce4_browser-spellcheck', false);
+		setOptionDefault('tinymce4_browser-menu', false);
 		if (getOption('zp_plugin_tiny_mce')) {
 			setOptionDefault('zp_plugin_tinymce4', 5 | ADMIN_PLUGIN);
 			purgeOption('zp_plugin_tiny_mce');
@@ -56,6 +59,11 @@ class tinymce4Options {
 						'selections' => $configs_zenpage,
 						'null_selection' => gettext('Disabled'),
 						'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
+				gettext('Text editor height') => array(
+						'key' => 'tinymce4_textfield-height',
+						'type' => OPTION_TYPE_CLEARTEXT,
+						'order' => 1,
+						'desc' => gettext('Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px.')),
 				gettext('Custom image size') => array(
 						'key' => 'tinymce_tinyzenpage_customimagesize',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -98,6 +106,16 @@ class tinymce4Options {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
 						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
+            gettext('Browser spellcheck') => array(
+						'key' => 'tinymce4_browser-spellcheck',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('Check to use your browser spellchecker.<br><strong>Note:</strong> Spellcheck feature should be available in the browser and enabled (location of settings to do so vary from browser to browser).<br><strong>Warning:</strong> Depending on browser, this can be a privacy concern. Do your research on the implementation of spellchek in your browser of choice.')),
+            gettext('Browser context menu') => array(
+						'key' => 'tinymce4_browser-menu',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 4,
+						'desc' => gettext('Check to disable TinyMCE right-click menu, browser right-click menu will be used instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used - browser right-click menu can still be accessed by pressing <em>Ctrl+Right click</em>.')),
 		);
 		return $options;
 	}
