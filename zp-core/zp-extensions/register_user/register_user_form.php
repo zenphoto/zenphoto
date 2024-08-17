@@ -24,19 +24,19 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 				}
 				?>
 			</label>
-			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
+			<input type="text" id="adminuser" name="user" value="<?php echo html_encode(registerUser::$user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
 		</p>
 		<?php $_zp_authority->printPasswordForm(NULL, false, NULL, false, $flag = '<strong>*</strong>'); ?>
 		<p>
 			<label for="admin_name"><?php echo gettext("Name"); ?><strong>*</strong></label>
-			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
+			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode(registerUser::$admin_name); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
 		</p>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
 			<p>
 				<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) echo '<strong>*</strong>'; ?></label>
-				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
+				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode(registerUser::$admin_email); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" required />
 			</p>
 			<?php
 		}
@@ -109,7 +109,21 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 			</p>
 			<?php
 		}
-		if(getOption('register_user_dataconfirmation')) { ?>
+		$textquiz_question = registerUser::getQuizFieldQuestion('register_user_textquiz');
+		if ($textquiz_question) { ?>
+			<p>
+				<label for="textquiz"><?php echo html_encode($textquiz_question); ?><strong>*</strong></label>
+				<input type="text" id="textquiz" name="admin_textquiz" size="50" value="" required autocomplete="off" />
+			</p>
+		<?php } ?>
+		<?php $mathquiz_question = registerUser::getQuizFieldQuestion('register_user_mathquiz');
+		if ($mathquiz_question) { ?>
+			<p>
+				<label for="mathquiz"><?php echo html_encode($mathquiz_question); ?>=<strong>*</strong></label>
+				<input type="text" id="mathquiz" name="admin_mathquiz" size="50" value="" required autocomplete="off" />
+			</p>
+		<?php } 
+		if (getOption('register_user_dataconfirmation')) { ?>
 			<p>
 				<label for="admin_dataconfirmation">
 					<input type="checkbox" name="admin_dataconfirmation" id="admin_dataconfirmation" value="1" required>
@@ -119,15 +133,5 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 		<?php } ?>
 		<p><?php echo gettext('<strong>*</strong>Required'); ?></p>
 		<input type="submit" class="button buttons" value="<?php echo gettext('Submit') ?>" />
-		<?php
-		if (class_exists('federated_logon')) {
-			?>
-			<p id="Federated_buttons_fieldlist">
-				<?php echo gettext('You may also register using federated credentials'); ?>
-				<?php federated_logon::buttons(WEBPATH . '/index.php'); ?>
-			</p>
-			<?php
-		}
-		?>
 	</form>
 </div>
