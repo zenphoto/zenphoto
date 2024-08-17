@@ -540,7 +540,7 @@ class registerUser {
 					</div>
 				<?php
 				 $userobj->setRights(USER_RIGHTS | NO_RIGHTS);
-				 $userobj->save();
+				 $userobj->save(); 
 				case 'already_verified':
 				case 'loginfailed':
 					registerUser::$link = getRequestURI();
