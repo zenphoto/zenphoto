@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 20:01+0200\n"
-"PO-Revision-Date: 2024-08-04 20:02+0200\n"
+"POT-Creation-Date: 2024-08-19 13:58+0200\n"
+"PO-Revision-Date: 2024-08-19 14:05+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -175,7 +175,7 @@ msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 
 #: themes/basic/register.php:28 themes/garland/register.php:43
 #: zp-core/template-functions.php:470
-#: zp-core/zp-extensions/html_meta_tags.php:462
+#: zp-core/zp-extensions/html_meta_tags.php:466
 #: zp-core/zp-extensions/register_user.php:64
 #: zp-core/zp-extensions/scriptless-socialsharing.php:180
 msgid "Register"
@@ -394,7 +394,7 @@ msgstr "Arrêter"
 
 #: themes/garland/password.php:41 zp-core/password.php:6
 #: zp-core/template-functions.php:473
-#: zp-core/zp-extensions/html_meta_tags.php:465
+#: zp-core/zp-extensions/html_meta_tags.php:469
 msgid "Password required"
 msgstr "Un mot de passe est requis"
 
@@ -710,7 +710,7 @@ msgstr "À part"
 #: zp-core/zp-extensions/comment_form.php:123
 #: zp-core/zp-extensions/comment_form.php:136
 #: zp-core/zp-extensions/comment_form.php:195
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Omit"
 msgstr "Aucun"
 
@@ -757,7 +757,7 @@ msgstr ""
 #: zp-core/template-functions.php:1442 zp-core/template-functions.php:1496
 #: zp-core/template-functions.php:3757
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
-#: zp-core/zp-extensions/html_meta_tags.php:463
+#: zp-core/zp-extensions/html_meta_tags.php:467
 #: zp-core/zp-extensions/scriptless-socialsharing.php:183
 #: zp-core/zp-extensions/slideshow2.php:817
 msgid "Search"
@@ -826,7 +826,7 @@ msgstr "Flux RSS de l’album"
 #: zp-core/zp-extensions/comment_form/functions.php:914
 #: zp-core/zp-extensions/comment_form/functions.php:921
 #: zp-core/zp-extensions/defaultCodeblocks.php:36
-#: zp-core/zp-extensions/html_meta_tags.php:415
+#: zp-core/zp-extensions/html_meta_tags.php:419
 #: zp-core/zp-extensions/multiple_layouts.php:99
 #: zp-core/zp-extensions/related_items.php:193
 #: zp-core/zp-extensions/rss.php:195
@@ -917,7 +917,7 @@ msgid "The Zenphoto object you are requesting cannot be found."
 msgstr "L’objet Zenphoto demandé n’a pu être trouvé."
 
 #: themes/zpmobile/archive.php:26 zp-core/template-functions.php:472
-#: zp-core/zp-extensions/html_meta_tags.php:464
+#: zp-core/zp-extensions/html_meta_tags.php:468
 msgid "Archive view"
 msgstr "Archives"
 
@@ -2601,7 +2601,7 @@ msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
 #: zp-core/admin-functions.php:4971 zp-core/admin-options.php:617
-#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:512
+#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:594
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas."
 
@@ -6486,7 +6486,7 @@ msgstr ""
 #: zp-core/classes/class-_zp_captcha.php:12
 #: zp-core/zp-extensions/comment_form.php:199
 #: zp-core/zp-extensions/contact_form.php:193
-#: zp-core/zp-extensions/register_user.php:115
+#: zp-core/zp-extensions/register_user.php:118
 msgid "No captcha handler is enabled."
 msgstr "Aucun gestionnaire de captcha n’est activé."
 
@@ -6954,7 +6954,7 @@ msgid "All rights"
 msgstr "Tous les droits"
 
 #: zp-core/classes/class-authority.php:658
-#: zp-core/zp-extensions/register_user.php:179
+#: zp-core/zp-extensions/register_user.php:195
 msgid "Default rights"
 msgstr "Droits par défaut"
 
@@ -7067,7 +7067,7 @@ msgstr ""
 
 #: zp-core/classes/class-authority.php:1013
 #: zp-core/classes/class-authority.php:1014
-#: zp-core/zp-extensions/register_user/register_user_form.php:121
+#: zp-core/zp-extensions/register_user/register_user_form.php:135
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -7543,27 +7543,27 @@ msgid "%d: Unknown"
 msgstr "%d : inconnu"
 
 #: zp-core/classes/class-imagemetaformatter.php:134
-#: zp-core/classes/class-imagemetaformatter.php:510
+#: zp-core/classes/class-imagemetaformatter.php:513
 msgid "No Unit"
 msgstr "Pas d’unité"
 
 #: zp-core/classes/class-imagemetaformatter.php:136
-#: zp-core/classes/class-imagemetaformatter.php:498
+#: zp-core/classes/class-imagemetaformatter.php:501
 msgid "Inch"
 msgstr "Pouce"
 
 #: zp-core/classes/class-imagemetaformatter.php:138
-#: zp-core/classes/class-imagemetaformatter.php:501
+#: zp-core/classes/class-imagemetaformatter.php:504
 msgid "Centimeter"
 msgstr "Centimètre"
 
 #: zp-core/classes/class-imagemetaformatter.php:140
-#: zp-core/classes/class-imagemetaformatter.php:504
+#: zp-core/classes/class-imagemetaformatter.php:507
 msgid "Millimeter"
 msgstr "Millimètre"
 
 #: zp-core/classes/class-imagemetaformatter.php:142
-#: zp-core/classes/class-imagemetaformatter.php:507
+#: zp-core/classes/class-imagemetaformatter.php:510
 msgid "Micrometer"
 msgstr "Micromètre"
 
@@ -7874,7 +7874,7 @@ msgstr "Faible"
 msgid "High"
 msgstr "Élevé"
 
-#: zp-core/classes/class-imagemetaformatter.php:469
+#: zp-core/classes/class-imagemetaformatter.php:472
 msgid "Bulb"
 msgstr "Bulb"
 
@@ -7987,15 +7987,15 @@ msgstr "Contenu boni"
 msgid "Categories"
 msgstr "Catégories"
 
-#: zp-core/classes/class-searchengine.php:2063
+#: zp-core/classes/class-searchengine.php:2067
 msgid "no date"
 msgstr "sans date"
 
-#: zp-core/classes/class-themeobject.php:177
+#: zp-core/classes/class-themeobject.php:181
 msgid "Use isPublished() instead"
 msgstr "Utilisez plutôt isPublished()"
 
-#: zp-core/classes/class-themeobject.php:188
+#: zp-core/classes/class-themeobject.php:192
 msgid "Use setPublished() instead"
 msgstr "Utilisez plutôt setPublished()"
 
@@ -9457,7 +9457,7 @@ msgid "Image Source"
 msgstr "Source de l’image"
 
 #: zp-core/functions/functions.php:2826 zp-core/template-functions.php:469
-#: zp-core/zp-extensions/html_meta_tags.php:461
+#: zp-core/zp-extensions/html_meta_tags.php:465
 #: zp-core/zp-extensions/scriptless-socialsharing.php:174
 msgid "Contact"
 msgstr "Contact"
@@ -10282,7 +10282,7 @@ msgstr "Se déconnecter"
 
 #: zp-core/template-functions.php:481
 #: zp-core/zp-extensions/favoritesHandler.php:60
-#: zp-core/zp-extensions/html_meta_tags.php:467
+#: zp-core/zp-extensions/html_meta_tags.php:471
 msgid "My favorites"
 msgstr "Mes favoris"
 
@@ -10948,7 +10948,7 @@ msgstr "à "
 #: zp-core/zp-extensions/comment_form.php:124
 #: zp-core/zp-extensions/comment_form.php:137
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Show"
 msgstr "Afficher"
 
@@ -11806,6 +11806,7 @@ msgid "Cache default sizes"
 msgstr "Tailles par défaut du cache"
 
 #: zp-core/zp-extensions/cacheManager.php:129
+#: zp-core/zp-extensions/openstreetmap.php:147
 msgid "Default thumb size"
 msgstr "Taille des vignettes par défaut"
 
@@ -12309,7 +12310,7 @@ msgstr "PDF"
 #: zp-core/zp-extensions/class-WEBdocs.php:77
 #: zp-core/zp-extensions/comment_form.php:177
 #: zp-core/zp-extensions/galleryArticles.php:99
-#: zp-core/zp-extensions/tinymce4.php:50 zp-core/zp-extensions/tinymce4.php:57
+#: zp-core/zp-extensions/tinymce4.php:53 zp-core/zp-extensions/tinymce4.php:60
 msgid "Disabled"
 msgstr "Désactivé"
 
@@ -12743,7 +12744,7 @@ msgstr "Champ « nom »"
 #: zp-core/zp-extensions/comment_form.php:125
 #: zp-core/zp-extensions/comment_form.php:138
 #: zp-core/zp-extensions/comment_form.php:197
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Require"
 msgstr "Obligatoire"
 
@@ -12786,7 +12787,7 @@ msgstr ""
 "leurs informations dans un cookie."
 
 #: zp-core/zp-extensions/comment_form.php:132
-#: zp-core/zp-extensions/register_user.php:123
+#: zp-core/zp-extensions/register_user.php:143
 msgid "Address fields"
 msgstr "Champs d’adresse"
 
@@ -12914,13 +12915,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:183
 #: zp-core/zp-extensions/contact_form.php:181
-#: zp-core/zp-extensions/register_user.php:116
+#: zp-core/zp-extensions/register_user.php:111
 msgid "Data usage confirmation"
 msgstr "Confirmation d’utilisation des données"
 
 #: zp-core/zp-extensions/comment_form.php:186
 #: zp-core/zp-extensions/contact_form.php:184
-#: zp-core/zp-extensions/register_user.php:120
+#: zp-core/zp-extensions/register_user.php:114
 msgid ""
 "If checked a mandatory checkbox is added for users to confirm about data "
 "storage and handling by your site. This is recommend to comply with the "
@@ -12963,6 +12964,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:200
 #: zp-core/zp-extensions/contact_form.php:194
+#: zp-core/zp-extensions/register_user.php:119
 msgid "Math quiz"
 msgstr "Devinette mathématique"
 
@@ -12976,11 +12978,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:204
 #: zp-core/zp-extensions/contact_form.php:198
+#: zp-core/zp-extensions/register_user.php:123
 msgid "Math quiz question"
 msgstr "Question de la devinette mathématique"
 
 #: zp-core/zp-extensions/comment_form.php:207
 #: zp-core/zp-extensions/contact_form.php:201
+#: zp-core/zp-extensions/register_user.php:126
 msgid ""
 "The question for the math quiz. Enter a valid PHP expression like 2+3*2. "
 "Allowed chars: <code>0-9+-*/.()</code>."
@@ -12990,6 +12994,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:208
 #: zp-core/zp-extensions/contact_form.php:202
+#: zp-core/zp-extensions/register_user.php:127
 msgid "Text quiz"
 msgstr "Devinette textuelle"
 
@@ -13003,21 +13008,25 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:212
 #: zp-core/zp-extensions/contact_form.php:206
+#: zp-core/zp-extensions/register_user.php:131
 msgid "Text quiz question"
 msgstr "Question de la devinette textuelle"
 
 #: zp-core/zp-extensions/comment_form.php:216
 #: zp-core/zp-extensions/contact_form.php:210
+#: zp-core/zp-extensions/register_user.php:135
 msgid "The question for the text quiz."
 msgstr "Question de la devinette textuelle."
 
 #: zp-core/zp-extensions/comment_form.php:217
 #: zp-core/zp-extensions/contact_form.php:211
+#: zp-core/zp-extensions/register_user.php:136
 msgid "Text quiz answer"
 msgstr "Réponse de la devinette"
 
 #: zp-core/zp-extensions/comment_form.php:221
 #: zp-core/zp-extensions/contact_form.php:215
+#: zp-core/zp-extensions/register_user.php:140
 msgid "The answer to the text quiz question."
 msgstr "Réponse de la devinette textuelle."
 
@@ -13392,14 +13401,12 @@ msgstr ""
 "Web."
 
 #: zp-core/zp-extensions/comment_form/functions.php:341
-#: zp-core/zp-extensions/contact_form.php:350
-msgid "the correct text quiz answer"
-msgstr "la réponse correcte à la devinette textuelle"
+msgid "You must enter the correct text quiz answer."
+msgstr "Vous devez répondre correctement à la devinette."
 
 #: zp-core/zp-extensions/comment_form/functions.php:350
-#: zp-core/zp-extensions/contact_form.php:357
-msgid "the correct math quiz answer"
-msgstr "la réponse correcte à la devinette mathématique"
+msgid "You must enter the correct math quiz answer."
+msgstr "Vous devez répondre correctement à la devinette mathématique."
 
 #: zp-core/zp-extensions/comment_form/functions.php:361
 #, php-format
@@ -13722,16 +13729,17 @@ msgid "Phone number"
 msgstr "Numéro de téléphone"
 
 #: zp-core/zp-extensions/contact_form.php:189
-#: zp-core/zp-extensions/register_user.php:111
+#: zp-core/zp-extensions/register_user.php:115
 msgid "CAPTCHA"
 msgstr "Captcha"
 
 #: zp-core/zp-extensions/contact_form.php:193
-#: zp-core/zp-extensions/register_user.php:115
+#: zp-core/zp-extensions/register_user.php:118
 msgid "If checked, the form will include a Captcha verification."
 msgstr "Si coché, le formulaire comportera une validation par Captcha."
 
 #: zp-core/zp-extensions/contact_form.php:197
+#: zp-core/zp-extensions/register_user.php:122
 msgid ""
 "Enables a mandatory input field so users have to answer a math question "
 "before they can send any mail."
@@ -13740,6 +13748,7 @@ msgstr ""
 "obligation de répondre pour envoyer leur email."
 
 #: zp-core/zp-extensions/contact_form.php:205
+#: zp-core/zp-extensions/register_user.php:130
 msgid ""
 "Enables a mandatory input field so users have to answer a text question "
 "before they can send any mail."
@@ -13802,6 +13811,14 @@ msgstr "un message"
 #: zp-core/zp-extensions/contact_form.php:337
 msgid "the correct CAPTCHA verification code"
 msgstr "le bon code de vérification du Captcha"
+
+#: zp-core/zp-extensions/contact_form.php:350
+msgid "the correct text quiz answer"
+msgstr "la réponse correcte à la devinette textuelle"
+
+#: zp-core/zp-extensions/contact_form.php:357
+msgid "the correct math quiz answer"
+msgstr "la réponse correcte à la devinette mathématique"
 
 #: zp-core/zp-extensions/contact_form.php:374
 #, php-format
@@ -14066,14 +14083,14 @@ msgid "Position"
 msgstr "Position"
 
 #: zp-core/zp-extensions/cookieconsent.php:119
-#: zp-core/zp-extensions/openstreetmap.php:108
-#: zp-core/zp-extensions/openstreetmap.php:160
+#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:179
 msgid "Top left"
 msgstr "En haut à gauche"
 
 #: zp-core/zp-extensions/cookieconsent.php:120
-#: zp-core/zp-extensions/openstreetmap.php:109
-#: zp-core/zp-extensions/openstreetmap.php:161
+#: zp-core/zp-extensions/openstreetmap.php:115
+#: zp-core/zp-extensions/openstreetmap.php:180
 msgid "Top right"
 msgstr "En haut à droite"
 
@@ -14082,14 +14099,14 @@ msgid "Bottom"
 msgstr "En bas"
 
 #: zp-core/zp-extensions/cookieconsent.php:122
-#: zp-core/zp-extensions/openstreetmap.php:110
-#: zp-core/zp-extensions/openstreetmap.php:162
+#: zp-core/zp-extensions/openstreetmap.php:116
+#: zp-core/zp-extensions/openstreetmap.php:181
 msgid "Bottom left"
 msgstr "En bas à gauche"
 
 #: zp-core/zp-extensions/cookieconsent.php:123
-#: zp-core/zp-extensions/openstreetmap.php:111
-#: zp-core/zp-extensions/openstreetmap.php:163
+#: zp-core/zp-extensions/openstreetmap.php:117
+#: zp-core/zp-extensions/openstreetmap.php:182
 msgid "Bottom right"
 msgstr "En bas à droite"
 
@@ -14888,7 +14905,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/dynamic-locale.php:181
 #: zp-core/zp-extensions/html_meta_tags.php:253
-#: zp-core/zp-extensions/register_user.php:142
+#: zp-core/zp-extensions/register_user.php:159
 #: zp-core/zp-extensions/sitemap-extended.php:209
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
@@ -15079,7 +15096,7 @@ msgid "Remove favorite"
 msgstr "Enlever un favori"
 
 #: zp-core/zp-extensions/favoritesHandler.php:91
-#: zp-core/zp-extensions/register_user.php:81
+#: zp-core/zp-extensions/register_user.php:87
 msgid "Link text"
 msgstr "Texte descriptif du lien"
 
@@ -17504,11 +17521,11 @@ msgstr ""
 "l’aide de LeafletJS, pour les images ou les images des albums avec "
 "géodonnées."
 
-#: zp-core/zp-extensions/openstreetmap.php:70
+#: zp-core/zp-extensions/openstreetmap.php:82
 msgid "Map dimensions—width"
 msgstr "Dimensions de la carte : largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:74
+#: zp-core/zp-extensions/openstreetmap.php:85
 msgid ""
 "Width of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
@@ -17516,11 +17533,11 @@ msgstr ""
 "Largeur de la carte, y compris l’unité, par exemple 100% (par défaut pour "
 "une carte responsive), 100px ou 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:75
+#: zp-core/zp-extensions/openstreetmap.php:86
 msgid "Map dimensions—height"
 msgstr "Dimensions de la carte : hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:79
+#: zp-core/zp-extensions/openstreetmap.php:89
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive "
 "map), 100px or 100em."
@@ -17528,27 +17545,27 @@ msgstr ""
 "Hauteur de la carte, y compris l’unité, par exemple 100% (par défaut pour "
 "une carte responsive), 100px ou 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:80
+#: zp-core/zp-extensions/openstreetmap.php:90
 msgid "Map zoom"
 msgstr "Zoom sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:84
+#: zp-core/zp-extensions/openstreetmap.php:93
 msgid "Default zoom level."
 msgstr "Niveau de zoom par défaut."
 
-#: zp-core/zp-extensions/openstreetmap.php:85
+#: zp-core/zp-extensions/openstreetmap.php:94
 msgid "Map minimum zoom"
 msgstr "Zoom minimum sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:89
+#: zp-core/zp-extensions/openstreetmap.php:97
 msgid "Default minimum zoom level possible."
 msgstr "Niveau de zoom par défaut minimum."
 
-#: zp-core/zp-extensions/openstreetmap.php:90
+#: zp-core/zp-extensions/openstreetmap.php:98
 msgid "Map maximum zoom"
 msgstr "Zoom maximum sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:94
+#: zp-core/zp-extensions/openstreetmap.php:101
 msgid ""
 "Default maximum zoom level possible. If no value is defined, use the maximum "
 "zoom level of the map used (may be different for each map)."
@@ -17557,54 +17574,54 @@ msgstr ""
 "le niveau de zoom maximal de la carte utilisée (peut être différent pour "
 "chaque carte)."
 
-#: zp-core/zp-extensions/openstreetmap.php:95
+#: zp-core/zp-extensions/openstreetmap.php:102
 msgid "Default layer"
 msgstr "Carte par défaut"
 
-#: zp-core/zp-extensions/openstreetmap.php:100
+#: zp-core/zp-extensions/openstreetmap.php:107
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
-"providers (Here, Mapbox, Thunderforest, Geoportail) require access "
+"providers (HEREv3, Mapbox, Thunderforest, Geoportail) require access "
 "credentials and registration. More info on <a href=\"https://github.com/"
 "leaflet-extras/leaflet-providers\">leaflet-providers</a>"
 msgstr ""
-"Fournisseur de cartes à utiliser par défaut. Seuls les fournisseurs gratuits "
-"sont inclus. Quelques fournisseur de cartes (Here, Mapbox, Thunderforest, "
+"Fournisseur de fonds de cartes par défaut. Seuls les fournisseurs gratuits "
+"sont inclus. Quelques fournisseur de cartes (HEREv3, Mapbox, Thunderforest, "
 "Geoportail) requièrent des informations d’identification. Plus "
 "d’informations sur <a href=\"https://github.com/leaflet-extras/leaflet-"
 "providers\">leaflet-providers</a>"
 
-#: zp-core/zp-extensions/openstreetmap.php:103
+#: zp-core/zp-extensions/openstreetmap.php:110
 msgid "Zoom controls position"
 msgstr "Position des contrôles de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:113
+#: zp-core/zp-extensions/openstreetmap.php:119
 msgid "Position of the zoom controls"
 msgstr "Position des contrôles de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:114
+#: zp-core/zp-extensions/openstreetmap.php:120
 msgid "Cluster radius"
 msgstr "Rayon du cluster"
 
-#: zp-core/zp-extensions/openstreetmap.php:118
+#: zp-core/zp-extensions/openstreetmap.php:123
 msgid "The radius when marker clusters should be used."
 msgstr "Le rayon lorsque les marqueurs de cluster sont utilisés."
 
-#: zp-core/zp-extensions/openstreetmap.php:119
+#: zp-core/zp-extensions/openstreetmap.php:124
 msgid "Show cluster coverage on hover"
 msgstr "Affiche la couverture d’un cluster lors de son survol."
 
-#: zp-core/zp-extensions/openstreetmap.php:123
+#: zp-core/zp-extensions/openstreetmap.php:127
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr ""
 "Activer si vous voulez apercevoir les limites d’un cluster de marqueurs lors "
 "de son survol."
 
-#: zp-core/zp-extensions/openstreetmap.php:124
+#: zp-core/zp-extensions/openstreetmap.php:128
 msgid "Marker popups"
 msgstr "Popup des marqueurs"
 
-#: zp-core/zp-extensions/openstreetmap.php:128
+#: zp-core/zp-extensions/openstreetmap.php:131
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album "
 "context or custom geodata."
@@ -17613,11 +17630,11 @@ msgstr ""
 "Seulement dans un contexte d’album ou de données de localisation "
 "personnalisées."
 
-#: zp-core/zp-extensions/openstreetmap.php:129
+#: zp-core/zp-extensions/openstreetmap.php:132
 msgid "Marker popups with thumbs"
 msgstr "Popup avec vignette"
 
-#: zp-core/zp-extensions/openstreetmap.php:133
+#: zp-core/zp-extensions/openstreetmap.php:135
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for "
 "album context."
@@ -17625,11 +17642,11 @@ msgstr ""
 "Activer si vous souhaitez afficher les vignettes des images dans la popup "
 "des marqueurs. Seulement dans un contexte d’album."
 
-#: zp-core/zp-extensions/openstreetmap.php:134
+#: zp-core/zp-extensions/openstreetmap.php:136
 msgid "Marker popups with title"
 msgstr "Popup avec titre"
 
-#: zp-core/zp-extensions/openstreetmap.php:138
+#: zp-core/zp-extensions/openstreetmap.php:139
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for "
 "album context."
@@ -17637,7 +17654,7 @@ msgstr ""
 "Activer si vous souhaitez afficher le titre des images dans la popup des "
 "marqueurs. Seulement dans un contexte d’album."
 
-#: zp-core/zp-extensions/openstreetmap.php:139
+#: zp-core/zp-extensions/openstreetmap.php:140
 msgid "Marker popups with description"
 msgstr "Popup avec description"
 
@@ -17650,21 +17667,112 @@ msgstr ""
 "des marqueurs. Seulement dans un contexte d’album."
 
 #: zp-core/zp-extensions/openstreetmap.php:144
+msgid "Image thumbs"
+msgstr "Vignette d’image"
+
+#: zp-core/zp-extensions/openstreetmap.php:148
+msgid "Custom image"
+msgstr "Vignette personnalisée"
+
+#: zp-core/zp-extensions/openstreetmap.php:149
+msgid ""
+"Choose the size of the thumb to be displayed in the marker popups. Default "
+"thumb size is determined by the theme (See Options->Theme->Standard options: "
+"Thumb size). Custom image size can be set below.<br>If Default thumb size is "
+"larger than 120px, you might need to use custom CSS to display them in full "
+"(see option below to disable default CSS files)."
+msgstr ""
+"Définir la dimension de la vignette à afficher dans le popup. La valeur par "
+"défaut est déterminée par le thème (Options->Thèmes->Options standards:"
+"Taille des vignettes). Une dimension personnalisée peut-être définie ci-"
+"dessous.<br> Si la vignette personnalisée est supérieure à 120px, vous "
+"pourriez avoir besoin d’utiliser une règle CSS personnalisée (regarder "
+"l’option ci-dessous pour désactiver les CSS)."
+
+#: zp-core/zp-extensions/openstreetmap.php:150
+msgid "Custom image thumb size"
+msgstr "Dimensions personnalisées de la vignette"
+
+#: zp-core/zp-extensions/openstreetmap.php:153
+msgid ""
+"Set the width of the Custom Image to be used as thumb in the marker popups. "
+"Works if Custom image is selected in the previous option. Default size is "
+"120px.<br>If Custom Image size is larger than 120px, you might need to use "
+"custom CSS to display them in full (see option below to disable default CSS "
+"files)."
+msgstr ""
+"Défini la largeur de la vignette personnalisée dans le popup. Ne fonctionne "
+"que si Vignette personnalisée est sélectionnée dans l’option précédente. La "
+"dimension par défaut est 120px.<br>Si la vignette personnalisée est "
+"supérieure à 120px, vous pourriez avoir besoin d’utiliser une règle CSS "
+"personnalisée."
+
+#: zp-core/zp-extensions/openstreetmap.php:154
+msgid "Length of Image title"
+msgstr "Longueur du titre de l’image"
+
+#: zp-core/zp-extensions/openstreetmap.php:157
+msgid ""
+"Set the length of the Image title to show in the marker popups. Leave EMPTY "
+"to display in full. Default is 50 characters."
+msgstr ""
+"Définir la longueur du titre de l’image visible dans le popup. Laissez vide "
+"pour tout afficher. Valeur par défaut : 50 caractères."
+
+#: zp-core/zp-extensions/openstreetmap.php:158
+msgid "Length of Image description"
+msgstr "Longueur de la description de l’image"
+
+#: zp-core/zp-extensions/openstreetmap.php:161
+msgid ""
+"Set the length of the Image description to show in the marker popups. Leave "
+"EMPTY to display in full (not recommended if you have very long descriptions "
+"- they might not fit in the small popup space). Default is 100 characters."
+msgstr ""
+"Définir la longueur de la description de l’image visible dans le popup. "
+"Laissez vide pour tout afficher (non recommandé si vous avez des "
+"descriptions longues. Elles pourraient ne pas tenir dans le popup). Valeur "
+"par défaut : 100 caractères."
+
+#: zp-core/zp-extensions/openstreetmap.php:162
+msgid "Use default openstreetmap CSS"
+msgstr "Utiliser le CSS par défaut de openstreetmap"
+
+#: zp-core/zp-extensions/openstreetmap.php:165
+msgid ""
+"Check to use default openstreetmap CSS files (located in '/zp-core/zp-"
+"extensions/openstreetmap/'). Default is Enabled.<br>Removing checkmark will "
+"DISABLE default CSS rules for Openstreetmap plugin - this option is intended "
+"for experienced users, who want to have full control and will allow to "
+"change map and popup markers presentation completely, so make sure to "
+"include relevant rules from openstreetmap.css, leaflet.css, MarkerCluster."
+"css, MarkerCluster.Default.css in your theme CSS file and add custom images "
+"and icons."
+msgstr ""
+"Activer si vous souhaitez utiliser le CSS Openstreetmap par défaut (situé "
+"dans ‘/zp-core/zp-extensions/openstreetmap/‘). Défaut est Activé<br> "
+"Désactiver la fonction désactive le CSS du plugin Openstreetmap. Cette "
+"option est réservée aux utilisateurs expérimentés qui veulent personnaliser "
+"complètement la présentation du plugin. Assurez-vous donc d’inclure les "
+"règles contenues dans openstreetmap.css, leaflet.css, MarkerCluster.css, "
+"MarkerCluster.Default.css ainsi que les images et icônes dans votre CSS."
+
+#: zp-core/zp-extensions/openstreetmap.php:166
 msgid "Show layers controls"
 msgstr "Afficher les contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:148
+#: zp-core/zp-extensions/openstreetmap.php:169
 msgid ""
 "Enable if you want to show layers controls with selected layers list below."
 msgstr ""
 "Activer si vous souhaitez afficher les contrôles de cartes avec la liste des "
 "cartes sélectionnées ci-dessous."
 
-#: zp-core/zp-extensions/openstreetmap.php:149
+#: zp-core/zp-extensions/openstreetmap.php:170
 msgid "Layers list"
 msgstr "Liste des cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:154
+#: zp-core/zp-extensions/openstreetmap.php:174
 msgid ""
 "Choose layers list to show in layers controls. No need to select the default "
 "layer again, otherwise it will be de-duplicated."
@@ -17673,38 +17781,38 @@ msgstr ""
 "Inutile de sélectionner à nouveau la carte par défaut, et dans le cas "
 "contraire elle sera dédoublonnée."
 
-#: zp-core/zp-extensions/openstreetmap.php:155
+#: zp-core/zp-extensions/openstreetmap.php:175
 msgid "Layers controls position"
 msgstr "Position des contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:165
+#: zp-core/zp-extensions/openstreetmap.php:184
 msgid "Position of the layers controls"
 msgstr "Position des contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:166
+#: zp-core/zp-extensions/openstreetmap.php:185
 msgid "Show scale"
 msgstr "Affiche l’échelle"
 
-#: zp-core/zp-extensions/openstreetmap.php:170
+#: zp-core/zp-extensions/openstreetmap.php:188
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr "Activer si vous souhaitez afficher l’échelle (kilomètres et miles)."
 
-#: zp-core/zp-extensions/openstreetmap.php:171
+#: zp-core/zp-extensions/openstreetmap.php:189
 msgid "Show cursor position"
 msgstr "Affiche la position du curseur"
 
-#: zp-core/zp-extensions/openstreetmap.php:175
+#: zp-core/zp-extensions/openstreetmap.php:192
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr ""
 "Activer si vous souhaitez afficher les coordonnées lorsque vous déplacez le "
 "curseur sur la carte."
 
-#: zp-core/zp-extensions/openstreetmap.php:176
+#: zp-core/zp-extensions/openstreetmap.php:193
 msgid "Show album markers"
 msgstr "Affiche les marqueurs d’album"
 
-#: zp-core/zp-extensions/openstreetmap.php:180
+#: zp-core/zp-extensions/openstreetmap.php:196
 msgid ""
 "Enable if you want to show the map on the single image page not only the "
 "marker of the current image but all markers from the album. The current "
@@ -17714,38 +17822,38 @@ msgstr ""
 "non seulement le marqueur de l’image courante, mais aussi tous les marqueurs "
 "de l’album. La position actuelle sera en surbrillance."
 
-#: zp-core/zp-extensions/openstreetmap.php:181
+#: zp-core/zp-extensions/openstreetmap.php:197
 msgid "Mini map"
 msgstr "Mini-carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:185
+#: zp-core/zp-extensions/openstreetmap.php:200
 msgid ""
 "Enable if you want to show an overview mini map in the lower right corner."
 msgstr ""
 "Activer si vous souhaitez afficher une mini-carte d’aperçu dans le coin "
 "inférieur droit."
 
-#: zp-core/zp-extensions/openstreetmap.php:186
+#: zp-core/zp-extensions/openstreetmap.php:201
 msgid "Mini map: width"
 msgstr "mini-carte : largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:190
+#: zp-core/zp-extensions/openstreetmap.php:204
 msgid "Pixel width"
 msgstr "Pixel de largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:191
+#: zp-core/zp-extensions/openstreetmap.php:205
 msgid "Mini map: height"
 msgstr "Mini-carte : hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:195
+#: zp-core/zp-extensions/openstreetmap.php:208
 msgid "Pixel height"
 msgstr "Pixel de hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:196
+#: zp-core/zp-extensions/openstreetmap.php:209
 msgid "Mini map: Zoom level"
 msgstr "Mini-carte : niveau de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:200
+#: zp-core/zp-extensions/openstreetmap.php:212
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the "
 "main map. Can be positive or negative, defaults to -5."
@@ -17753,27 +17861,31 @@ msgstr ""
 "Le décalage appliqué au zoom dans la mini-carte par rapport au zoom de la "
 "carte principale. Peut être positif ou négatif, par défaut à -5."
 
-#: zp-core/zp-extensions/openstreetmap.php:201
-msgid "HERE - App id"
-msgstr "HERE - App id"
+#: zp-core/zp-extensions/openstreetmap.php:213
+msgid "HEREv3 - App id"
+msgstr "HEREv3 - App id"
 
-#: zp-core/zp-extensions/openstreetmap.php:206
-msgid "HERE - App code"
-msgstr "HERE - App code"
+#: zp-core/zp-extensions/openstreetmap.php:217
+msgid "HEREv3 - App code"
+msgstr "HEREv3 - App code"
 
-#: zp-core/zp-extensions/openstreetmap.php:211
+#: zp-core/zp-extensions/openstreetmap.php:221
 msgid "Mapbox - Access token"
 msgstr "Mapbox - Access token"
 
-#: zp-core/zp-extensions/openstreetmap.php:216
+#: zp-core/zp-extensions/openstreetmap.php:225
 msgid "Thunderforest - ApiKey"
 msgstr "Thunderforest - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:221
+#: zp-core/zp-extensions/openstreetmap.php:229
 msgid "GeoportailFrance - ApiKey"
 msgstr "GeoportailFrance - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:1094
+#: zp-core/zp-extensions/openstreetmap.php:233
+msgid "Jawg - Access token"
+msgstr "Jawg - token d’accès"
+
+#: zp-core/zp-extensions/openstreetmap.php:1147
 msgid "Use openStreetMap::printOpenStreetMap() instead"
 msgstr "Utilisez plutôt openStreetMap::printOpenStreetMap()"
 
@@ -18594,8 +18706,8 @@ msgstr ""
 msgid "Click here to register for this site."
 msgstr "Cliquez ici pour vous inscrire sur ce site."
 
-#: zp-core/zp-extensions/register_user.php:85
 #: zp-core/zp-extensions/register_user.php:90
+#: zp-core/zp-extensions/register_user.php:94
 msgid ""
 "If this option is set, the visitor login form will include a link to this "
 "page. The link text will be labeled with the text provided."
@@ -18603,17 +18715,17 @@ msgstr ""
 "Si cette option est activée, le formulaire de connexion du visiteur incluera "
 "un lien vers cette page. Le texte du lien sera celui fourni."
 
-#: zp-core/zp-extensions/register_user.php:86
+#: zp-core/zp-extensions/register_user.php:91
 msgid "Hint text"
 msgstr "Texte de l’astuce"
 
-#: zp-core/zp-extensions/register_user.php:91
-#: zp-core/zp-extensions/register_user.php:146
-#: zp-core/zp-extensions/register_user.php:147
+#: zp-core/zp-extensions/register_user.php:95
+#: zp-core/zp-extensions/register_user.php:163
+#: zp-core/zp-extensions/register_user.php:164
 msgid "Notify*"
 msgstr "Notifier*"
 
-#: zp-core/zp-extensions/register_user.php:95
+#: zp-core/zp-extensions/register_user.php:98
 msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "verified his registration."
@@ -18621,25 +18733,25 @@ msgstr ""
 "Si activé, un mail est envoyé à l’administrateur de la galerie lorsqu’un "
 "nouvel utilisateur a validé son inscription."
 
-#: zp-core/zp-extensions/register_user.php:96
+#: zp-core/zp-extensions/register_user.php:99
 msgid "User album"
 msgstr "Album de l’utilisateur"
 
-#: zp-core/zp-extensions/register_user.php:100
+#: zp-core/zp-extensions/register_user.php:102
 msgid "If checked, an album will be created and assigned to the user."
 msgstr "Si coché, un album sera créé et attribué à l’utilisateur."
 
-#: zp-core/zp-extensions/register_user.php:101
+#: zp-core/zp-extensions/register_user.php:103
 msgid "Email ID"
 msgstr "Identifiant email"
 
-#: zp-core/zp-extensions/register_user.php:105
+#: zp-core/zp-extensions/register_user.php:106
 msgid "If checked, The use’s e-mail address will be used as his User ID."
 msgstr ""
 "Si cette option est cochée, l’adresse email de l’utilisateur sera utilisée "
 "comme identifiant."
 
-#: zp-core/zp-extensions/register_user.php:106
+#: zp-core/zp-extensions/register_user.php:107
 msgid "Email notification text"
 msgstr "Texte pour la notification par email"
 
@@ -18663,7 +18775,7 @@ msgstr ""
 "(<code>%4$s</code>).<br /><br />*Par souci de sécurité, nous recommandons "
 "toutefois <strong>de ne pas</strong> inscrire <em>le mot de passe</em>.</p>"
 
-#: zp-core/zp-extensions/register_user.php:128
+#: zp-core/zp-extensions/register_user.php:147
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the user must supply data in "
@@ -18673,7 +18785,7 @@ msgstr ""
 "comporte des champs pour inscrire les détails de l’adresse. Si les champs "
 "sont requis, l’utilisateur devra remplir tous les champs d’adresse."
 
-#: zp-core/zp-extensions/register_user.php:137
+#: zp-core/zp-extensions/register_user.php:155
 msgid ""
 "* The option may be set via the <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a> plugin options."
@@ -18681,7 +18793,7 @@ msgstr ""
 "* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a>."
 
-#: zp-core/zp-extensions/register_user.php:147
+#: zp-core/zp-extensions/register_user.php:164
 msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
@@ -18689,15 +18801,15 @@ msgstr ""
 "Bien sûr, au moins un administrateur doit avoir une adresse email pour que "
 "cette option ait un sens !"
 
-#: zp-core/zp-extensions/register_user.php:167
+#: zp-core/zp-extensions/register_user.php:184
 msgid "Default user group"
 msgstr "Groupe par défaut de l’utilisateur"
 
-#: zp-core/zp-extensions/register_user.php:172
+#: zp-core/zp-extensions/register_user.php:188
 msgid "Initial group assignment for the new user."
 msgstr "Groupe initial pour le nouvel utilisateur."
 
-#: zp-core/zp-extensions/register_user.php:183
+#: zp-core/zp-extensions/register_user.php:198
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
@@ -18705,35 +18817,35 @@ msgstr ""
 "Droits accordés initialement à un nouvel utilisateur. (Si aucun droit n’est "
 "accordé, l’utilisateur devra être approuvé.)"
 
-#: zp-core/zp-extensions/register_user.php:310
+#: zp-core/zp-extensions/register_user.php:388
 msgid "You must supply the street field."
 msgstr "Vous devez saisir le nom de la rue."
 
-#: zp-core/zp-extensions/register_user.php:314
+#: zp-core/zp-extensions/register_user.php:392
 msgid "You must supply the city field."
 msgstr "Vous devez saisir le nom de la ville."
 
-#: zp-core/zp-extensions/register_user.php:318
+#: zp-core/zp-extensions/register_user.php:396
 msgid "You must supply the state field."
 msgstr "Vous devez saisir le nom de l’état ou de la province."
 
-#: zp-core/zp-extensions/register_user.php:322
+#: zp-core/zp-extensions/register_user.php:400
 msgid "You must supply the country field."
 msgstr "Vous devez saisir le nom du pays."
 
-#: zp-core/zp-extensions/register_user.php:326
+#: zp-core/zp-extensions/register_user.php:404
 msgid "You must supply the postal code field."
 msgstr "Vous devez saisir le code postal."
 
-#: zp-core/zp-extensions/register_user.php:347
+#: zp-core/zp-extensions/register_user.php:425
 msgid "Registration confirmation"
 msgstr "Confirmation de l’inscription"
 
-#: zp-core/zp-extensions/register_user.php:417
+#: zp-core/zp-extensions/register_user.php:495
 msgid "Zenphoto Gallery registration"
 msgstr "Inscription à la galerie Zenphoto"
 
-#: zp-core/zp-extensions/register_user.php:417
+#: zp-core/zp-extensions/register_user.php:495
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
@@ -18742,21 +18854,21 @@ msgstr ""
 "%1$s (%2$s) s’est inscrit(e) à la galerie Zenphoto en fournissant l’adresse "
 "email %3$s."
 
-#: zp-core/zp-extensions/register_user.php:444
+#: zp-core/zp-extensions/register_user.php:522
 msgid "you are already logged in."
 msgstr "vous êtes déjà connecté(e)."
 
-#: zp-core/zp-extensions/register_user.php:456
+#: zp-core/zp-extensions/register_user.php:534
 msgid "Thank you for registering."
 msgstr "Merci de vous être inscrit."
 
-#: zp-core/zp-extensions/register_user.php:460
+#: zp-core/zp-extensions/register_user.php:539
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Vous pouvez maintenant vous connecter au site et vérifier vos renseignements "
 "personnels."
 
-#: zp-core/zp-extensions/register_user.php:479
+#: zp-core/zp-extensions/register_user.php:560
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -18764,57 +18876,67 @@ msgstr ""
 "Votre demande d’inscription a été acceptée. Un email vous a été envoyé pour "
 "vérifier votre adresse."
 
-#: zp-core/zp-extensions/register_user.php:488
-#: zp-core/zp-extensions/register_user.php:503
-#: zp-core/zp-extensions/register_user.php:511
-#: zp-core/zp-extensions/register_user.php:519
-#: zp-core/zp-extensions/register_user.php:527
-#: zp-core/zp-extensions/register_user.php:535
-#: zp-core/zp-extensions/register_user.php:543
-#: zp-core/zp-extensions/register_user.php:551
-#: zp-core/zp-extensions/register_user.php:567
-#: zp-core/zp-extensions/register_user.php:591
+#: zp-core/zp-extensions/register_user.php:570
+#: zp-core/zp-extensions/register_user.php:585
+#: zp-core/zp-extensions/register_user.php:593
+#: zp-core/zp-extensions/register_user.php:601
+#: zp-core/zp-extensions/register_user.php:609
+#: zp-core/zp-extensions/register_user.php:617
+#: zp-core/zp-extensions/register_user.php:625
+#: zp-core/zp-extensions/register_user.php:633
+#: zp-core/zp-extensions/register_user.php:641
+#: zp-core/zp-extensions/register_user.php:649
+#: zp-core/zp-extensions/register_user.php:665
+#: zp-core/zp-extensions/register_user.php:689
 msgid "Registration failed."
 msgstr "L’inscription a échoué."
 
-#: zp-core/zp-extensions/register_user.php:496
+#: zp-core/zp-extensions/register_user.php:578
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "L’identifiant <em>%s</em> que vous avez choisi est déjà utilisé."
 
-#: zp-core/zp-extensions/register_user.php:504
+#: zp-core/zp-extensions/register_user.php:586
 msgid "Passwords may not be empty."
 msgstr "Les mots de passe ne peuvent pas être vides."
 
-#: zp-core/zp-extensions/register_user.php:520
+#: zp-core/zp-extensions/register_user.php:602
 msgid "You have not filled in all the fields."
 msgstr "Vous n’avez pas rempli tous les champs."
 
-#: zp-core/zp-extensions/register_user.php:528
+#: zp-core/zp-extensions/register_user.php:610
 msgid "Invalid verification link."
 msgstr "Lien de vérification invalide."
 
-#: zp-core/zp-extensions/register_user.php:536
+#: zp-core/zp-extensions/register_user.php:618
 msgid "Enter a valid email address."
 msgstr "Saisissez une adresse email valide."
 
-#: zp-core/zp-extensions/register_user.php:544
+#: zp-core/zp-extensions/register_user.php:626
 msgid "The email address entered is already used."
 msgstr "L’adresse email saisie est déjà utilisée."
 
-#: zp-core/zp-extensions/register_user.php:552
+#: zp-core/zp-extensions/register_user.php:634
 msgid "The CAPTCHA you entered was not correct."
 msgstr "Le Captcha que vous avez saisi est incorrect."
 
-#: zp-core/zp-extensions/register_user.php:559
+#: zp-core/zp-extensions/register_user.php:642
+msgid "The math quiz answer you entered was not correct."
+msgstr "La réponse à la devinette mathématique saisie n’est pas correcte."
+
+#: zp-core/zp-extensions/register_user.php:650
+msgid "The text quiz answer you entered was not correct."
+msgstr "La réponse à la devinette saisie n’est pas correcte."
+
+#: zp-core/zp-extensions/register_user.php:657
 msgid "Verification failed."
 msgstr "La validation a échoué."
 
-#: zp-core/zp-extensions/register_user.php:560
+#: zp-core/zp-extensions/register_user.php:658
 msgid "Your registration request could not be completed."
 msgstr "Votre demande d’inscription n’a pu être effectuée correctement."
 
-#: zp-core/zp-extensions/register_user.php:573
+#: zp-core/zp-extensions/register_user.php:671
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
@@ -18822,15 +18944,35 @@ msgstr ""
 "Votre tentative d’enregistrement a échoué au test "
 "<code>register_user_registered</code>."
 
-#: zp-core/zp-extensions/register_user.php:583
+#: zp-core/zp-extensions/register_user.php:681
 msgid "Data usage confirmation missing."
 msgstr "Confirmation de l’usage des données manquante."
 
-#: zp-core/zp-extensions/register_user.php:584
+#: zp-core/zp-extensions/register_user.php:682
 msgid "You have not agreed to data storage and handling by this website."
 msgstr ""
 "Vous n’avez pas accepté le stockage et le traitement de vos données par ce "
 "site."
+
+#: zp-core/zp-extensions/register_user.php:779
+msgid "Use registerUser::getUserInfo() instead"
+msgstr "Utilisez plutôt registerUser::getUserInfo()"
+
+#: zp-core/zp-extensions/register_user.php:788
+msgid "Use registerUser::getLink() instead"
+msgstr "Utilisez plutôt registerUser::getLink()"
+
+#: zp-core/zp-extensions/register_user.php:796
+msgid "Use registerUser::postProcessor() instead"
+msgstr "Utilisez plutôt registerUser::postProcessor()"
+
+#: zp-core/zp-extensions/register_user.php:810
+msgid "Use registerUser::printForm() instead"
+msgstr "Utilisez plutôt registerUser::printForm()"
+
+#: zp-core/zp-extensions/register_user.php:825
+msgid "Use registerUser::printLink() instead"
+msgstr "Utilisez plutôt registerUser::printLink()"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:14
 msgid "Username* (this will be your user username)"
@@ -18844,15 +18986,9 @@ msgstr "Email<strong>*</strong> (ce sera votre identifiant)"
 msgid "User ID"
 msgstr "Identifiant"
 
-#: zp-core/zp-extensions/register_user/register_user_form.php:120
+#: zp-core/zp-extensions/register_user/register_user_form.php:134
 msgid "<strong>*</strong>Required"
 msgstr "<strong>*</strong> Champs obligatoires"
-
-#: zp-core/zp-extensions/register_user/register_user_form.php:126
-msgid "You may also register using federated credentials"
-msgstr ""
-"Vous pouvez aussi vous inscrire en utilisant votre identifiant et votre mot "
-"de passe d’un site reconnu (authentification unique fédérée)"
 
 #: zp-core/zp-extensions/related_items.php:9
 msgid ""
@@ -19606,6 +19742,14 @@ msgstr "Configurer les droits du journal de sécurité"
 #, php-format
 msgid "File permissions of Security log are %04o"
 msgstr "Les droits du journal de sécurité sont réglés à %04o."
+
+#: zp-core/zp-extensions/security-logger.php:293
+msgid ""
+"security_logger::federatedLoginLogger() will be removed and not replaced as "
+"the federated_login plugin is not supported anymore"
+msgstr ""
+"security_logger::federatedLoginLogger() va être supprimé et non remplacé, "
+"l’extension federated_login n’étant plus supportée."
 
 #: zp-core/zp-extensions/seo_cleanup.php:15
 msgid "Provides a utility SEO file/folder name clenser."
@@ -20608,11 +20752,11 @@ msgstr "catégories d’actualités"
 msgid "Text editor TinyMCE 4.x"
 msgstr "Éditeur de textes TinyMCE 4.x"
 
-#: zp-core/zp-extensions/tinymce4.php:45
+#: zp-core/zp-extensions/tinymce4.php:48
 msgid "Text editor configuration - Zenphoto"
 msgstr "Configuration de l’éditeur de texte – Zenphoto"
 
-#: zp-core/zp-extensions/tinymce4.php:51
+#: zp-core/zp-extensions/tinymce4.php:54
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and "
 "news articles."
@@ -20620,43 +20764,54 @@ msgstr ""
 "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les "
 "pages et les actualités Zenpage)."
 
-#: zp-core/zp-extensions/tinymce4.php:52
+#: zp-core/zp-extensions/tinymce4.php:55
 msgid "Text editor configuration - Zenpage"
 msgstr "Configuration de l’éditeur de texte – Zenpage"
 
-#: zp-core/zp-extensions/tinymce4.php:58
+#: zp-core/zp-extensions/tinymce4.php:61
 msgid ""
 "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
 msgstr ""
 "S’applique au texte éditable par les administrateurs pour les <em>pages</em> "
 "et les <em>actualités</em> Zenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:59 zp-core/zp-extensions/tinymce4.php:64
+#: zp-core/zp-extensions/tinymce4.php:62
+msgid "Text editor height"
+msgstr "Hauteur de l’éditeur de texte"
+
+#: zp-core/zp-extensions/tinymce4.php:66
+msgid ""
+"Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px."
+msgstr ""
+"Hauteur prédéfinie en pixels des zones de texte de Zenphoto et Zenpage. "
+"Valeur par défaut : 400 px."
+
+#: zp-core/zp-extensions/tinymce4.php:67 zp-core/zp-extensions/tinymce4.php:72
 msgid "Custom image size"
 msgstr "Taille d’image personnalisée"
 
-#: zp-core/zp-extensions/tinymce4.php:63 zp-core/zp-extensions/tinymce4.php:68
+#: zp-core/zp-extensions/tinymce4.php:71 zp-core/zp-extensions/tinymce4.php:76
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
 "Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:69
+#: zp-core/zp-extensions/tinymce4.php:77
 msgid "Custom thumb crop - size"
 msgstr "Rognage personnalisé des vignettes – taille"
 
-#: zp-core/zp-extensions/tinymce4.php:73
+#: zp-core/zp-extensions/tinymce4.php:81
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
 "Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:74
+#: zp-core/zp-extensions/tinymce4.php:82
 msgid "Custom thumb crop - width"
 msgstr "Rognage personnalisé des vignettes – largeur"
 
-#: zp-core/zp-extensions/tinymce4.php:78
+#: zp-core/zp-extensions/tinymce4.php:86
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
@@ -20664,11 +20819,11 @@ msgstr ""
 "Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:79
+#: zp-core/zp-extensions/tinymce4.php:87
 msgid "Custom thumb crop - height"
 msgstr "Rognage personnalisé des vignettes – hauteur"
 
-#: zp-core/zp-extensions/tinymce4.php:83
+#: zp-core/zp-extensions/tinymce4.php:91
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
@@ -20676,27 +20831,27 @@ msgstr ""
 "Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
 "personnalisé qui sont insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:84
+#: zp-core/zp-extensions/tinymce4.php:92
 msgid "Entity encoding"
 msgstr "Encodage des Entités"
 
-#: zp-core/zp-extensions/tinymce4.php:89
+#: zp-core/zp-extensions/tinymce4.php:97
 msgid "Raw"
 msgstr "Brut"
 
-#: zp-core/zp-extensions/tinymce4.php:90
+#: zp-core/zp-extensions/tinymce4.php:98
 msgid "Numeric"
 msgstr "Numérique"
 
-#: zp-core/zp-extensions/tinymce4.php:91
+#: zp-core/zp-extensions/tinymce4.php:99
 msgid "Named"
 msgstr "Nommé"
 
-#: zp-core/zp-extensions/tinymce4.php:92
+#: zp-core/zp-extensions/tinymce4.php:100
 msgid "Named and numeric"
 msgstr "Nommé et numérique"
 
-#: zp-core/zp-extensions/tinymce4.php:95
+#: zp-core/zp-extensions/tinymce4.php:103
 msgid ""
 "If encountering issues with special chars and other character entities "
 "change this. Note that this applies on re-saving content only. More info on "
@@ -20709,11 +20864,11 @@ msgstr ""
 "href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entity_encoding\">documentation tinyMCE</a>."
 
-#: zp-core/zp-extensions/tinymce4.php:96
+#: zp-core/zp-extensions/tinymce4.php:104
 msgid "Entities"
 msgstr "Entités"
 
-#: zp-core/zp-extensions/tinymce4.php:100
+#: zp-core/zp-extensions/tinymce4.php:108
 msgid ""
 "You can adjust how entities are processed. More info on the <a "
 "href=\"https://www.tinymce.com/docs/configure/content-filtering/"
@@ -20722,6 +20877,42 @@ msgstr ""
 "Vous pouvez ajuster la manière dont les entités sont traitées. Plus d’info "
 "sur le <a href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entities\">documentation tinyMCE</a>."
+
+#: zp-core/zp-extensions/tinymce4.php:109
+msgid "Browser spellcheck"
+msgstr "Vérification orthographique du navigateur"
+
+#: zp-core/zp-extensions/tinymce4.php:113
+msgid ""
+"Check to use your browser spellchecker.<br><strong>Note:</strong> Spellcheck "
+"feature should be available in the browser and enabled (location of settings "
+"to do so vary from browser to browser).<br><strong>Warning:</strong> "
+"Depending on browser, this can be a privacy concern. Do your research on the "
+"implementation of spellchek in your browser of choice."
+msgstr ""
+"Cochez cette case pour utiliser le correcteur orthographique de votre "
+"navigateur.<br><strong>Remarque :</strong> La fonctionnalité de vérification "
+"orthographique doit être disponible dans le navigateur et activée "
+"(l’emplacement des paramètres pour ce faire varie d’un navigateur à l’autre)."
+"<br><strong>Avertissement :</strong> Selon le navigateur, cela peut poser un "
+"problème de confidentialité. Faites vos recherches sur la mise en œuvre de "
+"la vérification orthographique dans le navigateur de votre choix."
+
+#: zp-core/zp-extensions/tinymce4.php:114
+msgid "Browser context menu"
+msgstr "Menu contextuel du navigateur"
+
+#: zp-core/zp-extensions/tinymce4.php:118
+msgid ""
+"Check to disable TinyMCE right-click menu, browser right-click menu will be "
+"used instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used "
+"- browser right-click menu can still be accessed by pressing <em>Ctrl+Right "
+"click</em>."
+msgstr ""
+"Cochez pour désactiver le menu contextuel de TinyMCE. Le menu contextuel du "
+"navigateur sera utilisé à la place.<br><strong>Remarque :</strong> Si le "
+"menu contextuel de TinyMCE est utilisé, le menu contextuel du navigateur est "
+"toujours accessible par en appuyant sur <em>Ctrl+Clic droit</em>."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
@@ -22905,6 +23096,11 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid "You may also register using federated credentials"
+#~ msgstr ""
+#~ "Vous pouvez aussi vous inscrire en utilisant votre identifiant et votre "
+#~ "mot de passe d’un site reconnu (authentification unique fédérée)"
 
 #, php-format
 #~ msgid "Testing %s."
@@ -28039,9 +28235,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Le paramètre de tri album::setSortDirection($what, $val) est déprécié. "
 #~ "Utilisez album::setSortDirection($val, $what) à la place."
-
-#~ msgid "Use the getLink() method instead"
-#~ msgstr "Utilisez plutôt la méthode getLink()"
 
 #~ msgid "Use the getThumb() method instead"
 #~ msgstr "Utilisez plutôt la méthode getThumb()"
