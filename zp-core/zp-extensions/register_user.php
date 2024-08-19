@@ -822,7 +822,7 @@ function printRegistrationForm($thanks = NULL) {
  * @param string $class optional class
  */
 function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
-	deprecationNotice(gettext('Use registerUser::printForm() instead'));
+	deprecationNotice(gettext('Use registerUser::printLink() instead'));
 	registerUser::printLink($_linktext, $prev, $next, $class);
 }
 
