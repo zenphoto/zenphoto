@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-12 14:04+0200\n"
+"POT-Creation-Date: 2024-08-19 16:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -706,7 +706,7 @@ msgstr "apart"
 #: zp-core/zp-extensions/comment_form.php:123
 #: zp-core/zp-extensions/comment_form.php:136
 #: zp-core/zp-extensions/comment_form.php:195
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Omit"
 msgstr "Niet tonen"
 
@@ -2589,7 +2589,7 @@ msgid "You must supply a password."
 msgstr "Je moet een wachtwoord invoeren."
 
 #: zp-core/admin-functions.php:4971 zp-core/admin-options.php:617
-#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:512
+#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:594
 msgid "Your passwords did not match."
 msgstr "Je wachtwoorden komen niet overeen."
 
@@ -6422,7 +6422,7 @@ msgstr ""
 #: zp-core/classes/class-_zp_captcha.php:12
 #: zp-core/zp-extensions/comment_form.php:199
 #: zp-core/zp-extensions/contact_form.php:193
-#: zp-core/zp-extensions/register_user.php:115
+#: zp-core/zp-extensions/register_user.php:118
 msgid "No captcha handler is enabled."
 msgstr "Er is geen CAPTCHA plugin geactiveerd."
 
@@ -6875,7 +6875,7 @@ msgid "All rights"
 msgstr "Alle rechten"
 
 #: zp-core/classes/class-authority.php:658
-#: zp-core/zp-extensions/register_user.php:179
+#: zp-core/zp-extensions/register_user.php:195
 msgid "Default rights"
 msgstr "Standaard rechten"
 
@@ -6981,7 +6981,7 @@ msgstr ""
 
 #: zp-core/classes/class-authority.php:1013
 #: zp-core/classes/class-authority.php:1014
-#: zp-core/zp-extensions/register_user/register_user_form.php:121
+#: zp-core/zp-extensions/register_user/register_user_form.php:135
 msgid "Submit"
 msgstr "Verzenden"
 
@@ -8036,8 +8036,7 @@ msgstr "gastgebruiker"
 msgid "Use the global object $_zp_db and the class method connect() instead."
 msgstr ""
 "De functie <code>db_connect()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>connect()</"
-"code>."
+"<code>$_zp_db::connect()</code>."
 
 #: zp-core/deprecated/functions-db.php:44
 #: zp-core/deprecated/functions-db.php:332
@@ -8046,122 +8045,107 @@ msgstr ""
 msgid ""
 "Use the global object $_zp_db and the class method of the same name instead."
 msgstr ""
-"De functie <code>query()</code> is verouderd. Gebruik in plaats hiervan het "
-"global object <code>$_zp_db</code> en de class methode <code>query</code>."
+"De functie <code>query()</code> is verouderd. Gebruik in plaats hiervan "
+"<code>$_zp_db::query()</code>."
 
 #: zp-core/deprecated/functions-db.php:61
 msgid ""
 "Use the global object $_zp_db and the class method querySingleRow() instead."
 msgstr ""
 "De functie <code>query_single_row()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>querySingleRow()</code>."
+"hiervan <code>$_zp_db::querySingleRow()</code>."
 
 #: zp-core/deprecated/functions-db.php:78
 msgid ""
 "Use the global object $_zp_db and the class method queryFullArray() instead."
 msgstr ""
 "De functie <code>query_full_array()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>queryFullArray()</code>."
+"hiervan <code>$_zp_db::queryFullArray()</code>."
 
 #: zp-core/deprecated/functions-db.php:93
 msgid "Use the global object $_zp_db and the class method quote() instead."
 msgstr ""
 "De functie <code>db_quote()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>quote()</"
-"code>."
+"<code>$_zp_db::quote()</code>."
 
 #: zp-core/deprecated/functions-db.php:105
 msgid "Use the global object $_zp_db and the class method insertID() instead."
 msgstr ""
 "De functie <code>db_insert_id()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>insertID()</code>."
+"hiervan <code>$_zp_db::insertID()</code>."
 
 #: zp-core/deprecated/functions-db.php:117
 msgid ""
 "Use the global object $_zp_db and the class method fetchAssoc() instead."
 msgstr ""
 "De functie <code>db_fetch_assoc()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>fetchAssoc()</code>."
+"hiervan <code>$_zp_db::fetchAssoc()</code>."
 
 #: zp-core/deprecated/functions-db.php:129
 msgid "Use the global object $_zp_db and the class method getError() instead."
 msgstr ""
 "De functie <code>db_error()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>getError()</"
-"code>."
+"<code>$_zp_db::getError()</code>."
 
 #: zp-core/deprecated/functions-db.php:141
 msgid ""
 "Use the global object $_zp_db and the class method getAffectedRows() instead."
 msgstr ""
 "De functie <code>db_affected_rows()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getAffectedRows()</code>."
+"hiervan <code>$_zp_db::getAffectedRows()</code>."
 
 #: zp-core/deprecated/functions-db.php:153
 msgid "Use the global object $_zp_db and the class method fetchRow() instead."
 msgstr ""
 "De functie <code>db_fetch_row()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>fetchRow()</code>."
+"hiervan <code>$_zp_db::fetchRow()</code>."
 
 #: zp-core/deprecated/functions-db.php:165
 msgid ""
 "Use the global object $_zp_db and the class method getNumRows() instead."
 msgstr ""
 "De functie <code>db_num_rows()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getNumRows()</code>."
+"hiervan <code>$_zp_db::getNumRows()</code>."
 
 #: zp-core/deprecated/functions-db.php:177
 msgid "Use the global object $_zp_db and the class method close() instead."
 msgstr ""
 "De functie <code>db_close()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>close()</"
-"code>."
+"<code>$_zp_db::close()</code>."
 
 #: zp-core/deprecated/functions-db.php:189
 msgid ""
 "Use the global object $_zp_db and the class method getSoftware() instead."
 msgstr ""
 "De functie <code>db_software()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getSoftware()</code>."
+"hiervan <code>$_zp_db::getSoftware()</code>."
 
 #: zp-core/deprecated/functions-db.php:201
 msgid "Use the global object $_zp_db and the class method create() instead."
 msgstr ""
 "De functie <code>db_create()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>create()</"
-"code>."
+"<code>$_zp_db::create()</code>."
 
 #: zp-core/deprecated/functions-db.php:213
 msgid ""
 "Use the global object $_zp_db and the class method getPermissions() instead."
 msgstr ""
 "De functie <code>db_permissions()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getPermissions()</code>."
+"hiervan <code>$_zp_db::getPermissions()</code>."
 
 #: zp-core/deprecated/functions-db.php:225
 msgid ""
 "Use the global object $_zp_db and the class method setSQLmode() instead."
 msgstr ""
 "De functie <code>db_setSQLmode()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>setSQLmode()</code>."
+"hiervan <code>$_zp_db::setSQLmode()</code>."
 
 #: zp-core/deprecated/functions-db.php:237
 msgid ""
 "Use the global object $_zp_db and the class method getSQLmode() instead."
 msgstr ""
 "De functie <code>db_getSQLmode()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getSQLmode()</code>."
+"hiervan <code>$_zp_db::getSQLmode()</code>."
 
 #: zp-core/deprecated/functions-db.php:247
 msgid ""
@@ -8169,100 +8153,87 @@ msgid ""
 "instead."
 msgstr ""
 "De functie <code>db_collation()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getCollationSetClause()</code>."
+"hiervan <code>$_zp_db::getCollationSetClause()</code>."
 
 #: zp-core/deprecated/functions-db.php:257
 msgid ""
 "Use the global object $_zp_db and the class method createTable() instead."
 msgstr ""
 "De functie <code>db_create_table()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>createTable()</code>."
+"hiervan <code>$_zp_db::createTable()</code>."
 
 #: zp-core/deprecated/functions-db.php:267
 msgid ""
 "Use the global object $_zp_db and the class method tableUpdate() instead."
 msgstr ""
 "De functie <code>db_table_update()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>tableUpdate()</code>."
+"hiervan <code>$_zp_db::tableUpdate()</code>."
 
 #: zp-core/deprecated/functions-db.php:277
 msgid "Use the global object $_zp_db and the class method show() instead."
 msgstr ""
 "De functie <code>db_show()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>show()</"
-"code>."
+"<code>$_zp_db::show()</code>."
 
 #: zp-core/deprecated/functions-db.php:287
 msgid "Use the global object $_zp_db and the class method getFields() instead."
 msgstr ""
 "De functie <code>db_list_fields()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getFields()</code>."
+"hiervan <code>$_zp_db::getFields()</code>."
 
 #: zp-core/deprecated/functions-db.php:297
 msgid ""
 "Use the global object $_zp_db and the class method truncateTable() instead."
 msgstr ""
 "De functie <code>db_truncate_table()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>truncateTable()</code>."
+"hiervan <code>$_zp_db::truncateTable()</code>."
 
 #: zp-core/deprecated/functions-db.php:307
 msgid ""
 "Use the global object $_zp_db and the class method likeEscape() instead."
 msgstr ""
 "De functie <code>db_LIKE_escape()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>likeEscape()</code>."
+"hiervan <code>$_zp_db::likeEscape()</code>."
 
 #: zp-core/deprecated/functions-db.php:317
 msgid ""
 "Use the global object $_zp_db and the class method freeResult() instead."
 msgstr ""
 "De functie <code>db_free_result()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>freeResult()</code>."
+"hiervan <code>$_zp_db::freeResult()</code>."
 
 #: zp-core/deprecated/functions-db.php:377
 msgid "Use the global object $_zp_db and the class method getDBName() instead."
 msgstr ""
 "De functie <code>db_name()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode "
-"<code>getDBName()</code>."
+"<code>$_zp_db::getDBName()</code>."
 
 #: zp-core/deprecated/functions-db.php:394
 msgid "Use the global object $_zp_db and the class method count() instead."
 msgstr ""
 "De functie <code>db_count()</code> is verouderd. Gebruik in plaats hiervan "
-"het global object <code>$_zp_db</code> en de class methode <code>count()</"
-"code>."
+"<code>$_zp_db::count()</code>."
 
 #: zp-core/deprecated/functions-db.php:406
 msgid ""
 "Use the global object $_zp_db and the class method getServerInfo() instead."
 msgstr ""
 "De functie <code>db_getServerInfo()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getServerInfo()</code>."
+"hiervan <code>$_zp_db::getServerInfo()</code>."
 
 #: zp-core/deprecated/functions-db.php:418
 msgid ""
 "Use the global object $_zp_db and the class method getClientInfo() instead."
 msgstr ""
 "De functie <code>db_getClientInfo()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getClientInfo()</code>."
+"hiervan <code>$_zp_db::getClientInfo()</code>."
 
 #: zp-core/deprecated/functions-db.php:431
 msgid ""
 "Use the global object $_zp_db and the class method getVersion() instead."
 msgstr ""
 "De functie <code>db_getVersion()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_db</code> en de class methode "
-"<code>getVersion()</code>."
+"hiervan <code>$_zp_db::getVersion()</code>."
 
 #: zp-core/deprecated/functions-graphics.php:19
 #: zp-core/deprecated/functions-graphics.php:29
@@ -8297,8 +8268,7 @@ msgid ""
 "(but without the \"zp_\" prefix) instead."
 msgstr ""
 "De functie <code>zp_imageGet()</code> is verouderd. Gebruik in plaats "
-"hiervan het global object <code>$_zp_graphics</code> en de class methode "
-"<code>imageGet</code>."
+"hiervan <code>$_zp_graphics::imageGet()</code>."
 
 #: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:550
 #: zp-core/zp-extensions/downloadList.php:782
@@ -12861,7 +12831,7 @@ msgstr "tot"
 #: zp-core/zp-extensions/comment_form.php:124
 #: zp-core/zp-extensions/comment_form.php:137
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Show"
 msgstr "zichtbaar"
 
@@ -14173,7 +14143,7 @@ msgstr "PDF"
 #: zp-core/zp-extensions/class-WEBdocs.php:77
 #: zp-core/zp-extensions/comment_form.php:177
 #: zp-core/zp-extensions/galleryArticles.php:99
-#: zp-core/zp-extensions/tinymce4.php:50 zp-core/zp-extensions/tinymce4.php:57
+#: zp-core/zp-extensions/tinymce4.php:53 zp-core/zp-extensions/tinymce4.php:60
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
@@ -14593,7 +14563,7 @@ msgstr "Naam"
 #: zp-core/zp-extensions/comment_form.php:125
 #: zp-core/zp-extensions/comment_form.php:138
 #: zp-core/zp-extensions/comment_form.php:197
-#: zp-core/zp-extensions/register_user.php:127
+#: zp-core/zp-extensions/register_user.php:146
 msgid "Require"
 msgstr "Verplicht"
 
@@ -14636,7 +14606,7 @@ msgstr ""
 "te kunnen worden door het formulier"
 
 #: zp-core/zp-extensions/comment_form.php:132
-#: zp-core/zp-extensions/register_user.php:123
+#: zp-core/zp-extensions/register_user.php:143
 msgid "Address fields"
 msgstr "Adresvelden"
 
@@ -14757,13 +14727,13 @@ msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 
 #: zp-core/zp-extensions/comment_form.php:183
 #: zp-core/zp-extensions/contact_form.php:181
-#: zp-core/zp-extensions/register_user.php:116
+#: zp-core/zp-extensions/register_user.php:111
 msgid "Data usage confirmation"
 msgstr "Bevestiging gebruikersgegevens"
 
 #: zp-core/zp-extensions/comment_form.php:186
 #: zp-core/zp-extensions/contact_form.php:184
-#: zp-core/zp-extensions/register_user.php:120
+#: zp-core/zp-extensions/register_user.php:114
 msgid ""
 "If checked a mandatory checkbox is added for users to confirm about data "
 "storage and handling by your site. This is recommend to comply with the "
@@ -14805,6 +14775,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:200
 #: zp-core/zp-extensions/contact_form.php:194
+#: zp-core/zp-extensions/register_user.php:119
 msgid "Math quiz"
 msgstr "Rekenquiz"
 
@@ -14818,11 +14789,13 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:204
 #: zp-core/zp-extensions/contact_form.php:198
+#: zp-core/zp-extensions/register_user.php:123
 msgid "Math quiz question"
 msgstr "Vraag rekenquiz"
 
 #: zp-core/zp-extensions/comment_form.php:207
 #: zp-core/zp-extensions/contact_form.php:201
+#: zp-core/zp-extensions/register_user.php:126
 msgid ""
 "The question for the math quiz. Enter a valid PHP expression like 2+3*2. "
 "Allowed chars: <code>0-9+-*/.()</code>."
@@ -14832,6 +14805,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:208
 #: zp-core/zp-extensions/contact_form.php:202
+#: zp-core/zp-extensions/register_user.php:127
 msgid "Text quiz"
 msgstr "Tekstquiz"
 
@@ -14845,21 +14819,25 @@ msgstr ""
 
 #: zp-core/zp-extensions/comment_form.php:212
 #: zp-core/zp-extensions/contact_form.php:206
+#: zp-core/zp-extensions/register_user.php:131
 msgid "Text quiz question"
 msgstr "Vraag tekstquiz"
 
 #: zp-core/zp-extensions/comment_form.php:216
 #: zp-core/zp-extensions/contact_form.php:210
+#: zp-core/zp-extensions/register_user.php:135
 msgid "The question for the text quiz."
 msgstr "De vraag voor de tekstquiz."
 
 #: zp-core/zp-extensions/comment_form.php:217
 #: zp-core/zp-extensions/contact_form.php:211
+#: zp-core/zp-extensions/register_user.php:136
 msgid "Text quiz answer"
 msgstr "Antwoord tekstquiz"
 
 #: zp-core/zp-extensions/comment_form.php:221
 #: zp-core/zp-extensions/contact_form.php:215
+#: zp-core/zp-extensions/register_user.php:140
 msgid "The answer to the text quiz question."
 msgstr "Het antwoord op de tekstquizvraag."
 
@@ -15561,16 +15539,17 @@ msgid "Phone number"
 msgstr "Telefoonnummer"
 
 #: zp-core/zp-extensions/contact_form.php:189
-#: zp-core/zp-extensions/register_user.php:111
+#: zp-core/zp-extensions/register_user.php:115
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
 #: zp-core/zp-extensions/contact_form.php:193
-#: zp-core/zp-extensions/register_user.php:115
+#: zp-core/zp-extensions/register_user.php:118
 msgid "If checked, the form will include a Captcha verification."
 msgstr "Indien aangevinkt, zal het formulier een Captcha verificatie tonen."
 
 #: zp-core/zp-extensions/contact_form.php:197
+#: zp-core/zp-extensions/register_user.php:122
 msgid ""
 "Enables a mandatory input field so users have to answer a math question "
 "before they can send any mail."
@@ -15579,6 +15558,7 @@ msgstr ""
 "rekenvraag moeten beantwoorden voordat ze een bericht kunnen verzenden."
 
 #: zp-core/zp-extensions/contact_form.php:205
+#: zp-core/zp-extensions/register_user.php:130
 msgid ""
 "Enables a mandatory input field so users have to answer a text question "
 "before they can send any mail."
@@ -16422,8 +16402,7 @@ msgstr ""
 msgid "Use AlbumBase class method getNumAllImages() instead"
 msgstr ""
 "De functie <code>getTotalImagesIn()</code> is verouderd. Gebruik in plaats "
-"hiervan de <code>AlbumBase</code> class methode <code>getNumAllImages()</"
-"code>."
+"hiervan de <code>$album::getNumAllImages</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:612
 msgid "Use themeObject::checkScheduledPublishing() instead"
@@ -16434,69 +16413,68 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:629
 msgid "Use getLanguageSubdomains() instead"
 msgstr ""
-"De class method <code>LanguageSubdomains()</code> is verouderd. Gebruik in "
-"plaats hiervan de procedurele functie <code>getLanguageSubdomains()</code>"
+"De functie <code>LanguageSubdomains()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>getLanguageSubdomains()</code>"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:636
 msgid "Use getLanguageText() instead"
 msgstr ""
-"De class method <code>getLanguageText()</code> is verouderd. Gebruik in "
-"plaats hiervan de procedurele functie <code>getLanguageText()</code>."
+"De functie <code>getLanguageText()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>getLanguageText()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:643
 msgid "Use setexifvars() instead"
 msgstr ""
-"De class method <code>setexifvars()</code> is verouderd. Gebruik in plaats "
-"hiervan de procedurele functie <code>setexifvars()</code>"
+"De functie <code>setexifvars()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>setexifvars()</code>"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:650
 msgid "Use hasPrimaryScripts() instead"
 msgstr ""
-"De class method <code>hasPrimaryScripts()</code> is verouderd. Gebruik in "
-"plaats hiervan de procedurele functie <code>hasPrimaryScripts()</code>"
+"De functie <code>hasPrimaryScripts()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>hasPrimaryScripts()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:657
 msgid "Use removeDir() instead"
 msgstr ""
-"De class method <code>removeDir()</code> is verouderd. Gebruik in plaats "
-"hiervan de procedurele functie <code>removeDir()</code>"
+"De functie <code>removeDir()</code> is verouderd. Gebruik in plaats hiervan  "
+"<code>removeDir()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:664
 msgid "Use tagURLs() instead"
 msgstr ""
-"De class method <code>tagURLs()</code> is verouderd. Gebruik in plaats "
-"hiervan de procedurele functie <code>tagURLs()</code>"
+"De functie <code>tagURLs()</code> is verouderd. Gebruik in plaats hiervan de "
+"<code>tagURLs()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:671
 msgid "Use unTagURLs() instead"
 msgstr ""
-"De class method <code>unTagURLs()</code> is verouderd. Gebruik in plaats "
-"hiervan de procedurele functie <code>unTagURLs()</code>"
+"De functie <code>unTagURLs()</code> is verouderd. Gebruik in plaats hiervan "
+"<code>unTagURLs()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:679
 msgid "Use updateImageProcessorLink() instead"
 msgstr ""
-"De class method <code>updateImageProcessorLink()</code> is verouderd. "
-"Gebruik in plaats hiervan de procedurele functie "
-"<code>updateImageProcessorLink()</code>"
+"De functie<code>updateImageProcessorLink()</code> is verouderd. Gebruik in "
+"plaats hiervan <code>updateImageProcessorLink()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:686
 msgid "Use pluginDebug() instead"
 msgstr ""
-"De class method <code>pluginDebug()</code> is verouderd. Gebruik in plaats "
-"hiervan de procedurele functie <code>pluginDebug()</code>"
+"De functie <code>pluginDebug()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>pluginDebug()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:694
 msgid "Use removeTrailingSlash() instead"
 msgstr ""
-"De class method <code>removeTrailingSlash()</code> is verouderd. Gebruik in "
-"plaats hiervan de procedurele functie <code>removeTrailingSlash()</code>"
+"De <code>removeTrailingSlash()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>removeTrailingSlash()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:710
 msgid "Use the instantiate method instead"
 msgstr ""
-"Gebruik in plaats hiervan de class methode <code>instantiate()</code> van de "
-"<em>PersistentObject</em> class"
+"De <code>PersistentObject()</code> is verouderd. Gebruik in plaats hiervan "
+"<code>PersistentObject::instantiate()</code>."
 
 #: zp-core/zp-extensions/deprecated-functions/functions.php:129
 #: zp-core/zp-extensions/deprecated-functions/functions.php:174
@@ -16801,7 +16779,7 @@ msgstr ""
 
 #: zp-core/zp-extensions/dynamic-locale.php:181
 #: zp-core/zp-extensions/html_meta_tags.php:253
-#: zp-core/zp-extensions/register_user.php:142
+#: zp-core/zp-extensions/register_user.php:159
 #: zp-core/zp-extensions/sitemap-extended.php:209
 msgid ""
 "<p class=\"notebox\">*<strong>Note:</strong> The setting of this option is "
@@ -16988,7 +16966,7 @@ msgid "Remove favorite"
 msgstr "Verwijder favoriet"
 
 #: zp-core/zp-extensions/favoritesHandler.php:91
-#: zp-core/zp-extensions/register_user.php:81
+#: zp-core/zp-extensions/register_user.php:87
 msgid "Link text"
 msgstr "Link tekst"
 
@@ -19407,14 +19385,14 @@ msgstr "Standaard laag"
 #: zp-core/zp-extensions/openstreetmap.php:107
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
-"providers (Here, Mapbox, Thunderforest, Geoportail) require access "
-"credentials and registration. More info on <a href=\"https://github.com/"
-"leaflet-extras/leaflet-providers\">leaflet-providers</a>"
+"providers (HEREv3, Mapbox, Thunderforest, Geoportail and Jawg) require "
+"access credentials and registration. More info on <a href=\"https://github."
+"com/leaflet-extras/leaflet-providers\">leaflet-providers</a>"
 msgstr ""
 "Standaard aanbieder van de kaart. Alleen gratis aanbieders zijn inbegrepen. "
-"HERE, Mapbox and Thunderforest vereisen bepaalde toegangscodes en voor Esri "
-"moet je je registreren. Meer info op <a href=\"https://github.com/leaflet-"
-"extras/leaflet-providers\">leaflet-providers</a>"
+"HEREv3, Mapbox, Thunderforest en Jawg vereisen bepaalde toegangscodes en "
+"registratie. Meer info op <a href=\"https://github.com/leaflet-extras/"
+"leaflet-providers\">leaflet-providers</a>"
 
 #: zp-core/zp-extensions/openstreetmap.php:110
 msgid "Zoom controls position"
@@ -19667,12 +19645,12 @@ msgstr ""
 "of negatief zijn. Standaard is -5."
 
 #: zp-core/zp-extensions/openstreetmap.php:213
-msgid "HERE - App id"
-msgstr "HERE - App id"
+msgid "HEREv3 - App id"
+msgstr "HEREv3 - App id"
 
 #: zp-core/zp-extensions/openstreetmap.php:217
-msgid "HERE - App code"
-msgstr "HERE - App code"
+msgid "HEREv3 - App code"
+msgstr "HEREv3 - App code"
 
 #: zp-core/zp-extensions/openstreetmap.php:221
 msgid "Mapbox - Access token"
@@ -19686,7 +19664,11 @@ msgstr "Thunderforest - ApiKey"
 msgid "GeoportailFrance - ApiKey"
 msgstr "GeoportailFrance - ApiKey"
 
-#: zp-core/zp-extensions/openstreetmap.php:1112
+#: zp-core/zp-extensions/openstreetmap.php:233
+msgid "Jawg - Access token"
+msgstr "Jawg - Toegangstoken"
+
+#: zp-core/zp-extensions/openstreetmap.php:1147
 msgid "Use openStreetMap::printOpenStreetMap() instead"
 msgstr ""
 "De functie <code>printOpenStreetMap()</code> is verouderd. Gebruik in plaats "
@@ -20499,8 +20481,8 @@ msgstr ""
 msgid "Click here to register for this site."
 msgstr "Klik hier om je te registreren voor deze site."
 
-#: zp-core/zp-extensions/register_user.php:85
 #: zp-core/zp-extensions/register_user.php:90
+#: zp-core/zp-extensions/register_user.php:94
 msgid ""
 "If this option is set, the visitor login form will include a link to this "
 "page. The link text will be labeled with the text provided."
@@ -20509,17 +20491,17 @@ msgstr ""
 "deze pagina.<br />De <em>link tekst</em> wordt gelabeld met het <em>Label</"
 "em>."
 
-#: zp-core/zp-extensions/register_user.php:86
+#: zp-core/zp-extensions/register_user.php:91
 msgid "Hint text"
 msgstr "Label"
 
-#: zp-core/zp-extensions/register_user.php:91
-#: zp-core/zp-extensions/register_user.php:146
-#: zp-core/zp-extensions/register_user.php:147
+#: zp-core/zp-extensions/register_user.php:95
+#: zp-core/zp-extensions/register_user.php:163
+#: zp-core/zp-extensions/register_user.php:164
 msgid "Notify*"
 msgstr "Informeren*"
 
-#: zp-core/zp-extensions/register_user.php:95
+#: zp-core/zp-extensions/register_user.php:98
 msgid ""
 "If checked, an e-mail will be sent to the gallery admin when a new user has "
 "verified his registration."
@@ -20527,27 +20509,27 @@ msgstr ""
 "Indien aangevinkt, zal een e-mail verzonden worden naar de administrator "
 "zodra een nieuwe gebruiker is geregistreerd."
 
-#: zp-core/zp-extensions/register_user.php:96
+#: zp-core/zp-extensions/register_user.php:99
 msgid "User album"
 msgstr "Album gebruiker"
 
-#: zp-core/zp-extensions/register_user.php:100
+#: zp-core/zp-extensions/register_user.php:102
 msgid "If checked, an album will be created and assigned to the user."
 msgstr ""
 "Indien aangevinkt, wordt er een album aangemaakt en toegewezen aan de "
 "gebruiker."
 
-#: zp-core/zp-extensions/register_user.php:101
+#: zp-core/zp-extensions/register_user.php:103
 msgid "Email ID"
 msgstr "E-mail ID"
 
-#: zp-core/zp-extensions/register_user.php:105
+#: zp-core/zp-extensions/register_user.php:106
 msgid "If checked, The use’s e-mail address will be used as his User ID."
 msgstr ""
 "Indien aangevinkt zal het e-mailadres van de gebruiker gebruikt worden als "
 "zijn/haar ID."
 
-#: zp-core/zp-extensions/register_user.php:106
+#: zp-core/zp-extensions/register_user.php:107
 msgid "Email notification text"
 msgstr "E-mail bericht na reactie:"
 
@@ -20571,7 +20553,7 @@ msgstr ""
 "<br /><br />*Uit veiligheidsoverwegingen wordt het invoegen van het "
 "<em>wachtwoord</em> <strong>afgeraden</strong>.</p>"
 
-#: zp-core/zp-extensions/register_user.php:128
+#: zp-core/zp-extensions/register_user.php:147
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the user must supply data in "
@@ -20580,7 +20562,7 @@ msgstr ""
 "Als <em>Adresvelden</em> worden getoond of verplicht zijn, zal het formulier "
 "posities creëren voor deze informatie."
 
-#: zp-core/zp-extensions/register_user.php:137
+#: zp-core/zp-extensions/register_user.php:155
 msgid ""
 "* The option may be set via the <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a> plugin options."
@@ -20588,7 +20570,7 @@ msgstr ""
 "* Deze optie kan worden ingesteld via de <a href=\"javascript:"
 "gotoName('register_user');\"><em>register_user</em></a> plugin opties."
 
-#: zp-core/zp-extensions/register_user.php:147
+#: zp-core/zp-extensions/register_user.php:164
 msgid ""
 "Of course there must be some Administrator with an e-mail address for this "
 "option to make sense!"
@@ -20596,49 +20578,49 @@ msgstr ""
 "Deze optie heeft natuurlijk alleen effect als er een administrator met een e-"
 "mailadres is !"
 
-#: zp-core/zp-extensions/register_user.php:167
+#: zp-core/zp-extensions/register_user.php:184
 msgid "Default user group"
 msgstr "Gebruikersgroep"
 
-#: zp-core/zp-extensions/register_user.php:172
+#: zp-core/zp-extensions/register_user.php:188
 msgid "Initial group assignment for the new user."
 msgstr "Groepstoewijzing voor de nieuwe gebruiker."
 
-#: zp-core/zp-extensions/register_user.php:183
+#: zp-core/zp-extensions/register_user.php:198
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
 msgstr "Standaard rechten voor de nieuwe gebruiker."
 
-#: zp-core/zp-extensions/register_user.php:310
+#: zp-core/zp-extensions/register_user.php:388
 msgid "You must supply the street field."
 msgstr "Je moet een straatnaam invoeren"
 
-#: zp-core/zp-extensions/register_user.php:314
+#: zp-core/zp-extensions/register_user.php:392
 msgid "You must supply the city field."
 msgstr "Je moet een stad invoeren."
 
-#: zp-core/zp-extensions/register_user.php:318
+#: zp-core/zp-extensions/register_user.php:396
 msgid "You must supply the state field."
 msgstr "Je moet de staat invoeren."
 
-#: zp-core/zp-extensions/register_user.php:322
+#: zp-core/zp-extensions/register_user.php:400
 msgid "You must supply the country field."
 msgstr "Je moet het land invoeren"
 
-#: zp-core/zp-extensions/register_user.php:326
+#: zp-core/zp-extensions/register_user.php:404
 msgid "You must supply the postal code field."
 msgstr "Je moet de postcode invoeren."
 
-#: zp-core/zp-extensions/register_user.php:347
+#: zp-core/zp-extensions/register_user.php:425
 msgid "Registration confirmation"
 msgstr "Registratiebevestiging"
 
-#: zp-core/zp-extensions/register_user.php:417
+#: zp-core/zp-extensions/register_user.php:495
 msgid "Zenphoto Gallery registration"
 msgstr "Zenphoto galerij registratie"
 
-#: zp-core/zp-extensions/register_user.php:417
+#: zp-core/zp-extensions/register_user.php:495
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail "
@@ -20647,20 +20629,20 @@ msgstr ""
 "%1$s (%2$s) is geregistreerd voor de Zenphoto galerij door een e-mail adres "
 "op te geven van %3$s."
 
-#: zp-core/zp-extensions/register_user.php:444
+#: zp-core/zp-extensions/register_user.php:522
 msgid "you are already logged in."
 msgstr "je bent reeds ingelogd."
 
-#: zp-core/zp-extensions/register_user.php:456
+#: zp-core/zp-extensions/register_user.php:534
 msgid "Thank you for registering."
 msgstr "Dank je voor je registratie."
 
-#: zp-core/zp-extensions/register_user.php:460
+#: zp-core/zp-extensions/register_user.php:539
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Je kunt nu inloggen op de site en je persoonlijke gegevens controleren."
 
-#: zp-core/zp-extensions/register_user.php:479
+#: zp-core/zp-extensions/register_user.php:560
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -20668,71 +20650,111 @@ msgstr ""
 "Je registratie is geaccepteerd. Er is een e-mail verzonden om je e-mailadres "
 "te verifiëren."
 
-#: zp-core/zp-extensions/register_user.php:488
-#: zp-core/zp-extensions/register_user.php:503
-#: zp-core/zp-extensions/register_user.php:511
-#: zp-core/zp-extensions/register_user.php:519
-#: zp-core/zp-extensions/register_user.php:527
-#: zp-core/zp-extensions/register_user.php:535
-#: zp-core/zp-extensions/register_user.php:543
-#: zp-core/zp-extensions/register_user.php:551
-#: zp-core/zp-extensions/register_user.php:567
-#: zp-core/zp-extensions/register_user.php:591
+#: zp-core/zp-extensions/register_user.php:570
+#: zp-core/zp-extensions/register_user.php:585
+#: zp-core/zp-extensions/register_user.php:593
+#: zp-core/zp-extensions/register_user.php:601
+#: zp-core/zp-extensions/register_user.php:609
+#: zp-core/zp-extensions/register_user.php:617
+#: zp-core/zp-extensions/register_user.php:625
+#: zp-core/zp-extensions/register_user.php:633
+#: zp-core/zp-extensions/register_user.php:641
+#: zp-core/zp-extensions/register_user.php:649
+#: zp-core/zp-extensions/register_user.php:665
+#: zp-core/zp-extensions/register_user.php:689
 msgid "Registration failed."
 msgstr "Registratie mislukt."
 
-#: zp-core/zp-extensions/register_user.php:496
+#: zp-core/zp-extensions/register_user.php:578
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "Er is al een gebruiker met e-mailadres <em>%s</em>."
 
-#: zp-core/zp-extensions/register_user.php:504
+#: zp-core/zp-extensions/register_user.php:586
 msgid "Passwords may not be empty."
 msgstr "Wachtwoorden mogen niet leeg zijn !"
 
-#: zp-core/zp-extensions/register_user.php:520
+#: zp-core/zp-extensions/register_user.php:602
 msgid "You have not filled in all the fields."
 msgstr "Je hebt niet alle velden ingevuld."
 
-#: zp-core/zp-extensions/register_user.php:528
+#: zp-core/zp-extensions/register_user.php:610
 msgid "Invalid verification link."
 msgstr "Ongeldige verificatie-link."
 
-#: zp-core/zp-extensions/register_user.php:536
+#: zp-core/zp-extensions/register_user.php:618
 msgid "Enter a valid email address."
 msgstr "Vul een geldig e-mailadres in."
 
-#: zp-core/zp-extensions/register_user.php:544
+#: zp-core/zp-extensions/register_user.php:626
 msgid "The email address entered is already used."
 msgstr "Dit e-mailadres is al in gebruik."
 
-#: zp-core/zp-extensions/register_user.php:552
+#: zp-core/zp-extensions/register_user.php:634
 msgid "The CAPTCHA you entered was not correct."
 msgstr "De ingevoerde CAPTCHA is niet correct."
 
-#: zp-core/zp-extensions/register_user.php:559
+#: zp-core/zp-extensions/register_user.php:642
+msgid "The math quiz answer you entered was not correct."
+msgstr "Het antwoord op de rekenvraag was niet correct."
+
+#: zp-core/zp-extensions/register_user.php:650
+msgid "The text quiz answer you entered was not correct."
+msgstr "Het antwoord op de tekstvraag was niet correct."
+
+#: zp-core/zp-extensions/register_user.php:657
 msgid "Verification failed."
 msgstr "Verificatie mislukt."
 
-#: zp-core/zp-extensions/register_user.php:560
+#: zp-core/zp-extensions/register_user.php:658
 msgid "Your registration request could not be completed."
 msgstr "Je registratie kon niet voltooid worden."
 
-#: zp-core/zp-extensions/register_user.php:573
+#: zp-core/zp-extensions/register_user.php:671
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
 msgstr "Je registratie is niet gelukt."
 
-#: zp-core/zp-extensions/register_user.php:583
+#: zp-core/zp-extensions/register_user.php:681
 msgid "Data usage confirmation missing."
 msgstr "Akkoord gebruik gegevens ontbreekt"
 
-#: zp-core/zp-extensions/register_user.php:584
+#: zp-core/zp-extensions/register_user.php:682
 msgid "You have not agreed to data storage and handling by this website."
 msgstr ""
 "Je bent nog niet akkoord met het opslaan en verwerken van je gegevens door "
 "deze website."
+
+#: zp-core/zp-extensions/register_user.php:779
+msgid "Use registerUser::getUserInfo() instead"
+msgstr ""
+"De functie <code>getUserInfo()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>registerUser::getUserInfo()</code>"
+
+#: zp-core/zp-extensions/register_user.php:788
+msgid "Use registerUser::getLink() instead"
+msgstr ""
+"De functie <code>getLink()</code> is verouderd. Gebruik in plaats hiervan "
+"<code>registerUser::getLink()</code>"
+
+#: zp-core/zp-extensions/register_user.php:796
+msgid "Use registerUser::postProcessor() instead"
+msgstr ""
+"De functie <code>post_processor()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>registerUser::postProcessor()</code>"
+
+#: zp-core/zp-extensions/register_user.php:810
+msgid "Use registerUser::printForm() instead"
+msgstr ""
+"De functie <code>printRegistrationForm()</code> is verouderd. Gebruik in "
+"plaats hiervan <code>registerUser::printForm()</code>"
+
+#: zp-core/zp-extensions/register_user.php:825
+msgid "Use registerUser::printLink() instead"
+msgstr ""
+"De functie <code>printRegisterURL()</code> is verouderd. Gebruik in plaats "
+"hiervan <code>registerUser::printLink()</code>"
 
 #: zp-core/zp-extensions/register_user/register_user_form.php:14
 msgid "Username* (this will be your user username)"
@@ -20746,13 +20768,9 @@ msgstr "E-mail<strong>*</strong> (dit is meteen ook je gebruikers ID)"
 msgid "User ID"
 msgstr "Gebruikers ID"
 
-#: zp-core/zp-extensions/register_user/register_user_form.php:120
+#: zp-core/zp-extensions/register_user/register_user_form.php:134
 msgid "<strong>*</strong>Required"
 msgstr "<strong>*</strong> Verplichte velden"
-
-#: zp-core/zp-extensions/register_user/register_user_form.php:126
-msgid "You may also register using federated credentials"
-msgstr "Je kunt ook registreren met “federated” gegevens"
 
 #: zp-core/zp-extensions/related_items.php:9
 msgid ""
@@ -21493,6 +21511,14 @@ msgstr "Stel de rechten in voor de log-bestanden beveiliging."
 #, php-format
 msgid "File permissions of Security log are %04o"
 msgstr "Rechten van de log beveiliging zijn %04o."
+
+#: zp-core/zp-extensions/security-logger.php:293
+msgid ""
+"security_logger::federatedLoginLogger() will be removed and not replaced as "
+"the federated_login plugin is not supported anymore"
+msgstr ""
+"De methode <em>security_logger::federatedLoginLogger()</em> zal worden "
+"verwijderd omdat de <em>federated_login</em> plugin verwijderd zal worden"
 
 #: zp-core/zp-extensions/seo_cleanup.php:15
 msgid "Provides a utility SEO file/folder name clenser."
@@ -22471,90 +22497,99 @@ msgstr "nieuwscategorieën"
 msgid "Text editor TinyMCE 4.x"
 msgstr "Text editor TinyMCE 4.x"
 
-#: zp-core/zp-extensions/tinymce4.php:45
+#: zp-core/zp-extensions/tinymce4.php:48
 msgid "Text editor configuration - Zenphoto"
 msgstr "Tekst-editor configuratie - Zenphoto"
 
-#: zp-core/zp-extensions/tinymce4.php:51
+#: zp-core/zp-extensions/tinymce4.php:54
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and "
 "news articles."
 msgstr "Heeft betrekking op alles BEHALVE Zenpage pagina’s en artikelen."
 
-#: zp-core/zp-extensions/tinymce4.php:52
+#: zp-core/zp-extensions/tinymce4.php:55
 msgid "Text editor configuration - Zenpage"
 msgstr "Tekst-editor configuratie - Zenpage"
 
-#: zp-core/zp-extensions/tinymce4.php:58
+#: zp-core/zp-extensions/tinymce4.php:61
 msgid ""
 "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
 msgstr ""
 "Heeft betrekking op Zenpage pagina’s en artikelen (<em>pagina’s</em> en "
 "<em>nieuws</em> tabs)."
 
-#: zp-core/zp-extensions/tinymce4.php:59 zp-core/zp-extensions/tinymce4.php:64
+#: zp-core/zp-extensions/tinymce4.php:62
+msgid "Text editor height"
+msgstr "Tekst editor hoogte"
+
+#: zp-core/zp-extensions/tinymce4.php:66
+msgid ""
+"Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px."
+msgstr "Hoogte (px) voor Zenphoto en Zenpage tekstvelden. Standaard is 400px"
+
+#: zp-core/zp-extensions/tinymce4.php:67 zp-core/zp-extensions/tinymce4.php:72
 msgid "Custom image size"
 msgstr "Grootte afbeelding"
 
-#: zp-core/zp-extensions/tinymce4.php:63 zp-core/zp-extensions/tinymce4.php:68
+#: zp-core/zp-extensions/tinymce4.php:71 zp-core/zp-extensions/tinymce4.php:76
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
 "Grootte (px) van aangepast formaat afbeeldingen, gebruikt door tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:69
+#: zp-core/zp-extensions/tinymce4.php:77
 msgid "Custom thumb crop - size"
 msgstr "Thumbnail uitsnede grootte"
 
-#: zp-core/zp-extensions/tinymce4.php:73
+#: zp-core/zp-extensions/tinymce4.php:81
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
 "Grootte (px) van aangepaste thumbnail-uitsnede, gebruikt door tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:74
+#: zp-core/zp-extensions/tinymce4.php:82
 msgid "Custom thumb crop - width"
 msgstr "Thumbnail uitsnede - breedte"
 
-#: zp-core/zp-extensions/tinymce4.php:78
+#: zp-core/zp-extensions/tinymce4.php:86
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
 msgstr ""
 "Breedte (%) van aangepaste thumbnail-uitsnede, gebruikt door tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:79
+#: zp-core/zp-extensions/tinymce4.php:87
 msgid "Custom thumb crop - height"
 msgstr "Thumbnail uitsnede - hoogte"
 
-#: zp-core/zp-extensions/tinymce4.php:83
+#: zp-core/zp-extensions/tinymce4.php:91
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
 msgstr ""
 "Hoogte (%) van aangepaste thumbnail-uitsnede, gebruikt door tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce4.php:84
+#: zp-core/zp-extensions/tinymce4.php:92
 msgid "Entity encoding"
 msgstr "Entiteiten codering"
 
-#: zp-core/zp-extensions/tinymce4.php:89
+#: zp-core/zp-extensions/tinymce4.php:97
 msgid "Raw"
 msgstr "Raw"
 
-#: zp-core/zp-extensions/tinymce4.php:90
+#: zp-core/zp-extensions/tinymce4.php:98
 msgid "Numeric"
 msgstr "Numeric"
 
-#: zp-core/zp-extensions/tinymce4.php:91
+#: zp-core/zp-extensions/tinymce4.php:99
 msgid "Named"
 msgstr "Named"
 
-#: zp-core/zp-extensions/tinymce4.php:92
+#: zp-core/zp-extensions/tinymce4.php:100
 msgid "Named and numeric"
 msgstr "Named and numeric"
 
-#: zp-core/zp-extensions/tinymce4.php:95
+#: zp-core/zp-extensions/tinymce4.php:103
 msgid ""
 "If encountering issues with special chars and other character entities "
 "change this. Note that this applies on re-saving content only. More info on "
@@ -22566,11 +22601,11 @@ msgstr ""
 "Meer info in de <a href=\"https://www.tinymce.com/docs/configure/content-"
 "filtering/#entity_encoding\">tinyMCE documentatie</a>."
 
-#: zp-core/zp-extensions/tinymce4.php:96
+#: zp-core/zp-extensions/tinymce4.php:104
 msgid "Entities"
 msgstr "Entiteiten"
 
-#: zp-core/zp-extensions/tinymce4.php:100
+#: zp-core/zp-extensions/tinymce4.php:108
 msgid ""
 "You can adjust how entities are processed. More info on the <a "
 "href=\"https://www.tinymce.com/docs/configure/content-filtering/"
@@ -22579,6 +22614,40 @@ msgstr ""
 "Je kunt het verwerken van entiteiten veranderen. Meer info in de <a "
 "href=\"https://www.tinymce.com/docs/configure/content-filtering/"
 "#entities\">tinyMCE documentatie</a>."
+
+#: zp-core/zp-extensions/tinymce4.php:109
+msgid "Browser spellcheck"
+msgstr "Browser spellingscontrole"
+
+#: zp-core/zp-extensions/tinymce4.php:113
+msgid ""
+"Check to use your browser spellchecker.<br><strong>Note:</strong> Spellcheck "
+"feature should be available in the browser and enabled (location of settings "
+"to do so vary from browser to browser).<br><strong>Warning:</strong> "
+"Depending on browser, this can be a privacy concern. Do your research on the "
+"implementation of spellchek in your browser of choice."
+msgstr ""
+"Vink aan om de spellingscontrole van je browser te gebruiken."
+"<br><strong>Opmerking:</strong> De spellingscontrole moet natuurlijk wél "
+"geactiveerd zijn in je browser.<br><strong>Waarschuwing:</strong> "
+"Afhankelijk van je browser kan dit een veiligheidsrisico vormen."
+
+#: zp-core/zp-extensions/tinymce4.php:114
+msgid "Browser context menu"
+msgstr "Browser context menu"
+
+#: zp-core/zp-extensions/tinymce4.php:118
+msgid ""
+"Check to disable TinyMCE right-click menu, browser right-click menu will be "
+"used instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used "
+"- browser right-click menu can still be accessed by pressing <em>Ctrl+Right "
+"click</em>."
+msgstr ""
+"Vink aan om het TinyMCE rechtermuisklikmenu uit te schakelen. In plaats "
+"hiervan zal het rechtermuisklikmenu van je browser gebruikt worden."
+"<br><strong>Note:</strong> Als het TinyMCE rechtermuisklikmenu gebruikt "
+"wordt kun je nog steeds <em>Ctrl+Rechts klik</em> indrukken om het "
+"rechtermuisklikmenu van de browser te gebruiken."
 
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:80
 #, php-format
@@ -24210,7 +24279,7 @@ msgstr ""
 msgid ""
 "Unused and obsolete method - articles are already filtered via getArticles()"
 msgstr ""
-"Ongebruikte en verouderde class method - artikelen zijn reeds gefilterd via "
+"Ongebruikte en verouderde class methode - artikelen zijn reeds gefilterd via "
 "<code>getArticles()</code>"
 
 #: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:679
@@ -24743,6 +24812,9 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "You may also register using federated credentials"
+#~ msgstr "Je kunt ook registreren met “federated” gegevens"
 
 #~ msgid "edit comment"
 #~ msgstr "Bewerk reactie"
