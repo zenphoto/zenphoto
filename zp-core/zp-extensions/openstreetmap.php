@@ -105,7 +105,7 @@ class openStreetMapOptions {
 						'order' => 7,
 						'selections' => $providers,
 						'desc' => gettext('The default map tile provider to use. Only free providers are included.'
-										. ' Some providers (HEREv3, Mapbox, Thunderforest, Geoportail) require access credentials and registration.'
+										. ' Some providers (HEREv3, Mapbox, Thunderforest, Geoportail and Jawg) require access credentials and registration.'
 										. ' More info on <a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a>')),
 				gettext('Zoom controls position') => array(
 						'key' => 'osmap_zoomcontrolpos',
