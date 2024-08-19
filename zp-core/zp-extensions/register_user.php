@@ -445,7 +445,7 @@ class registerUser {
 	 * @param string $thanks the message shown on successful registration
 	 */
 	static function printForm($thanks = null) {
-		global $_zp_authority;
+		global $_zp_authority, $_zp_captcha;
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 		$userobj = NULL;
 		// handle any postings
