@@ -791,7 +791,7 @@ class contactForm {
 		$macros['CONTACTFORM'] = array(
 				'class' => 'function',
 				'params' => array('string*'),
-				'value' => 'self::printMacro',
+				'value' => 'contactForm::printMacro',
 				'owner' => 'contact_form',
 				'desc' => gettext('Set %1 to optionally override the subject.')
 		);
