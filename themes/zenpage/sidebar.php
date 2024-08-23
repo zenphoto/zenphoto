@@ -116,17 +116,17 @@ if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 	</div>
 	<?php
 }
-if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exists('printRegistrationForm') || class_exists('mobileTheme')) {
+if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exists('registerUser::printLink') || class_exists('mobileTheme')) {
 	?>
 	<div class="menu">
 		<ul>
 			<?php
-			if (!zp_loggedin() && function_exists('printRegisterURL')) {
+			if (!zp_loggedin() && function_exists('registerUser::printLink')) {
 				?>
 				<li>
 					<?php
 					if ($_zp_gallery_page != 'register.php') {
-						printRegisterURL(gettext('Register for this site'));
+						registerUser::printLink(gettext('Register for this site'));
 					} else {
 						echo gettext("Register for this site");
 					}

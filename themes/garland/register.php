@@ -1,7 +1,7 @@
 <?php
 if (!defined('WEBPATH'))
 	die();
-if (function_exists('printRegistrationForm')) {
+if (function_exists('registerUser::printForm')) {
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>
@@ -43,7 +43,7 @@ if (function_exists('printRegistrationForm')) {
 											<?php printHomeLink('', ' » '); printGalleryIndexURL(' » '); echo "<em>" . gettext('Register') . "</em>"; ?>
 										</h2>
 										<h3><?php echo gettext('User Registration') ?></h3>
-										<?php printRegistrationForm(); ?>
+										<?php registerUser::printForm(); ?>
 										<?php footer(); ?>
 										<p style="clear: both;"></p>
 									</div>

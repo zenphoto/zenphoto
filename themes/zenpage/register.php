@@ -3,7 +3,7 @@
 
 if (!defined('WEBPATH'))
 	die();
-if (function_exists('printRegistrationForm')) {
+if (function_exists('registerUser::printForm')) {
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>
@@ -36,7 +36,7 @@ if (function_exists('printRegistrationForm')) {
 
 					<div id="content-left">
 						<h1><?php echo gettext('User Registration') ?></h1>
-						<?php printRegistrationForm(); ?>
+						<?php registerUser::printForm(); ?>
 					</div><!-- content left-->
 
 

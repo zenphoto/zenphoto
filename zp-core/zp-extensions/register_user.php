@@ -5,7 +5,7 @@
  * Options are provided for setting the required registration details and the default
  * user rights that will be granted.
  *
- * Place a call on <i>printRegistrationForm()</i> where you want the form to appear.
+ * Place a call on <i>registerUser::printForm()</i> where you want the form to appear.
  * Probably the best use is to create a new <i>custom page</i> script just for handling these
  * user registrations. Then put a link to that script on your index page so that people
  * who wish to register will click on the link and be taken to the registration page.
@@ -451,7 +451,7 @@ class registerUser {
 		// handle any postings
 		if (isset($_GET['verify'])) {
 			$currentadmins = $_zp_authority->getAdministrators();
-			$params = sanitize(unserialize(pack("H*", trim($_GET['verify']), '.'), ['allowed_classes' => false]));
+			$params = sanitize(unserialize(pack("H*", trim($_GET['verify'])), ['allowed_classes' => false]));
 			// expung the verify query string as it will cause us to come back here if login fails.
 			unset($_GET['verify']);
 			registerUser::$link = explode('?', getRequestURI());

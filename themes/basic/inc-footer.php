@@ -12,8 +12,8 @@
 	if (extensionEnabled('contact_form')) {
 		printCustomPageURL(gettext('Contact us'), 'contact', '', '', ' | ');
 	}
-	if (!zp_loggedin() && function_exists('printRegisterURL')) {
-		printRegisterURL(gettext('Register for this site'), '', ' | ');
+	if (!zp_loggedin() && function_exists('registerUser::printLink')) {
+		registerUser::printLink(gettext('Register for this site'), '', ' | ');
 	}
 	callUserFunction('printUserLogin_out', '', ' | ');
 	
