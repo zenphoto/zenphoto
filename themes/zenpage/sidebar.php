@@ -116,12 +116,12 @@ if (getOption("zenpage_contactpage") && extensionEnabled('contact_form')) {
 	</div>
 	<?php
 }
-if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && function_exists('registerUser::printLink') || class_exists('mobileTheme')) {
+if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && method_exists('registerUser', 'printLink') || class_exists('mobileTheme')) {
 	?>
 	<div class="menu">
 		<ul>
 			<?php
-			if (!zp_loggedin() && function_exists('registerUser::printLink')) {
+			if (!zp_loggedin() && method_exists('registerUser', 'printLink')) {
 				?>
 				<li>
 					<?php

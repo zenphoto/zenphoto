@@ -3,7 +3,7 @@
 
 if (!defined('WEBPATH'))
 	die();
-if (function_exists('registerUser::printForm')) {
+if (method_exists('registerUser', 'printForm')) {
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>

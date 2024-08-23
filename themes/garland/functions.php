@@ -131,7 +131,7 @@ function footer() {
 		}
 		?>
 		<?php
-		if ($_zp_gallery_page != 'register.php' && function_exists('registerUser::printLink') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
+		if ($_zp_gallery_page != 'register.php' && method_exists('registerUser', 'printLink') && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) {
 			registerUser::printLink(gettext('Register for this site'), $prev, '');
 			$prev = ' | ';
 		}

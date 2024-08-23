@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 						<?php printPasswordForm('', true, false); ?>
 						</div>
 						<?php
-						if (!zp_loggedin() && function_exists('registerUser::printLink') && $_zp_gallery->isUnprotectedPage('register')) {
+						if (!zp_loggedin() && method_exists('registerUser', 'printLink') && $_zp_gallery->isUnprotectedPage('register')) {
 							registerUser::printLink(gettext('Register for this site'), '<br />');
 							echo '<br />';
 						}
