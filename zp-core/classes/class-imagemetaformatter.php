@@ -651,7 +651,8 @@ class imageMetaFormatter {
 		if ($v[$i] == '.') {
 			$i--;
 		}
-		return substr($v, 0, $i + 1);
+		$value = str_replace(',','.', $v); // fix locale aware floats due to num to string conversion
+		return substr($value, 0, $i + 1);
 	}
 
 }
