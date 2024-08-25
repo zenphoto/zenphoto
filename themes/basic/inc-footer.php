@@ -12,9 +12,7 @@
 	if (extensionEnabled('contact_form')) {
 		printCustomPageURL(gettext('Contact us'), 'contact', '', '', ' | ');
 	}
-	if (!zp_loggedin() && method_exists('registerUser', 'printLink')) {
-		registerUser::printLink(gettext('Register for this site'), '', ' | ');
-	}
+	callUserFunction('registerUser::printLink', gettext('Register for this site'), '', ' | ');
 	callUserFunction('printUserLogin_out', '', ' | ');
 	
 	printPrivacyPageLink(' | ', ' | ');

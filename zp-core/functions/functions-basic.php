@@ -2127,7 +2127,7 @@ function sanitizeRedirect($redirectTo) {
  * @since 1.6
  *
  * @param string|array $function A function name, static class method calls like classname::methodname, an array with a class name and static method name or a cass object and a non static class name
- * @param array $parameter Parameters of the function/method as one dimensional array
+ * @param array|mixed $parameter Parameters of the function/method as one dimensional array. Alternatively you also add separate argments like the original function defines them
  */
 function callUserFunction($function, $parameter = array()) {
 	$callablename = $functioncall = null;
