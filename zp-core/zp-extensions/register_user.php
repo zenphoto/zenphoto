@@ -510,10 +510,6 @@ class registerUser {
 			}
 		}
 
-		if (isset($_GET['login'])) { //presumably the user failed to login....
-			registerUser::$notify = 'loginfailed';
-		}
-
 		if (zp_loggedin()) {
 			if (isset($_GET['login'])) {
 				echo '<meta http-equiv="refresh" content="1; url=' . WEBPATH . '/">';
@@ -600,14 +596,6 @@ class registerUser {
 					<div class="errorbox fade-message">
 						<h2><?php echo gettext("Registration failed."); ?></h2>
 						<p><?php echo gettext('You have not filled in all the fields.'); ?></p>
-					</div>
-					<?php
-					break;
-				case 'notverified':
-					?>
-					<div class="errorbox fade-message">
-						<h2><?php echo gettext("Registration failed."); ?></h2>
-						<p><?php echo gettext('Invalid verification link.'); ?></p>
 					</div>
 					<?php
 					break;
