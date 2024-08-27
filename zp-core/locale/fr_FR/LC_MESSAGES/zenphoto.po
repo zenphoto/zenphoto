@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-19 13:58+0200\n"
-"PO-Revision-Date: 2024-08-19 14:05+0200\n"
+"POT-Creation-Date: 2024-08-27 10:24+0200\n"
+"PO-Revision-Date: 2024-08-27 10:25+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -2601,7 +2601,7 @@ msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
 #: zp-core/admin-functions.php:4971 zp-core/admin-options.php:617
-#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:594
+#: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:590
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas."
 
@@ -17581,13 +17581,13 @@ msgstr "Carte par défaut"
 #: zp-core/zp-extensions/openstreetmap.php:107
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
-"providers (HEREv3, Mapbox, Thunderforest, Geoportail) require access "
-"credentials and registration. More info on <a href=\"https://github.com/"
-"leaflet-extras/leaflet-providers\">leaflet-providers</a>"
+"providers (HEREv3, Mapbox, Thunderforest, Geoportail and Jawg) require "
+"access credentials and registration. More info on <a href=\"https://github."
+"com/leaflet-extras/leaflet-providers\">leaflet-providers</a>"
 msgstr ""
 "Fournisseur de fonds de cartes par défaut. Seuls les fournisseurs gratuits "
 "sont inclus. Quelques fournisseur de cartes (HEREv3, Mapbox, Thunderforest, "
-"Geoportail) requièrent des informations d’identification. Plus "
+"Geoportail and Jawg) requièrent des informations d’identification. Plus "
 "d’informations sur <a href=\"https://github.com/leaflet-extras/leaflet-"
 "providers\">leaflet-providers</a>"
 
@@ -18854,21 +18854,21 @@ msgstr ""
 "%1$s (%2$s) s’est inscrit(e) à la galerie Zenphoto en fournissant l’adresse "
 "email %3$s."
 
-#: zp-core/zp-extensions/register_user.php:522
+#: zp-core/zp-extensions/register_user.php:518
 msgid "you are already logged in."
 msgstr "vous êtes déjà connecté(e)."
 
-#: zp-core/zp-extensions/register_user.php:534
+#: zp-core/zp-extensions/register_user.php:530
 msgid "Thank you for registering."
 msgstr "Merci de vous être inscrit."
 
-#: zp-core/zp-extensions/register_user.php:539
+#: zp-core/zp-extensions/register_user.php:535
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Vous pouvez maintenant vous connecter au site et vérifier vos renseignements "
 "personnels."
 
-#: zp-core/zp-extensions/register_user.php:560
+#: zp-core/zp-extensions/register_user.php:556
 msgid ""
 "Your registration information has been accepted. An email has been sent to "
 "you to verify your email address."
@@ -18876,67 +18876,62 @@ msgstr ""
 "Votre demande d’inscription a été acceptée. Un email vous a été envoyé pour "
 "vérifier votre adresse."
 
-#: zp-core/zp-extensions/register_user.php:570
-#: zp-core/zp-extensions/register_user.php:585
-#: zp-core/zp-extensions/register_user.php:593
-#: zp-core/zp-extensions/register_user.php:601
-#: zp-core/zp-extensions/register_user.php:609
-#: zp-core/zp-extensions/register_user.php:617
-#: zp-core/zp-extensions/register_user.php:625
-#: zp-core/zp-extensions/register_user.php:633
-#: zp-core/zp-extensions/register_user.php:641
-#: zp-core/zp-extensions/register_user.php:649
-#: zp-core/zp-extensions/register_user.php:665
-#: zp-core/zp-extensions/register_user.php:689
+#: zp-core/zp-extensions/register_user.php:566
+#: zp-core/zp-extensions/register_user.php:581
+#: zp-core/zp-extensions/register_user.php:589
+#: zp-core/zp-extensions/register_user.php:597
+#: zp-core/zp-extensions/register_user.php:605
+#: zp-core/zp-extensions/register_user.php:613
+#: zp-core/zp-extensions/register_user.php:621
+#: zp-core/zp-extensions/register_user.php:629
+#: zp-core/zp-extensions/register_user.php:637
+#: zp-core/zp-extensions/register_user.php:653
+#: zp-core/zp-extensions/register_user.php:677
 msgid "Registration failed."
 msgstr "L’inscription a échoué."
 
-#: zp-core/zp-extensions/register_user.php:578
+#: zp-core/zp-extensions/register_user.php:574
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "L’identifiant <em>%s</em> que vous avez choisi est déjà utilisé."
 
-#: zp-core/zp-extensions/register_user.php:586
+#: zp-core/zp-extensions/register_user.php:582
 msgid "Passwords may not be empty."
 msgstr "Les mots de passe ne peuvent pas être vides."
 
-#: zp-core/zp-extensions/register_user.php:602
+#: zp-core/zp-extensions/register_user.php:598
 msgid "You have not filled in all the fields."
 msgstr "Vous n’avez pas rempli tous les champs."
 
-#: zp-core/zp-extensions/register_user.php:610
-msgid "Invalid verification link."
-msgstr "Lien de vérification invalide."
-
-#: zp-core/zp-extensions/register_user.php:618
+#: zp-core/zp-extensions/register_user.php:606
 msgid "Enter a valid email address."
 msgstr "Saisissez une adresse email valide."
 
-#: zp-core/zp-extensions/register_user.php:626
+#: zp-core/zp-extensions/register_user.php:614
 msgid "The email address entered is already used."
 msgstr "L’adresse email saisie est déjà utilisée."
 
-#: zp-core/zp-extensions/register_user.php:634
+#: zp-core/zp-extensions/register_user.php:622
 msgid "The CAPTCHA you entered was not correct."
 msgstr "Le Captcha que vous avez saisi est incorrect."
 
-#: zp-core/zp-extensions/register_user.php:642
+#: zp-core/zp-extensions/register_user.php:630
 msgid "The math quiz answer you entered was not correct."
 msgstr "La réponse à la devinette mathématique saisie n’est pas correcte."
 
-#: zp-core/zp-extensions/register_user.php:650
+#: zp-core/zp-extensions/register_user.php:638
 msgid "The text quiz answer you entered was not correct."
 msgstr "La réponse à la devinette saisie n’est pas correcte."
 
-#: zp-core/zp-extensions/register_user.php:657
+#: zp-core/zp-extensions/register_user.php:645
 msgid "Verification failed."
 msgstr "La validation a échoué."
 
-#: zp-core/zp-extensions/register_user.php:658
+#: zp-core/zp-extensions/register_user.php:646
 msgid "Your registration request could not be completed."
 msgstr "Votre demande d’inscription n’a pu être effectuée correctement."
 
-#: zp-core/zp-extensions/register_user.php:671
+#: zp-core/zp-extensions/register_user.php:659
 msgid ""
 "Your registration attempt failed a <code>register_user_registered</code> "
 "filter check."
@@ -18944,33 +18939,33 @@ msgstr ""
 "Votre tentative d’enregistrement a échoué au test "
 "<code>register_user_registered</code>."
 
-#: zp-core/zp-extensions/register_user.php:681
+#: zp-core/zp-extensions/register_user.php:669
 msgid "Data usage confirmation missing."
 msgstr "Confirmation de l’usage des données manquante."
 
-#: zp-core/zp-extensions/register_user.php:682
+#: zp-core/zp-extensions/register_user.php:670
 msgid "You have not agreed to data storage and handling by this website."
 msgstr ""
 "Vous n’avez pas accepté le stockage et le traitement de vos données par ce "
 "site."
 
-#: zp-core/zp-extensions/register_user.php:779
+#: zp-core/zp-extensions/register_user.php:767
 msgid "Use registerUser::getUserInfo() instead"
 msgstr "Utilisez plutôt registerUser::getUserInfo()"
 
-#: zp-core/zp-extensions/register_user.php:788
+#: zp-core/zp-extensions/register_user.php:776
 msgid "Use registerUser::getLink() instead"
 msgstr "Utilisez plutôt registerUser::getLink()"
 
-#: zp-core/zp-extensions/register_user.php:796
+#: zp-core/zp-extensions/register_user.php:784
 msgid "Use registerUser::postProcessor() instead"
 msgstr "Utilisez plutôt registerUser::postProcessor()"
 
-#: zp-core/zp-extensions/register_user.php:810
+#: zp-core/zp-extensions/register_user.php:798
 msgid "Use registerUser::printForm() instead"
 msgstr "Utilisez plutôt registerUser::printForm()"
 
-#: zp-core/zp-extensions/register_user.php:825
+#: zp-core/zp-extensions/register_user.php:813
 msgid "Use registerUser::printLink() instead"
 msgstr "Utilisez plutôt registerUser::printLink()"
 
@@ -23096,6 +23091,9 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à "
 "un ou à plusieurs destinataires."
+
+#~ msgid "Invalid verification link."
+#~ msgstr "Lien de vérification invalide."
 
 #~ msgid "You may also register using federated credentials"
 #~ msgstr ""
