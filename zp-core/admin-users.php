@@ -781,8 +781,10 @@ echo $refresh;
 
 													<?php
 													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+														$albumlist_managedobjects = $albumlist;
 														$album_alter_rights = $local_alterrights;
 													} else {
+														$albumlist_managedobjects = array();
 														$album_alter_rights = ' disabled="disabled"';
 													}
 													if ($ismaster) {
@@ -793,20 +795,24 @@ echo $refresh;
 														} else {
 															$flag = array();
 														}
-														printManagedObjects('albums', $albumlist, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
+														printManagedObjects('albums', $albumlist_managedobjects, $album_alter_rights, $userobj, $id, gettext('user'), $flag);
 														if (extensionEnabled('zenpage')) {
 															$pagelist = array();
-															$pages = $_zp_zenpage->getPages(false);
-															foreach ($pages as $page) {
-																if (!$page['parentid']) {
-																	$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+															if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+																$pages = $_zp_zenpage->getPages(false);
+																foreach ($pages as $page) {
+																	if (!$page['parentid']) {
+																		$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+																	}
 																}
 															}
 															printManagedObjects('pages', $pagelist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 															$newslist = array();
-															$categories = $_zp_zenpage->getAllCategories(false);
-															foreach ($categories as $category) {
-																$newslist[get_language_string($category['title'])] = $category['titlelink'];
+															if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+																$categories = $_zp_zenpage->getAllCategories(false);
+																foreach ($categories as $category) {
+																	$newslist[get_language_string($category['title'])] = $category['titlelink'];
+																}
 															}
 															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);
 														}
