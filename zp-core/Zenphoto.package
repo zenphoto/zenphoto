@@ -573,6 +573,7 @@ zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
 zp-core/js/jquery.scrollTo.min.js
 zp-core/js/jqueryui
+zp-core/js/jqueryui/AUTHORS.txt
 zp-core/js/jqueryui/i18n
 zp-core/js/jqueryui/i18n/datepicker-af.js
 zp-core/js/jqueryui/i18n/datepicker-ar-DZ.js
@@ -585,6 +586,7 @@ zp-core/js/jqueryui/i18n/datepicker-ca.js
 zp-core/js/jqueryui/i18n/datepicker-cs.js
 zp-core/js/jqueryui/i18n/datepicker-cy-GB.js
 zp-core/js/jqueryui/i18n/datepicker-da.js
+zp-core/js/jqueryui/i18n/datepicker-de-AT.js
 zp-core/js/jqueryui/i18n/datepicker-de.js
 zp-core/js/jqueryui/i18n/datepicker-el.js
 zp-core/js/jqueryui/i18n/datepicker-en-AU.js
@@ -649,11 +651,18 @@ zp-core/js/jqueryui/i18n/datepicker-zh-CN.js
 zp-core/js/jqueryui/i18n/datepicker-zh-HK.js
 zp-core/js/jqueryui/i18n/datepicker-zh-TW.js
 zp-core/js/jqueryui/images
-zp-core/js/jqueryui/images/ui-icons_444444_256x240.png
-zp-core/js/jqueryui/images/ui-icons_555555_256x240.png
-zp-core/js/jqueryui/images/ui-icons_777620_256x240.png
-zp-core/js/jqueryui/images/ui-icons_777777_256x240.png
-zp-core/js/jqueryui/images/ui-icons_cc0000_256x240.png
+zp-core/js/jqueryui/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+zp-core/js/jqueryui/images/ui-bg_diagonals-thick_20_666666_40x40.png
+zp-core/js/jqueryui/images/ui-bg_glass_65_ffffff_1x400.png
+zp-core/js/jqueryui/images/ui-bg_glass_100_f6f6f6_1x400.png
+zp-core/js/jqueryui/images/ui-bg_glass_100_fdf5ce_1x400.png
+zp-core/js/jqueryui/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+zp-core/js/jqueryui/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+zp-core/js/jqueryui/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+zp-core/js/jqueryui/images/ui-icons_228ef1_256x240.png
+zp-core/js/jqueryui/images/ui-icons_222222_256x240.png
+zp-core/js/jqueryui/images/ui-icons_ef8c08_256x240.png
+zp-core/js/jqueryui/images/ui-icons_ffd27a_256x240.png
 zp-core/js/jqueryui/images/ui-icons_ffffff_256x240.png
 zp-core/js/jqueryui/jquery-ui.css
 zp-core/js/jqueryui/jquery-ui.js
@@ -1890,4 +1899,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1892
+1901
