@@ -375,7 +375,7 @@ class cycle {
 		$slideshow .= cycle::getSlide($albumobj, $slideobj, $width, $height, $cropw, $croph, $linkslides, false);
 		//}
 		$slideshow .= '<script class="slides" type="text/cycle" data-cycle-split="---">' . "\n";
-		$count = '';
+		$count = 0;
 		foreach ($slides as $slide) {
 			$count++;
 			$slideobj = cycle::getSlideObj($slide, $albumobj);

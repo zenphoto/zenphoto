@@ -41,7 +41,7 @@ if (!defined('WEBPATH')) die(); ?>
 		</ul>
 		<div class="ui-grid-c">
 			<?php 
-			$count = '';
+			$count = 0;
 			while (next_image()): 
 				$count++;
 				switch($count) {

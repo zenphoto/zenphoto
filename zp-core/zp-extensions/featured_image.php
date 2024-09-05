@@ -448,7 +448,7 @@ class featuredImage {
 						<p class="notebox"><?php echo gettext('This album does not contain any images.'); ?></p>
 						<?php
 					} else {
-						$count = '';
+						$count = 0;
 						foreach ($images as $image) {
 							if($obj->isDynamic()) {
 								$filename = $image['filename'];

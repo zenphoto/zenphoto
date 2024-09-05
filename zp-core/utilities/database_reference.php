@@ -198,7 +198,7 @@ foreach($tables as $table) {
 			?>
 			<tr<?php echo $rowclass; ?>>
 			<?php
-			$fieldcount = '';
+			$fieldcount = 0;
 			foreach($col as $field) {
 				$fieldcount++;
 				$class = '';

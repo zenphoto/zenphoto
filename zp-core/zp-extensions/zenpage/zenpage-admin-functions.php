@@ -544,7 +544,7 @@ function printArticleDatesDropdown($pagenumber) {
 	global $_zp_zenpage;
 	$datecount = $_zp_zenpage->getAllArticleDates();
 	$lastyear = "";
-	$nr = "";
+	$nr = 0;
 	$option = getNewsAdminOption(array('category' => 0, 'published' => 0, 'sortorder' => 0, 'articles_page' => 1, 'author' => 0));
 	if (!isset($_GET['date'])) {
 		$selected = 'selected="selected"';

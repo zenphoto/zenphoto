@@ -786,7 +786,7 @@ class htmlmetatags {
 	private static function getMetaAlbumAndImageTags($tags, $mode = "") {
 		if (is_array($tags)) {
 			$alltags = '';
-			$count = "";
+			$count = 0;
 			$separator = ", ";
 			foreach ($tags as $keyword) {
 				$count++;

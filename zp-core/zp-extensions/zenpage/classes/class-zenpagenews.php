@@ -136,7 +136,7 @@ class ZenpageNews extends ZenpageItems {
 	 */
 	function inProtectedCategory($only = false) {
 		$categories = $this->getCategories(false, null, null, false);
-		$protected_cats = '';
+		$protected_cats = 0;
 		if (!empty($categories)) {
 			$catcount = count($categories);
 			foreach ($categories as $cat) {

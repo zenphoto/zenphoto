@@ -312,7 +312,7 @@ function printNewsArticlesList($number) {
 			$startnews[$nr] = $nr * $news_per_page - $news_per_page; // get start image number
 			$endnews[$nr] = $nr * $news_per_page - 1; // get end image number
 		}
-		$count = '';
+		$count = 0;
 		$number = $startnews[$currentpage];
 		//category selector here later
 		printTinyZenpageCategorySelector($currentpage);
@@ -331,7 +331,7 @@ function printNewsArticlesList($number) {
 					echo " <a href='zoom.php?news=" . urlencode($newsobj->getName()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
-					$count = '';
+					$count = 0;
 					foreach ($cats as $cat) {
 						$count++;
 						$catobj = new ZenpageCategory($cat['titlelink']);

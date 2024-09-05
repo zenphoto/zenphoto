@@ -100,7 +100,7 @@ class imagegallery {
 				<?php
 				$points = array();
 				$firstImage = null;
-				$lastImage = null;
+				$lastImage = 0;
 				if (getNumImages() > 0) {
 					?>
 					<div id="gallery" class="ad-gallery">

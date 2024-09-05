@@ -131,7 +131,7 @@ function printLatestNews($number = 5, $category = '', $showdate = true, $showcon
 	global $_zp_gallery, $_zp_current_zenpage_news;
 	$latest = getLatestNews($number, $category, $sticky);
 	echo "\n<ul id=\"latestnews\">\n";
-	$count = "";
+	$count = 0;
 	foreach ($latest as $item) {
 		$count++;
 		$category = "";
@@ -627,7 +627,7 @@ function printNewsArchive($class = 'archive', $yearclass = 'year', $monthclass =
 	}
 	$datecount = $_zp_zenpage->getAllArticleDates($yearsonly, $order);
 	$lastyear = "";
-	$nr = "";
+	$nr = 0;
 	echo "\n<ul $class>\n";
 	foreach($datecount as $key => $val) {
 		$nr++;
@@ -1154,7 +1154,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 	$statspages = array();
 	if ($option == "all" || $option == "news") {
 		$articles = $_zp_zenpage->getArticles($number, NULL, true, $mode, $sortdirection, false);
-		$counter = "";
+		$counter = 0;
 		$statsarticles = array();
 		foreach ($articles as $article) {
 			$counter++;
@@ -1175,7 +1175,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 	}
 	if (($option == "all" || $option == "categories") && $mode != "mostrated" && $mode != "toprated") {
 		$categories = $_zp_zenpage->getAllCategories(true, $mode, $sortdirection);
-		$counter = "";
+		$counter = 0;
 		$statscats = array();
 		foreach ($categories as $cat) {
 			$counter++;
@@ -1195,7 +1195,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 	}
 	if ($option == "all" || $option == "pages") {
 		$pages = $_zp_zenpage->getPages(NULL, false, $number, $mode, $sortdirection);
-		$counter = "";
+		$counter = 0;
 		$statspages = array();
 		foreach ($pages as $page) {
 			$counter++;

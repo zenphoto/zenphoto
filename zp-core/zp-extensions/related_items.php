@@ -15,7 +15,7 @@ function getRelatedItems($type = 'news', $album = NULL) {
 	$tags = getTags();
 	if (!empty($tags)) { // if there are tags at all
 		$searchstring = '';
-		$count = '';
+		$count = 0;
 		foreach ($tags as $tag) {
 			$tag = '"' . $tag . '"';
 			$count++;

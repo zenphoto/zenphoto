@@ -701,8 +701,8 @@ class jPlayer {
 								cssSelectorAncestor: "#jp_container_<?php echo $id; ?>"
 				}, [
 			<?php
-			$count = '';
-			$number = '';
+			$count = 0;
+			$number = 0;
 
 			foreach ($entries as $entry) {
 				$count++;

@@ -1028,7 +1028,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				</label>
 				<?php
 				if (array_key_exists($item, $extra)) {
-					$unique = '';
+					$unique = 0;
 					foreach (array_reverse($extra[$item]) as $box) {
 						if ($box['display']) {
 							if (isset($box['disable'])) {

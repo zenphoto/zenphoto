@@ -149,7 +149,7 @@ if (!defined('WEBPATH'))
 						<?php if (getNumImages() > 0) { ?>
 						<div class="ui-grid-c">
 	<?php
-	$count = '';
+	$count = 0;
 	while (next_image()) {
 		$count++;
 				switch($count) {

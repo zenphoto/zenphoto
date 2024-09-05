@@ -32,7 +32,7 @@ if (!defined('WEBPATH'))
 						<?php $latestimages = getImageStatistic(8, 'latest', '', false, 0, 'desc'); ?>
 						<div class="ui-grid-c">
 							<?php
-							$count = '';
+							$count = 0;
 							foreach ($latestimages as $image) {
 								$count++;
 								switch ($count) {

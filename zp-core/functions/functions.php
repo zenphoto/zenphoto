@@ -1162,7 +1162,7 @@ function getTagCountByAccess($tag) {
 		$sql = "SELECT tagid, type, objectid FROM " . $_zp_db->prefix('obj_to_tag') . " ORDER BY tagid";
 		$_zp_object_to_tags = $_zp_db->queryFullArray($sql);
 	}
-	$count = '';
+	$count = 0;
 	if ($_zp_object_to_tags) {
 		foreach ($_zp_object_to_tags as $tagcheck) {
 			if ($tagcheck['tagid'] == $tag['id']) {

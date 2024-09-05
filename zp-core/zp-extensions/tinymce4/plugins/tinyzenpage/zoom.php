@@ -46,7 +46,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 		$obj = new ZenpageNews($item);
 		$cats = $obj->getCategories();
 		$categories = gettext('Categories: ');
-		$count = '';
+		$count = 0;
 		if($cats) {
 			foreach($cats as $cat) {
 				$count++;
