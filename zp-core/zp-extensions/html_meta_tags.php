@@ -383,7 +383,7 @@ class htmlmetatags {
 					if (!$_zp_current_image->isPhoto()) {
 						$use_thumb = true;
 					}
-					$thumb = $host . html_encode(pathurlencode($_zp_current_image->getCustomSizedImageMaxSpace($$ogimage_width, $ogimage_height, $use_thumb)));
+					$thumb = $host . html_encode(pathurlencode($_zp_current_image->getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height, $use_thumb)));
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-image')) {
