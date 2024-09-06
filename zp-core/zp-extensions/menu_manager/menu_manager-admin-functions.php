@@ -499,7 +499,7 @@ function addItem(&$reports) {
 			return NULL;
 		case 'all_zenpagecategorys':
 		case 'all_zenpagecategories':
-			if ($type == 'all_zenpagecategorys') {
+			if ($result['type'] == 'all_zenpagecategorys') {
 				deprecationNotice(gettext('The menu item type all_zenpagecategorys is deprecated. Use all_zenpagecategories instead'));
 			}
 			addCategoriesToDatabase($menuset);
