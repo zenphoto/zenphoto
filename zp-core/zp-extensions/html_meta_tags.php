@@ -347,7 +347,11 @@ class htmlmetatags {
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
-					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, false, NULL)));
+					$use_thumb = false;
+					if (!$_zp_current_image->isPhoto()) {
+						$use_thumb = true;
+					} 
+					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, $use_thumb, NULL)));
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-gallery')) {
