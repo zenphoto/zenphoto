@@ -346,12 +346,11 @@ class htmlmetatags {
 				$canonicalurl = $host . getPageNumURL($_zp_page);
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
-					getMaxSpaceContainer($ogimage_width, $ogimage_height, $thumbimg, false);
 					$use_thumb = false;
 					if (!$_zp_current_image->isPhoto()) {
 						$use_thumb = true;
 					} 
-					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomImage(NULL, $ogimage_width, $ogimage_height, NULL, NULL, NULL, NULL, $use_thumb, NULL)));
+					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomSizedImageMaxSpace($$ogimage_width, $ogimage_height, $use_thumb)));
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-gallery')) {
@@ -380,11 +379,11 @@ class htmlmetatags {
 					$canonicalurl = $host . getImageURL();
 				}
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
-					if ($_zp_current_image->isPhoto()) {
-						$thumb = $host . html_encode(pathurlencode(getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height)));
-					} else {
-						$thumb = $host . html_encode(pathurlencode(getCustomSizedImageThumbMaxSpace($ogimage_width, $ogimage_height)));
+					$use_thumb = false;
+					if (!$_zp_current_image->isPhoto()) {
+						$use_thumb = true;
 					}
+					$thumb = $host . html_encode(pathurlencode($_zp_current_image->getCustomSizedImageMaxSpace($$ogimage_width, $ogimage_height, $use_thumb)));
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-image')) {
