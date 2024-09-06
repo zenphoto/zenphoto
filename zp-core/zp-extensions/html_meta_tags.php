@@ -350,7 +350,7 @@ class htmlmetatags {
 					if (!$thumbimg->isPhoto()) {
 						$use_thumb = true;
 					} 
-					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomSizedImageMaxSpace($$ogimage_width, $ogimage_height, $use_thumb)));
+					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height, $use_thumb)));
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-gallery')) {
