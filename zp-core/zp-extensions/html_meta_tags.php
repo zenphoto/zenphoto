@@ -347,7 +347,7 @@ class htmlmetatags {
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					$use_thumb = false;
-					if (!$_zp_current_image->isPhoto()) {
+					if (!$thumbimg->isPhoto()) {
 						$use_thumb = true;
 					} 
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomSizedImageMaxSpace($$ogimage_width, $ogimage_height, $use_thumb)));
