@@ -102,7 +102,10 @@ class imageMetaFormatter {
 				$data = $data . ' EV';
 				break;
 			case 'FocalLength':
-				$data = self::rationalNum($data) . ' mm';
+				$data = self::rationalNum($data);
+				if (is_numeric($data)) {
+					$data = round(floatval($data), 1) . ' mm';
+				}
 				break;
 			case 'Orientation':
 				// Example of how all of these tag formatters should be...
@@ -587,7 +590,10 @@ class imageMetaFormatter {
 				}
 				break;
 			case 'GPSAltitude':
-				$data = self::rationalNum($data) . ' m';
+				$data = self::rationalNum($data);
+				if (is_numeric($data)) {
+					$data = round(floatval($data), 1) . ' m';
+				}
 				break;
 			case 'GPSAltitudeRef':
 				if ($data == "00000000") {
