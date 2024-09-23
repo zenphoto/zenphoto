@@ -137,7 +137,7 @@ if (isset($_REQUEST['backup'])) {
 					echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');			
 					echo '</p>';
 					echo '<p class="warningbox">';
-					echo gettext('Both database should use compatible table column coalitions. The restore may silently fail if for example a column of one database uses <code>utf8mb4_unicode_520_ci</code> and of the other <code>latin1_swedisch_ci</code>.');
+					echo gettext('Both databases should use compatible table column collations. The restore may silently fail if for example a column of one database uses <code>utf8mb4_unicode_520_ci</code> and of the other <code>latin1_swedisch_ci</code>.');
 					echo '</p>';
 					?>
 					<form name="restore_gallery" action="">
