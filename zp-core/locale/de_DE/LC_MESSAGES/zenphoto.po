@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-06 18:26+0200\n"
-"PO-Revision-Date: 2024-09-06 18:57+0200\n"
+"POT-Creation-Date: 2024-09-24 17:05+0200\n"
+"PO-Revision-Date: 2024-09-24 17:07+0200\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -1475,7 +1475,7 @@ msgstr "<strong>Bild-Id:</strong>"
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Abmessungen:</strong>"
 
-#: zp-core/admin-edit.php:1042 zp-core/classes/class-imagemetaformatter.php:314
+#: zp-core/admin-edit.php:1042 zp-core/classes/class-imagemetaformatter.php:317
 msgid "px"
 msgstr "px"
 
@@ -2827,8 +2827,8 @@ msgstr "Datum der letzten Aktualisierung: %s"
 #: zp-core/admin-functions.php:5294 zp-core/admin-functions.php:5297
 #: zp-core/admin-functions.php:5309 zp-core/admin-functions.php:5319
 #: zp-core/admin-functions.php:5322
-#: zp-core/classes/class-imagemetaformatter.php:156
-#: zp-core/classes/class-imagemetaformatter.php:367
+#: zp-core/classes/class-imagemetaformatter.php:159
+#: zp-core/classes/class-imagemetaformatter.php:370
 msgid "Manual"
 msgstr "Manuell"
 
@@ -4343,7 +4343,7 @@ msgstr "Position h"
 #: zp-core/admin-options.php:2273
 #, no-php-format
 msgid "% , w "
-msgstr "%, w"
+msgstr "%, w "
 
 #: zp-core/admin-options.php:2275
 #, no-php-format
@@ -4670,7 +4670,7 @@ msgstr ""
 
 #: zp-core/admin-options.php:2576
 msgid "Metadata refresh behaviour:"
-msgstr "Metadaten-Aktualisierungsverhalten"
+msgstr "Metadaten-Aktualisierungsverhalten:"
 
 #: zp-core/admin-options.php:2580
 msgid "Full metadata refresh"
@@ -7317,17 +7317,17 @@ msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Fehler: Das „albums“-Verzeichnis (%s) ist nicht lesbar."
 
 #: zp-core/classes/class-gallery.php:534
-#: zp-core/classes/class-imagemetaformatter.php:172
-#: zp-core/classes/class-imagemetaformatter.php:192
-#: zp-core/classes/class-imagemetaformatter.php:212
-#: zp-core/classes/class-imagemetaformatter.php:252
-#: zp-core/classes/class-imagemetaformatter.php:301
-#: zp-core/classes/class-imagemetaformatter.php:322
-#: zp-core/classes/class-imagemetaformatter.php:342
-#: zp-core/classes/class-imagemetaformatter.php:354
-#: zp-core/classes/class-imagemetaformatter.php:369
-#: zp-core/classes/class-imagemetaformatter.php:381
-#: zp-core/classes/class-imagemetaformatter.php:394
+#: zp-core/classes/class-imagemetaformatter.php:175
+#: zp-core/classes/class-imagemetaformatter.php:195
+#: zp-core/classes/class-imagemetaformatter.php:215
+#: zp-core/classes/class-imagemetaformatter.php:255
+#: zp-core/classes/class-imagemetaformatter.php:304
+#: zp-core/classes/class-imagemetaformatter.php:325
+#: zp-core/classes/class-imagemetaformatter.php:345
+#: zp-core/classes/class-imagemetaformatter.php:357
+#: zp-core/classes/class-imagemetaformatter.php:372
+#: zp-core/classes/class-imagemetaformatter.php:384
+#: zp-core/classes/class-imagemetaformatter.php:397
 #: zp-core/setup/class-setup.php:373
 msgid "Unknown"
 msgstr "Unbekannt"
@@ -7476,372 +7476,372 @@ msgstr ""
 "Eine Bildobjektinstanz wurde erstellt, ohne die Funktion newImage() zu "
 "verwenden."
 
-#: zp-core/classes/class-imagemetaformatter.php:110
+#: zp-core/classes/class-imagemetaformatter.php:113
 msgid "1: Horizontal (normal)"
 msgstr "1: Horizontal (Normal)"
 
-#: zp-core/classes/class-imagemetaformatter.php:112
+#: zp-core/classes/class-imagemetaformatter.php:115
 msgid "2: Mirror horizontal"
 msgstr "2: Horizontal spiegeln"
 
-#: zp-core/classes/class-imagemetaformatter.php:114
+#: zp-core/classes/class-imagemetaformatter.php:117
 msgid "3: Rotate 180 CW"
 msgstr "3: 180 Grad im Uhrzeigersinn drehen"
 
-#: zp-core/classes/class-imagemetaformatter.php:116
+#: zp-core/classes/class-imagemetaformatter.php:119
 msgid "4: Mirror vertical"
 msgstr "4: Vertikal spiegeln"
 
-#: zp-core/classes/class-imagemetaformatter.php:118
+#: zp-core/classes/class-imagemetaformatter.php:121
 msgid "5: Mirror horizontal and rotate 270 CW"
 msgstr "5: Horizontal spiegel und 270 Grad im Uhrzeigersinn drehen"
 
-#: zp-core/classes/class-imagemetaformatter.php:120
+#: zp-core/classes/class-imagemetaformatter.php:123
 msgid "6: Rotate 90 CW"
 msgstr "6: 90 Grad im Uhrzeigersinn drehen"
 
-#: zp-core/classes/class-imagemetaformatter.php:122
+#: zp-core/classes/class-imagemetaformatter.php:125
 msgid "7: Mirror horizontal and rotate 90 CW"
 msgstr "7: Horizontal spiegeln und 90 Grad im Uhrzeigersinn drehen"
 
-#: zp-core/classes/class-imagemetaformatter.php:124
+#: zp-core/classes/class-imagemetaformatter.php:127
 msgid "8: Rotate 270 CW"
 msgstr "8: 270 Grad im Uhrzeigersinn drehen"
 
-#: zp-core/classes/class-imagemetaformatter.php:126
+#: zp-core/classes/class-imagemetaformatter.php:129
 #, php-format
 msgid "%d: Unknown"
 msgstr "%d: Unbekannt"
 
-#: zp-core/classes/class-imagemetaformatter.php:134
-#: zp-core/classes/class-imagemetaformatter.php:513
+#: zp-core/classes/class-imagemetaformatter.php:137
+#: zp-core/classes/class-imagemetaformatter.php:516
 msgid "No Unit"
 msgstr "Keine Maßeinheit"
 
-#: zp-core/classes/class-imagemetaformatter.php:136
-#: zp-core/classes/class-imagemetaformatter.php:501
+#: zp-core/classes/class-imagemetaformatter.php:139
+#: zp-core/classes/class-imagemetaformatter.php:504
 msgid "Inch"
 msgstr "Inch"
 
-#: zp-core/classes/class-imagemetaformatter.php:138
-#: zp-core/classes/class-imagemetaformatter.php:504
+#: zp-core/classes/class-imagemetaformatter.php:141
+#: zp-core/classes/class-imagemetaformatter.php:507
 msgid "Centimeter"
 msgstr "Zentimeter"
 
-#: zp-core/classes/class-imagemetaformatter.php:140
-#: zp-core/classes/class-imagemetaformatter.php:507
+#: zp-core/classes/class-imagemetaformatter.php:143
+#: zp-core/classes/class-imagemetaformatter.php:510
 msgid "Millimeter"
 msgstr "Millimeter"
 
-#: zp-core/classes/class-imagemetaformatter.php:142
-#: zp-core/classes/class-imagemetaformatter.php:510
+#: zp-core/classes/class-imagemetaformatter.php:145
+#: zp-core/classes/class-imagemetaformatter.php:513
 msgid "Micrometer"
 msgstr "Mikrometer"
 
-#: zp-core/classes/class-imagemetaformatter.php:148
+#: zp-core/classes/class-imagemetaformatter.php:151
 msgid "Center of Pixel Array"
 msgstr "Zentrum des Pixelarray"
 
-#: zp-core/classes/class-imagemetaformatter.php:150
+#: zp-core/classes/class-imagemetaformatter.php:153
 msgid "Datum Point"
 msgstr "Datumpunkt"
 
-#: zp-core/classes/class-imagemetaformatter.php:158
+#: zp-core/classes/class-imagemetaformatter.php:161
 msgid "Program"
 msgstr "Programm"
 
-#: zp-core/classes/class-imagemetaformatter.php:160
+#: zp-core/classes/class-imagemetaformatter.php:163
 msgid "Aperture Priority"
 msgstr "Priorität der Blende (Zeitautomatik)"
 
-#: zp-core/classes/class-imagemetaformatter.php:162
+#: zp-core/classes/class-imagemetaformatter.php:165
 msgid "Shutter Priority"
 msgstr "Blendenverschlußpriorität"
 
-#: zp-core/classes/class-imagemetaformatter.php:164
+#: zp-core/classes/class-imagemetaformatter.php:167
 msgid "Program Creative"
 msgstr "Programm kreativ"
 
-#: zp-core/classes/class-imagemetaformatter.php:166
+#: zp-core/classes/class-imagemetaformatter.php:169
 msgid "Program Action"
 msgstr "Programmaktion"
 
-#: zp-core/classes/class-imagemetaformatter.php:168
+#: zp-core/classes/class-imagemetaformatter.php:171
 msgid "Portrait"
 msgstr "Portrait"
 
-#: zp-core/classes/class-imagemetaformatter.php:170
+#: zp-core/classes/class-imagemetaformatter.php:173
 msgid "Landscape"
 msgstr "Landschaft"
 
-#: zp-core/classes/class-imagemetaformatter.php:178
+#: zp-core/classes/class-imagemetaformatter.php:181
 msgid "Standard Output Sensitivity"
 msgstr "Standardausgabe-Empfindlichkeit"
 
-#: zp-core/classes/class-imagemetaformatter.php:180
+#: zp-core/classes/class-imagemetaformatter.php:183
 msgid "Recommended Exposure Index"
 msgstr "Empfohlener Belichtungsindex"
 
-#: zp-core/classes/class-imagemetaformatter.php:182
+#: zp-core/classes/class-imagemetaformatter.php:185
 msgid "ISO Speed"
 msgstr "ISO-Geschwindigkeit"
 
-#: zp-core/classes/class-imagemetaformatter.php:184
+#: zp-core/classes/class-imagemetaformatter.php:187
 msgid "Standard Output Sensitivity and Recommended Exposure Index"
 msgstr "Standard-Ausgabeempfindlichkeit und empfohlener Belichtungsindex"
 
-#: zp-core/classes/class-imagemetaformatter.php:186
+#: zp-core/classes/class-imagemetaformatter.php:189
 msgid "Standard Output Sensitivity and ISO Speed"
 msgstr "Standard Ausgabeempfindlichkeit und ISO-Geschwindigkeit"
 
-#: zp-core/classes/class-imagemetaformatter.php:188
+#: zp-core/classes/class-imagemetaformatter.php:191
 msgid "Recommended Exposure Index and ISO Speed"
 msgstr "Empfohlener Belichtungsindex und ISO-Geschwindigkeit"
 
-#: zp-core/classes/class-imagemetaformatter.php:190
+#: zp-core/classes/class-imagemetaformatter.php:193
 msgid "Standard Output Sensitivity, Recommended Exposure Index and ISO Speed"
 msgstr ""
 "Standard-Ausgabeempfindlichkeit, empfohlener Belichtungsindex und ISO-"
 "Geschwindigkeit"
 
-#: zp-core/classes/class-imagemetaformatter.php:198
+#: zp-core/classes/class-imagemetaformatter.php:201
 msgid "Average"
 msgstr "Durchschnitt"
 
-#: zp-core/classes/class-imagemetaformatter.php:200
+#: zp-core/classes/class-imagemetaformatter.php:203
 msgid "Center Weighted Average"
 msgstr "Zentral gewichteter Mittelwert"
 
-#: zp-core/classes/class-imagemetaformatter.php:202
+#: zp-core/classes/class-imagemetaformatter.php:205
 msgid "Spot"
 msgstr "Spot"
 
-#: zp-core/classes/class-imagemetaformatter.php:204
+#: zp-core/classes/class-imagemetaformatter.php:207
 msgid "Multi-Spot"
 msgstr "Multi-Spot"
 
-#: zp-core/classes/class-imagemetaformatter.php:206
+#: zp-core/classes/class-imagemetaformatter.php:209
 msgid "Pattern"
 msgstr "Muster"
 
-#: zp-core/classes/class-imagemetaformatter.php:208
+#: zp-core/classes/class-imagemetaformatter.php:211
 msgid "Partial"
 msgstr "Teilweise"
 
-#: zp-core/classes/class-imagemetaformatter.php:210
-#: zp-core/classes/class-imagemetaformatter.php:250
+#: zp-core/classes/class-imagemetaformatter.php:213
+#: zp-core/classes/class-imagemetaformatter.php:253
 msgid "Other"
 msgstr "Andere"
 
-#: zp-core/classes/class-imagemetaformatter.php:218
+#: zp-core/classes/class-imagemetaformatter.php:221
 msgid "Daylight"
 msgstr "Tageslicht"
 
-#: zp-core/classes/class-imagemetaformatter.php:220
+#: zp-core/classes/class-imagemetaformatter.php:223
 msgid "Fluorescent"
 msgstr "Glimmend"
 
-#: zp-core/classes/class-imagemetaformatter.php:222
+#: zp-core/classes/class-imagemetaformatter.php:225
 msgid "Tungsten"
 msgstr "Wolfram"
 
-#: zp-core/classes/class-imagemetaformatter.php:226
-#: zp-core/classes/class-imagemetaformatter.php:265
+#: zp-core/classes/class-imagemetaformatter.php:229
+#: zp-core/classes/class-imagemetaformatter.php:268
 msgid "Flash"
 msgstr "Blitz"
 
-#: zp-core/classes/class-imagemetaformatter.php:234
+#: zp-core/classes/class-imagemetaformatter.php:237
 msgid "Standard Light A"
 msgstr "Standard Licht A"
 
-#: zp-core/classes/class-imagemetaformatter.php:236
+#: zp-core/classes/class-imagemetaformatter.php:239
 msgid "Standard Light B"
 msgstr "Standard Licht B"
 
-#: zp-core/classes/class-imagemetaformatter.php:238
+#: zp-core/classes/class-imagemetaformatter.php:241
 msgid "Standard Light C"
 msgstr "Standard Licht C"
 
-#: zp-core/classes/class-imagemetaformatter.php:240
+#: zp-core/classes/class-imagemetaformatter.php:243
 msgid "D55"
 msgstr "D55"
 
-#: zp-core/classes/class-imagemetaformatter.php:242
+#: zp-core/classes/class-imagemetaformatter.php:245
 msgid "D65"
 msgstr "D65"
 
-#: zp-core/classes/class-imagemetaformatter.php:244
+#: zp-core/classes/class-imagemetaformatter.php:247
 msgid "D75"
 msgstr "D75"
 
-#: zp-core/classes/class-imagemetaformatter.php:246
+#: zp-core/classes/class-imagemetaformatter.php:249
 msgid "D50"
 msgstr "D50"
 
-#: zp-core/classes/class-imagemetaformatter.php:248
+#: zp-core/classes/class-imagemetaformatter.php:251
 msgid "ISO Studio Tungsten"
 msgstr "ISO Studio Tungsten"
 
-#: zp-core/classes/class-imagemetaformatter.php:263
+#: zp-core/classes/class-imagemetaformatter.php:266
 msgid "No Flash"
 msgstr "Kein Blitz"
 
-#: zp-core/classes/class-imagemetaformatter.php:267
+#: zp-core/classes/class-imagemetaformatter.php:270
 msgid "Flash, strobe return light not detected"
 msgstr "Blitz, Abtastlichtimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:269
+#: zp-core/classes/class-imagemetaformatter.php:272
 msgid "Flash, strobe return light detected"
 msgstr "Blitz, Abtastlichtimpuls erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:271
+#: zp-core/classes/class-imagemetaformatter.php:274
 msgid "Compulsory Flash"
 msgstr "Zwangsblitz"
 
-#: zp-core/classes/class-imagemetaformatter.php:273
+#: zp-core/classes/class-imagemetaformatter.php:276
 msgid "Compulsory Flash, Return light not detected"
 msgstr "Zwangsblitz, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:275
+#: zp-core/classes/class-imagemetaformatter.php:278
 msgid "Compulsory Flash, Return light detected"
 msgstr "Zwangsblitz, Abtastimpuls erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:277
+#: zp-core/classes/class-imagemetaformatter.php:280
 msgid "Flash, Auto-Mode"
 msgstr "Blitz, Automodus"
 
-#: zp-core/classes/class-imagemetaformatter.php:279
+#: zp-core/classes/class-imagemetaformatter.php:282
 msgid "Flash, Auto-Mode, Return light not detected"
 msgstr "Blitz, Automodus, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:281
+#: zp-core/classes/class-imagemetaformatter.php:284
 msgid "Flash, Auto-Mode, Return light detected"
 msgstr "Blitz, Automodus, Abtastimpuls erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:283
+#: zp-core/classes/class-imagemetaformatter.php:286
 msgid "Red Eye"
 msgstr "Rote Augen"
 
-#: zp-core/classes/class-imagemetaformatter.php:285
+#: zp-core/classes/class-imagemetaformatter.php:288
 msgid "Red Eye, Return light not detected"
 msgstr "Rote Augen, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:287
+#: zp-core/classes/class-imagemetaformatter.php:290
 msgid "Red Eye, Return light detected"
 msgstr "Rote Augen, Abtastimpuls erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:289
+#: zp-core/classes/class-imagemetaformatter.php:292
 msgid "Red Eye, Compulsory Flash"
 msgstr "Rote Augen, Zwangsblitz"
 
-#: zp-core/classes/class-imagemetaformatter.php:291
+#: zp-core/classes/class-imagemetaformatter.php:294
 msgid "Red Eye, Compulsory Flash, Return light not detected"
 msgstr "Rote Augen, Zwangsblitz, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:293
+#: zp-core/classes/class-imagemetaformatter.php:296
 msgid "Red Eye, Compulsory Flash, Return light detected"
 msgstr "Rote Augen, Zwangsblitz, Abtastimpuls erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:295
+#: zp-core/classes/class-imagemetaformatter.php:298
 msgid "Red Eye, Auto-Mode"
 msgstr "Rote Augen, Automodus"
 
-#: zp-core/classes/class-imagemetaformatter.php:297
+#: zp-core/classes/class-imagemetaformatter.php:300
 msgid "Red Eye, Auto-Mode, Return light not detected"
 msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:299
+#: zp-core/classes/class-imagemetaformatter.php:302
 msgid "Red Eye, Auto-Mode, Return light detected"
 msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
 
-#: zp-core/classes/class-imagemetaformatter.php:307
+#: zp-core/classes/class-imagemetaformatter.php:310
 msgid "sRGB"
 msgstr "sRGB"
 
-#: zp-core/classes/class-imagemetaformatter.php:309
+#: zp-core/classes/class-imagemetaformatter.php:312
 msgid "Uncalibrated"
 msgstr "Nicht kalibriert"
 
-#: zp-core/classes/class-imagemetaformatter.php:318
+#: zp-core/classes/class-imagemetaformatter.php:321
 msgid "No Compression"
 msgstr "Keine Kompression"
 
-#: zp-core/classes/class-imagemetaformatter.php:320
+#: zp-core/classes/class-imagemetaformatter.php:323
 msgid "Jpeg Compression"
 msgstr "JPEG-Kompression"
 
-#: zp-core/classes/class-imagemetaformatter.php:328
+#: zp-core/classes/class-imagemetaformatter.php:331
 msgid "Not defined"
 msgstr "Nicht definiert"
 
-#: zp-core/classes/class-imagemetaformatter.php:330
+#: zp-core/classes/class-imagemetaformatter.php:333
 msgid "One Chip Color Area Sensor"
 msgstr "1-Chip-Farbbereichsensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:332
+#: zp-core/classes/class-imagemetaformatter.php:335
 msgid "Two Chip Color Area Sensor"
 msgstr "2-Chip-Farbbereichsensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:334
+#: zp-core/classes/class-imagemetaformatter.php:337
 msgid "Three Chip Color Area Sensor"
 msgstr "3-Chip-Farbbereichsensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:336
+#: zp-core/classes/class-imagemetaformatter.php:339
 msgid "Color Sequential Area Sensor"
 msgstr "Farbsequenzbereichsensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:338
+#: zp-core/classes/class-imagemetaformatter.php:341
 msgid "Trilinear Sensor"
 msgstr "Trilinearer Sensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:340
+#: zp-core/classes/class-imagemetaformatter.php:343
 msgid "Color Sequential Linear Sensor"
 msgstr "Farbsequenzlinearsensor"
 
-#: zp-core/classes/class-imagemetaformatter.php:348
+#: zp-core/classes/class-imagemetaformatter.php:351
 msgid "Monochrome"
 msgstr "Monochrom"
 
-#: zp-core/classes/class-imagemetaformatter.php:350
+#: zp-core/classes/class-imagemetaformatter.php:353
 msgid "RGB"
 msgstr "RGB"
 
-#: zp-core/classes/class-imagemetaformatter.php:352
+#: zp-core/classes/class-imagemetaformatter.php:355
 msgid "YCbCr"
 msgstr "YCbCr"
 
-#: zp-core/classes/class-imagemetaformatter.php:361
+#: zp-core/classes/class-imagemetaformatter.php:364
 #: zp-core/zp-extensions/security-logger.php:132
 msgid "version"
 msgstr "Version"
 
-#: zp-core/classes/class-imagemetaformatter.php:365
+#: zp-core/classes/class-imagemetaformatter.php:368
 msgid "Auto"
 msgstr "Auto"
 
-#: zp-core/classes/class-imagemetaformatter.php:375
-#: zp-core/classes/class-imagemetaformatter.php:388
+#: zp-core/classes/class-imagemetaformatter.php:378
+#: zp-core/classes/class-imagemetaformatter.php:391
 #: zp-core/zp-extensions/reCaptcha.php:85
 msgid "Normal"
 msgstr "Normal"
 
-#: zp-core/classes/class-imagemetaformatter.php:377
+#: zp-core/classes/class-imagemetaformatter.php:380
 msgid "Soft"
 msgstr "Weich"
 
-#: zp-core/classes/class-imagemetaformatter.php:379
+#: zp-core/classes/class-imagemetaformatter.php:382
 msgid "Hard"
 msgstr "Hart"
 
-#: zp-core/classes/class-imagemetaformatter.php:390
+#: zp-core/classes/class-imagemetaformatter.php:393
 msgid "Low"
 msgstr "Niedrig"
 
-#: zp-core/classes/class-imagemetaformatter.php:392
+#: zp-core/classes/class-imagemetaformatter.php:395
 msgid "High"
 msgstr "Hoch"
 
-#: zp-core/classes/class-imagemetaformatter.php:472
+#: zp-core/classes/class-imagemetaformatter.php:475
 msgid "Bulb"
 msgstr "Bulb"
 
@@ -12546,11 +12546,23 @@ msgstr ""
 "Datenbankfelder zwischen den Versionen geändert haben sollten, wird der "
 "Inhalt der geänderten Felder nicht wiederhergestellt."
 
-#: zp-core/utilities/backup_restore.php:143
+#: zp-core/utilities/backup_restore.php:140
+msgid ""
+"Both databases should use compatible table column collations. The restore "
+"may silently fail if for example a column of one database uses "
+"<code>utf8mb4_unicode_520_ci</code> and of the other "
+"<code>latin1_swedisch_ci</code>."
+msgstr ""
+"Beide Datenbanken sollten kompatible Tabellen-Spalten-Koalitionen verwenden. "
+"Die Wiederherstellung kann unbemerkt fehlschlagen, wenn zum Beispoele ein "
+"Tabellenspalte der einen Datenbank <code>utf8mb4_unicode_520_ci</code> "
+"verwendet und die der anderen <code>latin1_swedisch_ci</code>."
+
+#: zp-core/utilities/backup_restore.php:146
 msgid "Select the database restore file:"
 msgstr "Wählen Sie die Datenbank-Wiederherstellungsdatei aus:"
 
-#: zp-core/utilities/backup_restore.php:152
+#: zp-core/utilities/backup_restore.php:155
 msgid ""
 "Do you really want to restore the database content? Restoring the wrong "
 "backup might result in data loss!"
@@ -12558,13 +12570,13 @@ msgstr ""
 "Möchten Sie wirklich den Datenbank-Inhalt wiederherstellen? Die "
 "Wiederherstellung mit einem falschen Backup kann zu Datenverlust führen!"
 
-#: zp-core/utilities/backup_restore.php:160
+#: zp-core/utilities/backup_restore.php:163
 msgid "Restore the table content in your database from a previous backup."
 msgstr ""
 "Wiederherstellung der Tabellen-Inhalte Ihrer Datenbank von einen vorigen "
 "Backup."
 
-#: zp-core/utilities/backup_restore.php:161
+#: zp-core/utilities/backup_restore.php:164
 msgid "Restore the Database"
 msgstr "Datenbank wiederherstellen"
 
@@ -20602,8 +20614,8 @@ msgstr ""
 "Wenn aktiviert werden gültige Umleitungen nicht ausgeführt, sondern nur im "
 "Fehlerprotokoll aufgezeichnet."
 
-#: zp-core/zp-extensions/redirector.php:129
-#: zp-core/zp-extensions/redirector.php:138
+#: zp-core/zp-extensions/redirector.php:131
+#: zp-core/zp-extensions/redirector.php:140
 msgid ""
 "redirector Error: Could not open and load the redirections catalogue file: "
 msgstr ""
@@ -21666,7 +21678,7 @@ msgid ""
 "the federated_login plugin is not supported anymore"
 msgstr ""
 "security_logger::federatedLoginLogger() wird entfernt und nicht ersetzt, da "
-"das federated_login-Plugin nicht mehr unterstützt wird."
+"das federated_login-Plugin nicht mehr unterstützt wird"
 
 #: zp-core/zp-extensions/seo_cleanup.php:15
 msgid "Provides a utility SEO file/folder name clenser."
