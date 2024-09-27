@@ -3,4 +3,4 @@
  * Defines the Zenphoto version
  * @package zpcore
  */
-define('ZENPHOTO_VERSION', '1.6.5b');
+define('ZENPHOTO_VERSION', '1.6.5RC');
