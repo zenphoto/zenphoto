@@ -131,7 +131,7 @@ function printImageslist($number) {
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='thumb'>";
-		echo "<a href=\"javascript: ZenpageDialog.insert('" . $itemid . "','" . $imgurl . "','" .
+		echo "<a href=\"javascript:ZenpageDialog.insert('" . $itemid . "','" . $imgurl . "','" .
 		$albumobj->getThumb() . "','" .
 		"','" .
 		urlencode($albumthumb->filename) . "','" .
@@ -183,7 +183,7 @@ function printImageslist($number) {
 						$backgroundcss = 'thumb-image';
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
-						$sizedimage = '<img src="' . $sizedimage . '" alt="' . $imageobj->getTitle() . '" class="zenpage_sizedimage" />';
+						//$sizedimage = '<img src="' . $sizedimage . '" alt="' . $imageobj->getTitle() . '" class="zenpage_sizedimage" />';
 						$itemid = '';
 						break;
 					case 'textobject':
@@ -227,7 +227,7 @@ function printImageslist($number) {
 				echo "<a href='../../../../../.." . html_encode($imageobj->getLink()) .
 				"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> " .
 				html_encode(shortentitle($imageobj->getTitle(), 8)) . unpublishedZenphotoItemCheck($imageobj, false);
-				echo "</div>\n";
+				echo "</div>\n"; 
 				if ($nr === $endimage[$currentpage]) {
 					break;
 				}
