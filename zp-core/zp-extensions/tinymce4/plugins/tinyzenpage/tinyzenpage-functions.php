@@ -135,15 +135,15 @@ function printImageslist($number) {
 		$albumobj->getThumb() . "','" .
 		"','" .
 		urlencode($albumthumb->filename) . "','" .
-		js_encode(html_encode($albumthumb->getTitle())) . "','" .
-		js_encode(html_encode($albumobj->getTitle())) . "','" .
+		html_encode(addslashes($albumthumb->getTitle())) . "','" .
+		html_encode(addslashes($albumobj->getTitle())) . "','" .
 		$fullimage . "',
 																											'zenphoto','" .
 		js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB)) . "','" .
 		js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE)) . "','" .
 		$imageType . "',
-																											'" . html_encode(addslashes($imagedesc)) . "',
-																											'" . html_encode(addslashes($albumdesc)) . "');\"" .
+																											'" . html_encode($imagedesc) . "',
+																											'" . html_encode($albumdesc) . "');\"" .
 		" title='" . html_encode($albumthumb->getTitle()) . " (" . html_encode($albumthumb->filename) . ")'>
 																											<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
 
@@ -213,15 +213,15 @@ function printImageslist($number) {
 				$thumburl . "','" .
 				html_encode($sizedimage) . "','" .
 				urlencode($imageobj->filename) . "','" .
-				js_encode(html_encode($imageobj->getTitle())) . "','" .
-				js_encode(html_encode($linkalbumobj->getTitle())) . "','" .
+				html_encode(addslashes($imageobj->getTitle())) . "','" .
+				html_encode(addslashes($linkalbumobj->getTitle())) . "','" .
 				$fullimage . "',
 																												'zenphoto','" .
 				js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB)) . "','" .
 				js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE)) . "','" .
 				$imageType . "',
-																												'" . html_encode(addslashes($imagedesc)) . "',
-																												'" . html_encode(addslashes($albumdesc)) . "');\"" .
+																												'" . html_encode($imagedesc) . "',
+																												'" . html_encode($albumdesc) . "');\"" .
 				" title='" . html_encode($imageobj->getTitle()) . " (" . html_encode($imageobj->filename) . ")'>
 																												<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
 				echo "<a href='../../../../../.." . html_encode($imageobj->getLink()) .
@@ -327,7 +327,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getName() . "','','','" . $newsobj->getName() . "','" . html_encode(addslashes($newsobj->getTitle())) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . html_encode(addslashes($newsobj->getTitle())) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getName() . "','','','" . $newsobj->getName() . "','" . html_encode(addslashes($newsobj->getTitle())) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . html_encode($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
 					echo " <a href='zoom.php?news=" . urlencode($newsobj->getName()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
