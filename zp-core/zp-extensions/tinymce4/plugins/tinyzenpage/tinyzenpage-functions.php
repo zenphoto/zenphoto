@@ -119,6 +119,8 @@ function printImageslist($number) {
 		$imgurl = getImageProcessorURI($args, $albumthumbalbum->name, $albumthumb->filename);
 		$fullimage = pathurlencode(addslashes($albumthumb->getFullImage()));
 		$imageType = getImageType($albumthumb);
+		$sizedimage = $albumthumb->getSizedImage(getOption('image_size'));
+		$sizedimage = '<img src="' . $sizedimage . '" alt="' . html_encode($albumthumb->getTitle()) . '" class="zenpage_sizedimage" />';
 		if ($imageType) {
 			// Not a pure image
 			$backgroundcss = 'albumthumb-image';
@@ -133,7 +135,7 @@ function printImageslist($number) {
 		echo "<div class='thumb'>";
 		echo "<a href=\"javascript:ZenpageDialog.insert('" . $itemid . "','" . $imgurl . "','" .
 		$albumobj->getThumb() . "','" .
-		"','" .
+		html_encode($sizedimage) . "','" .
 		urlencode($albumthumb->filename) . "','" .
 		html_encode(addslashes($albumthumb->getTitle())) . "','" .
 		html_encode(addslashes($albumobj->getTitle())) . "','" .

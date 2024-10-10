@@ -154,7 +154,7 @@ var ZenpageDialog = {
 						player = '[MEDIAPLAYER '+albumname+' '+imgname+' '+id+']';
 						imglink = infowrap1+player+infowrap2;
 					} else {
-						imglink = infowrap1+sizedimage+infowrap2;
+						imglink = infowrap1+linkpart1+sizedimage+linkpart2+infowrap2
 					}
 				} else {
 					imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
