@@ -135,8 +135,8 @@ function printImageslist($number) {
 		$albumobj->getThumb() . "','" .
 		"','" .
 		urlencode($albumthumb->filename) . "','" .
-		js_encode($albumthumb->getTitle()) . "','" .
-		js_encode($albumobj->getTitle()) . "','" .
+		js_encode(html_encode($albumthumb->getTitle())) . "','" .
+		js_encode(html_encode($albumobj->getTitle())) . "','" .
 		$fullimage . "',
 																											'zenphoto','" .
 		js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB)) . "','" .
@@ -213,8 +213,8 @@ function printImageslist($number) {
 				$thumburl . "','" .
 				html_encode($sizedimage) . "','" .
 				urlencode($imageobj->filename) . "','" .
-				js_encode($imageobj->getTitle()) . "','" .
-				js_encode($linkalbumobj->getTitle()) . "','" .
+				js_encode(html_encode($imageobj->getTitle())) . "','" .
+				js_encode(html_encode($linkalbumobj->getTitle())) . "','" .
 				$fullimage . "',
 																												'zenphoto','" .
 				js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB)) . "','" .
@@ -327,7 +327,7 @@ function printNewsArticlesList($number) {
 				$count++;
 				echo "<li>";
 				if ($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getName() . "','','','" . $newsobj->getName() . "','" . addslashes($newsobj->getTitle()) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . addslashes($newsobj->getTitle()) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('','news/" . $newsobj->getName() . "','','','" . $newsobj->getName() . "','" . html_encode(addslashes($newsobj->getTitle())) . "','','','articles','','','','');\" title='" . html_encode(truncate_string(getBare($newsobj->getContent()), 300)) . "'>" . html_encode(addslashes($newsobj->getTitle())) . unpublishedZenpageItemCheck($newsobj) . "</a> <small><em>" . $newsobj->getDatetime() . "</em></small>";
 					echo " <a href='zoom.php?news=" . urlencode($newsobj->getName()) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>' . gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -540,7 +540,7 @@ function printAllNestedList() {
 				$open[$indent] --;
 			}
 			echo "<li id='" . $itemid . "' class='itemborder'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . js_encode($itemtitle) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . js_encode(html_encode($itemtitle)) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
 			if ($mode == 'pages') {
 				echo " <a href='zoom.php?pages=" . urlencode($itemtitlelink) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}
