@@ -183,7 +183,7 @@ function printImageslist($number) {
 						$backgroundcss = 'thumb-image';
 						$imgurl = getImageProcessorURI($args, $linkalbumobj->name, $imageobj->filename);
 						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
-						//$sizedimage = '<img src="' . $sizedimage . '" alt="' . $imageobj->getTitle() . '" class="zenpage_sizedimage" />';
+						$sizedimage = '<img src="' . $sizedimage . '" alt="' . html_encode($imageobj->getTitle()) . '" class="zenpage_sizedimage" />';
 						$itemid = '';
 						break;
 					case 'textobject':
@@ -540,7 +540,7 @@ function printAllNestedList() {
 				$open[$indent] --;
 			}
 			echo "<li id='" . $itemid . "' class='itemborder'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . js_encode(html_encode($itemtitle)) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('','" . $zenpagepage . "','','','" . $itemtitlelink . "','" . html_encode(addslashes($itemtitle)) . "','','','" . $mode . "','','','','');\" title='" . html_encode($itemcontent) . "'>" . html_encode($itemtitle) . $unpublished . $counter . "</a> <small><em>" . $obj->getDatetime() . "</em></small>";
 			if ($mode == 'pages') {
 				echo " <a href='zoom.php?pages=" . urlencode($itemtitlelink) . "' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}

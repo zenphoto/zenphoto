@@ -3,32 +3,6 @@
 
 /* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
 
-function stripHTML(oldString) {
-
-   var newString = "";
-   var inTag = false;
-   for(var i = 0; i < oldString.length; i++) {
-
-        if(oldString.charAt(i) == '<') inTag = true;
-        if(oldString.charAt(i) == '>') {
-              if(oldString.charAt(i+1)=="<")
-              {
-              		//dont do anything
-	}
-	else
-	{
-		inTag = false;
-		i++;
-	}
-        }
-
-        if(!inTag) newString += oldString.charAt(i);
-
-   }
-
-   return newString;
-}
-
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
@@ -53,12 +27,9 @@ var ZenpageDialog = {
 		var webpath = '<?php echo WEBPATH; ?>'
 		//var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		//var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
-		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
-		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
+		var plainimgtitle = imgtitle.replace(/'/g, "&#039;");;
+		var plainalbumtitle = albumtitle.replace(/'/g, "&#039;");;
 		var player = '';
-
-		plainimgtitle = stripHTML(plainimgtitle);
-		plainalbumtitle = stripHTML(plainalbumtitle);
 
 		var stopincluding = false;
 		// getting the image size checkbox values
