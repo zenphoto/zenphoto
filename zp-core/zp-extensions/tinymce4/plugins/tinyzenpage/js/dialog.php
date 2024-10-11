@@ -137,10 +137,10 @@ var ZenpageDialog = {
 			infowrap2 = titlewrap+descwrap+infowrap2;
 		}
 		if($('#imagetitle').prop('checked')) {
-			includetype = html_encode(imgtitle);
+			includetype = imgtitle;
 		}
 		if($('#albumtitle').prop('checked')) {
-			includetype = html_encode(albumtitle);
+			includetype = albumtitle;
 		}
 		if($('#customtext').prop('checked')) {
 			includetype = $('#text').val();
