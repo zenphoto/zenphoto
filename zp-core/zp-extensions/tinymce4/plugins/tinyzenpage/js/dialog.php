@@ -129,10 +129,10 @@ var ZenpageDialog = {
 				}
 			}
 			if($('#imagedesc').prop('checked')) {
-				descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
+				descwrap = '<div class=\'zenpage_desc\'>'+imgdesc.replace(/'/g, "&#039;")+'</div>';
 			}
 			if($('#albumdesc').prop('checked')) {
-				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
+				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc.replace(/'/g, "&#039;")+'</div>';
 			}
 			infowrap2 = titlewrap+descwrap+infowrap2;
 		}

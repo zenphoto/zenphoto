@@ -139,16 +139,14 @@ function printImageslist($number) {
 		urlencode($albumthumb->filename) . "','" .
 		html_encode(addslashes($albumthumb->getTitle())) . "','" .
 		html_encode(addslashes($albumobj->getTitle())) . "','" .
-		$fullimage . "',
-																											'zenphoto','" .
+		$fullimage . "','zenphoto','" .
 		js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB)) . "','" .
 		js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE)) . "','" .
 		$imageType . "',
-																											'" . html_encode($imagedesc) . "',
-																											'" . html_encode($albumdesc) . "');\"" .
+		'" . html_encode(addslashes($imagedesc)) . "',
+		'" . html_encode(addslashes($albumdesc)) . "');\"" .
 		" title='" . html_encode($albumthumb->getTitle()) . " (" . html_encode($albumthumb->filename) . ")'>
-																											<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
-
+		<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
 		echo "<a href='../../../../../.." . html_encode($albumthumb->getLink()) .
 		"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> " .
 		gettext('<em>Albumthumb</em>') . unpublishedZenphotoItemCheck($albumthumb, false);
@@ -217,15 +215,14 @@ function printImageslist($number) {
 				urlencode($imageobj->filename) . "','" .
 				html_encode(addslashes($imageobj->getTitle())) . "','" .
 				html_encode(addslashes($linkalbumobj->getTitle())) . "','" .
-				$fullimage . "',
-																												'zenphoto','" .
+				$fullimage . "','zenphoto','" .
 				js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB)) . "','" .
 				js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE)) . "','" .
 				$imageType . "',
-																												'" . html_encode($imagedesc) . "',
-																												'" . html_encode($albumdesc) . "');\"" .
+				'" . html_encode(addslashes($imagedesc)) . "',
+				'" . html_encode(addslashes($albumdesc)) . "');\"" .
 				" title='" . html_encode($imageobj->getTitle()) . " (" . html_encode($imageobj->filename) . ")'>
-																												<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
+				<img src='" . $imgsizeurl . "' class='" . $backgroundcss . "' /></a>\n";
 				echo "<a href='../../../../../.." . html_encode($imageobj->getLink()) .
 				"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> " .
 				html_encode(shortentitle($imageobj->getTitle(), 8)) . unpublishedZenphotoItemCheck($imageobj, false);
