@@ -21,9 +21,6 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery.min.js"></script>
 		<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/jquery-migrate.min.js" ></script>
-
-		<!-- IMPORTANT: This is a legacy workaround to make the 3.x API still work!  -->
-		<script src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce4/plugins/compat3x/tiny_mce_popup.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 		<script>
 			$(document).ready(function() {

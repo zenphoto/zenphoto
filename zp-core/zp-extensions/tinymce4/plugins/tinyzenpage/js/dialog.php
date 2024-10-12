@@ -1,15 +1,7 @@
 <script>
 /* tinyMCEPopup.requireLangPack(); */
 
-/* IMPORTANT: This is a workaround using the plugin tiny_mce_popup.js to make the 3.x API still work. This needs to be figured out with the 4.x API! */
-
-var ZenpageDialog = {
-	init : function(ed) {
-		tinyMCEPopup.resizeToInnerSize();
-	},
-
-	insert : function(id,imgurl,thumburl,sizedimage,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
-		var ed = tinyMCEPopup.editor, dom = ed.dom;
+var ZenpageDialog = function(id,imgurl,thumburl,sizedimage,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
 		var imglink = '';
 		var includetype = '';
 		var imagesize = '';
@@ -171,10 +163,7 @@ var ZenpageDialog = {
 				break;
 		}
 		if(!stopincluding) {
-			tinyMCEPopup.execCommand('mceInsertContent', false, imglink);
+			parent.tinymce.EditorManager.activeEditor.execCommand('mceInsertContent', false, imglink);
 		}
 	}
-};
-
-tinyMCEPopup.onInit.add(ZenpageDialog.init, ZenpageDialog);
 </script>
