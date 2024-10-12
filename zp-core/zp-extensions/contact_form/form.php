@@ -58,7 +58,7 @@
 		?>
 		<p>
 			<label for="state"><?php printf(gettext("State%s"), contactForm::getRequiredFieldMark('contactform_state')); ?></label>
-			<input type="text" id="state" name="state size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_state', 'address-level1'); ?> />
+			<input type="text" id="state" name="state" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php contactForm::printAttributes('contactform_state', 'address-level1'); ?> />
 		</p>
 		<?php
 	}
