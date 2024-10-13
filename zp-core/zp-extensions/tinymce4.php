@@ -100,12 +100,12 @@ class tinymce4Options {
 								gettext('Named and numeric') => 'named+numeric'
 								),
 						'null_selection' => 'raw',
-						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entity_encoding">tinyMCE docs</a>.')),
+						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/entity-encoding.md">tinyMCE docs</a>.')),
 				gettext('Entities') => array(
 						'key' => 'tinymce4_entities',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 3,
-						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tinymce.com/docs/configure/content-filtering/#entities">tinyMCE docs</a>.')),
+						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/entities.md">tinyMCE docs</a>.')),
             gettext('Browser spellcheck') => array(
 						'key' => 'tinymce4_browser-spellcheck',
 						'type' => OPTION_TYPE_CHECKBOX,
