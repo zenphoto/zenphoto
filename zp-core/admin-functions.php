@@ -731,9 +731,15 @@ function printAdminHeader($tab, $subtab = NULL) {
 								<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
 									<?php
 									if (array_key_exists('null_selection', $row)) {
-										?>
-										<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?> style="background-color:LightGray;"><?php echo $row['null_selection']; ?></option>
-										<?php
+										if (empty($v)) {
+											if (in_array($row['null_selection'], $row['selections'])) {
+												$v = $row['null_selection']; // don't list null_selection if the value is also an option
+											} else {
+												?>
+												<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?> style="background-color:LightGray;"><?php echo $row['null_selection']; ?></option>
+											<?php
+											}
+										}
 									}
 									?>
 									<?php generateListFromArray(array($v), $row['selections'], false, true); ?>
