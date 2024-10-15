@@ -13,6 +13,7 @@ margin: 8px 0px 8px 0px;
 
 #main {
 margin-top: -10px;
+display: flex;
 }
 
 h3 {
@@ -32,18 +33,18 @@ font-style: italic;
 }
 
 .optionsdiv {
-	float: left; 
-	width: 25%; 
+	flex-shrink: 0;
 	margin: 0;
 }
 
+.optionsdiv label:hover{
+	cursor: pointer;
+}
 
 .albumdiv {
-	width: 73%; 
 	background-color: white; 
 	border: 0px solid gray; 
 	overflow: none;
-	float: left; 
 	margin-left: 15px;
 	font-size: 12px;
 }
@@ -69,7 +70,7 @@ border: 1px solid gray;
 position: fixed;
 top: 0px;
 z-index: 1000;
-left: 700px;
+right: 0;
 text-align: center;
 }
 

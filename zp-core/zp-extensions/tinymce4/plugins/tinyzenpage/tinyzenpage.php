@@ -112,7 +112,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 												<input type="radio" name="type" id="thumbnail" value="1" checked='checked'><label for="thumbnail" /> <?php echo gettext("Thumbnail"); ?></label><br />
 												<input type="radio" name="type" id="customthumb" value="1" />
 												s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
-												<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
+												<input type="radio" name="type" id="sizedimage" "value="1" /><label for="sizedimage"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
 												<input type="radio" name="type" id="customsize" value="1" />
 												<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
 												<input type="radio" name="type" id="fullimage" value="1"><label for="fullimage" /> <?php echo gettext("Full image"); ?></label><br />
@@ -257,7 +257,6 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 									?>
 								</div>
 							</div>
-							<br style="clear: both" />
 						</div><!-- main div -->
 
 						</body>
