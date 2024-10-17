@@ -16,6 +16,8 @@ $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Text editor TinyMCE 4.x");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_category = gettext('Admin');
+$plugin_disable = (extensionEnabled('tinymce')) ? sprintf(gettext('Only one TinyMCE editor plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), 'tinymce') : '';
+$plugin_deprecated = true;
 $option_interface = 'tinymce4Options';
 
 if (!defined('EDITOR_SANITIZE_LEVEL'))
