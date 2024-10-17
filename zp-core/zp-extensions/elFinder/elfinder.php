@@ -42,17 +42,32 @@ if (empty($locale))
 			
 		<!-- elFinder initialization (REQUIRED) -->
 		<script charset="utf-8">
-							var FileBrowserDialogue = {
-							init: function() {
-							// Here goes your code for setting your custom things onLoad.
-							},
-											mySubmit: function(URL) {
-											// pass selected file path to TinyMCE
-											top.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
-															// close popup window
-															top.tinymce.activeEditor.windowManager.close();
-											}
+				if (top.tinymce.majorVersion == 4) {
+					var FileBrowserDialogue = {
+					init: function() {
+					// Here goes your code for setting your custom things onLoad.
+					},
+						mySubmit: function(URL) {
+						// pass selected file path to TinyMCE
+						top.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
+										// close popup window
+										top.tinymce.activeEditor.windowManager.close();
+						}
+					}
+				} else {
+					var FileBrowserDialogue = {
+						init: function() {
+						// Here goes your code for setting your custom things onLoad.
+						},
+							mySubmit: function(URL) {
+								// pass selected file path to TinyMCE
+								window.parent.postMessage({
+									mceAction: 'insertMyURL',
+									url: URL
+								}, '*');
 							}
+					}
+				}
 
 			$().ready(function() {
 			var elf = $('#elfinder').elfinder({
