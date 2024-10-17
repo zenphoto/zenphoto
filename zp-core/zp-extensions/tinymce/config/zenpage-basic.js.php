@@ -42,6 +42,7 @@ global $_zp_rtl_css;
 			elements: "<?php echo $filehandler; ?>",
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
+		toolbar_mode: 'sliding',
 		plugins: [
 			'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
 			'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
