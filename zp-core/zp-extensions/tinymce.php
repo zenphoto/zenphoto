@@ -88,11 +88,11 @@ class tinymceOptions {
 								gettext('Named and numeric') => 'named+numeric'
 						),
 						'null_selection' => 'raw',
-						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://www.tiny.cloud/docs/tinymce/latest/content-filtering/">tinyMCE docs</a>.')),
+						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://www.tiny.cloud/docs/tinymce/latest/content-filtering/">TinyMCE docs</a>.')),
 				gettext('Entities') => array(
 						'key' => 'tinymce_entities',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tiny.cloud/docs/tinymce/latest/content-filtering/">tinyMCE docs</a>.')),
+						'desc' => gettext('You can adjust how entities are processed. More info on the <a href="https://www.tiny.cloud/docs/tinymce/latest/content-filtering/#entities">TinyMCE docs</a>.')),
 				gettext('Browser spellcheck') => array(
 						'key' => 'tinymce_browser-spellcheck',
 						'type' => OPTION_TYPE_CHECKBOX,
