@@ -16,6 +16,7 @@ global $_zp_rtl_css;
 <script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>
 <script>
 	tinymce.init({
+		license_key: 'gpl',
 		selector: "textarea.texteditor",
 		promotion: false,
 		language: "<?php echo $locale; ?>",
@@ -38,8 +39,8 @@ global $_zp_rtl_css;
 		image_advtab: true,
 		image_caption: true,
 		content_css: "<?php echo FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/tinymce/config/content.css",
+		importcss_append: true,
 		<?php if ($filehandler) { ?>
-			elements: "<?php echo $filehandler; ?>",
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
