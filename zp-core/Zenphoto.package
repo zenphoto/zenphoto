@@ -1474,9 +1474,9 @@ zp-core/zp-extensions/themeSwitcher.php
 zp-core/zp-extensions/tinymce
 zp-core/zp-extensions/tinymce.php
 zp-core/zp-extensions/tinymce/config
-zp-core/zp-extensions/tinymce/config/comments-basic.js.php
-zp-core/zp-extensions/tinymce/config/comments-full,js.php
-zp-core/zp-extensions/tinymce/config/comments-slim.js.php
+zp-core/zp-extensions/tinymce/config/comment-basic.js.php
+zp-core/zp-extensions/tinymce/config/comment-full.js.php
+zp-core/zp-extensions/tinymce/config/comment-slim.js.php
 zp-core/zp-extensions/tinymce/config/content.css
 zp-core/zp-extensions/tinymce/config/zenpage-basic.js.php
 zp-core/zp-extensions/tinymce/config/zenpage-full.js.php
@@ -1484,6 +1484,9 @@ zp-core/zp-extensions/tinymce/config/zenpage-slim.js.php
 zp-core/zp-extensions/tinymce/config/zenphoto-basic.js.php
 zp-core/zp-extensions/tinymce/config/zenphoto-full.js.php
 zp-core/zp-extensions/tinymce/config/zenphoto-slim.js.php
+zp-core/zp-extensions/tinymce/icons
+zp-core/zp-extensions/tinymce/icons/default
+zp-core/zp-extensions/tinymce/icons/default/icons.min.js
 zp-core/zp-extensions/tinymce/langs
 zp-core/zp-extensions/tinymce/langs/ar_SA.js
 zp-core/zp-extensions/tinymce/langs/ar.js
@@ -2172,4 +2175,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2174
+2177
