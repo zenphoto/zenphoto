@@ -2766,6 +2766,9 @@ function getMacros() {
  */
 function getNestedAlbumList($subalbum, $levels, $checkalbumrights = true, $level = array()) {
 	global $_zp_gallery;
+	if (is_null($levels)) {
+		$levels = 0;
+	}
 	$cur = count($level);
 	$levels--; // make it 0 relative to sync with $cur
 	if (is_null($subalbum)) {
