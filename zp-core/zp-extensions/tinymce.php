@@ -117,7 +117,7 @@ class tinymceOptions {
 			 * 
 			 */
 			$locale = 'en';
-			$loc = str_replace('_', '-', getOption("locale"));
+			$loc = getOption("locale");
 			if ($loc) {
 				if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce/langs/' . $loc . '.js')) {
 					$locale = $loc;

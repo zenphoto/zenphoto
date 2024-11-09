@@ -132,7 +132,7 @@ function tinymce4ConfigJS($mode) {
 	global $_editorconfig;
 	if (empty($_editorconfig)) { // only if we get here first!
 		$locale = 'en';
-		$loc = str_replace('_', '-', getOption("locale"));
+		$loc = getOption("locale");
 		if ($loc) {
 			if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4/langs/' . $loc . '.js')) {
 				$locale = $loc;
