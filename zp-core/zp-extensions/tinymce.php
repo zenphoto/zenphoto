@@ -62,10 +62,6 @@ class tinymceOptions {
 						'key' => 'tinymce_tinyzenpage_customimagesize',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-				gettext('Custom image size') => array(
-						'key' => 'tinymce_tinyzenpage_customimagesize',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
 				gettext('Custom thumb crop - size') => array(
 						'key' => 'tinymce_tinyzenpage_customthumb_size',
 						'type' => OPTION_TYPE_TEXTBOX,
