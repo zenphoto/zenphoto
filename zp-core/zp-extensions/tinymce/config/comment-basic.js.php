@@ -43,15 +43,8 @@ global $_zp_rtl_css;
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
-		plugins: [
-			'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-			'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-			'insertdatetime', 'media', 'table', 'help', 'wordcount'
-		],
-		toolbar: 'undo redo | blocks | ' +
-		'bold italic backcolor | alignleft aligncenter ' +
-		'alignright alignjustify | bullist numlist outdent indent | ' +
-		'removeformat | help',
+		plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount',
+		toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');

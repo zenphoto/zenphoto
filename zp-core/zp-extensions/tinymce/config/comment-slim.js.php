@@ -43,11 +43,7 @@ global $_zp_rtl_css;
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
-		plugins: [
-			'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-			'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-			'insertdatetime', 'media', 'table', 'help', 'wordcount', 'codesample', 'pagebreak', 'anchor'
-		],
+		plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount codesample pagebreak anchor',
 		menubar: false,
 		toolbar: 'bold italic underline strikethrough | undo redo | accordion accordionremove | blocks | align numlist bullist | outdent indent | link | code fullscreen preview | pagebreak anchor codesample | charmap emoticons',
 		setup: function(ed) {

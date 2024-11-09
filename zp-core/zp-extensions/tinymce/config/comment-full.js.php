@@ -43,9 +43,9 @@ global $_zp_rtl_css;
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
-		plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap emoticons accordion',
-		menubar: 'file edit view insert format tools table help',
-		toolbar: "undo redo | link tinyzenpage image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | print | pagebreak anchor codesample | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | ltr rtl",
+		plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount charmap emoticons accordion',
+		menubar: 'file edit view insert format tools table',
+		toolbar: 'undo redo | link tinyzenpage image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | print | pagebreak anchor codesample | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | ltr rtl',
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');
