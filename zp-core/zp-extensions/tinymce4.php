@@ -96,7 +96,7 @@ class tinymce4Options {
 								gettext('Named') => 'named',
 								gettext('Named and numeric') => 'named+numeric'
 								),
-						'null_selection' => 'raw',
+						'null_selection' => gettext('Default (raw)'),
 						'desc' => gettext('If encountering issues with special chars and other character entities change this. Note that this applies on re-saving content only. More info on the <a href="https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/entity-encoding.md">TinyMCE docs</a>.')),
 				gettext('Entities') => array(
 						'key' => 'tinymce4_entities',
