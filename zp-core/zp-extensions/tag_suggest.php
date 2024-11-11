@@ -40,7 +40,7 @@ class tagsuggest {
 }
 
 function tagSuggestJS_admin() {
-  tagSuggestJS(false);
+  tagSuggestJS(false, false, true);
 }
 
 function tagSuggestJS_frontend() {
@@ -49,13 +49,17 @@ function tagSuggestJS_frontend() {
   tagSuggestJS($exclude_unassigned,$checkaccess);
 }
 
-function tagSuggestJS($exclude_unassigned = false, $checkaccess = false) {
+function tagSuggestJS($exclude_unassigned = false, $checkaccess = false, $admin = false) {
 	// the scripts needed
 	?>
 	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
 	<script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
 	<?php
-	$css = getPlugin('tag_suggest/tag.css', true, true);
+	if ($admin) {
+		$css = getPlugin('tag_suggest/tag_admin.css', true, true);
+	} else {
+		$css = getPlugin('tag_suggest/tag.css', true, true);
+	}
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
