@@ -1639,16 +1639,6 @@ Authority::printPasswordFormJS();
 									$set_fields = $engine->allowedSearchFields();
 									$fields = array_diff($fields, $set_fields);
 									?>
-								<script>
-																					$(function() {
-																					$("#resizable").resizable({
-																					maxWidth: 350,
-																									minWidth: 350, minHeight: 120,
-																									resize: function(event, ui) {
-																									$('#searchchecklist').height($('#resizable').height());
-																									}
-																					});
-																					});</script>
 								<td>
 									<?php echo gettext('Fields list:'); ?>
 									<div id="resizable">
@@ -2495,16 +2485,6 @@ Authority::printPasswordFormJS();
 									</td>
 									<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images_errors/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 								</tr>
-								<script>
-																									$(function() {
-																									$("#resizable").resizable({
-																									maxWidth: 350,
-																													minWidth: 350, minHeight: 120,
-																													resize: function(event, ui) {
-																													$('#metadatalist').height($('#resizable').height());
-																													}
-																									});
-																									});</script>
 								<tr>
 									<td><?php echo gettext("Metadata"); ?></td>
 									<td>

@@ -791,7 +791,7 @@ td.leftcolumn {
 td.rightcolumn {
 	padding-left: 15px;
 	vertical-align: top;
-	width: 258px;
+	max-width: 258px;
 }
 
 td.rightcolumnmiddle {
@@ -1396,8 +1396,8 @@ button.positive,.buttons a.positive {
 	background: none;
 	padding-left: 0;
 	text-align: left;
+	
 }
-
 /* CSS for tag checklists */
 .resizeable_tagchecklist hr {
 	padding: 0;
@@ -1413,6 +1413,7 @@ button.positive,.buttons a.positive {
 	height: 24em;
 	overflow: auto;
 	background-color: white;
+	resize: vertical;
 }
 
 .resizeable_tagchecklist,.resizeable_tagchecklist li {
@@ -1543,6 +1544,45 @@ button.positive,.buttons a.positive {
 	padding-left: 0;
 	text-align: left;
 }
+
+
+/* tagsuggestion fixes
+--------------------------*/
+
+span.tagMatches { 
+	width: 100%;
+	display: block;
+	position: absolute;
+	z-index: 100;
+	max-height: 300px;
+	text-align: left;
+	overflow: auto;
+	border: 0;
+	top: 19px;
+	left: 0;
+} 
+    
+span.tagMatches span { 
+	color: black;
+	cursor: pointer; 
+	width: 100%;
+	display: block;
+	background-color: #F5F5F3; 
+	padding: 5px;
+} 
+
+._tag_suggestion {
+	float: left; 
+	width: 100%;
+	display: block;
+}
+
+.tagSuggestContainer {
+	position: relative;
+	width: 90%;
+	display: inline-block;
+}
+
 
 /* scrollable checklists
 -----------------------------*/
@@ -2858,4 +2898,9 @@ form.dirty input[type=submit]:active{
 .optionlist li {
 	list-style: none;
 	padding-left: 0;
+}
+
+
+#resizble {
+	resize: vertical;
 }
