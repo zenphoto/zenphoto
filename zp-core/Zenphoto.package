@@ -1149,6 +1149,7 @@ zp-core/zp-extensions/elFinder/js/worker
 zp-core/zp-extensions/elFinder/js/worker/calcfilehash.js
 zp-core/zp-extensions/elFinder/js/worker/quicklook.tiff.js
 zp-core/zp-extensions/elFinder/js/worker/quicklook.unzip.js
+zp-core/zp-extensions/elFinder/LICENSE.md
 zp-core/zp-extensions/elFinder/php
 zp-core/zp-extensions/elFinder/php/autoload.php
 zp-core/zp-extensions/elFinder/php/connector_zp.php
@@ -1202,6 +1203,8 @@ zp-core/zp-extensions/elFinder/php/plugins/WinRemoveTailDots/plugin.php
 zp-core/zp-extensions/elFinder/php/resources
 zp-core/zp-extensions/elFinder/php/resources/image.png
 zp-core/zp-extensions/elFinder/php/resources/video.png
+zp-core/zp-extensions/elFinder/sounds
+zp-core/zp-extensions/elFinder/sounds/rm.wav
 zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/exampleMacros.php
 zp-core/zp-extensions/favoritesHandler
@@ -2176,4 +2179,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2178
+2181
