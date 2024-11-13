@@ -2511,7 +2511,7 @@ function read_exif_data_protected($path) {
 			}
 		}
 	} else {
-		debugLog(sprintf(gettext('EXIF metadata could not be read for %s because the native PHP EXIF extension is missing.)'), $path));
+		debugLog(sprintf(gettext('EXIF metadata could not be read for %s because the native PHP EXIF extension is missing.'), $path));
 	}
 	return $rslt;
 }
