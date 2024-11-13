@@ -2491,23 +2491,27 @@ function zp_loggedin($rights = ALL_RIGHTS) {
  */
 function read_exif_data_protected($path) {
 	$rslt = array();
-	if (@exif_imagetype($path) !== false) {
-		if (DEBUG_EXIF) {
-			debugLog("Begin read_exif_data_protected($path)");
-			$start = microtime(true);
-		}
-		try {
-			$rslt = @exif_read_data($path);
-		} catch (Exception $e) {
+	if (function_exists('exif_imagetype')) {
+		if (@exif_imagetype($path) !== false) {
 			if (DEBUG_EXIF) {
-				debugLog("read_exif_data($path) exception: " . $e->getMessage());
+				debugLog(sprintf(gettext('Begin read_exif_data_protected(%s)'), $path));
+				$start = microtime(true);
 			}
-			$rslt = array();
+			try {
+				$rslt = @exif_read_data($path);
+			} catch (Exception $e) {
+				if (DEBUG_EXIF) {
+					debugLog(sprintf(gettext('read_exif_data(%1$s) exception: %2$s'), $path, $e->getMessage()));
+				}
+				$rslt = array();
+			}
+			if (DEBUG_EXIF) {
+				$time = microtime(true) - $start;
+				debugLog(sprintf(gettext('End read_exif_data_protected(%s) [%d'), $path, $time)));
+			}
 		}
-		if (DEBUG_EXIF) {
-			$time = microtime(true) - $start;
-			debugLog(sprintf("End read_exif_data_protected($path) [%f]", $time));
-		}
+	} else {
+		debugLog(sprintf(gettext('EXIF metadata could not be read for %s because the native PHP EXIF extension is missing.)'), $path));
 	}
 	return $rslt;
 }
