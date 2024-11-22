@@ -410,6 +410,20 @@ class imageMetaFormatter {
 			case 'GPSAltitudeRef':
 				$data = self::formatGPS($tag, $data);
 				break;
+			case 'LensInfo':
+				$unserialized = @unserialize($data, 1);
+				if ($unserialized === false) {
+					$data = strval($data);
+				} else {
+					if (is_array($unserialized)) {
+						$data = strval(explode(' ', $unserialized));
+					} else if (!is_object($unserialized)) {
+						$data =  strval($unserialized);
+					} else {
+						$data = strval($data);
+					}
+				} 
+				break;
 		}
 		return $data;
 	}
@@ -431,7 +445,6 @@ class imageMetaFormatter {
 	/**
 	 * Returns the image height from the COMPUTED array or if present for EXIFImageLength or EXIFImageHeight
 	 * @param array $exifdata The full Exif data as returnd by exif_read_data();
-	 * @param string $data Optionally set a value to skip internal
 	 * @return int
 	 */
 	static function getImageHeight($exifdata) {
@@ -443,6 +456,36 @@ class imageMetaFormatter {
 			return $exifdata['ExifImageHeight'];
 		}
 		return 0;
+	}
+	
+	/**
+	 * Returns the lensinfo either from the named tag or an "undefinedTag"
+	 * @since 1.6.6
+	 * @param array $exifdata
+	 * @return string
+	 */
+	static function getLensInfo($exifdata) {
+		if (isset($exifdata['LensInfo'])) {
+			return $exifdata['LensInfo'];
+		} else if (isset($exifdata['UndefinedTag:0xA432'])) {
+			return $exifdata['UndefinedTag:0xA432 '];
+		}
+		return '';
+	}
+
+	/**
+	 * Returns the lenstype either from the named tag or an "undefinedTag"
+	 * @since 1.6.6
+	 * @param type $exifdata
+	 * @return string
+	 */
+	static function getLensType($exifdata) {
+		if (isset($exifdata['LensType'])) {
+			return $exifdata['LensType'];
+		} else if (isset($exifdata['UndefinedTag:0xA434'])) {
+			return $exifdata['UndefinedTag:0xA432 '];
+		}
+		return '';
 	}
 
 	/**
