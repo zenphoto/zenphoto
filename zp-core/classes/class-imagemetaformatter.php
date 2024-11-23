@@ -412,7 +412,7 @@ class imageMetaFormatter {
 				break;
 			case 'LensInfo':
 				if (is_array($data)) {
-					$data = strval(explode(' ', $data)));
+					$data = strval(implode(' ', $data));
 				} else {
 					$data = strval($data);
 				}
