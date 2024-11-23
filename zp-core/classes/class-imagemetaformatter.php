@@ -411,18 +411,11 @@ class imageMetaFormatter {
 				$data = self::formatGPS($tag, $data);
 				break;
 			case 'LensInfo':
-				$unserialized = @unserialize($data, 1);
-				if ($unserialized === false) {
-					$data = strval($data);
+				if (is_array($data)) {
+					$data = strval(explode(' ', $data)));
 				} else {
-					if (is_array($unserialized)) {
-						$data = strval(explode(' ', $unserialized));
-					} else if (!is_object($unserialized)) {
-						$data =  strval($unserialized);
-					} else {
-						$data = strval($data);
-					}
-				} 
+					$data = strval($data);
+				}
 				break;
 		}
 		return $data;
@@ -468,7 +461,7 @@ class imageMetaFormatter {
 		if (isset($exifdata['LensInfo'])) {
 			return $exifdata['LensInfo'];
 		} else if (isset($exifdata['UndefinedTag:0xA432'])) {
-			return $exifdata['UndefinedTag:0xA432 '];
+			return $exifdata['UndefinedTag:0xA432'];
 		}
 		return '';
 	}
@@ -483,7 +476,7 @@ class imageMetaFormatter {
 		if (isset($exifdata['LensType'])) {
 			return $exifdata['LensType'];
 		} else if (isset($exifdata['UndefinedTag:0xA434'])) {
-			return $exifdata['UndefinedTag:0xA432 '];
+			return $exifdata['UndefinedTag:0xA434'];
 		}
 		return '';
 	}
