@@ -2852,7 +2852,7 @@ function setexifvars() {
 			'EXIFWhiteBalance' => array('SubIFD', 'WhiteBalance', gettext('White Balance'), false, 52, true, 'string'),
 			'EXIFSubjectDistance' => array('SubIFD', 'SubjectDistanceRange', gettext('Subject Distance'), false, 52, true, 'number'),
 			'EXIFFocalLength' => array('SubIFD', 'FocalLength', gettext('Focal Length'), true, 52, true, 'number'),
-			'EXIFLensType' => array('SubIFD', 'LensType', gettext('Lens Type'), false, 52, true, 'string'),
+			'EXIFLensType' => array('SubIFD', 'LensModel', gettext('Lens Model'), false, 52, true, 'string'),
 			'EXIFLensInfo' => array('SubIFD', 'LensInfo', gettext('Lens Info'), false, 52, true, 'string'),
 			'EXIFFocalLengthIn35mmFilm' => array('SubIFD', 'FocalLengthIn35mmFilm', gettext('35mm Focal Length Equivalent'), false, 52, true, 'string'),
 			'IPTCCity' => array('IPTC', 'City', gettext('City'), false, 32, true, 'string'),

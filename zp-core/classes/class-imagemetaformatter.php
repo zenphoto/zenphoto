@@ -467,14 +467,14 @@ class imageMetaFormatter {
 	}
 
 	/**
-	 * Returns the lenstype either from the named tag or an "undefinedTag"
+	 * Returns the LensModel either from the named tag or an "undefinedTag"
 	 * @since 1.6.6
 	 * @param type $exifdata
 	 * @return string
 	 */
-	static function getLensType($exifdata) {
-		if (isset($exifdata['LensType'])) {
-			return $exifdata['LensType'];
+	static function getLensModel($exifdata) {
+		if (isset($exifdata['LensModel'])) {
+			return $exifdata['LensModel'];
 		} else if (isset($exifdata['UndefinedTag:0xA434'])) {
 			return $exifdata['UndefinedTag:0xA434'];
 		}

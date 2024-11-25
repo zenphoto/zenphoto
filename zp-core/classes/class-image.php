@@ -324,7 +324,7 @@ class Image extends MediaObject {
 				$exifraw['ExifImageWidth'] = imageMetaFormatter::getImageWidth($exifraw); 
 				$exifraw['ExifImageLength'] = imageMetaFormatter::getImageHeight($exifraw);
 				$exifraw['LensInfo'] = imageMetaFormatter::getLensInfo($exifraw);
-				$exifraw['LensType'] = imageMetaFormatter::getLensType($exifraw);
+				$exifraw['LensModel'] = imageMetaFormatter::getLensModel($exifraw);
 				$this->set('hasMetadata', 1);
 				foreach ($_zp_exifvars as $field => $exifvar) {
 					$exif = NULL;
