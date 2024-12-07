@@ -12,7 +12,7 @@
  */
 
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext("Site rewrite rules tab.");
+$plugin_description = gettext("Site <em>Rewrite</em> admin page.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Development');
 

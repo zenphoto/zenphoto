@@ -1051,7 +1051,7 @@ Authority::printPasswordFormJS();
 										}
 										?>
 									</td>
-									<td><?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?></td>
+									<td><?php echo gettext('These options control the number of items displayed on their paginated admin pages. If you exerience problems saving these pages, reduce the number shown here.'); ?></td>
 								</tr>
 								<?php
 								$subtabs = array('security' => gettext('security'), 'debug' => gettext('debug'));
@@ -1968,7 +1968,7 @@ Authority::printPasswordFormJS();
 							<?php XSRFToken('saveoptions'); ?>
 							<input type="hidden" name="saveimageoptions" value="yes" />
 							<p align="center">
-								<?php echo gettext('See also the <a href="?tab=theme">Theme Options</a> tab for theme specific image options.'); ?>
+								<?php echo gettext('See also the <a href="?tab=theme">Options > Theme</a> admin page for theme specific image options.'); ?>
 							</p>
 
 							<table class="options">
