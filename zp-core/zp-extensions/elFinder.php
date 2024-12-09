@@ -21,7 +21,7 @@
  * @package zpcore\plugins\elfinder
  */
 $plugin_is_filter = 5 | ADMIN_PLUGIN;
-$plugin_description = gettext('Provides file handling for the <code>upload/files</code> tab and the <em>TinyMCE</em> file browser.');
+$plugin_description = gettext('Provides file handling for the <code>Upload > Files</code> admin page and the <em>TinyMCE</em> file browser.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Uploader');
 

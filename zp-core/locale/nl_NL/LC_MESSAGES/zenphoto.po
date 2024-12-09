@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 16:25+0100\n"
+"POT-Creation-Date: 2024-12-07 12:44+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -3551,11 +3551,13 @@ msgstr "Artikelen per pagina:"
 
 #: zp-core/admin-options.php:1054
 msgid ""
-"These options control the number of items displayed on their tabs. If you "
-"have problems using these tabs, reduce the number shown here."
+"These options control the number of items displayed on their paginated admin "
+"pages. If you exerience problems saving these pages, reduce the number shown "
+"here."
 msgstr ""
-"Deze opties bepalen het aantal onderdelen die worden getoond. Als je "
-"problemen hebt met de weergave verlaag dan het aantal."
+"Deze opties bepalen het aantal onderdelen die worden getoond op hun "
+"gepagineerde admin pagina. Als je problemen ondervind met het opslaan van "
+"zo'n pagina verlaag dan het aantal."
 
 #: zp-core/admin-options.php:1064
 #, php-format
@@ -4152,11 +4154,11 @@ msgstr "Sorteer pagina’s op"
 
 #: zp-core/admin-options.php:1971
 msgid ""
-"See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific "
-"image options."
+"See also the <a href=\"?tab=theme\">Options > Theme</a> admin page for theme "
+"specific image options."
 msgstr ""
-"Zie ook de <a href=\"?tab=theme\">thema opties</a> tab voor de thema-"
-"specifieke afbeeldings opties."
+"Zie ook de <a href=\"?tab=theme\">Opties > Thema</a> admin pagina voor de "
+"thema-specifieke afbeeldings opties."
 
 #: zp-core/admin-options.php:2030
 msgid "Default sort order for images."
@@ -7482,27 +7484,27 @@ msgid "%d: Unknown"
 msgstr "%d: Onbekend"
 
 #: zp-core/classes/class-imagemetaformatter.php:137
-#: zp-core/classes/class-imagemetaformatter.php:516
+#: zp-core/classes/class-imagemetaformatter.php:552
 msgid "No Unit"
 msgstr "Geen Eenheid"
 
 #: zp-core/classes/class-imagemetaformatter.php:139
-#: zp-core/classes/class-imagemetaformatter.php:504
+#: zp-core/classes/class-imagemetaformatter.php:540
 msgid "Inch"
 msgstr "Inch"
 
 #: zp-core/classes/class-imagemetaformatter.php:141
-#: zp-core/classes/class-imagemetaformatter.php:507
+#: zp-core/classes/class-imagemetaformatter.php:543
 msgid "Centimeter"
 msgstr "Centimeter"
 
 #: zp-core/classes/class-imagemetaformatter.php:143
-#: zp-core/classes/class-imagemetaformatter.php:510
+#: zp-core/classes/class-imagemetaformatter.php:546
 msgid "Millimeter"
 msgstr "Millimeter"
 
 #: zp-core/classes/class-imagemetaformatter.php:145
-#: zp-core/classes/class-imagemetaformatter.php:513
+#: zp-core/classes/class-imagemetaformatter.php:549
 msgid "Micrometer"
 msgstr "Micrometer"
 
@@ -7807,7 +7809,7 @@ msgstr "Laag"
 msgid "High"
 msgstr "Hoog"
 
-#: zp-core/classes/class-imagemetaformatter.php:475
+#: zp-core/classes/class-imagemetaformatter.php:511
 msgid "Bulb"
 msgstr "Flitslamp"
 
@@ -9515,8 +9517,8 @@ msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
 #: zp-core/functions/functions.php:2855
-msgid "Lens Type"
-msgstr "Lenstype"
+msgid "Lens Model"
+msgstr "Lens model"
 
 #: zp-core/functions/functions.php:2856
 msgid "Lens Info"
@@ -16840,11 +16842,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/elFinder.php:24
 msgid ""
-"Provides file handling for the <code>upload/files</code> tab and the "
-"<em>TinyMCE</em> file browser."
+"Provides file handling for the <code>Upload > Files</code> admin page and "
+"the <em>TinyMCE</em> file browser."
 msgstr ""
-"Verzorgt de afhandeling voor de de <code>upload/bestanden</code> tab en "
-"<em>TinyMCE</em>."
+"Verzorgt de afhandeling voor de de <code>Upload > Bestanden</code> admin "
+"pagina en <em>TinyMCE</em>."
 
 #: zp-core/zp-extensions/elFinder.php:51
 msgid "Files tab"
@@ -18599,11 +18601,11 @@ msgstr "Matomo"
 
 #: zp-core/zp-extensions/menu_manager.php:17
 msgid ""
-"A menu creation facility. The <em>Menu</em> tab admin interface lets you "
-"create arbitrary menu trees."
+"A menu creation facility. The <em>Admin > Menu</em> admin page interface "
+"lets you create arbitrary menu trees."
 msgstr ""
-"Mogelijkheid voor het maken van menu’s. Via de admin <em>Menu</em> tab kun "
-"je je eigen menu’s samenstellen."
+"Mogelijkheid voor het maken van menu’s. Via de admin <em>Admin > Menu</em> "
+"pagina kun je je eigen menu’s samenstellen."
 
 #: zp-core/zp-extensions/menu_manager.php:51
 #: zp-core/zp-extensions/print_album_menu.php:54
@@ -20849,8 +20851,9 @@ msgid "Related"
 msgstr "Gerelateerd"
 
 #: zp-core/zp-extensions/rewriteRules.php:15
-msgid "Site rewrite rules tab."
-msgstr "Site rewrite-regels tab"
+#| msgid "Support for <em>favorites</em> handling."
+msgid "Site <em>Rewrite</em> admin page."
+msgstr "Site <em>Rewrite</em> admin pagina."
 
 #: zp-core/zp-extensions/rewriteRules.php:33
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:13
@@ -24969,6 +24972,12 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "Site rewrite rules tab."
+#~ msgstr "Site rewrite-regels admin pagina."
+
+#~ msgid "Lens Type"
+#~ msgstr "Lenstype"
 
 #~ msgid "Invalid verification link."
 #~ msgstr "Ongeldige verificatie-link."
