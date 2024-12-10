@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-03 16:42+0100\n"
-"PO-Revision-Date: 2024-12-03 16:43+0100\n"
+"POT-Creation-Date: 2024-12-10 09:11+0100\n"
+"PO-Revision-Date: 2024-12-10 09:30+0100\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -3488,11 +3488,12 @@ msgstr "Articles par page :"
 
 #: zp-core/admin-options.php:1054
 msgid ""
-"These options control the number of items displayed on their tabs. If you have "
-"problems using these tabs, reduce the number shown here."
+"These options control the number of items displayed on their paginated admin "
+"pages. If you exerience problems saving these pages, reduce the number shown "
+"here."
 msgstr ""
-"Ces valeurs déterminent le nombre d’éléments affichés dans les onglets "
-"correspondants. Si vous avez des problèmes à utiliser ces onglets, veuillez "
+"Ces valeurs déterminent le nombre d’éléments affichés dans les pages admin "
+"correspondantes. Si vous avez des problèmes à utiliser ces pages, veuillez "
 "diminuer les valeurs inscrites ici."
 
 #: zp-core/admin-options.php:1064
@@ -4087,10 +4088,10 @@ msgstr "Trier les pages par"
 
 #: zp-core/admin-options.php:1971
 msgid ""
-"See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific "
-"image options."
+"See also the <a href=\"?tab=theme\">Options > Theme</a> admin page for theme "
+"specific image options."
 msgstr ""
-"Voir également l’onglet <a href=\"?tab=theme\">Options du thème</a> pour "
+"Voir également la page admin <a href=\"?tab=theme\">Options > Thème</a> pour "
 "configurer les options d’images propres au thème."
 
 #: zp-core/admin-options.php:2030
@@ -14621,11 +14622,11 @@ msgstr ""
 
 #: zp-core/zp-extensions/elFinder.php:24
 msgid ""
-"Provides file handling for the <code>upload/files</code> tab and the "
+"Provides file handling for the <code>Upload > Files</code> admin page and the "
 "<em>TinyMCE</em> file browser."
 msgstr ""
-"Gestionnaire de chargement de fichiers pour l’onglet <code>chargement/fichiers</"
-"code> et l’explorateur de fichiers <em>TinyMCE</em>."
+"Gestionnaire de chargement de fichiers pour la page admin <code>Chargement > "
+"Fichiers</code> et l’explorateur de fichiers <em>TinyMCE</em>."
 
 #: zp-core/zp-extensions/elFinder.php:51
 msgid "Files tab"
@@ -16391,11 +16392,11 @@ msgstr "Matomo"
 
 #: zp-core/zp-extensions/menu_manager.php:17
 msgid ""
-"A menu creation facility. The <em>Menu</em> tab admin interface lets you create "
-"arbitrary menu trees."
+"A menu creation facility. The <em>Admin > Menu</em> admin page interface lets "
+"you create arbitrary menu trees."
 msgstr ""
-"Un utilitaire de création de menu. L’onglet <em>Menu</em> des pages "
-"d’administration permet de gérer l’arborescence des menus."
+"Un utilitaire de création de menu. La page admin <em>Menu</em> permet de gérer "
+"l’arborescence des menus."
 
 #: zp-core/zp-extensions/menu_manager.php:51
 #: zp-core/zp-extensions/print_album_menu.php:54
@@ -18660,8 +18661,8 @@ msgid "Related"
 msgstr "Apparentés"
 
 #: zp-core/zp-extensions/rewriteRules.php:15
-msgid "Site rewrite rules tab."
-msgstr "Liste des règles de réécriture."
+msgid "Site <em>Rewrite</em> admin page."
+msgstr "Administration des règles de réécriture."
 
 #: zp-core/zp-extensions/rewriteRules.php:33
 #: zp-core/zp-extensions/rewriteRules/admin_tab.php:13
@@ -22781,6 +22782,9 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à un "
 "ou à plusieurs destinataires."
+
+#~ msgid "Site rewrite rules tab."
+#~ msgstr "Liste des règles de réécriture."
 
 #~ msgid "Lens Type"
 #~ msgstr "Type d’objectif"
