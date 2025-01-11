@@ -1755,7 +1755,7 @@ function byteConvert($bytes) {
 	if ($bytes <= 0)
 		return gettext('0 Bytes');
 	$convention = 1024; //[1000->10^x|1024->2^x]
-	$s = array('Bytes', 'kB', 'mB', 'GB', 'TB', 'PB', 'EB', 'ZB');
+	$s = array('bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB');
 	$e = floor(log($bytes, $convention));
 	return round($bytes / pow($convention, $e), 2) . ' ' . $s[$e];
 }
