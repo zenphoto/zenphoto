@@ -19,7 +19,7 @@ if (isset($_GET['pagenumber'])) {
 	}
 }
 
-$admins = $_zp_authority->getAdministrators('all', 'basedata');
+$admins = $_zp_authority->getAdministrators('all', 'coredata');
 
 $ordered = array();
 foreach ($admins as $key => $admin) {
