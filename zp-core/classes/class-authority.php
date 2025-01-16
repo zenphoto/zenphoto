@@ -228,7 +228,7 @@ class Authority {
 			$users = array();
 			switch ($returnvalues) {
 				case 'basedata':
-					$select = 'SELECT `id`, `user`, `valid` FROM ';
+					$select = 'SELECT `id`, `user`, `valid`, `group` FROM ';
 					break;
 				case 'coredata':
 					$select = 'SELECT `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials` FROM ';
