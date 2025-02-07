@@ -103,17 +103,20 @@ class user_groups {
 	static function groupList($userobj, $i, $background, $current, $template) {
 		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
 		$group = strval($userobj->getGroup());
+		$hisgroups_explode = explode(',', $group);
+		// a user can and should only be in one group! Array kept for backward compatibility
+		$hisgroups = array($hisgroups_explode[0]); 
 		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();
-		$hisgroups = explode(',', $group);
 		$admins = sortMultiArray($admins, 'user');
 		foreach ($admins as $user) {
 			if ($template || $user['name'] != 'template') {
 				$groups[] = $user;
 			}
 		}
-		if (empty($groups))
+		if (empty($groups)) {
 			return gettext('no groups established'); // no groups setup yet
+		}
 		$grouppart = '
 		<script>
 			function groupchange' . $i . '(type) {
@@ -137,9 +140,8 @@ class user_groups {
 			}
 		}
 	</script>' . "\n";
-
 		$grouppart .= '<ul class="customchecklist">' . "\n";
-		$grouppart .= '<label title="' . gettext('*no group affiliation') . '"><input type="checkbox" id="noGroup_' . $i . '" name="' . $i . 'group[]" value="" onclick="groupchange' . $i . '(0);" />' . gettext('*no group selected') . '</label>' . "\n";
+	$grouppart .= '<label title="' . gettext('*no group affiliation') . '"><input type="radio" id="noGroup_' . $i . '" name="' . $i . 'group[]" value="" onclick="groupchange' . $i . '(0);" />' . gettext('*no group selected') . '</label>' . "\n";
 
 		foreach ($groups as $key => $user) {
 			if ($user['name'] == 'template') {
@@ -157,7 +159,7 @@ class user_groups {
 			} else {
 				$checked = '';
 			}
-			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="checkbox" class="' . $class . '" name="' . $i . 'group[]" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($user['user']) . '</label>' . "\n";
+			$grouppart .= '<label title="' . html_encode($user['custom_data']) . $type . '"' . $highlight . '><input type="radio" class="' . $class . '" name="' . $i . 'group[]" value="' . $user['user'] . '" onclick="groupchange' . $i . '(' . $case . ');"' . $checked . ' />' . html_encode($user['user']) . '</label>' . "\n";
 		}
 
 		$grouppart .= "</ul>\n";
@@ -209,7 +211,6 @@ class user_groups {
 				$subtabs = array();
 			}
 			$subtabs[gettext('users')] = FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?page=users&tab=users';
-			$subtabs[gettext('assignments')] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments';
 			$subtabs[gettext('groups')] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups';
 			$tabs['users'] = array(
 					'text' => gettext("admin"),

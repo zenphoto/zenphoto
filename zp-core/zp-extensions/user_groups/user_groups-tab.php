@@ -19,7 +19,7 @@ if (isset($_GET['pagenumber'])) {
 	}
 }
 
-$admins = $_zp_authority->getAdministrators('all', 'coredata');
+$admins = $_zp_authority->getAdministrators('all', 'basedata');
 
 $ordered = array();
 foreach ($admins as $key => $admin) {
@@ -434,66 +434,6 @@ echo '</head>' . "\n";
 							}
 						</script>
 						<br class="clearall" />
-						<?php
-						break;
-					case 'assignments':
-						$groups = array();
-						foreach ($adminordered as $user) {
-							if (!$user['valid'] && $user['name'] == 'group') {
-								$groups[] = $user;
-							}
-						}
-						?>
-						<p>
-							<?php
-							echo gettext("Assign users to groups.");
-							?>
-						</p>
-						<form class="dirty-check" action="?action=saveauserassignments" method="post" autocomplete="off" >
-							<?php XSRFToken('saveauserassignments'); ?>
-							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-							</p>
-							<br class="clearall" /><br /><br />
-							<div class="notebox">
-								<?php echo gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed objects</em> are determined by the group!'); ?>
-							</div>
-							<input type="hidden" name="saveauserassignments" value="yes" />
-							<table class="bordered">
-								<?php
-								$id = 0;
-								foreach ($adminordered as $user) {
-									if ($user['valid']) {
-
-										$userobj = new Administrator($user['user'], $user['valid']);
-
-										$group = $user['group'];
-										?>
-										<tr>
-											<td width="20%" style="border-top: 1px solid #D1DBDF;" valign="top">
-												<input type="hidden" name="<?php echo $id; ?>-user" value="<?php echo $user['user']; ?>" />
-												<?php echo $user['user']; ?>
-											</td>
-											<td style="border-top: 1px solid #D1DBDF;" valign="top" >
-												<?php echo user_groups::groupList($userobj, $id, '', $user['group'], false); ?>
-											</td>
-										</tr>
-										<?php
-										$id++;
-									}
-								}
-								?>
-							</table>
-							<br />
-							<p class="buttons">
-								<button type="submit"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-							</p>
-							<input type="hidden" name="totalusers" value="<?php echo $id; ?>" />
-							<input type="hidden" name="checkForPostTruncation" value="1" />
-						</form>
-						<br class="clearall" /><br />
 						<?php
 						break;
 				}

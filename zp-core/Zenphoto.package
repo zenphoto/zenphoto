@@ -394,6 +394,8 @@ zp-core/classes/class-searchengine.php
 zp-core/classes/class-themeobject.php
 zp-core/classes/class-transientimage.php
 zp-core/classes/class-userdataexport.php
+zp-core/classes/class-zenphoto_administrator.php
+zp-core/classes/class-zenphoto_authority.php
 zp-core/classes/class-zpmutex.php
 zp-core/controller.php
 zp-core/cron_runner.php
@@ -2179,4 +2181,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2181
+2183

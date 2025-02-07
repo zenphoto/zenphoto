@@ -189,13 +189,17 @@ class Authority {
 	 * The array contains the id, hashed password, user's name, email, and admin privileges
 	 *
 	 * @param string $what: 'allusers' for all standard users, 'users' for all valid stanndard users 'groups' for groups and templates, empty for all types of users
-	 * @param string $returnvalues 'fulldata" (backward compatible full array of the users), "basedata" (only id, user and valid columns for use with administrator class)
+	 * @param string $returnvalues Several sets of database columns
+	 *			- "minimaldata": user, valid  (as needed for creating admininistrator objects directly)
+	 *			- "basedata":  id, user, valid, group (as used in several places)
+	 *			- "coredata": `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials
+	 *			- 'fulldata" full data with all columns		
 	 * @return array
 	 */
 	function getAdministrators($what = 'users', $returnvalues = 'coredata') {
 		global $_zp_db;
 		$cacheindex = $returnvalues;
-		if (!in_array($returnvalues, array('basedata','coredata', 'fulldata'))) {
+		if (!in_array($returnvalues, array('minimaldata', 'basedata','coredata', 'fulldata'))) {
 			$cacheindex = 'fulldata';
 		}
 		switch ($what) {
@@ -227,6 +231,9 @@ class Authority {
 		if ($this->hasAdminTable()) {
 			$users = array();
 			switch ($returnvalues) {
+				case 'minimaldata':
+					$select = 'SELECT `user`, `valid` FROM ';
+					break;
 				case 'basedata':
 					$select = 'SELECT `id`, `user`, `valid`, `group` FROM ';
 					break;
@@ -292,7 +299,7 @@ class Authority {
 				$selector[] = $match . $_zp_db->quote($value);
 			}
 		}
-		$sql = 'SELECT * FROM ' . $_zp_db->prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
+		$sql = 'SELECT user, valid FROM ' . $_zp_db->prefix('administrators') . ' WHERE ' . implode(' AND ', $selector) . ' LIMIT 1';
 		$admin = $_zp_db->querySingleRow($sql, false);
 		if ($admin) {
 			return self::newAdministrator($admin['user'], $admin['valid']);
@@ -1481,17 +1488,4 @@ class Authority {
 		}
 	}
 
-}
-
-/**
- * 
- * @package zpcore\classes\deprecated
- * @deprecated 2.0 - Use the class Authority instead
- */
-class Zenphoto_Authority extends Authority {
-	
-	function __construct() {
-		parent::__construct();
-		deprecationNotice(gettext('Use the Authority class instead'));
-	}
 }
