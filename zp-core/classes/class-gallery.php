@@ -343,6 +343,7 @@ class Gallery {
 	 * albums selector.
 	 * 
 	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
+	 * Use the parameter $physical_only to always exclude them.
 	 * 
 	 * @since 1.5.8 - general functionality moved from the old admin function genAlbumList()
 	 * 
@@ -350,9 +351,10 @@ class Gallery {
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS. Set to null to disable rights check
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
 	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false 
+	 * @param bool $physical_only Default false, set to true to exclude dynamic albums
 	 * @return array
 	 */
-	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false) {
+	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false, $physical_only = false) {
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all albums
 		if (AlbumBase::isAlbumClass($albumobj)) {
@@ -363,6 +365,9 @@ class Gallery {
 		if (is_array($albums)) {
 			foreach ($albums as $folder) {
 				$album = AlbumBase::newAlbum($folder);
+				if ($album->isDynamic() && $physical_only) {
+					continue;
+				}
 				if ($is_fulladmin || $album->isVisible($rights)) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
@@ -401,6 +406,7 @@ class Gallery {
 	 * While this is also faster than getAllAlbums() this is significantly slower than the default.
 	 * 
 	 * Note unless the §rights parameter is set to ALL_ALBUMS_RIGHTS or higher or the user is full admin dynamic albums are excluded.
+	 * Use the parameter $physical_only to always exclude them.
 	 * 
 	 * @since 1.5.8
 	 * 
@@ -409,9 +415,10 @@ class Gallery {
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
 	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false
+	 * @param bool $physical_only Default false, set to true to exclude dynamic albums
 	 * @return array
 	 */
-	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false) {
+	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false, $physical_only = false) {
 		global $_zp_db;
 		$allalbums = array();
 		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
@@ -448,6 +455,9 @@ class Gallery {
 		if ($result) {
 			while ($row = $_zp_db->fetchAssoc($result)) {
 				$album = AlbumBase::newAlbum($row['folder']);
+				if ($album->isDynamic() && $physical_only) {
+					continue;
+				}
 				if ($album->exists && ($is_fulladmin || $album->isVisible($rights))) {
 					if ($album->isDynamic()) {
 						if ($is_fulladmin || $rights == ALL_ALBUMS_RIGHTS) {
@@ -464,7 +474,7 @@ class Gallery {
 							$allalbums[] = $album->getName();
 						}
 						if (!$direct_sublevel) {
-							$allalbums = array_merge($allalbums, $this->getAllAlbumsFromDB($keeplevel_sortorder, $album, $rights, $includetitles));
+							$allalbums = array_merge($allalbums, $this->getAllAlbumsFromDB($keeplevel_sortorder, $album, $rights, $includetitles, false, $physical_only));
 						}
 					}
 				}

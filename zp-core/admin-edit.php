@@ -596,7 +596,7 @@ echo "\n</head>";
 			if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 				/** SINGLE ALBUM ******************************************************************* */
 				// one time generation of this list.
-				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
+				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB(false, NULL, UPLOAD_RIGHTS, true, false, true);
 				$oldalbumimagesort = getOption('albumimagesort');
 				$oldalbumimagesort_status = getOption('albumimagesort_status');
 				$direction = getOption('albumimagedirection');
@@ -1551,7 +1551,7 @@ echo "\n</head>";
 				/*				 * * MULTI-ALBUM ************************************************************************** */
 			} else if (isset($_GET['massedit'])) {
 				// one time generation of this list.
-				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB();
+				$_zp_admin_mcr_albumlist = $_zp_gallery->getAllAlbumsFromDB(false, NULL, UPLOAD_RIGHTS, true, false, true);
 				$albumdir = "";
 				if (isset($_GET['album'])) {
 					$folder = sanitize_path($_GET['album']);
