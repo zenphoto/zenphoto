@@ -803,7 +803,7 @@ class contactForm {
 /**
  * Retrieves the post field if it exists
  * 
- * @deprecated 1.6.3 – Use contactForm::getField() instead
+ * @deprecated 2.0 – Use contactForm::getField() instead
  *
  * @param string $field
  * @param int $level
@@ -818,7 +818,7 @@ function getField($field, $level = 3) {
  * Prints the mail contact form, handles checks and the mail sending. It uses Zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
  * 
- * @deprecated 1.6.3 – Use contactForm::printContactForm() instead
+ * @deprecated 2.0 – Use contactForm::printContactForm() instead
  *
  * @param string $subject_override set to override the subject.
  */
@@ -832,7 +832,7 @@ function printContactForm($subject_override = '') {
  * Helper function that checks if a field should be shown ("required" or "show") or omitted ("ommitt").
  * Only for the fields set by radioboxes.
  * 
- * @deprecated 1.6.3 – Use contactForm::isVisibleField() instead
+ * @deprecated 2.0 – Use contactForm::isVisibleField() instead
  *
  * @param string $option The option value
  * @return bool

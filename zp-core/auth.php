@@ -59,6 +59,8 @@ if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/auth.php')) {
 } else {
 	require_once(dirname(__FILE__) . '/classes/class-authority.php');
 	require_once(dirname(__FILE__) . '/classes/class-administrator.php');
+	require_once(dirname(__FILE__) . '/classes/class-zenphoto_authority.php');
+	require_once(dirname(__FILE__) . '/classes/class-zenphoto_administrator.php');
 	$_zp_authority = new Authority();
 }
 

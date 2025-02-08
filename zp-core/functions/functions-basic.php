@@ -2188,8 +2188,9 @@ function callUserFunction($function, $parameter = array()) {
  * 
  * @param string $use Additional message, e.g. what to use instead
  * @param bool|string $parameter Set to true if this should notify about deprecated parameter usage (default false), You can also set the name of the parameter if you want to notify about a specific parameter change only
+ * @param string $version Enter the version this is going to be remove, e.g. 2.0
  */
-function deprecationNotice($use, $parameter = false) {
+function deprecationNotice($use, $parameter = false, $version = '2.0') {
 	$traces = @debug_backtrace();
 	$fcn = $traces[1]['function'];
 	if (empty($fcn)) {
@@ -2198,6 +2199,10 @@ function deprecationNotice($use, $parameter = false) {
 	if (!empty($use)) {
 		$use = ' ' . $use;
 	}
+	if (!empty($version)) {
+		$use = ' ' . sprintf(gettext('It will be removed in Zenphoto %s.'), $version) . ' ' . $use;
+	}
+
 	//get the container folder
 	if (isset($traces[0]['file']) && isset($traces[0]['line'])) {
 		$script = basename(dirname($traces[0]['file']));
