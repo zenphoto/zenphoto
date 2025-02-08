@@ -336,7 +336,7 @@ echo '</head>' . "\n";
 											if (!empty($groupuser)) {
 												$msg = gettext('Are you sure you want to delete this group?');
 												?>
-												<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
+												<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupuser); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
 													 title="<?php echo gettext('Delete this group.'); ?>" style="color: #c33;">
 													<img src="../../images/fail.png" style="border: 0px;" alt="Delete" />
 												</a>
