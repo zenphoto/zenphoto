@@ -194,14 +194,17 @@ class Authority {
 	 *			- "basedata":  id, user, valid, group (as used in several places)
 	 *			- "coredata": `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials
 	 *			- 'fulldata" full data with all columns		
+	 * @param string $sortorder Default null for "ORDER BY `rights` DESC, `id`" (order determined by $sortdir param!), otherwise the column to order by
+	 * @param string $sortdir Default "desc" for descending (also if not set) or "asc" for ascending.
 	 * @return array
 	 */
-	function getAdministrators($what = 'users', $returnvalues = 'coredata') {
+	function getAdministrators($what = 'users', $returnvalues = 'coredata', $sortorder = null, $sortdir = 'desc') {
 		global $_zp_db;
 		$cacheindex = $returnvalues;
 		if (!in_array($returnvalues, array('minimaldata', 'basedata','coredata', 'fulldata'))) {
 			$cacheindex = 'fulldata';
 		}
+		$cacheindex .= trim(strval($sortorder)) . trim($sortdir);
 		switch ($what) {
 			case 'users':
 				if (isset($this->admin_users[$cacheindex])) {
@@ -245,7 +248,21 @@ class Authority {
 					$select = 'SELECT * FROM ';
 					break;
 			}
-			$sql = $select . $_zp_db->prefix('administrators') . $where . ' ORDER BY `rights` DESC, `id`';
+			switch ($sortdir) {
+				default:
+				case 'desc':
+					$sortdirection = 'DESC';
+					break;
+				case 'asc':
+					$sortdirection = 'ASC';
+					break;
+			}
+			if (empty($sortorder)) {
+				$orderby = ' ORDER BY `rights` ' . $sortdirection . ', `id`';
+			} else {
+				$orderby = ' ORDER BY `' . $sortorder . '` ' . $sortdirection;
+			}
+			$sql = $select . $_zp_db->prefix('administrators') . $where . $orderby;
 			$admins = $_zp_db->query($sql, true);
 			if ($admins) {
 				while ($user = $_zp_db->fetchAssoc($admins)) {

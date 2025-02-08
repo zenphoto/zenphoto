@@ -19,17 +19,7 @@ if (isset($_GET['pagenumber'])) {
 	}
 }
 
-$admins = $_zp_authority->getAdministrators('all', 'basedata');
-
-$ordered = array();
-foreach ($admins as $key => $admin) {
-	$ordered[$key] = $admin['user'];
-}
-asort($ordered);
-$adminordered = array();
-foreach ($ordered as $key => $user)
-	$adminordered[] = $admins[$key];
-
+$admins = $_zp_authority->getAdministrators('all', 'basedata', 'user', 'asc');
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
 	XSRFdefender($action);
@@ -106,23 +96,6 @@ if (isset($_GET['action'])) {
 				$notify = '&post_error';
 			}
 			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=groups&pagenumber=' . $pagenumber . $notify);
-		case 'saveauserassignments':
-			if (isset($_POST['checkForPostTruncation'])) {
-				for ($i = 0; $i < $_POST['totalusers']; $i++) {
-					if (isset($_POST[$i . 'group'])) {
-						$newgroups = sanitize($_POST[$i . 'group']);
-						$username = trim(sanitize($_POST[$i . '-user'], 3));
-						$userobj = Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
-						user_groups::merge_rights($userobj, $newgroups);
-						$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
-						$userobj->save();
-					}
-				}
-				$notify = '&saved';
-			} else {
-				$notify = '&post_error';
-			}
-			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . '/' . PLUGIN_FOLDER . '/user_groups/user_groups-tab.php?page=users&tab=assignments&pagenumber=' . $pagenumber . $notify);
 	}
 }
 
@@ -163,7 +136,7 @@ echo '</head>' . "\n";
 				zp_apply_filter('admin_note', 'users', $subtab);
 				switch ($subtab) {
 					case 'groups':
-						$adminlist = $adminordered;
+						$adminlist = $admins;
 						$users = array();
 						$groups = array();
 						$list = array();
@@ -221,13 +194,13 @@ echo '</head>' . "\n";
 								$id = 0;
 								$groupselector = $groups;
 								$groupselector[''] = array('id' => -1, 'user' => '', 'name' => 'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials' => '');
-								foreach ($groupselector as $key => $user) {
-									$groupname = $user['user'];
-									$groupid = $user['id'];
-									$rights = $user['rights'];
-									$grouptype = $user['name'];
-									$desc = $user['other_credentials'];
-									$groupobj = new Administrator($groupname, 0);
+								foreach ($groupselector as $key => $user) {		
+									$groupuser = $user['user'];
+									$groupobj = new Administrator($groupuser, 0);
+									$groupid = $groupobj->getID();
+									$rights = $groupobj->getRights();
+									$grouptype = $groupobj->getName();
+									$desc = implode('', $groupobj->getCredentials());
 									if ($grouptype == 'group') {
 										$kind = gettext('group');
 									} else {
@@ -242,7 +215,7 @@ echo '</head>' . "\n";
 									<tr id="user-<?php echo $id; ?>">
 										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 											<?php
-											if (empty($groupname)) {
+											if (empty($groupuser)) {
 												?>
 												<em>
 													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');
@@ -258,17 +231,17 @@ echo '</head>' . "\n";
 															 ?>
 												<span class="userextrashow">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupname; ?>" >
-														<strong><?php echo $groupname; ?></strong>
+													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',true);" title="<?php echo $groupuser; ?>" >
+														<strong><?php echo $groupuser; ?></strong>
 													</a>
 												</span>
 												<span style="display:none;" class="userextrahide">
 													<em><?php echo $kind; ?></em>:
-													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupname; ?>" >
-														<strong><?php echo $groupname; ?></strong>
+													<a href="javascript:toggleExtraInfo('<?php echo $id; ?>','user',false);" title="<?php echo $groupuser; ?>" >
+														<strong><?php echo $groupuser; ?></strong>
 													</a>
 												</span>
-												<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
+												<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupuser); ?>" />
 												<input type="hidden" name="<?php echo $id ?>-type" value="<?php echo html_encode($grouptype); ?>" />
 												<?php
 											}
@@ -290,7 +263,7 @@ echo '</head>' . "\n";
 										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 											<span class="userextrainfo" style="display:none;" >
 												<?php
-												if (empty($groupname) && !empty($groups)) {
+												if (empty($groupuser) && !empty($groups)) {
 													?>
 													<?php echo gettext('clone:'); ?>
 													<br />
@@ -299,7 +272,7 @@ echo '</head>' . "\n";
 														<?php
 														foreach ($groups as $user) {
 															$hint = '<em>' . html_encode($desc) . '</em>';
-															if ($groupname == $user['user']) {
+															if ($groupuser == $user['user']) {
 																$selected = ' selected="selected"';
 															} else {
 																$selected = '';
@@ -324,9 +297,9 @@ echo '</head>' . "\n";
 													<div class="box-tags-unpadded">
 														<?php
 														$members = array();
-														if (!empty($groupname)) {
+														if (!empty($groupuser)) {
 															foreach ($adminlist as $user) {
-																if ($user['valid'] && $user['group'] == $groupname) {
+																if ($user['valid'] && $user['group'] == $groupuser) {
 																	$members[] = $user['user'];
 																}
 															}
@@ -360,7 +333,7 @@ echo '</head>' . "\n";
 										</td>
 										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 											<?php
-											if (!empty($groupname)) {
+											if (!empty($groupuser)) {
 												$msg = gettext('Are you sure you want to delete this group?');
 												?>
 												<a href="javascript:if(confirm(<?php echo "'" . $msg . "'"; ?>)) { launchScript('',['action=deletegroup','group=<?php echo addslashes($groupname); ?>','XSRFToken=<?php echo getXSRFToken('deletegroup') ?>']); }"
