@@ -107,7 +107,8 @@ class dbBase {
 			if (function_exists('zp_error')) {
 				zp_error($error_msg);
 			} else {
-				trigger_error($error_msg, E_USER_ERROR);
+				trigger_error($error_msg, E_USER_WARNUNG);
+				exit();
 			}
 		}
 	}

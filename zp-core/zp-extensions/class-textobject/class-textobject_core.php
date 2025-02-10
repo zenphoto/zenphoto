@@ -96,7 +96,8 @@ class TextObject extends Image {
 		if ($msg) {
 			$this->exists = false;
 			if (!$quiet) {
-				trigger_error($msg, E_USER_ERROR);
+				trigger_error($msg, E_USER_WARNING);
+				exitzp();
 			}
 			return;
 		}

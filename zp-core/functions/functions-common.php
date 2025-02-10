@@ -215,14 +215,31 @@ function sanitize_string($input, $sanitize_level) {
 
 /**
  * triggers an error
+ * 
+ * @since 1.6.6 - $type parameter default changed to empty as former default error level E_USER_ERROR is deprecated in PHP 8.4+
  *
  * @param string $message
- * @param int $type the PHP error type to trigger; default to E_USER_ERROR
+ * @param int $type the PHP E_USER_* error type to trigger; default is empty to trigger an E_USER_WARNING while exiting the script (simulated fatal error).
  */
-function zp_error($message, $fatal = E_USER_ERROR) {
+function zp_error($message, $type = '') {
 	// Print the error message, to be convenient.
+	switch ($type) {
+		default:
+		case E_USER_ERROR: // deprecated PHP 8.4
+			$is_fatal = true;
+			$type = E_USER_WARNING;
+			break;
+		case E_USER_WARNING:
+		case E_USER_NOTICE:
+		case E_USER_DEPRECATED:
+			$is_fatal = false;
+			break;
+	}
 	printf(html_encode($message));
-	trigger_error($message, $fatal);
+	trigger_error($message, $type);
+	if ($is_fatal) {
+		exitzp();
+	}
 }
 
 function html_decode($string) {

@@ -80,7 +80,8 @@ class dbMySQLi extends dbBase {
 			if (!$last_result && $errorstop) {
 				$sql = str_replace('`' . $this->mysql_prefix, '`[' . gettext('prefix') . ']', $sql);
 				$sql = str_replace($this->mysql_database, '[' . gettext('DB') . ']', $sql);
-				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_ERROR);
+				trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'), DATABASE_SOFTWARE, $sql, $this->getError()), E_USER_WARNING);
+				exit();
 			}
 			return $last_result;
 		}
