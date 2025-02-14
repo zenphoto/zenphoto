@@ -371,6 +371,40 @@ if (!zp_loggedin()) {
 								<li><?php printf(gettext('Server software: <strong>%1$s</strong>'), html_encode($_SERVER['SERVER_SOFTWARE'])); ?></li>
 								<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'), phpversion()); ?></li>
 								<?php
+								$debugmodes_text = array(
+												'DEBUG_LOGIN' => DEBUG_LOGIN,
+												'DEBUG_ERROR' => DEBUG_ERROR,
+												'DEBUG_IMAGE' => DEBUG_IMAGE,
+												'DEBUG_IMAGE_ERR' => DEBUG_IMAGE_ERR,
+												'DEBUG_404' => DEBUG_404 ,
+												'DEBUG_EXIF' => DEBUG_EXIF ,
+												'DEBUG_PLUGINS' => DEBUG_PLUGINS,
+												'DEBUG_FILTER' => DEBUG_FILTERS,
+												'EXPLAIN_SELECTS' => EXPLAIN_SELECTS,
+												'DEBUG_LOCALE' => DEBUG_LOCALE,
+										);
+								$debugmodes_active = array();
+								foreach (	$debugmodes_text as $debugmodename => $debugmode_on) {
+									if ($debugmode_on) {
+										$debugmodes_active[] = $debugmodename;
+									}
+								}
+								if ($debugmodes_active) {
+									?>
+									<li>
+										<p class="notebox">
+										<?php 
+										$debugmodes_enabled = implode(', ', $debugmodes_active);
+										if (TEST_RELEASE) {
+											printf(gettext('TEST_RELEASE mode (%s) enabled'), $debugmodes_enabled);
+										} else {
+											printf(gettext('Debug modes enabled: <strong>%s</strong>'), $debugmodes_enabled); 
+										}
+										?>
+										</p>
+									</li>
+									<?php
+								}
 								if (TEST_RELEASE) {
 									?>
 									<li>
