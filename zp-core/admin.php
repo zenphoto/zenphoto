@@ -307,11 +307,6 @@ if (!zp_loggedin()) {
 							<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 							<ul>
 								<?php
-								if (TEST_RELEASE) {
-									$official = gettext('<em>Debug build</em>');
-								} else {
-									$official = gettext('Official build');
-								}
 								if (hasPrimaryScripts()) {
 									$source = '';
 								} else {
@@ -332,29 +327,16 @@ if (!zp_loggedin()) {
 								?>
 								<li>
 									<?php
-									printf(gettext('Zenphoto version <strong>%1$s (%2$s)</strong>'), ZENPHOTO_VERSION, $official);
+									printf(gettext('Zenphoto version <strong>%1$s</strong>'), ZENPHOTO_VERSION);
 									echo $source;
-									if (extensionEnabled('check_for_update') && TEST_RELEASE) {
-										if (is_connected() && class_exists('DOMDocument')) {
-											require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenphoto_news/rsslib.php');
-											$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&category=changelog");
-											if ($recents) {
-												array_shift($recents);
-												$article = array_shift($recents); //	most recent changelog article
-												$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
-												$c = explode('-', ZENPHOTO_VERSION);
-												$c = array_shift($c);
-												if ($v && version_compare($c, $v, '>')) {
-													?>
-													<p class="notebox">
-														<a href="https://www.zenphoto.org/news/zenphoto-<?php echo $c; ?>">
-															<?php printf(gettext('Preview the release notes for Zenphoto %s'), $c); ?>
-														</a>
-													</p>
-													<?php
-												}
-											}
-										}
+									if (PRE_RELEASE) {
+										?>
+										<p class="warningbox">
+											<a href="https://github.com/zenphoto/zenphoto/commits/master/" target="_blank" rel="noreferrer noopener">
+												<?php echo gettext('This is a pre-release version. Review changes on GitHub.'); ?>
+											</a>
+										</p>
+										<?php
 									}
 									?>
 								</li>
@@ -393,7 +375,8 @@ if (!zp_loggedin()) {
 									?>
 									<li>
 										<?php
-										$erToTxt = array(E_ERROR						 => 'E_ERROR',
+										$erToTxt = array(
+														E_ERROR						 => 'E_ERROR',
 														E_WARNING					 => 'E_WARNING',
 														E_PARSE						 => 'E_PARSE',
 														E_NOTICE					 => 'E_NOTICE',
@@ -404,15 +387,11 @@ if (!zp_loggedin()) {
 														E_USER_ERROR			 => 'E_USER_ERROR',
 														E_USER_NOTICE			 => 'E_USER_NOTICE',
 														E_USER_WARNING		 => 'E_USER_WARNING',
-														E_STRICT					 => 'E_STRICT'
+														E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
+														E_DEPRECATED => 'E_DEPRECATED',
+														E_USER_DEPRECATED => 'E_USER_DEPRECATED',
+														E_STRICT					 => 'E_STRICT' // E_NOTICE level since PHP 8 and deprecated in PHP 8.4+
 										);
-										if (version_compare(PHP_VERSION, '5.2.0') == 1) {
-											$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
-										}
-										if (version_compare(PHP_VERSION, '5.3.0') == 1) {
-											$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
-											$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
-										}
 										$reporting = error_reporting();
 										$text = array();
 										if (($reporting & E_ALL) == E_ALL) {
@@ -420,12 +399,7 @@ if (!zp_loggedin()) {
 										}
 										if ((($reporting | E_NOTICE | E_STRICT) & E_ALL) == E_ALL) {
 											$t = 'E_ALL';
-											$reporting = $reporting ^ E_ALL;
-											if ($reporting & E_STRICT) {
-												$t .= ' ^ E_STRICT';
-												$reporting = $reporting ^ E_STRICT;
-											}
-											if ($reporting & E_NOTICE) {
+											if (($reporting & E_STRICT) || ($reporting & E_NOTICE)) {
 												$t .= ' ^ E_NOTICE';
 												$reporting = $reporting ^ E_NOTICE;
 											}
@@ -442,7 +416,7 @@ if (!zp_loggedin()) {
 									<?php
 									if (@ini_get('display_errors')) {
 										?>
-										<li><a title="<?php echo gettext('PHP error messages may be displayed on WEB pages. This may disclose site sensitive information.'); ?>"><?php echo gettext('<em>display_errors</em> is <strong>On</strong>') ?></a></li>
+										<li><p class="warningbox"><?php echo gettext('<em>display_errors</em> is <strong>On</strong>: PHP error messages may be displayed on WEB pages. This may disclose site sensitive information.'); ?></p></li>
 										<?php
 									} else {
 										?>

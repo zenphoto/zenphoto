@@ -105,16 +105,6 @@ switch (PHP_MAJOR_VERSION) {
 		break;
 }
 
-// Set error reporting.
-@ini_set('display_errors', '0'); // try to disable in case set
-if (TEST_RELEASE) {
-	error_reporting(E_ALL | E_STRICT);
-	@ini_set('display_errors', '1');
-} 
-set_error_handler("zpErrorHandler");
-set_exception_handler("zpErrorHandler");
-$_zp_mutex = new zpMutex('cF');
-
 // Including the config file more than once is OK, and avoids $conf missing.
 if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
@@ -123,6 +113,81 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 	require_once SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE;
 }
 
+/**
+ * Enables test release mode
+ */
+define('PRE_RELEASE', preg_match("/(RC*|a*|b*)$/", ZENPHOTO_VERSION));
+$is_testrelease = false;
+if (isset($_zp_conf_vars['test_release'])) {
+	if ($_zp_conf_vars['test_release']) {
+		$is_testrelease = true;	
+	} else {
+		$is_testrelease = false;
+	}
+} else {
+	$is_testrelease = PRE_RELEASE;
+}
+define('TEST_RELEASE', $is_testrelease);
+unset($is_prerelease);
+unset($is_testrelease);
+/**
+ * set to true to log admin saves and login attempts
+ */
+define('DEBUG_LOGIN', (isset($_zp_conf_vars['debug_login']) && $_zp_conf_vars['debug_login'])); 
+
+/** 
+ * set to true to supplies the calling sequence with zp_error messages
+ */
+define('DEBUG_ERROR', (isset($_zp_conf_vars['debug_error']) && $_zp_conf_vars['debug_error']) || TEST_RELEASE);
+/**
+ * set to true to log image processing debug information.
+ */
+define('DEBUG_IMAGE', isset($_zp_conf_vars['debug_image']) && $_zp_conf_vars['debug_image']); 
+
+/**
+ * set to true to flag image processing errors.
+ */
+define('DEBUG_IMAGE_ERR', (isset($_zp_conf_vars['debug_image_err']) && $_zp_conf_vars['debug_image_err']) || TEST_RELEASE); 
+
+/**
+ * set to true to log 404 error processing debug information.
+ */
+define('DEBUG_404', (isset($_zp_conf_vars['debug_404']) && $_zp_conf_vars['debug_404']) || TEST_RELEASE); 
+
+/**
+ * set to true to log start/finish of exif processing. Useful to find problematic images.
+ */
+define('DEBUG_EXIF', isset($_zp_conf_vars['debug_exif']) && $_zp_conf_vars['debug_exif']); 
+
+/**
+ * set to true to log plugin load sequence.
+ */
+define('DEBUG_PLUGINS', isset($_zp_conf_vars['debug_plugins']) && $_zp_conf_vars['debug_plugins']); 
+
+/**
+ * set to true to log filter application sequence.
+ */
+define('DEBUG_FILTERS', isset($_zp_conf_vars['debug_filters']) && $_zp_conf_vars['debug_filters']); 
+
+/**
+ * 	set to true to log the "EXPLAIN" of SELECT queries in the debug log
+ */
+define('EXPLAIN_SELECTS', isset($_zp_conf_vars['explain_selects']) && $_zp_conf_vars['explain_selects']); 
+
+/**
+ * used for examining language selection problems
+ */
+define('DEBUG_LOCALE', isset($_zp_conf_vars['debug_locale']) && $_zp_conf_vars['debug_locale']); 
+
+// Set error reporting.
+@ini_set('display_errors', '0'); // try to disable in case set
+if (TEST_RELEASE) {
+	error_reporting(E_ALL);
+	@ini_set('display_errors', '1');
+} 
+set_error_handler("zpErrorHandler");
+set_exception_handler("zpErrorHandler");
+$_zp_mutex = new zpMutex('cF');
 
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) {
