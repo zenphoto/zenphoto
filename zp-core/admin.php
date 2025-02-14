@@ -397,9 +397,9 @@ if (!zp_loggedin()) {
 										if (($reporting & E_ALL) == E_ALL) {
 											$text[] = 'E_ALL';
 										}
-										if ((($reporting | E_NOTICE | E_STRICT) & E_ALL) == E_ALL) {
+										if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
 											$t = 'E_ALL';
-											if (($reporting & E_STRICT) || ($reporting & E_NOTICE)) {
+											if ($reporting & E_NOTICE) {
 												$t .= ' ^ E_NOTICE';
 												$reporting = $reporting ^ E_NOTICE;
 											}

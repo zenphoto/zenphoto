@@ -30,7 +30,7 @@ define('FILESYSTEM_CHARSET', 'UTF-8');
 define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
 
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 
