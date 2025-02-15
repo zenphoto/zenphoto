@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 12:44+0100\n"
+"POT-Creation-Date: 2025-02-15 17:44+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -479,27 +479,27 @@ msgstr "Albumindex"
 #: themes/zpmobile/image.php:28 zp-core/admin-edit.php:1580
 #: zp-core/admin-options.php:2661 zp-core/admin-options.php:2662
 #: zp-core/admin-themes.php:101 zp-core/admin-themes.php:102
-#: zp-core/classes/class-authority.php:582
-#: zp-core/classes/class-authority.php:583
-#: zp-core/classes/class-authority.php:584
-#: zp-core/classes/class-authority.php:585
-#: zp-core/classes/class-authority.php:586
-#: zp-core/classes/class-authority.php:590
-#: zp-core/classes/class-authority.php:594
-#: zp-core/classes/class-authority.php:602
-#: zp-core/classes/class-authority.php:603
+#: zp-core/classes/class-authority.php:606
+#: zp-core/classes/class-authority.php:607
+#: zp-core/classes/class-authority.php:608
 #: zp-core/classes/class-authority.php:609
 #: zp-core/classes/class-authority.php:610
 #: zp-core/classes/class-authority.php:614
-#: zp-core/classes/class-authority.php:619
-#: zp-core/classes/class-authority.php:620
-#: zp-core/classes/class-authority.php:628
-#: zp-core/classes/class-authority.php:629
-#: zp-core/classes/class-authority.php:635
-#: zp-core/classes/class-authority.php:636
-#: zp-core/classes/class-authority.php:640
-#: zp-core/classes/class-authority.php:646
-#: zp-core/classes/class-authority.php:647
+#: zp-core/classes/class-authority.php:618
+#: zp-core/classes/class-authority.php:626
+#: zp-core/classes/class-authority.php:627
+#: zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:638
+#: zp-core/classes/class-authority.php:643
+#: zp-core/classes/class-authority.php:644
+#: zp-core/classes/class-authority.php:652
+#: zp-core/classes/class-authority.php:653
+#: zp-core/classes/class-authority.php:659
+#: zp-core/classes/class-authority.php:660
+#: zp-core/classes/class-authority.php:664
+#: zp-core/classes/class-authority.php:670
+#: zp-core/classes/class-authority.php:671
 #: zp-core/setup/setup-option-defaults.php:410
 #: zp-core/setup/setup-option-defaults.php:411
 #: zp-core/template-functions.php:468 zp-core/template-functions.php:679
@@ -510,20 +510,20 @@ msgid "Gallery"
 msgstr "Galerij"
 
 #: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2033
-#: zp-core/admin-functions.php:3331 zp-core/classes/class-authority.php:587
-#: zp-core/classes/class-authority.php:593
-#: zp-core/classes/class-authority.php:604
-#: zp-core/classes/class-authority.php:607
-#: zp-core/classes/class-authority.php:608
-#: zp-core/classes/class-authority.php:611
-#: zp-core/classes/class-authority.php:615
-#: zp-core/classes/class-authority.php:618
-#: zp-core/classes/class-authority.php:630
-#: zp-core/classes/class-authority.php:633
-#: zp-core/classes/class-authority.php:634
-#: zp-core/classes/class-authority.php:637
-#: zp-core/classes/class-authority.php:641
-#: zp-core/classes/class-authority.php:644 zp-core/template-functions.php:120
+#: zp-core/admin-functions.php:3331 zp-core/classes/class-authority.php:611
+#: zp-core/classes/class-authority.php:617
+#: zp-core/classes/class-authority.php:628
+#: zp-core/classes/class-authority.php:631
+#: zp-core/classes/class-authority.php:632
+#: zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:639
+#: zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:654
+#: zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:665
+#: zp-core/classes/class-authority.php:668 zp-core/template-functions.php:120
 #: zp-core/utilities/gallery_statistics.php:73
 #: zp-core/utilities/gallery_statistics.php:589
 #: zp-core/zp-extensions/comment_form.php:102
@@ -539,14 +539,14 @@ msgstr "Albums"
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:174
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3358
-#: zp-core/classes/class-authority.php:588
-#: zp-core/classes/class-authority.php:591
-#: zp-core/classes/class-authority.php:606
-#: zp-core/classes/class-authority.php:613
-#: zp-core/classes/class-authority.php:617
-#: zp-core/classes/class-authority.php:632
-#: zp-core/classes/class-authority.php:639
-#: zp-core/classes/class-authority.php:643
+#: zp-core/classes/class-authority.php:612
+#: zp-core/classes/class-authority.php:615
+#: zp-core/classes/class-authority.php:630
+#: zp-core/classes/class-authority.php:637
+#: zp-core/classes/class-authority.php:641
+#: zp-core/classes/class-authority.php:656
+#: zp-core/classes/class-authority.php:663
+#: zp-core/classes/class-authority.php:667
 #: zp-core/classes/class-userdataexport.php:475
 #: zp-core/utilities/gallery_statistics.php:81
 #: zp-core/utilities/gallery_statistics.php:607
@@ -790,14 +790,14 @@ msgstr "Album RSS"
 #: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
 #: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:162
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3344
-#: zp-core/classes/class-authority.php:589
-#: zp-core/classes/class-authority.php:592
-#: zp-core/classes/class-authority.php:605
-#: zp-core/classes/class-authority.php:612
+#: zp-core/classes/class-authority.php:613
 #: zp-core/classes/class-authority.php:616
-#: zp-core/classes/class-authority.php:631
-#: zp-core/classes/class-authority.php:638
-#: zp-core/classes/class-authority.php:642 zp-core/template-functions.php:441
+#: zp-core/classes/class-authority.php:629
+#: zp-core/classes/class-authority.php:636
+#: zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:655
+#: zp-core/classes/class-authority.php:662
+#: zp-core/classes/class-authority.php:666 zp-core/template-functions.php:441
 #: zp-core/template-functions.php:443 zp-core/template-functions.php:445
 #: zp-core/zp-extensions/comment_form.php:107
 #: zp-core/zp-extensions/comment_form/functions.php:914
@@ -918,7 +918,7 @@ msgid "Archive view"
 msgstr "Archief"
 
 #: themes/zpmobile/functions.php:44 zp-core/admin-functions.php:473
-#: zp-core/admin-functions.php:4940 zp-core/classes/class-authority.php:571
+#: zp-core/admin-functions.php:4940 zp-core/classes/class-authority.php:595
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/downloadList/download_statistics.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:92
@@ -1176,10 +1176,8 @@ msgstr "Terug"
 #: zp-core/zp-extensions/publishContent/publishContent.php:213
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:121
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:221
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:199
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:395
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:455
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:490
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:172
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:368
 #: zp-core/zp-extensions/zenpage/admin-categories.php:128
 #: zp-core/zp-extensions/zenpage/admin-categories.php:129
 #: zp-core/zp-extensions/zenpage/admin-categories.php:178
@@ -1449,17 +1447,15 @@ msgstr "Klik op de afbeelding om de uitsnede van de thumbnail te wijzigen."
 #: zp-core/admin-options.php:3494 zp-core/admin-plugins.php:140
 #: zp-core/admin-plugins.php:424 zp-core/admin-themes-editor.php:155
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:469
-#: zp-core/admin-users.php:848 zp-core/classes/class-authority.php:1132
+#: zp-core/admin-users.php:848 zp-core/classes/class-authority.php:1156
 #: zp-core/zp-extensions/contact_form/form.php:166
 #: zp-core/zp-extensions/crop_image.php:339
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:400
 #: zp-core/zp-extensions/rewriteTokens.php:118
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:122
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:222
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:200
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:396
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:456
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:491
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:173
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:369
 #: zp-core/zp-extensions/user_mailing_list.php:172
 #: zp-core/zp-extensions/user_mailing_list.php:173
 #: zp-core/zp-extensions/zenpage/admin-edit.php:337
@@ -1496,17 +1492,17 @@ msgid "Owner:"
 msgstr "Eigenaar:"
 
 #: zp-core/admin-edit.php:1060 zp-core/admin-functions.php:1702
-#: zp-core/classes/class-authority.php:595
-#: zp-core/classes/class-authority.php:596
-#: zp-core/classes/class-authority.php:597
-#: zp-core/classes/class-authority.php:601
+#: zp-core/classes/class-authority.php:619
+#: zp-core/classes/class-authority.php:620
 #: zp-core/classes/class-authority.php:621
-#: zp-core/classes/class-authority.php:622
-#: zp-core/classes/class-authority.php:626
-#: zp-core/classes/class-authority.php:627
+#: zp-core/classes/class-authority.php:625
 #: zp-core/classes/class-authority.php:645
-#: zp-core/classes/class-authority.php:648
-#: zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:646
+#: zp-core/classes/class-authority.php:650
+#: zp-core/classes/class-authority.php:651
+#: zp-core/classes/class-authority.php:669
+#: zp-core/classes/class-authority.php:672
+#: zp-core/classes/class-authority.php:673
 #: zp-core/zp-extensions/zenpage/admin-edit.php:630
 msgid "General"
 msgstr "Algemeen"
@@ -1823,7 +1819,7 @@ msgstr "%1$s %2$s: %3$s%4$s"
 
 #: zp-core/admin-functions.php:134 zp-core/pluginDoc.php:134
 #: zp-core/zp-extensions/user-expiry.php:114
-#: zp-core/zp-extensions/user_groups.php:215
+#: zp-core/zp-extensions/user_groups.php:216
 msgid "admin"
 msgstr "admin"
 
@@ -1963,8 +1959,8 @@ msgstr "Herhaal wachtwoord:"
 
 #: zp-core/admin-functions.php:1349 zp-core/admin-options.php:1285
 #: zp-core/admin-options.php:1614 zp-core/admin-options.php:2445
-#: zp-core/classes/class-authority.php:1127
-#: zp-core/classes/class-authority.php:1320
+#: zp-core/classes/class-authority.php:1151
+#: zp-core/classes/class-authority.php:1344
 #: zp-core/zp-extensions/downloadList.php:151
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
@@ -2064,10 +2060,10 @@ msgstr "Album zal verwijderd worden wanneer de wijzigingen worden opgeslagen"
 msgid "to:"
 msgstr "naar:"
 
-#: zp-core/admin-functions.php:1914 zp-core/classes/class-authority.php:575
-#: zp-core/classes/class-authority.php:595
-#: zp-core/classes/class-authority.php:620
-#: zp-core/classes/class-authority.php:647
+#: zp-core/admin-functions.php:1914 zp-core/classes/class-authority.php:599
+#: zp-core/classes/class-authority.php:619
+#: zp-core/classes/class-authority.php:644
+#: zp-core/classes/class-authority.php:671
 #: zp-core/classes/class-searchengine.php:93 zp-core/template-functions.php:134
 #: zp-core/utilities/gallery_statistics.php:93
 #: zp-core/utilities/gallery_statistics.php:601
@@ -2618,7 +2614,7 @@ msgstr "Hit-tellers zijn gereset."
 msgid "Cache has been purged."
 msgstr "Cache is gewist."
 
-#: zp-core/admin-functions.php:4969 zp-core/admin-upload.php:152
+#: zp-core/admin-functions.php:4969 zp-core/admin-upload.php:145
 msgid "Your files have been uploaded."
 msgstr "Je bestanden zijn geupload."
 
@@ -2769,7 +2765,7 @@ msgstr "Zenphoto intern"
 msgid "Last changed by: %s"
 msgstr "Laatste verandering: %s"
 
-#: zp-core/admin-functions.php:5239 zp-core/admin-upload.php:280
+#: zp-core/admin-functions.php:5239 zp-core/admin-upload.php:273
 #: zp-core/classes/class-searchengine.php:91
 #: zp-core/zp-extensions/contact_form.php:126
 #: zp-core/zp-extensions/contact_form.php:130
@@ -3058,7 +3054,7 @@ msgstr "tags"
 
 #: zp-core/admin-globals.php:90 zp-core/zp-extensions/user-expiry.php:101
 #: zp-core/zp-extensions/user-expiry.php:111
-#: zp-core/zp-extensions/user_groups.php:211
+#: zp-core/zp-extensions/user_groups.php:213
 msgid "users"
 msgstr "gebruikers"
 
@@ -3146,13 +3142,13 @@ msgstr "De toegestane tags verandering was succesvol."
 
 #: zp-core/admin-options.php:590 zp-core/admin-plugins.php:118
 #: zp-core/admin-users.php:303
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:145
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:118
 msgid "Error"
 msgstr "Fout !"
 
 #: zp-core/admin-options.php:591 zp-core/admin-plugins.php:119
 #: zp-core/admin-users.php:304
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:146
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:119
 msgid ""
 "The form submission is incomplete. Perhaps the form size exceeds configured "
 "server or browser limits."
@@ -5402,10 +5398,10 @@ msgstr "Officiële plugin"
 msgid "Usage info"
 msgstr "Gebruiksinformatie"
 
-#: zp-core/admin-plugins.php:419 zp-core/classes/class-authority.php:576
-#: zp-core/classes/class-authority.php:596
-#: zp-core/classes/class-authority.php:621
-#: zp-core/classes/class-authority.php:648 zp-core/template-functions.php:148
+#: zp-core/admin-plugins.php:419 zp-core/classes/class-authority.php:600
+#: zp-core/classes/class-authority.php:620
+#: zp-core/classes/class-authority.php:645
+#: zp-core/classes/class-authority.php:672 zp-core/template-functions.php:148
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:174
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:125
 msgid "Options"
@@ -5452,8 +5448,8 @@ msgid "Continue refreshing the metadata."
 msgstr "Ga door met het verversen van de metadata"
 
 #: zp-core/admin-refresh-metadata.php:128
-#: zp-core/classes/class-authority.php:1016
-#: zp-core/classes/class-authority.php:1017 zp-core/setup/index.php:1584
+#: zp-core/classes/class-authority.php:1040
+#: zp-core/classes/class-authority.php:1041 zp-core/setup/index.php:1584
 msgid "Refresh"
 msgstr "Ververs"
 
@@ -5812,31 +5808,31 @@ msgstr ""
 msgid "thumbnail preview"
 msgstr "thumbnail voorvertoning"
 
-#: zp-core/admin-upload.php:86
+#: zp-core/admin-upload.php:79
 msgid "Upload Images"
 msgstr "Upload afbeeldingen"
 
-#: zp-core/admin-upload.php:103
+#: zp-core/admin-upload.php:96
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
 msgstr "Deze web-gebaseerde upload accepteert de bestandsformaten: %s, en %s."
 
-#: zp-core/admin-upload.php:105
+#: zp-core/admin-upload.php:98
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
 msgstr "Deze web-gebaseerde upload accepteerd bestandsformaten: %s and %s."
 
-#: zp-core/admin-upload.php:111
+#: zp-core/admin-upload.php:104
 msgid "<strong>Note: </strong>"
 msgstr "<strong>Opmerking: </strong>"
 
-#: zp-core/admin-upload.php:116
+#: zp-core/admin-upload.php:109
 msgid "ZIP files must contain only Zenphoto supported <em>image</em> types."
 msgstr ""
 "ZIP-bestanden mogen alleen bestanden bevatten die door Zenphoto ondersteund "
 "worden."
 
-#: zp-core/admin-upload.php:126
+#: zp-core/admin-upload.php:119
 #, php-format
 msgid ""
 "The maximum size for any one file is <strong>%sB</strong> and the maximum "
@@ -5849,7 +5845,7 @@ msgstr ""
 "ingesteld in de PHP-configuratie: <code>upload_max_filesize</code> en "
 "<code>post_max_size</code>."
 
-#: zp-core/admin-upload.php:128
+#: zp-core/admin-upload.php:121
 #, php-format
 msgid ""
 "The maximum size for your total upload is <strong>%sB</strong> which is set "
@@ -5858,7 +5854,7 @@ msgstr ""
 "De maximale grootte voor je totale upload is <strong>%sB</strong>.<br />Dit "
 "is ingesteld in de PHP-configuratie: <code>post_max_filesize</code>."
 
-#: zp-core/admin-upload.php:135
+#: zp-core/admin-upload.php:128
 msgid ""
 "Don’t forget, you can also use <acronym title=\"File Transfer "
 "Protocol\">FTP</acronym> to upload folders of images into the albums "
@@ -5868,56 +5864,56 @@ msgstr ""
 "acronym> kunt gebruiken om mappen en afbeeldingen te uploaden naar de map "
 "<em>albums</em> !"
 
-#: zp-core/admin-upload.php:143
+#: zp-core/admin-upload.php:136
 msgid "Upload Error"
 msgstr "Upload fout"
 
-#: zp-core/admin-upload.php:144
+#: zp-core/admin-upload.php:137
 msgid "There was an error submitting the form. Please try again."
 msgstr ""
 "Er was een fout tijdens het versturen van het formulier. Probeer het a.u.b "
 "opnieuw."
 
-#: zp-core/admin-upload.php:151
+#: zp-core/admin-upload.php:144
 msgid "Upload complete"
 msgstr "Upload voltooid"
 
-#: zp-core/admin-upload.php:158
+#: zp-core/admin-upload.php:151
 msgid "Upload to:"
 msgstr "Upload naar:"
 
-#: zp-core/admin-upload.php:205 zp-core/admin-upload.php:272
-#: zp-core/admin-upload.php:280 zp-core/admin-upload.php:285
-#: zp-core/admin-upload.php:312
+#: zp-core/admin-upload.php:198 zp-core/admin-upload.php:265
+#: zp-core/admin-upload.php:273 zp-core/admin-upload.php:278
+#: zp-core/admin-upload.php:305
 msgid "That name is already used."
 msgstr "Die naam is al in gebruik."
 
-#: zp-core/admin-upload.php:205 zp-core/admin-upload.php:272
-#: zp-core/admin-upload.php:280 zp-core/admin-upload.php:285
-#: zp-core/admin-upload.php:312
+#: zp-core/admin-upload.php:198 zp-core/admin-upload.php:265
+#: zp-core/admin-upload.php:273 zp-core/admin-upload.php:278
+#: zp-core/admin-upload.php:305
 msgid ""
 "This upload has to have a folder. Type a title or folder name to continue..."
 msgstr ""
 "Deze upload heeft een map nodig. Vul een titel of mapnaam in om door te "
 "gaan..."
 
-#: zp-core/admin-upload.php:272
+#: zp-core/admin-upload.php:265
 msgid "Create a new album"
 msgstr "Maak een nieuw album"
 
-#: zp-core/admin-upload.php:275
+#: zp-core/admin-upload.php:268
 msgid "Publish the album."
 msgstr "Publiceerd het album."
 
-#: zp-core/admin-upload.php:286
+#: zp-core/admin-upload.php:279
 msgid "Folder name"
 msgstr "Naam van folder"
 
-#: zp-core/admin-upload.php:289
+#: zp-core/admin-upload.php:282
 msgid "Auto-generate"
 msgstr "maak automatisch aan"
 
-#: zp-core/admin-upload.php:346
+#: zp-core/admin-upload.php:339
 msgid "There are no albums to which you can upload."
 msgstr "Er zijn geen albums om naar te uploaden."
 
@@ -5939,7 +5935,7 @@ msgstr ""
 "wachtwoorden invoeren."
 
 #: zp-core/admin-users.php:309
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:156
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:129
 msgid "Saved"
 msgstr "Opgeslagen"
 
@@ -5960,14 +5956,14 @@ msgid "Your Website URL is not valid"
 msgstr "De URL van de website is niet geldig"
 
 #: zp-core/admin-users.php:480
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:209
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:383
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:182
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:356
 msgid "Expand all"
 msgstr "Toon alle velden"
 
 #: zp-core/admin-users.php:482
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:211
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:385
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:184
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:358
 msgid "Collapse all"
 msgstr "Verberg alle velden"
 
@@ -6209,102 +6205,102 @@ msgstr ""
 msgid "Installation information"
 msgstr "Installatie informatie"
 
-#: zp-core/admin.php:311
-msgid "<em>Debug build</em>"
-msgstr "<em>Debug versie</em>"
-
-#: zp-core/admin.php:313
-msgid "Official build"
-msgstr "Officiële versie"
-
-#: zp-core/admin.php:319 zp-core/functions/functions-basic.php:1518
+#: zp-core/admin.php:314 zp-core/functions/functions-basic.php:1583
 #: zp-core/setup/index.php:427 zp-core/zp-extensions/security-logger.php:134
 msgid "clone"
 msgstr "kloon"
 
-#: zp-core/admin.php:328
+#: zp-core/admin.php:323
 #, php-format
 msgid "source: %s"
 msgstr "bron: %s"
 
-#: zp-core/admin.php:335
+#: zp-core/admin.php:330
 #, php-format
-msgid "Zenphoto version <strong>%1$s (%2$s)</strong>"
-msgstr "Zenphoto versie <strong>%1$s (%2$s)</strong>"
+msgid "Zenphoto version <strong>%1$s</strong>"
+msgstr "Zenphoto versie <strong>%1$s</strong>"
 
-#: zp-core/admin.php:351
-#, php-format
-msgid "Preview the release notes for Zenphoto %s"
-msgstr "Bekijk de release notes voor Zenphoto %s"
+#: zp-core/admin.php:336
+msgid "This is a pre-release version. Review changes on GitHub."
+msgstr "Dit is een pre-release versie. Bekijk de veranderingen op Github."
 
-#: zp-core/admin.php:364
+#: zp-core/admin.php:346
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Huidig locale (taal) instelling: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:366
+#: zp-core/admin.php:348
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Locale (taal) instelling mislukt</strong>"
 
-#: zp-core/admin.php:371
+#: zp-core/admin.php:353
 msgid "Server path:"
 msgstr "Server pad:"
 
-#: zp-core/admin.php:374
+#: zp-core/admin.php:356
 msgid "WEB path:"
 msgstr "WEB pad:"
 
-#: zp-core/admin.php:377
+#: zp-core/admin.php:359
 msgid "PHP Session path:"
 msgstr "PHP Sessie pad:"
 
-#: zp-core/admin.php:386
+#: zp-core/admin.php:368
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Huidig thema: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:389
+#: zp-core/admin.php:371
 #, php-format
 msgid "Server software: <strong>%1$s</strong>"
 msgstr "Server software <strong>%s</strong>"
 
-#: zp-core/admin.php:390
+#: zp-core/admin.php:372
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "PHP versie: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:439
+#: zp-core/admin.php:399
+#, php-format
+msgid "TEST_RELEASE mode (%s) enabled"
+msgstr "TEST_RELEASE modus (%s) geactiveerd"
+
+#: zp-core/admin.php:401
+#, php-format
+msgid "Debug modes enabled: <strong>%s</strong>"
+msgstr "Geactiveerde debug modussen: <strong>%s</strong>"
+
+#: zp-core/admin.php:447
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "PHP Foutmelding: <strong>%s</strong>"
 
-#: zp-core/admin.php:445
+#: zp-core/admin.php:453
+#| msgid ""
+#| "PHP error messages may be displayed on WEB pages. This may disclose site "
+#| "sensitive information."
 msgid ""
-"PHP error messages may be displayed on WEB pages. This may disclose site "
-"sensitive information."
+"<em>display_errors</em> is <strong>On</strong>: PHP error messages may be "
+"displayed on WEB pages. This may disclose site sensitive information."
 msgstr ""
-"PHP fouten kunnen worden getoond op web-pagina’s en daarmee gevoelige "
-"informatie vrijgeven."
+"<em>display_errors</em> staat <strong>Aan</strong>: PHP foutmeldingen kunnen "
+"op webpagina's getoond worden. Dit kan gevoelige informatie laten zien."
 
-#: zp-core/admin.php:445
-msgid "<em>display_errors</em> is <strong>On</strong>"
-msgstr "<em>display_errors</em> staat <strong>Aan</strong>"
-
-#: zp-core/admin.php:449
+#: zp-core/admin.php:457
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "<em>display_errors</em> staat <strong>Uit</strong>"
 
-#: zp-core/admin.php:455
+#: zp-core/admin.php:463
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Grafische ondersteuning: <code>%s</code>"
 
-#: zp-core/admin.php:465
+#: zp-core/admin.php:473
 #, php-format
 msgid "supporting: %s"
 msgstr "Ondersteunt: %s"
 
-#: zp-core/admin.php:468
+#: zp-core/admin.php:476
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -6312,76 +6308,76 @@ msgid ""
 msgstr ""
 "PHP geheugenlimiet: <strong>%1$s</strong> (De server kan minder toewijzen!)"
 
-#: zp-core/admin.php:469
+#: zp-core/admin.php:477
 #, php-format
 msgid "Database: <strong>%1$s %2$s</strong>"
 msgstr "Database: <strong>%1$s %2$s</strong>"
 
-#: zp-core/admin.php:470
+#: zp-core/admin.php:478
 #, php-format
 msgid "Database handler: <strong>%1$s</strong>"
 msgstr "Database handler: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:471
+#: zp-core/admin.php:479
 #, php-format
 msgid "Database client: <strong>%1$s</strong>"
 msgstr "Database client: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:472 zp-core/utilities/database_reference.php:90
+#: zp-core/admin.php:480 zp-core/utilities/database_reference.php:90
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: zp-core/admin.php:473
+#: zp-core/admin.php:481
 #, php-format
 msgid "Database table prefix: <strong>%1$s</strong>"
 msgstr "Database table prefix: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:479
+#: zp-core/admin.php:487
 msgid "No spam filter configured"
 msgstr "Er is geen spamfilter ingesteld"
 
-#: zp-core/admin.php:481
+#: zp-core/admin.php:489
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Spam filter: <strong>%s</strong>"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:495
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "CAPTCHA generator: <strong>%s</strong>"
 
-#: zp-core/admin.php:493
+#: zp-core/admin.php:501
 msgid "There is no mail handler configured!"
 msgstr "Er is geen mail-script geconfigureerd!"
 
-#: zp-core/admin.php:505
+#: zp-core/admin.php:513
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u actieve plugin:"
 msgstr[1] "%u actieve plugins:"
 
-#: zp-core/admin.php:541 zp-core/admin.php:579
+#: zp-core/admin.php:549 zp-core/admin.php:587
 msgid "<em>none</em>"
 msgstr "<em>geen</em>"
 
-#: zp-core/admin.php:552
+#: zp-core/admin.php:560
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u actief filter:"
 msgstr[1] "%u actieve filters:"
 
-#: zp-core/admin.php:594
+#: zp-core/admin.php:602
 msgid "Utility functions"
 msgstr "Extra functies"
 
-#: zp-core/admin.php:648
+#: zp-core/admin.php:656
 msgid "Gallery Stats"
 msgstr "Galerij statistieken"
 
-#: zp-core/admin.php:655
+#: zp-core/admin.php:663
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural ""
@@ -6389,14 +6385,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> afbeelding (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:657
+#: zp-core/admin.php:665
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> afbeelding"
 msgstr[1] "<strong>%u</strong> afbeeldingen"
 
-#: zp-core/admin.php:666
+#: zp-core/admin.php:674
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural ""
@@ -6404,14 +6400,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> album (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:668
+#: zp-core/admin.php:676
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: zp-core/admin.php:678
+#: zp-core/admin.php:686
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural ""
@@ -6419,14 +6415,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> Reactie (%2$u voor goedkeuring)"
 msgstr[1] "<strong>%1$u</strong> Reacties (%2$u voor goedkeuring)"
 
-#: zp-core/admin.php:680
+#: zp-core/admin.php:688
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> reactie"
 msgstr[1] "<strong>%u</strong> reacties"
 
-#: zp-core/admin.php:714
+#: zp-core/admin.php:722
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Je gebruikersrechten staan toegang tot administratieve functies niet toe."
@@ -6437,12 +6433,6 @@ msgstr ""
 #: zp-core/zp-extensions/register_user.php:118
 msgid "No captcha handler is enabled."
 msgstr "Er is geen CAPTCHA plugin geactiveerd."
-
-#: zp-core/classes/class-administrator.php:550
-msgid "Use the Administrator class instead"
-msgstr ""
-"De class <em>Zenphoto_Administrator</em> is verouderd. Gebruik in plaats "
-"hiervan de class <em>Administrator</em> rechtstreeks"
 
 #: zp-core/classes/class-album.php:42 zp-core/classes/class-dynamicalbum.php:78
 msgid "Invalid album instantiation: No album name"
@@ -6475,7 +6465,7 @@ msgstr ""
 "gebruiken."
 
 #: zp-core/classes/class-albumbase.php:124
-#: zp-core/classes/class-albumbase.php:136 zp-core/classes/class-image.php:250
+#: zp-core/classes/class-albumbase.php:136 zp-core/classes/class-image.php:251
 msgid "Use getName() instead"
 msgstr ""
 "De functie <code>getFileName()</code> is verouderd. Gebruik in plaats "
@@ -6546,7 +6536,7 @@ msgstr ""
 "Tijd in seconden voordat het laatste bezoek van ingelogde gebruikers wordt "
 "bijgewerkt in de database . Standaard is dit 600 seconden (10 minuten)"
 
-#: zp-core/classes/class-authority.php:437
+#: zp-core/classes/class-authority.php:461
 #, php-format
 msgid ""
 "Cannot migrate rights to version %1$s (Authority supports only %2$s and "
@@ -6555,82 +6545,82 @@ msgstr ""
 "Het lukt niet om de gebruikersrechten over te dragen naar versie %1$s "
 "(Authority ondersteunt alleen %2$s en %3$s)"
 
-#: zp-core/classes/class-authority.php:565
-#: zp-core/classes/class-authority.php:581
-#: zp-core/classes/class-authority.php:600
-#: zp-core/classes/class-authority.php:625
+#: zp-core/classes/class-authority.php:589
+#: zp-core/classes/class-authority.php:605
+#: zp-core/classes/class-authority.php:624
+#: zp-core/classes/class-authority.php:649
 msgid "No rights"
 msgstr "Geen rechten"
 
-#: zp-core/classes/class-authority.php:566
-#: zp-core/classes/class-authority.php:582
-#: zp-core/classes/class-authority.php:601
-#: zp-core/classes/class-authority.php:626 zp-core/template-functions.php:106
+#: zp-core/classes/class-authority.php:590
+#: zp-core/classes/class-authority.php:606
+#: zp-core/classes/class-authority.php:625
+#: zp-core/classes/class-authority.php:650 zp-core/template-functions.php:106
 msgid "Overview"
 msgstr "Overzicht"
 
-#: zp-core/classes/class-authority.php:567
-#: zp-core/classes/class-authority.php:583
+#: zp-core/classes/class-authority.php:591
+#: zp-core/classes/class-authority.php:607
 msgid "View all"
 msgstr "Bekijk alle"
 
-#: zp-core/classes/class-authority.php:568
-#: zp-core/classes/class-authority.php:584
-#: zp-core/classes/class-authority.php:611
-#: zp-core/classes/class-authority.php:637 zp-core/template-functions.php:113
+#: zp-core/classes/class-authority.php:592
+#: zp-core/classes/class-authority.php:608
+#: zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:661 zp-core/template-functions.php:113
 #: zp-core/zp-extensions/uploader_http/upload_form.php:62
 #: zp-core/zp-extensions/uploader_http/upload_form.php:63
 #: zp-core/zp-extensions/uploader_jQuery.php:18
 msgid "Upload"
 msgstr "Upload"
 
-#: zp-core/classes/class-authority.php:569
-#: zp-core/classes/class-authority.php:585
+#: zp-core/classes/class-authority.php:593
 #: zp-core/classes/class-authority.php:609
-#: zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:659
 msgid "Post comments"
 msgstr "Berichten plaatsen"
 
-#: zp-core/classes/class-authority.php:570
-#: zp-core/classes/class-authority.php:586
+#: zp-core/classes/class-authority.php:594
 #: zp-core/classes/class-authority.php:610
-#: zp-core/classes/class-authority.php:636
+#: zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:660
 #: zp-core/classes/class-userdataexport.php:300
 #: zp-core/zp-extensions/comment_form.php:266
 #: zp-core/zp-extensions/comment_form/admin-comments.php:264
 msgid "Comments"
 msgstr "Reacties"
 
-#: zp-core/classes/class-authority.php:572
-#: zp-core/classes/class-authority.php:593
+#: zp-core/classes/class-authority.php:596
+#: zp-core/classes/class-authority.php:617
 msgid "Manage all albums"
 msgstr "Beheer alle albums"
 
-#: zp-core/classes/class-authority.php:573
-#: zp-core/classes/class-authority.php:594
-#: zp-core/classes/class-authority.php:619
-#: zp-core/classes/class-authority.php:646 zp-core/template-functions.php:155
+#: zp-core/classes/class-authority.php:597
+#: zp-core/classes/class-authority.php:618
+#: zp-core/classes/class-authority.php:643
+#: zp-core/classes/class-authority.php:670 zp-core/template-functions.php:155
 msgid "Themes"
 msgstr "Thema’s"
 
-#: zp-core/classes/class-authority.php:574
+#: zp-core/classes/class-authority.php:598
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: zp-core/classes/class-authority.php:577
-#: zp-core/classes/class-authority.php:597
-#: zp-core/classes/class-authority.php:622
-#: zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:601
+#: zp-core/classes/class-authority.php:621
+#: zp-core/classes/class-authority.php:646
+#: zp-core/classes/class-authority.php:673
 msgid "Full admin rights"
 msgstr "Volledige admin rechten"
 
-#: zp-core/classes/class-authority.php:582
-#: zp-core/classes/class-authority.php:601
-#: zp-core/classes/class-authority.php:626
+#: zp-core/classes/class-authority.php:606
+#: zp-core/classes/class-authority.php:625
+#: zp-core/classes/class-authority.php:650
 msgid "Users with this right may view the admin overview page."
 msgstr "Gebruikers met deze rechten kunnen de admin overzicht pagina bekijken."
 
-#: zp-core/classes/class-authority.php:583
+#: zp-core/classes/class-authority.php:607
 msgid ""
 "Users with this right may view all of the gallery regardless of protection "
 "of the page. Without this right, the user can view only public ones and "
@@ -6641,9 +6631,9 @@ msgstr ""
 "eventuele bescherming. Zonder deze rechten kan de gebruiker alleen publieke "
 "en aangevinkte onderdelen bekijken."
 
-#: zp-core/classes/class-authority.php:584
-#: zp-core/classes/class-authority.php:611
-#: zp-core/classes/class-authority.php:637
+#: zp-core/classes/class-authority.php:608
+#: zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:661
 msgid ""
 "Users with this right may upload to the albums for which they have "
 "management rights."
@@ -6651,9 +6641,9 @@ msgstr ""
 "Gebruikers met deze rechten kunnen uploaden naar de albums waarvoor ze "
 "rechten hebben."
 
-#: zp-core/classes/class-authority.php:585
 #: zp-core/classes/class-authority.php:609
-#: zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:659
 msgid ""
 "When the comment_form plugin is used for comments and its \"Only members can "
 "comment\" option is set, only users with this right may post comments."
@@ -6662,42 +6652,42 @@ msgstr ""
 "“Alleen leden kunnen reageren” is aangevinkt, kunnen alleen gebruikers met "
 "deze rechten berichten plaatsen."
 
-#: zp-core/classes/class-authority.php:586
 #: zp-core/classes/class-authority.php:610
-#: zp-core/classes/class-authority.php:636
+#: zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:660
 msgid "Users with this right may make comments tab changes."
 msgstr "Gebruikers met deze rechten kunnen de tab “reacties” gebruiken."
 
-#: zp-core/classes/class-authority.php:587
-#: zp-core/classes/class-authority.php:615
-#: zp-core/classes/class-authority.php:641
+#: zp-core/classes/class-authority.php:611
+#: zp-core/classes/class-authority.php:639
+#: zp-core/classes/class-authority.php:665
 msgid "Users with this right may access the “albums” tab to make changes."
 msgstr "Gebruikers met deze rechten kunnen de tab “albums” gebruiken."
 
-#: zp-core/classes/class-authority.php:588
-#: zp-core/classes/class-authority.php:613
-#: zp-core/classes/class-authority.php:639
+#: zp-core/classes/class-authority.php:612
+#: zp-core/classes/class-authority.php:637
+#: zp-core/classes/class-authority.php:663
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Gebruikers met deze rechten kunnen de Zenpage pagina’s aanpassen."
 
-#: zp-core/classes/class-authority.php:589
-#: zp-core/classes/class-authority.php:612
-#: zp-core/classes/class-authority.php:638
+#: zp-core/classes/class-authority.php:613
+#: zp-core/classes/class-authority.php:636
+#: zp-core/classes/class-authority.php:662
 msgid ""
 "Users with this right may edit and manage Zenpage articles and categories."
 msgstr ""
 "Gebruikers met deze rechten kunnen de Zenpage artikelen en categorieën "
 "aanpassen."
 
-#: zp-core/classes/class-authority.php:590
 #: zp-core/classes/class-authority.php:614
-#: zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:638
+#: zp-core/classes/class-authority.php:664
 msgid "Files"
 msgstr "Bestanden"
 
-#: zp-core/classes/class-authority.php:590
 #: zp-core/classes/class-authority.php:614
-#: zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:638
+#: zp-core/classes/class-authority.php:664
 msgid ""
 "Allows the user access to the “filemanager” located on the upload: files sub-"
 "tab."
@@ -6705,13 +6695,13 @@ msgstr ""
 "Staat gebruikers toe de “filemanager” te gebruiken die te vinden is onder de "
 "upload: bestanden sub-tab."
 
-#: zp-core/classes/class-authority.php:591
+#: zp-core/classes/class-authority.php:615
 msgid "Manage all pages"
 msgstr "Beheer alle pagina’s"
 
-#: zp-core/classes/class-authority.php:591
-#: zp-core/classes/class-authority.php:617
-#: zp-core/classes/class-authority.php:643
+#: zp-core/classes/class-authority.php:615
+#: zp-core/classes/class-authority.php:641
+#: zp-core/classes/class-authority.php:667
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage "
@@ -6721,13 +6711,13 @@ msgstr ""
 "tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle "
 "Zenpage pagina’s te beheren."
 
-#: zp-core/classes/class-authority.php:592
+#: zp-core/classes/class-authority.php:616
 msgid "Manage all news"
 msgstr "Beheer alle artikelen"
 
-#: zp-core/classes/class-authority.php:592
 #: zp-core/classes/class-authority.php:616
-#: zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:666
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage "
@@ -6737,9 +6727,9 @@ msgstr ""
 "tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle "
 "Zenpage artikelen en categorieën te beheren."
 
-#: zp-core/classes/class-authority.php:593
-#: zp-core/classes/class-authority.php:618
-#: zp-core/classes/class-authority.php:644
+#: zp-core/classes/class-authority.php:617
+#: zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:668
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage "
@@ -6749,9 +6739,9 @@ msgstr ""
 "tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle "
 "albums te beheren."
 
-#: zp-core/classes/class-authority.php:594
-#: zp-core/classes/class-authority.php:619
-#: zp-core/classes/class-authority.php:646
+#: zp-core/classes/class-authority.php:618
+#: zp-core/classes/class-authority.php:643
+#: zp-core/classes/class-authority.php:670
 msgid ""
 "Users with this right may make themes related changes. These are limited to "
 "the themes associated with albums checked in their managed albums list."
@@ -6760,22 +6750,22 @@ msgstr ""
 "thema’s gekoppeld aan de albums die zijn toegewezen in de “beheerde albums” "
 "lijst."
 
-#: zp-core/classes/class-authority.php:595
-#: zp-core/classes/class-authority.php:620
-#: zp-core/classes/class-authority.php:647
+#: zp-core/classes/class-authority.php:619
+#: zp-core/classes/class-authority.php:644
+#: zp-core/classes/class-authority.php:671
 msgid ""
 "Users with this right may make additions and changes to the set of tags."
 msgstr "Gebruikers met deze rechten kunnen gebruik maken van de “tags” tab."
 
-#: zp-core/classes/class-authority.php:596
-#: zp-core/classes/class-authority.php:621
-#: zp-core/classes/class-authority.php:648
+#: zp-core/classes/class-authority.php:620
+#: zp-core/classes/class-authority.php:645
+#: zp-core/classes/class-authority.php:672
 msgid "Users with this right may make changes on the options tabs."
 msgstr "Gebruikers met deze rechten kunnen gebruik maken van de “opties” tab."
 
-#: zp-core/classes/class-authority.php:597
-#: zp-core/classes/class-authority.php:622
-#: zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:621
+#: zp-core/classes/class-authority.php:646
+#: zp-core/classes/class-authority.php:673
 msgid ""
 "The master privilege. A user with \"Admin\" can do anything. (No matter what "
 "his other rights might indicate!)"
@@ -6783,119 +6773,119 @@ msgstr ""
 "Het hoofd privilege. Een gebruiker met “Admin” rechten kan alles. (Ongeacht "
 "wat de andere aangevinkte rechten aangeven)"
 
-#: zp-core/classes/class-authority.php:602
-#: zp-core/classes/class-authority.php:628
+#: zp-core/classes/class-authority.php:626
+#: zp-core/classes/class-authority.php:652
 msgid "View gallery"
 msgstr "Galerij bekijken"
 
-#: zp-core/classes/class-authority.php:602
-#: zp-core/classes/class-authority.php:628
+#: zp-core/classes/class-authority.php:626
+#: zp-core/classes/class-authority.php:652
 msgid ""
 "Users with this right may view otherwise protected generic gallery pages."
 msgstr "Gebruikers met deze rechten kunnen beschermde pagina’s bekijken."
 
-#: zp-core/classes/class-authority.php:603
-#: zp-core/classes/class-authority.php:629
+#: zp-core/classes/class-authority.php:627
+#: zp-core/classes/class-authority.php:653
 msgid "View search"
 msgstr "Zoekpagina’s bekijken"
 
-#: zp-core/classes/class-authority.php:603
-#: zp-core/classes/class-authority.php:629
+#: zp-core/classes/class-authority.php:627
+#: zp-core/classes/class-authority.php:653
 msgid "Users with this right may view search pages even if password protected."
 msgstr ""
 "Gebruikers met deze rechten kunnen zoekpagina’s bekijken, ook al zijn die "
 "beschermd."
 
-#: zp-core/classes/class-authority.php:604
-#: zp-core/classes/class-authority.php:630
+#: zp-core/classes/class-authority.php:628
+#: zp-core/classes/class-authority.php:654
 msgid "View fullimage"
 msgstr "Volledige afbeelding bekijken"
 
-#: zp-core/classes/class-authority.php:604
-#: zp-core/classes/class-authority.php:630
+#: zp-core/classes/class-authority.php:628
+#: zp-core/classes/class-authority.php:654
 msgid "Users with this right may view all full sized (raw) images."
 msgstr ""
 "Gebruikers met deze rechten kunnen alle volledige afbeeldingen bekijken."
 
-#: zp-core/classes/class-authority.php:605
-#: zp-core/classes/class-authority.php:606
-#: zp-core/classes/class-authority.php:607
+#: zp-core/classes/class-authority.php:629
+#: zp-core/classes/class-authority.php:630
 #: zp-core/classes/class-authority.php:631
-#: zp-core/classes/class-authority.php:632
-#: zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:655
+#: zp-core/classes/class-authority.php:656
+#: zp-core/classes/class-authority.php:657
 msgid "Access all"
 msgstr "Toegang tot alle"
 
-#: zp-core/classes/class-authority.php:605
-#: zp-core/classes/class-authority.php:631
+#: zp-core/classes/class-authority.php:629
+#: zp-core/classes/class-authority.php:655
 msgid "Users with this right have access to all zenpage news articles."
 msgstr ""
 "Gebruikers met deze rechten hebben toegang tot alle Zenpage nieuwsartikelen."
 
-#: zp-core/classes/class-authority.php:606
-#: zp-core/classes/class-authority.php:632
+#: zp-core/classes/class-authority.php:630
+#: zp-core/classes/class-authority.php:656
 msgid "Users with this right have access to all zenpage pages."
 msgstr "Gebruikers met deze rechten hebben toegang tot alle Zenpage pagina’s."
 
-#: zp-core/classes/class-authority.php:607
-#: zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:631
+#: zp-core/classes/class-authority.php:657
 msgid "Users with this right have access to all albums."
 msgstr "Gebruikers met deze rechten hebben toegang tot alle albums."
 
-#: zp-core/classes/class-authority.php:608
-#: zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:632
+#: zp-core/classes/class-authority.php:658
 msgid "View unpublished"
 msgstr "Bekijk ongepubliceerde"
 
-#: zp-core/classes/class-authority.php:608
-#: zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:632
+#: zp-core/classes/class-authority.php:658
 msgid "Users with this right will see all unpublished items."
 msgstr ""
 "Gebruikers met deze rechten kunnen alle ongepubliceerde onderdelen bekijken."
 
-#: zp-core/classes/class-authority.php:616
-#: zp-core/classes/class-authority.php:617
-#: zp-core/classes/class-authority.php:618
+#: zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:641
 #: zp-core/classes/class-authority.php:642
-#: zp-core/classes/class-authority.php:643
-#: zp-core/classes/class-authority.php:644
+#: zp-core/classes/class-authority.php:666
+#: zp-core/classes/class-authority.php:667
+#: zp-core/classes/class-authority.php:668
 msgid "Manage all"
 msgstr "Beheer alle"
 
-#: zp-core/classes/class-authority.php:627
-#: zp-core/classes/class-authority.php:975
-#: zp-core/classes/class-authority.php:1049
-#: zp-core/classes/class-authority.php:1119
+#: zp-core/classes/class-authority.php:651
+#: zp-core/classes/class-authority.php:999
+#: zp-core/classes/class-authority.php:1073
+#: zp-core/classes/class-authority.php:1143
 msgid "User"
 msgstr "Gebruiker"
 
-#: zp-core/classes/class-authority.php:627
+#: zp-core/classes/class-authority.php:651
 msgid "Users must have this right to change their credentials."
 msgstr ""
 "Gebruikers moeten deze rechten hebben om hun login-gegevens te veranderen."
 
-#: zp-core/classes/class-authority.php:645
+#: zp-core/classes/class-authority.php:669
 msgid "Codeblock"
 msgstr "Codeblock"
 
-#: zp-core/classes/class-authority.php:645
+#: zp-core/classes/class-authority.php:669
 msgid "Users with this right may edit Codeblocks."
 msgstr "Gebruikers met deze rechten kunnen “Codeblocks” gebruiken."
 
-#: zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:681
 msgid "All rights"
 msgstr "Alle rechten"
 
-#: zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:682
 #: zp-core/zp-extensions/register_user.php:195
 msgid "Default rights"
 msgstr "Standaard rechten"
 
-#: zp-core/classes/class-authority.php:745
+#: zp-core/classes/class-authority.php:769
 msgid "Sorry, that is not the answer."
 msgstr "Sorry, dat is niet het juiste antwoord."
 
-#: zp-core/classes/class-authority.php:752
+#: zp-core/classes/class-authority.php:776
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery."
@@ -6903,7 +6893,7 @@ msgstr ""
 "Je ontvangt deze e-mail vanwege een aanvraag om het wachtwoord te resetten "
 "voor je Zenphoto galerij."
 
-#: zp-core/classes/class-authority.php:754
+#: zp-core/classes/class-authority.php:778
 #, php-format
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
@@ -6912,16 +6902,16 @@ msgstr ""
 "Je ontvangt deze e-mail vanwege een wachtwoord reset aanvraag op je Zenphoto "
 "galerij van een gebruiker die heeft geprobeert in te loggen als %s."
 
-#: zp-core/classes/class-authority.php:793
+#: zp-core/classes/class-authority.php:817
 msgid "There was no one to which to send the reset request."
 msgstr "Er is geen adres opgegeven om de reset-aanvraag naar toe te sturen."
 
-#: zp-core/classes/class-authority.php:797
+#: zp-core/classes/class-authority.php:821
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Om je Zenphoto admin wachtwoord te resetten ga je naar: %s"
 
-#: zp-core/classes/class-authority.php:798
+#: zp-core/classes/class-authority.php:822
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This "
 "ticket will automatically expire in 3 days."
@@ -6929,31 +6919,31 @@ msgstr ""
 "Als je het wachtwoord niet wilt resetten kunt je dit bericht negeren. Het "
 "ticket zal automatisch over 3 dagen verlopen."
 
-#: zp-core/classes/class-authority.php:799
+#: zp-core/classes/class-authority.php:823
 msgid "The Zenphoto information you requested"
 msgstr "De Zenphoto informatie die je aangevraagd hebt"
 
-#: zp-core/classes/class-authority.php:807
+#: zp-core/classes/class-authority.php:831
 msgid "Your input did not match the captcha"
 msgstr "Je input komt niet overeen met de captcha"
 
-#: zp-core/classes/class-authority.php:938
+#: zp-core/classes/class-authority.php:962
 msgid "There was an error logging in."
 msgstr "Er was een probleem bij het inloggen."
 
-#: zp-core/classes/class-authority.php:941
+#: zp-core/classes/class-authority.php:965
 msgid "Check your username and password and try again."
 msgstr "Controleer je gebruikersnaam en wachtwoord en probeer het opnieuw."
 
-#: zp-core/classes/class-authority.php:943
+#: zp-core/classes/class-authority.php:967
 msgid "Check password and try again."
 msgstr "Controleer je wachtwoord en probeer het opnieuw."
 
-#: zp-core/classes/class-authority.php:952
+#: zp-core/classes/class-authority.php:976
 msgid "A reset request has been sent."
 msgstr "Een resetverzoek is verstuurd."
 
-#: zp-core/classes/class-authority.php:982
+#: zp-core/classes/class-authority.php:1006
 msgid ""
 "Supply the correct response to the question below and you will be directed "
 "to a page where you can change your password."
@@ -6961,29 +6951,29 @@ msgstr ""
 "Vul het juiste antwoord in op de vraag hieronder en je wordt doorgetuurd "
 "naar een pagina waar je je wachtwoord kunt veranderen."
 
-#: zp-core/classes/class-authority.php:983
+#: zp-core/classes/class-authority.php:1007
 msgid "<br />You may also use the link below to request a reset by e-mail."
 msgstr ""
 "<br />Je kunt ook de link hieronder gebruiken voor een wachtwoord reset per "
 "e-mail."
 
-#: zp-core/classes/class-authority.php:985
+#: zp-core/classes/class-authority.php:1009
 msgid "Challenge question:"
 msgstr "Controlevraag:"
 
-#: zp-core/classes/class-authority.php:990
+#: zp-core/classes/class-authority.php:1014
 msgid "Your response"
 msgstr "Je antwoord"
 
-#: zp-core/classes/class-authority.php:996
+#: zp-core/classes/class-authority.php:1020
 msgid "A password reset is not possible."
 msgstr "Verzoek voor wachtwoord reset is niet mogelijk."
 
-#: zp-core/classes/class-authority.php:998
+#: zp-core/classes/class-authority.php:1022
 msgid "Please request a reset by e-mail by clicking the link below."
 msgstr "Klik op de link hieronder voor een wachtwoord reset per e-mail."
 
-#: zp-core/classes/class-authority.php:1006
+#: zp-core/classes/class-authority.php:1030
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge "
 "question and/or get a link to request a reset by e-mail."
@@ -6991,100 +6981,94 @@ msgstr ""
 "Vul je gebruikersnaam in en klik op <code>Ververs</code> voor de "
 "controlevraag en/of een link voor een een reset per e-mail."
 
-#: zp-core/classes/class-authority.php:1013
-#: zp-core/classes/class-authority.php:1014
+#: zp-core/classes/class-authority.php:1037
+#: zp-core/classes/class-authority.php:1038
 #: zp-core/zp-extensions/register_user/register_user_form.php:135
 msgid "Submit"
 msgstr "Verzenden"
 
-#: zp-core/classes/class-authority.php:1019
-#: zp-core/classes/class-authority.php:1020
-#: zp-core/classes/class-authority.php:1068
-#: zp-core/classes/class-authority.php:1069
+#: zp-core/classes/class-authority.php:1043
+#: zp-core/classes/class-authority.php:1044
+#: zp-core/classes/class-authority.php:1092
+#: zp-core/classes/class-authority.php:1093
 msgid "Return"
 msgstr "Keer terug"
 
-#: zp-core/classes/class-authority.php:1031
+#: zp-core/classes/class-authority.php:1055
 msgid "Request reset by e-mail"
 msgstr "Verzoek voor reset via e-mail"
 
-#: zp-core/classes/class-authority.php:1056
+#: zp-core/classes/class-authority.php:1080
 msgid "Enter CAPTCHA"
 msgstr "Voer CAPTCHA in"
 
-#: zp-core/classes/class-authority.php:1065
+#: zp-core/classes/class-authority.php:1089
 msgid "Request"
 msgstr "Verzoek"
 
-#: zp-core/classes/class-authority.php:1066
+#: zp-core/classes/class-authority.php:1090
 msgid "Request password reset"
 msgstr "Verzoek voor wachtwoord reset"
 
-#: zp-core/classes/class-authority.php:1079
+#: zp-core/classes/class-authority.php:1103
 #: zp-core/zp-extensions/user_login-out.php:69
 msgid "Login"
 msgstr "Login"
 
-#: zp-core/classes/class-authority.php:1099
+#: zp-core/classes/class-authority.php:1123
 #, php-format
 msgid "Logon using:%s"
 msgstr "Login met: %s"
 
-#: zp-core/classes/class-authority.php:1125
-#: zp-core/classes/class-authority.php:1206
-#: zp-core/classes/class-authority.php:1310
+#: zp-core/classes/class-authority.php:1149
+#: zp-core/classes/class-authority.php:1230
+#: zp-core/classes/class-authority.php:1334
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: zp-core/classes/class-authority.php:1131
+#: zp-core/classes/class-authority.php:1155
 msgid "Log in"
 msgstr "Log in"
 
-#: zp-core/classes/class-authority.php:1145
+#: zp-core/classes/class-authority.php:1169
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "Ik ben mijn <strong>gebruikersnaam</strong>/<strong>wachtwoord</strong> "
 "vergeten"
 
-#: zp-core/classes/class-authority.php:1211
+#: zp-core/classes/class-authority.php:1235
 msgid "password strength weak"
 msgstr "wachtwoord is zwak"
 
-#: zp-core/classes/class-authority.php:1214
+#: zp-core/classes/class-authority.php:1238
 msgid "password strength good"
 msgstr "wachtwoord is goed"
 
-#: zp-core/classes/class-authority.php:1217
+#: zp-core/classes/class-authority.php:1241
 msgid "password strength strong"
 msgstr "wachtwoord is uitstekend"
 
-#: zp-core/classes/class-authority.php:1222
+#: zp-core/classes/class-authority.php:1246
 msgid "password strength too weak"
 msgstr "wachtwoord is te zwak"
 
-#: zp-core/classes/class-authority.php:1242
+#: zp-core/classes/class-authority.php:1266
 msgid "passwords match"
 msgstr "wachtwoorden komen overeen"
 
-#: zp-core/classes/class-authority.php:1246
+#: zp-core/classes/class-authority.php:1270
 msgid "passwords do not match"
 msgstr "wachtwoorden komen niet overeen"
 
-#: zp-core/classes/class-authority.php:1325
+#: zp-core/classes/class-authority.php:1349
 msgid "Repeat password"
 msgstr "Herhaal wachtwoord"
 
-#: zp-core/classes/class-authority.php:1398
+#: zp-core/classes/class-authority.php:1422
 msgid "Use the method isUniqueMailaddress() instead"
 msgstr ""
 "De functie <code>checkUniqueMailaddress()</code> is verouderd. Gebruik in "
 "plaats hiervan de methode <code>isUniqueMailaddress()</code>"
-
-#: zp-core/classes/class-authority.php:1495
-msgid "Use the Authority class instead"
-msgstr ""
-"De class <em>Zenphoto_Authority</em> is verouderd. Gebruik in plaats hiervan "
-"de class <em>Authority</em>"
 
 #: zp-core/classes/class-backuprestore.php:99
 #, php-format
@@ -7177,16 +7161,16 @@ msgstr ""
 "De functie <code>connect()</code> is verouderd. Gebruik in plaats hiervan de "
 "class property <code>$connection</code>."
 
-#: zp-core/classes/class-dbbase.php:182
+#: zp-core/classes/class-dbbase.php:205
 msgid "No supported databases"
 msgstr "Geen ondersteunde databases"
 
-#: zp-core/classes/class-dbbase.php:912
+#: zp-core/classes/class-dbbase.php:935
 #, php-format
 msgid "The table %1$s could not be converted to %2$s collation"
 msgstr "De tabel %1$s kon niet geconverteerd worden naar een %2$s collatie"
 
-#: zp-core/classes/class-dbbase.php:916
+#: zp-core/classes/class-dbbase.php:939
 #, php-format
 msgid ""
 "The table %s could not be converted to utf8mb4 collation because it is not "
@@ -7205,24 +7189,24 @@ msgstr ""
 "MySQL fout: Zenphoto kreeg de foutmelding %s bij het verbinden met de "
 "database."
 
-#: zp-core/classes/class-dbmysqli.php:81
-#: zp-core/classes/class-dbpdo_mysql.php:82
+#: zp-core/classes/class-dbmysqli.php:72
+#: zp-core/classes/class-dbpdo_mysql.php:83
 msgid "prefix"
 msgstr "prefix"
 
-#: zp-core/classes/class-dbmysqli.php:82
-#: zp-core/classes/class-dbpdo_mysql.php:83
+#: zp-core/classes/class-dbmysqli.php:73
+#: zp-core/classes/class-dbpdo_mysql.php:84
 msgid "DB"
 msgstr "DB"
 
-#: zp-core/classes/class-dbmysqli.php:83
-#: zp-core/classes/class-dbpdo_mysql.php:84
+#: zp-core/classes/class-dbmysqli.php:74
+#: zp-core/classes/class-dbpdo_mysql.php:85
 #, php-format
 msgid "%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s"
 msgstr "%1$s Fout: (%2$s) mislukt. %1$s gaf de foutmelding: %3$s."
 
-#: zp-core/classes/class-dbmysqli.php:181
-#: zp-core/classes/class-dbpdo_mysql.php:176
+#: zp-core/classes/class-dbmysqli.php:173
+#: zp-core/classes/class-dbpdo_mysql.php:178
 #, php-format
 msgid "%s not connected"
 msgstr "%s niet verbonden"
@@ -7278,7 +7262,7 @@ msgstr "Error: De albums directory (%s) kon niet gevonden worden."
 msgid "Error: The “albums” directory (%s) is not readable."
 msgstr "Error: De albums directory (%s) is niet leesbaar."
 
-#: zp-core/classes/class-gallery.php:534
+#: zp-core/classes/class-gallery.php:544
 #: zp-core/classes/class-imagemetaformatter.php:175
 #: zp-core/classes/class-imagemetaformatter.php:195
 #: zp-core/classes/class-imagemetaformatter.php:215
@@ -7294,42 +7278,42 @@ msgstr "Error: De albums directory (%s) is niet leesbaar."
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: zp-core/classes/class-gallery.php:534
+#: zp-core/classes/class-gallery.php:544
 msgid "<strong>Missing theme info file!</strong>"
 msgstr "<strong>Er ontbreekt een thema!</strong>"
 
-#: zp-core/classes/class-gallery.php:747
+#: zp-core/classes/class-gallery.php:757
 #, php-format
 msgid "Invalid album folder: %1$s %2$s"
 msgstr "Ongeldig album: %1$s %2$s"
 
-#: zp-core/classes/class-gallery.php:747
+#: zp-core/classes/class-gallery.php:757
 msgid "fixed"
 msgstr "fixed"
 
-#: zp-core/classes/class-gallery.php:747
+#: zp-core/classes/class-gallery.php:757
 msgid "discarded"
 msgstr "geannuleerd"
 
-#: zp-core/classes/class-gallery.php:1124
+#: zp-core/classes/class-gallery.php:1134
 msgid "Use the method getParentSiteTitle() instead"
 msgstr ""
 "De functie <code>getWebsiteTitle()</code> is verouderd. Gebruik in plaats "
 "hiervan de methode <code>getParentSiteTitle()</code>"
 
-#: zp-core/classes/class-gallery.php:1144
+#: zp-core/classes/class-gallery.php:1154
 msgid "Use the method setParentSiteTitle() instead"
 msgstr ""
 "De functie <code>setWebsiteTitle()</code> is verouderd. Gebruik in plaats "
 "hiervan de methode <code>setParentSiteTitle()</code>"
 
-#: zp-core/classes/class-gallery.php:1166
+#: zp-core/classes/class-gallery.php:1176
 msgid "Use the method getParentSiteURL() instead"
 msgstr ""
 "De functie <code>getWebsiteURL()</code> is verouderd. Gebruik in plaats "
 "hiervan de methode <code>getParentSiteURL()</code>"
 
-#: zp-core/classes/class-gallery.php:1188
+#: zp-core/classes/class-gallery.php:1198
 msgid "Use the method setParentSiteURL() instead"
 msgstr ""
 "De functie <code>setWebsiteURL()</code> is verouderd. Gebruik in plaats "
@@ -7430,17 +7414,17 @@ msgstr "Afbeelding niet gevonden: Album bestaat niet."
 msgid "Invalid image instantiation: file does not exist"
 msgstr "Afbeelding niet gevonden: bestand bestaat niet."
 
-#: zp-core/classes/class-image.php:111
+#: zp-core/classes/class-image.php:112
 #, php-format
 msgid "Bad album object parameter to newImage(%s)"
 msgstr "Foute album object parameter naar newImage(%s)"
 
-#: zp-core/classes/class-image.php:140
+#: zp-core/classes/class-image.php:141
 #, php-format
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Verkeerde bestandsextensie in newImage(%s)"
 
-#: zp-core/classes/class-image.php:197
+#: zp-core/classes/class-image.php:198
 msgid "An image object was instantiated without using the newImage() function."
 msgstr ""
 "Een afbeeldingsobject was geïnstantieerd zonder de functie <em>newImage()</"
@@ -8046,6 +8030,41 @@ msgstr "datum laatste verandering gebruiker"
 msgid "guest user"
 msgstr "gastgebruiker"
 
+#: zp-core/classes/class-zenphoto_administrator.php:15
+msgid "Use the Administrator class instead"
+msgstr ""
+"De class <em>Zenphoto_Administrator</em> is verouderd. Gebruik in plaats "
+"hiervan de class <em>Administrator</em> rechtstreeks"
+
+#: zp-core/classes/class-zenphoto_administrator.php:22
+#| msgid "Use the Administrator class instead"
+msgid "Use the Administrator class method instead"
+msgstr "Gebruik in plaats hiervan de Administrator class methode."
+
+#: zp-core/classes/class-zenphoto_authority.php:15
+msgid "Use the Authority class instead"
+msgstr ""
+"De class <em>Zenphoto_Authority</em> is verouderd. Gebruik in plaats hiervan "
+"de class <em>Authority</em>"
+
+#: zp-core/classes/class-zenphoto_authority.php:22
+#: zp-core/classes/class-zenphoto_authority.php:30
+#: zp-core/classes/class-zenphoto_authority.php:38
+#: zp-core/classes/class-zenphoto_authority.php:46
+#: zp-core/classes/class-zenphoto_authority.php:54
+#: zp-core/classes/class-zenphoto_authority.php:62
+#: zp-core/classes/class-zenphoto_authority.php:70
+#: zp-core/classes/class-zenphoto_authority.php:78
+#: zp-core/classes/class-zenphoto_authority.php:86
+#: zp-core/classes/class-zenphoto_authority.php:94
+#: zp-core/classes/class-zenphoto_authority.php:102
+#: zp-core/classes/class-zenphoto_authority.php:110
+#: zp-core/classes/class-zenphoto_authority.php:118
+#: zp-core/classes/class-zenphoto_authority.php:126
+#: zp-core/classes/class-zenphoto_authority.php:134
+msgid "Use the Authority class method instead"
+msgstr "Gebruik in plaats hiervan de Administrator class methode."
+
 #: zp-core/deprecated/functions-db.php:28
 msgid "Use the global object $_zp_db and the class method connect() instead."
 msgstr ""
@@ -8303,7 +8322,7 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: zp-core/functions/functions-basic.php:345
+#: zp-core/functions/functions-basic.php:410
 #: zp-core/functions/functions-i18n.php:778
 msgid ""
 "The date format options 'locale_preferreddate_time' and "
@@ -8314,54 +8333,59 @@ msgstr ""
 "<em>locale_preferreddate_notime</em> zijn verouderd. Stel datum- en "
 "tijdweergave apart in."
 
-#: zp-core/functions/functions-basic.php:1483
+#: zp-core/functions/functions-basic.php:1548
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: zp-core/functions/functions-basic.php:1483
+#: zp-core/functions/functions-basic.php:1548
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z’n limiet bereikt en is hernoemd %2$s."
 
-#: zp-core/functions/functions-basic.php:1864
+#: zp-core/functions/functions-basic.php:1929
 msgid "Server software unknown"
 msgstr "Server software onbekend"
 
-#: zp-core/functions/functions-basic.php:1985
+#: zp-core/functions/functions-basic.php:2050
 msgid "ERROR: cURL request failed: "
 msgstr "ERROR: cURL request failed: "
 
-#: zp-core/functions/functions-basic.php:1988
+#: zp-core/functions/functions-basic.php:2053
 msgid "NOTICE: cURL request not successful."
 msgstr "NOTICE: cURL request not successful."
 
-#: zp-core/functions/functions-basic.php:1996
+#: zp-core/functions/functions-basic.php:2061
 msgid "ERROR: Your server does not support cURL."
 msgstr "FOUT: Je server ondersteunt cURL niet."
 
-#: zp-core/functions/functions-basic.php:2196
+#: zp-core/functions/functions-basic.php:2262
 msgid "function"
 msgstr "functie"
 
-#: zp-core/functions/functions-basic.php:2211 zp-core/setup/class-setup.php:240
+#: zp-core/functions/functions-basic.php:2268
+#, php-format
+msgid "It will be removed in Zenphoto %s."
+msgstr "Het zal worden verwijderd in Zenphoto %s."
+
+#: zp-core/functions/functions-basic.php:2281 zp-core/setup/class-setup.php:240
 #: zp-core/setup/class-setup.php:245
 msgid "unknown"
 msgstr "onbekend"
 
-#: zp-core/functions/functions-basic.php:2219
+#: zp-core/functions/functions-basic.php:2289
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
 
-#: zp-core/functions/functions-basic.php:2221
+#: zp-core/functions/functions-basic.php:2291
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr ""
 "Gebruik van parameter %1$s van %2$s (aangeroepen van %3$s regel %4$s) is "
 "verouderd."
 
-#: zp-core/functions/functions-basic.php:2223
+#: zp-core/functions/functions-basic.php:2293
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
@@ -14399,20 +14423,20 @@ msgstr "Album niet gevonden: Album bestaat niet."
 msgid "Invalid video instantiation: file does not exist."
 msgstr "Video niet gevonden: bestand bestaat niet."
 
-#: zp-core/zp-extensions/class-video.php:430
+#: zp-core/zp-extensions/class-video.php:431
 #, php-format
 msgid "getid3 exceptions for %1$s::%2$s"
 msgstr "getid3 uitzonderingen voor %1$s::%2$s"
 
-#: zp-core/zp-extensions/class-video.php:607
+#: zp-core/zp-extensions/class-video.php:608
 msgid "Your browser sadly does not support this video format."
 msgstr "Je browser ondersteund dit videoformat niet."
 
-#: zp-core/zp-extensions/class-video.php:626
+#: zp-core/zp-extensions/class-video.php:627
 msgid "Your browser sadly does not support this audio format."
 msgstr "Je browser ondersteund dit audioformat niet."
 
-#: zp-core/zp-extensions/class-video.php:631
+#: zp-core/zp-extensions/class-video.php:632
 msgid "No multimedia extension installed for this format."
 msgstr "Er is geen multimedia extensie geïnstalleerd voor dit format."
 
@@ -20851,7 +20875,6 @@ msgid "Related"
 msgstr "Gerelateerd"
 
 #: zp-core/zp-extensions/rewriteRules.php:15
-#| msgid "Support for <em>favorites</em> handling."
 msgid "Site <em>Rewrite</em> admin page."
 msgstr "Site <em>Rewrite</em> admin pagina."
 
@@ -23503,23 +23526,23 @@ msgstr "Voegt adresvelden toe."
 msgid "Provides rudimentary user groups."
 msgstr "Maakt (zeer elementair) gebruikers-groepen mogelijk."
 
-#: zp-core/zp-extensions/user_groups.php:116
+#: zp-core/zp-extensions/user_groups.php:118
 msgid "no groups established"
 msgstr "*geen groep(en) geselecteerd"
 
-#: zp-core/zp-extensions/user_groups.php:142
+#: zp-core/zp-extensions/user_groups.php:144
 msgid "*no group affiliation"
 msgstr "*niet toegewezen aan een groep"
 
-#: zp-core/zp-extensions/user_groups.php:142
+#: zp-core/zp-extensions/user_groups.php:144
 msgid "*no group selected"
 msgstr "*geen groep geselecteerd"
 
-#: zp-core/zp-extensions/user_groups.php:146
+#: zp-core/zp-extensions/user_groups.php:148
 msgid " (Template)"
 msgstr "(Sjabloon)"
 
-#: zp-core/zp-extensions/user_groups.php:183
+#: zp-core/zp-extensions/user_groups.php:185
 msgid ""
 "Applying a template will merge the template with the current <em>rights</em> "
 "and <em>objects</em>."
@@ -23527,21 +23550,20 @@ msgstr ""
 "Het toekennen van een sjabloon zal de rechten ervan samenvoegen met de "
 "bestaande <em>rechten</em> en <em.objecten</em>."
 
-#: zp-core/zp-extensions/user_groups.php:193
+#: zp-core/zp-extensions/user_groups.php:195
 msgid "no group affiliation"
 msgstr "<em>niet toegewezen aan een groep</em>"
 
-#: zp-core/zp-extensions/user_groups.php:197
+#: zp-core/zp-extensions/user_groups.php:199
 #, php-format
 msgid "User group membership: %s"
 msgstr "Toegewezen groep: %s"
 
-#: zp-core/zp-extensions/user_groups.php:198
+#: zp-core/zp-extensions/user_groups.php:200
 msgid "Templates are highlighted."
 msgstr "Sjablonen zijn in rood aangegeven."
 
-#: zp-core/zp-extensions/user_groups.php:198
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:460
+#: zp-core/zp-extensions/user_groups.php:200
 msgid ""
 "<strong>Note:</strong> When a group is assigned <em>rights</em> and "
 "<em>managed objects</em> are determined by the group!"
@@ -23549,19 +23571,15 @@ msgstr ""
 "<strong>Opmerking:</strong> Indien een groep is toegewezen worden de "
 "<em>rechten</em> en <em>beheerde objecten</em> bepaald door de groep!"
 
-#: zp-core/zp-extensions/user_groups.php:212
-msgid "assignments"
-msgstr "toewijzingen"
-
-#: zp-core/zp-extensions/user_groups.php:213
+#: zp-core/zp-extensions/user_groups.php:214
 msgid "groups"
 msgstr "groepen"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:151
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:124
 msgid "Deleted"
 msgstr "Verwijderd"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:193
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:166
 msgid ""
 "Set group rights and select one or more albums for the users in the group to "
 "manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights "
@@ -23572,53 +23590,49 @@ msgstr ""
 "em>-rechten kunnen alle albums beheren. Anderen mogen alleen de "
 "geselecteerde albums beheren."
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:232
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:249
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:205
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:222
 msgid "group"
 msgstr "groep"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:234
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:251
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:207
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:224
 msgid "template"
 msgstr "sjabloon"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:295
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:268
 msgid "clone:"
 msgstr "clone:"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:317
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:290
 msgid "description:"
 msgstr "beschrijving:"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:323
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:296
 msgid "Assign users"
 msgstr "Wijs gebruikers toe"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:364
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:337
 msgid "Are you sure you want to delete this group?"
 msgstr "Weet je zeker dat je deze groep wilt verwijderen?"
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:367
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:340
 msgid "Delete this group."
 msgstr "Verwijder deze groep."
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:414
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:387
 #, php-format
 msgid "User %s is assigned to more than one group."
 msgstr "Gebruiker %s is bij meerdere groepen ingedeeld."
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:424
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:397
 msgid "Group names may not contain “?”, “&”, or quotation marks."
 msgstr "Groepsnamen mogen geen “?”, “&”, of aanhalingstekens bevatten."
 
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:429
+#: zp-core/zp-extensions/user_groups/user_groups-tab.php:402
 #, php-format
 msgid "The group “%s” already exists."
 msgstr "De groep “%s” bestaat al."
-
-#: zp-core/zp-extensions/user_groups/user_groups-tab.php:449
-msgid "Assign users to groups."
-msgstr "Wijs gebruikers aan groepen toe."
 
 #: zp-core/zp-extensions/user_login-out.php:11
 msgid "Provides a means for users to login/out from your theme pages."
@@ -24972,6 +24986,25 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "<em>Debug build</em>"
+#~ msgstr "<em>Debug versie</em>"
+
+#~ msgid "Official build"
+#~ msgstr "Officiële versie"
+
+#, php-format
+#~ msgid "Preview the release notes for Zenphoto %s"
+#~ msgstr "Bekijk de release notes voor Zenphoto %s"
+
+#~ msgid "<em>display_errors</em> is <strong>On</strong>"
+#~ msgstr "<em>display_errors</em> staat <strong>Aan</strong>"
+
+#~ msgid "assignments"
+#~ msgstr "toewijzingen"
+
+#~ msgid "Assign users to groups."
+#~ msgstr "Wijs gebruikers aan groepen toe."
 
 #~ msgid "Site rewrite rules tab."
 #~ msgstr "Site rewrite-regels admin pagina."
