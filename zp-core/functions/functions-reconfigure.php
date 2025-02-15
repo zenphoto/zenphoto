@@ -421,7 +421,6 @@ function reconfigureCSS() {
 		.reconfigbox h1,.notebox strong {
 			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 			color: #663300;
-			font-size: 1.6em;
 			font-weight: bold;
 			margin-bottom: 1em;
 		}
