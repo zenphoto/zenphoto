@@ -56,16 +56,7 @@ class dbMySQLi extends dbBase {
 	 */
 	function query($sql, $errorstop = true) {
 		if ($this->connection) {
-			if (EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
-				$result = $this->connection->query('EXPLAIN ' . $sql);
-				if ($result) {
-					$explaination = array();
-					while ($row = $result->fetch_assoc()) {
-						$explaination[] = $row;
-					}
-				}
-				debugLogVar("EXPLAIN $sql", $explaination);
-			}
+			$this->queryExplainLog($sql);
 			$last_result = false;
 			if (is_object($this->connection)) {
 				try {

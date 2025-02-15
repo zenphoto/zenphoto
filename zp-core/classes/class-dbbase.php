@@ -147,6 +147,28 @@ class dbBase {
 	function queryFullArray($sql, $errorstop = true, $key = NULL) {
 		return false;
 	}
+	
+	/**
+	 * Logs the EXPLAIN query result of a SELECT query $sql in the debug log if the debug mode EXPLAIN_SELECTS being enabled
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @param string $sql SQL SELECT query 
+	 */
+	function queryExplainLog($sql = '') {
+		if ($this->connection && $sql) {
+			if (defined('EXPLAIN_SELECTS') && EXPLAIN_SELECTS && strpos($sql, 'SELECT') !== false) {
+				$result = $this->connection->query('EXPLAIN ' . $sql);
+				if ($result) {
+					$explaination = array();
+					while ($row = $result->fetch_assoc()) {
+						$explaination[] = $row;
+					}
+				}
+				debugLogVar("EXPLAIN $sql", $explaination);
+			}
+		}
+	}
 
 	/**
 	 * mysqli_real_escape_string standin that insures the DB connection is passed.

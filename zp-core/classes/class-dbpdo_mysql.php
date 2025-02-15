@@ -73,6 +73,7 @@ class dbPDO_MySQL extends dbBase {
 	function query($sql, $errorstop = true) {
 		$this->last_result = false;
 		if ($this->connection) {
+			$this->queryExplainLog($sql);
 			try {
 				$this->last_result = $this->connection->query($sql);
 			} catch (PDOException $e) {
