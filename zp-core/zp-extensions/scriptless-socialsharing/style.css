@@ -1,9 +1,8 @@
 @font-face {
   font-family: 'scriptless-socialbuttons';
   src:
-    url('fonts/scriptless-socialbuttons.ttf?lmxrfp') format('truetype'),
-    url('fonts/scriptless-socialbuttons.woff?lmxrfp') format('woff'),
-    url('fonts/scriptless-socialbuttons.svg?lmxrfp#scriptless-socialbuttons') format('svg');
+		url('fonts/scriptless-socialbuttons.woff2?fhyv14') format('woff2'),
+	  url('fonts/scriptless-socialbuttons.woff?fhyv14') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,63 +23,86 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-.sharingicon-stack:before {
+.sharingicon-bluesky:before {
   content: "\e900";
 }
-.sharingicon-evernote:before {
+.sharingicon-buffer:before {
   content: "\e901";
 }
-.sharingicon-envelope-o:before {
-  content: "\f003";
+.sharingicon-digg:before {
+  content: "\e902";
 }
-.sharingicon-pencil:before {
-  content: "\f040";
+.sharingicon-envelope:before {
+  content: "\e903";
 }
-.sharingicon-facebook:before {
-  content: "\f09a";
+.sharingicon-evernote:before {
+  content: "\e904";
 }
 .sharingicon-facebook-f:before {
-  content: "\f09a";
+  content: "\e905";
 }
-.sharingicon-linkedin:before {
-  content: "\f0e1";
-}
-.sharingicon-xing:before {
-  content: "\f168";
-}
-.sharingicon-tumblr:before {
-  content: "\f173";
-}
-.sharingicon-wordpress:before {
-  content: "\f19a";
-}
-.sharingicon-stumbleupon:before {
-  content: "\f1a4";
-}
-.sharingicon-delicious:before {
-  content: "\f1a5";
-}
-.sharingicon-digg:before {
-  content: "\f1a6";
-}
-.sharingicon-pinterest-p:before {
-  content: "\f231";
-}
-.sharingicon-whatsapp:before {
-  content: "\f232";
+.sharingicon-flickr:before {
+  content: "\e906";
 }
 .sharingicon-get-pocket:before {
-  content: "\f265";
+  content: "\e907";
 }
-.sharingicon-reddit-alien:before {
-  content: "\f281";
+.sharingicon-github:before {
+  content: "\e908";
 }
-.sharingicon-x:before {
-  content: "\e902";
+.sharingicon-instagram:before {
+  content: "\e909";
 }
-.sharingicon-twitter:before {
-  content: "\e902";
+.sharingicon-linkedin-in:before {
+  content: "\e90a";
+}
+.sharingicon-mastodon:before {
+  content: "\e90b";
+}
+.sharingicon-patreon:before {
+  content: "\e90c";
+}
+.sharingicon-pencil:before {
+  content: "\e90d";
+}
+.sharingicon-pinterest-p:before {
+  content: "\e90e";
+}
+.sharingicon-reddit:before {
+  content: "\e90f";
+}
+.sharingicon-rss:before {
+  content: "\e910";
+}
+.sharingicon-soundcloud:before {
+  content: "\e911";
+}
+.sharingicon-threads:before {
+  content: "\e912";
+}
+.sharingicon-tiktok:before {
+  content: "\e913";
+}
+.sharingicon-tumblr:before {
+  content: "\e914";
+}
+.sharingicon-vimeo-v:before {
+  content: "\e915";
+}
+.sharingicon-whatsapp:before {
+  content: "\e916";
+}
+.sharingicon-wordpress:before {
+  content: "\e917";
+}
+.sharingicon-x-twitter:before {
+  content: "\e918";
+}
+.sharingicon-xing:before {
+  content: "\e919";
+}
+.sharingicon-youtube:before {
+  content: "\e91a";
 }
 
 /*
@@ -112,6 +134,7 @@ ul.scriptless_socialsharing a {
   float: left;
   font-size: 1em;
 	text-align: center;
+	border-radius: 3px;
 }
 
 ul.scriptless_socialsharing a:before {
@@ -128,12 +151,20 @@ ul.scriptless_socialsharing a.sharingicon-facebook-f {
   background: #3B5998;
 }
 
-ul.scriptless_socialsharing a.sharingicon-x {
-  background: #55acee;
+ul.scriptless_socialsharing a.sharingicon-x-twitter {
+  background: black;
 }
 
-ul.scriptless_socialsharing a.sharingicon-google-plus {
-  background: #d34836;
+ul.scriptless_socialsharing a.sharingicon-bluesky {
+  background: #316CF8;
+}
+
+ul.scriptless_socialsharing a.sharingicon-threads {
+  background: black;
+}
+
+ul.scriptless_socialsharing a.sharingicon-mastodon {
+  background: #6364FF;
 }
 
 ul.scriptless_socialsharing a.sharingicon-xing {
@@ -148,12 +179,8 @@ ul.scriptless_socialsharing a.sharingicon-linkedin {
 	background: #0177b5;
 }
 
-ul.scriptless_socialsharing a.sharingicon-reddit-alien {
+ul.scriptless_socialsharing a.sharingicon-reddit {
 	background: #55acee;
-}
-
-ul.scriptless_socialsharing a.sharingicon-stumbleupon {
-	background: #d34836;
 }
 
 ul.scriptless_socialsharing a.sharingicon-tumblr {
@@ -174,12 +201,8 @@ ul.scriptless_socialsharing a.sharingicon-pencil {
 }
 
 /* buffer */
-ul.scriptless_socialsharing a.sharingicon-stack {
+ul.scriptless_socialsharing a.sharingicon-buffer {
 	background: black;
-}
-
-ul.scriptless_socialsharing a.sharingicon-delicious {
-	background: #0082f9;
 }
 
 ul.scriptless_socialsharing a.sharingicon-evernote {
@@ -205,9 +228,11 @@ ul.scriptless_socialsharing li a {
 }
 
 ul.scriptless_socialsharing li a:hover,
-ul.scriptless_socialsharing li a:active {
+ul.scriptless_socialsharing li a:active,
+ul.scriptless_socialsharing li a:focus{
 	margin-left: 3px;
-	color: black !important;
+	color: white !important;
+	background-color:darkgray;
 }
 
 ul.scriptless_socialsharing li:before {
