@@ -21,7 +21,7 @@ class update {
 	static function check() {
 		if (!class_exists('DOMDocument')) {
 			if (DEBUG_ERROR) {
-				debuglog(gettext('Native PHP class DOMDocument nott available. Update check not possible'));
+				debuglog(gettext('Native PHP class DOMDocument not available. Update check not possible'));
 			}
 			setOption('last_update_notice', '');
 			return;
@@ -38,9 +38,7 @@ class update {
 						array_shift($recents);
 						$article = array_shift($recents); //	most recent changelog article
 						$v = trim(str_replace('zenphoto-', '', basename($article['link'])));
-						$c = explode('-', ZENPHOTO_VERSION);
-						$c = array_shift($c);
-						if ($v && version_compare($c, $v, "<")) {
+						if ($v && version_compare(ZENPHOTO_VERSION, $v, "<")) {
 							$webVersion = $v;
 						}
 					}
@@ -72,7 +70,7 @@ class update {
 				<?php echo getOption('last_update_notice'); ?>
 			</div>
 			<?php
-		}
+		} 
 	}
 
 }
