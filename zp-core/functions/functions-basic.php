@@ -368,6 +368,10 @@ foreach ($_zp_cachefile_suffix as $key => $type) {
 	}
 }
 
+define('NO_WATERMARK', '!');
+// Don't let anything get above this, to save the server from burning up...
+define('MAX_SIZE', getOption('image_max_size'));
+
 require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/functions-encryption.php');
 
 if (!defined('COOKIE_PERSISTENCE')) {
@@ -769,8 +773,6 @@ function makeSpecialImageName($image) {
 	return array('source' => $sourceFolder . '/' . $sourceSubfolder . '/' . $filename, 'name' => $sourceFolder . '_' . basename($sourceSubfolder) . '_' . $filename);
 }
 
-define('NO_WATERMARK', '!');
-
 /**
  * Returns the watermark image to pass to i.php
  *
@@ -1013,9 +1015,6 @@ function getImageProcessorURI($args, $album, $image) {
 
 	return $uri;
 }
-
-// Don't let anything get above this, to save the server from burning up...
-define('MAX_SIZE', getOption('image_max_size'));
 
 /**
  * Extract the image parameters from the input variables
