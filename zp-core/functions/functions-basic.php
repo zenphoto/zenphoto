@@ -181,7 +181,7 @@ define('DEBUG_LOCALE', isset($_zp_conf_vars['debug_locale']) && $_zp_conf_vars['
 
 // Set error reporting.
 @ini_set('display_errors', '0'); // try to disable in case set
-if (TEST_RELEASE) {
+if (isset($_zp_conf_vars['display_errors']) && $_zp_conf_vars['display_errors']) {
 	error_reporting(E_ALL);
 	@ini_set('display_errors', '1');
 } 
