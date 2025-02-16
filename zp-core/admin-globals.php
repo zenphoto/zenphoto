@@ -12,6 +12,7 @@ define('UPLOAD_ERR_BLOCKED', -2);
 require_once(dirname(__FILE__) . '/functions/functions-basic.php');
 
 zp_session_start();
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-update.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/admin-functions.php');
 httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zpcms_auth_user']; //	Allow "unprotected" i.php if the request came from an admin session

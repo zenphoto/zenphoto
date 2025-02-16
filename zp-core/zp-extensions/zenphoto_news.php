@@ -7,7 +7,7 @@
  * @package zpcore\plugins\zenphotonews
  */
 $plugin_is_filter = 7 | ADMIN_PLUGIN;
-$plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");
+$plugin_description = gettext("Places the latest 5 news articles from Zenphoto.org on the admin overview page.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
 $plugin_notice = gettext('Privacy note: This plugin performs external checks for new releases using the RSS feed from zenphoto.org. No data from your install is submitted or collected.');
@@ -23,11 +23,13 @@ class zenphoto_org_news {
 	}
 
 	function getOptionsSupported() {
-		return array(gettext('Truncation') => array('key'	 => 'zenphoto_news_length', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('The length of the article to display.'))
+		return array(
+				gettext('Truncation') => array(
+						'key' => 'zenphoto_news_length',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('The length of the article to display.'))
 		);
 	}
-
 }
 
 function printNews() {
@@ -36,9 +38,9 @@ function printNews() {
 		<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
 		<?php
 		if (is_connected()) {
-			require_once(dirname(__FILE__) . '/zenphoto_news/rsslib.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/class-rsslib.php');
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
-			$recents = RSS_Retrieve("https://www.zenphoto.org/index.php?rss=news&withimages");
+			$recents = rsslib::retrieve("https://www.zenphoto.org/index.php?rss=news&withimages");
 			if ($recents) {
 				$opened = false;
 				$recents = array_slice($recents, 1, 5);
@@ -72,7 +74,7 @@ function printNews() {
 						$description = false;
 					}
 					?>
-					<li><a href="<?php echo $link; ?>"><strong><?php echo $title; ?></strong> (<?php echo $date; ?>)</a>
+					<li><a href="<?php echo $link; ?>" target="_blank" rel="noopener noreferrer"><strong><?php echo $title; ?></strong> (<?php echo $date; ?>)</a>
 						<?php
 						if ($description != false) {
 							?>

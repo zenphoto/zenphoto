@@ -393,6 +393,7 @@ zp-core/classes/class-persistentobject.php
 zp-core/classes/class-searchengine.php
 zp-core/classes/class-themeobject.php
 zp-core/classes/class-transientimage.php
+zp-core/classes/class-update.php
 zp-core/classes/class-userdataexport.php
 zp-core/classes/class-zenphoto_administrator.php
 zp-core/classes/class-zenphoto_authority.php
@@ -407,6 +408,7 @@ zp-core/css/admintoolbox.css
 zp-core/deprecated
 zp-core/deprecated/functions-db.php
 zp-core/deprecated/functions-graphics.php
+zp-core/deprecated/rsslib.php
 zp-core/file-templates
 zp-core/file-templates/cacheprotect
 zp-core/file-templates/closed.css
@@ -683,6 +685,7 @@ zp-core/js/zp_admin.js
 zp-core/js/zp_general.js
 zp-core/js/zp_upload.js
 zp-core/libs
+zp-core/libs/class-rsslib.php
 zp-core/libs/class-utf8.php
 zp-core/libs/class-zipstream.php
 zp-core/libs/functions-encryption.php
@@ -857,7 +860,6 @@ zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheDBImages.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
 zp-core/zp-extensions/cacheManager/deprecated-functions.php
-zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
 zp-core/zp-extensions/class-AnyFile/anyFileDefault.png
@@ -1303,7 +1305,6 @@ zp-core/zp-extensions/lazyload/ls.unveilhooks.min.js
 zp-core/zp-extensions/macroList
 zp-core/zp-extensions/macroList.php
 zp-core/zp-extensions/macroList/macroList_tab.php
-zp-core/zp-extensions/markRelease.php
 zp-core/zp-extensions/matomo
 zp-core/zp-extensions/matomo.php
 zp-core/zp-extensions/matomo/matomo_tab.php
@@ -2163,9 +2164,7 @@ zp-core/zp-extensions/zenpage/index.php
 zp-core/zp-extensions/zenpage/zenpage-admin-functions.php
 zp-core/zp-extensions/zenpage/zenpage-template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
-zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
-zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphotoDonate.php
 zp-core/version.php:*
@@ -2181,4 +2180,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2183
+2182

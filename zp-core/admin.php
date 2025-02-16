@@ -209,6 +209,7 @@ if (!zp_loggedin()) {
 				</div>
 				<?php
 			}
+			update::printNotice();
 			zp_apply_filter('admin_note', 'Overview', NULL);
 			$buttonlist = array();
 
