@@ -1,6 +1,6 @@
 <?php
 /**
- * A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons for various social networks
+ * A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons and profile buttons for various social networks
  * 
  * To have it work correctly you should also enable the html_meta_tags plugin 
  * and check the Open Graph (og:) meta data elements in the plugin's options.
@@ -12,8 +12,11 @@
  * Fonts used:
  * - fontawesome
  *
- * Usage:
- * Place <code><?php ScriptlessSocialSharing::printButtons(); ?></code> on your theme files where you wish the buttons to appear.
+ * Usage for sharing links:
+ * Place <code><?php ScriptlessSocialSharing::printButtons(); ?></code> on your theme files where you wish the sharing buttons to appear.
+ * 
+ * Usage for profile links:
+ * Place <code><?php ScriptlessSocialSharing::printProfileButtons(); ?></code> on your theme files where you wish the sharing buttons to appear.
  *
  * @author Malte Müller (acrylian)
  * @license GPL v3 or later
@@ -31,57 +34,75 @@ if (getOption('scriptless_socialsharing_iconfont')) {
 class scriptlessSocialsharingOptions {
 
 	function __construct() {
+		setOptionDefault('scriptless_socialsharing_profiles_alignment', 'center');
 		purgeOption('scriptless_socialsharing_gplus');
 		purgeOption('scriptless_socialsharing_livejournal');
 		purgeOption('scriptless_socialsharing_delicious');
 		purgeOption('scriptless_socialsharing_stumbleupon');
+		renameOption('scriptless_socialsharing_twitter','scriptless_socialsharing_x');
 	}
 
 	function getOptionsSupported() {
+		$networks_sharing = array_keys(scriptlessSocialsharing::getSupportedNetworks('sharinglinks'));
+		$networks_profiles = scriptlessSocialsharing::getSupportedNetworks('profilelinks');
+		$sharingoptions = $profileoptions = array();
+		foreach ($networks_sharing as $network) {
+			$sharingoptions[$network] = 'scriptless_socialsharing_' . $network;
+		}
+		foreach ($networks_profiles as $network => $data) {
+			if ($network != 'rss') {
+				$optionname = sprintf(gettext('%s profile URL'), $data['title']);
+				$profileoptions[$optionname] = array(
+						'key' => 'scriptless_socialsharing_profile-' . $network,
+						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 1,
+						'desc' => sprintf(gettext("Enter the URL to your profile on %s."), $data['title'])
+				);
+			}
+		}
+		$profileoptions[gettext('RSS feed URL')] = array(
+				'key' => 'scriptless_socialsharing_profile-rss',
+				'type' => OPTION_TYPE_TEXTBOX,
+				'order' => 1,
+				'desc' => sprintf(gettext("Enter the URL to your main RSS feed."))
+		);
 		$options = array(
 				gettext('Social networks') => array(
 						'key' => 'scriptless_socialsharing_socialnetworks',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
-						'order' => 0,
-						'checkboxes' => array(
-								'Facebook' => 'scriptless_socialsharing_facebook',
-								'X (Twitter)' => 'scriptless_socialsharing_twitter',
-								'Bluesky' => 'scriptless_socialsharing_bluesky',
-								'Threads' => 'scriptless_socialsharing_threads',
-								'Mastodon' => 'scriptless_socialsharing_mastodon',
-								'Pinterest' => 'scriptless_socialsharing_pinterest',
-								'Linkedin' => 'scriptless_socialsharing_linkedin',
-								'Xing' => 'scriptless_socialsharing_xing',
-								'Reddit' => 'scriptless_socialsharing_reddit',
-								'Tumblr' => 'scriptless_socialsharing_tumblr',
-								'Whatsapp' => 'scriptless_socialsharing_whatsapp',
-								'Digg' => 'scriptless_socialsharing_digg',
-								'Buffer' => 'scriptless_socialsharing_buffer',
-								'Evernote' => 'scriptless_socialsharing_evernote',
-								'WordPress' => 'scriptless_socialsharing_wordpress',
-								'Pocket' => 'scriptless_socialsharing_pocket',
-								gettext('E-mail') => 'scriptless_socialsharing_email',
-						),
-						'desc' => gettext('Select the social networks you wish buttons to appear for. Note: WhatsApp iOS only.')),
+						'checkboxes' => $sharingoptions,
+						'desc' => gettext('Select the social networks you wish buttons to appear for.')),
 				gettext('Icon font and default CSS') => array(
 						'key' => 'scriptless_socialsharing_iconfont',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 1,
 						'desc' => gettext("Uncheck to disable loading the included font and CSS and use your own theme based icon font and CSS.")),
 				gettext('Icons only') => array(
 						'key' => 'scriptless_socialsharing_iconsonly',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 1,
 						'desc' => gettext("Check to hide the service name and only show icon buttons.")),
 				gettext('Twitter user name') => array(
 						'key' => 'scriptless_socialsharing_twittername',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'desc' => gettext("Enter your Twitter name without @ here if you like to have it appended to tweets made."))
 		);
+		$options['Divider'] = array(
+					'key' => 'scriptless_socialsharing_profiles_note',
+					'type' => OPTION_TYPE_NOTE,
+					'desc' => gettext('Profile links')
+			);
+		$options = array_merge($options, $profileoptions);
+		$options[gettext('Profile links alignment')] = array(
+						'key' => 'scriptless_socialsharing_profiles_alignment',
+						'type' => OPTION_TYPE_RADIO,
+						'buttons' => array(
+								gettext('Left') => 'left',
+								gettext('Center') => 'center',
+								gettext('Right') => 'right'
+						),
+						'desc' => gettext('Select the social networks you wish buttons to appear for. ')
+			);
 		return $options;
 	}
-
 }
 
 /**
@@ -98,43 +119,257 @@ class scriptlessSocialsharing {
 	}
 	
 	/**
-	 * Returns the icon (class) to use for buttons
+	 * Returns an array for the icon and title names of a social network
+	 * 
+	 * @since 1.6.6
 	 * 
 	 * @param string $name Name of the social network
+	 * @param string 'icon' or 'title', If null returns an array with both
+	 * @return array
+	 */
+	static function getNetworks() {
+		return array(
+				'facebook' => array(
+						'icon' => 'sharingicon-facebook-f',
+						'title' => 'Facebook',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'x' => array(
+						'icon' => 'sharingicon-x-twitter',
+						'title' => 'X (Twitter)',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'instagram' => array(
+						'icon' => 'sharingicon-instagram',
+						'title' => 'Instragram',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'linkedin' => array(
+						'icon' => 'sharingicon-linkedin-in',
+						'title' => 'linkedin',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'youtube' => array(
+						'icon' => 'sharingicon-youtube',
+						'title' => 'Youtube',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'threads' => array(
+						'icon' => 'sharingicon-threads',
+						'title' => 'Threads',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'bluesky' => array(
+						'icon' => 'sharingicon-bluesky',
+						'title' => 'Bluesky',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'mastodon' => array(
+						'icon' => 'sharingicon-mastodon',
+						'title' => 'Mastodon',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'xing' => array(
+						'icon' => 'sharingicon-xing',
+						'title' => 'Xing',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				
+				'tiktok' => array(
+						'icon' => 'sharingicon-tiktok',
+						'title' => 'TikTok',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'pinterest' => array(
+						'icon' => 'sharingicon-pinterest-p',
+						'title' => 'Pinterest',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'flickr' => array(
+						'icon' => 'sharingicon-flickr',
+						'title' => 'Flickr',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'github' => array(
+						'icon' => 'sharingicon-github',
+						'title' => 'GitHub',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'buffer' => array(
+						'icon' => 'sharingicon-buffer:before',
+						'title' => 'Buffer',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'digg' => array(
+						'icon' => 'sharingicon-digg',
+						'title' => 'Digg',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'evernote' => array(
+						'icon' => 'sharingicon-evernote',
+						'title' => 'Evernote',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'pocket' => array(
+						'icon' => 'sharingicon-get-pocket',
+						'title' => 'Pocket',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'patreon' => array(
+						'icon' => 'sharingicon-patreon',
+						'title' => 'patreon',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'reddit' => array(
+						'icon' => 'sharingicon-reddit',
+						'title' => 'Reddit',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'soundcloud' => array(
+						'icon' => 'sharingicon-soundcloud',
+						'title' => 'soundcloud',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'tumblr' => array(
+						'icon' => 'sharingicon-tumblr',
+						'title' => 'Tumblr',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'vimeo' => array(
+						'icon' => 'sharingicon-vimeo-v',
+						'title' => 'Vimeo',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+				'whatsapp' => array(
+						'icon' => 'sharingicon-whatsapp',
+						'title' => 'Whatsapp',
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'wordpress' => array(
+						'icon' => 'sharingicon-wordpress',
+						'title' => 'WordPress',
+						'has_sharinglink' => true,
+						'has_profilelink' => true
+				),
+				'email' => array(
+						'icon' => 'sharingicon-envelope',
+						'title' => gettext('E-mail'),
+						'has_sharinglink' => true,
+						'has_profilelink' => false
+				),
+				'rss' => array(
+						'icon' => 'sharingicon-rss',
+						'title' => 'RSS',
+						'has_sharinglink' => false,
+						'has_profilelink' => true
+				),
+		);
+		
+	}
+	
+	/**
+	 * Returns an array of social media networks supported. Order roughly be importance (as of date of making)
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @param string $type 'sharinglinks' or "profilelinks'
+	 * @return array
+	 */
+	static function getSupportedNetworks($type = 'sharinglinks') {
+		$networks = self::getNetworks();
+		$check = '';
+		switch ($type) {
+			case 'sharinglinks':
+				$check = 'has_sharinglink';
+				break;
+			case 'profilelinks':
+				$check = 'has_profilelink';
+				break;
+		}
+		$supported = array();
+		if ($check) {
+			foreach ($networks as $network => $data) {
+				if ($data[$check]) {
+					$supported[$network] = $data;
+				}
+			}
+		}
+		return $supported;
+	}
+	
+	/**
+	 * Gets the scriptless sharing URL to a social network
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @param string $network Network to get the sharing URL for if available
+	 * @param string $url URL for sharing
+	 * @param string $title Title for sharing
 	 * @return string
 	 */
-	static function getIcon($name) {
-		$checkname = strtolower($name);
-		$icons = array(
-				'bluesky' => 'sharingicon-bluesky',
-				'buffer' => 'sharingicon-buffer:before',
-				'digg' => 'sharingicon-digg',
-				'email' => 'sharingicon-envelope',
-				'evernote' => 'sharingicon-evernote',
-				'facebook' => 'sharingicon-facebook-f',
-				'flickr' => 'sharingicon-flickr',
-				'pocket' => 'sharingicon-get-pocket',
-				'github' => 'sharingicon-github',
-				'instagram' => 'sharingicon-instagram',
-				'linkedin' => 'sharingicon-linkedin-in',
-				'mastodon' => 'sharingicon-mastodon',
-				'patreon' => 'sharingicon-patreon',
-				'pinterest' => 'sharingicon-pinterest-p',
-				'reddit' => 'sharingicon-reddit',
-				'rss' => 'sharingicon-rss',
-				'soundcloud' => 'sharingicon-soundcloud',
-				'threads' => 'sharingicon-threads',
-				'tiktok' => 'sharingicon-tiktok',
-				'tumblr' => 'sharingicon-tumblr',
-				'vimeo' => 'sharingicon-vimeo-v',
-				'whatsapp' => 'sharingicon-whatsapp',
-				'wordpress' => 'sharingicon-wordpress',
-				'x' => 'sharingicon-x-twitter',
-				'xing' => 'sharingicon-xing',
-				'youtube' => 'sharingicon-youtube'
-		);
-		if (isset($icons[$checkname])) {
-			return $icons[$checkname];
+	static function getSharingURL($network = '', $url = '', $title = '') {
+		switch ($network) {
+			case 'facebook':
+				return 'https://www.facebook.com/sharer/sharer.php?u=' . $url . '&amp;quote=' . $title;
+			case 'x':
+				$via = '';
+				if (getOption('scriptless_socialsharing_twittername')) {
+					$via = '&amp;via=' . html_encode(getOption('scriptless_socialsharing_twittername'));
+				}
+				return 'https://x.com/intent/tweet?text=' . $title . $via . '&amp;url=' . $url;
+			case 'bluesky':
+				return 'https://bsky.app/intent/compose?text=' . $title . ' ' . $url;
+			case 'threads':
+				return 'https://threads.net/intent/post?text=' . $title . ' ' . $url;
+			case 'mastodon':
+				return 'https://mastodon.social/share?text=' . $title . ' ' . $url; // note needs processing because of no fixed instance!
+			case 'pinterest':
+				return 'https://pinterest.com/pin/create/button/?url=' . $url . '&amp;description=' . $title . '&amp;media=' . $url;
+			case 'linkedin':
+				return 'https://www.linkedin.com/shareArticle?mini=true&amp;url=' . $url . '>&amp;title=' . $title . '&amp;source=' . $url;
+			case 'xing':
+				return 'https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url=' . $url;
+			case 'reddit':
+				return 'https://reddit.com/submit?url=' . $url . '/?socialshare&amp;title=' . $title;
+			case 'tumblr':
+				return 'https://www.tumblr.com/share/link?url=' . $url . '&amp;name=' . $title;
+			case 'whatsapp':
+				return 'https://wa.me/?text=' . $url;
+			case 'digg':
+				return 'http://digg.com/submit?url=' . $url . '&amp;title=' . $title;
+			case 'buffer':
+				return 'https://buffer.com/add?text=' . $url . '&amp;url=' . $url;
+			case 'evernote':
+				return 'https://www.evernote.com/clip.action?url=' . $url . '&amp;title=' . $title;
+			case 'wordpress':
+				return 'https://wordpress.com/press-this.php?u=' . $url . '&amp;t=' . $title;
+			case 'pocket':
+				return 'https://getpocket.com/save?url=' . $url . '&amp;title=' . $title;
+			case 'email':
+				return 'mailto:?subject=' . $title . '&amp;body=' . $url;
 		}
 	}
 
@@ -148,11 +383,8 @@ class scriptlessSocialsharing {
 	static function getButtons($beforetext = '', $customtext = null) {
 		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 		$title = '';
-		$desc = '';
 		$url = '';
 		$buttons = array();
-		$gallerytitle = html_encode(getBareGallerytitle());
-		$imgsource = '';
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 			case 'gallery.php':
@@ -223,135 +455,20 @@ class scriptlessSocialsharing {
 		if ($beforetext) {
 			echo $beforetext;
 		}
-		if (getOption('scriptless_socialsharing_facebook')) {
-			$buttons[] = array(
-					'class' => self::getIcon('facebook'),
-					'title' => 'facebook',
-					'url' => 'https://www.facebook.com/sharer/sharer.php?u=' . $url . '&amp;quote=' . $title
+		$supportednetworks = self::getSupportedNetworks('sharinglinks');
+		foreach($supportednetworks as $network => $data) {
+			if (getOption('scriptless_socialsharing_' . $network)) {
+				$buttons[$network] = array(
+					'class' => $data['icon'],
+					'title' => $data['title'],
+					'url' => self::getSharingURL($network, $url, $title)
 			);
-		}
-		if (getOption('scriptless_socialsharing_twitter')) {
-			$via = '';
-			if (getOption('scriptless_socialsharing_twittername')) {
-				$via = '&amp;via=' . html_encode(getOption('scriptless_socialsharing_twittername'));
 			}
-			$buttons[] = array(
-					'class' => self::getIcon('x'),
-					'title' => 'X (Twitter)',
-					'url' => 'https://x.com/intent/tweet?text=' . $title . $via . '&amp;url=' . $url
-			);
-		}
-		
-		if (getOption('scriptless_socialsharing_bluesky')) {
-			$buttons[] = array(
-					'class' =>self::getIcon('bluesky'),
-					'title' => 'Bluesky',
-					'url' => 'https://bsky.app/intent/compose?text=' . $title . ' ' .  $url
-			);
-		}
-		
-		if (getOption('scriptless_socialsharing_threads')) {
-			$buttons[] = array(
-					'class' => self::getIcon('threads'),
-					'title' => 'Threads',
-					'url' => 'https://threads.net/intent/post?text=' . $title . ' ' . $url
-			);
-		}
-		
-		if (getOption('scriptless_socialsharing_mastodon')) {
-			$buttons[] = array(
-					'class' => self::getIcon('mastodon'),
-					'title' => 'Mastodon',
-					'url' => 'https://mastodon.social/share?text=' . $title . ' ' . $url
-			);
-		}
-		
-		if (getOption('scriptless_socialsharing_pinterest')) {
-			$buttons[] = array(
-					'class' => self::getIcon('pinterest'),
-					'title' => 'Pinterest',
-					'url' => 'https://pinterest.com/pin/create/button/?url=' . $url . '&amp;description=' . $title . '&amp;media=' . $url
-			);
-		}
-		if (getOption('scriptless_socialsharing_linkedin')) {
-			$buttons[] = array(
-					'class' => self::getIcon('linkedin'),
-					'title' => 'Linkedin',
-					'url' => 'https://www.linkedin.com/shareArticle?mini=true&amp;url=' . $url . '>&amp;title=' . $title . '&amp;source=' . $url
-			);
-		}
-		if (getOption('scriptless_socialsharing_xing')) {
-			$buttons[] = array(
-					'class' => self::getIcon('xing'),
-					'title' => 'Xing',
-					'url' => 'https://www.xing-share.com/app/user?op=share;sc_p=xing-share;url=' . $url
-			);
-		}
-		if (getOption('scriptless_socialsharing_reddit')) {
-			$buttons[] = array(
-					'class' => self::getIcon('reddit'),
-					'title' => 'Reddit',
-					'url' => 'https://reddit.com/submit?url=' . $url . '/?socialshare&amp;title=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_tumblr')) {
-			$buttons[] = array(
-					'class' => self::getIcon('tumblr'),
-					'title' => 'Tumblr',
-					'url' => 'https://www.tumblr.com/share/link?url=' . $url . '&amp;name=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_whatsapp')) { // must be hidden initially!
-			$buttons[] = array(
-					'class' => self::getIcon('whatsapp'),
-					'title' => 'Whatsapp',
-					'url' => 'https://wa.me/?text=' . $url
-			);
-		}
-		if (getOption('scriptless_socialsharing_digg')) {
-			$buttons[] = array(
-					'class' => self::getIcon('digg'),
-					'title' => 'Digg',
-					'url' => 'http://digg.com/submit?url=' . $url . '&amp;title=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_buffer')) {
-			$buttons[] = array(
-					'class' => self::getIcon('buffer'),
-					'title' => 'Buffer',
-					'url' => 'https://buffer.com/add?text=' . $url . '&amp;url=' . $url
-			);
-		}
-		if (getOption('scriptless_socialsharing_evernote')) {
-			$buttons[] = array(
-					'class' => self::getIcon('evernote'),
-					'title' => 'Evernote',
-					'url' => 'https://www.evernote.com/clip.action?url=' . $url . '&amp;title=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_wordpress')) {
-			$buttons[] = array(
-					'class' => self::getIcon('wordpress'),
-					'title' => 'WordPress',
-					'url' => 'https://wordpress.com/press-this.php?u=' . $url . '&amp;t=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_pocket')) {
-			$buttons[] = array(
-					'class' => self::getIcon('pocket'),
-					'title' => 'Pocket',
-					'url' => 'https://getpocket.com/save?url=' . $url . '&amp;title=' . $title
-			);
-		}
-		if (getOption('scriptless_socialsharing_email')) {
-			$buttons[] = array(
-					'class' => self::getIcon('email'),
-					'title' => gettext('e-mail'),
-					'url' => 'mailto:?subject=' . $title . '&amp;body=' . $url
-			);
 		}
 		return $buttons;
 	}
+	
+	
 
 	/**
 	 * Place this where you wish the buttons to appear. The plugin includes also jQUery calls to set the buttons up to allow multiple button sets per page.
@@ -367,7 +484,7 @@ class scriptlessSocialsharing {
 		?>
 			<ul class="scriptless_socialsharing">
 				<?php
-				foreach ($buttons as $button) {
+				foreach ($buttons as $network => $button) {
 					$li_class = '';
 					?>
 					<li<?php echo $li_class; ?>>
@@ -376,7 +493,7 @@ class scriptlessSocialsharing {
 							if (!$iconsonly) {
 								echo $button['title'];
 							}
-							if ($button['class'] == self::getIcon('mastodon')) {
+							if ($network == 'mastodon') {
 								?>
 								<script>
 									// Source: https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/
@@ -412,5 +529,62 @@ class scriptlessSocialsharing {
 				} ?>
 			</ul>
 		<?php
+	}
+
+	/**
+	 * Gets the profile buttons data
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return array
+	 */
+	static function getProfileButtons() {
+		$supportedprofiles = self::getSupportedNetworks('profilelinks');
+		$buttons = array();
+		foreach ($supportedprofiles as $network => $data) {
+			if (getOption('scriptless_socialsharing_profile-' . $network)) {
+				$buttons[] = array(
+						'class' => $data['icon'],
+						'title' => sprintf(gettext('Follow on %s'), $data['title']),
+						'url' => getOption('scriptless_socialsharing_profile-' . $network)
+				);
+			}
+		}
+		return $buttons;
+	}
+
+	/**
+	 * Prints the profile buttons
+	 * @since 1.6.6
+	 */
+	static function printProfileButtons() {
+		$buttons = self::getProfileButtons();
+		if($buttons) {
+			$alignment = getOption('scriptless_socialsharing_profiles_alignment');
+			$aligmentclass = '';
+			switch($alignment) {
+				case 'left':
+					$aligmentclass = ' scriptless_socialsharing-profiles-alignleft';
+					break;
+				case 'right':
+					$aligmentclass = ' scriptless_socialsharing-profiles-alignright';
+					break;
+			}
+			?>
+			<ul class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
+				<?php
+				foreach($buttons as $network => $button) {
+					?>
+					<li class="<?php echo $network; ?>">
+						<a  class="<?php echo $button['class']; ?>" href="<?php echo html_encode($button['url']); ?>" title="<?php echo $button['title']; ?>" target="_blank" rel="noopener noreferrer">
+							<i></i>
+						</a>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+			<?php
+		}
 	}
 }

@@ -153,4 +153,5 @@ if ((function_exists("printUserLogin_out") ) || !zp_loggedin() && method_exists(
 	<?php
 }
 ?>
+<?php callUserFunction('scriptlessSocialsharing::printProfileButtons'); ?>
 <?php callUserFunction('printLanguageSelector'); ?>
