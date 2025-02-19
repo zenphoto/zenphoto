@@ -379,6 +379,7 @@ class scriptlessSocialsharing {
 							if ($button['class'] == self::getIcon('mastodon')) {
 								?>
 								<script>
+									// Source: https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/
 									// Grab link from the DOM
 									const button = document.querySelector('.<?php echo $button['class']; ?>');
 									let key = 'mastodon-instance';
