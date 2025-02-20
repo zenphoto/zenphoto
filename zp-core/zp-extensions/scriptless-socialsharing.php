@@ -555,9 +555,12 @@ class scriptlessSocialsharing {
 
 	/**
 	 * Prints the profile buttons
+	 * 
+	 * @param string $before Enter text to print before the buttons like "Follow us" 
+	 * 
 	 * @since 1.6.6
 	 */
-	static function printProfileButtons() {
+	static function printProfileButtons($before = '') {
 		$buttons = self::getProfileButtons();
 		if($buttons) {
 			$alignment = getOption('scriptless_socialsharing_profiles_alignment');
@@ -570,6 +573,7 @@ class scriptlessSocialsharing {
 					$aligmentclass = ' scriptless_socialsharing-profiles-alignright';
 					break;
 			}
+			echo $before;
 			?>
 			<ul class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
 				<?php
