@@ -560,12 +560,12 @@ class scriptlessSocialsharing {
 	 * 
 	 * @since 1.6.6
 	 */
-	static function printProfileButtons($before = '<h3>Follow us</h3>') {
+	static function printProfileButtons($before = '') {
 		$buttons = self::getProfileButtons();
-		if($buttons) {
+		if ($buttons) {
 			$alignment = getOption('scriptless_socialsharing_profiles_alignment');
 			$aligmentclass = '';
-			switch($alignment) {
+			switch ($alignment) {
 				case 'left':
 					$aligmentclass = ' scriptless_socialsharing-profiles-alignleft';
 					break;
@@ -577,17 +577,15 @@ class scriptlessSocialsharing {
 			<div class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
 				<div class="scriptless_socialsharing-profiles-before"><?php echo $before; ?></div>
 				<ul class="scriptless_socialsharing-profileslist">
-					<?php
-					foreach($buttons as $network => $button) {
-						?>
-						<li class="<?php echo $network; ?>">
-							<a  class="<?php echo $button['class']; ?>" href="<?php echo html_encode($button['url']); ?>" title="<?php echo $button['title']; ?>" target="_blank" rel="noopener noreferrer">
-								<i></i>
-							</a>
-						</li>
-						<?php
-					}
+				<?php
+				foreach ($buttons as $network => $button) {
 					?>
+					<li class="<?php echo $network; ?>">
+						<a class="<?php echo $button['class']; ?>" href="<?php echo html_encode($button['url']); ?>" title="<?php echo $button['title']; ?>" target="_blank" rel="noopener noreferrer"></a>
+					</li>
+					<?php
+				}
+				?>
 				</ul>
 			</div>
 			<?php

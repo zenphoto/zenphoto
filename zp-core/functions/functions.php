@@ -2507,7 +2507,7 @@ function read_exif_data_protected($path) {
 			}
 			if (DEBUG_EXIF) {
 				$time = microtime(true) - $start;
-				debugLog(sprintf(gettext('End read_exif_data_protected(%s) [%d'), $path, $time));
+				debugLog(sprintf(gettext('End read_exif_data_protected(%s) [%d]'), $path, $time));
 			}
 		}
 	} else {
