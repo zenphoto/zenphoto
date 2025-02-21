@@ -105,9 +105,9 @@
   content: "\e91a";
 }
 
-/*
-* Sharing buttons
-*/
+
+/* Sharing buttons
+----------------------------*/
 
 ul.scriptless_socialsharing {
 	margin: 0 0 20px 0 !Important;
@@ -142,7 +142,6 @@ ul.scriptless_socialsharing a:before {
 	position: relative;
 	top: 1px;
 }
-
 
 ul.scriptless_socialsharing li a:before{
 	font-weight: 300;
@@ -245,35 +244,46 @@ ul.scriptless_socialsharing li.hidden {
 }
 
 
-/* Profile buttons */
+/* Profile buttons
+----------------------------*/
+.scriptless_socialsharing-profiles {
+	margin: 20px 0px 20px 0;
+}
 
-ul.scriptless_socialsharing-profiles {
+.scriptless_socialsharing-profiles-before {
+	margin: 0 10px 0 10px;
+}
+
+.scriptless_socialsharing-profiles > * {
+	text-align: center;
+}
+
+.scriptless_socialsharing-profiles.scriptless_socialsharing-profiles-alignleft > * {
+	text-align: left;
+}
+
+.scriptless_socialsharing-profiles.scriptless_socialsharing-profiles-alignright > * {
+	text-align: right;
+}
+
+ul.scriptless_socialsharing-profileslist {
 	display: block;
 	max-width: 100%;
 	height: auto;
 	padding: 0;
 	margin: 10px;
-	text-align: center;
 }
 
-ul.scriptless_socialsharing-profiles.scriptless_socialsharing-profiles-alignleft {
-	text-align: left;
-}
-
-ul.scriptless_socialsharing-profiles.scriptless_socialsharing-profiles-alignright {
-	text-align: right;
-}
-
-ul.scriptless_socialsharing-profiles li {
+ul.scriptless_socialsharing-profileslist li {
 	display: inline-block;
-	font-size: 1.5rem;
+	font-size: 3em;
 	padding: 0;
 	margin: 0;
 }
 
-ul.scriptless_socialsharing-profiles a:before {
+ul.scriptless_socialsharing-profileslist a:before {
 	display: block;
-	margin: 0 5px 0 5px !important;
+	margin: 0 3px 0 3px !important;
 	position: relative;
 	text-decoration: none;
 }

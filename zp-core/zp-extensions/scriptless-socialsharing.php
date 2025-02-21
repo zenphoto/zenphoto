@@ -23,7 +23,7 @@
  * @package zpcore\plugins\scriptlesssocialsharing
  */
 $plugin_is_filter = 9 | THEME_PLUGIN;
-$plugin_description = gettext('A Zenphoto plugin that provides scriptless and privacy friendly sharing buttons.');
+$plugin_description = gettext('A Zenphoto plugin that provides scriptless and privacy friendly sharing and social network profile buttons.');
 $plugin_author = 'Malte Müller (acrylian)';
 $plugin_category = gettext('Misc');
 $option_interface = 'scriptlessSocialsharingOptions';
@@ -556,11 +556,11 @@ class scriptlessSocialsharing {
 	/**
 	 * Prints the profile buttons
 	 * 
-	 * @param string $before Enter text to print before the buttons like "Follow us" 
+	 * @param string $before Enter text to print before the buttons like "Follow us", HTML allowed
 	 * 
 	 * @since 1.6.6
 	 */
-	static function printProfileButtons($before = '') {
+	static function printProfileButtons($before = '<h3>Follow us</h3>') {
 		$buttons = self::getProfileButtons();
 		if($buttons) {
 			$alignment = getOption('scriptless_socialsharing_profiles_alignment');
@@ -573,21 +573,23 @@ class scriptlessSocialsharing {
 					$aligmentclass = ' scriptless_socialsharing-profiles-alignright';
 					break;
 			}
-			echo $before;
 			?>
-			<ul class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
-				<?php
-				foreach($buttons as $network => $button) {
-					?>
-					<li class="<?php echo $network; ?>">
-						<a  class="<?php echo $button['class']; ?>" href="<?php echo html_encode($button['url']); ?>" title="<?php echo $button['title']; ?>" target="_blank" rel="noopener noreferrer">
-							<i></i>
-						</a>
-					</li>
+			<div class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
+				<div class="scriptless_socialsharing-profiles-before"><?php echo $before; ?></div>
+				<ul class="scriptless_socialsharing-profileslist">
 					<?php
-				}
-				?>
-			</ul>
+					foreach($buttons as $network => $button) {
+						?>
+						<li class="<?php echo $network; ?>">
+							<a  class="<?php echo $button['class']; ?>" href="<?php echo html_encode($button['url']); ?>" title="<?php echo $button['title']; ?>" target="_blank" rel="noopener noreferrer">
+								<i></i>
+							</a>
+						</li>
+						<?php
+					}
+					?>
+				</ul>
+			</div>
 			<?php
 		}
 	}
