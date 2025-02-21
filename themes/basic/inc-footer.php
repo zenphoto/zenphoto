@@ -18,11 +18,13 @@
 	printPrivacyPageLink(' | ', ' | ');
 	printZenphotoLink(); 
 	printCopyrightNotice(' | ', '');
+	callUserFunction('scriptlessSocialsharing::printProfileButtons', gettext('<h3>Follow us</h3>'));
 	?>
 </div>
 <?php 
 
 callUserFunction('mobileTheme::controlLink'); 
 callUserFunction('printLanguageSelector'); 
+
 zp_apply_filter('theme_body_close'); 
 ?>

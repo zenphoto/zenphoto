@@ -86,4 +86,4 @@ if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NU
 		}
 	}
 }
-?>
+callUserFunction('scriptlessSocialsharing::printProfileButtons', gettext('<h3>Follow us</h3>'));
