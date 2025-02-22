@@ -500,7 +500,7 @@ class scriptlessSocialsharing {
 									// Grab link from the DOM
 									const button = document.querySelector('.<?php echo $button['class']; ?>');
 									let key = 'mastodon-instance';
-									let prompt = '<?php echo gettext('Please tell me your Mastodon instance first.'); ?>';
+									let prompt = '<?php echo gettext('Please enter your Mastodon instance first, e.g mastodon.social.'); ?>';
 
 									button.addEventListener('click', (e) => {
 										if(localStorage.getItem(key)) {
