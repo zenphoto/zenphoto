@@ -58,7 +58,6 @@ if (!defined('WEBPATH'))
 							}
 						}
 						?>
-					</div>
 					<br class="clearall" />
 					<br />
 					<?php if (function_exists('next_news')) { ?>
