@@ -205,8 +205,8 @@ class flag_thumbnail {
 			$not_older_as = (60 * 60 * 24 * getOption('flag_thumbnail_range'));
 			$age = (time() - $imagedatestamp);
 			if ($age <= $not_older_as) {
-				$inline_style1 = ' style="position: absolute;top: 10px;right: 6px;"';
-				$inline_style2 = ' style="position: absolute;top: 4px;right: 4px;"';
+				$inline_style1 = ' style="position: absolute;top: 10px;right: 6px;width: auto;height: auto;"';
+				$inline_style2 = ' style="position: absolute;top: 4px;right: 4px;width: auto;height: auto;"';
 				if (getOption('flag_thumbnail_disableinlinecss')) {
 					$inline_style1 = '';
 					$inline_style2 = '';
@@ -227,8 +227,8 @@ class flag_thumbnail {
 			if (is_object($obj) && get_class($obj) == 'Image') {
 				$exif = $obj->getMetaData();
 				if (!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])) {
-					$inline_style1 = ' style="position: absolute;bottom: 10px;right: 6px;"';
-					$inline_style2 = ' style="position: absolute;bottom: 4px;right: 4px;"';
+					$inline_style1 = ' style="position: absolute;bottom: 10px;right: 6px;width: auto;height: auto;"';
+					$inline_style2 = ' style="position: absolute;bottom: 4px;right: 6px;width: auto;height: auto;"';
 					if (getOption('flag_thumbnail_disableinlinecss')) {
 						$inline_style1 = '';
 						$inline_style2 = '';
@@ -248,8 +248,8 @@ class flag_thumbnail {
 			$locked = strpos($html, 'password_protected', $i + 7) !== false;
 			$unpublished = strpos($html, 'not_visible', $i + 7) !== false;
 			if ($locked && getOption('flag_thumbnail_flag_locked')) {
-				$inline_style1 = ' style="position: absolute;bottom: 10px;left: 4px;"';
-				$inline_style2 = ' style="position: absolute;bottom: 4px;left: 4px;"';
+				$inline_style1 = ' style="position: absolute;bottom: 10px;left: 4px;width: auto;height: auto;"';
+				$inline_style2 = ' style="position: absolute;bottom: 4px;left: 4px;width: auto;height: auto;"';
 				if (getOption('flag_thumbnail_disableinlinecss')) {
 					$inline_style1 = '';
 					$inline_style2 = '';
@@ -263,8 +263,8 @@ class flag_thumbnail {
 				}
 			}
 			if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
-				$inline_style1 = ' style="position: absolute;top: 10px;left: 4px;"';
-				$inline_style2 = ' style="position: absolute;top: 4px;left: 4px;"';
+				$inline_style1 = ' style="position: absolute;top: 10px;left: 4px;width: auto;height: auto;"';
+				$inline_style2 = ' style="position: absolute;top: 4px;left: 4px;width: auto;height: auto;"';
 				if (getOption('flag_thumbnail_disableinlinecss')) {
 					$inline_style1 = '';
 					$inline_style2 = '';

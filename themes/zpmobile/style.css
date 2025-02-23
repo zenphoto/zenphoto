@@ -27,7 +27,11 @@ padding: 0;
 height: auto;
 width: 98%;
 border: 1px solid gray;
+}
 
+.image {
+line-height: 0;
+margin: 0 0 2px 0 !important;
 }
 
 ul.pagelist {
