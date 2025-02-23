@@ -27,6 +27,7 @@ padding: 0;
 height: auto;
 width: 98%;
 border: 1px solid gray;
+line-height: 0;
 }
 
 .image {
