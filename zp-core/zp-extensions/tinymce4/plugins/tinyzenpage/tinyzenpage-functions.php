@@ -114,8 +114,8 @@ function printImageslist($number) {
 		// album thumb display;
 		$albumthumb = $albumobj->getAlbumThumbImage();
 		$albumthumbalbum = $albumthumb->getAlbum();
-		$albumdesc = $albumobj->getDesc();
-		$imagedesc = $albumthumb->getDesc();
+		$albumdesc = strval($albumobj->getDesc());
+		$imagedesc = strval($albumthumb->getDesc());
 		$imgurl = getImageProcessorURI($args, $albumthumbalbum->name, $albumthumb->filename);
 		$fullimage = pathurlencode(addslashes($albumthumb->getFullImage()));
 		$imageType = getImageType($albumthumb);
@@ -170,8 +170,8 @@ function printImageslist($number) {
 					$linkalbumobj = $albumobj;
 					$imageobj = Image::newImage($albumobj, $images[$nr]);
 				}
-				$imagedesc = $imageobj->getDesc();
-				$albumdesc = $linkalbumobj->getDesc();
+				$imagedesc = strval($imageobj->getDesc());
+				$albumdesc = strval($linkalbumobj->getDesc());
 				$fullimage = pathurlencode(addslashes($imageobj->getFullImage()));
 				$imageType = getImageType($imageobj);
 				$thumburl = $imageobj->getThumb();
