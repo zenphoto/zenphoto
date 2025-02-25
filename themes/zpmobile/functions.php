@@ -122,7 +122,8 @@ function jqm_printFooterNav() {
 				</ul>
 			</div>
 			<!-- /navbar -->
-	<?php } ?>
+	<?php } 
+	callUserFunction('scriptlessSocialsharing::printProfileButtons', gettext('<h3>Follow us</h3>')); ?>		
 	</div><!-- footer -->
 	<?php
 }
