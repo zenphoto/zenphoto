@@ -82,9 +82,13 @@ $plugin_disable = version_compare(PHP_VERSION, '8.0.0', '>=') ? false : gettext(
 $plugin_deprecated = true;
 
 $option_interface = 'mobileTheme';
+
+use Detection\Exception\MobileDetectException;
+use Detection\MobileDetectStandalone;
+	
 if (version_compare(PHP_VERSION, '8.0.0', '>=')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/vendor/autoload.php');
-	//use Detection\MobileDetect;
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/standalone/autoloader.php');
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/mobileTheme/src/MobileDetectStandalone.php');
 
 	if (isset($_GET['mobileTheme'])) {
 		switch ($_GET['mobileTheme']) {
@@ -240,7 +244,7 @@ if (version_compare(PHP_VERSION, '8.0.0', '>=')) {
 	/**
 	 * Child class of MobileDetect. isMobile() and isTablet()
 	 */
-	class mobile extends Detection\MobileDetect {
+	class mobile extends Detection\MobileDetectStandalone {
 
 		function __construct() {
 			parent::__construct();

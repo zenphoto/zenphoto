@@ -1,0 +1,7 @@
+FROM composer:latest AS build
+WORKDIR /app
+COPY . .
+COPY ./docker/build.sh .
+SHELL ["/bin/bash", "-c"]
+RUN chmod +x build.sh
+CMD ["./build.sh"]

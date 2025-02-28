@@ -1,5 +1,25 @@
 # Change log
 
+# 4.8.09
+
+- [x] `sha1` is now the default fn for encoding cache keys. Using `base64` [was causing problems](https://github.com/serbanghita/Mobile-Detect/issues/974#issuecomment-2531597903) in Laravel.
+
+# 4.8.08
+
+- [x] fix for missing psr/cache prod dependency 
+- [bug] latest 4.8.07 cause site error Call to a member function get() on false #974
+- [x] fix for Docker build not installing dev dependencies
+
+# 4.8.07 (broken in composer, please skip)
+
+- [x] fix cache and generate short cache key (#971)
+- [x] Added configuration cacheKeyFn which allows for using a custom cache key creation fn.
+- [x] Use Client Hints Sec-CH-UA-Mobile header to detect mobile (#962)
+- [x] added Huawei (phone, OS - HarmonyOS, browser) detection (#952)
+- [x] Bugfix: Allow Injection of Any PSR Cache Interface (#966)
+- [x] PHP 8.4 - implicit nulls are deprecated (#960)
+
+
 # 4.8.03
 - [x] added optional `$config` to MobileDetect constructor.
 - [x] added `autoInitOfHttpHeaders` configuration which is by default `true`. This enabled the old behavior from `3.x` and `2.x` that allows automatic detection of HTTP headers and User Agent from $_SERVER.
