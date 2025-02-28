@@ -424,9 +424,11 @@ if (!zp_loggedin()) {
 														E_USER_WARNING		 => 'E_USER_WARNING',
 														E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
 														E_DEPRECATED => 'E_DEPRECATED',
-														E_USER_DEPRECATED => 'E_USER_DEPRECATED',
-														E_STRICT					 => 'E_STRICT' // E_NOTICE level since PHP 8 and deprecated in PHP 8.4+
+														E_USER_DEPRECATED => 'E_USER_DEPRECATED'				 
 										);
+										if (version_compare(PHP_VERSION, '8.4.0', '<')) {
+											$erToText[E_STRICT] =  'E_STRICT'; // equals E_NOTICE level since PHP 8 and deprecated in PHP 8.4+
+										}
 										$reporting = error_reporting();
 										$text = array();
 										if (($reporting & E_ALL) == E_ALL) {

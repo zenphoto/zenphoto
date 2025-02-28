@@ -44,11 +44,14 @@ function zpErrorHandler($errno, $errstr = '', $errfile = '', $errline = '') {
 			E_USER_ERROR => gettext('USER ERROR'),
 			E_USER_WARNING => gettext('USER WARNING'),
 			E_USER_NOTICE => gettext('USER NOTICE'),
-			E_STRICT => gettext('STRICT NOTICE'),
 			E_RECOVERABLE_ERROR => gettext('RECOVERABLE ERROR'),
 			E_DEPRECATED => gettext('DEPRECATED'),
 			E_USER_DEPRECATED => gettext('USER DEPRECATED NOTICE')
 	);
+	if (version_compare(PHP_VERSION, '8.4.0', '<')) {
+		$errorType[E_STRICT] = gettext('STRICT NOTICE'); // equals E_NOTICE level since PHP 8 and deprecated in PHP 8.4+
+	}
+
 	// create error message
 	if (array_key_exists($errno, $errorType)) {
 		$err = $errorType[$errno];
