@@ -731,14 +731,14 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 
 // If a single list is requested
 						if (isset($_GET['type'])) {
-							if (!isset($_GET['from_number'])) {
+							if (!isset($_GET['from_number']) || $_GET['from_number'] == '' || $_GET['from_number'] == 0) {
 								$from_number = 0;
 								$from_number_display = 1;
 							} else {
-								$from_number = sanitize_numeric($_GET['from_number']) - 1;
+								$from_number = sanitize_numeric($_GET['from_number']);
 								$from_number_display = sanitize_numeric($_GET['from_number']);
 							}
-							if (!isset($_GET['to_number'])) {
+							if (!isset($_GET['to_number']) || $_GET['to_number'] == '' ||$_GET['to_number'] == 0) {
 								$to_number = 50;
 								if ($_GET['type'] === "images" AND $to_number > $imagecount) {
 									$to_number = $imagecount;
@@ -752,7 +752,7 @@ function printBarGraph($sortorder = "mostimages", $type = "albums", $from_number
 								$to_number_display = $to_number;
 								if ($from_number < $to_number) {
 									$to_number_display = $to_number;
-									$to_number = $to_number - $from_number;
+									$to_number = ($to_number - $from_number) + 1;
 								}
 							}
 							?>
