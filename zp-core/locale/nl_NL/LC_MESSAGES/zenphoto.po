@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-15 17:44+0100\n"
+"POT-Creation-Date: 2025-03-03 08:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -167,6 +167,11 @@ msgstr "Volgende afbeelding"
 msgid "Register for this site"
 msgstr "Registreer je voor deze site"
 
+#: themes/basic/inc-footer.php:21 themes/garland/sidebar.php:89
+#: themes/zenpage/sidebar.php:156 themes/zpmobile/functions.php:126
+msgid "<h3>Follow us</h3>"
+msgstr ""
+
 #: themes/basic/password.php:29 themes/zenpage/password.php:32
 #: themes/zpmobile/password.php:26
 msgid "A password is required for the page you requested"
@@ -176,7 +181,7 @@ msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken"
 #: zp-core/template-functions.php:470
 #: zp-core/zp-extensions/html_meta_tags.php:469
 #: zp-core/zp-extensions/register_user.php:64
-#: zp-core/zp-extensions/scriptless-socialsharing.php:180
+#: zp-core/zp-extensions/scriptless-socialsharing.php:434
 msgid "Register"
 msgstr "Registreren"
 
@@ -327,7 +332,7 @@ msgid "album"
 msgstr "album"
 
 #: themes/garland/functions.php:151 zp-core/admin-edit.php:1360
-#: zp-core/admin-globals.php:109 zp-core/admin-options.php:2952
+#: zp-core/admin-globals.php:110 zp-core/admin-options.php:2952
 #: zp-core/zp-extensions/image_album_statistics.php:286
 msgid "image"
 msgstr "afbeelding"
@@ -337,7 +342,7 @@ msgid "video"
 msgstr "video"
 
 #: themes/garland/functions.php:151 themes/garland/functions.php:153
-#: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:72
+#: themes/zenpage/gallery.php:66 zp-core/admin-globals.php:73
 #: zp-core/zp-extensions/tinyURL.php:83
 msgid "news"
 msgstr "nieuws"
@@ -419,12 +424,12 @@ msgid "Pages (%s)"
 msgstr "Pagina’s (%s)"
 
 #: themes/garland/search.php:114 themes/garland/search.php:147
-#: themes/zenpage/functions.php:44 themes/zpmobile/functions.php:256
+#: themes/zenpage/functions.php:44 themes/zpmobile/functions.php:257
 msgid "Show more results"
 msgstr "Toon meer resultaten"
 
 #: themes/garland/search.php:115 themes/garland/search.php:148
-#: themes/zenpage/functions.php:45 themes/zpmobile/functions.php:257
+#: themes/zenpage/functions.php:45 themes/zpmobile/functions.php:258
 msgid "Show fewer results"
 msgstr "Toon minder resultaten"
 
@@ -460,7 +465,7 @@ msgstr "Nieuwsartikelen"
 
 #: themes/garland/sidebar.php:29 themes/garland/themeoptions.php:56
 #: themes/zenpage/sidebar.php:16 themes/zenpage/themeoptions.php:66
-#: themes/zpmobile/functions.php:163
+#: themes/zpmobile/functions.php:164
 msgid "All news"
 msgstr "nieuws"
 
@@ -475,7 +480,7 @@ msgstr "Albumindex"
 #: themes/zenpage/sidebar.php:62 themes/zenpage/sidebar.php:89
 #: themes/zenpage/themeoptions.php:73 themes/zpmobile/album.php:27
 #: themes/zpmobile/favorites.php:28 themes/zpmobile/functions.php:40
-#: themes/zpmobile/functions.php:71 themes/zpmobile/functions.php:168
+#: themes/zpmobile/functions.php:71 themes/zpmobile/functions.php:169
 #: themes/zpmobile/image.php:28 zp-core/admin-edit.php:1580
 #: zp-core/admin-options.php:2661 zp-core/admin-options.php:2662
 #: zp-core/admin-themes.php:101 zp-core/admin-themes.php:102
@@ -536,7 +541,7 @@ msgstr "Albums"
 
 #: themes/garland/sidebar.php:80 themes/garland/themeoptions.php:85
 #: themes/zenpage/sidebar.php:47 themes/zenpage/themeoptions.php:92
-#: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:174
+#: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:175
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3358
 #: zp-core/classes/class-authority.php:612
@@ -735,7 +740,7 @@ msgstr "*standaard menu"
 #: zp-core/template-functions.php:3757
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
 #: zp-core/zp-extensions/html_meta_tags.php:470
-#: zp-core/zp-extensions/scriptless-socialsharing.php:183
+#: zp-core/zp-extensions/scriptless-socialsharing.php:437
 #: zp-core/zp-extensions/slideshow2.php:817
 msgid "Search"
 msgstr "Zoeken"
@@ -770,7 +775,7 @@ msgstr "Sorry, geen resultaten. Probeer de zoekopdracht te herformuleren."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
 #: zp-core/template-functions.php:1453 zp-core/template-functions.php:1503
-#: zp-core/zp-extensions/scriptless-socialsharing.php:177
+#: zp-core/zp-extensions/scriptless-socialsharing.php:431
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:787
 msgid "Archive"
 msgstr "Archief"
@@ -788,7 +793,7 @@ msgid "Album RSS"
 msgstr "Album RSS"
 
 #: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
-#: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:162
+#: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:163
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3344
 #: zp-core/classes/class-authority.php:613
 #: zp-core/classes/class-authority.php:616
@@ -807,7 +812,7 @@ msgstr "Album RSS"
 #: zp-core/zp-extensions/multiple_layouts.php:99
 #: zp-core/zp-extensions/related_items.php:193
 #: zp-core/zp-extensions/rss.php:195
-#: zp-core/zp-extensions/scriptless-socialsharing.php:158
+#: zp-core/zp-extensions/scriptless-socialsharing.php:412
 #: zp-core/zp-extensions/static_html_cache.php:74
 #: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:794
@@ -949,19 +954,19 @@ msgstr "zpMobile theme door"
 msgid "Favorites"
 msgstr "Favorieten"
 
-#: themes/zpmobile/functions.php:188
+#: themes/zpmobile/functions.php:189
 #: zp-core/utilities/gallery_statistics.php:873
 msgid "Back to top"
 msgstr "Terug naar boven"
 
-#: themes/zpmobile/functions.php:207
+#: themes/zpmobile/functions.php:208
 #, php-format
 msgid "%d album"
 msgid_plural "%d albums"
 msgstr[0] "%d album"
 msgstr[1] "%d albums"
 
-#: themes/zpmobile/functions.php:212
+#: themes/zpmobile/functions.php:213
 #, php-format
 msgid "%d image"
 msgid_plural "%d images"
@@ -985,7 +990,7 @@ msgstr "Bekijk metadata"
 msgid "Latest images"
 msgstr "Laatste afbeeldingen"
 
-#: themes/zpmobile/index.php:66
+#: themes/zpmobile/index.php:65
 msgid "Latest news"
 msgstr "Laatste nieuws"
 
@@ -1791,7 +1796,7 @@ msgstr "Licentie"
 msgid "User guide"
 msgstr "Gebruikers handleiding"
 
-#: zp-core/admin-functions.php:37 zp-core/setup/class-setup.php:668
+#: zp-core/admin-functions.php:37 zp-core/setup/class-setup.php:664
 msgid "Forum"
 msgstr "Forum"
 
@@ -1799,7 +1804,7 @@ msgstr "Forum"
 msgid "Bugtracker"
 msgstr "Bugtracker"
 
-#: zp-core/admin-functions.php:39 zp-core/setup/class-setup.php:669
+#: zp-core/admin-functions.php:39 zp-core/setup/class-setup.php:665
 msgid "View Change log"
 msgstr "Bekijk changelog"
 
@@ -2158,7 +2163,7 @@ msgid "images"
 msgstr "afbeeldingen"
 
 #: zp-core/admin-functions.php:2120 zp-core/admin-functions.php:2123
-#: zp-core/admin-globals.php:59 zp-core/zp-extensions/tinyURL.php:78
+#: zp-core/admin-globals.php:60 zp-core/zp-extensions/tinyURL.php:78
 msgid "albums"
 msgstr "albums"
 
@@ -2412,14 +2417,13 @@ msgstr "Codeblock 0 is verouderd."
 msgid "setup"
 msgstr "setup"
 
-#: zp-core/admin-functions.php:4589 zp-core/admin-globals.php:107
+#: zp-core/admin-functions.php:4589 zp-core/admin-globals.php:108
 #: zp-core/admin-options.php:1057
 #: zp-core/zp-extensions/http_security_headers.php:24
 msgid "security"
 msgstr "beveiliging"
 
 #: zp-core/admin-functions.php:4590 zp-core/admin-options.php:1057
-#: zp-core/zp-extensions/markRelease.php:44
 msgid "debug"
 msgstr "debug"
 
@@ -2428,7 +2432,7 @@ msgid "Select the logfile to view"
 msgstr "Selecteer het log bestand"
 
 #: zp-core/admin-functions.php:4690 zp-core/admin-functions.php:4701
-#: zp-core/admin.php:234 zp-core/zp-extensions/GoogleMap.php:31
+#: zp-core/admin.php:235 zp-core/zp-extensions/GoogleMap.php:31
 #: zp-core/zp-extensions/comment_form.php:20
 #: zp-core/zp-extensions/cookieconsent.php:26
 #: zp-core/zp-extensions/defaultCodeblocks.php:12
@@ -2437,7 +2441,7 @@ msgstr "Selecteer het log bestand"
 #: zp-core/zp-extensions/mobileTheme.php:80
 #: zp-core/zp-extensions/multiple_layouts.php:44
 #: zp-core/zp-extensions/openstreetmap.php:22
-#: zp-core/zp-extensions/scriptless-socialsharing.php:47
+#: zp-core/zp-extensions/scriptless-socialsharing.php:28
 #: zp-core/zp-extensions/tag_extras.php:14
 #: zp-core/zp-extensions/tag_suggest.php:13
 msgid "Misc"
@@ -2452,13 +2456,12 @@ msgstr "Actief"
 msgid "All"
 msgstr "Alles"
 
-#: zp-core/admin-functions.php:4695 zp-core/admin.php:245 zp-core/admin.php:260
-#: zp-core/admin.php:276 zp-core/classes/class-maintenancemode.php:233
+#: zp-core/admin-functions.php:4695 zp-core/admin.php:246 zp-core/admin.php:261
+#: zp-core/admin.php:277 zp-core/classes/class-maintenancemode.php:233
 #: zp-core/template-functions.php:92 zp-core/utilities/backup_restore.php:18
 #: zp-core/zp-extensions/admin-approval.php:14
 #: zp-core/zp-extensions/auto_backup.php:27
 #: zp-core/zp-extensions/cacheManager.php:78
-#: zp-core/zp-extensions/check_for_update.php:11
 #: zp-core/zp-extensions/cloneZenphoto.php:25
 #: zp-core/zp-extensions/cloneZenphoto.php:37
 #: zp-core/zp-extensions/ipBlocker.php:34
@@ -2486,8 +2489,6 @@ msgstr "Demo"
 #: zp-core/zp-extensions/deprecated-functions.php:129
 #: zp-core/zp-extensions/exampleMacros.php:11
 #: zp-core/zp-extensions/macroList.php:68
-#: zp-core/zp-extensions/markRelease.php:14
-#: zp-core/zp-extensions/markRelease.php:54
 #: zp-core/zp-extensions/rewriteRules.php:17
 #: zp-core/zp-extensions/show_not_logged-in.php:11
 msgid "Development"
@@ -3024,17 +3025,17 @@ msgstr "Custom tijd format"
 msgid "Time format"
 msgstr "Tijdweergave"
 
-#: zp-core/admin-globals.php:51
+#: zp-core/admin-globals.php:52
 msgid "overview"
 msgstr "overzicht"
 
-#: zp-core/admin-globals.php:66 zp-core/zp-extensions/tinyURL.php:87
+#: zp-core/admin-globals.php:67 zp-core/zp-extensions/tinyURL.php:87
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:464
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:464
 msgid "pages"
 msgstr "pagina’s"
 
-#: zp-core/admin-globals.php:75
+#: zp-core/admin-globals.php:76
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:465
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:465
 #: zp-core/zp-extensions/zenpage/admin-edit.php:185
@@ -3042,59 +3043,59 @@ msgstr "pagina’s"
 msgid "articles"
 msgstr "nieuwsartikelen"
 
-#: zp-core/admin-globals.php:76
+#: zp-core/admin-globals.php:77
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:466
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:466
 msgid "categories"
 msgstr "categorieën"
 
-#: zp-core/admin-globals.php:83
+#: zp-core/admin-globals.php:84
 msgid "tags"
 msgstr "tags"
 
-#: zp-core/admin-globals.php:90 zp-core/zp-extensions/user-expiry.php:101
+#: zp-core/admin-globals.php:91 zp-core/zp-extensions/user-expiry.php:101
 #: zp-core/zp-extensions/user-expiry.php:111
 #: zp-core/zp-extensions/user_groups.php:213
 msgid "users"
 msgstr "gebruikers"
 
-#: zp-core/admin-globals.php:101
+#: zp-core/admin-globals.php:102
 msgid "general"
 msgstr "algemeen"
 
-#: zp-core/admin-globals.php:105
+#: zp-core/admin-globals.php:106
 msgid "gallery"
 msgstr "galerij"
 
-#: zp-core/admin-globals.php:114
+#: zp-core/admin-globals.php:115
 msgid "plugin"
 msgstr "plugins"
 
-#: zp-core/admin-globals.php:117
+#: zp-core/admin-globals.php:118
 msgid "search"
 msgstr "zoeken"
 
-#: zp-core/admin-globals.php:121
+#: zp-core/admin-globals.php:122
 msgid "theme"
 msgstr "thema"
 
-#: zp-core/admin-globals.php:124
+#: zp-core/admin-globals.php:125
 msgid "options"
 msgstr "opties"
 
-#: zp-core/admin-globals.php:132
+#: zp-core/admin-globals.php:133
 msgid "themes"
 msgstr "thema’s"
 
-#: zp-core/admin-globals.php:140
+#: zp-core/admin-globals.php:141
 msgid "plugins"
 msgstr "plugins"
 
-#: zp-core/admin-globals.php:149 zp-core/admin-logs.php:104
+#: zp-core/admin-globals.php:150 zp-core/admin-logs.php:104
 msgid "logs"
 msgstr "logs"
 
-#: zp-core/admin-globals.php:158
+#: zp-core/admin-globals.php:159
 msgid "Restore"
 msgstr "Restore"
 
@@ -3178,13 +3179,13 @@ msgstr ""
 "Het opgegeven pad zorgde ervoor dat cookies niet opgehaald konden worden. "
 "Het is ge-reset."
 
-#: zp-core/admin-options.php:642 zp-core/setup/class-setup.php:453
+#: zp-core/admin-options.php:642 zp-core/setup/class-setup.php:449
 #: zp-core/zp-extensions/dynamic-locale.php:57
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> is niet beschikbaar."
 
-#: zp-core/admin-options.php:643 zp-core/setup/class-setup.php:454
+#: zp-core/admin-options.php:643 zp-core/setup/class-setup.php:450
 #: zp-core/zp-extensions/dynamic-locale.php:58
 #, php-format
 msgid "The locale %s is not supported on your server."
@@ -6162,35 +6163,35 @@ msgstr "Je hebt niet de juiste rechten om %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Je hebt niet de juiste rechten om toegang te krijgen tot %s."
 
-#: zp-core/admin.php:247
+#: zp-core/admin.php:248
 msgid "Setup » restore scripts"
 msgstr "Setup » herstel scripts"
 
-#: zp-core/admin.php:252
+#: zp-core/admin.php:253
 msgid "Restores setup files so setup can be run."
 msgstr "Herstelt de setup bestanden zodat setup weer uitgevoerd kan worden."
 
-#: zp-core/admin.php:262
+#: zp-core/admin.php:263
 msgid "Setup » protect scripts"
 msgstr "Setup » bescherm scripts"
 
-#: zp-core/admin.php:267
+#: zp-core/admin.php:268
 msgid "Protects setup files so setup cannot be run."
 msgstr "Beschermt setup bestanden zodat setup niet uitgevoerd kan worden."
 
-#: zp-core/admin.php:278 zp-core/functions/functions-reconfigure.php:204
+#: zp-core/admin.php:279 zp-core/functions/functions-reconfigure.php:204
 msgid "Run setup"
 msgstr "Voer setup uit"
 
-#: zp-core/admin.php:283
+#: zp-core/admin.php:284
 msgid "Run the setup script."
 msgstr "Voer setup uit."
 
-#: zp-core/admin.php:296
+#: zp-core/admin.php:297
 msgid "Your Setup scripts are not protected."
 msgstr "Je setup bestanden zijn niet beschermd."
 
-#: zp-core/admin.php:297
+#: zp-core/admin.php:298
 msgid ""
 "The Setup environment is not totally secure, you should protect the scripts "
 "to thwart hackers. Use the <strong>Setup » protect scripts</strong> button "
@@ -6201,84 +6202,81 @@ msgstr ""
 "<strong>Setup » bescherm scripts</strong> knop op de <em>Overzicht</em> "
 "pagina."
 
-#: zp-core/admin.php:307
+#: zp-core/admin.php:308
 msgid "Installation information"
 msgstr "Installatie informatie"
 
-#: zp-core/admin.php:314 zp-core/functions/functions-basic.php:1583
+#: zp-core/admin.php:315 zp-core/functions/functions-basic.php:1582
 #: zp-core/setup/index.php:427 zp-core/zp-extensions/security-logger.php:134
 msgid "clone"
 msgstr "kloon"
 
-#: zp-core/admin.php:323
+#: zp-core/admin.php:324
 #, php-format
 msgid "source: %s"
 msgstr "bron: %s"
 
-#: zp-core/admin.php:330
+#: zp-core/admin.php:331
 #, php-format
 msgid "Zenphoto version <strong>%1$s</strong>"
 msgstr "Zenphoto versie <strong>%1$s</strong>"
 
-#: zp-core/admin.php:336
+#: zp-core/admin.php:337
 msgid "This is a pre-release version. Review changes on GitHub."
 msgstr "Dit is een pre-release versie. Bekijk de veranderingen op Github."
 
-#: zp-core/admin.php:346
+#: zp-core/admin.php:347
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Huidig locale (taal) instelling: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:348
+#: zp-core/admin.php:349
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Locale (taal) instelling mislukt</strong>"
 
-#: zp-core/admin.php:353
+#: zp-core/admin.php:354
 msgid "Server path:"
 msgstr "Server pad:"
 
-#: zp-core/admin.php:356
+#: zp-core/admin.php:357
 msgid "WEB path:"
 msgstr "WEB pad:"
 
-#: zp-core/admin.php:359
+#: zp-core/admin.php:360
 msgid "PHP Session path:"
 msgstr "PHP Sessie pad:"
 
-#: zp-core/admin.php:368
+#: zp-core/admin.php:369
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Huidig thema: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:371
+#: zp-core/admin.php:372
 #, php-format
 msgid "Server software: <strong>%1$s</strong>"
 msgstr "Server software <strong>%s</strong>"
 
-#: zp-core/admin.php:372
+#: zp-core/admin.php:373
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "PHP versie: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:399
+#: zp-core/admin.php:400
 #, php-format
 msgid "TEST_RELEASE mode (%s) enabled"
 msgstr "TEST_RELEASE modus (%s) geactiveerd"
 
-#: zp-core/admin.php:401
+#: zp-core/admin.php:402
 #, php-format
 msgid "Debug modes enabled: <strong>%s</strong>"
 msgstr "Geactiveerde debug modussen: <strong>%s</strong>"
 
-#: zp-core/admin.php:447
+#: zp-core/admin.php:450
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "PHP Foutmelding: <strong>%s</strong>"
 
-#: zp-core/admin.php:453
-#| msgid ""
-#| "PHP error messages may be displayed on WEB pages. This may disclose site "
-#| "sensitive information."
+#: zp-core/admin.php:456
 msgid ""
 "<em>display_errors</em> is <strong>On</strong>: PHP error messages may be "
 "displayed on WEB pages. This may disclose site sensitive information."
@@ -6286,21 +6284,21 @@ msgstr ""
 "<em>display_errors</em> staat <strong>Aan</strong>: PHP foutmeldingen kunnen "
 "op webpagina's getoond worden. Dit kan gevoelige informatie laten zien."
 
-#: zp-core/admin.php:457
+#: zp-core/admin.php:460
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "<em>display_errors</em> staat <strong>Uit</strong>"
 
-#: zp-core/admin.php:463
+#: zp-core/admin.php:466
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Grafische ondersteuning: <code>%s</code>"
 
-#: zp-core/admin.php:473
+#: zp-core/admin.php:476
 #, php-format
 msgid "supporting: %s"
 msgstr "Ondersteunt: %s"
 
-#: zp-core/admin.php:476
+#: zp-core/admin.php:479
 #, php-format
 msgid ""
 "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate "
@@ -6308,76 +6306,76 @@ msgid ""
 msgstr ""
 "PHP geheugenlimiet: <strong>%1$s</strong> (De server kan minder toewijzen!)"
 
-#: zp-core/admin.php:477
+#: zp-core/admin.php:480
 #, php-format
 msgid "Database: <strong>%1$s %2$s</strong>"
 msgstr "Database: <strong>%1$s %2$s</strong>"
 
-#: zp-core/admin.php:478
+#: zp-core/admin.php:481
 #, php-format
 msgid "Database handler: <strong>%1$s</strong>"
 msgstr "Database handler: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:479
+#: zp-core/admin.php:482
 #, php-format
 msgid "Database client: <strong>%1$s</strong>"
 msgstr "Database client: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:480 zp-core/utilities/database_reference.php:90
+#: zp-core/admin.php:483 zp-core/utilities/database_reference.php:90
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: zp-core/admin.php:481
+#: zp-core/admin.php:484
 #, php-format
 msgid "Database table prefix: <strong>%1$s</strong>"
 msgstr "Database table prefix: <strong>%1$s</strong>"
 
-#: zp-core/admin.php:487
+#: zp-core/admin.php:490
 msgid "No spam filter configured"
 msgstr "Er is geen spamfilter ingesteld"
 
-#: zp-core/admin.php:489
+#: zp-core/admin.php:492
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Spam filter: <strong>%s</strong>"
 
-#: zp-core/admin.php:495
+#: zp-core/admin.php:498
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "CAPTCHA generator: <strong>%s</strong>"
 
-#: zp-core/admin.php:501
+#: zp-core/admin.php:504
 msgid "There is no mail handler configured!"
 msgstr "Er is geen mail-script geconfigureerd!"
 
-#: zp-core/admin.php:513
+#: zp-core/admin.php:516
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u actieve plugin:"
 msgstr[1] "%u actieve plugins:"
 
-#: zp-core/admin.php:549 zp-core/admin.php:587
+#: zp-core/admin.php:552 zp-core/admin.php:590
 msgid "<em>none</em>"
 msgstr "<em>geen</em>"
 
-#: zp-core/admin.php:560
+#: zp-core/admin.php:563
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u actief filter:"
 msgstr[1] "%u actieve filters:"
 
-#: zp-core/admin.php:602
+#: zp-core/admin.php:605
 msgid "Utility functions"
 msgstr "Extra functies"
 
-#: zp-core/admin.php:656
+#: zp-core/admin.php:659
 msgid "Gallery Stats"
 msgstr "Galerij statistieken"
 
-#: zp-core/admin.php:663
+#: zp-core/admin.php:666
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural ""
@@ -6385,14 +6383,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> afbeelding (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:665
+#: zp-core/admin.php:668
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> afbeelding"
 msgstr[1] "<strong>%u</strong> afbeeldingen"
 
-#: zp-core/admin.php:674
+#: zp-core/admin.php:677
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural ""
@@ -6400,14 +6398,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> album (%2$u niet gepubliceerd)"
 msgstr[1] "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
 
-#: zp-core/admin.php:676
+#: zp-core/admin.php:679
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: zp-core/admin.php:686
+#: zp-core/admin.php:689
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural ""
@@ -6415,14 +6413,14 @@ msgid_plural ""
 msgstr[0] "<strong>%1$u</strong> Reactie (%2$u voor goedkeuring)"
 msgstr[1] "<strong>%1$u</strong> Reacties (%2$u voor goedkeuring)"
 
-#: zp-core/admin.php:688
+#: zp-core/admin.php:691
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> reactie"
 msgstr[1] "<strong>%u</strong> reacties"
 
-#: zp-core/admin.php:722
+#: zp-core/admin.php:725
 msgid "Your user rights do not allow access to administrative functions."
 msgstr ""
 "Je gebruikersrechten staan toegang tot administratieve functies niet toe."
@@ -7247,7 +7245,25 @@ msgstr "Willekeurige afbeeldingen."
 msgid "Bad "
 msgstr "Slechte "
 
-#: zp-core/classes/class-feed.php:552
+#: zp-core/classes/class-feed.php:544 zp-core/classes/class-feed.php:552
+#, php-format
+msgid "%s (%u image)"
+msgid_plural "%s (%u images)"
+msgstr[0] "%s (%u afbeelding)"
+msgstr[1] "%s (%u afbeeldingen)"
+
+#: zp-core/classes/class-feed.php:549
+#: zp-core/zp-extensions/image_album_statistics.php:281
+#, php-format
+msgid "Last update: %s"
+msgstr "Laatste update: %s"
+
+#: zp-core/classes/class-feed.php:554
+#, php-format
+msgid "Date: %s"
+msgstr "Datum: %s"
+
+#: zp-core/classes/class-feed.php:675
 #: zp-core/zp-extensions/comment_form/functions.php:889
 msgid "by"
 msgstr "door"
@@ -7274,7 +7290,7 @@ msgstr "Error: De albums directory (%s) is niet leesbaar."
 #: zp-core/classes/class-imagemetaformatter.php:372
 #: zp-core/classes/class-imagemetaformatter.php:384
 #: zp-core/classes/class-imagemetaformatter.php:397
-#: zp-core/setup/class-setup.php:373
+#: zp-core/setup/class-setup.php:369
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -7923,6 +7939,24 @@ msgstr ""
 "De functie <code>setShow()</code> is verouderd. Gebruik in plaats hiervan "
 "<code>setPublished()<code>"
 
+#: zp-core/classes/class-update.php:24
+msgid "Native PHP class DOMDocument not available. Update check not possible"
+msgstr ""
+
+#: zp-core/classes/class-update.php:49
+#, php-format
+msgid "Zenphoto %s is available."
+msgstr "Zenphoto versie %s is beschikbaar."
+
+#: zp-core/classes/class-update.php:50
+#, php-format
+msgid "You are running <strong>Zenphoto %1$s</strong>. Please upgrade."
+msgstr ""
+
+#: zp-core/classes/class-update.php:51
+msgid "Release notes"
+msgstr "Release notes"
+
 #: zp-core/classes/class-userdataexport.php:115
 #, php-format
 msgid "Personal user data export for %1$s"
@@ -8037,7 +8071,6 @@ msgstr ""
 "hiervan de class <em>Administrator</em> rechtstreeks"
 
 #: zp-core/classes/class-zenphoto_administrator.php:22
-#| msgid "Use the Administrator class instead"
 msgid "Use the Administrator class method instead"
 msgstr "Gebruik in plaats hiervan de Administrator class methode."
 
@@ -8303,6 +8336,18 @@ msgstr ""
 "De functie <code>zp_imageGet()</code> is verouderd. Gebruik in plaats "
 "hiervan <code>$_zp_graphics::imageGet()</code>."
 
+#: zp-core/deprecated/rsslib.php:15
+msgid "Use rsslib::getItemElements() instead"
+msgstr "Gebruik in plaats hiervan <code>rsslib::getItemElements()</code>."
+
+#: zp-core/deprecated/rsslib.php:20
+msgid "Use rsslib::getChannel() instead"
+msgstr "Gebruik in plaats hiervan <code>rsslib::getChannel()</code>."
+
+#: zp-core/deprecated/rsslib.php:25
+msgid "Use rsslib::retrieve() instead"
+msgstr "Gebruik in plaats hiervan <code>rsslib::retrieve() </code>."
+
 #: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:550
 #: zp-core/zp-extensions/downloadList.php:782
 #: zp-core/zp-extensions/downloadList.php:784
@@ -8322,7 +8367,7 @@ msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: zp-core/functions/functions-basic.php:410
+#: zp-core/functions/functions-basic.php:414
 #: zp-core/functions/functions-i18n.php:778
 msgid ""
 "The date format options 'locale_preferreddate_time' and "
@@ -8333,59 +8378,59 @@ msgstr ""
 "<em>locale_preferreddate_notime</em> zijn verouderd. Stel datum- en "
 "tijdweergave apart in."
 
-#: zp-core/functions/functions-basic.php:1548
+#: zp-core/functions/functions-basic.php:1547
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s log limiet overschreden"
 
-#: zp-core/functions/functions-basic.php:1548
+#: zp-core/functions/functions-basic.php:1547
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr "Het %1$s log heeft z’n limiet bereikt en is hernoemd %2$s."
 
-#: zp-core/functions/functions-basic.php:1929
+#: zp-core/functions/functions-basic.php:1928
 msgid "Server software unknown"
 msgstr "Server software onbekend"
 
-#: zp-core/functions/functions-basic.php:2050
+#: zp-core/functions/functions-basic.php:2049
 msgid "ERROR: cURL request failed: "
 msgstr "ERROR: cURL request failed: "
 
-#: zp-core/functions/functions-basic.php:2053
+#: zp-core/functions/functions-basic.php:2052
 msgid "NOTICE: cURL request not successful."
 msgstr "NOTICE: cURL request not successful."
 
-#: zp-core/functions/functions-basic.php:2061
+#: zp-core/functions/functions-basic.php:2060
 msgid "ERROR: Your server does not support cURL."
 msgstr "FOUT: Je server ondersteunt cURL niet."
 
-#: zp-core/functions/functions-basic.php:2262
+#: zp-core/functions/functions-basic.php:2261
 msgid "function"
 msgstr "functie"
 
-#: zp-core/functions/functions-basic.php:2268
+#: zp-core/functions/functions-basic.php:2267
 #, php-format
 msgid "It will be removed in Zenphoto %s."
 msgstr "Het zal worden verwijderd in Zenphoto %s."
 
-#: zp-core/functions/functions-basic.php:2281 zp-core/setup/class-setup.php:240
+#: zp-core/functions/functions-basic.php:2280 zp-core/setup/class-setup.php:240
 #: zp-core/setup/class-setup.php:245
 msgid "unknown"
 msgstr "onbekend"
 
-#: zp-core/functions/functions-basic.php:2289
+#: zp-core/functions/functions-basic.php:2288
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
 
-#: zp-core/functions/functions-basic.php:2291
+#: zp-core/functions/functions-basic.php:2290
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr ""
 "Gebruik van parameter %1$s van %2$s (aangeroepen van %3$s regel %4$s) is "
 "verouderd."
 
-#: zp-core/functions/functions-basic.php:2293
+#: zp-core/functions/functions-basic.php:2292
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
@@ -8435,22 +8480,22 @@ msgid "USER NOTICE"
 msgstr "USER NOTICE"
 
 #: zp-core/functions/functions-common.php:47
-msgid "STRICT NOTICE"
-msgstr "STRICT NOTICE"
-
-#: zp-core/functions/functions-common.php:48
 msgid "RECOVERABLE ERROR"
 msgstr "RECOVERABLE ERROR"
 
-#: zp-core/functions/functions-common.php:49
+#: zp-core/functions/functions-common.php:48
 msgid "DEPRECATED"
 msgstr "DEPRECATED"
 
-#: zp-core/functions/functions-common.php:50
+#: zp-core/functions/functions-common.php:49
 msgid "USER DEPRECATED NOTICE"
 msgstr "USER DEPRECATED NOTICE"
 
-#: zp-core/functions/functions-common.php:59
+#: zp-core/functions/functions-common.php:52
+msgid "STRICT NOTICE"
+msgstr "STRICT NOTICE"
+
+#: zp-core/functions/functions-common.php:62
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s: %2$s in %3$s op regel %4$s"
@@ -9311,7 +9356,7 @@ msgstr "read_exif_data(%1$s) exception: %2$s"
 
 #: zp-core/functions/functions.php:2510
 #, php-format
-msgid "End read_exif_data_protected(%s) [%d"
+msgid "End read_exif_data_protected(%s) [%d]"
 msgstr "End read_exif_data_protected(%s) [%d"
 
 #: zp-core/functions/functions.php:2514
@@ -9460,7 +9505,7 @@ msgstr "Bron"
 
 #: zp-core/functions/functions.php:2835 zp-core/template-functions.php:469
 #: zp-core/zp-extensions/html_meta_tags.php:468
-#: zp-core/zp-extensions/scriptless-socialsharing.php:174
+#: zp-core/zp-extensions/scriptless-socialsharing.php:428
 msgid "Contact"
 msgstr "Contact"
 
@@ -10289,20 +10334,20 @@ msgstr ""
 msgid "<em>%1$s</em> folder%2$s"
 msgstr "<em>%1$s</em> map%2$s"
 
-#: zp-core/setup/class-setup.php:384 zp-core/setup/class-setup.php:405
+#: zp-core/setup/class-setup.php:380 zp-core/setup/class-setup.php:401
 msgid "change the definition"
 msgstr "verander de definitie"
 
-#: zp-core/setup/class-setup.php:384 zp-core/setup/class-setup.php:405
+#: zp-core/setup/class-setup.php:380 zp-core/setup/class-setup.php:401
 msgid "apply"
 msgstr "toepassen"
 
-#: zp-core/setup/class-setup.php:401
+#: zp-core/setup/class-setup.php:397
 #, php-format
 msgid "%1$s (0%2$o)"
 msgstr "%1$s (0%2$o)"
 
-#: zp-core/setup/class-setup.php:456
+#: zp-core/setup/class-setup.php:452
 msgid ""
 "See the <a href=\"https://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -10310,11 +10355,11 @@ msgstr ""
 "Raadpleeg de <a href=\"https://www.zenphoto.org/news/troubleshooting-"
 "zenphoto#24\">Troubleshooting guide</a> op zenphoto.org voor details."
 
-#: zp-core/setup/class-setup.php:520
+#: zp-core/setup/class-setup.php:516
 msgid "An attempt at cross site reference forgery has been blocked."
 msgstr "Een poging tot <em>cross site reference forgery</em> is geblokkeerd."
 
-#: zp-core/setup/class-setup.php:644
+#: zp-core/setup/class-setup.php:640
 #, php-format
 msgid ""
 "Click <a href=\"%s\">here</a> to acknowledge that you wish to ignore this "
@@ -10323,15 +10368,15 @@ msgstr ""
 "Klik <a href=\"%s\">hier</a> om aan te geven dat je dit probleem wilt "
 "negeren. Het wordt dan alleen een waarschuwing."
 
-#: zp-core/setup/class-setup.php:667
+#: zp-core/setup/class-setup.php:663
 msgid "ZenphotoCMS - The simpler media website CMS"
 msgstr "ZenphotoCMS - The simpler media website CMS"
 
-#: zp-core/setup/class-setup.php:695
+#: zp-core/setup/class-setup.php:691
 msgid "Updated configuration file"
 msgstr "Configuratiebestand bijgewerkt"
 
-#: zp-core/setup/class-setup.php:719
+#: zp-core/setup/class-setup.php:715
 #, php-format
 msgid ""
 "<strong>Warning:</strong> the <code>%s</code> table appears not to have a "
@@ -10348,37 +10393,37 @@ msgstr ""
 "verwijderen en setup uitvoeren om de tabel weer te herstellen. De duplicaat "
 "gegevens zijn dan verwijderd."
 
-#: zp-core/setup/class-setup.php:901 zp-core/setup/class-setup.php:924
+#: zp-core/setup/class-setup.php:897 zp-core/setup/class-setup.php:920
 #: zp-core/setup/index.php:554
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Zenphoto v%s installeren"
 
-#: zp-core/setup/class-setup.php:911
+#: zp-core/setup/class-setup.php:907
 msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Upgrade van vóór Zenphoto versie 1.2"
 
-#: zp-core/setup/class-setup.php:915 zp-core/setup/class-setup.php:953
+#: zp-core/setup/class-setup.php:911 zp-core/setup/class-setup.php:949
 #: zp-core/setup/index.php:1046
 msgid "Update"
 msgstr "Updaten"
 
-#: zp-core/setup/class-setup.php:931
+#: zp-core/setup/class-setup.php:927
 msgid "Reinstalling current Zenphoto release"
 msgstr "Opnieuw installeren van de huidige Zenphoto versie"
 
-#: zp-core/setup/class-setup.php:932
+#: zp-core/setup/class-setup.php:928
 msgid "reinstall"
 msgstr "opnieuw installeren"
 
-#: zp-core/setup/class-setup.php:947
+#: zp-core/setup/class-setup.php:943
 #, php-format
 msgid "[%u release skipped]"
 msgid_plural "[%u releases skipped]"
 msgstr[0] "[%u versie overgeslagen]"
 msgstr[1] "[%u versies overgeslagen]"
 
-#: zp-core/setup/class-setup.php:948
+#: zp-core/setup/class-setup.php:944
 msgid ""
 "We do not test upgrades that skip releases. We recommend you upgrade in "
 "sequence."
@@ -10386,17 +10431,17 @@ msgstr ""
 "We testen geen upgrades die versies overslaan. We raden aan om in volgorde "
 "te upgraden."
 
-#: zp-core/setup/class-setup.php:952
+#: zp-core/setup/class-setup.php:948
 #, php-format
 msgid "Upgrade from Zenphoto v%s"
 msgstr "Upgrade van Zenphoto v%s"
 
-#: zp-core/setup/class-setup.php:957
+#: zp-core/setup/class-setup.php:953
 #, php-format
 msgid "Downgrade to Zenphoto v%s"
 msgstr "Downgrade naar Zenphoto v%s"
 
-#: zp-core/setup/class-setup.php:958
+#: zp-core/setup/class-setup.php:954
 msgid ""
 "Downgrades are not recommended and supported and can have serious unwanted "
 "side effects especially regarding database changes in newer versions."
@@ -10404,7 +10449,7 @@ msgstr ""
 "Downgrades worden afgeraden en kunnen vervelende neveneffecten hebben vooral "
 "voor databases."
 
-#: zp-core/setup/class-setup.php:959
+#: zp-core/setup/class-setup.php:955
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -12166,7 +12211,7 @@ msgstr ""
 "HERSTELD WORDEN!"
 
 #: zp-core/template-functions.php:85 zp-core/utilities/maintenance_mode.php:83
-#: zp-core/zp-extensions/mobileTheme.php:125
+#: zp-core/zp-extensions/mobileTheme.php:129
 msgid "Test mode"
 msgstr "Test website"
 
@@ -12560,7 +12605,7 @@ msgstr "Herstel de database"
 #: zp-core/zp-extensions/cacheManager.php:653
 #: zp-core/zp-extensions/cacheManager.php:667
 #: zp-core/zp-extensions/cacheManager.php:680 zp-core/zp-extensions/rss.php:151
-#: zp-core/zp-extensions/rss.php:867
+#: zp-core/zp-extensions/rss.php:744
 #: zp-core/zp-extensions/static_html_cache.php:414
 msgid "Cache"
 msgstr "Cache"
@@ -12907,7 +12952,7 @@ msgstr "tot"
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:193
 #: zp-core/zp-extensions/register_user.php:146
 msgid "Show"
-msgstr "zichtbaar"
+msgstr "Toon"
 
 #: zp-core/utilities/http_header_inspector.php:13
 #: zp-core/utilities/http_header_inspector.php:18
@@ -14141,27 +14186,6 @@ msgstr "Cache afbeeldingen"
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:316
 msgid "Executes the caching of the selected image sizes."
 msgstr "Voert het cachen van de geselecteerde afbeeldingsformaten uit."
-
-#: zp-core/zp-extensions/check_for_update.php:9
-msgid ""
-"Checks if there is a Zenphoto versions that is newer than the installed "
-"version."
-msgstr "Controleert of er een nieuwere Zenphoto versie is."
-
-#: zp-core/zp-extensions/check_for_update.php:12
-#: zp-core/zp-extensions/zenphoto_news.php:12
-msgid "PHP <em>DOM Object Model</em> is required."
-msgstr "PHP <em>DOM Object Model</em> is vereist."
-
-#: zp-core/zp-extensions/check_for_update.php:31
-#: zp-core/zp-extensions/check_for_update.php:78
-msgid "Zenphoto download page"
-msgstr "Zenphoto download pagina"
-
-#: zp-core/zp-extensions/check_for_update.php:31
-#: zp-core/zp-extensions/check_for_update.php:78
-msgid "A new version of Zenphoto version is available."
-msgstr "Een nieuwe versie van Zenphoto is beschikbaar."
 
 #: zp-core/zp-extensions/class-AnyFile.php:16
 msgid ""
@@ -15600,12 +15624,12 @@ msgstr "Postcode"
 
 #: zp-core/zp-extensions/contact_form.php:166
 #: zp-core/zp-extensions/contact_form.php:170
-#: zp-core/zp-extensions/scriptless-socialsharing.php:82
+#: zp-core/zp-extensions/scriptless-socialsharing.php:279
 msgid "E-mail"
 msgstr "E-mail"
 
 #: zp-core/zp-extensions/contact_form.php:176
-#: zp-core/zp-extensions/mobileTheme.php:126
+#: zp-core/zp-extensions/mobileTheme.php:130
 msgid "Phone"
 msgstr "Telefoon"
 
@@ -17993,12 +18017,6 @@ msgstr ""
 "Functies die diverse statistieken over afbeeldingen en albums in de galerij "
 "leveren."
 
-#: zp-core/zp-extensions/image_album_statistics.php:281
-#: zp-core/zp-extensions/rss.php:676
-#, php-format
-msgid "Last update: %s"
-msgstr "Laatste update: %s"
-
 #: zp-core/zp-extensions/image_album_statistics.php:290
 #, php-format
 msgid "%1$u new %2$s"
@@ -18440,24 +18458,6 @@ msgstr ""
 #: zp-core/zp-extensions/macroList/macroList_tab.php:39
 msgid "Parameters within braces are optional."
 msgstr "Parameters tussen accolades zijn ook mogelijk."
-
-#: zp-core/zp-extensions/markRelease.php:12
-msgid "Mark installation as “released”."
-msgstr "Markeer installatie als een “officiële” of “debug” versie."
-
-#: zp-core/zp-extensions/markRelease.php:44
-msgid "released"
-msgstr "officiële"
-
-#: zp-core/zp-extensions/markRelease.php:56
-msgid "Mark release"
-msgstr "Markeer installatie"
-
-#: zp-core/zp-extensions/markRelease.php:60
-#, php-format
-msgid "Edits the version.php file making a “%s” install."
-msgstr ""
-"Verandert het version.php bestand zodat de installatie een “%s” versie wordt."
 
 #: zp-core/zp-extensions/matomo.php:33
 msgid ""
@@ -19306,36 +19306,36 @@ msgstr ""
 msgid "PHP 8+ required"
 msgstr "PHP 8+ vereist"
 
-#: zp-core/zp-extensions/mobileTheme.php:117
+#: zp-core/zp-extensions/mobileTheme.php:121
 msgid "Phone theme"
 msgstr "Smartphone thema"
 
-#: zp-core/zp-extensions/mobileTheme.php:119
 #: zp-core/zp-extensions/mobileTheme.php:123
+#: zp-core/zp-extensions/mobileTheme.php:127
 msgid "gallery theme"
 msgstr "*kies thema"
 
-#: zp-core/zp-extensions/mobileTheme.php:120
+#: zp-core/zp-extensions/mobileTheme.php:124
 msgid "Select the theme to be used when a phone device connects."
 msgstr "Selecteer het thema voor telefoons."
 
-#: zp-core/zp-extensions/mobileTheme.php:121
+#: zp-core/zp-extensions/mobileTheme.php:125
 msgid "Tablet theme"
 msgstr "Tablet thema"
 
-#: zp-core/zp-extensions/mobileTheme.php:124
+#: zp-core/zp-extensions/mobileTheme.php:128
 msgid "Select the theme to be used when a tablet device connects."
 msgstr "Selecteer het thema voor tablets."
 
-#: zp-core/zp-extensions/mobileTheme.php:126
+#: zp-core/zp-extensions/mobileTheme.php:130
 msgid "Tablet"
 msgstr "tablet"
 
-#: zp-core/zp-extensions/mobileTheme.php:127
+#: zp-core/zp-extensions/mobileTheme.php:131
 msgid "live"
 msgstr "live"
 
-#: zp-core/zp-extensions/mobileTheme.php:128
+#: zp-core/zp-extensions/mobileTheme.php:132
 msgid ""
 "Put the plugin in <em>test mode</em> and it will simulate the selected "
 "device. If <em>live</em> is selected operations are normal."
@@ -19343,11 +19343,11 @@ msgstr ""
 "Zet de plugin in de gewenste <em>test modus</em> om het geselecteerde "
 "apparaat te simuleren. Als <em>live</em> is geselecteerd werkt alles normaal."
 
-#: zp-core/zp-extensions/mobileTheme.php:175
+#: zp-core/zp-extensions/mobileTheme.php:179
 msgid "View the mobile gallery"
 msgstr "Bekijk de mobiele galerij"
 
-#: zp-core/zp-extensions/mobileTheme.php:180
+#: zp-core/zp-extensions/mobileTheme.php:184
 msgid "View the normal gallery"
 msgstr "Bekijk de normale galerij"
 
@@ -21265,85 +21265,116 @@ msgstr " (laatste pagina’s)"
 msgid " (latest comments)"
 msgstr " (laatste reacties)"
 
-#: zp-core/zp-extensions/rss.php:671 zp-core/zp-extensions/rss.php:679
-#, php-format
-msgid "%s (%u image)"
-msgid_plural "%s (%u images)"
-msgstr[0] "%s (%u afbeelding)"
-msgstr[1] "%s (%u afbeeldingen)"
-
-#: zp-core/zp-extensions/rss.php:681
-#, php-format
-msgid "Date: %s"
-msgstr "Datum: %s"
-
-#: zp-core/zp-extensions/rss.php:845
+#: zp-core/zp-extensions/rss.php:722
 msgid "No items available."
 msgstr "Geen items beschikbaar."
 
-#: zp-core/zp-extensions/rss.php:869
+#: zp-core/zp-extensions/rss.php:746
 msgid "Purge RSS cache"
 msgstr "Leeg RSS-cache"
 
-#: zp-core/zp-extensions/rss.php:874
+#: zp-core/zp-extensions/rss.php:751
 msgid "Delete all files from the RSS cache"
 msgstr "Verwijder alle bestanden uit de RSS-cache"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:45
+#: zp-core/zp-extensions/scriptless-socialsharing.php:26
 msgid ""
-"A Zenphoto plugin that provides scriptless and privacy friendly sharing "
-"buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, "
-"Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No share counts "
-"because of that!)."
+"A Zenphoto plugin that provides scriptless and privacy friendly sharing and "
+"social network profile buttons."
 msgstr ""
-"Een Zenphoto plugin voor het plaatsen van knoppen om te delen op Facebook, "
-"Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, Stumbleupon, Tumblr, "
-"WhatsApp (alleen iOS) en e-mail. De plugin maakt geen gebruik van JavaScript "
-"en is privacy-vriendelijk."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:61
+#: zp-core/zp-extensions/scriptless-socialsharing.php:54
+#, php-format
+msgid "%s profile URL"
+msgstr ""
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:59
+#, php-format
+msgid "Enter the URL to your profile on %s."
+msgstr ""
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:63
+msgid "RSS feed URL"
+msgstr "RSS feed URL"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:67
+#, php-format
+msgid "Enter the URL to your main RSS feed."
+msgstr ""
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:70
 msgid "Social networks"
 msgstr "Sociale netwerken"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:84
-msgid ""
-"Select the social networks you wish buttons to appear for. Note: WhatsApp "
-"iOS only."
-msgstr ""
-"Selecteer de socialle netwerken waarvoor je knoppen wilt tonen. Opmerking: "
-"WhatsApp is alleen iOS."
+#: zp-core/zp-extensions/scriptless-socialsharing.php:74
+msgid "Select the social networks you wish buttons to appear for."
+msgstr "Selecteer de sociale netwerken waarvoor je knoppen wilt tonen."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:85
+#: zp-core/zp-extensions/scriptless-socialsharing.php:75
 msgid "Icon font and default CSS"
 msgstr "Icon font en standaard CSS"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:89
+#: zp-core/zp-extensions/scriptless-socialsharing.php:78
 msgid ""
 "Uncheck to disable loading the included font and CSS and use your own theme "
 "based icon font and CSS."
 msgstr "Vink uit om je eigen font en CSS te gebruiken."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:90
+#: zp-core/zp-extensions/scriptless-socialsharing.php:79
 msgid "Icons only"
 msgstr "Alleen ikonen"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:94
+#: zp-core/zp-extensions/scriptless-socialsharing.php:82
 msgid "Check to hide the service name and only show icon buttons."
 msgstr "Vink aan om de knoppen te tonen zonder de namen."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:95
+#: zp-core/zp-extensions/scriptless-socialsharing.php:83
 msgid "Twitter user name"
 msgstr "Twitter gebruikersnaam"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:99
+#: zp-core/zp-extensions/scriptless-socialsharing.php:86
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
 msgstr "Vul je Twitter-naam in zonder “@“ om die toe te voegen aan tweets."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:324
-msgid "e-mail"
-msgstr "e-mail"
+#: zp-core/zp-extensions/scriptless-socialsharing.php:91
+#| msgid "Tile blind"
+msgid "Profile links"
+msgstr "Profiel links"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:94
+msgid "Profile links alignment"
+msgstr ""
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:98
+#: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:156
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
+msgid "Left"
+msgstr "Links"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:99
+msgid "Center"
+msgstr "Centrum"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:100
+#: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:155
+#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
+msgid "Right"
+msgstr "Rechts"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:102
+msgid "Select the social networks you wish buttons to appear for. "
+msgstr "Selecteer de sociale netwerken waarvoor je knoppen wilt tonen."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:503
+msgid "Please enter your Mastodon instance first, e.g mastodon.social."
+msgstr ""
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:548
+#, php-format
+msgid "Follow on %s"
+msgstr ""
 
 #: zp-core/zp-extensions/search_statistics.php:24
 msgid "Collects and displays search criteria."
@@ -22906,16 +22937,6 @@ msgstr "Tekstomloop"
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:154
 msgid "No wrap"
 msgstr "Geen tekstomloop"
-
-#: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:155
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
-msgid "Right"
-msgstr "Rechts"
-
-#: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:156
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
-msgid "Left"
-msgstr "Links"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:173
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:173
@@ -24933,10 +24954,14 @@ msgstr ""
 
 #: zp-core/zp-extensions/zenphoto_news.php:10
 msgid ""
-"Places the latest 3 news articles from Zenphoto.org on the admin overview "
+"Places the latest 5 news articles from Zenphoto.org on the admin overview "
 "page."
 msgstr ""
-"Plaatst de laatste 3 artikelen van zenphoto.org op de admin overzicht pagina."
+"Plaatst de laatste 5 artikelen van zenphoto.org op de admin overzicht pagina."
+
+#: zp-core/zp-extensions/zenphoto_news.php:12
+msgid "PHP <em>DOM Object Model</em> is required."
+msgstr "PHP <em>DOM Object Model</em> is vereist."
 
 #: zp-core/zp-extensions/zenphoto_news.php:13
 msgid ""
@@ -24948,24 +24973,24 @@ msgstr ""
 "of er updates beschikbaar zijn. Er wordt geen informatie over je installatie "
 "verzonden of verzameld."
 
-#: zp-core/zp-extensions/zenphoto_news.php:26
+#: zp-core/zp-extensions/zenphoto_news.php:27
 msgid "Truncation"
 msgstr "Inkorting"
 
-#: zp-core/zp-extensions/zenphoto_news.php:27
+#: zp-core/zp-extensions/zenphoto_news.php:30
 msgid "The length of the article to display."
 msgstr "De lengte van de te tonen berichten."
 
-#: zp-core/zp-extensions/zenphoto_news.php:36
+#: zp-core/zp-extensions/zenphoto_news.php:38
 msgid "News from Zenphoto.org"
 msgstr "Nieuws van zenphoto.org"
 
-#: zp-core/zp-extensions/zenphoto_news.php:100
+#: zp-core/zp-extensions/zenphoto_news.php:102
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Ophalen van de link <em>%s</em> mislukt"
 
-#: zp-core/zp-extensions/zenphoto_news.php:107
+#: zp-core/zp-extensions/zenphoto_news.php:109
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
 msgstr "Verbinding met <em>zenphoto.org</em> mislukt."
 
@@ -24986,6 +25011,46 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid ""
+#~ "Checks if there is a Zenphoto versions that is newer than the installed "
+#~ "version."
+#~ msgstr "Controleert of er een nieuwere Zenphoto versie is."
+
+#~ msgid "Zenphoto download page"
+#~ msgstr "Zenphoto download pagina"
+
+#~ msgid "A new version of Zenphoto version is available."
+#~ msgstr "Een nieuwe versie van Zenphoto is beschikbaar."
+
+#~ msgid "Mark installation as “released”."
+#~ msgstr "Markeer installatie als een “officiële” of “debug” versie."
+
+#~ msgid "released"
+#~ msgstr "officiële"
+
+#~ msgid "Mark release"
+#~ msgstr "Markeer installatie"
+
+#, php-format
+#~ msgid "Edits the version.php file making a “%s” install."
+#~ msgstr ""
+#~ "Verandert het version.php bestand zodat de installatie een “%s” versie "
+#~ "wordt."
+
+#~ msgid ""
+#~ "A Zenphoto plugin that provides scriptless and privacy friendly sharing "
+#~ "buttons for Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, "
+#~ "Reddit, Stumbleupon, Tumblr, WhatsApp (iOS only) and e-mail. (Note: No "
+#~ "share counts because of that!)."
+#~ msgstr ""
+#~ "Een Zenphoto plugin voor het plaatsen van knoppen om te delen op "
+#~ "Facebook, Twitter, Google+, Pinterest, Linkedin, Xing, Reddit, "
+#~ "Stumbleupon, Tumblr, WhatsApp (alleen iOS) en e-mail. De plugin maakt "
+#~ "geen gebruik van JavaScript en is privacy-vriendelijk."
+
+#~ msgid "e-mail"
+#~ msgstr "e-mail"
 
 #~ msgid "<em>Debug build</em>"
 #~ msgstr "<em>Debug versie</em>"
@@ -25197,9 +25262,6 @@ msgstr ""
 
 #~ msgid "Auto Selected"
 #~ msgstr "Automatisch Geselecteerd"
-
-#~ msgid "Center"
-#~ msgstr "Centrum"
 
 #~ msgid "EasyShoot"
 #~ msgstr "EasyShoot"
