@@ -58,33 +58,34 @@ class DownloadList {
 		setOptionDefault('downloadList_rights', NULL);
 		setOptionDefault('downloadList_zipFromCache', 0);
 		setOptionDefault('downloadList_subalbums', 'none');
+		setOptionDefault('downloadList_externaldownload_allowed', false);
 	}
 
 	function getOptionsSupported() {
-		$options = array(gettext('Download directory') => array(
+		$options = array(
+				gettext('User rights') => array(
+						'key' => 'downloadList_rights', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.')),
+				gettext('Download directory') => array(
 						'key' => 'downloadList_directory',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 2,
 						'desc' => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
 				gettext('Show filesize of download items') => array(
 						'key' => 'downloadList_showfilesize',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 3,
 						'desc' => ''),
 				gettext('Show download counter of download items') => array(
 						'key' => 'downloadList_showdownloadcounter',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 4,
 						'desc' => ''),
 				gettext('Files to exclude from the download list') => array(
 						'key' => 'downloadList_excludesuffixes',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 5,
 						'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
 				gettext('Zip source') => array(
 						'key' => 'downloadList_zipFromCache',
 						'type' => OPTION_TYPE_RADIO,
-						'order' => 6,
 						'buttons' => array(gettext('Full images') => 0, gettext('Resized images') => 1),
 						'desc' => gettext('Make the album zip using full images from the album folder or from the sized images <strong>already existing</strong> in the cache.')
 						. "<p class='notebox'>"
@@ -93,16 +94,17 @@ class DownloadList {
 				gettext('Add images from subalbums') => array(
 						'key' => 'downloadList_subalbums',
 						'type' => OPTION_TYPE_RADIO,
-						'order' => 7,
 						'buttons' => array(gettext('None') => "none", gettext('Direct subalbums') => "direct", gettext('All subalbums') => "all"),
 						'desc' => gettext('Subalbums whose images are to be included in the album zip.')),
-				gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
-						'order' => 1,
-						'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
+				gettext('Allow external downloads') => array(
+						'key' => 'downloadList_externaldownload_allowed', 
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check if you want to allow downloads from external sites. This directly redirects to the external source.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
-			$options[gettext('credentials')] = array('key' => 'downloadList_credentials', 'type' => OPTION_TYPE_CUSTOM,
-					'order' => 0,
+			$options[gettext('credentials')] = array(
+					'key' => 'downloadList_credentials', 
+					'type' => OPTION_TYPE_CUSTOM,
 					'desc' => gettext('Provide credentials to password protect downloads'));
 		}
 		return $options;
@@ -263,6 +265,21 @@ class DownloadList {
 			</li>
 			<?php
 		}
+	}
+	
+	/**
+	 * Checks if the file is a local or exernal file.
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @param string $filepath
+	 * @return bool
+	 */
+	static function isExternalDownload($filepath = '') {
+		if (stripos($filepath, FULLWEBPATH) === false) {
+			return true;
+		} 
+		return false;
 	}
 
 	/**
@@ -670,6 +687,9 @@ function getDownloadURL($file) {
 	$link = '';
 	if ($id = DownloadList::getItemID($file)) {
 		$query['download'] = $id;
+		if (downloadlist::isExternalDownload($request['path'])) {
+			$query['source'] = $file;
+		}
 		$link = FULLWEBPATH . '/' . preg_replace('~^' . WEBPATH . '/~', '', $request['path']) . '?' . http_build_query($query);
 	}
 	return $link;
@@ -685,7 +705,7 @@ function printDownloadURL($file, $linktext = NULL) {
 		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
 	}
 	$filesize = '';
-	if (getOption('downloadList_showfilesize')) {
+	if (getOption('downloadList_showfilesize') && !downloadlist::isExternalDownload($file)) {
 		$filesize = @filesize(internalToFilesystem($file));
 		$filesize = ' (' . byteConvert($filesize) . ')';
 	}
@@ -703,7 +723,7 @@ function printDownloadURL($file, $linktext = NULL) {
 	} else {
 		$filename = $linktext;
 	}
-	echo '<a href="' . html_encode(getDownloadURL($file)) . '" rel="nofollow" class="downloadlist_link" data-track-content data-content-piece data-content-name="' . html_encode($filename) . '">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
+  echo '<a href="' . html_encode(getDownloadURL($file)) . '" rel="nofollow" class="downloadlist_link" data-track-content data-content-piece data-content-name="' . html_encode($filename) . '">' . html_encode($filename) . '</a><small>' . $filesize . '</small>';
 }
 
 /**
@@ -809,23 +829,34 @@ if (isset($_GET['download'])) {
 		if (isset($path['aux'])) {
 			$_zp_downloadfile = internalToFilesystem($path['aux']);
 		}
-		if (file_exists($_zp_downloadfile)) {
-			DownloadList::updateListItemCount($_zp_downloadfile);
-			$ext = getSuffix($_zp_downloadfile);
-			$mimetype = mimeTypes::getType($ext);
-			header('Content-Description: File Transfer');
-			header('Content-Type: ' . $mimetype);
-			header('Content-Disposition: attachment; filename=' . basename(urldecode($_zp_downloadfile)));
-			header('Content-Transfer-Encoding: binary');
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Pragma: public');
-			header('Content-Length: ' . filesize($_zp_downloadfile));
-			flush();
-			readfile($_zp_downloadfile);
-			exitZP();
+		$is_external = downloadlist::isExternalDownload($_zp_downloadfile);
+		if ($is_external) {
+			if (getOption('downloadList_externaldownload_allowed')) {
+				DownloadList::updateListItemCount($_zp_downloadfile);
+				redirectURL($_zp_downloadfile, 200, true);
+				exitZP();
+			} else {
+				DownloadList::noFile();
+			}
 		} else {
-			DownloadList::noFile();
+			if (file_exists($_zp_downloadfile)) {
+				DownloadList::updateListItemCount($_zp_downloadfile);
+				$ext = getSuffix($_zp_downloadfile);
+				$mimetype = mimeTypes::getType($ext);
+				header('Content-Description: File Transfer');
+				header('Content-Type: ' . $mimetype);
+				header('Content-Disposition: attachment; filename=' . basename(urldecode($_zp_downloadfile)));
+				header('Content-Transfer-Encoding: binary');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($_zp_downloadfile));
+				flush();
+				readfile($_zp_downloadfile);
+				exitZP();
+			} else {
+				DownloadList::noFile();
+			}
 		}
 	}
 }
