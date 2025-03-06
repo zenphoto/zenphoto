@@ -35,6 +35,7 @@ class scriptlessSocialsharingOptions {
 
 	function __construct() {
 		setOptionDefault('scriptless_socialsharing_profiles_alignment', 'center');
+		setOptionDefault('scriptless_socialsharing_rssurlmode', 'custom'); // plugins may not be active
 		purgeOption('scriptless_socialsharing_gplus');
 		purgeOption('scriptless_socialsharing_livejournal');
 		purgeOption('scriptless_socialsharing_delicious');
@@ -50,28 +51,42 @@ class scriptlessSocialsharingOptions {
 			$sharingoptions[$network] = 'scriptless_socialsharing_' . $network;
 		}
 		foreach ($networks_profiles as $network => $data) {
-			if ($network != 'rss') {
+			if ($network == 'rss') {
+				$profileoptions[gettext('RSS custom URL')] = array(
+						'key' => 'scriptless_socialsharing_profile-' . $network,
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Enter the custom RSS URL and choose the custom mode below to use it.')
+				);
+			} else {
 				$optionname = sprintf(gettext('%s profile URL'), $data['title']);
 				$profileoptions[$optionname] = array(
 						'key' => 'scriptless_socialsharing_profile-' . $network,
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
 						'desc' => sprintf(gettext("Enter the URL to your profile on %s."), $data['title'])
 				);
 			}
 		}
-		$profileoptions[gettext('RSS feed URL')] = array(
-				'key' => 'scriptless_socialsharing_profile-rss',
-				'type' => OPTION_TYPE_TEXTBOX,
-				'order' => 1,
-				'desc' => sprintf(gettext("Enter the URL to your main RSS feed."))
+
+		$rssmode_options = array(
+				gettext('Custom URL (URL entered above)') => 'custom'
 		);
+		if (extensionEnabled('rss')) {
+			$rssmode_options[gettext('Gallery: Latest images')] = 'gallery_latestimages';
+			$rssmode_options[gettext('Gallery: Latest albums')] = 'gallery_latestalbums';
+
+			if (extensionEnabled('mergedrss')) {
+				$rssmode_options[gettext('Merged RSS')] = 'mergedrss';
+			}
+			if (extensionEnabled('zenpage')) {
+				$rssmode_options[gettext('News: latest articles')] = 'news';
+			}
+		}
 		$options = array(
 				gettext('Social networks') => array(
 						'key' => 'scriptless_socialsharing_socialnetworks',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
 						'checkboxes' => $sharingoptions,
-						'desc' => gettext('Select the social networks you wish buttons to appear for.')),
+						'desc' => gettext('Select the social networks you wish sharing buttons to appear for.')),
 				gettext('Icon font and default CSS') => array(
 						'key' => 'scriptless_socialsharing_iconfont',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -86,21 +101,29 @@ class scriptlessSocialsharingOptions {
 						'desc' => gettext("Enter your Twitter name without @ here if you like to have it appended to tweets made."))
 		);
 		$options['Divider'] = array(
-					'key' => 'scriptless_socialsharing_profiles_note',
-					'type' => OPTION_TYPE_NOTE,
-					'desc' => gettext('Profile links')
-			);
+				'key' => 'scriptless_socialsharing_profiles_note',
+				'type' => OPTION_TYPE_NOTE,
+				'desc' => gettext('Profile links')
+		);
+		
 		$options = array_merge($options, $profileoptions);
+		
+		$options[gettext('RSS URL mode')] = array(
+				'key' => 'scriptless_socialsharing_rssurlmode',
+				'type' => OPTION_TYPE_RADIO,
+				'buttons' => $rssmode_options,
+				'desc' => gettext('Select the RSS mode to use'));
+		
 		$options[gettext('Profile links alignment')] = array(
-						'key' => 'scriptless_socialsharing_profiles_alignment',
-						'type' => OPTION_TYPE_RADIO,
-						'buttons' => array(
-								gettext('Left') => 'left',
-								gettext('Center') => 'center',
-								gettext('Right') => 'right'
-						),
-						'desc' => gettext('Select the social networks you wish buttons to appear for. ')
-			);
+				'key' => 'scriptless_socialsharing_profiles_alignment',
+				'type' => OPTION_TYPE_RADIO,
+				'buttons' => array(
+						gettext('Left') => 'left',
+						gettext('Center') => 'center',
+						gettext('Right') => 'right'
+				),
+				'desc' => gettext('Select the social networks you wish buttons to appear for. ')
+		);
 		return $options;
 	}
 }
@@ -542,12 +565,16 @@ class scriptlessSocialsharing {
 		$supportedprofiles = self::getSupportedNetworks('profilelinks');
 		$buttons = array();
 		foreach ($supportedprofiles as $network => $data) {
-			if (getOption('scriptless_socialsharing_profile-' . $network)) {
-				$buttons[] = array(
-						'class' => $data['icon'],
-						'title' => sprintf(gettext('Follow on %s'), $data['title']),
-						'url' => getOption('scriptless_socialsharing_profile-' . $network)
-				);
+			if ($network == 'rss') {
+				
+			} else {
+				if (getOption('scriptless_socialsharing_profile-' . $network)) {
+					$buttons[] = array(
+							'class' => $data['icon'],
+							'title' => sprintf(gettext('Follow on %s'), $data['title']),
+							'url' => getOption('scriptless_socialsharing_profile-' . $network)
+					);
+				}
 			}
 		}
 		return $buttons;
@@ -590,5 +617,47 @@ class scriptlessSocialsharing {
 			</div>
 			<?php
 		}
+	}
+	
+	/**
+	 * Gets the RSS URL
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return string
+	 */
+	static function getRSSURL() {
+		$rssmode = getOption('scriptless_socialsharing_rssurlmode');
+		$url = '';
+		switch ($rssmode) {
+			case 'news':
+				if (extensionEnabled('zenpage')) {
+					$url = getRSSLink('news', null, null);
+				}
+				break;
+			case 'gallery_latestimages':
+			case 'gallery_latestalbums':
+				if (extensionEnabled('rss')) {
+					switch ($rssmode) {
+						case 'gallery_latestimages':
+							$url = getRSSLink('gallery', null, null);
+							break;
+						case 'gallery_latestalbums':
+							$url = getRSSLink('albumsrss', null, null);
+							break;
+					}
+				}
+				break;
+			case 'mergedrss':
+				if (extensionEnabled('mergedrss')) {
+					$url = FULLWEBPATH . '/index.php?mergedrss';
+				}
+				break;
+			default:
+			case 'custom':
+				$url = getOption('scriptless_socialsharing_profile-rss');
+				break;
+		}
+		return $url;
 	}
 }
