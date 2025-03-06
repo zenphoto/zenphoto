@@ -566,7 +566,14 @@ class scriptlessSocialsharing {
 		$buttons = array();
 		foreach ($supportedprofiles as $network => $data) {
 			if ($network == 'rss') {
-				
+				$url = self::getRSSURL();
+				if ($url) {
+					$buttons[] = array(
+							'class' => $data['icon'],
+							'title' => gettext('Subscribe to the RSS feed'),
+							'url' => $url
+					);
+				}
 			} else {
 				if (getOption('scriptless_socialsharing_profile-' . $network)) {
 					$buttons[] = array(
