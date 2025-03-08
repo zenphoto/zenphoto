@@ -598,17 +598,17 @@ class scriptlessSocialsharing {
 		$buttons = self::getProfileButtons();
 		if ($buttons) {
 			$alignment = getOption('scriptless_socialsharing_profiles_alignment');
-			$aligmentclass = '';
+			$alignmentclass = '';
 			switch ($alignment) {
 				case 'left':
-					$aligmentclass = ' scriptless_socialsharing-profiles-alignleft';
+					$alignmentclass = ' scriptless_socialsharing-profiles-alignleft';
 					break;
 				case 'right':
-					$aligmentclass = ' scriptless_socialsharing-profiles-alignright';
+					$alignmentclass = ' scriptless_socialsharing-profiles-alignright';
 					break;
 			}
 			?>
-			<div class="scriptless_socialsharing-profiles<?php echo $aligmentclass; ?>">
+			<div class="scriptless_socialsharing-profiles<?php echo $alignmentclass; ?>">
 				<div class="scriptless_socialsharing-profiles-before"><?php echo $before; ?></div>
 				<ul class="scriptless_socialsharing-profileslist">
 				<?php
