@@ -112,7 +112,7 @@ class scriptlessSocialsharingOptions {
 				'key' => 'scriptless_socialsharing_rssurlmode',
 				'type' => OPTION_TYPE_RADIO,
 				'buttons' => $rssmode_options,
-				'desc' => gettext('Select the RSS mode to use'));
+				'desc' => gettext('Select the RSS mode to use. If thte RSS and/or mergedRSS plugin are not enabled only the custom mode is available.'));
 		
 		$options[gettext('Profile links alignment')] = array(
 				'key' => 'scriptless_socialsharing_profiles_alignment',
