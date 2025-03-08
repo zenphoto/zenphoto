@@ -112,7 +112,7 @@ class scriptlessSocialsharingOptions {
 				'key' => 'scriptless_socialsharing_rssurlmode',
 				'type' => OPTION_TYPE_RADIO,
 				'buttons' => $rssmode_options,
-				'desc' => gettext('Select the RSS mode to use. If thte RSS and/or mergedRSS plugin are not enabled only the custom mode is available.'));
+				'desc' => gettext('Select the RSS mode to use. If the RSS and/or mergedRSS plugin are not enabled only the custom mode is available.'));
 		
 		$options[gettext('Profile links alignment')] = array(
 				'key' => 'scriptless_socialsharing_profiles_alignment',
@@ -122,7 +122,7 @@ class scriptlessSocialsharingOptions {
 						gettext('Center') => 'center',
 						gettext('Right') => 'right'
 				),
-				'desc' => gettext('Select the social networks you wish buttons to appear for. ')
+				'desc' => gettext('Select the alignment for te profile button alignment. The theme used may override this and may require an update to work properly.')
 		);
 		return $options;
 	}
