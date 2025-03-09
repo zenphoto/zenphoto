@@ -10,6 +10,7 @@
  */
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
+require_once(SERVERPATH. '/' . ZENFOLDER . '/classes/class-admingallerystats.php');
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
@@ -23,80 +24,7 @@ $_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPAT
 printAdminHeader('overview', 'download');
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />
-<?php
-
-/**
- * Prints a table with a bar graph of the values.
- */
-function printBarGraph() {
-	global $_zp_db;
-	//$limit = $from_number.",".$to_number;
-	$bargraphmaxsize = 90;
-	$maxvalue = 0;
-	$items = $_zp_db->queryFullArray("SELECT `aux`,`data` FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
-	$items = sortMultiArray($items, 'data', true, true, false, false);
-	if ($items) {
-		$maxvalue = $items[0]['data'];
-		$no_statistic_message = "";
-	} else {
-		$no_statistic_message = "<tr><td><em>" . gettext("No statistic available") . "</em></td><td></td><td></td><td></td></tr>";
-	}
-
-	$countlines = 0;
-	echo "<table class='bordered'>";
-	echo "<tr><th colspan='4'><strong>" . gettext("Most downloaded files") . "</strong>";
-	echo "</th></tr>";
-	$count = 0;
-	echo $no_statistic_message;
-	foreach ($items as $item) {
-		if ($item['data'] != 0) {
-			$count++;
-			$barsize = round($item['data'] / $maxvalue * $bargraphmaxsize);
-			$value = $item['data'];
-
-			// counter to have a gray background of every second line
-			if ($countlines === 1) {
-				$style = " style='background-color: #f4f4f4'"; // a little ugly but the already attached class for the table is so easiest overriden...
-				$countlines = 0;
-			} else {
-				$style = "";
-				$countlines++;
-			}
-			$outdated = '';
-			if (!file_exists(internalToFilesystem($item['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($item['aux']))) {
-				$outdated = ' class="unpublished_item"';
-			}
-			?>
-			<tr class="statistic_wrapper">
-				<td class="statistic_counter" <?php echo $style; ?>>
-					<?php echo $count; ?>
-				</td>
-				<td class="statistic_title" <?php echo $style; ?>>
-					<strong<?php echo $outdated; ?>>
-					<?php
-					$album = "";
-					if (strpos($item['aux'], SERVERPATH) === false) { // it's an album
-						$album = " [" . gettext('Album') . "]";
-					}
-					echo html_encode($item['aux'] . $album);
-					?>
-					</strong>
-				</td>
-				<td class="statistic_graphwrap" <?php echo $style; ?>>
-					<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
-					<div class="statistic_value"><?php echo $value; ?></div>
-				</td>
-			</tr>
-			<?php
-		} // if value != 0
-	} // foreach end
-	?>
-	</table>
-	<?php
-}
-
-echo '</head>';
-?>
+</head>
 
 <body>
 	<?php printLogoAndLinks(); ?>
@@ -110,21 +38,12 @@ echo '</head>';
 				<?php
 				if (isset($_GET['removeoutdateddownloads'])) {
 					XSRFdefender('removeoutdateddownloads');
-					$sql = "SELECT * FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type`='downloadList'";
-					$result = $_zp_db->queryFullArray($sql);
-					if ($result) {
-						foreach ($result as $row) {
-							if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($row['aux']))) {
-								$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
-							}
-						}
-					}
+					downloadList::clearOutdatedDownloads();
 					echo '<p class="messagebox fade-message">' . gettext('Outdated file entries cleared from the database') . '</p>';
 				}
 				if (isset($_GET['removealldownloads'])) {
 					XSRFdefender('removealldownloads');
-					$sql = "DELETE FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="downloadList"';
-					$_zp_db->query($sql);
+					downloadList::clearDownloads();
 					echo '<p class="messagebox fade-message">' . gettext('All download file entries cleared from the database') . '</p>';
 				}
 				?>
@@ -140,11 +59,13 @@ echo '</head>';
 					<p class="buttons"><a href="?removeoutdateddownloads&amp;XSRFToken=<?php echo getXSRFToken('removeoutdateddownloads') ?>"><?php echo gettext('Clear outdated downloads from database'); ?></a></p>
 					<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall" />
 					<br class="clearall" /><br />
-					<?php
-					printBarGraph();
+				<?php
+					$fromtonumbers = adminGalleryStats::getProcessedFromToNumbers();
+					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers);
+					$statsobj = new adminGalleryStats('mostdownloaded', 'downloads', $fromtonumbers['from'], $fromtonumbers['to']);
+					$statsobj->printStatistics();
 				}
 				?>
-
 			</div>
 		</div><!-- content -->
 		<?php printAdminFooter(); ?>

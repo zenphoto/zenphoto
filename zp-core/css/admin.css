@@ -699,6 +699,11 @@ table.checkboxes td {
 	margin: 0px;
 }
 
+/* nth-child selector for modern browsers */
+table.striped tr:nth-child(even) td {
+	background-color: #f4f4f4;
+}
+
 .box {
 	padding: 4px;
 	background-color: #FAFAFA;

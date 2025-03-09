@@ -368,6 +368,7 @@ zp-core/auth.php
 zp-core/classes
 zp-core/classes/class-_zp_captcha.php
 zp-core/classes/class-_zp_html_cache.php
+zp-core/classes/class-admingallerystats.php
 zp-core/classes/class-administrator.php
 zp-core/classes/class-album.php
 zp-core/classes/class-albumbase.php
@@ -1322,7 +1323,6 @@ zp-core/zp-extensions/mobileTheme/composer.json
 zp-core/zp-extensions/mobileTheme/CONTRIBUTING.md
 zp-core/zp-extensions/mobileTheme/docker
 zp-core/zp-extensions/mobileTheme/docker-compose.yml
-zp-core/zp-extensions/mobileTheme/docker/build.sh
 zp-core/zp-extensions/mobileTheme/docker/Dockerfile.setup
 zp-core/zp-extensions/mobileTheme/KNOWN_LIMITATIONS.md
 zp-core/zp-extensions/mobileTheme/LICENSE

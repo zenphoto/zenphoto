@@ -504,5 +504,20 @@ class mimeTypes {
 			return 'application/octet-stream';
 		}
 	}
+	
+	/**
+	 * Gets an array of mimetypes grouped by general file type category (image, audio, application etc).
+	 * 
+	 * @since 1.6.6
+	 * @return type
+	 */
+	static function getTypesByType() {
+		$mimetypes = array();
+		foreach (self::$mime_types as $key => $val) {
+			$type = explode('/', $val);
+			$mimetypes[$type[0]][] = $key;
+		}
+		return $mimetypes;
+	}
 
 }
