@@ -307,7 +307,7 @@ class DownloadList {
 				'enable' => true,
 				'button_text' => gettext('Download statistics'),
 				'formname' => 'downloadstatistics_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=mostdownloaded&type=downloads',
 				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 				'title' => gettext('Counts of downloads'),
 				'alt' => '',
