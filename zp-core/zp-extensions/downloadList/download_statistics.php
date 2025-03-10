@@ -12,6 +12,7 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 require_once(SERVERPATH. '/' . ZENFOLDER . '/classes/class-admingallerystats.php');
 
+
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
@@ -20,7 +21,7 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 
 $webpath = WEBPATH . '/' . ZENFOLDER . '/';
 
-$_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Download') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=mostdownloaded&type=downloads');
 printAdminHeader('overview', 'download');
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin-statistics.css" type="text/css" media="screen" />

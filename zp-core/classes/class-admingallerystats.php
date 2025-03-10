@@ -256,7 +256,6 @@ class adminGalleryStats {
 	static function printSingleStatSelectionForm($fromtonumbers) {
 		$stats = sanitize($_GET['stats']);
 		$type = sanitize($_GET['type']);
-		echo $stats;
 		$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
 		if ($type == 'downloads') {
 			$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';

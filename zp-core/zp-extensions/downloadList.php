@@ -307,11 +307,11 @@ class DownloadList {
 				'enable' => true,
 				'button_text' => gettext('Download statistics'),
 				'formname' => 'downloadstatistics_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=mostdownloaded&type=downloads',
+				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php',
 				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 				'title' => gettext('Counts of downloads'),
 				'alt' => '',
-				'hidden' => '',
+				'hidden' => '<input type="hidden" name="type" value="downloadse"><input type="hidden" name="stats" value="mostdownloaded">',
 				'rights' => ADMIN_RIGHTS,
 		);
 		return $buttons;
