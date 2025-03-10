@@ -229,7 +229,6 @@ if (!zp_loggedin()) {
 				}
 			}
 			$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
-			echo "<pre>"; print_r($buttonlist); echo "</pre>";
 			foreach ($buttonlist as $key => $button) {
 				if (zp_loggedin($button['rights'])) {
 					if (!array_key_exists('category', $button)) {
