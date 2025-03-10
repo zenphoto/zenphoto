@@ -390,7 +390,39 @@ class DownloadList {
 		}
 		return true;
 	}
+	
+	/**
+	 * Clears all outdated downloads from the statistics
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @global type $_zp_db
+	 */
+	static function clearOutdatedDownloads() {
+		global $_zp_db;
+		$sql = "SELECT * FROM " . $_zp_db->prefix('plugin_storage') . " WHERE `type`='downloadList'";
+		$result = $_zp_db->queryFullArray($sql);
+		if ($result) {
+			foreach ($result as $row) {
+				if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(SERVERPATH_ALBUMFOLDER . stripSuffix($row['aux']))) {
+					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
+				}
+			}
+		}
+	}
 
+	/**
+	 * Clears all download statistics
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @global type $_zp_db
+	 */
+	static function clearDownloads() {
+		global $_zp_db;
+		$sql = "DELETE FROM " . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="downloadList"';
+		$_zp_db->query($sql);
+	}
 }
 
 class AlbumZip {
