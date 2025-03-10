@@ -276,7 +276,7 @@ class DownloadList {
 	 * @return bool
 	 */
 	static function isExternalDownload($filepath = '') {
-		if (stripos($filepath, FULLWEBPATH) === false) {
+		if (stripos($filepath, FULLWEBPATH) === false && stripos($filepath, SERVERPATH) === false) {
 			return true;
 		} 
 		return false;
@@ -831,6 +831,7 @@ if (isset($_GET['download'])) {
 		}
 		$is_external = downloadlist::isExternalDownload($_zp_downloadfile);
 		if ($is_external) {
+			debugLog('external download');
 			if (getOption('downloadList_externaldownload_allowed')) {
 				DownloadList::updateListItemCount($_zp_downloadfile);
 				redirectURL($_zp_downloadfile, 200, true);
@@ -839,6 +840,7 @@ if (isset($_GET['download'])) {
 				DownloadList::noFile();
 			}
 		} else {
+			debugLog('not external download');
 			if (file_exists($_zp_downloadfile)) {
 				DownloadList::updateListItemCount($_zp_downloadfile);
 				$ext = getSuffix($_zp_downloadfile);
