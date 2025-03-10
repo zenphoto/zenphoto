@@ -238,6 +238,22 @@ class DownloadList {
 			return false;
 		}
 	}
+	
+	/**
+	 * Gets the default download directory server path based on the option set. If the option is not set falls back to uploaded folder
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return string
+	 */
+	static function getDirectory() {
+		$dir = getOption('downloadList_directory');
+		if (empty($dir)) {
+			return  SERVERPATH . '/' . UPLOAD_FOLDER;
+		} else {
+			return SERVERPATH . '/' . $dir;
+		} 
+	}
 
 	/**
 	 * @param array $array List of download items
@@ -628,7 +644,7 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
 		$filters[$key] = internalToFilesystem($file);
 	}
 	if (empty($dir8)) {
-		$dir = SERVERPATH . '/' . getOption('downloadList_directory');
+		$dir = downloadList::getDirectory();
 	} else {
 		if (substr($dir8, 0, 1) == '/' || strpos($dir8, ':') !== false) {
 			$dir = internalToFilesystem($dir8);
@@ -675,7 +691,7 @@ function getdownloadList($dir8, $filters8, $excludesuffixes, $sort) {
  */
 function getDownloadURL($file) {
 	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
-		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
+		$file = downloadList::getDirectory() . '/' . $file;
 	}
 	$request = parse_url(getRequestURI());
 	if (isset($request['query'])) {
@@ -702,7 +718,7 @@ function getDownloadURL($file) {
  */
 function printDownloadURL($file, $linktext = NULL) {
 	if (substr($file, 0, 1) != '/' && strpos($file, ':') === false) {
-		$file = SERVERPATH . '/' . getOption('downloadList_directory') . '/' . $file;
+		$file = downloadList::getDirectory() . '/' . $file;
 	}
 	$filesize = '';
 	if (getOption('downloadList_showfilesize') && !downloadlist::isExternalDownload($file)) {
