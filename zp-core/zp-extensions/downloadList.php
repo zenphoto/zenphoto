@@ -321,20 +321,22 @@ class DownloadList {
 	 * Handles missing files
 	 * 
 	 * @global string $_zp_downloadfile
+	 * @param int $statuscode http status code 	200, 301, 302, 401, 403, 404 
+	 * @param stringn $message Message of the error
 	 */
-	static function noFile() {
+	static function noFile($statuscode = 404, $message = '') {
 		global $_zp_downloadfile;
 		if (TEST_RELEASE) {
 			$file = $_zp_downloadfile;
 		} else {
 			$file = basename($_zp_downloadfile);
 		}
-
 		$back_url = preg_replace('/[&|?]download=.+/', '', $_SERVER["REQUEST_URI"]);
-
 		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
-		header("HTTP/1.0 404 Not Found");
-		header("Status: 404 Not Found");
+		printHTTPHeaderStatus($statuscode);
+		if (!$message) {
+			$message = gettext("Object not found");
+		}
 		zp_apply_filter('theme_headers');
 		?>
 		<!DOCTYPE html>
@@ -343,7 +345,7 @@ class DownloadList {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<meta charset="<?php echo LOCAL_CHARSET; ?>">
 				<meta name="ROBOTS" content="NOINDEX, FOLLOW">
-				<title><?php echo gettext("Object not found") . ': ' . $file . ' | ' . html_encode(getBareGalleryTitle()) ?></title>
+				<title><?php echo $message . ': ' . $file . ' | ' . html_encode(getBareGalleryTitle()) ?></title>
 				<style>
 				body {
 					background: white;
@@ -579,26 +581,18 @@ class AlbumZip {
 
 	/**
 	 * Emits a page error. Used for attempts to bypass password protection
+	 * 
+	 * @deprecated 2.0 Use downloadList::noFile() instead
 	 *
 	 * @param string $err error code
 	 * @param string $text error message
 	 *
 	 */
 	static function pageError($err, $text) {
-		header("HTTP/1.0 " . $err . ' ' . $text);
-		header("Status: " . $err . ' ' . $text);
-		echo '<html lang="' . getLangAttributeLocale() . '">';
-		echo '<head>';
-		echo '<title>' . $err . ' - ' . $text . '</title>';
-		echo '<meta name="ROBOTS" content="NOINDEX, FOLLOW">';
-		echo '</head>';
-		echo '<body style="background-color: #ffffff; color: #000000">';
-		echo '<p><strong>' . sprintf(gettext('Page error: %2$s (%1$s)'), $err, $text) . '</strong></p>';
-		echo '</body>';
-		echo '</html>';
-		exitZP();
+		deprecationNotice(gettext('Use downloadList::noFile() instead'));
+		downloadList::noFile($err, $text);
 	}
-
+	
 	/**
 	 * Creates a zip file of the album
 	 *
@@ -608,11 +602,11 @@ class AlbumZip {
 	static function create($albumname, $fromcache) {
 		global $_zp_zip_list, $_zp_gallery, $_zp_downloadlist_defaultsize;
 		if (!file_exists(ALBUM_FOLDER_SERVERPATH . $albumname)) {
-			self::pageError(404, gettext('Album not found'));
+			downloadList::noFile(404, gettext('Album not found'));
 		}
 		$album = AlbumBase::newAlbum($albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && $album->isProtected()) {
-			self::pageError(403, gettext("Forbidden"));
+			downloadList::noFile(403, gettext('Forbidden'));
 		}
 		$_zp_zip_list = array();
 		if ($fromcache) {
