@@ -404,7 +404,7 @@ class DownloadList {
 		$result = $_zp_db->queryFullArray($sql);
 		if ($result) {
 			foreach ($result as $row) {
-				if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(SERVERPATH_ALBUMFOLDER . stripSuffix($row['aux']))) {
+				if (!file_exists(internalToFilesystem($row['aux'])) && !file_exists(SERVERPATH . '/' . ALBUMFOLDER . stripSuffix($row['aux']))) {
 					$_zp_db->query('DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `id`=' . $row['id']);
 				}
 			}
