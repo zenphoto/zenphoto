@@ -57,8 +57,8 @@ printAdminHeader('overview', 'download');
 					echo '<strong>' . gettext('The downloadList plugin is not active') . '</strong>';
 				} else {
 					?>
-					<p class="buttons"><a href="?removeoutdateddownloads&amp;XSRFToken=<?php echo getXSRFToken('removeoutdateddownloads') ?>>&amp;stats=mostdownloaded&amp;type=downloads"><?php echo gettext('Clear outdated downloads from database'); ?></a></p>
-					<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>>&amp;stats=mostdownloaded&amp;type=downloads"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall" />
+					<p class="buttons"><a href="?removeoutdateddownloads&amp;XSRFToken=<?php echo getXSRFToken('removeoutdateddownloads') ?>&amp;stats=mostdownloaded&amp;type=downloads"><?php echo gettext('Clear outdated downloads from database'); ?></a></p>
+					<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>&amp;stats=mostdownloaded&amp;type=downloads"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall" />
 					<br class="clearall" /><br />
 				<?php
 					$fromtonumbers = adminGalleryStats::getProcessedFromToNumbers();
