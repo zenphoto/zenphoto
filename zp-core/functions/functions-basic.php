@@ -2151,7 +2151,7 @@ function getHTTPHeaderStatus($statuscode = null) {
 	switch ($statuscode) {
 		case '200':
 			return array(
-					'http' => 'HTTP/1.0 200 OK',
+					'http' => 'HTTP/1.1 200 OK',
 					'status' => 'Status: 200 OK'
 			);
 		case '301':
