@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 08:17+0100\n"
+"POT-Creation-Date: 2025-03-13 16:56+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: themes/basic/404.php:27 themes/zpmobile/404.php:26
 #: zp-core/template-functions.php:464
-#: zp-core/zp-extensions/downloadList.php:313
+#: zp-core/zp-extensions/downloadList.php:338
 msgid "Object not found"
 msgstr "Object niet gevonden"
 
@@ -170,7 +170,7 @@ msgstr "Registreer je voor deze site"
 #: themes/basic/inc-footer.php:21 themes/garland/sidebar.php:89
 #: themes/zenpage/sidebar.php:156 themes/zpmobile/functions.php:126
 msgid "<h3>Follow us</h3>"
-msgstr ""
+msgstr "<h3>Volg ons</h3>"
 
 #: themes/basic/password.php:29 themes/zenpage/password.php:32
 #: themes/zpmobile/password.php:26
@@ -181,7 +181,7 @@ msgstr "Een wachtwoord is nodig om de opgevraagde pagina te bekijken"
 #: zp-core/template-functions.php:470
 #: zp-core/zp-extensions/html_meta_tags.php:469
 #: zp-core/zp-extensions/register_user.php:64
-#: zp-core/zp-extensions/scriptless-socialsharing.php:434
+#: zp-core/zp-extensions/scriptless-socialsharing.php:457
 msgid "Register"
 msgstr "Registreren"
 
@@ -459,7 +459,6 @@ msgstr "Albums (%1$s) &amp; Afbeeldingen (%2$s)"
 
 #: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
 #: zp-core/classes/class-userdataexport.php:467
-#: zp-core/utilities/gallery_statistics.php:615
 msgid "News articles"
 msgstr "Nieuwsartikelen"
 
@@ -515,7 +514,9 @@ msgid "Gallery"
 msgstr "Galerij"
 
 #: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2033
-#: zp-core/admin-functions.php:3331 zp-core/classes/class-authority.php:611
+#: zp-core/admin-functions.php:3331
+#: zp-core/classes/class-admingallerystats.php:143
+#: zp-core/classes/class-authority.php:611
 #: zp-core/classes/class-authority.php:617
 #: zp-core/classes/class-authority.php:628
 #: zp-core/classes/class-authority.php:631
@@ -529,8 +530,6 @@ msgstr "Galerij"
 #: zp-core/classes/class-authority.php:661
 #: zp-core/classes/class-authority.php:665
 #: zp-core/classes/class-authority.php:668 zp-core/template-functions.php:120
-#: zp-core/utilities/gallery_statistics.php:73
-#: zp-core/utilities/gallery_statistics.php:589
 #: zp-core/zp-extensions/comment_form.php:102
 #: zp-core/zp-extensions/galleryArticles.php:65
 #: zp-core/zp-extensions/multiple_layouts.php:93
@@ -544,6 +543,7 @@ msgstr "Albums"
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:175
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3358
+#: zp-core/classes/class-admingallerystats.php:171
 #: zp-core/classes/class-authority.php:612
 #: zp-core/classes/class-authority.php:615
 #: zp-core/classes/class-authority.php:630
@@ -553,8 +553,6 @@ msgstr "Albums"
 #: zp-core/classes/class-authority.php:663
 #: zp-core/classes/class-authority.php:667
 #: zp-core/classes/class-userdataexport.php:475
-#: zp-core/utilities/gallery_statistics.php:81
-#: zp-core/utilities/gallery_statistics.php:607
 #: zp-core/zp-extensions/comment_form.php:106
 #: zp-core/zp-extensions/multiple_layouts.php:98
 #: zp-core/zp-extensions/rss.php:196
@@ -577,7 +575,7 @@ msgstr ""
 "\">garland</a>."
 
 #: themes/garland/themeoptions.php:50 themes/zenpage/themeoptions.php:60
-#: zp-core/utilities/gallery_statistics.php:85
+#: zp-core/classes/class-admingallerystats.php:181
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:98
 msgid "News Articles"
 msgstr "Nieuwsartikelen"
@@ -740,7 +738,7 @@ msgstr "*standaard menu"
 #: zp-core/template-functions.php:3757
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
 #: zp-core/zp-extensions/html_meta_tags.php:470
-#: zp-core/zp-extensions/scriptless-socialsharing.php:437
+#: zp-core/zp-extensions/scriptless-socialsharing.php:460
 #: zp-core/zp-extensions/slideshow2.php:817
 msgid "Search"
 msgstr "Zoeken"
@@ -775,7 +773,7 @@ msgstr "Sorry, geen resultaten. Probeer de zoekopdracht te herformuleren."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
 #: zp-core/template-functions.php:1453 zp-core/template-functions.php:1503
-#: zp-core/zp-extensions/scriptless-socialsharing.php:431
+#: zp-core/zp-extensions/scriptless-socialsharing.php:454
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:787
 msgid "Archive"
 msgstr "Archief"
@@ -785,6 +783,7 @@ msgid "Gallery And News"
 msgstr "Galerij en Nieuws"
 
 #: themes/zenpage/sidebar.php:79 themes/zpmobile/functions.php:30
+#: zp-core/classes/class-admingallerystats.php:162
 msgid "RSS"
 msgstr "RSS"
 
@@ -812,7 +811,7 @@ msgstr "Album RSS"
 #: zp-core/zp-extensions/multiple_layouts.php:99
 #: zp-core/zp-extensions/related_items.php:193
 #: zp-core/zp-extensions/rss.php:195
-#: zp-core/zp-extensions/scriptless-socialsharing.php:412
+#: zp-core/zp-extensions/scriptless-socialsharing.php:435
 #: zp-core/zp-extensions/static_html_cache.php:74
 #: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:794
@@ -925,7 +924,6 @@ msgstr "Archief"
 #: themes/zpmobile/functions.php:44 zp-core/admin-functions.php:473
 #: zp-core/admin-functions.php:4940 zp-core/classes/class-authority.php:595
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
-#: zp-core/zp-extensions/downloadList/download_statistics.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:92
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:96
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:258
@@ -935,7 +933,7 @@ msgstr "Album"
 
 #: themes/zpmobile/functions.php:65 zp-core/template-functions.php:720
 #: zp-core/template-functions.php:1596
-#: zp-core/zp-extensions/downloadList.php:336
+#: zp-core/zp-extensions/downloadList.php:371
 #: zp-core/zp-extensions/menu_manager.php:979
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
 msgid "Home"
@@ -955,7 +953,6 @@ msgid "Favorites"
 msgstr "Favorieten"
 
 #: themes/zpmobile/functions.php:189
-#: zp-core/utilities/gallery_statistics.php:873
 msgid "Back to top"
 msgstr "Terug naar boven"
 
@@ -1147,7 +1144,7 @@ msgstr "Bewerk album: <em>%1$s%2$s</em>"
 #: zp-core/zp-extensions/crop_image.php:348
 #: zp-core/zp-extensions/crop_image.php:353
 #: zp-core/zp-extensions/crop_image.php:354
-#: zp-core/zp-extensions/downloadList.php:335
+#: zp-core/zp-extensions/downloadList.php:370
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 #: zp-core/zp-extensions/zenpage/admin-edit.php:327
 #: zp-core/zp-extensions/zenpage/admin-edit.php:790
@@ -1866,8 +1863,8 @@ msgstr "Bekijk galerij index"
 
 #: zp-core/admin-functions.php:455 zp-core/admin-functions.php:1572
 #: zp-core/admin-functions.php:2034 zp-core/admin-options.php:2144
-#: zp-core/admin-options.php:2194 zp-core/utilities/gallery_statistics.php:77
-#: zp-core/utilities/gallery_statistics.php:580
+#: zp-core/admin-options.php:2194
+#: zp-core/classes/class-admingallerystats.php:133
 #: zp-core/zp-extensions/comment_form.php:103
 #: zp-core/zp-extensions/galleryArticles.php:65
 #: zp-core/zp-extensions/multiple_layouts.php:94
@@ -1949,7 +1946,7 @@ msgstr "Albumwachtwoord:"
 
 #: zp-core/admin-functions.php:1297 zp-core/admin-options.php:1219
 #: zp-core/admin-options.php:1554 zp-core/admin-options.php:2391
-#: zp-core/zp-extensions/downloadList.php:129
+#: zp-core/zp-extensions/downloadList.php:131
 #: zp-core/zp-extensions/zenpage/admin-edit.php:476
 msgid "clear password"
 msgstr "maak wachtwoord leeg"
@@ -1966,12 +1963,12 @@ msgstr "Herhaal wachtwoord:"
 #: zp-core/admin-options.php:1614 zp-core/admin-options.php:2445
 #: zp-core/classes/class-authority.php:1151
 #: zp-core/classes/class-authority.php:1344
-#: zp-core/zp-extensions/downloadList.php:151
+#: zp-core/zp-extensions/downloadList.php:153
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
 msgstr "Toon wachtwoord"
 
-#: zp-core/admin-functions.php:1364 zp-core/zp-extensions/downloadList.php:163
+#: zp-core/admin-functions.php:1364 zp-core/zp-extensions/downloadList.php:165
 #: zp-core/zp-extensions/zenpage/admin-edit.php:521
 msgid "Password hint:"
 msgstr "Wachtwoord hint:"
@@ -2065,13 +2062,13 @@ msgstr "Album zal verwijderd worden wanneer de wijzigingen worden opgeslagen"
 msgid "to:"
 msgstr "naar:"
 
-#: zp-core/admin-functions.php:1914 zp-core/classes/class-authority.php:599
+#: zp-core/admin-functions.php:1914
+#: zp-core/classes/class-admingallerystats.php:156
+#: zp-core/classes/class-authority.php:599
 #: zp-core/classes/class-authority.php:619
 #: zp-core/classes/class-authority.php:644
 #: zp-core/classes/class-authority.php:671
 #: zp-core/classes/class-searchengine.php:93 zp-core/template-functions.php:134
-#: zp-core/utilities/gallery_statistics.php:93
-#: zp-core/utilities/gallery_statistics.php:601
 #: zp-core/zp-extensions/zenpage/admin-edit.php:704
 msgid "Tags"
 msgstr "Tags"
@@ -2342,8 +2339,8 @@ msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën:"
 
 #: zp-core/admin-functions.php:3345
+#: zp-core/classes/class-admingallerystats.php:191
 #: zp-core/classes/class-userdataexport.php:471
-#: zp-core/utilities/gallery_statistics.php:623
 #: zp-core/zp-extensions/multiple_layouts.php:100
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:99
 msgid "News categories"
@@ -3125,7 +3122,7 @@ msgstr "Bekijk logs:"
 
 #: zp-core/admin-logs.php:163 zp-core/admin-options.php:2464
 #: zp-core/utilities/user-data-export.php:87
-#: zp-core/zp-extensions/downloadList/download_statistics.php:22
+#: zp-core/zp-extensions/downloadList/download_statistics.php:24
 msgid "Download"
 msgstr "Download"
 
@@ -3712,7 +3709,7 @@ msgid "User ID for the gallery guest user"
 msgstr "Gebruikers ID voor de gastgebruiker."
 
 #: zp-core/admin-options.php:1260 zp-core/admin-options.php:1589
-#: zp-core/admin-options.php:2419 zp-core/zp-extensions/downloadList.php:154
+#: zp-core/admin-options.php:2419 zp-core/zp-extensions/downloadList.php:156
 #: zp-core/zp-extensions/zenpage/admin-edit.php:507
 msgid "(repeat)"
 msgstr "(herhaal)"
@@ -5759,7 +5756,8 @@ msgstr "Gebruik dit als je thema"
 msgid "Current Theme"
 msgstr "Huidig thema"
 
-#: zp-core/admin-themes.php:321 zp-core/utilities/gallery_statistics.php:463
+#: zp-core/admin-themes.php:321 zp-core/classes/class-admingallerystats.php:962
+#: zp-core/classes/class-admingallerystats.php:965
 #: zp-core/zp-extensions/comment_form.php:380
 #: zp-core/zp-extensions/comment_form/admin-comments.php:457
 msgid "Edit"
@@ -6431,6 +6429,172 @@ msgstr ""
 #: zp-core/zp-extensions/register_user.php:118
 msgid "No captcha handler is enabled."
 msgstr "Er is geen CAPTCHA plugin geactiveerd."
+
+#: zp-core/classes/class-admingallerystats.php:204
+#| msgid "Download"
+msgid "Downloads"
+msgstr "Downloads"
+
+#: zp-core/classes/class-admingallerystats.php:265
+msgid "From "
+msgstr "van"
+
+#: zp-core/classes/class-admingallerystats.php:267
+msgid "to "
+msgstr "tot"
+
+#: zp-core/classes/class-admingallerystats.php:271
+#: zp-core/zp-extensions/cacheManager.php:162
+#: zp-core/zp-extensions/cacheManager.php:167
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:190
+#: zp-core/zp-extensions/comment_form.php:121
+#: zp-core/zp-extensions/comment_form.php:129
+#: zp-core/zp-extensions/comment_form.php:137
+#: zp-core/zp-extensions/comment_form.php:150
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:193
+#: zp-core/zp-extensions/register_user.php:146
+msgid "Show"
+msgstr "Toon"
+
+#: zp-core/classes/class-admingallerystats.php:285
+msgid "most used"
+msgstr "meest gebruikt"
+
+#: zp-core/classes/class-admingallerystats.php:286
+#: zp-core/functions/functions.php:38
+msgid "most viewed"
+msgstr "meest bekeken"
+
+#: zp-core/classes/class-admingallerystats.php:287
+msgid "most viewed images"
+msgstr "meest bekeken afbeeldingen"
+
+#: zp-core/classes/class-admingallerystats.php:288
+msgid "most rated"
+msgstr "meest beoordeeld"
+
+#: zp-core/classes/class-admingallerystats.php:289
+msgid "top rated"
+msgstr "best beoordeeld"
+
+#: zp-core/classes/class-admingallerystats.php:290
+msgid "most commented"
+msgstr "meeste reacties"
+
+#: zp-core/classes/class-admingallerystats.php:291
+msgid "most images"
+msgstr "meeste afbeeldingen"
+
+#: zp-core/classes/class-admingallerystats.php:292
+msgid "latest"
+msgstr "laatste"
+
+#: zp-core/classes/class-admingallerystats.php:293
+#: zp-core/zp-extensions/rss.php:137
+msgid "latest updated"
+msgstr "laatste veranderingen"
+
+#: zp-core/classes/class-admingallerystats.php:294
+msgid "Most downloaded"
+msgstr "Meest gedownload"
+
+#: zp-core/classes/class-admingallerystats.php:659
+msgid "(The hitcounter plugin is not enabled.)"
+msgstr "(De plugin <em>hitcounter</em> is niet geactiveerd.)"
+
+#: zp-core/classes/class-admingallerystats.php:662
+msgid "(The downloadlist plugin is not enabled.)"
+msgstr "De plugin <code>downloadList</code> is niet geactiveerd."
+
+#: zp-core/classes/class-admingallerystats.php:664
+msgid "No statistic available."
+msgstr "Geen statistieken beschikbaar."
+
+#: zp-core/classes/class-admingallerystats.php:668
+msgid ""
+"Note: The hitcounter plugin is not enabled, therefore any existing values "
+"will not get updated."
+msgstr ""
+"Opmerking: De <em>hitcounter</em> plugin is niet geactiveerd. Bestaande "
+"waarden worden daardoor niet bijgewerkt."
+
+#: zp-core/classes/class-admingallerystats.php:763
+#: zp-core/classes/class-admingallerystats.php:773
+#, php-format
+msgid "%s images"
+msgstr "%s afbeeldingen"
+
+#: zp-core/classes/class-admingallerystats.php:858
+msgid "Preview"
+msgstr "Voorvertoning"
+
+#: zp-core/classes/class-admingallerystats.php:958
+#: zp-core/classes/class-admingallerystats.php:962
+#: zp-core/classes/class-admingallerystats.php:965
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:253
+#: zp-core/zp-extensions/publishContent/publishContent.php:436
+#: zp-core/zp-extensions/publishContent/publishContent.php:490
+#: zp-core/zp-extensions/publishContent/publishContent.php:549
+#: zp-core/zp-extensions/publishContent/publishContent.php:605
+#: zp-core/zp-extensions/zenpage/admin-categories.php:190
+#: zp-core/zp-extensions/zenpage/admin-edit.php:352
+#: zp-core/zp-extensions/zenpage/admin-edit.php:354
+#: zp-core/zp-extensions/zenpage/admin-edit.php:808
+#: zp-core/zp-extensions/zenpage/admin-edit.php:812
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1425
+msgid "View"
+msgstr "Bekijk"
+
+#: zp-core/classes/class-admingallerystats.php:1000
+msgid "Back to the top 10 lists"
+msgstr "Terug naar de top 10 lijsten"
+
+#: zp-core/classes/class-admingallerystats.php:1008
+msgid "View more"
+msgstr "Meer informatie"
+
+#: zp-core/classes/class-admingallerystats.php:1058
+msgid "other"
+msgstr "overig"
+
+#: zp-core/classes/class-admingallerystats.php:1094
+msgid "General image mime types"
+msgstr "Algemene MIME types"
+
+#: zp-core/classes/class-admingallerystats.php:1108
+#, php-format
+msgid "Albums folder size: <strong>%s</strong>"
+msgstr "Albums mapgrootte: <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1112
+#, php-format
+#| msgid "Graphics support: <strong>%s</strong>"
+msgid "Backups: <strong>%s</strong>"
+msgstr "Backups: <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1116
+#, php-format
+msgid "Image cache size: <strong>%s</strong>"
+msgstr "Afbeeldingen cache-grootte: <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1120
+#, php-format
+msgid "HTML cache size: <strong>%s</strong>"
+msgstr "HTML cache-grootte: <strong>%1$s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1124
+#, php-format
+msgid "Uploaded folder size: <strong>%s</strong>"
+msgstr "Uploaded mapgrootte: <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1128
+#, php-format
+msgid "Zenphoto scripts size: <strong>%s</strong>"
+msgstr "Zenphoto scriptgrootte: <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1144
+msgid "Disk space usage"
+msgstr "Schijfgebruik"
 
 #: zp-core/classes/class-album.php:42 zp-core/classes/class-dynamicalbum.php:78
 msgid "Invalid album instantiation: No album name"
@@ -7941,7 +8105,7 @@ msgstr ""
 
 #: zp-core/classes/class-update.php:24
 msgid "Native PHP class DOMDocument not available. Update check not possible"
-msgstr ""
+msgstr "Native PHP class DOMDocument not available. Update check niet mogelijk"
 
 #: zp-core/classes/class-update.php:49
 #, php-format
@@ -7951,7 +8115,7 @@ msgstr "Zenphoto versie %s is beschikbaar."
 #: zp-core/classes/class-update.php:50
 #, php-format
 msgid "You are running <strong>Zenphoto %1$s</strong>. Please upgrade."
-msgstr ""
+msgstr "Je gebruikt <strong>Zenphoto %1$s</strong>. Upgraden wordt aangeraden."
 
 #: zp-core/classes/class-update.php:51
 msgid "Release notes"
@@ -8348,10 +8512,10 @@ msgstr "Gebruik in plaats hiervan <code>rsslib::getChannel()</code>."
 msgid "Use rsslib::retrieve() instead"
 msgstr "Gebruik in plaats hiervan <code>rsslib::retrieve() </code>."
 
-#: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:550
-#: zp-core/zp-extensions/downloadList.php:782
-#: zp-core/zp-extensions/downloadList.php:784
-#: zp-core/zp-extensions/downloadList.php:785
+#: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:609
+#: zp-core/zp-extensions/downloadList.php:844
+#: zp-core/zp-extensions/downloadList.php:846
+#: zp-core/zp-extensions/downloadList.php:847
 #: zp-core/zp-extensions/ipBlocker.php:375
 #: zp-core/zp-extensions/ipBlocker.php:376
 #: zp-core/zp-extensions/ipBlocker.php:386
@@ -8404,33 +8568,33 @@ msgstr "NOTICE: cURL request not successful."
 msgid "ERROR: Your server does not support cURL."
 msgstr "FOUT: Je server ondersteunt cURL niet."
 
-#: zp-core/functions/functions-basic.php:2261
+#: zp-core/functions/functions-basic.php:2298
 msgid "function"
 msgstr "functie"
 
-#: zp-core/functions/functions-basic.php:2267
+#: zp-core/functions/functions-basic.php:2304
 #, php-format
 msgid "It will be removed in Zenphoto %s."
 msgstr "Het zal worden verwijderd in Zenphoto %s."
 
-#: zp-core/functions/functions-basic.php:2280 zp-core/setup/class-setup.php:240
+#: zp-core/functions/functions-basic.php:2317 zp-core/setup/class-setup.php:240
 #: zp-core/setup/class-setup.php:245
 msgid "unknown"
 msgstr "onbekend"
 
-#: zp-core/functions/functions-basic.php:2288
+#: zp-core/functions/functions-basic.php:2325
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
 
-#: zp-core/functions/functions-basic.php:2290
+#: zp-core/functions/functions-basic.php:2327
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr ""
 "Gebruik van parameter %1$s van %2$s (aangeroepen van %3$s regel %4$s) is "
 "verouderd."
 
-#: zp-core/functions/functions-basic.php:2292
+#: zp-core/functions/functions-basic.php:2329
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (aangeroepen van %2$s regel %3$s) is verouderd."
@@ -9258,17 +9422,6 @@ msgstr "oudste"
 msgid "first alphabetically"
 msgstr "alfabetisch gesorteerd"
 
-#: zp-core/functions/functions.php:38
-#: zp-core/utilities/gallery_statistics.php:140
-#: zp-core/utilities/gallery_statistics.php:583
-#: zp-core/utilities/gallery_statistics.php:594
-#: zp-core/utilities/gallery_statistics.php:609
-#: zp-core/utilities/gallery_statistics.php:617
-#: zp-core/utilities/gallery_statistics.php:625
-#: zp-core/utilities/gallery_statistics.php:631
-msgid "most viewed"
-msgstr "meest bekeken"
-
 #: zp-core/functions/functions.php:41
 msgid "missing"
 msgstr "ontbreekt"
@@ -9505,7 +9658,7 @@ msgstr "Bron"
 
 #: zp-core/functions/functions.php:2835 zp-core/template-functions.php:469
 #: zp-core/zp-extensions/html_meta_tags.php:468
-#: zp-core/zp-extensions/scriptless-socialsharing.php:428
+#: zp-core/zp-extensions/scriptless-socialsharing.php:451
 msgid "Contact"
 msgstr "Contact"
 
@@ -12623,7 +12776,7 @@ msgstr "Maak statische zoek-cache leeg."
 #: zp-core/utilities/http_header_inspector.php:11
 #: zp-core/utilities/list_locales.php:10 zp-core/utilities/phpInfo.php:12
 #: zp-core/utilities/user-data-export.php:13
-#: zp-core/zp-extensions/downloadList.php:273
+#: zp-core/zp-extensions/downloadList.php:306
 #: zp-core/zp-extensions/matomo.php:221
 #: zp-core/zp-extensions/search_statistics.php:79
 msgid "Info"
@@ -12694,7 +12847,7 @@ msgid "Column"
 msgstr "Kolom"
 
 #: zp-core/utilities/gallery_statistics.php:21
-#: zp-core/utilities/gallery_statistics.php:500
+#: zp-core/utilities/gallery_statistics.php:61
 msgid "Gallery Statistics"
 msgstr "Galerij statistieken"
 
@@ -12704,119 +12857,7 @@ msgid ""
 msgstr ""
 "Laat statistische grafieken en informatie zien over albums en afbeeldingen."
 
-#: zp-core/utilities/gallery_statistics.php:89
-#: zp-core/zp-extensions/zenpage.php:396
-msgid "News Categories"
-msgstr "Nieuwscategorieën"
-
-#: zp-core/utilities/gallery_statistics.php:96
-msgid "rss"
-msgstr "rss"
-
-#: zp-core/utilities/gallery_statistics.php:119
-#: zp-core/utilities/gallery_statistics.php:603
-#: zp-core/utilities/gallery_statistics.php:626
-msgid "most used"
-msgstr "meest gebruikt"
-
-#: zp-core/utilities/gallery_statistics.php:150
-#: zp-core/utilities/gallery_statistics.php:595
-msgid "most viewed images"
-msgstr "meest bekeken afbeeldingen"
-
-#: zp-core/utilities/gallery_statistics.php:159
-#: zp-core/utilities/gallery_statistics.php:584
-#: zp-core/utilities/gallery_statistics.php:596
-#: zp-core/utilities/gallery_statistics.php:611
-#: zp-core/utilities/gallery_statistics.php:619
-msgid "most rated"
-msgstr "meest beoordeeld"
-
-#: zp-core/utilities/gallery_statistics.php:172
-#: zp-core/utilities/gallery_statistics.php:585
-#: zp-core/utilities/gallery_statistics.php:597
-#: zp-core/utilities/gallery_statistics.php:612
-#: zp-core/utilities/gallery_statistics.php:620
-msgid "top rated"
-msgstr "best beoordeeld"
-
-#: zp-core/utilities/gallery_statistics.php:194
-#: zp-core/utilities/gallery_statistics.php:586
-#: zp-core/utilities/gallery_statistics.php:598
-#: zp-core/utilities/gallery_statistics.php:610
-#: zp-core/utilities/gallery_statistics.php:618
-msgid "most commented"
-msgstr "meeste reacties"
-
-#: zp-core/utilities/gallery_statistics.php:203
-#: zp-core/utilities/gallery_statistics.php:593
-msgid "most images"
-msgstr "meeste afbeeldingen"
-
-#: zp-core/utilities/gallery_statistics.php:219
-#: zp-core/utilities/gallery_statistics.php:225
-#: zp-core/utilities/gallery_statistics.php:582
-#: zp-core/utilities/gallery_statistics.php:591
-msgid "latest"
-msgstr "laatste"
-
-#: zp-core/utilities/gallery_statistics.php:243
-#: zp-core/utilities/gallery_statistics.php:592
-#: zp-core/zp-extensions/rss.php:137
-msgid "latest updated"
-msgstr "laatste veranderingen"
-
-#: zp-core/utilities/gallery_statistics.php:251
-msgid "(The hitcounter plugin is not enabled.)"
-msgstr "(De plugin <em>hitcounter</em> is niet geactiveerd.)"
-
-#: zp-core/utilities/gallery_statistics.php:253
-msgid "No statistic available."
-msgstr "Geen statistieken beschikbaar."
-
-#: zp-core/utilities/gallery_statistics.php:257
-msgid ""
-"Note: The hitcounter plugin is not enabled, therefore any existing values "
-"will not get updated."
-msgstr ""
-"Opmerking: De <em>hitcounter</em> plugin is niet geactiveerd. Bestaande "
-"waarden worden daardoor niet bijgewerkt."
-
-#: zp-core/utilities/gallery_statistics.php:270
-msgid "Back to the top 10 lists"
-msgstr "Terug naar de top 10 lijsten"
-
-#: zp-core/utilities/gallery_statistics.php:273
-msgid "View more"
-msgstr "Meer informatie"
-
-#: zp-core/utilities/gallery_statistics.php:275
-msgid "top"
-msgstr "naar boven"
-
-#: zp-core/utilities/gallery_statistics.php:341
-#: zp-core/utilities/gallery_statistics.php:351
-#, php-format
-msgid "%s images"
-msgstr "%s afbeeldingen"
-
-#: zp-core/utilities/gallery_statistics.php:460
-#: zp-core/utilities/gallery_statistics.php:463
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:253
-#: zp-core/zp-extensions/publishContent/publishContent.php:436
-#: zp-core/zp-extensions/publishContent/publishContent.php:490
-#: zp-core/zp-extensions/publishContent/publishContent.php:549
-#: zp-core/zp-extensions/publishContent/publishContent.php:605
-#: zp-core/zp-extensions/zenpage/admin-categories.php:190
-#: zp-core/zp-extensions/zenpage/admin-edit.php:352
-#: zp-core/zp-extensions/zenpage/admin-edit.php:354
-#: zp-core/zp-extensions/zenpage/admin-edit.php:808
-#: zp-core/zp-extensions/zenpage/admin-edit.php:812
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1425
-msgid "View"
-msgstr "Bekijk"
-
-#: zp-core/utilities/gallery_statistics.php:501
+#: zp-core/utilities/gallery_statistics.php:62
 msgid ""
 "This page shows more detailed statistics of your gallery. For album "
 "statistics the bar graph always shows the total number of images in that "
@@ -12824,135 +12865,12 @@ msgid ""
 ">Un-published items are marked in dark red. Images are marked un-published "
 "if their (direct) album is, too."
 msgstr ""
-"Deze pagina laat je meer gedetallieerde statistieken van de galerij zien. "
-"Bij album-statistieken laat het staafdiagram altijd het totaal aantal "
-"afbeeldingen in het album zien.<br /> Bij afbeeldings-statistieken altijd "
-"zie je altijd het album waarin de afbeelding zich bevindt.<br /"
-">Ongepubliceerde onderdelen zijn donkerrood. Afbeeldingen zijn automatisch "
+"Deze pagina laat meer gedetallieerde statistieken van de galerij zien. Bij "
+"album-statistieken laat het staafdiagram altijd het totaal aantal "
+"afbeeldingen in het album zien.<br /> Bij afbeeldings-statistieken zie je "
+"altijd het album waarin de afbeelding zich bevindt.<br />Ongepubliceerde/"
+"niet aanwezige onderdelen zijn donkerrood. Afbeeldingen zijn automatisch "
 "niet gepubliceerd als hun album dat ook niet is."
-
-#: zp-core/utilities/gallery_statistics.php:506
-#, php-format
-msgid "<strong>%1$u</strong> images (%2$u un-published)"
-msgstr "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
-
-#: zp-core/utilities/gallery_statistics.php:508
-#, php-format
-msgid "<strong>%u</strong> images"
-msgstr "<strong>%u</strong> afbeeldingen"
-
-#: zp-core/utilities/gallery_statistics.php:514
-#, php-format
-msgid "<strong>%1$u</strong> albums (%2$u un-published)"
-msgstr "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
-
-#: zp-core/utilities/gallery_statistics.php:516
-#, php-format
-msgid "<strong>%u</strong> albums"
-msgstr "<strong>%u</strong> albums"
-
-#: zp-core/utilities/gallery_statistics.php:526
-#, php-format
-msgid "<strong>%1$u</strong> comments (%2$u in moderation)"
-msgstr "<strong>%1$u</strong> reacties (%2$u voor goedkeuring)"
-
-#: zp-core/utilities/gallery_statistics.php:528
-#, php-format
-msgid "<strong>1</strong> comment (%u in moderation)"
-msgstr "<strong>1</strong> reactie (%u ter goedkeuring)"
-
-#: zp-core/utilities/gallery_statistics.php:532
-#, php-format
-msgid "<strong>%u</strong> comments"
-msgstr "<strong>%u</strong> reacties"
-
-#: zp-core/utilities/gallery_statistics.php:534
-msgid "<strong>1</strong> comment"
-msgstr "<strong>1</strong> reactie"
-
-#: zp-core/utilities/gallery_statistics.php:544
-#, php-format
-msgid "<strong>%1$u</strong> Pages"
-msgstr "<strong>%1$u</strong> Pagina’s"
-
-#: zp-core/utilities/gallery_statistics.php:546
-#, php-format
-msgid "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr "<strong>%1$u</strong> Pagina’s (%2$u niet gepubliceerd)"
-
-#: zp-core/utilities/gallery_statistics.php:554
-#, php-format
-msgid "<strong>%1$u</strong> News articles"
-msgstr "<strong>%1$u</strong> News artikelen"
-
-#: zp-core/utilities/gallery_statistics.php:556
-#, php-format
-msgid "<strong>%1$u</strong> News articles (%2$u un-published)"
-msgstr ""
-"<strong>%1$u</strong> Artikelen (<strong>%2$u</strong> niet gepubliceerd)"
-
-#: zp-core/utilities/gallery_statistics.php:563
-#, php-format
-msgid "<strong>%1$u</strong> Categories"
-msgstr "<strong>%1$u</strong> Categorieën"
-
-#: zp-core/utilities/gallery_statistics.php:568
-#, php-format
-msgid "Albums folder size: <strong>%s</strong>"
-msgstr "Albums mapgrootte: <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:569
-#, php-format
-msgid "Image cache size: <strong>%s</strong>"
-msgstr "Afbeeldingen cache-grootte: <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:570
-#, php-format
-msgid "HTML cache size: <strong>%s</strong>"
-msgstr "HTML cache-grootte: <strong>%1$s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:571
-#, php-format
-msgid "Uploaded folder size: <strong>%s</strong>"
-msgstr "Uploaded mapgrootte: <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:572
-#, php-format
-msgid "Zenphoto scripts size: <strong>%s</strong>"
-msgstr "Zenphoto scriptgrootte: <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:629
-msgid "RSS feeds"
-msgstr "RSS feeds"
-
-#: zp-core/utilities/gallery_statistics.php:717
-msgid "Statistics for news categories"
-msgstr "Statistieken voor nieuwscategorieën"
-
-#: zp-core/utilities/gallery_statistics.php:724
-msgid "Statistics for RSS feeds"
-msgstr "Statistieken voor RSS feeds"
-
-#: zp-core/utilities/gallery_statistics.php:760
-msgid "From "
-msgstr "van"
-
-#: zp-core/utilities/gallery_statistics.php:762
-msgid "to "
-msgstr "tot"
-
-#: zp-core/utilities/gallery_statistics.php:766
-#: zp-core/zp-extensions/cacheManager.php:162
-#: zp-core/zp-extensions/cacheManager.php:167
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:190
-#: zp-core/zp-extensions/comment_form.php:121
-#: zp-core/zp-extensions/comment_form.php:129
-#: zp-core/zp-extensions/comment_form.php:137
-#: zp-core/zp-extensions/comment_form.php:150
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:193
-#: zp-core/zp-extensions/register_user.php:146
-msgid "Show"
-msgstr "Toon"
 
 #: zp-core/utilities/http_header_inspector.php:13
 #: zp-core/utilities/http_header_inspector.php:18
@@ -15624,7 +15542,7 @@ msgstr "Postcode"
 
 #: zp-core/zp-extensions/contact_form.php:166
 #: zp-core/zp-extensions/contact_form.php:170
-#: zp-core/zp-extensions/scriptless-socialsharing.php:279
+#: zp-core/zp-extensions/scriptless-socialsharing.php:302
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -16590,11 +16508,21 @@ msgstr "%s tabel"
 msgid "Plugin to generate file download lists."
 msgstr "Maakt download statistieken."
 
-#: zp-core/zp-extensions/downloadList.php:64
+#: zp-core/zp-extensions/downloadList.php:66
+msgid "User rights"
+msgstr "Gebruikersrechten"
+
+#: zp-core/zp-extensions/downloadList.php:69
+msgid "Check if users are required to have <em>file</em> rights to download."
+msgstr ""
+"Vink aan als gebruikers <em>bestands</em>rechten moeten hebben om te "
+"downloaden."
+
+#: zp-core/zp-extensions/downloadList.php:70
 msgid "Download directory"
 msgstr "Download map"
 
-#: zp-core/zp-extensions/downloadList.php:68
+#: zp-core/zp-extensions/downloadList.php:73
 msgid ""
 "This download folder can be relative to your Zenphoto installation "
 "(<em>foldername</em>) or external to it (<em>../foldername</em>)! You can "
@@ -16606,19 +16534,19 @@ msgstr ""
 "veranderen door dit rechtstreeks aan te passen in de functie "
 "printdownloadList()."
 
-#: zp-core/zp-extensions/downloadList.php:69
+#: zp-core/zp-extensions/downloadList.php:74
 msgid "Show filesize of download items"
 msgstr "Toon bestandsgrootte van te downloaden onderdelen."
 
-#: zp-core/zp-extensions/downloadList.php:74
+#: zp-core/zp-extensions/downloadList.php:78
 msgid "Show download counter of download items"
 msgstr "Toon een teller voor de gedownloade onderdelen."
 
-#: zp-core/zp-extensions/downloadList.php:79
+#: zp-core/zp-extensions/downloadList.php:82
 msgid "Files to exclude from the download list"
 msgstr "Bestanden uitsluiten van de lijst."
 
-#: zp-core/zp-extensions/downloadList.php:83
+#: zp-core/zp-extensions/downloadList.php:85
 msgid ""
 "A list of file suffixes to exclude. Separate with comma and omit the dot (e."
 "g \"jpg\")."
@@ -16626,19 +16554,19 @@ msgstr ""
 "Een lijst met extensies om uit te sluiten. Te scheiden door een komma zónder "
 "de voorafgaande punt. (bijvoorbeeld: jpg)"
 
-#: zp-core/zp-extensions/downloadList.php:84
+#: zp-core/zp-extensions/downloadList.php:86
 msgid "Zip source"
 msgstr "Zip bron"
 
-#: zp-core/zp-extensions/downloadList.php:88
+#: zp-core/zp-extensions/downloadList.php:89
 msgid "Full images"
 msgstr "Volledige afbeeldingen"
 
-#: zp-core/zp-extensions/downloadList.php:88
+#: zp-core/zp-extensions/downloadList.php:89
 msgid "Resized images"
 msgstr "Ingesteld formaat"
 
-#: zp-core/zp-extensions/downloadList.php:89
+#: zp-core/zp-extensions/downloadList.php:90
 msgid ""
 "Make the album zip using full images from the album folder or from the sized "
 "images <strong>already existing</strong> in the cache."
@@ -16646,7 +16574,7 @@ msgstr ""
 "Maak de het album-zip bestand van de album-map of van de standaard "
 "afbeeldingen in de cache."
 
-#: zp-core/zp-extensions/downloadList.php:91
+#: zp-core/zp-extensions/downloadList.php:92
 msgid ""
 "<strong>Notice:</strong>  If you select <em>Resized images</em>, make sure "
 "that you have already cached all of the default size images for the albums "
@@ -16661,7 +16589,7 @@ msgstr ""
 "zijn gecached kan het erg lang duren om ze alsnog te cachen en zelfs "
 "resulteren in een server time-out."
 
-#: zp-core/zp-extensions/downloadList.php:93
+#: zp-core/zp-extensions/downloadList.php:94
 msgid "Add images from subalbums"
 msgstr "Voeg afbeeldingen uit subalbums toe"
 
@@ -16678,57 +16606,59 @@ msgid "Subalbums whose images are to be included in the album zip."
 msgstr "Subalbums waarvan de afbeeldingen worden toegevoegd aan de album zip."
 
 #: zp-core/zp-extensions/downloadList.php:99
-msgid "User rights"
-msgstr "Gebruikersrechten"
+msgid "Allow external downloads"
+msgstr "Maak externe downloads mogelijk"
 
-#: zp-core/zp-extensions/downloadList.php:101
-msgid "Check if users are required to have <em>file</em> rights to download."
+#: zp-core/zp-extensions/downloadList.php:102
+msgid ""
+"Check if you want to allow downloads from external sites. This directly "
+"redirects to the external source."
 msgstr ""
-"Vink aan als gebruikers <em>bestands</em>rechten moeten hebben om te "
-"downloaden."
+"Vink aan als je downloads van externe sites wilt toestaan. Dit leidt meteen "
+"om naar de extermne bron."
 
-#: zp-core/zp-extensions/downloadList.php:104
+#: zp-core/zp-extensions/downloadList.php:105
 msgid "credentials"
 msgstr "Verificatiegegevens"
 
-#: zp-core/zp-extensions/downloadList.php:106
+#: zp-core/zp-extensions/downloadList.php:108
 msgid "Provide credentials to password protect downloads"
 msgstr "Wachtwoord voor beveiligde download."
 
-#: zp-core/zp-extensions/downloadList.php:119
-#: zp-core/zp-extensions/downloadList.php:143
+#: zp-core/zp-extensions/downloadList.php:121
+#: zp-core/zp-extensions/downloadList.php:145
 #: zp-core/zp-extensions/zenpage/admin-edit.php:466
 #: zp-core/zp-extensions/zenpage/admin-edit.php:490
 msgid "Password:"
 msgstr "Wachtwoord:"
 
-#: zp-core/zp-extensions/downloadList.php:136
+#: zp-core/zp-extensions/downloadList.php:138
 #: zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "Guest user:"
 msgstr "Gast:"
 
-#: zp-core/zp-extensions/downloadList.php:173
+#: zp-core/zp-extensions/downloadList.php:175
 msgid "You must supply a password for the DownloadList user"
 msgstr "Je moet een wachtwoord opgeven voor de gebruiker van DownloadList"
 
-#: zp-core/zp-extensions/downloadList.php:175
+#: zp-core/zp-extensions/downloadList.php:177
 msgid "Your DownloadList passwords were empty or did not match"
 msgstr "De wachtwoorden voor de DowloadList zijn leeg of komen niet overeen"
 
-#: zp-core/zp-extensions/downloadList.php:275
+#: zp-core/zp-extensions/downloadList.php:308
 msgid "Download statistics"
 msgstr "Download statistieken"
 
-#: zp-core/zp-extensions/downloadList.php:279
+#: zp-core/zp-extensions/downloadList.php:312
 msgid "Counts of downloads"
 msgstr "Aantal downloads"
 
-#: zp-core/zp-extensions/downloadList.php:333
+#: zp-core/zp-extensions/downloadList.php:368
 #, php-format
 msgid "File “%s” was not found."
 msgstr "Bestand “%s” niet gevonden."
 
-#: zp-core/zp-extensions/downloadList.php:497
+#: zp-core/zp-extensions/downloadList.php:564
 #, php-format
 msgid ""
 "WARNING: Some images from %1$s were not added to %2$s by %3$s as they were "
@@ -16737,59 +16667,50 @@ msgstr ""
 "WAARSCHUWING: Sommige afbeeldingen uit %1$s zijn niet toegevoegd aan %2$s "
 "door %3$s omat ze niet gecached zijn."
 
-#: zp-core/zp-extensions/downloadList.php:531
-#, php-format
-msgid "Page error: %2$s (%1$s)"
-msgstr "Fout op pagina: %2$s (%1$s)"
+#: zp-core/zp-extensions/downloadList.php:592
+msgid "Use downloadList::noFile() instead"
+msgstr "Gebruik in plaats hiervan <code>downloadList::noFile()</code>"
 
-#: zp-core/zp-extensions/downloadList.php:546
+#: zp-core/zp-extensions/downloadList.php:605
 msgid "Album not found"
 msgstr "Album niet gevonden"
 
-#: zp-core/zp-extensions/downloadList.php:554
+#: zp-core/zp-extensions/downloadList.php:613
 #, php-format
 msgid "Created from cached images of %1$s on %2$s."
 msgstr "Gemaakt van gecachte afbeeldingen van %1$s op %2$s."
 
-#: zp-core/zp-extensions/downloadList.php:559
+#: zp-core/zp-extensions/downloadList.php:618
 #, php-format
 msgid "Created from images in %1$s on %2$s."
 msgstr "Gemaakt van afbeeldingen in %1$s op %2$s."
 
-#: zp-core/zp-extensions/downloadList.php:695
-#: zp-core/zp-extensions/downloadList.php:754
+#: zp-core/zp-extensions/downloadList.php:757
+#: zp-core/zp-extensions/downloadList.php:816
 #, php-format
 msgid "%u download"
 msgid_plural "%u downloads"
 msgstr[0] "%u download"
 msgstr[1] "%u downloads"
 
-#: zp-core/zp-extensions/downloadList.php:697
-#: zp-core/zp-extensions/downloadList.php:756
+#: zp-core/zp-extensions/downloadList.php:759
+#: zp-core/zp-extensions/downloadList.php:818
 msgid "0 downloads"
 msgstr "0 downloads"
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:42
-msgid "No statistic available"
-msgstr "Geen statistieken beschikbaar."
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:47
-msgid "Most downloaded files"
-msgstr "Meest gedownloade bestanden"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:122
+#: zp-core/zp-extensions/downloadList/download_statistics.php:43
 msgid "Outdated file entries cleared from the database"
 msgstr "Verouderde invoer van bestanden verwijderd uit de database."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:128
+#: zp-core/zp-extensions/downloadList/download_statistics.php:48
 msgid "All download file entries cleared from the database"
 msgstr "Alle invoer van gedownloade bestanden is verwijderd uit de database."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:131
+#: zp-core/zp-extensions/downloadList/download_statistics.php:51
 msgid "Download Statistics"
 msgstr "Download"
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:132
+#: zp-core/zp-extensions/downloadList/download_statistics.php:52
 msgid ""
 "Shows statistical graphs and info about your gallery’s downloads if using "
 "the downloadList plugin."
@@ -16797,7 +16718,7 @@ msgstr ""
 "Laat statistische grafieken en informatie zien over alle downloads, indien "
 "de downloadList plugin is geactiveerd."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:133
+#: zp-core/zp-extensions/downloadList/download_statistics.php:53
 msgid ""
 "Entries marked red do not exist in the download folder anymore but are kept "
 "for the statistics until you remove them manually via the button."
@@ -16806,15 +16727,15 @@ msgstr ""
 "worden nog wel gebruikt voor statistieken totdat ze handmatig verwijderd "
 "worden met de knop."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:137
+#: zp-core/zp-extensions/downloadList/download_statistics.php:57
 msgid "The downloadList plugin is not active"
 msgstr "De plugin <em>downloadList</em> is niet geactiveerd."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:140
+#: zp-core/zp-extensions/downloadList/download_statistics.php:60
 msgid "Clear outdated downloads from database"
 msgstr "Verwijder verouderde downloads uit de database."
 
-#: zp-core/zp-extensions/downloadList/download_statistics.php:141
+#: zp-core/zp-extensions/downloadList/download_statistics.php:61
 msgid "Clear all downloads from database"
 msgstr "Verwijder alle downloads uit de database."
 
@@ -21282,99 +21203,142 @@ msgid ""
 "A Zenphoto plugin that provides scriptless and privacy friendly sharing and "
 "social network profile buttons."
 msgstr ""
+"Een Zenphoto plugin voor privacy-vriendelijk en scriptloos delen op sociale "
+"netwerken."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:54
+#: zp-core/zp-extensions/scriptless-socialsharing.php:55
+#| msgid "Show author URL"
+msgid "RSS custom URL"
+msgstr "RSS custom URL"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:58
+msgid "Enter the custom RSS URL and choose the custom mode below to use it."
+msgstr "Vul een custom RSS URL in en kies hieronder het gewenste type."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:61
 #, php-format
 msgid "%s profile URL"
-msgstr ""
+msgstr "%s profiel URL"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:59
+#: zp-core/zp-extensions/scriptless-socialsharing.php:65
 #, php-format
 msgid "Enter the URL to your profile on %s."
-msgstr ""
+msgstr "Vul de URL van je profiel op %s in."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:63
-msgid "RSS feed URL"
-msgstr "RSS feed URL"
+#: zp-core/zp-extensions/scriptless-socialsharing.php:71
+msgid "Custom URL (URL entered above)"
+msgstr "Custom URL (URL van hierboven)"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:67
-#, php-format
-msgid "Enter the URL to your main RSS feed."
-msgstr ""
+#: zp-core/zp-extensions/scriptless-socialsharing.php:74
+msgid "Gallery: Latest images"
+msgstr "Galerij: laatste afbeeldingen"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:70
+#: zp-core/zp-extensions/scriptless-socialsharing.php:75
+msgid "Gallery: Latest albums"
+msgstr "Galerij: laatste albums"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:78
+#| msgid "Media RSS:"
+msgid "Merged RSS"
+msgstr "Merged RSS"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:81
+msgid "News: latest articles"
+msgstr "Nieuws: laatste artikelen"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:85
 msgid "Social networks"
 msgstr "Sociale netwerken"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:74
-msgid "Select the social networks you wish buttons to appear for."
+#: zp-core/zp-extensions/scriptless-socialsharing.php:89
+msgid "Select the social networks you wish sharing buttons to appear for."
 msgstr "Selecteer de sociale netwerken waarvoor je knoppen wilt tonen."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:75
+#: zp-core/zp-extensions/scriptless-socialsharing.php:90
 msgid "Icon font and default CSS"
 msgstr "Icon font en standaard CSS"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:78
+#: zp-core/zp-extensions/scriptless-socialsharing.php:93
 msgid ""
 "Uncheck to disable loading the included font and CSS and use your own theme "
 "based icon font and CSS."
 msgstr "Vink uit om je eigen font en CSS te gebruiken."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:79
+#: zp-core/zp-extensions/scriptless-socialsharing.php:94
 msgid "Icons only"
 msgstr "Alleen ikonen"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:82
+#: zp-core/zp-extensions/scriptless-socialsharing.php:97
 msgid "Check to hide the service name and only show icon buttons."
 msgstr "Vink aan om de knoppen te tonen zonder de namen."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:83
+#: zp-core/zp-extensions/scriptless-socialsharing.php:98
 msgid "Twitter user name"
 msgstr "Twitter gebruikersnaam"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:86
+#: zp-core/zp-extensions/scriptless-socialsharing.php:101
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to "
 "tweets made."
 msgstr "Vul je Twitter-naam in zonder “@“ om die toe te voegen aan tweets."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:91
-#| msgid "Tile blind"
+#: zp-core/zp-extensions/scriptless-socialsharing.php:106
 msgid "Profile links"
 msgstr "Profiel links"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:94
-msgid "Profile links alignment"
-msgstr ""
+#: zp-core/zp-extensions/scriptless-socialsharing.php:111
+msgid "RSS URL mode"
+msgstr "RSS URL type"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:98
+#: zp-core/zp-extensions/scriptless-socialsharing.php:115
+msgid ""
+"Select the RSS mode to use. If the RSS and/or mergedRSS plugin are not "
+"enabled only the custom mode is available."
+msgstr ""
+"Selecteer het type RSS om te gebruiken. Wanneer de <code>RSS</code> en/of de "
+"<code>mergedRSS</code> plugin(s) niet geactiveerd is/zijn, is alleen het "
+"custom type beschikbaar."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:117
+msgid "Profile links alignment"
+msgstr "Uitlijning profiel-links"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:121
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:156
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
 msgid "Left"
 msgstr "Links"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:99
+#: zp-core/zp-extensions/scriptless-socialsharing.php:122
 msgid "Center"
 msgstr "Centrum"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:100
+#: zp-core/zp-extensions/scriptless-socialsharing.php:123
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:155
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
 msgid "Right"
 msgstr "Rechts"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:102
-msgid "Select the social networks you wish buttons to appear for. "
-msgstr "Selecteer de sociale netwerken waarvoor je knoppen wilt tonen."
-
-#: zp-core/zp-extensions/scriptless-socialsharing.php:503
-msgid "Please enter your Mastodon instance first, e.g mastodon.social."
+#: zp-core/zp-extensions/scriptless-socialsharing.php:125
+msgid ""
+"Select the alignment for te profile button alignment. The theme used may "
+"override this and may require an update to work properly."
 msgstr ""
+"Selecteerd de uitlijning voor de profiel-knoppen. Het kan zijn dat het thema "
+"deze instelling in de weg zit en dat er een aanpassing nodig is."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:548
+#: zp-core/zp-extensions/scriptless-socialsharing.php:526
+msgid "Please enter your Mastodon instance first, e.g mastodon.social."
+msgstr "Vul je Mastodon server, bijvoorbeeld mastodon.social."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:573
+msgid "Subscribe to the RSS feed"
+msgstr "Abonneer je op de RSS feed"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:581
 #, php-format
 msgid "Follow on %s"
-msgstr ""
+msgstr "Volg ons op %s"
 
 #: zp-core/zp-extensions/search_statistics.php:24
 msgid "Collects and displays search criteria."
@@ -24031,6 +23995,10 @@ msgstr ""
 "De functie <code>checkForGuests()</code> is verouderd. Gebruik in plaats "
 "hiervan de template functie <code>checkForGuest()</code>."
 
+#: zp-core/zp-extensions/zenpage.php:396
+msgid "News Categories"
+msgstr "Nieuwscategorieën"
+
 #: zp-core/zp-extensions/zenpage.php:406
 #: zp-core/zp-extensions/zenpage/admin-edit.php:131
 #: zp-core/zp-extensions/zenpage/admin-pages.php:79
@@ -25011,6 +24979,86 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "rss"
+#~ msgstr "rss"
+
+#~ msgid "top"
+#~ msgstr "naar boven"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> images (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> afbeeldingen (%2$u niet gepubliceerd)"
+
+#, php-format
+#~ msgid "<strong>%u</strong> images"
+#~ msgstr "<strong>%u</strong> afbeeldingen"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> albums (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> albums (%2$u niet gepubliceerd)"
+
+#, php-format
+#~ msgid "<strong>%u</strong> albums"
+#~ msgstr "<strong>%u</strong> albums"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> comments (%2$u in moderation)"
+#~ msgstr "<strong>%1$u</strong> reacties (%2$u voor goedkeuring)"
+
+#, php-format
+#~ msgid "<strong>1</strong> comment (%u in moderation)"
+#~ msgstr "<strong>1</strong> reactie (%u ter goedkeuring)"
+
+#, php-format
+#~ msgid "<strong>%u</strong> comments"
+#~ msgstr "<strong>%u</strong> reacties"
+
+#~ msgid "<strong>1</strong> comment"
+#~ msgstr "<strong>1</strong> reactie"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Pages"
+#~ msgstr "<strong>%1$u</strong> Pagina’s"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Pages (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> Pagina’s (%2$u niet gepubliceerd)"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> News articles"
+#~ msgstr "<strong>%1$u</strong> News artikelen"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> News articles (%2$u un-published)"
+#~ msgstr ""
+#~ "<strong>%1$u</strong> Artikelen (<strong>%2$u</strong> niet gepubliceerd)"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Categories"
+#~ msgstr "<strong>%1$u</strong> Categorieën"
+
+#~ msgid "RSS feeds"
+#~ msgstr "RSS feeds"
+
+#~ msgid "Statistics for news categories"
+#~ msgstr "Statistieken voor nieuwscategorieën"
+
+#~ msgid "Statistics for RSS feeds"
+#~ msgstr "Statistieken voor RSS feeds"
+
+#, php-format
+#~ msgid "Page error: %2$s (%1$s)"
+#~ msgstr "Fout op pagina: %2$s (%1$s)"
+
+#~ msgid "No statistic available"
+#~ msgstr "Geen statistieken beschikbaar."
+
+#~ msgid "RSS feed URL"
+#~ msgstr "RSS feed URL"
+
+#~ msgid "Select the social networks you wish buttons to appear for. "
+#~ msgstr "Selecteer de sociale netwerken waarvoor je knoppen wilt tonen."
 
 #~ msgid ""
 #~ "Checks if there is a Zenphoto versions that is newer than the installed "
