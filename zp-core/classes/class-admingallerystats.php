@@ -868,12 +868,12 @@ class adminGalleryStats {
 				$data['title'] = get_language_string($item['title']);
 				break;
 			case "news":
-				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?news&amp;titlelink=" . $name;
+				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;titlelink=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?p=news&amp;title=" . $name;
 				$data['title'] = get_language_string($item['title']);
 				break;
 			case "newscategories":
-				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-categories.php?edit&amp;id=" . $item['id'];
+				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newscategory&amp;titlelink=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?p=news&amp;category=" . $name;
 				$data['title'] = get_language_string($item['title']);
 				break;
@@ -959,10 +959,10 @@ class adminGalleryStats {
 								break;
 							default:
 								if ($itemdata['viewurl']) {
-									echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . $name . '">'.gettext('View') .'</a>';
+									echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . $name . '">'.gettext('View') .'</a>';
 								}
 								if ($itemdata['editurl']) {
-									echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . $name . '">'.gettext('Edit') .'</a>';
+									echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . $name . '">'.gettext('Edit') .'</a>';
 								}
 								break;
 						}
