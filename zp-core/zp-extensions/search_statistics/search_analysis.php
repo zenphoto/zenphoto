@@ -87,7 +87,7 @@ foreach ($results_f as $key => $failed) {
 		$results[$key] ++;
 	}
 }
-$maxiterations = count($maxiterations);
+$maxiterations_count = count($maxiterations);
 
 $limit_i = getOption('search_statistics_ip_threshold');
 $sitelimited = count($sites) > $limit_i;
@@ -142,7 +142,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results as $criteria => $count) {
-								$count = round($count / $maxiterations);
+								$count = round($count / $maxiterations_count);
 								$barsize = round($count / $criteria_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">

@@ -89,7 +89,9 @@ printAdminHeader('overview', 'statistics');
 				// If a single list is requested
 				if (isset($_GET['type'])) {
 					$fromtonumbers = adminGalleryStats::getProcessedFromToNumbers();
-					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers);
+					$stats = sanitize($_GET['stats']);
+					$type = sanitize($_GET['type']);
+					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers, $stats, $type);
 					$type = sanitize($_GET['type']);
 					$sortorder = sanitize($_GET['stats']);
 					$supported = adminGalleryStats::getSupportedTypes();

@@ -252,15 +252,16 @@ class adminGalleryStats {
 	 * @since 1.6.6
 	 * 
 	 * @param array $fromtonumbers The array from as returned by adminGalleryStats::getProcessedFromToNumbers();
+	 * @param string $stats The sortorder to get
+	 * @param string $type The item type to get
 	 */
-	static function printSingleStatSelectionForm($fromtonumbers) {
-		$stats = sanitize($_GET['stats']);
-		$type = sanitize($_GET['type']);
-		$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
-		if ($type == 'downloads') {
-			$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';
-		}
-		?>
+	static function printSingleStatSelectionForm($fromtonumbers, $stats, $type) {
+		if ($stats && $type) {
+			$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
+			if ($type == 'downloads') {
+				$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';
+			}
+			?>
 				<form name="limit" id="limit" action="<?php echo $actionurl; ?>">
 					<label for="from_number"><?php echo gettext("From "); ?></label>
 					<input type ="text" size="10" id="from_number" name="from_number" value="<?php echo $fromtonumbers['from_display']; ?>" />
@@ -270,7 +271,8 @@ class adminGalleryStats {
 					<input type="hidden" name="type" value="<?php echo html_encode($type); ?>" />
 					<button type="submit"><?php echo gettext("Show"); ?></button>
 				</form>
-		<?php
+			<?php
+		}
 	}
 
 	/**
@@ -953,19 +955,12 @@ class adminGalleryStats {
 				<td class="statistic_link">
 					<div class="icon-row">
 						<?php
-						switch ($this->type) {
-							case 'rss':
+							if ($itemdata['viewurl']) {
 								echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . $name . '">'.gettext('View') .'</a>';
-								break;
-							default:
-								if ($itemdata['viewurl']) {
-									echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . $name . '">'.gettext('View') .'</a>';
-								}
-								if ($itemdata['editurl']) {
-									echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . $name . '">'.gettext('Edit') .'</a>';
-								}
-								break;
-						}
+							}
+							if ($itemdata['editurl']) {
+								echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . $name . '">'.gettext('Edit') .'</a>';
+							}
 						?>
 					</div>
 				</td>
@@ -974,6 +969,8 @@ class adminGalleryStats {
 			$count++;
 		}
 	}
+	
+	
 
 	/**
 	 * Prints the statistics table for the items chosen

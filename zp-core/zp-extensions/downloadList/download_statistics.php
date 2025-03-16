@@ -62,7 +62,7 @@ printAdminHeader('overview', 'download');
 					<br class="clearall" /><br />
 				<?php
 					$fromtonumbers = adminGalleryStats::getProcessedFromToNumbers();
-					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers);
+					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers, 'mostdownloaded', 'downloads');
 					$statsobj = new adminGalleryStats('mostdownloaded', 'downloads', $fromtonumbers['from'], $fromtonumbers['to']);
 					$statsobj->printStatistics();
 				}
