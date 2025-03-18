@@ -1432,6 +1432,7 @@ zp-core/zp-extensions/scriptless-socialsharing/selection.json
 zp-core/zp-extensions/scriptless-socialsharing/style.css
 zp-core/zp-extensions/search_statistics
 zp-core/zp-extensions/search_statistics.php
+zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php
 zp-core/zp-extensions/search_statistics/search_analysis.php
 zp-core/zp-extensions/security-logger.php
 zp-core/zp-extensions/seo_cleanup.php
@@ -2178,4 +2179,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-2180
+2181

@@ -25,8 +25,6 @@ $plugin_description = gettext("Collects and displays search criteria.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Statistics');
 
-$option_interface = 'search_statistics';
-
 zp_register_filter('search_statistics','search_statistics::handler');
 zp_register_filter('admin_utilities_buttons', 'search_statistics::button');
 
@@ -42,37 +40,11 @@ class search_statistics {
 	 * @return jquery_rating
 	 */
 	function __construct() {
-		setOptionDefault('search_statistics_threshold', 25);
-		setOptionDefault('search_statistics_terms_threshold', 25);
-		setOptionDefault('search_statistics_failed_threshold', 10);
-		setOptionDefault('search_statistics_ip_threshold', 10);
+		purgeOption('search_statistics_threshold');
+		purgeOption('search_statistics_terms_threshold');
+		purgeOption('search_statistics_failed_threshold');
+		purgeOption('search_statistics_ip_threshold');
 	}
-
-
-	/**
-	 * Reports the supported options
-	 *
-	 * @return array
-	 */
-	function getOptionsSupported() {
-		return array(	gettext('Threshold (success)') => array('key' => 'search_statistics_threshold', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' =>1,
-										'desc' => gettext('Show the top <em>Threshold</em> criteria of successful searches. (Searches which returned at least one result.)')),
-									gettext('Threshold (failed)') => array('key' => 'search_statistics_failed_threshold', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' =>2,
-										'desc' => gettext('Show the top <em>Threshold</em> criteria of searches that failed.')),
-									gettext('Threshold (terms)') => array('key' => 'search_statistics_terms_threshold', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' =>3,
-										'desc' => gettext('Show the top <em>Threshold</em> terms used in searches.')),
-									gettext('Threshold (IP)') => array('key' => 'search_statistics_ip_threshold', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' =>4,
-										'desc' => gettext('Show the top <em>Threshold</em> IPs that have performed searches.'))
-									);
-	}
-
-	function handleOption($option, $currentValue) {
-	}
-
 
 	static function button($buttons) {
 		$buttons[] = array(
@@ -110,4 +82,3 @@ class search_statistics {
 	}
 
 }
-?>
