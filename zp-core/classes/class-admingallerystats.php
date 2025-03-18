@@ -801,14 +801,14 @@ class adminGalleryStats {
 			$name = $item['filename'];
 		} else if (array_key_exists("folder", $item)) {
 			$name = $item['folder'];
-		} else if ($this->type === "pages" OR $this->type === "news") {
+		} else if ($this->type === "pages" || $this->type === "news") {
 			$name = $item['titlelink'];
 		} else if ($this->type === "newscategories") {
 			// MERGE: this isn't get_language_string upstream; is it needed?
 			$name = get_language_string($item['titlelink']);
 		} else if ($this->type === "tags") {
 			$name = "";
-		} else if($this->type === 'downloads') {
+		} else if($this->type === 'downloads' || $this->type === 'rss') {
 			$name = $item['aux'];
 		}
 		return $name;
@@ -830,7 +830,8 @@ class adminGalleryStats {
 				'thumb' => '',
 				'editurl' => '',
 				'viewurl' => '',
-				'title' => ''
+				'title' => '',
+				'name' => ''
 		);
 		switch ($this->type) {
 			case "albums":
@@ -857,12 +858,11 @@ class adminGalleryStats {
 					$data['editurl'] = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;singleimage=" . $item['filename'] . "&amp;tab=imageinfo&amp;pagenumber=1";
 					$data['viewurl'] = WEBPATH . "/index.php?album=" . $getalbumfolder['folder'] . "&amp;image=" . $name;
 					$data['title'] = get_language_string($item['title']);
-					$data['thumb'] = '<a href="' . $imageobject->getFullImageURL() . '" class="popup_image" title="' . gettext('Preview') . $data['title'] . '(' . $name . ')">' . getAdminThumbHTML($imageobject, 'small') . '</a>';
+					$data['thumb'] = '<a href="' . $imageobject->getFullImageURL() . '" class="colorbox" title="' . gettext('Preview') . $data['title'] . '(' . $name . ')">' . getAdminThumbHTML($imageobject, 'small') . '</a>';
 				}
 				break;
 			case "rss":
-				$data['viewurl'] = WEBPATH . "/index.php?" . html_encode(strrchr($item['aux'], 'rss'));
-				$data['title'] = html_encode(strrchr($item['aux'], 'rss'));
+				$data['title'] = $item['aux'];
 				break;
 			case "pages":
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
@@ -894,6 +894,11 @@ class adminGalleryStats {
 				}
 				break;
 		}
+		if (empty($name) || $name == $data['title']) {
+			$data['name'] = "";
+		} else {
+			$data['name'] = "(" . $name . ")";
+		}
 		return $data;
 	}
 
@@ -908,7 +913,6 @@ class adminGalleryStats {
 	function printItemEntry($item, $count) {
 		$barsize = $this->getItemBarSize($item);
 		$value = $this->getItemValue($item);
-		$name = $this->getItemName($item);
 		$itemdata = $this->getEntryData($item);
 		if (isset($item['show'])) {
 			if ($item['show'] != "1") {
@@ -920,33 +924,25 @@ class adminGalleryStats {
 			$show = "";
 		}
 		if ($this->type == 'downloads' && extensionEnabled('downloadlist') ) {
-			$name = ''; // doubles the title always
 			if (!downloadList::isExternalDownload($item['aux']) && !file_exists(internalToFilesystem($item['aux'])) && !file_exists(ALBUM_FOLDER_SERVERPATH . stripSuffix($item['aux']))) {
 				$show = " class='unpublished_item'";
 			}
 		}
 		if ($value != 0 || $this->sortorder === "latest") {
-			if (empty($name) || $name == $itemdata['title']) {
-				$name = "";
-			} else {
-				$name = "(" . $name . ")";
-			}
 			?>
 			<tr class="statistic_wrapper">
 				<td class="statistic_counter">
 					<?php echo $count; ?>
 				</td>
-			
-					<td class="statistic_thumb">
-						<?php 
-						if ($itemdata['thumb']) { 
-							echo $itemdata['thumb']; 
-						} 
-						?>
-					</td>
-		
+				<td class="statistic_thumb">
+					<?php 
+					if ($itemdata['thumb']) { 
+						echo $itemdata['thumb']; 
+					} 
+					?>
+				</td>
 				<td class="statistic_title">
-					<strong<?php echo $show; ?>><?php echo $itemdata['title']; ?></strong> <?php echo $name; ?>
+					<strong<?php echo $show; ?>><?php echo html_encode($itemdata['title']); ?></strong> <?php echo html_encode($item['name']); ?>
 				</td>
 				<td class="statistic_graphwrap">
 					<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
@@ -956,10 +952,10 @@ class adminGalleryStats {
 					<div class="icon-row">
 						<?php
 							if ($itemdata['viewurl']) {
-								echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . $name . '">'.gettext('View') .'</a>';
+								echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . html_encode($item['name']) . '">'.gettext('View') .'</a>';
 							}
 							if ($itemdata['editurl']) {
-								echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . $name . '">'.gettext('Edit') .'</a>';
+								echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . html_encode($item['name']) . '">'.gettext('Edit') .'</a>';
 							}
 						?>
 					</div>

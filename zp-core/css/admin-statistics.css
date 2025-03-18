@@ -24,6 +24,13 @@
 	text-align: right;
 }
 
+.statistic_thumb{
+	width:48px;
+	text-align:center;
+	vertical-align:top;
+	
+}
+
 .statistic_title {
 	width: 350px;
 	height: 15px;
