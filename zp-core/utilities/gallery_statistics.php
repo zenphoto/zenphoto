@@ -65,18 +65,12 @@ printAdminHeader('overview', 'statistics');
 				if (!isset($_GET['stats']) AND !isset($_GET['fulllist'])) {
 					adminGalleryStats::printStatisticsMenu();
 					if (!isset($_GET['stats']) && !isset($_GET['fulllist'])) {
-						?>
-		
-						<?php
 						adminGalleryStats::printDiskSpaceStats();
 						adminGalleryStats::printImageTypeStats();
+					}
+					$supported = adminGalleryStats::getSupportedTypes();
+					foreach ($supported as $type => $data) {
 						?>
-			
-							<?php
-						}
-						$supported = adminGalleryStats::getSupportedTypes();
-						foreach ($supported as $type => $data) {
-							?>
 						<h2><?php echo $data['title']; ?></h2>
 						<?php
 						foreach ($data['sortorders'] as $sortorder) {
@@ -92,11 +86,9 @@ printAdminHeader('overview', 'statistics');
 					$stats = sanitize($_GET['stats']);
 					$type = sanitize($_GET['type']);
 					adminGalleryStats::printSingleStatSelectionForm($fromtonumbers, $stats, $type);
-					$type = sanitize($_GET['type']);
-					$sortorder = sanitize($_GET['stats']);
 					$supported = adminGalleryStats::getSupportedTypes();
-					if (array_key_exists($type, $supported) && in_array($sortorder, $supported[$type]['sortorders'])) {
-						$statsobj = new adminGalleryStats($sortorder, $type, $fromtonumbers['from'], $fromtonumbers['to']);
+					if (array_key_exists($type, $supported) && in_array($stats, $supported[$type]['sortorders'])) {
+						$statsobj = new adminGalleryStats($stats, $type, $fromtonumbers['from'], $fromtonumbers['to']);
 						$statsobj->printStatistics();
 					}
 				} // main if end

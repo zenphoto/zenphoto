@@ -5,16 +5,17 @@
  * 
  * @since 1.6.6
  * 
+ * @author Malte Müller (acrylian) adapted procedural code probably by Stephen Billard (sbillard), Malte Müller (acrylian) and Subjunk
  * @package admin
  * @subpackage admin-utilites
  */
 class adminGalleryStats {
 
-	private $sortorder = '';
-	private $type = '';
-	private $items = null;
-	private $from_number = 0;
-	private $to_number = 10;
+	protected $sortorder = '';
+	protected $type = '';
+	protected $items = null;
+	protected $from_number = 0;
+	protected $to_number = 10;
 	public $bargraphmaxsize = 90;
 
 	/**
@@ -42,6 +43,8 @@ class adminGalleryStats {
 	
 	/**
 	 * Processes the get/from numbers as an array from the $_GET values submitted.
+	 * 
+	 * @since 1.6.6
 	 * 
 	 * @global obj $_zp_gallery
 	 * @return array
@@ -125,6 +128,9 @@ class adminGalleryStats {
 
 	/**
 	 * Gets an nestsed array of supported items types as key asn and array with the gettext type title and an array of supported sortorders
+	 * 
+	 * @since 1.6.6
+	 * 
 	 * @return array
 	 */
 	static function getSupportedTypes() {
@@ -218,8 +224,8 @@ class adminGalleryStats {
 	 * @since 1.6.6
 	 */
 	static function printStatisticsMenu() {
-		$supported = self::getSupportedTypes();
-		$sortorders = self::getSortorders();
+		$supported = static::getSupportedTypes();
+		$sortorders = static::getSortorders();
 		echo '<ul class="statistic_navlist">';
 		foreach ($supported as $itemsname => $data) {
 			echo '<li>';
@@ -245,6 +251,25 @@ class adminGalleryStats {
 		}
 		echo '</ul>';
 	}
+	
+	/**
+	 * Gets the action URL for from/to single stats form
+	 * 
+	 * @since 1.6.6.
+	 * 
+	 * @param string $stats The sortorder
+	 * @param string $type The item type 
+	 * @return string
+	 */
+	static function getSingleStatSelectionFormActionURL($stats = '', $type = '') {
+		$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
+		if ($stats && $type) {
+			if ($type == 'downloads') {
+				$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';
+			}
+		}
+		return $actionurl;
+	}
 
 	/**
 	 * Prints the form to select the from to range for single statistic display
@@ -257,10 +282,7 @@ class adminGalleryStats {
 	 */
 	static function printSingleStatSelectionForm($fromtonumbers, $stats, $type) {
 		if ($stats && $type) {
-			$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
-			if ($type == 'downloads') {
-				$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';
-			}
+			$actionurl = static::getSingleStatSelectionFormActionURL($stats, $type);
 			?>
 				<form name="limit" id="limit" action="<?php echo $actionurl; ?>">
 					<label for="from_number"><?php echo gettext("From "); ?></label>
@@ -274,6 +296,7 @@ class adminGalleryStats {
 			<?php
 		}
 	}
+	
 
 	/**
 	 * Gets an array with the all possible sortorders as key and the gettext names as values
@@ -305,8 +328,8 @@ class adminGalleryStats {
 	 * @return string
 	 */
 	function getHeadline() {
-		$typenames = self::getSupportedTypes();
-		$typenames_sortorder = self::getSortorders();
+		$typenames = static::getSupportedTypes();
+		$typenames_sortorder = static::getSortorders();
 		$headline = '';
 		if (array_key_exists($this->type, $typenames)) {
 			$headline = $typenames[$this->type]['title'];
@@ -637,6 +660,9 @@ class adminGalleryStats {
 	
 	/**
 	 * Gets the most downloaded files as stored by the download list plugin
+	 * 
+	 * @since 1.6.6
+	 *  
 	 * @global obj $_zp_db
 	 * @return type
 	 */
@@ -971,7 +997,7 @@ class adminGalleryStats {
 					?>
 				</td>
 				<td class="statistic_title">
-					<strong<?php echo $show; ?>><?php echo html_encode($itemdata['title']); ?></strong> <?php echo html_encode($item['name']); ?>
+					<strong<?php echo $show; ?>><?php echo html_encode($itemdata['title']); ?></strong> <?php echo html_encode($itemdata['name']); ?>
 				</td>
 				<td class="statistic_graphwrap">
 					<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
@@ -981,10 +1007,10 @@ class adminGalleryStats {
 					<div class="icon-row">
 						<?php
 							if ($itemdata['viewurl']) {
-								echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . html_encode($item['name']) . '">'.gettext('View') .'</a>';
+								echo '<a class="button" href="' . $itemdata['viewurl'] . '" title="' . gettext("View") . ' ' . html_encode($itemdata['name']) . '">'.gettext('View') .'</a>';
 							}
 							if ($itemdata['editurl']) {
-								echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . html_encode($item['name']) . '">'.gettext('Edit') .'</a>';
+								echo '<a class="button" href="' . $itemdata['editurl'] . '" title="' . gettext("Edit") . ' ' . html_encode($itemdata['name']) . '">'.gettext('Edit') .'</a>';
 							}
 						?>
 					</div>
