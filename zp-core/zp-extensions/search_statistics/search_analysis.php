@@ -176,7 +176,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($results_f as $criteria => $count) {
-								$count = round($count / $maxiterations);
+								$count = round($count / $maxiterations_count);
 								$barsize = round($count / $criteria_maxvalue_f * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
@@ -209,7 +209,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($terms as $criteria => $count) {
-								$count = round($count / $maxiterations);
+								$count = round($count / $maxiterations_count);
 								$barsize = round($count / $terms_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
@@ -242,7 +242,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 							</tr>
 							<?php
 							foreach ($sites as $ip => $count) {
-								$count = round($count / $maxiterations);
+								$count = round($count / $maxiterations_count);
 								$barsize = round($count / $ip_maxvalue * $bargraphmaxsize);
 								?>
 								<tr class="statistic_wrapper">
