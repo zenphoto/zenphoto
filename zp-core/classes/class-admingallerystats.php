@@ -899,6 +899,35 @@ class adminGalleryStats {
 		} else {
 			$data['name'] = "(" . $name . ")";
 		}
+		
+		return $data;
+	}
+	
+	/**
+	 * Returns an array with the view more url and title if applicable
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return array
+	 */
+	function getViewMoreData() {
+		$data = array(
+				'viewmoreurl' => '',
+				'viewmoreurl_title' => ''
+		);
+		if (isset($_GET['stats'])) {
+			$data['viewmoreurl'] = FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php';
+			$data['viewmoreurl_title'] = gettext("Back to the top 10 lists") . ' &rarr;';
+		} else {
+			if (!$this->getNoStatisticsMessage()) {
+				$data['viewmoreurl_title'] = gettext("View more") . ' &rarr;';
+				if ($this->type == 'downloads') {
+					$data['viewmoreurl'] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=' . $this->sortorder . '&amp;type=' . $this->type;
+				} else {
+					$data['viewmoreurl'] = 'gallery_statistics.php?stats=' . $this->sortorder . '&amp;type=' . $this->type;
+				}
+			}
+		}
 		return $data;
 	}
 
@@ -966,8 +995,6 @@ class adminGalleryStats {
 		}
 	}
 	
-	
-
 	/**
 	 * Prints the statistics table for the items chosen
 	 * 
@@ -989,17 +1016,9 @@ class adminGalleryStats {
 		
 		echo '			</th>';
 		echo '			<th colspan="1">';
-		if (isset($_GET['stats'])) {
-			echo '			<a href="' . FULLWEBPATH . '/' . ZENFOLDER . '/' . UTILITIES_FOLDER . '/gallery_statistics.php">' . gettext("Back to the top 10 lists") . ' &rarr;</a>';
-		} else {
-			if (empty($no_statistic_message)) {
-				if ($this->type == 'downloads') {
-					$viewmoreurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=' . $this->sortorder . '&amp;type=' . $this->type;
-				} else {
-					$viewmoreurl = 'gallery_statistics.php?stats=' . $this->sortorder . '&amp;type=' . $this->type;
-				}
-				echo '<a href="' . $viewmoreurl . '">' . gettext("View more") . ' &rarr;</a>';
-			}
+		$viewmore = $this->getViewMoreData();
+		if ($viewmore['viewmoreurl']) {
+			echo '<a href="' . $viewmore['viewmoreurl'] . '">' . $viewmore['viewmoreurl_title']. '</a>';
 		}
 		echo '			</th>';
 		echo '		</tr>';
