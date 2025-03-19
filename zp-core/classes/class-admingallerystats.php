@@ -5,7 +5,7 @@
  * 
  * @since 1.6.6
  * 
- * @author Malte MÃ¼ller (acrylian) adapted procedural code probably by Stephen Billard (sbillard), Malte MÃ¼ller (acrylian) and Subjunk
+ * @author Malte MŸller (acrylian) adapted procedural code probably by Stephen Billard (sbillard), Malte MŸller (acrylian) and Subjunk
  * @package admin
  * @subpackage admin-utilites
  */
@@ -54,11 +54,11 @@ class adminGalleryStats {
 		if (isset($_GET['from_number'])) {
 			$from = sanitize_numeric($_GET['from_number']);
 			// prevent negative start numbers
-			if ($from < 0) {
+			if ($from <= 0) {
 				$from_number = 0;
 				$from_number_display = 1;
 			} else {
-				$from_number = sanitize_numeric($_GET['from_number']) - 1;
+				$from_number = sanitize_numeric($_GET['from_number']);
 				$from_number_display = sanitize_numeric($_GET['from_number']);
 			}
 		} else {
@@ -67,7 +67,7 @@ class adminGalleryStats {
 		}
 		if (isset($_GET['to_number'])) {
 			$to_number = sanitize_numeric($_GET['to_number']);
-			if ($to_number < 0) {
+			if ($to_number <= 0) {
 				$to_number = $to_number_display = 50;
 			}
 			if ($from_number > $to_number) {
@@ -123,7 +123,11 @@ class adminGalleryStats {
 	 * @return string
 	 */
 	function getDBQueryLimit() {
-		return $this->from_number . "," . $this->to_number;
+		if ( $this->from_number >= 1 ) {
+			return $this->from_number - 1 . "," . $this->to_number;
+		} else {
+			return $this->from_number . "," . $this->to_number;
+		}
 	}
 
 	/**
@@ -335,7 +339,7 @@ class adminGalleryStats {
 			$headline = $typenames[$this->type]['title'];
 		}
 		if ($headline && array_key_exists($this->sortorder, $typenames_sortorder)) {
-			$headline .= ' â€“ ' . $typenames_sortorder[$this->sortorder];
+			$headline .= ' - ' . $typenames_sortorder[$this->sortorder];
 		}
 		return $headline;
 	}
