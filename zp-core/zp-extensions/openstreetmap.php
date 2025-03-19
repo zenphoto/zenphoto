@@ -210,14 +210,16 @@ class openStreetMapOptions {
 						'key' => 'osmap_minimap_zoom',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative, defaults to -5.")),
-				gettext('HEREv3 - App id') => array(
-						'key' => 'osmap_HEREv3_appid',
+				gettext('HERE - ApiKey') => array(
+						'key' => 'osmap_here_apikey', //replaced deprecated appid with Apikey
 						'type' => OPTION_TYPE_TEXTBOX,
+						'order' => 22,
 						'desc' => ''),
-				gettext('HEREv3 - App code') => array(
-						'key' => 'osmap_HEREv3_appcode',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => ''),
+			//	gettext('HERE - App code') => array(  App code is no longer needed
+			//			'key' => 'osmap_here_appcode',
+			//			'type' => OPTION_TYPE_TEXTBOX,
+			//			'order' => 23,
+			//			'desc' => ''),
 				gettext('Mapbox - Access token') => array(
 						'key' => 'osmap_mapbox_accesstoken',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -771,8 +773,8 @@ class openStreetMap {
 								. "})";
 			case 'HEREv3':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
-								. "app_id: '" . getOption('osmap_HEREv3_appid') . "', "
-								. "app_code: '" . getOption('osmap_HEREv3_appcode') . "'"
+								. "app_id: '" . getOption('osmap_here_apikey') . "'" //replaced deprecatred appid with ApiKey
+								//. "app_code: '" . getOption('osmap_here_appcode') . "'" not required any more
 								. "})";
 			case 'Thunderforest':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
