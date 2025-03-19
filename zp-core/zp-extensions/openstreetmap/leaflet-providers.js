@@ -577,19 +577,22 @@
 			/*
 			 * HERE maps, formerly Nokia maps.
 			 * These basemaps are free, but you need an api id and app key. Please sign up at
-			 * https://developer.here.com/plans
+			 * https://platform.here.com/portal/
+			 * documentation at: https://www.here.com/docs/bundle/raster-tile-api-developer-guide/page/README.html
 			 */
 			url:
-				'https://{s}.{base}.maps.api.here.com/maptile/2.1/' +
-				'{type}/{mapID}/{variant}/{z}/{x}/{y}/{size}/{format}?' +
-				'app_id={app_id}&app_code={app_code}&lg={language}',
+				'https://maps.hereapi.com/v3/base/mc/'+ //new base url for HERE maptile v3 api
+			//	'https://{s}.{base}.maps.api.here.com/maptile/2.1/' + HERE will remove deprecated Maptile v2 soon
+				'{z}/{x}/{y}/{format}?style={variant}&size={size}' +
+				'&apiKey={app_id}&lg={language}',
 			options: {
 				attribution:
 					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
 				subdomains: '1234',
 				mapID: 'newest',
-				'app_id': '<insert your app_id here>',
-				'app_code': '<insert your app_code here>',
+				/*'app_id': '<insert your app_id here>',*/
+				'app_id': '<insert your apiKey here>', 
+				//'app_code': '<insert your app_code here>', not required
 				base: 'base',
 				variant: 'normal.day',
 				maxZoom: 20,
