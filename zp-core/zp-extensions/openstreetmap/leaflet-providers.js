@@ -583,8 +583,8 @@
 			url:
 				'https://maps.hereapi.com/v3/base/mc/'+ //new base url for HERE maptile v3 api
 			//	'https://{s}.{base}.maps.api.here.com/maptile/2.1/' + HERE will remove deprecated Maptile v2 soon
-				'{z}/{x}/{y}/{format}?style={variant}&size={size}' +
-				'&apiKey={app_id}&lg={language}',
+				'{z}/{x}/{y}/{format}?style={variant}&size={size}' + //slightly modified parameters
+				'&apiKey={app_id}&lg={language}', //replacing app-id with apikey
 			options: {
 				attribution:
 					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
