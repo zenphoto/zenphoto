@@ -26,6 +26,9 @@ zp_register_filter('theme_head', 'openStreetMap::scripts');
 class openStreetMapOptions {
 
 	function __construct() {
+		purgeOption('osmap_HEREv3_appid');
+		purgeOption('osmap_HEREv3_appcode');
+		
 		renameOption('osmap_controlpos', 'osmap_zoomcontrolpos');
 		renameOption('osmap_maptiles', 'osmap_defaultlayer');
 
@@ -215,11 +218,6 @@ class openStreetMapOptions {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'order' => 22,
 						'desc' => ''),
-			//	gettext('HERE - App code') => array(  App code is no longer needed
-			//			'key' => 'osmap_here_appcode',
-			//			'type' => OPTION_TYPE_TEXTBOX,
-			//			'order' => 23,
-			//			'desc' => ''),
 				gettext('Mapbox - Access token') => array(
 						'key' => 'osmap_mapbox_accesstoken',
 						'type' => OPTION_TYPE_TEXTBOX,
