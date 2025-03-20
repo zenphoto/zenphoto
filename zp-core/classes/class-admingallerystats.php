@@ -5,7 +5,7 @@
  * 
  * @since 1.6.6
  * 
- * @author Malte MŸller (acrylian) adapted procedural code probably by Stephen Billard (sbillard), Malte MŸller (acrylian) and Subjunk
+ * @author Malte MÃ¼ller (acrylian) adapted procedural code probably by Stephen Billard (sbillard), Malte MÃ¼ller (acrylian) and Subjunk
  * @package admin
  * @subpackage admin-utilites
  */
