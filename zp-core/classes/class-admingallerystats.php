@@ -99,17 +99,17 @@ class adminGalleryStats {
 		global $_zp_db;
 		switch ($this->type) {
 			case "albums":
-				return "SELECT * FROM " . $_zp_db->prefix('albums');
+				return "SELECT title, folder, hitcounter, `show`, total_votes, total_value FROM " . $_zp_db->prefix('albums');
 			case "images":
-				return "SELECT * FROM " . $_zp_db->prefix('images');
+				return "SELECT title, filename, albumid, hitcounter, `show`, total_votes, total_value FROM " . $_zp_db->prefix('images');
 			case "pages":
-				return "SELECT * FROM " . $_zp_db->prefix('pages');
+				return "SELECT title, titlelink, hitcounter, `show`, total_votes, total_value FROM " . $_zp_db->prefix('pages');
 			case "news":
-				return "SELECT * FROM " . $_zp_db->prefix('news');
+				return "SELECT title, titlelink, hitcounter, `show`, total_votes, total_value FROM " . $_zp_db->prefix('news');
 			case "newscategories":
-				return "SELECT * FROM " . $_zp_db->prefix('news_categories');
+				return "SELECT title, titlelink, hitcounter, `show` FROM " . $_zp_db->prefix('news_categories');
 			case "tags":
-				return "SELECT * FROM " . $_zp_db->prefix('tags');
+				return "SELECT id, name FROM " . $_zp_db->prefix('tags');
 			case "rss":
 				return '';
 		}
@@ -502,9 +502,9 @@ class adminGalleryStats {
 		global $_zp_db;
 		switch ($this->type) {
 			case "tags":
-				return $_zp_db->queryFullArray("SELECT tagobj.tagid, count(*) as tagcount, tags.* FROM " . $_zp_db->prefix('obj_to_tag') . " AS tagobj, " . $_zp_db->prefix('tags') . " AS tags WHERE tags.id=tagobj.tagid GROUP BY tags.id ORDER BY tagcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT tagobj.tagid, count(*) as tagcount, tags.name FROM " . $_zp_db->prefix('obj_to_tag') . " AS tagobj, " . $_zp_db->prefix('tags') . " AS tags WHERE tags.id=tagobj.tagid GROUP BY tags.id ORDER BY tagcount DESC LIMIT " . $this->getDBQueryLimit());
 			case"newscategories":
-				return $_zp_db->queryFullArray("SELECT news2cat.cat_id, count(*) as catcount, cats.* FROM " . $_zp_db->prefix('news2cat') . " AS news2cat, " . $_zp_db->prefix('news_categories') . " AS cats WHERE cats.id=news2cat.cat_id GROUP BY news2cat.cat_id ORDER BY catcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT news2cat.cat_id, count(*) as catcount, cats.titlelink, cats.title FROM " . $_zp_db->prefix('news2cat') . " AS news2cat, " . $_zp_db->prefix('news_categories') . " AS cats WHERE cats.id=news2cat.cat_id GROUP BY news2cat.cat_id ORDER BY catcount DESC LIMIT " . $this->getDBQueryLimit());
 		}
 		return array();
 	}
@@ -538,7 +538,7 @@ class adminGalleryStats {
 	 */
 	private function getPopularImages() {
 		global $_zp_db;
-		$dbquery = "SELECT a.*, ROUND(AVG( i.hitcounter ), 0) AS average FROM " . $_zp_db->prefix('albums') . " a INNER JOIN " . $_zp_db->prefix('images') . " i ON i.albumid = a.id ";
+		$dbquery = "SELECT a.title, a.folder, a.hitcounter, a.show, ROUND(AVG( i.hitcounter ), 0) AS average FROM " . $_zp_db->prefix('albums') . " a INNER JOIN " . $_zp_db->prefix('images') . " i ON i.albumid = a.id ";
 		return $_zp_db->queryFullArray($dbquery . " GROUP BY i.albumid ORDER BY average DESC LIMIT " . $this->getDBQueryLimit());
 	}
 
@@ -580,13 +580,13 @@ class adminGalleryStats {
 		global $_zp_db;
 		switch ($this->type) {
 			case "albums":
-				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, albums.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=comments.ownerid AND type = 'albums' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, albums.title, albums.folder, albums.show FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=comments.ownerid AND type = 'albums' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
 			case "images":
-				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, images.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, images.albumid, images.title, images.filename, images.show FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('images') . " AS images WHERE images.id=comments.ownerid AND type = 'images' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
 			case "pages":
-				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, pages.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'page' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, pages.title, pages.titlelink, pages.hitcounter, pages.show FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('pages') . " AS pages WHERE pages.id=comments.ownerid AND type = 'page' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
 			case "news":
-				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, news.* FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
+				return $_zp_db->queryFullArray("SELECT comments.ownerid, count(*) as commentcount, news.title, news.titlelink, news.hitcounter, news.show FROM " . $_zp_db->prefix('comments') . " AS comments, " . $_zp_db->prefix('news') . " AS news WHERE news.id=comments.ownerid AND type = 'news' GROUP BY comments.ownerid ORDER BY commentcount DESC LIMIT " . $this->getDBQueryLimit());
 		}
 		return array();
 	}
@@ -601,7 +601,7 @@ class adminGalleryStats {
 	 */
 	private function getAlbumsWithMostImages() {
 		global $_zp_db;
-		return $_zp_db->queryFullArray("SELECT images.albumid, count(*) as imagenumber, albums.* FROM " . $_zp_db->prefix('images') . " AS images, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=images.albumid GROUP BY images.albumid ORDER BY imagenumber DESC LIMIT " . $this->getDBQueryLimit());
+		return $_zp_db->queryFullArray("SELECT images.albumid, count(*) as imagenumber, albums.title, albums.folder, albums.show FROM " . $_zp_db->prefix('images') . " AS images, " . $_zp_db->prefix('albums') . " AS albums WHERE albums.id=images.albumid GROUP BY images.albumid ORDER BY imagenumber DESC LIMIT " . $this->getDBQueryLimit());
 	}
 
 	/**
@@ -647,7 +647,6 @@ class adminGalleryStats {
 	 * @return array
 	 */
 	private function getLatestUpdatedItems() {
-		global $_zp_db;
 		$albums = getAlbumStatistic($this->to_number, 'latestupdated', '');
 		if (!empty($albums)) {
 			$stats_albums = array();
