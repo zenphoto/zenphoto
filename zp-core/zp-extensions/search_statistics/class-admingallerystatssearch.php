@@ -15,6 +15,7 @@ class adminGalleryStatsSearch extends adminGalleryStats {
 	protected $ips = null;
 	protected $maxiterations = array();
 	protected $skipslicing = false;
+	protected static $pagepath = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?page=searchstatistics&amp;tab=search';
 
 	/**
 	 * Gets the base db query for some requests
@@ -428,13 +429,13 @@ class adminGalleryStatsSearch extends adminGalleryStats {
 				'viewmoreurl' => '',
 				'viewmoreurl_title' => ''
 		);
-		if (isset($_GET['stats'])) {
-			$data['viewmoreurl'] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php';
+		if (isset($_GET['sortorder'])) {
+			$data['viewmoreurl'] = static::$pagepath;
 			$data['viewmoreurl_title'] = gettext("Back to the top 10 lists") . ' &rarr;';
 		} else {
 			$data['viewmoreurl_title'] = gettext("View more") . ' &rarr;';
 			if (!$this->getNoStatisticsMessage()) {
-				$data['viewmoreurl'] = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?stats=' . $this->sortorder . '&amp;type=search';
+				$data['viewmoreurl'] =static::$pagepath . '&amp;sortorder=' . $this->sortorder;
 			}
 		}
 		return $data;
@@ -450,7 +451,7 @@ class adminGalleryStatsSearch extends adminGalleryStats {
 	 * @return string
 	 */
 	static function getSingleStatSelectionFormActionURL($stats = '', $type = '') {
-		return FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php';
+		return static::$pagepath;
 	}
 	
 }

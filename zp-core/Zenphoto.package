@@ -1013,9 +1013,7 @@ zp-core/zp-extensions/deprecated-functions/admin_tab.php
 zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/functions.php
-zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
-zp-core/zp-extensions/downloadList/download_statistics.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
 zp-core/zp-extensions/dynamic-locale/locale.css
@@ -1932,4 +1930,4 @@ zp-core/setup/setup_permissions_changer.php:*
 zp-core/setup/setup_pluginOptions.php:*
 zp-core/setup/setup_set-mod_rewrite.php:*
 zp-core/setup/setup_themeOptions.php:*
-1934
+1932

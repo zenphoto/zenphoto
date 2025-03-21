@@ -19,8 +19,8 @@ if (isset($_GET['reset'])) {
 	$_zp_db->query($sql);
 	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 }
-$_zp_admin_menu['overview']['subtabs'] = array(gettext('Search analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
-printAdminHeader('overview', 'analysis');
+$_zp_admin_menu['overview']['subtabs'] = array(gettext('Search analysis') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/search_statistics/search_analysis.php?page=searchstatistics&amp;tab=search');
+printAdminHeader('overview', 'searchstatistics');
 echo '</head>';
 
 ?>
@@ -38,7 +38,7 @@ echo '</head>';
 				if (!extensionEnabled('search_statistics')) {
 					echo '<strong>' . gettext('The search_analysis plugin is not active') . '</strong>';
 				}
-				if (!isset($_GET['stats']) AND !isset($_GET['fulllist'])) {
+				if (!isset($_GET['sortorder'])) {
 					if (zp_loggedin(ADMIN_RIGHTS)) {
 						?>
 						<p class="buttons">
@@ -60,14 +60,14 @@ echo '</head>';
 					}
 				}
 					
-				if (isset($_GET['type'])) {
+				if (isset($_GET['tab'])) {
 					$fromtonumbers = adminGalleryStatsSearch::getProcessedFromToNumbers();
-					$stats = sanitize($_GET['stats']);
-					$type = sanitize($_GET['type']);
-					adminGalleryStatsSearch::printSingleStatSelectionForm($fromtonumbers, $stats, $type);
+					$sortorder = sanitize($_GET['sortorder']);
+					$type = sanitize($_GET['tab']);
+					adminGalleryStatsSearch::printSingleStatSelectionForm($fromtonumbers, $sortorder, $type);
 					$supported = adminGalleryStatsSearch::getSupportedTypes();
-					if (array_key_exists($type, $supported) && in_array($stats, $supported[$type]['sortorders'])) {
-						$statsobj = new adminGalleryStatsSearch($stats, 'search', $fromtonumbers['from'], $fromtonumbers['to']);
+					if (array_key_exists($type, $supported) && in_array($sortorder, $supported[$type]['sortorders'])) {
+						$statsobj = new adminGalleryStatsSearch($sortorder, 'search', $fromtonumbers['from'], $fromtonumbers['to']);
 						$statsobj->printStatistics();
 					}
 				}

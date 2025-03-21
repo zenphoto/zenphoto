@@ -40,7 +40,6 @@ $plugin_category = gettext('Misc');
 
 $option_interface = "downloadList";
 
-zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
 
 /**
  * Plugin option handling class
@@ -298,25 +297,6 @@ class DownloadList {
 		return false;
 	}
 
-	/**
-	 * Admin overview button for download statistics utility
-	 */
-	static function button($buttons) {
-		$buttons[] = array(
-				'category' => gettext('Info'),
-				'enable' => true,
-				'button_text' => gettext('Download statistics'),
-				'formname' => 'downloadstatistics_button',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php?stats=mostdownloaded&type=downloads',
-				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
-				'title' => gettext('Counts of downloads'),
-				'alt' => '',
-				'hidden' => '<input type="hidden" name="type" value="downloadse"><input type="hidden" name="stats" value="mostdownloaded">',
-				'rights' => ADMIN_RIGHTS,
-		);
-		return $buttons;
-	}
-	
 	/**
 	 * Handles missing files
 	 * 
