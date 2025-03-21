@@ -34,15 +34,9 @@ if (OFFSET_PATH) {
 	if (getOption('comment_form_pagination')) {
 		zp_register_filter('theme_head', 'comment_form_PaginationJS');
 	}
-	if (getOption('tinymce4_comments')) {
-		if (extensionEnabled('tinymce')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
-			zp_register_filter('theme_head', 'comment_form_visualEditor');
-		} else
-		if (extensionEnabled('tinymce4')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
-			zp_register_filter('theme_head', 'comment_form_visualEditor');
-		}
+	if (getOption('tinymce_comments') && extensionEnabled('tinymce')) {
+		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
+		zp_register_filter('theme_head', 'comment_form_visualEditor');
 	}
 }
 
@@ -53,6 +47,9 @@ class comment_form {
 	 *
 	 */
 	function __construct() {
+		renameOption('tinymce4_comments', 'tinymce_comments');
+		
+		
 		setOptionDefault('email_new_comments', 1);
 		setOptionDefault('comment_name_required', 'required');
 		setOptionDefault('comment_email_required', 'required');
@@ -72,7 +69,7 @@ class comment_form {
 		setOptionDefault('comment_form_comments_per_page', 10);
 		setOptionDefault('comment_form_pagination', true);
 		setOptionDefault('comment_form_toggle', 1);
-		setOptionDefault('tinymce4_comments', null);
+		setOptionDefault('tinymce_comments', null);
 		setOptionDefault('comment_form_dataconfirmation', 0);
 		setOptionDefault('comment_form_remember', 0);
 		setOptionDefault('comment_form_autocomplete', 0);
@@ -94,10 +91,7 @@ class comment_form {
 		if (extensionEnabled('tinymce')) {
 			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
 			$configarray = tinymceOptions::getTinyMCEConfigFiles('comment');
-		} else if (extensionEnabled('tinymce4')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce4.php');
-			$configarray = getTinyMCE4ConfigFiles('comment');
-		}
+		} 
 		$checkboxes = array(
 				gettext('Albums') => 'comment_form_albums',
 				gettext('Images') => 'comment_form_images');
@@ -184,7 +178,7 @@ class comment_form {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('The comments that should show per page on the admin tab and when using the jQuery pagination')),
 				gettext('Comment editor configuration') => array(
-						'key' => 'tinymce4_comments',
+						'key' => 'tinymce_comments',
 						'type' => OPTION_TYPE_SELECTOR,
 						'selections' => $configarray,
 						'null_selection' => gettext('Disabled'),

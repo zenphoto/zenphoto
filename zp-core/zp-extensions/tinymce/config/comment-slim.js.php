@@ -43,9 +43,9 @@ global $_zp_rtl_css;
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
-		plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount codesample pagebreak anchor',
+		plugins: 'advlist autolink lists link charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime wordcount codesample',
 		menubar: false,
-		toolbar: 'bold italic underline strikethrough | undo redo | accordion accordionremove | blocks | align numlist bullist | outdent indent | link | code fullscreen preview | pagebreak anchor codesample | charmap emoticons',
+		toolbar: 'bold italic underline strikethrough | undo redo| blocks | align numlist bullist | outdent indent | link | code fullscreen preview | codesample | charmap emoticons',
 		setup: function(ed) {
 			ed.on('change', function(e) {
 				$('.dirty-check').addClass('dirty');
