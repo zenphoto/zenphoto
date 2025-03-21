@@ -131,6 +131,12 @@ class adminGalleryStats {
 		}
 	}
 	
+	/**
+	 * Registers the subtabs
+	 * 
+	 * @since 1.6.6
+	 * @global type $_zp_admin_menu
+	 */
 	static function registerSubTabs() {
 		global $_zp_admin_menu;
 		$supportedtypes = static::getSupportedTypes();
@@ -244,8 +250,11 @@ class adminGalleryStats {
 		}
 		return $supported_gallery;
 	}
+	
 	/**
 	 * Gets the types data and sortorders by type
+	 * 
+	 * @since 1.6.6
 	 * 
 	 * @param string $type Type to get thte supported sortorders
 	 * @return array
@@ -302,19 +311,11 @@ class adminGalleryStats {
 	 * Gets the action URL for from/to single stats form
 	 * 
 	 * @since 1.6.6.
-	 * 
-	 * @param string $stats The sortorder
-	 * @param string $type The item type 
+ 
 	 * @return string
 	 */
-	static function getSingleStatSelectionFormActionURL($stats = '', $type = '') {
-		$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/'.UTILITIES_FOLDER . '/gallery_statistics.php';
-		if ($stats && $type) {
-			if ($type == 'downloads') {
-				$actionurl = FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/downloadList/download_statistics.php';
-			}
-		}
-		return $actionurl;
+	static function getSingleStatSelectionFormActionURL() {
+		return static::$pagepath;
 	}
 
 	/**
@@ -328,7 +329,7 @@ class adminGalleryStats {
 	 */
 	static function printSingleStatSelectionForm($fromtonumbers, $sortorder, $type) {
 		if ($sortorder && $type) {
-			$actionurl = static::getSingleStatSelectionFormActionURL($sortorder, $type);
+			$actionurl = static::getSingleStatSelectionFormActionURL();
 			?>
 				<form name="limit" id="limit" action="<?php echo $actionurl; ?>">
 					<label for="from_number"><?php echo gettext("From "); ?></label>

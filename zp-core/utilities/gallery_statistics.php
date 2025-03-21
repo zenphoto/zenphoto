@@ -46,12 +46,6 @@ printAdminHeader('overview', 'general');
 		<span id="top"></span>
 		<?php
 		printTabs();
-
-// getting the counts
-		$albumcount = $_zp_gallery->getNumAlbums(true);
-		$albumscount_unpub = $albumcount - $_zp_gallery->getNumAlbums(true, true);
-		$imagecount = $_zp_gallery->getNumImages();
-		$imagecount_unpub = $imagecount - $_zp_gallery->getNumImages(true);
 		?>
 		<div id="content">
 		<?php printSubtabs() ?>
