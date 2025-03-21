@@ -275,9 +275,10 @@ class adminGalleryStats {
 	 * Prints the jump mark menu for all supported item types and their sortorders
 	 * 
 	 * @since 1.6.6
+	 * @param string $type Type to get the supported sortorders
 	 */
-	static function printStatisticsMenu($currenttab = null) {
-		$supported = static::getSupportedTypesByType($currenttab);
+	static function printStatisticsMenu($type = null) {
+		$supported = static::getSupportedTypesByType($type);
 		if ($supported) {
 			$sortorders = static::getSortorders();
 			echo '<ul class="statistic_navlist">';
