@@ -142,7 +142,7 @@ class adminGalleryStats {
 		$supportedtypes = static::getSupportedTypes();
 		$tabs = array();
 		foreach ($supportedtypes as $type => $data) {
-			$tabs[$data['tab_title']] = static::$pagepath . '&tab=' . $type;
+			$tabs[$data['title']] = static::$pagepath . '&tab=' . $type;
 		}
 		$_zp_admin_menu['overview']['subtabs'] = array(
 				gettext('General statistics') => adminGalleryStats::$pagepath . '&tab=general'
@@ -366,9 +366,26 @@ class adminGalleryStats {
 				'mostdownloaded' => gettext("Most downloaded")
 		);
 	}
+	
+	/**
+	 * Gets the page title
+	 * 
+	 * @param string $type The item type
+	 * @return string
+	 */
+	static function getPageHeadline($type = null) {
+		$supported = static::getSupportedTypesByType($type);
+		$headline = gettext("Gallery Statistics");
+		if ($supported && $type != 'general') {
+			$headline = sprintf(gettext("Gallery Statistics: %s"), $supported[$type]['title']);
+		} else {
+			$headline = gettext("Gallery Statistics");
+		}
+		return $headline;
+	}
 
 	/**
-	 * Gets the headline plus appendix
+	 * Gets the statistic table headline plus sortorder appendix
 	 * 
 	 * @since 1.6.6
 	 * 

@@ -24,7 +24,7 @@ $buttonlist[] = array(
 		'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 		'title' => gettext('Shows statistical graphs and info about your gallery’s images and albums.'),
 		'alt' => '',
-		'hidden' => '',
+		'hidden' => '<input type="hidden" name="tab" value="general"><input type="hidden" name="page" value="gallerystatistics">',
 		'rights' => ADMIN_RIGHTS
 );
 
@@ -48,14 +48,13 @@ printAdminHeader('overview', 'general');
 		printTabs();
 		?>
 		<div id="content">
-		<?php printSubtabs() ?>
+		<?php $currenttab = printSubtabs(); ?>
 			<div class="tabbox">
 			<?php zp_apply_filter('admin_note', 'statistics', ''); ?>
-				<h1><?php echo gettext("Gallery Statistics"); ?></h1>
+				<h1><?php echo adminGalleryStats::getPageHeadline($currenttab); ?></h1>
 				<p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
 
 				<?php
-				$currenttab = isset($_GET['tab']) ? sanitize($_GET['tab']) : 'general';
 				if (!isset($_GET['sortorder'])) {
 					adminGalleryStats::printStatisticsMenu($currenttab);
 				}
@@ -92,17 +91,14 @@ printAdminHeader('overview', 'general');
 						<p class="buttons"><a href="?removealldownloads&amp;XSRFToken=<?php echo getXSRFToken('removealldownloads') ?>&amp;sortorder=mostdownloaded&amp;tab=downloads"><?php echo gettext('Clear all downloads from database'); ?></a></p><br class="clearall" />
 						<br class="clearall" /><br />
 						<?php
-					} else {
-						echo '<strong>' . gettext('The downloadList plugin is not active') . '</strong>';
-					}
-					$supported = adminGalleryStats::getSupportedTypesByType($currenttab);
-					foreach ($supported as $type => $data) {
-						?>
-						<h2><?php echo $data['title']; ?></h2>
-						<?php
-						foreach ($data['sortorders'] as $sortorder) {
-							$statsobj = new adminGalleryStats($sortorder, $type);
-							$statsobj->printStatistics();
+					} 
+					if ($currenttab != 'general') {
+						$supported = adminGalleryStats::getSupportedTypesByType($currenttab);
+						foreach ($supported as $type => $data) {
+							foreach ($data['sortorders'] as $sortorder) {
+								$statsobj = new adminGalleryStats($sortorder, $type);
+								$statsobj->printStatistics();
+							}
 						}
 					}
 				}
