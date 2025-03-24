@@ -36,7 +36,7 @@ echo '</head>';
 				<h1><?php echo (gettext('Search analysis')); ?></h1>
 				<?php
 				if (!extensionEnabled('search_statistics')) {
-					echo '<strong>' . gettext('The search_analysis plugin is not active') . '</strong>';
+					echo '<strong>' . gettext('The search_statistics plugin is not active') . '</strong>';
 				}
 				if (!isset($_GET['sortorder'])) {
 					if (zp_loggedin(ADMIN_RIGHTS)) {
