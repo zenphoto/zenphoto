@@ -2362,7 +2362,12 @@ $upgrade = $versioncheck['upgrade_text'];
 						
 						//1.6.1
 						$sql_statements[] = "ALTER TABLE $tbl_menu_manager ADD COLUMN `open_newtab` int(1) unsigned NOT NULL default '0'";
-						
+
+						//1.6.6
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX albums_parentid (`parentid`)";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX albums_dynamic_parentid (`dynamic`, `parentid`)";
+						$sql_statements[] = "ALTER TABLE $tbl_albums ADD INDEX albums_dynamic_parentid_show (`dynamic`, `parentid`, `show`)";
+
 						// do this last incase there are any field changes of like names!
 						foreach ($_zp_exifvars as $key => $exifvar) {
 							if ($s = $exifvar[6]) {
