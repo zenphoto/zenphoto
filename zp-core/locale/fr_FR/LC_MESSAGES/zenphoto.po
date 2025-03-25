@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-04 10:30+0100\n"
-"PO-Revision-Date: 2025-03-04 15:48+0100\n"
+"POT-Creation-Date: 2025-03-25 10:12+0100\n"
+"PO-Revision-Date: 2025-03-25 10:24+0100\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -27,7 +27,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: zp-core/js/jqueryui\n"
 
 #: themes/basic/404.php:27 themes/horizon/404.php:27 themes/zpmobile/404.php:26
-#: zp-core/template-functions.php:464 zp-core/zp-extensions/downloadList.php:313
+#: zp-core/template-functions.php:464 zp-core/zp-extensions/downloadList.php:318
 msgid "Object not found"
 msgstr "Objet non trouvé"
 
@@ -172,7 +172,7 @@ msgstr "Un mot de passe est nécessaire pour accéder à cette page"
 #: themes/basic/register.php:28 themes/garland/register.php:43
 #: zp-core/template-functions.php:470 zp-core/zp-extensions/html_meta_tags.php:469
 #: zp-core/zp-extensions/register_user.php:64
-#: zp-core/zp-extensions/scriptless-socialsharing.php:434
+#: zp-core/zp-extensions/scriptless-socialsharing.php:457
 msgid "Register"
 msgstr "Inscrivez-vous"
 
@@ -450,7 +450,6 @@ msgstr "Albums (%1$s) et images (%2$s)"
 
 #: themes/garland/sidebar.php:27 themes/zenpage/sidebar.php:14
 #: zp-core/classes/class-userdataexport.php:467
-#: zp-core/utilities/gallery_statistics.php:615
 msgid "News articles"
 msgstr "Articles d’actualité"
 
@@ -495,17 +494,15 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2033
-#: zp-core/admin-functions.php:3331 zp-core/classes/class-authority.php:611
-#: zp-core/classes/class-authority.php:617 zp-core/classes/class-authority.php:628
-#: zp-core/classes/class-authority.php:631 zp-core/classes/class-authority.php:632
-#: zp-core/classes/class-authority.php:635 zp-core/classes/class-authority.php:639
-#: zp-core/classes/class-authority.php:642 zp-core/classes/class-authority.php:654
-#: zp-core/classes/class-authority.php:657 zp-core/classes/class-authority.php:658
-#: zp-core/classes/class-authority.php:661 zp-core/classes/class-authority.php:665
-#: zp-core/classes/class-authority.php:668 zp-core/template-functions.php:120
-#: zp-core/utilities/gallery_statistics.php:73
-#: zp-core/utilities/gallery_statistics.php:589
-#: zp-core/zp-extensions/comment_form.php:102
+#: zp-core/admin-functions.php:3331 zp-core/classes/class-admingallerystats.php:174
+#: zp-core/classes/class-authority.php:611 zp-core/classes/class-authority.php:617
+#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:631
+#: zp-core/classes/class-authority.php:632 zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:639 zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:654 zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:658 zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:665 zp-core/classes/class-authority.php:668
+#: zp-core/template-functions.php:120 zp-core/zp-extensions/comment_form.php:96
 #: zp-core/zp-extensions/galleryArticles.php:65
 #: zp-core/zp-extensions/multiple_layouts.php:93 zp-core/zp-extensions/rss.php:192
 #: zp-core/zp-extensions/static_html_cache.php:71
@@ -517,14 +514,13 @@ msgstr "Albums"
 #: themes/zpmobile/functions.php:75 themes/zpmobile/functions.php:174
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3358
+#: zp-core/classes/class-admingallerystats.php:206
 #: zp-core/classes/class-authority.php:612 zp-core/classes/class-authority.php:615
 #: zp-core/classes/class-authority.php:630 zp-core/classes/class-authority.php:637
 #: zp-core/classes/class-authority.php:641 zp-core/classes/class-authority.php:656
 #: zp-core/classes/class-authority.php:663 zp-core/classes/class-authority.php:667
 #: zp-core/classes/class-userdataexport.php:475
-#: zp-core/utilities/gallery_statistics.php:81
-#: zp-core/utilities/gallery_statistics.php:607
-#: zp-core/zp-extensions/comment_form.php:106
+#: zp-core/zp-extensions/comment_form.php:100
 #: zp-core/zp-extensions/multiple_layouts.php:98 zp-core/zp-extensions/rss.php:196
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:100
 #: zp-core/zp-extensions/static_html_cache.php:75
@@ -545,7 +541,8 @@ msgstr ""
 "\">Garland</a> de Wordpress"
 
 #: themes/garland/themeoptions.php:50 themes/horizon/themeoptions.php:47
-#: themes/zenpage/themeoptions.php:60 zp-core/utilities/gallery_statistics.php:85
+#: themes/zenpage/themeoptions.php:60
+#: zp-core/classes/class-admingallerystats.php:217
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:98
 msgid "News Articles"
 msgstr "Articles d’actualité"
@@ -635,7 +632,7 @@ msgstr "Transition entre les images de la galerie"
 
 #: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5748
 #: zp-core/admin-functions.php:5801 zp-core/zp-extensions/GoogleMap.php:123
-#: zp-core/zp-extensions/downloadList.php:97
+#: zp-core/zp-extensions/downloadList.php:96
 #: zp-core/zp-extensions/user_login-out.php:40
 msgid "None"
 msgstr "Aucun"
@@ -676,11 +673,11 @@ msgstr "Sur l’image"
 msgid "Separate"
 msgstr "À part"
 
-#: themes/garland/themeoptions.php:167 zp-core/zp-extensions/comment_form.php:120
-#: zp-core/zp-extensions/comment_form.php:128
-#: zp-core/zp-extensions/comment_form.php:136
-#: zp-core/zp-extensions/comment_form.php:149
-#: zp-core/zp-extensions/comment_form.php:208
+#: themes/garland/themeoptions.php:167 zp-core/zp-extensions/comment_form.php:114
+#: zp-core/zp-extensions/comment_form.php:122
+#: zp-core/zp-extensions/comment_form.php:130
+#: zp-core/zp-extensions/comment_form.php:143
+#: zp-core/zp-extensions/comment_form.php:202
 #: zp-core/zp-extensions/register_user.php:146
 msgid "Omit"
 msgstr "Aucun"
@@ -729,7 +726,8 @@ msgstr ""
 #: zp-core/template-functions.php:3757
 #: zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php:69
 #: zp-core/zp-extensions/html_meta_tags.php:470
-#: zp-core/zp-extensions/scriptless-socialsharing.php:437
+#: zp-core/zp-extensions/scriptless-socialsharing.php:460
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:54
 #: zp-core/zp-extensions/slideshow2.php:817
 msgid "Search"
 msgstr "Recherche"
@@ -763,7 +761,7 @@ msgstr "Désolé, aucune correspondance. Essayez de préciser votre recherche."
 
 #: themes/zenpage/sidebar.php:56 themes/zpmobile/functions.php:78
 #: zp-core/template-functions.php:1453 zp-core/template-functions.php:1503
-#: zp-core/zp-extensions/scriptless-socialsharing.php:431
+#: zp-core/zp-extensions/scriptless-socialsharing.php:454
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:787
 msgid "Archive"
 msgstr "Archive"
@@ -773,6 +771,7 @@ msgid "Gallery And News"
 msgstr "Galerie et actualités"
 
 #: themes/zenpage/sidebar.php:79 themes/zpmobile/functions.php:30
+#: zp-core/classes/class-admingallerystats.php:196
 msgid "RSS"
 msgstr "Flux RSS"
 
@@ -788,14 +787,14 @@ msgstr "Flux RSS de l’album"
 #: zp-core/classes/class-authority.php:640 zp-core/classes/class-authority.php:655
 #: zp-core/classes/class-authority.php:662 zp-core/classes/class-authority.php:666
 #: zp-core/template-functions.php:441 zp-core/template-functions.php:443
-#: zp-core/template-functions.php:445 zp-core/zp-extensions/comment_form.php:107
+#: zp-core/template-functions.php:445 zp-core/zp-extensions/comment_form.php:101
 #: zp-core/zp-extensions/comment_form/functions.php:914
 #: zp-core/zp-extensions/comment_form/functions.php:921
 #: zp-core/zp-extensions/defaultCodeblocks.php:36
 #: zp-core/zp-extensions/html_meta_tags.php:422
 #: zp-core/zp-extensions/multiple_layouts.php:99
 #: zp-core/zp-extensions/related_items.php:193 zp-core/zp-extensions/rss.php:195
-#: zp-core/zp-extensions/scriptless-socialsharing.php:412
+#: zp-core/zp-extensions/scriptless-socialsharing.php:435
 #: zp-core/zp-extensions/static_html_cache.php:74
 #: zp-core/zp-extensions/zenpage.php:395
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:794
@@ -898,7 +897,7 @@ msgid "Album"
 msgstr "Album"
 
 #: themes/zpmobile/functions.php:65 zp-core/template-functions.php:720
-#: zp-core/template-functions.php:1596 zp-core/zp-extensions/downloadList.php:336
+#: zp-core/template-functions.php:1596 zp-core/zp-extensions/downloadList.php:351
 #: zp-core/zp-extensions/menu_manager.php:979
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
 msgid "Home"
@@ -917,7 +916,7 @@ msgstr "Thème zpMobile par"
 msgid "Favorites"
 msgstr "Favoris"
 
-#: themes/zpmobile/functions.php:188 zp-core/utilities/gallery_statistics.php:873
+#: themes/zpmobile/functions.php:188
 msgid "Back to top"
 msgstr "En haut"
 
@@ -1108,7 +1107,7 @@ msgstr "Modifier l’album : <em>%1$s%2$s</em>"
 #: zp-core/zp-extensions/crop_image.php:348
 #: zp-core/zp-extensions/crop_image.php:353
 #: zp-core/zp-extensions/crop_image.php:354
-#: zp-core/zp-extensions/downloadList.php:335
+#: zp-core/zp-extensions/downloadList.php:350
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 #: zp-core/zp-extensions/zenpage/admin-edit.php:327
 #: zp-core/zp-extensions/zenpage/admin-edit.php:790
@@ -1815,9 +1814,8 @@ msgstr "Voir l’accueil de la galerie"
 
 #: zp-core/admin-functions.php:455 zp-core/admin-functions.php:1572
 #: zp-core/admin-functions.php:2034 zp-core/admin-options.php:2144
-#: zp-core/admin-options.php:2194 zp-core/utilities/gallery_statistics.php:77
-#: zp-core/utilities/gallery_statistics.php:580
-#: zp-core/zp-extensions/comment_form.php:103
+#: zp-core/admin-options.php:2194 zp-core/classes/class-admingallerystats.php:163
+#: zp-core/zp-extensions/comment_form.php:97
 #: zp-core/zp-extensions/galleryArticles.php:65
 #: zp-core/zp-extensions/multiple_layouts.php:94 zp-core/zp-extensions/rss.php:193
 #: zp-core/zp-extensions/static_html_cache.php:72
@@ -1895,7 +1893,7 @@ msgstr "Mot de passe de l’album :"
 
 #: zp-core/admin-functions.php:1297 zp-core/admin-options.php:1219
 #: zp-core/admin-options.php:1554 zp-core/admin-options.php:2391
-#: zp-core/zp-extensions/downloadList.php:129
+#: zp-core/zp-extensions/downloadList.php:130
 #: zp-core/zp-extensions/zenpage/admin-edit.php:476
 msgid "clear password"
 msgstr "effacer le mot de passe"
@@ -1912,12 +1910,12 @@ msgstr "Saisir le mot de passe de nouveau :"
 #: zp-core/admin-options.php:1614 zp-core/admin-options.php:2445
 #: zp-core/classes/class-authority.php:1151
 #: zp-core/classes/class-authority.php:1344
-#: zp-core/zp-extensions/downloadList.php:151
+#: zp-core/zp-extensions/downloadList.php:152
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
 msgstr "Afficher le mot de passe"
 
-#: zp-core/admin-functions.php:1364 zp-core/zp-extensions/downloadList.php:163
+#: zp-core/admin-functions.php:1364 zp-core/zp-extensions/downloadList.php:164
 #: zp-core/zp-extensions/zenpage/admin-edit.php:521
 msgid "Password hint:"
 msgstr "Astuce pour le mot de passe :"
@@ -2010,12 +2008,10 @@ msgstr "L’album sera effacé quand les modifications seront appliquées."
 msgid "to:"
 msgstr "vers :"
 
-#: zp-core/admin-functions.php:1914 zp-core/classes/class-authority.php:599
-#: zp-core/classes/class-authority.php:619 zp-core/classes/class-authority.php:644
-#: zp-core/classes/class-authority.php:671
+#: zp-core/admin-functions.php:1914 zp-core/classes/class-admingallerystats.php:188
+#: zp-core/classes/class-authority.php:599 zp-core/classes/class-authority.php:619
+#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:671
 #: zp-core/classes/class-searchengine.php:93 zp-core/template-functions.php:134
-#: zp-core/utilities/gallery_statistics.php:93
-#: zp-core/utilities/gallery_statistics.php:601
 #: zp-core/zp-extensions/zenpage/admin-edit.php:704
 msgid "Tags"
 msgstr "Tags"
@@ -2284,8 +2280,8 @@ msgstr "Albums gérés :"
 msgid "Managed news categories:"
 msgstr "Catégories d’actualités gérées :"
 
-#: zp-core/admin-functions.php:3345 zp-core/classes/class-userdataexport.php:471
-#: zp-core/utilities/gallery_statistics.php:623
+#: zp-core/admin-functions.php:3345 zp-core/classes/class-admingallerystats.php:228
+#: zp-core/classes/class-userdataexport.php:471
 #: zp-core/zp-extensions/multiple_layouts.php:100
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:99
 msgid "News categories"
@@ -2469,7 +2465,7 @@ msgstr "Média"
 msgid "Spam"
 msgstr "Spam"
 
-#: zp-core/admin-functions.php:4703 zp-core/utilities/gallery_statistics.php:36
+#: zp-core/admin-functions.php:4703
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:172
 #: zp-core/zp-extensions/hitcounter.php:35
 #: zp-core/zp-extensions/image_album_statistics.php:15
@@ -3133,7 +3129,6 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: zp-core/admin-options.php:3112 zp-core/admin-options.php:3283
 #: zp-core/admin-options.php:3310 zp-core/admin-options.php:3494
 #: zp-core/admin-users.php:469
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:266
 msgid "reset"
 msgstr "reset"
 
@@ -3646,7 +3641,7 @@ msgid "User ID for the gallery guest user"
 msgstr "Identifiant de l’utilisateur invité de la Galerie"
 
 #: zp-core/admin-options.php:1260 zp-core/admin-options.php:1589
-#: zp-core/admin-options.php:2419 zp-core/zp-extensions/downloadList.php:154
+#: zp-core/admin-options.php:2419 zp-core/zp-extensions/downloadList.php:155
 #: zp-core/zp-extensions/zenpage/admin-edit.php:507
 msgid "(repeat)"
 msgstr "(saisir de nouveau)"
@@ -5681,8 +5676,8 @@ msgstr "Attribuer"
 msgid "Current Theme"
 msgstr "Thème utilisé"
 
-#: zp-core/admin-themes.php:321 zp-core/utilities/gallery_statistics.php:463
-#: zp-core/zp-extensions/comment_form.php:380
+#: zp-core/admin-themes.php:321 zp-core/classes/class-admingallerystats.php:1073
+#: zp-core/zp-extensions/comment_form.php:374
 #: zp-core/zp-extensions/comment_form/admin-comments.php:457
 msgid "Edit"
 msgstr "Modifier"
@@ -6354,11 +6349,223 @@ msgstr ""
 "d’administration."
 
 #: zp-core/classes/class-_zp_captcha.php:12
-#: zp-core/zp-extensions/comment_form.php:212
+#: zp-core/zp-extensions/comment_form.php:206
 #: zp-core/zp-extensions/contact_form.php:193
 #: zp-core/zp-extensions/register_user.php:118
 msgid "No captcha handler is enabled."
 msgstr "Aucun gestionnaire de captcha n’est activé."
+
+#: zp-core/classes/class-admingallerystats.php:148
+msgid "General statistics"
+msgstr "Statistiques générales"
+
+#: zp-core/classes/class-admingallerystats.php:164
+msgid "Images statistics"
+msgstr "Statistiques des images"
+
+#: zp-core/classes/class-admingallerystats.php:175
+msgid "Albums statistics"
+msgstr "Statistiques des albums"
+
+#: zp-core/classes/class-admingallerystats.php:189
+msgid "Tags statistics"
+msgstr "Statistiques des tags"
+
+#: zp-core/classes/class-admingallerystats.php:197
+msgid "RSS statistics"
+msgstr "Statistiques des flux RSS"
+
+#: zp-core/classes/class-admingallerystats.php:207
+msgid "Pages statistics"
+msgstr "Statistiques des pages"
+
+#: zp-core/classes/class-admingallerystats.php:218
+msgid "News articles statistics"
+msgstr "Statistiques des actualités"
+
+#: zp-core/classes/class-admingallerystats.php:229
+msgid "News categories statistics"
+msgstr "Statistiques des catégories d’actualités"
+
+#: zp-core/classes/class-admingallerystats.php:242
+msgid "Downloads"
+msgstr "Téléchargements"
+
+#: zp-core/classes/class-admingallerystats.php:243
+msgid "Download statistics"
+msgstr "Statistiques de téléchargement"
+
+#: zp-core/classes/class-admingallerystats.php:336
+msgid "From "
+msgstr "De "
+
+#: zp-core/classes/class-admingallerystats.php:338
+msgid "to "
+msgstr "à "
+
+#: zp-core/classes/class-admingallerystats.php:342
+#: zp-core/zp-extensions/cacheManager.php:162
+#: zp-core/zp-extensions/cacheManager.php:167
+#: zp-core/zp-extensions/cacheManager/cacheImages.php:190
+#: zp-core/zp-extensions/comment_form.php:115
+#: zp-core/zp-extensions/comment_form.php:123
+#: zp-core/zp-extensions/comment_form.php:131
+#: zp-core/zp-extensions/comment_form.php:144
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:193
+#: zp-core/zp-extensions/register_user.php:146
+msgid "Show"
+msgstr "Afficher"
+
+#: zp-core/classes/class-admingallerystats.php:358
+msgid "most used"
+msgstr "le plus utilisé"
+
+#: zp-core/classes/class-admingallerystats.php:359
+#: zp-core/functions/functions.php:38
+msgid "most viewed"
+msgstr "les plus vu(e)s"
+
+#: zp-core/classes/class-admingallerystats.php:360
+msgid "most viewed images"
+msgstr "images les plus vues"
+
+#: zp-core/classes/class-admingallerystats.php:361
+msgid "most rated"
+msgstr "les plus noté(e)s"
+
+#: zp-core/classes/class-admingallerystats.php:362
+msgid "top rated"
+msgstr "les mieux noté(e)s"
+
+#: zp-core/classes/class-admingallerystats.php:363
+msgid "most commented"
+msgstr "les plus commenté(e)s"
+
+#: zp-core/classes/class-admingallerystats.php:364
+msgid "most images"
+msgstr "le plus d’images"
+
+#: zp-core/classes/class-admingallerystats.php:365
+msgid "latest"
+msgstr "les plus récents(es)"
+
+#: zp-core/classes/class-admingallerystats.php:366
+#: zp-core/zp-extensions/rss.php:137
+msgid "latest updated"
+msgstr "les plus récentes mises à jour"
+
+#: zp-core/classes/class-admingallerystats.php:367
+msgid "Most downloaded"
+msgstr "Les plus téléchargés"
+
+#: zp-core/classes/class-admingallerystats.php:379
+#: zp-core/classes/class-admingallerystats.php:383
+#: zp-core/utilities/gallery_statistics.php:21
+msgid "Gallery Statistics"
+msgstr "Statistiques de la galerie"
+
+#: zp-core/classes/class-admingallerystats.php:381
+#, php-format
+msgid "Gallery Statistics: %s"
+msgstr "Statistiques de la galerie : %s"
+
+#: zp-core/classes/class-admingallerystats.php:751
+msgid "(The hitcounter plugin is not enabled.)"
+msgstr "(L’extension « hitcounter » n’est pas activée.)"
+
+#: zp-core/classes/class-admingallerystats.php:754
+msgid "(The downloadlist plugin is not enabled.)"
+msgstr "(L’extension downloadlist n’est pas activée.)"
+
+#: zp-core/classes/class-admingallerystats.php:756
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:344
+msgid "No statistic available."
+msgstr "Aucune statistique disponible."
+
+#: zp-core/classes/class-admingallerystats.php:760
+msgid ""
+"Note: The hitcounter plugin is not enabled, therefore any existing values will "
+"not get updated."
+msgstr ""
+"Note : L’extension « hitcounter » n’est pas activée. Les valeurs ne sont donc "
+"pas actualisées."
+
+#: zp-core/classes/class-admingallerystats.php:855
+#: zp-core/classes/class-admingallerystats.php:865
+#, php-format
+msgid "%s images"
+msgstr "%s images"
+
+#: zp-core/classes/class-admingallerystats.php:951
+msgid "Preview"
+msgstr "Aperçu"
+
+#: zp-core/classes/class-admingallerystats.php:1010
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:434
+msgid "Back to the top 10 lists"
+msgstr "Retour aux listes des top 10"
+
+#: zp-core/classes/class-admingallerystats.php:1013
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:436
+msgid "View more"
+msgstr "En voir davantage "
+
+#: zp-core/classes/class-admingallerystats.php:1070
+#: zp-core/zp-extensions/menu_manager/menu_tab.php:253
+#: zp-core/zp-extensions/publishContent/publishContent.php:436
+#: zp-core/zp-extensions/publishContent/publishContent.php:490
+#: zp-core/zp-extensions/publishContent/publishContent.php:549
+#: zp-core/zp-extensions/publishContent/publishContent.php:605
+#: zp-core/zp-extensions/zenpage/admin-categories.php:190
+#: zp-core/zp-extensions/zenpage/admin-edit.php:352
+#: zp-core/zp-extensions/zenpage/admin-edit.php:354
+#: zp-core/zp-extensions/zenpage/admin-edit.php:808
+#: zp-core/zp-extensions/zenpage/admin-edit.php:812
+#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1425
+msgid "View"
+msgstr "Voir"
+
+#: zp-core/classes/class-admingallerystats.php:1156
+msgid "other"
+msgstr "autre"
+
+#: zp-core/classes/class-admingallerystats.php:1192
+msgid "General image mime types"
+msgstr "Type MIME général des images"
+
+#: zp-core/classes/class-admingallerystats.php:1206
+#, php-format
+msgid "Albums folder size: <strong>%s</strong>"
+msgstr "Taille du dossier des albums : <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1210
+#, php-format
+msgid "Backups: <strong>%s</strong>"
+msgstr "Sauvegardes : <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1214
+#, php-format
+msgid "Image cache size: <strong>%s</strong>"
+msgstr "Taille du cache des images : <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1218
+#, php-format
+msgid "HTML cache size: <strong>%s</strong>"
+msgstr "Taille du cache HTML : <strong>%1$s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1222
+#, php-format
+msgid "Uploaded folder size: <strong>%s</strong>"
+msgstr "Taille du dossier chargé : <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1226
+#, php-format
+msgid "Zenphoto scripts size: <strong>%s</strong>"
+msgstr "Taille des scripts Zenphoto : <strong>%s</strong>"
+
+#: zp-core/classes/class-admingallerystats.php:1242
+msgid "Disk space usage"
+msgstr "Utilisation de l’espace disque"
 
 #: zp-core/classes/class-album.php:42 zp-core/classes/class-dynamicalbum.php:78
 msgid "Invalid album instantiation: No album name"
@@ -6498,7 +6705,7 @@ msgstr "Poster des commentaires"
 #: zp-core/classes/class-authority.php:594 zp-core/classes/class-authority.php:610
 #: zp-core/classes/class-authority.php:634 zp-core/classes/class-authority.php:660
 #: zp-core/classes/class-userdataexport.php:300
-#: zp-core/zp-extensions/comment_form.php:266
+#: zp-core/zp-extensions/comment_form.php:260
 #: zp-core/zp-extensions/comment_form/admin-comments.php:264
 msgid "Comments"
 msgstr "Commentaires"
@@ -8160,10 +8367,10 @@ msgstr "Utilisez plutôt rsslib::getChannel()"
 msgid "Use rsslib::retrieve() instead"
 msgstr "Utilisez plutôt rsslib::retrieve()"
 
-#: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:550
-#: zp-core/zp-extensions/downloadList.php:782
-#: zp-core/zp-extensions/downloadList.php:784
-#: zp-core/zp-extensions/downloadList.php:785
+#: zp-core/full-image.php:17 zp-core/zp-extensions/downloadList.php:589
+#: zp-core/zp-extensions/downloadList.php:824
+#: zp-core/zp-extensions/downloadList.php:826
+#: zp-core/zp-extensions/downloadList.php:827
 #: zp-core/zp-extensions/ipBlocker.php:375 zp-core/zp-extensions/ipBlocker.php:376
 #: zp-core/zp-extensions/ipBlocker.php:386 zp-core/zp-extensions/ipBlocker.php:387
 msgid "Forbidden"
@@ -8216,31 +8423,31 @@ msgstr "NOTICE : la requête cURL, n’a pas réussi correctement."
 msgid "ERROR: Your server does not support cURL."
 msgstr "ERREUR : Votre serveur ne supporte pas cURL."
 
-#: zp-core/functions/functions-basic.php:2261
+#: zp-core/functions/functions-basic.php:2298
 msgid "function"
 msgstr "la fonction"
 
-#: zp-core/functions/functions-basic.php:2267
+#: zp-core/functions/functions-basic.php:2304
 #, php-format
 msgid "It will be removed in Zenphoto %s."
 msgstr "Sera retiré dans Zenphoto %s."
 
-#: zp-core/functions/functions-basic.php:2280 zp-core/setup/class-setup.php:240
+#: zp-core/functions/functions-basic.php:2317 zp-core/setup/class-setup.php:240
 #: zp-core/setup/class-setup.php:245
 msgid "unknown"
 msgstr "inconnu"
 
-#: zp-core/functions/functions-basic.php:2288
+#: zp-core/functions/functions-basic.php:2325
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr "Le paramètre d’usage %1$s (appelé depuis %2$s, ligne %3$s) est obsolète."
 
-#: zp-core/functions/functions-basic.php:2290
+#: zp-core/functions/functions-basic.php:2327
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr "Paramètre %1$s d’usage %2$s (appelé depuis %3$s, ligne %4$s) obsolète."
 
-#: zp-core/functions/functions-basic.php:2292
+#: zp-core/functions/functions-basic.php:2329
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (appelé depuis la ligne %3$s de %2$s) est obsolète."
@@ -9074,16 +9281,6 @@ msgstr "chronologique"
 msgid "first alphabetically"
 msgstr "alphabétique"
 
-#: zp-core/functions/functions.php:38 zp-core/utilities/gallery_statistics.php:140
-#: zp-core/utilities/gallery_statistics.php:583
-#: zp-core/utilities/gallery_statistics.php:594
-#: zp-core/utilities/gallery_statistics.php:609
-#: zp-core/utilities/gallery_statistics.php:617
-#: zp-core/utilities/gallery_statistics.php:625
-#: zp-core/utilities/gallery_statistics.php:631
-msgid "most viewed"
-msgstr "les plus vu(e)s"
-
 #: zp-core/functions/functions.php:41
 msgid "missing"
 msgstr "Manquant"
@@ -9321,7 +9518,7 @@ msgstr "Source de l’image"
 
 #: zp-core/functions/functions.php:2835 zp-core/template-functions.php:469
 #: zp-core/zp-extensions/html_meta_tags.php:468
-#: zp-core/zp-extensions/scriptless-socialsharing.php:428
+#: zp-core/zp-extensions/scriptless-socialsharing.php:451
 msgid "Contact"
 msgstr "Contact"
 
@@ -11694,13 +11891,13 @@ msgstr ""
 msgid "Setup failed."
 msgstr "L’installation a échoué."
 
-#: zp-core/setup/index.php:1594 zp-core/setup/index.php:2683
+#: zp-core/setup/index.php:1594 zp-core/setup/index.php:2688
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour réaliser "
 "l’installation."
 
-#: zp-core/setup/index.php:1596 zp-core/setup/index.php:2685
+#: zp-core/setup/index.php:1596 zp-core/setup/index.php:2690
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
@@ -11712,49 +11909,49 @@ msgstr "base de données connectée"
 msgid "Checking the database"
 msgstr "Vérification de la base de données"
 
-#: zp-core/setup/index.php:2402
+#: zp-core/setup/index.php:2407
 msgid "About to create database tables"
 msgstr "Création des tables de base de données"
 
-#: zp-core/setup/index.php:2404
+#: zp-core/setup/index.php:2409
 msgid "About to update database tables"
 msgstr "Mise à jour des tables de base de données"
 
-#: zp-core/setup/index.php:2407
+#: zp-core/setup/index.php:2412
 msgid "Begin database table creation"
 msgstr "Démarrage de la création des tables de base de données"
 
-#: zp-core/setup/index.php:2416
+#: zp-core/setup/index.php:2421
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Impossible de créer la table :<br />Requête : %1$s<br />Erreur : %2$s"
 
-#: zp-core/setup/index.php:2421 zp-core/setup/index.php:2441
+#: zp-core/setup/index.php:2426 zp-core/setup/index.php:2446
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "La requête ( %s ) a réussi."
 
-#: zp-core/setup/index.php:2426 zp-core/setup/index.php:2427
+#: zp-core/setup/index.php:2431 zp-core/setup/index.php:2432
 msgid "Begin table updates"
 msgstr "Démarrage de la mise à jour de la table"
 
-#: zp-core/setup/index.php:2434 zp-core/setup/index.php:2438
+#: zp-core/setup/index.php:2439 zp-core/setup/index.php:2443
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "La requête <em>%1$s</em> a échoué. Erreur : %2$s"
 
-#: zp-core/setup/index.php:2444
+#: zp-core/setup/index.php:2449
 msgid "Begin converting UTF-8 tables to utf8mb4 collation"
 msgstr "Conversion de l'interclassement des tables de UTF-8 vers utf8mb4"
 
-#: zp-core/setup/index.php:2452
+#: zp-core/setup/index.php:2457
 #, php-format
 msgid "UTF-8 Table %s and its columns converted to utf8mb4 collation."
 msgstr ""
 "La table UTF-8 %s et ses colonnes ont été converties vers l'interclassement "
 "utf8mb4."
 
-#: zp-core/setup/index.php:2455
+#: zp-core/setup/index.php:2460
 #, php-format
 msgid ""
 "ERROR: UTF-8 table %1$s and/or its columns could not be converted to utf8mb4 "
@@ -11763,40 +11960,40 @@ msgstr ""
 "ERREUR : la table UTF-8 %1$s et/où ses colonnes n'ont pu être converties vers "
 "l'interclassement utf8mb4 : %2$s"
 
-#: zp-core/setup/index.php:2463
+#: zp-core/setup/index.php:2468
 msgid "Done with table create!"
 msgstr "Création de la table effectuée !"
 
-#: zp-core/setup/index.php:2465
+#: zp-core/setup/index.php:2470
 msgid "Done with table create with errors!"
 msgstr "Création de la table effectuée, mais avec des erreurs !"
 
-#: zp-core/setup/index.php:2469
+#: zp-core/setup/index.php:2474
 msgid "Done with table update"
 msgstr "Mise à jour de la table effectuée"
 
-#: zp-core/setup/index.php:2471
+#: zp-core/setup/index.php:2476
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs"
 
-#: zp-core/setup/index.php:2476
+#: zp-core/setup/index.php:2481
 msgid "Checking table specifications"
 msgstr "Vérification des spécifications des tables"
 
-#: zp-core/setup/index.php:2487
+#: zp-core/setup/index.php:2492
 msgid "Done with database creation and update"
 msgstr "Création et mise à jour de la table effectuée"
 
-#: zp-core/setup/index.php:2489
+#: zp-core/setup/index.php:2494
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La version précédente était la version %s"
 
-#: zp-core/setup/index.php:2492
+#: zp-core/setup/index.php:2497
 msgid "Setting default options"
 msgstr "Configuration des options par défaut"
 
-#: zp-core/setup/index.php:2530
+#: zp-core/setup/index.php:2535
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a "
@@ -11805,29 +12002,29 @@ msgstr ""
 "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de "
 "l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</a>"
 
-#: zp-core/setup/index.php:2533
+#: zp-core/setup/index.php:2538
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de "
 "l’administrateur</a>"
 
-#: zp-core/setup/index.php:2539
+#: zp-core/setup/index.php:2544
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr "Vous pouvez maintenant <a href=\"%1$s\">gérer votre galerie</a>."
 
-#: zp-core/setup/index.php:2603
+#: zp-core/setup/index.php:2608
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: zp-core/setup/index.php:2623
+#: zp-core/setup/index.php:2628
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: zp-core/setup/index.php:2652
+#: zp-core/setup/index.php:2657
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the database "
 "which are not easily reversed. Be sure you have a database backup before "
@@ -11837,12 +12034,12 @@ msgstr ""
 "structurelles à la base de données. Ce sont des changements difficilement "
 "réversibles. Assurez-vous d’avoir une sauvegarde avant de continuer."
 
-#: zp-core/setup/index.php:2655
+#: zp-core/setup/index.php:2660
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Je comprends que cette opération va restructurer ma base de données."
 
-#: zp-core/setup/index.php:2715
+#: zp-core/setup/index.php:2720
 msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as the "
 "process may take some time."
@@ -11850,24 +12047,24 @@ msgstr ""
 "Félicitations, nous sommes prêts à configurer Zenphoto. Un peu de patience s'il "
 "vous plaît car le processus peut prendre un certain temps."
 
-#: zp-core/setup/index.php:2716
+#: zp-core/setup/index.php:2721
 msgid "run setup"
 msgstr "lancer l’installation"
 
-#: zp-core/setup/index.php:2716
+#: zp-core/setup/index.php:2721
 msgid "Go"
 msgstr "C’est parti !"
 
-#: zp-core/setup/index.php:2732
+#: zp-core/setup/index.php:2737
 msgid "database did not connect"
 msgstr "Impossible de se connecter à la base de données"
 
-#: zp-core/setup/index.php:2734
+#: zp-core/setup/index.php:2739
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr ""
 "Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
-#: zp-core/setup/index.php:2743
+#: zp-core/setup/index.php:2748
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Le fichier %1$s n’existe pas"
@@ -12453,9 +12650,8 @@ msgstr "Vider le cache statique de recherche."
 #: zp-core/utilities/gallery_statistics.php:19
 #: zp-core/utilities/http_header_inspector.php:11
 #: zp-core/utilities/list_locales.php:10 zp-core/utilities/phpInfo.php:12
-#: zp-core/utilities/user-data-export.php:13
-#: zp-core/zp-extensions/downloadList.php:273 zp-core/zp-extensions/matomo.php:221
-#: zp-core/zp-extensions/search_statistics.php:79
+#: zp-core/utilities/user-data-export.php:13 zp-core/zp-extensions/matomo.php:221
+#: zp-core/zp-extensions/search_statistics.php:51
 msgid "Info"
 msgstr "Infos"
 
@@ -12525,129 +12721,13 @@ msgstr "Clé"
 msgid "Column"
 msgstr "Colonne"
 
-#: zp-core/utilities/gallery_statistics.php:21
-#: zp-core/utilities/gallery_statistics.php:500
-msgid "Gallery Statistics"
-msgstr "Statistiques de la galerie"
-
 #: zp-core/utilities/gallery_statistics.php:25
 msgid "Shows statistical graphs and info about your gallery’s images and albums."
 msgstr ""
 "Affiche des graphiques statistiques et des informations sur les albums et les "
 "images de votre galerie."
 
-#: zp-core/utilities/gallery_statistics.php:89
-#: zp-core/zp-extensions/zenpage.php:396
-msgid "News Categories"
-msgstr "Catégories d’actualités"
-
-#: zp-core/utilities/gallery_statistics.php:96
-msgid "rss"
-msgstr "rss"
-
-#: zp-core/utilities/gallery_statistics.php:119
-#: zp-core/utilities/gallery_statistics.php:603
-#: zp-core/utilities/gallery_statistics.php:626
-msgid "most used"
-msgstr "le plus utilisé"
-
-#: zp-core/utilities/gallery_statistics.php:150
-#: zp-core/utilities/gallery_statistics.php:595
-msgid "most viewed images"
-msgstr "images les plus vues"
-
-#: zp-core/utilities/gallery_statistics.php:159
-#: zp-core/utilities/gallery_statistics.php:584
-#: zp-core/utilities/gallery_statistics.php:596
-#: zp-core/utilities/gallery_statistics.php:611
-#: zp-core/utilities/gallery_statistics.php:619
-msgid "most rated"
-msgstr "les plus noté(e)s"
-
-#: zp-core/utilities/gallery_statistics.php:172
-#: zp-core/utilities/gallery_statistics.php:585
-#: zp-core/utilities/gallery_statistics.php:597
-#: zp-core/utilities/gallery_statistics.php:612
-#: zp-core/utilities/gallery_statistics.php:620
-msgid "top rated"
-msgstr "les mieux noté(e)s"
-
-#: zp-core/utilities/gallery_statistics.php:194
-#: zp-core/utilities/gallery_statistics.php:586
-#: zp-core/utilities/gallery_statistics.php:598
-#: zp-core/utilities/gallery_statistics.php:610
-#: zp-core/utilities/gallery_statistics.php:618
-msgid "most commented"
-msgstr "les plus commenté(e)s"
-
-#: zp-core/utilities/gallery_statistics.php:203
-#: zp-core/utilities/gallery_statistics.php:593
-msgid "most images"
-msgstr "le plus d’images"
-
-#: zp-core/utilities/gallery_statistics.php:219
-#: zp-core/utilities/gallery_statistics.php:225
-#: zp-core/utilities/gallery_statistics.php:582
-#: zp-core/utilities/gallery_statistics.php:591
-msgid "latest"
-msgstr "les plus récents(es)"
-
-#: zp-core/utilities/gallery_statistics.php:243
-#: zp-core/utilities/gallery_statistics.php:592 zp-core/zp-extensions/rss.php:137
-msgid "latest updated"
-msgstr "les plus récentes mises à jour"
-
-#: zp-core/utilities/gallery_statistics.php:251
-msgid "(The hitcounter plugin is not enabled.)"
-msgstr "(L’extension « hitcounter » n’est pas activée.)"
-
-#: zp-core/utilities/gallery_statistics.php:253
-msgid "No statistic available."
-msgstr "Aucune statistique disponible."
-
-#: zp-core/utilities/gallery_statistics.php:257
-msgid ""
-"Note: The hitcounter plugin is not enabled, therefore any existing values will "
-"not get updated."
-msgstr ""
-"Note : L’extension « hitcounter » n’est pas activée. Les valeurs ne sont donc "
-"pas actualisées."
-
-#: zp-core/utilities/gallery_statistics.php:270
-msgid "Back to the top 10 lists"
-msgstr "Retour aux listes des top 10"
-
-#: zp-core/utilities/gallery_statistics.php:273
-msgid "View more"
-msgstr "En voir davantage "
-
-#: zp-core/utilities/gallery_statistics.php:275
-msgid "top"
-msgstr "haut"
-
-#: zp-core/utilities/gallery_statistics.php:341
-#: zp-core/utilities/gallery_statistics.php:351
-#, php-format
-msgid "%s images"
-msgstr "%s images"
-
-#: zp-core/utilities/gallery_statistics.php:460
-#: zp-core/utilities/gallery_statistics.php:463
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:253
-#: zp-core/zp-extensions/publishContent/publishContent.php:436
-#: zp-core/zp-extensions/publishContent/publishContent.php:490
-#: zp-core/zp-extensions/publishContent/publishContent.php:549
-#: zp-core/zp-extensions/publishContent/publishContent.php:605
-#: zp-core/zp-extensions/zenpage/admin-categories.php:190
-#: zp-core/zp-extensions/zenpage/admin-edit.php:352
-#: zp-core/zp-extensions/zenpage/admin-edit.php:354
-#: zp-core/zp-extensions/zenpage/admin-edit.php:808
-#: zp-core/zp-extensions/zenpage/admin-edit.php:812
-#: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1425
-msgid "View"
-msgstr "Voir"
-
-#: zp-core/utilities/gallery_statistics.php:501
+#: zp-core/utilities/gallery_statistics.php:55
 msgid ""
 "This page shows more detailed statistics of your gallery. For album statistics "
 "the bar graph always shows the total number of images in that album. For image "
@@ -12661,127 +12741,27 @@ msgstr ""
 "également affiché.<br />Les éléments non publiés sont marqués en rouge foncé. "
 "Les images sont marquées comme non publiées si leur album parent ne l’est pas."
 
-#: zp-core/utilities/gallery_statistics.php:506
-#, php-format
-msgid "<strong>%1$u</strong> images (%2$u un-published)"
-msgstr "<strong>%1$u</strong> images (%2$u non publiée(s))"
+#: zp-core/utilities/gallery_statistics.php:82
+#: zp-core/zp-extensions/downloadList/download_statistics.php:122
+msgid "Outdated file entries cleared from the database"
+msgstr "Les entrées périmées de fichiers ont été effacées de la base de données"
 
-#: zp-core/utilities/gallery_statistics.php:508
-#, php-format
-msgid "<strong>%u</strong> images"
-msgstr "<strong>%u</strong> images"
+#: zp-core/utilities/gallery_statistics.php:87
+#: zp-core/zp-extensions/downloadList/download_statistics.php:128
+msgid "All download file entries cleared from the database"
+msgstr ""
+"Toutes les entrées de fichiers téléchargés ont été effacées de la base de "
+"données."
 
-#: zp-core/utilities/gallery_statistics.php:514
-#, php-format
-msgid "<strong>%1$u</strong> albums (%2$u un-published)"
-msgstr "<strong>%1$u</strong> albums (%2$u non publié(s))"
+#: zp-core/utilities/gallery_statistics.php:90
+#: zp-core/zp-extensions/downloadList/download_statistics.php:140
+msgid "Clear outdated downloads from database"
+msgstr "Efface les téléchargements périmés de la base de données"
 
-#: zp-core/utilities/gallery_statistics.php:516
-#, php-format
-msgid "<strong>%u</strong> albums"
-msgstr "<strong>%u</strong> albums"
-
-#: zp-core/utilities/gallery_statistics.php:526
-#, php-format
-msgid "<strong>%1$u</strong> comments (%2$u in moderation)"
-msgstr "<strong>%1$u</strong> commentaires (%2$u en attente de modération)"
-
-#: zp-core/utilities/gallery_statistics.php:528
-#, php-format
-msgid "<strong>1</strong> comment (%u in moderation)"
-msgstr "<strong>Un</strong> commentaire (%u en attente de modération)"
-
-#: zp-core/utilities/gallery_statistics.php:532
-#, php-format
-msgid "<strong>%u</strong> comments"
-msgstr "<strong>%u</strong> commentaires"
-
-#: zp-core/utilities/gallery_statistics.php:534
-msgid "<strong>1</strong> comment"
-msgstr "<strong>Un</strong> commentaire"
-
-#: zp-core/utilities/gallery_statistics.php:544
-#, php-format
-msgid "<strong>%1$u</strong> Pages"
-msgstr "<strong>%1$u</strong> pages"
-
-#: zp-core/utilities/gallery_statistics.php:546
-#, php-format
-msgid "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr "<strong>%1$u</strong> pages (%2$u non publiée(s))"
-
-#: zp-core/utilities/gallery_statistics.php:554
-#, php-format
-msgid "<strong>%1$u</strong> News articles"
-msgstr "<strong>%1$u</strong> articles d’actualité"
-
-#: zp-core/utilities/gallery_statistics.php:556
-#, php-format
-msgid "<strong>%1$u</strong> News articles (%2$u un-published)"
-msgstr "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
-
-#: zp-core/utilities/gallery_statistics.php:563
-#, php-format
-msgid "<strong>%1$u</strong> Categories"
-msgstr "<strong>%1$u</strong> catégories"
-
-#: zp-core/utilities/gallery_statistics.php:568
-#, php-format
-msgid "Albums folder size: <strong>%s</strong>"
-msgstr "Taille du dossier des albums : <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:569
-#, php-format
-msgid "Image cache size: <strong>%s</strong>"
-msgstr "Taille du cache des images : <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:570
-#, php-format
-msgid "HTML cache size: <strong>%s</strong>"
-msgstr "Taille du cache HTML : <strong>%1$s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:571
-#, php-format
-msgid "Uploaded folder size: <strong>%s</strong>"
-msgstr "Taille du dossier chargé : <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:572
-#, php-format
-msgid "Zenphoto scripts size: <strong>%s</strong>"
-msgstr "Taille des scripts Zenphoto : <strong>%s</strong>"
-
-#: zp-core/utilities/gallery_statistics.php:629
-msgid "RSS feeds"
-msgstr "Flux RSS"
-
-#: zp-core/utilities/gallery_statistics.php:717
-msgid "Statistics for news categories"
-msgstr "Statistiques pour les catégories d’actualité"
-
-#: zp-core/utilities/gallery_statistics.php:724
-msgid "Statistics for RSS feeds"
-msgstr "Statistiques pour les flux RSS"
-
-#: zp-core/utilities/gallery_statistics.php:760
-msgid "From "
-msgstr "De "
-
-#: zp-core/utilities/gallery_statistics.php:762
-msgid "to "
-msgstr "à "
-
-#: zp-core/utilities/gallery_statistics.php:766
-#: zp-core/zp-extensions/cacheManager.php:162
-#: zp-core/zp-extensions/cacheManager.php:167
-#: zp-core/zp-extensions/cacheManager/cacheImages.php:190
-#: zp-core/zp-extensions/comment_form.php:121
-#: zp-core/zp-extensions/comment_form.php:129
-#: zp-core/zp-extensions/comment_form.php:137
-#: zp-core/zp-extensions/comment_form.php:150
-#: zp-core/zp-extensions/menu_manager/menu_tab.php:193
-#: zp-core/zp-extensions/register_user.php:146
-msgid "Show"
-msgstr "Afficher"
+#: zp-core/utilities/gallery_statistics.php:91
+#: zp-core/zp-extensions/downloadList/download_statistics.php:141
+msgid "Clear all downloads from database"
+msgstr "Efface tous les téléchargements de la base de données"
 
 #: zp-core/utilities/http_header_inspector.php:13
 #: zp-core/utilities/http_header_inspector.php:18
@@ -13617,7 +13597,7 @@ msgid "Cache default sizes"
 msgstr "Tailles par défaut du cache"
 
 #: zp-core/zp-extensions/cacheManager.php:129
-#: zp-core/zp-extensions/openstreetmap.php:147
+#: zp-core/zp-extensions/openstreetmap.php:150
 msgid "Default thumb size"
 msgstr "Taille des vignettes par défaut"
 
@@ -14082,9 +14062,9 @@ msgstr "PDF"
 #: zp-core/zp-extensions/class-WEBdocs.php:59
 #: zp-core/zp-extensions/class-WEBdocs.php:70
 #: zp-core/zp-extensions/class-WEBdocs.php:77
-#: zp-core/zp-extensions/comment_form.php:190
+#: zp-core/zp-extensions/comment_form.php:184
 #: zp-core/zp-extensions/galleryArticles.php:99
-#: zp-core/zp-extensions/tinymce.php:49 zp-core/zp-extensions/tinymce.php:55
+#: zp-core/zp-extensions/tinymce.php:48 zp-core/zp-extensions/tinymce.php:54
 #: zp-core/zp-extensions/tinymce4.php:55 zp-core/zp-extensions/tinymce4.php:62
 msgid "Disabled"
 msgstr "Désactivé"
@@ -14491,38 +14471,38 @@ msgstr ""
 msgid "Provides a unified comment handling facility."
 msgstr "Offre un outil unifié de gestion des commentaires."
 
-#: zp-core/zp-extensions/comment_form.php:112
+#: zp-core/zp-extensions/comment_form.php:106
 msgid "Enable comment notification"
 msgstr "Activer la notification des commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:115
+#: zp-core/zp-extensions/comment_form.php:109
 msgid "Email the Admin when new comments are posted"
 msgstr ""
 "Envoyer un email à l’administrateur quand de nouveaux commentaires sont envoyés."
 
-#: zp-core/zp-extensions/comment_form.php:116
+#: zp-core/zp-extensions/comment_form.php:110
 msgid "Name field"
 msgstr "Champ « nom »"
 
-#: zp-core/zp-extensions/comment_form.php:122
-#: zp-core/zp-extensions/comment_form.php:130
-#: zp-core/zp-extensions/comment_form.php:138
-#: zp-core/zp-extensions/comment_form.php:151
-#: zp-core/zp-extensions/comment_form.php:210
+#: zp-core/zp-extensions/comment_form.php:116
+#: zp-core/zp-extensions/comment_form.php:124
+#: zp-core/zp-extensions/comment_form.php:132
+#: zp-core/zp-extensions/comment_form.php:145
+#: zp-core/zp-extensions/comment_form.php:204
 #: zp-core/zp-extensions/register_user.php:146
 msgid "Require"
 msgstr "Obligatoire"
 
-#: zp-core/zp-extensions/comment_form.php:123
+#: zp-core/zp-extensions/comment_form.php:117
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr ""
 "Si le champ <em>Nom</em> est obligatoire, l’utilisateur doit saisir un nom."
 
-#: zp-core/zp-extensions/comment_form.php:124
+#: zp-core/zp-extensions/comment_form.php:118
 msgid "Email field"
 msgstr "Champ « email »"
 
-#: zp-core/zp-extensions/comment_form.php:131
+#: zp-core/zp-extensions/comment_form.php:125
 msgid ""
 "If the <em>Email</em> field is required, the poster must provide an email "
 "address."
@@ -14530,33 +14510,33 @@ msgstr ""
 "Si le champ <em>Email</em> est obligatoire, l’utilisateur doit saisir une "
 "adresse d’email."
 
-#: zp-core/zp-extensions/comment_form.php:132
+#: zp-core/zp-extensions/comment_form.php:126
 msgid "Website field"
 msgstr "Champ « site internet »"
 
-#: zp-core/zp-extensions/comment_form.php:139
+#: zp-core/zp-extensions/comment_form.php:133
 msgid ""
 "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr ""
 "Si le champ <em>Site internet</em> est obligatoire, l’utilisateur doit saisir un "
 "site internet."
 
-#: zp-core/zp-extensions/comment_form.php:141
+#: zp-core/zp-extensions/comment_form.php:135
 msgid "Remember field"
 msgstr "Champ « se souvenir de moi »"
 
-#: zp-core/zp-extensions/comment_form.php:144
+#: zp-core/zp-extensions/comment_form.php:138
 msgid "Enable a field so commenters can choose to be remembered via a cookie"
 msgstr ""
 "Si cette option est cochée, les commentateurs peuvent demander à conserver leurs "
 "informations dans un cookie."
 
-#: zp-core/zp-extensions/comment_form.php:145
+#: zp-core/zp-extensions/comment_form.php:139
 #: zp-core/zp-extensions/register_user.php:143
 msgid "Address fields"
 msgstr "Champs d’adresse"
 
-#: zp-core/zp-extensions/comment_form.php:152
+#: zp-core/zp-extensions/comment_form.php:146
 msgid ""
 "If <em>Address fields</em> are shown or required, the form will include "
 "positions for address information. If required, the poster must supply data in "
@@ -14566,19 +14546,19 @@ msgstr ""
 "comporte des champs pour les détails de l’adresse. Si ces champs sont "
 "obligatoires, l’utilisateur doit tous les remplir."
 
-#: zp-core/zp-extensions/comment_form.php:153
+#: zp-core/zp-extensions/comment_form.php:147
 msgid "Allow comments on"
 msgstr "Autoriser les commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:157
+#: zp-core/zp-extensions/comment_form.php:151
 msgid "Comment forms will be presented on the checked pages."
 msgstr "Les formulaires de commentaires sont affichés sur les pages cochées."
 
-#: zp-core/zp-extensions/comment_form.php:158
+#: zp-core/zp-extensions/comment_form.php:152
 msgid "Toggled comment block"
 msgstr "Masquer les commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:161
+#: zp-core/zp-extensions/comment_form.php:155
 msgid ""
 "If checked, existing comments will be initially hidden. Clicking on the provided "
 "button will show them."
@@ -14586,43 +14566,43 @@ msgstr ""
 "Si cette option est activée, les commentaires existants sont masqués par défaut. "
 "Le visiteur doit cliquer sur un bouton pour les voir."
 
-#: zp-core/zp-extensions/comment_form.php:162
+#: zp-core/zp-extensions/comment_form.php:156
 msgid "Show author URL"
 msgstr "Afficher l’URL de l’auteur"
 
-#: zp-core/zp-extensions/comment_form.php:165
+#: zp-core/zp-extensions/comment_form.php:159
 msgid ""
 "To discourage SPAM, uncheck this box and the author URL will not be revealed."
 msgstr ""
 "Pour décourager le spam, décochez cette case afin de ne pas afficher l’URL de "
 "l’auteur."
 
-#: zp-core/zp-extensions/comment_form.php:166
+#: zp-core/zp-extensions/comment_form.php:160
 msgid "Only members can comment"
 msgstr "Seuls les membres peuvent commenter"
 
-#: zp-core/zp-extensions/comment_form.php:169
+#: zp-core/zp-extensions/comment_form.php:163
 msgid "If checked, only logged in users will be allowed to post comments."
 msgstr ""
 "Si l’option est activée, seuls les utilisateurs connectés peuvent poster des "
 "commentaires."
 
-#: zp-core/zp-extensions/comment_form.php:170
+#: zp-core/zp-extensions/comment_form.php:164
 msgid "Allow private postings"
 msgstr "Autoriser les messages privés"
 
-#: zp-core/zp-extensions/comment_form.php:173
+#: zp-core/zp-extensions/comment_form.php:167
 msgid ""
 "If checked, posters may mark their comments as private (not for publishing)."
 msgstr ""
 "Si cette option est cochée, les commentateurs peuvent marquer leur message comme "
 "privé (non destiné à la publication)."
 
-#: zp-core/zp-extensions/comment_form.php:174
+#: zp-core/zp-extensions/comment_form.php:168
 msgid "Allow anonymous posting"
 msgstr "Autoriser les commentaires anonymes"
 
-#: zp-core/zp-extensions/comment_form.php:177
+#: zp-core/zp-extensions/comment_form.php:171
 msgid ""
 "If checked, posters may exclude their personal information from the published "
 "post."
@@ -14630,22 +14610,22 @@ msgstr ""
 "Si cette option est cochée, les commentateurs peuvent cacher leurs "
 "renseignements personnels du message publié."
 
-#: zp-core/zp-extensions/comment_form.php:178
+#: zp-core/zp-extensions/comment_form.php:172
 msgid "Include RSS link"
 msgstr "Inclure un lien RSS"
 
-#: zp-core/zp-extensions/comment_form.php:181
+#: zp-core/zp-extensions/comment_form.php:175
 msgid ""
 "If checked, an RSS link will be included at the bottom of the comment section."
 msgstr ""
 "Si l’option est activée, un lien RSS apparaîtra au bas de la section des "
 "commentaires."
 
-#: zp-core/zp-extensions/comment_form.php:182
+#: zp-core/zp-extensions/comment_form.php:176
 msgid "Comments per page"
 msgstr "Nombre de commentaires par page"
 
-#: zp-core/zp-extensions/comment_form.php:185
+#: zp-core/zp-extensions/comment_form.php:179
 msgid ""
 "The comments that should show per page on the admin tab and when using the "
 "jQuery pagination"
@@ -14653,11 +14633,11 @@ msgstr ""
 "Le nombre de commentaires à afficher sur une page lorsqu’on utilise la "
 "pagination jQuery."
 
-#: zp-core/zp-extensions/comment_form.php:186
+#: zp-core/zp-extensions/comment_form.php:180
 msgid "Comment editor configuration"
 msgstr "Configuration de l’éditeur de commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:191
+#: zp-core/zp-extensions/comment_form.php:185
 msgid ""
 "Configuration file for TinyMCE when used for comments. Set to <code>Disabled</"
 "code> to disable visual editing."
@@ -14665,23 +14645,23 @@ msgstr ""
 "Fichier de configuration de TinyMCE lorsqu’il est utilisé pour les commentaires. "
 "Choisir <code>désactivé</code> pour désactiver l’édition visuelle."
 
-#: zp-core/zp-extensions/comment_form.php:192
+#: zp-core/zp-extensions/comment_form.php:186
 msgid "Pagination"
 msgstr "Pagination"
 
-#: zp-core/zp-extensions/comment_form.php:195
+#: zp-core/zp-extensions/comment_form.php:189
 msgid "Uncheck to disable the jQuery pagination of comments. Enabled by default."
 msgstr ""
 "Décocher pour désactiver la pagination jQuery des commentaires. Fonction activée "
 "par défaut."
 
-#: zp-core/zp-extensions/comment_form.php:196
+#: zp-core/zp-extensions/comment_form.php:190
 #: zp-core/zp-extensions/contact_form.php:181
 #: zp-core/zp-extensions/register_user.php:111
 msgid "Data usage confirmation"
 msgstr "Confirmation d’utilisation des données"
 
-#: zp-core/zp-extensions/comment_form.php:199
+#: zp-core/zp-extensions/comment_form.php:193
 #: zp-core/zp-extensions/contact_form.php:184
 #: zp-core/zp-extensions/register_user.php:114
 msgid ""
@@ -14692,12 +14672,12 @@ msgstr ""
 "permettre aux utilisateurs de confirmer le stockage et la gestion des données "
 "par votre site. Ceci est recommandé afin de se conformer au RGPD de l’UE."
 
-#: zp-core/zp-extensions/comment_form.php:200
+#: zp-core/zp-extensions/comment_form.php:194
 #: zp-core/zp-extensions/contact_form.php:185
 msgid "Autocomplete"
 msgstr "Auto-complétion"
 
-#: zp-core/zp-extensions/comment_form.php:203
+#: zp-core/zp-extensions/comment_form.php:197
 #: zp-core/zp-extensions/contact_form.php:188
 msgid ""
 "If checked the form allows autocompletion by the browser. Note that this may be "
@@ -14706,28 +14686,28 @@ msgstr ""
 "Si coché, le formulaire autorisera l’auto-complétion par le navigateur. Notez "
 "que cela engendre des questions de vie privée."
 
-#: zp-core/zp-extensions/comment_form.php:204
+#: zp-core/zp-extensions/comment_form.php:198
 msgid "Captcha field"
 msgstr "Captcha"
 
-#: zp-core/zp-extensions/comment_form.php:209
+#: zp-core/zp-extensions/comment_form.php:203
 msgid "For guests"
 msgstr "Invités"
 
-#: zp-core/zp-extensions/comment_form.php:212
+#: zp-core/zp-extensions/comment_form.php:206
 msgid ""
 "If <em>Captcha</em> is required, the form will include a Captcha verification."
 msgstr ""
 "Si un <em>Captcha</em> est obligatoire, le formulaire comporte la validation par "
 "Captcha."
 
-#: zp-core/zp-extensions/comment_form.php:213
+#: zp-core/zp-extensions/comment_form.php:207
 #: zp-core/zp-extensions/contact_form.php:194
 #: zp-core/zp-extensions/register_user.php:119
 msgid "Math quiz"
 msgstr "Devinette mathématique"
 
-#: zp-core/zp-extensions/comment_form.php:216
+#: zp-core/zp-extensions/comment_form.php:210
 msgid ""
 "Enables a mandatory input field so users have to answer a math question before "
 "they can send any comment."
@@ -14735,13 +14715,13 @@ msgstr ""
 "Affiche une devinette mathématique obligatoire à laquelle les utilisateurs ont "
 "obligation de répondre pour envoyer leur email."
 
-#: zp-core/zp-extensions/comment_form.php:217
+#: zp-core/zp-extensions/comment_form.php:211
 #: zp-core/zp-extensions/contact_form.php:198
 #: zp-core/zp-extensions/register_user.php:123
 msgid "Math quiz question"
 msgstr "Question de la devinette mathématique"
 
-#: zp-core/zp-extensions/comment_form.php:220
+#: zp-core/zp-extensions/comment_form.php:214
 #: zp-core/zp-extensions/contact_form.php:201
 #: zp-core/zp-extensions/register_user.php:126
 msgid ""
@@ -14751,13 +14731,13 @@ msgstr ""
 "Le sujet de la question mathématique. Entrez une expression PHP valide de type "
 "2+3*2. Caractères autorisés : <code>0-9+-*/.()</code>."
 
-#: zp-core/zp-extensions/comment_form.php:221
+#: zp-core/zp-extensions/comment_form.php:215
 #: zp-core/zp-extensions/contact_form.php:202
 #: zp-core/zp-extensions/register_user.php:127
 msgid "Text quiz"
 msgstr "Devinette textuelle"
 
-#: zp-core/zp-extensions/comment_form.php:224
+#: zp-core/zp-extensions/comment_form.php:218
 msgid ""
 "Enables a mandatory input field so users have to answer a text question before "
 "they can send any comment."
@@ -14765,75 +14745,75 @@ msgstr ""
 "Affiche une devinette obligatoire à laquelle les utilisateurs ont obligation de "
 "répondre pour envoyer leur email."
 
-#: zp-core/zp-extensions/comment_form.php:225
+#: zp-core/zp-extensions/comment_form.php:219
 #: zp-core/zp-extensions/contact_form.php:206
 #: zp-core/zp-extensions/register_user.php:131
 msgid "Text quiz question"
 msgstr "Question de la devinette textuelle"
 
-#: zp-core/zp-extensions/comment_form.php:229
+#: zp-core/zp-extensions/comment_form.php:223
 #: zp-core/zp-extensions/contact_form.php:210
 #: zp-core/zp-extensions/register_user.php:135
 msgid "The question for the text quiz."
 msgstr "Question de la devinette textuelle."
 
-#: zp-core/zp-extensions/comment_form.php:230
+#: zp-core/zp-extensions/comment_form.php:224
 #: zp-core/zp-extensions/contact_form.php:211
 #: zp-core/zp-extensions/register_user.php:136
 msgid "Text quiz answer"
 msgstr "Réponse de la devinette"
 
-#: zp-core/zp-extensions/comment_form.php:234
+#: zp-core/zp-extensions/comment_form.php:228
 #: zp-core/zp-extensions/contact_form.php:215
 #: zp-core/zp-extensions/register_user.php:140
 msgid "The answer to the text quiz question."
 msgstr "Réponse de la devinette textuelle."
 
-#: zp-core/zp-extensions/comment_form.php:250
-#: zp-core/zp-extensions/comment_form.php:251
-#: zp-core/zp-extensions/comment_form.php:266
+#: zp-core/zp-extensions/comment_form.php:244
+#: zp-core/zp-extensions/comment_form.php:245
+#: zp-core/zp-extensions/comment_form.php:260
 msgid "comments"
 msgstr "commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:293
+#: zp-core/zp-extensions/comment_form.php:287
 msgid "Add a comment:"
 msgstr "Ajouter un commentaire :"
 
-#: zp-core/zp-extensions/comment_form.php:328
+#: zp-core/zp-extensions/comment_form.php:322
 msgid "No Comments"
 msgstr "Aucun commentaire"
 
-#: zp-core/zp-extensions/comment_form.php:332
+#: zp-core/zp-extensions/comment_form.php:326
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
 msgstr[0] "%u commentaire"
 msgstr[1] "%u commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:341
+#: zp-core/zp-extensions/comment_form.php:335
 msgid "show comments"
 msgstr "afficher les commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:345
+#: zp-core/zp-extensions/comment_form.php:339
 msgid "hide comments"
 msgstr "masquer les commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:378
+#: zp-core/zp-extensions/comment_form.php:372
 msgid "on"
 msgstr "le"
 
-#: zp-core/zp-extensions/comment_form.php:401
+#: zp-core/zp-extensions/comment_form.php:395
 msgid "Only registered users may post comments."
 msgstr "Seuls les utilisateurs enregistrés peuvent poster des commentaires."
 
+#: zp-core/zp-extensions/comment_form.php:473
+#: zp-core/zp-extensions/comment_form.php:476
 #: zp-core/zp-extensions/comment_form.php:479
 #: zp-core/zp-extensions/comment_form.php:482
-#: zp-core/zp-extensions/comment_form.php:485
-#: zp-core/zp-extensions/comment_form.php:488
 msgid "Subscribe to comments"
 msgstr "S’abonner aux commentaires"
 
-#: zp-core/zp-extensions/comment_form.php:497
+#: zp-core/zp-extensions/comment_form.php:491
 msgid "Closed for comments."
 msgstr "Fermé aux commentaires."
 
@@ -15467,7 +15447,7 @@ msgstr "Code postal"
 
 #: zp-core/zp-extensions/contact_form.php:166
 #: zp-core/zp-extensions/contact_form.php:170
-#: zp-core/zp-extensions/scriptless-socialsharing.php:279
+#: zp-core/zp-extensions/scriptless-socialsharing.php:302
 msgid "E-mail"
 msgstr "Email"
 
@@ -15832,14 +15812,14 @@ msgid "Position"
 msgstr "Position"
 
 #: zp-core/zp-extensions/cookieconsent.php:119
-#: zp-core/zp-extensions/openstreetmap.php:114
-#: zp-core/zp-extensions/openstreetmap.php:179
+#: zp-core/zp-extensions/openstreetmap.php:117
+#: zp-core/zp-extensions/openstreetmap.php:182
 msgid "Top left"
 msgstr "En haut à gauche"
 
 #: zp-core/zp-extensions/cookieconsent.php:120
-#: zp-core/zp-extensions/openstreetmap.php:115
-#: zp-core/zp-extensions/openstreetmap.php:180
+#: zp-core/zp-extensions/openstreetmap.php:118
+#: zp-core/zp-extensions/openstreetmap.php:183
 msgid "Top right"
 msgstr "En haut à droite"
 
@@ -15848,14 +15828,14 @@ msgid "Bottom"
 msgstr "En bas"
 
 #: zp-core/zp-extensions/cookieconsent.php:122
-#: zp-core/zp-extensions/openstreetmap.php:116
-#: zp-core/zp-extensions/openstreetmap.php:181
+#: zp-core/zp-extensions/openstreetmap.php:119
+#: zp-core/zp-extensions/openstreetmap.php:184
 msgid "Bottom left"
 msgstr "En bas à gauche"
 
 #: zp-core/zp-extensions/cookieconsent.php:123
-#: zp-core/zp-extensions/openstreetmap.php:117
-#: zp-core/zp-extensions/openstreetmap.php:182
+#: zp-core/zp-extensions/openstreetmap.php:120
+#: zp-core/zp-extensions/openstreetmap.php:185
 msgid "Bottom right"
 msgstr "En bas à droite"
 
@@ -16352,11 +16332,21 @@ msgstr "table %s"
 msgid "Plugin to generate file download lists."
 msgstr "Extension pour générer des listes de téléchargement de fichiers."
 
-#: zp-core/zp-extensions/downloadList.php:64
+#: zp-core/zp-extensions/downloadList.php:65
+msgid "User rights"
+msgstr "Droits de l’utilisateur"
+
+#: zp-core/zp-extensions/downloadList.php:68
+msgid "Check if users are required to have <em>file</em> rights to download."
+msgstr ""
+"Cocher si les utilisateurs doivent avoir les droits <em>fichiers</em> pour "
+"télécharger."
+
+#: zp-core/zp-extensions/downloadList.php:69
 msgid "Download directory"
 msgstr "Dossier de téléchargement"
 
-#: zp-core/zp-extensions/downloadList.php:68
+#: zp-core/zp-extensions/downloadList.php:72
 msgid ""
 "This download folder can be relative to your Zenphoto installation "
 "(<em>foldername</em>) or external to it (<em>../foldername</em>)! You can "
@@ -16368,19 +16358,19 @@ msgstr ""
 "em>). Vous pouvez supplanter ce réglage en utilisant le paramètre de "
 "printdownloadList() lors de l’appel de cette fonction."
 
-#: zp-core/zp-extensions/downloadList.php:69
+#: zp-core/zp-extensions/downloadList.php:73
 msgid "Show filesize of download items"
 msgstr "Afficher la taille des éléments à télécharger"
 
-#: zp-core/zp-extensions/downloadList.php:74
+#: zp-core/zp-extensions/downloadList.php:77
 msgid "Show download counter of download items"
 msgstr "Afficher un compteur d’éléments téléchargés"
 
-#: zp-core/zp-extensions/downloadList.php:79
+#: zp-core/zp-extensions/downloadList.php:81
 msgid "Files to exclude from the download list"
 msgstr "Types de fichiers exclus de la liste de téléchargement"
 
-#: zp-core/zp-extensions/downloadList.php:83
+#: zp-core/zp-extensions/downloadList.php:84
 msgid ""
 "A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "
 "\"jpg\")."
@@ -16388,7 +16378,7 @@ msgstr ""
 "Liste des extensions à exclure des téléchargements. Séparer les extensions par "
 "une virgule et ne pas mettre de point (ex.: « jpg »)."
 
-#: zp-core/zp-extensions/downloadList.php:84
+#: zp-core/zp-extensions/downloadList.php:85
 msgid "Zip source"
 msgstr "Origine du fichier compressé"
 
@@ -16428,70 +16418,64 @@ msgstr ""
 msgid "Add images from subalbums"
 msgstr "Ajouter les images des sous-albums"
 
-#: zp-core/zp-extensions/downloadList.php:97
+#: zp-core/zp-extensions/downloadList.php:96
 msgid "Direct subalbums"
 msgstr "Sous-albums directs."
 
-#: zp-core/zp-extensions/downloadList.php:97
+#: zp-core/zp-extensions/downloadList.php:96
 msgid "All subalbums"
 msgstr "Tous les sous-albums"
 
-#: zp-core/zp-extensions/downloadList.php:98
+#: zp-core/zp-extensions/downloadList.php:97
 msgid "Subalbums whose images are to be included in the album zip."
 msgstr "Sous-albums dont les images seront incluses dans l’archive zip."
 
-#: zp-core/zp-extensions/downloadList.php:99
-msgid "User rights"
-msgstr "Droits de l’utilisateur"
+#: zp-core/zp-extensions/downloadList.php:98
+msgid "Allow external downloads"
+msgstr "Autoriser les téléchargements externes"
 
 #: zp-core/zp-extensions/downloadList.php:101
-msgid "Check if users are required to have <em>file</em> rights to download."
+msgid ""
+"Check if you want to allow downloads from external sites. This directly "
+"redirects to the external source."
 msgstr ""
-"Cocher si les utilisateurs doivent avoir les droits <em>fichiers</em> pour "
-"télécharger."
+"Cochez cette case pour autoriser les téléchargements depuis des sites externes. "
+"Cela redirige directement vers la source externe."
 
 #: zp-core/zp-extensions/downloadList.php:104
 msgid "credentials"
 msgstr "identifiants"
 
-#: zp-core/zp-extensions/downloadList.php:106
+#: zp-core/zp-extensions/downloadList.php:107
 msgid "Provide credentials to password protect downloads"
 msgstr "Fournit les identifiants aux téléchargements protégés par mot de passe"
 
-#: zp-core/zp-extensions/downloadList.php:119
-#: zp-core/zp-extensions/downloadList.php:143
+#: zp-core/zp-extensions/downloadList.php:120
+#: zp-core/zp-extensions/downloadList.php:144
 #: zp-core/zp-extensions/zenpage/admin-edit.php:466
 #: zp-core/zp-extensions/zenpage/admin-edit.php:490
 msgid "Password:"
 msgstr "Mot de passe :"
 
-#: zp-core/zp-extensions/downloadList.php:136
+#: zp-core/zp-extensions/downloadList.php:137
 #: zp-core/zp-extensions/zenpage/admin-edit.php:483
 msgid "Guest user:"
 msgstr "Utilisateur invité :"
 
-#: zp-core/zp-extensions/downloadList.php:173
+#: zp-core/zp-extensions/downloadList.php:174
 msgid "You must supply a password for the DownloadList user"
 msgstr "Vous devez fournir un mot de passe pour l’utilisateur de DownloadList"
 
-#: zp-core/zp-extensions/downloadList.php:175
+#: zp-core/zp-extensions/downloadList.php:176
 msgid "Your DownloadList passwords were empty or did not match"
 msgstr "Vos mots de passe de DownloadList sont vides ou ne correspondent pas"
 
-#: zp-core/zp-extensions/downloadList.php:275
-msgid "Download statistics"
-msgstr "Statistiques de téléchargement"
-
-#: zp-core/zp-extensions/downloadList.php:279
-msgid "Counts of downloads"
-msgstr "Nombre de téléchargements"
-
-#: zp-core/zp-extensions/downloadList.php:333
+#: zp-core/zp-extensions/downloadList.php:348
 #, php-format
 msgid "File “%s” was not found."
 msgstr "Le fichier « %s » ne peut être trouvé."
 
-#: zp-core/zp-extensions/downloadList.php:497
+#: zp-core/zp-extensions/downloadList.php:544
 #, php-format
 msgid ""
 "WARNING: Some images from %1$s were not added to %2$s by %3$s as they were not "
@@ -16500,35 +16484,34 @@ msgstr ""
 "ATTENTION : Certaines images de %1$s n’ont pas été incluses dans %2$s par %3$s "
 "faute de fichier cache"
 
-#: zp-core/zp-extensions/downloadList.php:531
-#, php-format
-msgid "Page error: %2$s (%1$s)"
-msgstr "Erreur sur la page : %2$s (%1$s)"
+#: zp-core/zp-extensions/downloadList.php:572
+msgid "Use downloadList::noFile() instead"
+msgstr "Utilisez plutôt downloadList::noFile()"
 
-#: zp-core/zp-extensions/downloadList.php:546
+#: zp-core/zp-extensions/downloadList.php:585
 msgid "Album not found"
 msgstr "Album non trouvé"
 
-#: zp-core/zp-extensions/downloadList.php:554
+#: zp-core/zp-extensions/downloadList.php:593
 #, php-format
 msgid "Created from cached images of %1$s on %2$s."
 msgstr "Créé à partir d’images mises en cache de %1$s sur %2$s."
 
-#: zp-core/zp-extensions/downloadList.php:559
+#: zp-core/zp-extensions/downloadList.php:598
 #, php-format
 msgid "Created from images in %1$s on %2$s."
 msgstr "Créé à partir d’images de %1$s sur %2$s."
 
-#: zp-core/zp-extensions/downloadList.php:695
-#: zp-core/zp-extensions/downloadList.php:754
+#: zp-core/zp-extensions/downloadList.php:737
+#: zp-core/zp-extensions/downloadList.php:796
 #, php-format
 msgid "%u download"
 msgid_plural "%u downloads"
 msgstr[0] "%u téléchargement"
 msgstr[1] "%u téléchargements"
 
-#: zp-core/zp-extensions/downloadList.php:697
-#: zp-core/zp-extensions/downloadList.php:756
+#: zp-core/zp-extensions/downloadList.php:739
+#: zp-core/zp-extensions/downloadList.php:798
 msgid "0 downloads"
 msgstr "0 téléchargement"
 
@@ -16539,16 +16522,6 @@ msgstr "Aucune statistique disponible"
 #: zp-core/zp-extensions/downloadList/download_statistics.php:47
 msgid "Most downloaded files"
 msgstr "Fichiers les plus téléchargés"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:122
-msgid "Outdated file entries cleared from the database"
-msgstr "Les entrées périmées de fichiers ont été effacées de la base de données"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:128
-msgid "All download file entries cleared from the database"
-msgstr ""
-"Toutes les entrées de fichiers téléchargés ont été effacées de la base de "
-"données."
 
 #: zp-core/zp-extensions/downloadList/download_statistics.php:131
 msgid "Download Statistics"
@@ -16575,14 +16548,6 @@ msgstr ""
 #: zp-core/zp-extensions/downloadList/download_statistics.php:137
 msgid "The downloadList plugin is not active"
 msgstr "L’extension downloadList n’est pas activée."
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:140
-msgid "Clear outdated downloads from database"
-msgstr "Efface les téléchargements périmés de la base de données"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:141
-msgid "Clear all downloads from database"
-msgstr "Efface tous les téléchargements de la base de données"
 
 #: zp-core/zp-extensions/dynamic-locale.php:28
 msgid ""
@@ -19197,11 +19162,11 @@ msgstr ""
 "Une extension Zenphoto pour afficher des cartes basées sur OpenStreetMap, à "
 "l’aide de LeafletJS, pour les images ou les images des albums avec géodonnées."
 
-#: zp-core/zp-extensions/openstreetmap.php:82
+#: zp-core/zp-extensions/openstreetmap.php:85
 msgid "Map dimensions—width"
 msgstr "Dimensions de la carte : largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:85
+#: zp-core/zp-extensions/openstreetmap.php:88
 msgid ""
 "Width of the map including the unit name e.g 100% (default for responsive map), "
 "100px or 100em."
@@ -19209,11 +19174,11 @@ msgstr ""
 "Largeur de la carte, y compris l’unité, par exemple 100% (par défaut pour une "
 "carte responsive), 100px ou 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:86
+#: zp-core/zp-extensions/openstreetmap.php:89
 msgid "Map dimensions—height"
 msgstr "Dimensions de la carte : hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:89
+#: zp-core/zp-extensions/openstreetmap.php:92
 msgid ""
 "Height of the map including the unit name e.g 100% (default for responsive map), "
 "100px or 100em."
@@ -19221,27 +19186,27 @@ msgstr ""
 "Hauteur de la carte, y compris l’unité, par exemple 100% (par défaut pour une "
 "carte responsive), 100px ou 100em."
 
-#: zp-core/zp-extensions/openstreetmap.php:90
+#: zp-core/zp-extensions/openstreetmap.php:93
 msgid "Map zoom"
 msgstr "Zoom sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:93
+#: zp-core/zp-extensions/openstreetmap.php:96
 msgid "Default zoom level."
 msgstr "Niveau de zoom par défaut."
 
-#: zp-core/zp-extensions/openstreetmap.php:94
+#: zp-core/zp-extensions/openstreetmap.php:97
 msgid "Map minimum zoom"
 msgstr "Zoom minimum sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:97
+#: zp-core/zp-extensions/openstreetmap.php:100
 msgid "Default minimum zoom level possible."
 msgstr "Niveau de zoom par défaut minimum."
 
-#: zp-core/zp-extensions/openstreetmap.php:98
+#: zp-core/zp-extensions/openstreetmap.php:101
 msgid "Map maximum zoom"
 msgstr "Zoom maximum sur la carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:101
+#: zp-core/zp-extensions/openstreetmap.php:104
 msgid ""
 "Default maximum zoom level possible. If no value is defined, use the maximum "
 "zoom level of the map used (may be different for each map)."
@@ -19250,11 +19215,11 @@ msgstr ""
 "niveau de zoom maximal de la carte utilisée (peut être différent pour chaque "
 "carte)."
 
-#: zp-core/zp-extensions/openstreetmap.php:102
+#: zp-core/zp-extensions/openstreetmap.php:105
 msgid "Default layer"
 msgstr "Carte par défaut"
 
-#: zp-core/zp-extensions/openstreetmap.php:107
+#: zp-core/zp-extensions/openstreetmap.php:110
 msgid ""
 "The default map tile provider to use. Only free providers are included. Some "
 "providers (HEREv3, Mapbox, Thunderforest, Geoportail and Jawg) require access "
@@ -19267,37 +19232,37 @@ msgstr ""
 "d’informations sur <a href=\"https://github.com/leaflet-extras/leaflet-"
 "providers\">leaflet-providers</a>"
 
-#: zp-core/zp-extensions/openstreetmap.php:110
+#: zp-core/zp-extensions/openstreetmap.php:113
 msgid "Zoom controls position"
 msgstr "Position des contrôles de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:119
+#: zp-core/zp-extensions/openstreetmap.php:122
 msgid "Position of the zoom controls"
 msgstr "Position des contrôles de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:120
+#: zp-core/zp-extensions/openstreetmap.php:123
 msgid "Cluster radius"
 msgstr "Rayon du cluster"
 
-#: zp-core/zp-extensions/openstreetmap.php:123
+#: zp-core/zp-extensions/openstreetmap.php:126
 msgid "The radius when marker clusters should be used."
 msgstr "Le rayon lorsque les marqueurs de cluster sont utilisés."
 
-#: zp-core/zp-extensions/openstreetmap.php:124
+#: zp-core/zp-extensions/openstreetmap.php:127
 msgid "Show cluster coverage on hover"
 msgstr "Affiche la couverture d’un cluster lors de son survol."
 
-#: zp-core/zp-extensions/openstreetmap.php:127
+#: zp-core/zp-extensions/openstreetmap.php:130
 msgid "Enable if you want to the bounds of a marker cluster on hover."
 msgstr ""
 "Activer si vous voulez apercevoir les limites d’un cluster de marqueurs lors de "
 "son survol."
 
-#: zp-core/zp-extensions/openstreetmap.php:128
+#: zp-core/zp-extensions/openstreetmap.php:131
 msgid "Marker popups"
 msgstr "Popup des marqueurs"
 
-#: zp-core/zp-extensions/openstreetmap.php:131
+#: zp-core/zp-extensions/openstreetmap.php:134
 msgid ""
 "Enable this if you wish info popups on the map markers. Only for album context "
 "or custom geodata."
@@ -19305,11 +19270,11 @@ msgstr ""
 "Activer si vous souhaitez afficher des popup sur les marqueurs de la carte. "
 "Seulement dans un contexte d’album ou de données de localisation personnalisées."
 
-#: zp-core/zp-extensions/openstreetmap.php:132
+#: zp-core/zp-extensions/openstreetmap.php:135
 msgid "Marker popups with thumbs"
 msgstr "Popup avec vignette"
 
-#: zp-core/zp-extensions/openstreetmap.php:135
+#: zp-core/zp-extensions/openstreetmap.php:138
 msgid ""
 "Enable if you want to show thumb of images in the marker popups. Only for album "
 "context."
@@ -19317,11 +19282,11 @@ msgstr ""
 "Activer si vous souhaitez afficher les vignettes des images dans la popup des "
 "marqueurs. Seulement dans un contexte d’album."
 
-#: zp-core/zp-extensions/openstreetmap.php:136
+#: zp-core/zp-extensions/openstreetmap.php:139
 msgid "Marker popups with title"
 msgstr "Popup avec titre"
 
-#: zp-core/zp-extensions/openstreetmap.php:139
+#: zp-core/zp-extensions/openstreetmap.php:142
 msgid ""
 "Enable if you want to show title of images in the marker popups. Only for album "
 "context."
@@ -19329,11 +19294,11 @@ msgstr ""
 "Activer si vous souhaitez afficher le titre des images dans la popup des "
 "marqueurs. Seulement dans un contexte d’album."
 
-#: zp-core/zp-extensions/openstreetmap.php:140
+#: zp-core/zp-extensions/openstreetmap.php:143
 msgid "Marker popups with description"
 msgstr "Popup avec description"
 
-#: zp-core/zp-extensions/openstreetmap.php:143
+#: zp-core/zp-extensions/openstreetmap.php:146
 msgid ""
 "Enable if you want to show desc of images in the marker popups. Only for album "
 "context."
@@ -19341,15 +19306,15 @@ msgstr ""
 "Activer si vous souhaitez afficher la description des images dans la popup des "
 "marqueurs. Seulement dans un contexte d’album."
 
-#: zp-core/zp-extensions/openstreetmap.php:144
+#: zp-core/zp-extensions/openstreetmap.php:147
 msgid "Image thumbs"
 msgstr "Vignette d’image"
 
-#: zp-core/zp-extensions/openstreetmap.php:148
+#: zp-core/zp-extensions/openstreetmap.php:151
 msgid "Custom image"
 msgstr "Vignette personnalisée"
 
-#: zp-core/zp-extensions/openstreetmap.php:149
+#: zp-core/zp-extensions/openstreetmap.php:152
 msgid ""
 "Choose the size of the thumb to be displayed in the marker popups. Default thumb "
 "size is determined by the theme (See Options->Theme->Standard options: Thumb "
@@ -19364,11 +19329,11 @@ msgstr ""
 "d’utiliser une règle CSS personnalisée (regarder l’option ci-dessous pour "
 "désactiver les CSS)."
 
-#: zp-core/zp-extensions/openstreetmap.php:150
+#: zp-core/zp-extensions/openstreetmap.php:153
 msgid "Custom image thumb size"
 msgstr "Dimensions personnalisées de la vignette"
 
-#: zp-core/zp-extensions/openstreetmap.php:153
+#: zp-core/zp-extensions/openstreetmap.php:156
 msgid ""
 "Set the width of the Custom Image to be used as thumb in the marker popups. "
 "Works if Custom image is selected in the previous option. Default size is 120px."
@@ -19380,11 +19345,11 @@ msgstr ""
 "dimension par défaut est 120px.<br>Si la vignette personnalisée est supérieure à "
 "120px, vous pourriez avoir besoin d’utiliser une règle CSS personnalisée."
 
-#: zp-core/zp-extensions/openstreetmap.php:154
+#: zp-core/zp-extensions/openstreetmap.php:157
 msgid "Length of Image title"
 msgstr "Longueur du titre de l’image"
 
-#: zp-core/zp-extensions/openstreetmap.php:157
+#: zp-core/zp-extensions/openstreetmap.php:160
 msgid ""
 "Set the length of the Image title to show in the marker popups. Leave EMPTY to "
 "display in full. Default is 50 characters."
@@ -19392,11 +19357,11 @@ msgstr ""
 "Définir la longueur du titre de l’image visible dans le popup. Laissez vide pour "
 "tout afficher. Valeur par défaut : 50 caractères."
 
-#: zp-core/zp-extensions/openstreetmap.php:158
+#: zp-core/zp-extensions/openstreetmap.php:161
 msgid "Length of Image description"
 msgstr "Longueur de la description de l’image"
 
-#: zp-core/zp-extensions/openstreetmap.php:161
+#: zp-core/zp-extensions/openstreetmap.php:164
 msgid ""
 "Set the length of the Image description to show in the marker popups. Leave "
 "EMPTY to display in full (not recommended if you have very long descriptions - "
@@ -19406,11 +19371,11 @@ msgstr ""
 "vide pour tout afficher (non recommandé si vous avez des descriptions longues. "
 "Elles pourraient ne pas tenir dans le popup). Valeur par défaut : 100 caractères."
 
-#: zp-core/zp-extensions/openstreetmap.php:162
+#: zp-core/zp-extensions/openstreetmap.php:165
 msgid "Use default openstreetmap CSS"
 msgstr "Utiliser le CSS par défaut de openstreetmap"
 
-#: zp-core/zp-extensions/openstreetmap.php:165
+#: zp-core/zp-extensions/openstreetmap.php:168
 msgid ""
 "Check to use default openstreetmap CSS files (located in '/zp-core/zp-extensions/"
 "openstreetmap/'). Default is Enabled.<br>Removing checkmark will DISABLE default "
@@ -19428,21 +19393,21 @@ msgstr ""
 "css, leaflet.css, MarkerCluster.css, MarkerCluster.Default.css ainsi que les "
 "images et icônes dans votre CSS."
 
-#: zp-core/zp-extensions/openstreetmap.php:166
+#: zp-core/zp-extensions/openstreetmap.php:169
 msgid "Show layers controls"
 msgstr "Afficher les contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:169
+#: zp-core/zp-extensions/openstreetmap.php:172
 msgid "Enable if you want to show layers controls with selected layers list below."
 msgstr ""
 "Activer si vous souhaitez afficher les contrôles de cartes avec la liste des "
 "cartes sélectionnées ci-dessous."
 
-#: zp-core/zp-extensions/openstreetmap.php:170
+#: zp-core/zp-extensions/openstreetmap.php:173
 msgid "Layers list"
 msgstr "Liste des cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:174
+#: zp-core/zp-extensions/openstreetmap.php:177
 msgid ""
 "Choose layers list to show in layers controls. No need to select the default "
 "layer again, otherwise it will be de-duplicated."
@@ -19451,38 +19416,38 @@ msgstr ""
 "de sélectionner à nouveau la carte par défaut, et dans le cas contraire elle "
 "sera dédoublonnée."
 
-#: zp-core/zp-extensions/openstreetmap.php:175
+#: zp-core/zp-extensions/openstreetmap.php:178
 msgid "Layers controls position"
 msgstr "Position des contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:184
+#: zp-core/zp-extensions/openstreetmap.php:187
 msgid "Position of the layers controls"
 msgstr "Position des contrôles de cartes"
 
-#: zp-core/zp-extensions/openstreetmap.php:185
+#: zp-core/zp-extensions/openstreetmap.php:188
 msgid "Show scale"
 msgstr "Affiche l’échelle"
 
-#: zp-core/zp-extensions/openstreetmap.php:188
+#: zp-core/zp-extensions/openstreetmap.php:191
 msgid "Enable if you want to show scale overlay (kilometers and miles)."
 msgstr "Activer si vous souhaitez afficher l’échelle (kilomètres et miles)."
 
-#: zp-core/zp-extensions/openstreetmap.php:189
+#: zp-core/zp-extensions/openstreetmap.php:192
 msgid "Show cursor position"
 msgstr "Affiche la position du curseur"
 
-#: zp-core/zp-extensions/openstreetmap.php:192
+#: zp-core/zp-extensions/openstreetmap.php:195
 msgid ""
 "Enable if you want to show the coordinates if moving the cursor over the map."
 msgstr ""
 "Activer si vous souhaitez afficher les coordonnées lorsque vous déplacez le "
 "curseur sur la carte."
 
-#: zp-core/zp-extensions/openstreetmap.php:193
+#: zp-core/zp-extensions/openstreetmap.php:196
 msgid "Show album markers"
 msgstr "Affiche les marqueurs d’album"
 
-#: zp-core/zp-extensions/openstreetmap.php:196
+#: zp-core/zp-extensions/openstreetmap.php:199
 msgid ""
 "Enable if you want to show the map on the single image page not only the marker "
 "of the current image but all markers from the album. The current position will "
@@ -19492,37 +19457,37 @@ msgstr ""
 "seulement le marqueur de l’image courante, mais aussi tous les marqueurs de "
 "l’album. La position actuelle sera en surbrillance."
 
-#: zp-core/zp-extensions/openstreetmap.php:197
+#: zp-core/zp-extensions/openstreetmap.php:200
 msgid "Mini map"
 msgstr "Mini-carte"
 
-#: zp-core/zp-extensions/openstreetmap.php:200
+#: zp-core/zp-extensions/openstreetmap.php:203
 msgid "Enable if you want to show an overview mini map in the lower right corner."
 msgstr ""
 "Activer si vous souhaitez afficher une mini-carte d’aperçu dans le coin "
 "inférieur droit."
 
-#: zp-core/zp-extensions/openstreetmap.php:201
+#: zp-core/zp-extensions/openstreetmap.php:204
 msgid "Mini map: width"
 msgstr "mini-carte : largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:204
+#: zp-core/zp-extensions/openstreetmap.php:207
 msgid "Pixel width"
 msgstr "Pixel de largeur"
 
-#: zp-core/zp-extensions/openstreetmap.php:205
+#: zp-core/zp-extensions/openstreetmap.php:208
 msgid "Mini map: height"
 msgstr "Mini-carte : hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:208
+#: zp-core/zp-extensions/openstreetmap.php:211
 msgid "Pixel height"
 msgstr "Pixel de hauteur"
 
-#: zp-core/zp-extensions/openstreetmap.php:209
+#: zp-core/zp-extensions/openstreetmap.php:212
 msgid "Mini map: Zoom level"
 msgstr "Mini-carte : niveau de zoom"
 
-#: zp-core/zp-extensions/openstreetmap.php:212
+#: zp-core/zp-extensions/openstreetmap.php:215
 msgid ""
 "The offset applied to the zoom in the minimap compared to the zoom of the main "
 "map. Can be positive or negative, defaults to -5."
@@ -19530,13 +19495,9 @@ msgstr ""
 "Le décalage appliqué au zoom dans la mini-carte par rapport au zoom de la carte "
 "principale. Peut être positif ou négatif, par défaut à -5."
 
-#: zp-core/zp-extensions/openstreetmap.php:213
-msgid "HEREv3 - App id"
-msgstr "HEREv3 - App id"
-
-#: zp-core/zp-extensions/openstreetmap.php:217
-msgid "HEREv3 - App code"
-msgstr "HEREv3 - App code"
+#: zp-core/zp-extensions/openstreetmap.php:216
+msgid "HERE - ApiKey"
+msgstr "HERE - ApiKey"
 
 #: zp-core/zp-extensions/openstreetmap.php:221
 msgid "Mapbox - Access token"
@@ -21072,39 +21033,61 @@ msgstr ""
 "Un plugin Zenphoto sans script et respectueux de la confidentialité qui fournit "
 "des boutons de partage et de profil de réseaux sociaux."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:54
+#: zp-core/zp-extensions/scriptless-socialsharing.php:55
+msgid "RSS custom URL"
+msgstr "URL personnalisée RSS"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:58
+msgid "Enter the custom RSS URL and choose the custom mode below to use it."
+msgstr ""
+"Saisissez l’URL RSS personnalisée et choisissez le mode personnalisé ci-dessous "
+"pour l’utiliser."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:61
 #, php-format
 msgid "%s profile URL"
 msgstr "URL profil %s"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:59
+#: zp-core/zp-extensions/scriptless-socialsharing.php:65
 #, php-format
 msgid "Enter the URL to your profile on %s."
 msgstr "Saisissez l’URL de votre profil sur %s."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:63
-msgid "RSS feed URL"
-msgstr "URL du flux RSS"
+#: zp-core/zp-extensions/scriptless-socialsharing.php:71
+msgid "Custom URL (URL entered above)"
+msgstr "URL personnalisée (URL saisie ci-dessus)"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:67
-#, php-format
-msgid "Enter the URL to your main RSS feed."
-msgstr "Saisissez l’URL de votre flux RSS principal."
+#: zp-core/zp-extensions/scriptless-socialsharing.php:74
+msgid "Gallery: Latest images"
+msgstr "Galerie : dernières images"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:70
+#: zp-core/zp-extensions/scriptless-socialsharing.php:75
+msgid "Gallery: Latest albums"
+msgstr "Galerie : derniers albums"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:78
+msgid "Merged RSS"
+msgstr "Merged RSS"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:81
+msgid "News: latest articles"
+msgstr "Actualités : derniers articles"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:85
 msgid "Social networks"
 msgstr "Réseaux sociaux"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:74
-msgid "Select the social networks you wish buttons to appear for."
+#: zp-core/zp-extensions/scriptless-socialsharing.php:89
+msgid "Select the social networks you wish sharing buttons to appear for."
 msgstr ""
-"Sélectionnez les réseaux sociaux pour lesquels vous souhaitez afficher un bouton."
+"Sélectionnez les réseaux sociaux pour lesquels vous souhaitez que les boutons de "
+"partage apparaissent."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:75
+#: zp-core/zp-extensions/scriptless-socialsharing.php:90
 msgid "Icon font and default CSS"
 msgstr "Icones et CSS par défaut"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:78
+#: zp-core/zp-extensions/scriptless-socialsharing.php:93
 msgid ""
 "Uncheck to disable loading the included font and CSS and use your own theme "
 "based icon font and CSS."
@@ -21112,19 +21095,19 @@ msgstr ""
 "Décochez pour désactiver le chargement des polices et CSS inclus, afin "
 "d’utiliser les icones et CSS de votre thème personnel."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:79
+#: zp-core/zp-extensions/scriptless-socialsharing.php:94
 msgid "Icons only"
 msgstr "Icones seulement"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:82
+#: zp-core/zp-extensions/scriptless-socialsharing.php:97
 msgid "Check to hide the service name and only show icon buttons."
 msgstr "Cochez pour masquer le nom du service et afficher uniquement les icônes."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:83
+#: zp-core/zp-extensions/scriptless-socialsharing.php:98
 msgid "Twitter user name"
 msgstr "Nom d’utilisateur Twitter"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:86
+#: zp-core/zp-extensions/scriptless-socialsharing.php:101
 msgid ""
 "Enter your Twitter name without @ here if you like to have it appended to tweets "
 "made."
@@ -21132,42 +21115,60 @@ msgstr ""
 "Entrez votre nom Twitter sans @, si vous souhaitez le voir apparaitre dans les "
 "tweets envoyés."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:91
+#: zp-core/zp-extensions/scriptless-socialsharing.php:106
 msgid "Profile links"
 msgstr "Liens profil"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:94
+#: zp-core/zp-extensions/scriptless-socialsharing.php:111
+msgid "RSS URL mode"
+msgstr "Mode de l’URL RSS"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:115
+msgid ""
+"Select the RSS mode to use. If the RSS and/or mergedRSS plugin are not enabled "
+"only the custom mode is available."
+msgstr ""
+"Sélectionnez le mode RSS à utiliser. Si les extensions RSS et/ou MergedRSS ne "
+"sont pas activées, seul le mode personnalisé est disponible."
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:117
 msgid "Profile links alignment"
 msgstr "Alignement des liens du profil"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:98
+#: zp-core/zp-extensions/scriptless-socialsharing.php:121
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:156
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
 msgid "Left"
 msgstr "Gauche"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:99
+#: zp-core/zp-extensions/scriptless-socialsharing.php:122
 msgid "Center"
 msgstr "Centré"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:100
+#: zp-core/zp-extensions/scriptless-socialsharing.php:123
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:155
 #: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
 msgid "Right"
 msgstr "Droite"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:102
-msgid "Select the social networks you wish buttons to appear for. "
+#: zp-core/zp-extensions/scriptless-socialsharing.php:125
+msgid ""
+"Select the alignment for te profile button alignment. The theme used may "
+"override this and may require an update to work properly."
 msgstr ""
-"Sélectionnez les réseaux sociaux pour lesquels vous souhaitez afficher un "
-"bouton. "
+"Sélectionnez l’alignement du bouton de profil. Le thème utilisé peut modifier ce "
+"réglage et nécessiter une mise à jour pour fonctionner correctement."
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:503
+#: zp-core/zp-extensions/scriptless-socialsharing.php:526
 msgid "Please enter your Mastodon instance first, e.g mastodon.social."
 msgstr ""
 "Entrez d’abord le nom de votre instance Mastodon, exemple : mastodon.social"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:548
+#: zp-core/zp-extensions/scriptless-socialsharing.php:573
+msgid "Subscribe to the RSS feed"
+msgstr "S’abonner au flux RSS"
+
+#: zp-core/zp-extensions/scriptless-socialsharing.php:581
 #, php-format
 msgid "Follow on %s"
 msgstr "Suivre sur %s"
@@ -21176,106 +21177,54 @@ msgstr "Suivre sur %s"
 msgid "Collects and displays search criteria."
 msgstr "Récupère et affiche les critères de recherche."
 
-#: zp-core/zp-extensions/search_statistics.php:58
-msgid "Threshold (success)"
-msgstr "Seuil (succès)"
-
-#: zp-core/zp-extensions/search_statistics.php:60
-msgid ""
-"Show the top <em>Threshold</em> criteria of successful searches. (Searches which "
-"returned at least one result.)"
-msgstr ""
-"Affiche le critère de <em>Seuil haut</em> pour les recherches « réussies » (les "
-"recherches ayant retourné au moins un résultat)."
-
-#: zp-core/zp-extensions/search_statistics.php:61
-msgid "Threshold (failed)"
-msgstr "Seuil (échecs)"
-
-#: zp-core/zp-extensions/search_statistics.php:63
-msgid "Show the top <em>Threshold</em> criteria of searches that failed."
-msgstr ""
-"Affiche le critère de <em>Seuil haut</em> pour les recherches « non réussies »."
-
-#: zp-core/zp-extensions/search_statistics.php:64
-msgid "Threshold (terms)"
-msgstr "Seuil (termes)"
-
-#: zp-core/zp-extensions/search_statistics.php:66
-msgid "Show the top <em>Threshold</em> terms used in searches."
-msgstr ""
-"Affiche le critère de <em>Seuil haut</em> pour les termes utilisés dans les "
-"recherches."
-
-#: zp-core/zp-extensions/search_statistics.php:67
-msgid "Threshold (IP)"
-msgstr "Seuil (IP)"
-
-#: zp-core/zp-extensions/search_statistics.php:69
-msgid "Show the top <em>Threshold</em> IPs that have performed searches."
-msgstr ""
-"Affiche le critère de <em>Seuil haut</em> pour les IP ayant effectué des "
-"recherches."
-
-#: zp-core/zp-extensions/search_statistics.php:81
+#: zp-core/zp-extensions/search_statistics.php:53
 msgid "Search statistics"
 msgstr "Statistiques de recherche"
 
-#: zp-core/zp-extensions/search_statistics.php:85
+#: zp-core/zp-extensions/search_statistics.php:57
 msgid "Analyze searches"
 msgstr "Analyse des recherches"
 
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:20
-msgid "Analysis"
-msgstr "Analyse"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:125
-msgid "Search analysis"
-msgstr "Analyse de la recherche"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:128
-msgid "No search criteria collected."
-msgstr "Aucun critère de recherche collecté."
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:136
-#, php-format
-msgid "Top %u successful search criteria"
-msgstr "Top %u des critères de recherches réussies"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:138
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:74
 msgid "Successful search criteria"
 msgstr "Critères de recherches effectuées avec succès : "
 
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:170
-#, php-format
-msgid "Top %u failed search criteria"
-msgstr "Top %u des critères de recherches échouées"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:172
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:75
 msgid "Failed search criteria"
 msgstr "Critère de recherche échouée"
 
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:203
-#, php-format
-msgid "Top %u search terms used"
-msgstr "Top %u des termes de recherches utilisés"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:205
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:76
 msgid "Search terms used"
 msgstr "Termes de recherches utilisés"
 
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:236
-#, php-format
-msgid "Top %u Search IPs"
-msgstr "Top %u des IP ayant effectué des recherches"
-
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:238
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:77
 msgid "Search IPs"
 msgstr "IPs de recherche"
 
-#: zp-core/zp-extensions/search_statistics/search_analysis.php:270
-msgid "Change <em>Threshold</em> values"
-msgstr "Modifier les valeurs de <em>seuil</em>"
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:342
+msgid "(The search_statistics plugin is not enabled.)"
+msgstr "(L’extension search_statistics n’est pas activée.)"
+
+#: zp-core/zp-extensions/search_statistics/class-admingallerystatssearch.php:348
+msgid ""
+"Note: The search_statistics plugin is not enabled, therefore any existing values "
+"will not get updated."
+msgstr ""
+"Remarque : l’extension search_statistics n’est pas activée, par conséquent, les "
+"valeurs existantes ne seront pas mises à jour."
+
+#: zp-core/zp-extensions/search_statistics/search_analysis.php:22
+#: zp-core/zp-extensions/search_statistics/search_analysis.php:36
+msgid "Search analysis"
+msgstr "Analyse de la recherche"
+
+#: zp-core/zp-extensions/search_statistics/search_analysis.php:39
+msgid "The search_statistics plugin is not active"
+msgstr "L’extension search_statistics n’est pas active"
+
+#: zp-core/zp-extensions/search_statistics/search_analysis.php:45
+msgid "Reset all search statistics"
+msgstr "Réinitialiser toutes les statistiques de recherche"
 
 #: zp-core/zp-extensions/security-logger.php:19
 msgid "Logs selected security events."
@@ -22419,20 +22368,11 @@ msgstr "catégories d’actualités"
 msgid "Text editor TinyMCE 7+"
 msgstr "Éditeur de texte TinyMCE 7+"
 
-#: zp-core/zp-extensions/tinymce.php:19 zp-core/zp-extensions/tinymce4.php:19
-#, php-format
-msgid ""
-"Only one TinyMCE editor plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
-"code></a> is already enabled."
-msgstr ""
-"Une seule extension TinyMCE peut être activée. <a href=\"#%1$s\"><code>%1$s</"
-"code></a> l’est déjà."
-
-#: zp-core/zp-extensions/tinymce.php:45 zp-core/zp-extensions/tinymce4.php:50
+#: zp-core/zp-extensions/tinymce.php:44 zp-core/zp-extensions/tinymce4.php:50
 msgid "Text editor configuration - Zenphoto"
 msgstr "Configuration de l’éditeur de texte – Zenphoto"
 
-#: zp-core/zp-extensions/tinymce.php:50 zp-core/zp-extensions/tinymce4.php:56
+#: zp-core/zp-extensions/tinymce.php:49 zp-core/zp-extensions/tinymce4.php:56
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and news "
 "articles."
@@ -22440,51 +22380,51 @@ msgstr ""
 "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les "
 "pages et les actualités Zenpage)."
 
-#: zp-core/zp-extensions/tinymce.php:51 zp-core/zp-extensions/tinymce4.php:57
+#: zp-core/zp-extensions/tinymce.php:50 zp-core/zp-extensions/tinymce4.php:57
 msgid "Text editor configuration - Zenpage"
 msgstr "Configuration de l’éditeur de texte – Zenpage"
 
-#: zp-core/zp-extensions/tinymce.php:56 zp-core/zp-extensions/tinymce4.php:63
+#: zp-core/zp-extensions/tinymce.php:55 zp-core/zp-extensions/tinymce4.php:63
 msgid "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
 msgstr ""
 "S’applique au texte éditable par les administrateurs pour les <em>pages</em> et "
 "les <em>actualités</em> Zenpage."
 
-#: zp-core/zp-extensions/tinymce.php:57 zp-core/zp-extensions/tinymce4.php:64
+#: zp-core/zp-extensions/tinymce.php:56 zp-core/zp-extensions/tinymce4.php:64
 msgid "Text editor height"
 msgstr "Hauteur de l’éditeur de texte"
 
-#: zp-core/zp-extensions/tinymce.php:60 zp-core/zp-extensions/tinymce4.php:68
+#: zp-core/zp-extensions/tinymce.php:59 zp-core/zp-extensions/tinymce4.php:68
 msgid ""
 "Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px."
 msgstr ""
 "Hauteur prédéfinie en pixels des zones de texte de Zenphoto et Zenpage. Valeur "
 "par défaut : 400 px."
 
-#: zp-core/zp-extensions/tinymce.php:61 zp-core/zp-extensions/tinymce4.php:69
+#: zp-core/zp-extensions/tinymce.php:60 zp-core/zp-extensions/tinymce4.php:69
 msgid "Custom image size"
 msgstr "Taille d’image personnalisée"
 
-#: zp-core/zp-extensions/tinymce.php:64 zp-core/zp-extensions/tinymce4.php:73
+#: zp-core/zp-extensions/tinymce.php:63 zp-core/zp-extensions/tinymce4.php:73
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
 "Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:65 zp-core/zp-extensions/tinymce4.php:74
+#: zp-core/zp-extensions/tinymce.php:64 zp-core/zp-extensions/tinymce4.php:74
 msgid "Custom thumb crop - size"
 msgstr "Rognage personnalisé des vignettes – taille"
 
-#: zp-core/zp-extensions/tinymce.php:68 zp-core/zp-extensions/tinymce4.php:78
+#: zp-core/zp-extensions/tinymce.php:67 zp-core/zp-extensions/tinymce4.php:78
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using tinyZenpage."
 msgstr "Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:69 zp-core/zp-extensions/tinymce4.php:79
+#: zp-core/zp-extensions/tinymce.php:68 zp-core/zp-extensions/tinymce4.php:79
 msgid "Custom thumb crop - width"
 msgstr "Rognage personnalisé des vignettes – largeur"
 
-#: zp-core/zp-extensions/tinymce.php:72 zp-core/zp-extensions/tinymce4.php:83
+#: zp-core/zp-extensions/tinymce.php:71 zp-core/zp-extensions/tinymce4.php:83
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
@@ -22492,11 +22432,11 @@ msgstr ""
 "Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:73 zp-core/zp-extensions/tinymce4.php:84
+#: zp-core/zp-extensions/tinymce.php:72 zp-core/zp-extensions/tinymce4.php:84
 msgid "Custom thumb crop - height"
 msgstr "Rognage personnalisé des vignettes – hauteur"
 
-#: zp-core/zp-extensions/tinymce.php:76 zp-core/zp-extensions/tinymce4.php:88
+#: zp-core/zp-extensions/tinymce.php:75 zp-core/zp-extensions/tinymce4.php:88
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
@@ -22504,31 +22444,31 @@ msgstr ""
 "Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
 "personnalisé qui sont insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:77 zp-core/zp-extensions/tinymce4.php:89
+#: zp-core/zp-extensions/tinymce.php:76 zp-core/zp-extensions/tinymce4.php:89
 msgid "Entity encoding"
 msgstr "Encodage des Entités"
 
-#: zp-core/zp-extensions/tinymce.php:81 zp-core/zp-extensions/tinymce4.php:94
+#: zp-core/zp-extensions/tinymce.php:80 zp-core/zp-extensions/tinymce4.php:94
 msgid "Raw"
 msgstr "Brut"
 
-#: zp-core/zp-extensions/tinymce.php:82 zp-core/zp-extensions/tinymce4.php:95
+#: zp-core/zp-extensions/tinymce.php:81 zp-core/zp-extensions/tinymce4.php:95
 msgid "Numeric"
 msgstr "Numérique"
 
-#: zp-core/zp-extensions/tinymce.php:83 zp-core/zp-extensions/tinymce4.php:96
+#: zp-core/zp-extensions/tinymce.php:82 zp-core/zp-extensions/tinymce4.php:96
 msgid "Named"
 msgstr "Nommé"
 
-#: zp-core/zp-extensions/tinymce.php:84 zp-core/zp-extensions/tinymce4.php:97
+#: zp-core/zp-extensions/tinymce.php:83 zp-core/zp-extensions/tinymce4.php:97
 msgid "Named and numeric"
 msgstr "Nommé et numérique"
 
-#: zp-core/zp-extensions/tinymce.php:86 zp-core/zp-extensions/tinymce4.php:99
+#: zp-core/zp-extensions/tinymce.php:85 zp-core/zp-extensions/tinymce4.php:99
 msgid "Default (raw)"
 msgstr "Défaut (brut)"
 
-#: zp-core/zp-extensions/tinymce.php:87
+#: zp-core/zp-extensions/tinymce.php:86
 msgid ""
 "If encountering issues with special chars and other character entities change "
 "this. Note that this applies on re-saving content only. More info on the <a "
@@ -22541,11 +22481,11 @@ msgstr ""
 "www.tiny.cloud/docs/tinymce/latest/content-filtering/\">documentation tinyMCE</"
 "a>."
 
-#: zp-core/zp-extensions/tinymce.php:88 zp-core/zp-extensions/tinymce4.php:101
+#: zp-core/zp-extensions/tinymce.php:87 zp-core/zp-extensions/tinymce4.php:101
 msgid "Entities"
 msgstr "Entités"
 
-#: zp-core/zp-extensions/tinymce.php:91
+#: zp-core/zp-extensions/tinymce.php:90
 msgid ""
 "You can adjust how entities are processed. More info on the <a href=\"https://"
 "www.tiny.cloud/docs/tinymce/latest/content-filtering/#entities\">TinyMCE docs</"
@@ -22555,11 +22495,11 @@ msgstr ""
 "le <a href=\"https://www.tiny.cloud/docs/tinymce/latest/content-filtering/"
 "#entities\">documentation tinyMCE</a>."
 
-#: zp-core/zp-extensions/tinymce.php:92 zp-core/zp-extensions/tinymce4.php:106
+#: zp-core/zp-extensions/tinymce.php:91 zp-core/zp-extensions/tinymce4.php:106
 msgid "Browser spellcheck"
 msgstr "Vérification orthographique du navigateur"
 
-#: zp-core/zp-extensions/tinymce.php:95 zp-core/zp-extensions/tinymce4.php:110
+#: zp-core/zp-extensions/tinymce.php:94 zp-core/zp-extensions/tinymce4.php:110
 msgid ""
 "Check to use your browser spellchecker.<br><strong>Note:</strong> Spellcheck "
 "feature should be available in the browser and enabled (location of settings to "
@@ -22575,11 +22515,11 @@ msgstr ""
 "Faites vos recherches sur la mise en œuvre de la vérification orthographique "
 "dans le navigateur de votre choix."
 
-#: zp-core/zp-extensions/tinymce.php:96 zp-core/zp-extensions/tinymce4.php:111
+#: zp-core/zp-extensions/tinymce.php:95 zp-core/zp-extensions/tinymce4.php:111
 msgid "Browser context menu"
 msgstr "Menu contextuel du navigateur"
 
-#: zp-core/zp-extensions/tinymce.php:99 zp-core/zp-extensions/tinymce4.php:115
+#: zp-core/zp-extensions/tinymce.php:98 zp-core/zp-extensions/tinymce4.php:115
 msgid ""
 "Check to disable TinyMCE right-click menu, browser right-click menu will be used "
 "instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used - browser "
@@ -23037,6 +22977,15 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce4.php:16
 msgid "Text editor TinyMCE 4.x"
 msgstr "Éditeur de textes TinyMCE 4.x"
+
+#: zp-core/zp-extensions/tinymce4.php:19
+#, php-format
+msgid ""
+"Only one TinyMCE editor plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
+"code></a> is already enabled."
+msgstr ""
+"Une seule extension TinyMCE peut être activée. <a href=\"#%1$s\"><code>%1$s</"
+"code></a> l’est déjà."
 
 #: zp-core/zp-extensions/tinymce4.php:100
 msgid ""
@@ -23847,6 +23796,10 @@ msgstr "Active l’extension de gestion de contenus Zenpage"
 #: zp-core/zp-extensions/zenpage.php:342
 msgid "Use the checkForGuest() template function instead"
 msgstr "Utilisez plutôt la fonction modèle checkForGuest()"
+
+#: zp-core/zp-extensions/zenpage.php:396
+msgid "News Categories"
+msgstr "Catégories d’actualités"
 
 #: zp-core/zp-extensions/zenpage.php:406
 #: zp-core/zp-extensions/zenpage/admin-edit.php:131
@@ -24814,6 +24767,153 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à un "
 "ou à plusieurs destinataires."
+
+#~ msgid "rss"
+#~ msgstr "rss"
+
+#~ msgid "top"
+#~ msgstr "haut"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> images (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> images (%2$u non publiée(s))"
+
+#, php-format
+#~ msgid "<strong>%u</strong> images"
+#~ msgstr "<strong>%u</strong> images"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> albums (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> albums (%2$u non publié(s))"
+
+#, php-format
+#~ msgid "<strong>%u</strong> albums"
+#~ msgstr "<strong>%u</strong> albums"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> comments (%2$u in moderation)"
+#~ msgstr "<strong>%1$u</strong> commentaires (%2$u en attente de modération)"
+
+#, php-format
+#~ msgid "<strong>1</strong> comment (%u in moderation)"
+#~ msgstr "<strong>Un</strong> commentaire (%u en attente de modération)"
+
+#, php-format
+#~ msgid "<strong>%u</strong> comments"
+#~ msgstr "<strong>%u</strong> commentaires"
+
+#~ msgid "<strong>1</strong> comment"
+#~ msgstr "<strong>Un</strong> commentaire"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Pages"
+#~ msgstr "<strong>%1$u</strong> pages"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Pages (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> pages (%2$u non publiée(s))"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> News articles"
+#~ msgstr "<strong>%1$u</strong> articles d’actualité"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> News articles (%2$u un-published)"
+#~ msgstr "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
+
+#, php-format
+#~ msgid "<strong>%1$u</strong> Categories"
+#~ msgstr "<strong>%1$u</strong> catégories"
+
+#~ msgid "RSS feeds"
+#~ msgstr "Flux RSS"
+
+#~ msgid "Statistics for news categories"
+#~ msgstr "Statistiques pour les catégories d’actualité"
+
+#~ msgid "Statistics for RSS feeds"
+#~ msgstr "Statistiques pour les flux RSS"
+
+#~ msgid "Counts of downloads"
+#~ msgstr "Nombre de téléchargements"
+
+#, php-format
+#~ msgid "Page error: %2$s (%1$s)"
+#~ msgstr "Erreur sur la page : %2$s (%1$s)"
+
+#~ msgid "HEREv3 - App code"
+#~ msgstr "HEREv3 - App code"
+
+#~ msgid "RSS feed URL"
+#~ msgstr "URL du flux RSS"
+
+#, php-format
+#~ msgid "Enter the URL to your main RSS feed."
+#~ msgstr "Saisissez l’URL de votre flux RSS principal."
+
+#~ msgid "Select the social networks you wish buttons to appear for. "
+#~ msgstr ""
+#~ "Sélectionnez les réseaux sociaux pour lesquels vous souhaitez afficher un "
+#~ "bouton. "
+
+#~ msgid "Threshold (success)"
+#~ msgstr "Seuil (succès)"
+
+#~ msgid ""
+#~ "Show the top <em>Threshold</em> criteria of successful searches. (Searches "
+#~ "which returned at least one result.)"
+#~ msgstr ""
+#~ "Affiche le critère de <em>Seuil haut</em> pour les recherches « réussies » "
+#~ "(les recherches ayant retourné au moins un résultat)."
+
+#~ msgid "Threshold (failed)"
+#~ msgstr "Seuil (échecs)"
+
+#~ msgid "Show the top <em>Threshold</em> criteria of searches that failed."
+#~ msgstr ""
+#~ "Affiche le critère de <em>Seuil haut</em> pour les recherches « non "
+#~ "réussies »."
+
+#~ msgid "Threshold (terms)"
+#~ msgstr "Seuil (termes)"
+
+#~ msgid "Show the top <em>Threshold</em> terms used in searches."
+#~ msgstr ""
+#~ "Affiche le critère de <em>Seuil haut</em> pour les termes utilisés dans les "
+#~ "recherches."
+
+#~ msgid "Threshold (IP)"
+#~ msgstr "Seuil (IP)"
+
+#~ msgid "Show the top <em>Threshold</em> IPs that have performed searches."
+#~ msgstr ""
+#~ "Affiche le critère de <em>Seuil haut</em> pour les IP ayant effectué des "
+#~ "recherches."
+
+#~ msgid "Analysis"
+#~ msgstr "Analyse"
+
+#~ msgid "No search criteria collected."
+#~ msgstr "Aucun critère de recherche collecté."
+
+#, php-format
+#~ msgid "Top %u successful search criteria"
+#~ msgstr "Top %u des critères de recherches réussies"
+
+#, php-format
+#~ msgid "Top %u failed search criteria"
+#~ msgstr "Top %u des critères de recherches échouées"
+
+#, php-format
+#~ msgid "Top %u search terms used"
+#~ msgstr "Top %u des termes de recherches utilisés"
+
+#, php-format
+#~ msgid "Top %u Search IPs"
+#~ msgstr "Top %u des IP ayant effectué des recherches"
+
+#~ msgid "Change <em>Threshold</em> values"
+#~ msgstr "Modifier les valeurs de <em>seuil</em>"
 
 #~ msgid "<em>Debug build</em>"
 #~ msgstr "<em>Version de développement</em>"
@@ -28777,9 +28877,6 @@ msgstr ""
 #~ "cela. Visitez la zone du widget sur votre installation Piwik pour plus "
 #~ "d'informations."
 
-#~ msgid "Piwik statistics"
-#~ msgstr "Statistiques Piwik"
-
 #~ msgid "View Piwik statisics of your site"
 #~ msgstr "Voir les statistiques Piwik de votre site"
 
@@ -30924,9 +31021,6 @@ msgstr ""
 #~ msgid "Example5"
 #~ msgstr "Example5"
 
-#~ msgid "Custom (theme based)"
-#~ msgstr "Personnalisé (basé sur le thème)"
-
 #~ msgid "Mail address"
 #~ msgstr "Adresse email"
 
@@ -31839,9 +31933,6 @@ msgstr ""
 
 #~ msgid "strict+"
 #~ msgstr "strict+"
-
-#~ msgid "General file security"
-#~ msgstr "Considérations générales relatives à la sécurité des fichiers"
 
 #~ msgid ""
 #~ "Zenphoto is unable to manage file security on Windows servers. Please insure "
