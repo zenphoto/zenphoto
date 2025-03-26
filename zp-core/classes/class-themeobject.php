@@ -12,6 +12,9 @@ class ThemeObject extends PersistentObject {
 	public $manage_rights = ADMIN_RIGHTS;
 	public $manage_some_rights = ADMIN_RIGHTS;
 	public $view_rights = VIEW_ALL_RIGHTS;
+	public $parent = null;
+	public $parents = null;
+	public $urparent = null;
 	protected $is_public = null;
 	protected $is_protected = null;
 
@@ -60,6 +63,39 @@ class ThemeObject extends PersistentObject {
 	 */
 	function setParentID($v) {
 		$this->set('parentid', $v);
+	}
+	
+	/**
+	 * Returns the parent item object if there is any. Here returns always null. Hierachical child classes need to implement this accordingly
+	 * 
+	 * @since 1.6.6 Stand-in method added to align all item classes
+	 * 
+	 * @return null
+	 */
+	function getParent() {
+		return null;
+	}
+	
+	/**
+	 * Returns an array of  object if there is any. Hierachical child classes need to implement this accordingly
+	 * 
+	 * @since 1.6.6 Stand-in method added to align all item classes
+	 * 
+	 * @return null
+	 */
+	function getParents() {
+		return null;
+	}
+	
+	/**
+	 * Returns the object of the top level parent of the item. Hierachical child classes need to implement this accordingly
+	 * 
+	 * @since 1.6.6 Stand-in method added to align all item classes
+	 * 
+	 * @return null
+	 */
+	function getUrParent() {
+		return null;
 	}
 
 	/**
@@ -131,12 +167,12 @@ class ThemeObject extends PersistentObject {
 	}
 	
 	/**
-	 * Returns true if this object is published and does not inherit any unpublish status by a parent
+	 * Returns true if this item is published and also all of its parents.
 	 * 
-	 * Child classes with any hierachic structure need to override and extend this method to cover inheritance.
 	 * 
 	 * @since 1.5.5
 	 * @since 1.6.1 Moved from mediaObject to themeObject class
+	 * @since 1.6.6 Generalized to be used for hierachical and non hierachical items
 	 * 
 	 * @return bool
 	 */
@@ -145,11 +181,16 @@ class ThemeObject extends PersistentObject {
 			if (!$this->isPublished()) {
 				return $this->is_public = false;
 			}
+			$parent = $this->getParent();
+			if ($parent && !$parent->isPublic()) {
+				return $this->is_public = false;
+			}
+			return $this->is_public = true;
 		} else {
 			return $this->is_public;
 		}
 	}
-	
+
 	/**
 	 * Checks if the current item is visible (= listed) to the current visitor via rights, publish status or protection status
 	 *

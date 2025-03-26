@@ -11,9 +11,6 @@ class ZenpagePage extends ZenpageItems {
 	public $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
 	public $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
 	public $view_rights = ALL_PAGES_RIGHTS;
-	public $parent = null;
-	public $parents = null;
-	public $urparent = null;
 
 	function __construct($titlelink, $allowCreate = NULL) {
 		if (is_array($titlelink)) {
@@ -107,20 +104,6 @@ class ZenpagePage extends ZenpageItems {
 		} else {
 			return $this->get('password');
 		}
-	}
-	
-	/**
-	 * Returns true if not protected but protection is inherited by a parent
-	 * 
-	 * @since 1.6.1
-	 * 
-	 * @return bool
-	 */
-	function isProtectedByParent() {
-		if($this->isProtected() && !$this->getPassword()) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -250,6 +233,27 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return $this->parents = array();
 	}
+	
+	/**
+	 * Returns the oldest ancestor of an album. Returns the object of the album itself if there is no urparent
+	 *
+	 * @since 1.6.6
+	 * 
+	 * @return object
+	 */
+	function getUrParent() {
+		if (is_null($this->urparent)) {
+			if (!$this->getParentID()) {
+				return $this->urparent = $this;
+			}
+			$parents = $this->getParents();
+			if ($parents) {
+				return $this->urparent = $parents[0];
+			}
+		} else {
+			return $this->urparent;
+		}
+	}
 
 	/**
 	 * Gets the sub pages of a page
@@ -304,28 +308,7 @@ class ZenpagePage extends ZenpageItems {
 			}
 		}
 	}
-	
-	/**
-	 * Returns true if this page is published and also all of its parents.
-	 * 
-	 * @since 1.5.5
-	 * 
-	 * @return bool
-	 */
-	function isPublic() {
-		if (is_null($this->is_public)) {
-			if (!$this->isPublished()) {
-				return $this->is_public = false;
-			}
-			$parent = $this->getParent();
-			if($parent && !$parent->isPublic()) {
-				return $this->is_public = false;
-			} 
-			return $this->is_public = true;
-		} else {
-			return $this->is_public;
-		}
-	}
+
 
 	/**
 	 * Checks if user is author of page

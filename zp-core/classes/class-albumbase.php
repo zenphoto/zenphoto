@@ -1108,28 +1108,6 @@ class AlbumBase extends MediaObject {
 	}
 
 	/**
-	 * Returns true if this album is published and also all of its parents.
-	 * 
-	 * @since 1.5.5
-	 * 
-	 * @return bool
-	 */
-	function isPublic() {
-		if (is_null($this->is_public)) {
-			if (!$this->isPublished()) {
-				return $this->is_public = false;
-			}
-			$parent = $this->getParent();
-			if($parent && !$parent->isPublic()) {
-				return $this->is_public = false;
-			}
-			return $this->is_public = true;
-		} else {
-			return $this->is_public;
-		}
-	}
-
-	/**
 	 * Gets the owner of the album respectively of a parent album if not set specifically
 	 * 
 	 * @global obj $_zp_authority

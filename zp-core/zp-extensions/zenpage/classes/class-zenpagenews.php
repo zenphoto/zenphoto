@@ -177,24 +177,6 @@ class ZenpageNews extends ZenpageItems {
 	function isProtectedByParent() {
 		return $this->isProtected();
 	}
-	
-	/**
-	 * Returns true if this article is published and in any published category
-	 * 
-	 * @since 1.5.5
-	 * 
-	 * @return bool
-	 */
-	function isPublic() {
-		if (is_null($this->is_public)) {
-			if(!$this->isPublished()) {
-				return $this->is_public = false;
-			}
-			return $this->is_public = true;
-		} else {
-			return $this->is_public;
-		}
-	}
 
 	/**
 	 *
@@ -207,7 +189,6 @@ class ZenpageNews extends ZenpageItems {
 			return true;
 		return $this->isPublic();
 	}
-	
 	
 	/**
 	 * See if a guest is logged on to the news category.

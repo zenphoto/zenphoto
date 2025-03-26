@@ -11,9 +11,6 @@ class ZenpageCategory extends ZenpageRoot {
 	public $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	public $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	public $view_rights = ALL_NEWS_RIGHTS;
-	public $parent = null;
-	public $parents = null;
-	public $urparent = null;
 	protected $sorttype = 'date';
 	protected $sortdirection = true;
 	protected $sortSticky = true;
@@ -150,20 +147,7 @@ class ZenpageCategory extends ZenpageRoot {
 			return $this->get('password');
 		}
 	}
-	
-		/**
-	 * Returns true if not protected but protection is inherited by a parent
-	 * 
-	 * @since 1.6.1
-	 * 
-	 * @return bool
-	 */
-	function isProtectedByParent() {
-		if ($this->isProtected() && !$this->getPassword()) {
-			return true;
-		}
-		return false;
-	}
+
 
 	/**
 	 * Sets the encrypted password
@@ -360,30 +344,7 @@ class ZenpageCategory extends ZenpageRoot {
 			}
 		}
 	}
-	
-	/**
-	 * Returns true if this category is published and also all of its parents.
-	 * 
-	 * @since 1.5.5
-	 * 
-	 * @return bool
-	 */
-	function isPublic() {
-		if (is_null($this->is_public)) {
-			if (!$this->isPublished()) {
-				return $this->is_public = false;
-			}
-			$parent = $this->getParent();
-			if($parent && !$parent->isPublic()) {
-				return $this->is_public = false;
-			}
-			return $this->is_public = true;
-		} else {
-			return $this->is_public;
-		}
-	}
 
-	
 	/**
 	 * Checks if user is news author
 	 * @param bit $action User rights level, default LIST_RIGHTS
@@ -412,7 +373,7 @@ class ZenpageCategory extends ZenpageRoot {
 		return false;
 	}
 
-		/**
+	/**
 	 * Gets news articles titlelinks this category is attached to
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude articles that are password protected via a category

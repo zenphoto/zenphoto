@@ -867,6 +867,17 @@ class Image extends MediaObject {
 	function getAlbum() {
 		return $this->album;
 	}
+	
+	/**
+	 * Alias of getAlbum() to align with other classes
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return object
+	 */
+	function getParent() {
+		return $this->getAlbum();
+	}
 
 	/**
 	 * Retuns the folder name of the album that holds this image
@@ -1931,29 +1942,7 @@ class Image extends MediaObject {
 		$album = $this->getAlbum();
 		return $album->checkforGuest($hint, $show);
 	}
-	
-	/**
-	 * Returns true if this image is published and also its album and all of its parents.
-	 * 
-	 * @since 1.5.5
-	 * 
-	 * @return bool
-	 */
-	function isPublic() {
-		if (is_null($this->is_public)) {
-			if (!$this->isPublished()) {
-				return $this->is_public = false;
-			}
-			$album = $this->getAlbum();
-			if(!$album->isPublic()) {
-				return $this->is_public = false;
-			}
-			return $this->is_public = true;
-		} else {
-			return $this->is_public;
-		}
-	}
-	
+		
 	/**
 	 * Returns the filesize in bytes of the full image
 	 * 
