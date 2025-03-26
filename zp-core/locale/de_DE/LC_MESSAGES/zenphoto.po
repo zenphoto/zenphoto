@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-24 11:57+0100\n"
-"PO-Revision-Date: 2025-03-25 16:30+0100\n"
+"POT-Creation-Date: 2025-03-26 17:04+0100\n"
+"PO-Revision-Date: 2025-03-26 17:04+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "Language: de_DE\n"
@@ -8173,11 +8173,11 @@ msgstr "Kategorien"
 msgid "no date"
 msgstr "kein Datum"
 
-#: zp-core/classes/class-themeobject.php:181
+#: zp-core/classes/class-themeobject.php:222
 msgid "Use isPublished() instead"
 msgstr "Verwenden Sie stattdessen isPublished()"
 
-#: zp-core/classes/class-themeobject.php:192
+#: zp-core/classes/class-themeobject.php:233
 msgid "Use setPublished() instead"
 msgstr "Verwenden Sie stattdessensetPublished()"
 
@@ -12126,13 +12126,13 @@ msgstr ""
 msgid "Setup failed."
 msgstr "Installation fehlgeschlagen."
 
-#: zp-core/setup/index.php:1594 zp-core/setup/index.php:2687
+#: zp-core/setup/index.php:1594 zp-core/setup/index.php:2688
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Sie müssen über<em>Administrationsrechte</em> verfügen, um setup ausführen "
 "zu können."
 
-#: zp-core/setup/index.php:1596 zp-core/setup/index.php:2689
+#: zp-core/setup/index.php:1596 zp-core/setup/index.php:2690
 msgid "You must be logged in to run setup."
 msgstr "Sie müssen angemeldet sein, um die Installation durchführen zu können."
 
@@ -12144,48 +12144,48 @@ msgstr "Mit Datenbank verbunden"
 msgid "Checking the database"
 msgstr "Datenbank-Prüfung"
 
-#: zp-core/setup/index.php:2406
+#: zp-core/setup/index.php:2407
 msgid "About to create database tables"
 msgstr "Bereit, die Tabellen zu erstellen"
 
-#: zp-core/setup/index.php:2408
+#: zp-core/setup/index.php:2409
 msgid "About to update database tables"
 msgstr "Bereit, die Tabellen zu aktualisieren"
 
-#: zp-core/setup/index.php:2411
+#: zp-core/setup/index.php:2412
 msgid "Begin database table creation"
 msgstr "Tabellenerstellung begonnen"
 
-#: zp-core/setup/index.php:2420
+#: zp-core/setup/index.php:2421
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr ""
 "Tabellenerstellung fehlgeschlagen: <br />Abfrage: %1$s<br />Fehler: %2$s"
 
-#: zp-core/setup/index.php:2425 zp-core/setup/index.php:2445
+#: zp-core/setup/index.php:2426 zp-core/setup/index.php:2446
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Abfrage ( %s ) erfolgreich."
 
-#: zp-core/setup/index.php:2430 zp-core/setup/index.php:2431
+#: zp-core/setup/index.php:2431 zp-core/setup/index.php:2432
 msgid "Begin table updates"
 msgstr "Die Tabellenaktualisierung wird gestartet"
 
-#: zp-core/setup/index.php:2438 zp-core/setup/index.php:2442
+#: zp-core/setup/index.php:2439 zp-core/setup/index.php:2443
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Abfrage %1$s fehlgeschlagen. Fehler: %2$s"
 
-#: zp-core/setup/index.php:2448
+#: zp-core/setup/index.php:2449
 msgid "Begin converting UTF-8 tables to utf8mb4 collation"
 msgstr "Beginne UT8-Tabellen in utf8mb4-Kollationen umzuwandeln"
 
-#: zp-core/setup/index.php:2456
+#: zp-core/setup/index.php:2457
 #, php-format
 msgid "UTF-8 Table %s and its columns converted to utf8mb4 collation."
 msgstr "UTF-8-Tabelle %s und ihre Felder in utf8mb4-Kollation umgewandelt."
 
-#: zp-core/setup/index.php:2459
+#: zp-core/setup/index.php:2460
 #, php-format
 msgid ""
 "ERROR: UTF-8 table %1$s and/or its columns could not be converted to utf8mb4 "
@@ -12194,40 +12194,40 @@ msgstr ""
 "FEHLER: UTF-8-Tabelle %1$s und/oder ihre Felder konnten nicht in utf8mb4-"
 "Kollation umgewandelt werden: %2$s"
 
-#: zp-core/setup/index.php:2467
+#: zp-core/setup/index.php:2468
 msgid "Done with table create!"
 msgstr "Tabellenerstellung abgeschlossen!"
 
-#: zp-core/setup/index.php:2469
+#: zp-core/setup/index.php:2470
 msgid "Done with table create with errors!"
 msgstr "Tabellenerstellung mit Fehlern abgeschlossen!"
 
-#: zp-core/setup/index.php:2473
+#: zp-core/setup/index.php:2474
 msgid "Done with table update"
 msgstr "Tabellenaktualisierung abgeschlossen"
 
-#: zp-core/setup/index.php:2475
+#: zp-core/setup/index.php:2476
 msgid "Done with table update with errors"
 msgstr "Tabellenaktualisierung mit Fehlern abgeschlossen"
 
-#: zp-core/setup/index.php:2480
+#: zp-core/setup/index.php:2481
 msgid "Checking table specifications"
 msgstr "Tabellenspezifikationen prüfen"
 
-#: zp-core/setup/index.php:2491
+#: zp-core/setup/index.php:2492
 msgid "Done with database creation and update"
 msgstr "Tabellenaktualisierung abgeschlossen"
 
-#: zp-core/setup/index.php:2493
+#: zp-core/setup/index.php:2494
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Die vorige Veröffentlichung war %s"
 
-#: zp-core/setup/index.php:2496
+#: zp-core/setup/index.php:2497
 msgid "Setting default options"
 msgstr "Standardeinstellungen setzen"
 
-#: zp-core/setup/index.php:2534
+#: zp-core/setup/index.php:2535
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a "
@@ -12237,29 +12237,29 @@ msgstr ""
 "Passwort definieren</a> oder die <a href=\"%2$s\">Backup-Wiederherstellung</"
 "a> ausführen"
 
-#: zp-core/setup/index.php:2537
+#: zp-core/setup/index.php:2538
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Sie müssen Ihren <a href=\"%1$s\">Benutzer:inen-Namen und Ihr Passwort "
 "setzen</a>"
 
-#: zp-core/setup/index.php:2543
+#: zp-core/setup/index.php:2544
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr "Sie können nun <a href=\"%1$s\">Ihre Galerie verwalten</a>."
 
-#: zp-core/setup/index.php:2607
+#: zp-core/setup/index.php:2608
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Datenbanktabelle zu erstellen: %s"
 
-#: zp-core/setup/index.php:2627
+#: zp-core/setup/index.php:2628
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Datenbanktabelle zu aktualisieren:  %s"
 
-#: zp-core/setup/index.php:2656
+#: zp-core/setup/index.php:2657
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -12269,14 +12269,14 @@ msgstr ""
 "an der Datenbank aus, die nicht leicht zurückzusetzen sind. Stellen Sie "
 "sicher, dass Sie ein Backup erstellt haben, bevor Sie fortfahren."
 
-#: zp-core/setup/index.php:2659
+#: zp-core/setup/index.php:2660
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Ich nehme zur Kenntnis, dass Fortfahren meine Datenbank umstrukturieren "
 "wird."
 
-#: zp-core/setup/index.php:2719
+#: zp-core/setup/index.php:2720
 msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as "
 "the process may take some time."
@@ -12284,25 +12284,25 @@ msgstr ""
 "Gratulation, wir sind nun bereit, Zenphoto zu installieren. Bitte ein wenig "
 "Geduld, da der Prozess ein wenig dauern kann."
 
-#: zp-core/setup/index.php:2720
+#: zp-core/setup/index.php:2721
 msgid "run setup"
 msgstr "Installation aufrufen"
 
-#: zp-core/setup/index.php:2720
+#: zp-core/setup/index.php:2721
 msgid "Go"
 msgstr "Los"
 
-#: zp-core/setup/index.php:2736
+#: zp-core/setup/index.php:2737
 msgid "database did not connect"
 msgstr "Die Datenbank konnte keine Verbindung herstellen"
 
-#: zp-core/setup/index.php:2738
+#: zp-core/setup/index.php:2739
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr ""
 "Wenn Sie die Datenbank noch nicht erstellt haben, wäre jetzt der richtige "
 "Zeitpunkt."
 
-#: zp-core/setup/index.php:2747
+#: zp-core/setup/index.php:2748
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Die Datei %1$s existiert nicht."
@@ -21452,8 +21452,8 @@ msgstr "Rechts"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:125
 msgid ""
-"Select the alignment for te profile button alignment. The theme used may "
-"override this and may require an update to work properly."
+"Select profile buttons alignment. The theme used may override this and may "
+"require an update to work properly."
 msgstr ""
 "Wählen Sie die Ausrichtung der Profilbuttons. Das verwendete Theme kann "
 "diese Einstellung übergehen und benötigt möglicherweise ein Update, um "
@@ -24608,7 +24608,7 @@ msgstr ""
 "Zenpage::getAllCategories() - Der Wert \"desc\" für $sortdirection ist seit "
 "ZenphotoCMS 1.5.8 veraltet. Verwenden Sie stattdessen true."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:308
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:292
 msgid ""
 "class ZenpageCategory getParents(): The parameters $parentid and "
 "$initparents have been removed in Zenphoto 1.5.5."
@@ -24616,7 +24616,7 @@ msgstr ""
 "class ZenpageCategory getParents(): Die Parameter $parentid und $initparents "
 "sind in Zenphoto 1.5.5 entfernt worden."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:237
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:220
 msgid ""
 "class ZenpagePage getParents(): The parameters $parentid and $initparents "
 "have been removed in Zenphoto 1.5.5."
