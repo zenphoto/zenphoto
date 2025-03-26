@@ -122,7 +122,7 @@ class scriptlessSocialsharingOptions {
 						gettext('Center') => 'center',
 						gettext('Right') => 'right'
 				),
-				'desc' => gettext('Select the alignment for te profile button alignment. The theme used may override this and may require an update to work properly.')
+				'desc' => gettext('Select profile buttons alignment. The theme used may override this and may require an update to work properly.')
 		);
 		return $options;
 	}
