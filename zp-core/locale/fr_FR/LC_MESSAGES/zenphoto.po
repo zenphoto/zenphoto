@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-25 10:12+0100\n"
-"PO-Revision-Date: 2025-03-25 10:24+0100\n"
+"POT-Creation-Date: 2025-03-28 10:03+0100\n"
+"PO-Revision-Date: 2025-03-28 10:04+0100\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -8006,11 +8006,11 @@ msgstr "Catégories"
 msgid "no date"
 msgstr "sans date"
 
-#: zp-core/classes/class-themeobject.php:181
+#: zp-core/classes/class-themeobject.php:222
 msgid "Use isPublished() instead"
 msgstr "Utilisez plutôt isPublished()"
 
-#: zp-core/classes/class-themeobject.php:192
+#: zp-core/classes/class-themeobject.php:233
 msgid "Use setPublished() instead"
 msgstr "Utilisez plutôt setPublished()"
 
@@ -21153,11 +21153,11 @@ msgstr "Droite"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:125
 msgid ""
-"Select the alignment for te profile button alignment. The theme used may "
-"override this and may require an update to work properly."
+"Select profile buttons alignment. The theme used may override this and may "
+"require an update to work properly."
 msgstr ""
-"Sélectionnez l’alignement du bouton de profil. Le thème utilisé peut modifier ce "
-"réglage et nécessiter une mise à jour pour fonctionner correctement."
+"Sélectionnez l’alignement des boutons de profil. Le thème utilisé peut modifier "
+"cet alignement et nécessiter une mise à jour pour fonctionner correctement."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:526
 msgid "Please enter your Mastodon instance first, e.g mastodon.social."
@@ -24261,7 +24261,7 @@ msgstr ""
 "Zenpage::getAllCategories() - La valeur \"desc\" attribuée à $sortdirection est "
 "obsolète depuis ZenphotoCMS 1.5.8. Remplacé par \"true\"."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:308
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:292
 msgid ""
 "class ZenpageCategory getParents(): The parameters $parentid and $initparents "
 "have been removed in Zenphoto 1.5.5."
@@ -24269,7 +24269,7 @@ msgstr ""
 "class ZenpageCategory getParents() : Les paramètres $parentid et $initparents "
 "ont été supprimés dans Zenphoto 1.5.5."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:237
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:220
 msgid ""
 "class ZenpagePage getParents(): The parameters $parentid and $initparents have "
 "been removed in Zenphoto 1.5.5."
