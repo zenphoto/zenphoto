@@ -57,7 +57,7 @@ class registerUserOptions {
 	function __construct() {
 		global $_zp_authority;
 		setOptionDefault('register_user_link', '_PAGE_/register');
-		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s.');
+		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
 		setOptionDefault('register_user_text', getAllTranslations($str));
 		gettext($str = 'Click here to register for this site.');
 		setOptionDefault('register_user_page_tip', getAllTranslations($str));
