@@ -163,6 +163,7 @@ class registerUserOptions {
 			$options[gettext('Notify*')]['disabled'] = true;
 			$options[gettext('Notify*')]['desc'] .= ' ' . gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
+		
 		if (class_exists('user_groups')) {
 			$admins = $_zp_authority->getAdministrators('groups');
 			$defaultrights = ALL_RIGHTS;
@@ -488,7 +489,7 @@ class registerUser {
 							$rights = USER_RIGHTS; //NO_RIGHTS;
 						}
 					}
-					$userobj->setRights($rights | NO_RIGHTS);
+					$userobj->setRights($rights | NO_RIGHTS); 
 					$userobj->setGroup($group);
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
@@ -535,8 +536,9 @@ class registerUser {
 						<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 					</div>
 				<?php
-				 $userobj->setRights(USER_RIGHTS | NO_RIGHTS);
-				 $userobj->save(); 
+				 //$userobj->setRights(USER_RIGHTS | NO_RIGHTS);
+				 //$userobj->save(); 
+				 break;
 				case 'already_verified':
 				case 'loginfailed':
 					registerUser::$link = getRequestURI();
