@@ -367,16 +367,14 @@ class Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Returns the user's "prime" album. See setAlbum().
+	 * Returns the user's "prime" album object. See setAlbum().
+	 * @return object
 	 */
 	function getAlbum() {
-		global $_zp_db;
 		$id = $this->get('prime_album');
 		if (!empty($id)) {
-			$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums') . ' WHERE `id`=' . $id;
-			$result = $_zp_db->querySingleRow($sql);
-			if ($result) {
-				$album = AlbumBase::newAlbum($result['folder']);
+			$album = getItembyID('albums', $id);
+			if ($album) {
 				return $album;
 			}
 		}
