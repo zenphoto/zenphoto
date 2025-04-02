@@ -3405,10 +3405,17 @@ function processRights($i) {
 		$rights = USER_RIGHTS; // editing the account should be allowed
 		if (extensionEnabled('register_user')) {
 			$defaultrights = getOption('register_user_user_rights');
-			if ($defaultrights) {
+			if (is_numeric($defaultrights)) {
 				$rights = $defaultrights;
+			} else { //  a group or template
+				$admin = Authority::getAnAdmin(array('`user`=' => $defaultrights, '`valid`=' => 0));
+				if ($admin) {
+					$rights = $admin->getRights();
+				} else {
+					$rights = USER_RIGHTS; //NO_RIGHTS;
+				}
 			}
-		} 
+		}
 	} else {
 		$rights = 0;
 	}
