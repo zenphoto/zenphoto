@@ -79,10 +79,15 @@ class Authority {
 		if (!function_exists('hash')) {
 			unset($encodings['pbkdf2']);
 		}
-		return array(gettext('Primary album edit') =>
-				array('key' => 'user_album_edit_default',
+		return array(
+				gettext('Primary user album: Edit rights default') => array(
+						'key' => 'user_album_edit_default',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
+				gettext('Primary user album:  Keep on user removal') => array(
+						'key' => 'user_album_keep_on_userremoval',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('Check if you want the user <em>primary album</em> not to be deleted if the user is removed.')),
 				gettext('Minimum password strength') => array(
 						'key' => 'password_strength',
 						'type' => OPTION_TYPE_CUSTOM,

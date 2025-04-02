@@ -742,7 +742,7 @@ echo $refresh;
 																</label>
 															</p>
 															<p class="notebox">
-																<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
+																<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted unless you enable the related option on Options > Security'); ?>
 															</p>
 															<?php
 														}

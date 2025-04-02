@@ -355,7 +355,7 @@ class Administrator extends PersistentObject {
 		$album = $this->getAlbum();
 		$id = $this->getID();
 		if (parent::remove()) {
-			if (!empty($album)) { //	Remove users album as well
+			if (!empty($album) && !getOption('user_album_keep_on_userremoval')) { //Remove users album as well
 				$album->remove();
 			}
 			$sql = "DELETE FROM " . $_zp_db->prefix('admin_to_object') . " WHERE `adminid`=$id";
