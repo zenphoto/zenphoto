@@ -536,8 +536,6 @@ class registerUser {
 						<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 					</div>
 				<?php
-				 //$userobj->setRights(USER_RIGHTS | NO_RIGHTS);
-				 //$userobj->save(); 
 				 break;
 				case 'already_verified':
 				case 'loginfailed':
