@@ -3402,7 +3402,13 @@ function printManagedObjects($type, $objlist, $alterrights, $userobj, $prefix_id
  */
 function processRights($i) {
 	if (isset($_POST[$i . '-confirmed'])) {
-		$rights = NO_RIGHTS;
+		$rights = USER_RIGHTS; // editing the account should be allowed
+		if (extensionEnabled('register_user')) {
+			$defaultrights = getOption('register_user_user_rights');
+			if ($defaultrights) {
+				$rights = $defaultrights;
+			}
+		} 
 	} else {
 		$rights = 0;
 	}
