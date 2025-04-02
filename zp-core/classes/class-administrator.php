@@ -174,16 +174,17 @@ class Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Returns local copy of managed objects.
+	 * Saves local copy of managed objects.
+	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
+	 * cause an update
 	 */
 	function setObjects($objects) {
 		$this->objects = $objects;
 	}
 
 	/**
-	 * Saves local copy of managed objects.
-	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
-	 * cause an update
+	 * Returns local copy of managed objects.
+	 * @param string $what Type of objects to get
 	 */
 	function getObjects($what = NULL) {
 		if (is_null($this->objects)) {
