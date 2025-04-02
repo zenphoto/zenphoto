@@ -722,12 +722,16 @@ echo $refresh;
 													<?php
 													$primeAlbum = $userobj->getAlbum();
 													if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-														if (empty($primeAlbum)) {
+														if (empty($primeAlbum)) {											
 															if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+																$createalbum_checked = '';
+																if (extensionEnabled('register_user') && getOption('register_user_create_album') && $userobj->getRights() == 0) {
+																	$createalbum_checked = ' checked="checked"';
+																}									
 																?>
 																<p>
 																	<label>
-																		<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+																		<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights . $createalbum_checked; ?>/>
 																		<?php echo gettext('create primary album'); ?>
 																	</label>
 																</p>
