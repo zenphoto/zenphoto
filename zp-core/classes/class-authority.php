@@ -201,15 +201,19 @@ class Authority {
 	 *			- 'fulldata" full data with all columns		
 	 * @param string $sortorder Default null for "ORDER BY `rights` DESC, `id`" (order determined by $sortdir param!), otherwise the column to order by
 	 * @param string $sortdir Default "desc" for descending (also if not set) or "asc" for ascending.
+	 * @param int $rights Rights value via constant like ADMIN_RIGHTS to get users by. Default null for all users
 	 * @return array
 	 */
-	function getAdministrators($what = 'users', $returnvalues = 'coredata', $sortorder = null, $sortdir = 'desc') {
+	function getAdministrators($what = 'users', $returnvalues = 'coredata', $sortorder = null, $sortdir = 'desc', $rights = null) {
 		global $_zp_db;
 		$cacheindex = $returnvalues;
 		if (!in_array($returnvalues, array('minimaldata', 'basedata','coredata', 'fulldata'))) {
 			$cacheindex = 'fulldata';
 		}
 		$cacheindex .= trim(strval($sortorder)) . trim($sortdir);
+		if (!is_null($rights)) {
+			$cacheindex .= 'rights' . $rights;
+		}
 		switch ($what) {
 			case 'users':
 				if (isset($this->admin_users[$cacheindex])) {
@@ -240,10 +244,10 @@ class Authority {
 			$users = array();
 			switch ($returnvalues) {
 				case 'minimaldata':
-					$select = 'SELECT `user`, `valid` FROM ';
+					$select = 'SELECT `id`, `user`, `rights`, `valid` FROM ';
 					break;
 				case 'basedata':
-					$select = 'SELECT `id`, `user`, `valid`, `group` FROM ';
+					$select = 'SELECT `id`, `user`, `rights`, `valid`, `name`, `group` FROM ';
 					break;
 				case 'coredata':
 					$select = 'SELECT `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials` FROM ';
@@ -271,7 +275,13 @@ class Authority {
 			$admins = $_zp_db->query($sql, true);
 			if ($admins) {
 				while ($user = $_zp_db->fetchAssoc($admins)) {
-					$users[$user['id']] = $user;
+					if (is_null($rights)) {
+						$users[$user['id']] = $user;
+					} else {
+						if (($user['rights'] & $rights)) {
+							$users[$user['id']] = $user;
+						}
+					}
 				}
 				$_zp_db->freeResult($admins);
 				switch ($what) {
