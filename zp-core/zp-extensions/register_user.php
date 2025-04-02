@@ -189,9 +189,9 @@ class registerUserOptions {
 					'desc' => gettext("Initial group assignment for the new user."));
 		} else {
 			if (is_numeric(getOption('register_user_user_rights'))) {
-				setOptionDefault('register_user_user_rights', NO_RIGHTS);
+				setOptionDefault('register_user_user_rights', USER_RIGHTS);
 			} else {
-				setOption('register_user_user_rights', NO_RIGHTS);
+				setOption('register_user_user_rights', USER_RIGHTS);
 			}
 			$options[gettext('Default rights')] = array(
 					'key' => 'register_user_user_rights',
