@@ -523,23 +523,18 @@ class scriptlessSocialsharing {
 									// Grab link from the DOM
 									const button = document.querySelector('.<?php echo $button['class']; ?>');
 									let key = 'mastodon-instance';
-									let prompt = '<?php echo gettext('Please enter your Mastodon instance first, e.g mastodon.social.'); ?>';
+									let prompt= '<?php echo gettext('Please enter your Mastodon instance first, e.g mastodon.social.'); ?>';
 
 									button.addEventListener('click', (e) => {
-										if(localStorage.getItem(key)) {
-											button.href = button.href.replace(
-													"mastodon.social", 
-													localStorage.getItem(key)
-											);
-										} else {
-											e.preventDefault();
-											let instance = window.prompt(prompt);
-											localStorage.setItem(key, instance);
-											button.href = button.href.replace(
-													"mastodon.social", 
-													localStorage.getItem(key)
-											);
-											window.location.href = button.href;
+										e.preventDefault();
+										let instance = window.prompt(prompt);
+										let shareurl = button.href;
+										shareurl = shareurl.replace(
+										"mastodon.social", 
+											instance
+										);
+										if (instance) {
+											window.location.href = shareurl;
 										}
 									});
 								</script>

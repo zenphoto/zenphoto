@@ -3,18 +3,23 @@
  *
  * Root class for external authorizaton plugins
  *
+ * @deprecated 2.0 The class external_auth will be removed without replacement
+ *
  * @author Stephen Billard (sbillard)
  * @package zpcore\classes\authorization
  */
 
 class external_auth {
 
-	public $auth='external';
+	public $auth = 'external';
 
 	/**
 	 * returns an array with the user details from the external authorization
+	 * 
+	 * @deprecated 2.0 The class external_auth will be removed without replacement
 	 */
 	protected function user() {
+		deprecationNotice(gettext('The class exernal_auth will be removed without replacement'));
 		return NULL;
 	}
 
@@ -35,7 +40,7 @@ class external_auth {
 	 * 		<li>objects: a Zenphoto "managed object list" array</li>
 	 * 		<li>album: the name of the user's primary album</li>
 	 * 		<li>logout_link: information that the plugin can use when a user loggs out</li>
-	 *	</ul>
+	 * 	</ul>
 	 *
 	 * All the above may be missing. However, if there is no groups entry, there needs to be an
 	 * entry for the user's rights otherwise he will have none. There should not be both a rights entry
@@ -43,15 +48,19 @@ class external_auth {
 	 *
 	 * album and objects entries should come last in the list so all other properties are processed first as
 	 * these methods may modify other properties.
+	 * 
+	 * @deprecated 2.0 The class external_auth will be removed without replacement
 	 *
 	 * @param BIT $authorized
 	 */
 	function check($authorized) {
+		deprecationNotice(gettext('The class exernal_auth will be removed without replacement'));
+		return NULL;
 		global $_zp_current_admin_obj;
-		if (!$authorized) {	// not logged in via normal Zenphoto handling
+		if (!$authorized) { // not logged in via normal Zenphoto handling
 			if ($result = $this->user()) {
 				$user = $result['user'];
-				$searchfor = array('`user`=' => $user,  '`valid`=' => 1);
+				$searchfor = array('`user`=' => $user, '`valid`=' => 1);
 				$userobj = Authority::getAnAdmin($searchfor);
 				if (!$userobj) {
 					unset($result['id']);
