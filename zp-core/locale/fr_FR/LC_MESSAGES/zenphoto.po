@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-25 10:12+0100\n"
-"PO-Revision-Date: 2025-03-25 10:24+0100\n"
+"POT-Creation-Date: 2025-04-03 14:40+0200\n"
+"PO-Revision-Date: 2025-04-03 14:59+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Bookmarks: 1740,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SearchPath-0: themes\n"
 "X-Poedit-SearchPath-1: zp-core\n"
 "X-Poedit-SearchPathExcluded-0: plugins\n"
@@ -54,7 +54,7 @@ msgstr "Voir l’album :"
 #: themes/zpmobile/favorites.php:30 themes/zpmobile/favorites.php:57
 #: themes/zpmobile/gallery.php:27 themes/zpmobile/gallery.php:40
 #: themes/zpmobile/image.php:32 themes/zpmobile/news.php:58
-#: themes/zpmobile/search.php:185 zp-core/admin-functions.php:4467
+#: themes/zpmobile/search.php:185 zp-core/admin-functions.php:4480
 #: zp-core/zp-extensions/comment_form/functions.php:33
 #: zp-core/zp-extensions/slideshow2.php:342
 #: zp-core/zp-extensions/slideshow2.php:679
@@ -71,7 +71,7 @@ msgstr "préc."
 #: themes/zpmobile/favorites.php:30 themes/zpmobile/favorites.php:57
 #: themes/zpmobile/gallery.php:27 themes/zpmobile/gallery.php:40
 #: themes/zpmobile/image.php:35 themes/zpmobile/news.php:62
-#: themes/zpmobile/search.php:185 zp-core/admin-functions.php:4495
+#: themes/zpmobile/search.php:185 zp-core/admin-functions.php:4508
 #: zp-core/zp-extensions/comment_form/functions.php:34
 #: zp-core/zp-extensions/jplayer.php:519 zp-core/zp-extensions/slideshow2.php:346
 #: zp-core/zp-extensions/slideshow2.php:680
@@ -474,17 +474,17 @@ msgstr "Racine des albums"
 #: themes/zpmobile/functions.php:168 themes/zpmobile/image.php:28
 #: zp-core/admin-edit.php:1580 zp-core/admin-options.php:2661
 #: zp-core/admin-options.php:2662 zp-core/admin-themes.php:101
-#: zp-core/admin-themes.php:102 zp-core/classes/class-authority.php:606
-#: zp-core/classes/class-authority.php:607 zp-core/classes/class-authority.php:608
-#: zp-core/classes/class-authority.php:609 zp-core/classes/class-authority.php:610
-#: zp-core/classes/class-authority.php:614 zp-core/classes/class-authority.php:618
-#: zp-core/classes/class-authority.php:626 zp-core/classes/class-authority.php:627
-#: zp-core/classes/class-authority.php:633 zp-core/classes/class-authority.php:634
-#: zp-core/classes/class-authority.php:638 zp-core/classes/class-authority.php:643
-#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:652
-#: zp-core/classes/class-authority.php:653 zp-core/classes/class-authority.php:659
-#: zp-core/classes/class-authority.php:660 zp-core/classes/class-authority.php:664
-#: zp-core/classes/class-authority.php:670 zp-core/classes/class-authority.php:671
+#: zp-core/admin-themes.php:102 zp-core/classes/class-authority.php:621
+#: zp-core/classes/class-authority.php:622 zp-core/classes/class-authority.php:623
+#: zp-core/classes/class-authority.php:624 zp-core/classes/class-authority.php:625
+#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:641 zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:648 zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:653 zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:659 zp-core/classes/class-authority.php:667
+#: zp-core/classes/class-authority.php:668 zp-core/classes/class-authority.php:674
+#: zp-core/classes/class-authority.php:675 zp-core/classes/class-authority.php:679
+#: zp-core/classes/class-authority.php:685 zp-core/classes/class-authority.php:686
 #: zp-core/setup/setup-option-defaults.php:410
 #: zp-core/setup/setup-option-defaults.php:411 zp-core/template-functions.php:468
 #: zp-core/template-functions.php:679
@@ -495,13 +495,13 @@ msgstr "Galerie"
 
 #: themes/garland/sidebar.php:63 zp-core/admin-functions.php:2033
 #: zp-core/admin-functions.php:3331 zp-core/classes/class-admingallerystats.php:174
-#: zp-core/classes/class-authority.php:611 zp-core/classes/class-authority.php:617
-#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:631
-#: zp-core/classes/class-authority.php:632 zp-core/classes/class-authority.php:635
-#: zp-core/classes/class-authority.php:639 zp-core/classes/class-authority.php:642
+#: zp-core/classes/class-authority.php:626 zp-core/classes/class-authority.php:632
+#: zp-core/classes/class-authority.php:643 zp-core/classes/class-authority.php:646
+#: zp-core/classes/class-authority.php:647 zp-core/classes/class-authority.php:650
 #: zp-core/classes/class-authority.php:654 zp-core/classes/class-authority.php:657
-#: zp-core/classes/class-authority.php:658 zp-core/classes/class-authority.php:661
-#: zp-core/classes/class-authority.php:665 zp-core/classes/class-authority.php:668
+#: zp-core/classes/class-authority.php:669 zp-core/classes/class-authority.php:672
+#: zp-core/classes/class-authority.php:673 zp-core/classes/class-authority.php:676
+#: zp-core/classes/class-authority.php:680 zp-core/classes/class-authority.php:683
 #: zp-core/template-functions.php:120 zp-core/zp-extensions/comment_form.php:96
 #: zp-core/zp-extensions/galleryArticles.php:65
 #: zp-core/zp-extensions/multiple_layouts.php:93 zp-core/zp-extensions/rss.php:192
@@ -515,10 +515,10 @@ msgstr "Albums"
 #: themes/zpmobile/pages.php:27 themes/zpmobile/pages.php:33
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3358
 #: zp-core/classes/class-admingallerystats.php:206
-#: zp-core/classes/class-authority.php:612 zp-core/classes/class-authority.php:615
-#: zp-core/classes/class-authority.php:630 zp-core/classes/class-authority.php:637
-#: zp-core/classes/class-authority.php:641 zp-core/classes/class-authority.php:656
-#: zp-core/classes/class-authority.php:663 zp-core/classes/class-authority.php:667
+#: zp-core/classes/class-authority.php:627 zp-core/classes/class-authority.php:630
+#: zp-core/classes/class-authority.php:645 zp-core/classes/class-authority.php:652
+#: zp-core/classes/class-authority.php:656 zp-core/classes/class-authority.php:671
+#: zp-core/classes/class-authority.php:678 zp-core/classes/class-authority.php:682
 #: zp-core/classes/class-userdataexport.php:475
 #: zp-core/zp-extensions/comment_form.php:100
 #: zp-core/zp-extensions/multiple_layouts.php:98 zp-core/zp-extensions/rss.php:196
@@ -630,8 +630,8 @@ msgstr ""
 msgid "Image gallery transition"
 msgstr "Transition entre les images de la galerie"
 
-#: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5748
-#: zp-core/admin-functions.php:5801 zp-core/zp-extensions/GoogleMap.php:123
+#: themes/garland/themeoptions.php:154 zp-core/admin-functions.php:5761
+#: zp-core/admin-functions.php:5814 zp-core/zp-extensions/GoogleMap.php:123
 #: zp-core/zp-extensions/downloadList.php:96
 #: zp-core/zp-extensions/user_login-out.php:40
 msgid "None"
@@ -782,10 +782,10 @@ msgstr "Flux RSS de l’album"
 #: themes/zenpage/sidebar.php:93 themes/zpmobile/functions.php:36
 #: themes/zpmobile/functions.php:73 themes/zpmobile/functions.php:162
 #: zp-core/admin-functions.php:3222 zp-core/admin-functions.php:3344
-#: zp-core/classes/class-authority.php:613 zp-core/classes/class-authority.php:616
-#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:636
-#: zp-core/classes/class-authority.php:640 zp-core/classes/class-authority.php:655
-#: zp-core/classes/class-authority.php:662 zp-core/classes/class-authority.php:666
+#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:631
+#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:651
+#: zp-core/classes/class-authority.php:655 zp-core/classes/class-authority.php:670
+#: zp-core/classes/class-authority.php:677 zp-core/classes/class-authority.php:681
 #: zp-core/template-functions.php:441 zp-core/template-functions.php:443
 #: zp-core/template-functions.php:445 zp-core/zp-extensions/comment_form.php:101
 #: zp-core/zp-extensions/comment_form/functions.php:914
@@ -840,8 +840,8 @@ msgstr "Actualités sur la page d’accueil"
 
 #: themes/zenpage/themeoptions.php:126
 msgid ""
-"Enable this if you want to show the news section’s first page on the <code>index."
-"php</code> page."
+"Enable this if you want to show the news section’s first page on the "
+"<code>index.php</code> page."
 msgstr ""
 "Activer pour afficher la première page des actualités à la page <code>index.php</"
 "code>."
@@ -886,7 +886,7 @@ msgid "Archive view"
 msgstr "Archives"
 
 #: themes/zpmobile/functions.php:44 zp-core/admin-functions.php:473
-#: zp-core/admin-functions.php:4940 zp-core/classes/class-authority.php:595
+#: zp-core/admin-functions.php:4953 zp-core/classes/class-authority.php:610
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/downloadList/download_statistics.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:92
@@ -1128,7 +1128,7 @@ msgstr "Retour"
 #: zp-core/admin-options.php:3282 zp-core/admin-options.php:3309
 #: zp-core/admin-options.php:3493 zp-core/admin-plugins.php:139
 #: zp-core/admin-plugins.php:423 zp-core/admin-thumbcrop.php:268
-#: zp-core/admin-users.php:468 zp-core/admin-users.php:847
+#: zp-core/admin-users.php:468 zp-core/admin-users.php:851
 #: zp-core/utilities/maintenance_mode.php:89
 #: zp-core/zp-extensions/cacheManager.php:636
 #: zp-core/zp-extensions/comment_form/admin-comments.php:137
@@ -1348,8 +1348,8 @@ msgstr ""
 #: zp-core/admin-edit.php:768
 #, php-format
 msgid ""
-"Select an album to edit its description and data, or <a href=\"?page=edit&amp;"
-"album=%s&amp;massedit\">mass-edit</a> all first level subalbums."
+"Select an album to edit its description and data, or <a href=\"?"
+"page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level subalbums."
 msgstr ""
 "Sélectionnez un album pour modifier ses détails et sa description, ou <a href=\"?"
 "page=edit&amp;album=%s&amp;massedit\">modifiez en lot</a> tous les albums de "
@@ -1382,7 +1382,7 @@ msgstr ""
 "temps sur un serveur lent."
 
 #: zp-core/admin-edit.php:820 zp-core/admin-edit.php:1710
-#: zp-core/admin-functions.php:3892
+#: zp-core/admin-functions.php:3905
 #: zp-core/zp-extensions/comment_form/admin-comments.php:368
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:218
 #: zp-core/zp-extensions/zenpage/admin-categories.php:160
@@ -1408,7 +1408,7 @@ msgstr "Cliquer sur l’image pour changer le rognage de la vignette."
 #: zp-core/admin-options.php:3494 zp-core/admin-plugins.php:140
 #: zp-core/admin-plugins.php:424 zp-core/admin-themes-editor.php:155
 #: zp-core/admin-thumbcrop.php:264 zp-core/admin-users.php:469
-#: zp-core/admin-users.php:848 zp-core/classes/class-authority.php:1156
+#: zp-core/admin-users.php:852 zp-core/classes/class-authority.php:1171
 #: zp-core/zp-extensions/contact_form/form.php:166
 #: zp-core/zp-extensions/crop_image.php:339
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:400
@@ -1453,12 +1453,12 @@ msgid "Owner:"
 msgstr "Propriétaire :"
 
 #: zp-core/admin-edit.php:1060 zp-core/admin-functions.php:1702
-#: zp-core/classes/class-authority.php:619 zp-core/classes/class-authority.php:620
-#: zp-core/classes/class-authority.php:621 zp-core/classes/class-authority.php:625
-#: zp-core/classes/class-authority.php:645 zp-core/classes/class-authority.php:646
-#: zp-core/classes/class-authority.php:650 zp-core/classes/class-authority.php:651
-#: zp-core/classes/class-authority.php:669 zp-core/classes/class-authority.php:672
-#: zp-core/classes/class-authority.php:673
+#: zp-core/classes/class-authority.php:634 zp-core/classes/class-authority.php:635
+#: zp-core/classes/class-authority.php:636 zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:660 zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:665 zp-core/classes/class-authority.php:666
+#: zp-core/classes/class-authority.php:684 zp-core/classes/class-authority.php:687
+#: zp-core/classes/class-authority.php:688
 #: zp-core/zp-extensions/zenpage/admin-edit.php:630
 msgid "General"
 msgstr "Général"
@@ -1468,7 +1468,7 @@ msgid "Publishing scheduled"
 msgstr "Publication planifiée"
 
 #: zp-core/admin-edit.php:1066 zp-core/admin-functions.php:1708
-#: zp-core/admin-functions.php:5242 zp-core/admin-functions.php:5319
+#: zp-core/admin-functions.php:5255 zp-core/admin-functions.php:5332
 #: zp-core/zp-extensions/favoritesHandler.php:147
 #: zp-core/zp-extensions/zenpage/admin-edit.php:421
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:663
@@ -1518,7 +1518,7 @@ msgid "Expired!"
 msgstr "Expiré !"
 
 #: zp-core/admin-edit.php:1152 zp-core/admin-functions.php:1794
-#: zp-core/admin-functions.php:5284
+#: zp-core/admin-functions.php:5297
 msgid "Publish date"
 msgstr "Date de publication"
 
@@ -1691,8 +1691,8 @@ msgstr "Clé de tri utilisée : <em>%1$s%2$s</em>."
 
 #: zp-core/admin-edit.php:1670
 msgid ""
-"Select an album to edit its description and data, or <a href=\"?page=edit&amp;"
-"massedit\">mass-edit</a> all gallery level albums."
+"Select an album to edit its description and data, or <a href=\"?"
+"page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
 msgstr ""
 "Sélectionnez un album pour en modifier les détails et la description, ou <a "
 "href=\"?page=edit&amp;massedit\">modifiez en lot</a> tous les albums de la "
@@ -1859,7 +1859,7 @@ msgstr ""
 msgid "Deprecated."
 msgstr "Obsolète."
 
-#: zp-core/admin-functions.php:815 zp-core/admin-functions.php:4722
+#: zp-core/admin-functions.php:815 zp-core/admin-functions.php:4735
 #: zp-core/admin-options.php:1654 zp-core/admin-tags.php:157
 #: zp-core/admin-users.php:488
 #: zp-core/zp-extensions/publishContent/publishContent.php:260
@@ -1873,8 +1873,8 @@ msgstr "tous"
 msgid "add tag"
 msgstr "Ajouter des tags"
 
-#: zp-core/admin-functions.php:1243 zp-core/admin-functions.php:5258
-#: zp-core/admin-functions.php:5285 zp-core/classes/class-searchengine.php:103
+#: zp-core/admin-functions.php:1243 zp-core/admin-functions.php:5271
+#: zp-core/admin-functions.php:5298 zp-core/classes/class-searchengine.php:103
 #: zp-core/zp-extensions/favoritesHandler.php:146
 msgid "Owner"
 msgstr "Propriétaire"
@@ -1908,8 +1908,8 @@ msgstr "Saisir le mot de passe de nouveau :"
 
 #: zp-core/admin-functions.php:1349 zp-core/admin-options.php:1285
 #: zp-core/admin-options.php:1614 zp-core/admin-options.php:2445
-#: zp-core/classes/class-authority.php:1151
-#: zp-core/classes/class-authority.php:1344
+#: zp-core/classes/class-authority.php:1166
+#: zp-core/classes/class-authority.php:1359
 #: zp-core/zp-extensions/downloadList.php:152
 #: zp-core/zp-extensions/zenpage/admin-edit.php:519
 msgid "Show password"
@@ -2009,8 +2009,8 @@ msgid "to:"
 msgstr "vers :"
 
 #: zp-core/admin-functions.php:1914 zp-core/classes/class-admingallerystats.php:188
-#: zp-core/classes/class-authority.php:599 zp-core/classes/class-authority.php:619
-#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:671
+#: zp-core/classes/class-authority.php:614 zp-core/classes/class-authority.php:634
+#: zp-core/classes/class-authority.php:659 zp-core/classes/class-authority.php:686
 #: zp-core/classes/class-searchengine.php:93 zp-core/template-functions.php:134
 #: zp-core/zp-extensions/zenpage/admin-edit.php:704
 msgid "Tags"
@@ -2297,8 +2297,8 @@ msgstr "Pages gérées :"
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
-#: zp-core/admin-functions.php:3364 zp-core/admin-users.php:798
-#: zp-core/admin-users.php:809 zp-core/admin-users.php:817
+#: zp-core/admin-functions.php:3364 zp-core/admin-users.php:802
+#: zp-core/admin-users.php:813 zp-core/admin-users.php:821
 msgid "user"
 msgstr "utilisateur"
 
@@ -2317,61 +2317,61 @@ msgstr ""
 msgid "You may manage these %s subject to the above rights."
 msgstr "Vous avez la possibilité de gérer ces %s en fonction des droits ci-dessus."
 
-#: zp-core/admin-functions.php:3765
+#: zp-core/admin-functions.php:3778
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Afficher %u niveau d’albums"
 msgstr[1] "Afficher %u niveaux d’albums"
 
-#: zp-core/admin-functions.php:3768
+#: zp-core/admin-functions.php:3781
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u image par page"
 msgstr[1] "%u images par page"
 
-#: zp-core/admin-functions.php:3836 zp-core/admin-functions.php:3848
-#: zp-core/admin-functions.php:3860 zp-core/admin-functions.php:3872
+#: zp-core/admin-functions.php:3849 zp-core/admin-functions.php:3861
+#: zp-core/admin-functions.php:3873 zp-core/admin-functions.php:3885
 msgid "ok"
 msgstr "ok"
 
-#: zp-core/admin-functions.php:3942
+#: zp-core/admin-functions.php:3955
 msgid "Destination"
 msgstr "Destination"
 
-#: zp-core/admin-functions.php:4227 zp-core/admin-functions.php:4261
+#: zp-core/admin-functions.php:4240 zp-core/admin-functions.php:4274
 #, php-format
 msgid "codeblock %u"
 msgstr "bloc de code %u"
 
-#: zp-core/admin-functions.php:4228 zp-core/admin-functions.php:4267
+#: zp-core/admin-functions.php:4241 zp-core/admin-functions.php:4280
 msgid "add codeblock"
 msgstr "ajouter un bloc de code"
 
-#: zp-core/admin-functions.php:4282
+#: zp-core/admin-functions.php:4295
 msgid "Codeblock 0 is deprecated."
 msgstr "Le bloc de code 0 n’est plus utilisé."
 
-#: zp-core/admin-functions.php:4588
+#: zp-core/admin-functions.php:4601
 msgid "setup"
 msgstr "installation"
 
-#: zp-core/admin-functions.php:4589 zp-core/admin-globals.php:108
+#: zp-core/admin-functions.php:4602 zp-core/admin-globals.php:108
 #: zp-core/admin-options.php:1057
 #: zp-core/zp-extensions/http_security_headers.php:24
 msgid "security"
 msgstr "sécurité"
 
-#: zp-core/admin-functions.php:4590 zp-core/admin-options.php:1057
+#: zp-core/admin-functions.php:4603 zp-core/admin-options.php:1057
 msgid "debug"
 msgstr "déboggage"
 
-#: zp-core/admin-functions.php:4655
+#: zp-core/admin-functions.php:4668
 msgid "Select the logfile to view"
 msgstr "Sélection du fichier de log à visualiser"
 
-#: zp-core/admin-functions.php:4690 zp-core/admin-functions.php:4701
+#: zp-core/admin-functions.php:4703 zp-core/admin-functions.php:4714
 #: zp-core/admin.php:235 zp-core/zp-extensions/GoogleMap.php:31
 #: zp-core/zp-extensions/comment_form.php:20
 #: zp-core/zp-extensions/cookieconsent.php:26
@@ -2386,16 +2386,16 @@ msgstr "Sélection du fichier de log à visualiser"
 msgid "Misc"
 msgstr "Divers"
 
-#: zp-core/admin-functions.php:4693
+#: zp-core/admin-functions.php:4706
 msgid "Active"
 msgstr "Utilisés"
 
-#: zp-core/admin-functions.php:4694 zp-core/admin-functions.php:5318
+#: zp-core/admin-functions.php:4707 zp-core/admin-functions.php:5331
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:803
 msgid "All"
 msgstr "Tout"
 
-#: zp-core/admin-functions.php:4695 zp-core/admin.php:246 zp-core/admin.php:261
+#: zp-core/admin-functions.php:4708 zp-core/admin.php:246 zp-core/admin.php:261
 #: zp-core/admin.php:277 zp-core/classes/class-maintenancemode.php:233
 #: zp-core/template-functions.php:92 zp-core/utilities/backup_restore.php:18
 #: zp-core/zp-extensions/admin-approval.php:14
@@ -2418,11 +2418,11 @@ msgstr "Tout"
 msgid "Admin"
 msgstr "Administration"
 
-#: zp-core/admin-functions.php:4696
+#: zp-core/admin-functions.php:4709
 msgid "Demo"
 msgstr "Démo"
 
-#: zp-core/admin-functions.php:4697
+#: zp-core/admin-functions.php:4710
 #: zp-core/zp-extensions/deprecated-functions.php:34
 #: zp-core/zp-extensions/deprecated-functions.php:129
 #: zp-core/zp-extensions/exampleMacros.php:11
@@ -2431,19 +2431,19 @@ msgstr "Démo"
 msgid "Development"
 msgstr "Développement"
 
-#: zp-core/admin-functions.php:4698 zp-core/zp-extensions/mergedRSS.php:22
+#: zp-core/admin-functions.php:4711 zp-core/zp-extensions/mergedRSS.php:22
 #: zp-core/zp-extensions/rss.php:13
 msgid "Feed"
 msgstr "Flux"
 
-#: zp-core/admin-functions.php:4699 zp-core/zp-extensions/PHPMailer.php:14
+#: zp-core/admin-functions.php:4712 zp-core/zp-extensions/PHPMailer.php:14
 #: zp-core/zp-extensions/contact_form.php:19
 #: zp-core/zp-extensions/user_mailing_list.php:15
 #: zp-core/zp-extensions/zenphoto_sendmail.php:13
 msgid "Mail"
 msgstr "Email"
 
-#: zp-core/admin-functions.php:4700 zp-core/zp-extensions/bxslider_thumb_nav.php:17
+#: zp-core/admin-functions.php:4713 zp-core/zp-extensions/bxslider_thumb_nav.php:17
 #: zp-core/zp-extensions/class-AnyFile.php:18
 #: zp-core/zp-extensions/class-WEBdocs.php:19
 #: zp-core/zp-extensions/class-textobject.php:58
@@ -2460,12 +2460,12 @@ msgstr "Email"
 msgid "Media"
 msgstr "Média"
 
-#: zp-core/admin-functions.php:4702 zp-core/zp-extensions/reCaptcha.php:24
+#: zp-core/admin-functions.php:4715 zp-core/zp-extensions/reCaptcha.php:24
 #: zp-core/zp-extensions/simpleSpam.php:14 zp-core/zp-extensions/trivialSpam.php:14
 msgid "Spam"
 msgstr "Spam"
 
-#: zp-core/admin-functions.php:4703
+#: zp-core/admin-functions.php:4716
 #: zp-core/zp-extensions/cacheManager/cacheDBImages.php:172
 #: zp-core/zp-extensions/hitcounter.php:35
 #: zp-core/zp-extensions/image_album_statistics.php:15
@@ -2474,7 +2474,7 @@ msgstr "Spam"
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: zp-core/admin-functions.php:4704 zp-core/zp-extensions/dynamic-locale.php:30
+#: zp-core/admin-functions.php:4717 zp-core/zp-extensions/dynamic-locale.php:30
 #: zp-core/zp-extensions/html_meta_tags.php:22
 #: zp-core/zp-extensions/seo_cleanup.php:17 zp-core/zp-extensions/seo_locale.php:38
 #: zp-core/zp-extensions/seo_null.php:14 zp-core/zp-extensions/seo_zenphoto.php:13
@@ -2482,12 +2482,12 @@ msgstr "Statistiques"
 msgid "SEO"
 msgstr "SEO"
 
-#: zp-core/admin-functions.php:4705 zp-core/zp-extensions/elFinder.php:26
+#: zp-core/admin-functions.php:4718 zp-core/zp-extensions/elFinder.php:26
 #: zp-core/zp-extensions/uploader_http.php:14
 msgid "Uploader"
 msgstr "Téléchargement"
 
-#: zp-core/admin-functions.php:4706 zp-core/template-functions.php:141
+#: zp-core/admin-functions.php:4719 zp-core/template-functions.php:141
 #: zp-core/zp-extensions/email-newuser.php:13
 #: zp-core/zp-extensions/quota_manager.php:33
 #: zp-core/zp-extensions/register_user.php:27
@@ -2498,7 +2498,7 @@ msgstr "Téléchargement"
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: zp-core/admin-functions.php:4938 zp-core/zp-extensions/defaultCodeblocks.php:34
+#: zp-core/admin-functions.php:4951 zp-core/zp-extensions/defaultCodeblocks.php:34
 #: zp-core/zp-extensions/reCaptcha.php:76
 #: zp-core/zp-extensions/related_items.php:187
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:99
@@ -2506,26 +2506,26 @@ msgstr "Utilisateurs"
 msgid "Image"
 msgstr "Image"
 
-#: zp-core/admin-functions.php:4944
+#: zp-core/admin-functions.php:4957
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n’a pu être effacé(e)."
 
-#: zp-core/admin-functions.php:4946
+#: zp-core/admin-functions.php:4959
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: zp-core/admin-functions.php:4951 zp-core/admin-users.php:423
+#: zp-core/admin-functions.php:4964 zp-core/admin-users.php:423
 msgid "You must supply a password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: zp-core/admin-functions.php:4953 zp-core/admin-options.php:617
+#: zp-core/admin-functions.php:4966 zp-core/admin-options.php:617
 #: zp-core/admin-users.php:432 zp-core/zp-extensions/register_user.php:590
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas."
 
-#: zp-core/admin-functions.php:4960
+#: zp-core/admin-functions.php:4973
 #, php-format
 msgid ""
 "The form submission has been truncated because you exceeded the server side "
@@ -2536,163 +2536,163 @@ msgstr ""
 "serveur <code>max_input_vars</code> de %d. Essayez d’afficher moins d’éléments "
 "par page ou essayez d’augmenter les limites du serveur."
 
-#: zp-core/admin-functions.php:4963
+#: zp-core/admin-functions.php:4976
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
-#: zp-core/admin-functions.php:4966
+#: zp-core/admin-functions.php:4979
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: zp-core/admin-functions.php:4969 zp-core/admin-upload.php:145
+#: zp-core/admin-functions.php:4982 zp-core/admin-upload.php:145
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: zp-core/admin-functions.php:4972
+#: zp-core/admin-functions.php:4985
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: zp-core/admin-functions.php:4975
+#: zp-core/admin-functions.php:4988
 #: zp-core/zp-extensions/comment_form/admin-comments.php:303
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:225
 msgid "Changes applied"
 msgstr "Modifications appliquées"
 
-#: zp-core/admin-functions.php:4978
+#: zp-core/admin-functions.php:4991
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:14
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:48
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1729
 msgid "Nothing changed"
 msgstr "Aucun changement"
 
-#: zp-core/admin-functions.php:4985
+#: zp-core/admin-functions.php:4998
 #: zp-core/zp-extensions/comment_form/admin-comments.php:273
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:1003
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1693
 msgid "Selected items deleted"
 msgstr "Les éléments sélectionnés ont été supprimés"
 
-#: zp-core/admin-functions.php:4988
+#: zp-core/admin-functions.php:5001
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:1007
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1696
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
-#: zp-core/admin-functions.php:4991
+#: zp-core/admin-functions.php:5004
 #: zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:1011
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1699
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
-#: zp-core/admin-functions.php:4994
+#: zp-core/admin-functions.php:5007
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1702
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
-#: zp-core/admin-functions.php:4997
+#: zp-core/admin-functions.php:5010
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1705
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
-#: zp-core/admin-functions.php:5000
+#: zp-core/admin-functions.php:5013
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1708
 msgid "Hitcounter for selected items"
 msgstr "Compteur d’affichage pour les éléments sélectionnés"
 
-#: zp-core/admin-functions.php:5003
+#: zp-core/admin-functions.php:5016
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
-#: zp-core/admin-functions.php:5006
+#: zp-core/admin-functions.php:5019
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
-#: zp-core/admin-functions.php:5009
+#: zp-core/admin-functions.php:5022
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
-#: zp-core/admin-functions.php:5012
+#: zp-core/admin-functions.php:5025
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
-#: zp-core/admin-functions.php:5027
+#: zp-core/admin-functions.php:5040
 #, php-format
 msgid "There was an error #%d with a move, copy, or rename operation."
 msgstr ""
 "Une erreur #%d s’est produite lors d’une opération de déplacement, de copie ou "
 "de renommage."
 
-#: zp-core/admin-functions.php:5028
+#: zp-core/admin-functions.php:5041
 msgid "Cannot move, copy, or rename. Image already exists."
 msgstr "Impossible de déplacer, de copier ou de renommer. L’image existe déjà."
 
-#: zp-core/admin-functions.php:5029
+#: zp-core/admin-functions.php:5042
 msgid "Cannot move, copy, or rename. Album already exists."
 msgstr "Impossible de déplacer, de copier ou de renommer. L’album existe déjà."
 
-#: zp-core/admin-functions.php:5030 zp-core/zp-extensions/seo_cleanup.php:54
+#: zp-core/admin-functions.php:5043 zp-core/zp-extensions/seo_cleanup.php:54
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr ""
 "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet album."
 
-#: zp-core/admin-functions.php:5031 zp-core/zp-extensions/seo_cleanup.php:56
+#: zp-core/admin-functions.php:5044 zp-core/zp-extensions/seo_cleanup.php:56
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: zp-core/admin-functions.php:5032 zp-core/zp-extensions/seo_cleanup.php:58
+#: zp-core/admin-functions.php:5045 zp-core/zp-extensions/seo_cleanup.php:58
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
-#: zp-core/admin-functions.php:5033 zp-core/zp-extensions/seo_cleanup.php:60
+#: zp-core/admin-functions.php:5046 zp-core/zp-extensions/seo_cleanup.php:60
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
-#: zp-core/admin-functions.php:5201
+#: zp-core/admin-functions.php:5214
 #, php-format
 msgid "Last updated: %s"
 msgstr "Dernière mise à jour : %s"
 
-#: zp-core/admin-functions.php:5206
+#: zp-core/admin-functions.php:5219
 #, php-format
 msgid "Account created: %s"
 msgstr "Compte créé : %s"
 
-#: zp-core/admin-functions.php:5207
+#: zp-core/admin-functions.php:5220
 #, php-format
 msgid "Current login: %s"
 msgstr "Connexion actuelle : %s"
 
-#: zp-core/admin-functions.php:5208
+#: zp-core/admin-functions.php:5221
 #, php-format
 msgid "Last previous login: %s"
 msgstr "Dernière connexion : %s"
 
-#: zp-core/admin-functions.php:5209
+#: zp-core/admin-functions.php:5222
 #, php-format
 msgid "Last password update: %s"
 msgstr "Dernière mise à jour du mot de passe : %s"
 
-#: zp-core/admin-functions.php:5210
+#: zp-core/admin-functions.php:5223
 #, php-format
 msgid "Last visit: %s"
 msgstr "Dernière visite : %s"
 
-#: zp-core/admin-functions.php:5214
+#: zp-core/admin-functions.php:5227
 #, php-format
 msgid "Last change: %s"
 msgstr "Dernier changement : %s"
 
-#: zp-core/admin-functions.php:5218
+#: zp-core/admin-functions.php:5231
 msgid "ZenphotoCMS internal request"
 msgstr "Demande interne ZenphotoCMS"
 
-#: zp-core/admin-functions.php:5221
+#: zp-core/admin-functions.php:5234
 #, php-format
 msgid "Last changed by: %s"
 msgstr "Dernier changement par : %s"
 
-#: zp-core/admin-functions.php:5239 zp-core/admin-upload.php:273
+#: zp-core/admin-functions.php:5252 zp-core/admin-upload.php:273
 #: zp-core/classes/class-searchengine.php:91
 #: zp-core/zp-extensions/contact_form.php:126
 #: zp-core/zp-extensions/contact_form.php:130
@@ -2703,109 +2703,109 @@ msgstr "Dernier changement par : %s"
 msgid "Title"
 msgstr "Titre"
 
-#: zp-core/admin-functions.php:5240 zp-core/zp-extensions/favoritesHandler.php:144
+#: zp-core/admin-functions.php:5253 zp-core/zp-extensions/favoritesHandler.php:144
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:364
 msgid "ID"
 msgstr "ID"
 
-#: zp-core/admin-functions.php:5241 zp-core/classes/class-searchengine.php:96
+#: zp-core/admin-functions.php:5254 zp-core/classes/class-searchengine.php:96
 #: zp-core/classes/class-userdataexport.php:231
 #: zp-core/zp-extensions/favoritesHandler.php:142
 #: zp-core/zp-extensions/zenpage/admin-edit.php:568
 msgid "Date"
 msgstr "Date"
 
-#: zp-core/admin-functions.php:5243
+#: zp-core/admin-functions.php:5256
 msgid "Last change date"
 msgstr "Date du dernier changement"
 
-#: zp-core/admin-functions.php:5244 zp-core/classes/class-searchengine.php:105
+#: zp-core/admin-functions.php:5257 zp-core/classes/class-searchengine.php:105
 msgid "Last change user"
 msgstr "Auteur du dernier changement"
 
-#: zp-core/admin-functions.php:5245
+#: zp-core/admin-functions.php:5258
 msgid "Expire date"
 msgstr "Date d’expiration"
 
-#: zp-core/admin-functions.php:5246
+#: zp-core/admin-functions.php:5259
 msgid "Top rated"
 msgstr "Les mieux noté(e)s"
 
-#: zp-core/admin-functions.php:5247
+#: zp-core/admin-functions.php:5260
 msgid "Most rated"
 msgstr "Les plus noté(e)s"
 
-#: zp-core/admin-functions.php:5248
+#: zp-core/admin-functions.php:5261
 msgid "Popular"
 msgstr "Populaires"
 
-#: zp-core/admin-functions.php:5256 zp-core/admin-functions.php:5283
+#: zp-core/admin-functions.php:5269 zp-core/admin-functions.php:5296
 #: zp-core/zp-extensions/favoritesHandler.php:145
 msgid "Filemtime"
 msgstr "Date de modification"
 
-#: zp-core/admin-functions.php:5257
+#: zp-core/admin-functions.php:5270
 msgid "Scheduled Publish date"
 msgstr "Publication planifiée"
 
-#: zp-core/admin-functions.php:5263
+#: zp-core/admin-functions.php:5276
 msgid "Folder"
 msgstr "Dossier"
 
-#: zp-core/admin-functions.php:5264
+#: zp-core/admin-functions.php:5277
 msgid "Last updated date"
 msgstr "Date de la dernière mise à jour"
 
-#: zp-core/admin-functions.php:5265 zp-core/admin-functions.php:5267
-#: zp-core/admin-functions.php:5274 zp-core/admin-functions.php:5277
-#: zp-core/admin-functions.php:5289 zp-core/admin-functions.php:5299
-#: zp-core/admin-functions.php:5302
+#: zp-core/admin-functions.php:5278 zp-core/admin-functions.php:5280
+#: zp-core/admin-functions.php:5287 zp-core/admin-functions.php:5290
+#: zp-core/admin-functions.php:5302 zp-core/admin-functions.php:5312
+#: zp-core/admin-functions.php:5315
 #: zp-core/classes/class-imagemetaformatter.php:159
 #: zp-core/classes/class-imagemetaformatter.php:370
 msgid "Manual"
 msgstr "Manuel"
 
-#: zp-core/admin-functions.php:5272 zp-core/zp-extensions/favoritesHandler.php:140
+#: zp-core/admin-functions.php:5285 zp-core/zp-extensions/favoritesHandler.php:140
 msgid "Filename"
 msgstr "Nom de fichier"
 
-#: zp-core/admin-functions.php:5287
+#: zp-core/admin-functions.php:5300
 #, php-format
 msgid "%s (descending)"
 msgstr "%s (décroissant)"
 
-#: zp-core/admin-functions.php:5294 zp-core/admin-functions.php:5296
+#: zp-core/admin-functions.php:5307 zp-core/admin-functions.php:5309
 #: zp-core/classes/class-searchengine.php:111
 msgid "TitleLink"
 msgstr "Titre-lien"
 
-#: zp-core/admin-functions.php:5295 zp-core/admin-functions.php:5297
+#: zp-core/admin-functions.php:5308 zp-core/admin-functions.php:5310
 #: zp-core/classes/class-searchengine.php:110
 msgid "Author"
 msgstr "Auteur"
 
-#: zp-core/admin-functions.php:5320 zp-core/admin-functions.php:5387
+#: zp-core/admin-functions.php:5333 zp-core/admin-functions.php:5400
 #: zp-core/classes/class-userdataexport.php:510
 msgid "Unpublished"
 msgstr "Non publié(e)"
 
-#: zp-core/admin-functions.php:5388
+#: zp-core/admin-functions.php:5401
 msgid "Unpublished by parent"
 msgstr "Non publié par le parent"
 
-#: zp-core/admin-functions.php:5389
+#: zp-core/admin-functions.php:5402
 msgid "Password protected"
 msgstr "Protégé par mot de passe"
 
-#: zp-core/admin-functions.php:5390
+#: zp-core/admin-functions.php:5403
 msgid "Password protected by parent"
 msgstr "Protégé par mot de passe du parent"
 
-#: zp-core/admin-functions.php:5391
+#: zp-core/admin-functions.php:5404
 msgid "Scheduled for publishing"
 msgstr "Planifié pour publication"
 
-#: zp-core/admin-functions.php:5392
+#: zp-core/admin-functions.php:5405
 msgid ""
 "<strong>Note:</strong> Scheduled publishing is not active unless also set to "
 "<em>published</em>"
@@ -2813,11 +2813,11 @@ msgstr ""
 "<strong>Note :</strong> La publication planifiée n’est pas active tant que la "
 "page n’est pas également définie comme <em>publiée</em>"
 
-#: zp-core/admin-functions.php:5393
+#: zp-core/admin-functions.php:5406
 msgid "Scheduled for expiration"
 msgstr "Planifié pour expiration"
 
-#: zp-core/admin-functions.php:5394
+#: zp-core/admin-functions.php:5407
 msgid ""
 "<strong>Note:</strong> Scheduled expiration is not active unless also set to "
 "<em>published</em>"
@@ -2825,127 +2825,127 @@ msgstr ""
 "<strong>Note :</strong> L’expiration planifiée n’est pas active tant que a page "
 "n’est pas également définie comme <em>publiée</em>"
 
-#: zp-core/admin-functions.php:5395
+#: zp-core/admin-functions.php:5408
 msgid "Unpublished because expired"
 msgstr "Non publié car expiré"
 
-#: zp-core/admin-functions.php:5493
+#: zp-core/admin-functions.php:5506
 #, php-format
 msgid "Publish the album %s (Skip scheduled publishing)"
 msgstr "Publier l’album %s (ignorer la publication planifiée)"
 
-#: zp-core/admin-functions.php:5494
+#: zp-core/admin-functions.php:5507
 #, php-format
 msgid "Publish the album %s (Skip scheduled expiration)"
 msgstr "Publier l’album %s (ignorer l’expiration planifiée)"
 
-#: zp-core/admin-functions.php:5495
+#: zp-core/admin-functions.php:5508
 #, php-format
 msgid "Unpublish the album %s"
 msgstr "Dépublier l’album %s"
 
-#: zp-core/admin-functions.php:5496
+#: zp-core/admin-functions.php:5509
 #, php-format
 msgid "Publish the album %s (Skip expiration)"
 msgstr "Publier l’album %s (ignorer l’expiration)"
 
-#: zp-core/admin-functions.php:5497
+#: zp-core/admin-functions.php:5510
 #, php-format
 msgid "Publish the album %s"
 msgstr "Publier l’album %s"
 
-#: zp-core/admin-functions.php:5501
+#: zp-core/admin-functions.php:5514
 #, php-format
 msgid "Publish the image %s (Skip scheduled publishing)"
 msgstr "Publier l’image %s (ignorer la publication planifiée)"
 
-#: zp-core/admin-functions.php:5502
+#: zp-core/admin-functions.php:5515
 #, php-format
 msgid "Publish the image %s (Skip scheduled expiration)"
 msgstr "Publier l’image %s (ignorer l’expiration planifiée)"
 
-#: zp-core/admin-functions.php:5503
+#: zp-core/admin-functions.php:5516
 #, php-format
 msgid "Unpublish the image %s"
 msgstr "Annuler la publication de l’image% s "
 
-#: zp-core/admin-functions.php:5504
+#: zp-core/admin-functions.php:5517
 #, php-format
 msgid "Publish the image %s (Skip expiration)"
 msgstr "Publier l’image %s (ignorer l’expiration)"
 
-#: zp-core/admin-functions.php:5505
+#: zp-core/admin-functions.php:5518
 #, php-format
 msgid "Publish the image %s"
 msgstr "Publier l’image %s"
 
-#: zp-core/admin-functions.php:5707 zp-core/admin-functions.php:5829
-#: zp-core/admin-functions.php:5931 zp-core/admin-functions.php:5965
+#: zp-core/admin-functions.php:5720 zp-core/admin-functions.php:5842
+#: zp-core/admin-functions.php:5944 zp-core/admin-functions.php:5978
 #: zp-core/zp-extensions/favoritesHandler.php:141
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: zp-core/admin-functions.php:5783
+#: zp-core/admin-functions.php:5796
 msgid "Select a Zenpage page. * denotes unpublished page."
 msgstr "Sélectionnez une page Zenpage. * indique une page non publiée."
 
-#: zp-core/admin-functions.php:5784
+#: zp-core/admin-functions.php:5797
 msgid "Custom page url"
 msgstr "Url de la page personnalisée"
 
-#: zp-core/admin-functions.php:5828
+#: zp-core/admin-functions.php:5841
 msgid "Select a user"
 msgstr "Choisir l’utilisateurs"
 
-#: zp-core/admin-functions.php:5895
+#: zp-core/admin-functions.php:5908
 msgid "Horizontal (normal)"
 msgstr "Horizontal (normal)"
 
-#: zp-core/admin-functions.php:5896
+#: zp-core/admin-functions.php:5909
 msgid "Mirror horizontal"
 msgstr "Miroir horizontal"
 
-#: zp-core/admin-functions.php:5897
+#: zp-core/admin-functions.php:5910
 msgid "Rotate 180 clockwise"
 msgstr "Rotation de 180° horaire"
 
-#: zp-core/admin-functions.php:5898
+#: zp-core/admin-functions.php:5911
 msgid "Mirror vertical"
 msgstr "Miroir vertical"
 
-#: zp-core/admin-functions.php:5899
+#: zp-core/admin-functions.php:5912
 msgid "Mirror horizontal and rotate 270 clockwise"
 msgstr "Miroir horizontal et rotation de 270° horaire"
 
-#: zp-core/admin-functions.php:5900
+#: zp-core/admin-functions.php:5913
 msgid "Rotate 90 clockwise"
 msgstr "Rotation de 90° horaire"
 
-#: zp-core/admin-functions.php:5901
+#: zp-core/admin-functions.php:5914
 msgid "Mirror horizontal and rotate 90 clockwise"
 msgstr "Miroir horizontal et rotation de 90° horaire"
 
-#: zp-core/admin-functions.php:5902
+#: zp-core/admin-functions.php:5915
 msgid "Rotate 270 clockwise"
 msgstr "Rotation de 270° horaire"
 
-#: zp-core/admin-functions.php:5906
+#: zp-core/admin-functions.php:5919
 msgid "Rotation:"
 msgstr "Rotation :"
 
-#: zp-core/admin-functions.php:5936
+#: zp-core/admin-functions.php:5949
 msgid "Custom date format"
 msgstr "Affichage personnalisé des dates"
 
-#: zp-core/admin-functions.php:5950
+#: zp-core/admin-functions.php:5963
 msgid "Date format"
 msgstr "Format de la date :"
 
-#: zp-core/admin-functions.php:5971
+#: zp-core/admin-functions.php:5984
 msgid "Custom time format"
 msgstr "Affichage personnalisé de l’heure"
 
-#: zp-core/admin-functions.php:5981
+#: zp-core/admin-functions.php:5994
 msgid "Time format"
 msgstr "Format de l’heure :"
 
@@ -3216,7 +3216,7 @@ msgstr ""
 "extension aux URL pour améliorer le référencement par les moteurs de recherche. "
 "Par exemple : <em>.html, .php</em>, etc."
 
-#: zp-core/admin-options.php:719 zp-core/admin-users.php:753
+#: zp-core/admin-options.php:719 zp-core/admin-users.php:757
 msgid "Language:"
 msgstr "Langue :"
 
@@ -3295,8 +3295,9 @@ msgstr "Désactiver l’affichage de l’heure"
 #: zp-core/admin-options.php:867
 msgid ""
 "Formats for date and time. Select from the lists or set to <code>custom</code> "
-"and provide a <a href=\"https://www.php.net/manual/en/datetime.format."
-"php\">datetime</a> format string for date and time in the custom boxes."
+"and provide a <a href=\"https://www.php.net/manual/en/"
+"datetime.format.php\">datetime</a> format string for date and time in the custom "
+"boxes."
 msgstr ""
 "Formatage dates et heures. Choisissez une option depuis la liste ou une variante "
 "personnalisée avec <code>Personnalisé</code>. Elle doit respecter le format <a "
@@ -3428,9 +3429,9 @@ msgid ""
 "manual/en/intro.session.php\">PHP sessions</a> instead of cookies to make "
 "visitor settings persistent."
 msgstr ""
-"Si cette option est sélectionnée, Zenphoto utilisera les <a href=\"https://www."
-"php.net/manual/fr/intro.session.php\">sessions PHP</a> en place des cookies afin "
-"de rendre persistent les préférences des visiteurs."
+"Si cette option est sélectionnée, Zenphoto utilisera les <a href=\"https://"
+"www.php.net/manual/fr/intro.session.php\">sessions PHP</a> en place des cookies "
+"afin de rendre persistent les préférences des visiteurs."
 
 #: zp-core/admin-options.php:1015
 msgid ""
@@ -3570,8 +3571,8 @@ msgid ""
 "form: http://mydomain.com/license.html."
 msgstr ""
 "Choisissez une page Zenpage ou une URL personnalisée. L’URL doit pointer vers "
-"les informations de copyright, elle doit-être absolue, ex : https://mon-domaine."
-"fr/copyrights.html"
+"les informations de copyright, elle doit-être absolue, ex : https://mon-"
+"domaine.fr/copyrights.html"
 
 #: zp-core/admin-options.php:1170
 msgid "Display copyright notice"
@@ -4454,9 +4455,10 @@ msgstr ""
 #: zp-core/admin-options.php:2475
 msgid ""
 "If <em>Cache the full image</em> is checked the full image will be loaded to the "
-"cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;"
-"protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be "
-"cached. However, once cached, no protections are applied to the image."
+"cache and served from there after the first reference. "
+"<em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</"
+"em> for the image to be cached. However, once cached, no protections are applied "
+"to the image."
 msgstr ""
 "Si l’option <em>Mettre en cache l’image pleine grandeur</em> est cochée, celle-"
 "ci sera chargée dans le cache et affichée depuis celui-ci à la première demande. "
@@ -4967,8 +4969,8 @@ msgid ""
 "strong> support <em>https</em>. If you set <em>https</em> on a server which does "
 "not support <em>https</em> you will not be able to access the <code>admin</code> "
 "pages to reset the option! Your only possibility then is to set or add "
-"<code>$conf[\"server_protocol\"] = \"http\";</code> to your <code>zenphoto.cfg."
-"php</code> file ."
+"<code>$conf[\"server_protocol\"] = \"http\";</code> to your "
+"<code>zenphoto.cfg.php</code> file ."
 msgstr ""
 "<strong>Avertissement :</strong> Si vous sélectionnez <em>https</em> votre "
 "serveur <strong>DOIT</strong> supporter <em>https</em>. Si ce n’est pas le cas, "
@@ -5322,9 +5324,9 @@ msgstr "Extension officielle"
 msgid "Usage info"
 msgstr "Informations sur l’utilisation"
 
-#: zp-core/admin-plugins.php:419 zp-core/classes/class-authority.php:600
-#: zp-core/classes/class-authority.php:620 zp-core/classes/class-authority.php:645
-#: zp-core/classes/class-authority.php:672 zp-core/template-functions.php:148
+#: zp-core/admin-plugins.php:419 zp-core/classes/class-authority.php:615
+#: zp-core/classes/class-authority.php:635 zp-core/classes/class-authority.php:660
+#: zp-core/classes/class-authority.php:687 zp-core/template-functions.php:148
 #: zp-core/zp-extensions/menu_manager/menu_tab.php:174
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:125
 msgid "Options"
@@ -5370,8 +5372,8 @@ msgstr "Tout est prêt pour actualiser les métadonnées"
 msgid "Continue refreshing the metadata."
 msgstr "Poursuivre l’actualisation des métadonnées."
 
-#: zp-core/admin-refresh-metadata.php:128 zp-core/classes/class-authority.php:1040
-#: zp-core/classes/class-authority.php:1041 zp-core/setup/index.php:1584
+#: zp-core/admin-refresh-metadata.php:128 zp-core/classes/class-authority.php:1055
+#: zp-core/classes/class-authority.php:1056 zp-core/setup/index.php:1584
 msgid "Refresh"
 msgstr "Actualiser"
 
@@ -5964,29 +5966,29 @@ msgstr "Nom complet"
 msgid "Email"
 msgstr "Email"
 
-#: zp-core/admin-users.php:731
+#: zp-core/admin-users.php:735
 msgid "create primary album"
 msgstr "Créer l’album principal"
 
-#: zp-core/admin-users.php:741
+#: zp-core/admin-users.php:745
 #, php-format
 msgid "delink primary album <strong>%1$s</strong>(<em>%2$s</em>)"
 msgstr "Enlever le lien de l’album principal <strong>%1$s</strong> (<em>%2$s</em>)"
 
-#: zp-core/admin-users.php:745
+#: zp-core/admin-users.php:749
 msgid ""
 "The primary album was created in association with the user. It will be removed "
-"if the user is deleted. Delinking the album removes this association."
+"if the user is deleted unless you enable the related option on Options > Security"
 msgstr ""
-"Lors de sa création, l’album primaire a été lié à l’utilisateur. Il sera effacé "
-"lorsque l’utilisateur sera enlevé. Vous pouvez défaire ce lien pour enlever "
-"cette association."
+"L’album principal a été créé en même temps que l’utilisateur. Il sera effacé si "
+"l’utilisateur est supprimé, sauf si vous activez l’option idoine dans Options > "
+"Sécurité"
 
-#: zp-core/admin-users.php:791
+#: zp-core/admin-users.php:795
 msgid "The <em>master</em> account has full rights to all objects."
 msgstr "Le <em>compte prinicpal</em> a l’accès intégral à tous les objets."
 
-#: zp-core/admin-users.php:860
+#: zp-core/admin-users.php:864
 #, php-format
 msgid ""
 "The <em>Authority</em> object supports a higher version of user rights than "
@@ -5997,11 +5999,11 @@ msgstr ""
 "utilisateurs que celle actuellement sélectionnée. Envisagez de migrer ces droits "
 "pour bénéficier des nouvelles fonctionnalités."
 
-#: zp-core/admin-users.php:863
+#: zp-core/admin-users.php:867
 msgid "Migrate rights"
 msgstr "Migrer les droits"
 
-#: zp-core/admin-users.php:873
+#: zp-core/admin-users.php:877
 #, php-format
 msgid ""
 "You may wish to revert the <em>Authority</em> user rights to version %s for "
@@ -6011,17 +6013,17 @@ msgstr ""
 "pour de la gestion des droits utilisateurs, rétro-compatible avec d’anciennes "
 "versions de Zenphoto."
 
-#: zp-core/admin-users.php:876
+#: zp-core/admin-users.php:880
 msgid "Revert rights"
 msgstr "Rétablir les droits"
 
-#: zp-core/admin-users.php:893
+#: zp-core/admin-users.php:897
 msgid "User names may not contain “?”, “&\", or quotation marks."
 msgstr ""
 "Le nom d’utilisateur ne peut contenir « ? », « & », « \" » ni des caractères "
 "accentués."
 
-#: zp-core/admin-users.php:898
+#: zp-core/admin-users.php:902
 #, php-format
 msgid "The user “%s” already exists."
 msgstr "L’utilisateur « %s » existe déjà."
@@ -6604,23 +6606,35 @@ msgstr "Utilisez plutôt getName()"
 msgid "Use getUrParent() instead"
 msgstr "Utilisez plutôt getUrParent()"
 
-#: zp-core/classes/class-authority.php:82
-msgid "Primary album edit"
-msgstr "Édition de l’album principal"
+#: zp-core/classes/class-authority.php:83
+msgid "Primary user album: Edit rights default"
+msgstr "Album principal utilisateur : éditer les droits par défaut"
 
-#: zp-core/classes/class-authority.php:85
+#: zp-core/classes/class-authority.php:86
 msgid ""
 "Check if you want <em>edit rights</em> automatically assigned when a user "
 "<em>primary album</em> is created."
 msgstr ""
 "Cocher si vous voulez que les <em>droits de modification</em> soient assignés "
-"automatiquement quand le <em>premier album</em> d’un utilisateur est créé."
+"automatiquement quand l’<em>album principal</em> d’un utilisateur est créé."
 
-#: zp-core/classes/class-authority.php:86
+#: zp-core/classes/class-authority.php:87
+msgid "Primary user album:  Keep on user removal"
+msgstr "Album principal utilisateur : Conserver si l’utilisateur est supprimé"
+
+#: zp-core/classes/class-authority.php:90
+msgid ""
+"Check if you want the user <em>primary album</em> not to be deleted if the user "
+"is removed."
+msgstr ""
+"Cochez si vous souhaitez que l’<em>album principal</em> de l'utilisateur ne soit "
+"pas supprimé si l'utilisateur est supprimé."
+
+#: zp-core/classes/class-authority.php:91
 msgid "Minimum password strength"
 msgstr "Complexité minimale du mot de passe"
 
-#: zp-core/classes/class-authority.php:89
+#: zp-core/classes/class-authority.php:94
 #, php-format
 msgid ""
 "Users must provide passwords a strength of at least %s. The repeat password "
@@ -6630,11 +6644,11 @@ msgstr ""
 "moins %s. Tant que ce niveau n’est pas atteint, le champ où il faut de nouveau "
 "saisir le mot de passe est désactivé."
 
-#: zp-core/classes/class-authority.php:90
+#: zp-core/classes/class-authority.php:95
 msgid "Password hash algorithm"
 msgstr "Algorithme de hachage du mot de passe"
 
-#: zp-core/classes/class-authority.php:94
+#: zp-core/classes/class-authority.php:99
 #, php-format
 msgid ""
 "The hashing algorithm used by Zenphoto. In order of robustness the choices are %s"
@@ -6642,21 +6656,21 @@ msgstr ""
 "L’algorithme de hachage utilisé par Zenphoto. En ordre de robustesse, les "
 "options sont %s"
 
-#: zp-core/classes/class-authority.php:95
+#: zp-core/classes/class-authority.php:100
 msgid "User last visit - store"
 msgstr "Dernière visite utilisateur - stockage"
 
-#: zp-core/classes/class-authority.php:98
+#: zp-core/classes/class-authority.php:103
 msgid "Enable if you like to store visits of logged-in users in the database."
 msgstr ""
 "Autoriser si vous souhaitez stocker les visites des utilisateurs connectés dans "
 "la base de données."
 
-#: zp-core/classes/class-authority.php:99
+#: zp-core/classes/class-authority.php:104
 msgid "User last visit - time frame"
 msgstr "Dernière visite utilisateur - durée"
 
-#: zp-core/classes/class-authority.php:102
+#: zp-core/classes/class-authority.php:107
 msgid ""
 "Time in seconds before the last visit of logged-in users is updated in the "
 "database. Default is 600 seconds (10 minutes)"
@@ -6665,7 +6679,7 @@ msgstr ""
 "mise à jour dans la base de données. La valeur par défaut est 600 secondes (10 "
 "minutes)"
 
-#: zp-core/classes/class-authority.php:461
+#: zp-core/classes/class-authority.php:476
 #, php-format
 msgid ""
 "Cannot migrate rights to version %1$s (Authority supports only %2$s and %3$s.)"
@@ -6673,23 +6687,23 @@ msgstr ""
 "Impossible de migrer les droits vers la version %1$s (Authority supporte "
 "uniquement %2$s et %3$s.)"
 
-#: zp-core/classes/class-authority.php:589 zp-core/classes/class-authority.php:605
-#: zp-core/classes/class-authority.php:624 zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:604 zp-core/classes/class-authority.php:620
+#: zp-core/classes/class-authority.php:639 zp-core/classes/class-authority.php:664
 msgid "No rights"
 msgstr "Aucun droit"
 
-#: zp-core/classes/class-authority.php:590 zp-core/classes/class-authority.php:606
-#: zp-core/classes/class-authority.php:625 zp-core/classes/class-authority.php:650
+#: zp-core/classes/class-authority.php:605 zp-core/classes/class-authority.php:621
+#: zp-core/classes/class-authority.php:640 zp-core/classes/class-authority.php:665
 #: zp-core/template-functions.php:106
 msgid "Overview"
 msgstr "Aperçu"
 
-#: zp-core/classes/class-authority.php:591 zp-core/classes/class-authority.php:607
+#: zp-core/classes/class-authority.php:606 zp-core/classes/class-authority.php:622
 msgid "View all"
 msgstr "Tout voir"
 
-#: zp-core/classes/class-authority.php:592 zp-core/classes/class-authority.php:608
-#: zp-core/classes/class-authority.php:635 zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:607 zp-core/classes/class-authority.php:623
+#: zp-core/classes/class-authority.php:650 zp-core/classes/class-authority.php:676
 #: zp-core/template-functions.php:113
 #: zp-core/zp-extensions/uploader_http/upload_form.php:62
 #: zp-core/zp-extensions/uploader_http/upload_form.php:63
@@ -6697,45 +6711,45 @@ msgstr "Tout voir"
 msgid "Upload"
 msgstr "Charger"
 
-#: zp-core/classes/class-authority.php:593 zp-core/classes/class-authority.php:609
-#: zp-core/classes/class-authority.php:633 zp-core/classes/class-authority.php:659
+#: zp-core/classes/class-authority.php:608 zp-core/classes/class-authority.php:624
+#: zp-core/classes/class-authority.php:648 zp-core/classes/class-authority.php:674
 msgid "Post comments"
 msgstr "Poster des commentaires"
 
-#: zp-core/classes/class-authority.php:594 zp-core/classes/class-authority.php:610
-#: zp-core/classes/class-authority.php:634 zp-core/classes/class-authority.php:660
+#: zp-core/classes/class-authority.php:609 zp-core/classes/class-authority.php:625
+#: zp-core/classes/class-authority.php:649 zp-core/classes/class-authority.php:675
 #: zp-core/classes/class-userdataexport.php:300
 #: zp-core/zp-extensions/comment_form.php:260
 #: zp-core/zp-extensions/comment_form/admin-comments.php:264
 msgid "Comments"
 msgstr "Commentaires"
 
-#: zp-core/classes/class-authority.php:596 zp-core/classes/class-authority.php:617
+#: zp-core/classes/class-authority.php:611 zp-core/classes/class-authority.php:632
 msgid "Manage all albums"
 msgstr "Gérer tous les albums"
 
-#: zp-core/classes/class-authority.php:597 zp-core/classes/class-authority.php:618
-#: zp-core/classes/class-authority.php:643 zp-core/classes/class-authority.php:670
+#: zp-core/classes/class-authority.php:612 zp-core/classes/class-authority.php:633
+#: zp-core/classes/class-authority.php:658 zp-core/classes/class-authority.php:685
 #: zp-core/template-functions.php:155
 msgid "Themes"
 msgstr "Thèmes"
 
-#: zp-core/classes/class-authority.php:598
+#: zp-core/classes/class-authority.php:613
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: zp-core/classes/class-authority.php:601 zp-core/classes/class-authority.php:621
-#: zp-core/classes/class-authority.php:646 zp-core/classes/class-authority.php:673
+#: zp-core/classes/class-authority.php:616 zp-core/classes/class-authority.php:636
+#: zp-core/classes/class-authority.php:661 zp-core/classes/class-authority.php:688
 msgid "Full admin rights"
 msgstr "Droits administrateur complets"
 
-#: zp-core/classes/class-authority.php:606 zp-core/classes/class-authority.php:625
-#: zp-core/classes/class-authority.php:650
+#: zp-core/classes/class-authority.php:621 zp-core/classes/class-authority.php:640
+#: zp-core/classes/class-authority.php:665
 msgid "Users with this right may view the admin overview page."
 msgstr ""
 "Ce niveau d’autorisation permet de voir la page d’aperçu de l’administration."
 
-#: zp-core/classes/class-authority.php:607
+#: zp-core/classes/class-authority.php:622
 msgid ""
 "Users with this right may view all of the gallery regardless of protection of "
 "the page. Without this right, the user can view only public ones and those "
@@ -6745,8 +6759,8 @@ msgstr ""
 "leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries "
 "publiques et celles pour lesquelles il est spécifiquement autorisé."
 
-#: zp-core/classes/class-authority.php:608 zp-core/classes/class-authority.php:635
-#: zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:623 zp-core/classes/class-authority.php:650
+#: zp-core/classes/class-authority.php:676
 msgid ""
 "Users with this right may upload to the albums for which they have management "
 "rights."
@@ -6754,8 +6768,8 @@ msgstr ""
 "Ce niveau d’autorisation permet à un utilisateur de charger des contenus dans "
 "les albums dont il a les droits de gestion."
 
-#: zp-core/classes/class-authority.php:609 zp-core/classes/class-authority.php:633
-#: zp-core/classes/class-authority.php:659
+#: zp-core/classes/class-authority.php:624 zp-core/classes/class-authority.php:648
+#: zp-core/classes/class-authority.php:674
 msgid ""
 "When the comment_form plugin is used for comments and its \"Only members can "
 "comment\" option is set, only users with this right may post comments."
@@ -6764,51 +6778,51 @@ msgstr ""
 "l’option « Seuls les membres peuvent commenter », seuls les utilisateurs ayant "
 "ce droit peuvent envoyer des commentaires."
 
-#: zp-core/classes/class-authority.php:610 zp-core/classes/class-authority.php:634
-#: zp-core/classes/class-authority.php:660
+#: zp-core/classes/class-authority.php:625 zp-core/classes/class-authority.php:649
+#: zp-core/classes/class-authority.php:675
 msgid "Users with this right may make comments tab changes."
 msgstr ""
 "Ce niveau d’autorisation permet de voir l’onglet « Commentaires » et d’y "
 "effectuer des modifications."
 
-#: zp-core/classes/class-authority.php:611 zp-core/classes/class-authority.php:639
-#: zp-core/classes/class-authority.php:665
+#: zp-core/classes/class-authority.php:626 zp-core/classes/class-authority.php:654
+#: zp-core/classes/class-authority.php:680
 msgid "Users with this right may access the “albums” tab to make changes."
 msgstr ""
 "Ce niveau d’autorisation permet d’accéder à l’onglet « Albums » pour faire des "
 "modifications."
 
-#: zp-core/classes/class-authority.php:612 zp-core/classes/class-authority.php:637
-#: zp-core/classes/class-authority.php:663
+#: zp-core/classes/class-authority.php:627 zp-core/classes/class-authority.php:652
+#: zp-core/classes/class-authority.php:678
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Ce niveau d’autorisation permet de modifier et de gérer les pages Zenpage."
 
-#: zp-core/classes/class-authority.php:613 zp-core/classes/class-authority.php:636
-#: zp-core/classes/class-authority.php:662
+#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:651
+#: zp-core/classes/class-authority.php:677
 msgid "Users with this right may edit and manage Zenpage articles and categories."
 msgstr ""
 "Ce niveau d’autorisation permet de modifier et de gérer les articles et les "
 "catégories Zenpage."
 
-#: zp-core/classes/class-authority.php:614 zp-core/classes/class-authority.php:638
-#: zp-core/classes/class-authority.php:664
+#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:653
+#: zp-core/classes/class-authority.php:679
 msgid "Files"
 msgstr "Fichiers"
 
-#: zp-core/classes/class-authority.php:614 zp-core/classes/class-authority.php:638
-#: zp-core/classes/class-authority.php:664
+#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:653
+#: zp-core/classes/class-authority.php:679
 msgid ""
 "Allows the user access to the “filemanager” located on the upload: files sub-tab."
 msgstr ""
 "Permet à l’utilisateur d’accéder au gestionnaire de fichiers situé dans le sous-"
 "onglet « Télécharger des fichiers »."
 
-#: zp-core/classes/class-authority.php:615
+#: zp-core/classes/class-authority.php:630
 msgid "Manage all pages"
 msgstr "Gérer toutes les pages"
 
-#: zp-core/classes/class-authority.php:615 zp-core/classes/class-authority.php:641
-#: zp-core/classes/class-authority.php:667
+#: zp-core/classes/class-authority.php:630 zp-core/classes/class-authority.php:656
+#: zp-core/classes/class-authority.php:682
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage any "
@@ -6818,12 +6832,12 @@ msgstr ""
 "les objets qui leur sont attribués. Ce droit leur permet de gérer toutes les "
 "pages Zenpage."
 
-#: zp-core/classes/class-authority.php:616
+#: zp-core/classes/class-authority.php:631
 msgid "Manage all news"
 msgstr "Gérer toutes les actualités"
 
-#: zp-core/classes/class-authority.php:616 zp-core/classes/class-authority.php:640
-#: zp-core/classes/class-authority.php:666
+#: zp-core/classes/class-authority.php:631 zp-core/classes/class-authority.php:655
+#: zp-core/classes/class-authority.php:681
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage any "
@@ -6833,8 +6847,8 @@ msgstr ""
 "les objets qui leur sont attribués. Ce droit leur permet de gérer tous les "
 "articles et toutes les catégories Zenpage."
 
-#: zp-core/classes/class-authority.php:617 zp-core/classes/class-authority.php:642
-#: zp-core/classes/class-authority.php:668
+#: zp-core/classes/class-authority.php:632 zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:683
 msgid ""
 "Users who do not have “Admin” rights normally are restricted to manage only "
 "objects to which they have been assigned. This right allows them to manage any "
@@ -6844,8 +6858,8 @@ msgstr ""
 "les objets qui leur sont attribués. Ce droit leur permet de gérer n’importe quel "
 "album de la galerie."
 
-#: zp-core/classes/class-authority.php:618 zp-core/classes/class-authority.php:643
-#: zp-core/classes/class-authority.php:670
+#: zp-core/classes/class-authority.php:633 zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:685
 msgid ""
 "Users with this right may make themes related changes. These are limited to the "
 "themes associated with albums checked in their managed albums list."
@@ -6854,20 +6868,20 @@ msgstr ""
 "(dans la limite de ceux correspondant aux albums sur lesquels l’utilisateur a "
 "des droits)."
 
-#: zp-core/classes/class-authority.php:619 zp-core/classes/class-authority.php:644
-#: zp-core/classes/class-authority.php:671
+#: zp-core/classes/class-authority.php:634 zp-core/classes/class-authority.php:659
+#: zp-core/classes/class-authority.php:686
 msgid "Users with this right may make additions and changes to the set of tags."
 msgstr "Ce niveau d’autorisation permet d’ajouter ou de modifier les jeux de tags."
 
-#: zp-core/classes/class-authority.php:620 zp-core/classes/class-authority.php:645
-#: zp-core/classes/class-authority.php:672
+#: zp-core/classes/class-authority.php:635 zp-core/classes/class-authority.php:660
+#: zp-core/classes/class-authority.php:687
 msgid "Users with this right may make changes on the options tabs."
 msgstr ""
 "Ce niveau d’autorisation permet d’effectuer des changements dans l’onglet "
 "« Options »."
 
-#: zp-core/classes/class-authority.php:621 zp-core/classes/class-authority.php:646
-#: zp-core/classes/class-authority.php:673
+#: zp-core/classes/class-authority.php:636 zp-core/classes/class-authority.php:661
+#: zp-core/classes/class-authority.php:688
 msgid ""
 "The master privilege. A user with \"Admin\" can do anything. (No matter what his "
 "other rights might indicate!)"
@@ -6875,110 +6889,110 @@ msgstr ""
 "Le niveau d’autorisation maximal. Un tel niveau permet de tout faire sur la "
 "galerie (quels que soient les droits sélectionnés en plus de celui-ci !)."
 
-#: zp-core/classes/class-authority.php:626 zp-core/classes/class-authority.php:652
+#: zp-core/classes/class-authority.php:641 zp-core/classes/class-authority.php:667
 msgid "View gallery"
 msgstr "Voir la galerie"
 
-#: zp-core/classes/class-authority.php:626 zp-core/classes/class-authority.php:652
+#: zp-core/classes/class-authority.php:641 zp-core/classes/class-authority.php:667
 msgid "Users with this right may view otherwise protected generic gallery pages."
 msgstr ""
 "Ce niveau d’autorisation permet de voir les pages ordinaires qui seraient "
 "normalement protégées."
 
-#: zp-core/classes/class-authority.php:627 zp-core/classes/class-authority.php:653
+#: zp-core/classes/class-authority.php:642 zp-core/classes/class-authority.php:668
 msgid "View search"
 msgstr "Voir la recherche"
 
-#: zp-core/classes/class-authority.php:627 zp-core/classes/class-authority.php:653
+#: zp-core/classes/class-authority.php:642 zp-core/classes/class-authority.php:668
 msgid "Users with this right may view search pages even if password protected."
 msgstr ""
 "Ce niveau d’autorisation permet de voir les pages de recherche même si elles "
 "sont protégées par mot de passe."
 
-#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:654
+#: zp-core/classes/class-authority.php:643 zp-core/classes/class-authority.php:669
 msgid "View fullimage"
 msgstr "Voir les images pleine grandeur"
 
-#: zp-core/classes/class-authority.php:628 zp-core/classes/class-authority.php:654
+#: zp-core/classes/class-authority.php:643 zp-core/classes/class-authority.php:669
 msgid "Users with this right may view all full sized (raw) images."
 msgstr ""
 "Ce niveau d’autorisation permet de voir toutes les images pleine grandeur "
 "(images brutes)."
 
-#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:630
-#: zp-core/classes/class-authority.php:631 zp-core/classes/class-authority.php:655
-#: zp-core/classes/class-authority.php:656 zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:645
+#: zp-core/classes/class-authority.php:646 zp-core/classes/class-authority.php:670
+#: zp-core/classes/class-authority.php:671 zp-core/classes/class-authority.php:672
 msgid "Access all"
 msgstr "Accès intégral"
 
-#: zp-core/classes/class-authority.php:629 zp-core/classes/class-authority.php:655
+#: zp-core/classes/class-authority.php:644 zp-core/classes/class-authority.php:670
 msgid "Users with this right have access to all zenpage news articles."
 msgstr ""
 "Les utilisateurs ayant ce niveau d’autorisation peuvent accéder à tous les "
 "articles Zenpage."
 
-#: zp-core/classes/class-authority.php:630 zp-core/classes/class-authority.php:656
+#: zp-core/classes/class-authority.php:645 zp-core/classes/class-authority.php:671
 msgid "Users with this right have access to all zenpage pages."
 msgstr ""
 "Les utilisateurs ayant ce niveau d’autorisation peuvent accéder à toutes les "
 "pages Zenpage."
 
-#: zp-core/classes/class-authority.php:631 zp-core/classes/class-authority.php:657
+#: zp-core/classes/class-authority.php:646 zp-core/classes/class-authority.php:672
 msgid "Users with this right have access to all albums."
 msgstr ""
 "Les utilisateurs ayant ce niveau d’autorisation peuvent accéder à tous les "
 "albums."
 
-#: zp-core/classes/class-authority.php:632 zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:647 zp-core/classes/class-authority.php:673
 msgid "View unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: zp-core/classes/class-authority.php:632 zp-core/classes/class-authority.php:658
+#: zp-core/classes/class-authority.php:647 zp-core/classes/class-authority.php:673
 msgid "Users with this right will see all unpublished items."
 msgstr ""
 "Les utilisateurs ayant ce niveau d’autorisation permet de voir tous les éléments "
 "non publiés."
 
-#: zp-core/classes/class-authority.php:640 zp-core/classes/class-authority.php:641
-#: zp-core/classes/class-authority.php:642 zp-core/classes/class-authority.php:666
-#: zp-core/classes/class-authority.php:667 zp-core/classes/class-authority.php:668
+#: zp-core/classes/class-authority.php:655 zp-core/classes/class-authority.php:656
+#: zp-core/classes/class-authority.php:657 zp-core/classes/class-authority.php:681
+#: zp-core/classes/class-authority.php:682 zp-core/classes/class-authority.php:683
 msgid "Manage all"
 msgstr "Tout gérer"
 
-#: zp-core/classes/class-authority.php:651 zp-core/classes/class-authority.php:999
-#: zp-core/classes/class-authority.php:1073
-#: zp-core/classes/class-authority.php:1143
+#: zp-core/classes/class-authority.php:666 zp-core/classes/class-authority.php:1014
+#: zp-core/classes/class-authority.php:1088
+#: zp-core/classes/class-authority.php:1158
 msgid "User"
 msgstr "Utilisateur"
 
-#: zp-core/classes/class-authority.php:651
+#: zp-core/classes/class-authority.php:666
 msgid "Users must have this right to change their credentials."
 msgstr ""
 "Ce niveau d’autorisation est nécessaire pour que les utilisateurs puissent "
 "modifier leurs permissions."
 
-#: zp-core/classes/class-authority.php:669
+#: zp-core/classes/class-authority.php:684
 msgid "Codeblock"
 msgstr "Bloc de code"
 
-#: zp-core/classes/class-authority.php:669
+#: zp-core/classes/class-authority.php:684
 msgid "Users with this right may edit Codeblocks."
 msgstr "Ce niveau d’autorisation permet de modifier les blocs de code."
 
-#: zp-core/classes/class-authority.php:681
+#: zp-core/classes/class-authority.php:696
 msgid "All rights"
 msgstr "Tous les droits"
 
-#: zp-core/classes/class-authority.php:682
-#: zp-core/zp-extensions/register_user.php:195
+#: zp-core/classes/class-authority.php:697
+#: zp-core/zp-extensions/register_user.php:196
 msgid "Default rights"
 msgstr "Droits par défaut"
 
-#: zp-core/classes/class-authority.php:769
+#: zp-core/classes/class-authority.php:784
 msgid "Sorry, that is not the answer."
 msgstr "Désolé, ce n’est pas la réponse"
 
-#: zp-core/classes/class-authority.php:776
+#: zp-core/classes/class-authority.php:791
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
 "Zenphoto gallery."
@@ -6986,7 +7000,7 @@ msgstr ""
 "Vous recevez ce message suite à une demande de réinitialisation de mot de passe "
 "d’un utilisateur de votre galerie Zenphoto."
 
-#: zp-core/classes/class-authority.php:778
+#: zp-core/classes/class-authority.php:793
 #, php-format
 msgid ""
 "You are receiving this e-mail because of a password reset request on your "
@@ -6996,17 +7010,17 @@ msgstr ""
 "d’un utilisateur de votre galerie Zenphoto qui a essayé de se connecter avec "
 "l’identifiant %s."
 
-#: zp-core/classes/class-authority.php:817
+#: zp-core/classes/class-authority.php:832
 msgid "There was no one to which to send the reset request."
 msgstr "Il n’y a aucun destinataire à qui envoyer la demande de réinitialisation."
 
-#: zp-core/classes/class-authority.php:821
+#: zp-core/classes/class-authority.php:836
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr ""
 "Pour réinitialiser votre mot de passe administrateur Zenphoto, rendez-vous à : %s"
 
-#: zp-core/classes/class-authority.php:822
+#: zp-core/classes/class-authority.php:837
 msgid ""
 "If you do not wish to reset your passwords just ignore this message. This ticket "
 "will automatically expire in 3 days."
@@ -7014,31 +7028,31 @@ msgstr ""
 "Si vous ne souhaitez pas réinitialiser vos mots de passe, vous n’avez qu’à "
 "ignorer ce message. Cette demande expirera automatiquement dans 3 jours."
 
-#: zp-core/classes/class-authority.php:823
+#: zp-core/classes/class-authority.php:838
 msgid "The Zenphoto information you requested"
 msgstr "Les informations que vous avez demandé sur Zenphoto"
 
-#: zp-core/classes/class-authority.php:831
+#: zp-core/classes/class-authority.php:846
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: zp-core/classes/class-authority.php:962
+#: zp-core/classes/class-authority.php:977
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: zp-core/classes/class-authority.php:965
+#: zp-core/classes/class-authority.php:980
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: zp-core/classes/class-authority.php:967
+#: zp-core/classes/class-authority.php:982
 msgid "Check password and try again."
 msgstr "Vérifiez votre mot de passe et essayez de nouveau."
 
-#: zp-core/classes/class-authority.php:976
+#: zp-core/classes/class-authority.php:991
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: zp-core/classes/class-authority.php:1006
+#: zp-core/classes/class-authority.php:1021
 msgid ""
 "Supply the correct response to the question below and you will be directed to a "
 "page where you can change your password."
@@ -7046,31 +7060,31 @@ msgstr ""
 "Répondez correctement à la question qui suit et vous serez redirigé vers une "
 "page où vous pourrez modifier votre mot de passe."
 
-#: zp-core/classes/class-authority.php:1007
+#: zp-core/classes/class-authority.php:1022
 msgid "<br />You may also use the link below to request a reset by e-mail."
 msgstr ""
 "<br />Vous pouvez aussi utiliser le lien ci-dessous pour demander la "
 "réinitialisation par email."
 
-#: zp-core/classes/class-authority.php:1009
+#: zp-core/classes/class-authority.php:1024
 msgid "Challenge question:"
 msgstr "Question défi :"
 
-#: zp-core/classes/class-authority.php:1014
+#: zp-core/classes/class-authority.php:1029
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: zp-core/classes/class-authority.php:1020
+#: zp-core/classes/class-authority.php:1035
 msgid "A password reset is not possible."
 msgstr "La réinitialisation du mot de passe est impossible."
 
-#: zp-core/classes/class-authority.php:1022
+#: zp-core/classes/class-authority.php:1037
 msgid "Please request a reset by e-mail by clicking the link below."
 msgstr ""
 "Veuillez demander la réinitialisation par email en cliquant sur le lien ci-"
 "dessous."
 
-#: zp-core/classes/class-authority.php:1030
+#: zp-core/classes/class-authority.php:1045
 msgid ""
 "Enter your User ID and press <code>Refresh</code> to get your challenge question "
 "and/or get a link to request a reset by e-mail."
@@ -7079,89 +7093,89 @@ msgstr ""
 "d’obtenir votre question secrète ou pour afficher un lien permettant de demander "
 "la réinitialisation du mot de passe par email."
 
-#: zp-core/classes/class-authority.php:1037
-#: zp-core/classes/class-authority.php:1038
+#: zp-core/classes/class-authority.php:1052
+#: zp-core/classes/class-authority.php:1053
 #: zp-core/zp-extensions/register_user/register_user_form.php:135
 msgid "Submit"
 msgstr "Soumettre"
 
-#: zp-core/classes/class-authority.php:1043
-#: zp-core/classes/class-authority.php:1044
-#: zp-core/classes/class-authority.php:1092
-#: zp-core/classes/class-authority.php:1093
+#: zp-core/classes/class-authority.php:1058
+#: zp-core/classes/class-authority.php:1059
+#: zp-core/classes/class-authority.php:1107
+#: zp-core/classes/class-authority.php:1108
 msgid "Return"
 msgstr "Retour"
 
-#: zp-core/classes/class-authority.php:1055
+#: zp-core/classes/class-authority.php:1070
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: zp-core/classes/class-authority.php:1080
+#: zp-core/classes/class-authority.php:1095
 msgid "Enter CAPTCHA"
 msgstr "Saisir le Captcha"
 
-#: zp-core/classes/class-authority.php:1089
+#: zp-core/classes/class-authority.php:1104
 msgid "Request"
 msgstr "Demande"
 
-#: zp-core/classes/class-authority.php:1090
+#: zp-core/classes/class-authority.php:1105
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
-#: zp-core/classes/class-authority.php:1103
+#: zp-core/classes/class-authority.php:1118
 #: zp-core/zp-extensions/user_login-out.php:69
 msgid "Login"
 msgstr "Connexion"
 
-#: zp-core/classes/class-authority.php:1123
+#: zp-core/classes/class-authority.php:1138
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: zp-core/classes/class-authority.php:1149
-#: zp-core/classes/class-authority.php:1230
-#: zp-core/classes/class-authority.php:1334
+#: zp-core/classes/class-authority.php:1164
+#: zp-core/classes/class-authority.php:1245
+#: zp-core/classes/class-authority.php:1349
 msgid "Password"
 msgstr "Mot de passe"
 
-#: zp-core/classes/class-authority.php:1155
+#: zp-core/classes/class-authority.php:1170
 msgid "Log in"
 msgstr "Se connecter"
 
-#: zp-core/classes/class-authority.php:1169
+#: zp-core/classes/class-authority.php:1184
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr ""
 "J’ai oublié mon <strong>identifiant</strong> ou mon <strong>mot de passe</strong>"
 
-#: zp-core/classes/class-authority.php:1235
+#: zp-core/classes/class-authority.php:1250
 msgid "password strength weak"
 msgstr "mot de passe faible"
 
-#: zp-core/classes/class-authority.php:1238
+#: zp-core/classes/class-authority.php:1253
 msgid "password strength good"
 msgstr "mot de passe valide"
 
-#: zp-core/classes/class-authority.php:1241
+#: zp-core/classes/class-authority.php:1256
 msgid "password strength strong"
 msgstr "mot de passe fort"
 
-#: zp-core/classes/class-authority.php:1246
+#: zp-core/classes/class-authority.php:1261
 msgid "password strength too weak"
 msgstr "mot de passe trop faible"
 
-#: zp-core/classes/class-authority.php:1266
+#: zp-core/classes/class-authority.php:1281
 msgid "passwords match"
 msgstr "Vos mots de passe correspondent"
 
-#: zp-core/classes/class-authority.php:1270
+#: zp-core/classes/class-authority.php:1285
 msgid "passwords do not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: zp-core/classes/class-authority.php:1349
+#: zp-core/classes/class-authority.php:1364
 msgid "Repeat password"
 msgstr "Inscrivez de nouveau le mot de passe"
 
-#: zp-core/classes/class-authority.php:1422
+#: zp-core/classes/class-authority.php:1437
 msgid "Use the method isUniqueMailaddress() instead"
 msgstr "Utilisez plutôt isUniqueMailaddress()"
 
@@ -7296,6 +7310,11 @@ msgstr ""
 #, php-format
 msgid "%s not connected"
 msgstr "%s non connecté(e)"
+
+#: zp-core/classes/class-external_auth.php:22
+#: zp-core/classes/class-external_auth.php:57
+msgid "The class exernal_auth will be removed without replacement"
+msgstr "La classe exernal_auth sera supprimée sans remplacement"
 
 #: zp-core/classes/class-feed.php:410
 msgid "Latest albums"
@@ -8006,11 +8025,11 @@ msgstr "Catégories"
 msgid "no date"
 msgstr "sans date"
 
-#: zp-core/classes/class-themeobject.php:181
+#: zp-core/classes/class-themeobject.php:222
 msgid "Use isPublished() instead"
 msgstr "Utilisez plutôt isPublished()"
 
-#: zp-core/classes/class-themeobject.php:192
+#: zp-core/classes/class-themeobject.php:233
 msgid "Use setPublished() instead"
 msgstr "Utilisez plutôt setPublished()"
 
@@ -11654,8 +11673,8 @@ msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
 msgstr ""
-"Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>."
-"htaccess</em> à la racine du dossier zenphoto pour créer des URL propres."
+"Si le module d’Apache mod_rewrite est activé, il faut placer un fichier "
+"<em>.htaccess</em> à la racine du dossier zenphoto pour créer des URL propres."
 
 #: zp-core/setup/index.php:1384 zp-core/setup/index.php:1392
 msgid ""
@@ -11683,8 +11702,8 @@ msgid ""
 "href=\"https://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
 "rewriting for NGINX servers</em></a>."
 msgstr ""
-"Si vous désirez des URLs propres, vous devez configurer <a href=\"https://www."
-"zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>la ré-écriture des URLs "
+"Si vous désirez des URLs propres, vous devez configurer <a href=\"https://"
+"www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>la ré-écriture des URLs "
 "pour les serveurs NGINX<em></a>."
 
 #: zp-core/setup/index.php:1395
@@ -11707,24 +11726,24 @@ msgstr ""
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as the "
-"one distributed with this version of Zenphoto. If you have made changes to <em>."
-"htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce "
-"a new <em>.htaccess</em> file."
+"one distributed with this version of Zenphoto. If you have made changes to "
+"<em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to "
+"produce a new <em>.htaccess</em> file."
 msgstr ""
 "La version du fichier<em>.htaccess</em> du répertoire racine de votre galerie "
 "est différente de celle de cette version de Zenphoto. Si vous avez effectivement "
 "modifié votre fichier<em>.htaccess</em>, intégrez ces modifications au fichier "
-"<em>%s/htaccess</em> de cette version afin de produire un nouveau fichier <em>."
-"htaccess</em>."
+"<em>%s/htaccess</em> de cette version afin de produire un nouveau fichier "
+"<em>.htaccess</em>."
 
 #: zp-core/setup/index.php:1437
 msgid ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
-"htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
-"><br />"
+"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing "
+"<em>.htaccess</em> file with the current version</a></p><br "
+"style=\"clear:both\" /><br />"
 msgstr ""
-"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replacer le fichier <em>."
-"htaccess</em> existant avec la version courante de ce fichier.</a></p><br "
+"<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replacer le fichier "
+"<em>.htaccess</em> existant avec la version courante de ce fichier.</a></p><br "
 "style=\"clear:both\" /><br />"
 
 #: zp-core/setup/index.php:1440
@@ -11774,8 +11793,8 @@ msgstr ""
 #: zp-core/setup/index.php:1506
 #, php-format
 msgid ""
-"Either make the file writeable or set <code>RewriteBase</code> in your <code>."
-"htaccess</code> file to <code>%s</code>."
+"Either make the file writeable or set <code>RewriteBase</code> in your "
+"<code>.htaccess</code> file to <code>%s</code>."
 msgstr ""
 "Deux possibilités : soit rendre le fichier inscriptible, soit modifier le "
 "paramètre <code>RewriteBase</code> dans le fichier <code>.htaccess</code> en "
@@ -11810,8 +11829,8 @@ msgstr "Le fichier <em>robots.txt</em> n’a pas été créé"
 #: zp-core/setup/index.php:1514
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr ""
-"Le script d’installation n’a pas réussi à trouver le fichier <em>example_robots."
-"txt</em>."
+"Le script d’installation n’a pas réussi à trouver le fichier "
+"<em>example_robots.txt</em>."
 
 #: zp-core/setup/index.php:1517
 msgid ""
@@ -13284,8 +13303,8 @@ msgid ""
 "Enter your API key. You can get one <a href=\"https://developers.google.com/maps/"
 "documentation/javascript/get-api-key#key\">here</a>."
 msgstr ""
-"Entrez votre clé d’API. Vous pouvez en obtenir une <a href=\"https://developers."
-"google.com/maps/documentation/javascript/get-api-key#key\">ici</a>."
+"Entrez votre clé d’API. Vous pouvez en obtenir une <a href=\"https://"
+"developers.google.com/maps/documentation/javascript/get-api-key#key\">ici</a>."
 
 #: zp-core/zp-extensions/GoogleMap.php:382
 msgid "Google Map"
@@ -13311,9 +13330,9 @@ msgstr ""
 
 #: zp-core/zp-extensions/GoogleMap/Map.php:103
 msgid ""
-"For information on URL limits visit <a href=\"javascript:parent.window."
-"location='http://www.boutell.com/newfaq/misc/urllength.html';\">What is the "
-"maximum length of a URL</a>."
+"For information on URL limits visit <a "
+"href=\"javascript:parent.window.location='http://www.boutell.com/newfaq/misc/"
+"urllength.html';\">What is the maximum length of a URL</a>."
 msgstr ""
 "Pour connaître les limites des adresses URL, veuillez consulter cette page : <a "
 "href=\"javascript:parent.window.location='http://www.boutell.com/newfaq/misc/"
@@ -13495,11 +13514,11 @@ msgstr "Date de la dernière sauvegarde automatique : %s."
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:14
 msgid ""
-"Responsive jQuery bxSlider thumb nav plugin based on <a href='http://bxslider."
-"com'>http://bxslider.com</a>"
+"Responsive jQuery bxSlider thumb nav plugin based on <a href='http://"
+"bxslider.com'>http://bxslider.com</a>"
 msgstr ""
-"Extension fluide « jQuery bxSlider thumb nav », d’après <a href='http://bxslider."
-"com'>http://bxslider.com</a>."
+"Extension fluide « jQuery bxSlider thumb nav », d’après <a href='http://"
+"bxslider.com'>http://bxslider.com</a>."
 
 #: zp-core/zp-extensions/bxslider_thumb_nav.php:16
 #, php-format
@@ -16577,11 +16596,11 @@ msgid ""
 "provider does this, no subdomain creation is needed.)"
 msgstr ""
 "Pour cela, vous devez avoir créé les sous-domaines nécessaires et les avoir fait "
-"pointer vers votre installation de Zenphoto. Par exemple, <code>fr.mondomaine."
-"com/zenphoto/</code> doit pointer au même endroit que <code>mondomaine.com/"
-"zenphoto/</code>. (Certains fournisseurs redirigent automatiquement les sous-"
-"domaines non définis vers le domaine principal. Si c’est le cas du vôtre, vous "
-"n’avez pas besoin de créer de sous-domaine.)"
+"pointer vers votre installation de Zenphoto. Par exemple, "
+"<code>fr.mondomaine.com/zenphoto/</code> doit pointer au même endroit que "
+"<code>mondomaine.com/zenphoto/</code>. (Certains fournisseurs redirigent "
+"automatiquement les sous-domaines non définis vers le domaine principal. Si "
+"c’est le cas du vôtre, vous n’avez pas besoin de créer de sous-domaine.)"
 
 #: zp-core/zp-extensions/dynamic-locale.php:164
 msgid "Use flags"
@@ -17314,9 +17333,9 @@ msgstr "Lien d’URL canonique"
 msgid ""
 "This adds a link element to the head of each page with a <em>canonical url</em>. "
 "If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> "
-"is checked it also generates alternate links for other languages (<code>&lt;"
-"link&nbsp;rel=\"alternate\" hreflang=\"</code>...<code>\" href=\"</code>..."
-"<code>\" /&gt;</code>)."
+"is checked it also generates alternate links for other languages "
+"(<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</code>...<code>\" href=\"</"
+"code>...<code>\" /&gt;</code>)."
 msgstr ""
 "Ce paramètre ajoute un élément lien dans l’en-tête de chaque page avec <em>l’URL "
 "canonique</em>. Si l’extension <code>seo_locale</code> est activée ou si "
@@ -17531,8 +17550,8 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');"
 "\"><em>html_meta_tags</em></a> plugin options."
 msgstr ""
-"* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
-"gotoName('html_meta_tags');\"><em>html_meta_tags</em></a>."
+"* Ce paramètre est configuré avec ceux de l’extension <a "
+"href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a>."
 
 #: zp-core/zp-extensions/http_security_headers.php:22
 msgid ""
@@ -17721,8 +17740,8 @@ msgstr "Contrôle la quantité d’informations référentes à envoyer."
 msgid ""
 "<em>nonce-</em> uses the internal XSRFToken automatically. Caution: A nonce "
 "attribute with <code>getXSRFToken(\"security_http_headers\")</code> must be "
-"present on all inline script calls as they otherwise break. Inline handlers (e."
-"g. onclick=\"\") will not work in any case."
+"present on all inline script calls as they otherwise break. Inline handlers "
+"(e.g. onclick=\"\") will not work in any case."
 msgstr ""
 "<em>nonce-</em> utilise automatiquement le XSRFToken interne. Attention : un "
 "attribut nonce avec <code>getXSRFToken (\"security_http_headers\")</code> doit "
@@ -18211,8 +18230,8 @@ msgstr "url Matomo"
 
 #: zp-core/zp-extensions/matomo.php:87
 msgid ""
-"Enter your Matomo installation URL including protocol (e.g. <code>https://domain."
-"com</code>)."
+"Enter your Matomo installation URL including protocol (e.g. <code>https://"
+"domain.com</code>)."
 msgstr ""
 "Entrez votre URL d’installation Matomo, y compris le protocole (par exemple "
 "<code>https://domain.com </code>)."
@@ -18402,8 +18421,8 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('menu_manager');"
 "\"><em>menu_manager</em></a> plugin options."
 msgstr ""
-"* Ces paramètres sont configurés avec ceux de l’extension <a href=\"javascript:"
-"gotoName('menu_manager');\"><em>menu_manager</em></a>."
+"* Ces paramètres sont configurés avec ceux de l’extension <a "
+"href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
 
 #: zp-core/zp-extensions/menu_manager.php:75 zp-core/zp-extensions/zenpage.php:256
 msgid ""
@@ -19389,9 +19408,9 @@ msgstr ""
 "zp-core/zp-extensions/openstreetmap/‘). Défaut est Activé<br> Désactiver la "
 "fonction désactive le CSS du plugin Openstreetmap. Cette option est réservée aux "
 "utilisateurs expérimentés qui veulent personnaliser complètement la présentation "
-"du plugin. Assurez-vous donc d’inclure les règles contenues dans openstreetmap."
-"css, leaflet.css, MarkerCluster.css, MarkerCluster.Default.css ainsi que les "
-"images et icônes dans votre CSS."
+"du plugin. Assurez-vous donc d’inclure les règles contenues dans "
+"openstreetmap.css, leaflet.css, MarkerCluster.css, MarkerCluster.Default.css "
+"ainsi que les images et icônes dans votre CSS."
 
 #: zp-core/zp-extensions/openstreetmap.php:169
 msgid "Show layers controls"
@@ -19682,11 +19701,12 @@ msgstr ""
 
 #: zp-core/zp-extensions/print_album_menu.php:64
 msgid ""
-"* These options may be set via the <a href=\"javascript:"
-"gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
+"* These options may be set via the <a "
+"href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a> "
+"plugin options."
 msgstr ""
-"* Ces paramètres sont configurés avec ceux de l’extension <a href=\"javascript:"
-"gotoName('print_album_menu');\"><em>print_album_menu</em></a>."
+"* Ces paramètres sont configurés avec ceux de l’extension <a "
+"href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a>."
 
 #: zp-core/zp-extensions/print_album_menu.php:68
 msgid ""
@@ -20260,9 +20280,9 @@ msgstr "Choisissez la taille du widget reCaptcha."
 
 #: zp-core/zp-extensions/reCaptcha.php:153
 msgid ""
-"reCAPTCHA v2 keys are not configured properly. Visit <a href=\"https://www."
-"google.com/recaptcha/intro/index.html\">this link</a> to retrieve your reCaptcha "
-"keys."
+"reCAPTCHA v2 keys are not configured properly. Visit <a href=\"https://"
+"www.google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
+"reCaptcha keys."
 msgstr ""
 "Les clés reCAPTCHA v2 ne sont pas configurées correctement. Visitez <a "
 "href=\"https://www.google.com/recaptcha/intro/index.html\">ce lien</a> pour "
@@ -20316,11 +20336,11 @@ msgstr ""
 msgid ""
 "You have received this email because you registered with the user id %3$s on "
 "this site.\n"
-"To complete your registration visit %1$s."
+"To complete your registration visit %1$s"
 msgstr ""
 "Vous avez reçu cet email parce que vous vous êtes enregistré sur ce site sous le "
 "nom d’utilisateur %3$s. \n"
-"Pour compléter votre inscription, rendez-vous à %1$s."
+"Pour compléter votre inscription, rendez-vous à %1$s"
 
 #: zp-core/zp-extensions/register_user.php:62
 msgid "Click here to register for this site."
@@ -20410,8 +20430,8 @@ msgid ""
 "* The option may be set via the <a href=\"javascript:gotoName('register_user');"
 "\"><em>register_user</em></a> plugin options."
 msgstr ""
-"* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
-"gotoName('register_user');\"><em>register_user</em></a>."
+"* Ce paramètre est configuré avec ceux de l’extension <a "
+"href=\"javascript:gotoName('register_user');\"><em>register_user</em></a>."
 
 #: zp-core/zp-extensions/register_user.php:164
 msgid ""
@@ -20421,15 +20441,15 @@ msgstr ""
 "Bien sûr, au moins un administrateur doit avoir une adresse email pour que cette "
 "option ait un sens !"
 
-#: zp-core/zp-extensions/register_user.php:184
+#: zp-core/zp-extensions/register_user.php:185
 msgid "Default user group"
 msgstr "Groupe par défaut de l’utilisateur"
 
-#: zp-core/zp-extensions/register_user.php:188
+#: zp-core/zp-extensions/register_user.php:189
 msgid "Initial group assignment for the new user."
 msgstr "Groupe initial pour le nouvel utilisateur."
 
-#: zp-core/zp-extensions/register_user.php:198
+#: zp-core/zp-extensions/register_user.php:199
 msgid ""
 "Initial rights for the new user. (If no rights are set, approval of the user "
 "will be required.)"
@@ -20437,35 +20457,35 @@ msgstr ""
 "Droits accordés initialement à un nouvel utilisateur. (Si aucun droit n’est "
 "accordé, l’utilisateur devra être approuvé.)"
 
-#: zp-core/zp-extensions/register_user.php:388
+#: zp-core/zp-extensions/register_user.php:389
 msgid "You must supply the street field."
 msgstr "Vous devez saisir le nom de la rue."
 
-#: zp-core/zp-extensions/register_user.php:392
+#: zp-core/zp-extensions/register_user.php:393
 msgid "You must supply the city field."
 msgstr "Vous devez saisir le nom de la ville."
 
-#: zp-core/zp-extensions/register_user.php:396
+#: zp-core/zp-extensions/register_user.php:397
 msgid "You must supply the state field."
 msgstr "Vous devez saisir le nom de l’état ou de la province."
 
-#: zp-core/zp-extensions/register_user.php:400
+#: zp-core/zp-extensions/register_user.php:401
 msgid "You must supply the country field."
 msgstr "Vous devez saisir le nom du pays."
 
-#: zp-core/zp-extensions/register_user.php:404
+#: zp-core/zp-extensions/register_user.php:405
 msgid "You must supply the postal code field."
 msgstr "Vous devez saisir le code postal."
 
-#: zp-core/zp-extensions/register_user.php:425
+#: zp-core/zp-extensions/register_user.php:426
 msgid "Registration confirmation"
 msgstr "Confirmation de l’inscription"
 
-#: zp-core/zp-extensions/register_user.php:495
+#: zp-core/zp-extensions/register_user.php:496
 msgid "Zenphoto Gallery registration"
 msgstr "Inscription à la galerie Zenphoto"
 
-#: zp-core/zp-extensions/register_user.php:495
+#: zp-core/zp-extensions/register_user.php:496
 #, php-format
 msgid ""
 "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address "
@@ -20474,15 +20494,15 @@ msgstr ""
 "%1$s (%2$s) s’est inscrit(e) à la galerie Zenphoto en fournissant l’adresse "
 "email %3$s."
 
-#: zp-core/zp-extensions/register_user.php:518
+#: zp-core/zp-extensions/register_user.php:519
 msgid "you are already logged in."
 msgstr "vous êtes déjà connecté(e)."
 
-#: zp-core/zp-extensions/register_user.php:530
+#: zp-core/zp-extensions/register_user.php:531
 msgid "Thank you for registering."
 msgstr "Merci de vous être inscrit."
 
-#: zp-core/zp-extensions/register_user.php:535
+#: zp-core/zp-extensions/register_user.php:536
 msgid "You may now log onto the site and verify your personal information."
 msgstr ""
 "Vous pouvez maintenant vous connecter au site et vérifier vos renseignements "
@@ -21153,22 +21173,22 @@ msgstr "Droite"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:125
 msgid ""
-"Select the alignment for te profile button alignment. The theme used may "
-"override this and may require an update to work properly."
+"Select profile buttons alignment. The theme used may override this and may "
+"require an update to work properly."
 msgstr ""
-"Sélectionnez l’alignement du bouton de profil. Le thème utilisé peut modifier ce "
-"réglage et nécessiter une mise à jour pour fonctionner correctement."
+"Sélectionnez l’alignement des boutons de profil. Le thème utilisé peut modifier "
+"ce réglage et nécessiter une mise à jour pour fonctionner correctement."
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:526
 msgid "Please enter your Mastodon instance first, e.g mastodon.social."
 msgstr ""
 "Entrez d’abord le nom de votre instance Mastodon, exemple : mastodon.social"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:573
+#: zp-core/zp-extensions/scriptless-socialsharing.php:568
 msgid "Subscribe to the RSS feed"
 msgstr "S’abonner au flux RSS"
 
-#: zp-core/zp-extensions/scriptless-socialsharing.php:581
+#: zp-core/zp-extensions/scriptless-socialsharing.php:576
 #, php-format
 msgid "Follow on %s"
 msgstr "Suivre sur %s"
@@ -21800,8 +21820,8 @@ msgid ""
 "* This option may be set via the <a href=\"javascript:gotoName('sitemap-"
 "extended');\"><em>sitemap-extended</em></a> plugin options."
 msgstr ""
-"* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
-"gotoName('sitemap-extended');\"><em>sitemap-extended</em>."
+"* Ce paramètre est configuré avec ceux de l’extension <a "
+"href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em>."
 
 #: zp-core/zp-extensions/sitemap-extended.php:243
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:83
@@ -21867,8 +21887,8 @@ msgid ""
 msgstr ""
 "De plus, un fichier sitemapindex a été créé ; il pointe vers les fichiers sus-"
 "mentionnés. Vous pouvez référencer ce fichier sitemapindex dans votre fichier "
-"robots.txt ou soumettre son adresse à des services comme Google via <code>www."
-"yourdomain.com/zenphoto/index.php?sitemap</code>."
+"robots.txt ou soumettre son adresse à des services comme Google via "
+"<code>www.yourdomain.com/zenphoto/index.php?sitemap</code>."
 
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:105
 #, php-format
@@ -22203,8 +22223,8 @@ msgstr ""
 #: zp-core/zp-extensions/static_html_cache.php:89
 msgid ""
 "<strong>NOTE:</strong> In order to work correctly, the following theme pages "
-"must be excluded from cache generation: <em>search.php, contact.php, register."
-"php</em> and <em>favorites.php</em>"
+"must be excluded from cache generation: <em>search.php, contact.php, "
+"register.php</em> and <em>favorites.php</em>"
 msgstr ""
 "<strong>Note :</strong> Pour fonctionner correctement, les pages de thème "
 "suivantes doivent être exclues de la génération de cache : <em>search.php, "
@@ -23003,8 +23023,8 @@ msgstr ""
 #: zp-core/zp-extensions/tinymce4.php:105
 msgid ""
 "You can adjust how entities are processed. More info on the <a href=\"https://"
-"github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/entities."
-"md\">TinyMCE docs</a>."
+"github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/"
+"entities.md\">TinyMCE docs</a>."
 msgstr ""
 "Vous pouvez ajuster la manière dont les entités sont traitées. Plus d’info sur "
 "le <a href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/"
@@ -23786,8 +23806,8 @@ msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
 msgstr ""
-"* Ces paramètres sont configurés avec ceux de l’extension <a href=\"javascript:"
-"gotoName('zenpage');\"><em>Zenpage</em></a>."
+"* Ces paramètres sont configurés avec ceux de l’extension <a "
+"href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a>."
 
 #: zp-core/zp-extensions/zenpage.php:304
 msgid "Enable Zenpage CMS plugin"
@@ -24261,7 +24281,7 @@ msgstr ""
 "Zenpage::getAllCategories() - La valeur \"desc\" attribuée à $sortdirection est "
 "obsolète depuis ZenphotoCMS 1.5.8. Remplacé par \"true\"."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:308
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagecategory.php:292
 msgid ""
 "class ZenpageCategory getParents(): The parameters $parentid and $initparents "
 "have been removed in Zenphoto 1.5.5."
@@ -24269,7 +24289,7 @@ msgstr ""
 "class ZenpageCategory getParents() : Les paramètres $parentid et $initparents "
 "ont été supprimés dans Zenphoto 1.5.5."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:237
+#: zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php:220
 msgid ""
 "class ZenpagePage getParents(): The parameters $parentid and $initparents have "
 "been removed in Zenphoto 1.5.5."
@@ -24767,6 +24787,9 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à un "
 "ou à plusieurs destinataires."
+
+#~ msgid "Primary album edit"
+#~ msgstr "Édition de l’album principal"
 
 #~ msgid "rss"
 #~ msgstr "rss"
@@ -26646,8 +26669,8 @@ msgstr ""
 #~ "qui ne prend pas en charge <em>https</em> vous ne serez pas en mesure "
 #~ "d'accéder aux pages <code>administration</code> pour réinitialiser l'option ! "
 #~ "Votre seule possibilité est alors de définir ou d'ajouter <code>$conf "
-#~ "[\"SERVER_PROTOCOL\"] = \"http\";</code> à votre fichier <code>zenphoto.cfg."
-#~ "php</code>."
+#~ "[\"SERVER_PROTOCOL\"] = \"http\";</code> à votre fichier "
+#~ "<code>zenphoto.cfg.php</code>."
 
 #, php-format
 #~ msgid "View album:  %s"
@@ -26703,8 +26726,8 @@ msgstr ""
 #~ "protection de l’image pleine grandeur ne s’appliquent pas !"
 
 #~ msgid ""
-#~ "Define one or more domains, e.g. http:://yourdomain1.com http:://yourdomain2."
-#~ "com, to allow content from"
+#~ "Define one or more domains, e.g. http:://yourdomain1.com http:://"
+#~ "yourdomain2.com, to allow content from"
 #~ msgstr ""
 #~ "Définissez un ou plusieurs domaines, par exemple http://votre domaine1.com "
 #~ "http://votre domaine2.com, pour autoriser du contenu depuis ceux-ci"
@@ -27276,8 +27299,8 @@ msgstr ""
 
 #~ msgid ""
 #~ "These are the included default themes. Users can create their own themes: The "
-#~ "chosen theme is added to the popup container as a CSS class in the form of ."
-#~ "cc-style-THEME_NAME."
+#~ "chosen theme is added to the popup container as a CSS class in the form "
+#~ "of .cc-style-THEME_NAME."
 #~ msgstr ""
 #~ "Voici les thèmes inclus par défaut. Les utilisateurs peuvent créer leurs "
 #~ "propres thèmes : le thème choisi est ajouté au conteneur popup comme une "
@@ -27298,9 +27321,9 @@ msgstr ""
 #~ msgstr ""
 #~ "Si vous rencontrez des problèmes avec des caractères spéciaux et d'autres "
 #~ "entités de caractères, modifiez cela. Notez que cela ne s'applique qu'au ré-"
-#~ "enregistrement du contenu. Plus d'informations sur la <a href=\"https://www."
-#~ "tinymce.com/docs/configure/content-filtering/#entity_encoding\">documentation "
-#~ "tinyMCE</a>."
+#~ "enregistrement du contenu. Plus d'informations sur la <a href=\"https://"
+#~ "www.tinymce.com/docs/configure/content-filtering/"
+#~ "#entity_encoding\">documentation tinyMCE</a>."
 
 #~ msgid ""
 #~ "You you can adjust how entities are processed. More info on the <a "
@@ -27461,11 +27484,12 @@ msgstr ""
 #~ "transmet pas l’adresse d’email.)"
 
 #~ msgid ""
-#~ "* The option may be set via the <a href=\"javascript:"
-#~ "gotoName('federated_logon');\"><em>register_user</em></a> plugin options."
+#~ "* The option may be set via the <a "
+#~ "href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> "
+#~ "plugin options."
 #~ msgstr ""
-#~ "* Ce paramètre est configuré avec ceux de l’extension <a href=\"javascript:"
-#~ "gotoName('federated_logon');\"><em>register_user</em></a>."
+#~ "* Ce paramètre est configuré avec ceux de l’extension <a "
+#~ "href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a>."
 
 #~ msgid "Group %s does not exist."
 #~ msgstr "Le groupe %s n’existe pas."
@@ -27947,8 +27971,8 @@ msgstr ""
 #~ msgstr "Tailles d’images autorisées"
 
 #~ msgid ""
-#~ "List of sizes from which the viewer may select.<br />The form is \"$s=&lt;"
-#~ "size&gt;\" or \"$h=&lt;height&gt;,$w=&lt;width&gt;\"....<br />See "
+#~ "List of sizes from which the viewer may select.<br />The form is "
+#~ "\"$s=&lt;size&gt;\" or \"$h=&lt;height&gt;,$w=&lt;width&gt;\"....<br />See "
 #~ "printCustomSizedImage() for details"
 #~ msgstr ""
 #~ "Liste des tailles que l’utilisateur peut choisir.<br />La syntaxe est "
@@ -28914,8 +28938,8 @@ msgstr ""
 #~ "$shortenindicator);"
 
 #~ msgid ""
-#~ "reCAPTCHA v2 keys are not configured properly. Visit <a href=\"https://www."
-#~ "google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
+#~ "reCAPTCHA v2 keys are not configured properly. Visit <a href=\"https://"
+#~ "www.google.com/recaptcha/intro/index.html\">this link</a> to retrieve your "
 #~ "reCaptcha keys)."
 #~ msgstr ""
 #~ "Les clés reCAPTCHA v2 ne sont pas configurées correctement. Visitez <a "
@@ -29639,11 +29663,11 @@ msgstr ""
 #~ msgid ""
 #~ "Custom title for the <em>latest images by album</em> article. The string is "
 #~ "in <code>sprintf()</code> syntax.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%1$u</"
-#~ "code> = new items count indicator (may be absent if redundant)<br />&nbsp;"
-#~ "&nbsp;&nbsp;&nbsp;<code>%2$s</code> = title of the album they are in<br /"
-#~ ">&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titles of the new items (up to "
-#~ "the limit defined by the option below.)<p class=\"notebox\">Never leave any "
-#~ "of these three out!</p>"
+#~ "code> = new items count indicator (may be absent if redundant)<br /"
+#~ ">&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = title of the album they are "
+#~ "in<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titles of the new items "
+#~ "(up to the limit defined by the option below.)<p class=\"notebox\">Never "
+#~ "leave any of these three out!</p>"
 #~ msgstr ""
 #~ "Titre personnalisé de l'article <em>images récentes par album</em>. La chaîne "
 #~ "suit la syntaxe <code>sprintf()</code>.<br />&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -30882,8 +30906,8 @@ msgstr ""
 #~ msgid ""
 #~ "Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
 #~ msgstr ""
-#~ "Impossible de se connecter à <a href=\"http://www.zenphoto.org\">zenphoto."
-#~ "org</a>"
+#~ "Impossible de se connecter à <a href=\"http://"
+#~ "www.zenphoto.org\">zenphoto.org</a>"
 
 #~ msgid "Zenphoto upgrade"
 #~ msgstr "Mise à jour de Zenphoto"
@@ -31307,8 +31331,8 @@ msgstr ""
 #~ msgid ""
 #~ "Put a checkmark here to re-serve Zip Archive files if you are using the "
 #~ "optional template function <em>printAlbumZip()</em> to enable visitors of "
-#~ "your site to download images of an album as .zip files. If not checked that ."
-#~ "zip file will be regenerated each time."
+#~ "your site to download images of an album as .zip files. If not checked "
+#~ "that .zip file will be regenerated each time."
 #~ msgstr ""
 #~ "Cochez ici pour générer les fichiers zip d'archive (si vous utilisez la "
 #~ "fonction <em>printAlbumZip()</em> pour permettre aux visiteurs de télécharger "
@@ -31650,8 +31674,9 @@ msgstr ""
 #~ msgstr "Notifier%s"
 
 #~ msgid ""
-#~ "* The options may be set via the <a href=\"javascript:"
-#~ "gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options.."
+#~ "* The options may be set via the <a "
+#~ "href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> "
+#~ "plugin options.."
 #~ msgstr ""
 #~ "Ces options peuvent être configurées par les paramètres de l'extension <a "
 #~ "href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
@@ -31946,8 +31971,8 @@ msgstr ""
 #~ msgstr "Mac"
 
 #~ msgid ""
-#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup replace your <em>."
-#~ "htaccess</em> file with the current version."
+#~ "Click <a href=\"?copyhtaccess\" >here</a> to have setup replace your "
+#~ "<em>.htaccess</em> file with the current version."
 #~ msgstr ""
 #~ "<a href=\"?copyhtaccess\" >Cliquer ici</a> pour que l'outil d'installation "
 #~ "remplace votre fichier <em>.htaccess</em> avec la version actuelle."
@@ -32047,13 +32072,13 @@ msgstr ""
 #~ "uploadtype=uploadify');\" >le téléchargement de fichiers avec flash</a>."
 
 #~ msgid ""
-#~ "If your upload does not work try the <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=httpupload');\" >jquery file "
-#~ "upload</a> or use FTP instead."
+#~ "If your upload does not work try the <a "
+#~ "href=\"javascript:switchUploader('admin-upload.php?uploadtype=httpupload');\" "
+#~ ">jquery file upload</a> or use FTP instead."
 #~ msgstr ""
-#~ "Si le chargement de fichiers ne fonctionne pas, essayez <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=http');\" >le téléchargement de "
-#~ "fichiers http</a> ou chargez-les par FTP."
+#~ "Si le chargement de fichiers ne fonctionne pas, essayez <a "
+#~ "href=\"javascript:switchUploader('admin-upload.php?uploadtype=http');\" >le "
+#~ "téléchargement de fichiers http</a> ou chargez-les par FTP."
 
 #~ msgid ""
 #~ "Front-end editing has been disabled. Front-end editing presents serious "
@@ -32099,9 +32124,9 @@ msgstr ""
 #~ "uploadtype=multifile');\" >multi file upload</a>"
 #~ msgstr ""
 #~ "Le chargement d'un fichier unique via HTTP est désactivé car des limites de "
-#~ "chargement sont actives. Essayez le <a href=\"javascript:"
-#~ "switchUploader('admin-upload.php?uploadtype=multifile');\" >téléchargement de "
-#~ "fichiers multiples</a>."
+#~ "chargement sont actives. Essayez le <a "
+#~ "href=\"javascript:switchUploader('admin-upload.php?uploadtype=multifile');\" "
+#~ ">téléchargement de fichiers multiples</a>."
 
 #~ msgid "2 stars"
 #~ msgstr "2 étoiles"
