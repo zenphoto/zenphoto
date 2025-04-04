@@ -56,13 +56,12 @@ class registerUserOptions {
 
 	function __construct() {
 		global $_zp_authority;
+		purgeOption('register_user_page_tip'); // unused anyway
+		
 		setOptionDefault('register_user_link', '_PAGE_/register');
-		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
-		setOptionDefault('register_user_text', getAllTranslations($str));
-		gettext($str = 'Click here to register for this site.');
-		setOptionDefault('register_user_page_tip', getAllTranslations($str));
-		gettext($str = 'Register');
-		setOptionDefault('register_user_page_link', getAllTranslations($str));
+		setOptionDefault('register_user_text', '');
+		setOptionDefault('register_user_page_link', 1);
+		setOptionDefault('register_user_page_linktext', '');
 		setOptionDefault('register_user_captcha', 0);
 		setOptionDefault('register_user_email_is_id', 1);
 		setOptionDefault('register_user_create_album', 0);
@@ -85,17 +84,17 @@ class registerUserOptions {
 		global $_zp_authority, $_zp_captcha;
 		$options = array(
 				gettext('Link text') => array(
+						'key' => 'register_user_page_linktext',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'desc' => gettext('If this option is set, the visitor login form will include a link to this page.')),
+				gettext('Link on login form') => array(
 						'key' => 'register_user_page_link',
-						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
-				gettext('Hint text') => array(
-						'key' => 'register_user_page_tip',
-						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided above.')),
 				gettext('Notify*') => array(
 						'key' => 'register_user_notify',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
+						'desc' => gettext('If checked, an e-mail will be sent to the gallery admins when a new user has verified his registration.')),
 				gettext('User album') => array(
 						'key' => 'register_user_create_album',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -107,7 +106,7 @@ class registerUserOptions {
 				gettext('Email notification text') => array(
 						'key' => 'register_user_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
+						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -422,7 +421,11 @@ class registerUser {
 							$verify = '&verify=';
 						}
 						registerUser::$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => registerUser::$user, 'email' => registerUser::$admin_email)));
-						registerUser::$message = sprintf(get_language_string(getOption('register_user_text')), registerUser::$link, registerUser::$admin_name, registerUser::$user, $pass);
+						$message = get_language_string(getOption('register_user_text'));
+						if (!$message) {
+							$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
+						}
+						registerUser::$message = sprintf($message, registerUser::$link, registerUser::$admin_name, registerUser::$user, $pass);
 						registerUser::$notify = zp_mail(get_language_string(gettext('Registration confirmation')), registerUser::$message, array(registerUser::$user => registerUser::$admin_email));
 						if (empty(registerUser::$notify)) {
 							registerUser::$notify = 'accepted';
@@ -493,7 +496,7 @@ class registerUser {
 					$userobj->setGroup($group);
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
-						registerUser::$notify = zp_mail(gettext('Zenphoto Gallery registration'), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+						registerUser::$notify = zp_mail(getGalleryTitle(), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 					}
 					if (empty(registerUser::$notify)) {
 						if (getOption('register_user_create_album')) {
@@ -702,8 +705,11 @@ class registerUser {
 			if (!is_null($class)) {
 				$class = 'class="' . $class . '"';
 			}
-			if (is_null($linktext)) {
-				$linktext = get_language_string(getOption('register_user_page_link'));
+			if (is_null($linktext) && getOption('register_user_page_link')) {
+				$linktext = get_language_string(getOption('register_user_page_linktext'));
+				if (!$linktext) {
+					$linktext = gettext('Register');
+				}
 			}
 			echo $prev;
 			?>
