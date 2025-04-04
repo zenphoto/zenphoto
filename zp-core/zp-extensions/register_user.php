@@ -446,6 +446,8 @@ class registerUser {
 	/**
 	 * Sends a verification email to a user
 	 * 
+	 * @since 1.6.6
+	 * 
 	 * @param obj $userobj
 	 * @return string
 	 */
