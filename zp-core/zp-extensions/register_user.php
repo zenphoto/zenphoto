@@ -420,19 +420,20 @@ class registerUser {
 						}
 					} else {
 						$userobj->save();
-						if (MOD_REWRITE) {
-							$verify = '?verify=';
-						} else {
-							$verify = '&verify=';
-						}
+						$subject = sprintf(gettext('New user registration on your site %s'), getGalleryTitle());
 						if (getOption('register_user_moderated')) {
 							registerUser::$notify = 'accepted';
+							$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and requires your moderation.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
 						} else {
 							registerUser::$notify = registerUser::sendVerificationEmail($userobj);
 							if (empty(registerUser::$notify)) {
 								registerUser::$notify = 'accepted';
+								$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and has been sent a verification request email.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
 							}
 						}
+						if (getOption('register_user_notify')) {
+							$_zp_authority->sendAdminNotificationEmail($subject, $message, 'alladmins');
+						} 
 					}
 				}
 			} else {
@@ -458,12 +459,13 @@ class registerUser {
 			$verify = '&verify=';
 		}
 		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => registerUser::$user, 'email' => $userobj->getEmail())));
+		$subject = sprintf(gettext('Registration confirmation required for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
 		$message = get_language_string(getOption('register_user_text'));
 		if (!$message) {
 			$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
 		}
 		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getUser());
-		return zp_mail(get_language_string(gettext('Registration confirmation')),$message_final, array($userobj->getUser() => $userobj->getEmail()));
+		return zp_mail($subject,$message_final, array($userobj->getUser() => $userobj->getEmail()));
 	}
 
 	/**
@@ -522,7 +524,9 @@ class registerUser {
 					$userobj->setGroup($group);
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
-						registerUser::$notify = zp_mail(getGalleryTitle(), sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+						$subject = sprintf(gettext('New user verification on your site %s'), getGalleryTitle());
+						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
+						registerUser::$notify = $_zp_authority->sendAdminNotificationEmail($subject, $message, 'alladmins');
 					}
 					if (empty(registerUser::$notify)) {
 						if (getOption('register_user_create_album')) {
@@ -565,7 +569,6 @@ class registerUser {
 						<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 					</div>
 				<?php
-				 break;
 				case 'already_verified':
 				case 'loginfailed':
 					registerUser::$link = getRequestURI();
@@ -585,7 +588,7 @@ class registerUser {
 						<p>
 						<?php 
 						if (getOption('register_user_moderated')) {
-							echo gettext('Your registration information has been accepted. Please note that registrations are moderatied. You will be send an email to you to verify your email address after your registration has been reviewed and approved.');
+							echo gettext('Your registration information has been accepted. Please note that registrations are moderated. You will be send an email to you to verify your email address after your registration has been reviewed and approved.');
 						} else {
 							echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); 
 						}

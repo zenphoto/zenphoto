@@ -193,11 +193,11 @@ class Authority {
 	 *
 	 * The array contains the id, hashed password, user's name, email, and admin privileges
 	 *
-	 * @param string $what: 'allusers' for all standard users, 'users' for all valid stanndard users 'groups' for groups and templates, empty for all types of users
+	 * @param string $what 'allusers' for all standard users, 'users' for all valid stanndard users 'groups' for groups and templates, empty for all types of users
 	 * @param string $returnvalues Several sets of database columns
-	 *			- "minimaldata": user, valid  (as needed for creating admininistrator objects directly)
-	 *			- "basedata":  id, user, valid, group (as used in several places)
-	 *			- "coredata": `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials
+	 *			- "minimaldata": `id`, `user`, `rights`, `valid`  (as needed for creating admininistrator objects directly)
+	 *			- "basedata":   `id`, `user`, `rights`, `valid`, `name`, `group` (as used in several places)
+	 *			- "coredata":  `id`, `user`, `rights`, `name`, `group`, `email`, `pass`, `custom_data`, `valid`, `date`, `other_credentials`
 	 *			- 'fulldata" full data with all columns		
 	 * @param string $sortorder Default null for "ORDER BY `rights` DESC, `id`" (order determined by $sortdir param!), otherwise the column to order by
 	 * @param string $sortdir Default "desc" for descending (also if not set) or "asc" for ascending.
@@ -463,6 +463,36 @@ class Authority {
 			}
 		}
 		return $emails;
+	}
+	
+	/**
+	 * Sends an email to either all full administrators or the the master user only
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @param string $subject
+	 * @param string $message
+	 * @param string $whom
+	 * @return string
+	 */
+	function sendAdminNotificationEmail($subject = '', $message = '', $whom = 'alladmins') {
+		if ($subject && $message) {
+			$mails = array();
+			switch ($whom) {
+				default:
+				case 'alladmins':
+					$mails = $this->getAdminEmail();
+					break;
+				case 'master':
+					$master = $this->getMasterUser();
+					$mails = array($master->getEmail());
+					break;
+			}
+		}
+		if ($mails) {
+			return zp_mail($subject, $message, $mails);
+		}
+		return 'failed';
 	}
 
 	/**
@@ -1518,6 +1548,11 @@ class Authority {
 					return SEO_FULLWEBPATH . '/index.php?logout=' . $sec . $params;
 			}
 		}
+	}
+	
+	
+	static function sendAdminNotificationMail() {
+		
 	}
 
 }
