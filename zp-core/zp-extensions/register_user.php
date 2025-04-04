@@ -71,6 +71,7 @@ class registerUserOptions {
 		} else {
 			setOptionDefault('register_user_notify', 1);
 		}
+		setOptionDefault('register_user_moderated', 0);
 		setOptionDefault('register_user_dataconfirmation', 0);
 		setOptionDefault('register_user_textquiz', 0);
 		setOptionDefault('register_user_textquiz_question', '');
@@ -86,7 +87,7 @@ class registerUserOptions {
 				gettext('Link text') => array(
 						'key' => 'register_user_page_linktext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('If this option is set, the visitor login form will include a link to this page.')),
+						'desc' => gettext('The link text to the register user page on the login form. Leave empty to use the default.')),
 				gettext('Link on login form') => array(
 						'key' => 'register_user_page_link',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -95,6 +96,10 @@ class registerUserOptions {
 						'key' => 'register_user_notify',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('If checked, an e-mail will be sent to the gallery admins when a new user has verified his registration.')),
+				gettext('Moderated registrations') => array(
+						'key' => 'register_user_moderated',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'desc' => gettext('If checked, registrants can be reviewed first and do not get an automatic verfification mail. You can either approve users manually or send the verification request mail manually after reviewing the user. The latter is recommended in some jurisdiction like the EU and GDPR.')),
 				gettext('User album') => array(
 						'key' => 'register_user_create_album',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -106,7 +111,7 @@ class registerUserOptions {
 				gettext('Email notification text') => array(
 						'key' => 'register_user_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
+						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>)).</p>')),
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -420,15 +425,13 @@ class registerUser {
 						} else {
 							$verify = '&verify=';
 						}
-						registerUser::$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => registerUser::$user, 'email' => registerUser::$admin_email)));
-						$message = get_language_string(getOption('register_user_text'));
-						if (!$message) {
-							$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
-						}
-						registerUser::$message = sprintf($message, registerUser::$link, registerUser::$admin_name, registerUser::$user, $pass);
-						registerUser::$notify = zp_mail(get_language_string(gettext('Registration confirmation')), registerUser::$message, array(registerUser::$user => registerUser::$admin_email));
-						if (empty(registerUser::$notify)) {
+						if (getOption('register_user_moderated')) {
 							registerUser::$notify = 'accepted';
+						} else {
+							registerUser::$notify = registerUser::sendVerificationEmail($userobj);
+							if (empty(registerUser::$notify)) {
+								registerUser::$notify = 'accepted';
+							}
 						}
 					}
 				}
@@ -438,6 +441,27 @@ class registerUser {
 		} else {
 			registerUser::$notify = 'incomplete';
 		}
+	}
+	
+	/**
+	 * Sends a verification email to a user
+	 * 
+	 * @param obj $userobj
+	 * @return string
+	 */
+	static function sendVerificationEmail($userobj) {
+		if (MOD_REWRITE) {
+			$verify = '?verify=';
+		} else {
+			$verify = '&verify=';
+		}
+		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => registerUser::$user, 'email' => $userobj->getEmail())));
+		$message = get_language_string(getOption('register_user_text'));
+		if (!$message) {
+			$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
+		}
+		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getUser());
+		return zp_mail(get_language_string(gettext('Registration confirmation')),$message_final, array($userobj->getUser() => $userobj->getEmail()));
 	}
 
 	/**
@@ -556,7 +580,15 @@ class registerUser {
 				case 'accepted':
 					?>
 					<div class="messagebox fade-message">
-						<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
+						<p>
+						<?php 
+						if (getOption('register_user_moderated')) {
+							echo gettext('Your registration information has been accepted. Please note that registrations are moderatied. You will be send an email to you to verify your email address after your registration has been reviewed and approved.');
+						} else {
+							echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); 
+						}
+						?>
+						</p>
 					</div>
 					<?php
 					if (registerUser::$notify != 'honeypot') {
@@ -687,7 +719,11 @@ class registerUser {
 		if (registerUser::$notify != 'success') {
 			$form = getPlugin('register_user/register_user_form.php', true);
 			require_once($form);
+			if (getOption('register_user_moderated')) {
+				echo '<p><strong>' . gettext('Please note: Registrations are moderated.') . '</strong></p>';
+			}
 		}
+		
 	}
 
 	/**

@@ -213,8 +213,15 @@ if (isset($_GET['action'])) {
 							}
 							$_zp_admin_user_updated = zp_apply_filter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
 							if (isset($_POST['createAlbum_' . $i])) {
-								$userobj->createPrimealbum();
-								markUpdated();
+								if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate') {
+									$userobj->createPrimealbum();
+									markUpdated();
+								}
+							}
+							if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] === 'send_verification_request_email') {
+								if (extensionEnabled('register_user') && getOption('register_user_moderated')) {
+									registerUser::sendVerificationEmail($userobj);
+								} 
 							}
 							if ($_zp_admin_user_updated) {
 								$returntab .= '&show[]=' . $user;
@@ -580,7 +587,7 @@ echo $refresh;
 									<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
 										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width:50%;<?php echo $background; ?>" valign="top">
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -619,15 +626,20 @@ echo $refresh;
 													if (!$alterrights || !$userobj->getID()) {
 														if ($pending) {
 															?>
-															<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php
-															echo NO_RIGHTS;
-															echo $alterrights;
-															?>" />
-																		 <?php echo gettext("Authenticate user"); ?>
-																		 <?php
-																	 } else {
-																		 ?>
-															<input type = "hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
+															<ul class="no_bullets">
+																<li><label><input type="radio" name="<?php echo $id ?>-authentication" value="authenticate" />
+																<?php echo gettext("Authenticate user"); ?></label></li>
+																<?php if (extensionEnabled('register_user') && getOption('register_user_moderated')) { ?>
+																	<li><label><input type="radio" name="<?php echo $id ?>-authentication" value="send_verification_request_email" />
+																	<?php echo gettext("Send verification request email"); ?></label></li>
+																<?php } ?>
+																<li><label><input type="radio" name="<?php echo $id ?>-authentication" value="donothing" checked />
+																<?php echo gettext("Do nothing"); ?></label></li>
+															</ul>
+															<?php
+														} else {
+															?>
+															<input type="hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
 															<?php
 														}
 														?>
