@@ -99,7 +99,7 @@ class registerUserOptions {
 				gettext('Moderated registrations') => array(
 						'key' => 'register_user_moderated',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked, registrants can be reviewed first and do not get an automatic verfification mail. You can either approve users manually or send the verification request mail manually after reviewing the user. The latter is recommended in some jurisdiction like the EU and GDPR.')),
+						'desc' => gettext('If checked, registrants can be reviewed first and do not get an automatic verfification mail. You can either approve users manually or send the verification request mail manually after reviewing the user. The latter is recommended in some jurisdictions like the EU.')),
 				gettext('User album') => array(
 						'key' => 'register_user_create_album',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -111,7 +111,7 @@ class registerUserOptions {
 				gettext('Email notification text') => array(
 						'key' => 'register_user_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>)).</p>')),
+						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>) and <em>user id</em> (<code>%3$s</code>).</p>')),
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
