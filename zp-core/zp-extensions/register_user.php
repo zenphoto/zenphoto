@@ -588,7 +588,7 @@ class registerUser {
 						<p>
 						<?php 
 						if (getOption('register_user_moderated')) {
-							echo gettext('Your registration information has been accepted. Please note that registrations are moderated. You will be send an email to you to verify your email address after your registration has been reviewed and approved.');
+							echo gettext('Your registration information has been received. Please note that registrations are moderated. If your registration has been approved you will be sent an email to verify your email address.');
 						} else {
 							echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); 
 						}
