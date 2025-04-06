@@ -461,6 +461,7 @@ class registerUser {
 		}
 		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => $userobj->getUser(), 'email' => $userobj->getEmail())));
 		switch ($mode) {
+			default:
 			case 'verification':
 				$subject = sprintf(gettext('Registration confirmation required for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
 				$message = get_language_string(getOption('register_user_text'));
