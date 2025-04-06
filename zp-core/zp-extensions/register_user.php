@@ -60,6 +60,7 @@ class registerUserOptions {
 		
 		setOptionDefault('register_user_link', '_PAGE_/register');
 		setOptionDefault('register_user_text', '');
+		setOptionDefault('register_user_text_auth', '');
 		setOptionDefault('register_user_page_link', 1);
 		setOptionDefault('register_user_page_linktext', '');
 		setOptionDefault('register_user_captcha', 0);
@@ -108,10 +109,14 @@ class registerUserOptions {
 						'key' => 'register_user_email_is_id',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
-				gettext('Email notification text') => array(
+				gettext('Email notification text (Verification request)') => array(
 						'key' => 'register_user_text',
 						'type' => OPTION_TYPE_TEXTAREA,
 						'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>) and <em>user id</em> (<code>%3$s</code>).</p>')),
+				gettext('Email notification text (Authentication)') => array(
+						'key' => 'register_user_text_auth',
+						'type' => OPTION_TYPE_TEXTAREA,
+						'desc' => gettext('Text for the body of the email sent to the registrant if authenticated manually by an admin. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>) and <em>user id</em> (<code>%3$s</code>).</p>')),
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -471,7 +476,7 @@ class registerUser {
 				break;
 			case 'authentication':
 				$subject = sprintf(gettext('Registration authenticated for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
-				$message = get_language_string(getOption('register_user_text'));
+				$message = get_language_string(getOption('register_user_text_auth'));
 				if (!$message) {
 					$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'Your registration has been authenticated by an administrator.');
 				}
