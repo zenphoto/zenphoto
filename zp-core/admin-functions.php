@@ -3420,11 +3420,6 @@ function processRights($i) {
 		$rights = 0;
 	}
 
-	if (isset($_POST[$i . '-confirmed'])) {
-		$rights = USER_RIGHTS; 
-	} else {
-		$rights = 0;
-	}
 	foreach (Authority::getRights() as $name => $right) {
 		if (isset($_POST[$i . '-' . $name])) {
 			$rights = $rights | $right['value'] | NO_RIGHTS;

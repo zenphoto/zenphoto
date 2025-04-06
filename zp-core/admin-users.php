@@ -477,6 +477,7 @@ echo $refresh;
 						</p>
 						<br class="clearall" /><br />
 						<table class="bordered"> <!-- main table -->
+						<table class="bordered adminusertable"> <!-- main table -->
 
 							<tr>
 								<?php
@@ -587,7 +588,7 @@ echo $refresh;
 									<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
 										<table class="bordered" style="border: 0" id='user-<?php echo $id; ?>'>
 											<tr>
-												<td style="margin-top: 0px; width:50%;<?php echo $background; ?>" valign="top">
+												<td style="margin-top: 0px; width:20em;<?php echo $background; ?>" valign="top">
 													<?php
 													if (empty($userid)) {
 														$displaytitle = gettext("Show details");
@@ -638,8 +639,9 @@ echo $refresh;
 															</ul>
 															<?php
 														} else {
+															// not really used but similar to beforein case…
 															?>
-															<input type="hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
+															<input type="hidden" name="<?php echo $id ?>-authentication"	value="confirmed" />
 															<?php
 														}
 														?>
