@@ -223,6 +223,9 @@ if (isset($_GET['action'])) {
 									registerUser::sendVerificationEmail($userobj);
 								} 
 							}
+							if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate' && extensionEnabled('register_user')) {
+								registerUser::sendVerificationEmail($userobj, 'authentication');
+							}
 							if ($_zp_admin_user_updated) {
 								$returntab .= '&show[]=' . $user;
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);

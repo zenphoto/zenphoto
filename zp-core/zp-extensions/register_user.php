@@ -445,24 +445,36 @@ class registerUser {
 	}
 	
 	/**
-	 * Sends a verification email to a user
+	 * Sends a verification email to a user. The mode has impact on the email message send.
 	 * 
 	 * @since 1.6.6
 	 * 
 	 * @param obj $userobj
+	 * @param string $mode 'verification' self-verification via email, 'authentication' for manual aunthentication by an admin
 	 * @return string
 	 */
-	static function sendVerificationEmail($userobj) {
+	static function sendVerificationEmail($userobj, $mode = 'verification') {
 		if (MOD_REWRITE) {
 			$verify = '?verify=';
 		} else {
 			$verify = '&verify=';
 		}
 		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => $userobj->getUser(), 'email' => $userobj->getEmail())));
-		$subject = sprintf(gettext('Registration confirmation required for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
-		$message = get_language_string(getOption('register_user_text'));
-		if (!$message) {
-			$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
+		switch ($mode) {
+			case 'verification':
+				$subject = sprintf(gettext('Registration confirmation required for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
+				$message = get_language_string(getOption('register_user_text'));
+				if (!$message) {
+					$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
+				}
+				break;
+			case 'authentication':
+				$subject = sprintf(gettext('Registration authenticated for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
+				$message = get_language_string(getOption('register_user_text'));
+				if (!$message) {
+					$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'Your registration has been authenticated by an administrator.');
+				}
+				break;
 		}
 		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getUser());
 		return zp_mail($subject,$message_final, array($userobj->getUser() => $userobj->getEmail()));
