@@ -543,7 +543,7 @@ class registerUser {
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
 						$subject = sprintf(gettext('New user verification on your site %s'), getGalleryTitle());
-						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for the zenphoto gallery providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
+						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for your site providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
 						registerUser::$notify = $_zp_authority->sendAdminNotificationEmail($subject, $message, 'alladmins');
 					}
 					if (empty(registerUser::$notify)) {
