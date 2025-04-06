@@ -116,7 +116,7 @@ class registerUserOptions {
 				gettext('Email notification text (Authentication)') => array(
 						'key' => 'register_user_text_auth',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('Text for the body of the email sent to the registrant if authenticated manually by an admin. Leave empty to use the default text. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant’s <em>name</em> (<code>%2$s</code>) and <em>user id</em> (<code>%3$s</code>).</p>')),
+						'desc' => gettext('Text for the body of the email sent to the registrant if authenticated manually by an admin. Leave empty to use the default text.')),
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
