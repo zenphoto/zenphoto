@@ -88,7 +88,7 @@ class registerUserOptions {
 				gettext('Link text') => array(
 						'key' => 'register_user_page_linktext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext('The link text to the register user page on the login form. Leave empty to use the default.')),
+						'desc' => gettext('The link text to the user register page on the login form. Leave empty to use the default.')),
 				gettext('Link on login form') => array(
 						'key' => 'register_user_page_link',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -100,7 +100,7 @@ class registerUserOptions {
 				gettext('Moderated registrations') => array(
 						'key' => 'register_user_moderated',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked, registrants can be reviewed first and do not get an automatic verfification mail. You can either approve users manually or send the verification request mail manually after reviewing the user. The latter is recommended in some jurisdictions like the EU.')),
+						'desc' => gettext('If checked, registrants can be reviewed first and do not get an automatic verfification mail. You can either approve users manually or send the verification request manually after reviewing the user. The latter is recommended in some jurisdictions like the EU.')),
 				gettext('User album') => array(
 						'key' => 'register_user_create_album',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -108,7 +108,7 @@ class registerUserOptions {
 				gettext('Email ID') => array(
 						'key' => 'register_user_email_is_id',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked, The use’s e-mail address will be used as his User ID.')),
+						'desc' => gettext('If checked, the user’s e-mail address will be used as his User ID.')),
 				gettext('Email notification text (Verification request)') => array(
 						'key' => 'register_user_text',
 						'type' => OPTION_TYPE_TEXTAREA,
@@ -120,7 +120,7 @@ class registerUserOptions {
 				gettext('Data usage confirmation') => array(
 						'key' => 'register_user_dataconfirmation',
 						'type' => OPTION_TYPE_CHECKBOX,
-						'desc' => gettext('If checked a mandatory checkbox is added for users to confirm about data storage and handling by your site. This is recommend to comply with the European GDPR.')),
+						'desc' => gettext('If checked a mandatory checkbox is added for users to agree with data storage and handling by your site. This is recommend to comply with the European GDPR.')),
 				gettext('CAPTCHA') => array(
 						'key' => 'register_user_captcha',
 						'type' => OPTION_TYPE_CHECKBOX,
