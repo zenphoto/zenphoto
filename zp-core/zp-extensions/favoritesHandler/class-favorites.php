@@ -19,8 +19,16 @@ class favorites extends AlbumBase {
 		$this->table = 'albums';
 		$this->name = $user;
 		$this->owner = $user;
-		$this->setTitle(get_language_string(getOption('favorites_title')));
-		$this->setDesc(get_language_string(getOption('favorites_desc')));
+		$title = get_language_string(getOption('favorites_title'));
+		if (!$title) {
+			$title = gettext('My favorites');
+		}
+		$this->setTitle($title);
+		$desc = get_language_string(getOption('favorites_desc'));
+		if (!$desc) {
+			$desc = gettext('The albums and images selected as favorites.');
+		}
+		$this->setDesc($desc);
 		$this->imageSortDirection = getOption('favorites_image_sort_direction');
 		$this->albumSortDirection = getOption('favorites_album_sort_direction');
 		$this->imageSortType = getOption('favorites_image_sort_type');

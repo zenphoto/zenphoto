@@ -57,15 +57,11 @@ class favoritesOptions {
 		if (OFFSET_PATH == 2) {
 			setOptionDefault('favorites_multi', 0);
 			setOptionDefault('favorites_link', '_PAGE_/favorites');
-			gettext($str = 'My favorites');
-			setOptionDefault('favorites_title', getAllTranslations($str));
-			setOptionDefault('favorites_linktext', getAllTranslations($str));
-			gettext($str = 'The albums and images selected as favorites.');
-			setOptionDefault('favorites_desc', getAllTranslations($str));
-			gettext($str = 'Add favorite');
-			setOptionDefault('favorites_add_button', getAllTranslations($str));
-			gettext($str = 'Remove favorite');
-			setOptionDefault('favorites_remove_button', getAllTranslations($str));
+			setOptionDefault('favorites_title', '');
+			setOptionDefault('favorites_linktext', '');
+			setOptionDefault('favorites_desc', '');
+			setOptionDefault('favorites_add_button', '');
+			setOptionDefault('favorites_remove_button', '');
 			setOptionDefault('favorites_album_sort_type', 'title');
 			setOptionDefault('favorites_image_sort_type', 'title');
 			setOptionDefault('favorites_album_sort_direction', '');
@@ -92,7 +88,7 @@ class favoritesOptions {
 						'key' => 'favorites_linktext',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'multilingual' => true,
-						'desc' => gettext('The text for the link to the favorites page.')),
+						'desc' => gettext('The text for the link to the favorites page. Leave empty to use the default text.')),
 				gettext('Multiple sets') => array(
 						'key' => 'favorites_multi',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -101,21 +97,21 @@ class favoritesOptions {
 						'key' => 'favorites_add_button',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'multilingual' => true,
-						'desc' => gettext('Default text for the <em>add to favorites</em> button.')),
+						'desc' => gettext('Text for the <em>add to favorites</em> button. Leave empty to use the default text.')),
 				gettext('Remove button') => array(
 						'key' => 'favorites_remove_button',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'multilingual' => true,
-						'desc' => gettext('Default text for the <em>remove from favorites</em> button.')),
+						'desc' => gettext('Text for the <em>remove from favorites</em> button. Leave empty to use the default text.')),
 				gettext('Title') => array(
 						'key' => 'favorites_title', 'type' => OPTION_TYPE_TEXTBOX,
 						'multilingual' => true,
-						'desc' => gettext('The favorites page title text.')),
+						'desc' => gettext('The favorites page title text. Leave empty to use the default text.')),
 				gettext('Description') => array(
 						'key' => 'favorites_desc',
 						'type' => OPTION_TYPE_TEXTAREA,
 						'multilingual' => true,
-						'desc' => gettext('The favorites page description text.')),
+						'desc' => gettext('The favorites page description text. Leave empty to use the default text.')),
 				gettext('Sort albums by') => array(
 						'key' => 'favorites_albumsort',
 						'type' => OPTION_TYPE_CUSTOM,
@@ -333,9 +329,15 @@ if (OFFSET_PATH) {
 			$v = 1;
 			if (is_null($add)) {
 				$add = get_language_string(getOption('favorites_add_button'));
+				if (!$add) {
+					$add = gettext('Add favorite');
+				}
 			}
 			if (is_null($remove)) {
 				$remove = get_language_string(getOption('favorites_remove_button'));
+				if (!$remove) {
+					$remove = gettext('Remove favorite');
+				}
 			} else {
 				$add = $remove;
 			}
@@ -425,6 +427,9 @@ if (OFFSET_PATH) {
 			if (zp_loggedin()) {
 				if (is_null($text)) {
 					$text = get_language_string(getOption('favorites_linktext'));
+					if (!$text) {
+						$text = gettext('My favorites');
+					}
 				}
 				$betwixt = NULL;
 				echo $before;

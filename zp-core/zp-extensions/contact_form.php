@@ -38,14 +38,11 @@ class contactformOptions {
 			purgeOption('contactform_mailaddress');
 		}
 		setOptionDefault('contactform_rewrite', '_PAGE_/contact');
-		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
-		setOptionDefault('contactform_introtext', getAllTranslations($str));
-		gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
-		setOptionDefault('contactform_confirmtext', getAllTranslations($str));
+		setOptionDefault('contactform_introtext', '');
+		setOptionDefault('contactform_confirmtext', '');
 		gettext($str = '<p>Thanks for your message.</p>');
-		setOptionDefault('contactform_thankstext', getAllTranslations($str));
-		gettext($str = 'Send another message.');
-		setOptionDefault('contactform_newmessagelink', getAllTranslations($str));
+		setOptionDefault('contactform_thankstext', '');
+		setOptionDefault('contactform_newmessagelink', '');
 		setOptionDefault('contactform_title', "show");
 		setOptionDefault('contactform_name', "required");
 		setOptionDefault('contactform_company', "show");
@@ -60,8 +57,7 @@ class contactformOptions {
 		setOptionDefault('contactform_captcha', 0);
 		setOptionDefault('contactform_confirm', 1);
 		setOptionDefault('contactform_sendcopy', 0);
-		gettext($str = '<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
-		setOptionDefault('contactform_sendcopy_text', getAllTranslations($str));
+		setOptionDefault('contactform_sendcopy_text', '');
 		$mailings = $_zp_authority->getAdminEmail();
 		$email_list = '';
 		foreach ($mailings as $email) {
@@ -94,19 +90,19 @@ class contactformOptions {
 				gettext('Intro text') => array(
 						'key' => 'contactform_introtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The intro text for your contact form")),
+						'desc' => gettext("The intro text for your contact form. Leave empty to use the default text")),
 				gettext('Confirm text') => array(
 						'key' => 'contactform_confirmtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message.")),
+						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message. Leave empty to use the default text")),
 				gettext('Thanks text') => array(
 						'key' => 'contactform_thankstext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text that is shown after a message has been confirmed and sent.")),
+						'desc' => gettext("The text that is shown after a message has been confirmed and sent. Leave empty to use the default text")),
 				gettext('New message link text') => array(
 						'key' => 'contactform_newmessagelink',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
+						'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message. Leave empty to use the default text.")),
 				gettext('Require confirmation') => array(
 						'key' => 'contactform_confirm',
 						'type' => OPTION_TYPE_CHECKBOX,
@@ -118,7 +114,7 @@ class contactformOptions {
 				gettext('Send copy note text') => array(
 						'key' => 'contactform_sendcopy_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
+						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set. Leave empty to use the default text")),
 				gettext('Contact recipients') => array(
 						'key' => 'contactform_mailaddress',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -435,7 +431,11 @@ class contactForm {
 				$message .= "\n\n";
 
 				if (getOption('contactform_confirm')) {
-					echo get_language_string(getOption("contactform_confirmtext"));
+					$confirmtext = get_language_string(getOption("contactform_confirmtext"));
+					if (!$confirmtext) {
+						$confirmtext = gettext('<p>Please confirm that you really want to send this email. Thanks.</p>');
+					}
+					echo $confirmtext;
 					if (getOption('contactform_sendcopy')) {
 						echo get_language_string(getOption("contactform_sendcopy_text"));
 					}
@@ -509,9 +509,17 @@ class contactForm {
 				</div>
 				<?php
 			} else {
-				echo get_language_string(getOption("contactform_thankstext"));
+				$thankstext = get_language_string(getOption("contactform_thankstext"));
+				if(!$thankstext) {
+					$thankstext = gettext('<p>Thanks for your message.</p>');
+				}
+				echo $thankstext;	
 			}
-			echo '<p><a  href="?again">' . get_language_string(getOption('contactform_newmessagelink')) . '</a></p>';
+			$newmessagelinktext = get_language_string(getOption('contactform_newmessagelink'));
+			if ($newmessagelinktext) {
+				$newmessagelinktext = gettext('Send another message.');
+			}
+			echo '<p><a  href="?again">' . $newmessagelinktext . '</a></p>';
 		} else {
 			if (count($error) <= 0) {
 				if (zp_loggedin()) {
@@ -560,9 +568,16 @@ class contactForm {
 					);
 				}
 			}
-			echo get_language_string(getOption("contactform_introtext"));
+			$introtext = get_language_string(getOption("contactform_introtext"));
+			if (!$introtext) {
+				$introtext = gettext('<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
+			}
+			echo $introtext;
 			if (getOption('contactform_sendcopy')) {
-				echo get_language_string(getOption("contactform_sendcopy_text"));
+				$sendcopytext = get_language_string(getOption("contactform_sendcopy_text"));
+				if( !$sendcopytext) {
+					$sendcopytext = gettext('<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
+				}
 			}
 			self::$processing_post = $_processing_post = false;
 			include(getPlugin('contact_form/form.php', true));

@@ -147,8 +147,7 @@ class zenpagecms {
 			setOptionDefault('zenpage_articles_per_page', '10');
 			setOptionDefault('zenpage_text_length', '500');
 			setOptionDefault('zenpage_textshorten_indicator', ' (...)');
-			gettext($str = 'Read more');
-			setOptionDefault('zenpage_read_more', getAllTranslations($str));
+			setOptionDefault('zenpage_read_more', '');
 			setOptionDefault('zenpage_indexhitcounter', false);
 			setOptionDefault('enabled-zenpage-items', 'news-and-pages');
 			
@@ -195,7 +194,7 @@ class zenpagecms {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'multilingual' => 1,
 						'order' => 3,
-						'desc' => gettext("The text for the link to the full article.")),
+						'desc' => gettext("The text for the link to the full article. Leave empty to use the default text.")),
 				gettext('New titlelink with date: Item types') => array(
 						'key' => 'zenpage_titlelinkdate_items',
 						'type' => OPTION_TYPE_CHECKBOX_ARRAY,
