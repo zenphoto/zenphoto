@@ -618,8 +618,9 @@ function timezoneDiff($server, $local) {
 }
 
 /**
- * returns a serialized "multilingual array" of translations
- * Used for setting default options with multi-lingual strings.
+ * Returns a serialized "multilingual array" of translations of the currently active translations and if there is an gettext translation
+ * Used for setting static multi-lingual strings in the db if a dynamic gettexted text doesn't work.
+ * 
  * @param string $text to be translated
  */
 function getAllTranslations($text) {
