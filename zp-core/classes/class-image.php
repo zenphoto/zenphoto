@@ -146,10 +146,12 @@ class Image extends MediaObject {
 
 	/**
 	 * Returns true if the object is a zenphoto 'image'
+	 * Note: This method is theme image context sensitive if $album = null and may for the current image!
+	 * Use the method Image::isImageObject() for a context unaware check
 	 * 
 	 * @since 1.6 - Moved to Image class as static method
 	 *
-	 * @param object $image
+	 * @param object $image Object to test
 	 * @return bool
 	 */
 	static function isImageClass($image = NULL) {
@@ -159,7 +161,22 @@ class Image extends MediaObject {
 				return false;
 			$image = $_zp_current_image;
 		}
-		return is_object($image) && ($image->table == 'images');
+		return static::isImageObject($image);
+	}
+		
+	/**
+	 * Checks if $obj is a Zenphoto "image".
+	 * 
+	 * @since 1.6.6 - Added as context unaware alternative to Image::isImageClass()
+	 * 
+	 * @param object $obj Object to test
+	 * @return bool
+	 */
+	static function isImageObject($obj = null) {
+		if (is_null($obj)) {
+			return false;
+		}
+		return is_object($obj) && ($obj->table == 'images');
 	}
 
 	/**

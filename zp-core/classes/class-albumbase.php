@@ -58,9 +58,12 @@ class AlbumBase extends MediaObject {
 	/**
 	 * Returns true if the object is a zenphoto 'album'
 	 * 
+	 * Note: THis method is theme album context sensitive if $album = null and may for the current album!
+	 * Use the method Albumbase::isAlbumObject() for a context unaware test
+	 * 
 	 * @since 1.6 - Moved to AlbumBase class as static method
 	 *
-	 * @param object $album
+	 * @param object $album Album object to check
 	 * @return bool
 	 */
 	static function isAlbumClass($album = NULL) {
@@ -70,7 +73,22 @@ class AlbumBase extends MediaObject {
 				return false;
 			$album = $_zp_current_album;
 		}
-		return is_object($album) && ($album->table == 'albums');
+		return static::isAlbumObject($album);
+	}
+	
+	/**
+	 * Checks if $obj is a Zenphoto "album".
+	 * 
+	 * @since 1.6.6 - Added as context unaware alternative to AlbumBase::isAlbumClass()
+	 * 
+	 * @param object $obj 
+	 * @return bool
+	 */
+	static function isAlbumObject($obj = null) {
+		if (is_null($obj)) {
+			return false;
+		}
+		return is_object($obj) && ($obj->table == 'albums');
 	}
 
 	/**
