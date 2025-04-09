@@ -122,7 +122,6 @@ if (isset($_GET['action'])) {
 							} else {
 								$what = 'update';
 								$userobj = Authority::newAdministrator($user);
-								markUpdated();
 							}
 
 							if (isset($_POST[$i . '-admin_name'])) {
@@ -226,8 +225,11 @@ if (isset($_GET['action'])) {
 							if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate' && extensionEnabled('register_user')) {
 								registerUser::sendVerificationEmail($userobj, 'authentication');
 							}
+			
 							if ($_zp_admin_user_updated) {
+								if(in_array($what, array('new', 'update'))) {
 								$returntab .= '&show[]=' . $user;
+								}
 								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 								if (empty($msg)) {
 									if (!$notify)
