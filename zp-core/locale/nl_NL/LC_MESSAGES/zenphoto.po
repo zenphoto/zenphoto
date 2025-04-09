@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-06 17:44+0200\n"
+"POT-Creation-Date: 2025-04-07 17:20+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -5993,20 +5993,20 @@ msgstr "Error: Het album %s is niet leesbaar."
 msgid "Error: The album named %s cannot be found."
 msgstr "Fout: Het album genaamd %s kan niet gevonden worden."
 
-#: zp-core/classes/class-albumbase.php:93
+#: zp-core/classes/class-albumbase.php:111
 msgid "An album object was instantiated without using the newAlbum() function."
 msgstr ""
 "Een albumobject was geïnstantieerd zonder de functie <em>newAlbum()</em> te "
 "gebruiken."
 
-#: zp-core/classes/class-albumbase.php:124
-#: zp-core/classes/class-albumbase.php:136
+#: zp-core/classes/class-albumbase.php:142
+#: zp-core/classes/class-albumbase.php:154
 msgid "Use getName() instead"
 msgstr ""
 "De functie <code>getFileName()</code> is verouderd. Gebruik in plaats "
 "hiervan <code>getName()</code>."
 
-#: zp-core/classes/class-albumbase.php:235
+#: zp-core/classes/class-albumbase.php:253
 msgid "Use getUrParent() instead"
 msgstr ""
 "De functie <code>getUrAlbum()</code> is verouderd. Gebruik in plaats hiervan "
@@ -6984,7 +6984,7 @@ msgstr "Foute album object parameter naar newImage(%s)"
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Verkeerde bestandsextensie in newImage(%s)"
 
-#: zp-core/classes/class-image.php:198
+#: zp-core/classes/class-image.php:215
 msgid "An image object was instantiated without using the newImage() function."
 msgstr ""
 "Een afbeeldingsobject was geïnstantieerd zonder de functie <em>newImage()</"
@@ -14054,12 +14054,12 @@ msgid ""
 msgstr "Vink uit om de jQuery paginering uit te zetten. Normaal staat dit aan."
 
 #: zp-core/zp-extensions/comment_form.php:190
-#: zp-core/zp-extensions/contact_form.php:181
+#: zp-core/zp-extensions/contact_form.php:177
 msgid "Data usage confirmation"
 msgstr "Bevestiging gebruikersgegevens"
 
 #: zp-core/zp-extensions/comment_form.php:193
-#: zp-core/zp-extensions/contact_form.php:184
+#: zp-core/zp-extensions/contact_form.php:180
 msgid ""
 "If checked a mandatory checkbox is added for users to confirm about data "
 "storage and handling by your site. This is recommend to comply with the "
@@ -14070,12 +14070,12 @@ msgstr ""
 "website zijn/haar gegevens opslaat en verwerkt."
 
 #: zp-core/zp-extensions/comment_form.php:194
-#: zp-core/zp-extensions/contact_form.php:185
+#: zp-core/zp-extensions/contact_form.php:181
 msgid "Autocomplete"
 msgstr "Autocomplete"
 
 #: zp-core/zp-extensions/comment_form.php:197
-#: zp-core/zp-extensions/contact_form.php:188
+#: zp-core/zp-extensions/contact_form.php:184
 msgid ""
 "If checked the form allows autocompletion by the browser. Note that this may "
 "be of privacy concerns."
@@ -14100,7 +14100,7 @@ msgstr ""
 "verificatie tonen."
 
 #: zp-core/zp-extensions/comment_form.php:207
-#: zp-core/zp-extensions/contact_form.php:194
+#: zp-core/zp-extensions/contact_form.php:190
 msgid "Math quiz"
 msgstr "Rekenquiz"
 
@@ -14113,12 +14113,12 @@ msgstr ""
 "rekenvraag moeten beantwoorden voordat ze een reactie kunnen verzenden."
 
 #: zp-core/zp-extensions/comment_form.php:211
-#: zp-core/zp-extensions/contact_form.php:198
+#: zp-core/zp-extensions/contact_form.php:194
 msgid "Math quiz question"
 msgstr "Vraag rekenquiz"
 
 #: zp-core/zp-extensions/comment_form.php:214
-#: zp-core/zp-extensions/contact_form.php:201
+#: zp-core/zp-extensions/contact_form.php:197
 msgid ""
 "The question for the math quiz. Enter a valid PHP expression like 2+3*2. "
 "Allowed chars: <code>0-9+-*/.()</code>."
@@ -14127,7 +14127,7 @@ msgstr ""
 "2+3*2. Toegestane tekens: <code>0-9+-*/.()</code>."
 
 #: zp-core/zp-extensions/comment_form.php:215
-#: zp-core/zp-extensions/contact_form.php:202
+#: zp-core/zp-extensions/contact_form.php:198
 msgid "Text quiz"
 msgstr "Tekstquiz"
 
@@ -14140,22 +14140,22 @@ msgstr ""
 "tekstuele vraag moeten beantwoorden voordat ze een reactie kunnen verzenden."
 
 #: zp-core/zp-extensions/comment_form.php:219
-#: zp-core/zp-extensions/contact_form.php:206
+#: zp-core/zp-extensions/contact_form.php:202
 msgid "Text quiz question"
 msgstr "Vraag tekstquiz"
 
 #: zp-core/zp-extensions/comment_form.php:223
-#: zp-core/zp-extensions/contact_form.php:210
+#: zp-core/zp-extensions/contact_form.php:206
 msgid "The question for the text quiz."
 msgstr "De vraag voor de tekstquiz."
 
 #: zp-core/zp-extensions/comment_form.php:224
-#: zp-core/zp-extensions/contact_form.php:211
+#: zp-core/zp-extensions/contact_form.php:207
 msgid "Text quiz answer"
 msgstr "Antwoord tekstquiz"
 
 #: zp-core/zp-extensions/comment_form.php:228
-#: zp-core/zp-extensions/contact_form.php:215
+#: zp-core/zp-extensions/contact_form.php:211
 msgid "The answer to the text quiz question."
 msgstr "Het antwoord op de tekstquizvraag."
 
@@ -14507,7 +14507,7 @@ msgid "You must enter some text in the comment field."
 msgstr "Je bent vergeten een reactie te schrijven."
 
 #: zp-core/zp-extensions/comment_form/functions.php:331
-#: zp-core/zp-extensions/contact_form.php:342
+#: zp-core/zp-extensions/contact_form.php:338
 msgid "Please agree to storage and handling of your data by this website."
 msgstr ""
 "U dient nog in te stemmen met het opslaan en verwerken van uw gegevens door "
@@ -14661,43 +14661,20 @@ msgstr ""
 "Print een e-mail contactformulier zodat bezoekers een bericht naar de "
 "beheerder kunnen sturen."
 
-#: zp-core/zp-extensions/contact_form.php:41
-msgid ""
-"<p>Fields with <strong>*</strong> are required. HTML or any other code is "
-"not allowed.</p>"
-msgstr ""
-"<p>Velden met een <strong>*</strong> zijn verplicht. HTML of andere code is "
-"niet toegestaan.</p>"
-
 #: zp-core/zp-extensions/contact_form.php:43
-msgid "<p>Please confirm that you really want to send this email. Thanks.</p>"
-msgstr "<p>Bevestig dat je dit bericht wilt versturen.</p>"
-
-#: zp-core/zp-extensions/contact_form.php:45
+#: zp-core/zp-extensions/contact_form.php:514
 msgid "<p>Thanks for your message.</p>"
 msgstr "<p>Bedankt voor je bericht.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:47
-msgid "Send another message."
-msgstr "Stuur nog een bericht."
-
-#: zp-core/zp-extensions/contact_form.php:63
-msgid ""
-"<p>A copy of your e-mail will automatically be sent to the address you "
-"provided for your own records.</p>"
-msgstr ""
-"<p>Een kopie van je bericht wordt verzonden naar het opgegeven e-mailadres.</"
-"p>"
-
-#: zp-core/zp-extensions/contact_form.php:88
+#: zp-core/zp-extensions/contact_form.php:84
 msgid "required"
 msgstr "Verplicht"
 
-#: zp-core/zp-extensions/contact_form.php:90
+#: zp-core/zp-extensions/contact_form.php:86
 msgid "omitted"
 msgstr "Niet tonen"
 
-#: zp-core/zp-extensions/contact_form.php:92
+#: zp-core/zp-extensions/contact_form.php:88
 #, php-format
 msgid ""
 "Set if the <code>%s</code> field should be required, just shown or omitted"
@@ -14705,52 +14682,58 @@ msgstr ""
 "Geef aan of <code>%s</code> verplicht is, alleen zichtbaar moet zijn of "
 "helemaal niet getoond moet worden"
 
-#: zp-core/zp-extensions/contact_form.php:94
+#: zp-core/zp-extensions/contact_form.php:90
 msgid "Intro text"
 msgstr "Introductietekst"
 
-#: zp-core/zp-extensions/contact_form.php:97
-msgid "The intro text for your contact form"
-msgstr "De introductietekst voor het contactformulier"
+#: zp-core/zp-extensions/contact_form.php:93
+msgid ""
+"The intro text for your contact form. Leave empty to use the default text"
+msgstr ""
+"De introductietekst voor het contactformulier. Laat leeg om de standaard "
+"tekst te gebruiken."
 
-#: zp-core/zp-extensions/contact_form.php:98
+#: zp-core/zp-extensions/contact_form.php:94
 msgid "Confirm text"
 msgstr "Bevestigingstekst"
 
-#: zp-core/zp-extensions/contact_form.php:101
+#: zp-core/zp-extensions/contact_form.php:97
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
-"message."
+"message. Leave empty to use the default text"
 msgstr ""
 "De tekst die de gebruiker vraagt om te bevestigen het bericht daadwerkelijk "
-"te versturen."
+"te versturen. Laat leeg om de standaard tekst te gebruiken."
 
-#: zp-core/zp-extensions/contact_form.php:102
+#: zp-core/zp-extensions/contact_form.php:98
 msgid "Thanks text"
 msgstr "Bedankt tekst"
 
-#: zp-core/zp-extensions/contact_form.php:105
-msgid "The text that is shown after a message has been confirmed and sent."
+#: zp-core/zp-extensions/contact_form.php:101
+msgid ""
+"The text that is shown after a message has been confirmed and sent. Leave "
+"empty to use the default text"
 msgstr ""
-"De tekst die getoond wordt nadat een bericht bevestigd en verstuurd is."
+"De tekst die getoond wordt nadat een bericht bevestigd en verstuurd is. Laat "
+"leeg om de standaard tekst te gebruiken."
 
-#: zp-core/zp-extensions/contact_form.php:106
+#: zp-core/zp-extensions/contact_form.php:102
 msgid "New message link text"
 msgstr "Nieuw-bericht-link tekst"
 
-#: zp-core/zp-extensions/contact_form.php:109
+#: zp-core/zp-extensions/contact_form.php:105
 msgid ""
 "The text for the link after the thanks text to return to the contact page to "
-"send another message."
+"send another message. Leave empty to use the default text."
 msgstr ""
 "De tekst voor de link om terug te keren naar de contactpagina voor een nieuw "
-"bericht."
+"bericht. Laat leeg om de standaard tekst te gebruiken."
 
-#: zp-core/zp-extensions/contact_form.php:110
+#: zp-core/zp-extensions/contact_form.php:106
 msgid "Require confirmation"
 msgstr "Bevestiging vereist"
 
-#: zp-core/zp-extensions/contact_form.php:113
+#: zp-core/zp-extensions/contact_form.php:109
 msgid ""
 "If checked, a confirmation form will be presented before sending the contact "
 "message."
@@ -14758,11 +14741,11 @@ msgstr ""
 "Indien aangevinkt, zal een bevestiging gevraagd worden voordat het bericht "
 "wordt verzonden."
 
-#: zp-core/zp-extensions/contact_form.php:114
+#: zp-core/zp-extensions/contact_form.php:110
 msgid "Send copy"
 msgstr "Stuur kopie"
 
-#: zp-core/zp-extensions/contact_form.php:117
+#: zp-core/zp-extensions/contact_form.php:113
 msgid ""
 "If checked, a copy of the message will be sent to the address provided. <p "
 "class='notebox'><strong>Caution: </strong> If you check this option it is "
@@ -14778,23 +14761,23 @@ msgstr ""
 "dit formulier kan misbruiken voor spam! In een aantal landen kun je daarvoor "
 "zelf verantwoordelijk worden gehouden.</p>"
 
-#: zp-core/zp-extensions/contact_form.php:118
+#: zp-core/zp-extensions/contact_form.php:114
 msgid "Send copy note text"
 msgstr "Begeleidende tekst voor kopie"
 
-#: zp-core/zp-extensions/contact_form.php:121
+#: zp-core/zp-extensions/contact_form.php:117
 msgid ""
 "The text for the note about sending a copy to the address provided in case "
-"that option is set."
+"that option is set. Leave empty to use the default text"
 msgstr ""
 "De tekst die uitlegt dat er een kopie naar het opgegeven e-mailadres wordt "
-"verzonden."
+"verzonden. Laat leeg om de standaard tekst te gebruiken."
 
-#: zp-core/zp-extensions/contact_form.php:122
+#: zp-core/zp-extensions/contact_form.php:118
 msgid "Contact recipients"
 msgstr "Ontvanger(s) van het bericht"
 
-#: zp-core/zp-extensions/contact_form.php:125
+#: zp-core/zp-extensions/contact_form.php:121
 msgid ""
 "The e-mail address the messages should be sent to. Enter one or more address "
 "separated by semicolons."
@@ -14802,48 +14785,48 @@ msgstr ""
 "Het e-mailadres waarnaar het bericht wordt verzonden. Meerdere adressen "
 "moeten, zonder spaties, worden gescheiden door een puntkomma."
 
+#: zp-core/zp-extensions/contact_form.php:127
 #: zp-core/zp-extensions/contact_form.php:131
-#: zp-core/zp-extensions/contact_form.php:135
 msgid "Name"
 msgstr "Naam"
 
+#: zp-core/zp-extensions/contact_form.php:132
 #: zp-core/zp-extensions/contact_form.php:136
-#: zp-core/zp-extensions/contact_form.php:140
 msgid "Company"
 msgstr "Bedrijf"
 
+#: zp-core/zp-extensions/contact_form.php:137
 #: zp-core/zp-extensions/contact_form.php:141
-#: zp-core/zp-extensions/contact_form.php:145
 msgid "Street"
 msgstr "Straat"
 
+#: zp-core/zp-extensions/contact_form.php:152
 #: zp-core/zp-extensions/contact_form.php:156
-#: zp-core/zp-extensions/contact_form.php:160
 msgid "Postal code"
 msgstr "Postcode"
 
+#: zp-core/zp-extensions/contact_form.php:162
 #: zp-core/zp-extensions/contact_form.php:166
-#: zp-core/zp-extensions/contact_form.php:170
 msgid "E-mail"
 msgstr "E-mail"
 
-#: zp-core/zp-extensions/contact_form.php:176
+#: zp-core/zp-extensions/contact_form.php:172
 msgid "Phone"
 msgstr "Telefoon"
 
-#: zp-core/zp-extensions/contact_form.php:180
+#: zp-core/zp-extensions/contact_form.php:176
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-#: zp-core/zp-extensions/contact_form.php:189
+#: zp-core/zp-extensions/contact_form.php:185
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: zp-core/zp-extensions/contact_form.php:193
+#: zp-core/zp-extensions/contact_form.php:189
 msgid "If checked, the form will include a Captcha verification."
 msgstr "Indien aangevinkt, zal het formulier een Captcha verificatie tonen."
 
-#: zp-core/zp-extensions/contact_form.php:197
+#: zp-core/zp-extensions/contact_form.php:193
 msgid ""
 "Enables a mandatory input field so users have to answer a math question "
 "before they can send any mail."
@@ -14851,7 +14834,7 @@ msgstr ""
 "Hiermee wordt een verplicht invoerveld getoond waarbij gebruikers een "
 "rekenvraag moeten beantwoorden voordat ze een bericht kunnen verzenden."
 
-#: zp-core/zp-extensions/contact_form.php:205
+#: zp-core/zp-extensions/contact_form.php:201
 msgid ""
 "Enables a mandatory input field so users have to answer a text question "
 "before they can send any mail."
@@ -14859,90 +14842,94 @@ msgstr ""
 "Hiermee wordt een verplicht invoerveld getoond waarbij gebruikers een "
 "tekstuele vraag moeten beantwoorden voordat ze een bericht kunnen verzenden."
 
-#: zp-core/zp-extensions/contact_form.php:287
+#: zp-core/zp-extensions/contact_form.php:283
 msgid "a title"
 msgstr "een title"
 
-#: zp-core/zp-extensions/contact_form.php:290
+#: zp-core/zp-extensions/contact_form.php:286
 msgid "a name"
 msgstr "een naam"
 
-#: zp-core/zp-extensions/contact_form.php:293
+#: zp-core/zp-extensions/contact_form.php:289
 msgid "a company"
 msgstr "een bedrijf"
 
-#: zp-core/zp-extensions/contact_form.php:296
+#: zp-core/zp-extensions/contact_form.php:292
 msgid "a street"
 msgstr "een straat"
 
-#: zp-core/zp-extensions/contact_form.php:299
+#: zp-core/zp-extensions/contact_form.php:295
 msgid "a city"
 msgstr "een plaats"
 
-#: zp-core/zp-extensions/contact_form.php:302
+#: zp-core/zp-extensions/contact_form.php:298
 msgid "a state"
 msgstr "een staat"
 
-#: zp-core/zp-extensions/contact_form.php:305
+#: zp-core/zp-extensions/contact_form.php:301
 msgid "a country"
 msgstr "een land"
 
-#: zp-core/zp-extensions/contact_form.php:308
+#: zp-core/zp-extensions/contact_form.php:304
 msgid "a postal code"
 msgstr "een postcode"
 
-#: zp-core/zp-extensions/contact_form.php:311
+#: zp-core/zp-extensions/contact_form.php:307
 msgid "a valid email address"
 msgstr "een geldig e-mailadres"
 
-#: zp-core/zp-extensions/contact_form.php:314
+#: zp-core/zp-extensions/contact_form.php:310
 msgid "a website"
 msgstr "een website"
 
-#: zp-core/zp-extensions/contact_form.php:323
+#: zp-core/zp-extensions/contact_form.php:319
 msgid "a phone number"
 msgstr "een telefoonnummer"
 
-#: zp-core/zp-extensions/contact_form.php:326
+#: zp-core/zp-extensions/contact_form.php:322
 msgid "a subject"
 msgstr "een onderwerp"
 
-#: zp-core/zp-extensions/contact_form.php:329
+#: zp-core/zp-extensions/contact_form.php:325
 msgid "a message"
 msgstr "een bericht"
 
-#: zp-core/zp-extensions/contact_form.php:337
+#: zp-core/zp-extensions/contact_form.php:333
 msgid "the correct CAPTCHA verification code"
 msgstr "de juiste CAPTCHA code"
 
-#: zp-core/zp-extensions/contact_form.php:350
+#: zp-core/zp-extensions/contact_form.php:346
 msgid "the correct text quiz answer"
 msgstr "het juiste antwoord op de tekstquizvraag"
 
-#: zp-core/zp-extensions/contact_form.php:357
+#: zp-core/zp-extensions/contact_form.php:353
 msgid "the correct math quiz answer"
 msgstr "het juiste antwoord op de rekenquiz"
 
-#: zp-core/zp-extensions/contact_form.php:374
+#: zp-core/zp-extensions/contact_form.php:370
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Vul alsjeblieft %s in."
 
-#: zp-core/zp-extensions/contact_form.php:377
+#: zp-core/zp-extensions/contact_form.php:373
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Vul alsjeblieft %1$s en %2$s in."
 
-#: zp-core/zp-extensions/contact_form.php:386
+#: zp-core/zp-extensions/contact_form.php:382
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "De volgende velden zijn niet of onjuist ingevuld: %s"
 
-#: zp-core/zp-extensions/contact_form.php:433
+#: zp-core/zp-extensions/contact_form.php:429
 msgid "I agree to storage and handling of my data by this website."
 msgstr ""
 "Ik ga akkoord met het opslaan en verwerken van mijn gegevens door deze "
 "website."
+
+#: zp-core/zp-extensions/contact_form.php:436
+msgid "<p>Please confirm that you really want to send this email. Thanks.</p>"
+msgstr "<p>Bevestig dat je dit bericht wilt versturen.</p>"
 
 #: zp-core/zp-extensions/contact_form.php:456
 msgid "Confirm"
@@ -14958,41 +14945,61 @@ msgid_plural "Errors sending mail:"
 msgstr[0] "Fout bij het verzenden van de e-mail"
 msgstr[1] "Fouten bij het verzenden van de e-mails"
 
-#: zp-core/zp-extensions/contact_form.php:796
+#: zp-core/zp-extensions/contact_form.php:520
+msgid "Send another message."
+msgstr "Stuur nog een bericht."
+
+#: zp-core/zp-extensions/contact_form.php:573
+msgid ""
+"<p>Fields with <strong>*</strong> are required. HTML or any other code is "
+"not allowed.</p>"
+msgstr ""
+"<p>Velden met een <strong>*</strong> zijn verplicht. HTML of andere code is "
+"niet toegestaan.</p>"
+
+#: zp-core/zp-extensions/contact_form.php:579
+msgid ""
+"<p>A copy of your e-mail will automatically be sent to the address you "
+"provided for your own records.</p>"
+msgstr ""
+"<p>Een kopie van je bericht wordt verzonden naar het opgegeven e-mailadres.</"
+"p>"
+
+#: zp-core/zp-extensions/contact_form.php:811
 msgid "Set %1 to optionally override the subject."
 msgstr "Stel %1 in om te bepalen wat het <em>Onderwerp</em> is."
 
-#: zp-core/zp-extensions/contact_form.php:813
+#: zp-core/zp-extensions/contact_form.php:828
 msgid "Use contactForm::getField() instead"
 msgstr ""
 "De functie <code>getField()</code> is verouderd. Gebruik in plaats hiervan "
 "<code>contactForm::getField()</code>"
 
-#: zp-core/zp-extensions/contact_form.php:826
+#: zp-core/zp-extensions/contact_form.php:841
 msgid "Use contactForm::printContactForm() instead"
 msgstr ""
 "De functie <code>printContactForm()</code> is verouderd. Gebruik in plaats "
 "hiervan <code>contactForm::printContactForm()</code>"
 
-#: zp-core/zp-extensions/contact_form.php:841
+#: zp-core/zp-extensions/contact_form.php:856
 msgid "Use contactForm::isVisibleField() instead."
 msgstr ""
 "De functie <code>showOrNotShowField()</code> is verouderd. Gebruik in plaats "
 "hiervan <code>contactForm::isVisibleField()<code>."
 
-#: zp-core/zp-extensions/contact_form.php:855
+#: zp-core/zp-extensions/contact_form.php:870
 msgid "Use contactForm::getRequiredFieldMark() instead"
 msgstr ""
 "De functie <code>checkRequiredField()</code> is verouderd. Gebruik in plaats "
 "hiervan <code>contactForm::getRequiredFieldMark()</code>.."
 
-#: zp-core/zp-extensions/contact_form.php:868
+#: zp-core/zp-extensions/contact_form.php:883
 msgid "Use contactForm::printMacro() instead"
 msgstr ""
 "De functie <code>printContactFormMacro()</code> is verouderd. Gebruik in "
 "plaats hiervan <code>contactForm::printMacro()</code>"
 
-#: zp-core/zp-extensions/contact_form.php:881
+#: zp-core/zp-extensions/contact_form.php:896
 msgid "Use contactForm::getMacros() instead"
 msgstr ""
 "De functie <code>getContactFormMacros()</code> is verouderd. Gebruik in "
@@ -16171,61 +16178,66 @@ msgstr "The macro PARAM_DUMP gaf het volgende resultaat:"
 msgid "Support for <em>favorites</em> handling."
 msgstr "Voor de verwerking van <em>favorites</em>."
 
-#: zp-core/zp-extensions/favoritesHandler.php:63
-msgid "The albums and images selected as favorites."
-msgstr "De albums en afbeeldingen die zijn geselecteerd als favorieten."
-
-#: zp-core/zp-extensions/favoritesHandler.php:65
-msgid "Add favorite"
-msgstr "Voeg toe aan favorieten"
-
-#: zp-core/zp-extensions/favoritesHandler.php:67
-msgid "Remove favorite"
-msgstr "Verwijder favoriet"
-
-#: zp-core/zp-extensions/favoritesHandler.php:91
+#: zp-core/zp-extensions/favoritesHandler.php:87
 msgid "Link text"
 msgstr "Link tekst"
 
-#: zp-core/zp-extensions/favoritesHandler.php:95
-msgid "The text for the link to the favorites page."
-msgstr "De tekst voor de link naar de favorietenpagina."
+#: zp-core/zp-extensions/favoritesHandler.php:91
+msgid ""
+"The text for the link to the favorites page. Leave empty to use the default "
+"text."
+msgstr ""
+"De tekst voor de link naar de favorieten pagina. Laat leeg om de standaard "
+"tekst te gebruiken."
 
-#: zp-core/zp-extensions/favoritesHandler.php:96
+#: zp-core/zp-extensions/favoritesHandler.php:92
 msgid "Multiple sets"
 msgstr "Meerdere sets"
 
-#: zp-core/zp-extensions/favoritesHandler.php:99
+#: zp-core/zp-extensions/favoritesHandler.php:95
 msgid "If enabled a user may have multiple (named) favorites."
 msgstr ""
 "Vink aan als je meerdere sets met favorieten wilt.<br />Je kunt iedere set "
 "een eigen naam geven."
 
-#: zp-core/zp-extensions/favoritesHandler.php:100
+#: zp-core/zp-extensions/favoritesHandler.php:96
 msgid "Add button"
-msgstr "Voeg toe knop"
+msgstr "Voeg toe aan favorieten"
 
-#: zp-core/zp-extensions/favoritesHandler.php:104
-msgid "Default text for the <em>add to favorites</em> button."
-msgstr "Tekst voor de <em>Voeg toe aan favorieten</em> knop."
+#: zp-core/zp-extensions/favoritesHandler.php:100
+msgid ""
+"Text for the <em>add to favorites</em> button. Leave empty to use the "
+"default text."
+msgstr ""
+"De tekst voor de <em>Voeg toe aan favorieten</em> knop. Laat leeg om de "
+"standaard tekst te gebruiken."
+
+#: zp-core/zp-extensions/favoritesHandler.php:101
+msgid "Remove button"
+msgstr "Verwijder uit favorieten"
 
 #: zp-core/zp-extensions/favoritesHandler.php:105
-msgid "Remove button"
-msgstr "Verwijder knop"
+msgid ""
+"Text for the <em>remove from favorites</em> button. Leave empty to use the "
+"default text."
+msgstr ""
+"De tekst voor de <em>Verwijder uit favorieten</em> knop. Laat leeg om de "
+"standaard tekst te gebruiken."
 
 #: zp-core/zp-extensions/favoritesHandler.php:109
-msgid "Default text for the <em>remove from favorites</em> button."
-msgstr "Tekst voor de <em>Verwijder uit favorieten</em> knop."
+msgid "The favorites page title text. Leave empty to use the default text."
+msgstr ""
+"De titel van de favorieten pagina. Laat leeg om de standaard tekst te "
+"gebruiken."
 
-#: zp-core/zp-extensions/favoritesHandler.php:113
-msgid "The favorites page title text."
-msgstr "De titel voor de favorietenpagina"
+#: zp-core/zp-extensions/favoritesHandler.php:114
+msgid ""
+"The favorites page description text. Leave empty to use the default text."
+msgstr ""
+"De beschrijving op de favorieten pagina. Laat leeg om de standaard tekst te "
+"gebruiken."
 
-#: zp-core/zp-extensions/favoritesHandler.php:118
-msgid "The favorites page description text."
-msgstr "Beschrijving van de favorietenpagina."
-
-#: zp-core/zp-extensions/favoritesHandler.php:132
+#: zp-core/zp-extensions/favoritesHandler.php:128
 msgid ""
 "<p class=\"notebox\">Favorites requires the <code>mod_rewrite</code> option "
 "be enabled.</p>"
@@ -16233,7 +16245,19 @@ msgstr ""
 "<p class=\"notebox\">Voor favorieten moet de <code>mod_rewrite</code> optie "
 "geactiveerd zijn.</p>"
 
-#: zp-core/zp-extensions/favoritesHandler/class-favorites.php:133
+#: zp-core/zp-extensions/favoritesHandler.php:333
+msgid "Add favorite"
+msgstr "Voeg toe aan favorieten"
+
+#: zp-core/zp-extensions/favoritesHandler.php:339
+msgid "Remove favorite"
+msgstr "Verwijder favoriet"
+
+#: zp-core/zp-extensions/favoritesHandler/class-favorites.php:29
+msgid "The albums and images selected as favorites."
+msgstr "De albums en afbeeldingen die zijn geselecteerd als favorieten."
+
+#: zp-core/zp-extensions/favoritesHandler/class-favorites.php:141
 msgid "Users watching:"
 msgstr "Bezoekers:"
 
@@ -18837,7 +18861,7 @@ msgstr ""
 "Toont een gepagineerde thumbnailnavigatie op <em>image.php</em>, "
 "onafhankelijk van de <em>album.php</em> thumbnails."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:44
+#: zp-core/zp-extensions/paged_thumbs_nav.php:42
 msgid "Thumbs per page"
 msgstr "Thumbnails per pagina"
 
@@ -18853,44 +18877,48 @@ msgstr ""
 msgid "Counter"
 msgstr "Teller"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:47
+#: zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "If you want to show the counter “x - y of z images”."
 msgstr "Als je de teller “x - y van z afbeeldingen” wilt tonen."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:48
+#: zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid "Prevtext"
 msgstr "Tekst “vorige”"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:49
-msgid "The text for the previous thumbs."
-msgstr "De tekst voor de vorige thumbnails."
+#: zp-core/zp-extensions/paged_thumbs_nav.php:53
+msgid "The text for the previous thumbs. Leave empty to use the default text."
+msgstr ""
+"De tekst voor de vorige thumbnails. Laat leeg om de standaard tekst te "
+"gebruiken."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:50
+#: zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid "Nexttext"
 msgstr "Tekst “volgende”"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:51
-msgid "The text for the next thumbs."
-msgstr "De tekst voor de volgende thumbnails."
+#: zp-core/zp-extensions/paged_thumbs_nav.php:58
+msgid "The text for the next thumbs. Leave empty to use the default text."
+msgstr ""
+"De tekst voor de volgende thumbnails. Laat leeg om de standaard tekst te "
+"gebruiken."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:53
+#: zp-core/zp-extensions/paged_thumbs_nav.php:63
 msgid ""
 "The thumb crop width is the maximum width when height is the shortest side"
 msgstr ""
 "De thumbnail crop-breedte is de maximale breedte als de hoogte de kortste "
 "zijde is"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:55
+#: zp-core/zp-extensions/paged_thumbs_nav.php:65
 msgid ""
 "The thumb crop height is the maximum height when width is the shortest side"
 msgstr ""
 "De crop-hoogte is de maximale hoogte als de breedte de kortste zijde is"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:56
+#: zp-core/zp-extensions/paged_thumbs_nav.php:66
 msgid "Crop"
 msgstr "Uitsnede"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:57
+#: zp-core/zp-extensions/paged_thumbs_nav.php:69
 msgid ""
 "If checked the thumbnail will be a centered portion of the image with the "
 "given width and height after being resized to thumb size (by shortest side). "
@@ -18902,11 +18930,11 @@ msgstr ""
 "thumbnail-grootte (vanuit de kortste zijde). Anders zal de volledige "
 "afbeelding geschaald worden naar thumbnail grootte (vanuit de kortste zijde)."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:58
+#: zp-core/zp-extensions/paged_thumbs_nav.php:70
 msgid "Placeholders"
 msgstr "Placeholders"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:59
+#: zp-core/zp-extensions/paged_thumbs_nav.php:73
 msgid ""
 "if you want to use placeholder for layout reasons to fill up the thumbs if "
 "the number of thumbs does not match images per page. Recommended only for "
@@ -18919,42 +18947,42 @@ msgstr ""
 "worden vormgegeven.<br />Het wordt alleen aangeraden voor "
 "gecropte(uitgesneden) thumbs."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:60
+#: zp-core/zp-extensions/paged_thumbs_nav.php:74
 msgid "Page list"
 msgstr "Paginalijst"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:61
+#: zp-core/zp-extensions/paged_thumbs_nav.php:77
 msgid "If you want the list of the pages to be shown."
 msgstr "Vink aan als je wilt dat de lijst van pagina’s getoond worden."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:62
+#: zp-core/zp-extensions/paged_thumbs_nav.php:78
 msgid "Pages list prev and next links"
 msgstr "“vorige” en “volgende”"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:63
+#: zp-core/zp-extensions/paged_thumbs_nav.php:81
 msgid ""
 "If you want to show previous and next thumb page links with the page list."
 msgstr "Als je “vorige” en “volgende” links wilt tonen bij de paginalijst."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:64
+#: zp-core/zp-extensions/paged_thumbs_nav.php:82
 msgid "Pages list length"
 msgstr "Lengte paginalijst"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:65
+#: zp-core/zp-extensions/paged_thumbs_nav.php:85
 msgid "The number of links for the page list."
 msgstr "Toon het aantal links voor de paginalijst."
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:227
-#: zp-core/zp-extensions/paged_thumbs_nav.php:379
+#: zp-core/zp-extensions/paged_thumbs_nav.php:254
+#: zp-core/zp-extensions/paged_thumbs_nav.php:406
 msgid "previous thumbs"
 msgstr "vorige"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:329
-#: zp-core/zp-extensions/paged_thumbs_nav.php:402
+#: zp-core/zp-extensions/paged_thumbs_nav.php:356
+#: zp-core/zp-extensions/paged_thumbs_nav.php:429
 msgid "next thumbs"
 msgstr "volgende"
 
-#: zp-core/zp-extensions/paged_thumbs_nav.php:355
+#: zp-core/zp-extensions/paged_thumbs_nav.php:382
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
 msgstr "Afbeeldingen %1$u - %2$u van %3$u (%4$u/%5$u)"
@@ -22904,27 +22932,23 @@ msgstr ""
 "deze mogelijkheid gebruik te maken. Het wordt niet ondersteund door het "
 "<em>basic</em> thema."
 
-#: zp-core/zp-extensions/zenpage.php:150 zp-core/zp-extensions/zenpage.php:193
-msgid "Read more"
-msgstr "Lees meer"
-
-#: zp-core/zp-extensions/zenpage.php:166
+#: zp-core/zp-extensions/zenpage.php:165
 msgid "Enabled Zenpage items"
 msgstr "Geactiveerde Zenpage onderedelen"
 
-#: zp-core/zp-extensions/zenpage.php:171
+#: zp-core/zp-extensions/zenpage.php:170
 msgid "Enable news articles and pages"
 msgstr "Activeer nieuws en pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:172
+#: zp-core/zp-extensions/zenpage.php:171
 msgid "Enable news"
 msgstr "Activeer nieuws"
 
-#: zp-core/zp-extensions/zenpage.php:173
+#: zp-core/zp-extensions/zenpage.php:172
 msgid "Enable pages"
 msgstr "Activeer pagina's"
 
-#: zp-core/zp-extensions/zenpage.php:175
+#: zp-core/zp-extensions/zenpage.php:174
 msgid ""
 "This enables or disables the admin tabs for pages and/or news articles. To "
 "hide news and/or pages content on the front end as well, themes must be "
@@ -22939,11 +22963,11 @@ msgstr ""
 "thema's gebruik maken van <br><code>if(ZP_NEWS_ENABLED) { … }</code> of "
 "<br><code>if(ZP_PAGES_ENABLED) { … }</code><br>"
 
-#: zp-core/zp-extensions/zenpage.php:177
+#: zp-core/zp-extensions/zenpage.php:176
 msgid "Articles per page (theme)"
 msgstr "Artikelen per pagina"
 
-#: zp-core/zp-extensions/zenpage.php:181
+#: zp-core/zp-extensions/zenpage.php:180
 msgid ""
 "How many news articles you want to show per page on the news or news "
 "category pages."
@@ -22951,11 +22975,11 @@ msgstr ""
 "Hoeveel nieuwsartikelen je wilt laten zien per pagina op de nieuws of "
 "nieuwscategorie pagina’s."
 
-#: zp-core/zp-extensions/zenpage.php:182
+#: zp-core/zp-extensions/zenpage.php:181
 msgid "News article text length"
 msgstr "Lengte van een nieuwsartikel"
 
-#: zp-core/zp-extensions/zenpage.php:186
+#: zp-core/zp-extensions/zenpage.php:185
 msgid ""
 "The length of news article excerpts in news or news category pages. Leave "
 "empty for full text."
@@ -22963,7 +22987,7 @@ msgstr ""
 "Lengte van de verkorte weergave van een artikel in nieuws of nieuwscategorie "
 "pagina.<br />Laat leeg voor de volledige tekst."
 
-#: zp-core/zp-extensions/zenpage.php:187
+#: zp-core/zp-extensions/zenpage.php:186
 msgid ""
 "You can also set a custom article shorten length for the news loop excerpts "
 "by using the standard TinyMCE <em>page break</em> plugin button (or manually "
@@ -22975,11 +22999,11 @@ msgstr ""
 "pagebreak —&gt;</code> gebruiken)<br />Deze mogelijkheid heeft voorrang op "
 "de plugin optie."
 
-#: zp-core/zp-extensions/zenpage.php:188
+#: zp-core/zp-extensions/zenpage.php:187
 msgid "News article text shorten indicator"
 msgstr "Ingekorte tekst indicator"
 
-#: zp-core/zp-extensions/zenpage.php:192
+#: zp-core/zp-extensions/zenpage.php:191
 msgid ""
 "Something that indicates that the article text is shortened, “ (...)” by "
 "default."
@@ -22987,15 +23011,24 @@ msgstr ""
 "Iets dat aangeeft dat de tekst is ingekort.<br />Standaard wordt “(...)” "
 "gebruikt."
 
-#: zp-core/zp-extensions/zenpage.php:198
-msgid "The text for the link to the full article."
-msgstr "De tekst voor de link naar het volledige artikel."
+#: zp-core/zp-extensions/zenpage.php:192
+#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:14
+msgid "Read more"
+msgstr "Lees meer"
 
-#: zp-core/zp-extensions/zenpage.php:199
+#: zp-core/zp-extensions/zenpage.php:197
+msgid ""
+"The text for the link to the full article. Leave empty to use the default "
+"text."
+msgstr ""
+"De tekst voor de link naar het volledige artikel. Laat leeg om de standaard "
+"tekst te gebruiken."
+
+#: zp-core/zp-extensions/zenpage.php:198
 msgid "New titlelink with date: Item types"
 msgstr "Nieuwe titlelink met datum: Items"
 
-#: zp-core/zp-extensions/zenpage.php:208
+#: zp-core/zp-extensions/zenpage.php:207
 msgid ""
 "Select the item type where the date always should be appended or prepended "
 "to the titlelink of newly created items."
@@ -23003,7 +23036,7 @@ msgstr ""
 "Selecteer de items waarbij de aanmaakdatum vóór of ná de titlelink wordt "
 "toegevoegd."
 
-#: zp-core/zp-extensions/zenpage.php:208
+#: zp-core/zp-extensions/zenpage.php:207
 msgid ""
 "A date will automatically be added if you are creating an item with an "
 "already used titlelink."
@@ -23011,53 +23044,53 @@ msgstr ""
 "Er wordt automatisch een datum toegevoegd als je een nieuw item aanmaakt met "
 "een reeds bestaande titlelink."
 
-#: zp-core/zp-extensions/zenpage.php:209
+#: zp-core/zp-extensions/zenpage.php:208
 msgid "New titlelink with date: Date location"
 msgstr "Nieuwe titlelink met datum: Datum locatie"
 
-#: zp-core/zp-extensions/zenpage.php:213
+#: zp-core/zp-extensions/zenpage.php:212
 msgid "Before"
 msgstr "Voor"
 
-#: zp-core/zp-extensions/zenpage.php:214
+#: zp-core/zp-extensions/zenpage.php:213
 msgid "After"
 msgstr "Achter"
 
-#: zp-core/zp-extensions/zenpage.php:217
+#: zp-core/zp-extensions/zenpage.php:216
 msgid "Choose where to add the date to the titlelink of newly created items."
 msgstr "Kies waar de datum toegevoegd wordt."
 
-#: zp-core/zp-extensions/zenpage.php:218
+#: zp-core/zp-extensions/zenpage.php:217
 msgid "New titlelink with date: Date format"
 msgstr "Nieuwe titlelink met datum: Datum notatie"
 
-#: zp-core/zp-extensions/zenpage.php:222
+#: zp-core/zp-extensions/zenpage.php:221
 msgid "Y-m-d"
 msgstr "Y-m-d (2019-01-12)"
 
-#: zp-core/zp-extensions/zenpage.php:223
+#: zp-core/zp-extensions/zenpage.php:222
 msgid "Ymd"
 msgstr "Ymd ((20190112)"
 
-#: zp-core/zp-extensions/zenpage.php:224
+#: zp-core/zp-extensions/zenpage.php:223
 msgid "Y-m-d_H-i-s"
 msgstr "Y-m-d_H-i-s (2019-01-12_15-30-10)"
 
-#: zp-core/zp-extensions/zenpage.php:225
+#: zp-core/zp-extensions/zenpage.php:224
 msgid "YmdHis"
 msgstr "YmdHis (20190112153010)"
 
-#: zp-core/zp-extensions/zenpage.php:226
+#: zp-core/zp-extensions/zenpage.php:225
 msgid "Unix timestamp"
 msgstr "Unix timestamp"
 
-#: zp-core/zp-extensions/zenpage.php:229
+#: zp-core/zp-extensions/zenpage.php:228
 msgid ""
 "Choose which date format to append or prepend to the titlelink of newly "
 "created items."
 msgstr "Kies welke datumnotatie je wilt gebruiken."
 
-#: zp-core/zp-extensions/zenpage.php:251
+#: zp-core/zp-extensions/zenpage.php:250
 msgid ""
 "* These options may be set via the <a href=\"javascript:gotoName('zenpage');"
 "\"><em>Zenpage</em></a> plugin options."
@@ -23065,21 +23098,21 @@ msgstr ""
 "* Deze optie(s) worden gedeeld met de <a "
 "href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
-#: zp-core/zp-extensions/zenpage.php:304
+#: zp-core/zp-extensions/zenpage.php:303
 msgid "Enable Zenpage CMS plugin"
 msgstr "Activeer de Zenpage plugin."
 
-#: zp-core/zp-extensions/zenpage.php:342
+#: zp-core/zp-extensions/zenpage.php:341
 msgid "Use the checkForGuest() template function instead"
 msgstr ""
 "De functie <code>checkForGuests()</code> is verouderd. Gebruik in plaats "
 "hiervan de template functie <code>checkForGuest()</code>."
 
-#: zp-core/zp-extensions/zenpage.php:396
+#: zp-core/zp-extensions/zenpage.php:395
 msgid "News Categories"
 msgstr "Nieuwscategorieën"
 
-#: zp-core/zp-extensions/zenpage.php:406
+#: zp-core/zp-extensions/zenpage.php:405
 #: zp-core/zp-extensions/zenpage/admin-edit.php:131
 #: zp-core/zp-extensions/zenpage/admin-pages.php:79
 msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
@@ -23087,22 +23120,22 @@ msgstr ""
 "Weet je zeker dat je deze pagina wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:408
+#: zp-core/zp-extensions/zenpage.php:407
 msgid "Edit Page"
 msgstr "Bewerk pagina"
 
-#: zp-core/zp-extensions/zenpage.php:409
+#: zp-core/zp-extensions/zenpage.php:408
 #: zp-core/zp-extensions/zenpage/admin-edit.php:215
 #: zp-core/zp-extensions/zenpage/admin-edit.php:233
 #: zp-core/zp-extensions/zenpage/admin-pages.php:132
 msgid "New Page"
 msgstr "Nieuwe pagina"
 
-#: zp-core/zp-extensions/zenpage.php:412
+#: zp-core/zp-extensions/zenpage.php:411
 msgid "Delete Page"
 msgstr "Verwijder pagina"
 
-#: zp-core/zp-extensions/zenpage.php:423
+#: zp-core/zp-extensions/zenpage.php:422
 #: zp-core/zp-extensions/zenpage/admin-edit.php:130
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:72
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:384
@@ -23112,22 +23145,22 @@ msgstr ""
 "Weet je zeker dat je dit artikel wilt verwijderen? DIT KAN NIET HERSTELD "
 "WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:425
+#: zp-core/zp-extensions/zenpage.php:424
 msgid "Edit Article"
 msgstr "Bewerk Artikel"
 
-#: zp-core/zp-extensions/zenpage.php:426
+#: zp-core/zp-extensions/zenpage.php:425
 #: zp-core/zp-extensions/zenpage/admin-edit.php:192
 #: zp-core/zp-extensions/zenpage/admin-edit.php:223
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:212
 msgid "New Article"
 msgstr "Nieuw artikel"
 
-#: zp-core/zp-extensions/zenpage.php:429
+#: zp-core/zp-extensions/zenpage.php:428
 msgid "Delete Article"
 msgstr "Verwijder artikel"
 
-#: zp-core/zp-extensions/zenpage.php:436
+#: zp-core/zp-extensions/zenpage.php:435
 #: zp-core/zp-extensions/zenpage/admin-categories.php:70
 #: zp-core/zp-extensions/zenpage/admin-edit.php:132
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
@@ -23135,17 +23168,17 @@ msgstr ""
 "Weet je zeker dat je deze categorie wilt verwijderen? DIT KAN NIET ONGEDAAN "
 "GEMAAKT WORDEN!"
 
-#: zp-core/zp-extensions/zenpage.php:438
+#: zp-core/zp-extensions/zenpage.php:437
 msgid "Edit Category"
 msgstr "Bewerk categorie"
 
-#: zp-core/zp-extensions/zenpage.php:439
+#: zp-core/zp-extensions/zenpage.php:438
 #: zp-core/zp-extensions/zenpage/admin-edit.php:204
 #: zp-core/zp-extensions/zenpage/admin-edit.php:228
 msgid "New Category"
 msgstr "Nieuwe categorie"
 
-#: zp-core/zp-extensions/zenpage.php:442
+#: zp-core/zp-extensions/zenpage.php:441
 msgid "Delete Category"
 msgstr "Verwijder categorie"
 
@@ -23509,14 +23542,14 @@ msgstr ""
 "De volgorde van de aangegeven pagina’s kan niet worden bewaard omdat er te "
 "diep is genest. Verplaats ze alsjeblieft naar een hoger niveau."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:617
+#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:621
 msgid ""
 "Unused and obsolete method - articles are already filtered via getArticles()"
 msgstr ""
 "Ongebruikte en verouderde class methode - artikelen zijn reeds gefilterd via "
 "<code>getArticles()</code>"
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:679
+#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:683
 msgid ""
 "Zenpage::getAllCategories() - The value \"asc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use false instead."
@@ -23524,7 +23557,7 @@ msgstr ""
 "Zenpage::getAllCategories() - The value \"asc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use false instead."
 
-#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:682
+#: zp-core/zp-extensions/zenpage/classes/class-zenpage.php:686
 msgid ""
 "Zenpage::getAllCategories() - The value \"desc\" for the $sortdirection is "
 "deprecated since ZenphotoCMS 1.5.8. Use true instead."
@@ -24050,6 +24083,33 @@ msgid ""
 "recipients."
 msgstr ""
 "Het is <code>zenphoto_sendmail</code> niet gelukt <em>%s</em> te verzenden."
+
+#~ msgid "The intro text for your contact form"
+#~ msgstr "De introductietekst voor het contactformulier"
+
+#~ msgid "The text for the link to the favorites page."
+#~ msgstr "De tekst voor de link naar de favorietenpagina."
+
+#~ msgid "Default text for the <em>add to favorites</em> button."
+#~ msgstr "Tekst voor de <em>Voeg toe aan favorieten</em> knop."
+
+#~ msgid "Default text for the <em>remove from favorites</em> button."
+#~ msgstr "Tekst voor de <em>Verwijder uit favorieten</em> knop."
+
+#~ msgid "The favorites page title text."
+#~ msgstr "De titel voor de favorietenpagina"
+
+#~ msgid "The favorites page description text."
+#~ msgstr "Beschrijving van de favorietenpagina."
+
+#~ msgid "The text for the previous thumbs."
+#~ msgstr "De tekst voor de vorige thumbnails."
+
+#~ msgid "The text for the next thumbs."
+#~ msgstr "De tekst voor de volgende thumbnails."
+
+#~ msgid "The text for the link to the full article."
+#~ msgstr "De tekst voor de link naar het volledige artikel."
 
 #, php-format
 #~ msgid ""
