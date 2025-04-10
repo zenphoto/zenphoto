@@ -320,7 +320,7 @@ class registerUser {
 			}
 		}
 		if (isset($_POST['admin_email'])) {
-			registerUser::$admin_email = trim(sanitize($_POST['admin_email']));
+			registerUser::$admin_email = trim(strval(sanitize($_POST['admin_email'])));
 			$mail_duplicate = $_zp_authority->isUniqueMailaddress(registerUser::$admin_email, registerUser::$user);
 			if (!$mail_duplicate) {
 				registerUser::$notify = 'duplicateemail';
