@@ -125,7 +125,7 @@ echo '</head>' . "\n";
 								$expires = strtotime($userobj->getDatetime()) + $subscription;
 								$expires_display = date('Y-m-d', $expires);
 	
-								if (empty($user['loggedin'])) {
+								if (empty($userobj->getLastLogon())) {
 									$loggedin = gettext('never');
 								} else {
 									$loggedin = date('Y-m-d', strtotime($userobj->getLastLogon()));
