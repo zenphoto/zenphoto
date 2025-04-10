@@ -460,10 +460,22 @@ class Administrator extends PersistentObject {
 
 	/**
 	 *
-	 * returns the last time the user has logged on
+	 * returns the last previous datetime the user has logged on
+	 * @return string
 	 */
 	function getLastLogon() {
 		return $this->get('lastloggedin');
+	}
+	
+	/**
+	 * The current login datetime the user has logged on
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return string
+	 */
+	function getCurrentLogon() {
+		return $this->get('loggedin');
 	}
 	
 	/**
