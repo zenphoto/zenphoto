@@ -308,11 +308,11 @@ class registerUser {
 				registerUser::$notify = 'invalidcaptcha';
 			}
 		}
-		registerUser::$admin_name = trim(sanitize($_POST['admin_name']));
+		registerUser::$admin_name = trim(strval(sanitize($_POST['admin_name'])));
 		if (empty(registerUser::$admin_name)) {
 			registerUser::$notify = 'incomplete';
 		}
-		registerUser::$user = trim(sanitize($_POST['user']));
+		registerUser::$user = trim(strval(sanitize($_POST['user'])));
 		if (getOption('register_user_email_is_id')) {
 			$mail_duplicate = $_zp_authority->isUniqueMailaddress(registerUser::$user, registerUser::$user);
 			if (!$mail_duplicate) {
@@ -338,8 +338,8 @@ class registerUser {
 		if (registerUser::getQuizFieldQuestion('register_user_textquiz')) {
 			$textquiz_error = false;
 			if (isset($_POST['admin_textquiz'])) {
-				$textquiz_answer = strtolower(trim(get_language_string(getOption('register_user_textquiz_answer'))));
-				$textquiz_answer_user = strtolower(trim(sanitize($_POST['admin_textquiz'])));
+				$textquiz_answer = strtolower(trim(strval(get_language_string(getOption('register_user_textquiz_answer')))));
+				$textquiz_answer_user = strtolower(trim(strval(sanitize($_POST['admin_textquiz']))));
 				if (empty($textquiz_answer_user) || $textquiz_answer_user != $textquiz_answer) {
 					$textquiz_error = true;
 				}
