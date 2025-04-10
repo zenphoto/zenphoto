@@ -10,19 +10,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
 admin_securityChecks(NULL, currentRelativeURL());
 
 
-$admins = $_zp_authority->getAdministrators('all');
-
-$ordered = array();
-foreach ($admins as $key => $admin) {
-	if ($admin['valid']) {
-		$ordered[$key] = $admin['date'];
-	}
-}
-asort($ordered);
-$adminordered = array();
-foreach ($ordered as $key => $user) {
-	$adminordered[] = $admins[$key];
-}
+$adminordered = $_zp_authority->getAdministrators('allusers', 'minimaldata', 'date', 'asc' );
 $msg = NULL;
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
@@ -131,22 +119,20 @@ echo '</head>' . "\n";
 					<ul class="fullchecklist">
 						<?php
 						foreach ($adminordered as $user) {
-							if (!($user['rights'] & ADMIN_RIGHTS)) {
+							$userobj = Authority::getAnAdmin(array('`id`=' => $user['id']));
+							if (!($userobj->getRights() & ADMIN_RIGHTS)) {
 								$checked_delete = $checked_disable = $checked_renew = $dup = '';
-								$expires = strtotime($user['date']) + $subscription;
+								$expires = strtotime($userobj->getDatetime()) + $subscription;
 								$expires_display = date('Y-m-d', $expires);
-								if (isset($user['loggedin'])) {
-									if (empty($user['loggedin'])) {
-										$loggedin = gettext('never');
-									} else {
-										$loggedin = date('Y-m-d', strtotime($user['loggedin']));
-									}
-								} else {
+	
+								if (empty($user['loggedin'])) {
 									$loggedin = gettext('never');
+								} else {
+									$loggedin = date('Y-m-d', strtotime($userobj->getLastLogon()));
 								}
 								if ($subscription) {
 									if ($expires < $now) {
-										if ($user['valid'] == 1) {
+										if ($userobj->getValid() == 1) {
 											$checked_delete = ' checked="chedked"';
 										}
 										$expires_display = sprintf(gettext('Expired:%s; '), '<span style="color:red" >' . $expires_display . '</span>');
@@ -160,10 +146,10 @@ echo '</head>' . "\n";
 								} else {
 									$expires_display = $r3 = $r4 = '';
 								}
-								if ($user['valid'] == 2) {
+								if ($userobj->getValid() == 2) {
 									$hits = 0;
 									foreach ($adminordered as $tuser) {
-										if ($tuser['user'] == $user['user']) {
+										if ($tuser['user'] == $userobj->getUser()) {
 											$hits++;
 										}
 									}
@@ -173,16 +159,16 @@ echo '</head>' . "\n";
 										$expires_display = ' <span style="color:red">' . gettext('User id has been preempted') . '</span>';
 									}
 								}
-								$id = postIndexEncode($user['id']);
+								$id = postIndexEncode($userobj->getID());
 								$r1 = '<img src="../../images/fail.png" title="' . gettext('delete') . '" /><input type="radio" name="r_' . $id . '" value="delete"' . $checked_delete . ' />&nbsp;';
-								if ($user['valid'] == 2) {
+								if ($userobj->getValid() == 2) {
 									$r2 = '<img src="../../images/lock_open.png" title="' . gettext('enable') . '" /><input type="radio" name="r_' . $id . '" value="enable"' . $checked_disable . ' />&nbsp;';
 								} else {
 									$r2 = '<img src="../../images/lock_2.png" title="' . gettext('disable') . '" /><input type="radio" name="r_' . $id . '" value="disable"' . $checked_disable . ' />&nbsp;';
 								}
 								if ($subscription) {
 									$r3 = '<img src="../../images/pass.png" title="' . gettext('renew') . '" /><input type="radio" name="r_' . $id . '" value="renew"' . $checked_renew . $checked_disable . ' />&nbsp;';
-									if (!$user['email']) {
+									if (!$userobj->getEmail()) {
 										$checked_disable = ' disabled="disabled"';
 									}
 									$r4 = '<img src="../../images/envelope.png" title="' . gettext('Email renewal') . '" /><input type="radio" name="r_' . $id . '" value="revalidate"' . $checked_disable . ' />&nbsp;';
@@ -194,7 +180,7 @@ echo '</head>' . "\n";
 								}
 								?>
 								<li>
-									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, html_encode($user['user']), $expires_display, $loggedin); ?>
+									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, html_encode($userobj->getUser()), $expires_display, $loggedin); ?>
 								</li>
 								<?php
 							}

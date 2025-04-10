@@ -229,7 +229,7 @@ class Authority {
 				break;
 			case 'allusers':
 				if (isset($this->admin_realusers[$cacheindex])) {
-					return $this->admin_realuser[$cacheindex];
+					return $this->admin_realusers[$cacheindex];
 				}
 				$where = ' WHERE `valid` != 0';
 				break;
