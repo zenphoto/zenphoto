@@ -558,7 +558,7 @@ echo $refresh;
 									$userobj->setValid(1);
 								}
 								$groupname = $userobj->getGroup();
-								if ($pending = $userobj->getRights() == 0) {
+								if ($userobj->isPending()) {
 									$master = '(<em>' . gettext('pending verification') . '</em>)';
 								} else {
 									$master = '&nbsp;';

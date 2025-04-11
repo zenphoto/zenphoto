@@ -546,5 +546,16 @@ class Administrator extends PersistentObject {
 			$this->setObjects($objects);
 		}
 	}
+	
+	/**
+	 * Checks if the user is pending verification (no rights set)
+	 * 
+	 * @since 1.6.6
+	 * 
+	 * @return boolean
+	 */
+	function isPending() {
+		return $this->getRights() == 0;
+	}
 
 }
