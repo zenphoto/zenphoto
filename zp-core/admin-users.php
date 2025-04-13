@@ -630,7 +630,7 @@ echo $refresh;
 
 													<?php
 													if (!$alterrights || !$userobj->getID()) {
-														if ($pending) {
+														if ($userobj->isPending()) {
 															?>
 															<ul class="no_bullets">
 																<li><label><input type="radio" name="<?php echo $id ?>-authentication" value="authenticate" />
