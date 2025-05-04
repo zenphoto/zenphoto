@@ -604,7 +604,9 @@ class scriptlessSocialsharing {
 			}
 			?>
 			<div class="scriptless_socialsharing-profiles<?php echo $alignmentclass; ?>">
+				<?php if ($before) { ?>
 				<div class="scriptless_socialsharing-profiles-before"><?php echo $before; ?></div>
+				<?php } ?>
 				<ul class="scriptless_socialsharing-profileslist">
 				<?php
 				foreach ($buttons as $network => $button) {
