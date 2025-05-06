@@ -116,7 +116,7 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 /**
  * Enables test release mode
  */
-define('PRE_RELEASE', preg_match("/(RC*|a*|b*)$/", ZENPHOTO_VERSION));
+define('PRE_RELEASE', preg_match("/(RC|a|b)$/", ZENPHOTO_VERSION));
 $is_testrelease = false;
 if (isset($_zp_conf_vars['test_release'])) {
 	if ($_zp_conf_vars['test_release']) {
