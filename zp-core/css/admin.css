@@ -979,6 +979,11 @@ input.tags {
 	border-bottom: 1px solid #dfdfdf;
 }
 
+/* make sure preformatted text wraps in the utility boxes on the Overview page */
+.overview-utility pre {
+	white-space: pre-wrap;
+}
+
 .overview-install-info {
 	z-index: 50;
 }
