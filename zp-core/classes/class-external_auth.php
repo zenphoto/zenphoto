@@ -19,7 +19,7 @@ class external_auth {
 	 * @deprecated 2.0 The class external_auth will be removed without replacement
 	 */
 	protected function user() {
-		deprecationNotice(gettext('The class external_auth will be removed without replacement'));
+		deprecationNotice(gettext('The class external_auth will be removed without replacement.'));
 		return NULL;
 	}
 
@@ -54,7 +54,7 @@ class external_auth {
 	 * @param BIT $authorized
 	 */
 	function check($authorized) {
-		deprecationNotice(gettext('The class external_auth will be removed without replacement'));
+		deprecationNotice(gettext('The class external_auth will be removed without replacement.'));
 		return NULL;
 		global $_zp_current_admin_obj;
 		if (!$authorized) { // not logged in via normal Zenphoto handling

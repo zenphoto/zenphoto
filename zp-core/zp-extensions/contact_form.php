@@ -90,15 +90,15 @@ class contactformOptions {
 				gettext('Intro text') => array(
 						'key' => 'contactform_introtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The intro text for your contact form. Leave empty to use the default text")),
+						'desc' => gettext("The intro text for your contact form. Leave empty to use the default text.")),
 				gettext('Confirm text') => array(
 						'key' => 'contactform_confirmtext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message. Leave empty to use the default text")),
+						'desc' => gettext("The text that asks the visitor to confirm that he really wants to send the message. Leave empty to use the default text.")),
 				gettext('Thanks text') => array(
 						'key' => 'contactform_thankstext',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text that is shown after a message has been confirmed and sent. Leave empty to use the default text")),
+						'desc' => gettext("The text that is shown after a message has been confirmed and sent. Leave empty to use the default text.")),
 				gettext('New message link text') => array(
 						'key' => 'contactform_newmessagelink',
 						'type' => OPTION_TYPE_TEXTAREA,
@@ -114,7 +114,7 @@ class contactformOptions {
 				gettext('Send copy note text') => array(
 						'key' => 'contactform_sendcopy_text',
 						'type' => OPTION_TYPE_TEXTAREA,
-						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set. Leave empty to use the default text")),
+						'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set. Leave empty to use the default text.")),
 				gettext('Contact recipients') => array(
 						'key' => 'contactform_mailaddress',
 						'type' => OPTION_TYPE_TEXTBOX,

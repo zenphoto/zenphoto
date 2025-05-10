@@ -84,7 +84,7 @@ class Authority {
 						'key' => 'user_album_edit_default',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
-				gettext('Primary user album:  Keep on user removal') => array(
+				gettext('Primary user album: Keep on user removal') => array(
 						'key' => 'user_album_keep_on_userremoval',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'desc' => gettext('Check if you want the user <em>primary album</em> not to be deleted if the user is removed.')),
@@ -104,7 +104,7 @@ class Authority {
 				gettext('User last visit - time frame') => array(
 						'key' => 'admin_lastvisit_timeframe',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('Time in seconds before the last visit of logged-in users is updated in the database. Default is 600 seconds (10 minutes)'))
+						'desc' => gettext('Time in seconds before the last visit of logged-in users is updated in the database. Default is 600 seconds (10 minutes).'))
 		);
 	}
 
