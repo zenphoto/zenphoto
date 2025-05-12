@@ -1159,7 +1159,7 @@ $upgrade = $versioncheck['upgrade_text'];
 							}
 							setup::primeMark(gettext('Zenphoto files'));
 							@set_time_limit(180);
-							$lcFilesystem = file_exists(strtoupper(__FILE__));
+							$lcFilesystem = file_exists(SERVERPATH . '/' . ZENFOLDER. '/setup/' . strtoupper('index.php'));
 							$base = $_zp_setup_serverpath . '/';
 							setup::getResidentZPFiles(SERVERPATH . '/' . ZENFOLDER, $lcFilesystem);
 							if ($lcFilesystem) {
