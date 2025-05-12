@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.6.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-22 11:56+0200\n"
-"PO-Revision-Date: 2025-04-22 12:25+0200\n"
+"POT-Creation-Date: 2025-05-12 10:46+0200\n"
+"PO-Revision-Date: 2025-05-12 10:50+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -5986,11 +5986,12 @@ msgstr "Enlever le lien de l’album principal <strong>%1$s</strong> (<em>%2$s</
 #: zp-core/admin-users.php:768
 msgid ""
 "The primary album was created in association with the user. It will be removed "
-"if the user is deleted unless you enable the related option on Options > Security"
+"if the user is deleted unless you enable the related option on Options > "
+"Security."
 msgstr ""
 "L’album principal a été créé en même temps que l’utilisateur. Il sera effacé si "
 "l’utilisateur est supprimé, sauf si vous activez l’option idoine dans Options > "
-"Sécurité"
+"Sécurité."
 
 #: zp-core/admin-users.php:814
 msgid "The <em>master</em> account has full rights to all objects."
@@ -6627,7 +6628,7 @@ msgstr ""
 "automatiquement quand l’<em>album principal</em> d’un utilisateur est créé."
 
 #: zp-core/classes/class-authority.php:87
-msgid "Primary user album:  Keep on user removal"
+msgid "Primary user album: Keep on user removal"
 msgstr "Album principal utilisateur : Conserver si l’utilisateur est supprimé"
 
 #: zp-core/classes/class-authority.php:90
@@ -6681,11 +6682,11 @@ msgstr "Dernière visite utilisateur - durée"
 #: zp-core/classes/class-authority.php:107
 msgid ""
 "Time in seconds before the last visit of logged-in users is updated in the "
-"database. Default is 600 seconds (10 minutes)"
+"database. Default is 600 seconds (10 minutes)."
 msgstr ""
 "Temps en secondes avant que la dernière visite des utilisateurs connectés soit "
-"mise à jour dans la base de données. La valeur par défaut est 600 secondes (10 "
-"minutes)"
+"mise à jour dans la base de données. Valeur par défaut : 600 secondes (10 "
+"minutes)."
 
 #: zp-core/classes/class-authority.php:506
 #, php-format
@@ -7321,8 +7322,8 @@ msgstr "%s non connecté(e)"
 
 #: zp-core/classes/class-external_auth.php:22
 #: zp-core/classes/class-external_auth.php:57
-msgid "The class external_auth will be removed without replacement"
-msgstr "La classe exernal_auth sera supprimée sans remplacement"
+msgid "The class external_auth will be removed without replacement."
+msgstr "La classe exernal_auth sera supprimée sans remplacement."
 
 #: zp-core/classes/class-feed.php:410
 msgid "Latest albums"
@@ -15337,9 +15338,9 @@ msgid "Intro text"
 msgstr "Texte d’introduction"
 
 #: zp-core/zp-extensions/contact_form.php:93
-msgid "The intro text for your contact form. Leave empty to use the default text"
+msgid "The intro text for your contact form. Leave empty to use the default text."
 msgstr ""
-"Texte d'introduction du formulaire de contact. Laissez vide pour utiliser le "
+"Texte d'introduction au formulaire de contact. Laissez vide pour utiliser le "
 "texte par défaut."
 
 #: zp-core/zp-extensions/contact_form.php:94
@@ -15349,7 +15350,7 @@ msgstr "Texte de confirmation"
 #: zp-core/zp-extensions/contact_form.php:97
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
-"message. Leave empty to use the default text"
+"message. Leave empty to use the default text."
 msgstr ""
 "Texte demandant au visiteur de confirmer qu'il souhaite réellement envoyer le "
 "message. Laissez vide pour utiliser le texte par défaut."
@@ -15361,7 +15362,7 @@ msgstr "Texte de remerciement"
 #: zp-core/zp-extensions/contact_form.php:101
 msgid ""
 "The text that is shown after a message has been confirmed and sent. Leave empty "
-"to use the default text"
+"to use the default text."
 msgstr ""
 "Texte affiché après confirmation et envoi d'un message. Laissez vide pour "
 "utiliser le texte par défaut."
@@ -15417,7 +15418,7 @@ msgstr "Texte pour l’envoi en copie"
 #: zp-core/zp-extensions/contact_form.php:117
 msgid ""
 "The text for the note about sending a copy to the address provided in case that "
-"option is set. Leave empty to use the default text"
+"option is set. Leave empty to use the default text."
 msgstr ""
 "Texte de la note concernant l'envoi d'une copie à l'adresse fournie, si cette "
 "option est activée. Laissez vide pour utiliser le texte par défaut."
