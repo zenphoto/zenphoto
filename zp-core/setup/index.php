@@ -24,7 +24,7 @@ if (version_compare(PHP_VERSION, PHP_MIN_VERSION, '<')) {
 	die(sprintf(gettext('Zenphoto requires PHP version %s or greater'), PHP_MIN_VERSION));
 }
 require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
-require_once(dirname(dirname(__FILE__)) . '/definitions-debugconstants.php');
+require_once(dirname(dirname(__FILE__)) . '/definitions-debug.php');
 
 session_cache_limiter('nocache');
 $session = session_start();

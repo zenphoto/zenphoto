@@ -115,7 +115,7 @@ if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONF
 	require_once SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE;
 }
 
-require_once SERVERPATH .'/'. ZENFOLDER . '/definitions-debugconstants.php';
+require_once SERVERPATH .'/'. ZENFOLDER . '/definitions-debug.php';
 
 // Set error reporting.
 @ini_set('display_errors', '0'); // try to disable in case set

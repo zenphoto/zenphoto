@@ -400,7 +400,7 @@ zp-core/css/admin-rtl.css
 zp-core/css/admin-statistics.css
 zp-core/css/admin.css
 zp-core/css/admintoolbox.css
-zp-core/definitions-debugconstants.php
+zp-core/definitions-debug.php
 zp-core/deprecated
 zp-core/deprecated/functions-db.php
 zp-core/deprecated/functions-graphics.php
