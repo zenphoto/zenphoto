@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.6\n"
+"Project-Id-Version: Zenphoto 1.6.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-10 18:59+0300\n"
+"POT-Creation-Date: 2025-05-19 20:00+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: kuzzzma <kuzzzma@gmail.com>\n"
 "Language-Team: kuzzzma (since 1.6.3), Doctor Kru <info@artpixel.ru> "
@@ -1022,7 +1022,7 @@ msgstr ""
 "на странице, на случай, если устройство не поддерживает проигрыватель, но "
 "фактический формат поддерживается."
 
-#: zp-core/404.php:49 zp-core/setup/index.php:1049
+#: zp-core/404.php:49 zp-core/setup/index.php:1052
 msgid "Index"
 msgstr "Главная"
 
@@ -1043,7 +1043,7 @@ msgstr "* Массовые действия*"
 #: zp-core/admin-albumsort.php:93 zp-core/admin-edit.php:566
 #: zp-core/admin-edit.php:581 zp-core/admin-edit.php:585
 #: zp-core/admin-functions.php:2058 zp-core/admin-logs.php:152
-#: zp-core/admin-themes.php:333 zp-core/setup/index.php:1048
+#: zp-core/admin-themes.php:333 zp-core/setup/index.php:1051
 #: zp-core/zp-extensions/comment_form/admin-comments.php:131
 #: zp-core/zp-extensions/comment_form/admin-comments.php:132
 #: zp-core/zp-extensions/comment_form/admin-comments.php:357
@@ -5494,7 +5494,7 @@ msgstr "Продолжить обновление метаданных."
 
 #: zp-core/admin-refresh-metadata.php:128
 #: zp-core/classes/class-authority.php:1085
-#: zp-core/classes/class-authority.php:1086 zp-core/setup/index.php:1584
+#: zp-core/classes/class-authority.php:1086 zp-core/setup/index.php:1587
 msgid "Refresh"
 msgstr "Обновить"
 
@@ -6251,8 +6251,8 @@ msgstr ""
 msgid "Installation information"
 msgstr "Информация об установке"
 
-#: zp-core/admin.php:315 zp-core/functions/functions-basic.php:1582
-#: zp-core/setup/index.php:427 zp-core/zp-extensions/security-logger.php:134
+#: zp-core/admin.php:315 zp-core/functions/functions-basic.php:1520
+#: zp-core/setup/index.php:430 zp-core/zp-extensions/security-logger.php:134
 msgid "clone"
 msgstr "клонировать"
 
@@ -8647,7 +8647,7 @@ msgstr "Слишком мало аргументов! Изображение н�
 msgid "Forbidden(2)"
 msgstr "Доступ запрещен (2)"
 
-#: zp-core/functions/functions-basic.php:414
+#: zp-core/functions/functions-basic.php:352
 #: zp-core/functions/functions-i18n.php:779
 msgid ""
 "The date format options 'locale_preferreddate_time' and "
@@ -8658,61 +8658,61 @@ msgstr ""
 "<em>locale_preferreddate_notime</em> устарели и будут удалены из Zenphoto "
 "1.7. Пожалуйста, установите индивидуальные форматы дат и времени."
 
-#: zp-core/functions/functions-basic.php:1547
+#: zp-core/functions/functions-basic.php:1485
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "%s размер журнала превышен"
 
-#: zp-core/functions/functions-basic.php:1547
+#: zp-core/functions/functions-basic.php:1485
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
 "Размер журнала %1$s превысил предельный размер и был переименован в %2$s."
 
-#: zp-core/functions/functions-basic.php:1928
+#: zp-core/functions/functions-basic.php:1866
 msgid "Server software unknown"
 msgstr "Серверное программное обеспечение неизвестно"
 
-#: zp-core/functions/functions-basic.php:2049
+#: zp-core/functions/functions-basic.php:1987
 msgid "ERROR: cURL request failed: "
 msgstr "ОШИБКА: не удалось выполнить запрос cURL: "
 
-#: zp-core/functions/functions-basic.php:2052
+#: zp-core/functions/functions-basic.php:1990
 msgid "NOTICE: cURL request not successful."
 msgstr "ВНИМАНИЕ: запрос cURL не был выполнен."
 
-#: zp-core/functions/functions-basic.php:2060
+#: zp-core/functions/functions-basic.php:1998
 msgid "ERROR: Your server does not support cURL."
 msgstr "ОШИБКА: Ваш сервер не поддерживает cURL."
 
-#: zp-core/functions/functions-basic.php:2298
+#: zp-core/functions/functions-basic.php:2236
 msgid "function"
 msgstr "функция"
 
-#: zp-core/functions/functions-basic.php:2304
+#: zp-core/functions/functions-basic.php:2242
 #, php-format
 msgid "It will be removed in Zenphoto %s."
 msgstr "Будет удалено в Zenphoto %s."
 
-#: zp-core/functions/functions-basic.php:2317 zp-core/setup/class-setup.php:240
+#: zp-core/functions/functions-basic.php:2255 zp-core/setup/class-setup.php:240
 #: zp-core/setup/class-setup.php:245
 msgid "unknown"
 msgstr "неизвестно"
 
-#: zp-core/functions/functions-basic.php:2325
+#: zp-core/functions/functions-basic.php:2263
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr ""
 "Использование параметра %1$s устарело (вызывается из %2$s строки %3$s)."
 
-#: zp-core/functions/functions-basic.php:2327
+#: zp-core/functions/functions-basic.php:2265
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr ""
 "Использование %1$s в качестве параметра %2$s (вызывается из %3$s строки "
 "%4$s) устарело."
 
-#: zp-core/functions/functions-basic.php:2329
+#: zp-core/functions/functions-basic.php:2267
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (вызывается из %2$s строки %3$s) устарело."
@@ -10530,7 +10530,7 @@ msgstr "Сбой: "
 msgid "Warn: "
 msgstr "Предупреждение: "
 
-#: zp-core/setup/class-setup.php:89 zp-core/setup/index.php:955
+#: zp-core/setup/class-setup.php:89 zp-core/setup/index.php:958
 msgid "Pass: "
 msgstr "Принято: "
 
@@ -10539,7 +10539,7 @@ msgid "Error!"
 msgstr "Ошибка!"
 
 #: zp-core/setup/class-setup.php:145 zp-core/setup/class-setup.php:157
-#: zp-core/setup/index.php:927
+#: zp-core/setup/index.php:930
 msgid "Warning!"
 msgstr "Предупреждение!"
 
@@ -10686,7 +10686,7 @@ msgstr ""
 "дублирующиеся записи будут утеряны."
 
 #: zp-core/setup/class-setup.php:897 zp-core/setup/class-setup.php:920
-#: zp-core/setup/index.php:554
+#: zp-core/setup/index.php:557
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Установка Zenphoto v%s"
@@ -10696,7 +10696,7 @@ msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Обновление с версии предшествующей Zenphoto v1.2"
 
 #: zp-core/setup/class-setup.php:911 zp-core/setup/class-setup.php:949
-#: zp-core/setup/index.php:1046
+#: zp-core/setup/index.php:1049
 msgid "Update"
 msgstr "Обновить"
 
@@ -10747,32 +10747,32 @@ msgstr ""
 msgid "Downgrade"
 msgstr "Понижение версии"
 
-#: zp-core/setup/index.php:22
+#: zp-core/setup/index.php:24
 #, php-format
 msgid "Zenphoto requires PHP version %s or greater"
 msgstr "Zenphoto требуется PHP версии %s или выше"
 
-#: zp-core/setup/index.php:155
+#: zp-core/setup/index.php:158
 msgid "db POST handling"
 msgstr "db POST handling"
 
-#: zp-core/setup/index.php:196
+#: zp-core/setup/index.php:199
 msgid "readonly"
 msgstr "только для чтения"
 
-#: zp-core/setup/index.php:197
+#: zp-core/setup/index.php:200
 msgid "strict"
 msgstr "strict"
 
-#: zp-core/setup/index.php:198
+#: zp-core/setup/index.php:201
 msgid "relaxed"
 msgstr "relaxed"
 
-#: zp-core/setup/index.php:199
+#: zp-core/setup/index.php:202
 msgid "loose"
 msgstr "loose"
 
-#: zp-core/setup/index.php:326
+#: zp-core/setup/index.php:329
 msgid ""
 "A corrupt configuration file was detected. You should remove or repair the "
 "file and re-run setup."
@@ -10780,79 +10780,79 @@ msgstr ""
 "Обнаружен поврежденный файл конфигурации. Вам следует удалить или "
 "восстановить файл и повторно запустить программу установки."
 
-#: zp-core/setup/index.php:354
+#: zp-core/setup/index.php:357
 msgid "upgrade"
 msgstr "обновление"
 
-#: zp-core/setup/index.php:401
+#: zp-core/setup/index.php:404
 msgid "Completed system check"
 msgstr "Проверка системы завершена"
 
-#: zp-core/setup/index.php:408
+#: zp-core/setup/index.php:411
 msgid "Setup cookie test successful"
 msgstr "Проверка файлов cookie прошла успешно"
 
-#: zp-core/setup/index.php:411
+#: zp-core/setup/index.php:414
 msgid "Setup cookie test unsuccessful"
 msgstr "Проверка файлов cookie не удалась"
 
-#: zp-core/setup/index.php:416
+#: zp-core/setup/index.php:419
 msgid "Post of Database credentials"
 msgstr "Отправка учетных данных базы данных"
 
-#: zp-core/setup/index.php:429
+#: zp-core/setup/index.php:432
 #, php-format
 msgid "Zenphoto Setup v%1$s %2$s: %3$s"
 msgstr "Установка Zenphoto v%1$s %2$s: %3$s"
 
-#: zp-core/setup/index.php:432
+#: zp-core/setup/index.php:435
 msgid "Full environment"
 msgstr "Полная среда"
 
-#: zp-core/setup/index.php:434
+#: zp-core/setup/index.php:437
 msgid "Primitive environment"
 msgstr "Примитивная среда"
 
-#: zp-core/setup/index.php:436
+#: zp-core/setup/index.php:439
 #, php-format
 msgid "Query error: %s"
 msgstr "Ошибка запроса: %s"
 
-#: zp-core/setup/index.php:451
+#: zp-core/setup/index.php:454
 msgid "create"
 msgstr "создать"
 
-#: zp-core/setup/index.php:452
+#: zp-core/setup/index.php:455
 msgid "update"
 msgstr "обновить"
 
-#: zp-core/setup/index.php:470
+#: zp-core/setup/index.php:473
 msgid "install"
 msgstr "установить"
 
-#: zp-core/setup/index.php:494
+#: zp-core/setup/index.php:497
 msgid "Zenphoto Setup"
 msgstr "Установка Zenphoto"
 
-#: zp-core/setup/index.php:495
+#: zp-core/setup/index.php:498
 msgid "Setup"
 msgstr "Установка"
 
-#: zp-core/setup/index.php:519
+#: zp-core/setup/index.php:522
 #, php-format
 msgid ""
 "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
 msgstr "Добро пожаловать! Этот мастер установит Zenphoto %s на ваш сервер."
 
-#: zp-core/setup/index.php:523
+#: zp-core/setup/index.php:526
 msgid "Systems Check:"
 msgstr "Проверка системы:"
 
-#: zp-core/setup/index.php:525
+#: zp-core/setup/index.php:528
 msgid "Backup your database before proceeding!"
 msgstr "Создайте резервную копию своей базы данных, прежде чем продолжить!"
 
-#: zp-core/setup/index.php:541
+#: zp-core/setup/index.php:544
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
@@ -10860,17 +10860,17 @@ msgstr ""
 "<strong>Примечание: </strong> В устанавливаемом вами выпуске включены "
 "настройки отладки!"
 
-#: zp-core/setup/index.php:567
+#: zp-core/setup/index.php:570
 #, php-format
 msgid "<em>%s</em> security"
 msgstr "Безопасность <em>%s</em>"
 
-#: zp-core/setup/index.php:567
+#: zp-core/setup/index.php:570
 #, php-format
 msgid "<em>%s</em> security [is compromised]"
 msgstr "Безопасность <em>%s</em> [скомпрометирована]"
 
-#: zp-core/setup/index.php:567
+#: zp-core/setup/index.php:570
 #, php-format
 msgid ""
 "Zenphoto suggests you make the sensitive files in the %1$s folder accessable "
@@ -10882,22 +10882,22 @@ msgstr ""
 "файлам для <em>%2$s</em> равны %3$04o, что может допустить "
 "несанкционированный доступ."
 
-#: zp-core/setup/index.php:574
+#: zp-core/setup/index.php:577
 msgid "<em>SSL</em> connection"
 msgstr "<em>SSL</em> соединение"
 
-#: zp-core/setup/index.php:574
+#: zp-core/setup/index.php:577
 msgid "<em>SSL</em> connection [is not enabled]"
 msgstr "<em>SSL</em> соединение [не включено]."
 
-#: zp-core/setup/index.php:574
+#: zp-core/setup/index.php:577
 msgid ""
 "It is strongely recommended to use a secure https connection on your site."
 msgstr ""
 "Настоятельно рекомендуется использовать безопасное https-соединение на вашем "
 "сайте."
 
-#: zp-core/setup/index.php:579
+#: zp-core/setup/index.php:582
 msgid ""
 "Server seems not to be <em>Apache</em>, <em>Nginx</em> or <em>compatible</"
 "em>. Zenphoto may not work correctly."
@@ -10905,12 +10905,12 @@ msgstr ""
 "Сервер не похож на <em>Apache</em>, <em>Nginx</em> или другой "
 "<em>совместимый</em>. Zenphoto может не заработать корректно."
 
-#: zp-core/setup/index.php:583
+#: zp-core/setup/index.php:586
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP версии %s"
 
-#: zp-core/setup/index.php:583
+#: zp-core/setup/index.php:586
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -10926,23 +10926,23 @@ msgstr ""
 "версии 7.4. Пожалуйста, свяжитесь с вашим веб-хостингом по поводу обновления "
 "PHP на вашем сервере."
 
-#: zp-core/setup/index.php:586
+#: zp-core/setup/index.php:589
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP <code>Sessions</code>."
 
-#: zp-core/setup/index.php:586 zp-core/setup/index.php:588
+#: zp-core/setup/index.php:589 zp-core/setup/index.php:591
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>Sessions</code> [возможно не работает]."
 
-#: zp-core/setup/index.php:588
+#: zp-core/setup/index.php:591
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHP Sessions требуются для работы административных функций Zenphoto."
 
-#: zp-core/setup/index.php:607
+#: zp-core/setup/index.php:610
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "Модуль <code>Suhosin</code> [включен]"
 
-#: zp-core/setup/index.php:607
+#: zp-core/setup/index.php:610
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required "
@@ -10954,16 +10954,16 @@ msgstr ""
 "Zenphoto, что потенциально приведет снижению функциональности или сбоям в "
 "работе Zenphoto."
 
-#: zp-core/setup/index.php:632
+#: zp-core/setup/index.php:635
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: zp-core/setup/index.php:632
+#: zp-core/setup/index.php:635
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [включено]"
 
-#: zp-core/setup/index.php:632
+#: zp-core/setup/index.php:635
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -10971,42 +10971,42 @@ msgstr ""
 "Эта функция разрешает отображать сообщения об ошибках PHP на веб-страницах. "
 "Сообщения могут содержать конфиденциальные данные о вашем сайте."
 
-#: zp-core/setup/index.php:634
+#: zp-core/setup/index.php:637
 msgid "PHP <code>gettext()</code> support"
 msgstr "PHP поддержка <code>gettext()</code>"
 
-#: zp-core/setup/index.php:634
+#: zp-core/setup/index.php:637
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP поддержка <code>gettext()</code> [отсутствует]"
 
-#: zp-core/setup/index.php:634
+#: zp-core/setup/index.php:637
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
 "Для локализации Zenphoto нужна нативная поддержка PHP <code>gettext()</code>"
 
-#: zp-core/setup/index.php:636
+#: zp-core/setup/index.php:639
 msgid "PHP <code>cURL</code> support"
 msgstr "PHP поддержка <code>cURL</code>"
 
-#: zp-core/setup/index.php:636
+#: zp-core/setup/index.php:639
 msgid "PHP <code>cURL</code> support [is not present]"
 msgstr "PHP поддержка <code>cURL</code> [отсутствует]"
 
-#: zp-core/setup/index.php:636
+#: zp-core/setup/index.php:639
 msgid ""
 "PHP <code>cURL</code> support is critical and required for some functionalty."
 msgstr "PHP поддержка <code>cURL</code> [отсутствует]"
 
-#: zp-core/setup/index.php:638
+#: zp-core/setup/index.php:641
 msgid "PHP <code>tidy</code> support"
 msgstr "PHP поддержка <code>tidy</code>"
 
-#: zp-core/setup/index.php:638
+#: zp-core/setup/index.php:641
 msgid "PHP <code>tidy</code> support [is not present]"
 msgstr "PHP поддержка <code>tidy</code> [отсутствует]"
 
-#: zp-core/setup/index.php:638
+#: zp-core/setup/index.php:641
 msgid ""
 "<code>tidy</code> support is not critical but strongely recommended for "
 "properly truncating text containing HTML markup."
@@ -11014,15 +11014,15 @@ msgstr ""
 "<code>tidy</code> - поддержка не критична, но настоятельно рекомендуется для "
 "правильного сокращения текста, содержащего HTML-разметку."
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:642
 msgid "PHP <code>ZipArchive</code> support"
 msgstr "PHP поддержка <code>ZipArchive</code>"
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:642
 msgid "PHP <code>ZipArchive</code> support [is not present]"
 msgstr "PHP поддержка <code>ZipArchive</code> [отсутствует]"
 
-#: zp-core/setup/index.php:639
+#: zp-core/setup/index.php:642
 msgid ""
 "<code>ZipArchive</code> support is not critical and only required if you "
 "intend to upload zip archives with supported file types to the gallery."
@@ -11031,29 +11031,29 @@ msgstr ""
 "случае, если вы собираетесь загружать zip-архивы с поддерживаемыми типами "
 "файлов в галерею."
 
-#: zp-core/setup/index.php:641
+#: zp-core/setup/index.php:644
 msgid "PHP <code>JSON</code> support"
 msgstr "PHP поддержка <code>JSON</code>"
 
-#: zp-core/setup/index.php:641
+#: zp-core/setup/index.php:644
 msgid "PHP <code>JSON</code> support [is not present]"
 msgstr "PHP поддержка <code>JSON</code> [отсутствует]"
 
-#: zp-core/setup/index.php:641
+#: zp-core/setup/index.php:644
 msgid ""
 "<code>JSON</code> support is critical and required for some functionalty."
 msgstr ""
 "<code>JSON</code> - поддержка критична и необходима для некоторых функций."
 
-#: zp-core/setup/index.php:643
+#: zp-core/setup/index.php:646
 msgid "PHP <code>exif</code> support"
 msgstr "PHP поддержка <code>exif</code>"
 
-#: zp-core/setup/index.php:643
+#: zp-core/setup/index.php:646
 msgid "PHP <code>exif</code> support [is not present]"
 msgstr "PHP поддержка <code>exif</code> [отсутствует]"
 
-#: zp-core/setup/index.php:643
+#: zp-core/setup/index.php:646
 msgid ""
 "<code>exif</code> support is not critical but strongely recommended for "
 "properly handling exif data of images"
@@ -11061,15 +11061,15 @@ msgstr ""
 "<code>exif</code> - поддержка не критична, но настоятельно рекомендуется для "
 "правильной обработки EXIF-данных изображений"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:647
 msgid "PHP <code>bz2</code> support"
 msgstr "PHP поддержка <code>%s</code>"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:647
 msgid "PHP <code>bz2</code> support [is not present]"
 msgstr "PHP поддержка <code>flock</code> [отсутствует]"
 
-#: zp-core/setup/index.php:644
+#: zp-core/setup/index.php:647
 msgid ""
 "<code>bz2</code> support is not critical but recommended for some optional "
 "bzcompression functionalty"
@@ -11077,15 +11077,15 @@ msgstr ""
 "<code>bz2</code> - поддержка не критична, но рекомендуется для некоторых "
 "дополнительного функционала bzcompression"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:648
 msgid "PHP <code>fileinfo</code> support"
 msgstr "PHP поддержка <code>fileinfo</code>"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:648
 msgid "PHP <code>fileinfo</code> support [is not present]"
 msgstr "PHP поддержка <code>fileinfo</code> [отсутствует]"
 
-#: zp-core/setup/index.php:645
+#: zp-core/setup/index.php:648
 msgid ""
 "<code>fileinfo</code> support is not critical but strongely recommended for "
 "file system functionality"
@@ -11093,15 +11093,15 @@ msgstr ""
 "<code>fileinfo</code> - поддержка не критична, но настоятельно рекомендуется "
 "для обеспечения функциональности файловой системы"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:649
 msgid "PHP <code>intl</code> support"
 msgstr "PHP поддержка <code>intl</code>"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:649
 msgid "PHP <code>intl</code> support [is not present]"
 msgstr "PHP поддержка <code>intl</code> [отсутствует]"
 
-#: zp-core/setup/index.php:646
+#: zp-core/setup/index.php:649
 msgid ""
 "<code>intl</code> support is strongely recommended for using locale-aware "
 "functionality."
@@ -11109,15 +11109,15 @@ msgstr ""
 "<code>intl</code> - поддержка настоятельно рекомендуется для использования "
 "функций, связанных с локализацией."
 
-#: zp-core/setup/index.php:647
+#: zp-core/setup/index.php:650
 msgid "PHP <code>xml</code> support"
 msgstr "PHP поддержка <code>xml</code>"
 
-#: zp-core/setup/index.php:647
+#: zp-core/setup/index.php:650
 msgid "PHP <code>xml</code> support [is not present]"
 msgstr "PHP поддержка <code>xml</code> [отсутствует]"
 
-#: zp-core/setup/index.php:647
+#: zp-core/setup/index.php:650
 msgid ""
 "<code>xml</code> support is not criticaly but strongely recommended for some "
 "functionality for parsing XML contents like RSS feeds."
@@ -11126,15 +11126,15 @@ msgstr ""
 "некоторых функций синтаксического анализа содержимого XML, таких как RSS-"
 "каналы."
 
-#: zp-core/setup/index.php:648
+#: zp-core/setup/index.php:651
 msgid "PHP <code>dom</code> support"
 msgstr "PHP поддержка <code>dom</code>"
 
-#: zp-core/setup/index.php:648
+#: zp-core/setup/index.php:651
 msgid "PHP <code>dom</code> support [is not present]"
 msgstr "PHP поддержка <code>dom</code> [отсутствует]"
 
-#: zp-core/setup/index.php:648
+#: zp-core/setup/index.php:651
 msgid ""
 "<code>dom</code> support is not criticaly but strongely recommended for some "
 "functionality processing and modifying HTML contents."
@@ -11142,15 +11142,15 @@ msgstr ""
 "<code>dom</code> - поддержка не критична, но настоятельно рекомендуется для "
 "некоторых функций обработки и изменения содержимого HTML."
 
-#: zp-core/setup/index.php:649
+#: zp-core/setup/index.php:652
 msgid "PHP <code>simplexml</code> support"
 msgstr "PHP поддержка <code>simplexml</code>"
 
-#: zp-core/setup/index.php:649
+#: zp-core/setup/index.php:652
 msgid "PHP <code>simplexml</code> support [is not present]"
 msgstr "PHP поддержка <code>simplexml</code> [отсутствует]"
 
-#: zp-core/setup/index.php:649
+#: zp-core/setup/index.php:652
 msgid ""
 "<code>simplexml</code> support is not criticaly but strongely recommended "
 "for some functionality processing XML contents like RSS feeds."
@@ -11159,15 +11159,15 @@ msgstr ""
 "рекомендуется для некоторых функций, обрабатывающих содержимое XML, таких "
 "как RSS-каналы."
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:653
 msgid "PHP <code>Reflection</code> support"
 msgstr "PHP поддержка <code>Reflection</code>"
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:653
 msgid "PHP <code>Reflection</code> support [is not present]"
 msgstr "PHP поддержка <code>Reflection</code> [отсутствует]"
 
-#: zp-core/setup/index.php:650
+#: zp-core/setup/index.php:653
 msgid ""
 "<code>Reflection</code> support is not criticaly but strongely recommended "
 "for some internal functionality."
@@ -11175,15 +11175,15 @@ msgstr ""
 "<code>Reflection</code> - поддержка не критична, но настоятельно "
 "рекомендуется для некоторых внутренних функций."
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:654
 msgid "PHP <code>Ctype</code> support"
 msgstr "PHP поддержка <code>Ctype</code>"
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:654
 msgid "PHP <code>Ctype</code> support [is not present]"
 msgstr "PHP поддержка <code>Ctype</code> [отсутствует]"
 
-#: zp-core/setup/index.php:651
+#: zp-core/setup/index.php:654
 msgid ""
 "<code>Ctype</code> support is required for internal character type checking "
 "e.g. for shortening text content."
@@ -11191,41 +11191,41 @@ msgstr ""
 "<code>Ctype</code> - поддержка требуется для внутренней проверки типа "
 "символов, например, для сокращения текстового содержимого."
 
-#: zp-core/setup/index.php:652
+#: zp-core/setup/index.php:655
 msgid "PHP <code>filter</code> support"
 msgstr "PHP поддержка <code>filter</code>"
 
-#: zp-core/setup/index.php:652
+#: zp-core/setup/index.php:655
 msgid "PHP <code>filter</code> support [is not present]"
 msgstr "PHP поддержка <code>filter</code> [отсутствует]"
 
-#: zp-core/setup/index.php:652
+#: zp-core/setup/index.php:655
 msgid ""
 "<code>filter</code> support is required for filtering and clearing content."
 msgstr ""
 "<code>filter</code> - поддержка требуется для фильтрации и очистки контента."
 
-#: zp-core/setup/index.php:653
+#: zp-core/setup/index.php:656
 msgid "PHP <code>session</code> support"
 msgstr "PHP поддержка <code>session</code>"
 
-#: zp-core/setup/index.php:653
+#: zp-core/setup/index.php:656
 msgid "PHP <code>session</code> support [is not present]"
 msgstr "PHP поддержка <code>session</code> [отсутствует]"
 
-#: zp-core/setup/index.php:653
+#: zp-core/setup/index.php:656
 msgid "<code>session</code> support is required session handling."
 msgstr "<code>session</code> - поддержка требуется для обработки сеансов."
 
-#: zp-core/setup/index.php:656
+#: zp-core/setup/index.php:659
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: zp-core/setup/index.php:656
+#: zp-core/setup/index.php:659
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> не удалось"
 
-#: zp-core/setup/index.php:656
+#: zp-core/setup/index.php:659
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -11233,7 +11233,7 @@ msgstr ""
 "Функциональность локализации не реализована на вашей платформе или указанная "
 "локализация не существует. Перевод на данный язык может не работать."
 
-#: zp-core/setup/index.php:656
+#: zp-core/setup/index.php:659
 msgid ""
 "See the <a  href=\"https://www.zenphoto.org/news/problems-with-"
 "languages\">user guide</a> on zenphoto.org for details."
@@ -11241,11 +11241,11 @@ msgstr ""
 "Подробнее см. <a href=\"https://www.zenphoto.org/news/problems-with-"
 "languages\">руководство пользователя</a> на сайте Zenphoto.org."
 
-#: zp-core/setup/index.php:658
+#: zp-core/setup/index.php:661
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: zp-core/setup/index.php:666
+#: zp-core/setup/index.php:669
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in "
 "your <em>php.ini</em> file is strongely recommended to insure accented and "
@@ -11256,11 +11256,11 @@ msgstr ""
 "гарантировать правильную работу с диакрити́ческими зна́ками и много-байтовыми "
 "символами."
 
-#: zp-core/setup/index.php:667
+#: zp-core/setup/index.php:670
 msgid "PHP <code>mbstring</code> and <code>iconv</code> packages"
 msgstr "PHP пакеты <code>mbstring</code> и <code>iconv</code>"
 
-#: zp-core/setup/index.php:667
+#: zp-core/setup/index.php:670
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> and <code>iconv</code> packages [Your internal "
@@ -11269,45 +11269,45 @@ msgstr ""
 "PHP пакеты <code>mbstring</code> и <code>iconv</code> [Ваш внутренний набор "
 "символов <strong>%s</strong>]"
 
-#: zp-core/setup/index.php:671
+#: zp-core/setup/index.php:674
 msgid ""
 "You need to install the <code>mbstring</code> and <code>iconv</code> packages"
 msgstr ""
 "Вам необходимо установить пакеты <code>mbstring</code> и <code>iconv</code>"
 
-#: zp-core/setup/index.php:672 zp-core/setup/index.php:675
+#: zp-core/setup/index.php:675 zp-core/setup/index.php:678
 msgid ""
 "PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"
 msgstr "PHP пакеты <code>mbstring</code> и <code>iconv</code> [отсутствует]"
 
-#: zp-core/setup/index.php:674
+#: zp-core/setup/index.php:677
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Строки, сгенерированные внутри PHP, могут отображаться некорректно "
 "(например, даты)"
 
-#: zp-core/setup/index.php:681
+#: zp-core/setup/index.php:684
 msgid "Graphics library"
 msgstr "Графическая библиотека"
 
-#: zp-core/setup/index.php:689
+#: zp-core/setup/index.php:692
 msgid "Graphics support:"
 msgstr "Поддержка графики:"
 
-#: zp-core/setup/index.php:692
+#: zp-core/setup/index.php:695
 msgid "[enabled]"
 msgstr "[включено]"
 
-#: zp-core/setup/index.php:694
+#: zp-core/setup/index.php:697
 msgid "[available]"
 msgstr "[доступно]"
 
-#: zp-core/setup/index.php:697
+#: zp-core/setup/index.php:700
 msgid "Graphics support [is not installed]"
 msgstr "Поддержка графики [не установлено]"
 
-#: zp-core/setup/index.php:697
+#: zp-core/setup/index.php:700
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</"
 "em> in your PHP"
@@ -11315,17 +11315,17 @@ msgstr ""
 "Вам необходимо установить библиотеку поддержки графики, такую как <em>GD "
 "library</em> в вашем PHP"
 
-#: zp-core/setup/index.php:712
+#: zp-core/setup/index.php:715
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s или %2$s"
 
-#: zp-core/setup/index.php:714
+#: zp-core/setup/index.php:717
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s"
 
-#: zp-core/setup/index.php:717
+#: zp-core/setup/index.php:720
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -11333,12 +11333,12 @@ msgstr ""
 "Чтобы исправить это, вам следует установить графическую библиотеку с "
 "соответствующей поддержкой изображений в вашем PHP"
 
-#: zp-core/setup/index.php:719
+#: zp-core/setup/index.php:722
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Ваша графическая библиотека PHP не поддерживает %1$s, %2$s или %3$s"
 
-#: zp-core/setup/index.php:722
+#: zp-core/setup/index.php:725
 msgid ""
 "To correct this you need to install GD with appropriate image support in "
 "your PHP"
@@ -11346,30 +11346,30 @@ msgstr ""
 "Чтобы исправить это, вам необходимо установить GD с соответствующей "
 "поддержкой изображений в вашем PHP"
 
-#: zp-core/setup/index.php:724
+#: zp-core/setup/index.php:727
 msgid "PHP graphics image support"
 msgstr "Поддержка графики в PHP"
 
-#: zp-core/setup/index.php:725
+#: zp-core/setup/index.php:728
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr ""
 "Неподдерживаемые типы изображений не будут доступны для просмотра в ваших "
 "альбомах."
 
-#: zp-core/setup/index.php:729
+#: zp-core/setup/index.php:732
 msgid "Graphics Library rotation support [is not present]"
 msgstr "Графическая библиотека: поворот изображения [отсутствует]"
 
-#: zp-core/setup/index.php:729
+#: zp-core/setup/index.php:732
 msgid ""
 "The graphics support library does not provide support for image rotation."
 msgstr "Библиотека поддержки графики не поддерживает поворот изображения."
 
-#: zp-core/setup/index.php:737
+#: zp-core/setup/index.php:740
 msgid "Graphics support [configuration error]"
 msgstr "Поддержка графики: [ошибка конфигурации]"
 
-#: zp-core/setup/index.php:737
+#: zp-core/setup/index.php:740
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -11377,17 +11377,17 @@ msgstr ""
 "Библиотека обработки изображений для Zenphoto не была загружена. Убедитесь, "
 "что ваш PHP поддерживает графику."
 
-#: zp-core/setup/index.php:748
+#: zp-core/setup/index.php:751
 #, php-format
 msgid "<em>%1$s</em> file"
 msgstr "<em>%1$s</em> файл"
 
-#: zp-core/setup/index.php:748
+#: zp-core/setup/index.php:751
 #, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "<em>%1$s</em> файл [не существует]"
 
-#: zp-core/setup/index.php:748
+#: zp-core/setup/index.php:751
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -11398,31 +11398,31 @@ msgstr ""
 "скопировать файл <code>%1$s/zenphoto_cfg.txt</code> в <code>%2$s /%3$s</"
 "code>, а затем отредактировать его, как указано в комментариях к файлу."
 
-#: zp-core/setup/index.php:750
+#: zp-core/setup/index.php:753
 msgid "File permissions"
 msgstr "Права доступа к файлам"
 
-#: zp-core/setup/index.php:752
+#: zp-core/setup/index.php:755
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Установите права доступа к файлам на %s."
 
-#: zp-core/setup/index.php:755
+#: zp-core/setup/index.php:758
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: zp-core/setup/index.php:757
+#: zp-core/setup/index.php:760
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>неизвестно</em> (<code>%o</code>)"
 
-#: zp-core/setup/index.php:768
+#: zp-core/setup/index.php:771
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Права доступа к файлам [равны %s]"
 
-#: zp-core/setup/index.php:769
+#: zp-core/setup/index.php:772
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be "
 "a security risk. However, on some servers Zenphoto does not function "
@@ -11435,11 +11435,11 @@ msgstr ""
 "Zenphoto возникли ошибки с разрешениями доступа, запустите программу "
 "установки еще раз и выберите более упрощенное разрешение."
 
-#: zp-core/setup/index.php:775
+#: zp-core/setup/index.php:778
 msgid "Your filesystem is Macintosh"
 msgstr "У вас файловая система Макинтош"
 
-#: zp-core/setup/index.php:775
+#: zp-core/setup/index.php:778
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -11447,11 +11447,11 @@ msgstr ""
 "Zenphoto не может обрабатывать имена файлов Macintosh, содержащие "
 "диакритические знаки. Вам следует избегать их."
 
-#: zp-core/setup/index.php:782
+#: zp-core/setup/index.php:785
 msgid "Character set"
 msgstr "Кодировка"
 
-#: zp-core/setup/index.php:823
+#: zp-core/setup/index.php:826
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> "
@@ -11462,31 +11462,31 @@ msgstr ""
 "создадите папку или будете использовать имена файлов с диакритическими "
 "знаками, у вас могут появится проблемы с данными объектами."
 
-#: zp-core/setup/index.php:825
+#: zp-core/setup/index.php:828
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Изменить кодировку на %1$s"
 
-#: zp-core/setup/index.php:839
+#: zp-core/setup/index.php:842
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "Кодировка файловой системы Zenphoto %1$s [подтверждено]"
 
-#: zp-core/setup/index.php:844
+#: zp-core/setup/index.php:847
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr "Кодировка файловой системы Zenphoto ISO-8859-1 [предположительно]"
 
-#: zp-core/setup/index.php:849
+#: zp-core/setup/index.php:852
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr "Кодировка файловой системы Zenphoto %1$s [возможно, неверно]"
 
-#: zp-core/setup/index.php:854
+#: zp-core/setup/index.php:857
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr "Кодировка файловой системы Zenphoto %1$s [тест не производился]"
 
-#: zp-core/setup/index.php:855
+#: zp-core/setup/index.php:858
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -11498,32 +11498,32 @@ msgstr ""
 "создав файл в вашей папке <code>%1$s</code> с именем <strong><code>%2$s</"
 "code></strong> и повторно запустив программу установки."
 
-#: zp-core/setup/index.php:868
+#: zp-core/setup/index.php:871
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr ""
 "Для отображения URI изображений требуется набор символов <em>filesystem</em>."
 
-#: zp-core/setup/index.php:869
+#: zp-core/setup/index.php:872
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Для URI изображений, похоже, требуется набор символов UTF-8."
 
-#: zp-core/setup/index.php:889
+#: zp-core/setup/index.php:892
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "Необходимо включить настройку URL <em>UTF8 image URIs</em>."
 
-#: zp-core/setup/index.php:889
+#: zp-core/setup/index.php:892
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Сделать!</a>"
 
-#: zp-core/setup/index.php:906
+#: zp-core/setup/index.php:909
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Необходимо отключить свойство URL: <em>UTF8 image URIs</em>."
 
-#: zp-core/setup/index.php:906
+#: zp-core/setup/index.php:909
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Сделать!</a>"
 
-#: zp-core/setup/index.php:938 zp-core/utilities/database_reference.php:33
+#: zp-core/setup/index.php:941 zp-core/utilities/database_reference.php:33
 #: zp-core/utilities/refresh_database.php:10
 #: zp-core/utilities/refresh_metadata.php:10
 #: zp-core/utilities/reset_albumthumbs.php:13
@@ -11532,36 +11532,36 @@ msgstr "<a href=\"javascript:uri(false)\">Сделать!</a>"
 msgid "Database"
 msgstr "База данных"
 
-#: zp-core/setup/index.php:942
+#: zp-core/setup/index.php:945
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP поддержка <code>%s</code> для сконфигурированной базы данных"
 
-#: zp-core/setup/index.php:947
+#: zp-core/setup/index.php:950
 #, php-format
 msgid "<code>%1$s</code> support (experimental)"
 msgstr "<code>%s</code> поддержка (экспериментально)"
 
-#: zp-core/setup/index.php:955
+#: zp-core/setup/index.php:958
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP поддержка <code>%s</code>"
 
-#: zp-core/setup/index.php:959
+#: zp-core/setup/index.php:962
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP поддержка <code>%s</code> [не установлена]"
 
-#: zp-core/setup/index.php:969
+#: zp-core/setup/index.php:972
 msgid "No database selected"
 msgstr "Не выбрана база данных"
 
-#: zp-core/setup/index.php:987
+#: zp-core/setup/index.php:990
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s версия %2$s"
 
-#: zp-core/setup/index.php:987
+#: zp-core/setup/index.php:990
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is "
@@ -11571,20 +11571,20 @@ msgstr ""
 "использовать версию %3$s или выше. Вы рискуете, используя более ранние "
 "версии."
 
-#: zp-core/setup/index.php:990
+#: zp-core/setup/index.php:993
 msgid "Database connection"
 msgstr "Связь с базой данных установлена"
 
-#: zp-core/setup/index.php:996
+#: zp-core/setup/index.php:999
 msgid "Database credentials in configuration file"
 msgstr "Параметры базы данных в файле конфигурации"
 
-#: zp-core/setup/index.php:996
+#: zp-core/setup/index.php:999
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> сообщает: %2$s"
 
-#: zp-core/setup/index.php:1003
+#: zp-core/setup/index.php:1006
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -11594,21 +11594,21 @@ msgstr ""
 "strong>, <code>пароль</code> и т.д. в вашем файле конфигурации и "
 "<strong>программа установки</strong> не может выполнить запись в файл."
 
-#: zp-core/setup/index.php:1005
+#: zp-core/setup/index.php:1008
 msgid "Database setup in configuration file"
 msgstr "Параметры базы данных в файле конфигурации"
 
-#: zp-core/setup/index.php:1008
+#: zp-core/setup/index.php:1011
 #, php-format
 msgid "Connect to %s"
 msgstr "Соединение с %s"
 
-#: zp-core/setup/index.php:1008
+#: zp-core/setup/index.php:1011
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr ""
 "Соединение с базой данных [запрос <code>CONNECT</code> закончился неудачей]"
 
-#: zp-core/setup/index.php:1015
+#: zp-core/setup/index.php:1018
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -11616,109 +11616,109 @@ msgstr ""
 "Возможно, вам потребуется установить для <code>SQL mode</code> значение "
 "<em>empty</em> в конфигурации вашей базы данных."
 
-#: zp-core/setup/index.php:1019
+#: zp-core/setup/index.php:1022
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mode</code> [запрос не выполнен]"
 
-#: zp-core/setup/index.php:1022
+#: zp-core/setup/index.php:1025
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL mode</code> [<em>%s</em> переопределен]"
 
-#: zp-core/setup/index.php:1022
+#: zp-core/setup/index.php:1025
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr ""
 "Подумайте о том, чтобы установить для него значение <em>empty</em> в "
 "конфигурации вашей базы данных."
 
-#: zp-core/setup/index.php:1029
+#: zp-core/setup/index.php:1032
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQL mode</code>"
 
-#: zp-core/setup/index.php:1029
+#: zp-core/setup/index.php:1032
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL mode</code> [установлено значение <em>%s</em>]"
 
-#: zp-core/setup/index.php:1029
+#: zp-core/setup/index.php:1032
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr ""
 "Попробуйте установить для него значение<em>empty</em>, если вы получаете "
 "сообщения об ошибках базы данных."
 
-#: zp-core/setup/index.php:1033
+#: zp-core/setup/index.php:1036
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL mode</code> [Не удалось УСТАНОВИТЬ СЕАНС]"
 
-#: zp-core/setup/index.php:1042
+#: zp-core/setup/index.php:1045
 msgid "Select"
 msgstr "Выбрать"
 
-#: zp-core/setup/index.php:1043
+#: zp-core/setup/index.php:1046
 msgid "Create"
 msgstr "Создать"
 
-#: zp-core/setup/index.php:1044
+#: zp-core/setup/index.php:1047
 msgid "Drop"
 msgstr "Сброс"
 
-#: zp-core/setup/index.php:1045
+#: zp-core/setup/index.php:1048
 msgid "Insert"
 msgstr "Вставить"
 
-#: zp-core/setup/index.php:1047
+#: zp-core/setup/index.php:1050
 msgid "Alter"
 msgstr "Изменить"
 
-#: zp-core/setup/index.php:1057
+#: zp-core/setup/index.php:1060
 msgid "and"
 msgstr "и"
 
-#: zp-core/setup/index.php:1059
+#: zp-core/setup/index.php:1062
 msgid "Grants found:"
 msgstr "Найдены допуски:"
 
-#: zp-core/setup/index.php:1087
+#: zp-core/setup/index.php:1090
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "Запрос <em>SHOW GRANTS</em> выполнен с ошибкой."
 
-#: zp-core/setup/index.php:1089
+#: zp-core/setup/index.php:1092
 #, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "<code>права доступа</code> к базе данных для <em>%s</em>"
 
-#: zp-core/setup/index.php:1089
+#: zp-core/setup/index.php:1092
 #, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "<code>права доступа</code> к базе данных для <em>%s</em> [%2$s]"
 
-#: zp-core/setup/index.php:1089
+#: zp-core/setup/index.php:1092
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Пользователь базы данных должен иметь права %s."
 
-#: zp-core/setup/index.php:1102
+#: zp-core/setup/index.php:1105
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [таблицы не найдены]"
 
-#: zp-core/setup/index.php:1105
+#: zp-core/setup/index.php:1108
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em> найдены: %s"
 
-#: zp-core/setup/index.php:1108
+#: zp-core/setup/index.php:1111
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW TABLES</em> [Запрос выдал ошибку]"
 
-#: zp-core/setup/index.php:1108
+#: zp-core/setup/index.php:1111
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</"
 "code>."
 msgstr "База данных не вернула список таблиц для <code>%s</code>."
 
-#: zp-core/setup/index.php:1109
+#: zp-core/setup/index.php:1112
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not "
 "overwrite any existing tables."
@@ -11726,15 +11726,15 @@ msgstr ""
 "<strong>Программа установки</strong> попытается создать все таблицы. При "
 "этом ни одна из существующих таблиц не будет перезаписана."
 
-#: zp-core/setup/index.php:1111
+#: zp-core/setup/index.php:1114
 msgid "UTF8MB4 collation support"
 msgstr "Поддержка UTF8MB4"
 
-#: zp-core/setup/index.php:1112
+#: zp-core/setup/index.php:1115
 msgid "UTF8MB4 collation support [is not available|"
 msgstr "Поддержка UTF8MB4 [недоступна|"
 
-#: zp-core/setup/index.php:1113
+#: zp-core/setup/index.php:1116
 msgid ""
 "You should update your database to MySQL 5.5.3+ or better 5.6+ / MariaDB "
 "5.5+ for full unicode support."
@@ -11742,21 +11742,21 @@ msgstr ""
 "Вам следует обновить вашу базу данных до MySQL 5.5.3+ или лучше 5.6 + / "
 "MariaDB 5.5 + для полной поддержки Unicode."
 
-#: zp-core/setup/index.php:1134
+#: zp-core/setup/index.php:1137
 msgid "Database table and/or its field collations"
 msgstr "Таблица база данных и/или ее параметры сортировки"
 
-#: zp-core/setup/index.php:1137
+#: zp-core/setup/index.php:1140
 msgid " [not using any utf8 collations]"
 msgstr " [не использует никаких параметров сортировки utf8]"
 
-#: zp-core/setup/index.php:1138
+#: zp-core/setup/index.php:1141
 #, php-format
 msgid "The following tables are not or not completely UTF-8: %s"
 msgstr ""
 "Следующие таблицы не соответствуют или не полностью соответствуют UTF-8: %s"
 
-#: zp-core/setup/index.php:1139
+#: zp-core/setup/index.php:1142
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> or better "
@@ -11768,11 +11768,11 @@ msgstr ""
 "code> или лучше <code>utf8mb4_unicode_ci</code> соответственно "
 "<code>utf8mb4_unicode_520_ci</code>"
 
-#: zp-core/setup/index.php:1146
+#: zp-core/setup/index.php:1149
 msgid " [not completely using utf8mb4_* collations]"
 msgstr " [не полностью использует параметры сортировки utf8mb4_ *]"
 
-#: zp-core/setup/index.php:1147
+#: zp-core/setup/index.php:1150
 #, php-format
 msgid ""
 "The following tables use UTF-8 but not or not completely full UTF-8 "
@@ -11785,13 +11785,13 @@ msgstr ""
 "таблицы и полей в <code>utf8mb4_unicode_ci</code> соответственно "
 "<code>utf8mb4_unicode_520_ci</code>"
 
-#: zp-core/setup/index.php:1153
+#: zp-core/setup/index.php:1156
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "База данных <code>$conf[\"UTF-8\"]</code> [не установлено значение <em>true</"
 "em>]"
 
-#: zp-core/setup/index.php:1153
+#: zp-core/setup/index.php:1156
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> or better "
@@ -11805,15 +11805,15 @@ msgstr ""
 "<code>utf8mb4_unicode_520_ci</code> и установить это <em>true</em>. Zenphoto "
 "лучше всего работает с чистыми кодировками UTF-8."
 
-#: zp-core/setup/index.php:1160
+#: zp-core/setup/index.php:1163
 msgid "Zenphoto files"
 msgstr "Файлы Zenphoto"
 
-#: zp-core/setup/index.php:1188
+#: zp-core/setup/index.php:1191
 msgid "Zenphoto package [missing]"
 msgstr "Файлы ядра Zenphoto [отсутствуют]"
 
-#: zp-core/setup/index.php:1188
+#: zp-core/setup/index.php:1191
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -11821,12 +11821,12 @@ msgstr ""
 "Файл <code>Zenphoto.package</code> отсутствует, не читается, либо "
 "неисправен. Возможно, ваша установка повреждена!"
 
-#: zp-core/setup/index.php:1194
+#: zp-core/setup/index.php:1197
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Настройка разрешений (0%o) для пакета Zenphoto."
 
-#: zp-core/setup/index.php:1298
+#: zp-core/setup/index.php:1301
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing "
 "or seem wrong]"
@@ -11834,11 +11834,11 @@ msgstr ""
 "Файлы ядра Zenphoto [Это <em>отладочная</em> сборка. Некоторые файлы "
 "отсутствуют или кажутся неправильными]"
 
-#: zp-core/setup/index.php:1300
+#: zp-core/setup/index.php:1303
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr "Файлы ядра Zenphoto [некоторые файлы отсутствуют или повреждены]"
 
-#: zp-core/setup/index.php:1302
+#: zp-core/setup/index.php:1305
 msgid ""
 "Perhaps there was a problem with the upload. This may not be critical at all "
 "as perhaps just the file times may be off compared to other files. You "
@@ -11848,19 +11848,19 @@ msgstr ""
 "как, возможно, просто время загрузки файла может быть меньше по сравнению с "
 "другими файлами. Вам следует проверить следующие файлы:"
 
-#: zp-core/setup/index.php:1307
+#: zp-core/setup/index.php:1310
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr "Файлы ядра Zenphoto [Это <em> отладочная </em> сборка]"
 
-#: zp-core/setup/index.php:1314
+#: zp-core/setup/index.php:1317
 msgid "Zenphoto core files"
 msgstr "Файлы ядра Zenphoto"
 
-#: zp-core/setup/index.php:1316
+#: zp-core/setup/index.php:1319
 msgid "Installation files"
 msgstr "Файлы установки"
 
-#: zp-core/setup/index.php:1332
+#: zp-core/setup/index.php:1335
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
@@ -11868,7 +11868,7 @@ msgstr[0] ".svn [%s экземпляр]"
 msgstr[1] ".svn [%s экземпляра]"
 msgstr[2] ".svn [%s экземпляров]"
 
-#: zp-core/setup/index.php:1335
+#: zp-core/setup/index.php:1338
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
@@ -11876,31 +11876,31 @@ msgstr[0] "php.ini [%s экземпляр]"
 msgstr[1] "php.ini [%s экземпляра]"
 msgstr[2] "php.ini [%s экземпляров]"
 
-#: zp-core/setup/index.php:1359 zp-core/setup/index.php:1363
+#: zp-core/setup/index.php:1362 zp-core/setup/index.php:1366
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Директории ядра Zenphoto [Найдены неизвестные файлы]"
 
-#: zp-core/setup/index.php:1359
+#: zp-core/setup/index.php:1362
 msgid "The following files could not be deleted."
 msgstr "Эти файлы не могут быть удалены."
 
-#: zp-core/setup/index.php:1363
+#: zp-core/setup/index.php:1366
 msgid "You should remove the following files: "
 msgstr "Необходимо удалить следующие файлы: "
 
-#: zp-core/setup/index.php:1364
+#: zp-core/setup/index.php:1367
 msgid "Delete extra files"
 msgstr "Удалить дополнительные файлы"
 
-#: zp-core/setup/index.php:1367
+#: zp-core/setup/index.php:1370
 msgid "Zenphoto core file permissions"
 msgstr "Настройки доступа к файлам Zenphoto"
 
-#: zp-core/setup/index.php:1367
+#: zp-core/setup/index.php:1370
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Настройки доступа к файлам Zenphoto [не верны]"
 
-#: zp-core/setup/index.php:1367
+#: zp-core/setup/index.php:1370
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a "
@@ -11914,15 +11914,15 @@ msgstr ""
 "zenphoto-files-and-folders\">Руководство по устранению неполадок </a> для "
 "получения подробной информации о требованиях к разрешениям Zenphoto."
 
-#: zp-core/setup/index.php:1370
+#: zp-core/setup/index.php:1373
 msgid "<em>.htaccess</em> file"
 msgstr "файл <em>.htaccess</em>"
 
-#: zp-core/setup/index.php:1380
+#: zp-core/setup/index.php:1383
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "файл <em>.htaccess</em> [пустой или не существует]"
 
-#: zp-core/setup/index.php:1383
+#: zp-core/setup/index.php:1386
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -11931,7 +11931,7 @@ msgstr ""
 "<em>.htaccess</em> в корневой папке Zenphoto для создания URL-адресов, не "
 "содержащих излишних параметров в адресах."
 
-#: zp-core/setup/index.php:1384 zp-core/setup/index.php:1392
+#: zp-core/setup/index.php:1387 zp-core/setup/index.php:1395
 msgid ""
 "You can ignore this warning if you do not intend to set the "
 "<code>mod_rewrite</code> option."
@@ -11939,7 +11939,7 @@ msgstr ""
 "Вы можете проигнорировать это предупреждение, если не планируете "
 "использовать <code>mod_rewrite</code>."
 
-#: zp-core/setup/index.php:1386
+#: zp-core/setup/index.php:1389
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</"
 "a></p><br style=\"clear:both\" /><br />"
@@ -11947,11 +11947,11 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Установщик создаст файл</a></"
 "p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1389
+#: zp-core/setup/index.php:1392
 msgid "Server seems to be <em>nginx</em>"
 msgstr "Сервер похож на <em>Nginx</em>"
 
-#: zp-core/setup/index.php:1391
+#: zp-core/setup/index.php:1394
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring <a "
 "href=\"https://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
@@ -11961,7 +11961,7 @@ msgstr ""
 "необходимо настроить <a href=\"https://www.zenphoto.org/news/nginx-rewrite-"
 "rules-tutorial\"><em>Перезапись URL-адресов для серверов NGINX</em></a>."
 
-#: zp-core/setup/index.php:1395
+#: zp-core/setup/index.php:1398
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
 "<code>mod_rewrite</code> may not be available."
@@ -11969,7 +11969,7 @@ msgstr ""
 "Сервер не похож на <em>Apache</em> или <em>Apache-совместимый</em>, "
 "<code>mod_rewrite</code> может быть недоступен."
 
-#: zp-core/setup/index.php:1432
+#: zp-core/setup/index.php:1435
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> "
 "not required."
@@ -11977,7 +11977,7 @@ msgstr ""
 "Сервер не похож на <em>Apache</em> (или совместимый с Apache), поэтому файл "
 "<code>.htaccess</code> не нужен."
 
-#: zp-core/setup/index.php:1435
+#: zp-core/setup/index.php:1438
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as "
@@ -11990,7 +11990,7 @@ msgstr ""
 "<em>.htaccess</em>, объедините их с <em>%s/htaccess</em> для создания нового "
 "файла <em>.htaccess</em>."
 
-#: zp-core/setup/index.php:1437
+#: zp-core/setup/index.php:1440
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing "
 "<em>.htaccess</em> file with the current version</a></p><br "
@@ -11999,25 +11999,25 @@ msgstr ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Заменить существующий "
 "<em>.htaccess</em> на новую версию</a></p><br style=\"clear:both\" /><br />"
 
-#: zp-core/setup/index.php:1440
+#: zp-core/setup/index.php:1443
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "файл <em>.htaccess</em> [неправильная версия]"
 
-#: zp-core/setup/index.php:1454
+#: zp-core/setup/index.php:1457
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr "Файл <em>.htaccess</em> (<em>RewriteEngine</em> <strong>%s</strong>)"
 
-#: zp-core/setup/index.php:1467
+#: zp-core/setup/index.php:1470
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>отсутствует</em>]"
 
-#: zp-core/setup/index.php:1473
+#: zp-core/setup/index.php:1476
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 
-#: zp-core/setup/index.php:1474
+#: zp-core/setup/index.php:1477
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -12026,12 +12026,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Не совпадает с "
 "инсталляционной директорией]"
 
-#: zp-core/setup/index.php:1481
+#: zp-core/setup/index.php:1484
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase <code>%s</code> (исправлено)"
 
-#: zp-core/setup/index.php:1505
+#: zp-core/setup/index.php:1508
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -12039,7 +12039,7 @@ msgstr ""
 "Программе установки не удалось записать изменения в файл RewriteBase, "
 "соответствующий папке установки."
 
-#: zp-core/setup/index.php:1506
+#: zp-core/setup/index.php:1509
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your "
@@ -12049,15 +12049,15 @@ msgstr ""
 "<code>RewriteBase</code> в вашем файле <code>.htaccess</code> значение "
 "<code>%s</code>."
 
-#: zp-core/setup/index.php:1508
+#: zp-core/setup/index.php:1511
 msgid "Rewrite rules updated"
 msgstr "Обновлены правила перезаписи URL"
 
-#: zp-core/setup/index.php:1508
+#: zp-core/setup/index.php:1511
 msgid "Rewrite rules updated [not updated]"
 msgstr "Правила перезаписи URL обновлены [не обновлены]"
 
-#: zp-core/setup/index.php:1508
+#: zp-core/setup/index.php:1511
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -12065,21 +12065,21 @@ msgstr ""
 "Программе установки не удалось записать в файл изменения правил Rewrite для "
 "обновлений сайта."
 
-#: zp-core/setup/index.php:1514 zp-core/setup/index.php:1517
-#: zp-core/setup/index.php:1530
+#: zp-core/setup/index.php:1517 zp-core/setup/index.php:1520
+#: zp-core/setup/index.php:1533
 msgid "<em>robots.txt</em> file"
 msgstr "файл <em>robots.txt</em>"
 
-#: zp-core/setup/index.php:1514 zp-core/setup/index.php:1517
-#: zp-core/setup/index.php:1530
+#: zp-core/setup/index.php:1517 zp-core/setup/index.php:1520
+#: zp-core/setup/index.php:1533
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Файл <em>robots.txt</em> [Не создан]"
 
-#: zp-core/setup/index.php:1514
+#: zp-core/setup/index.php:1517
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Программа установки не может найти файл <em>example_robots.txt</em>."
 
-#: zp-core/setup/index.php:1517
+#: zp-core/setup/index.php:1520
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists. "
 "If you just moved your site you may need to review it."
@@ -12088,16 +12088,16 @@ msgstr ""
 "он уже существует. Если вы только что перенесли свой сайт, возможно, вам "
 "потребуется проверить его."
 
-#: zp-core/setup/index.php:1530
+#: zp-core/setup/index.php:1533
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Программе установки не удалось создать файл <em>robots.txt</em>."
 
-#: zp-core/setup/index.php:1535
+#: zp-core/setup/index.php:1538
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr ""
 "альбомы [использование <code>$conf['external_album_folder']</code> устарело]"
 
-#: zp-core/setup/index.php:1535 zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1538 zp-core/setup/index.php:1562
 #, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
@@ -12106,11 +12106,11 @@ msgstr ""
 "Вам следует обновить свой файл конфигурации, чтобы он соответствовал "
 "текущему файлу-примеру %1$s."
 
-#: zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1562
 msgid "<em>albums</em> folder"
 msgstr "директория <em>albums</em>"
 
-#: zp-core/setup/index.php:1559
+#: zp-core/setup/index.php:1562
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -12118,15 +12118,15 @@ msgstr ""
 "Директория <em>альбомов</em> [строка <code>\\$conf['album_folder']</code> "
 "отсутствует в вашем файле конфигурации]"
 
-#: zp-core/setup/index.php:1563
+#: zp-core/setup/index.php:1566
 msgid "<em>locale</em> folders"
 msgstr "Директория <em>locale</em>"
 
-#: zp-core/setup/index.php:1563
+#: zp-core/setup/index.php:1566
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Директория <em>locale</em> [не полностью]"
 
-#: zp-core/setup/index.php:1563
+#: zp-core/setup/index.php:1566
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at "
 "least the <em>en_US</em> folder."
@@ -12134,19 +12134,19 @@ msgstr ""
 "Убедитесь, что вы загрузили полный пакет Zenphoto. У вас должна быть как "
 "минимум папка <em>en_US</em>."
 
-#: zp-core/setup/index.php:1564
+#: zp-core/setup/index.php:1567
 msgid "uploaded"
 msgstr "загружено"
 
-#: zp-core/setup/index.php:1569
+#: zp-core/setup/index.php:1572
 msgid "HTML cache"
 msgstr "HTML кэш"
 
-#: zp-core/setup/index.php:1570
+#: zp-core/setup/index.php:1573
 msgid "Third party plugins"
 msgstr "Сторонние плагины"
 
-#: zp-core/setup/index.php:1580
+#: zp-core/setup/index.php:1583
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -12154,74 +12154,74 @@ msgstr ""
 "Необходимо устранить вышеуказанные проблемы и снова запустить "
 "<code>setup.php</code>."
 
-#: zp-core/setup/index.php:1583
+#: zp-core/setup/index.php:1586
 msgid "Setup failed."
 msgstr "Установка не удалась."
 
-#: zp-core/setup/index.php:1594 zp-core/setup/index.php:2688
+#: zp-core/setup/index.php:1597 zp-core/setup/index.php:2691
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Для запуска установки необходимо обладать правами <em>Администратора</em>."
 
-#: zp-core/setup/index.php:1596 zp-core/setup/index.php:2690
+#: zp-core/setup/index.php:1599 zp-core/setup/index.php:2693
 msgid "You must be logged in to run setup."
 msgstr "Вы должны войти в систему, чтобы начать установку."
 
-#: zp-core/setup/index.php:1617
+#: zp-core/setup/index.php:1620
 msgid "database connected"
 msgstr "связь с базой данных установлена"
 
-#: zp-core/setup/index.php:1623
+#: zp-core/setup/index.php:1626
 msgid "Checking the database"
 msgstr "Проверка базы данных"
 
-#: zp-core/setup/index.php:2407
+#: zp-core/setup/index.php:2410
 msgid "About to create database tables"
 msgstr "Программа установки создает таблицы базы данных"
 
-#: zp-core/setup/index.php:2409
+#: zp-core/setup/index.php:2412
 msgid "About to update database tables"
 msgstr "Программа установки обновляет таблицы базы данных"
 
-#: zp-core/setup/index.php:2412
+#: zp-core/setup/index.php:2415
 msgid "Begin database table creation"
 msgstr "Программа установки начинает создание таблиц"
 
-#: zp-core/setup/index.php:2421
+#: zp-core/setup/index.php:2424
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr ""
 "Программе установки не удалось создать таблицы:<br />Запрос: %1$s<br /"
 ">Ошибка: %2$s"
 
-#: zp-core/setup/index.php:2426 zp-core/setup/index.php:2446
+#: zp-core/setup/index.php:2429 zp-core/setup/index.php:2449
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Запрос ( %s ): успех."
 
-#: zp-core/setup/index.php:2431 zp-core/setup/index.php:2432
+#: zp-core/setup/index.php:2434 zp-core/setup/index.php:2435
 msgid "Begin table updates"
 msgstr "Программа установки начинает обновлять таблицы"
 
-#: zp-core/setup/index.php:2439 zp-core/setup/index.php:2443
+#: zp-core/setup/index.php:2442 zp-core/setup/index.php:2446
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Запрос %1$s неудачен! Ошибка: %2$s"
 
-#: zp-core/setup/index.php:2449
+#: zp-core/setup/index.php:2452
 msgid "Begin converting UTF-8 tables to utf8mb4 collation"
 msgstr ""
 "Программа установки начинает преобразование таблиц UTF-8 для параметров "
 "сортировки utf8mb4"
 
-#: zp-core/setup/index.php:2457
+#: zp-core/setup/index.php:2460
 #, php-format
 msgid "UTF-8 Table %s and its columns converted to utf8mb4 collation."
 msgstr ""
 "Таблица %s в формате UTF-8 и ее столбцы преобразованы для параметры "
 "сортировки utf8mb4."
 
-#: zp-core/setup/index.php:2460
+#: zp-core/setup/index.php:2463
 #, php-format
 msgid ""
 "ERROR: UTF-8 table %1$s and/or its columns could not be converted to utf8mb4 "
@@ -12230,40 +12230,40 @@ msgstr ""
 "ОШИБКА: не удалось преобразовать таблицу %1$s в формате UTF-8 и/или ее "
 "столбцы для параметров сортировки utf8mb4: %2$s"
 
-#: zp-core/setup/index.php:2468
+#: zp-core/setup/index.php:2471
 msgid "Done with table create!"
 msgstr "Таблица создана!"
 
-#: zp-core/setup/index.php:2470
+#: zp-core/setup/index.php:2473
 msgid "Done with table create with errors!"
 msgstr "Создание таблицы завершено с ошибками!"
 
-#: zp-core/setup/index.php:2474
+#: zp-core/setup/index.php:2477
 msgid "Done with table update"
 msgstr "Обновление таблицы завершено"
 
-#: zp-core/setup/index.php:2476
+#: zp-core/setup/index.php:2479
 msgid "Done with table update with errors"
 msgstr "Обновление таблицы завершено с ошибками"
 
-#: zp-core/setup/index.php:2481
+#: zp-core/setup/index.php:2484
 msgid "Checking table specifications"
 msgstr "Проверка параметров таблиц"
 
-#: zp-core/setup/index.php:2492
+#: zp-core/setup/index.php:2495
 msgid "Done with database creation and update"
 msgstr "Создание и обновление базы данных завершено"
 
-#: zp-core/setup/index.php:2494
+#: zp-core/setup/index.php:2497
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Предыдущий релиз был %s"
 
-#: zp-core/setup/index.php:2497
+#: zp-core/setup/index.php:2500
 msgid "Setting default options"
 msgstr "Программа установки выставляет настройки по умолчанию"
 
-#: zp-core/setup/index.php:2535
+#: zp-core/setup/index.php:2538
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a "
@@ -12272,27 +12272,27 @@ msgstr ""
 "Вы можете <a href=\"%1$s\">задать имя и пароль администратора</a> или <a "
 "href=\"%2$s\">выполнить восстановление базы данных</a>"
 
-#: zp-core/setup/index.php:2538
+#: zp-core/setup/index.php:2541
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Необходимо определить <a href=\"%1$s\">имя и пароль администратора</a>"
 
-#: zp-core/setup/index.php:2544
+#: zp-core/setup/index.php:2547
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr "Вы можете приступить к <a href=\"%1$s\">управлению Zenphoto</a>."
 
-#: zp-core/setup/index.php:2608
+#: zp-core/setup/index.php:2611
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Создать таблицы базы данных: %s"
 
-#: zp-core/setup/index.php:2628
+#: zp-core/setup/index.php:2631
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Обновить таблицы базы данных: %s"
 
-#: zp-core/setup/index.php:2657
+#: zp-core/setup/index.php:2660
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the "
 "database which are not easily reversed. Be sure you have a database backup "
@@ -12302,13 +12302,13 @@ msgstr ""
 "изменения в базу данных. Перед продолжением выполните резервное копирование "
 "базы данных."
 
-#: zp-core/setup/index.php:2660
+#: zp-core/setup/index.php:2663
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr ""
 "%s Я осознаю, что это действие проведет реструктуризацию моей базы данных."
 
-#: zp-core/setup/index.php:2720
+#: zp-core/setup/index.php:2723
 msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as "
 "the process may take some time."
@@ -12316,23 +12316,23 @@ msgstr ""
 "Поздравляем, мы готовы к установке Zenphoto. Пожалуйста, наберитесь немного "
 "терпения, так как процесс может занять некоторое время."
 
-#: zp-core/setup/index.php:2721
+#: zp-core/setup/index.php:2724
 msgid "run setup"
 msgstr "начать установку"
 
-#: zp-core/setup/index.php:2721
+#: zp-core/setup/index.php:2724
 msgid "Go"
 msgstr "Старт"
 
-#: zp-core/setup/index.php:2737
+#: zp-core/setup/index.php:2740
 msgid "database did not connect"
 msgstr "связь с базой данных не установлена"
 
-#: zp-core/setup/index.php:2739
+#: zp-core/setup/index.php:2742
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr "Если вы еще не создали базу данных, то сейчас самое время."
 
-#: zp-core/setup/index.php:2748
+#: zp-core/setup/index.php:2751
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "Файл %1$s не существует."
