@@ -61,7 +61,7 @@ class dbBase {
 			$config_valid += 1;
 		}
 		if (isset($config['mysql_pass']) && !empty($config['mysql_pass'])) {
-			$this->mysql_pass = str_replace('$', '\$', $config['mysql_pass']);
+			$this->mysql_pass = $config['mysql_pass'];
 			$config_valid += 1;
 		}
 		if ($config_valid == 4) {
