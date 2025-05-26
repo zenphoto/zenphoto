@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.6.6\n"
+"Project-Id-Version: zenphoto 1.6.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 12:56-0300\n"
-"PO-Revision-Date: 2025-04-16 19:15-0300\n"
+"POT-Creation-Date: 2025-05-19 11:39-0300\n"
+"PO-Revision-Date: 2025-05-19 11:47-0300\n"
 "Last-Translator: Guillermo R. Lapolla <guirala@gmail.com>\n"
-"Language-Team: guirala, guirala@gmail.com> (v1.6.6)\n"
+"Language-Team: guirala, guirala@gmail.com> (v1.6.7)\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: 404.php:49 setup/index.php:1049
+#: 404.php:49 setup/index.php:1052
 msgid "Index"
 msgstr "Indice"
 
@@ -38,7 +38,7 @@ msgstr "*Acciones Masivas*"
 
 #: admin-albumsort.php:93 admin-edit.php:566 admin-edit.php:581 admin-edit.php:585
 #: admin-functions.php:2058 admin-logs.php:152 admin-themes.php:333
-#: setup/index.php:1048 zp-extensions/comment_form/admin-comments.php:131
+#: setup/index.php:1051 zp-extensions/comment_form/admin-comments.php:131
 #: zp-extensions/comment_form/admin-comments.php:132
 #: zp-extensions/comment_form/admin-comments.php:357
 #: zp-extensions/comment_form/admin-comments.php:465
@@ -4403,7 +4403,7 @@ msgid "Continue refreshing the metadata."
 msgstr "Continuar actualizando los metadatos."
 
 #: admin-refresh-metadata.php:128 classes/class-authority.php:1085
-#: classes/class-authority.php:1086 setup/index.php:1584
+#: classes/class-authority.php:1086 setup/index.php:1587
 msgid "Refresh"
 msgstr "Refrescar"
 
@@ -5006,11 +5006,11 @@ msgstr "desvincular álbum primario <strong>%1$s</strong> (<em>%2$s</em>)"
 msgid ""
 "The primary album was created in association with the user. It will be removed "
 "if the user is deleted unless you enable the related option on Options > "
-"Security"
+"Security."
 msgstr ""
 "El álbum principal se creó en asociación con el usuario. Se eliminará si se "
 "elimina al usuario, a menos que habilite la opción correspondiente en Opciones "
-"> Seguridad"
+"> Seguridad."
 
 #: admin-users.php:814
 msgid "The <em>master</em> account has full rights to all objects."
@@ -5153,7 +5153,7 @@ msgstr ""
 msgid "Installation information"
 msgstr "Información de la instalación"
 
-#: admin.php:315 functions/functions-basic.php:1582 setup/index.php:427
+#: admin.php:315 functions/functions-basic.php:1520 setup/index.php:430
 #: zp-extensions/security-logger.php:134
 msgid "clone"
 msgstr "clonar"
@@ -5640,7 +5640,7 @@ msgstr ""
 "<em>álbum principal</em> de usuario es creado."
 
 #: classes/class-authority.php:87
-msgid "Primary user album:  Keep on user removal"
+msgid "Primary user album: Keep on user removal"
 msgstr "Álbum de usuario principal: Continuar con la eliminación de usuarios"
 
 #: classes/class-authority.php:90
@@ -5695,7 +5695,7 @@ msgstr "Última visita del usuario: período de tiempo"
 #: classes/class-authority.php:107
 msgid ""
 "Time in seconds before the last visit of logged-in users is updated in the "
-"database. Default is 600 seconds (10 minutes)"
+"database. Default is 600 seconds (10 minutes)."
 msgstr ""
 "Tiempo en segundos antes de que se actualice la última visita de los usuarios "
 "registrados en la base de datos. El valor predeterminado es 600 segundos (10 "
@@ -6312,8 +6312,8 @@ msgid "%s not connected"
 msgstr "%s no conectedado"
 
 #: classes/class-external_auth.php:22 classes/class-external_auth.php:57
-msgid "The class external_auth will be removed without replacement"
-msgstr "La clase external_auth se eliminará sin reemplazo"
+msgid "The class external_auth will be removed without replacement."
+msgstr "La clase external_auth se eliminará sin reemplazo."
 
 #: classes/class-feed.php:410
 msgid "Latest albums"
@@ -7388,7 +7388,7 @@ msgstr "¡Muy pocos argumentos! Imagen no encontrada."
 msgid "Forbidden(2)"
 msgstr "Prohibido(2)"
 
-#: functions/functions-basic.php:414 functions/functions-i18n.php:779
+#: functions/functions-basic.php:352 functions/functions-i18n.php:779
 msgid ""
 "The date format options 'locale_preferreddate_time' and "
 "'locale_preferreddate_notime' are deprecated and will be removed in Zenphoto "
@@ -7398,59 +7398,59 @@ msgstr ""
 "'locale_preferreddate_notime' están obsoletas y se eliminarán en Zenphoto 1.7. "
 "Establezca formatos de fecha y hora individuales."
 
-#: functions/functions-basic.php:1547
+#: functions/functions-basic.php:1485
 #, php-format
 msgid "%s log size limit exceeded"
 msgstr "límite de tamaño de registro %s excedido"
 
-#: functions/functions-basic.php:1547
+#: functions/functions-basic.php:1485
 #, php-format
 msgid "The %1$s log has exceeded its size limit and has been renamed to %2$s."
 msgstr ""
 "El registro %1$s ha excedido el límite de tamaño, ha sido renombrado a %2$s."
 
-#: functions/functions-basic.php:1928
+#: functions/functions-basic.php:1866
 msgid "Server software unknown"
 msgstr "Software del servidor desconocido"
 
-#: functions/functions-basic.php:2049
+#: functions/functions-basic.php:1987
 msgid "ERROR: cURL request failed: "
 msgstr "ERROR: Falló la solicitud cURL: "
 
-#: functions/functions-basic.php:2052
+#: functions/functions-basic.php:1990
 msgid "NOTICE: cURL request not successful."
 msgstr "AVISO: requerimiento de cURL no fue exitoso."
 
-#: functions/functions-basic.php:2060
+#: functions/functions-basic.php:1998
 msgid "ERROR: Your server does not support cURL."
 msgstr "ERROR: su servidor no soporta cURL."
 
-#: functions/functions-basic.php:2298
+#: functions/functions-basic.php:2236
 msgid "function"
 msgstr "función"
 
-#: functions/functions-basic.php:2304
+#: functions/functions-basic.php:2242
 #, php-format
 msgid "It will be removed in Zenphoto %s."
 msgstr "%s Será eliminado de Zenphoto."
 
-#: functions/functions-basic.php:2317 setup/class-setup.php:240
+#: functions/functions-basic.php:2255 setup/class-setup.php:240
 #: setup/class-setup.php:245
 msgid "unknown"
 msgstr "desconocido"
 
-#: functions/functions-basic.php:2325
+#: functions/functions-basic.php:2263
 #, php-format
 msgid "Parameter usage of %1$s (called from %2$s line %3$s) is deprecated."
 msgstr "El uso del parámetro %1$s (llamada desde %2$s línea %3$s) es obsoleto."
 
-#: functions/functions-basic.php:2327
+#: functions/functions-basic.php:2265
 #, php-format
 msgid "Parameter %1$s usage of %2$s (called from %3$s line %4$s) deprecation."
 msgstr ""
 "Parámetro %1$s usado por %2$s (llamado desde %3$s línea %4$s) es obsoleto."
 
-#: functions/functions-basic.php:2329
+#: functions/functions-basic.php:2267
 #, php-format
 msgid "%1$s (called from %2$s line %3$s) is deprecated."
 msgstr "%1$s (llamado desde %2$s línea %3$s) es obsoleto."
@@ -9292,7 +9292,7 @@ msgstr "Falló: "
 msgid "Warn: "
 msgstr "Advertencia: "
 
-#: setup/class-setup.php:89 setup/index.php:955
+#: setup/class-setup.php:89 setup/index.php:958
 msgid "Pass: "
 msgstr "Pasar: "
 
@@ -9300,7 +9300,7 @@ msgstr "Pasar: "
 msgid "Error!"
 msgstr "Error!"
 
-#: setup/class-setup.php:145 setup/class-setup.php:157 setup/index.php:927
+#: setup/class-setup.php:145 setup/class-setup.php:157 setup/index.php:930
 msgid "Warning!"
 msgstr "¡Advertencia!"
 
@@ -9448,7 +9448,7 @@ msgstr ""
 "seguridad. Tenga en cuenta, sin embargo, que las entradas duplicadas se "
 "perderán."
 
-#: setup/class-setup.php:897 setup/class-setup.php:920 setup/index.php:554
+#: setup/class-setup.php:897 setup/class-setup.php:920 setup/index.php:557
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Instalando Zenphoto v%s"
@@ -9457,7 +9457,7 @@ msgstr "Instalando Zenphoto v%s"
 msgid "Upgrade from before Zenphoto v1.2"
 msgstr "Actualizar desde versión anterior a Zenphoto v1.2"
 
-#: setup/class-setup.php:911 setup/class-setup.php:949 setup/index.php:1046
+#: setup/class-setup.php:911 setup/class-setup.php:949 setup/index.php:1049
 msgid "Update"
 msgstr "Actualizar"
 
@@ -9507,32 +9507,32 @@ msgstr ""
 msgid "Downgrade"
 msgstr "Cambiar/Rebajar"
 
-#: setup/index.php:22
+#: setup/index.php:24
 #, php-format
 msgid "Zenphoto requires PHP version %s or greater"
 msgstr "Zenphoto requiere PHP versión %s o superior"
 
-#: setup/index.php:155
+#: setup/index.php:158
 msgid "db POST handling"
 msgstr "manejo de POST db"
 
-#: setup/index.php:196
+#: setup/index.php:199
 msgid "readonly"
 msgstr "sólo lectura"
 
-#: setup/index.php:197
+#: setup/index.php:200
 msgid "strict"
 msgstr "estricto"
 
-#: setup/index.php:198
+#: setup/index.php:201
 msgid "relaxed"
 msgstr "tolerante"
 
-#: setup/index.php:199
+#: setup/index.php:202
 msgid "loose"
 msgstr "perder"
 
-#: setup/index.php:326
+#: setup/index.php:329
 msgid ""
 "A corrupt configuration file was detected. You should remove or repair the file "
 "and re-run setup."
@@ -9540,79 +9540,79 @@ msgstr ""
 "Se detectó un archivo de configuración corrupto. Debe eliminarlo o repararlo y "
 "volver a ejecutar la configuración."
 
-#: setup/index.php:354
+#: setup/index.php:357
 msgid "upgrade"
 msgstr "actualizar"
 
-#: setup/index.php:401
+#: setup/index.php:404
 msgid "Completed system check"
 msgstr "Completada la verificación del sistema"
 
-#: setup/index.php:408
+#: setup/index.php:411
 msgid "Setup cookie test successful"
 msgstr "Configuración de cookie comprobada exitosamente"
 
-#: setup/index.php:411
+#: setup/index.php:414
 msgid "Setup cookie test unsuccessful"
 msgstr "La Configuración de cookie no fue comprobada exitosamente"
 
-#: setup/index.php:416
+#: setup/index.php:419
 msgid "Post of Database credentials"
 msgstr "Envío de credenciales de base de datos"
 
-#: setup/index.php:429
+#: setup/index.php:432
 #, php-format
 msgid "Zenphoto Setup v%1$s %2$s: %3$s"
 msgstr "Configuración de Zenphoto v%1$s %2$s: %3$s"
 
-#: setup/index.php:432
+#: setup/index.php:435
 msgid "Full environment"
 msgstr "Entorno completo"
 
-#: setup/index.php:434
+#: setup/index.php:437
 msgid "Primitive environment"
 msgstr "Entorno primitivo"
 
-#: setup/index.php:436
+#: setup/index.php:439
 #, php-format
 msgid "Query error: %s"
 msgstr "Error de consulta: %s"
 
-#: setup/index.php:451
+#: setup/index.php:454
 msgid "create"
 msgstr "crear"
 
-#: setup/index.php:452
+#: setup/index.php:455
 msgid "update"
 msgstr "actualizar"
 
-#: setup/index.php:470
+#: setup/index.php:473
 msgid "install"
 msgstr "instalar"
 
-#: setup/index.php:494
+#: setup/index.php:497
 msgid "Zenphoto Setup"
 msgstr "Configuración de Zenphoto"
 
-#: setup/index.php:495
+#: setup/index.php:498
 msgid "Setup"
 msgstr "Configuración"
 
-#: setup/index.php:519
+#: setup/index.php:522
 #, php-format
 msgid "Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."
 msgstr ""
 "¡Bienvenido a Zenphoto! Esta página configurará Zenphoto %s en su servidor Web."
 
-#: setup/index.php:523
+#: setup/index.php:526
 msgid "Systems Check:"
 msgstr "Verificación de sistemas:"
 
-#: setup/index.php:525
+#: setup/index.php:528
 msgid "Backup your database before proceeding!"
 msgstr "¡Haga Copia de seguridad de su base de datos antes de proceder!"
 
-#: setup/index.php:541
+#: setup/index.php:544
 msgid ""
 "<strong>Note:</strong> The release you are installing has debugging settings "
 "enabled!"
@@ -9620,17 +9620,17 @@ msgstr ""
 "<strong>Nota:</strong> ¡La versión que está instalando tiene la configuración "
 "de depuración habilitada!"
 
-#: setup/index.php:567
+#: setup/index.php:570
 #, php-format
 msgid "<em>%s</em> security"
 msgstr "<em>%s</em> seguridad"
 
-#: setup/index.php:567
+#: setup/index.php:570
 #, php-format
 msgid "<em>%s</em> security [is compromised]"
 msgstr "Seguridad <em>%s</em> [está comprometida]"
 
-#: setup/index.php:567
+#: setup/index.php:570
 #, php-format
 msgid ""
 "Zenphoto suggests you make the sensitive files in the %1$s folder accessable by "
@@ -9642,20 +9642,20 @@ msgstr ""
 "archivo para <em>%2$s</em> son %3$04o, lo que puede permitir acceso no "
 "autorizado."
 
-#: setup/index.php:574
+#: setup/index.php:577
 msgid "<em>SSL</em> connection"
 msgstr "Conexión <em>SSL</em>"
 
-#: setup/index.php:574
+#: setup/index.php:577
 msgid "<em>SSL</em> connection [is not enabled]"
 msgstr "Conexión <em>SSL</em> [no está habilitada]"
 
-#: setup/index.php:574
+#: setup/index.php:577
 msgid "It is strongely recommended to use a secure https connection on your site."
 msgstr ""
 "Se recomienda encarecidamente utilizar una conexión https segura en su sitio."
 
-#: setup/index.php:579
+#: setup/index.php:582
 msgid ""
 "Server seems not to be <em>Apache</em>, <em>Nginx</em> or <em>compatible</em>. "
 "Zenphoto may not work correctly."
@@ -9663,12 +9663,12 @@ msgstr ""
 "El servidor aparenta no ser <em>Apache</em>, <em>Nginx</em> o <em>compatible</"
 "em>. Zenphoto puede no funcionar correctamente."
 
-#: setup/index.php:583
+#: setup/index.php:586
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP versión %s"
 
-#: setup/index.php:583
+#: setup/index.php:586
 #, php-format
 msgid ""
 "PHP Version %1$s or greater is required. Version %2$s or greater is strongly "
@@ -9684,25 +9684,25 @@ msgstr ""
 "7.4. Póngase en contacto con su proveedor de servicios web sobre una "
 "actualización de PHP en su servidor."
 
-#: setup/index.php:586
+#: setup/index.php:589
 msgid "PHP <code>Sessions</code>."
 msgstr "<code>Sesiones</code> PHP."
 
-#: setup/index.php:586 setup/index.php:588
+#: setup/index.php:589 setup/index.php:591
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "<code>Sesión</code> PHP [aparenta no estar funcionando]."
 
-#: setup/index.php:588
+#: setup/index.php:591
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr ""
 "Las sesiones de PHP son necesarias para las funciones administrativas de "
 "Zenphoto."
 
-#: setup/index.php:607
+#: setup/index.php:610
 msgid "<code>Suhosin</code> module [is enabled]"
 msgstr "El Módulo <code>Suhosin</code> [está habilitado]"
 
-#: setup/index.php:607
+#: setup/index.php:610
 #, php-format
 msgid ""
 "The following PHP functions are blocked: %s. Flagged functions are required by "
@@ -9713,16 +9713,16 @@ msgstr ""
 "Zenphoto, que puede usar otras funciones de la lista, lo que posiblemente cause "
 "una funcionalidad reducida o fallas de Zenphoto."
 
-#: setup/index.php:632
+#: setup/index.php:635
 msgid "PHP <code>display_errors</code>"
 msgstr "PHP <code>display_errors</code>"
 
-#: setup/index.php:632
+#: setup/index.php:635
 #, php-format
 msgid "PHP <code>display_errors</code> [is enabled]"
 msgstr "PHP <code>display_errors</code> [está habilitado]"
 
-#: setup/index.php:632
+#: setup/index.php:635
 msgid ""
 "This setting may result in PHP error messages being displayed on WEB pages. "
 "These displays may contain sensitive information about your site."
@@ -9731,44 +9731,44 @@ msgstr ""
 "en las páginas WEB. Estas pantallas podrían contener información confidencial "
 "sobre su sitio."
 
-#: setup/index.php:634
+#: setup/index.php:637
 msgid "PHP <code>gettext()</code> support"
 msgstr "Soporta PHP <code>gettext()</code>"
 
-#: setup/index.php:634
+#: setup/index.php:637
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "Soporte PHP <code>gettext()</code> [no está presente]"
 
-#: setup/index.php:634
+#: setup/index.php:637
 msgid ""
 "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr ""
 "La ubicación de Zenphoto requiere soporte PHP nativo <code>gettext()</code>"
 
-#: setup/index.php:636
+#: setup/index.php:639
 msgid "PHP <code>cURL</code> support"
 msgstr "PHP <code>cURL</code> soportado"
 
-#: setup/index.php:636
+#: setup/index.php:639
 msgid "PHP <code>cURL</code> support [is not present]"
 msgstr "Soporte PHP <code>cURL</code> [no está presente]"
 
-#: setup/index.php:636
+#: setup/index.php:639
 msgid ""
 "PHP <code>cURL</code> support is critical and required for some functionalty."
 msgstr ""
 "La compatibilidad con PHP <code>cURL</code> es fundamental y necesaria para "
 "algunas funciones."
 
-#: setup/index.php:638
+#: setup/index.php:641
 msgid "PHP <code>tidy</code> support"
 msgstr "Soporte PHP <code>tidy</code>"
 
-#: setup/index.php:638
+#: setup/index.php:641
 msgid "PHP <code>tidy</code> support [is not present]"
 msgstr "Soporte PHP <code>tidy</code> [no está presente]"
 
-#: setup/index.php:638
+#: setup/index.php:641
 msgid ""
 "<code>tidy</code> support is not critical but strongely recommended for "
 "properly truncating text containing HTML markup."
@@ -9777,15 +9777,15 @@ msgstr ""
 "encarecidamente para truncar correctamente el texto que contiene el marcado "
 "HTML."
 
-#: setup/index.php:639
+#: setup/index.php:642
 msgid "PHP <code>ZipArchive</code> support"
 msgstr "PHP <code>ZipArchive</code> soportado"
 
-#: setup/index.php:639
+#: setup/index.php:642
 msgid "PHP <code>ZipArchive</code> support [is not present]"
 msgstr "Soporte PHP <code>ZipArchive</code> [no está presente]"
 
-#: setup/index.php:639
+#: setup/index.php:642
 msgid ""
 "<code>ZipArchive</code> support is not critical and only required if you intend "
 "to upload zip archives with supported file types to the gallery."
@@ -9793,29 +9793,29 @@ msgstr ""
 "La compatibilidad con <code>ZipArchive</code> no es crítica y solo es necesaria "
 "si desea cargar archivos zip con tipos de archivos compatibles en la galería."
 
-#: setup/index.php:641
+#: setup/index.php:644
 msgid "PHP <code>JSON</code> support"
 msgstr "Soporte PHP <code>JSON</code>"
 
-#: setup/index.php:641
+#: setup/index.php:644
 msgid "PHP <code>JSON</code> support [is not present]"
 msgstr "Soporte PHP <code>JSON</code> [no está presente]"
 
-#: setup/index.php:641
+#: setup/index.php:644
 msgid "<code>JSON</code> support is critical and required for some functionalty."
 msgstr ""
 "La compatibilidad con <code>JSON</code> es fundamental y necesaria para algunas "
 "funciones."
 
-#: setup/index.php:643
+#: setup/index.php:646
 msgid "PHP <code>exif</code> support"
 msgstr "Soporte PHP <code>exif</code>"
 
-#: setup/index.php:643
+#: setup/index.php:646
 msgid "PHP <code>exif</code> support [is not present]"
 msgstr "Soporte PHP <code>exif</code> [no está presente]"
 
-#: setup/index.php:643
+#: setup/index.php:646
 msgid ""
 "<code>exif</code> support is not critical but strongely recommended for "
 "properly handling exif data of images"
@@ -9823,15 +9823,15 @@ msgstr ""
 "La compatibilidad con <code>exif</code> no es crítica, pero es muy recomendada "
 "para manejar correctamente los datos exif de las imágenes"
 
-#: setup/index.php:644
+#: setup/index.php:647
 msgid "PHP <code>bz2</code> support"
 msgstr "Soporte PHP <code>bz2</code>"
 
-#: setup/index.php:644
+#: setup/index.php:647
 msgid "PHP <code>bz2</code> support [is not present]"
 msgstr "Soporte PHP <code>bz2</code> [no está presente]"
 
-#: setup/index.php:644
+#: setup/index.php:647
 msgid ""
 "<code>bz2</code> support is not critical but recommended for some optional "
 "bzcompression functionalty"
@@ -9839,15 +9839,15 @@ msgstr ""
 "La compatibilidad con <code>bz2</code> no es crítica, pero se recomienda para "
 "algunas funciones de compresión bz opcionales"
 
-#: setup/index.php:645
+#: setup/index.php:648
 msgid "PHP <code>fileinfo</code> support"
 msgstr "Soporte PHP <code>fileinfo</code>"
 
-#: setup/index.php:645
+#: setup/index.php:648
 msgid "PHP <code>fileinfo</code> support [is not present]"
 msgstr "Soporte PHP <code>fileinfo</code> [no está presente]"
 
-#: setup/index.php:645
+#: setup/index.php:648
 msgid ""
 "<code>fileinfo</code> support is not critical but strongely recommended for "
 "file system functionality"
@@ -9855,15 +9855,15 @@ msgstr ""
 "Soporte <code>fileinfo</code> no es crítico, pero muy recomendado para la "
 "funcionalidad del sistema de archivos"
 
-#: setup/index.php:646
+#: setup/index.php:649
 msgid "PHP <code>intl</code> support"
 msgstr "Soporte PHP <code>intl</code>"
 
-#: setup/index.php:646
+#: setup/index.php:649
 msgid "PHP <code>intl</code> support [is not present]"
 msgstr "Soporte PHP <code>intl</code> [no está presente]"
 
-#: setup/index.php:646
+#: setup/index.php:649
 msgid ""
 "<code>intl</code> support is strongely recommended for using locale-aware "
 "functionality."
@@ -9871,15 +9871,15 @@ msgstr ""
 "La compatibilidad con <code>intl</code> se recomienda encarecidamente para "
 "utilizar la funcionalidad con reconocimiento de configuración regional."
 
-#: setup/index.php:647
+#: setup/index.php:650
 msgid "PHP <code>xml</code> support"
 msgstr "Soporte PHP <code>xml</code>"
 
-#: setup/index.php:647
+#: setup/index.php:650
 msgid "PHP <code>xml</code> support [is not present]"
 msgstr "Soporte PHP <code>xml</code> [no está presente]"
 
-#: setup/index.php:647
+#: setup/index.php:650
 msgid ""
 "<code>xml</code> support is not criticaly but strongely recommended for some "
 "functionality for parsing XML contents like RSS feeds."
@@ -9887,15 +9887,15 @@ msgstr ""
 "El Soporte <code>xml</code> no es crítico pero muy recomendado para algunas "
 "funciones de análisis de contenido XML como fuentes RSS."
 
-#: setup/index.php:648
+#: setup/index.php:651
 msgid "PHP <code>dom</code> support"
 msgstr "Soporte PHP <code>dom</code>"
 
-#: setup/index.php:648
+#: setup/index.php:651
 msgid "PHP <code>dom</code> support [is not present]"
 msgstr "Soporte PHP <code>dom</code> [no está presente]"
 
-#: setup/index.php:648
+#: setup/index.php:651
 msgid ""
 "<code>dom</code> support is not criticaly but strongely recommended for some "
 "functionality processing and modifying HTML contents."
@@ -9904,15 +9904,15 @@ msgstr ""
 "encarecidamente para algunas funciones de procesamiento y modificación de "
 "contenido HTML."
 
-#: setup/index.php:649
+#: setup/index.php:652
 msgid "PHP <code>simplexml</code> support"
 msgstr "Soporte PHP <code>simplexml</code>"
 
-#: setup/index.php:649
+#: setup/index.php:652
 msgid "PHP <code>simplexml</code> support [is not present]"
 msgstr "Soporte PHP <code>simplexml</code> [no está presente]"
 
-#: setup/index.php:649
+#: setup/index.php:652
 msgid ""
 "<code>simplexml</code> support is not criticaly but strongely recommended for "
 "some functionality processing XML contents like RSS feeds."
@@ -9921,15 +9921,15 @@ msgstr ""
 "recomendado para algunas funciones de procesamiento de contenido XML como "
 "fuentes RSS."
 
-#: setup/index.php:650
+#: setup/index.php:653
 msgid "PHP <code>Reflection</code> support"
 msgstr "Soporta PHP <code>Reflection</code>"
 
-#: setup/index.php:650
+#: setup/index.php:653
 msgid "PHP <code>Reflection</code> support [is not present]"
 msgstr "Soporte PHP <code>Reflection</code> [no está presente]"
 
-#: setup/index.php:650
+#: setup/index.php:653
 msgid ""
 "<code>Reflection</code> support is not criticaly but strongely recommended for "
 "some internal functionality."
@@ -9937,15 +9937,15 @@ msgstr ""
 "Soporte para <code>Reflection</code> no es crítico, pero muy recomendado para "
 "algunas funcionalidades internas."
 
-#: setup/index.php:651
+#: setup/index.php:654
 msgid "PHP <code>Ctype</code> support"
 msgstr "Compatibilidad con PHP <code>Ctype</code>"
 
-#: setup/index.php:651
+#: setup/index.php:654
 msgid "PHP <code>Ctype</code> support [is not present]"
 msgstr "Soporte PHP <code>Ctype</code> [no está presente]"
 
-#: setup/index.php:651
+#: setup/index.php:654
 msgid ""
 "<code>Ctype</code> support is required for internal character type checking e."
 "g. for shortening text content."
@@ -9953,42 +9953,42 @@ msgstr ""
 "Se requiere compatibilidad con <code>Ctype</code> para la comprobación interna "
 "del tipo de carácter, p.ej. para acortar el contenido del texto."
 
-#: setup/index.php:652
+#: setup/index.php:655
 msgid "PHP <code>filter</code> support"
 msgstr "Soporte PHP <code>filter</code>"
 
-#: setup/index.php:652
+#: setup/index.php:655
 msgid "PHP <code>filter</code> support [is not present]"
 msgstr "Soporte PHP <code>filter</code> [no está presente]"
 
-#: setup/index.php:652
+#: setup/index.php:655
 msgid ""
 "<code>filter</code> support is required for filtering and clearing content."
 msgstr ""
 "Se requiere compatibilidad con <code>filter</code> para filtrar y borrar "
 "contenido."
 
-#: setup/index.php:653
+#: setup/index.php:656
 msgid "PHP <code>session</code> support"
 msgstr "Soporte PHP <code>session</code>"
 
-#: setup/index.php:653
+#: setup/index.php:656
 msgid "PHP <code>session</code> support [is not present]"
 msgstr "Soporte PHP <code>session</code> [no está presente]"
 
-#: setup/index.php:653
+#: setup/index.php:656
 msgid "<code>session</code> support is required session handling."
 msgstr "Se requiere soporte de <code>sesión</code> para el manejo de sesiones."
 
-#: setup/index.php:656
+#: setup/index.php:659
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: setup/index.php:656
+#: setup/index.php:659
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> Falló"
 
-#: setup/index.php:656
+#: setup/index.php:659
 msgid ""
 "Locale functionality is not implemented on your platform or the specified "
 "locale does not exist. Language translation may not work."
@@ -9997,7 +9997,7 @@ msgstr ""
 "plataforma o la configuración regional especificada no existe. La traducción de "
 "idiomas puede no funcionar."
 
-#: setup/index.php:656
+#: setup/index.php:659
 msgid ""
 "See the <a  href=\"https://www.zenphoto.org/news/problems-with-languages\">user "
 "guide</a> on zenphoto.org for details."
@@ -10005,11 +10005,11 @@ msgstr ""
 "Vea <a  href=\"http://www.zenphoto.org/news/problems-with-languages\">Guía de "
 "usuario</a> en zenphoto.org para detalles."
 
-#: setup/index.php:658
+#: setup/index.php:661
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: setup/index.php:666
+#: setup/index.php:669
 msgid ""
 "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your "
 "<em>php.ini</em> file is strongely recommended to insure accented and multi-"
@@ -10019,11 +10019,11 @@ msgstr ""
 "strong> en su archivo <em>php.ini</em> para asegurar que los caracteres "
 "acentuados y multibyte funcionen adecuadamente."
 
-#: setup/index.php:667
+#: setup/index.php:670
 msgid "PHP <code>mbstring</code> and <code>iconv</code> packages"
 msgstr "Paquetes PHP <code>mbstring</code> e <code>iconv</code>"
 
-#: setup/index.php:667
+#: setup/index.php:670
 #, php-format
 msgid ""
 "PHP <code>mbstring</code> and <code>iconv</code> packages [Your internal "
@@ -10032,45 +10032,45 @@ msgstr ""
 "Paquetes PHP <code>mbstring</code> e <code>iconv</code> [Su configuración "
 "interna de caracteres es <strong>%s</strong>]"
 
-#: setup/index.php:671
+#: setup/index.php:674
 msgid ""
 "You need to install the <code>mbstring</code> and <code>iconv</code> packages"
 msgstr "Necesita instalar los paquetes <code>mbstring</code> y <code>iconv</code>"
 
-#: setup/index.php:672 setup/index.php:675
+#: setup/index.php:675 setup/index.php:678
 msgid ""
 "PHP <code>mbstring</code> and <code>iconv</code> packages [are not present]"
 msgstr ""
 "Paquetes PHP <code>mbstring</code> e <code>iconv</code> [no están presentes]"
 
-#: setup/index.php:674
+#: setup/index.php:677
 msgid ""
 "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr ""
 "Es posible que las cadenas generadas internamente por PHP no se muestren "
 "correctamente. (ej. fechas)"
 
-#: setup/index.php:681
+#: setup/index.php:684
 msgid "Graphics library"
 msgstr "Librería de Gráficos"
 
-#: setup/index.php:689
+#: setup/index.php:692
 msgid "Graphics support:"
 msgstr "Soporte Gráfico:"
 
-#: setup/index.php:692
+#: setup/index.php:695
 msgid "[enabled]"
 msgstr "[habilitado]"
 
-#: setup/index.php:694
+#: setup/index.php:697
 msgid "[available]"
 msgstr "[disponible]"
 
-#: setup/index.php:697
+#: setup/index.php:700
 msgid "Graphics support [is not installed]"
 msgstr "Soporte Gráfico [no está instalado]"
 
-#: setup/index.php:697
+#: setup/index.php:700
 msgid ""
 "You need to install a graphics support library such as the <em>GD library</em> "
 "in your PHP"
@@ -10078,17 +10078,17 @@ msgstr ""
 "Debe instalar una biblioteca de soporte de gráficos como la <em>Librería GD</"
 "em> en su PHP"
 
-#: setup/index.php:712
+#: setup/index.php:715
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Su librería de Graficos PHP no soporta %1$s o %2$s"
 
-#: setup/index.php:714
+#: setup/index.php:717
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Su librería de Graficos PHP no soporta %1$s"
 
-#: setup/index.php:717
+#: setup/index.php:720
 msgid ""
 "To correct this you should install a graphics library with appropriate image "
 "support in your PHP"
@@ -10096,12 +10096,12 @@ msgstr ""
 "Para corregir esto, debería instalar una biblioteca de gráficos con el soporte "
 "de imagen adecuado en su PHP"
 
-#: setup/index.php:719
+#: setup/index.php:722
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Su librería de Graficos PHP no soporta %1$s, %2$s, o %3$s"
 
-#: setup/index.php:722
+#: setup/index.php:725
 msgid ""
 "To correct this you need to install GD with appropriate image support in your "
 "PHP"
@@ -10109,29 +10109,29 @@ msgstr ""
 "Para corregir esto necesita instalar GD con el soporte de imagen adecuado en su "
 "PHP"
 
-#: setup/index.php:724
+#: setup/index.php:727
 msgid "PHP graphics image support"
 msgstr "Soporte de imagen de gráficos PHP"
 
-#: setup/index.php:725
+#: setup/index.php:728
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr "Los tipos de imágenes no compatibles no se podrán ver en sus álbumes."
 
-#: setup/index.php:729
+#: setup/index.php:732
 msgid "Graphics Library rotation support [is not present]"
 msgstr "Soporte de rotación de la biblioteca de gráficos [no está presente]"
 
-#: setup/index.php:729
+#: setup/index.php:732
 msgid "The graphics support library does not provide support for image rotation."
 msgstr ""
 "La biblioteca de soporte de gráficos no proporciona soporte para la rotación de "
 "imágenes."
 
-#: setup/index.php:737
+#: setup/index.php:740
 msgid "Graphics support [configuration error]"
 msgstr "Soporte de gráficos [error de configuración]"
 
-#: setup/index.php:737
+#: setup/index.php:740
 msgid ""
 "No Zenphoto image handling library was loaded. Be sure that your PHP has a "
 "graphics support."
@@ -10139,17 +10139,17 @@ msgstr ""
 "No se cargó ninguna biblioteca de manejo de imágenes Zenphoto. Asegúrese de que "
 "su PHP tenga soporte para gráficos."
 
-#: setup/index.php:748
+#: setup/index.php:751
 #, php-format
 msgid "<em>%1$s</em> file"
 msgstr "Archivo <em>%1$s"
 
-#: setup/index.php:748
+#: setup/index.php:751
 #, php-format
 msgid "<em>%1$s</em> file [does not exist]"
 msgstr "Archivo <em>%1$s</em> [no existe]"
 
-#: setup/index.php:748
+#: setup/index.php:751
 #, php-format
 msgid ""
 "Setup was not able to create this file. You will need to copy the <code>%1$s/"
@@ -10160,31 +10160,31 @@ msgstr ""
 "archivo <code>%1$s/zenphoto_cfg.txt</code> en <code>%2$s/%3$s</code> y luego "
 "editarlo como se indica en los comentarios del archivo."
 
-#: setup/index.php:750
+#: setup/index.php:753
 msgid "File permissions"
 msgstr "Permisos de archivo"
 
-#: setup/index.php:752
+#: setup/index.php:755
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Configure permisos de Archivo a %s."
 
-#: setup/index.php:755
+#: setup/index.php:758
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: setup/index.php:757
+#: setup/index.php:760
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>desconocido</em> (<code>%o</code>)"
 
-#: setup/index.php:768
+#: setup/index.php:771
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Permisos Archivo [son %s]"
 
-#: setup/index.php:769
+#: setup/index.php:772
 msgid ""
 "If file permissions are not set to <em>strict</em> or tighter there could be a "
 "security risk. However, on some servers Zenphoto does not function correctly "
@@ -10197,11 +10197,11 @@ msgstr ""
 "ajustados. Si Zenphoto tiene errores de permiso, vuelva a ejecutar la "
 "configuración y seleccione un permiso más relajado."
 
-#: setup/index.php:775
+#: setup/index.php:778
 msgid "Your filesystem is Macintosh"
 msgstr "Su sistema de archivos es Macintosh"
 
-#: setup/index.php:775
+#: setup/index.php:778
 msgid ""
 "Zenphoto is unable to deal with Macintosh file names containing diacritical "
 "marks. You should avoid these."
@@ -10209,11 +10209,11 @@ msgstr ""
 "Zenphoto no puede tratar con los nombres de archivos de Macintosh que contienen "
 "signos diacríticos. Debes evitar estos."
 
-#: setup/index.php:782
+#: setup/index.php:785
 msgid "Character set"
 msgstr "Conjunto de caracteres"
 
-#: setup/index.php:823
+#: setup/index.php:826
 #, php-format
 msgid ""
 "If your server filesystem character set is different from <code>%s</code> and "
@@ -10225,39 +10225,39 @@ msgstr ""
 "imágenes que contienen caracteres con signos diacríticos, es posible que tenga "
 "problemas con esos objetos."
 
-#: setup/index.php:825
+#: setup/index.php:828
 #, php-format
 msgid "Change the filesystem character set define to %1$s"
 msgstr "Cambie el conjunto de caracteres del archivo de sistema a %1$s"
 
-#: setup/index.php:839
+#: setup/index.php:842
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr ""
 "La definición de caracteres del sistema de archivos Zenphoto es %1$s "
 "[confirmado]"
 
-#: setup/index.php:844
+#: setup/index.php:847
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr ""
 "La definición de caracteres del sistema de archivos Zenphoto es ISO-8859-1 "
 "[asumido]"
 
-#: setup/index.php:849
+#: setup/index.php:852
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr ""
 "La definición de caracteres del sistema de archivos Zenphoto es %1$s [lo que "
 "parece mal]"
 
-#: setup/index.php:854
+#: setup/index.php:857
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr ""
 "La definición de caracteres del sistema de archivos Zenphoto es %1$s [ninguna "
 "prueba realizada]"
 
-#: setup/index.php:855
+#: setup/index.php:858
 #, php-format
 msgid ""
 "Setup did not perform a test of the filesystem character set. You can cause "
@@ -10269,69 +10269,69 @@ msgstr ""
 "adecuada creando un archivo en su carpeta <code>%1$s</code> llamado "
 "<strong><code>%2$s</code></strong> y vuelva a ejecutar la configuración."
 
-#: setup/index.php:868
+#: setup/index.php:871
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr ""
 "Los URI de imagen parecen requerir el conjunto de caracteres <em>filesystem</"
 "em>."
 
-#: setup/index.php:869
+#: setup/index.php:872
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Los URI de imagen parecen requerir el conjunto de caracteres UTF-8."
 
-#: setup/index.php:889
+#: setup/index.php:892
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "Debería habilitar la opción URL <em>URIs de imagen UTF-8</em>."
 
-#: setup/index.php:889
+#: setup/index.php:892
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Por favor, hazlo</a>"
 
-#: setup/index.php:906
+#: setup/index.php:909
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Debería deshabilitar la opción URL <em>URIs de imagen UTF-8</em>."
 
-#: setup/index.php:906
+#: setup/index.php:909
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Por favor, hazlo</a>"
 
-#: setup/index.php:938 utilities/database_reference.php:33
+#: setup/index.php:941 utilities/database_reference.php:33
 #: utilities/refresh_database.php:10 utilities/refresh_metadata.php:10
 #: utilities/reset_albumthumbs.php:13 zp-extensions/hitcounter.php:207
 #: zp-extensions/rating.php:187
 msgid "Database"
 msgstr "Base de datos"
 
-#: setup/index.php:942
+#: setup/index.php:945
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP Soporte <code>%s</code> para la base de datos configurada"
 
-#: setup/index.php:947
+#: setup/index.php:950
 #, php-format
 msgid "<code>%1$s</code> support (experimental)"
 msgstr "Soporte (experimental) <code>%1$s</code>"
 
-#: setup/index.php:955
+#: setup/index.php:958
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "Soporte PHP <code>%s</code>"
 
-#: setup/index.php:959
+#: setup/index.php:962
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "Soporte PHP <code>%s</code> [no está instalado]"
 
-#: setup/index.php:969
+#: setup/index.php:972
 msgid "No database selected"
 msgstr "No se seleccionó base de datos"
 
-#: setup/index.php:987
+#: setup/index.php:990
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s versión %2$s"
 
-#: setup/index.php:987
+#: setup/index.php:990
 #, php-format
 msgid ""
 "%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. "
@@ -10340,20 +10340,20 @@ msgstr ""
 "Versión %1$s %2$s o superior se requiere. Es preferible la versión %3$s o "
 "mayor. Utilizar una versión inferior corre por su propio riesgo."
 
-#: setup/index.php:990
+#: setup/index.php:993
 msgid "Database connection"
 msgstr "Conexión a la Base de datos"
 
-#: setup/index.php:996
+#: setup/index.php:999
 msgid "Database credentials in configuration file"
 msgstr "Credenciales de la Base de datos en el archivo de configuración"
 
-#: setup/index.php:996
+#: setup/index.php:999
 #, php-format
 msgid "<em>%1$s</em> reported: %2$s"
 msgstr "<em>%1$s</em> Informado: %2$s"
 
-#: setup/index.php:1003
+#: setup/index.php:1006
 msgid ""
 "You have not correctly set your <strong>Database</strong> <code>user</code>, "
 "<code>password</code>, etc. in your configuration file and <strong>setup</"
@@ -10363,20 +10363,20 @@ msgstr ""
 "<code>usuario</code>, <code>contraseña</code>, etc. en su archivo de "
 "configuración, y <code>setup</code> no es capaz de escribir en el archivo."
 
-#: setup/index.php:1005
+#: setup/index.php:1008
 msgid "Database setup in configuration file"
 msgstr "Configuración de la Base de datos en archivo de configuración"
 
-#: setup/index.php:1008
+#: setup/index.php:1011
 #, php-format
 msgid "Connect to %s"
 msgstr "Conectar a %s"
 
-#: setup/index.php:1008
+#: setup/index.php:1011
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "Conectar a la Base de datos [<code>CONNECT</code> falló la consulta]"
 
-#: setup/index.php:1015
+#: setup/index.php:1018
 msgid ""
 "You may need to set <code>SQL mode</code> <em>empty</em> in your Database "
 "configuration."
@@ -10384,104 +10384,104 @@ msgstr ""
 "Es posible que deba dejar <code>modo SQL</code> <em>vacío</em> en la "
 "configuración de su base de datos."
 
-#: setup/index.php:1019
+#: setup/index.php:1022
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>Modo SQL</code> [falló la consulta]"
 
-#: setup/index.php:1022
+#: setup/index.php:1025
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>Modo SQL</code> [<em>%s</em> anulado]"
 
-#: setup/index.php:1022
+#: setup/index.php:1025
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "Considere dejarlo <em>vacío</em> en la configuración de su base de datos."
 
-#: setup/index.php:1029
+#: setup/index.php:1032
 msgid "<code>SQL mode</code>"
 msgstr "<code>Modo SQL</code>"
 
-#: setup/index.php:1029
+#: setup/index.php:1032
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>Modo SQL</code> [está configurado a <em>%s</em>]"
 
-#: setup/index.php:1029
+#: setup/index.php:1032
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr "Considere dejarlo <em>vacío</em> si obtiene errores en la base de datos."
 
-#: setup/index.php:1033
+#: setup/index.php:1036
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>Modo SQL</code> [Falló SET SESSION]"
 
-#: setup/index.php:1042
+#: setup/index.php:1045
 msgid "Select"
 msgstr "Seleccionar"
 
-#: setup/index.php:1043
+#: setup/index.php:1046
 msgid "Create"
 msgstr "Crear"
 
-#: setup/index.php:1044
+#: setup/index.php:1047
 msgid "Drop"
 msgstr "Soltar"
 
-#: setup/index.php:1045
+#: setup/index.php:1048
 msgid "Insert"
 msgstr "Insertar"
 
-#: setup/index.php:1047
+#: setup/index.php:1050
 msgid "Alter"
 msgstr "Alterar"
 
-#: setup/index.php:1057
+#: setup/index.php:1060
 msgid "and"
 msgstr "y"
 
-#: setup/index.php:1059
+#: setup/index.php:1062
 msgid "Grants found:"
 msgstr "Grants encontrado:"
 
-#: setup/index.php:1087
+#: setup/index.php:1090
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "La consulta <em>SHOW GRANTS</em> falló."
 
-#: setup/index.php:1089
+#: setup/index.php:1092
 #, php-format
 msgid "Database <code>access rights</code> for <em>%s</em>"
 msgstr "Base de datos <code>derechos de acceso</code> para <em>%s</em>"
 
-#: setup/index.php:1089
+#: setup/index.php:1092
 #, php-format
 msgid "Database <code>access rights</code> for <em>%1$s</em> [%2$s]"
 msgstr "Base de datos <code>derechos de acceso</code> para <em>%s</em> [%2$s]"
 
-#: setup/index.php:1089
+#: setup/index.php:1092
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Su usuario de la Base de datos debe tener derechos %s."
 
-#: setup/index.php:1102
+#: setup/index.php:1105
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<em>SHOW TABLES</em> [no se encontraron Tablas]"
 
-#: setup/index.php:1105
+#: setup/index.php:1108
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "<em>SHOW TABLES</em> encontró: %s"
 
-#: setup/index.php:1108
+#: setup/index.php:1111
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<em>SHOW TABLES</em> [Falló]"
 
-#: setup/index.php:1108
+#: setup/index.php:1111
 #, php-format
 msgid ""
 "The database did not return a list of the database tables for <code>%s</code>."
 msgstr "La Base de datos no devolvió una lista de Tablas para <code>%s</code>."
 
-#: setup/index.php:1109
+#: setup/index.php:1112
 msgid ""
 "<strong>Setup</strong> will attempt to create all tables. This will not "
 "overwrite any existing tables."
@@ -10489,15 +10489,15 @@ msgstr ""
 "<strong>Configuración</strong> intentará crear todas las tablas. Esto no "
 "sobrescribirá ninguna tabla existente."
 
-#: setup/index.php:1111
+#: setup/index.php:1114
 msgid "UTF8MB4 collation support"
 msgstr "Compatible con intercalación UTF8MB4"
 
-#: setup/index.php:1112
+#: setup/index.php:1115
 msgid "UTF8MB4 collation support [is not available|"
 msgstr "Compatibilidad con la intercalación UTF8MB4 [no está disponible]"
 
-#: setup/index.php:1113
+#: setup/index.php:1116
 msgid ""
 "You should update your database to MySQL 5.5.3+ or better 5.6+ / MariaDB 5.5+ "
 "for full unicode support."
@@ -10505,20 +10505,20 @@ msgstr ""
 "Debería actualizar su base de datos a MySQL 5.5.3+ o superior 5.6+ / MariaDB "
 "5.5+ para compatibilidad completa con Unicode."
 
-#: setup/index.php:1134
+#: setup/index.php:1137
 msgid "Database table and/or its field collations"
 msgstr "Tabla de base de datos y/o sus intercalaciones de campo"
 
-#: setup/index.php:1137
+#: setup/index.php:1140
 msgid " [not using any utf8 collations]"
 msgstr " [sin usar intercalaciones utf8]"
 
-#: setup/index.php:1138
+#: setup/index.php:1141
 #, php-format
 msgid "The following tables are not or not completely UTF-8: %s"
 msgstr "Las siguientes tablas no son (o no completamente) UTF-8: %s"
 
-#: setup/index.php:1139
+#: setup/index.php:1142
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> or better "
@@ -10529,11 +10529,11 @@ msgstr ""
 "<code>utf8mb4_unicode_ci</code> respectivamente, o mejor "
 "<code>utf8mb4_unicode_520_ci</code>"
 
-#: setup/index.php:1146
+#: setup/index.php:1149
 msgid " [not completely using utf8mb4_* collations]"
 msgstr " [sin usar completamente colaciones utf8mb4_*]"
 
-#: setup/index.php:1147
+#: setup/index.php:1150
 #, php-format
 msgid ""
 "The following tables use UTF-8 but not or not completely full UTF-8 (utf8mb4): "
@@ -10546,13 +10546,13 @@ msgstr ""
 "tablas y campos a <code>utf8mb4_unicode_ci</code> respectivamente <code "
 ">utf8mb4_unicode_520_ci</code>"
 
-#: setup/index.php:1153
+#: setup/index.php:1156
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr ""
 "Base de datos <code>$conf[\"UTF-8\"]</code> [no está configurado en "
 "<em>verdadero</em>]"
 
-#: setup/index.php:1153
+#: setup/index.php:1156
 msgid ""
 "You should consider porting your data to UTF-8 and changing the collation of "
 "the database fields to <code>utf8_unicode_ci</code> or better "
@@ -10566,15 +10566,15 @@ msgstr ""
 "<code>utf8mb4_unicode_520_ci</code> y configurar esto <em>verdadero</em>. "
 "Zenphoto funciona mejor con codificaciones UTF-8 puras."
 
-#: setup/index.php:1160
+#: setup/index.php:1163
 msgid "Zenphoto files"
 msgstr "Archivos de Zenphoto"
 
-#: setup/index.php:1188
+#: setup/index.php:1191
 msgid "Zenphoto package [missing]"
 msgstr "Paquete Zenphoto [perdido]"
 
-#: setup/index.php:1188
+#: setup/index.php:1191
 msgid ""
 "The file <code>Zenphoto.package</code> is either missing, not readable, or "
 "defective. Your installation may be corrupt!"
@@ -10582,12 +10582,12 @@ msgstr ""
 "El archivo <code>Zenphoto.package</code> falta, no se puede leer o está "
 "defectuoso. ¡Su instalación puede estar corrupta!"
 
-#: setup/index.php:1194
+#: setup/index.php:1197
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Configuración de permisos (0%o) para el paquete Zenphoto."
 
-#: setup/index.php:1298
+#: setup/index.php:1301
 msgid ""
 "Zenphoto core files [This is a <em>debug</em> build. Some files are missing or "
 "seem wrong]"
@@ -10595,13 +10595,13 @@ msgstr ""
 "Archivos del nucleo de Zenphoto [Esto es una compilación de <em>depuración</"
 "em>. Faltan algunos archivos o parecen erróneos]"
 
-#: setup/index.php:1300
+#: setup/index.php:1303
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr ""
 "Archivos del nucleo de Zenphoto [Algunos archivos faltan o parecen estar "
 "equivocados]"
 
-#: setup/index.php:1302
+#: setup/index.php:1305
 msgid ""
 "Perhaps there was a problem with the upload. This may not be critical at all as "
 "perhaps just the file times may be off compared to other files. You should "
@@ -10611,59 +10611,59 @@ msgstr ""
 "absoluto, ya que quizás solo las fechas de los archivos pueden estar fuera de "
 "lugar en comparación con otros archivos. Debe verificar los siguientes archivos:"
 
-#: setup/index.php:1307
+#: setup/index.php:1310
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr ""
 "Archivos del nucleo de Zenphoto [Esto es una compilación de <em>depuración</em>]"
 
-#: setup/index.php:1314
+#: setup/index.php:1317
 msgid "Zenphoto core files"
 msgstr "Archivos del nucleo de Zenphoto"
 
-#: setup/index.php:1316
+#: setup/index.php:1319
 msgid "Installation files"
 msgstr "Archivos de instalación"
 
-#: setup/index.php:1332
+#: setup/index.php:1335
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [instancia %s]"
 msgstr[1] ".svn [instancias %s]"
 
-#: setup/index.php:1335
+#: setup/index.php:1338
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [instancias %s]"
 msgstr[1] "php.ini [instancias %s]"
 
-#: setup/index.php:1359 setup/index.php:1363
+#: setup/index.php:1362 setup/index.php:1366
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr ""
 "Archivos del nucleo de Zenphoto [se encontraron algunos archivos desconocidos]"
 
-#: setup/index.php:1359
+#: setup/index.php:1362
 msgid "The following files could not be deleted."
 msgstr "Los siguientes archivos no pudieron ser borrados."
 
-#: setup/index.php:1363
+#: setup/index.php:1366
 msgid "You should remove the following files: "
 msgstr "Deberías eliminar los siguientes archivos: "
 
-#: setup/index.php:1364
+#: setup/index.php:1367
 msgid "Delete extra files"
 msgstr "Eliminar archivos extra"
 
-#: setup/index.php:1367
+#: setup/index.php:1370
 msgid "Zenphoto core file permissions"
 msgstr "Permisos de archivo del núcleo Zenphoto"
 
-#: setup/index.php:1367
+#: setup/index.php:1370
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Permisos de archivo del núcleo Zenphoto [incorrecto]"
 
-#: setup/index.php:1367
+#: setup/index.php:1370
 msgid ""
 "Setup could not set the one or more components to the selected permissions "
 "level. You will have to set the permissions manually. See the <a href=\"https://"
@@ -10677,15 +10677,15 @@ msgstr ""
 "folders\">Guía de resolución de problemas</a> por detalles sobre requisitos de "
 "permisos de Zenphoto."
 
-#: setup/index.php:1370
+#: setup/index.php:1373
 msgid "<em>.htaccess</em> file"
 msgstr "Archivo <em>.htaccess</em>"
 
-#: setup/index.php:1380
+#: setup/index.php:1383
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Archivo <em>.htaccess</em> [está vacío o no existe]"
 
-#: setup/index.php:1383
+#: setup/index.php:1386
 msgid ""
 "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is "
 "required the root zenphoto folder to create cruft-free URLs."
@@ -10694,7 +10694,7 @@ msgstr ""
 "htaccess</em> en la carpeta raíz zenphoto para crear URL simples libres de "
 "redundancias."
 
-#: setup/index.php:1384 setup/index.php:1392
+#: setup/index.php:1387 setup/index.php:1395
 msgid ""
 "You can ignore this warning if you do not intend to set the <code>mod_rewrite</"
 "code> option."
@@ -10702,7 +10702,7 @@ msgstr ""
 "Puede ignorar esta advertencia si no tiene la intención de configurar la opción "
 "<code>mod_rewrite</code>."
 
-#: setup/index.php:1386
+#: setup/index.php:1389
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</a></"
 "p><br style=\"clear:both\" /><br />"
@@ -10710,11 +10710,11 @@ msgstr ""
 "<p class=\"buttons\"> <a href=\"?copyhtaccess\">Haga que el Setup cree el "
 "archivo</a></p><br style=\"clear:both\" /><br />"
 
-#: setup/index.php:1389
+#: setup/index.php:1392
 msgid "Server seems to be <em>nginx</em>"
 msgstr "El servidor aparenta ser <em>nginx</em>"
 
-#: setup/index.php:1391
+#: setup/index.php:1394
 msgid ""
 "If you wish to create cruft-free URLs, you will need to configuring <a "
 "href=\"https://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"><em>URL "
@@ -10724,7 +10724,7 @@ msgstr ""
 "href=\"http://www.zenphoto.org/news/nginx-rewrite-rules-tutorial\"> "
 "<em>reescritura de URL para servidores NGINX</em></a>."
 
-#: setup/index.php:1395
+#: setup/index.php:1398
 msgid ""
 "Server seems not to be <em>Apache</em> or <em>Apache-compatible</em>, "
 "<code>mod_rewrite</code> may not be available."
@@ -10732,7 +10732,7 @@ msgstr ""
 "El servidor no parece ser <em>Apache</em> o compatible con Apache, "
 "<code>mod_rewrite</code>puede no estar disponible."
 
-#: setup/index.php:1432
+#: setup/index.php:1435
 msgid ""
 "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not "
 "required."
@@ -10740,7 +10740,7 @@ msgstr ""
 "El servidor no parece ser Apache o compatible con Apache, no se requiere <code>."
 "htaccess</code>."
 
-#: setup/index.php:1435
+#: setup/index.php:1438
 #, php-format
 msgid ""
 "The <em>.htaccess</em> file in your root folder is not the same version as the "
@@ -10753,7 +10753,7 @@ msgstr ""
 "htaccess</em>, fusione esos cambios con el archivo <em>%s/ htaccess</em> para "
 "generar uno nuevo."
 
-#: setup/index.php:1437
+#: setup/index.php:1440
 msgid ""
 "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>."
 "htaccess</em> file with the current version</a></p><br style=\"clear:both\" /"
@@ -10762,26 +10762,26 @@ msgstr ""
 "<p class=\"buttons\"> <a href=\"?copyhtaccess\">Reemplace el archivo existente "
 "<em>.htacces</em> con la versión actual</a></p><br style=\"clear:both\" /><br />"
 
-#: setup/index.php:1440
+#: setup/index.php:1443
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Archivo <em>.htaccess</em> [versión equivocada]"
 
-#: setup/index.php:1454
+#: setup/index.php:1457
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr ""
 "Archivo <em>.htaccess</em> (<em>RewriteEngine</em> esta en <strong>%s</strong>)"
 
-#: setup/index.php:1467
+#: setup/index.php:1470
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>falta</em>]"
 
-#: setup/index.php:1473
+#: setup/index.php:1476
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase es <code>%s</code>"
 
-#: setup/index.php:1474
+#: setup/index.php:1477
 #, php-format
 msgid ""
 "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install "
@@ -10790,12 +10790,12 @@ msgstr ""
 "<em>.htaccess</em> RewriteBase es <code>%s</code> [no coincide carpeta de "
 "instalación]"
 
-#: setup/index.php:1481
+#: setup/index.php:1484
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase es <code>%s</code> (reparado)"
 
-#: setup/index.php:1505
+#: setup/index.php:1508
 msgid ""
 "Setup was not able to write to the file change RewriteBase match the install "
 "folder."
@@ -10803,7 +10803,7 @@ msgstr ""
 "El programa de instalación no pudo escribir en el archivo. Cambie RewriteBase "
 "para que coincida con la carpeta de instalación."
 
-#: setup/index.php:1506
+#: setup/index.php:1509
 #, php-format
 msgid ""
 "Either make the file writeable or set <code>RewriteBase</code> in your <code>."
@@ -10812,15 +10812,15 @@ msgstr ""
 "Haga que el archivo sea de escritura o establezca <code>RewriteBase</code> en "
 "su archivo <code>.htaccess</code> en <code>%s</code>."
 
-#: setup/index.php:1508
+#: setup/index.php:1511
 msgid "Rewrite rules updated"
 msgstr "Reglas de reescritura actualizadas"
 
-#: setup/index.php:1508
+#: setup/index.php:1511
 msgid "Rewrite rules updated [not updated]"
 msgstr "Reglas de reescritura actualizadas [no actualizadas]"
 
-#: setup/index.php:1508
+#: setup/index.php:1511
 msgid ""
 "Setup was not able to write to the file change the rewrite rules for site "
 "upgrades."
@@ -10828,21 +10828,21 @@ msgstr ""
 "La configuración no fue capaz de escribir en el archivo, cambie las reglas de "
 "reescritura para las actualizaciones del sitio."
 
-#: setup/index.php:1514 setup/index.php:1517 setup/index.php:1530
+#: setup/index.php:1517 setup/index.php:1520 setup/index.php:1533
 msgid "<em>robots.txt</em> file"
 msgstr "Archivo <em>robots.txt</em>"
 
-#: setup/index.php:1514 setup/index.php:1517 setup/index.php:1530
+#: setup/index.php:1517 setup/index.php:1520 setup/index.php:1533
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Archivo <em>robots.txt</em> [no se creó]"
 
-#: setup/index.php:1514
+#: setup/index.php:1517
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr ""
 "El programa de instalación (Setup) no pudo encontrar el archivo "
 "<em>example_robots.txt</em>."
 
-#: setup/index.php:1517
+#: setup/index.php:1520
 msgid ""
 "Setup did not create a <em>robots.txt</em> file because one already exists. If "
 "you just moved your site you may need to review it."
@@ -10850,16 +10850,16 @@ msgstr ""
 "El programa de instalación no creó un archivo <em>robots.txt</em> porque ya "
 "existe uno. Si acaba de mover su sitio, es posible que deba revisarlo."
 
-#: setup/index.php:1530
+#: setup/index.php:1533
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr ""
 "El programa de instalación (Setup) no pudo crear un archivo <em>robots.txt</em>."
 
-#: setup/index.php:1535
+#: setup/index.php:1538
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "álbums [<code>$conf['external_álbum_folder']</code> es obsoleto]"
 
-#: setup/index.php:1535 setup/index.php:1559
+#: setup/index.php:1538 setup/index.php:1562
 #, php-format
 msgid ""
 "You should update your configuration file to conform to the current %1$s "
@@ -10868,11 +10868,11 @@ msgstr ""
 "Debe actualizar su archivo de configuración para que se ajuste al actual "
 "archivo %1$s de ejemplo."
 
-#: setup/index.php:1559
+#: setup/index.php:1562
 msgid "<em>albums</em> folder"
 msgstr "carpeta <em>álbumes</em>"
 
-#: setup/index.php:1559
+#: setup/index.php:1562
 msgid ""
 "<em>albums</em> folder [The line <code>\\$conf['album_folder']</code> is "
 "missing from your configuration file]"
@@ -10880,15 +10880,15 @@ msgstr ""
 "carpeta <em>álbumes</em> [Falta la línea <code>$conf['álbum_folder']</code> de "
 "su archivo de configuración]"
 
-#: setup/index.php:1563
+#: setup/index.php:1566
 msgid "<em>locale</em> folders"
 msgstr "carpeta <em>locale</em>"
 
-#: setup/index.php:1563
+#: setup/index.php:1566
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "carpeta <em>locale</em> [Está incompleta]"
 
-#: setup/index.php:1563
+#: setup/index.php:1566
 msgid ""
 "Be sure you have uploaded the complete Zenphoto package. You must have at least "
 "the <em>en_US</em> folder."
@@ -10896,19 +10896,19 @@ msgstr ""
 "Asegúrese de haber cargado el paquete completo de Zenphoto. Debe tener al menos "
 "la carpeta <em>en_US</em>."
 
-#: setup/index.php:1564
+#: setup/index.php:1567
 msgid "uploaded"
 msgstr "cargado"
 
-#: setup/index.php:1569
+#: setup/index.php:1572
 msgid "HTML cache"
 msgstr "Caché HTML"
 
-#: setup/index.php:1570
+#: setup/index.php:1573
 msgid "Third party plugins"
 msgstr "Complementos de 3ras. partes"
 
-#: setup/index.php:1580
+#: setup/index.php:1583
 msgid ""
 "You need to address the problems indicated above then run <code>setup</code> "
 "again."
@@ -10916,70 +10916,70 @@ msgstr ""
 "Debe abordar los problemas indicados anteriormente y luego ejecutar "
 "<code>setup</code> nuevamente."
 
-#: setup/index.php:1583
+#: setup/index.php:1586
 msgid "Setup failed."
 msgstr "Falló el programa de instalación (Setup)."
 
-#: setup/index.php:1594 setup/index.php:2688
+#: setup/index.php:1597 setup/index.php:2691
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr ""
 "Necesita derechos <em>USER ADMIN</em> para ejecutar el programa de instalación "
 "(setup)."
 
-#: setup/index.php:1596 setup/index.php:2690
+#: setup/index.php:1599 setup/index.php:2693
 msgid "You must be logged in to run setup."
 msgstr ""
 "Debe haber iniciado sesión para ejecutar el programa de instalación (setup)."
 
-#: setup/index.php:1617
+#: setup/index.php:1620
 msgid "database connected"
 msgstr "base de datos conectada"
 
-#: setup/index.php:1623
+#: setup/index.php:1626
 msgid "Checking the database"
 msgstr "Verificando la base de datos"
 
-#: setup/index.php:2407
+#: setup/index.php:2410
 msgid "About to create database tables"
 msgstr "Acerca de crear tablas de Base de datos"
 
-#: setup/index.php:2409
+#: setup/index.php:2412
 msgid "About to update database tables"
 msgstr "Acerca de actualizar tablas de Base de datos"
 
-#: setup/index.php:2412
+#: setup/index.php:2415
 msgid "Begin database table creation"
 msgstr "Comenzar creación de tabla de Base de datos"
 
-#: setup/index.php:2421
+#: setup/index.php:2424
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Falló la creación de tabla:<br />Consulta: %1$s<br />Error: %2$s"
 
-#: setup/index.php:2426 setup/index.php:2446
+#: setup/index.php:2429 setup/index.php:2449
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Consulta ( %s ) Exitosa."
 
-#: setup/index.php:2431 setup/index.php:2432
+#: setup/index.php:2434 setup/index.php:2435
 msgid "Begin table updates"
 msgstr "Comenzar actualizaciones de tabla"
 
-#: setup/index.php:2439 setup/index.php:2443
+#: setup/index.php:2442 setup/index.php:2446
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Falló la consulta %1$s. Error: %2$s"
 
-#: setup/index.php:2449
+#: setup/index.php:2452
 msgid "Begin converting UTF-8 tables to utf8mb4 collation"
 msgstr "Comienzo de conversión de tablas UTF-8 a la intercalación utf8mb4"
 
-#: setup/index.php:2457
+#: setup/index.php:2460
 #, php-format
 msgid "UTF-8 Table %s and its columns converted to utf8mb4 collation."
 msgstr "Tabla UTF-8 %s y sus columnas convertidas a la intercalación utf8mb4."
 
-#: setup/index.php:2460
+#: setup/index.php:2463
 #, php-format
 msgid ""
 "ERROR: UTF-8 table %1$s and/or its columns could not be converted to utf8mb4 "
@@ -10988,40 +10988,40 @@ msgstr ""
 "ERROR: la tabla UTF-8 %1$s y/o sus columnas no se pudieron convertir a la "
 "intercalación utf8mb4: %2$s"
 
-#: setup/index.php:2468
+#: setup/index.php:2471
 msgid "Done with table create!"
 msgstr "Hecho - Creación de Tabla!"
 
-#: setup/index.php:2470
+#: setup/index.php:2473
 msgid "Done with table create with errors!"
 msgstr "Hecho - Creación de tabla con errores!"
 
-#: setup/index.php:2474
+#: setup/index.php:2477
 msgid "Done with table update"
 msgstr "Hecho - Actualización de Tabla"
 
-#: setup/index.php:2476
+#: setup/index.php:2479
 msgid "Done with table update with errors"
 msgstr "Hecho - Actualización de Tabla con errores"
 
-#: setup/index.php:2481
+#: setup/index.php:2484
 msgid "Checking table specifications"
 msgstr "Verificando especificaciones de tabla"
 
-#: setup/index.php:2492
+#: setup/index.php:2495
 msgid "Done with database creation and update"
 msgstr "Hecho - Creación y actualización de la base de datos"
 
-#: setup/index.php:2494
+#: setup/index.php:2497
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La versión anterior fue %s"
 
-#: setup/index.php:2497
+#: setup/index.php:2500
 msgid "Setting default options"
 msgstr "Configurando opciones predeterminadas"
 
-#: setup/index.php:2535
+#: setup/index.php:2538
 #, php-format
 msgid ""
 "You may <a href=\"%1$s\">set your admin user and password</a> or <a "
@@ -11030,29 +11030,29 @@ msgstr ""
 "Puede <a href=\"%1$s\">configurar su usuario y contraseña de administrador</a> "
 "o <a href=\"%2$s\">ejecutar copia de seguridad/restaurar</a>"
 
-#: setup/index.php:2538
+#: setup/index.php:2541
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr ""
 "Necesita <a href=\"%1$s\">configurar su usuario y contraseña de administrador</"
 "a>"
 
-#: setup/index.php:2544
+#: setup/index.php:2547
 #, php-format
 msgid "You can now <a href=\"%1$s\">administer your gallery</a>."
 msgstr "Ahora puede <a href=\"%1$s\">Administrar su Galería</a>."
 
-#: setup/index.php:2608
+#: setup/index.php:2611
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tablas de la Base de datos a crear: %s"
 
-#: setup/index.php:2628
+#: setup/index.php:2631
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tablas de la Base de datos a actualizar: %s"
 
-#: setup/index.php:2657
+#: setup/index.php:2660
 msgid ""
 "<strong>Warning!</strong> This upgrade makes structural changes to the database "
 "which are not easily reversed. Be sure you have a database backup before "
@@ -11062,12 +11062,12 @@ msgstr ""
 "en la base de datos que no se pueden revertir fácilmente. Asegúrese de tener "
 "una copia de seguridad de la base de datos antes de continuar."
 
-#: setup/index.php:2660
+#: setup/index.php:2663
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Reconozco que el procedimiento reestructurará mi base de datos."
 
-#: setup/index.php:2720
+#: setup/index.php:2723
 msgid ""
 "Congratulations, we are ready to setup Zenphoto. A little patience please as "
 "the process may take some time."
@@ -11075,23 +11075,23 @@ msgstr ""
 "Enhorabuena, estamos listos para configurar Zenphoto. Un poco de paciencia por "
 "favor ya que el proceso puede llevar algún tiempo."
 
-#: setup/index.php:2721
+#: setup/index.php:2724
 msgid "run setup"
 msgstr "ejecutar programa de instalación (setup)"
 
-#: setup/index.php:2721
+#: setup/index.php:2724
 msgid "Go"
 msgstr "Ejecutar"
 
-#: setup/index.php:2737
+#: setup/index.php:2740
 msgid "database did not connect"
 msgstr "no se conectó la Base de datos"
 
-#: setup/index.php:2739
+#: setup/index.php:2742
 msgid "If you haven not created the database yet, now would be a good time."
 msgstr "Si aún no ha creado la Base de datos, ahora sería un buen momento."
 
-#: setup/index.php:2748
+#: setup/index.php:2751
 #, php-format
 msgid "The %1$s file does not exist."
 msgstr "El archivo %1$s no existe."
@@ -14350,10 +14350,10 @@ msgid "Intro text"
 msgstr "Ingresar Texto"
 
 #: zp-extensions/contact_form.php:93
-msgid "The intro text for your contact form. Leave empty to use the default text"
+msgid "The intro text for your contact form. Leave empty to use the default text."
 msgstr ""
-"El texto de introducción de tu formulario de contacto. Deja este campo en "
-"blanco para usar el texto predeterminado"
+"El texto de introducción de tu formulario de contacto. Deja en blanco para usar "
+"el texto predeterminado."
 
 #: zp-extensions/contact_form.php:94
 msgid "Confirm text"
@@ -14362,10 +14362,10 @@ msgstr "Texto de confirmación"
 #: zp-extensions/contact_form.php:97
 msgid ""
 "The text that asks the visitor to confirm that he really wants to send the "
-"message. Leave empty to use the default text"
+"message. Leave empty to use the default text."
 msgstr ""
 "El texto que solicita al visitante que confirme que realmente desea enviar el "
-"mensaje. Déjelo en blanco para usar el texto predeterminado"
+"mensaje. Dejar en blanco para usar el texto predeterminado."
 
 #: zp-extensions/contact_form.php:98
 msgid "Thanks text"
@@ -14374,10 +14374,10 @@ msgstr "Texto de agradecimiento"
 #: zp-extensions/contact_form.php:101
 msgid ""
 "The text that is shown after a message has been confirmed and sent. Leave empty "
-"to use the default text"
+"to use the default text."
 msgstr ""
 "El texto que se muestra después que un mensaje ha sido confirmado y enviado. "
-"Déjelo en blanco para usar el texto predeterminado"
+"Dejar en blanco para usar el texto predeterminado."
 
 #: zp-extensions/contact_form.php:102
 msgid "New message link text"
@@ -14432,10 +14432,10 @@ msgstr "Texto de la nota de enviar copia"
 #: zp-extensions/contact_form.php:117
 msgid ""
 "The text for the note about sending a copy to the address provided in case that "
-"option is set. Leave empty to use the default text"
+"option is set. Leave empty to use the default text."
 msgstr ""
-"Si se activa esta opción, el texto de la nota sobre el envío de una copia a la "
-"dirección proporcionada. Déjelo en blanco para usar el texto predeterminado"
+"Si se activa esta opción, es el texto de la nota para enviar una copia a la "
+"dirección proporcionada, . Déjelo en blanco para usar el texto predeterminado."
 
 #: zp-extensions/contact_form.php:118
 msgid "Contact recipients"

@@ -166,9 +166,10 @@ function getAlbumStatistic($number = 5, $option = '', $albumfolder = '', $thresh
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an album must have to be included in the list. (Default 0)
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics to include all subalbum levels
+ * @param string $sortdirection 'desc' (default) or 'asc'
  */
-function printAlbumStatistic($number, $option, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-	$albums = getAlbumStatistic($number, $option, $albumfolder, $threshold, $collection);
+function printAlbumStatistic($number, $option, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false, $sortdirection = 'desc') {
+	$albums = getAlbumStatistic($number, $option, $albumfolder, $threshold, $sortdirection, $collection);
 	echo "\n<div id=\"" . $option . "_album\">\n";
 	echo "<ul>";
 	foreach ($albums as $album) {
@@ -331,6 +332,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an image must have to be included in the list. (Default 0)
+ * @param string $sortdirection 'desc' (default) or 'asc'
  * @return array
  */
 function getImageStatistic($number, $option, $albumfolder = '', $collection = false, $threshold = 0, $sortdirection = 'desc') {
@@ -455,10 +457,11 @@ function getImageStatistic($number, $option, $albumfolder = '', $collection = fa
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  * @param integer $threshold the minimum number of ratings (for rating options) or hits (for popular option) an image must have to be included in the list. (Default 0)
+ * @param string $sortdirection 'desc' (default) or 'asc'
  * @return string
  */
-function printImageStatistic($number, $option, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-	$images = getImageStatistic($number, $option, $albumfolder, $collection, $threshold);
+function printImageStatistic($number, $option, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0, $sortdirection = 'desc') {
+	$images = getImageStatistic($number, $option, $albumfolder, $collection, $threshold, $sortdirection);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
