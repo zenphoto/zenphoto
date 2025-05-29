@@ -283,49 +283,49 @@ if (function_exists('printImageStatistic')) {
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printPopularImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "popular", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printTopRatedImages($number = 5, $albumfolder = "", $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "toprated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 	
 	/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printMostRatedImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false, $threshold = 0) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "mostrated", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink, $threshold);
 	}
 
 		/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printLatestImages($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "latest", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 		/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printLatestImagesByDate($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "latest-date", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printImageStatistisc() instead
+	 * @deprecated 2.0 – Use printImageStatistic() instead
 	 */
 	function printLatestImagesByMtime($number = 5, $albumfolder = '', $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $collection = false, $fullimagelink = false) {
-		deprecationNotice(gettext("Use printImageStatistisc() instead"));
+		deprecationNotice(gettext("Use printImageStatistic() instead"));
 		printImageStatistic($number, "latest-mtime", $albumfolder, $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $collection, $fullimagelink);
 	}
 
