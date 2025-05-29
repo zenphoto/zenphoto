@@ -243,42 +243,42 @@ function getAllAlbums($album = NULL) {
 if (function_exists('printImageStatistic')) {
 
 	/**
-	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 * @deprecated 2.0 – Use printAlbumStatistic() instead
 	 */
 	function printPopularAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = 'hitcounter', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistic() instead"));
 		printAlbumStatistic($number, "popular", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 * @deprecated 2.0 – Use printAlbumStatistic() instead
 	 */
 	function printLatestAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
-		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistic() instead"));
 		printAlbumStatistic($number, "latest", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, 0, $collection);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 * @deprecated 2.0 – Use printAlbumStatistic() instead
 	 */
 	function printMostRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistic() instead"));
 		printAlbumStatistic($number, "mostrated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 * @deprecated 2.0 – Use printAlbumStatistic() instead
 	 */
 	function printTopRatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $threshold = 0, $collection = false) {
-		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistic() instead"));
 		printAlbumStatistic($number, "toprated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, $threshold, $collection);
 	}
 
 	/**
-	 * @deprecated 2.0 – Use printAlbumStatistisc() instead
+	 * @deprecated 2.0 – Use printAlbumStatistic() instead
 	 */
 	function printLatestUpdatedAlbums($number = 5, $showtitle = false, $showdate = false, $showdesc = false, $desclength = 40, $showstatistic = '', $width = NULL, $height = NULL, $crop = NULL, $albumfolder = '', $firstimglink = false, $collection = false) {
-		deprecationNotice(gettext("Use printAlbumStatistisc() instead"));
+		deprecationNotice(gettext("Use printAlbumStatistic() instead"));
 		printAlbumStatistic($number, "latestupdated", $showtitle, $showdate, $showdesc, $desclength, $showstatistic, $width, $height, $crop, $albumfolder, $firstimglink, 0, $collection);
 	}
 
