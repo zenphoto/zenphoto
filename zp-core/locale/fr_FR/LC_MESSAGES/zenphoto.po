@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.7\n"
+"Project-Id-Version: Zenphoto 1.6.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-26 13:49+0200\n"
-"PO-Revision-Date: 2025-05-26 13:49+0200\n"
+"POT-Creation-Date: 2025-06-02 14:16+0200\n"
+"PO-Revision-Date: 2025-06-02 14:17+0200\n"
 "Last-Translator: Roland Tisserand\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon & Vincent Bourganel "
 "(vincent3569) & Roland Tisserand (rolandti)\n"
@@ -141,8 +141,6 @@ msgstr "Couleur du thème"
 #: zp-core/zp-extensions/slideshow2.php:681
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:31
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:37
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:31
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:37
 #: zp-core/zp-extensions/user_login-out.php:100
 msgid "close"
 msgstr "fermer"
@@ -355,7 +353,6 @@ msgstr "Commentaires : %d"
 #: themes/zenpage/gallery.php:75 themes/zenpage/news.php:59
 #: themes/zenpage/news.php:94 themes/zpmobile/news.php:45
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/zoom.php:48
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/zoom.php:48
 msgid "Categories: "
 msgstr "Catégories : "
 
@@ -525,7 +522,6 @@ msgstr "Albums"
 #: zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:100
 #: zp-core/zp-extensions/static_html_cache.php:75
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:481
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:481
 #: zp-core/zp-extensions/zenpage.php:204 zp-core/zp-extensions/zenpage.php:398
 #: zp-core/zp-extensions/zenpage/admin-pages.php:108
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1336
@@ -888,7 +884,6 @@ msgstr "Archives"
 #: themes/zpmobile/functions.php:44 zp-core/admin-functions.php:520
 #: zp-core/admin-functions.php:4954 zp-core/classes/class-authority.php:640
 #: zp-core/zp-extensions/defaultCodeblocks.php:34
-#: zp-core/zp-extensions/downloadList/download_statistics.php:79
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:92
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:96
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:258
@@ -2411,7 +2406,7 @@ msgstr "Tout"
 #: zp-core/zp-extensions/security-logger.php:21
 #: zp-core/zp-extensions/static_html_cache.php:29
 #: zp-core/zp-extensions/themeSwitcher.php:24 zp-core/zp-extensions/tinyURL.php:19
-#: zp-core/zp-extensions/tinymce.php:18 zp-core/zp-extensions/tinymce4.php:18
+#: zp-core/zp-extensions/tinymce.php:18
 #: zp-core/zp-extensions/user_mailing_list.php:22
 #: zp-core/zp-extensions/zenphotoDonate.php:11
 #: zp-core/zp-extensions/zenphoto_news.php:14
@@ -2502,7 +2497,6 @@ msgstr "Utilisateurs"
 #: zp-core/zp-extensions/reCaptcha.php:76
 #: zp-core/zp-extensions/related_items.php:187
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:99
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:99
 msgid "Image"
 msgstr "Image"
 
@@ -2955,13 +2949,11 @@ msgstr "aperçu"
 
 #: zp-core/admin-globals.php:67 zp-core/zp-extensions/tinyURL.php:87
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:464
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:464
 msgid "pages"
 msgstr "pages"
 
 #: zp-core/admin-globals.php:76
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:465
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:465
 #: zp-core/zp-extensions/zenpage/admin-edit.php:185
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:995
 msgid "articles"
@@ -2969,7 +2961,6 @@ msgstr "articles"
 
 #: zp-core/admin-globals.php:77
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:466
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:466
 msgid "categories"
 msgstr "catégories"
 
@@ -3049,7 +3040,6 @@ msgstr "Voir les journaux :"
 
 #: zp-core/admin-logs.php:163 zp-core/admin-options.php:2464
 #: zp-core/utilities/user-data-export.php:87
-#: zp-core/zp-extensions/downloadList/download_statistics.php:22
 msgid "Download"
 msgstr "Télécharger"
 
@@ -4117,7 +4107,6 @@ msgstr "Images <em>pleine grandeur</em> (originales)"
 
 #: zp-core/admin-options.php:2082
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:112
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:112
 msgid "Thumbnail"
 msgstr "Vignettes"
 
@@ -8022,7 +8011,6 @@ msgstr "Contenu boni"
 
 #: zp-core/classes/class-searchengine.php:112
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:485
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:485
 #: zp-core/zp-extensions/zenpage.php:203
 #: zp-core/zp-extensions/zenpage/admin-categories.php:123
 #: zp-core/zp-extensions/zenpage/admin-edit.php:679
@@ -8149,7 +8137,6 @@ msgstr "Auteur de la dernière modification de l’image"
 
 #: zp-core/classes/class-userdataexport.php:425
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:118
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:118
 msgid "Full image"
 msgstr "image pleine grandeur"
 
@@ -12772,24 +12759,20 @@ msgstr ""
 "Les images sont marquées comme non publiées si leur album parent ne l’est pas."
 
 #: zp-core/utilities/gallery_statistics.php:82
-#: zp-core/zp-extensions/downloadList/download_statistics.php:122
 msgid "Outdated file entries cleared from the database"
 msgstr "Les entrées périmées de fichiers ont été effacées de la base de données"
 
 #: zp-core/utilities/gallery_statistics.php:87
-#: zp-core/zp-extensions/downloadList/download_statistics.php:128
 msgid "All download file entries cleared from the database"
 msgstr ""
 "Toutes les entrées de fichiers téléchargés ont été effacées de la base de "
 "données."
 
 #: zp-core/utilities/gallery_statistics.php:90
-#: zp-core/zp-extensions/downloadList/download_statistics.php:140
 msgid "Clear outdated downloads from database"
 msgstr "Efface les téléchargements périmés de la base de données"
 
 #: zp-core/utilities/gallery_statistics.php:91
-#: zp-core/zp-extensions/downloadList/download_statistics.php:141
 msgid "Clear all downloads from database"
 msgstr "Efface tous les téléchargements de la base de données"
 
@@ -14095,7 +14078,6 @@ msgstr "PDF"
 #: zp-core/zp-extensions/comment_form.php:184
 #: zp-core/zp-extensions/galleryArticles.php:99
 #: zp-core/zp-extensions/tinymce.php:48 zp-core/zp-extensions/tinymce.php:54
-#: zp-core/zp-extensions/tinymce4.php:55 zp-core/zp-extensions/tinymce4.php:62
 msgid "Disabled"
 msgstr "Désactivé"
 
@@ -16072,7 +16054,6 @@ msgstr "Catégorie de nouvelles"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:112
 #: zp-core/zp-extensions/related_items.php:199
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:431
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:431
 #: zp-core/zp-extensions/zenpage/admin-edit.php:216
 #: zp-core/zp-extensions/zenpage/zenpage-template-functions.php:982
 msgid "Page"
@@ -16236,8 +16217,8 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:265
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:273
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:281
-msgid "Use printAlbumStatistisc() instead"
-msgstr "Utilisez printAlbumStatistisc() à la place"
+msgid "Use printAlbumStatistic() instead"
+msgstr "Utilisez plutôt printAlbumStatistic()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:289
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:297
@@ -16245,8 +16226,8 @@ msgstr "Utilisez printAlbumStatistisc() à la place"
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:313
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:320
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:328
-msgid "Use printImageStatistisc() instead"
-msgstr "Utilisez printImageStatistisc() à la place"
+msgid "Use printImageStatistic() instead"
+msgstr "Utilisez plutôt printImageStatistic()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:345
 msgid "There is no replacement"
@@ -16551,40 +16532,6 @@ msgstr[1] "%u téléchargements"
 #: zp-core/zp-extensions/downloadList.php:798
 msgid "0 downloads"
 msgstr "0 téléchargement"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:42
-msgid "No statistic available"
-msgstr "Aucune statistique disponible"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:47
-msgid "Most downloaded files"
-msgstr "Fichiers les plus téléchargés"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:131
-msgid "Download Statistics"
-msgstr "Statistiques de téléchargement"
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:132
-msgid ""
-"Shows statistical graphs and info about your gallery’s downloads if using the "
-"downloadList plugin."
-msgstr ""
-"Affiche des graphiques statistiques et des informations à propos des "
-"téléchargements effectués de votre galerie si vous utilisez l’extension "
-"downloadList."
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:133
-msgid ""
-"Entries marked red do not exist in the download folder anymore but are kept for "
-"the statistics until you remove them manually via the button."
-msgstr ""
-"Les entrées identifiées en rouge n’existent plus dans le dossier de "
-"téléchargement ; elles sont conservées aux fins statistiques jusqu’à ce que vous "
-"les enleviez vous-même avec le bouton."
-
-#: zp-core/zp-extensions/downloadList/download_statistics.php:137
-msgid "The downloadList plugin is not active"
-msgstr "L’extension downloadList n’est pas activée."
 
 #: zp-core/zp-extensions/dynamic-locale.php:28
 msgid ""
@@ -17145,7 +17092,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/galleryArticles.php:71
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:100
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Image title"
 msgstr "Titre de l’image"
 
@@ -17161,7 +17107,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/galleryArticles.php:75
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:101
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Album title"
 msgstr "Titre de l’album"
 
@@ -17956,7 +17901,6 @@ msgstr ""
 
 #: zp-core/zp-extensions/jplayer.php:150
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:127
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:127
 msgid "Show title"
 msgstr "Afficher le titre"
 
@@ -18981,7 +18925,6 @@ msgstr "Page de script"
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:152
 #: zp-core/zp-extensions/menu_manager/menu_tab_edit.php:271
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:145
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:145
 msgid "Custom link"
 msgstr "Lien personnalisé"
 
@@ -19921,7 +19864,6 @@ msgstr "Modifications appliquées aux catégories"
 
 #: zp-core/zp-extensions/publishContent/publishContent.php:514
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:331
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:331
 msgid "Categories:"
 msgstr "Catégories :"
 
@@ -20923,8 +20865,6 @@ msgstr "Nombre d’albums dans le flux RSS :"
 #: zp-core/zp-extensions/rss.php:110
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:111
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:202
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:111
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:202
 msgid "Image size"
 msgstr "Taille de l’image"
 
@@ -21286,7 +21226,6 @@ msgstr "Alignement des liens du profil"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:121
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:156
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:156
 msgid "Left"
 msgstr "Gauche"
 
@@ -21296,7 +21235,6 @@ msgstr "Centré"
 
 #: zp-core/zp-extensions/scriptless-socialsharing.php:123
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:155
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:155
 msgid "Right"
 msgstr "Droite"
 
@@ -22516,11 +22454,11 @@ msgstr "catégories d’actualités"
 msgid "Text editor TinyMCE 7+"
 msgstr "Éditeur de texte TinyMCE 7+"
 
-#: zp-core/zp-extensions/tinymce.php:44 zp-core/zp-extensions/tinymce4.php:50
+#: zp-core/zp-extensions/tinymce.php:44
 msgid "Text editor configuration - Zenphoto"
 msgstr "Configuration de l’éditeur de texte – Zenphoto"
 
-#: zp-core/zp-extensions/tinymce.php:49 zp-core/zp-extensions/tinymce4.php:56
+#: zp-core/zp-extensions/tinymce.php:49
 msgid ""
 "Applies to <em>admin</em> editable text other than for Zenpage pages and news "
 "articles."
@@ -22528,51 +22466,51 @@ msgstr ""
 "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les "
 "pages et les actualités Zenpage)."
 
-#: zp-core/zp-extensions/tinymce.php:50 zp-core/zp-extensions/tinymce4.php:57
+#: zp-core/zp-extensions/tinymce.php:50
 msgid "Text editor configuration - Zenpage"
 msgstr "Configuration de l’éditeur de texte – Zenpage"
 
-#: zp-core/zp-extensions/tinymce.php:55 zp-core/zp-extensions/tinymce4.php:63
+#: zp-core/zp-extensions/tinymce.php:55
 msgid "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
 msgstr ""
 "S’applique au texte éditable par les administrateurs pour les <em>pages</em> et "
 "les <em>actualités</em> Zenpage."
 
-#: zp-core/zp-extensions/tinymce.php:56 zp-core/zp-extensions/tinymce4.php:64
+#: zp-core/zp-extensions/tinymce.php:56
 msgid "Text editor height"
 msgstr "Hauteur de l’éditeur de texte"
 
-#: zp-core/zp-extensions/tinymce.php:59 zp-core/zp-extensions/tinymce4.php:68
+#: zp-core/zp-extensions/tinymce.php:59
 msgid ""
 "Predefined height (px) for Zenphoto and Zenpage textfields. Default is 400px."
 msgstr ""
 "Hauteur prédéfinie en pixels des zones de texte de Zenphoto et Zenpage. Valeur "
 "par défaut : 400 px."
 
-#: zp-core/zp-extensions/tinymce.php:60 zp-core/zp-extensions/tinymce4.php:69
+#: zp-core/zp-extensions/tinymce.php:60
 msgid "Custom image size"
 msgstr "Taille d’image personnalisée"
 
-#: zp-core/zp-extensions/tinymce.php:63 zp-core/zp-extensions/tinymce4.php:73
+#: zp-core/zp-extensions/tinymce.php:63
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
 msgstr ""
 "Taille prédéfinie (px) pour les images de taille personnalisée insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:64 zp-core/zp-extensions/tinymce4.php:74
+#: zp-core/zp-extensions/tinymce.php:64
 msgid "Custom thumb crop - size"
 msgstr "Rognage personnalisé des vignettes – taille"
 
-#: zp-core/zp-extensions/tinymce.php:67 zp-core/zp-extensions/tinymce4.php:78
+#: zp-core/zp-extensions/tinymce.php:67
 msgid ""
 "Predefined size (px) for custom cropped thumb images included using tinyZenpage."
 msgstr "Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:68 zp-core/zp-extensions/tinymce4.php:79
+#: zp-core/zp-extensions/tinymce.php:68
 msgid "Custom thumb crop - width"
 msgstr "Rognage personnalisé des vignettes – largeur"
 
-#: zp-core/zp-extensions/tinymce.php:71 zp-core/zp-extensions/tinymce4.php:83
+#: zp-core/zp-extensions/tinymce.php:71
 msgid ""
 "Predefined crop width (%) for custom cropped thumb  images included using "
 "tinyZenpage."
@@ -22580,11 +22518,11 @@ msgstr ""
 "Largeur de rognage prédéfinie (%) pour les images rognées insérées avec "
 "tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:72 zp-core/zp-extensions/tinymce4.php:84
+#: zp-core/zp-extensions/tinymce.php:72
 msgid "Custom thumb crop - height"
 msgstr "Rognage personnalisé des vignettes – hauteur"
 
-#: zp-core/zp-extensions/tinymce.php:75 zp-core/zp-extensions/tinymce4.php:88
+#: zp-core/zp-extensions/tinymce.php:75
 msgid ""
 "Predefined crop height (%) for custom cropped thumb images included using "
 "tinyZenpage."
@@ -22592,27 +22530,27 @@ msgstr ""
 "Hauteur de rognage prédéfinie (%) pour les vignettes d’images avec rognage "
 "personnalisé qui sont insérées avec tinyZenpage."
 
-#: zp-core/zp-extensions/tinymce.php:76 zp-core/zp-extensions/tinymce4.php:89
+#: zp-core/zp-extensions/tinymce.php:76
 msgid "Entity encoding"
 msgstr "Encodage des Entités"
 
-#: zp-core/zp-extensions/tinymce.php:80 zp-core/zp-extensions/tinymce4.php:94
+#: zp-core/zp-extensions/tinymce.php:80
 msgid "Raw"
 msgstr "Brut"
 
-#: zp-core/zp-extensions/tinymce.php:81 zp-core/zp-extensions/tinymce4.php:95
+#: zp-core/zp-extensions/tinymce.php:81
 msgid "Numeric"
 msgstr "Numérique"
 
-#: zp-core/zp-extensions/tinymce.php:82 zp-core/zp-extensions/tinymce4.php:96
+#: zp-core/zp-extensions/tinymce.php:82
 msgid "Named"
 msgstr "Nommé"
 
-#: zp-core/zp-extensions/tinymce.php:83 zp-core/zp-extensions/tinymce4.php:97
+#: zp-core/zp-extensions/tinymce.php:83
 msgid "Named and numeric"
 msgstr "Nommé et numérique"
 
-#: zp-core/zp-extensions/tinymce.php:85 zp-core/zp-extensions/tinymce4.php:99
+#: zp-core/zp-extensions/tinymce.php:85
 msgid "Default (raw)"
 msgstr "Défaut (brut)"
 
@@ -22629,7 +22567,7 @@ msgstr ""
 "www.tiny.cloud/docs/tinymce/latest/content-filtering/\">documentation tinyMCE</"
 "a>."
 
-#: zp-core/zp-extensions/tinymce.php:87 zp-core/zp-extensions/tinymce4.php:101
+#: zp-core/zp-extensions/tinymce.php:87
 msgid "Entities"
 msgstr "Entités"
 
@@ -22643,11 +22581,11 @@ msgstr ""
 "le <a href=\"https://www.tiny.cloud/docs/tinymce/latest/content-filtering/"
 "#entities\">documentation tinyMCE</a>."
 
-#: zp-core/zp-extensions/tinymce.php:91 zp-core/zp-extensions/tinymce4.php:106
+#: zp-core/zp-extensions/tinymce.php:91
 msgid "Browser spellcheck"
 msgstr "Vérification orthographique du navigateur"
 
-#: zp-core/zp-extensions/tinymce.php:94 zp-core/zp-extensions/tinymce4.php:110
+#: zp-core/zp-extensions/tinymce.php:94
 msgid ""
 "Check to use your browser spellchecker.<br><strong>Note:</strong> Spellcheck "
 "feature should be available in the browser and enabled (location of settings to "
@@ -22663,11 +22601,11 @@ msgstr ""
 "Faites vos recherches sur la mise en œuvre de la vérification orthographique "
 "dans le navigateur de votre choix."
 
-#: zp-core/zp-extensions/tinymce.php:95 zp-core/zp-extensions/tinymce4.php:111
+#: zp-core/zp-extensions/tinymce.php:95
 msgid "Browser context menu"
 msgstr "Menu contextuel du navigateur"
 
-#: zp-core/zp-extensions/tinymce.php:98 zp-core/zp-extensions/tinymce4.php:115
+#: zp-core/zp-extensions/tinymce.php:98
 msgid ""
 "Check to disable TinyMCE right-click menu, browser right-click menu will be used "
 "instead.<br><strong>Note:</strong> If TinyMCE right-click menu is used - browser "
@@ -22679,44 +22617,36 @@ msgstr ""
 "accessible par en appuyant sur <em>Ctrl+Clic droit</em>."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/js/dialog.php:43
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:43
 #, php-format
 msgid "It is not possible to a include a custom size %s."
 msgstr "Il est impossible d’inclure un(e) %s de taille personnalisée."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/js/dialog.php:54
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/js/dialog.php:54
 #, php-format
 msgid "It is not possible to a include a full size %s."
 msgstr "Il est impossible d’inclure un(e) %s à pleine grandeur."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:102
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:102
 msgid "Album:"
 msgstr "Album :"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:102
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:102
 msgid "Album folder:"
 msgstr "Dossier de l’album :"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:102
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:102
 msgid "(Click on image to include)"
 msgstr "(Cliquer sur une image pour l’insérer)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:152
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:152
 msgid "<em>Albumthumb</em>"
 msgstr "<em>VignetteDeLalbum</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:235
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:235
 msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>Note :</strong> Cet album ne contient aucune image."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:293
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:293
 #: zp-core/zp-extensions/zenpage.php:202
 #: zp-core/zp-extensions/zenpage/admin-news-articles.php:106
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1332
@@ -22725,128 +22655,101 @@ msgstr "Articles"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:293
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:488
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:293
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:488
 msgid "(Click on article title to include a link)"
 msgstr "(Cliquer sur le titre de l’article pour insérer un lien)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage-functions.php:637
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage-functions.php:637
 #: zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:752
 msgid "All categories"
 msgstr "Toutes les catégories"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:58
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:58
 msgid "Help"
 msgstr "Aide"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:69
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:69
 msgid "*Select*"
 msgstr "*Sélectionner*"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:72
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:72
 msgid "(only direct links!)"
 msgstr "(seulement des liens directs !)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:84
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:84
 msgid "*Select an album*"
 msgstr "*Sélectionner un album*"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:87
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:87
 msgid "(select variant below)"
 msgstr "(choisir la variante ci-dessous)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:98
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:98
 msgid "What to include"
 msgstr "Quoi insérer"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:103
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:103
 msgid "Custom text"
 msgstr "Texte personnalisé"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:114
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:114
 msgid "Custom thumbnail"
 msgstr "Vignette personnalisée"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:115
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:115
 msgid "Sized image/multimedia item"
 msgstr "Image ou multimédia redimensionné"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:117
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:117
 msgid "Custom size (un-cropped)"
 msgstr "Taille personnalisée (non rognée)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:126
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:126
 msgid "Title and description"
 msgstr "Titre et description"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:128
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:128
 msgid "No description"
 msgstr "Aucune description"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:129
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:129
 msgid "Show image description"
 msgstr "Afficher la description de l’image"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:130
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:130
 msgid "Show album description"
 msgstr "Afficher la description de l’album"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:138
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:217
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:138
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:217
 msgid "Link type"
 msgstr "Type de lien"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:140
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:140
 msgid "Link to image"
 msgstr "Lien vers image"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:141
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:141
 msgid "Link to full image"
 msgstr "Lien vers l’image pleine grandeur (originale)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:142
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:142
 msgid "Link to album"
 msgstr "Lien vers album"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:143
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:143
 msgid "No link"
 msgstr "Aucun lien"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:153
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:222
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:153
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:222
 msgid "Text wrap"
 msgstr "Habillage du texte"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:154
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:154
 msgid "No wrap"
 msgstr "Aucun habillage"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:173
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:173
 msgid ""
 "This provides access to your images and albums (select from the <em>Zenphoto</"
 "em> dropdown) as well as pages, news articles and news categories (select from "
@@ -22858,7 +22761,6 @@ msgstr ""
 "facilement dans vos pages et vos articles."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:179
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:179
 msgid ""
 "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a list "
 "of these items. Click on a title to include a link. Hover of the link to see an "
@@ -22872,7 +22774,6 @@ msgstr ""
 "protégés sont marqués d’un « + ». Aucun autre paramètre configurable."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:185
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:185
 msgid ""
 "Select an album to include images from into your page or article. Click on the "
 "image to include it. Un-published albums or images are marked with an “*”. You "
@@ -22890,12 +22791,10 @@ msgstr ""
 "et apparaît sur toutes les pages de vignettes."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:192
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:192
 msgid "Options on what to include"
 msgstr "Options pour déterminer ce qu’il faut insérer"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:195
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:195
 msgid ""
 "Include the image itself, only its title, the title of its album, or some custom "
 "text."
@@ -22904,7 +22803,6 @@ msgstr ""
 "texte personnalisé."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:198
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:198
 msgid ""
 "NOTE: These selections are not sticky. If you change albums or change pages in "
 "an album you will have to select them again."
@@ -22914,7 +22812,6 @@ msgstr ""
 "les régler de nouveau."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:199
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:199
 msgid ""
 "The window does not close automatically so you can include several images one "
 "after another."
@@ -22923,12 +22820,10 @@ msgstr ""
 "images l’une après l’autre."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:204
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:204
 msgid "Thumbnail: Size as set in Zenphoto’s options"
 msgstr "Vignette : taille telle que définie dans les paramètres  Zenphoto"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:205
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:205
 msgid ""
 "Custom thumbnail: size for the longest side / (cropwidth x cropheight). You can "
 "set default sizes for this on the TinyMCE plugin options."
@@ -22938,7 +22833,6 @@ msgstr ""
 "options de l’extension TinyMCE."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:207
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:207
 msgid ""
 "Sized image/multimedia item: The sized image as set in gallery default theme’s "
 "options."
@@ -22947,7 +22841,6 @@ msgstr ""
 "définie dans les options par défaut du thème."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:209
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:209
 msgid ""
 "<strong>Multimedia item</strong>: This embeds the content macro MEDIAPLAYER into "
 "the text. This generates a video or audio player on the front end if any "
@@ -22960,12 +22853,10 @@ msgstr ""
 "ait été activée et inscrite dans la macro."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:211
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:211
 msgid "Custom size (un-cropped)."
 msgstr "Taille personnalisée (non rognée)"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:212
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:212
 msgid ""
 "Full image: The original image directly. NOTE: Full image protection options do "
 "not apply!"
@@ -22974,7 +22865,6 @@ msgstr ""
 "protection de l’image pleine grandeur ne s’appliquent pas !"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:215
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:215
 msgid ""
 "If you additionally check <em>Show title</em> or <em>Show description</em> the "
 "title/description of the image or album (if you checked <em>link to album</em>) "
@@ -22986,7 +22876,6 @@ msgstr ""
 "em> est choisi comme type)."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:219
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:219
 msgid ""
 "Select to link to the image page of the image, to the album the image is in, no "
 "link at all or a custom URL."
@@ -22995,7 +22884,6 @@ msgstr ""
 "URL personnalisée… ou pour ne pas en créer du tout."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:224
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:224
 msgid ""
 "Wrap the text right or left of the image or not at all. Note that tinyZenpage "
 "adds a bit of CSS to the included image if you use text wrap. So that you see "
@@ -23006,17 +22894,14 @@ msgstr ""
 "permettre de voir la mise en page, des éléments CSS intégrés sont ajoutés :"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:226
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:226
 msgid "left wrap: <em>style=\"float:right\"</em>"
 msgstr "habillement à gauche : <em>style=\"float: right\"</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:227
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:227
 msgid "right wrap: <em>style=\"float: left\"</em>"
 msgstr "habillement à droite : <em>style=\"float: left\"</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:231
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:231
 msgid ""
 "Also tinyZenpage attaches a default CSS class to the image (if image is chosen) "
 "to be styled with your theme’s css. If you choose left or right align “_left” or "
@@ -23027,7 +22912,6 @@ msgstr ""
 "choisissez gauche ou droite, « _left » ou « _right » sera ajouté :"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:234
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:234
 msgid ""
 "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /"
 "<em>zenpage_thumb_right</em>"
@@ -23036,7 +22920,6 @@ msgstr ""
 "<em>zenpage_thumb_right</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:235
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:235
 msgid ""
 "Custom thumbnail: <em>zenpage_customthumb</em> or <em>zenpage_customthumb_left</"
 "em>/<em>zenpage_customthumb_right</em>"
@@ -23045,7 +22928,6 @@ msgstr ""
 "<em>zenpage_customthumb_left</em> / <em>zenpage_customthumb_right</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:236
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:236
 msgid ""
 "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/"
 "<em>zenpage_sizedimage_right</em>"
@@ -23054,7 +22936,6 @@ msgstr ""
 "<em>zenpage_sizedimage_left</em> / <em>zenpage_sizedimage_right</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:237
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:237
 msgid ""
 "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/"
 "<em>zenpage_customimage_right</em>"
@@ -23063,7 +22944,6 @@ msgstr ""
 "<em>zenpage_customimage_left</em> / <em>zenpage_customimage_right</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:238
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:238
 msgid ""
 "If you additionally have checked <em>Show title</em> or <em>Show description</"
 "em> for an image or album the div with the class <em>zenpage_wrapper</em> is "
@@ -23079,7 +22959,6 @@ msgstr ""
 "<em>zenpage_desc</em>."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:241
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:241
 msgid ""
 "Additionally a default CSS class is attached to the link itself depending on the "
 "link option set:"
@@ -23088,12 +22967,10 @@ msgstr ""
 "lui-même :"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:244
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:244
 msgid "Image link: <em>zenpage_imagelink</em>"
 msgstr "Lien de l’image : <em>zenpage_imagelink</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:245
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:245
 msgid ""
 "Full image link: <em>zenpage_fullimagelink</em>. Additionally "
 "<em>rel='colorbox'</em> is attached so you can move through all images on a page "
@@ -23104,59 +22981,20 @@ msgstr ""
 "avec Colorbox ou d’autres scripts du même genre."
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:246
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:246
 msgid "Album link: <em>zenpage_albumlink</em>"
 msgstr "Lien de l’album : <em>zenpage_albumlink</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:247
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:247
 msgid "Custom link: <em>zenpage_customlink</em>"
 msgstr "Lien personnalisé : <em>zenpage_customlink</em>"
 
 #: zp-core/zp-extensions/tinymce/plugins/tinyzenpage/tinyzenpage.php:250
-#: zp-core/zp-extensions/tinymce4/plugins/tinyzenpage/tinyzenpage.php:250
 msgid ""
 "If you would like to do some direct styling you can also use TinyMCE’s image "
 "button or source code editor."
 msgstr ""
 "Vous pouvez aussi définir le style directement en utilisant le bouton d’image de "
 "TinyMCE ou l’éditeur de code source."
-
-#: zp-core/zp-extensions/tinymce4.php:16
-msgid "Text editor TinyMCE 4.x"
-msgstr "Éditeur de textes TinyMCE 4.x"
-
-#: zp-core/zp-extensions/tinymce4.php:19
-#, php-format
-msgid ""
-"Only one TinyMCE editor plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
-"code></a> is already enabled."
-msgstr ""
-"Une seule extension TinyMCE peut être activée. <a href=\"#%1$s\"><code>%1$s</"
-"code></a> l’est déjà."
-
-#: zp-core/zp-extensions/tinymce4.php:100
-msgid ""
-"If encountering issues with special chars and other character entities change "
-"this. Note that this applies on re-saving content only. More info on the <a "
-"href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/"
-"configuration/entity-encoding.md\">TinyMCE docs</a>."
-msgstr ""
-"Si vous rencontrez des problèmes avec des caractères spéciaux et d’autres "
-"entités de caractères, modifiez cela. Notez que cela ne s’applique qu’au moment "
-"du ré-enregistrement du contenu. Plus d’informations sur la <a href=\"https://"
-"github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/entity-"
-"encoding.md\">documentation tinyMCE</a>."
-
-#: zp-core/zp-extensions/tinymce4.php:105
-msgid ""
-"You can adjust how entities are processed. More info on the <a href=\"https://"
-"github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/"
-"entities.md\">TinyMCE docs</a>."
-msgstr ""
-"Vous pouvez ajuster la manière dont les entités sont traitées. Plus d’info sur "
-"le <a href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/"
-"configuration/entities.md\">documentation tinyMCE</a>."
 
 #: zp-core/zp-extensions/trivialSpam.php:11
 msgid "Trivial SPAM filter."
@@ -24919,6 +24757,66 @@ msgid ""
 msgstr ""
 "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à un "
 "ou à plusieurs destinataires."
+
+#~ msgid "No statistic available"
+#~ msgstr "Aucune statistique disponible"
+
+#~ msgid "Most downloaded files"
+#~ msgstr "Fichiers les plus téléchargés"
+
+#~ msgid "Download Statistics"
+#~ msgstr "Statistiques de téléchargement"
+
+#~ msgid ""
+#~ "Shows statistical graphs and info about your gallery’s downloads if using the "
+#~ "downloadList plugin."
+#~ msgstr ""
+#~ "Affiche des graphiques statistiques et des informations à propos des "
+#~ "téléchargements effectués de votre galerie si vous utilisez l’extension "
+#~ "downloadList."
+
+#~ msgid ""
+#~ "Entries marked red do not exist in the download folder anymore but are kept "
+#~ "for the statistics until you remove them manually via the button."
+#~ msgstr ""
+#~ "Les entrées identifiées en rouge n’existent plus dans le dossier de "
+#~ "téléchargement ; elles sont conservées aux fins statistiques jusqu’à ce que "
+#~ "vous les enleviez vous-même avec le bouton."
+
+#~ msgid "The downloadList plugin is not active"
+#~ msgstr "L’extension downloadList n’est pas activée."
+
+#~ msgid "Text editor TinyMCE 4.x"
+#~ msgstr "Éditeur de textes TinyMCE 4.x"
+
+#, php-format
+#~ msgid ""
+#~ "Only one TinyMCE editor plugin may be enabled. <a href=\"#%1$s\"><code>%1$s</"
+#~ "code></a> is already enabled."
+#~ msgstr ""
+#~ "Une seule extension TinyMCE peut être activée. <a href=\"#%1$s\"><code>%1$s</"
+#~ "code></a> l’est déjà."
+
+#~ msgid ""
+#~ "If encountering issues with special chars and other character entities change "
+#~ "this. Note that this applies on re-saving content only. More info on the <a "
+#~ "href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/"
+#~ "configuration/entity-encoding.md\">TinyMCE docs</a>."
+#~ msgstr ""
+#~ "Si vous rencontrez des problèmes avec des caractères spéciaux et d’autres "
+#~ "entités de caractères, modifiez cela. Notez que cela ne s’applique qu’au "
+#~ "moment du ré-enregistrement du contenu. Plus d’informations sur la <a "
+#~ "href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/_includes/"
+#~ "configuration/entity-encoding.md\">documentation tinyMCE</a>."
+
+#~ msgid ""
+#~ "You can adjust how entities are processed. More info on the <a href=\"https://"
+#~ "github.com/tinymce/tinymce-docs-4x/blob/main/_includes/configuration/"
+#~ "entities.md\">TinyMCE docs</a>."
+#~ msgstr ""
+#~ "Vous pouvez ajuster la manière dont les entités sont traitées. Plus d’info "
+#~ "sur le <a href=\"https://github.com/tinymce/tinymce-docs-4x/blob/main/"
+#~ "_includes/configuration/entities.md\">documentation tinyMCE</a>."
 
 #~ msgid "The intro text for your contact form"
 #~ msgstr "Le texte d’introduction du formulaire de contact."
