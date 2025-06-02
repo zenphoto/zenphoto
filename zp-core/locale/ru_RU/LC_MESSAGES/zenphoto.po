@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.7\n"
+"Project-Id-Version: Zenphoto 1.6.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 20:00+0300\n"
+"POT-Creation-Date: 2025-05-29 21:39+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: kuzzzma <kuzzzma@gmail.com>\n"
 "Language-Team: kuzzzma (since 1.6.3), Doctor Kru <info@artpixel.ru> "
@@ -326,7 +326,7 @@ msgstr "альбом"
 
 #: themes/garland/functions.php:151 zp-core/admin-edit.php:1360
 #: zp-core/admin-globals.php:110 zp-core/admin-options.php:2952
-#: zp-core/zp-extensions/image_album_statistics.php:286
+#: zp-core/zp-extensions/image_album_statistics.php:287
 msgid "image"
 msgstr "Изображение"
 
@@ -2160,7 +2160,7 @@ msgid "Album thumb"
 msgstr "Миниатюра альбома"
 
 #: zp-core/admin-functions.php:2119 zp-core/admin-functions.php:2122
-#: zp-core/zp-extensions/image_album_statistics.php:288
+#: zp-core/zp-extensions/image_album_statistics.php:289
 #: zp-core/zp-extensions/tinyURL.php:79
 #: zp-core/zp-extensions/uploader_http.php:31
 #: zp-core/zp-extensions/uploader_jQuery.php:66
@@ -7557,7 +7557,7 @@ msgstr[1] "%s (%u изображения)"
 msgstr[2] "%s (%u изображений)"
 
 #: zp-core/classes/class-feed.php:549
-#: zp-core/zp-extensions/image_album_statistics.php:281
+#: zp-core/zp-extensions/image_album_statistics.php:282
 #, php-format
 msgid "Last update: %s"
 msgstr "Дата обновления: %s"
@@ -16568,8 +16568,8 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:265
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:273
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:281
-msgid "Use printAlbumStatistisc() instead"
-msgstr "Вместо этого используйте printAlbumStatistisc()"
+msgid "Use printAlbumStatistic() instead"
+msgstr "Вместо этого используйте printAlbumStatistic()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:289
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:297
@@ -16577,8 +16577,8 @@ msgstr "Вместо этого используйте printAlbumStatistisc()"
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:313
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:320
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:328
-msgid "Use printImageStatistisc() instead"
-msgstr "Вместо этого используйте printImageStatistisc()"
+msgid "Use printImageStatistic() instead"
+msgstr "Вместо этого используйте printImageStatistic()"
 
 #: zp-core/zp-extensions/deprecated-functions/deprecated-functions.php:345
 msgid "There is no replacement"
@@ -18127,19 +18127,19 @@ msgstr ""
 "Функции, которые предоставляют различную статистику по изображениям и "
 "альбомам в галерее."
 
-#: zp-core/zp-extensions/image_album_statistics.php:290
+#: zp-core/zp-extensions/image_album_statistics.php:291
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u новых %2$s"
 
-#: zp-core/zp-extensions/image_album_statistics.php:302
-#: zp-core/zp-extensions/image_album_statistics.php:537
+#: zp-core/zp-extensions/image_album_statistics.php:303
+#: zp-core/zp-extensions/image_album_statistics.php:540
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Рейтинг: %1$u (Голосов: %2$u)"
 
-#: zp-core/zp-extensions/image_album_statistics.php:309
-#: zp-core/zp-extensions/image_album_statistics.php:544
+#: zp-core/zp-extensions/image_album_statistics.php:310
+#: zp-core/zp-extensions/image_album_statistics.php:547
 #, php-format
 msgid "Views: %u"
 msgstr "Просмотров: %u"
