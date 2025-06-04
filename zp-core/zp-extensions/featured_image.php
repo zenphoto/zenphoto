@@ -469,9 +469,11 @@ class featuredImage {
 							if ($image_allowed) {
 								$count++;
 								$imgobj = Image::newImage($obj, $image);
+								$values = getAdminThumbSizes($imgobj, 'large-uncropped');
+								$dimensions = getSizeAdminThumb($imgobj, 'large-uncropped');
 								?>
 								<a href="#" title="<?php echo html_encode($imgobj->getTitle() . ' (' . $imgobj->filename . ')'); ?>" class="fi_thumb">
-									<img src="<?php echo pathurlencode($imgobj->getThumb()); ?>" alt="<?php echo html_encode($imgobj->getTitle() . ' (' . $imgobj->filename . ')'); ?>" title="<?php echo $imgobj->getID(); ?>" loading="lazy" decoding="async">
+								<img src="<?php echo pathurlencode($imgobj->getCustomImage($values['thumbsize'], $values['width'], $values['height'], $values['cropwidth'], $values['cropheight'], null, null, true, NULL)); ?>" alt="<?php echo html_encode($imgobj->getTitle() . ' (' . $imgobj->filename . ')'); ?>" title="<?php echo $imgobj->getID(); ?>" loading="lazy" decoding="async" width="<?php echo $dimensions[0]; ?>" height="<?php echo $dimensions[1]; ?>"> 
 								</a>
 								<?php
 							}

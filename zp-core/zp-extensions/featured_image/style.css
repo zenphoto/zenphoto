@@ -41,6 +41,10 @@ color: #4D76CF;
  img.fi_thumb,
 .fi_thumb img {
   border: 2px solid lightgray;
+	object-fit: contain;
+	width: 135px;
+	height: 135px;
+	padding: 0;
 }
 
 .fi_thumb.nonimagetype img {
