@@ -1435,7 +1435,7 @@ $upgrade = $versioncheck['upgrade_text'];
 										$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 										$ch = -1;
 									} else {
-										$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
+										$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/file-templates/htaccess</em> file to produce a new <em>.htaccess</em> file."), ZENFOLDER);
 										if (setup::userAuthorized()) {
 											$desc .= ' ' . gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 										}
