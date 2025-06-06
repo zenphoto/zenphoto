@@ -281,7 +281,6 @@ class htmlmetatags {
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
-		$date = zpFormattedDate(DATETIME_DISPLAYFORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 		$thumb = '';
 		$prev = $next = '';
