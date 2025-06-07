@@ -281,7 +281,7 @@ class htmlmetatags {
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
-		$date = zpFormattedDate(DATETIME_DISPLAYFORMAT); // if we don't have a item date use current date
+		$date = $lastchangedate = zpFormattedDate(DATETIME_DISPLAYFORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 		$thumb = '';
 		$prev = $next = '';
@@ -341,7 +341,8 @@ class htmlmetatags {
 				break;
 			case 'album.php':
 				$pagetitle = getBareAlbumTitle() . " - ";
-				$date = getAlbumDate();
+				$date = $_zp_current_album->getDatetime();
+				$lastchangedate = $_zp_current_album->getLastchange();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host . getPageNumURL($_zp_page);
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
@@ -369,7 +370,8 @@ class htmlmetatags {
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle() . " (" . getBareAlbumTitle() . ") - ";
-				$date = getImageDate();
+				$date = $_zp_current_image->getDatetime();
+				$lastchangedate = $_zp_current_image->getLastchange();
 				$desc = getBareImageDesc();
 				if(getOption('htmlmeta_canonical-url_dynalbum')) {
 					$imagereal_rewrite = html_encode($_zp_current_image->album->name) . '/' . html_encode($_zp_current_image->filename) . IM_SUFFIX;
@@ -403,7 +405,8 @@ class htmlmetatags {
 				if (function_exists("is_NewsArticle")) {
 					if (is_NewsArticle()) {
 						$pagetitle = getBareNewsTitle() . " - ";
-						$date = getNewsDate();
+						$date = $_zp_current_zenpage_news->getDatetime();
+						$lastchangedate = $_zp_current_zenpage_news->getLastchange();
 						$desc = trim(getBare(getNewsContent()));
 						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
 						$author = $_zp_current_zenpage_news->getAuthor(true);
@@ -449,7 +452,8 @@ class htmlmetatags {
 				break;
 			case 'pages.php':
 				$pagetitle = getBarePageTitle() . " - ";
-				$date = getPageDate();
+				$date = $_zp_current_zenpage_page->getDatetime();
+				$lastchangedate = $_zp_current_zenpage_page->getLastchange();
 				$desc = trim(getBare(getPageContent()));
 				if (function_exists('getSizedFeaturedImage') && (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard'))) {
 					$featuredimage = getSizedFeaturedImage(null, null, $ogimage_width, $ogimage_height, null, null, null, null, false, null, true);
@@ -571,8 +575,9 @@ class htmlmetatags {
 		}
 		if (getOption('htmlmeta_name-expires')) {
 			$expires = getOption("htmlmeta_expires");
-			if ($expires == (int) $expires)
+			if ($expires == (int) $expires) {
 				$expires = preg_replace('|\s\-\d+|', '', date('r', time() + $expires)) . ' GMT';
+			}
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
 		
@@ -602,6 +607,11 @@ class htmlmetatags {
 			$meta .= '<meta property="og:description" content="' . $desc . '">' . "\n";
 			$meta .= '<meta property="og:url" content="' . html_encode($url) . '">' . "\n";
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
+			$meta .= '<meta property="article:published_time" content="'.self::getISODate($date) . '"/>' . "\n";
+			if (!$lastchangedate) {
+				$lastchangedate = $date;
+			}
+			$meta .= '<meta property="article:modified_time" content="'.self::getISODate($lastchangedate) . '"/>' . "\n";
 		}
 
 		// Facebook app id
@@ -808,6 +818,20 @@ class htmlmetatags {
 			$alltags = $tags;
 		}
 		return $alltags;
+	}
+	
+	/**
+	 * Gets the ISO date for a datetime string
+	 * @since 1.7
+	 * 
+	 * @param type $date
+	 * @return type
+	 */
+	static function getISODate($date = null) {
+		if (!empty($date)) {
+			$datetime = strtotime($date);
+			return date(DateTimeInterface::ATOM, $datetime);
+		}
 	}
 
 }
