@@ -413,7 +413,6 @@ class htmlmetatags {
 						$public = $_zp_current_zenpage_news->isPublic();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getName() . " - ";
-						$date = zpFormattedDate(DATETIME_DISPLAYFORMAT);
 						$desc = trim(getBare($_zp_current_category->getDesc()));
 						$canonicalurl = $host . $_zp_current_category->getLink();
 						$public = $_zp_current_category->isPublic();
@@ -835,4 +834,4 @@ class htmlmetatags {
 	}
 
 }
-?>
+
