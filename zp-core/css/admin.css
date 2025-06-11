@@ -670,6 +670,10 @@ table.options tr td {
 	border: none;
 }
 
+table.options tr td select {
+	max-width: 300px;
+}
+
 table.formlayout {
 	width: 100%;
 }
