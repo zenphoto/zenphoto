@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.6.7\n"
+"Project-Id-Version: Zenphoto 1.6.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-19 22:56+0200\n"
 "PO-Revision-Date: \n"
@@ -2599,7 +2599,7 @@ msgstr "*niet gespecificeerd"
 #: zp-core/admin-options.php:677
 #, php-format
 msgid "Your server reports its time zone as: <code>%s</code>."
-msgstr "Je server geeft de tijdzone als volgt weer: <code>%s</code>."
+msgstr "Je server geeft de volgende tijdzone: <code>%s</code>."
 
 #: zp-core/admin-options.php:678
 #, php-format
@@ -2631,7 +2631,7 @@ msgid ""
 "If you have Apache <em>mod rewrite</em> (or equivalent), put a checkmark on "
 "the <em>mod rewrite</em> option and you will get nice cruft-free URLs."
 msgstr ""
-"Als de Apache <em>mod_rewrite</em> (of vergelijkbaar) module aanwezig is, "
+"Als de Apache <em>mod_rewrite</em> module (of vergelijkbaar) aanwezig is, "
 "vink de optie <em>mod_rewrite</em> dan aan voor nette URL’s.<br />"
 
 #: zp-core/admin-options.php:708
@@ -2658,7 +2658,7 @@ msgid ""
 "diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr ""
 "Als je problemen hebt met betandsnamen met speciale karakters probeer dan de "
-"<em>UTF8 afbeelding URI</em> optie."
+"<em>UTF8 afbeelding URI's</em> optie."
 
 #: zp-core/admin-options.php:715
 msgid ""
@@ -2666,7 +2666,7 @@ msgid ""
 "<em>mod_rewrite suffix</em> to the end of image URLs. (This helps search "
 "engines.) Examples: <em>.html, .php</em>, etc."
 msgstr ""
-"Als <em>mod_rewrite</em> hierboven ingeschakeld is zal Zenphoto de "
+"Als <em>mod_rewrite</em> hierboven is ingeschakeld zal Zenphoto de "
 "<em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings "
 "URL (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, enz."
 
