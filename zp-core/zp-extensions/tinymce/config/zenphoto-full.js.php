@@ -46,7 +46,7 @@ global $_zp_rtl_css;
 		toolbar_mode: 'sliding',
 		plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount charmap emoticons accordion tinyzenpage',
 		menubar: 'file edit view insert format tools table',
-		toolbar: 'undo redo | link tinyzenpage image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | print | pagebreak anchor codesample | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | ltr rtl',
+		toolbar: 'undo redo | link tinyzenpage pagebreak image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | print | anchor codesample | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | ltr rtl',
 		menu: {tools: {
 			title: 'Tools',
 			items: 'tinyzenpage | code wordcount'

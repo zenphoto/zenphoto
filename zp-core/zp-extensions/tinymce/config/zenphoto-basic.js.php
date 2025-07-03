@@ -43,8 +43,8 @@ global $_zp_rtl_css;
 			file_picker_callback: <?php echo $filehandler; ?>,
 		<?php } ?>
 		toolbar_mode: 'sliding',
-		plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount tinyzenpage',
-		toolbar: 'undo redo | link image tinyzenpage | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+		plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table wordcount pagebreak tinyzenpage',
+		toolbar: 'undo redo | link image tinyzenpage pagebreak | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
 		menu: {tools: {
 			title: 'Tools',
 			items: 'tinyzenpage | code wordcount'
