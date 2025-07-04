@@ -1385,10 +1385,9 @@ function generateAttributesFromArray($attributes = array(), $exclude = array()) 
 			'truespeed'
 	);
 	$attr = '';
-	$attributes_unique = array_unique($attributes);
 	$exclude_unique = array_unique($exclude);
-	if (!empty($attributes_unique) && is_array($attributes_unique)) {
-		foreach ($attributes_unique as $key => $val) {
+	if (!empty($attributes) && is_array($attributes)) {
+		foreach ($attributes as $key => $val) {
 			if (!in_array($key, $exclude_unique)) {
 				if (empty($val)) {
 					if (in_array($key, $boolean_attr)) {
