@@ -374,11 +374,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark = false, $th
 				if (!$cw || $w / $cw * $ch > $h) {
 					$cw = round($h / $ch * $cw * $cf);
 					$ch = round($h * $cf);
-					$cx = round(($w - $cw) / 3);
+					$cx = round(($w - $cw) / 2);
 				} else {
 					$ch = round($w / $cw * $ch * $cf);
 					$cw = round($w * $cf);
-					$cy = round(($h - $ch) / 3);
+					$cy = round(($h - $ch) / 2);
 				}
 			} else { // custom crop
 				if (!$cw || $cw > $w) {
