@@ -478,6 +478,9 @@ class RSS extends feed {
 					$this->channel_title = $website_title . ' - ' . $this->channel_title;
 				}
 				break;
+			default:
+				self::feed404();
+				break;
 		}
 
 // individual feedtype setup
@@ -533,6 +536,9 @@ class RSS extends feed {
 								break;
 							case 'random':
 								$titleappendix = gettext(' (Random news)');
+								break;
+							default:
+								self::feed404();
 								break;
 						}
 						break;
@@ -611,6 +617,9 @@ class RSS extends feed {
 				break;
 			case 'null': //we just want the class instantiated
 				return;
+			default: // block invalid requess
+				self::feed404();
+				break;
 		}
 		$this->feeditems = $this->getitems();
 	}
