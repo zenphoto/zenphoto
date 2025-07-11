@@ -49,7 +49,7 @@
 		</p>
 		<p>
 			<label for="comment_form_city"><?php printf(gettext('City%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
-			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city'], 'address-level2'); ?> type="text" id="comment_form_city" name="0-comment_form_city size="22" value="<?php echo html_encode($stored['city']); ?>" />
+			<input<?php printCommentFormFieldAttributes('comment_form_addresses', $disabled['city'], 'address-level2'); ?> type="text" id="comment_form_city" name="0-comment_form_city" size="22" value="<?php echo html_encode($stored['city']); ?>" />
 		</p>
 		<p>
 			<label for="comment_form_state"><?php printf(gettext('State%s'), getCommentFormRequiredFieldMark('comment_form_addresses')); ?></label>
