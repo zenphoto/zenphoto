@@ -299,9 +299,11 @@ echo '</head>' . "\n";
 														$members = array();
 														if (!empty($groupuser)) {
 															foreach ($adminlist as $user) {
-																$groups = explode(',', $user['group']);
-																if ($user['valid'] && in_array($groupuser, $groups)) {
-																	$members[] = $user['user'];
+																if (!empty($user['group'])) {
+																	$groups = explode(',', $user['group']);
+																	if ($user['valid'] && in_array($groupuser, $groups)) {
+																		$members[] = $user['user'];
+																	}
 																}
 															}
 														}
