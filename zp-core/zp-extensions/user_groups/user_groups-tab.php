@@ -299,7 +299,8 @@ echo '</head>' . "\n";
 														$members = array();
 														if (!empty($groupuser)) {
 															foreach ($adminlist as $user) {
-																if ($user['valid'] && $user['group'] == $groupuser) {
+																$groups = explode(',', $user['group']);
+																if ($user['valid'] && in_array($groupuser, $groups)) {
 																	$members[] = $user['user'];
 																}
 															}
@@ -385,7 +386,7 @@ echo '</head>' . "\n";
 									}
 									if (c > 1) {
 										alert('<?php echo sprintf(gettext('User %s is assigned to more than one group.'), $name); ?>');
-										return false;
+										//return false;
 									}
 			<?php
 		}
