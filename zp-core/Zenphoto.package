@@ -350,6 +350,7 @@ zp-core/admin-globals.php
 zp-core/admin-logs.php
 zp-core/admin-options
 zp-core/admin-options.php
+zp-core/admin-options/class-graphicsoptions.php
 zp-core/admin-options/inc-options-gallery_save.php
 zp-core/admin-options/inc-options-gallery.php
 zp-core/admin-options/inc-options-general_save.php
@@ -392,7 +393,6 @@ zp-core/classes/class-gallery.php
 zp-core/classes/class-graphicsbase.php
 zp-core/classes/class-graphicsgd.php
 zp-core/classes/class-graphicsimagick.php
-zp-core/classes/class-graphicsoptions.php
 zp-core/classes/class-image.php
 zp-core/classes/class-imagemetaformatter.php
 zp-core/classes/class-maintenancemode.php
