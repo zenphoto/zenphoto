@@ -348,7 +348,21 @@ zp-core/admin-edit.php
 zp-core/admin-functions.php
 zp-core/admin-globals.php
 zp-core/admin-logs.php
+zp-core/admin-options
 zp-core/admin-options.php
+zp-core/admin-options/inc-options-gallery_save.php
+zp-core/admin-options/inc-options-gallery.php
+zp-core/admin-options/inc-options-general_save.php
+zp-core/admin-options/inc-options-general.php
+zp-core/admin-options/inc-options-image_save.php
+zp-core/admin-options/inc-options-image.php
+zp-core/admin-options/inc-options-plugin.php
+zp-core/admin-options/inc-options-search_save.php
+zp-core/admin-options/inc-options-search.php
+zp-core/admin-options/inc-options-security_save.php
+zp-core/admin-options/inc-options-security.php
+zp-core/admin-options/inc-options-theme_save.php
+zp-core/admin-options/inc-options-theme.php
 zp-core/admin-plugins.php
 zp-core/admin-refresh-metadata.php
 zp-core/admin-tags.php
@@ -1925,4 +1939,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1927
+1941

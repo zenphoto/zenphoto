@@ -284,7 +284,7 @@ if (function_exists('mb_internal_encoding')) {
 define('IMAGICK_REQUIRED_VERSION', '3.0.0');
 define('IMAGEMAGICK_REQUIRED_VERSION', '6.3.8');
 require_once SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-graphics.php'; // legacy functions
-require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsoptions.php'; // option class
+require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/class-graphicsoptions.php'; // option class
 require_once SERVERPATH . '/' . ZENFOLDER . '/classes/class-graphicsbase.php'; // base class
 $_zp_graphics = new graphicsBase();
 $_zp_graphics_optionhandlers[] = new graphicsOptions(); // register option handler

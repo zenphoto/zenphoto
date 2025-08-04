@@ -1549,10 +1549,5 @@ class Authority {
 			}
 		}
 	}
-	
-	
-	static function sendAdminNotificationMail() {
-		
-	}
 
 }
