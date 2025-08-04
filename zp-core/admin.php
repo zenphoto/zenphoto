@@ -508,7 +508,7 @@ if (!zp_loggedin()) {
 							</ul>
 
 							<?php
-							require_once(SERVERPATH . '/' . ZENFOLDER . '/template-filters.php');
+							require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions/template-filters.php');
 							$plugins = array_keys(getEnabledPlugins());
 							$filters = $_zp_filters;
 							$c = count($plugins);
