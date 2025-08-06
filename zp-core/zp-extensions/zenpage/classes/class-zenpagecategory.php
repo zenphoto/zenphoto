@@ -266,7 +266,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function isSubNewsCategoryOf($catlink) {
 		deprecationNotice(gettext('Use the method isChildOf() instead'));
-		return $this->isSubCategoryOf($catlink);
+		return $this->isChildOf($catlink);
 	}
 
 	/**
