@@ -7,6 +7,6 @@
  */
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/zp-core/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/zenpage-template-functions.php");
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/template-functions.php");
 featuredImage::processSelection();
 

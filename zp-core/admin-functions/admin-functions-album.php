@@ -1,6 +1,6 @@
 <?php 
 /**
- * Album edit related admin functions
+ * Album related admin functions
  * 
  * @since 1.7 separated from admin-functions.php file
  * 

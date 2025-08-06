@@ -1,6 +1,6 @@
 <?php 
 /**
- * General edit related admin functions
+ * General admin functions
  * 
  * @since 1.7 separated from admin-functions.php file
  * 

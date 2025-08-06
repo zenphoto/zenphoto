@@ -7,7 +7,7 @@
  */
 define("OFFSET_PATH", 4);
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-globals.php');
-require_once("zenpage-admin-functions.php");
+require_once("admin-functions.php");
 
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 

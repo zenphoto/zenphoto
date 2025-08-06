@@ -4,7 +4,7 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . "/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
 if (extensionEnabled('zenpage'))
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/zenpage-template-functions.php");
+	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/template-functions.php");
 header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 ?>

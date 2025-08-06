@@ -33,7 +33,7 @@ if (isset($_GET['report'])) {
 	$msg = '';
 }
 if (extensionEnabled('zenpage')) {
-	require_once(dirname(__FILE__) . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-admin-functions.php');
+	require_once(dirname(__FILE__) . '/' . PLUGIN_FOLDER . '/zenpage/admin-functions.php');
 }
 $redirected_from = NULL;
 if (zp_loggedin() && !empty($_zp_admin_menu)) {

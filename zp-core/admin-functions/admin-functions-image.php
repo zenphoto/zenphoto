@@ -1,6 +1,6 @@
 <?php 
 /**
- * Image editing related admin functions
+ * Image related admin functions
  * 
  * @since 1.7 separated from admin-functions.php file
  * 

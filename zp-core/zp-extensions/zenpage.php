@@ -322,7 +322,7 @@ class zenpagecms {
 			}
 		}
 		if (extensionEnabled('zenpage')) {
-			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/template-functions.php');
 		} else {
 			$_zp_zenpage = NULL;
 		}
