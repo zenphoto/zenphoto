@@ -99,7 +99,7 @@ class Zenpage {
 	 * @return type
 	 */
 	function visibleCategory($cat) {
-		Zenpage_internal_deprecations::visibleCategory();
+		deprecationNotice(gettext('Use the method isPublic() of the ZenpageCategory class instead.'));
 		$categorystructure = $this->getCategoryStructure();
 		return $categorystructure[$cat['cat_id']]['show'];
 	}

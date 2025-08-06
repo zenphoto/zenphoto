@@ -1934,7 +1934,6 @@ zp-core/zp-extensions/zenpage/classes/class-zenpageitems.php
 zp-core/zp-extensions/zenpage/classes/class-zenpagenews.php
 zp-core/zp-extensions/zenpage/classes/class-zenpagepage.php
 zp-core/zp-extensions/zenpage/classes/class-zenpageroot.php
-zp-core/zp-extensions/zenpage/deprecated-functions.php
 zp-core/zp-extensions/zenpage/images
 zp-core/zp-extensions/zenpage/images/add.png
 zp-core/zp-extensions/zenpage/images/folder.png
@@ -1968,4 +1967,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1970
+1969

@@ -185,6 +185,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @deprecated 2.0 Use if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … } for a equivalent check instead.
 	 */
 	function categoryIsVisible() {
+		deprecationNotice(gettext('Use <code>if($obj->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) { … }</code> for a equivalent check instead.'));
 		if (zp_loggedin(ALL_NEWS_RIGHTS))
 			return true;
 		return $this->isPublic();
