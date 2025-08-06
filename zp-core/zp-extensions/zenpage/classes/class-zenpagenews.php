@@ -263,27 +263,45 @@ class ZenpageNews extends ZenpageItems {
 		}
 		return false;
 	}
+	
+	/**
+	 * Checks if the article is "child" of the category $name
+	 * 
+	 * Note: Articles are not hierachical childs of their categoriestechnically. Actually they are assigned to them.
+	 * 
+	 * This is convenience wrapper shortcut for inNewsCategory($name, true) to align with other classes
+	 * 
+	 * @since 1.7
+	 * 
+	 * @param string $name
+	 * @return type
+	 */
+	function isChildOf($name) {
+		return $this->inNewsCategory($name, true);
+	}
 
 	/**
 	 * Checks if an article is in a category and returns TRUE or FALSE
+	 * 
+	 * @since 1.7 Parameter $checksubcats added
 	 *
 	 * @param string $catlink The titlelink of a category
+	 * @param bool $checksubcats Set to true (default false) to check if the article is in any of this category's sub categories, too (this is the theme side behaviour actually) 
 	 * @return bool
 	 */
-	function inNewsCategory($catlink) {
+	function inNewsCategory($catlink, $checksubcats = false) {
 		if (!empty($catlink)) {
 			$categories = $this->getCategories();
-			$count = 0;
 			foreach ($categories as $cat) {
 				if ($catlink == $cat['titlelink']) {
-					$count = 1;
-					break;
+					return true;
 				}
 			}
-			return $count == 1;
-		} else {
-			return false;
+			if ($checksubcats) {
+				return $this->inSubNewsCategoryOf($catlink);
+			}
 		}
+		return false;
 	}
 
 	/**
@@ -295,22 +313,17 @@ class ZenpageNews extends ZenpageItems {
 	function inSubNewsCategoryOf($catlink) {
 		if (!empty($catlink)) {
 			$categories = $this->getCategories();
-			$count = 0;
 			foreach ($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				$parentid = $catobj->getParentID();
 				$parentcats = $catobj->getParents();
 				foreach ($parentcats as $parentcat) {
 					if ($catlink == $parentcat) {
-						$count = 1;
-						break;
+						return true;
 					}
 				}
 			}
-			return $count == 1;
-		} else {
-			return false;
-		}
+		} 
+		return false;
 	}
 
 	/**
