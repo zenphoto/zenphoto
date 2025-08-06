@@ -273,7 +273,7 @@ class ZenpageNews extends ZenpageItems {
 	 * 
 	 * @since 1.7
 	 * 
-	 * @param string $name
+	 * @param string $name The name (titlelink) of the category
 	 * @return type
 	 */
 	function isChildOf($name) {
@@ -283,47 +283,62 @@ class ZenpageNews extends ZenpageItems {
 	/**
 	 * Checks if an article is in a category and returns TRUE or FALSE
 	 * 
-	 * @since 1.7 Parameter $checksubcats added
+	 * @since 1.7 Parameter $checkchildcats added
 	 *
-	 * @param string $catlink The titlelink of a category
-	 * @param bool $checksubcats Set to true (default false) to check if the article is in any of this category's sub categories, too (this is the theme side behaviour actually) 
+	 * @param string $name  The name (titlelink) of the category
+	 * @param bool $checkchildcats Set to true (default false) to check if the article is in any of this category's child categories, too (this is the theme side behaviour actually) 
 	 * @return bool
 	 */
-	function inNewsCategory($catlink, $checksubcats = false) {
-		if (!empty($catlink)) {
+	function inNewsCategory($name, $checkchildcats = false) {
+		if (!empty($name)) {
 			$categories = $this->getCategories();
 			foreach ($categories as $cat) {
-				if ($catlink == $cat['titlelink']) {
+				if ($name == $cat['titlelink']) {
 					return true;
 				}
 			}
-			if ($checksubcats) {
-				return $this->inSubNewsCategoryOf($catlink);
+			if ($checkchildcats) {
+				return $this->inChildNewsCategoryOf($name);
 			}
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Checks if an article is in a sub category of $catlink
+	 * 
+	 * @since 1.7 deprecates inSubNewsCategoryOf()
 	 *
-	 * @param string $catlink The titlelink of a category
+	 * @param string $name The name (titlelink) of a category
 	 * @return bool
 	 */
-	function inSubNewsCategoryOf($catlink) {
-		if (!empty($catlink)) {
+	function inChildNewsCategoryOf($name) {
+		if (!empty($name)) {
 			$categories = $this->getCategories();
 			foreach ($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				$parentcats = $catobj->getParents();
 				foreach ($parentcats as $parentcat) {
-					if ($catlink == $parentcat) {
+					if ($name == $parentcat) {
 						return true;
 					}
 				}
 			}
 		} 
 		return false;
+	}
+
+	/**
+	 * Checks if an article is in a sub category of $catlink
+	 * 
+	 * @deprecated 2.0 Use inChildNewsCategoryOf() instead
+	 *
+	 * @param string $catlink The titlelink of a category
+	 * @return bool
+	 */
+	function inSubNewsCategoryOf($catlink) {
+		deprecationNotice(gettext('Use inChildNewsCategoryOf() instead'));
+		return $this->inChildNewsCategoryOf($catlink);
 	}
 
 	/**
