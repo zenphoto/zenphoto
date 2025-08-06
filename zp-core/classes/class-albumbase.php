@@ -253,6 +253,22 @@ class AlbumBase extends MediaObject {
 		deprecationNotice(gettext('Use getUrParent() instead'));
 		return $this->getUrParent();
 	}
+	
+	/**
+	 * Checks if the album is a child album of $name
+	 * 
+	 * @since 1.7
+	 * 
+	 * @param string $name Name of the album to check
+	 * @return bool
+	 */
+	function isChildOf($name) {
+		$albumnames = getAlbumArray($this->name, true);
+		if (in_array($name, $albumnames)) {
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Returns the place data of an album

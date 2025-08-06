@@ -231,33 +231,41 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 	
 	/**
-	 * Checks if the current news category is a sub category of $catlink
+	 * Checks if the current news category is a child category of $name
 	 *
-	 * @since 1.5.8 - deprecates isSubNewsCategoryOf()
+	 * @since 1.7 - deprecates isSubNewsCategoryOf()
+	 * @param string $name Name (catlink) of the category to check 
+	 * 
+	 * @return bool
+	 */
+	function isChildOf($name) {
+		$parents = $this->getParents();
+		foreach ($parents as $parent) {
+			if ($name == $parent) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Checks if the current news category is a sub category of $catlink
+	 * 
+	 * @deprecated 2.0 Use the method isChildOf() instead
+ 	 * @since 1.5.8 - deprecates isSubNewsCategoryOf()
 	 * 
 	 * @return bool
 	 */
 	function isSubCategoryOf($catlink) {
-		if (!empty($catlink)) {
-			$categories = $this->getParents();
-			$count = 0;
-			foreach ($categories as $cat) {
-				if ($catlink == $cat) {
-					$count = 1;
-					break;
-				}
-			}
-			return $count == 1;
-		} else {
-			return false;
-		}
+		deprecationNotice(gettext('Use the method isChildOf() instead'));
+		return $this->isChildOf($catlink);
 	}
-
+	
 	/**
-	 * @see isSubCategoryOf()
-	 * @deprecated 2.0 - Use getCategories() instead
+	 * @deprecated 2.0 - Use isChildOf() instead
 	 */
 	function isSubNewsCategoryOf($catlink) {
+		deprecationNotice(gettext('Use the method isChildOf() instead'));
 		return $this->isSubCategoryOf($catlink);
 	}
 
@@ -283,7 +291,7 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	/**
-	 * Gets the parent categories' titlelinks recursivly to the category
+	 * Gets the parent categories' names recursivly to the category
 	 * 
 	 * @return array|null
 	 */

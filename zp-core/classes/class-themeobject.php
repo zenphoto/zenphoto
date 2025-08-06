@@ -97,6 +97,17 @@ class ThemeObject extends PersistentObject {
 	function getUrParent() {
 		return null;
 	}
+	
+	/**
+	 * Checks if the object is a child of $name
+	 * @since 1.7
+	 * 
+	 * @param string $name Name of the object
+	 * @return bool
+	 */
+	function isChildOf($name) {
+		return false;
+	}
 
 	/**
 	 * Returns the hitcount

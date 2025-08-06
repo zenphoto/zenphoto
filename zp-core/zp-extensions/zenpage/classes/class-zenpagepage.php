@@ -254,6 +254,24 @@ class ZenpagePage extends ZenpageItems {
 			return $this->urparent;
 		}
 	}
+	
+	/**
+	 * Checks if the current page is a child page of $name
+	 *
+	 * @since 1.7
+	 * @param string $name Name (titlelink) of the page to check 
+	 * 
+	 * @return bool
+	 */
+	function isChildOf($name) {
+		$parents = $this->getParents();
+		foreach ($parents as $parent) {
+			if ($name == $parent) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Gets the sub pages of a page

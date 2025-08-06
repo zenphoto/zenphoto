@@ -895,7 +895,20 @@ class Image extends MediaObject {
 	function getParent() {
 		return $this->getAlbum();
 	}
-
+	
+	/**
+	 * Checks if the image respectively its album is a child of any parent album with $name
+	 * 
+	 * @since 1.7
+	 * 
+	 * @param string $name Name of the album to check
+	 * @return bool
+	 */
+	function isChildIf($name) {
+		$album = $this->getParent();
+		return $album->isChildOf($name);
+	}
+	
 	/**
 	 * Retuns the folder name of the album that holds this image
 	 *
