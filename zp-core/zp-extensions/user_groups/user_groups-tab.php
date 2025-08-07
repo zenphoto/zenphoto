@@ -263,22 +263,22 @@ echo '</head>' . "\n";
 										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 											<span class="userextrainfo" style="display:none;" >
 												<?php
-												if (empty($groupuser) && !empty($groups)) {
+												if (empty($groupuser) && !empty($list)) { // comtains groups and template, $groups only groups
+													echo gettext('clone:'); 
 													?>
-													<?php echo gettext('clone:'); ?>
 													<br />
 													<select name="<?php echo $id; ?>-initgroup" onchange="javascript:$('#hint<?php echo $id; ?>').html(this.options[this.selectedIndex].title);">
 														<option title=""></option>
 														<?php
-														foreach ($groups as $user) {
+														foreach ($list as $group) {
 															$hint = '<em>' . html_encode($desc) . '</em>';
-															if ($groupuser == $user['user']) {
+															if ($groupuser == $group) {
 																$selected = ' selected="selected"';
 															} else {
 																$selected = '';
 															}
 															?>
-															<option<?php echo $selected; ?> title="<?php echo $hint; ?>"><?php echo $user['user']; ?></option>
+															<option<?php echo $selected; ?> title="<?php echo $hint; ?>"><?php echo $group; ?></option>
 															<?php
 														}
 														?>
