@@ -904,7 +904,7 @@ class Image extends MediaObject {
 	 * @param string $name Name of the album to check
 	 * @return bool
 	 */
-	function isChildIf($name) {
+	function isChildOf($name) {
 		$album = $this->getParent();
 		return $album->isChildOf($name);
 	}
