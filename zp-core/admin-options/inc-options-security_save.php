@@ -19,8 +19,7 @@ if ($protocol == 'http') {
 	zp_clearCookie("zpcms_ssl");
 }
 setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
-setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
-setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
+
 $_zp_gallery->save();
 setOption('anonymize_ip', sanitize_numeric($_POST['anonymize_ip']));
 setOption('dataprivacy_policy_notice', process_language_string_save('dataprivacy_policy_notice', 3));

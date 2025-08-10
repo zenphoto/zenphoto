@@ -54,22 +54,7 @@
 										<?php } ?>
 									</td>
 								</tr>
-								<tr>
-									<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
-									<td width="350">
-										<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php checked(1, getOption('obfuscate_cache')); ?> /></label>
-									</td>
-									<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
-								</tr>
-								<tr>
-									<td><?php echo gettext('Image Processor security') ?></td>
-									<td>
-										<label><input type="checkbox" name="image_processor_flooding_protection" value="1" <?php checked(1, getOption('image_processor_flooding_protection')); ?> /></label>
-									</td>
-									<td>
-										<?php echo gettext('Add a security parameter to image processor URIs to prevent denial of service attacks requesting arbitrary sized images.'); ?>
-									</td>
-								</tr>
+								
 								<?php
 								if (GALLERY_SECURITY == 'public') {
 									$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');

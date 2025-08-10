@@ -64,6 +64,8 @@ if (isset($_POST['protected_image_cache'])) {
 	@unlink(SERVERPATH . '/' . CACHEFOLDER . '/.htaccess');
 	setOption('protected_image_cache', 0);
 }
+setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
+setOption('image_processor_flooding_protection', (int) isset($_POST['image_processor_flooding_protection']));
 setOption('hotlink_protection', (int) isset($_POST['hotlink_protection']));
 setOption('use_lock_image', (int) isset($_POST['use_lock_image']));
 $st = sanitize($_POST['image_sorttype'], 3);
