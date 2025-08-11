@@ -242,6 +242,7 @@ function getStatusNotes() {
 			'unpublished_by_parent' => gettext('Unpublished by parent'),
 			'protected' => gettext('Password protected'),
 			'protected_by_parent' => gettext('Password protected by parent'),
+			'protected_by_site_private_mode' => gettext('Password protected by Gallery private mode'),
 			'scheduledpublishing' => gettext('Scheduled for publishing'),
 			'scheduledpublishing_inactive' => gettext('<strong>Note:</strong> Scheduled publishing is not active unless also set to <em>published</em>'),
 			'scheduledexpiration' => gettext('Scheduled for expiration'),
@@ -267,10 +268,12 @@ function getStatusNotesByContext($obj) {
 		} else if ($obj->isUnpublishedByParent()) {
 			$notes_context_notices[] = $notes['unpublished_by_parent'];
 		}
-		if ($obj->isProtected()) {
+		if ($obj->isProtected() && GALLERY_SECURITY == 'public') {
 			$notes_context_notices[] = $notes['protected'];
-		} else if ($obj->isProtectedByParent()) {
+		} else if ($obj->isProtectedByParent() && GALLERY_SECURITY == 'public') {
 			$notes_context_notices[] = $notes['protected_by_parent'];
+		} else if (GALLERY_SECURITY != 'public') {
+			$notes_context_notices[] = $notes['protected_by_site_private_mode'];
 		}
 		if ($obj->hasPublishSchedule()) {
 			$notes_context_notices[] = $notes['scheduledpublishing'];
