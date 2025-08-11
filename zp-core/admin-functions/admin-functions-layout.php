@@ -766,13 +766,12 @@ function getPublishIcon($obj) {
  * 
  * @param obj $obj
  */
-function printProtectedIcon($obj) {
+function printProtectedIcon($obj) {	
 	if ($obj->getPassword() && GALLERY_SECURITY == 'public') {
-		echo '<button data-toggle="tooltip" disabled title="' . html_encode(getStatusNote('protected')) . '">' . getStatusIcon('protected')  . '</button>';
+		echo '<span title="' . html_encode(getStatusNote('protected')) . '">' . getStatusIcon('protected') . '</span>';
 	} else if ($obj->isProtectedByParent() && GALLERY_SECURITY == 'public') {
-		echo '<button data-toggle="tooltip" disabled title="' . html_encode(getStatusNote('protected_by_parent')) . '">' . getStatusIcon('protected_by_parent') . '</button>';
+		echo '<span title="' . html_encode(getStatusNote('protected_by_parent')) . '">' . getStatusIcon('protected_by_parent') . '</span>';
 	} else if (GALLERY_SECURITY != 'public') {
-		echo '<button data-toggle="tooltip" disabled title="' . html_encode(getStatusNote('protected_by_site_private_mode')) . '">' . getStatusIcon('protected_by_parent') . '</button>';
+		echo '<span title="' . html_encode(getStatusNote('protected_by_site_private_mode')) . '">' . getStatusIcon('protected_by_parent') . '</span>';
 	}
 }
-
