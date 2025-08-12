@@ -259,7 +259,7 @@ function getStatusNotes() {
  * @return array
  */
 function getStatusNotesByContext($obj) {
-	$validtables = array('albums', 'images', 'news', 'pages', 'categories');
+	$validtables = array('albums', 'images', 'news', 'pages', 'news_categories');
 	$notes_context = $notes_context_notices = $notes_context_warnings = array();
 	if (in_array($obj->table, $validtables)) {
 		$notes = getStatusNotes();
