@@ -172,6 +172,39 @@ class Administrator extends PersistentObject {
 	function getRights() {
 		return $this->get('rights');
 	}
+	
+	/**
+	 * Checks if the user has a specific rights level.
+	 * 
+	 * Examples for a specific level
+	 * if($adminobj->hasRights(ADMIN_RIGHTS)) { … }
+	 * 
+	 * A combination of rights as operator:
+	 * if($adminobj->hasRights((ALBUM_RIGHTS | UPLOAD_RIGHTS)) { … }
+	 * 
+	 * This is a shortcut equivalent to 
+	 * if($adminobj->getRights() & (ALBUM_RIGHTS | UPLOAD_RIGHTS)) { … }
+	 * 
+	 * @since 1.7
+	 * 
+	 * @param int $rights The rights to check
+	 * @return bool
+	 */
+	function hasRights($rights = LIST_RIGHTS) {
+		return $this->getRights() & $rights;
+	}
+	
+	/**
+	 * Checks if the user had full admin rights/master user
+	 * 
+	 * @since 1.7
+	 * 
+	 * @return bool
+	 */
+	function isFullAdmin() {
+		return $this->master || $this->hasRights(ADMIN_RIGHTS);
+	}
+
 
 	/**
 	 * Saves local copy of managed objects.

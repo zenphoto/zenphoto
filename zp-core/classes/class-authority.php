@@ -40,13 +40,14 @@ class Authority {
 	/**
 	 * Check if the user name is the master user
 	 * 
-	 * @param strung $user User name
+	 * @param string $user User name
 	 * @return bool
 	 */
 	function isMasterUser($user) {
 		$master = $this->getMasterUserName();
 		return $user == $master;
 	}
+	
 	/**
 	 * Gets the name of the current master user 
 	 * 
