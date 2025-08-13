@@ -101,7 +101,10 @@ class user_groups {
 	}
 
 	static function groupList($userobj, $i, $background, $current, $template) {
-		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
+		global $_zp_authority, $_zp_zenpage, $_zp_gallery, $_zp_current_admin_obj;
+		if ($userobj->getUser() == $_zp_current_admin_obj->getUser() && $_zp_current_admin_obj->hasRights(ADMIN_RIGHTS)) {
+			return '';
+		}
 		$group = strval($userobj->getGroup());
 		$admins = $_zp_authority->getAdministrators('groups');
 		$groups = array();

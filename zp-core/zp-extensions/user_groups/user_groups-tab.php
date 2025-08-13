@@ -62,7 +62,7 @@ if (isset($_GET['action'])) {
 							$groupname = $group->getUser();
 							foreach ($admins as $admin) {
 								if ($admin['valid']) {
-									$hisgroups = explode(',', strval($admin['group']));
+									$hisgroups = explode(',', $admin['group']);
 									if (in_array($groupname, $hisgroups)) {
 										$user = Authority::newAdministrator($admin['user'], $admin['valid']);
 										user_groups::merge_rights($user, $hisgroups);
@@ -141,7 +141,7 @@ echo '</head>' . "\n";
 						$groups = array();
 						$list = array();
 						foreach ($adminlist as $user) {
-							if ($user['valid']) {
+							if ($user['valid'] && $user['user'] != $_zp_current_admin_obj->getUser()) {
 								$users[] = $user['user'];
 							} else {
 								$groups[] = $user;
