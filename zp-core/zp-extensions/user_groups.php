@@ -179,6 +179,10 @@ class user_groups {
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
+		global $_zp_current_admin_obj;
+		if ($userobj->getUser() == $_zp_current_admin_obj->getUser() && $_zp_current_admin_obj->hasRights(ADMIN_RIGHTS)) {
+			return '';
+		}
 		if (!$userobj->getValid())
 			return $html;
 		if (zp_loggedin(ADMIN_RIGHTS)) {
