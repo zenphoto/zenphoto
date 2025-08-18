@@ -211,11 +211,11 @@ if (isset($_GET['action'])) {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
 							$_zp_admin_user_updated = zp_apply_filter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
-							if (isset($_POST['createAlbum_' . $i])) {
-								if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate') {
+							if (isset($_POST['createAlbum_' . $i])) {		
+								if ($userobj->getValid() || isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate') {
 									$userobj->createPrimealbum();
 									markUpdated();
-								}
+								} 
 							}
 							if (isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] === 'send_verification_request_email') {
 								if (extensionEnabled('register_user') && getOption('register_user_moderated')) {
