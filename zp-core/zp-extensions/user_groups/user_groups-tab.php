@@ -141,8 +141,10 @@ echo '</head>' . "\n";
 						$groups = array();
 						$list = array();
 						foreach ($adminlist as $user) {
-							if ($user['valid'] && $user['user'] != $_zp_current_admin_obj->getUser()) {
-								$users[] = $user['user'];
+							if ($user['valid']) {
+								if ($user['user'] != $_zp_current_admin_obj->getUser()) {
+									$users[] = $user['user'];
+								}
 							} else {
 								$groups[] = $user;
 								$list[] = $user['user'];
@@ -193,7 +195,14 @@ echo '</head>' . "\n";
 								<?php
 								$id = 0;
 								$groupselector = $groups;
-								$groupselector[''] = array('id' => -1, 'user' => '', 'name' => 'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'other_credentials' => '');
+								$groupselector[''] = array(
+										'id' => -1, 
+										'user' => '', 
+										'name' => 'group', 
+										'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 
+										'valid' => 0, 
+										'other_credentials' => ''
+								);
 								foreach ($groupselector as $key => $user) {		
 									$groupuser = $user['user'];
 									$groupobj = new Administrator($groupuser, 0);
