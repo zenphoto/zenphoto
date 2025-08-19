@@ -116,14 +116,14 @@ class Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Stores the user name
+	 * Stores the user display name
 	 */
 	function setName($admin_n) {
 		$this->set('name', $admin_n);
 	}
 
 	/**
-	 * Returns the user name
+	 * Returns the user display name
 	 */
 	function getName() {
 		return $this->get('name');
@@ -268,7 +268,7 @@ class Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Sets the user's group.
+	 * Sets the user's group or groups. Several groups must be stored as comma separated list.
 	 * NOTE this does NOT set rights, etc. that must be done separately
 	 */
 	function setGroup($group) {
@@ -276,21 +276,22 @@ class Administrator extends PersistentObject {
 	}
 
 	/**
-	 * Returns user's group
+	 * Returns user's group or groups 
+	 * If a user is ssigned to more than one groups this is a comma separated list
 	 */
 	function getGroup() {
 		return $this->get('group');
 	}
 
 	/**
-	 * Sets the user's user id
+	 * Sets the user's login name (aka user id)
 	 */
 	function setUser($user) {
 		$this->set('user', $user);
 	}
 
 	/**
-	 * Returns user's user id
+	 * Returns user's login name (aka user id)
 	 */
 	function getUser() {
 		return $this->get('user');
