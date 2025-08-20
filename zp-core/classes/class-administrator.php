@@ -285,15 +285,41 @@ class Administrator extends PersistentObject {
 
 	/**
 	 * Sets the user's login name (aka user id)
+	 * 
+	 * @since 1.7 
+	 */
+	function setLoginName($loginname) {
+		$this->set('user', $loginname);
+	}
+	
+	/**
+	 * Returns user's login name (aka user id)
+	 * 
+	 * @since 1.7 
+	 * 
+	 * @return string
+	 */
+	function getLoginName() {
+		return $this->get('user');
+	}
+
+	/**
+	 * Sets the user's login name (aka user id)
+	 * 
+	 * @deprecated 2.0 User setLoginName() instead
 	 */
 	function setUser($user) {
+		deprecationNotice(gettext('Use setLoginName() instead'));
 		$this->set('user', $user);
 	}
 
 	/**
 	 * Returns user's login name (aka user id)
+	 * 
+	 * @deprecated 2.0 use getLoginName() instead
 	 */
 	function getUser() {
+		deprecationNotice(gettext('Use getLoginName() instead'));
 		return $this->get('user');
 	}
 
