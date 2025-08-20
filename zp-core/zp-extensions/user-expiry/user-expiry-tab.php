@@ -120,7 +120,7 @@ echo '</head>' . "\n";
 						<?php
 						foreach ($adminordered as $user) {
 							$userobj = Authority::getAnAdmin(array('`id`=' => $user['id']));
-							if (!($userobj->getRights() & ADMIN_RIGHTS)) {
+							if (!$userobj->isFullAdmin()) {
 								$checked_delete = $checked_disable = $checked_renew = $dup = '';
 								$expires = strtotime($userobj->getDatetime()) + $subscription;
 								$expires_display = date('Y-m-d', $expires);

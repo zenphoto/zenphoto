@@ -182,7 +182,7 @@ class user_expiry {
 	static function checkPasswordRenew() {
 		global $_zp_current_admin_obj;
 		$threshold = getOption('user_expiry_password_cycle') * 86400;
-		if ($threshold && is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+		if ($threshold && is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->isFullAdmin()) {
 			if (strtotime($_zp_current_admin_obj->get('passupdate')) + $threshold < time()) {
 				return true;
 			}
@@ -226,7 +226,7 @@ class user_expiry {
 
 	static function checkcookie($loggedin) {
 		global $_zp_current_admin_obj;
-		if (is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+		if (is_object($_zp_current_admin_obj) && !$_zp_current_admin_obj->isFullAdmin()) {
 			$loggedin = user_expiry::checkexpires($loggedin, $_zp_current_admin_obj);
 		}
 		return $loggedin;

@@ -180,7 +180,7 @@ class Administrator extends PersistentObject {
 	 * if($adminobj->hasRights(ADMIN_RIGHTS)) { … }
 	 * 
 	 * A combination of rights as operator:
-	 * if($adminobj->hasRights((ALBUM_RIGHTS | UPLOAD_RIGHTS)) { … }
+	 * if($adminobj->hasRights(ALBUM_RIGHTS | UPLOAD_RIGHTS) { … }
 	 * 
 	 * This is a shortcut equivalent to 
 	 * if($adminobj->getRights() & (ALBUM_RIGHTS | UPLOAD_RIGHTS)) { … }
@@ -470,7 +470,7 @@ class Administrator extends PersistentObject {
 			} else {
 				$subrights = 0;
 			}
-			if ($this->getRights() & UPLOAD_RIGHTS) {
+			if ($this->hasRights(UPLOAD_RIGHTS)) {
 				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
 			}
 			$objects = $this->getObjects();
