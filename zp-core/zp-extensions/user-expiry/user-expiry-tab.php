@@ -26,12 +26,12 @@ if (isset($_GET['action'])) {
 							break;
 						case 'disable':
 							$userobj->setValid(2);
-							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
 							break;
 						case 'enable':
 							$userobj->setValid(1);
-							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
 							break;
 						case 'renew':
@@ -41,18 +41,18 @@ if (isset($_GET['action'])) {
 							}
 							$userobj->setDateTime(date('Y-m-d H:i:s', $newdate));
 							$userobj->setValid(1);
-							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
 							break;
 						case 'force':
 							$userobj->set('passupdate', NULL);
-							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
 							break;
 						case 'revalidate':
 							$site = $_zp_gallery->getTitle();
 							$user_e = $userobj->getEmail();
-							$user = $userobj->getUser();
+							$user = $userobj->getLoginName();
 							$key = bin2hex(serialize(array('user' => $user, 'email' => $user_e, 'date' => time())));
 							$link = FULLWEBPATH . '/index.php?user_expiry_reverify=' . $key;
 							$message = sprintf(gettext('Your %1$s credentials need to be renewed. Visit %2$s to renew your logon credentials.'), $site, $link);
@@ -149,7 +149,7 @@ echo '</head>' . "\n";
 								if ($userobj->getValid() == 2) {
 									$hits = 0;
 									foreach ($adminordered as $tuser) {
-										if ($tuser['user'] == $userobj->getUser()) {
+										if ($tuser['user'] == $userobj->getLoginName()) {
 											$hits++;
 										}
 									}
@@ -180,7 +180,7 @@ echo '</head>' . "\n";
 								}
 								?>
 								<li>
-									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, html_encode($userobj->getUser()), $expires_display, $loggedin); ?>
+									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'), $r1 . $r2 . $r3 . $r4 . $r5, html_encode($userobj->getLoginName()), $expires_display, $loggedin); ?>
 								</li>
 								<?php
 							}

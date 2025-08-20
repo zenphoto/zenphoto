@@ -101,7 +101,7 @@ class Administrator extends PersistentObject {
 	 */
 	function setPass($pwd) {
 		$hash_type = getOption('strong_hash');
-		$pwd = Authority::passwordHash($this->getUser(), $pwd, $hash_type);
+		$pwd = Authority::passwordHash($this->getLoginName(), $pwd, $hash_type);
 		$this->set('pass', $pwd);
 		$this->set('passupdate', date('Y-m-d H:i:s'));
 		$this->set('passhash', $hash_type);
@@ -472,7 +472,7 @@ class Administrator extends PersistentObject {
 		$t = 0;
 		$ext = '';
 		if (is_null($name)) {
-			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"' . '/' . '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
+			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"' . '/' . '\\', '|', '?', '*'), '_', seoFriendly($this->getLoginName())));
 		} else {
 			$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"' . '/' . '\\', '|', '?', '*'), '_', $name));
 		}
@@ -487,7 +487,7 @@ class Administrator extends PersistentObject {
 			if ($title = $this->getName()) {
 				$album->setTitle($title);
 			}
-			$album->setOwner($this->getUser());
+			$album->setOwner($this->getLoginName());
 			$album->save();
 			$this->setAlbum($album);
 			$this->setRights($this->getRights() | ALBUM_RIGHTS);

@@ -1051,7 +1051,7 @@ function processCommentBulkActions() {
 							}
 							break;
 					}
-					$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
+					$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 					$comment->save(true);
 				}
 			}

@@ -81,7 +81,7 @@ if (defined('OFFSET_PATH')) {
 				printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $subalbum, $newname, $error);
 				echo "<br />\n";
 			} else {
-				$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$obj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$obj->save();
 				clearstatcache();
 				printf(gettext('<em>%1$s</em> renamed to <em>%2$s</em>'), $subalbum, $newname);
@@ -117,7 +117,7 @@ if (defined('OFFSET_PATH')) {
 					printf(gettext('<em>%1$s</em> rename to <em>%2$s</em> failed: %3$s'), $folder . $filename, $seoname, $error);
 					echo "<br />\n";
 				} else {
-					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$image->save();
 					clearstatcache();
 					echo '&nbsp;&nbsp;';

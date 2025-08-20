@@ -132,7 +132,7 @@ class user_expiry {
 		$expires = strtotime($userobj->getDateTime()) + $subscription;
 		if ($expires < time()) {
 			$userobj->setValid(2);
-			$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+			$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 			$userobj->save();
 			$loggedin = false;
 		} else {
@@ -150,7 +150,7 @@ class user_expiry {
 						unset($credentials[$key]);
 						$userobj->setCredentials($credentials);
 					}
-					$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$userobj->save();
 				} else {
 					if ($mail = $userobj->getEmail()) {
@@ -158,7 +158,7 @@ class user_expiry {
 						if (!in_array('exiry_notice', $credentials)) {
 							$credentials[] = 'exiry_notice';
 							$userobj->setCredentials($credentials);
-							$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
 							$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'), $_zp_gallery->getTitle(), date('Y-m-d', $expires));
 							$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName() => $mail));
@@ -171,7 +171,7 @@ class user_expiry {
 				if ($key !== false) {
 					unset($credentials[$key]);
 					$userobj->setCredentials($credentials);
-					$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$userobj->save();
 				}
 			}
@@ -264,7 +264,7 @@ class user_expiry {
 				$userobj->setCredentials($credentials);
 				$userobj->setValid(1);
 				$userobj->set('loggedin', date('Y-m-d H:i:s'));
-				$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$userobj->save();
 
 				Authority::logUser($userobj);

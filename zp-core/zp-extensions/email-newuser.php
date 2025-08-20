@@ -21,7 +21,7 @@ class email_new_user {
 	static function save($savemsg, $userobj, $what) {
 		global $_zp_gallery;
 		if ($what == 'new' && ($mail = $userobj->getEmail())) {
-			$ref = Authority::getResetTicket($adm = $userobj->getUser(), $userobj->getPass());
+			$ref = Authority::getResetTicket($adm = $userobj->getLoginName(), $userobj->getPass());
 			$msg = "\n" . sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'), $adm, $_zp_gallery->getTitle()) .
 							"\n" . sprintf(gettext('To set your Zenphoto User password visit: %s'), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=$adm") .
 							"\n" . gettext("This ticket will automatically expire in 3 days.");
@@ -35,7 +35,7 @@ class email_new_user {
 
 	static function edit_admin($html, $userobj, $i, $background, $current) {
 		if ($userobj->getValid()) {
-			$user = $userobj->getUser();
+			$user = $userobj->getLoginName();
 			if (empty($user)) {
 				$result = '<tr' . ((!$current) ? ' style="display:none;"' : '') . ' class="userextrainfo">
 				<td colspan="2" ' . ((!empty($background)) ? ' style="' . $background . '"' : '') . ' valign="top"><p class="notebox">' . gettext('New users will be mailed a password set link') . '</p></td>

@@ -13,7 +13,7 @@ function unpublishSubalbums($album) {
 	foreach ($albums as $albumname) {
 		$subalbum = AlbumBase::newAlbum($albumname);
 		$subalbum->setPublished(false);
-		$subalbum->setLastChangeUser($_zp_current_admin_obj->getUser());
+		$subalbum->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 		$subalbum->save();
 		unpublishSubalbums($subalbum);
 	}
@@ -39,7 +39,7 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $albumid) {
 				$album = AlbumBase::newAlbum(postIndexDecode($key));
 				$album->setPublished(1);
-				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$album->save();
 			}
 			$report = 'albums';
@@ -55,7 +55,7 @@ if (isset($_POST['set_defaults'])) {
 				switch (substr($action, 0, $i)) {
 					case 'pub':
 						$image->setPublished(1);
-						$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+						$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 						$image->save();
 						break;
 					case 'del':
@@ -70,7 +70,7 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $titlelink) {
 				$obj = new ZenpageCategory($titlelink);
 				$obj->setPublished(1);
-				$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$obj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$obj->save();
 			}
 			break;
@@ -79,7 +79,7 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $titlelink) {
 				$obj = new ZenpageNews($titlelink);
 				$obj->setPublished(1);
-				$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$obj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$obj->save();
 			}
 			break;
@@ -87,7 +87,7 @@ if (isset($_POST['set_defaults'])) {
 			foreach ($_POST as $key => $titlelink) {
 				$obj = new ZenpagePage($titlelink);
 				$obj->setPublished(1);
-				$obj->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$obj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$obj->save();
 			}
 			$report = 'pages';

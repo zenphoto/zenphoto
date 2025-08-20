@@ -204,7 +204,7 @@ class userDataExport {
 	 * Prints the links to export from a user account itself
 	 */
 	static function printUserAccountExportLinks($userobj) {
-		$userdata_linkbase = FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?XSRFToken=' . getXSRFToken('userdata-export') . '&amp;userdata-username=' . html_encode($userobj->getUser()) . '&amp;userdata-usermail=' . html_encode($userobj->getEmail()) . '&amp;userdata-format=';
+		$userdata_linkbase = FULLWEBPATH . '/' . ZENFOLDER . '/admin-users.php?XSRFToken=' . getXSRFToken('userdata-export') . '&amp;userdata-username=' . html_encode($userobj->getLoginName()) . '&amp;userdata-usermail=' . html_encode($userobj->getEmail()) . '&amp;userdata-format=';
 		$userdata_link_html = $userdata_linkbase . 'html';
 		$userdata_link_json = $userdata_linkbase . 'json';
 		?>

@@ -150,7 +150,7 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->set('thumbY', $cy);
 	$imageobj->set('thumbW', $cw);
 	$imageobj->set('thumbH', $ch);
-	$imageobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+	$imageobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 	$imageobj->save();
 
 	$return = '/admin-edit.php?page=edit&album=' . html_encode(pathurlencode($albumname)) . '&saved&pagenumber=' . html_encode(sanitize($_REQUEST['pagenumber'])) . '&tagsort=' . html_encode(sanitize($_REQUEST['tagsort'])) . '&tab=imageinfo';

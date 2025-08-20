@@ -40,7 +40,7 @@ if (isset($_POST['savealbum'])) {
 				if ($return_unpublished || $albumobj->isPublished()) { 
 					$tags = array_unique(array_merge($albumobj->getTags(), array($words)));
 					$albumobj->setTags($tags);
-					$albumobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$albumobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$albumobj->save();
 				}
 			}
@@ -52,7 +52,7 @@ if (isset($_POST['savealbum'])) {
 				if ($return_unpublished || $image->isPublished()) { 
 					$tags = array_unique(array_merge($image->getTags(), array($words)));
 					$image->setTags($tags);
-					$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$image->save();
 				}
 			}

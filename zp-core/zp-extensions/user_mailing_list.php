@@ -30,7 +30,7 @@ if (defined('OFFSET_PATH')) {
 						'hidden'			 => '',
 						'rights'			 => ADMIN_RIGHTS
 		);
-		$currentadminuser = $_zp_current_admin_obj->getUser();
+		$currentadminuser = $_zp_current_admin_obj->getLoginName();
 		$admins = $_zp_authority->getAdministrators();
 		foreach ($admins as $admin) {
 			if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
@@ -137,7 +137,7 @@ if (defined('OFFSET_PATH')) {
 										<?php echo gettext('Select users:'); ?>
 										<ul class="unindentedchecklist" style="height: 205px; width: 30em;">
 											<?php
-											$currentadminuser = $_zp_current_admin_obj->getUser();
+											$currentadminuser = $_zp_current_admin_obj->getLoginName();
 											foreach ($admins as $admin) {
 												if (!empty($admin['email']) && $currentadminuser != $admin['user']) {
 													?>

@@ -91,7 +91,7 @@ function updateCategory(&$reports, $newcategory = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Category <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
-		$cat->setLastchangeUser($_zp_current_admin_obj->getUser());
+		$cat->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 		$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
 		if ($titleok) {
 			if (empty($titlelink) OR empty($title)) {

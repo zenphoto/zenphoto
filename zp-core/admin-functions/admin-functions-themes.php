@@ -114,7 +114,7 @@
 			$theme_description['desc'] = gettext('Your theme');
 		}
 		$theme_description['name'] = $newname;
-		$theme_description['author'] = $_zp_current_admin_obj->getUser();
+		$theme_description['author'] = $_zp_current_admin_obj->getLoginName();
 		$theme_description['version'] = '1.0';
 		$theme_description['date'] = date('Y-m-d H:m:s', time());
 

@@ -102,7 +102,7 @@ class user_groups {
 
 	static function groupList($userobj, $i, $background, $current, $template) {
 		global $_zp_authority, $_zp_zenpage, $_zp_gallery, $_zp_current_admin_obj;
-		if ($userobj->getUser() == $_zp_current_admin_obj->getUser() && $_zp_current_admin_obj->isFullAdmin()) {
+		if ($userobj->getLoginName() == $_zp_current_admin_obj->getLoginName() && $_zp_current_admin_obj->isFullAdmin()) {
 			return '';
 		}
 		$group = strval($userobj->getGroup());
@@ -180,7 +180,7 @@ class user_groups {
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
 		global $_zp_current_admin_obj;
-		if ($userobj->getUser() == $_zp_current_admin_obj->getUser() && $_zp_current_admin_obj->isFullAdmin()) {
+		if ($userobj->getLoginName() == $_zp_current_admin_obj->getLoginName() && $_zp_current_admin_obj->isFullAdmin()) {
 			return '';
 		}
 		if (!$userobj->getValid())

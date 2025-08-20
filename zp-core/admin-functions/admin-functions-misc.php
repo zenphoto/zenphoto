@@ -35,7 +35,7 @@ function unzip($file, $dir) { //check if zziplib is installed
 						$image = Image::newImage($album, $seoname);
 						if ($fname != $seoname) {
 							$image->setTitle($fname);
-							$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+							$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$image->save();
 						}
 					}

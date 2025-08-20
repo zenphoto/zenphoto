@@ -32,7 +32,7 @@
 				} else {
 					$talbum->setThumb('/' . $image->imagefolder . '/' . $image->filename);
 				}
-				$talbum->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$talbum->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$talbum->save();
 			}
 			if (isset($_POST[$index . '-reset_rating'])) {
@@ -106,7 +106,7 @@
 				$image->setOwner(sanitize($_POST[$index . '-owner']));
 			}
 			$image->set('filesize', filesize($image->localpath));
-			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$image->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			zp_apply_filter('save_image_utilities_data', $image, $index);
 			$image->save(true);
 
@@ -223,7 +223,7 @@ function processImageBulkActions($album) {
 						callUserFunction($action, $imageobj);
 						break;
 				}
-				$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+				$imageobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 				$imageobj->save(true);
 			}
 		}

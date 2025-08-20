@@ -100,7 +100,7 @@ if (isset($_GET['action'])) {
 					$album = AlbumBase::newAlbum($folder);
 					$album->setSortType('manual', 'album');
 					$album->setSortDirection(false, 'album');
-					$album->setLastchangeUser($_zp_current_admin_obj->getUser());
+					$album->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 					$album->save();
 				} else {
 					$notify = '&noaction';
@@ -142,7 +142,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('albumedit');
 			$album = AlbumBase::newAlbum($folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
-			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$album->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$album->save();
 			$return = sanitize_path($r = $_GET['return']);
 			if (!empty($return)) {
@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
 			} else if($album->hasExpiration() || $album->hasExpired()) {
 				$album->setExpiredate(null);
 			}
-			$album->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$album->setLastchangeUser($_zp_current_admin_obj->getLoginName());
       $album->save();
       $return = sanitize_path($r = $_GET['return']);
       if (!empty($return)) {
@@ -220,7 +220,7 @@ if (isset($_GET['action'])) {
       $imagename = sanitize_path($_REQUEST['image']);
       $image = Image::newImage(NULL, array('folder' => $albumname, 'filename' => $imagename));
       $image->updateMetaData();
-			$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$image->setLastchangeUser($_zp_current_admin_obj->getLoginName());
       $image->save();
       if (isset($_GET['album'])) {
         $return = pathurlencode(sanitize_path($_GET['album']));
@@ -623,7 +623,7 @@ echo "\n</head>";
 					} 
 					if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
 						$allimages = array();
-						$requestor = $_zp_current_admin_obj->getUser();
+						$requestor = $_zp_current_admin_obj->getLoginName();
 						$albumowner = $album->getOwner();
 						if ($albumowner == $requestor) {
 							$retunNull = '`owner` IS NULL OR ';

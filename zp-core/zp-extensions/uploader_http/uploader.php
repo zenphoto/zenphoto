@@ -70,9 +70,9 @@ if (isset($_POST['processed'])) {
 				}
 				if ($new) {
 					$album->setPublished((int) !empty($_POST['publishalbum']));
-					$album->setOwner($_zp_current_admin_obj->getUser());
+					$album->setOwner($_zp_current_admin_obj->getLoginName());
 				}
-				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$album->save();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
@@ -101,11 +101,11 @@ if (isset($_POST['processed'])) {
 								move_uploaded_file($tmp_name, $uploadfile);
 								@chmod($uploadfile, FILE_MOD);
 								$image = Image::newImage($album, $soename);
-								$image->setOwner($_zp_current_admin_obj->getUser());
+								$image->setOwner($_zp_current_admin_obj->getLoginName());
 								if ($name != $soename) {
 									$image->setTitle(stripSuffix($name));
 								}
-								$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+								$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 								$image->save();
 							}
 						} else if (is_zip($name)) {

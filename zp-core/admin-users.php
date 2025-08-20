@@ -22,7 +22,7 @@ admin_securityChecks(USER_RIGHTS, currentRelativeURL());
 if (isset($_GET['userdata-username'])) {
 	$username = sanitize($_GET['userdata-username']);
 	$usermail = sanitize($_GET['userdata-usermail']);
-	if (!empty($username) && (zp_loggedin(ADMIN_RIGHTS) || $_zp_current_admin_obj->getUser() == $username)) {
+	if (!empty($username) && (zp_loggedin(ADMIN_RIGHTS) || $_zp_current_admin_obj->getLoginName() == $username)) {
 		$dataformat = sanitize($_GET['userdata-format']);
 		$dataexport = new userDataExport($username, $usermail, $_zp_gallery, $_zp_authority);
 		$dataexport->processFileDownload($dataformat);
@@ -85,7 +85,7 @@ if (isset($_GET['action'])) {
 			if (isset($_POST['saveadminoptions'])) {
 				if (isset($_POST['checkForPostTruncation'])) {
 					if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
-									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getUser() ||
+									trim(sanitize($_POST['adminuser0'])) != $_zp_current_admin_obj->getLoginName() ||
 									isset($_POST['0-newuser'])) {
 						if (!$_zp_current_admin_obj->reset) {
 							admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
@@ -115,7 +115,7 @@ if (isset($_GET['action'])) {
 								} else {
 									$what = 'new';
 									$userobj = Authority::newAdministrator('');
-									$userobj->setUser($user);
+									$userobj->setLoginName($user);
 									$userobj->setLastChange();
 									markUpdated();
 								}
@@ -234,7 +234,7 @@ if (isset($_GET['action'])) {
 								if (empty($msg)) {
 									if (!$notify)
 										$userobj->transient = false;
-									$userobj->setLastChangeUser($_zp_current_admin_obj->getUser());
+									$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 									$userobj->save(true);
 								} else {
 									$notify = '?mismatch=format&error=' . urlencode($msg);
@@ -392,9 +392,9 @@ echo $refresh;
 						$alterrights = ' disabled="disabled"';
 						$rangeset = array();
 						if ($_zp_current_admin_obj) {
-							$admins = array($_zp_current_admin_obj->getUser() =>
+							$admins = array($_zp_current_admin_obj->getLoginName() =>
 											array('id'					 => $_zp_current_admin_obj->getID(),
-															'user'				 => $_zp_current_admin_obj->getUser(),
+															'user'				 => $_zp_current_admin_obj->getLoginName(),
 															'pass'				 => $_zp_current_admin_obj->getPass(),
 															'name'				 => $_zp_current_admin_obj->getName(),
 															'email'				 => $_zp_current_admin_obj->getEmail(),
@@ -402,7 +402,7 @@ echo $refresh;
 															'custom_data'	 => $_zp_current_admin_obj->getCustomData(),
 															'valid'				 => 1,
 															'group'				 => $_zp_current_admin_obj->getGroup()));
-							$showset = array($_zp_current_admin_obj->getUser());
+							$showset = array($_zp_current_admin_obj->getLoginName());
 						} else {
 							$admins = $showset = array();
 						}
@@ -547,7 +547,7 @@ echo $refresh;
 								$userid = $user['user'];
 								$current = in_array($userid, $showset);
 
-								if ($userid == $_zp_current_admin_obj->getuser()) {
+								if ($userid == $_zp_current_admin_obj->getLoginName()) {
 									$userobj = $_zp_current_admin_obj;
 								} else {
 									$userobj = Authority::newAdministrator($userid);

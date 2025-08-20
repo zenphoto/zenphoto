@@ -379,7 +379,7 @@ class registerUser {
 				if (empty(registerUser::$notify)) {
 					$userobj = Authority::newAdministrator('');
 					$userobj->transient = false;
-					$userobj->setUser(registerUser::$user);
+					$userobj->setLoginName(registerUser::$user);
 					$userobj->setPass($pass);
 					$userobj->setName(registerUser::$admin_name);
 					$userobj->setEmail(registerUser::$admin_email);
@@ -428,12 +428,12 @@ class registerUser {
 						$subject = sprintf(gettext('New user registration on your site %s'), getGalleryTitle());
 						if (getOption('register_user_moderated')) {
 							registerUser::$notify = 'accepted';
-							$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and requires your moderation.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
+							$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and requires your moderation.'), $userobj->getName(), $userobj->getLoginName(), $userobj->getEmail());
 						} else {
 							registerUser::$notify = registerUser::sendVerificationEmail($userobj);
 							if (empty(registerUser::$notify)) {
 								registerUser::$notify = 'accepted';
-								$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and has been sent a verification request email.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
+								$message = sprintf(gettext('%1$s (%2$s) has registered for your site providing an e-mail address of %3$s and has been sent a verification request email.'), $userobj->getName(), $userobj->getLoginName(), $userobj->getEmail());
 							}
 						}
 						if (getOption('register_user_notify')) {
@@ -464,7 +464,7 @@ class registerUser {
 		} else {
 			$verify = '&verify=';
 		}
-		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => $userobj->getUser(), 'email' => $userobj->getEmail())));
+		$link = SERVER_HTTP_HOST . registerUser::getLink() . $verify . bin2hex(serialize(array('user' => $userobj->getLoginName(), 'email' => $userobj->getEmail())));
 		switch ($mode) {
 			default:
 			case 'verification':
@@ -482,8 +482,8 @@ class registerUser {
 				}
 				break;
 		}
-		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getUser());
-		return zp_mail($subject,$message_final, array($userobj->getUser() => $userobj->getEmail()));
+		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getLoginName());
+		return zp_mail($subject,$message_final, array($userobj->getLoginName() => $userobj->getEmail()));
 	}
 
 	/**
@@ -543,7 +543,7 @@ class registerUser {
 					zp_apply_filter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
 						$subject = sprintf(gettext('New user verification on your site %s'), getGalleryTitle());
-						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for your site providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getUser(), $userobj->getEmail());
+						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for your site providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getLoginName(), $userobj->getEmail());
 						registerUser::$notify = $_zp_authority->sendAdminNotificationEmail($subject, $message, 'alladmins');
 					}
 					if (empty(registerUser::$notify)) {
@@ -551,7 +551,7 @@ class registerUser {
 							$userobj->createPrimealbum();
 						}
 						registerUser::$notify = 'verified';
-						$_POST['user'] = $userobj->getUser();
+						$_POST['user'] = $userobj->getLoginName();
 					}
 					$userobj->save();
 				} else {

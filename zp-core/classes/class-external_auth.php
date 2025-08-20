@@ -68,7 +68,7 @@ class external_auth {
 					$authority = '';
 					//	create a transient user
 					$userobj = new Administrator('', 1);
-					$userobj->setUser($user);
+					$userobj->setLoginName($user);
 					$userobj->setRights(NO_RIGHTS);	//	just incase none get set
 					//	Flag as external credentials for completeness
 					$properties = array_keys($result);	//	the list of things we got from the external authority

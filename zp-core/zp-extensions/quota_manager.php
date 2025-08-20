@@ -147,7 +147,7 @@ class quota_manager {
 		if (is_null($userobj)) {
 			$userobj = $_zp_current_admin_obj;
 		}
-		$sql = 'SELECT sum(`filesize`) FROM ' . $_zp_db->prefix('images') . ' WHERE `owner`="' . $userobj->getUser() . '"';
+		$sql = 'SELECT sum(`filesize`) FROM ' . $_zp_db->prefix('images') . ' WHERE `owner`="' . $userobj->getLoginName() . '"';
 		$result = $_zp_db->querySingleRow($sql);
 		return array_shift($result) / 1024;
 	}
@@ -160,10 +160,10 @@ class quota_manager {
 	static function new_image($image) {
 		global $_zp_current_admin_obj;
 		if (is_object($_zp_current_admin_obj)) {
-			$image->set('owner', $_zp_current_admin_obj->getUser());
+			$image->set('owner', $_zp_current_admin_obj->getLoginName());
 		}
 		$image->set('filesize', filesize($image->localpath));
-		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+		$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 		$image->save();
 		return $image;
 	}
@@ -176,7 +176,7 @@ class quota_manager {
 	static function image_refresh($image) {
 		global $_zp_current_admin_obj;
 		$image->set('filesize', filesize($image->localpath));
-		$image->setLastChangeUser($_zp_current_admin_obj->getUser());
+		$image->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 		$image->save();
 		return $image;
 	}

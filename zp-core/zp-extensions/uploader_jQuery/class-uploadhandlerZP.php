@@ -261,7 +261,7 @@ class UploadHandlerZP extends UploadHandler {
 						@chmod($targetFile, FILE_MOD);
 						$albumobj = Albumbase::newAlbum($_zp_uploader_folder);
 						$imageobj = Image::newImage($albumobj, $seoname);
-						$imageobj->setOwner($_zp_current_admin_obj->getUser());
+						$imageobj->setOwner($_zp_current_admin_obj->getLoginName());
 						if ($name != $seoname && $imageobj->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
 							$imageobj->setTitle(stripSuffix($name, '.'));
 						}

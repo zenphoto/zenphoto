@@ -54,7 +54,7 @@ if (!empty($_zp_uploader_folder)) {
 		$album = Albumbase::newAlbum($_zp_uploader_folder);
 		$album->setPublished((int) !empty($_POST['publishalbum']));
 		$album->setTitle(sanitize($_POST['albumtitle']));
-		$album->setOwner($_zp_current_admin_obj->getUser());
+		$album->setOwner($_zp_current_admin_obj->getLoginName());
 		$album->save();
 	}
 	@chmod($_zp_uploader_targetpath, FOLDER_MOD);

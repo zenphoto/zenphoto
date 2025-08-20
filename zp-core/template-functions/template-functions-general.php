@@ -66,7 +66,7 @@ function adminToolbox() {
 		<div id="zp__admin_module">
 			<div id="zp__admin_info">
 				<span class="zp_logo">ZP</span>
-				<span class="zp_user"><?php echo $_zp_current_admin_obj->getUser(); ?>
+				<span class="zp_user"><?php echo $_zp_current_admin_obj->getLoginName(); ?>
 					<?php
 					if (array_key_exists('site_upgrade_state', $_zp_conf_vars)) {
 						if ($_zp_conf_vars['site_upgrade_state'] == 'closed_for_test') {

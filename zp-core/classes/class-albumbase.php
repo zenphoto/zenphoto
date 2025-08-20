@@ -1157,7 +1157,7 @@ class AlbumBase extends MediaObject {
 				$owner = $p->getOwner();
 			} else {
 				$admin = $_zp_authority->getMasterUser();
-				$owner = $admin->getUser();
+				$owner = $admin->getLoginName();
 				if ($fullname && !empty($admin->getName())) {
 					return $admin->getName();
 				}

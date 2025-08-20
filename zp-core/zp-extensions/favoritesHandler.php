@@ -278,7 +278,7 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
-			$favorites = new favorites($_zp_current_admin_obj->getUser());
+			$favorites = new favorites($_zp_current_admin_obj->getLoginName());
 			if (isset($_POST['instance']) && $_POST['instance']) {
 				$favorites->instance = trim(sanitize($_POST['instance']));
 				// Use an existing instance if the posted one differs only in uppercase or lowercase letters, since the instance options and tag_suggest suggestions are case-insensitive. 
@@ -318,11 +318,11 @@ if (OFFSET_PATH) {
 				unset($_instance);
 			}
 		}
-		$_zp_myfavorites = new favorites($_zp_current_admin_obj->getUser());
+		$_zp_myfavorites = new favorites($_zp_current_admin_obj->getLoginName());
 
 		function printAddToFavorites($obj, $add = NULL, $remove = NULL) {
 			global $_zp_myfavorites, $_zp_current_admin_obj, $_zp_gallery_page, $_zp_myfavorites_button_count;
-			if (!zp_loggedin() || $_zp_myfavorites->getOwner() != $_zp_current_admin_obj->getUser() || !is_object($obj) || !$obj->exists) {
+			if (!zp_loggedin() || $_zp_myfavorites->getOwner() != $_zp_current_admin_obj->getLoginName() || !is_object($obj) || !$obj->exists) {
 				return;
 			}
 

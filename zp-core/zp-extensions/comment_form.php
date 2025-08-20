@@ -422,7 +422,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						$stored['name'] = $name;
 						$disabled['name'] = ' disabled="disabled"';
 					} else {
-						$user = $_zp_current_admin_obj->getUser();
+						$user = $_zp_current_admin_obj->getLoginName();
 						if (!empty($user)) {
 							$stored['name'] = $user;
 							$disabled['name'] = ' disabled="disabled"';

@@ -239,7 +239,7 @@ class ZenpageNews extends ZenpageItems {
 			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) { //$this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
-			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
+			if ($_zp_current_admin_obj->getLoginName() == $this->getAuthor()) {
 				return true; //	he is the author
 			}
 			if ($action == LIST_RIGHTS && !$this->isProtected() && $this->isPublic() || zp_loggedin(ALL_NEWS_RIGHTS)) {   //$this->categoryIsVisible()

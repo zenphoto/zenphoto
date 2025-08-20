@@ -242,7 +242,7 @@ function checkForEmptyTitle($titlefield, $type, $truncate = true) {
 function zenpagePublish($obj, $show) {
 	global $_zp_current_admin_obj;
 	$obj->setPublished((int) ($show && 1));
-	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
+	$obj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 	$obj->save();
 }
 
@@ -267,7 +267,7 @@ function skipScheduledPublishing($obj, $type = 'futuredate') {
 			$obj->setPublished(1);
 			break;
 	}
-	$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
+	$obj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 	$obj->save();
 }
 
@@ -345,7 +345,7 @@ function printZenpageIconLegend() {
 function authorSelector($author = NULL) {
 	global $_zp_authority, $_zp_current_admin_obj;
 	if (empty($author)) {
-		$author = $_zp_current_admin_obj->getUser();
+		$author = $_zp_current_admin_obj->getLoginName();
 	}
 	$authors = array($author => $author);
 	if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS | MANAGE_ALL_NEWS_RIGHTS)) {
@@ -446,7 +446,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 		if (zp_loggedin(ADMIN_RIGHTS))
 			return true;
 		if ($page->getLocked()) {
-			return $_zp_current_admin_obj->getUser() == $page->getAuthor() && $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
+			return $_zp_current_admin_obj->getLoginName() == $page->getAuthor() && $page->isMyItem(ZENPAGE_PAGES_RIGHTS);
 		} else {
 			return true;
 		}
@@ -465,7 +465,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 			return true;
 			
 		if ($news->getLocked()) {
-			return $_zp_current_admin_obj->getUser() == $news->getAuthor() && $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
+			return $_zp_current_admin_obj->getLoginName() == $news->getAuthor() && $news->isMyItem(ZENPAGE_NEWS_RIGHTS);
 		} else {
 			return true;
 		}
@@ -534,7 +534,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 									$newsobj = new ZenpageNews($article['titlelink']);
 									$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
 									$newsobj->setTags($mytags);
-									$newsobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+									$newsobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 									$newsobj->save(true);
 								}
 								break;
@@ -543,7 +543,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 								foreach ($allarticles as $article) {
 									$newsobj = new ZenpageNews($article['titlelink']);
 									$newsobj->setTags(array());
-									$newsobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+									$newsobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 									$newsobj->save(true);
 								}
 								break;
@@ -580,7 +580,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 								$obj->set('hitcounter', 0);
 								break;
 						}
-						$obj->setLastchangeUser($_zp_current_admin_obj->getUser());
+						$obj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 						$obj->save(true);
 					}
 				}

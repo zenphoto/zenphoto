@@ -53,20 +53,20 @@ if (isset($_GET['action'])) {
 						$group->set('other_credentials', trim(sanitize($_POST[$i . '-desc'], 3)));
 						$group->setName(trim(sanitize($_POST[$i . '-type'], 3)));
 						$group->setValid(0);
-						$group->setLastChangeUser($_zp_current_admin_obj->getUser());
+						$group->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 						zp_apply_filter('save_admin_custom_data', true, $group, $i, true);
 						$group->save();
 
 						if ($group->getName() == 'group') {
 							//have to update any users who have this group designate.
-							$groupname = $group->getUser();
+							$groupname = $group->getLoginName();
 							foreach ($admins as $admin) {
 								if ($admin['valid']) {
 									$hisgroups = explode(',', $admin['group']);
 									if (in_array($groupname, $hisgroups)) {
 										$user = Authority::newAdministrator($admin['user'], $admin['valid']);
 										user_groups::merge_rights($user, $hisgroups);
-										$user->setLastChangeUser($_zp_current_admin_obj->getUser());
+										$user->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 										$user->save();
 									}
 								}
@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
 									$user->setObjects($group->getObjects());
 									$user->setGroup($groupname);
 									$user->setCustomData($group->getCustomData());
-									$user->setLastChangeUser($_zp_current_admin_obj->getUser());
+									$user->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 									$user->save();
 								}
 							}
@@ -142,7 +142,7 @@ echo '</head>' . "\n";
 						$list = array();
 						foreach ($adminlist as $user) {
 							if ($user['valid']) {
-								if ($user['user'] != $_zp_current_admin_obj->getUser()) {
+								if ($user['user'] != $_zp_current_admin_obj->getLoginName()) {
 									$users[] = $user['user'];
 								}
 							} else {

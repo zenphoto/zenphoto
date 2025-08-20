@@ -110,7 +110,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	$article->setCategories($categories);
 	if (!$newarticle) {
-		$article->setLastchangeUser($_zp_current_admin_obj->getUser());
+		$article->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 	}
 	if ($newarticle) {
 		$msg = zp_apply_filter('new_article', '', $article);

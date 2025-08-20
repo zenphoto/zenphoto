@@ -39,7 +39,7 @@ if (isset($_GET['album'])) {
 				}
 				$album->setSortType("manual");
 				$album->setSortDirection(false, 'image');
-				$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+				$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$album->save();
 				$_GET['saved'] = 1;
 			}
@@ -62,7 +62,7 @@ if (isset($_GET['album'])) {
 				} else if ($image->hasExpiration() || $image->hasExpired()) {
 					$image->setExpiredate(null);
 				}
-				$image->setLastchangeUser($_zp_current_admin_obj->getUser());
+				$image->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 				$image->save(); 
 				break;
 		}

@@ -1221,7 +1221,7 @@
 
 		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
 		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
-		$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+		$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 		zp_apply_filter('save_album_utilities_data', $album, $prefix);
 		$album->save(true);
 
@@ -1387,7 +1387,7 @@ function postAlbumSort($parentid) {
 					return "&mcrerr=" . $e;
 				} else {
 					$album->setSortOrder($sortorder);
-					$album->setLastChangeUser($_zp_current_admin_obj->getUser());
+					$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 					$album->save();
 				}
 			}
@@ -1517,7 +1517,7 @@ function processAlbumBulkActions() {
 							$imageobj = Image::newImage($albumobj, $imagename);
 							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
 							$imageobj->setTags($mytags);
-							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+							$imageobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 							$imageobj->save(true);
 						}
 						break;
@@ -1526,7 +1526,7 @@ function processAlbumBulkActions() {
 						foreach ($images as $imagename) {
 							$imageobj = Image::newImage($albumobj, $imagename);
 							$imageobj->setTags(array());
-							$imageobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+							$imageobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 							$imageobj->save(true);
 						}
 						break;
@@ -1537,7 +1537,7 @@ function processAlbumBulkActions() {
 						callUserFunction($action, $albumobj);
 						break;
 				}
-				$albumobj->setLastchangeUser($_zp_current_admin_obj->getUser());
+				$albumobj->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 				$albumobj->save(true);
 			}
 			return $action;

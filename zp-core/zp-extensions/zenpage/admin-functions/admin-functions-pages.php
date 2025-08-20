@@ -112,7 +112,7 @@ function updatePage(&$reports, $newpage = false) {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
-		$page->setLastchangeUser($_zp_current_admin_obj->getUser());
+		$page->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 		$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';

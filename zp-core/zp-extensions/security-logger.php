@@ -236,7 +236,7 @@ class security_logger {
 	private static function populate_user() {
 		global $_zp_current_admin_obj;
 		if (is_object($_zp_current_admin_obj)) {
-			$user = $_zp_current_admin_obj->getUser();
+			$user = $_zp_current_admin_obj->getLoginName();
 			$name = $_zp_current_admin_obj->getName();
 		} else {
 			$user = $name = '';
@@ -387,7 +387,7 @@ class security_logger {
 	 */
 	static function UserSave($discard, $userobj, $class) {
 		list($user, $name) = security_logger::populate_user();
-		security_logger::Logger(1, $user, $name, 'user_' . $class, 'zp_admin_auth', $userobj->getUser());
+		security_logger::Logger(1, $user, $name, 'user_' . $class, 'zp_admin_auth', $userobj->getLoginName());
 		return $discard;
 	}
 

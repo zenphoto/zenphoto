@@ -255,9 +255,9 @@ function printAdminHeader($tab, $subtab = NULL) {
 		if (!is_null($_zp_current_admin_obj)) {
 			$last = $_zp_current_admin_obj->getLastlogon();
 			if (empty($last)) {
-				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+				printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getLoginName());
 			} else {
-				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(), $last);
+				printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getLoginName(), $last);
 			}
 			if ($_zp_current_admin_obj->logout_link) {
 				$link = Authority::getLogoutURL('backend');

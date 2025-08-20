@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(1);
 			zp_apply_filter('comment_disapprove', $comment);
-			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$comment->save();
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 
@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(0);
 			zp_apply_filter('comment_approve', $comment);
-			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$comment->save();
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
 
@@ -82,7 +82,7 @@ if (isset($_GET['action'])) {
 			$comment->setDateTime(sanitize($_POST['date'], 3));
 			$comment->setComment(sanitize($_POST['comment'], 1));
 			$comment->setCustomData($_comment_form_save_post = serialize(getCommentAddress(0)));
-			$comment->setLastchangeUser($_zp_current_admin_obj->getUser());
+			$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$comment->save(true);
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?saved&page=editcomment&id=' . $comment->getID());
 	}

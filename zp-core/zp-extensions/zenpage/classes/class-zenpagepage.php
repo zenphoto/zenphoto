@@ -343,7 +343,7 @@ class ZenpagePage extends ZenpageItems {
 			if (GALLERY_SECURITY != 'public' && $this->isPublic() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
-			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
+			if ($_zp_current_admin_obj->getLoginName() == $this->getAuthor()) {
 				return true;
 			}
 			$mypages = $_zp_current_admin_obj->getObjects('pages');
