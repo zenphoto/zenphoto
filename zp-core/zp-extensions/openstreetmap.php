@@ -26,8 +26,8 @@ zp_register_filter('theme_head', 'openStreetMap::scripts');
 class openStreetMapOptions {
 
 	function __construct() {
-		purgeOption('osmap_HEREv3_appid');
-		purgeOption('osmap_HEREv3_appcode');
+		purgeOption('osmap__appid');
+		purgeOption('osmap__appcode');
 		
 		renameOption('osmap_controlpos', 'osmap_zoomcontrolpos');
 		renameOption('osmap_maptiles', 'osmap_defaultlayer');
@@ -1001,7 +1001,18 @@ class openStreetMap {
 				'Esri.OceanBasemap',
 				'Esri.NatGeoWorldMap',
 				'Esri.WorldGrayCanvas',
-				'HEREv3.normalDay',
+			    'HEREv3.exploreDay',
+				'HEREv3.liteDay',
+				'HEREv3.logisticsDay',
+				'HEREv3.topoDay',
+				'HEREv3.logisticsNight',
+				'HEREv3.topoNight',
+				'HEREv3.liteNight',
+				'HEREv3.exploreSatelliteDay',
+				'HEREv3.liteSatelliteDay',
+				'HEREv3.satelliteDay',
+				'HEREv3.logisticsSatelliteDay',
+			/*	'HEREv3.normalDay',
 				'HEREv3.normalDayCustom',
 				'HEREv3.normalDayGrey',
 				'HEREv3.normalDayMobile',
@@ -1022,7 +1033,7 @@ class openStreetMap {
 				'HEREv3.pedestrianNight',
 				'HEREv3.satelliteDay',
 				'HEREv3.terrainDay',
-				'HEREv3.terrainDayMobile',
+				'HEREv3.terrainDayMobile',*/
 				'MtbMap',
 				'CartoDB.Positron',
 				'CartoDB.PositronNoLabels',
