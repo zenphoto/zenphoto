@@ -432,7 +432,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		if (($whattocheck & COMMENT_SEND_EMAIL)) {
 			$message = $action . "\n\n" .
 							sprintf(gettext('Author: %1$s' . "\n" . 'Email: %2$s' . "\n" . 'Website: %3$s' . "\n" . 'Comment:' . "\n\n" . '%4$s'), $commentobj->getname(), $commentobj->getEmail(), $commentobj->getWebsite(), $commentobj->getComment()) . "\n\n" .
-							sprintf(gettext('You can view all comments about this item here:' . "\n" . '%1$s'), 'http://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/index.php?' . $url) . "\n\n" .
+							sprintf(gettext('You can view all comments about this item here:' . "\n" . '%1$s'), PROTOCOL . '://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/index.php?' . $url) . "\n\n" .
 							sprintf(gettext('You can edit the comment here:' . "\n" . '%1$s'), PROTOCOL . '://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php?page=editcomment&id=' . $commentobj->getID());
 			$emails = array();
 			$admin_users = $_zp_authority->getAdministrators();
