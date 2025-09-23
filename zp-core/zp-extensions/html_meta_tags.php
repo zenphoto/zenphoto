@@ -35,8 +35,8 @@ if (in_context(ZP_INDEX)) {
 class htmlmetatags {
 
 	function __construct() {
-		renameOption('google-site-verification','htmlmeta_google-site-verification');
-		
+		renameOption('google-site-verification', 'htmlmeta_google-site-verification');
+
 		setOptionDefault('htmlmeta_cache_control', 'no-cache');
 		setOptionDefault('htmlmeta_robots', 'index');
 		setOptionDefault('htmlmeta_revisit_after', '10 Days');
@@ -48,11 +48,11 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_bing-site-verification', '');
 		setOptionDefault('htmlmeta_pinterest-site-verification', '');
 		setOptionDefault('htmlmeta_yandex-site-verification', '');
-	
-		if(getOption('htmlmeta_og-title')) { // assume this will be set
+
+		if (getOption('htmlmeta_og-title')) { // assume this will be set
 			setOptionDefault('htmlmeta_opengraph', 1);
 		}
-		
+
 		//remove obsolete old options
 		purgeOption('htmlmeta_og-title');
 		purgeOption('htmlmeta_og-image');
@@ -64,7 +64,7 @@ class htmlmetatags {
 		purgeOption('htmlmeta_indexpagination_album');
 		purgeOption('htmlmeta_indexpagination_news');
 		purgeOption('htmlmeta_indexpagination_category');
-		
+
 		// the html meta tag selector prechecked ones
 		setOptionDefault('htmlmeta_htmlmeta_tags', '1');
 		setOptionDefault('htmlmeta_http-equiv-cache-control', '1');
@@ -91,9 +91,9 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_prevnext-gallery', 1);
 		setOptionDefault('htmlmeta_prevnext-image', 1);
 		setOptionDefault('htmlmeta_prevnext-news', 1);
-		
+
 		setOptionDefault('htmlmeta_canonical-url_dynalbum', 1);
-		
+
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteCacheSizes('html_meta_tags');
 			cacheManager::addCacheSize('html_meta_tags', NULL, getOption('htmlmeta_ogimage_width'), getOption('htmlmeta_ogimage_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, true);
@@ -158,7 +158,7 @@ class htmlmetatags {
 				gettext('Baidu site verification') => array(
 						'key' => 'htmlmeta_baidu-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Baidu.')),				
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Baidu.')),
 				gettext('Bing site verification') => array(
 						'key' => 'htmlmeta_bing-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -170,7 +170,7 @@ class htmlmetatags {
 				gettext('Yandex site verification') => array(
 						'key' => 'htmlmeta_yandex-site-verification',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Yandex.')),				
+						'desc' => gettext('Insert the <em>content</em> portion of the meta tag supplied by Yandex.')),
 				gettext('Site logo') => array(
 						'key' => 'htmlmeta_sitelogo',
 						'type' => OPTION_TYPE_TEXTBOX,
@@ -227,7 +227,7 @@ class htmlmetatags {
 				gettext('Disable indexing') => array(
 						'key' => 'htmlmeta_noindexpagination',
 						'type' => OPTION_TYPE_CHECKBOX_UL,
-						"checkboxes" => array (
+						"checkboxes" => array(
 								gettext('Gallery pagination') => 'htmlmeta_noindex_pagination_gallery',
 								gettext('Album pagination') => 'htmlmeta_noindex_pagination_album',
 								gettext('News article pagination') => 'htmlmeta_noindex_pagination_news',
@@ -285,7 +285,7 @@ class htmlmetatags {
 		$desc = getBareGalleryDesc();
 		$thumb = '';
 		$prev = $next = '';
-		
+
 		if (getOption('htmlmeta_sitelogo')) {
 			$thumb = getOption('htmlmeta_sitelogo');
 		}
@@ -313,7 +313,9 @@ class htmlmetatags {
 				$type = 'website';
 				switch ($_zp_gallery_page) {
 					case 'index.php':
-						$canonicalurl = $host . getPageNumURL($_zp_page);
+						if (getOption('htmlmeta_canonical-url')) {
+							$canonicalurl = $host . getPageNumURL($_zp_page);
+						}
 						if (getOption('htmlmeta_prevnext-gallery')) {
 							if (hasPrevPage()) {
 								$prev = $host . getPageNumURL($_zp_page - 1);
@@ -324,7 +326,9 @@ class htmlmetatags {
 						}
 						break;
 					case getCustomGalleryIndexPage():
-						$canonicalurl = $host . getCustomGalleryIndexURL($_zp_page);
+						if (getOption('htmlmeta_canonical-url')) {
+							$canonicalurl = $host . getCustomGalleryIndexURL($_zp_page);
+						}
 						if (getOption('htmlmeta_prevnext-gallery')) {
 							if (hasPrevPage()) {
 								$prev = $host . getCustomGalleryIndexURL($_zp_page - 1);
@@ -344,13 +348,15 @@ class htmlmetatags {
 				$date = $_zp_current_album->getDatetime();
 				$lastchangedate = $_zp_current_album->getLastchange();
 				$desc = getBareAlbumDesc();
-				$canonicalurl = $host . getPageNumURL($_zp_page);
+				if (getOption('htmlmeta_canonical-url')) {
+					$canonicalurl = $host . getPageNumURL($_zp_page);
+				}
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
 					$thumbimg = $_zp_current_album->getAlbumThumbImage();
 					$use_thumb = false;
 					if (!$thumbimg->isPhoto()) {
 						$use_thumb = true;
-					} 
+					}
 					$thumb = $host . html_encode(pathurlencode($thumbimg->getCustomSizedImageMaxSpace($ogimage_width, $ogimage_height, $use_thumb)));
 					$twittercard_type = 'summary_large_image';
 				}
@@ -373,11 +379,11 @@ class htmlmetatags {
 				$date = $_zp_current_image->getDatetime();
 				$lastchangedate = $_zp_current_image->getLastchange();
 				$desc = getBareImageDesc();
-				if(getOption('htmlmeta_canonical-url_dynalbum')) {
+				if (getOption('htmlmeta_canonical-url_dynalbum')) {
 					$imagereal_rewrite = html_encode($_zp_current_image->album->name) . '/' . html_encode($_zp_current_image->filename) . IM_SUFFIX;
 					$imagereal_nonrewrite = 'index.php?album=' . html_encode($_zp_current_image->album->name) . '&amp;image=' . html_encode($_zp_current_image->filename);
 					$canonicalurl = rewrite_path($imagereal_rewrite, $imagereal_nonrewrite, FULLWEBPATH);
-				} else {
+				} else if (getOption('htmlmeta_canonical-url')) {
 					$canonicalurl = $host . getImageURL();
 				}
 				if (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard')) {
@@ -389,11 +395,11 @@ class htmlmetatags {
 					$twittercard_type = 'summary_large_image';
 				}
 				if (getOption('htmlmeta_prevnext-image')) {
-					if(hasPrevImage()) {
-						$prev = $host .getPrevImageURL();
+					if (hasPrevImage()) {
+						$prev = $host . getPrevImageURL();
 					}
-					if(hasNextImage()) {
-						$next = $host .getNextImageURL();
+					if (hasNextImage()) {
+						$next = $host . getNextImageURL();
 					}
 				}
 				$author = $_zp_current_image->getCopyrightRightsholder();
@@ -408,22 +414,28 @@ class htmlmetatags {
 						$date = $_zp_current_zenpage_news->getDatetime();
 						$lastchangedate = $_zp_current_zenpage_news->getLastchange();
 						$desc = trim(getBare(getNewsContent()));
-						$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
+						if (getOption('htmlmeta_canonical-url')) {
+							$canonicalurl = $host . $_zp_current_zenpage_news->getLink();
+						}
 						$author = $_zp_current_zenpage_news->getAuthor(true);
 						$public = $_zp_current_zenpage_news->isPublic();
 					} else if (is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getName() . " - ";
 						$desc = trim(getBare($_zp_current_category->getDesc()));
-						$canonicalurl = $host . $_zp_current_category->getLink();
+						if (getOption('htmlmeta_canonical-url')) {
+							$canonicalurl = $host . $_zp_current_category->getLink();
+						}
 						$public = $_zp_current_category->isPublic();
-						$type = 'category';	
+						$type = 'category';
 						if (getOption('htmlmeta_noindex_pagination_category') && $_zp_page > 1) {
 							$indexing_allowed = false;
 						}
 					} else {
 						$pagetitle = gettext('News') . " - ";
 						$desc = '';
-						$canonicalurl = $host . getNewsIndexURL();
+						if (getOption('htmlmeta_canonical-url')) {
+							$canonicalurl = $host . getNewsIndexURL();
+						}
 						$type = 'website';
 						if (!is_NewsArticle() && getOption('htmlmeta_prevnext-news')) {
 							if (getPrevNewsPageURL()) {
@@ -437,13 +449,14 @@ class htmlmetatags {
 							$indexing_allowed = false;
 						}
 					}
-					if ($_zp_page != 1) {
+
+					if (getOption('htmlmeta_canonical-url') && $_zp_page != 1) {
 						$canonicalurl .= $_zp_page . '/';
 					}
 					if (function_exists('getSizedFeaturedImage') && (is_NewsArticle() || is_NewsCategory()) && (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard'))) {
 						$featuredimage = getSizedFeaturedImage(null, null, $ogimage_width, $ogimage_height, null, null, null, null, false, null, true);
-						if($featuredimage) {
-							$thumb =  $host . html_pathurlencode($featuredimage);
+						if ($featuredimage) {
+							$thumb = $host . html_pathurlencode($featuredimage);
 							$twittercard_type = 'summary_large_image';
 						}
 					}
@@ -457,7 +470,7 @@ class htmlmetatags {
 				if (function_exists('getSizedFeaturedImage') && (getOption('htmlmeta_opengraph') || getOption('htmlmeta_twittercard'))) {
 					$featuredimage = getSizedFeaturedImage(null, null, $ogimage_width, $ogimage_height, null, null, null, null, false, null, true);
 					if ($featuredimage) {
-						$thumb =  $host . html_pathurlencode($featuredimage);
+						$thumb = $host . html_pathurlencode($featuredimage);
 						$twittercard_type = 'summary_large_image';
 					}
 				}
@@ -509,19 +522,21 @@ class htmlmetatags {
 						break;
 				}
 				$desc = '';
-				$canonicalurl = $host . getCustomPageURL($custompage);
-				if ($_zp_page != 1) {
-					$canonicalurl .= $_zp_page . '/';
+				if (getOption('htmlmeta_canonical-url')) {
+					$canonicalurl = $host . getCustomPageURL($custompage);
+					if ($_zp_page != 1) {
+						$canonicalurl .= $_zp_page . '/';
+					}
 				}
 				break;
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
 		$desc = html_encode(trim(substr(getBare($desc), 0, 160)));
 		$pagetitle = $pagetitle . getBareGalleryTitle();
-		if(empty($copyright_notice)) {
+		if (empty($copyright_notice)) {
 			$copyright_notice = '(c) ' . FULLWEBPATH . ' - ' . $author;
 		}
-		if(empty($copyright_url)) {
+		if (empty($copyright_url)) {
 			$copyright_url = FULLWEBPATH;
 		}
 		$meta = '';
@@ -552,16 +567,16 @@ class htmlmetatags {
 			}
 		}
 		if (getOption('htmlmeta_name-publisher')) {
-			$meta .= '<meta name="publisher" content="' .  html_encode($copyright_url) . '">' . "\n";
+			$meta .= '<meta name="publisher" content="' . html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-creator')) {
-			$meta .= '<meta name="creator" content="' .  html_encode($copyright_url) . '">' . "\n";
+			$meta .= '<meta name="creator" content="' . html_encode($copyright_url) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-author')) {
 			$meta .= '<meta name="author" content="' . html_encode($author) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-copyright')) {
-			$meta .= '<meta name="copyright" content="' . html_encode($copyright_notice)  . '">' . "\n";
+			$meta .= '<meta name="copyright" content="' . html_encode($copyright_notice) . '">' . "\n";
 		}
 		if (getOption('htmlmeta_name-rights')) {
 			$meta .= '<meta name="rights" content="' . html_encode($author) . '">' . "\n";
@@ -579,22 +594,22 @@ class htmlmetatags {
 			}
 			$meta .= '<meta name="expires" content="' . $expires . '">' . "\n";
 		}
-		
+
 		// site verifications
-		if(getOption('htmlmeta_google-site-verification')) {
+		if (getOption('htmlmeta_google-site-verification')) {
 			$meta .= '<meta name="google-site-verification" content="' . getOption('htmlmeta_google-site-verification') . '">' . "\n";
 		}
-		if(getOption('htmlmeta_baidu-site-verification')) {
-				$meta .= '<meta name="baidu-site-verification" content="' . getOption('htmlmeta_baidu-site-verification') . '">' . "\n";
+		if (getOption('htmlmeta_baidu-site-verification')) {
+			$meta .= '<meta name="baidu-site-verification" content="' . getOption('htmlmeta_baidu-site-verification') . '">' . "\n";
 		}
-		if(getOption('htmlmeta_bing-site-verification')) {
-				$meta .= '<meta name="msvalidate.01" content="' . getOption('htmlmeta_bing-site-verification') . '">' . "\n";
+		if (getOption('htmlmeta_bing-site-verification')) {
+			$meta .= '<meta name="msvalidate.01" content="' . getOption('htmlmeta_bing-site-verification') . '">' . "\n";
 		}
-		if(getOption('htmlmeta_pinterest-site-verification')) {
-				$meta .= '<meta name="p:domain_verify" content="' . getOption('htmlmeta_pinterest-site-verification') . '">' . "\n";
+		if (getOption('htmlmeta_pinterest-site-verification')) {
+			$meta .= '<meta name="p:domain_verify" content="' . getOption('htmlmeta_pinterest-site-verification') . '">' . "\n";
 		}
-		if(getOption('htmlmeta_yandex-site-verification')) {
-				$meta .= '<meta name="yandex-verification" content="' . getOption('htmlmeta_yandex-site-verification') . '">' . "\n";
+		if (getOption('htmlmeta_yandex-site-verification')) {
+			$meta .= '<meta name="yandex-verification" content="' . getOption('htmlmeta_yandex-site-verification') . '">' . "\n";
 		}
 
 		// OpenGraph meta
@@ -606,11 +621,11 @@ class htmlmetatags {
 			$meta .= '<meta property="og:description" content="' . $desc . '">' . "\n";
 			$meta .= '<meta property="og:url" content="' . html_encode($url) . '">' . "\n";
 			$meta .= '<meta property="og:type" content="' . $type . '">' . "\n";
-			$meta .= '<meta property="article:published_time" content="'.self::getISODate($date) . '"/>' . "\n";
+			$meta .= '<meta property="article:published_time" content="' . self::getISODate($date) . '"/>' . "\n";
 			if (!$lastchangedate) {
 				$lastchangedate = $date;
 			}
-			$meta .= '<meta property="article:modified_time" content="'.self::getISODate($lastchangedate) . '"/>' . "\n";
+			$meta .= '<meta property="article:modified_time" content="' . self::getISODate($lastchangedate) . '"/>' . "\n";
 		}
 
 		// Facebook app id
@@ -637,11 +652,11 @@ class htmlmetatags {
 				$meta .= '<meta name="twitter:image" content="' . $thumb . '">' . "\n";
 			}
 		}
-		
-		if($prev) {
+
+		if ($prev) {
 			$meta .= '<link rel="prev" href="' . html_encode($prev) . '">' . "\n";
 		}
-		if($next) {
+		if ($next) {
 			$meta .= '<link rel="next" href="' . html_encode($next) . '">' . "\n";
 		}
 
@@ -702,7 +717,6 @@ class htmlmetatags {
 									$altlink .= '/' . _PAGE_ . '/' . html_encode($pagetitle) . '/';
 									break;
 							} // switch
-
 							//append page number if needed
 							switch ($_zp_gallery_page) {
 								case 'index.php':
@@ -722,14 +736,10 @@ class htmlmetatags {
 					} // foreach
 				} // if count
 			} // if option
-
-
-
-
 		} // if canonical
 		if (!empty($_zp_htmlmetatags_need_cache)) {
-  			$meta .= '<script>' . "\n";
-  			$meta .= '
+			$meta .= '<script>' . "\n";
+			$meta .= '
     				window.onload = function() {
       				var caches = ["' . implode(",", $_zp_htmlmetatags_need_cache) . '"];
       				var arrayLength = caches.length;
@@ -818,7 +828,7 @@ class htmlmetatags {
 		}
 		return $alltags;
 	}
-	
+
 	/**
 	 * Gets the ISO date for a datetime string
 	 * @since 1.7
@@ -832,6 +842,4 @@ class htmlmetatags {
 			return date(DateTimeInterface::ATOM, $datetime);
 		}
 	}
-
 }
-
