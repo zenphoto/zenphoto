@@ -371,7 +371,7 @@ class registerUser {
 		if (empty($pass)) {
 			registerUser::$notify = 'empty';
 		} else if (!empty(registerUser::$user) && !(empty(registerUser::$admin_name)) && !empty(registerUser::$admin_email)) {
-			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
+			if (isset($_POST['disclose_password']) || (isset($_POST['pass_r']) && $pass == trim(strval(sanitize($_POST['pass_r']))))) {
 				$currentadmin = Authority::getAnAdmin(array('`user`=' => registerUser::$user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					registerUser::$notify = 'exists';
