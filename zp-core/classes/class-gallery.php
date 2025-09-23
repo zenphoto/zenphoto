@@ -350,7 +350,8 @@ class Gallery {
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS. Set to null to disable rights check
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
-	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false 
+	 * @param bool $direct_sublevel a) If $albumobj is set true to get only the direct sublevel, default false to get all levels
+	 *															b) If $albumobj is set true to get only toplevl albums, false to get all albums of all levels
 	 * @param bool $physical_only Default false, set to true to exclude dynamic albums
 	 * @return array
 	 */
@@ -414,7 +415,8 @@ class Gallery {
 	 * @param obj $albumobj Default null for all albums, optional albumobject to get all sublevels of
 	 * @param int $rights Rights constant to check the album access by, default UPLOAD_RIGHTS
 	 * @param bool $includetitles If set to true (default) returns an array with the album names as keys and the titles as values, otherwise just an array with the names
-	 * @param bool $direct_sublevel Set to true to get only the direct sublevel, default false
+	 * @param bool $direct_sublevel a) If $albumobj is set true to get only the direct sublevel, default false to get all levels
+	 *															b) If $albumobj is set true to get only toplevl albums, false to get all albums of all levels
 	 * @param bool $physical_only Default false, set to true to exclude dynamic albums
 	 * @return array
 	 */
