@@ -357,11 +357,15 @@ class Gallery {
 	 */
 	function getAllAlbums($albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false, $physical_only = false) {
 		$allalbums = array();
-		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all albums
+		$mine = false;
+		if (is_null($rights)) {
+			$mine = true;
+		} 
+		$is_fulladmin = is_null($rights) || zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all album
 		if (AlbumBase::isAlbumClass($albumobj)) {
-			$albums = $albumobj->getAlbums(0);
+			$albums = $albumobj->getAlbums(0, null, null,false, $mine);
 		} else {
-			$albums = $this->getAlbums(0);
+			$albums = $this->getAlbums(0, null, null,false, $mine);
 		}
 		if (is_array($albums)) {
 			foreach ($albums as $folder) {
@@ -423,7 +427,7 @@ class Gallery {
 	function getAllAlbumsFromDB($keeplevel_sortorder = false, $albumobj = NULL, $rights = UPLOAD_RIGHTS, $includetitles = true, $direct_sublevel = false, $physical_only = false) {
 		global $_zp_db;
 		$allalbums = array();
-		$is_fulladmin = zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
+		$is_fulladmin = is_null($rights) || zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS); // can see all album
 		$sorttype = 'folder';
 		$sortdirection = ' ASC';
 		$sql = 'SELECT `folder` FROM ' . $_zp_db->prefix('albums');
