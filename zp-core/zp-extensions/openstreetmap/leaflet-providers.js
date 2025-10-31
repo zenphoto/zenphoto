@@ -699,24 +699,25 @@
 			/*
 			 * HERE maps API Version 3.
 			 * These basemaps are free, but you need an API key. Please sign up at
-			 * https://developer.here.com/plans
+			 * https://www.here.com/get-started/pricing
+			 * https://platform.here.com/portal/
 			 * Version 3 deprecates the app_id and app_code access in favor of apiKey
 			 *
 			 * Supported access methods as of 2019/12/21:
-			 * @see https://developer.here.com/faqs#access-control-1--how-do-you-control-access-to-here-location-services
+			 * documentation at: https://www.here.com/docs/bundle/raster-tile-api-developer-guide/page/README.html
 			 */
 			url:
-				'https://{s}.{base}.maps.ls.hereapi.com/maptile/2.1/' +
-				'{type}/{mapID}/{variant}/{z}/{x}/{y}/{size}/{format}?' +
-				'apiKey={apiKey}&lg={language}',
+				'https://maps.hereapi.com/v3/base/mc/'+ //new base url for HERE maptile v3 api
+				'{z}/{x}/{y}/{format}?style={variant}&size={size}' + //slightly modified parameters
+				'&apiKey={app_id}&lg={language}', //replacing app-id with apikey
 			options: {
 				attribution:
-					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
+					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://platform.here.com">HERE</a>',
 				subdomains: '1234',
 				mapID: 'newest',
 				apiKey: '<insert your apiKey here>',
 				base: 'base',
-				variant: 'normal.day',
+				variant: 'explore.day',
 				maxZoom: 20,
 				type: 'maptile',
 				language: 'eng',
@@ -724,21 +725,18 @@
 				size: '256'
 			},
 			variants: {
-				normalDay: 'normal.day',
-				normalDayCustom: 'normal.day.custom',
-				normalDayGrey: 'normal.day.grey',
-				normalDayMobile: 'normal.day.mobile',
-				normalDayGreyMobile: 'normal.day.grey.mobile',
-				normalDayTransit: 'normal.day.transit',
-				normalDayTransitMobile: 'normal.day.transit.mobile',
-				normalNight: 'normal.night',
-				normalNightMobile: 'normal.night.mobile',
-				normalNightGrey: 'normal.night.grey',
-				normalNightGreyMobile: 'normal.night.grey.mobile',
-				normalNightTransit: 'normal.night.transit',
-				normalNightTransitMobile: 'normal.night.transit.mobile',
-				reducedDay: 'reduced.day',
-				reducedNight: 'reduced.night',
+				exploreDay: 'explore.day',
+				liteDay: 'lite.day',
+				logisticsDay: 'logistics.day',
+				topoDay: 'topo.day',
+				logisticsNight: 'logistics.night',
+				exploreNight: 'explore.night',
+				topoNight: 'topo.night',
+				liteNight: 'lite.night',
+				exploreSatelliteDay: 'explore.satellite.day',
+				liteSatelliteDay: 'lite.satellite.day',
+				satelliteDay: 'satellite.day',
+				logisticsSatelliteDay: 'logistics.satellite.day',
 				basicMap: {
 					options: {
 						type: 'basetile'
