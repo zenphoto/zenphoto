@@ -1,5 +1,4 @@
-// https://github.com/leaflet-extras/leaflet-providers - latest build August 2024
-(function (root, factory) {
+(function(root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(['leaflet'], factory);
@@ -10,11 +9,11 @@
 		// Assume Leaflet is loaded into global object L already
 		factory(L);
 	}
-}(this, function (L) {
+}(this, function(L) {
 	'use strict';
 
 	L.TileLayer.Provider = L.TileLayer.extend({
-		initialize: function (arg, options) {
+		initialize: function(arg, options) {
 			var providers = L.TileLayer.Provider.providers;
 
 			var parts = arg.split('.');
@@ -53,12 +52,13 @@
 
 			// replace attribution placeholders with their values from toplevel provider attribution,
 			// recursively
-			var attributionReplacer = function (attr) {
+			var attributionReplacer = function(attr) {
 				if (attr.indexOf('{attribution.') === -1) {
 					return attr;
 				}
-				return attr.replace(/\{attribution.(\w*)\}/g,
-					function (match, attributionName) {
+				return attr.replace(
+					/\{attribution.(\w*)\}/g,
+					function(match, attributionName) {
 						return attributionReplacer(providers[attributionName].options.attribution);
 					}
 				);
@@ -120,6 +120,12 @@
 					options: {
 						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="http://www.openstreetmap.bzh/" target="_blank">Breton OpenStreetMap Team</a>',
 						bounds: [[46.2, -5.5], [50, 0.7]]
+					}
+				},
+				CAT: {
+					url: 'https://tile.openstreetmap.bzh/ca/{z}/{x}/{y}.png',
+					options: {
+						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="https://www.openstreetmap.cat" target="_blank">Breton OpenStreetMap Team</a>',
 					}
 				}
 			}
@@ -337,7 +343,7 @@
 			}
 		},
 		Thunderforest: {
-			url: 'https://{s}.tile.thunderforest.com/{variant}/{z}/{x}/{y}.png?apikey={apikey}',
+			url: 'https://{s}.tile.thunderforest.com/{variant}/{z}/{x}/{y}{r}.png?apikey={apikey}',
 			options: {
 				attribution:
 					'&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, {attribution.OpenStreetMap}',
@@ -369,17 +375,17 @@
 				Neighbourhood: 'neighbourhood'
 			}
 		},
-	        BaseMapDE: {
-	            url: 'https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/{variant}/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png',
-	            options: {
-	                attribution: 'Map data: &copy; <a href="http://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>',
-	                variant: 'de_basemapde_web_raster_farbe',
-	            },
-	            variants: {
-	                Color: 'de_basemapde_web_raster_farbe',
-	                Grey: 'de_basemapde_web_raster_grau'
-	            }
-	        },		
+		BaseMapDE: {
+			url: 'https://sgx.geodatenzentrum.de/wmts_basemapde/tile/1.0.0/{variant}/default/GLOBAL_WEBMERCATOR/{z}/{y}/{x}.png',
+			options: {
+				attribution: 'Map data: &copy; <a href="http://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>',
+				variant: 'de_basemapde_web_raster_farbe',
+			},
+			variants: {
+				Color: 'de_basemapde_web_raster_farbe',
+				Grey: 'de_basemapde_web_raster_grau'
+			}
+		},
 		CyclOSM: {
 			url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
 			options: {
@@ -438,9 +444,9 @@
 				maxZoom: 21
 			},
 			variants: {
-				Streets: 'streets',
-				Basic: 'basic',
-				Bright: 'bright',
+				Streets: 'streets-v2',
+				Basic: 'basic-v2',
+				Bright: 'bright-v2',
 				Pastel: 'pastel',
 				Positron: 'positron',
 				Hybrid: {
@@ -449,12 +455,35 @@
 						ext: 'jpg'
 					}
 				},
-				Toner: 'toner',
-				Topo: 'topo',
-				Voyager: 'voyager',
+				Toner: 'toner-v2',
+				Topo: 'topo-v2',
+				Voyager: 'voyager-v2',
 				Ocean: 'ocean',
 				Backdrop: 'backdrop',
-				Dataviz: 'dataviz'
+				Dataviz: 'dataviz',
+				DatavizLight: 'dataviz-light',
+				DatavizDark: 'dataviz-dark',
+				Aquarelle: {
+					options: {
+						variant: 'aquarelle',
+						ext: 'webp'
+					}
+				},
+				Landscape: 'landscape',
+				Openstreetmap: {
+					options: {
+						variant: 'openstreetmap',
+						ext: 'jpg'
+					}
+				},
+				Outdoor: 'outdoor-v2',
+				Satellite: {
+					options: {
+						variant: 'satellite',
+						ext: 'jpg'
+					}
+				},
+				Winter: 'winter-v2',
 			}
 		},
 		TomTom: {
@@ -573,150 +602,29 @@
 				Snow: 'snow'
 			}
 		},
+
 		HERE: {
-			/*
-			 * HERE maps, formerly Nokia maps.
-			 * These basemaps are free, but you need an api id and app key. Please sign up at
-			 * https://platform.here.com/portal/
-			 * documentation at: https://www.here.com/docs/bundle/raster-tile-api-developer-guide/page/README.html
-			 */
-			url:
-				'https://maps.hereapi.com/v3/base/mc/'+ //new base url for HERE maptile v3 api
-			//	'https://{s}.{base}.maps.api.here.com/maptile/2.1/' + HERE will remove deprecated Maptile v2 soon
-				'{z}/{x}/{y}/{format}?style={variant}&size={size}' + //slightly modified parameters
-				'&apiKey={app_id}&lg={language}', //replacing app-id with apikey
-			options: {
-				attribution:
-					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
-				subdomains: '1234',
-				mapID: 'newest',
-				/*'app_id': '<insert your app_id here>',*/
-				'app_id': '<insert your apiKey here>', 
-				//'app_code': '<insert your app_code here>', not required
-				base: 'base',
-				variant: 'normal.day',
-				maxZoom: 20,
-				type: 'maptile',
-				language: 'eng',
-				format: 'png8',
-				size: '256'
-			},
-			variants: {
-				normalDay: 'normal.day',
-				normalDayCustom: 'normal.day.custom',
-				normalDayGrey: 'normal.day.grey',
-				normalDayMobile: 'normal.day.mobile',
-				normalDayGreyMobile: 'normal.day.grey.mobile',
-				normalDayTransit: 'normal.day.transit',
-				normalDayTransitMobile: 'normal.day.transit.mobile',
-				normalDayTraffic: {
-					options: {
-						variant: 'normal.traffic.day',
-						base: 'traffic',
-						type: 'traffictile'
-					}
-				},
-				normalNight: 'normal.night',
-				normalNightMobile: 'normal.night.mobile',
-				normalNightGrey: 'normal.night.grey',
-				normalNightGreyMobile: 'normal.night.grey.mobile',
-				normalNightTransit: 'normal.night.transit',
-				normalNightTransitMobile: 'normal.night.transit.mobile',
-				reducedDay: 'reduced.day',
-				reducedNight: 'reduced.night',
-				basicMap: {
-					options: {
-						type: 'basetile'
-					}
-				},
-				mapLabels: {
-					options: {
-						type: 'labeltile',
-						format: 'png'
-					}
-				},
-				trafficFlow: {
-					options: {
-						base: 'traffic',
-						type: 'flowtile'
-					}
-				},
-				carnavDayGrey: 'carnav.day.grey',
-				hybridDay: {
-					options: {
-						base: 'aerial',
-						variant: 'hybrid.day'
-					}
-				},
-				hybridDayMobile: {
-					options: {
-						base: 'aerial',
-						variant: 'hybrid.day.mobile'
-					}
-				},
-				hybridDayTransit: {
-					options: {
-						base: 'aerial',
-						variant: 'hybrid.day.transit'
-					}
-				},
-				hybridDayGrey: {
-					options: {
-						base: 'aerial',
-						variant: 'hybrid.grey.day'
-					}
-				},
-				hybridDayTraffic: {
-					options: {
-						variant: 'hybrid.traffic.day',
-						base: 'traffic',
-						type: 'traffictile'
-					}
-				},
-				pedestrianDay: 'pedestrian.day',
-				pedestrianNight: 'pedestrian.night',
-				satelliteDay: {
-					options: {
-						base: 'aerial',
-						variant: 'satellite.day'
-					}
-				},
-				terrainDay: {
-					options: {
-						base: 'aerial',
-						variant: 'terrain.day'
-					}
-				},
-				terrainDayMobile: {
-					options: {
-						base: 'aerial',
-						variant: 'terrain.day.mobile'
-					}
-				}
-			}
-		},
-		HEREv3: {
+
 			/*
 			 * HERE maps API Version 3.
+			 * documentation at: https://www.here.com/docs/bundle/raster-tile-api-developer-guide/page/README.html
 			 * These basemaps are free, but you need an API key. Please sign up at
-			 * https://developer.here.com/plans
+			 * https://platform.here.com/portal/
+			 * Subscription remains for free, pricing details can be found here: https://www.here.com/get-started/pricing
 			 * Version 3 deprecates the app_id and app_code access in favor of apiKey
-			 *
-			 * Supported access methods as of 2019/12/21:
-			 * @see https://developer.here.com/faqs#access-control-1--how-do-you-control-access-to-here-location-services
 			 */
 			url:
-				'https://{s}.{base}.maps.ls.hereapi.com/maptile/2.1/' +
-				'{type}/{mapID}/{variant}/{z}/{x}/{y}/{size}/{format}?' +
-				'apiKey={apiKey}&lg={language}',
+				'https://maps.hereapi.com/v3/base/mc/' + // new base url for HERE maptile v3 api
+				'{z}/{x}/{y}/{format}?style={variant}&size={size}' + // slightly modified parameters
+				'&apiKey={app_id}&lg={language}', // replacing app-id with apikey
 			options: {
 				attribution:
-					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://developer.here.com">HERE</a>',
+					'Map &copy; 1987-' + new Date().getFullYear() + ' <a href="http://platform.here.com">HERE</a>',
 				subdomains: '1234',
 				mapID: 'newest',
-				apiKey: '<insert your apiKey here>',
+				apiKey: '<insert your apiKey here>', // switching from appid and appcode to apikey
 				base: 'base',
-				variant: 'normal.day',
+				variant: 'explore.day',
 				maxZoom: 20,
 				type: 'maptile',
 				language: 'eng',
@@ -724,21 +632,17 @@
 				size: '256'
 			},
 			variants: {
-				normalDay: 'normal.day',
-				normalDayCustom: 'normal.day.custom',
-				normalDayGrey: 'normal.day.grey',
-				normalDayMobile: 'normal.day.mobile',
-				normalDayGreyMobile: 'normal.day.grey.mobile',
-				normalDayTransit: 'normal.day.transit',
-				normalDayTransitMobile: 'normal.day.transit.mobile',
-				normalNight: 'normal.night',
-				normalNightMobile: 'normal.night.mobile',
-				normalNightGrey: 'normal.night.grey',
-				normalNightGreyMobile: 'normal.night.grey.mobile',
-				normalNightTransit: 'normal.night.transit',
-				normalNightTransitMobile: 'normal.night.transit.mobile',
-				reducedDay: 'reduced.day',
-				reducedNight: 'reduced.night',
+				exploreDay: 'explore.day',
+				liteDay: 'lite.day',
+				logisticsDay: 'logistics.day',
+				topoDay: 'topo.day',
+				logisticsNight: 'logistics.night',
+				exploreNight: 'explore.night',
+				topoNight: 'topo.night',
+				liteNight: 'lite.night',
+				exploreSatelliteDay: 'explore.satellite.day',
+				liteSatelliteDay: 'lite.satellite.day',
+				logisticsSatelliteDay: 'logistics.satellite.day',
 				basicMap: {
 					options: {
 						type: 'basetile'
@@ -916,12 +820,12 @@
 				attribution: 'Kaartgegevens &copy; <a href="https://www.kadaster.nl">Kadaster</a>'
 			},
 			variants: {
-				'standaard': 'standaard',
-				'pastel': 'pastel',
-				'grijs': 'grijs',
-				'water': 'water',
-				'luchtfoto': {
-					'url': 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg',
+				standaard: 'standaard',
+				pastel: 'pastel',
+				grijs: 'grijs',
+				water: 'water',
+				luchtfoto: {
+					url: 'https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_ortho25/EPSG:3857/{z}/{x}/{y}.jpeg',
 				}
 			}
 		},
@@ -1133,9 +1037,9 @@
 			}
 		},
 		AzureMaps: {
-			url: 
-				'https://atlas.microsoft.com/map/tile?api-version={apiVersion}'+
-				'&tilesetId={variant}&x={x}&y={y}&zoom={z}&language={language}'+
+			url:
+				'https://atlas.microsoft.com/map/tile?api-version={apiVersion}' +
+				'&tilesetId={variant}&x={x}&y={y}&zoom={z}&language={language}' +
 				'&subscription-key={subscriptionKey}',
 			options: {
 				attribution: 'See https://docs.microsoft.com/en-us/rest/api/maps/render-v2/get-map-tile for details.',
@@ -1151,9 +1055,9 @@
 				MicrosoftBaseHybridRoad: 'microsoft.base.hybrid.road',
 				MicrosoftTerraMain: 'microsoft.terra.main',
 				MicrosoftWeatherInfraredMain: {
-					url: 
-					'https://atlas.microsoft.com/map/tile?api-version={apiVersion}'+
-					'&tilesetId={variant}&x={x}&y={y}&zoom={z}'+
+					url:
+					'https://atlas.microsoft.com/map/tile?api-version={apiVersion}' +
+					'&tilesetId={variant}&x={x}&y={y}&zoom={z}' +
 					'&timeStamp={timeStamp}&language={language}' +
 					'&subscription-key={subscriptionKey}',
 					options: {
@@ -1163,9 +1067,9 @@
 					},
 				},
 				MicrosoftWeatherRadarMain: {
-					url: 
-					'https://atlas.microsoft.com/map/tile?api-version={apiVersion}'+
-					'&tilesetId={variant}&x={x}&y={y}&zoom={z}'+
+					url:
+					'https://atlas.microsoft.com/map/tile?api-version={apiVersion}' +
+					'&tilesetId={variant}&x={x}&y={y}&zoom={z}' +
 					'&timeStamp={timeStamp}&language={language}' +
 					'&subscription-key={subscriptionKey}',
 					options: {
@@ -1195,21 +1099,21 @@
 				}
 			}
 		},
-	        TopPlusOpen: {
-	            url: 'http://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/{variant}/default/WEBMERCATOR/{z}/{y}/{x}.png',
-	            options: {
-	                maxZoom: 18,
-	                attribution: 'Map data: &copy; <a href="http://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>',
-	                variant: 'web',
-	            },
-	            variants: {
-	                Color: 'web',
-	                Grey: 'web_grau'
-	            }
-	        }
+		TopPlusOpen: {
+			url: 'http://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/{variant}/default/WEBMERCATOR/{z}/{y}/{x}.png',
+			options: {
+				maxZoom: 18,
+				attribution: 'Map data: &copy; <a href="http://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>',
+				variant: 'web',
+			},
+			variants: {
+				Color: 'web',
+				Grey: 'web_grau'
+			}
+		}
 	};
 
-	L.tileLayer.provider = function (provider, options) {
+	L.tileLayer.provider = function(provider, options) {
 		return new L.TileLayer.Provider(provider, options);
 	};
 
