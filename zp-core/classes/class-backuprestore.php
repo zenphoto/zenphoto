@@ -251,7 +251,7 @@ class backupRestore {
 							}
 							$row = substr($string, $sep + strlen($this->table_separator));
 							$row = $this->decompress($row);
-							$row = unserialize($row);
+							$row = unserialize($row, ['allowed_classes' => false]);
 
 							foreach ($row as $key => $element) {
 								if ($this->compression_handler == 'bzip2' || $this->compression_handler == 'gzip') {
