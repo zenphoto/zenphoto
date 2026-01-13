@@ -21,6 +21,8 @@ class dbBase {
 	public $mysql_socket = null;
 	public $use_utf8 = false;
 	public $config_valid = false;
+	public $tables = null;
+	public $emptytables = array();
 	
 	/**
 	 * Connect to the database server and select the database.
@@ -366,6 +368,9 @@ class dbBase {
 	 * @return array
 	 */
 	function getTables() {
+		if (!is_null($this->tables)) {
+			return $this->tables;
+		}
 		$tables = array();
 		if ($this->connection) {
 			$resource = $this->show('tables');
@@ -376,7 +381,7 @@ class dbBase {
 				$this->freeResult($resource);
 			}
 		}
-		return $tables;
+		return $this->tables = $tables;
 	}
 
 	/**
@@ -436,16 +441,18 @@ class dbBase {
 	 */
 	function isEmptyTable($table) {
 		if ($this->connection) {
+			if (!empty($this->emptytables) && isset($this->emptytables[$table])) {
+				return $this->emptytables[$table];
+			}
 			if (!$this->hasTable($table)) {
-				return true;
+				return $this->emptytables[$table] = true;
 			}
 			$not_empty = $this->query('SELECT NULL FROM ' . $this->prefix($table) . ' LIMIT 1', true);
 			if ($not_empty) {
-				return false;
+				return $this->emptytables[$table] = false;
 			}
-			return true;
 		}
-		return true;
+		return $this->emptytables[$table] = true;
 	}
 
 	/**
