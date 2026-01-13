@@ -711,18 +711,13 @@ class utf8 {
 		$additional_headers = trim($additional_headers);
 
 		if ($additional_headers != '')
-			$additional_headers .= "\n";
+			$additional_headers .= "\r\n";
 
 		$additional_headers .=
-						"Mime-Version: 1.0\n" .
-						"Content-Type: text/plain; charset=UTF-8\n" .
+						"Mime-Version: 1.0\r\n" .
+						"Content-Type: text/plain; charset=UTF-8\r\n" .
 						"Content-Transfer-Encoding: base64";
-
-		if (SAFE_MODE) {
-			return @mail($to, $subject, $message, $additional_headers);
-		} else {
-			return @mail($to, $subject, $message, $additional_headers, $additional_parameter);
-		}
+		return @mail($to, $subject, $message, $additional_headers, $additional_parameter);
 	}
 
 	/**
