@@ -108,7 +108,7 @@ class openStreetMapOptions {
 						'order' => 7,
 						'selections' => $providers,
 						'desc' => gettext('The default map tile provider to use. Only free providers are included.'
-										. ' Some providers (HEREv3, Mapbox, Thunderforest, Geoportail and Jawg) require access credentials and registration.'
+										. ' Some providers (HERE, Mapbox, Thunderforest, Geoportail and Jawg) require access credentials and registration.'
 										. ' More info on <a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a>')),
 				gettext('Zoom controls position') => array(
 						'key' => 'osmap_zoomcontrolpos',
@@ -769,9 +769,9 @@ class openStreetMap {
 								. "id: '" . strtolower($this->layer) . "', "
 								. "accessToken: '" . getOption('osmap_mapbox_accesstoken') . "'"
 								. "})";
-			case 'HEREv3':
+			case 'HERE':
 				return "L.tileLayer.provider('" . $this->layer . "', {"
-								. "app_id: '" . getOption('osmap_here_apikey') . "'" //replaced deprecatred appid with ApiKey
+								. "apiKey: '" . getOption('osmap_here_apikey') . "'" //replaced deprecated appid with apiKey
 								//. "app_code: '" . getOption('osmap_here_appcode') . "'" not required any more
 								. "})";
 			case 'Thunderforest':
@@ -1001,39 +1001,17 @@ class openStreetMap {
 				'Esri.OceanBasemap',
 				'Esri.NatGeoWorldMap',
 				'Esri.WorldGrayCanvas',
-			    'HEREv3.exploreDay',
-				'HEREv3.liteDay',
-				'HEREv3.logisticsDay',
-				'HEREv3.topoDay',
-				'HEREv3.logisticsNight',
-				'HEREv3.topoNight',
-				'HEREv3.liteNight',
-				'HEREv3.exploreSatelliteDay',
-				'HEREv3.liteSatelliteDay',
-				'HEREv3.satelliteDay',
-				'HEREv3.logisticsSatelliteDay',
-			/*	'HEREv3.normalDay',
-				'HEREv3.normalDayCustom',
-				'HEREv3.normalDayGrey',
-				'HEREv3.normalDayMobile',
-				'HEREv3.normalDayGreyMobile',
-				'HEREv3.normalDayTransit',
-				'HEREv3.normalDayTransitMobile',
-				'HEREv3.normalNight',
-				'HEREv3.normalNightMobile',
-				'HEREv3.normalNightGrey',
-				'HEREv3.normalNightGreyMobile',
-				'HEREv3.basicMap',
-				'HEREv3.mapLabels',
-				'HEREv3.trafficFlow',
-				'HEREv3.carnavDayGrey',
-				'HEREv3.hybridDay',
-				'HEREv3.hybridDayMobile',
-				'HEREv3.pedestrianDay',
-				'HEREv3.pedestrianNight',
-				'HEREv3.satelliteDay',
-				'HEREv3.terrainDay',
-				'HEREv3.terrainDayMobile',*/
+			    'HERE.exploreDay',
+				'HERE.liteDay',
+				'HERE.logisticsDay',
+				'HERE.topoDay',
+				'HERE.logisticsNight',
+				'HERE.topoNight',
+				'HERE.liteNight',
+				'HERE.exploreSatelliteDay',
+				'HERE.liteSatelliteDay',
+				'HERE.satelliteDay',
+				'HERE.logisticsSatelliteDay',
 				'MtbMap',
 				'CartoDB.Positron',
 				'CartoDB.PositronNoLabels',
