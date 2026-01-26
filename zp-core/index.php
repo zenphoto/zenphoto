@@ -10,7 +10,7 @@ if (!defined('OFFSET_PATH'))
 
 $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
-require_once(dirname(__FILE__) . '/global-definitions.php');
+require_once(dirname(__FILE__) . '/definitions-global.php');
 require_once(dirname(__FILE__) . '/functions/functions.php');
 filter::applyFilter('feature_plugin_load');
 if (DEBUG_PLUGINS) {

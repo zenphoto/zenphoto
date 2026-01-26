@@ -8,7 +8,7 @@
  *
  */
 // force UTF-8 Ø
-require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
+require_once(dirname(dirname(__FILE__)) . '/definitions-global.php');
 require_once(dirname(__FILE__) . '/functions-common.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/class-zpmutex.php');
 
