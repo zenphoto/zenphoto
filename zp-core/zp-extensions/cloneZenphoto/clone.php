@@ -7,7 +7,8 @@
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/functions/functions-reconfigure.php');
+require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
 
 admin_securityChecks(NULL, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
@@ -113,7 +114,7 @@ if (trim($folder,'/') == SERVERPATH) {
 }
 if ($success) {
 	array_unshift($msg, '<h2>'.sprintf(gettext('Successful clone to %s'),$folder).'</h2>'."\n");
-	list($diff, $needs) = checkSignature(false);
+	list($diff, $needs) = reconfigure::checkSignature(false);
 	if (empty($needs)) {
 		if (WEBPATH) {
 			$rootpath = str_replace(WEBPATH,'/',SERVERPATH);

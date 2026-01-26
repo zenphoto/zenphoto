@@ -9,9 +9,10 @@
 define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
+require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
 
-ignoreSetupRunRequest();
+reconfigure::ignoreSetupRunRequest();
 
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
@@ -21,7 +22,7 @@ if (!isset($_GET['action']) || (isset($_GET['action']) && sanitize($_GET['action
 	checkInstall();
 }
 if(!getOption('setup_unprotected_by_adminrequest')) {
-	protectSetupFiles();
+	reconfigure::protectSetupFiles();
 }
 if (time() > getOption('last_garbage_collect') + 864000) {
 	$_zp_gallery->garbageCollect();
@@ -103,7 +104,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/*				 * *************************************************************************** */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
-					unprotectSetupFiles();
+					reconfigure::unprotectSetupFiles();
 					filter::applyFilter('log_setup', true, 'protect', gettext('enabled'));
 					setOption('setup_unprotected_by_adminrequest', 1, true, null);
 					$class = 'messagebox';
@@ -114,7 +115,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/*				 * *************************************************************************** */
 				case 'protect_setup':
 					XSRFdefender('protect_setup');
-					protectSetupFiles();
+					reconfigure::protectSetupFiles();
 					setOption('setup_unprotected_by_adminrequest', 0, true, null);
 					$class = 'messagebox';
 					$msg = gettext('Setup files protected.');
@@ -240,7 +241,7 @@ if (!zp_loggedin()) {
 			}
 			if (hasPrimaryScripts() && zp_loggedin(ADMIN_RIGHTS)) {
 				//	button to restore setup files if needed
-				if (isSetupProtected()) {
+				if (reconfigure::isSetupProtected()) {
 					$buttonlist[] = array(
 							'XSRFTag' => 'restore_setup',
 							'category' => gettext('Admin'),
@@ -291,7 +292,7 @@ if (!zp_loggedin()) {
 			$buttonlist = sortMultiArray($buttonlist, array('category', 'button_text'), false);
 															
 			if (zp_loggedin(OVERVIEW_RIGHTS)) {
-				if ((zp_loggedin(ADMIN_RIGHTS)) && !isSetupProtected()) {
+				if ((zp_loggedin(ADMIN_RIGHTS)) && !reconfigure::isSetupProtected()) {
 					?>
 					<div class="warningbox">
 							<h2><?php echo gettext('Your Setup scripts are not protected.'); ?></h2>

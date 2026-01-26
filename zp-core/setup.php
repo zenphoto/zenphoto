@@ -1,8 +1,9 @@
 <?php
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(dirname(__FILE__) . '/functions/functions-reconfigure.php');
+require_once(dirname(__FILE__) . '/classes/class-reconfigure.php');
+require_once(dirname(__FILE__) . '/deprecated/functions-reconfigure.php');
 
-list($diff, $needs) = checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
+list($diff, $needs) = reconfigure::checkSignature(isset($_GET['xsrfToken']) && $_GET['xsrfToken'] == getXSRFToken('setup'));
 if (empty($needs)) {
 	header('Location: setup/index.php');
 } else {
@@ -14,7 +15,7 @@ if (empty($needs)) {
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/css/admin.css" type="text/css" />
-			<?php reconfigureCSS(); ?>
+			<?php reconfigure::reconfigureCSS(); ?>
 		</head>
 		<body>
 			<div id="main">

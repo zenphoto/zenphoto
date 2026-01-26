@@ -109,8 +109,9 @@ switch (PHP_MAJOR_VERSION) {
 
 // Including the config file more than once is OK, and avoids $conf missing.
 if (OFFSET_PATH != 2 && !file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
-	require_once(dirname(__FILE__) . '/functions-reconfigure.php');
-	reconfigureAction(1);
+	require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
+	reconfigure::reconfigureAction(1);
 } else {
 	require_once SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE;
 }
@@ -172,8 +173,9 @@ define('DATABASE_PREFIX', $mysql_prefix);
 $_zp_mutex = new zpMutex();
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
-	reconfigureAction(2);
+	require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
+	reconfigure::reconfigureAction(2);
 }
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/class-utf8.php');
@@ -225,13 +227,15 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 	$data = false;
 }
 if (!$data && OFFSET_PATH != 2) {
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
-	reconfigureAction(3);
+	require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecatedfunctions-reconfigure.php';
+	reconfigure::reconfigureAction(3);
 }
 
 if($data && $_zp_db->isEmptyTable('administrators')) {
-	require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
-	reconfigureAction(4);
+	require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
+	reconfigure::reconfigureAction(4);
 }
 
 if (!defined('FILESYSTEM_CHARSET')) {
@@ -1819,8 +1823,9 @@ function checkInstall() {
 		$install = array('ZENPHOTO' => '0.0.0');
 	}
 	if ($install['ZENPHOTO'] && $install['ZENPHOTO'] != ZENPHOTO_VERSION || ((time() & 7) == 0) && OFFSET_PATH != 2 && $i != serialize(installSignature())) {
-		require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-reconfigure.php');
-		reconfigureAction(0);
+		require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
+		require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
+		reconfigure::reconfigureAction(0);
 	}
 }
 
