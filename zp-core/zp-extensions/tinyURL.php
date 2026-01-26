@@ -165,9 +165,9 @@ class tinyURL {
 							$album = $_GET['album'] = $result['folder'];
 							unset($_GET['p']);
 							if (!empty($image)) {
-								$success = zp_load_image($album, $image);
+								$success = controller::loadImage($album, $image);
 							} else if (!empty($album)) {
-								$success = zp_load_album($album);
+								$success = controller::loadAlbum($album);
 							}
 							break;
 						case 'comments':

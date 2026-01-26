@@ -1857,7 +1857,7 @@ function installSignature() {
 			'lib-utf8.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/libs/class-utf8.php'),
 			'functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions.php'),
 			'functions-basic.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-basic.php'),
-			'functions-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-controller.php'),
+			'class-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-controller.php'),
 			'functions-image.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-image.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {

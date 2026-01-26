@@ -41,7 +41,8 @@ if (MOD_REWRITE || isset($_GET['z']))
 /**
  * Invoke the controller to handle requests
  */
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-controller.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/classes/class-controller.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/deprecated/functions-controller.php');
 require_once(SERVERPATH . "/" . ZENFOLDER . '/controller.php');
 
 $_index_theme = $_zp_script = '';
@@ -49,16 +50,16 @@ $_zp_page_check = 'checkPageValidity';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
-	$_index_theme = prepareCustomPage();
+	$_index_theme = controller::prepareCustomPage();
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
-	$_index_theme = prepareImagePage();
+	$_index_theme = controller::prepareImagePage();
 // Display an Album page.
 } else if (in_context(ZP_ALBUM)) {
-	$_index_theme = prepareAlbumPage();
+	$_index_theme = controller::prepareAlbumPage();
 	// Display the Index page.
 } else if (in_context(ZP_INDEX)) {
-	$_index_theme = prepareIndexPage();
+	$_index_theme = controller::prepareIndexPage();
 } else {
 	$_index_theme = setupTheme();
 }

@@ -437,7 +437,7 @@ function printPageMenu($option = 'list', $css_id = NULL, $css_class_topactive = 
  */
 function checkForPage($titlelink) {
 	if (!empty($titlelink)) {
-		load_zenpage_pages($titlelink);
+		controller::loadZenpagePages($titlelink);
 		return in_context(ZP_ZENPAGE_PAGE);
 	}
 	return false;

@@ -7,16 +7,16 @@
 
 // force UTF-8 Ø
 maintenanceMode::loadPlaceholderPage();
-redirectionHandler();
+controller::redirectionHandler();
 
 /*** Request Handler **********************
  ******************************************/
 // This is the main top-level action handler for user requests. It parses a
 // request, validates the input, loads the appropriate objects, and sets
-// the context. All that is done in functions-controller.php.
+// the context. All that is done in class-controller.php.
 
-zp_load_gallery();	//	load the gallery and set the context to be on the front-end
-$_zp_request = zp_load_request();
+controller::loadGallery();	//	load the gallery and set the context to be on the front-end
+$_zp_request = controller::loadRequest();
 // handle any passwords that might have been posted
 if (!zp_loggedin()) {
 	zp_handle_password();
@@ -31,5 +31,5 @@ $_zp_comment_error = filter::applyFilter('handle_comment', false);
 // If so, redirect with a 301 to the correct URL.
 // This is mostly helpful for SEO, but also for users. Consistent URLs are a Good Thing.
 
-fix_path_redirect();
+controller::fixPathRedirect();
 httpsRedirect('frontend');

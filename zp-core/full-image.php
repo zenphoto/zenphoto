@@ -92,8 +92,9 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 
 	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
-		require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-controller.php');
-		zp_load_gallery();
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/classes/class-controller.php');
+		require_once(SERVERPATH . "/" . ZENFOLDER . '/deprecated/functions-controller.php');
+		controller::loadGallery();
 		$theme = setupTheme($albumobj);
 		$custom = $_zp_themeroot . '/functions.php';
 		if (file_exists($custom)) {

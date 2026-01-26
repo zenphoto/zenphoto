@@ -395,6 +395,7 @@ zp-core/classes/class-albumbase.php
 zp-core/classes/class-authority.php
 zp-core/classes/class-backuprestore.php
 zp-core/classes/class-config.php
+zp-core/classes/class-controller.php
 zp-core/classes/class-dbbase.php
 zp-core/classes/class-dbmysqli.php
 zp-core/classes/class-dbpdo_mysql.php
@@ -430,6 +431,7 @@ zp-core/css/admintoolbox.css
 zp-core/definitions-debug.php
 zp-core/deprecated
 zp-core/deprecated/functions-config.php
+zp-core/deprecated/functions-controller.php
 zp-core/deprecated/functions-db.php
 zp-core/deprecated/functions-filter.php
 zp-core/deprecated/functions-graphics.php
@@ -446,7 +448,6 @@ zp-core/full-image.php
 zp-core/functions
 zp-core/functions/functions-basic.php
 zp-core/functions/functions-common.php
-zp-core/functions/functions-controller.php
 zp-core/functions/functions-i18n.php
 zp-core/functions/functions-image.php
 zp-core/functions/functions-reconfigure.php
@@ -1969,4 +1970,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1971
+1972
