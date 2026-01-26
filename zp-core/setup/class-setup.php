@@ -16,7 +16,8 @@ define('SETUPLOG', $_zp_setup_serverpath . '/' . DATA_FOLDER . '/setup.log');
 if (!defined('SERVERPATH'))
 	define('SERVERPATH', $_zp_setup_serverpath);
 
-require_once(dirname(dirname(__FILE__)) . '/functions/functions-config.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/class-config.php');
+require_once(dirname(dirname(__FILE__)) . '/deprecated/functions-config.php');
 
 /**
  * setup support class

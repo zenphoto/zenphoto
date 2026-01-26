@@ -18,7 +18,8 @@ if (OFFSET_PATH == 2) {
 }
 zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-config.php');
 
 class rewriteTokens {
 
@@ -195,7 +196,7 @@ class rewriteTokens {
 		}
 		$newtext = substr($newtext, 0, -1) . "\n);\n";
 		$zp_cfg = $this->zp_cfg_a . $newtext . $this->zp_cfg_b;
-		storeConfig($zp_cfg);
+		config::storeConfig($zp_cfg);
 		return $notify;
 	}
 

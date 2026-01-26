@@ -9,8 +9,8 @@ if (getOption('server_protocol') != $protocol) {
 	setOption('server_protocol', $protocol);
 	$_zp_mutex->lock();
 	$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-	$zp_cfg = updateConfigItem('server_protocol', $protocol, $zp_cfg);
-	storeConfig($zp_cfg);
+	$zp_cfg = config::updateConfigItem('server_protocol', $protocol, $zp_cfg);
+	config::storeConfig($zp_cfg);
 	$_zp_mutex->unlock();
 }
 

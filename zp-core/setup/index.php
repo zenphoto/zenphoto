@@ -158,32 +158,32 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setup::Log(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		$zp_cfg = updateConfigItem('db_software', addslashes(setup::sanitize($_POST['db_software'])), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('db_software', addslashes(setup::sanitize($_POST['db_software'])), $zp_cfg);
 	}
 	if (isset($_POST['db_user'])) {
-		$zp_cfg = updateConfigItem('mysql_user', addslashes(setup::sanitize($_POST['db_user'], 0)), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_user', addslashes(setup::sanitize($_POST['db_user'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_pass'])) {
-		$zp_cfg = updateConfigItem('mysql_pass', addslashes(setup::sanitize($_POST['db_pass'], 0)), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_pass', addslashes(setup::sanitize($_POST['db_pass'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_host'])) {
-		$zp_cfg = updateConfigItem('mysql_host', addslashes(setup::sanitize($_POST['db_host'], 0)), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_host', addslashes(setup::sanitize($_POST['db_host'], 0)), $zp_cfg);
 	}
 	if (isset($_POST['db_database'])) {
-		$zp_cfg = updateConfigItem('mysql_database', addslashes(trim(setup::sanitize($_POST['db_database']))), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_database', addslashes(trim(setup::sanitize($_POST['db_database']))), $zp_cfg);
 	}
 	if (isset($_POST['db_prefix'])) {
-		$zp_cfg = updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_prefix'])))), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_prefix', str_replace(array('.', '/', '\\', '`', '"', "'"), '_', addslashes(trim(setup::sanitize($_POST['db_prefix'])))), $zp_cfg);
 	}
 	if (isset($_POST['db_port'])) {
-		$zp_cfg = updateConfigItem('mysql_port', addslashes(trim(intval($_POST['db_port']))), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_port', addslashes(trim(intval($_POST['db_port']))), $zp_cfg);
 	} else {
-		$zp_cfg = updateConfigItem('mysql_port', "3306", $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_port', "3306", $zp_cfg);
 	}
 	if (isset($_POST['db_socket'])) {
-		$zp_cfg = updateConfigItem('mysql_socket', addslashes(trim(intval($_POST['db_socket']))), $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_socket', addslashes(trim(intval($_POST['db_socket']))), $zp_cfg);
 	} else {
-		$zp_cfg = updateConfigItem('mysql_socket', '', $zp_cfg);
+		$zp_cfg = config::updateConfigItem('mysql_socket', '', $zp_cfg);
 	}
 }
 
@@ -191,7 +191,7 @@ define('ACK_DISPLAY_ERRORS', 2);
 
 if (isset($_GET['security_ack'])) {
 	setup::XSRFDefender();
-	$zp_cfg = updateConfigItem('security_ack', (isset($conf['security_ack']) ? $cache['keyword'] : NULL) | (int) $_GET['security_ack'], $zp_cfg, false);
+	$zp_cfg = config::updateConfigItem('security_ack', (isset($conf['security_ack']) ? $cache['keyword'] : NULL) | (int) $_GET['security_ack'], $zp_cfg, false);
 	$updatezp_config = true;
 }
 
@@ -218,7 +218,7 @@ if ($updatechmod || $newconfig) {
 		$chmodval = sprintf('0%o', $_zp_setup_chmod);
 	}
 	if ($updatechmod) {
-		$zp_cfg = updateConfigItem('CHMOD', sprintf('0%o', $_zp_setup_chmod), $zp_cfg, false);
+		$zp_cfg = config::updateConfigItem('CHMOD', sprintf('0%o', $_zp_setup_chmod), $zp_cfg, false);
 		if (strpos($zp_cfg, "if (!defined('CHMOD_VALUE')) {") !== false) {
 			$zp_cfg = preg_replace("|if\s\(!defined\('CHMOD_VALUE'\)\)\s{\sdefine\(\'CHMOD_VALUE\'\,(.*)\);\s}|", "if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', " . $chmodval . "); }\n", $zp_cfg);
 		} else {
@@ -232,7 +232,7 @@ if ($updatechmod || $newconfig) {
 if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setup::XSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
-	$zp_cfg = updateConfigItem('FILESYSTEM_CHARSET', $fileset, $zp_cfg);
+	$zp_cfg = config::updateConfigItem('FILESYSTEM_CHARSET', $fileset, $zp_cfg);
 	$updatezp_config = true;
 }
 if ($updatezp_config) {
@@ -283,24 +283,24 @@ if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 				$selected_database = $preferred;
 				if ($preferred) {
 					$_zp_conf_vars['db_software'] = $preferred;
-					$zp_cfg = updateConfigItem('db_software', $preferred, $zp_cfg);
+					$zp_cfg = config::updateConfigItem('db_software', $preferred, $zp_cfg);
 					$updatezp_config = true;
 				}
 			}
 		} else {
 			$_zp_conf_vars['db_software'] = $selected_database = $preferred;
-			$zp_cfg = updateConfigItem('db_software', $zp_cfg, $preferred);
+			$zp_cfg = config::updateConfigItem('db_software', $zp_cfg, $preferred);
 			$updatezp_config = true;
 			$confDB = NULL;
 		}
 		if (!isset($_zp_conf_vars['mysql_port'])) { 
 			$_zp_conf_vars['mysql_port'] = 3306;
-			$zp_cfg = updateConfigItem('mysql_port', 3306, $zp_cfg);
+			$zp_cfg = config::updateConfigItem('mysql_port', 3306, $zp_cfg);
 			$updatezp_config = true;
 		}
 		if (!isset($_zp_conf_vars['mysql_socket'])) { 
 			$_zp_conf_vars['mysql_socket'] = '';
-			$zp_cfg = updateConfigItem('mysql_socket', '', $zp_cfg);
+			$zp_cfg = config::updateConfigItem('mysql_socket', '', $zp_cfg);
 			$updatezp_config = true;
 		}
 

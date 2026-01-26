@@ -8,7 +8,8 @@
 
 define ('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-config.php');
 
 $buttonlist[] = $button = maintenanceMode::getButtonDefinition();
 

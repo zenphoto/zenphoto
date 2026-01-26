@@ -7,7 +7,8 @@
 
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . '/admin-globals.php');
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-config.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-config.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 

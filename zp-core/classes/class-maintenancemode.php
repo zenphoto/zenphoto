@@ -61,14 +61,15 @@ class maintenanceMode {
 	 */
 	static function setState($state, $mutexobj = null) {
 		if (in_array($state, array('open', 'closed', 'closed_for_test'))) {
-			require_once SERVERPATH . '/' . ZENFOLDER . '/functions/functions-config.php';
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-config.php');
+			require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-config.php');
 			if (is_object($mutexobj)) {
 				$mutexobj->lock();
 			}
 			$zp_cfg = @file_get_contents(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
 			if ($zp_cfg) {
-				$zp_cfg = updateConfigItem('site_upgrade_state', $state, $zp_cfg);
-				storeConfig($zp_cfg);
+				$zp_cfg = config::updateConfigItem('site_upgrade_state', $state, $zp_cfg);
+				config::storeConfig($zp_cfg);
 			}
 			if (is_object($mutexobj)) {
 				$mutexobj->unlock();
