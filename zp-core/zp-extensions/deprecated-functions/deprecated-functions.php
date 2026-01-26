@@ -719,23 +719,23 @@ class internal_deprecations {
 class zpFunctions {
 
 	/**
-	 * @deprecated 2.0 Use getLanguageSubdomains()
+	 * @deprecated 2.0 Use i18n::getLanguageSubdomains()
 	 * @since 1.5
 	 * @see getLanguageSubdomains()
 	 */
 	static function LanguageSubdomains() {
 		internal_deprecations::LanguageSubdomains();
-		return getLanguageSubdomains();
+		return i18n::getLanguageSubdomains();
 	}
 
 	/**
-	 * @deprecated 2.0 Use getLanguageText()
+	 * @deprecated 2.0 Use i18n::getLanguageText()
 	 * @since 1.5
 	 * @see getLanguageText()
 	 */
 	static function getLanguageText($loc = NULL, $separator = NULL) {
 		internal_deprecations::getLanguageText();
-		return getLanguageText($loc, $separator);
+		return i18n::getLanguageText($loc, $separator);
 	}
 
 	/**

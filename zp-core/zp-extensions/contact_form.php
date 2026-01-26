@@ -340,7 +340,7 @@ class contactForm {
 			
 			// Quizes
 			if (contactForm::getQuizFieldQuestion('contactform_textquiz')) {
-				$textquiz_answer = strtolower(trim(get_language_string(getOption('contactform_textquiz_answer'))));
+				$textquiz_answer = strtolower(trim(i18n::getLanguageString(getOption('contactform_textquiz_answer'))));
 				$textquiz_answer_user = strtolower(trim($mailcontent['textquiz']));
 				if (empty($textquiz_answer_user) || $textquiz_answer_user != $textquiz_answer) {
 					$error[16] = gettext("the correct text quiz answer");
@@ -431,13 +431,13 @@ class contactForm {
 				$message .= "\n\n";
 
 				if (getOption('contactform_confirm')) {
-					$confirmtext = get_language_string(getOption("contactform_confirmtext"));
+					$confirmtext = i18n::getLanguageString(getOption("contactform_confirmtext"));
 					if (!$confirmtext) {
 						$confirmtext = gettext('<p>Please confirm that you really want to send this email. Thanks.</p>');
 					}
 					echo $confirmtext;
 					if (getOption('contactform_sendcopy')) {
-						echo get_language_string(getOption("contactform_sendcopy_text"));
+						echo i18n::getLanguageString(getOption("contactform_sendcopy_text"));
 					}
 					?>
 					<div>
@@ -509,13 +509,13 @@ class contactForm {
 				</div>
 				<?php
 			} else {
-				$thankstext = get_language_string(getOption("contactform_thankstext"));
+				$thankstext = i18n::getLanguageString(getOption("contactform_thankstext"));
 				if(!$thankstext) {
 					$thankstext = gettext('<p>Thanks for your message.</p>');
 				}
 				echo $thankstext;	
 			}
-			$newmessagelinktext = get_language_string(getOption('contactform_newmessagelink'));
+			$newmessagelinktext = i18n::getLanguageString(getOption('contactform_newmessagelink'));
 			if ($newmessagelinktext) {
 				$newmessagelinktext = gettext('Send another message.');
 			}
@@ -568,13 +568,13 @@ class contactForm {
 					);
 				}
 			}
-			$introtext = get_language_string(getOption("contactform_introtext"));
+			$introtext = i18n::getLanguageString(getOption("contactform_introtext"));
 			if (!$introtext) {
 				$introtext = gettext('<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 			}
 			echo $introtext;
 			if (getOption('contactform_sendcopy')) {
-				$sendcopytext = get_language_string(getOption("contactform_sendcopy_text"));
+				$sendcopytext = i18n::getLanguageString(getOption("contactform_sendcopy_text"));
 				if( !$sendcopytext) {
 					$sendcopytext = gettext('<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>');
 				}
@@ -761,8 +761,8 @@ class contactForm {
 			switch ($which) {
 				case 'contactform_textquiz':
 					if (getOption($which)) {
-						$question = trim(get_language_string(getOption('contactform_textquiz_question')));
-						$answer = trim(get_language_string(getOption('contactform_textquiz_question')));
+						$question = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
+						$answer = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
 						if (!empty($question) && !empty($answer)) {
 							return $question;
 						}
@@ -770,7 +770,7 @@ class contactForm {
 					break;
 				case 'contactform_mathquiz':
 					if (getOption($which)) {
-						$question = get_language_string(getOption('contactform_mathquiz_question'));
+						$question = i18n::getLanguageString(getOption('contactform_mathquiz_question'));
 						// filter in case a user entered invalid expression
 						$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
 						if (!empty($question_filtered)) {

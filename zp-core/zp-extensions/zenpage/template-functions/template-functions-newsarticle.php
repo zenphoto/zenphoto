@@ -160,7 +160,7 @@ function getContentShorten($text, $shorten, $shortenindicator = NULL, $readmore 
 		$shortenindicator = ZP_SHORTENINDICATOR;
 	}
 	if (is_null($readmore)) {
-		$readmore = get_language_string(ZP_READ_MORE);
+		$readmore = i18n::getLanguageString(ZP_READ_MORE);
 	}
 	if (!is_null($readmoreurl)) {
 		$readmorelink = '<p class="readmorelink"><a href="' . html_encode($readmoreurl) . '" title="' . html_encode($readmore) . '">' . html_encode($readmore) . '</a></p>';
@@ -225,7 +225,7 @@ function printNewsExtraContent() {
  */
 function getNewsReadMore() {
 	global $_zp_current_zenpage_news;
-	$readmore = get_language_string(ZP_READ_MORE);
+	$readmore = i18n::getLanguageString(ZP_READ_MORE);
 	return $readmore;
 }
 

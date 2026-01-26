@@ -216,11 +216,11 @@ function getItemTitleAndURL($item) {
 			'protected' => false, 
 			'theme' => $themename);
 	$valid = true;
-	$title = get_language_string($item['title']);
+	$title = i18n::getLanguageString($item['title']);
 	switch ($item['type']) {
 		case 'homepage':
 			$array = array(
-					"title" => get_language_string($item['title']), 
+					"title" => i18n::getLanguageString($item['title']), 
 					"url" => WEBPATH, 
 					"name" => WEBPATH, 
 					'public' => true,
@@ -229,7 +229,7 @@ function getItemTitleAndURL($item) {
 			break;
 		case "galleryindex":
 			$array = array(
-					"title" => get_language_string($item['title']), 
+					"title" => i18n::getLanguageString($item['title']), 
 					"url" => getGalleryIndexURL(), 
 					"name" => WEBPATH, 
 					'public' => true,
@@ -290,7 +290,7 @@ function getItemTitleAndURL($item) {
 			if(class_exists('zenpage')) {
 				$url = getNewsIndexURL();
 				$array = array(
-						"title" => get_language_string($item['title']), 
+						"title" => i18n::getLanguageString($item['title']), 
 						"url" => $url, 
 						"name" => $url, 
 						'public' => true,
@@ -341,7 +341,7 @@ function getItemTitleAndURL($item) {
 			break;
 		case "customlink":
 			$array = array(
-					"title" => get_language_string($item['title']), 
+					"title" => i18n::getLanguageString($item['title']), 
 					"url" => $item['link'], 
 					"name" => $item['link'], 
 					'open_newtab' => $item['open_newtab'], 
@@ -351,7 +351,7 @@ function getItemTitleAndURL($item) {
 			break;
 		case 'menulabel':
 			$array = array(
-					"title" => get_language_string($item['title']), 
+					"title" => i18n::getLanguageString($item['title']), 
 					"url" => NULL,
 					'name' => $item['title'],
 					'public' => true,
@@ -360,7 +360,7 @@ function getItemTitleAndURL($item) {
 			break;
 		default:
 			$array = array(
-					"title" => get_language_string($item['title']), 
+					"title" => i18n::getLanguageString($item['title']), 
 					"url" => $item['link'], 
 					"name" => $item['link'], 
 					'public' => true,
@@ -1059,7 +1059,7 @@ function createMenuIfNotExists($menuitems, $menuset = 'default') {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'), $key));
 					} else if (empty($result['link'])) {
-						$result['link'] = seoFriendly(get_language_string($result['title']));
+						$result['link'] = seoFriendly(i18n::getLanguageString($result['title']));
 					}
 					break;
 				case 'menulabel':

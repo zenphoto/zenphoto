@@ -178,31 +178,31 @@ class cookieConsent {
 	static function getJS() {
 		$message = gettext('This website uses cookies. By continuing to browse the site, you agree to our use of cookies.');
 		if (getOption('zpcookieconsent_message')) {
-			$message = get_language_string(getOption('zpcookieconsent_message'));
+			$message = i18n::getLanguageString(getOption('zpcookieconsent_message'));
 		}
 		$dismiss = gettext('Agree');
 		if (getOption('zpcookieconsent_buttonagree')) {
-			$dismiss = get_language_string(getOption('zpcookieconsent_buttonagree'));
+			$dismiss = i18n::getLanguageString(getOption('zpcookieconsent_buttonagree'));
 		}
 		$allow = gettext('Allow cookies');
 		if (getOption('zpcookieconsent_buttonallow')) {
-			$allow = get_language_string(getOption('zpcookieconsent_buttonallow'));
+			$allow = i18n::getLanguageString(getOption('zpcookieconsent_buttonallow'));
 		}
 		$decline = gettext('Decline');
 		if (getOption('zpcookieconsent_buttondecline')) {
-			$decline = get_language_string(getOption('zpcookieconsent_buttondecline'));
+			$decline = i18n::getLanguageString(getOption('zpcookieconsent_buttondecline'));
 		}
 		$policy = gettext('Cookie Policy');
 		if (getOption('zpcookieconsent_policy')) {
-			$policy  = get_language_string(getOption('zpcookieconsent_policy'));
+			$policy  = i18n::getLanguageString(getOption('zpcookieconsent_policy'));
 		}
 		$header = gettext('Cookies used on the website!');
 		if (getOption('zpcookieconsent_header')) {
-			$header = get_language_string(getOption('zpcookieconsent_header'));
+			$header = i18n::getLanguageString(getOption('zpcookieconsent_header'));
 		}
 		$dataprivacy_info = getDataUsageNotice();
 		if (getOption('zpcookieconsent_buttonlearnmore')) {
-			$learnmore = get_language_string(getOption('zpcookieconsent_buttonlearnmore'));
+			$learnmore = i18n::getLanguageString(getOption('zpcookieconsent_buttonlearnmore'));
 		} else {
 			$learnmore = $dataprivacy_info['linktext'];
 		}

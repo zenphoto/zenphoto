@@ -3,7 +3,7 @@ define('OFFSET_PATH', 3);
 require_once("../../../../functions/functions.php");
 ?>
 <!DOCTYPE html>
-<html<?php printLangAttribute(); ?>>
+<html<?php i18n::printLangAttribute(); ?>>
 <head>
 <title>TinyZenpage</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />

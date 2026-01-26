@@ -118,7 +118,7 @@ class userDataExport {
 					}
 					?>
 					<!DOCTYPE html>
-					<html<?php printLangAttribute(); ?>>
+					<html<?php i18n::printLangAttribute(); ?>>
 						<head>
 							<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 							<title><?php echo html_encode($title); ?></title></head>

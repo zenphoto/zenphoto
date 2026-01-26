@@ -46,7 +46,7 @@ class ZenpageItems extends ZenpageRoot {
 		if ($locale == 'all') {
 			return unTagURLs($text);
 		} else {
-			return applyMacros(unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(i18n::getLanguageString($text, $locale)));
 		}
 	}
 	
@@ -87,7 +87,7 @@ class ZenpageItems extends ZenpageRoot {
 		if ($locale == 'all') {
 			return unTagURLs($text);
 		} else {
-			return applyMacros(unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(i18n::getLanguageString($text, $locale)));
 		}
 	}
 

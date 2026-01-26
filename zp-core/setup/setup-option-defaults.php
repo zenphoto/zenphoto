@@ -614,7 +614,7 @@ while (count($vers) < 3) {
 	$vers[] = 0;
 }
 $zpversion = $vers[0] . '.' . $vers[1] . '.' . $vers[2];
-$_languages = generateLanguageList('all');
+$_languages = i18n::generateLanguageList('all');
 foreach ($_languages as $language => $dirname) {
 	if (!empty($dirname) && $dirname != 'en_US') {
 		$version = '';

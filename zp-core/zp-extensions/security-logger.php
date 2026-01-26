@@ -115,8 +115,8 @@ class security_logger {
 		if (empty($locale)) {
 			$locale = 'en_US';
 		}
-		$cur_locale = getUserLocale();
-		setupCurrentLocale($locale); //	the log will be in the language of the master user.
+		$cur_locale = i18n::getUserLocale();
+		i18n::setupCurrentLocale($locale); //	the log will be in the language of the master user.
 		switch ($action) {
 			case 'clear_log':
 				$type = gettext('Log reset');
@@ -227,7 +227,7 @@ class security_logger {
 			}
 		}
 		$_zp_mutex->unlock();
-		setupCurrentLocale($cur_locale); //	restore to whatever was in effect.
+		i18n::setupCurrentLocale($cur_locale); //	restore to whatever was in effect.
 	}
 
 	/**

@@ -233,7 +233,7 @@ class Administrator extends PersistentObject {
 		$result = array();
 		foreach ($this->objects as $object) {
 			if ($object['type'] == $what) {
-				$result[get_language_string($object['name'])] = $object['data'];
+				$result[i18n::getLanguageString($object['name'])] = $object['data'];
 			}
 		}
 		return $result;

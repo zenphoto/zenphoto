@@ -6,7 +6,7 @@ if (!defined('WEBPATH'))
 if (class_exists('favorites')) {
 	?>
 	<!DOCTYPE html>
-	<htm<?php printLangAttribute(); ?>>
+	<htm<?php i18n::printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php filter::applyFilter('theme_head'); ?>

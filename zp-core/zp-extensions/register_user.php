@@ -338,7 +338,7 @@ class registerUser {
 		if (registerUser::getQuizFieldQuestion('register_user_textquiz')) {
 			$textquiz_error = false;
 			if (isset($_POST['admin_textquiz'])) {
-				$textquiz_answer = strtolower(trim(strval(get_language_string(getOption('register_user_textquiz_answer')))));
+				$textquiz_answer = strtolower(trim(strval(i18n::getLanguageString(getOption('register_user_textquiz_answer')))));
 				$textquiz_answer_user = strtolower(trim(strval(sanitize($_POST['admin_textquiz']))));
 				if (empty($textquiz_answer_user) || $textquiz_answer_user != $textquiz_answer) {
 					$textquiz_error = true;
@@ -387,7 +387,7 @@ class registerUser {
 					$userobj->setObjects(NULL);
 					$userobj->setGroup('');
 					$userobj->setCustomData('');
-					$userobj->setLanguage(getUserLocale());
+					$userobj->setLanguage(i18n::getUserLocale());
 					if (extensionEnabled('userAddressFields')) {
 						$addresses = getOption('register_user_address_info');
 						$userinfo = registerUser::getUserInfo(0);
@@ -469,14 +469,14 @@ class registerUser {
 			default:
 			case 'verification':
 				$subject = sprintf(gettext('Registration confirmation required for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
-				$message = get_language_string(getOption('register_user_text'));
+				$message = i18n::getLanguageString(getOption('register_user_text'));
 				if (!$message) {
 					$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'To complete your registration visit %1$s');
 				}
 				break;
 			case 'authentication':
 				$subject = sprintf(gettext('Registration authenticated for the site %1$s (%2$s)'), getGalleryTitle(), FULLWEBPATH);
-				$message = get_language_string(getOption('register_user_text_auth'));
+				$message = i18n::getLanguageString(getOption('register_user_text_auth'));
 				if (!$message) {
 					$message = gettext('You have received this email because you registered with the user id %3$s on this site.' . "\n" . 'Your registration has been authenticated by an administrator.');
 				}
@@ -765,7 +765,7 @@ class registerUser {
 				$class = 'class="' . $class . '"';
 			}
 			if (is_null($linktext) && getOption('register_user_page_link')) {
-				$linktext = get_language_string(getOption('register_user_page_linktext'));
+				$linktext = i18n::getLanguageString(getOption('register_user_page_linktext'));
 				if (!$linktext) {
 					$linktext = gettext('Register');
 				}
@@ -791,8 +791,8 @@ class registerUser {
 			switch ($which) {
 				case 'register_user_textquiz':
 					if (getOption($which)) {
-						$question = trim(get_language_string(getOption('register_user_textquiz_question')));
-						$answer = trim(get_language_string(getOption('register_user_textquiz_question')));
+						$question = trim(i18n::getLanguageString(getOption('register_user_textquiz_question')));
+						$answer = trim(i18n::getLanguageString(getOption('register_user_textquiz_question')));
 						if (!empty($question) && !empty($answer)) {
 							return $question;
 						}
@@ -800,7 +800,7 @@ class registerUser {
 					break;
 				case 'register_user_mathquiz':
 					if (getOption($which)) {
-						$question = get_language_string(getOption('register_user_mathquiz_question'));
+						$question = i18n::getLanguageString(getOption('register_user_mathquiz_question'));
 						// filter in case a user entered invalid expression
 						$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
 						if (!empty($question_filtered)) {

@@ -57,7 +57,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		}
 	} else {
 		if (!$permalink) { //	allow the title link to change.
-			$link = seoFriendly(get_language_string($title));
+			$link = seoFriendly(i18n::getLanguageString($title));
 			if (!empty($link)) {
 				$titlelink = $link;
 			}
@@ -115,7 +115,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	if ($newarticle) {
 		$msg = filter::applyFilter('new_article', '', $article);
 		if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
 		} else {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
 		}
@@ -124,7 +124,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
 		} else if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
 		} else {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
 		}
@@ -174,7 +174,7 @@ function printArticleCategories($obj) {
     if ($number != 1) {
       echo ", ";
     }
-    echo get_language_string($cats['title']);
+    echo i18n::getLanguageString($cats['title']);
   }
 }
 
@@ -191,7 +191,7 @@ function printPageArticleTags($obj) {
 		if ($number != 1) {
 			echo ", ";
 		}
-		echo get_language_string($tag);
+		echo i18n::getLanguageString($tag);
 	}
 }
 

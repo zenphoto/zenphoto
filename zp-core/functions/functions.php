@@ -20,13 +20,13 @@ require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-_zp_html_cache.php')
 $_zp_captcha = new _zp_captcha(); // this will be overridden by the plugin if enabled.
 $_zp_html_cache = new _zp_HTML_cache(); // this will be overridden by the plugin if enabled.
 //setup session before checking for logon cookie
-require_once(dirname(__FILE__) . '/functions-i18n.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/definitions-i18n.php');
 
 if (GALLERY_SESSION) {
 	zp_session_start();
 }
 
-define('ZENPHOTO_LOCALE', setMainDomain());
+define('ZENPHOTO_LOCALE', i18n::setMainDomain());
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/load_objectClasses.php');
 
@@ -334,7 +334,7 @@ function zpFormattedDate($format = '', $datetime = '', $localized_date = null) {
 			//custom date we expect to be ICU format already
 			$localized_format = $format_converted;
 		}
-		$fdate = getFormattedLocaleDate($localized_format, $datetime);
+		$fdate = i18n::getFormattedLocaleDate($localized_format, $datetime);
 	} else {
 		// no support for preferred locale dates here so use generic fallback
 		if (in_array($format_converted, $locale_preferred)) { 
@@ -538,7 +538,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		if (filter::hasFilter('sendmail')) {
 
 			$from_mail = getOption('site_email');
-			$from_name = get_language_string(getOption('site_email_name'));
+			$from_name = i18n::getLanguageString(getOption('site_email_name'));
 
 			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
@@ -591,7 +591,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 function sortByMultilingual($dbresult, $field, $descending) {
 	$temp = array();
 	foreach ($dbresult as $key => $row) {
-		$temp[$key] = get_language_string($row[$field]);
+		$temp[$key] = i18n::getLanguageString($row[$field]);
 	}
 	sortArray($temp);
 	if ($descending) {
@@ -823,7 +823,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 		if ($currentvalues) {
 			while ($albumitem = $_zp_db->fetchAssoc($currentvalues)) {
 				$folder = $albumitem['folder'];
-				$name = get_language_string($albumitem['title']);
+				$name = i18n::getLanguageString($albumitem['title']);
 				if ($type && !$rights) {
 					$cv[$name] = $folder;
 				} else {
@@ -841,7 +841,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 		if ($currentvalues) {
 			while ($item = $_zp_db->fetchAssoc($currentvalues)) {
 				if ($type) {
-					$cv[get_language_string($item['title'])] = $item['titlelink'];
+					$cv[i18n::getLanguageString($item['title'])] = $item['titlelink'];
 				} else {
 					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'pages');
 				}
@@ -857,7 +857,7 @@ function populateManagedObjectsList($type, $id, $rights = false) {
 		if ($currentvalues) {
 			while ($item = $_zp_db->fetchAssoc($currentvalues)) {
 				if ($type) {
-					$cv[get_language_string($item['title'])] = $item['titlelink'];
+					$cv[i18n::getLanguageString($item['title'])] = $item['titlelink'];
 				} else {
 					$cv[] = array('data' => $item['titlelink'], 'name' => $item['title'], 'type' => 'news');
 				}
@@ -1521,7 +1521,7 @@ function sortMultiArray($array, $index, $descending = false, $natsort = true, $c
 			$temp[$key] = '';
 			foreach ($indicies as $index) {
 				if (is_array($row) && array_key_exists($index, $row)) {
-					$temp[$key] .= get_language_string($row[$index]) . $separator;
+					$temp[$key] .= i18n::getLanguageString($row[$index]) . $separator;
 					if (in_array($index, $remove_criteria)) {
 						unset($array[$key][$index]);
 					}
@@ -1563,7 +1563,7 @@ function sortArray(&$array, $descending = false, $natsort = true, $case_sensitiv
 	if (is_array($array) && count($array) > 0) {
 		if ($natsort) {
 			if (class_exists('collator')) {
-				$locale = getUserLocale();
+				$locale = i18n::getUserLocale();
 				$collator = new Collator($locale);
 				if ($case_sensitive) {
 					$collator->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
@@ -2519,18 +2519,15 @@ function read_exif_data_protected($path) {
 /**
  *
  * fetches the path to the flag image
+ * 
+ * @deprecated 2.0 Use i18n::getLanguageFlag()
+ * 
  * @param string $lang whose flag
  * @return string
  */
 function getLanguageFlag($lang) {
-	if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png')) {
-		$flag = WEBPATH . '/' . USER_PLUGIN_FOLDER . '/locale/' . $lang . '/flag.png';
-	} else if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png')) {
-		$flag = WEBPATH . '/' . ZENFOLDER . '/locale/' . $lang . '/flag.png';
-	} else {
-		$flag = WEBPATH . '/' . ZENFOLDER . '/locale/missing_flag.png';
-	}
-	return $flag;
+	deprecationNotice(gettext('Use i18n::getLanguageFlag()'));
+	return i18n::getLanguageFlag($lang);
 }
 
 /**
@@ -3075,8 +3072,8 @@ function removeTrailingSlash($string) {
  */
 function getDataUsageNotice() {
 	$array = array('notice' => '', 'url' => '', 'linktext' => '');
-	$array['linktext'] = get_language_string(getOption('dataprivacy_policy_customlinktext'));
-	$array['notice'] = get_language_string(getOption('dataprivacy_policy_notice'));
+	$array['linktext'] = i18n::getLanguageString(getOption('dataprivacy_policy_customlinktext'));
+	$array['notice'] = i18n::getLanguageString(getOption('dataprivacy_policy_notice'));
 	$custompage = trim(strval(getOption('dataprivacy_policy_custompage')));
 	$zenpage_page = '';
 	if (empty($array['notice'])) {

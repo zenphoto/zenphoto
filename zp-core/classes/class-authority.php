@@ -1153,7 +1153,7 @@ class Authority {
 							var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">' .
-									'<option value="0">' . html_encode(get_language_string($_zp_gallery->getTitle())) . '</option>';
+									'<option value="0">' . html_encode(i18n::getLanguageString($_zp_gallery->getTitle())) . '</option>';
 					$c = 0;
 					foreach ($alt_handlers as $handler => $details) {
 						$c++;

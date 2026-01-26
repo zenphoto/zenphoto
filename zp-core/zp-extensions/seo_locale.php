@@ -68,7 +68,7 @@ class seo_locale {
 				$l = substr($path, 0, $rest);
 			}
 		}
-		$locale = validateLocale($l, 'seo_locale');
+		$locale = i18n::validateLocale($l, 'seo_locale');
 		if ($locale) {
 			// set the language cookie and redirect to the "base" url
 			zp_setCookie('dynamic_locale', $locale);
@@ -88,7 +88,7 @@ class seo_locale {
 		} else {
 			$path = WEBPATH;
 		}
-		if ($locale = getLanguageText($loc)) {
+		if ($locale = i18n::getLanguageText($loc)) {
 			$path .= '/' . $locale;
 		}
 		return $path;

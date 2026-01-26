@@ -432,7 +432,7 @@ function getHeadTitle($separator = ' | ', $listparentalbums = false, $listparent
 				if ($_zp_myfavorites->instance) {
 					$instance = ' [' . $_zp_myfavorites->instance . ']';
 				} 
-				$favorites_title = get_language_string(getOption('favorites_title'));
+				$favorites_title = i18n::getLanguageString(getOption('favorites_title'));
 				if (!$favorites_title) {
 					$favorites_title =  gettext('My favorites');
 				}
@@ -809,7 +809,7 @@ function checkForGuest(&$hint = NULL, &$show = NULL) {
 		$hash = getOption('search_password');
 		$user = getOption('search_user');
 		$show = (!empty($user));
-		$hint = get_language_string(getOption('search_hint'));
+		$hint = i18n::getLanguageString(getOption('search_hint'));
 		$authType = 'zpcms_auth_search';
 		if (empty($hash)) {
 			$hash = $_zp_gallery->getPassword();

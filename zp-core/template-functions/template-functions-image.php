@@ -236,7 +236,7 @@ function getImageData($field) {
 	if (!in_context(ZP_IMAGE))
 		return false;
 	global $_zp_current_image;
-	return get_language_string($_zp_current_image->get($field));
+	return i18n::getLanguageString($_zp_current_image->get($field));
 }
 
 /**

@@ -440,7 +440,7 @@ class setup {
 	 * prints the language selector
 	 */
 	static function languageSelector() {
-		$languages = generateLanguageList();
+		$languages = i18n::generateLanguageList();
 		if (isset($_REQUEST['locale'])) {
 			$locale = sanitize($_REQUEST['locale']);
 			if (getOption('locale') != $locale || getOption('unsupported_' . $locale)) {
@@ -459,7 +459,7 @@ class setup {
 		?>
 		<ul class="sflags">
 			<?php
-			$_languages = generateLanguageList();
+			$_languages = i18n::generateLanguageList();
 			ksort($_languages, SORT_LOCALE_STRING);
 			$currentValue = getOption('locale');
 			foreach ($_languages as $text => $lang) {

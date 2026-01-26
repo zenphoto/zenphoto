@@ -110,7 +110,7 @@ class ThemeOptions {
 		$unpublishedpages = $_zp_db->queryFullArray("SELECT title,titlelink FROM " . $_zp_db->prefix('pages') . " WHERE `show` != 1 ORDER by `sort_order`");
 		$list = array();
 		foreach ($unpublishedpages as $page) {
-			$list[get_language_string($page['title'])] = $page['titlelink'];
+			$list[i18n::getLanguageString($page['title'])] = $page['titlelink'];
 		}
 		return array(gettext('Allow search') => array(
 						'key' => 'Allow_search',

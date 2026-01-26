@@ -232,12 +232,11 @@ class feed {
 	/**
 	 * Validates and gets the "lang" parameter option value 
 	 * 
-	 * @global array $_zp_active_languages
 	 * @return string
 	 */
 	protected function getLang() {
 		if (isset($this->options['lang'])) {
-			$langs = generateLanguageList();
+			$langs = i18n::generateLanguageList();
 			$valid = array_values($langs);
 			if (in_array($this->options['lang'], $valid)) {
 				return $this->options['lang'];
@@ -618,13 +617,13 @@ class feed {
 		$categories = '';
 		$feeditem['enclosure'] = '';
 		$obj = new ZenpageNews($item['titlelink']);
-		$title = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
+		$title = $feeditem['title'] = i18n::getLanguageString($obj->getTitle('all'), $this->locale);
 		$link = $obj->getLink(FULLWEBPATH);
 		$plaincategories = $obj->getCategories();
 		$categories = '';
 		foreach ($plaincategories as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
-			$categories .= get_language_string($catobj->getTitle('all'), $this->locale) . ', ';
+			$categories .= i18n::getLanguageString($catobj->getTitle('all'), $this->locale) . ', ';
 		}
 		$categories = rtrim($categories, ', ');
 		$feeditem['desc'] = shortenContent($obj->getContent($this->locale), getOption('RSS_truncate_length'), '...');
@@ -648,7 +647,7 @@ class feed {
 	 */
 	protected function getItemPages($item, $len) {
 		$obj = new ZenpagePage($item['titlelink']);
-		$feeditem['title'] = $feeditem['title'] = get_language_string($obj->getTitle('all'), $this->locale);
+		$feeditem['title'] = $feeditem['title'] = i18n::getLanguageString($obj->getTitle('all'), $this->locale);
 		$feeditem['link'] = $obj->getLink(FULLWEBPATH);
 		$desc = $obj->getContent($this->locale);
 		$desc = str_replace('//<![CDATA[', '', $desc);
@@ -678,11 +677,11 @@ class feed {
 		$obj = null;
 		switch ($item['type']) {
 			case 'images':
-				$title = get_language_string($item['title']);
+				$title = i18n::getLanguageString($item['title']);
 				$obj = Image::newImage(NULL, array('folder' => $item['folder'], 'filename' => $item['filename']));
 				$link = $obj->getLink(FULLWEBPATH);
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$category = get_language_string($item['albumtitle']);
+				$category = i18n::getLanguageString($item['albumtitle']);
 				$title = $category . ": " . $title;
 				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
@@ -690,7 +689,7 @@ class feed {
 				$obj = AlbumBase::newAlbum($item['folder']);
 				$link = rtrim($obj->getLink(1, FULLWEBPATH), '/');
 				$feeditem['pubdate'] = date("r", strtotime($item['date']));
-				$title = get_language_string($item['albumtitle']);
+				$title = i18n::getLanguageString($item['albumtitle']);
 				$commentpath = $link . "#zp_comment_id_" . $item['id'];
 				break;
 			case 'news':
@@ -698,7 +697,7 @@ class feed {
 				if (extensionEnabled('zenpage')) {
 					$feeditem['pubdate'] = date("r", strtotime($item['date']));
 					$category = '';
-					$title = get_language_string($item['title']);
+					$title = i18n::getLanguageString($item['title']);
 					$titlelink = $item['titlelink'];
 					if ($item['type'] == 'news') {
 						$obj = new ZenpageNews($titlelink);

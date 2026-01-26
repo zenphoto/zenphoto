@@ -329,14 +329,14 @@ echo '</head>' . "\n";
 													$pages = $_zp_zenpage->getPages(false);
 													foreach ($pages as $page) {
 														if (!$page['parentid']) {
-															$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+															$pagelist[i18n::getLanguageString($page['title'])] = $page['titlelink'];
 														}
 													}
 													printManagedObjects('pages', $pagelist, '', $groupobj, $id, $kind, NULL);
 													$newslist = array();
 													$categories = $_zp_zenpage->getAllCategories(false);
 													foreach ($categories as $category) {
-														$newslist[get_language_string($category['title'])] = $category['titlelink'];
+														$newslist[i18n::getLanguageString($category['title'])] = $category['titlelink'];
 													}
 													printManagedObjects('news', $newslist, '', $groupobj, $id, $kind, NULL);
 												}

@@ -1089,7 +1089,7 @@ class xmpMetadata {
 			if (getOption('xmpMetadata_exportmultilingual')) {
 				$v = self::encode($object->get($field));
 			} else {
-				$v = self::encode(get_language_string($object->get($field)));
+				$v = self::encode(i18n::getLanguageString($object->get($field)));
 			}
 			$tag = $elementXML;
 			switch ($elementXML) {

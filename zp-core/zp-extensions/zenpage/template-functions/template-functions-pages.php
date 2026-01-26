@@ -379,7 +379,7 @@ function printPageURL($linktext = NULL, $titlelink = NULL, $prev = '', $next = '
 function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shortenindicator = NULL) {
 	global $_zp_current_zenpage_page;
 	if (is_null($readmore)) {
-		$readmore = get_language_string(ZP_READ_MORE);
+		$readmore = i18n::getLanguageString(ZP_READ_MORE);
 	}
 	$pages = $_zp_current_zenpage_page->getPages();
 	$subcount = 0;

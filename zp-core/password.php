@@ -1,6 +1,6 @@
 <?php if (!defined('WEBPATH')) die(); ?>
 <!DOCTYPE html>
-<html<?php printLangAttribute(); ?>>
+<html<?php i18n::printLangAttribute(); ?>>
 	<head>
 		<?php filter::applyFilter('theme_head'); ?>
 		<title><?php echo gettext("Password required"); ?></title>

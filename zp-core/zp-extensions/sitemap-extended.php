@@ -391,7 +391,7 @@ class sitemap {
 			$toplevelpages = $_zp_gallery->getTotalPages();
 			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-			$sitemap_locales = generateLanguageList();
+			$sitemap_locales = i18n::generateLanguageList();
 			$changefreq = sitemap::getChangefreq(getOption('sitemap_changefreq_index'));
 			// normal index/homepage we need in any case always
 			$date = sitemap::getISO8601Date();
@@ -515,7 +515,7 @@ class sitemap {
 	static function getAlbums() {
 		global $_zp_gallery, $_zp_sitemap_number;
 		$data_start = $data = '';
-		$sitemap_locales = generateLanguageList();
+		$sitemap_locales = i18n::generateLanguageList();
 		$albumchangefreq = getOption('sitemap_changefreq_albums');
 		$imagechangefreq = getOption('sitemap_changefreq_images');
 		$albumlastmod = getOption('sitemap_lastmod_albums');
@@ -598,7 +598,7 @@ class sitemap {
 	static function getImages() {
 		global $_zp_gallery, $_zp_sitemap_number;
 		$data_start = $data = '';
-		$sitemap_locales = generateLanguageList();
+		$sitemap_locales = i18n::generateLanguageList();
 		$imagechangefreq = getOption('sitemap_changefreq_images');
 		$imagelastmod = getOption('sitemap_lastmod_images');
 		$limit = sitemap::getDBLimit(1);
@@ -757,7 +757,7 @@ class sitemap {
 		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
 			$limit = sitemap::getDBLimit(2);
-			$sitemap_locales = generateLanguageList();
+			$sitemap_locales = i18n::generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_pages');
 			$pages = $_zp_zenpage->getPages(true);
 			if ($pages) {
@@ -811,7 +811,7 @@ class sitemap {
 			$data = '';
 			$data .= sitemap::echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap::echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-			$sitemap_locales = generateLanguageList();
+			$sitemap_locales = i18n::generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_newsindex');
 			$date = sitemap::getISO8601Date();
 			switch (SITEMAP_LOCALE_TYPE) {
@@ -878,7 +878,7 @@ class sitemap {
 		//not splitted into several sitemaps yet
 		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
-			$sitemap_locales = generateLanguageList();
+			$sitemap_locales = i18n::generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_news');
 			$articles = $_zp_zenpage->getArticles('', 'published', true, "date", "desc");
 			if ($articles) {
@@ -926,7 +926,7 @@ class sitemap {
 		//TODO not splitted into several sitemaps yet
 		if ($_zp_sitemap_number == 1) {
 			$data_start = $data = '';
-			$sitemap_locales = generateLanguageList();
+			$sitemap_locales = i18n::generateLanguageList();
 			$changefreq = getOption('sitemap_changefreq_newscats');
 			$newscats = $_zp_zenpage->getAllCategories();
 			if ($newscats) {

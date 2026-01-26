@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 if (function_exists('printSlideShow')) {
 ?>
 <!DOCTYPE html>
-<html<?php printLangAttribute(); ?>>
+<html<?php i18n::printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php filter::applyFilter('theme_head'); ?>

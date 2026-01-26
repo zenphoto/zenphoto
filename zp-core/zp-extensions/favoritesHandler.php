@@ -328,13 +328,13 @@ if (OFFSET_PATH) {
 
 			$v = 1;
 			if (is_null($add)) {
-				$add = get_language_string(getOption('favorites_add_button'));
+				$add = i18n::getLanguageString(getOption('favorites_add_button'));
 				if (!$add) {
 					$add = gettext('Add favorite');
 				}
 			}
 			if (is_null($remove)) {
-				$remove = get_language_string(getOption('favorites_remove_button'));
+				$remove = i18n::getLanguageString(getOption('favorites_remove_button'));
 				if (!$remove) {
 					$remove = gettext('Remove favorite');
 				}
@@ -426,7 +426,7 @@ if (OFFSET_PATH) {
 			global $_zp_myfavorites;
 			if (zp_loggedin()) {
 				if (is_null($text)) {
-					$text = get_language_string(getOption('favorites_linktext'));
+					$text = i18n::getLanguageString(getOption('favorites_linktext'));
 					if (!$text) {
 						$text = gettext('My favorites');
 					}

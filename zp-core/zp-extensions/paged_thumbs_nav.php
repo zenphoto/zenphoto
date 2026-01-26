@@ -149,7 +149,7 @@ class pagedThumbsNav {
 			$this->height = $height;
 		}
 		if (empty($prev)) {
-			$prevtext = get_language_string(getOption("pagedthumbs_prevtext"));
+			$prevtext = i18n::getLanguageString(getOption("pagedthumbs_prevtext"));
 			if (!$prevtext) {
 				$prevtext = gettext('« prev thumbs');
 			}
@@ -158,7 +158,7 @@ class pagedThumbsNav {
 			$this->prev = html_decode($prev);
 		}
 		if (empty($next)) {
-			$nexttext = get_language_string(getOption("pagedthumbs_nexttext"));
+			$nexttext = i18n::getLanguageString(getOption("pagedthumbs_nexttext"));
 			if (!$nexttext) {
 				$nexttext = gettext('next thumbs »');
 			}

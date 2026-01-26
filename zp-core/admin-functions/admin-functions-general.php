@@ -187,12 +187,11 @@
 	 * @param int $rows set to the number of rows to show.
 	 */
 	function print_language_string_list($dbstring, $name, $textbox = false, $locale = NULL, $edit = '', $wide = TEXT_INPUT_SIZE, $ulclass = 'language_string_list', $rows = 6) {
-		global $_zp_active_languages, $_zp_current_locale;
 		$dbstring = unTagURLs($dbstring);
 		if (!empty($edit))
 			$edit = ' class="' . $edit . '"';
 		if (is_null($locale)) {
-			$locale = getUserLocale();
+			$locale = i18n::getUserLocale();
 		}
 		$strings = getSerializedArray($dbstring);
 		if (count($strings) == 1) {
@@ -202,7 +201,7 @@
 				$strings = array($locale => array_shift($strings));
 			}
 		}
-		$activelang = generateLanguageList();
+		$activelang = i18n::generateLanguageList();
 		$inactivelang = array();
 		$activelang_locales = array_values($activelang);
 		foreach ($strings as $key => $content) {
@@ -227,8 +226,8 @@
 			}
 
 			// put the language list in perferred order
-			$preferred = array($_zp_current_locale);
-			foreach (parseHttpAcceptLanguage() as $lang) {
+			$preferred = array(i18n::getUserLocale());
+			foreach (i18n::parseHttpAcceptLanguage() as $lang) {
 				$preferred[] = str_replace('-', '_', $lang['fullcode']);
 			}
 			$preferred = array_unique($preferred);
@@ -356,7 +355,7 @@
 	 * @return string
 	 */
 	function process_language_string_save($name, $sanitize_level = 3) {
-		$languages = generateLanguageList();
+		$languages = i18n::generateLanguageList();
 		$l = strlen($name) + 1;
 		$strings = array();
 		foreach ($_POST as $key => $value) {
@@ -410,7 +409,7 @@
 							<?php
 						}
 						?>
-						<label title="<?php echo html_encode(get_language_string($right['hint'])); ?>">
+						<label title="<?php echo html_encode(i18n::getLanguageString($right['hint'])); ?>">
 							<input type="checkbox" name="<?php echo $id . '-' . $rightselement; ?>" id="<?php echo $rightselement . '-' . $id; ?>" class="user-<?php echo $id; ?>"
 										 value="<?php echo $right['value']; ?>"<?php
 				if ($rights & $right['value'])
@@ -1272,12 +1271,12 @@ function getPageSelector($list, $itmes_per_page, $diff = 'fullText') {
 	if ($pages > 1) {
 		$ranges = array();
 		for ($page = 0; $page < $pages; $page++) {
-			$ranges[$page]['start'] = strtolower(strval(get_language_string($list[$page * $itmes_per_page])));
+			$ranges[$page]['start'] = strtolower(strval(i18n::getLanguageString($list[$page * $itmes_per_page])));
 			$last = (int) ($page * $itmes_per_page + $itmes_per_page - 1);
 			if (array_key_exists($last, $list)) {
-				$ranges[$page]['end'] = strtolower(strval(get_language_string($list[$last])));
+				$ranges[$page]['end'] = strtolower(strval(i18n::getLanguageString($list[$last])));
 			} else {
-				$ranges[$page]['end'] = strtolower(strval(get_language_string(@array_pop($list))));
+				$ranges[$page]['end'] = strtolower(strval(i18n::getLanguageString(@array_pop($list))));
 			}
 		}
 		$last = '';

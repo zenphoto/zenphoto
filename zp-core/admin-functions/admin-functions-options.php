@@ -127,7 +127,7 @@
 									print_language_string_list($v, $key, $type, NULL, $editor);
 								} else {
 									if ($type == OPTION_TYPE_TEXTAREA || $type == OPTION_TYPE_RICHTEXT) {
-										$v = get_language_string($v); // just in case....
+										$v = i18n::getLanguageString($v); // just in case....
 										?>
 										<textarea id="<?php echo $key; ?>"<?php if ($type == OPTION_TYPE_RICHTEXT) echo ' class="texteditor"'; ?> name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php echo html_encode($v); ?></textarea>
 										<?php
@@ -575,7 +575,7 @@ function getZenpagePagesOptionsArray($published = false) {
 						$sublevel .= '-';
 					}
 				}
-				$pages[$sublevel . get_language_string($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
+				$pages[$sublevel . i18n::getLanguageString($zenpagepage['title']) . $unpublished_note] = $zenpagepage['titlelink'];
 			}
 		}
 	}

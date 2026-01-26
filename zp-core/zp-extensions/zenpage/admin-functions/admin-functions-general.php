@@ -646,7 +646,7 @@ function printPublishIconLink($obj, $type = '', $linkback = '') {
 	 * @return type
 	 */
 	function createTitlelink($title, $date) {
-		$titlelink = seoFriendly(get_language_string($title));
+		$titlelink = seoFriendly(i18n::getLanguageString($title));
 		if (empty($titlelink)) {
 			$titlelink = seoFriendly($date);
 		}

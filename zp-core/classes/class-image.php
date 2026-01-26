@@ -926,7 +926,7 @@ class Image extends MediaObject {
 	function getLocation($locale = NULL) {
 		$text = $this->get('location');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -949,7 +949,7 @@ class Image extends MediaObject {
 	function getCity($locale = NULL) {
 		$text = $this->get('city');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -972,7 +972,7 @@ class Image extends MediaObject {
 	function getState($locale = NULL) {
 		$text = $this->get('state');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -995,7 +995,7 @@ class Image extends MediaObject {
 	function getCountry($locale = NULL) {
 		$text = $this->get('country');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -1018,7 +1018,7 @@ class Image extends MediaObject {
 	function getCredit($locale = NULL) {
 		$text = $this->get('credit');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -1041,7 +1041,7 @@ class Image extends MediaObject {
 	function getCopyright($locale = NULL) {
 		$text = $this->get('copyright');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;
@@ -1086,7 +1086,7 @@ class Image extends MediaObject {
 			}
 		}
 		if (!empty(trim($notice))) {
-			$notice = unTagURLs(get_language_string($notice, $locale));
+			$notice = unTagURLs(i18n::getLanguageString($notice, $locale));
 		}
 		return $notice;
 	}

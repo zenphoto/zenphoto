@@ -384,7 +384,7 @@ if (function_exists('setOption')) {
 	require_once(dirname(__FILE__) . '/setup-primitive.php');
 	require_once(dirname(dirname(__FILE__)) . '/classes/class-filter.php');
 	require_once(dirname(dirname(__FILE__)) . '/deprecated/functions-filter.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions/functions-i18n.php');
+	require_once(dirname(dirname(__FILE__)) . '/definitions-i18n.php');
 }
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
@@ -446,7 +446,7 @@ if ($setup_checked) {
 if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_result)) {
 	if (DEBUG_LOCALE)
 		debugLog('Setup checking locale');
-	$_zp_setupCurrentLocale_result = setMainDomain();
+	$_zp_setupCurrentLocale_result = i18n::setMainDomain();
 	if (DEBUG_LOCALE)
 		debugLog('$_zp_setupCurrentLocale_result = ' . $_zp_setupCurrentLocale_result);
 }

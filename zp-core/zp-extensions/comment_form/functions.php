@@ -334,7 +334,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	
 	// Quizes
 	if ($whattocheck & COMMENT_TEXTQUIZ) {
-		$textquiz_answer = strtolower(trim(get_language_string(getOption('comment_form_textquiz_answer'))));
+		$textquiz_answer = strtolower(trim(i18n::getLanguageString(getOption('comment_form_textquiz_answer'))));
 		$textquiz_answer_user = strtolower(trim($textquiz_answer_user));
 		if (empty($textquiz_answer_user) || $textquiz_answer != $textquiz_answer_user) {
 			$commentobj->setInModeration(-8);
@@ -1299,8 +1299,8 @@ function getQuizFieldQuestion($which = '') {
 		switch ($which) {
 			case 'comment_form_textquiz':
 				if (getOption($which)) {
-					$question = trim(get_language_string(getOption('comment_form_textquiz_question')));
-					$answer = trim(get_language_string(getOption('comment_form_textquiz_question')));
+					$question = trim(i18n::getLanguageString(getOption('comment_form_textquiz_question')));
+					$answer = trim(i18n::getLanguageString(getOption('comment_form_textquiz_question')));
 					if (!empty($question) && !empty($answer)) {
 						return $question;
 					}
@@ -1308,7 +1308,7 @@ function getQuizFieldQuestion($which = '') {
 				break;
 			case 'comment_form_mathquiz':
 				if (getOption($which)) {
-					$question = get_language_string(getOption('comment_form_mathquiz_question'));
+					$question = i18n::getLanguageString(getOption('comment_form_mathquiz_question'));
 					// filter in case a user entered invalid expression
 					$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
 					if (!empty($question_filtered)) {

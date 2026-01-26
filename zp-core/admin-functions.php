@@ -62,8 +62,6 @@ define('OPTION_TYPE_NOTE', 10);
 define('OPTION_TYPE_PASSWORD', 11);
 define('OPTION_TYPE_RICHTEXT', 12);
 
-$_zp_current_locale = NULL;
-
 require_once dirname(__FILE__) . '/classes/class-update.php';
 require_once dirname(__FILE__) . '/admin-functions/admin-functions-options.php';
 require_once dirname(__FILE__) . '/admin-functions/admin-functions-layout.php';

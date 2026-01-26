@@ -895,7 +895,7 @@ class adminGalleryStats {
 			$name = $item['titlelink'];
 		} else if ($this->type === "newscategories") {
 			// MERGE: this isn't get_language_string upstream; is it needed?
-			$name = get_language_string($item['titlelink']);
+			$name = i18n::getLanguageString($item['titlelink']);
 		} else if ($this->type === "tags") {
 			$name = "";
 		} else if($this->type === 'downloads' || $this->type === 'rss') {
@@ -930,7 +930,7 @@ class adminGalleryStats {
 				$data['thumb'] = getAdminThumbHTML($albumthumb, 'small');
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?album=" . $name;
-				$data['title'] = get_language_string($item['title']);
+				$data['title'] = i18n::getLanguageString($item['title']);
 				break;
 			case "images":
 				if ($item['albumid']) {
@@ -942,12 +942,12 @@ class adminGalleryStats {
 						if ($getalbumfolder['show'] != "1") {
 							$value = $value . " class='unpublished_item'";
 						}
-						$value = $value . ">" . get_language_string($getalbumfolder['title']) . "</span> (" . $getalbumfolder['folder'] . ")";
+						$value = $value . ">" . i18n::getLanguageString($getalbumfolder['title']) . "</span> (" . $getalbumfolder['folder'] . ")";
 					}
 					//$editurl = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;image=" . $item['filename'] . "&amp;tab=imageinfo#IT";
 					$data['editurl'] = WEBPATH . '/' . ZENFOLDER . "/admin-edit.php?page=edit&amp;album=" . $getalbumfolder['folder'] . "&amp;singleimage=" . $item['filename'] . "&amp;tab=imageinfo&amp;pagenumber=1";
 					$data['viewurl'] = WEBPATH . "/index.php?album=" . $getalbumfolder['folder'] . "&amp;image=" . $name;
-					$data['title'] = get_language_string($item['title']);
+					$data['title'] = i18n::getLanguageString($item['title']);
 					$data['thumb'] = '<a href="' . $imageobject->getFullImageURL() . '" class="colorbox" title="' . gettext('Preview') . $data['title'] . '(' . $name . ')">' . getAdminThumbHTML($imageobject, 'small') . '</a>';
 				}
 				break;
@@ -957,17 +957,17 @@ class adminGalleryStats {
 			case "pages":
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?page&amp;titlelink=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?p=pages&amp;title=" . $name;
-				$data['title'] = get_language_string($item['title']);
+				$data['title'] = i18n::getLanguageString($item['title']);
 				break;
 			case "news":
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newsarticle&amp;titlelink=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?p=news&amp;title=" . $name;
-				$data['title'] = get_language_string($item['title']);
+				$data['title'] = i18n::getLanguageString($item['title']);
 				break;
 			case "newscategories":
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . "/zenpage/admin-edit.php?newscategory&amp;titlelink=" . $name;
 				$data['viewurl'] = WEBPATH . "/index.php?p=news&amp;category=" . $name;
-				$data['title'] = get_language_string($item['title']);
+				$data['title'] = i18n::getLanguageString($item['title']);
 				break;
 			case "tags":
 				$data['editurl'] = WEBPATH . '/' . ZENFOLDER . "/admin-tags.php";

@@ -75,7 +75,7 @@ class matomoStats {
 
 	function getOptionsSupported() {
 		$langs = $langs_list = array();
-		$langs_list = generateLanguageList();
+		$langs_list = i18n::generateLanguageList();
 		foreach ($langs_list as $text => $lang) {
 			$langs[$text] = $lang;
 		}
@@ -238,7 +238,7 @@ class matomoStats {
 	 * @return string
 	 */
 	static function getOptOutForm() {
-		$userlocale = substr(getUserLocale(), 0, 2);
+		$userlocale = substr(i18n::getUserLocale(), 0, 2);
 		$url = strval(getOption('matomo_url'));
 		if (!empty($url)) {
 			$src = $url . '/index.php?module=CoreAdminHome&action=optOutJS&divId=matomo-opt-out&language=' . $userlocale . '&showIntro=1';
@@ -273,21 +273,19 @@ class matomoStats {
 	
 	/**
 	 * Gets the document title of the current page to track. Gets the title in a single language only if the option for single_language_tracking is set
-	 * @global string $_zp_current_locale
 	 */
 	static function printDocumentTitle() {
-		global $_zp_current_locale;
 		$original_locale = null;
 		$locale_to_track = getOption('matomo_language_tracking');
-		if ($locale_to_track != $_zp_current_locale && $locale_to_track != null) {
+		if ($locale_to_track != i18n::getUserLocale() && $locale_to_track != null) {
 			$original_locale = getOption('locale');
 			setOption('locale', $locale_to_track, false);
-			setupCurrentLocale($locale_to_track);
+			i18n::setupCurrentLocale($locale_to_track);
 		}
 		echo getHeadTitle();
 		if ($original_locale != null) {
 			setOption('locale', $original_locale, false);
-			setupCurrentLocale($original_locale);
+			i18n::setupCurrentLocale($original_locale);
 		}
 	}
 }

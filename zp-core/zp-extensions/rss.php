@@ -265,7 +265,7 @@ class rss_options {
 function getRSSLink($option, $lang = NULL, $addl = NULL) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_admin_obj, $_zp_current_category;
 	if (empty($lang)) {
-		$lang = getLanguageText(getOption('locale'));
+		$lang = i18n::getLanguageText(getOption('locale'));
 	}
 	$link = NULL;
 	switch (strtolower($option)) {
@@ -401,7 +401,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon = true, $clas
 		$class = 'class="' . $class . '"';
 	}
 	if (empty($lang)) {
-		$lang = getLanguageText(getOption("locale"));
+		$lang = i18n::getLanguageText(getOption("locale"));
 	}
 	echo $prev . "<a $class href=\"" . html_encode(getRSSLink($option, $lang, $addl)) . "\" title=\"" . html_encode($linktext) . "\" rel=\"nofollow\">" . $linktext . "$icon</a>" . $next;
 }

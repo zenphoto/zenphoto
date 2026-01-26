@@ -278,7 +278,7 @@ class AlbumBase extends MediaObject {
 	function getLocation($locale = NULL) {
 		$text = $this->get('location');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;

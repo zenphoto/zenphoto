@@ -777,13 +777,13 @@ echo $refresh;
 													<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 													<ul class="flags" style="margin-left: 0px;">
 														<?php
-														$_languages = generateLanguageList();
+														$_languages = i18n::generateLanguageList();
 														$c = 0;
 														foreach ($_languages as $text => $lang) {
 															?>
 															<li id="<?php echo $lang . '_' . $id; ?>"<?php if ($lang == $currentValue) echo ' class="currentLanguage"'; ?>>
 																<a onclick="javascript:languageChange('<?php echo $id; ?>', '<?php echo $lang; ?>');" >
-																	<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+																	<img src="<?php echo i18n::getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 																</a>
 															</li>
 															<?php
@@ -825,7 +825,7 @@ echo $refresh;
 																$pages = $_zp_zenpage->getPages(false);
 																foreach ($pages as $page) {
 																	if (!$page['parentid']) {
-																		$pagelist[get_language_string($page['title'])] = $page['titlelink'];
+																		$pagelist[i18n::getLanguageString($page['title'])] = $page['titlelink'];
 																	}
 																}
 															}
@@ -834,7 +834,7 @@ echo $refresh;
 															if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 																$categories = $_zp_zenpage->getAllCategories(false);
 																foreach ($categories as $category) {
-																	$newslist[get_language_string($category['title'])] = $category['titlelink'];
+																	$newslist[i18n::getLanguageString($category['title'])] = $category['titlelink'];
 																}
 															}
 															printManagedObjects('news', $newslist, $album_alter_rights, $userobj, $id, gettext('user'), NULL);

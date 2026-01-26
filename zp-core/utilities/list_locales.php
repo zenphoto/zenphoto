@@ -40,8 +40,8 @@ printAdminHeader('overview', 'List locales');
 				<h1><?php echo (gettext('Locale information.')); ?></h1>
 				<p><?php gettext('You system has support for the following locales:'); ?></p>
 				<?php
-				$locales = getSystemLocales();
-				$httpaccept = parseHttpAcceptLanguage();
+				$locales = i18n::getSystemLocales();
+				$httpaccept = i18n::parseHttpAcceptLanguage();
 				if (count($httpaccept) > 0) {
 					$accept = $httpaccept;
 					$accept = array_shift($accept);
@@ -70,7 +70,7 @@ printAdminHeader('overview', 'List locales');
 									<td>
 										<?php echo $value; 
 										if($key2 == 'fullcode') {
-											echo ' – ' . getLanguageDisplayName($value);
+											echo ' – ' . i18n::getLanguageDisplayName($value);
 										}
 										?></td>
 									<?php
@@ -98,7 +98,7 @@ printAdminHeader('overview', 'List locales');
 							if (!empty($locale)) {
 								echo '<li><ul>';
 								foreach ($locale as $loc) {
-									if($langname = getLanguageDisplayName($loc)) {
+									if($langname = i18n::getLanguageDisplayName($loc)) {
 										$langname = ' – ' . $langname;
 									}
 									echo '<li><strong>' . $loc . '</strong>' . $langname . '</li>';

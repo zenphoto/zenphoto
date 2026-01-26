@@ -277,7 +277,7 @@ class htmlmetatags {
 		$url = $host . getRequestURI();
 
 		// Convert locale shorttag to allowed html meta format
-		$locale = str_replace("_", "-", getUserLocale());
+		$locale = str_replace("_", "-", i18n::getUserLocale());
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
@@ -664,10 +664,10 @@ class htmlmetatags {
 		if (getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="' . $canonicalurl . '">' . "\n";
 			if (METATAG_LOCALE_TYPE) {
-				$langs = generateLanguageList();
+				$langs = i18n::generateLanguageList();
 				if (count($langs) != 1) {
 					foreach ($langs as $text => $lang) {
-						$langcheck = getLanguageText($lang, '-'); //	for hreflang we need en-US
+						$langcheck = i18n::getLanguageText($lang, '-'); //	for hreflang we need en-US
 						if ($langcheck != $locale) {
 							switch (METATAG_LOCALE_TYPE) {
 								case 1:

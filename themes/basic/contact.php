@@ -6,7 +6,7 @@ if (!defined('WEBPATH'))
 if (extensionEnabled('contact_form')) {
 	?>
 	<!DOCTYPE html>
-	<html<?php printLangAttribute(); ?>>
+	<html<?php i18n::printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
 			<?php filter::applyFilter('theme_head'); ?>

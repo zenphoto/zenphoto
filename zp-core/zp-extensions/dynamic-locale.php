@@ -47,7 +47,7 @@ if (getOption('dynamic_locale_subdomain')) {
  */
 function printLanguageSelector($flags = NULL) {
 	$localeOption = getOption('locale');
-	$languages = generateLanguageList();
+	$languages = i18n::generateLanguageList();
 	if (isset($_REQUEST['locale'])) {
 		$locale = sanitize($_REQUEST['locale']);
 		if ($localeOption != $locale) {
@@ -106,7 +106,7 @@ function printLanguageSelector($flags = NULL) {
 							$path = $uri . $separator . 'locale=' . $lang;
 							break;
 					}
-					$flag = getLanguageFlag($lang);
+					$flag = i18n::getLanguageFlag($lang);
 					if ($lang != $localeOption) {
 						?>
 						<a href="<?php echo html_encode($path); ?>" >
@@ -190,14 +190,14 @@ class dynamic_locale {
 	}
 
 	static function fullHostPath($lang) {
-		global $_zp_locale_subdomains;
+		$local_subdomains = i18n::getLocaleSubdomains();
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.', $host);
-		if (validateLocale($matches[0], 'Dynamic Locale')) {
+		if (i18n::validateLocale($matches[0], 'Dynamic Locale')) {
 			array_shift($matches);
 			$host = implode('.', $matches);
 		}
-		if ($l = $_zp_locale_subdomains[$lang]) {
+		if ($l = $local_subdomains[$lang]) {
 			$host = $l . '.' . $host;
 		}
 		if (SERVER_PROTOCOL == 'https') {

@@ -1,7 +1,7 @@
 <div id="tab_gallery" class="tabbox">
 						<?php
 						if (isset($_GET['local_failed'])) {
-							$languages = array_flip(generateLanguageList('all'));
+							$languages = array_flip(i18n::generateLanguageList('all'));
 							$locale = sanitize($_GET['local_failed']);
 							echo '<div class="errorbox">';
 							echo "<h2>" .
@@ -27,12 +27,12 @@
 								</tr>
 								<tr>
 								<?php
-									$offset = timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
+									$offset = i18n::timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
 									?>
 									<td width="175"><?php echo gettext("Time zone:"); ?></td>
 									<td width="350">
 										<?php
-										$zones = getTimezones();
+										$zones = i18n::getTimezones();
 										?>
 										<select id="time_zone" name="time_zone">
 											<option value="" style="background-color:LightGray"><?php echo gettext('*not specified'); ?></option>
@@ -90,8 +90,8 @@
 										<br />
 										<ul class="languagelist">
 											<?php
-											$systemlocales = getSystemLocales(true);
-											$locales = generateLanguageList('all');
+											$systemlocales = i18n::getSystemLocales(true);
+											$locales = i18n::generateLanguageList('all');
 											$locales[gettext("HTTP_Accept_Language")] = '';
 											ksort($locales, SORT_LOCALE_STRING);
 											$vers = explode('-', ZENPHOTO_VERSION);
@@ -136,7 +136,7 @@
 												if (empty($dirname)) {
 													$flag = WEBPATH . '/' . ZENFOLDER . '/locale/auto.png';
 												} else {
-													$flag = getLanguageFlag($dirname);
+													$flag = i18n::getLanguageFlag($dirname);
 												}
 												if (getOption('unsupported_' . $dirname)) {
 													$c_attrs = $r_attrs = ' disabled="disabled"';

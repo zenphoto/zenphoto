@@ -55,7 +55,7 @@ function updatePage(&$reports, $newpage = false) {
 		}
 	} else {
 		if (!$permalink) { //	allow the link to change
-			$link = seoFriendly(get_language_string($title));
+			$link = seoFriendly(i18n::getLanguageString($title));
 			if (!empty($link)) {
 				$titlelink = $link;
 			}
@@ -103,7 +103,7 @@ function updatePage(&$reports, $newpage = false) {
 		$page->setDefaultSortorder();
 		$msg = filter::applyFilter('new_page', '', $page);
 		if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
 		} else if ($notice == '?mismatch=user') {
 			$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
 		} else if ($notice) {
@@ -117,7 +117,7 @@ function updatePage(&$reports, $newpage = false) {
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
 		} else if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
+			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
 		} else if ($notice == '?mismatch=user') {
 			$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
 		} else if ($notice) {

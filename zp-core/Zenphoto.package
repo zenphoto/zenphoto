@@ -407,6 +407,7 @@ zp-core/classes/class-gallery.php
 zp-core/classes/class-graphicsbase.php
 zp-core/classes/class-graphicsgd.php
 zp-core/classes/class-graphicsimagick.php
+zp-core/classes/class-i18n.php
 zp-core/classes/class-image.php
 zp-core/classes/class-imagemetaformatter.php
 zp-core/classes/class-imageprocessor.php
@@ -432,12 +433,14 @@ zp-core/css/admin-statistics.css
 zp-core/css/admin.css
 zp-core/css/admintoolbox.css
 zp-core/definitions-debug.php
+zp-core/definitions-i18n.php
 zp-core/deprecated
 zp-core/deprecated/functions-config.php
 zp-core/deprecated/functions-controller.php
 zp-core/deprecated/functions-db.php
 zp-core/deprecated/functions-filter.php
 zp-core/deprecated/functions-graphics.php
+zp-core/deprecated/functions-i18n.php
 zp-core/deprecated/functions-image.php
 zp-core/deprecated/functions-reconfigure.php
 zp-core/deprecated/functions-rewrite.php
@@ -454,7 +457,6 @@ zp-core/full-image.php
 zp-core/functions
 zp-core/functions/functions-basic.php
 zp-core/functions/functions-common.php
-zp-core/functions/functions-i18n.php
 zp-core/functions/functions.php
 zp-core/gd_fonts
 zp-core/gd_fonts/addlg10.gdf
@@ -1973,4 +1975,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1975
+1977

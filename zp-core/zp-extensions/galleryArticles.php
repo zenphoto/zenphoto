@@ -37,9 +37,9 @@ class galleryArticles {
 			setOptionDefault('galleryArticles_category', NULL);
 			setOptionDefault('galleryArticles_albumCategory', 0);
 			$text = gettext('New album: %1$s');
-			setOptionDefault('galleryArticles_album_text', getAllTranslations($text));
+			setOptionDefault('galleryArticles_album_text', i18n::getAllTranslations($text));
 			$text = gettext('New image: [%2$s]%1$s');
-			setOptionDefault('galleryArticles_image_text', getAllTranslations($text));
+			setOptionDefault('galleryArticles_image_text', i18n::getAllTranslations($text));
 			setOptionDefault('galleryArticles_size', 80);
 			setOptionDefault('galleryArticles_protected', 0);
 			if (class_exists('cacheManager')) {
@@ -59,7 +59,7 @@ class galleryArticles {
 			$categories = array();
 			$list = $_zp_zenpage->getAllCategories();
 			foreach ($list as $cat) {
-				$categories[get_language_string($cat['title'])] = $cat['titlelink'];
+				$categories[i18n::getLanguageString($cat['title'])] = $cat['titlelink'];
 			}
 
 			$list = array('<em>' . gettext('Albums') . '</em>' => 'galleryArticles_albums', '<em>' . gettext('Images') . '</em>' => 'galleryArticles_images');
@@ -188,7 +188,7 @@ class galleryArticles {
           }
           $text = serialize($galleryitem_text);
         } else {
-          $text = sprintf(get_language_string(getOption('galleryArticles_album_text')), $obj->getTitle());
+          $text = sprintf(i18n::getLanguageString(getOption('galleryArticles_album_text')), $obj->getTitle());
         }
         $title = $folder = $obj->name;
         $img = $obj->getAlbumThumbImage();
@@ -202,7 +202,7 @@ class galleryArticles {
           }
           $text = serialize($galleryitem_text);
         } else {
-          $text = sprintf(get_language_string(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
+          $text = sprintf(i18n::getLanguageString(getOption('galleryArticles_image_text')), $obj->getTitle(), $obj->album->getTitle());
         }
         $folder = $obj->imagefolder;
         $title = $folder . '-' . $obj->filename;

@@ -9,7 +9,7 @@ define('ZP_COMBINEWS', false);
 
 define('ZP_SHORTENINDICATOR', $shortenindicator = getOption('zenpage_textshorten_indicator'));
 define('ZP_SHORTEN_LENGTH', getOption('zenpage_text_length'));
-$zenpage_readmore_text = get_language_string(getOption("zenpage_read_more"));
+$zenpage_readmore_text = i18n::getLanguageString(getOption("zenpage_read_more"));
 if (!$zenpage_readmore_text) {
 	$zenpage_readmore_text = gettext('Read more');
 }

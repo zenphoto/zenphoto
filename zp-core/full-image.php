@@ -63,7 +63,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	zp_handle_password('zpcms_auth_image', getOption('protected_image_password'), getOption('protected_image_user'));
 	//check for passwords
 	$authType = 'zpcms_auth_image';
-	$hint = get_language_string(getOption('protected_image_hint'));
+	$hint = i18n::getLanguageString(getOption('protected_image_hint'));
 	$show = getOption('protected_image_user');
 	if (empty($hash)) { // check for album password
 		$hash = $albumobj->getPassword();

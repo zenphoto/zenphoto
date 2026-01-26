@@ -23,7 +23,7 @@ class MediaObject extends ThemeObject {
 		if ($locale == 'all') {
 			return unTagURLs($text);
 		} else {
-			return applyMacros(unTagURLs(get_language_string($text, $locale)));
+			return applyMacros(unTagURLs(i18n::getLanguageString($text, $locale)));
 		}
 	}
 
@@ -103,7 +103,7 @@ class MediaObject extends ThemeObject {
 	function getPasswordHint($locale = NULL) {
 		$text = $this->get('password_hint');
 		if ($locale !== 'all') {
-			$text = get_language_string($text, $locale);
+			$text = i18n::getLanguageString($text, $locale);
 		}
 		$text = unTagURLs($text);
 		return $text;

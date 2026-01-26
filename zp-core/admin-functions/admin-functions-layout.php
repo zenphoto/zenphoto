@@ -111,7 +111,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	filter::applyFilter('admin_headers');
 	?>
 	<!DOCTYPE html>
-	<html<?php printLangAttribute(); ?>>
+	<html<?php i18n::printLangAttribute(); ?>>
 		<head>
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 			<link rel="stylesheet" href="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />

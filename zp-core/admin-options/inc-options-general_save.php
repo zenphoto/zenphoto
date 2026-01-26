@@ -12,7 +12,7 @@ $returntab = "&tab=general";
 			}
 			$oldloc = SITE_LOCALE; // get the option as stored in the database, not what might have been set by a cookie
 			$newloc = sanitize($_POST['locale'], 3);
-			$languages = generateLanguageList(true);
+			$languages = i18n::generateLanguageList(true);
 			$languages[''] = '';
 			foreach ($languages as $text => $lang) {
 				if ($lang == $newloc || isset($_POST['language_allow_' . $lang])) {
@@ -26,7 +26,7 @@ $returntab = "&tab=general";
 					$notify = '?local_failed=' . $newloc;
 				} else {
 					zp_clearCookie('zpcms_locale'); // clear the language cookie
-					$result = i18nSetLocale($newloc);
+					$result = i18n::setLocale($newloc);
 					if (!empty($newloc) && ($result === false)) {
 						$notify = '?local_failed=' . $newloc;
 					}

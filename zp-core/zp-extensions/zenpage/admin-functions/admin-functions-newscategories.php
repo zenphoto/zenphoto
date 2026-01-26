@@ -44,7 +44,7 @@ function updateCategory(&$reports, $newcategory = false) {
 			}
 		} else {
 			if (!$permalink) { //	allow the link to change
-				$link = seoFriendly(get_language_string($title));
+				$link = seoFriendly(i18n::getLanguageString($title));
 				if (!empty($link)) {
 					$titlelink = $link;
 				}

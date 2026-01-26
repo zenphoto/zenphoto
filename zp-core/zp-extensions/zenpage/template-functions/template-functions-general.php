@@ -137,7 +137,7 @@ function getZenpageStatistic($number = 10, $option = "all", $mode = "popular", $
 			$counter++;
 			$statscats[$counter] = array(
 							"id"					 => $cat['id'],
-							"title"				 => html_encode(get_language_string($cat['title'])),
+							"title"				 => html_encode(i18n::getLanguageString($cat['title'])),
 							"titlelink"		 => getNewsCategoryURL($cat['titlelink']),
 							"hitcounter"	 => $cat['hitcounter'],
 							"total_votes"	 => "",

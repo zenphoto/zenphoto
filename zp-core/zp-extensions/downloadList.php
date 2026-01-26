@@ -320,7 +320,7 @@ class DownloadList {
 		filter::applyFilter('theme_headers');
 		?>
 		<!DOCTYPE html>
-		<html<?php printLangAttribute(); ?>>
+		<html<?php i18n::printLangAttribute(); ?>>
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<meta charset="<?php echo LOCAL_CHARSET; ?>">
@@ -365,7 +365,7 @@ class DownloadList {
 				zp_handle_password('zpcms_auth_download', $hash, $user);
 				if ((!empty($hash) && zp_getCookie('zpcms_auth_download') != $hash)) {
 					$show = (!empty($user));
-					$hint = get_language_string(getOption('downloadList_hint'));
+					$hint = i18n::getLanguageString(getOption('downloadList_hint'));
 					return false;
 				}
 			}

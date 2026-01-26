@@ -117,7 +117,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 	}
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if ($_zp_loggedin && is_object($_zp_current_admin_obj)) {
-		$userlocale = getUserLocale();
+		$userlocale = i18n::getUserLocale();
 		$adminlocale = $_zp_current_admin_obj->getLanguage();
 		if (OFFSET_PATH == 0 && $userlocale) {
 			$locale = $userlocale;
@@ -125,7 +125,7 @@ if (isset($_POST['login'])) { //	Handle the login form.
 			$locale = $adminlocale;
 		}
 		if (!empty($locale)) { //	set his prefered language
-			setupCurrentLocale($locale);
+			i18n::setupCurrentLocale($locale);
 		}
 	} else {
 		$locale = 'en_US';
