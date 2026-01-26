@@ -18,7 +18,9 @@ httpsRedirect();
 $_SESSION['adminRequest'] = @$_COOKIE['zpcms_auth_user']; //	Allow "unprotected" i.php if the request came from an admin session
 $_zp_admin_menu = array();
 
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/classes/class-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/deprecated/functions-rewrite.php');
+rewrite::setRewriteConstants();
 
 if (OFFSET_PATH != 2 && !getOption('license_accepted')) {
 	require_once(dirname(__FILE__) . '/license.php');

@@ -11,7 +11,7 @@
  */
 function rulesList() {
 	global $_zp_conf_vars;
-	list($pluginDefinitions, $rules) = getRules();
+	list($pluginDefinitions, $rules) = rewrite::getRules();
 	$definitions = $pluginDefinitions;
 	$list = array();
 	$break = false;

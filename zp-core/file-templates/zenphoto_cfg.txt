@@ -68,7 +68,7 @@ $conf['server_protocol'] = "http";
 ////////////////////////////////////////////////////////////////////////////////
 // Zenphoto special URL rule definitions
 //
-// for further documentation see the functions-rewrite.php doc block
+// for further documentation see the class-rewrite.php doc block
 //
 $conf['special_pages'] = array(
 														'page'=>				array('define'=>'_PAGE_',					'rewrite'=>'page'),

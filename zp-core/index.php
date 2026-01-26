@@ -31,11 +31,13 @@ foreach (getEnabledPlugins() as $extension => $plugin) {
 	}
 }
 
-require_once(SERVERPATH . "/" . ZENFOLDER . '/functions/functions-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/classes/class-rewrite.php');
+require_once(SERVERPATH . "/" . ZENFOLDER . '/deprecated/functions-rewrite.php');
+rewrite::setRewriteConstants();
 require_once(dirname(__FILE__) . '/template-functions.php');
 checkInstall();
 if (MOD_REWRITE || isset($_GET['z']))
-	rewriteHandler();
+	rewrite::rewriteHandler();
 
 //$_zp_script_timer['require'] = microtime();
 /**
