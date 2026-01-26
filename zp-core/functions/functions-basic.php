@@ -1863,7 +1863,7 @@ function installSignature() {
 			'functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions.php'),
 			'functions-basic.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-basic.php'),
 			'class-controller.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-controller.php'),
-			'functions-image.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-image.php'));
+			'class-imageprocessor.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-imageprocessor.php'));
 
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];

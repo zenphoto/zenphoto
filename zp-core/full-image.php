@@ -8,13 +8,14 @@
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . "/functions/functions.php");
-require_once(dirname(__FILE__) . "/functions/functions-image.php");
+require_once(dirname(__FILE__) . "/classes/class-imageprocessor.php");
+require_once(dirname(__FILE__) . "/deprecated/functions-image.php");
 
 $returnmode = isset($_GET['returnmode']);
 
 $disposal = getOption('protect_full_image');
 if ($disposal == 'no-access') { // illegal use of the script!
-	imageError('403 Forbidden', gettext("Forbidden"));
+	imageProcessor::imageError('403 Forbidden', gettext("Forbidden"));
 } else {
 	if (isset($_GET['dsp'])) {
 		$disposal = sanitize($_GET['dsp']);
@@ -22,7 +23,7 @@ if ($disposal == 'no-access') { // illegal use of the script!
 }
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
-	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
+	imageProcessor::imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
 list($album8, $image8) = rewrite_get_album_image('a', 'i');
@@ -158,7 +159,7 @@ if ($force_cache = getOption('cache_full_image')) {
 
 $process = $rotate = false;
 if ($_zp_graphics->imageCanRotate()) {
-	$rotate = getImageRotation($image_path);
+	$rotate = imageProcessor::getImageRotation($image_path);
 	$process = $rotate;
 }
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);
@@ -207,7 +208,7 @@ if ($disposal == 'download') {
 
 if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 	if ($forbidden) {
-		imageError('403 Forbidden', gettext("Forbidden(2)"), 'err-imagegeneral.png', $image, $album);
+		imageProcessor::imageError('403 Forbidden', gettext("Forbidden(2)"), 'err-imagegeneral.png', $image, $album);
 	}
 	if ($force_cache && !$process) {
 		// we can just use the original!
@@ -233,7 +234,7 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 			if (!file_exists($watermark_image)) {
 				$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
 			}
-			$newim = addWatermark($newim, $watermark_image, $image_path);
+			$newim = imageProcessor::addWatermark($newim, $watermark_image, $image_path);
 		} 
 		$iMutex->unlock();
 		if (!$_zp_graphics->imageOutput($newim, $suffix, $cache_path, $quality) && DEBUG_IMAGE) {

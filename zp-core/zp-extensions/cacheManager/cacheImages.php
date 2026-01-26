@@ -8,7 +8,8 @@
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
-require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions-image.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-imageprocessor.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-image.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions.php');
 
 
