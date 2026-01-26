@@ -329,7 +329,7 @@ class Gallery {
 			}
 		}
 		closedir($dir);
-		return zp_apply_filter('album_filter', $albums);
+		return filter::applyFilter('album_filter', $albums);
 	}
 	
 	/**
@@ -857,7 +857,7 @@ class Gallery {
 								$album->set('thumb', $thumb);
 							}
 							$album->save();
-							zp_apply_filter('album_refresh', $album);
+							filter::applyFilter('album_refresh', $album);
 						}
 					}
 					$_zp_db->freeResult($albumids);
@@ -911,7 +911,7 @@ class Gallery {
 							$album->preLoad();
 						}
 						$album->save();
-						zp_apply_filter('album_refresh', $album);
+						filter::applyFilter('album_refresh', $album);
 					}
 				}
 			}
@@ -938,7 +938,7 @@ class Gallery {
 							$imageobj->updateMetaData(); // prime the EXIF/IPTC fields
 							$imageobj->updateDimensions(); // update the width/height & account for rotation
 							$imageobj->save();
-							zp_apply_filter('image_refresh', $imageobj);
+							filter::applyFilter('image_refresh', $imageobj);
 						}
 					} else {
 						$sql = 'DELETE FROM ' . $_zp_db->prefix('images') . ' WHERE `id`="' . $image['id'] . '";';

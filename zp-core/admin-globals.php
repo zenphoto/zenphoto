@@ -162,7 +162,7 @@ if ($_zp_loggedin) {
 		}
 	}
 
-	$_zp_admin_menu = zp_apply_filter('admin_tabs', $_zp_admin_menu);
+	$_zp_admin_menu = filter::applyFilter('admin_tabs', $_zp_admin_menu);
 	foreach ($_zp_admin_menu as $tab => $value) {
 		if (is_null($value)) {
 			unset($_zp_admin_menu[$tab]);

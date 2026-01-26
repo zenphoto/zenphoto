@@ -78,7 +78,7 @@ function updatePage(&$reports, $newpage = false) {
 	$page->setTitle($title);
 	$page->setContent($content);
 	$page->setExtracontent($extracontent);
-	$page->setCustomData(zp_apply_filter('save_page_custom_data', $custom, $page));
+	$page->setCustomData(filter::applyFilter('save_page_custom_data', $custom, $page));
 	$page->setPublished($show);
 	$page->setDateTime($date);
 	$page->setLastChange($date);
@@ -101,7 +101,7 @@ function updatePage(&$reports, $newpage = false) {
 	processTags($page);
 	if ($newpage) {
 		$page->setDefaultSortorder();
-		$msg = zp_apply_filter('new_page', '', $page);
+		$msg = filter::applyFilter('new_page', '', $page);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
 		} else if ($notice == '?mismatch=user') {
@@ -113,7 +113,7 @@ function updatePage(&$reports, $newpage = false) {
 		}
 	} else {
 		$page->setLastchangeUser($_zp_current_admin_obj->getLoginName());
-		$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
+		$msg = filter::applyFilter('update_page', '', $page, $oldtitlelink);
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
 		} else if (empty($title)) {

@@ -15,7 +15,7 @@ $tagsort = sanitize($_REQUEST['tagsort']);
 
 $albumobj = AlbumBase::newAlbum($albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
-	if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+	if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 	}
 }

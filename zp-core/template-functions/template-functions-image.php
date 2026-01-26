@@ -454,7 +454,7 @@ function printImageMetadata($title = NULL, $toggle = true, $id = 'imagemetadata'
 	}
 	$style = '';
 	if ($toggle) {
-	 if(zp_has_filter('theme_head', 'colorbox::css')) {
+	 if(filter::hasFilter('theme_head', 'colorbox::css')) {
 	 	$modal_class = ' colorbox';
 	 	?>
 	 	<script>
@@ -696,10 +696,10 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 	}
 	if ($image->isPhoto()) { //Print images
 		$attr['src'] = html_pathurlencode(getDefaultSizedImage());
-		$attr_filtered = zp_apply_filter('standard_image_attr', $attr, $image);
+		$attr_filtered = filter::applyFilter('standard_image_attr', $attr, $image);
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
-		$html = zp_apply_filter('standard_image_html', $html, $image);
+		$html = filter::applyFilter('standard_image_html', $html, $image);
 		echo $html;
 	} else { // better be a plugin class then
 		echo $image->getContent();
@@ -760,10 +760,10 @@ function printImageThumb($alt, $class = null, $id = null, $title = null, $image 
 	$sizes = $image->getSizeDefaultThumb();
 	$attr['width'] = $sizes[0];
 	$attr['height'] = $sizes[1];
-	$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);
+	$attr_filtered = filter::applyFilter('standard_image_thumb_attr', $attr, $image);
 	$attributes = generateAttributesFromArray($attr_filtered);
 	$html = '<img' . $attributes . ' />';
-	$html = zp_apply_filter('standard_image_thumb_html', $html, $image);
+	$html = filter::applyFilter('standard_image_thumb_html', $html, $image);
 	echo $html;
 }
 
@@ -1042,10 +1042,10 @@ function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height =
 		} else {
 			$attr['src'] = html_pathurlencode($image->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin, $effects));
 		}
-		$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+		$attr_filtered = filter::applyFilter('custom_image_attr', $attr, $image);
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img ' . $attributes . ' />';
-		$html = zp_apply_filter('custom_image_html', $html, $thumbStandin, $image);
+		$html = filter::applyFilter('custom_image_html', $html, $thumbStandin, $image);
 		echo $html;
 	} else { // better be a plugin
 		echo $image->getContent($width, $height);

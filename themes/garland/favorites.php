@@ -7,13 +7,13 @@ if (class_exists('favorites')) {
 	<html<?php printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
-			<?php zp_apply_filter('theme_head'); ?>
+			<?php filter::applyFilter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
 			<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 			<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 		</head>
 		<body class="sidebars">
-			<?php zp_apply_filter('theme_body_open'); ?>
+			<?php filter::applyFilter('theme_body_open'); ?>
 			<div id="navigation"></div>
 			<div id="wrapper">
 				<div id="container">
@@ -134,7 +134,7 @@ if (class_exists('favorites')) {
 				<span class="clear"></span>
 			</div><!-- wrapper -->
 			<?php
-			zp_apply_filter('theme_body_close');
+			filter::applyFilter('theme_body_close');
 			?>
 		</body>
 	</html>

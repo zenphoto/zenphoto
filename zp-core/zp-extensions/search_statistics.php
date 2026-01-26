@@ -25,8 +25,8 @@ $plugin_description = gettext("Collects and displays search criteria.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Statistics');
 
-zp_register_filter('search_statistics','search_statistics::handler');
-zp_register_filter('admin_utilities_buttons', 'search_statistics::button');
+filter::registerFilter('search_statistics','search_statistics::handler');
+filter::registerFilter('admin_utilities_buttons', 'search_statistics::button');
 
 /**
  * Option handler class

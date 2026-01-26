@@ -95,7 +95,7 @@ if (!empty($_zp_multimedia_extension->name) || $plugin_disable) {
 	Gallery::addImageHandler('m4v', 'Video');
 	Gallery::addImageHandler('m4a', 'Video');
 
-	zp_register_filter('content_macro', 'jPlayer::macro');
+	filter::registerFilter('content_macro', 'jPlayer::macro');
 }
 
 /**
@@ -877,7 +877,7 @@ function printjPlayerPlaylist($option = "playlist", $albumfolder = "") {
 }
 
 $_zp_multimedia_extension = new jPlayer(); // claim to be the flash player.
-zp_register_filter('theme_head', 'jplayer::headJS');
+filter::registerFilter('theme_head', 'jplayer::headJS');
 if (getOption('jplayer_playlist')) {
-	zp_register_filter('theme_head', 'jplayer::playlistJS');
+	filter::registerFilter('theme_head', 'jplayer::playlistJS');
 }

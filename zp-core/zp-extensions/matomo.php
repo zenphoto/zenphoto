@@ -7,7 +7,7 @@
  *
  * If you do not want particular pages to be tracked you should pass an array containing <var>"matomo_tag"</var> as the
  * <i>exclude</i> parameter to the theme page body close filter application. e.g.
- * <code>zp_apply_filter('theme_body_close',array("matomo_tag"));</code>
+ * <code>filter::applyFilter('theme_body_close',array("matomo_tag"));</code>
  *
  * Additionally it provides content macro [MATOMO_OPTOUT] that embeds a facility for visitors to optout of tracking as required by the law of several countries.
  * Place this on your privacy statement page.
@@ -37,12 +37,12 @@ $plugin_category = gettext('Statistics');
 $option_interface = 'matomoStats';
 
 if (getOption('matomo_admintracking') || !zp_loggedin(ADMIN_RIGHTS)) {
-	zp_register_filter('theme_body_close', 'matomoStats::script');
+	filter::registerFilter('theme_body_close', 'matomoStats::script');
 }
 if (getOption('matomo_widgets_code')) {
-	zp_register_filter('admin_utilities_buttons', 'matomoStats::button');
+	filter::registerFilter('admin_utilities_buttons', 'matomoStats::button');
 }
-zp_register_filter('content_macro', 'matomoStats::macro');
+filter::registerFilter('content_macro', 'matomoStats::macro');
 
 class matomoStats {
 

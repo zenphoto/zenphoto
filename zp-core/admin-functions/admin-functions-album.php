@@ -254,7 +254,7 @@
 							</td>
 						</tr>
 						<?php
-						$custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
+						$custom = filter::applyFilter('edit_album_custom_data', '', $album, $prefix);
 						if (empty($custom)) {
 							?>
 							<tr>
@@ -758,7 +758,7 @@
 						</div>
 						<span class="clearall" ></span>
 						<?php
-						echo zp_apply_filter('edit_album_utilities', '', $album, $prefix);
+						echo filter::applyFilter('edit_album_utilities', '', $album, $prefix);
 						printAlbumButtons($album);
 						?>
 						<span class="clearall" ></span>
@@ -1220,9 +1220,9 @@
 		}
 
 		$custom = process_language_string_save($prefix . 'album_custom_data', 1);
-		$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
+		$album->setCustomData(filter::applyFilter('save_album_custom_data', $custom, $prefix));
 		$album->setLastChangeUser($_zp_current_admin_obj->getLoginName());
-		zp_apply_filter('save_album_utilities_data', $album, $prefix);
+		filter::applyFilter('save_album_utilities_data', $album, $prefix);
 		$album->save(true);
 
 		// Move/Copy/Rename the album after saving.

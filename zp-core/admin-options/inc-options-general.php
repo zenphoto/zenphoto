@@ -12,7 +12,7 @@
 							echo '</div>';
 						}
 						?>
-						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php filter::applyFilter('admin_note', 'options', $subtab); ?>
 						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegeneraloptions" value="yes" />
@@ -462,7 +462,7 @@
 									<td><?php echo gettext('If checked logs will be created daily by appending the dateformat YYYY-mm-dd to the filename.'); ?></td>
 								</tr>
 
-								<?php zp_apply_filter('admin_general_data'); ?>
+								<?php filter::applyFilter('admin_general_data'); ?>
 								<tr>
 									<td colspan="3">
 										<p class="buttons">

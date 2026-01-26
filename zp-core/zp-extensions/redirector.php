@@ -35,7 +35,7 @@ $plugin_author = "Malte Müller (acrylian)";
 $plugin_category = gettext('Admin');
 $option_interface = 'redirectorOptions';
 
-zp_register_filter('redirection_handler', 'redirector::handleRequest');
+filter::registerFilter('redirection_handler', 'redirector::handleRequest');
 
 /**
  * redirector plugin options

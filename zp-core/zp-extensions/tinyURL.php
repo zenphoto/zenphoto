@@ -20,12 +20,12 @@ $plugin_category = gettext('Admin');
 $option_interface = 'tinyURL';
 
 if (getOption('tinyURL_agressive'))
-	zp_register_filter('getLink', 'tinyURL::getTinyURL');
+	filter::registerFilter('getLink', 'tinyURL::getTinyURL');
 
 switch (OFFSET_PATH) {
 	case 0:
 		if (!$plugin_disable) {
-			zp_register_filter('load_request', 'tinyURL::parse');
+			filter::registerFilter('load_request', 'tinyURL::parse');
 		}
 		break;
 	case 2:

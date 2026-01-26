@@ -16,7 +16,7 @@ if (defined('OFFSET_PATH')) {
 	$plugin_author = "Stephen Billard (sbillard)";
 	$plugin_category = gettext('SEO');
 
-	zp_register_filter('admin_utilities_buttons', 'seo_cleanup_button');
+	filter::registerFilter('admin_utilities_buttons', 'seo_cleanup_button');
 
 	function seo_cleanup_button($buttons) {
 		$buttons[] = array(
@@ -162,7 +162,7 @@ if (defined('OFFSET_PATH')) {
 			<div id="content">
 				<?php printSubtabs(); ?>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'seo_cleanup', ''); ?>
+					<?php filter::applyFilter('admin_note', 'seo_cleanup', ''); ?>
 					<h1><?php echo gettext('Cleanup album and image names to be SEO friendly'); ?></h1>
 					<?php
 					foreach ($albums as $album) {

@@ -51,7 +51,7 @@ function jqm_printRSSlinks() {
 }
 
 function getPagesLink() {
-	return zp_apply_filter('getLink', rewrite_path(_PAGES_ . '/', "/index.php?p=pages"), 'pages.php', NULL);
+	return filter::applyFilter('getLink', rewrite_path(_PAGES_ . '/', "/index.php?p=pages"), 'pages.php', NULL);
 }
 
 /**

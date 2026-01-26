@@ -104,7 +104,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				case 'restore_setup':
 					XSRFdefender('restore_setup');
 					unprotectSetupFiles();
-					zp_apply_filter('log_setup', true, 'protect', gettext('enabled'));
+					filter::applyFilter('log_setup', true, 'protect', gettext('enabled'));
 					setOption('setup_unprotected_by_adminrequest', 1, true, null);
 					$class = 'messagebox';
 					$msg = gettext('Setup files restored.');
@@ -210,7 +210,7 @@ if (!zp_loggedin()) {
 				<?php
 			}
 			update::printNotice();
-			zp_apply_filter('admin_note', 'Overview', NULL);
+			filter::applyFilter('admin_note', 'Overview', NULL);
 			$buttonlist = array();
 
 			$curdir = getcwd();
@@ -228,7 +228,7 @@ if (!zp_loggedin()) {
 					}
 				}
 			}
-			$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
+			$buttonlist = filter::applyFilter('admin_utilities_buttons', $buttonlist);
 			foreach ($buttonlist as $key => $button) {
 				if (zp_loggedin($button['rights'])) {
 					if (!array_key_exists('category', $button)) {
@@ -498,8 +498,8 @@ if (!zp_loggedin()) {
 									<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), $_zp_captcha->name) ?></li>
 									<?php
 								}
-								zp_apply_filter('installation_information');
-								if (!zp_has_filter('sendmail')) {
+								filter::applyFilter('installation_information');
+								if (!filter::hasFilter('sendmail')) {
 									?>
 									<li style="color:RED"><?php echo gettext('There is no mail handler configured!'); ?></li>
 									<?php
@@ -510,7 +510,7 @@ if (!zp_loggedin()) {
 							<?php
 							require_once(SERVERPATH . '/' . ZENFOLDER . '/template-functions/template-filters.php');
 							$plugins = array_keys(getEnabledPlugins());
-							$filters = $_zp_filters;
+							$filters = filter::$filters;
 							$c = count($plugins);
 							?>
 							<h3><a href="javascript:toggle('plugins_hide');toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
@@ -712,7 +712,7 @@ if (!zp_loggedin()) {
 					</div><!-- overview-gallerystats -->
 
 					<?php
-					zp_apply_filter('admin_overview');
+					filter::applyFilter('admin_overview');
 					?>
 
 				</div><!-- boxouter -->

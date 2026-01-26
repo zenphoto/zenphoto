@@ -27,7 +27,7 @@ $plugin_disable = (SYMLINK)?(hasPrimaryScripts())?false:gettext('Only the primar
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/functions/functions-reconfigure.php');
 if (!$plugin_disable) {
-	zp_register_filter('admin_utilities_buttons', 'cloneZenphoto::button');
+	filter::registerFilter('admin_utilities_buttons', 'cloneZenphoto::button');
 }
 
 class cloneZenphoto {

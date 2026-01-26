@@ -8,10 +8,10 @@ if (!defined('WEBPATH'))
 <html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
-		<?php zp_apply_filter('theme_head'); ?>
+		<?php filter::applyFilter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-		<?php if (zp_has_filter('theme_head', 'colorbox::css')) { ?>
+		<?php if (filter::hasFilter('theme_head', 'colorbox::css')) { ?>
 			<script>
 				$(document).ready(function () {
 					$("a.thickbox").colorbox({
@@ -29,7 +29,7 @@ if (!defined('WEBPATH'))
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body>
-		<?php zp_apply_filter('theme_body_open'); ?>
+		<?php filter::applyFilter('theme_body_open'); ?>
 
 		<div id="main">
 			<div id="header">
@@ -144,7 +144,7 @@ if (!defined('WEBPATH'))
 
 		</div><!-- main -->
 		<?php
-		zp_apply_filter('theme_body_close');
+		filter::applyFilter('theme_body_close');
 		?>
 	</body>
 </html>

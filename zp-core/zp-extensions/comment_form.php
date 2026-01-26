@@ -20,23 +20,23 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Misc');
 $option_interface = 'comment_form';
 
-zp_register_filter('admin_toolbox_global', 'comment_form::toolbox');
+filter::registerFilter('admin_toolbox_global', 'comment_form::toolbox');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/class-comment.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/functions.php');
 
 if (OFFSET_PATH) {
-	zp_register_filter('admin_overview', 'comment_form_print10Most');
-	zp_register_filter('admin_tabs', 'comment_form::admin_tabs');
+	filter::registerFilter('admin_overview', 'comment_form_print10Most');
+	filter::registerFilter('admin_tabs', 'comment_form::admin_tabs');
 } else {
-	zp_register_filter('handle_comment', 'comment_form_postcomment');
-	zp_register_filter('object_addComment', 'comment_form_addComment');
+	filter::registerFilter('handle_comment', 'comment_form_postcomment');
+	filter::registerFilter('object_addComment', 'comment_form_addComment');
 	if (getOption('comment_form_pagination')) {
-		zp_register_filter('theme_head', 'comment_form_PaginationJS');
+		filter::registerFilter('theme_head', 'comment_form_PaginationJS');
 	}
 	if (getOption('tinymce_comments') && extensionEnabled('tinymce')) {
 		require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tinymce.php');
-		zp_register_filter('theme_head', 'comment_form_visualEditor');
+		filter::registerFilter('theme_head', 'comment_form_visualEditor');
 	}
 }
 
@@ -438,7 +438,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 						$disabled['website'] = ' disabled="disabled"';
 					}
 				}
-				$data = zp_apply_filter('comment_form_data', array('data' => $stored, 'disabled' => $disabled));
+				$data = filter::applyFilter('comment_form_data', array('data' => $stored, 'disabled' => $disabled));
 				$disabled = $data['disabled'];
 				$stored = $data['data'];
 

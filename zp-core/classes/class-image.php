@@ -73,7 +73,7 @@ class Image extends MediaObject {
 			$this->set('mtime', $this->filemtime);
 			$this->save();
 			if ($new) {
-				zp_apply_filter('new_image', $this);
+				filter::applyFilter('new_image', $this);
 			}
 		}
 		$this->metadata_refresh_behaviour = getOption('metadata_refresh_behaviour');
@@ -129,7 +129,7 @@ class Image extends MediaObject {
 				$image->albumlink = $album->linkname;
 				$image->albumnamealbum = $album;
 			}
-			zp_apply_filter('image_instantiate', $image);
+			filter::applyFilter('image_instantiate', $image);
 			if ($image->exists) {
 				return $image;
 			} else {
@@ -398,7 +398,7 @@ class Image extends MediaObject {
 			}
 		}
 		/* "import" metadata into Zenphoto fields as makes sense */
-		zp_apply_filter('image_metadata', $this);
+		filter::applyFilter('image_metadata', $this);
 
 		/* iptc date */
 		$date = $this->get('IPTCDateCreated');
@@ -1416,7 +1416,7 @@ class Image extends MediaObject {
 			$albumq = $this->albumnamealbum->name;
 			$image = $this->filename;
 		}
-		return zp_apply_filter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image), $path), $this, NULL);
+		return filter::applyFilter('getLink', rewrite_path(pathurlencode($album) . '/' . urlencode($image) . IM_SUFFIX, '/index.php?album=' . pathurlencode($albumq) . '&image=' . urlencode($image), $path), $this, NULL);
 	}
 
 	/**
@@ -1708,7 +1708,7 @@ class Image extends MediaObject {
 		$html = '<img src="' . html_encode(pathurlencode($this->getSizedImage($size))) . '" alt="' . html_encode($this->getTitle()) . '"' .
 						' width="' . $neww . '" height="' . $newh . '"' .
 						(($class) ? " class=\"$class\"" : "") . " />";
-		$html = zp_apply_filter('standard_image_html', $html, $this);
+		$html = filter::applyFilter('standard_image_html', $html, $this);
 		return $html;
 	}
 

@@ -126,7 +126,7 @@ function getGalleryIndexURL() {
 	if (!$link = getCustomGalleryIndexURL($page)) {
 		$link = getStandardGalleryIndexURL($page);
 	}
-	return zp_apply_filter('getLink', $link, 'index.php', NULL);
+	return filter::applyFilter('getLink', $link, 'index.php', NULL);
 }
 
 /**
@@ -455,7 +455,7 @@ function getPageNumURL($page, $total = null) {
 			$pagination2 .= '&page=' . $page;
 		}
 	}
-	return zp_apply_filter('getLink', rewrite_path($pagination1, $pagination2), $_zp_gallery_page, $page);
+	return filter::applyFilter('getLink', rewrite_path($pagination1, $pagination2), $_zp_gallery_page, $page);
 }
 
 /**

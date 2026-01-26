@@ -121,7 +121,7 @@ if (is_AdminEditPage('newscategory')) {
 }
 
 printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
-zp_apply_filter('texteditor_config', 'zenpage');
+filter::applyFilter('texteditor_config', 'zenpage');
 zenpageJSCSS();
 datepickerJS();
 codeblocktabsJS();
@@ -311,7 +311,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 								if (is_AdminEditPage("page")) {
 									$backurl = 'admin-pages.php';
 								}
-								zp_apply_filter('admin_note', 'news', $subtab);
+								filter::applyFilter('admin_note', 'news', $subtab);
 								if ($reports) {
 									$show = array();
 									preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);
@@ -552,13 +552,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														<?php
 													}
 													if (is_AdminEditPage("newsarticle")) {
-														echo zp_apply_filter('publish_article_utilities', '', $result);
+														echo filter::applyFilter('publish_article_utilities', '', $result);
 													}
 													if (is_AdminEditPage("newscategory")) {
-														echo zp_apply_filter('publish_category_utilities', '', $result);
+														echo filter::applyFilter('publish_category_utilities', '', $result);
 													}
 													if (is_AdminEditPage("page")) {
-														echo zp_apply_filter('publish_page_utilities', '', $result);
+														echo filter::applyFilter('publish_page_utilities', '', $result);
 													}
 													?>
 												</div>
@@ -673,7 +673,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 															<?php
 														}
 														?>
-														<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
+														<?php echo filter::applyFilter('general_zenpage_utilities', '', $result); ?>
 													</div>
 													<?php if (is_AdminEditPage("newsarticle")) { ?>
 														<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
@@ -752,13 +752,13 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 
 
 										if (is_AdminEditPage("newsarticle")) {
-											$custom = zp_apply_filter('edit_article_custom_data', '', $result);
+											$custom = filter::applyFilter('edit_article_custom_data', '', $result);
 										}
 										if (is_AdminEditPage("newscategory")) {
-											$custom = zp_apply_filter('edit_category_custom_data', '', $result);
+											$custom = filter::applyFilter('edit_category_custom_data', '', $result);
 										}
 										if (is_AdminEditPage("page")) {
-											$custom = zp_apply_filter('edit_page_custom_data', '', $result);
+											$custom = filter::applyFilter('edit_page_custom_data', '', $result);
 										}
 										if (empty($custom)) {
 											?>

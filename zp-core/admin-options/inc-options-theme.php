@@ -1,6 +1,6 @@
 <div id="tab_theme" class="tabbox">
 						<?php
-						zp_apply_filter('admin_note', 'options', $subtab);
+						filter::applyFilter('admin_note', 'options', $subtab);
 						$themelist = array();
 						if (zp_loggedin(ADMIN_RIGHTS)) {
 							$gallery_title = $_zp_gallery->getTitle();

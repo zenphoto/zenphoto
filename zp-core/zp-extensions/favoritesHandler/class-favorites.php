@@ -73,7 +73,7 @@ class favorites extends AlbumBase {
 		if (!$record_exists) {
 			$sql = 'INSERT INTO ' . $table . ' (`type`, `aux`, `data`) VALUES ("favorites",' . $aux . ',' . $data . ')';
 			$_zp_db->query($sql);
-			zp_apply_filter('favoritesHandler_action', 'add', $img, $this->name);
+			filter::applyFilter('favoritesHandler_action', 'add', $img, $this->name);
 		}
 	}
 
@@ -83,7 +83,7 @@ class favorites extends AlbumBase {
 		$filename = $img->filename;
 		$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data`=' . $_zp_db->quote(serialize(array('type' => 'images', 'id' => $folder . '/' . $filename)));
 		$_zp_db->query($sql);
-		zp_apply_filter('favoritesHandler_action', 'remove', $img, $this->name);
+		filter::applyFilter('favoritesHandler_action', 'remove', $img, $this->name);
 	}
 
 	function addAlbum($alb) {
@@ -96,7 +96,7 @@ class favorites extends AlbumBase {
 		if (!$record_exists) {
 			$sql = 'INSERT INTO ' . $table . ' (`type`, `aux`, `data`) VALUES ("favorites",' . $aux . ',' . $data . ')';
 			$_zp_db->query($sql);
-			zp_apply_filter('favoritesHandler_action', 'add', $alb, $this->name);
+			filter::applyFilter('favoritesHandler_action', 'add', $alb, $this->name);
 		}
 	}
 
@@ -105,7 +105,7 @@ class favorites extends AlbumBase {
 		$folder = $alb->name;
 		$sql = 'DELETE FROM ' . $_zp_db->prefix('plugin_storage') . ' WHERE `type`="favorites" AND `aux`=' . $_zp_db->quote($this->getInstance()) . ' AND `data`=' . $_zp_db->quote(serialize(array('type' => 'albums', 'id' => $folder)));
 		$_zp_db->query($sql);
-		zp_apply_filter('favoritesHandler_action', 'remove', $alb, $this->name);
+		filter::applyFilter('favoritesHandler_action', 'remove', $alb, $this->name);
 	}
 
 	static function getWatchers($obj) {
@@ -336,7 +336,7 @@ class favorites extends AlbumBase {
 			$link .= $page . '/';
 			$link_no .= '&page=' . $page;
 		}
-		return zp_apply_filter('getLink', rewrite_path($link, $link_no, $path), 'favorites.php', $page);
+		return filter::applyFilter('getLink', rewrite_path($link, $link_no, $path), 'favorites.php', $page);
 	}
 	
 	/**

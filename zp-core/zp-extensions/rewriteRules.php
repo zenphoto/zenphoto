@@ -16,7 +16,7 @@ $plugin_description = gettext("Site <em>Rewrite</em> admin page.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Development');
 
-zp_register_filter('admin_tabs', 'rewriteRules::tabs');
+filter::registerFilter('admin_tabs', 'rewriteRules::tabs');
 
 /**
  * @package zpcore\plugins\rewriterules

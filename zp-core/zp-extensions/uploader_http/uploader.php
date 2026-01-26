@@ -37,7 +37,7 @@ if (isset($_POST['processed'])) {
 	$newAlbum = ((isset($_POST['existingfolder']) && $_POST['existingfolder'] == 'false') || isset($_POST['newalbum']));
 // Make sure the folder exists. If not, create it.
 	if (isset($_POST['processed']) && !empty($_POST['folder'])) {
-		$folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
+		$folder = filter::applyFilter('admin_upload_process', sanitize_path($_POST['folder']));
 		$targetPath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
@@ -47,7 +47,7 @@ if (isset($_POST['processed'])) {
 		}
 		if ($rightsalbum->exists) {
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
-				if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+				if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 					$error = UPLOAD_ERR_BLOCKED;
 				}
 			}
@@ -86,7 +86,7 @@ if (isset($_POST['processed'])) {
 					$tmp_name = $_FILES['files']['tmp_name'][$key];
 					$name = sanitize_path($_FILES['files']['name'][$key]);
 					$soename = seoFriendly($name);
-					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
+					$error = filter::applyFilter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {
 						if (Gallery::validImage($name) || Gallery::validImageAlt($name)) {
 							if (strrpos($soename, '.') === 0)

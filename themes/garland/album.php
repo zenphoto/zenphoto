@@ -8,7 +8,7 @@ $map = function_exists('printGoogleMap');
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
-		zp_apply_filter('theme_head');
+		filter::applyFilter('theme_head');
 		?>
 		<?php printHeadTitle(); ?>
 		<?php $handler->theme_head($_zp_themeroot); ?>
@@ -16,7 +16,7 @@ $map = function_exists('printGoogleMap');
 		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', getAlbumTitle()); ?>
 	</head>
 	<body class="sidebars">
-		<?php zp_apply_filter('theme_body_open'); ?>
+		<?php filter::applyFilter('theme_body_open'); ?>
 		<?php $handler->theme_bodyopen($_zp_themeroot); ?>
 		<div id="navigation"></div>
 		<div id="wrapper">
@@ -145,7 +145,7 @@ $map = function_exists('printGoogleMap');
 			<span class="clear"></span>
 		</div><!-- wrapper -->
 		<?php
-		zp_apply_filter('theme_body_close');
+		filter::applyFilter('theme_body_close');
 		?>
 	</body>
 </html>

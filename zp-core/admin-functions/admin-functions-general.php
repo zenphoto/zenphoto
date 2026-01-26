@@ -1041,13 +1041,13 @@ function processCommentBulkActions() {
 						case 'spam':
 							if (!$comment->getInModeration()) {
 								$comment->setInModeration(1);
-								zp_apply_filter('comment_disapprove', $comment);
+								filter::applyFilter('comment_disapprove', $comment);
 							}
 							break;
 						case 'approve':
 							if ($comment->getInModeration()) {
 								$comment->setInModeration(0);
-								zp_apply_filter('comment_approve', $comment);
+								filter::applyFilter('comment_approve', $comment);
 							}
 							break;
 					}
@@ -1378,7 +1378,7 @@ function getPluginTabs() {
 					'uploader' => gettext('Uploader'),
 					'users' => gettext('Users')
 			);
-			zp_apply_filter('plugin_tabs', $classXlate);
+			filter::applyFilter('plugin_tabs', $classXlate);
 			if (array_key_exists($plugin_category, $classXlate)) {
 				$local = $classXlate[$plugin_category];
 			} else {

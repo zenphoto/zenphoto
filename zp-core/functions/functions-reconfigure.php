@@ -151,10 +151,10 @@ function signatureChange($tab = NULL, $subtab = NULL) {
  */
 function addReconfigureNote() {
 	if (function_exists('zp_register_filter')) {
-		zp_register_filter('admin_head', 'reconfigureCSS');
-		zp_register_filter('admin_note', 'signatureChange');
-		zp_register_filter('theme_head', 'reconfigureCSS');
-		zp_register_filter('theme_body_open', 'signatureChange');
+		filter::registerFilter('admin_head', 'reconfigureCSS');
+		filter::registerFilter('admin_note', 'signatureChange');
+		filter::registerFilter('theme_head', 'reconfigureCSS');
+		filter::registerFilter('theme_body_open', 'signatureChange');
 	}
 }
 
@@ -331,7 +331,7 @@ function ignoreSetupRunRequest() {
 		XSRFdefender('ignore_setup');
 		purgeOption('zenphoto_install');
 		setOption('zenphoto_install', serialize(installSignature()));
-		zp_apply_filter('log_setup', true, 'ignore_setup', gettext('Setup re-run ignored by admin request.'));
+		filter::applyFilter('log_setup', true, 'ignore_setup', gettext('Setup re-run ignored by admin request.'));
 		exitZP();
 	}
 }
@@ -387,7 +387,7 @@ function protectSetupFiles() {
 				$rslt[] = '../setup/' . $component;
 			}
 		}
-		zp_apply_filter('log_setup', true, 'protect', gettext('protected'));
+		filter::applyFilter('log_setup', true, 'protect', gettext('protected'));
 	}
 }
 

@@ -108,7 +108,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 	header('X-Frame-Options: deny');
 	header('X-Content-Type-Options: nosniff');
 	header('Referrer-Policy: origin');
-	zp_apply_filter('admin_headers');
+	filter::applyFilter('admin_headers');
 	?>
 	<!DOCTYPE html>
 	<html<?php printLangAttribute(); ?>>
@@ -136,7 +136,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 
 				$(document).ready(function () {
 	<?php
-	if (zp_has_filter('admin_head', 'colorbox::css')) {
+	if (filter::hasFilter('admin_head', 'colorbox::css')) {
 		?>
 						$("a.colorbox").colorbox({
 							maxWidth: "98%",
@@ -191,7 +191,7 @@ function printAdminHeader($tab, $subtab = NULL) {
 				})
 			</script>
 			<?php
-			zp_apply_filter('admin_head');
+			filter::applyFilter('admin_head');
 		}
 
 		function printSortableHead() {
@@ -617,10 +617,10 @@ function getAdminThumbHTML($imageobj, $size = 'small', $class = null, $id = null
 			'title' => html_encode($title),
 			'loading' => 'lazy'
 	);
-	$attr_filtered = zp_apply_filter('adminthumb_attr', $attr, $imageobj);
+	$attr_filtered = filter::applyFilter('adminthumb_attr', $attr, $imageobj);
 	$attributes = generateAttributesFromArray($attr_filtered);
 	$html = '<img' . $attributes . ' />';
-	return zp_apply_filter('adminthumb_html', $html, $size, $imageobj);
+	return filter::applyFilter('adminthumb_html', $html, $size, $imageobj);
 }
 
 /**

@@ -112,7 +112,7 @@ class TextObject extends Image {
 			$this->set('mtime', $this->filemtime);
 			$this->save();
 			if ($new)
-				zp_apply_filter('new_image', $this);
+				filter::applyFilter('new_image', $this);
 		}
 	}
 

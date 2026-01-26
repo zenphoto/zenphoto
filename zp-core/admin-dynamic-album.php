@@ -24,7 +24,7 @@ if (isset($_POST['savealbum'])) {
 		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
 	}
 	if (!$allow) {
-		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+		if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 			zp_error(gettext("You do not have edit rights on this album."));
 		}
 	}
@@ -94,7 +94,7 @@ printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
-zp_apply_filter('admin_note', 'albums', 'dynamic');
+filter::applyFilter('admin_note', 'albums', 'dynamic');
 echo "<h1>" . gettext("Create Dynamic Album") . "</h1>\n";
 
 if (isset($_POST['savealbum'])) { // we fell through, some kind of error

@@ -12,7 +12,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Misc');
 $option_interface = 'defaultCodeblocks';
 
-zp_register_filter('codeblock', 'defaultCodeblocks_codebox');
+filter::registerFilter('codeblock', 'defaultCodeblocks_codebox');
 
 class defaultCodeblocks {
 

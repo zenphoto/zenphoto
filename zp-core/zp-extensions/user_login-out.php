@@ -16,8 +16,8 @@ $option_interface = 'user_logout_options';
 if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
 	setOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page), 1, false);
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/colorbox_js.php');
-	if (!zp_has_filter('theme_head', 'colorbox::css')) {
-		zp_register_filter('theme_head', 'colorbox::css');
+	if (!filter::hasFilter('theme_head', 'colorbox::css')) {
+		filter::registerFilter('theme_head', 'colorbox::css');
 	}
 }
 
@@ -90,7 +90,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 					<?php
 					break;
 				case 2:
-					if ((getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) && (zp_has_filter('theme_head', 'colorbox::css'))) { ?>
+					if ((getOption('colorbox_' . $_zp_gallery->getCurrentTheme() . '_' . stripSuffix($_zp_gallery_page))) && (filter::hasFilter('theme_head', 'colorbox::css'))) { ?>
 					<script>
 						$(document).ready(function() {
 							$(".logonlink").colorbox({
@@ -113,7 +113,7 @@ function printUserLogin_out($before = '', $after = '', $showLoginForm = NULL, $l
 					}
 					break;
 				default:
-					if ($loginlink = zp_apply_filter('login_link',getCustomPageURL('password'))) {
+					if ($loginlink = filter::applyFilter('login_link',getCustomPageURL('password'))) {
 						if ($before) { echo '<span class="beforetext">' . html_encodeTagged($before) . '</span>'; } ?>
 						<a href="<?php echo $loginlink; ?>" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 						<?php if ($after) { echo '<span class="aftertext">' . html_encodeTagged($after) . '</span>'; }

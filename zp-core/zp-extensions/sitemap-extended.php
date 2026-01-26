@@ -25,7 +25,7 @@ $plugin_author = 'Malte Müller (acrylian), Jeppe Toustrup (Tenzer), timo, Blue 
 $plugin_category = gettext('SEO');
 $option_interface = 'sitemapOptions';
 
-zp_register_filter('admin_utilities_buttons', 'sitemap::button');
+filter::registerFilter('admin_utilities_buttons', 'sitemap::button');
 
 $sitemapfolder = SERVERPATH . '/' . STATIC_CACHE_FOLDER . '/sitemap';
 if (!file_exists($sitemapfolder)) {

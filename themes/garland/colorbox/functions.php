@@ -4,7 +4,7 @@
  */
 // initialization stuff
 
-if (zp_has_filter('theme_head', 'colorbox::css')) {
+if (filter::hasFilter('theme_head', 'colorbox::css')) {
 	$handler = new ga_colorbox();
 } else {
 	require_once(SERVERPATH . '/' . THEMEFOLDER . '/garland/image_page/functions.php');

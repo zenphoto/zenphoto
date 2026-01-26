@@ -8,7 +8,7 @@ if (!defined('WEBPATH'))
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<?php
-		zp_apply_filter('theme_head');
+		filter::applyFilter('theme_head');
 		?>
 		<?php printHeadTitle(); ?>
 		<?php $handler->theme_head($_zp_themeroot); ?>
@@ -30,7 +30,7 @@ if (!defined('WEBPATH'))
 	</head>
 	<body class="sidebars">
 		<?php
-		zp_apply_filter('theme_body_open');
+		filter::applyFilter('theme_body_open');
 		$numimages = getNumImages();
 		$numalbums = getNumAlbums();
 		$total = $numimages + $numalbums;
@@ -238,7 +238,7 @@ if (!defined('WEBPATH'))
 					<span class="clear"></span>
 				</div>
 				<?php
-				zp_apply_filter('theme_body_close');
+				filter::applyFilter('theme_body_close');
 				?>
 				</body>
 				</html>

@@ -121,14 +121,14 @@ $_zp_conf_vars['special_pages'][] = array(
 		'rewrite' => '^%NEWS%/*$',
 		'rule' => '%REWRITE% index.php?p=news [L,QSA]');
 
-zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
-zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
-zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
-zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
-zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
-zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
-zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 99);
-zp_register_filter('load_theme_script', 'zenpagecms::disableZenpageItems', 0);
+filter::registerFilter('isMyItemToView', 'zenpagecms::isMyItemToView');
+filter::registerFilter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
+filter::registerFilter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
+filter::registerFilter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
+filter::registerFilter('themeSwitcher_head', 'zenpagecms::switcher_head');
+filter::registerFilter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
+filter::registerFilter('load_theme_script', 'zenpagecms::switcher_setup', 99);
+filter::registerFilter('load_theme_script', 'zenpagecms::disableZenpageItems', 0);
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/classes/class-zenpage.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/classes/class-zenpageroot.php');
@@ -462,7 +462,7 @@ function getNewsIndexURL($page = '') {
 		$rewrite .= $page . '/';
 		$plain .= '&page=' . $page;
 	}
-	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
+	return filter::applyFilter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
 }
 
 /**
@@ -472,6 +472,6 @@ function getNewsIndexURL($page = '') {
  * @return string
  */
 function getNewsArchiveURL($date) {
-	return zp_apply_filter('getLink', rewrite_path(_NEWS_ARCHIVE_ . '/' . $date . '/', "/index.php?p=news&date=$date"), 'news.php', NULL);
+	return filter::applyFilter('getLink', rewrite_path(_NEWS_ARCHIVE_ . '/' . $date . '/', "/index.php?p=news&date=$date"), 'news.php', NULL);
 }
 ?>

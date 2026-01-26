@@ -14,13 +14,13 @@ $plugin_disable = extensionEnabled('zenpage') ? '' : gettext('Gallery Articles r
 
 $option_interface = 'galleryArticles';
 
-zp_register_filter('show_change', 'galleryArticles::published');
+filter::registerFilter('show_change', 'galleryArticles::published');
 if (getOption('galleryArticles_albums'))
-	zp_register_filter('new_album', 'galleryArticles::published');
+	filter::registerFilter('new_album', 'galleryArticles::published');
 if (getOption('galleryArticles_images'))
-	zp_register_filter('new_image', 'galleryArticles::published');
-zp_register_filter('admin_head', 'galleryArticles::scan');
-zp_register_filter('load_theme_script', 'galleryArticles::scan');
+	filter::registerFilter('new_image', 'galleryArticles::published');
+filter::registerFilter('admin_head', 'galleryArticles::scan');
+filter::registerFilter('load_theme_script', 'galleryArticles::scan');
 
 /**
  *

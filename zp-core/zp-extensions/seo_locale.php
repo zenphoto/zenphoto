@@ -40,7 +40,7 @@ $plugin_category = gettext('SEO');
 if ($plugin_disable) {
 	enableExtension('seo_locale', 0);
 } else {
-	zp_register_filter('load_request', 'seo_locale::load_request');
+	filter::registerFilter('load_request', 'seo_locale::load_request');
 	if (!defined('SEO_WEBPATH')) {
 		define('SEO_WEBPATH', seo_locale::localePath());
 		define('SEO_FULLWEBPATH', seo_locale::localePath(true));

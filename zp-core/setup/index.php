@@ -382,7 +382,8 @@ if (function_exists('setOption')) {
 } else { // setup a primitive environment
 	$environ = false;
 	require_once(dirname(__FILE__) . '/setup-primitive.php');
-	require_once(dirname(dirname(__FILE__)) . '/functions/functions-filter.php');
+	require_once(dirname(dirname(__FILE__)) . '/classes/class-filter.php');
+	require_once(dirname(dirname(__FILE__)) . '/deprecated/functions-filter.php');
 	require_once(dirname(dirname(__FILE__)) . '/functions/functions-i18n.php');
 }
 

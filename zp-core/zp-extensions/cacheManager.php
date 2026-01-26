@@ -79,8 +79,8 @@ $plugin_category = gettext('Admin');
 
 $option_interface = 'cacheManager';
 
-zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
-zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
+filter::registerFilter('admin_utilities_buttons', 'cacheManager::overviewbutton');
+filter::registerFilter('edit_album_utilities', 'cacheManager::albumbutton', -9999);
 
 /**
  *

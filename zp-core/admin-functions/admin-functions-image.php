@@ -80,7 +80,7 @@
 					$image->setCodeblock(processCodeblockSave($index));
 				}
 				$custom = process_language_string_save("$index-custom_data", 1);
-				$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $index));
+				$image->setCustomData(filter::applyFilter('save_image_custom_data', $custom, $index));
 			}
 			$image->setDateTime(sanitize($_POST["$index-date"]));
 			$image->setPublished(isset($_POST["$index-Visible"]));
@@ -107,7 +107,7 @@
 			}
 			$image->set('filesize', filesize($image->localpath));
 			$image->setLastchangeUser($_zp_current_admin_obj->getLoginName());
-			zp_apply_filter('save_image_utilities_data', $image, $index);
+			filter::applyFilter('save_image_utilities_data', $image, $index);
 			$image->save(true);
 
 			// Process move/copy/rename

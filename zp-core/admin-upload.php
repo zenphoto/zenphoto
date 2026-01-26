@@ -18,7 +18,7 @@ if (isset($_GET['type'])) {
 	$uploadtype = zp_getcookie('zpcms_admin_uploadtype');
 	$_GET['tab'] = $uploadtype;
 }
-$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers', array()));
+$handlers = array_keys($uploadHandlers = filter::applyFilter('upload_handlers', array()));
 if (!zp_loggedin(UPLOAD_RIGHTS) || empty($handlers)) {
 	//	redirect to the files page if present
 	if (isset($_zp_admin_menu['upload']['subtabs'][0])) {
@@ -75,7 +75,7 @@ foreach ($albumlist as $key => $value) {
 		</script>
 
 		<div class="tabbox">
-			<?php zp_apply_filter('admin_note', 'upload', 'images'); ?>
+			<?php filter::applyFilter('admin_note', 'upload', 'images'); ?>
 			<h1><?php echo gettext("Upload Images"); ?></h1>
 			<p>
 				<?php
@@ -85,7 +85,7 @@ foreach ($albumlist as $key => $value) {
 				if (function_exists('zip_open')) {
 					$types[] = 'ZIP';
 				}
-				$types = zp_apply_filter('upload_filetypes', $types);
+				$types = filter::applyFilter('upload_filetypes', $types);
 				sortArray($types);
 				$upload_extensions = $types;
 				$last = strtoupper(array_pop($types));
@@ -120,12 +120,12 @@ foreach ($albumlist as $key => $value) {
 				} else {
 					echo ' ' . sprintf(gettext("The maximum size for your total upload is <strong>%sB</strong> which is set by your PHP configuration <code>post_max_size</code>."), $maxpost);
 				}
-				$uploadlimit = zp_apply_filter('get_upload_limit', $maxuploadint);
+				$uploadlimit = filter::applyFilter('get_upload_limit', $maxuploadint);
 				$maxuploadint = min($maxuploadint, $uploadlimit);
 				?>
 				<br />
 				<?php
-				echo zp_apply_filter('get_upload_header_text', gettext('Don’t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
+				echo filter::applyFilter('get_upload_header_text', gettext('Don’t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
 				?>
 			</p>
 			<?php
@@ -146,7 +146,7 @@ foreach ($albumlist as $key => $value) {
 				</div>
 				<?php
 			}
-			$rootrights = zp_apply_filter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
+			$rootrights = filter::applyFilter('upload_root_ui', accessAllAlbums(UPLOAD_RIGHTS));
 			if ($rootrights || !empty($albumlist)) {
 				echo gettext("Upload to:");
 				if (isset($_GET['new'])) {
@@ -294,7 +294,7 @@ foreach ($albumlist as $key => $value) {
 
 					<script>
 	<?php
-	echo zp_apply_filter('upload_helper_js', '') . "\n";
+	echo filter::applyFilter('upload_helper_js', '') . "\n";
 	if ($passedalbum) {
 		?>
 							buttonstate(true);

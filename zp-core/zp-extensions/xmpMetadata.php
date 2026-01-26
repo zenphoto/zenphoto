@@ -37,18 +37,18 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Media');
 $option_interface = 'xmpMetadataOptions';
 
-zp_register_filter('album_instantiate', 'xmpMetadata::album_instantiate');
-zp_register_filter('new_album', 'xmpMetadata::new_album');
-zp_register_filter('album_refresh', 'xmpMetadata::new_album');
-zp_register_filter('image_instantiate', 'xmpMetadata::image_instantiate');
-zp_register_filter('image_metadata', 'xmpMetadata::new_image');
-zp_register_filter('upload_filetypes', 'xmpMetadata::sidecars');
-zp_register_filter('save_album_utilities_data', 'xmpMetadata::putXMP');
-zp_register_filter('edit_album_utilities', 'xmpMetadata::create');
-zp_register_filter('save_image_utilities_data', 'xmpMetadata::putXMP');
-zp_register_filter('edit_image_utilities', 'xmpMetadata::create');
-zp_register_filter('bulk_image_actions', 'xmpMetadata::bulkActions');
-zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
+filter::registerFilter('album_instantiate', 'xmpMetadata::album_instantiate');
+filter::registerFilter('new_album', 'xmpMetadata::new_album');
+filter::registerFilter('album_refresh', 'xmpMetadata::new_album');
+filter::registerFilter('image_instantiate', 'xmpMetadata::image_instantiate');
+filter::registerFilter('image_metadata', 'xmpMetadata::new_image');
+filter::registerFilter('upload_filetypes', 'xmpMetadata::sidecars');
+filter::registerFilter('save_album_utilities_data', 'xmpMetadata::putXMP');
+filter::registerFilter('edit_album_utilities', 'xmpMetadata::create');
+filter::registerFilter('save_image_utilities_data', 'xmpMetadata::putXMP');
+filter::registerFilter('edit_image_utilities', 'xmpMetadata::create');
+filter::registerFilter('bulk_image_actions', 'xmpMetadata::bulkActions');
+filter::registerFilter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
 require_once SERVERPATH. '/'. ZENFOLDER  .'/classes/class-imagemetaformatter.php';
 

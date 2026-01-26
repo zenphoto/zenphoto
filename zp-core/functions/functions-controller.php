@@ -287,7 +287,7 @@ function load_zenpage_news($request) {
  * @return bool
  */
 function zp_load_request() {
-	if ($success = zp_apply_filter('load_request', true)) { // filter allowed the load
+	if ($success = filter::applyFilter('load_request', true)) { // filter allowed the load
 		zp_load_page();
 		if (isset($_GET['p'])) {
 			$page = str_replace(array('/', '\\', '.'), '', sanitize($_GET['p']));
@@ -413,9 +413,9 @@ function prepareCustomPage() {
  * @since 1.5.2
  */
 function redirectionHandler() {
-	if (zp_has_filter('redirection_handler')) {
+	if (filter::hasFilter('redirection_handler')) {
 		$url = SERVER_HTTP_HOST . getRequestURI();
-		$redirect_url = zp_apply_filter('redirection_handler', $url);
+		$redirect_url = filter::applyFilter('redirection_handler', $url);
 		if ($redirect_url != $url) {
 			redirectURL($redirect_url, '301');
 		}

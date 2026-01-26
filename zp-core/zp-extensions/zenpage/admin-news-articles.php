@@ -91,7 +91,7 @@ datepickerJS();
 			<?php $subtab = printSubtabs(); ?>
       <div id="tab_articles" class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'news', $subtab);
+				filter::applyFilter('admin_note', 'news', $subtab);
 				if ($reports) {
 					$show = array();
 					preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);

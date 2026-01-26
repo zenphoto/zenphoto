@@ -75,7 +75,7 @@ if (isset($_GET['action'])) {
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
 			$adminobj = Authority::newAdministrator(sanitize($_GET['adminuser']), 1);
-			zp_apply_filter('save_user', '', $adminobj, 'delete');
+			filter::applyFilter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
 			redirectURL(FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&pagenumber=" . $pagenumber);
 			break;
@@ -157,7 +157,7 @@ if (isset($_GET['action'])) {
 								}
 								if ($pass == $pass2) {
 									$pass2 = $userobj->getPass($pass);
-									if ($msg = zp_apply_filter('can_set_user_password', false, $pass, $userobj)) {
+									if ($msg = filter::applyFilter('can_set_user_password', false, $pass, $userobj)) {
 										$notify = '?mismatch=format&error=' . urlencode($msg);
 									} else {
 										$userobj->setPass($pass);
@@ -210,7 +210,7 @@ if (isset($_GET['action'])) {
 							} else {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
-							$_zp_admin_user_updated = zp_apply_filter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
+							$_zp_admin_user_updated = filter::applyFilter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
 							if (isset($_POST['createAlbum_' . $i])) {		
 								if ($userobj->getValid() || isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate') {
 									$userobj->createPrimealbum();
@@ -230,7 +230,7 @@ if (isset($_GET['action'])) {
 								if(in_array($what, array('new', 'update'))) {
 								$returntab .= '&show[]=' . $user;
 								}
-								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+								$msg = filter::applyFilter('save_user', $msg, $userobj, $what);
 								if (empty($msg)) {
 									if (!$notify)
 										$userobj->transient = false;
@@ -333,7 +333,7 @@ echo $refresh;
 				?>
 				<div id="tab_admin" class="tabbox">
 					<?php
-					zp_apply_filter('admin_note', 'users', 'users');
+					filter::applyFilter('admin_note', 'users', 'users');
 
 					$pages = 0;
 					$clearPass = false;
@@ -581,11 +581,11 @@ echo $refresh;
 									?>
 									<!-- apply alterrights filter -->
 									<?php
-									$local_alterrights = zp_apply_filter('admin_alterrights', $local_alterrights, $userobj);
+									$local_alterrights = filter::applyFilter('admin_alterrights', $local_alterrights, $userobj);
 									?>
 									<!-- apply admin_custom_data filter -->
 									<?php
-									$custom_row = zp_apply_filter('edit_admin_custom_data', '', $userobj, $id, $background, $current, $local_alterrights);
+									$custom_row = filter::applyFilter('edit_admin_custom_data', '', $userobj, $id, $background, $current, $local_alterrights);
 								}
 								?>
 								<!-- finished with filters -->

@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
 	$validlogfiles = safe_glob(SERVERPATH . '/' . DATA_FOLDER . '/*.log');
 	if (in_array($file, $validlogfiles)) {
 		XSRFdefender($action);
-		if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
+		if (filter::applyFilter('admin_log_actions', true, $file, $action)) {
 			switch ($action) {
 				case 'clear_log':
 
@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
 					clearstatcache();
 					$_zp_mutex->unlock();
 					if (basename($file) == 'security.log') {
-						zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
+						filter::applyFilter('admin_log_actions', true, $file, $action); // have to record the fact
 					}
 					break;
 				case 'delete_log':
@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
 					$_zp_mutex->unlock();
 					unset($_GET['tab']); // it is gone, after all
 					if (basename($file) == 'security.log') {
-						zp_apply_filter('admin_log_actions', true, $file, $action); // have to record the fact
+						filter::applyFilter('admin_log_actions', true, $file, $action); // have to record the fact
 					}
 					break;
 				case 'download_log':
@@ -136,7 +136,7 @@ echo "\n</head>";
 				<!-- A log -->
 				<div id="theme-editor" class="tabbox">
 					<?php 
-					zp_apply_filter('admin_note', 'logs', $subtab); 
+					filter::applyFilter('admin_note', 'logs', $subtab); 
 					if (isset($result)) {
 						?>
 						<div class="<?php echo $class; ?> fade-message">

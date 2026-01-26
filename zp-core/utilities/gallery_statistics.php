@@ -50,7 +50,7 @@ printAdminHeader('overview', 'general');
 		<div id="content">
 		<?php $currenttab = printSubtabs(); ?>
 			<div class="tabbox">
-			<?php zp_apply_filter('admin_note', 'statistics', ''); ?>
+			<?php filter::applyFilter('admin_note', 'statistics', ''); ?>
 				<h1><?php echo adminGalleryStats::getPageHeadline($currenttab); ?></h1>
 				<p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
 

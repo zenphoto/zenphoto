@@ -102,7 +102,7 @@ if (version_compare(PHP_VERSION, '8.0.0', '>=')) {
 	}
 
 	if (!zp_getCookie('zpcms_mobiletheme')) {
-		zp_register_filter('setupTheme', 'mobileTheme::theme');
+		filter::registerFilter('setupTheme', 'mobileTheme::theme');
 	}
 }
 

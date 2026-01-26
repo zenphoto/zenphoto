@@ -304,7 +304,7 @@ class pagedThumbsNav {
 				getMaxSpaceContainer($maxwidth, $maxheight, $image, true);
 				$html = '<img src="' . html_encode(pathurlencode($image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, true))) . '" alt="' . html_encode(getBare($image->getTitle())) . '" loading="lazy" />';
 			}
-			echo zp_apply_filter('custom_image_html', $html, true, $image);
+			echo filter::applyFilter('custom_image_html', $html, true, $image);
 			echo "</a>\n";
 			$number++;
 		}

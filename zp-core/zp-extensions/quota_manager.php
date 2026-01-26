@@ -29,7 +29,7 @@ $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.");
 $plugin_notice = gettext("<strong>Note:</strong> if FTP is used to upload images, manual user assignment is necessary. ZIP file upload is disabled by default as quotas are not applied to the files contained therein.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zp_has_filter('get_upload_header_text') && !extensionEnabled('quota_manager')) ? sprintf(gettext('<a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('get_upload_header_text'))) : '';
+$plugin_disable = (filter::hasFilter('get_upload_header_text') && !extensionEnabled('quota_manager')) ? sprintf(gettext('<a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(filter::getFilterScript('get_upload_header_text'))) : '';
 $plugin_category = gettext('Users');
 
 $option_interface = 'quota_manager';
@@ -37,15 +37,15 @@ $option_interface = 'quota_manager';
 if ($plugin_disable) {
 	enableExtension('quota_manager', 0);
 } else {
-	zp_register_filter('save_admin_custom_data', 'quota_manager::save_admin');
-	zp_register_filter('edit_admin_custom_data', 'quota_manager::edit_admin');
-	zp_register_filter('new_image', 'quota_manager::new_image');
-	zp_register_filter('image_refresh', 'quota_manager::image_refresh');
-	zp_register_filter('check_upload_quota', 'quota_manager::checkQuota');
-	zp_register_filter('get_upload_limit', 'quota_manager::getUploadLimit');
-	zp_register_filter('get_upload_header_text', 'quota_manager::get_header');
-	zp_register_filter('upload_filetypes', 'quota_manager::upload_filetypes');
-	zp_register_filter('upload_helper_js', 'quota_manager::upload_helper_js');
+	filter::registerFilter('save_admin_custom_data', 'quota_manager::save_admin');
+	filter::registerFilter('edit_admin_custom_data', 'quota_manager::edit_admin');
+	filter::registerFilter('new_image', 'quota_manager::new_image');
+	filter::registerFilter('image_refresh', 'quota_manager::image_refresh');
+	filter::registerFilter('check_upload_quota', 'quota_manager::checkQuota');
+	filter::registerFilter('get_upload_limit', 'quota_manager::getUploadLimit');
+	filter::registerFilter('get_upload_header_text', 'quota_manager::get_header');
+	filter::registerFilter('upload_filetypes', 'quota_manager::upload_filetypes');
+	filter::registerFilter('upload_helper_js', 'quota_manager::upload_helper_js');
 }
 
 /**

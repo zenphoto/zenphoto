@@ -27,9 +27,9 @@ class Album extends AlbumBase {
 		if ($new) {
 			$this->setUpdatedDateParents();
 			$this->save();
-			zp_apply_filter('new_album', $this);
+			filter::applyFilter('new_album', $this);
 		}
-		zp_apply_filter('album_instantiate', $this);
+		filter::applyFilter('album_instantiate', $this);
 	}
 
 	/**
@@ -415,9 +415,9 @@ class Album extends AlbumBase {
 		}
 
 		if ($dirs) {
-			return zp_apply_filter('album_filter', $files);
+			return filter::applyFilter('album_filter', $files);
 		} else {
-			return zp_apply_filter('image_filter', $files);
+			return filter::applyFilter('image_filter', $files);
 		}
 	}
 

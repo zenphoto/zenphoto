@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
 }
 
 printAdminHeader('news', 'categories');
-zp_apply_filter('texteditor_config', 'zenpage');
+filter::applyFilter('texteditor_config', 'zenpage');
 printSortableHead();
 zenpageJSCSS();
 ?>
@@ -107,7 +107,7 @@ zenpageJSCSS();
 			?>
 			<div id="tab_articles" class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'categories', $subtab);
+				filter::applyFilter('admin_note', 'categories', $subtab);
 				if ($reports) {
 					$show = array();
 					preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);

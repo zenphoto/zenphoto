@@ -36,7 +36,7 @@ if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 	if (getOption('gmap_sessions')) {
 		zp_session_start();
 	}
-	zp_register_filter('theme_head', 'GoogleMap::js');
+	filter::registerFilter('theme_head', 'GoogleMap::js');
 }
 
 /**
@@ -529,7 +529,7 @@ function printGoogleMap($text = NULL, $id = NULL, $hide = NULL, $obj = NULL, $ca
 			<?php
 			break;
 		case 'colorbox':
-			if (zp_has_filter('theme_head', 'colorbox::css')) {
+			if (filter::hasFilter('theme_head', 'colorbox::css')) {
 				$map->create_map();
 				$map_data["output_js_contents"] = $map->output_js_contents;
 				$map_data["output_html"] = $map->output_html;

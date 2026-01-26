@@ -41,8 +41,8 @@ $plugin_deprecated = true;
 $option_interface = 'cycle';
 
 global $_zp_gallery, $_zp_gallery_page;
-zp_register_filter('theme_head', 'cycle::cycleJS');
-zp_register_filter('content_macro', 'cycle::macro');
+filter::registerFilter('theme_head', 'cycle::cycleJS');
+filter::registerFilter('content_macro', 'cycle::macro');
 
 /**
  * Plugin option handling class

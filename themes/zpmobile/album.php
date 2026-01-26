@@ -7,7 +7,7 @@ if (!defined('WEBPATH')) die(); ?>
 <html<?php printLangAttribute(); ?>>
 <head>
 	<meta charset="<?php echo LOCAL_CHARSET; ?>">
-	<?php zp_apply_filter('theme_head'); ?>
+	<?php filter::applyFilter('theme_head'); ?>
 	<?php printHeadTitle(); ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
@@ -15,7 +15,7 @@ if (!defined('WEBPATH')) die(); ?>
 </head>
 
 <body>
-<?php zp_apply_filter('theme_body_open'); ?>
+<?php filter::applyFilter('theme_body_open'); ?>
 
 
 <div data-role="page" id="mainpage">
@@ -94,7 +94,7 @@ if (!defined('WEBPATH')) die(); ?>
 <?php jqm_printFooterNav(); ?>
 </div><!-- /page -->
 
-<?php zp_apply_filter('theme_body_close'); ?>
+<?php filter::applyFilter('theme_body_close'); ?>
 
 </body>
 </html>

@@ -678,11 +678,11 @@ function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '') {
 		$attr['class'] .= " password_protected";
 	}
 	$attr['class'] = trim($attr['class']);
-	$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $thumbobj);
+	$attr_filtered = filter::applyFilter('standard_album_thumb_attr', $attr, $thumbobj);
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || !$_zp_current_album->isProtected()) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
-		$html = zp_apply_filter('standard_album_thumb_html', $html, $thumbobj);
+		$html = filter::applyFilter('standard_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
 		$size = ' width="' . $attr['width'] . '"';
@@ -767,11 +767,11 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
 	} else {
 		$attr['src']= html_pathurlencode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy));
 	}
-	$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $thumbobj);
+	$attr_filtered = filter::applyFilter('custom_album_thumb_attr', $attr, $thumbobj);
 	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || !$_zp_current_album->isProtected()) {
 		$attributes = generateAttributesFromArray($attr_filtered);
 		$html = '<img' . $attributes . ' />';
-		$html = zp_apply_filter('custom_album_thumb_html', $html, $thumbobj);
+		$html = filter::applyFilter('custom_album_thumb_html', $html, $thumbobj);
 		echo $html;
 	} else {
 		$size = ' width="' . $attr['width'] . '" height="' . $attr['height'] . '"';

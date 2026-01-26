@@ -33,15 +33,15 @@ $plugin_category = gettext('Users');
 
 $option_interface = 'user_expiry';
 
-zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 0);
-zp_register_filter('authorization_cookie', 'user_expiry::checkcookie');
-zp_register_filter('admin_login_attempt', 'user_expiry::checklogon');
-zp_register_filter('federated_login_attempt', 'user_expiry::checklogon');
-zp_register_filter('edit_admin_custom_data', 'user_expiry::edit_admin', 999);
-zp_register_filter('load_theme_script', 'user_expiry::reverify', 999);
-zp_register_filter('admin_note', 'user_expiry::notify', 999);
-zp_register_filter('can_set_user_password', 'user_expiry::passwordAllowed');
-zp_register_filter('remove_user', 'user_expiry::cleanup');
+filter::registerFilter('admin_tabs', 'user_expiry::admin_tabs', 0);
+filter::registerFilter('authorization_cookie', 'user_expiry::checkcookie');
+filter::registerFilter('admin_login_attempt', 'user_expiry::checklogon');
+filter::registerFilter('federated_login_attempt', 'user_expiry::checklogon');
+filter::registerFilter('edit_admin_custom_data', 'user_expiry::edit_admin', 999);
+filter::registerFilter('load_theme_script', 'user_expiry::reverify', 999);
+filter::registerFilter('admin_note', 'user_expiry::notify', 999);
+filter::registerFilter('can_set_user_password', 'user_expiry::passwordAllowed');
+filter::registerFilter('remove_user', 'user_expiry::cleanup');
 
 /**
  * Option handler class

@@ -20,7 +20,7 @@ $option_interface = 'tinymceOptions';
 
 if (!defined('EDITOR_SANITIZE_LEVEL'))
 	define('EDITOR_SANITIZE_LEVEL', 4);
-zp_register_filter('texteditor_config', 'tinymceOptions::tinymceConfigJS');
+filter::registerFilter('texteditor_config', 'tinymceOptions::tinymceConfigJS');
 
 /**
  * Plugin option handling class

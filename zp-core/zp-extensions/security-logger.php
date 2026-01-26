@@ -23,20 +23,20 @@ $plugin_category = gettext('Admin');
 $option_interface = 'security_logger';
 
 if (getOption('logger_log_admin')) {
-	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
-	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger');
+	filter::registerFilter('admin_login_attempt', 'security_logger::adminLoginLogger');
+	filter::registerFilter('federated_login_attempt', 'security_logger::federatedLoginLogger');
 }
 if (getOption('logger_log_guests')) {
-	zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger');
+	filter::registerFilter('guest_login_attempt', 'security_logger::guestLoginLogger');
 }
-zp_register_filter('admin_allow_access', 'security_logger::adminGate');
-zp_register_filter('authorization_cookie', 'security_logger::adminCookie', 0);
-zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate');
-zp_register_filter('save_user', 'security_logger::UserSave');
-zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access');
-zp_register_filter('admin_log_actions', 'security_logger::log_action');
-zp_register_filter('log_setup', 'security_logger::log_setup');
-zp_register_filter('security_misc', 'security_logger::security_misc');
+filter::registerFilter('admin_allow_access', 'security_logger::adminGate');
+filter::registerFilter('authorization_cookie', 'security_logger::adminCookie', 0);
+filter::registerFilter('admin_managed_albums_access', 'security_logger::adminAlbumGate');
+filter::registerFilter('save_user', 'security_logger::UserSave');
+filter::registerFilter('admin_XSRF_access', 'security_logger::admin_XSRF_access');
+filter::registerFilter('admin_log_actions', 'security_logger::log_action');
+filter::registerFilter('log_setup', 'security_logger::log_setup');
+filter::registerFilter('security_misc', 'security_logger::security_misc');
 
 /**
  * Option handler class

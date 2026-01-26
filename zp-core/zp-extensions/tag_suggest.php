@@ -12,8 +12,8 @@ $plugin_description = gettext("Enables jQuery tag suggestions on the search fiel
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Misc');
 $option_interface = 'tagsuggest';
-zp_register_filter('theme_head', 'tagSuggestJS_frontend');
-zp_register_filter('admin_head', 'tagSuggestJS_admin');
+filter::registerFilter('theme_head', 'tagSuggestJS_frontend');
+filter::registerFilter('admin_head', 'tagSuggestJS_admin');
 
 class tagsuggest {
 

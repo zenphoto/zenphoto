@@ -29,8 +29,8 @@ $plugin_category = gettext('Admin');
 $option_interface = 'auto_backup';
 if ((getOption('last_backup_run') + getOption('backup_interval') * 86400) < time()) { // register if it is time for a backup
 	require_once(dirname(dirname(__FILE__)) . '/admin-functions.php');
-	zp_register_filter('admin_head', 'auto_backup::timer_handler');
-	zp_register_filter('theme_head', 'auto_backup::timer_handler');
+	filter::registerFilter('admin_head', 'auto_backup::timer_handler');
+	filter::registerFilter('theme_head', 'auto_backup::timer_handler');
 }
 
 /**

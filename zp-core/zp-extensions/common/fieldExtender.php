@@ -263,37 +263,37 @@ value="' . html_encode($object->get($field['name'])) . '" />';
 	 * @deprecated 2.0 
 	 */
 	static function _register($me, $fields) {
-		zp_register_filter('searchable_fields', "$me::addToSearch");
+		filter::registerFilter('searchable_fields', "$me::addToSearch");
 		$items = array();
 		foreach ($fields as $field) {
 			$items[$field['table']] = true;
 		}
 		if (isset($items['albums'])) {
-			zp_register_filter("save_album_utilities_data", "$me::mediaItemSave");
-			zp_register_filter("edit_album_custom_data", "$me::mediaItemEdit");
+			filter::registerFilter("save_album_utilities_data", "$me::mediaItemSave");
+			filter::registerFilter("edit_album_custom_data", "$me::mediaItemEdit");
 		}
 		if (isset($items['images'])) {
-			zp_register_filter("save_image_utilities_data", "$me::mediaItemSave");
-			zp_register_filter("edit_image_custom_data", "$me::mediaItemEdit");
+			filter::registerFilter("save_image_utilities_data", "$me::mediaItemSave");
+			filter::registerFilter("edit_image_custom_data", "$me::mediaItemEdit");
 		}
 		if (isset($items['administrators'])) {
-			zp_register_filter("save_admin_custom_data", "$me::adminSave");
-			zp_register_filter("edit_admin_custom_data", "$me::adminEdit");
+			filter::registerFilter("save_admin_custom_data", "$me::adminSave");
+			filter::registerFilter("edit_admin_custom_data", "$me::adminEdit");
 		}
 		if (isset($items['news'])) {
-			zp_register_filter("save_article_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_article_custom_data", "$me::zenpageItemEdit");
+			filter::registerFilter("save_article_custom_data", "$me::zenpageItemSave");
+			filter::registerFilter("edit_article_custom_data", "$me::zenpageItemEdit");
 		}
 		if (isset($items['news_categories'])) {
-			zp_register_filter("save_category_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_category_custom_data", "$me::zenpageItemEdit");
+			filter::registerFilter("save_category_custom_data", "$me::zenpageItemSave");
+			filter::registerFilter("edit_category_custom_data", "$me::zenpageItemEdit");
 		}
 		if (isset($items['pages'])) {
-			zp_register_filter("save_page_custom_data", "$me::zenpageItemSave");
-			zp_register_filter("edit_page_custom_data", "$me::zenpageItemEdit");
+			filter::registerFilter("save_page_custom_data", "$me::zenpageItemSave");
+			filter::registerFilter("edit_page_custom_data", "$me::zenpageItemEdit");
 		}
 		if (OFFSET_PATH && !getOption($me . "_addedFields")) {
-			zp_register_filter('admin_note', "$me::adminNotice");
+			filter::registerFilter('admin_note', "$me::adminNotice");
 		}
 	}
 

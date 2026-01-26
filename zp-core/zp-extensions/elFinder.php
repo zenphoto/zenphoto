@@ -63,10 +63,10 @@ class elFinder_options {
 }
 
 if (getOption('elFinder_files') && zp_loggedin(FILES_RIGHTS)) {
-	zp_register_filter('admin_tabs', 'elFinder_admin_tabs', 50);
+	filter::registerFilter('admin_tabs', 'elFinder_admin_tabs', 50);
 }
 if (getOption('elFinder_tinymce')) {
-	zp_register_filter('tinymce_zenpage_config', 'elFinder_tinymce');
+	filter::registerFilter('tinymce_zenpage_config', 'elFinder_tinymce');
 }
 
 function elFinder_admin_tabs($tabs) {

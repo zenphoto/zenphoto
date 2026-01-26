@@ -602,9 +602,9 @@ class feed {
 			$feeditem['pubdate'] = date("r", strtotime($albumobj->getDateTime()));
 		}
 		if ($this->mode == "albums") {
-			return zp_apply_filter('feed_album', $feeditem, $item);
+			return filter::applyFilter('feed_album', $feeditem, $item);
 		} else {
-			return zp_apply_filter('feed_image', $feeditem, $item);
+			return filter::applyFilter('feed_image', $feeditem, $item);
 		}
 	}
 
@@ -637,7 +637,7 @@ class feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($item['date']));
-		return zp_apply_filter('feed_news', $feeditem, $obj);
+		return filter::applyFilter('feed_news', $feeditem, $obj);
 	}
 
 	/**
@@ -659,7 +659,7 @@ class feed {
 		$feeditem['media_content'] = '';
 		$feeditem['media_thumbnail'] = '';
 		$feeditem['pubdate'] = date("r", strtotime($obj->getDatetime()));
-		return zp_apply_filter('feed_page', $feeditem, $obj);
+		return filter::applyFilter('feed_page', $feeditem, $obj);
 	}
 
 	/**
@@ -715,7 +715,7 @@ class feed {
 		$feeditem['title'] = getBare($title . $author);
 		$feeditem['link'] = $commentpath;
 		$feeditem['desc'] = $item['comment'];
-		return zp_apply_filter('feed_comment', $feeditem, $item, $obj);
+		return filter::applyFilter('feed_comment', $feeditem, $item, $obj);
 	}
 
 	static protected function feed404() {

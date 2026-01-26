@@ -17,10 +17,10 @@ $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Users');
 
-zp_register_filter('admin_tabs', 'user_groups::admin_tabs');
-zp_register_filter('admin_alterrights', 'user_groups::admin_alterrights');
-zp_register_filter('save_admin_custom_data', 'user_groups::save_admin');
-zp_register_filter('edit_admin_custom_data', 'user_groups::edit_admin');
+filter::registerFilter('admin_tabs', 'user_groups::admin_tabs');
+filter::registerFilter('admin_alterrights', 'user_groups::admin_alterrights');
+filter::registerFilter('save_admin_custom_data', 'user_groups::save_admin');
+filter::registerFilter('edit_admin_custom_data', 'user_groups::edit_admin');
 
 class user_groups {
 

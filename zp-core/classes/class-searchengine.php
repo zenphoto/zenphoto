@@ -117,7 +117,7 @@ class SearchEngine {
 				$this->search_structure[strtolower($field)] = $row[2];
 			}
 		}
-		$this->search_structure = zp_apply_filter('searchable_fields', $this->search_structure);
+		$this->search_structure = filter::applyFilter('searchable_fields', $this->search_structure);
 		if (isset($_REQUEST['s'])) {
 			$this->words = removeTrailingSlash(strtr(sanitize($_REQUEST['s'], 4), array('__23__' => '#', '__25__' => '%', '__26__' => '&', '__2F__' => '/')));
 		} else {
@@ -203,7 +203,7 @@ class SearchEngine {
 		$this->images = NULL;
 		$this->albums = NULL;
 		$this->searches = array('images' => NULL, 'albums' => NULL, 'pages' => NULL, 'news' => NULL);
-		zp_apply_filter('search_instantiate', $this);
+		filter::applyFilter('search_instantiate', $this);
 	}
 
 	/**
@@ -739,7 +739,7 @@ class SearchEngine {
 			array_pop($result);
 		}
 
-		$this->processed_search = zp_apply_filter('search_criteria', $result);
+		$this->processed_search = filter::applyFilter('search_criteria', $result);
 		return $this->processed_search;
 	}
 
@@ -1460,7 +1460,7 @@ class SearchEngine {
 					}
 				}
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
+			filter::applyFilter('search_statistics', $searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
 			$this->cacheSearch($criteria, $albums);
 		}
 		$this->albums = $albums;
@@ -1654,7 +1654,7 @@ class SearchEngine {
 				}
 			}
 			if (empty($searchdate)) {
-				zp_apply_filter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+				filter::applyFilter('search_statistics', $searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}
 			$this->cacheSearch($criteria, $images);
 		}
@@ -1804,7 +1804,7 @@ class SearchEngine {
 				} else {
 					$search_result = $_zp_db->query($search_query);
 				}
-				zp_apply_filter('search_statistics', $searchstring, 'pages', !$search_result, false, $this->iteration++);
+				filter::applyFilter('search_statistics', $searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
 				$search_result = $_zp_db->query($search_query);
@@ -1898,7 +1898,7 @@ class SearchEngine {
 			} else {
 				$search_result = $_zp_db->query($search_query);
 			}
-			zp_apply_filter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
+			filter::applyFilter('search_statistics', $searchstring, 'news', !empty($search_result), false, $this->iteration++);
 			if ($search_result) {
 				while ($row = $_zp_db->fetchAssoc($search_result)) {
 					$articleobj = new ZenpageNews($row['titlelink']);

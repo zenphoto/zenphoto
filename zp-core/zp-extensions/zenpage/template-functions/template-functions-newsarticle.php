@@ -137,7 +137,7 @@ function getNewsContent($shorten = false, $shortenindicator = NULL, $readmore = 
  */
 function printNewsContent($shorten = false, $shortenindicator = NULL, $readmore = NULL) {
 	global $_zp_current_zenpage_news;
-	$content = zp_apply_filter('articlecontent_html', getNewsContent($shorten, $shortenindicator, $readmore), $_zp_current_zenpage_news);
+	$content = filter::applyFilter('articlecontent_html', getNewsContent($shorten, $shortenindicator, $readmore), $_zp_current_zenpage_news);
 	echo html_encodeTagged($content);
 }
 

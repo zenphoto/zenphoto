@@ -24,7 +24,7 @@ $plugin_category = gettext('SEO');
 $option_interface = 'htmlmetatags';
 
 if (in_context(ZP_INDEX)) {
-	zp_register_filter('theme_head', 'htmlmetatags::getHTMLMetaData'); // insert the meta tags into the <head></head> if on a theme page.
+	filter::registerFilter('theme_head', 'htmlmetatags::getHTMLMetaData'); // insert the meta tags into the <head></head> if on a theme page.
 	if (defined('LOCALE_TYPE')) {
 		define('METATAG_LOCALE_TYPE', LOCALE_TYPE);
 	} else {
@@ -272,7 +272,7 @@ class htmlmetatags {
 		global $_zp_gallery, $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news,
 		$_zp_current_zenpage_page, $_zp_current_category, $_zp_authority, $_zp_conf_vars, $_zp_myfavorites,
 		$_zp_htmlmetatags_need_cache, $_zp_page;
-		zp_register_filter('image_processor_uri', 'htmlmetatags::ipURI');
+		filter::registerFilter('image_processor_uri', 'htmlmetatags::ipURI');
 		$host = sanitize(SERVER_HTTP_HOST);
 		$url = $host . getRequestURI();
 
@@ -756,7 +756,7 @@ class htmlmetatags {
 					';
 			$meta .= '</script>' . "\n";
 		}
-		zp_remove_filter('image_processor_uri', 'htmlmetatags::ipURI');
+		filter::removeFilter('image_processor_uri', 'htmlmetatags::ipURI');
 		echo $meta;
 	}
 

@@ -21,7 +21,7 @@ $plugin_notice = gettext('Privacy note: This plugin uses external third party so
 $option_interface = 'openStreetMapOptions';
 $plugin_category = gettext('Misc');
 
-zp_register_filter('theme_head', 'openStreetMap::scripts');
+filter::registerFilter('theme_head', 'openStreetMap::scripts');
 
 class openStreetMapOptions {
 

@@ -10,7 +10,7 @@ $plugin_description = gettext('Adds a Zenphoto donations block to the admin over
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 
-zp_register_filter('admin_overview', 'zenphotoDonate::donate');
+filter::registerFilter('admin_overview', 'zenphotoDonate::donate');
 
 class zenphotoDonate {
 

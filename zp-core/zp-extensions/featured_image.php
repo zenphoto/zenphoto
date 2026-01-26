@@ -35,11 +35,11 @@ $plugin_description = gettext("Attach an image to a Zenpage news article, catego
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_disable = (!getOption('zp_plugin_zenpage')) ? gettext('The Zenpage CMS plugin is required for this and not enabled!') : false;
 if (getOption('zp_plugin_zenpage')) {
-	zp_register_filter('publish_article_utilities', 'featuredImage::getFeaturedImageSelector');
-	zp_register_filter('publish_page_utilities', 'featuredImage::getFeaturedImageSelector');
-	zp_register_filter('publish_category_utilities', 'featuredImage::getFeaturedImageSelector');
-	zp_register_filter('remove_object', 'featuredImage::deleteFeaturedImage');
-	zp_register_filter('admin_head', 'featuredImage::featuredImageCSS');
+	filter::registerFilter('publish_article_utilities', 'featuredImage::getFeaturedImageSelector');
+	filter::registerFilter('publish_page_utilities', 'featuredImage::getFeaturedImageSelector');
+	filter::registerFilter('publish_category_utilities', 'featuredImage::getFeaturedImageSelector');
+	filter::registerFilter('remove_object', 'featuredImage::deleteFeaturedImage');
+	filter::registerFilter('admin_head', 'featuredImage::featuredImageCSS');
 }
 
 /* * ***********************

@@ -280,7 +280,7 @@ class registerUser {
 	 * @return string
 	 */
 	static function getLink() {
-		return zp_apply_filter('getLink', rewrite_path(_REGISTER_USER_ . '/', '/index.php?p=register'), 'register.php', NULL);
+		return filter::applyFilter('getLink', rewrite_path(_REGISTER_USER_ . '/', '/index.php?p=register'), 'register.php', NULL);
 	}
 
 	/**
@@ -418,7 +418,7 @@ class registerUser {
 						userAddressFields::setCustomData($userobj, $userinfo);
 					}
 
-					zp_apply_filter('register_user_registered', $userobj);
+					filter::applyFilter('register_user_registered', $userobj);
 					if ($userobj->transient) {
 						if (empty(registerUser::$notify)) {
 							registerUser::$notify = 'filter';
@@ -540,7 +540,7 @@ class registerUser {
 					}
 					$userobj->setRights($rights | NO_RIGHTS); 
 					$userobj->setGroup($group);
-					zp_apply_filter('register_user_verified', $userobj);
+					filter::applyFilter('register_user_verified', $userobj);
 					if (getOption('register_user_notify')) {
 						$subject = sprintf(gettext('New user verification on your site %s'), getGalleryTitle());
 						$message = sprintf(gettext('%1$s (%2$s) has registered and verified for your site providing an e-mail address of %3$s.'), $userobj->getName(), $userobj->getLoginName(), $userobj->getEmail());
@@ -880,5 +880,5 @@ function printRegisterURL($_linktext, $prev = '', $next = '', $class = NULL) {
 }
 
 if (isset($_POST['register_user'])) {
-	zp_register_filter('load_theme_script', 'registerUser::postProcessor');
+	filter::registerFilter('load_theme_script', 'registerUser::postProcessor');
 }

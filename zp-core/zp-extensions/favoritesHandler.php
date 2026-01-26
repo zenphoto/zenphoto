@@ -270,12 +270,12 @@ $_zp_conf_vars['special_pages'][] = array(
 		'rule' => '%REWRITE% index.php?p=favorites [L,QSA]');
 
 if (OFFSET_PATH) {
-	zp_register_filter('edit_album_custom_data', 'favorites::showWatchers');
-	zp_register_filter('edit_image_custom_data', 'favorites::showWatchers');
+	filter::registerFilter('edit_album_custom_data', 'favorites::showWatchers');
+	filter::registerFilter('edit_image_custom_data', 'favorites::showWatchers');
 } else {
-	zp_register_filter('load_theme_script', 'favorites::loadScript');
-	zp_register_filter('checkPageValidity', 'favorites::pageCount');
-	zp_register_filter('admin_toolbox_global', 'favorites::toolbox', 21);
+	filter::registerFilter('load_theme_script', 'favorites::loadScript');
+	filter::registerFilter('checkPageValidity', 'favorites::pageCount');
+	filter::registerFilter('admin_toolbox_global', 'favorites::toolbox', 21);
 	if (zp_loggedin()) {
 		if (isset($_POST['addToFavorites'])) {
 			$favorites = new favorites($_zp_current_admin_obj->getLoginName());

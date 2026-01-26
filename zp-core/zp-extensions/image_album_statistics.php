@@ -246,30 +246,30 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			$attr['src'] = html_pathurlencode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE));
 			$attr['width'] = $sizes[0];
 			$attr['height'] = $sizes[1];
-			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
+			$attr_filtered = filter::applyFilter('custom_album_thumb_attr', $attr, $albumthumb);
 			$attributes = generateAttributesFromArray($attr_filtered);
 			$html = '<img' . $attributes . ' /></a>' . "\n";
-			echo zp_apply_filter('custom_album_thumb_html', $html, $albumthumb);
+			echo filter::applyFilter('custom_album_thumb_html', $html, $albumthumb);
 			break;
 		case 1;
 			$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
 			$attr['src'] = html_pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE));
 			$attr['width'] = $sizes[0];
 			$attr['height'] = $sizes[1];
-			$attr_filtered = zp_apply_filter('custom_album_thumb_attr', $attr, $albumthumb);
+			$attr_filtered = filter::applyFilter('custom_album_thumb_attr', $attr, $albumthumb);
 			$attributes = generateAttributesFromArray($attr_filtered);
 			$html = '<img' . $attributes . '  /></a>' . "\n";
-			echo zp_apply_filter('custom_album_thumb_html', $html, $albumthumb);
+			echo filter::applyFilter('custom_album_thumb_html', $html, $albumthumb);
 			break;
 		case 2:
 			$sizes = getSizeDefaultThumb($albumthumb);
 			$attr['src'] = html_pathurlencode($albumthumb->getThumb());
 			$attr['width'] = $sizes[0];
 			$attr['height'] = $sizes[1];
-			$attr_filtered = zp_apply_filter('standard_album_thumb_attr', $attr, $albumthumb);
+			$attr_filtered = filter::applyFilter('standard_album_thumb_attr', $attr, $albumthumb);
 			$attributes = generateAttributesFromArray($attr_filtered);
 			$html = '<img' .$attributes .' /></a>' . "\n";
-			echo zp_apply_filter('standard_album_thumb_html', $html, $albumthumb);
+			echo filter::applyFilter('standard_album_thumb_html', $html, $albumthumb);
 			break;
 	}
 	if ($showtitle) {
@@ -498,30 +498,30 @@ function printImageStatistic($number, $option, $albumfolder = '', $showtitle = f
 				$attr['src'] = html_pathurlencode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE));
 				$attr['width'] = $sizes[0];
 				$attr['height'] =  $sizes[1];
-				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+				$attr_filtered = filter::applyFilter('custom_image_attr', $attr, $image);
 				$attributes = generateAttributesFromArray($attr_filtered);
 				$html = '<img' . $attributes . '" /></a>' . "\n";
-				echo zp_apply_filter('custom_image_html', $html, true, $image);
+				echo filter::applyFilter('custom_image_html', $html, true, $image);
 				break;
 			case 1:
 				$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $image, 'thumb');
 				$attr['src'] = html_pathurlencode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE));
 				$attr['width'] = $sizes[0];
 				$attr['height'] =  $sizes[1];
-				$attr_filtered = zp_apply_filter('custom_image_attr', $attr, $image);
+				$attr_filtered = filter::applyFilter('custom_image_attr', $attr, $image);
 				$attributes = generateAttributesFromArray($attr_filtered);
 				$html = '<img' . $attributes . ' /></a>' . "\n";
-				echo zp_apply_filter('custom_image_html', $html, true, $image);
+				echo filter::applyFilter('custom_image_html', $html, true, $image);
 				break;
 			case 2:
 				$sizes = getSizeDefaultThumb($image);
 				$attr['src'] = html_pathurlencode($image->getThumb());
 				$attr['width'] = $sizes[0];
 				$attr['height'] =  $sizes[1];
-				$attr_filtered = zp_apply_filter('standard_image_thumb_attr', $attr, $image);
+				$attr_filtered = filter::applyFilter('standard_image_thumb_attr', $attr, $image);
 				$attributes = generateAttributesFromArray($attr_filtered);
 				$html = '<img' . $attributes . ' /></a>' . "\n";
-				echo zp_apply_filter('standard_image_thumb_html', $html, $image);
+				echo filter::applyFilter('standard_image_thumb_html', $html, $image);
 				break;
 		}
 		if ($showtitle) {

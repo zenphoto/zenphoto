@@ -36,7 +36,7 @@ printAdminHeader('overview','phpInfo');
 	<?php printSubtabs(); ?>
 	<div class="tabbox">
 	<h1><?php echo (gettext('Your PHP configuration information.')); ?></h1>
-	<?php zp_apply_filter('admin_note','phpinfo', ''); ?>
+	<?php filter::applyFilter('admin_note','phpinfo', ''); ?>
 	<br />
 	<br />
 	<?php phpinfo(); ?>

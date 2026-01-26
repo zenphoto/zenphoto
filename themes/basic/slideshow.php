@@ -8,14 +8,14 @@ if (function_exists('printSlideShow')) {
 	<html<?php printLangAttribute(); ?>>
 		<head>
 			<meta charset="<?php echo LOCAL_CHARSET; ?>">
-			<?php zp_apply_filter('theme_head'); ?>
+			<?php filter::applyFilter('theme_head'); ?>
 			<?php printHeadTitle(); ?>
 			<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css">
 			<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
 		</head>
 
 		<body>
-			<?php zp_apply_filter('theme_body_open'); 
+			<?php filter::applyFilter('theme_body_open'); 
 				switch(getOption('Theme_colors')) {
 					case 'light':
 					case 'sterile-light':
@@ -33,7 +33,7 @@ if (function_exists('printSlideShow')) {
 				printSlideShow(true, true);
 				?>
 			</div>
-			<?php zp_apply_filter('theme_body_close'); ?>
+			<?php filter::applyFilter('theme_body_close'); ?>
 		</body>
 	</html>
 	<?php

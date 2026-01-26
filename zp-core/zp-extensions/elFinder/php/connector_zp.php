@@ -141,7 +141,7 @@ if ($_REQUEST['origin'] == 'upload') {
 
 			$maxupload = ini_get('upload_max_filesize');
 			$maxuploadint = parse_size($maxupload);
-			$uploadlimit = zp_apply_filter('get_upload_limit', $maxuploadint);
+			$uploadlimit = filter::applyFilter('get_upload_limit', $maxuploadint);
 			$all_actions = $_not_upload = $_not_edit = array();
 
 			foreach ($_managed_folders as $key => $folder) {

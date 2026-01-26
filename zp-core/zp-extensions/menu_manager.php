@@ -22,9 +22,9 @@ $option_interface = 'menu_manager';
 
 if (OFFSET_PATH) {
 	require_once(dirname(dirname(__FILE__)) . '/template-functions.php');
-	zp_register_filter('admin_tabs', 'menu_tabs');
+	filter::registerFilter('admin_tabs', 'menu_tabs');
 } else {
-	zp_register_filter('admin_toolbox_global', 'menu_admin_toolbox_global');
+	filter::registerFilter('admin_toolbox_global', 'menu_admin_toolbox_global');
 }
 
 /**

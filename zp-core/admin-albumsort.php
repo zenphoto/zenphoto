@@ -19,7 +19,7 @@ if (isset($_GET['album'])) {
 	$folder = sanitize($_GET['album']);
 	$album = AlbumBase::newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
-		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+		if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 	}
@@ -104,7 +104,7 @@ echo "\n</head>";
 	if (extensionEnabled('hitcounter')) {
 		$checkarray_images[gettext('Reset hitcounter')] = 'resethitcounter';
 	}
-	$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
+	$checkarray_images = filter::applyFilter('bulk_image_actions', $checkarray_images);
 
 // Create our album
 	if (!isset($_GET['album'])) {
@@ -118,7 +118,7 @@ echo "\n</head>";
 			<?php printTabs(); ?>
 			<div id="content">
 				<?php
-				zp_apply_filter('admin_note', 'albums', 'sort');
+				filter::applyFilter('admin_note', 'albums', 'sort');
 				if ($album->getParent()) {
 					$link = getAlbumBreadcrumbAdmin($album);
 				} else {

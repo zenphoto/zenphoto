@@ -7,7 +7,7 @@ if (!defined('WEBPATH'))
 <html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
-		<?php zp_apply_filter('theme_head'); ?>
+		<?php filter::applyFilter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo pathurlencode(dirname(dirname($zenCSS))); ?>/common.css" type="text/css" />
@@ -15,7 +15,7 @@ if (!defined('WEBPATH'))
 	</head>
 	<body>
 		<?php
-		zp_apply_filter('theme_body_open');
+		filter::applyFilter('theme_body_open');
 		$total = getNumImages() + getNumAlbums();
 		if (!$total) {
 			$_zp_current_search->clearSearchWords();

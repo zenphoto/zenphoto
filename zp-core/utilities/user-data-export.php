@@ -60,7 +60,7 @@ printAdminHeader('overview', 'User data export');
 		<div id="content">
 			<?php printSubtabs() ?>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'database', ''); ?>
+				<?php filter::applyFilter('admin_note', 'database', ''); ?>
 				<h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 				<p><?php echo gettext('This tool helps to export possible personal user data if requested. It does not delete any data. This covers the following data:'); ?></p>
 				<ul>

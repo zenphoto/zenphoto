@@ -23,7 +23,7 @@ $_zp_conf_vars['special_pages']['contact'] = array('define' => '_CONTACT_', 'rew
 $_zp_conf_vars['special_pages'][] = array('definition' => '%CONTACT%', 'rewrite' => '_CONTACT_');
 $_zp_conf_vars['special_pages'][] = array('define' => false, 'rewrite' => '%CONTACT%', 'rule' => '^%REWRITE%/*$		index.php?p=contact [L,QSA]');
 
-zp_register_filter('content_macro', 'contactForm::getMacros');
+filter::registerFilter('content_macro', 'contactForm::getMacros');
 
 /**
  * Plugin option handling class

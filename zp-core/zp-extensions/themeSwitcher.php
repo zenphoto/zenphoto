@@ -113,9 +113,9 @@ class themeSwitcher {
 			<style type="text/css">
 			<?php 
 			if(zp_loggedin()) {
-				echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css_loggedin')); 
+				echo filter::applyFilter('themeSwitcher_css', getOption('themeSwitcher_css_loggedin')); 
 			} else {
-				echo zp_apply_filter('themeSwitcher_css', getOption('themeSwitcher_css')); 
+				echo filter::applyFilter('themeSwitcher_css', getOption('themeSwitcher_css')); 
 			}
 			?>
 			</style>
@@ -128,7 +128,7 @@ class themeSwitcher {
 			}
 		</script>
 		<?php
-		$_zp_themeswitcher_themelist = zp_apply_filter('themeSwitcher_head', $_zp_themeswitcher_themelist);
+		$_zp_themeswitcher_themelist = filter::applyFilter('themeSwitcher_head', $_zp_themeswitcher_themelist);
 		return $css;
 	}
 
@@ -167,7 +167,7 @@ class themeSwitcher {
 						<?php generateListFromArray(array($theme), $themes, false, true); ?>
 					</select>
 				</span>
-				<?php zp_apply_filter('themeSwitcher_Controllink', $theme); ?>
+				<?php filter::applyFilter('themeSwitcher_Controllink', $theme); ?>
 			</span>
 			<?php
 		}
@@ -200,8 +200,8 @@ if (isset($_GET['themeSwitcher'])) {
 }
 
 if (zp_getCookie('zpcms_themeswitcher_theme')) {
-	zp_register_filter('setupTheme', 'themeSwitcher::theme');
+	filter::registerFilter('setupTheme', 'themeSwitcher::theme');
 }
-zp_register_filter('theme_head', 'themeSwitcher::head', 999);
-zp_register_filter('theme_body_open', 'themeSwitcher::controlLink');
+filter::registerFilter('theme_head', 'themeSwitcher::head', 999);
+filter::registerFilter('theme_body_open', 'themeSwitcher::controlLink');
 ?>

@@ -348,7 +348,7 @@ class ZenpageNews extends ZenpageItems {
 	 * @return string
 	 */
 	function getLink($path = null) {
-		return zp_apply_filter('getLink', rewrite_path(_NEWS_ . '/' . $this->getName() . '/', '/index.php?p=news&title=' . $this->getName(), $path), $this, NULL);
+		return filter::applyFilter('getLink', rewrite_path(_NEWS_ . '/' . $this->getName() . '/', '/index.php?p=news&title=' . $this->getName(), $path), $this, NULL);
 	}
 
 	/**

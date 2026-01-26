@@ -28,7 +28,7 @@ $plugin_author = 'Malte Müller (acrylian)';
 $plugin_category = gettext('Misc');
 $option_interface = 'scriptlessSocialsharingOptions';
 if (getOption('scriptless_socialsharing_iconfont')) {
-	zp_register_filter('theme_head', 'scriptlessSocialsharing::CSS');
+	filter::registerFilter('theme_head', 'scriptlessSocialsharing::CSS');
 }
 
 class scriptlessSocialsharingOptions {

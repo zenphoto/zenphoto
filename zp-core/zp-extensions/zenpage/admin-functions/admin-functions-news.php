@@ -78,7 +78,7 @@ function updateArticle(&$reports, $newarticle = false) {
 	$article->setTitle($title);
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
-	$article->setCustomData(zp_apply_filter('save_article_custom_data', $custom, $article));
+	$article->setCustomData(filter::applyFilter('save_article_custom_data', $custom, $article));
 	$article->setPublished($show);
 	$article->setDateTime($date);
 	$article->setLastChange($date);
@@ -113,14 +113,14 @@ function updateArticle(&$reports, $newarticle = false) {
 		$article->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 	}
 	if ($newarticle) {
-		$msg = zp_apply_filter('new_article', '', $article);
+		$msg = filter::applyFilter('new_article', '', $article);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), get_language_string($titlelink)) . '</p>';
 		} else {
 			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
 		}
 	} else {
-		$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
+		$msg = filter::applyFilter('update_article', '', $article, $oldtitlelink);
 		if (!$rslt) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
 		} else if (empty($title)) {

@@ -116,7 +116,7 @@ echo '</head>';
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'schedule', ''); ?>
+				<?php filter::applyFilter('admin_note', 'schedule', ''); ?>
 				<h1><?php echo (gettext('Manage content publication')); ?></h1>
 				<?php
 				$albpublish = $_zp_gallery->getAlbumPublish();

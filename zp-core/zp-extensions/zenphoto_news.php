@@ -14,7 +14,7 @@ $plugin_notice = gettext('Privacy note: This plugin performs external checks for
 $plugin_category = gettext('Admin');
 $option_interface = 'zenphoto_org_news';
 
-zp_register_filter('admin_overview', 'printNews');
+filter::registerFilter('admin_overview', 'printNews');
 
 class zenphoto_org_news {
 

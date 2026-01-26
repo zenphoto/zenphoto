@@ -28,7 +28,7 @@ if (isset($_GET['single'])) {
 					$plugins = array_slice($plugins, $pagenumber * PLUGINS_PER_PAGE, PLUGINS_PER_PAGE);
 					?>
 					<div id="tab_plugin" class="tabbox">
-						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php filter::applyFilter('admin_note', 'options', $subtab); ?>
 						<script>
 																							var optionholder = new Array();
 						</script>

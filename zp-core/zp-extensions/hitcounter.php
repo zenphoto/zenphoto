@@ -36,8 +36,8 @@ $plugin_category = gettext('Statistics');
 
 $option_interface = 'hitcounter';
 
-zp_register_filter('load_theme_script', 'hitcounter::load_script');
-zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
+filter::registerFilter('load_theme_script', 'hitcounter::load_script');
+filter::registerFilter('admin_utilities_buttons', 'hitcounter::button');
 
 /**
  * Plugin option handling class

@@ -93,7 +93,7 @@ zenpageJSCSS();
 	echo '<div id="main">';
 	printTabs();
 	echo '<div id="content">';
-	zp_apply_filter('admin_note', 'pages', '');
+	filter::applyFilter('admin_note', 'pages', '');
 	if ($reports) {
 		$show = array();
 		preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports), $matches);

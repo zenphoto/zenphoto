@@ -82,7 +82,7 @@ if (isset($_REQUEST['album'])) {
 	if (!empty($folder)) {
 		$album = AlbumBase::newAlbum($folder);
 		if (!$album->isMyItem(ALBUM_RIGHTS)) {
-			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+			if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}
@@ -103,7 +103,7 @@ if (isset($_GET['refresh'])) {
 		if (!empty($folder)) {
 			$album = AlbumBase::newAlbum($folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
-				if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+				if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 					redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 				}
 			}

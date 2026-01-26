@@ -10,10 +10,10 @@ $plugin_is_filter = 5 | ADMIN_PLUGIN;
 $plugin_description = gettext('SEO <em>Null</em> filter.');
 $plugin_notice = gettext('The only translation performed is one or more <em>white space</em> characters are converted to a <em>hyphen</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zp_has_filter('seoFriendly') && !extensionEnabled('seo_null')) ? sprintf(gettext('Only one SEO filter plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(get_filterScript('seoFriendly'))) : '';
+$plugin_disable = (filter::hasFilter('seoFriendly') && !extensionEnabled('seo_null')) ? sprintf(gettext('Only one SEO filter plugin may be enabled. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'), stripSuffix(filter::getFilterScript('seoFriendly'))) : '';
 $plugin_category = gettext('SEO');
-zp_register_filter('seoFriendly', 'null_seo::filter');
-zp_register_filter('seoFriendly_js', 'null_seo::js');
+filter::registerFilter('seoFriendly', 'null_seo::filter');
+filter::registerFilter('seoFriendly_js', 'null_seo::js');
 
 /**
  * Option handler class

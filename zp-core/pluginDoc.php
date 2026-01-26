@@ -67,12 +67,12 @@ if (!defined('OFFSET_PATH')) {
 
 	$macro_params = array($plugin_description, $plugin_notice, $plugin_disable, $plugin_author, $plugin_version, $plugin_is_filter, $plugin_URL, $option_interface, $doclink);
 
-	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
+	$buttonlist = filter::applyFilter('admin_utilities_buttons', array());
 	foreach ($buttonlist as $key => $button) {
 		$buttonlist[$key]['enable'] = false;
 	}
-	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
-	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', zp_apply_filter('edit_album_utilities', '', $_zp_missing_album, ''));
+	$imagebuttons = preg_replace('/<a href=[^>]*/i', '<a', filter::applyFilter('edit_image_utilities', '', $_zp_missing_image, 0, '', ''));
+	$albumbuttons = preg_replace('/<a href=[^>]*/i', '<a', filter::applyFilter('edit_album_utilities', '', $_zp_missing_album, ''));
 
 	require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/macroList.php');
 

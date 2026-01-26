@@ -55,7 +55,7 @@ printAdminHeader('overview');
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
-	<?php zp_apply_filter('admin_note','maintenance_mode', ''); 
+	<?php filter::applyFilter('admin_note','maintenance_mode', ''); 
 	if (isset($_GET['report'])) {
 		$message = sanitize($_GET['report']);
 		if(!empty($message)) {

@@ -35,11 +35,11 @@ $plugin_category = gettext('Admin');
 
 $option_interface = 'ipBlocker';
 
-zp_register_filter('load_theme_script', 'ipBlocker::load');
-zp_register_filter('admin_allow_access', 'ipBlocker::adminGate');
-zp_register_filter('admin_login_attempt', 'ipBlocker::login');
-zp_register_filter('federated_login_attempt', 'ipBlocker::login');
-zp_register_filter('guest_login_attempt', 'ipBlocker::login');
+filter::registerFilter('load_theme_script', 'ipBlocker::load');
+filter::registerFilter('admin_allow_access', 'ipBlocker::adminGate');
+filter::registerFilter('admin_login_attempt', 'ipBlocker::login');
+filter::registerFilter('federated_login_attempt', 'ipBlocker::login');
+filter::registerFilter('guest_login_attempt', 'ipBlocker::login');
 
 /**
  * Option handler class

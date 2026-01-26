@@ -705,7 +705,7 @@ class AlbumBase extends MediaObject {
 			$rewrite .= _PAGE_ . '/' . $page . '/';
 			$plain .= "&page=$page";
 		}
-		return zp_apply_filter('getLink', rewrite_path($rewrite, $plain, $path), $this, $page);
+		return filter::applyFilter('getLink', rewrite_path($rewrite, $plain, $path), $this, $page);
 	}
 
 	/**

@@ -13,14 +13,14 @@ $plugin_description = gettext('Allows only users with Admin or Manage All rights
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 
-zp_register_filter('save_album_utilities_data', 'admin_approval::publishZenphoto');
-zp_register_filter('save_image_utilities_data', 'admin_approval::publishZenphoto');
-zp_register_filter('new_page', 'admin_approval::Zenpage');
-zp_register_filter('update_page', 'admin_approval::Zenpage');
-zp_register_filter('new_article', 'admin_approval::Zenpage');
-zp_register_filter('update_article', 'admin_approval::Zenpage');
-zp_register_filter('new_article', 'admin_approval::Zenpage');
-zp_register_filter('update_article', 'admin_approval::Zenpage');
+filter::registerFilter('save_album_utilities_data', 'admin_approval::publishZenphoto');
+filter::registerFilter('save_image_utilities_data', 'admin_approval::publishZenphoto');
+filter::registerFilter('new_page', 'admin_approval::Zenpage');
+filter::registerFilter('update_page', 'admin_approval::Zenpage');
+filter::registerFilter('new_article', 'admin_approval::Zenpage');
+filter::registerFilter('update_article', 'admin_approval::Zenpage');
+filter::registerFilter('new_article', 'admin_approval::Zenpage');
+filter::registerFilter('update_article', 'admin_approval::Zenpage');
 
 class admin_approval {
 
@@ -47,7 +47,7 @@ class admin_approval {
 		$msg = admin_approval::publish_object($object);
 		if ($msg) {
 			$_admin_approval_error = $msg;
-			zp_register_filter('edit_error', 'admin_approval::post_error');
+			filter::registerFilter('edit_error', 'admin_approval::post_error');
 		}
 		return $object;
 	}

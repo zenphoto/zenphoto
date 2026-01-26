@@ -12,7 +12,7 @@ $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 require_once(dirname(__FILE__) . '/global-definitions.php');
 require_once(dirname(__FILE__) . '/functions/functions.php');
-zp_apply_filter('feature_plugin_load');
+filter::applyFilter('feature_plugin_load');
 if (DEBUG_PLUGINS) {
 	debugLog('Loading the "feature" plugins.');
 }
@@ -64,7 +64,7 @@ if (isset($_GET['p'])) {
 }
 
 //$_zp_script_timer['theme setup'] = microtime();
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $_zp_request);
+$_zp_script = filter::applyFilter('load_theme_script', $_zp_script, $_zp_request);
 
 $custom = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem($_index_theme) . '/functions.php';
 if (file_exists($custom)) {
@@ -124,7 +124,7 @@ if ($_zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . 
 	header("HTTP/1.0 200 OK");
 	header("Status: 200 OK");
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
-	zp_apply_filter('theme_headers');
+	filter::applyFilter('theme_headers');
 	include(internalToFilesystem($_zp_script));
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the 404.php
@@ -133,7 +133,7 @@ if ($_zp_request && $_zp_script && file_exists($_zp_script = SERVERPATH . "/" . 
 	include(SERVERPATH . "/" . ZENFOLDER . '/404.php');
 }
 //$_zp_script_timer['theme script load'] = microtime();
-zp_apply_filter('zenphoto_information', $_zp_script, $_zp_loaded_plugins, $_index_theme);
+filter::applyFilter('zenphoto_information', $_zp_script, $_zp_loaded_plugins, $_index_theme);
 //$_zp_script_timer['expose information'] = microtime();
 $_zp_db->close(); // close the database as we are done
 echo "\n";

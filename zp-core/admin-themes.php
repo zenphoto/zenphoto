@@ -347,7 +347,7 @@ foreach($themes as $theme => $themeinfo) {
 				</li>
 				<?php
 			}
-			zp_apply_filter('admin_theme_buttons', $theme, $alb);
+			filter::applyFilter('admin_theme_buttons', $theme, $alb);
 			?>
 			</ul>
 		</td>

@@ -26,5 +26,5 @@
 callUserFunction('mobileTheme::controlLink'); 
 callUserFunction('printLanguageSelector'); 
 
-zp_apply_filter('theme_body_close'); 
+filter::applyFilter('theme_body_close'); 
 ?>

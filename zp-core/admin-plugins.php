@@ -62,7 +62,7 @@ if (isset($_GET['action'])) {
 }
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
-zp_apply_filter('texteditor_config', 'zenphoto');
+filter::applyFilter('texteditor_config', 'zenphoto');
 
 sortArray($pluginlist);
 $rangeset = getPageSelector($pluginlist, PLUGINS_PER_PAGE);
@@ -112,7 +112,7 @@ $subtab = printSubtabs();
 ?>
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'users', 'users');
+	filter::applyFilter('admin_note', 'users', 'users');
 	if (isset($_GET['post_error'])) {
 		echo '<div class="errorbox">';
 		echo "<h2>" . gettext('Error') . "</h2>";

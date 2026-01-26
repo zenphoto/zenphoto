@@ -54,7 +54,7 @@ if (isset($_GET['action'])) {
 						$group->setName(trim(sanitize($_POST[$i . '-type'], 3)));
 						$group->setValid(0);
 						$group->setLastChangeUser($_zp_current_admin_obj->getLoginName());
-						zp_apply_filter('save_admin_custom_data', true, $group, $i, true);
+						filter::applyFilter('save_admin_custom_data', true, $group, $i, true);
 						$group->save();
 
 						if ($group->getName() == 'group') {
@@ -133,7 +133,7 @@ echo '</head>' . "\n";
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php
-				zp_apply_filter('admin_note', 'users', $subtab);
+				filter::applyFilter('admin_note', 'users', $subtab);
 				switch ($subtab) {
 					case 'groups':
 						$adminlist = $admins;
@@ -260,7 +260,7 @@ echo '</head>' . "\n";
 												<br /><br />
 												<?php
 												printAdminRightsTable($id, '', '', $rights);
-												$custom = zp_apply_filter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
+												$custom = filter::applyFilter('edit_admin_custom_data', '', $groupobj, $id, $background, true, '');
 												if ($custom) {
 													$custom = preg_replace('~</*tr[^>]*>~i', '', $custom);
 													$custom = preg_replace('~</*td[^>]*>~i', '', $custom);

@@ -42,7 +42,7 @@ function getNewsCategoryDesc() {
  */
 function printNewsCategoryDesc() {
 	global $_zp_current_category;
-	$desc = zp_apply_filter('categorydesc_html', getNewsCategoryDesc(), $_zp_current_category);
+	$desc = filter::applyFilter('categorydesc_html', getNewsCategoryDesc(), $_zp_current_category);
 	echo html_encodeTagged($desc);
 }
 

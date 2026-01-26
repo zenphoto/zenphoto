@@ -68,7 +68,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	$cat->set('title', $title);
 	$cat->setDesc($desc);
 	$cat->setLastChange();
-	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom, $cat));
+	$cat->setCustomData(filter::applyFilter('save_category_custom_data', $custom, $cat));
 	$cat->setPublished($show);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter', 0);
@@ -80,7 +80,7 @@ function updateCategory(&$reports, $newcategory = false) {
 	}
 	if ($newcategory) {
 		$cat->setDefaultSortorder();
-		$msg = zp_apply_filter('new_category', '', $cat);
+		$msg = filter::applyFilter('new_category', '', $cat);
 		if (empty($title)) {
 			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), $titlelink) . '</p>';
 		} else if ($notice == '?mismatch=user') {
@@ -92,7 +92,7 @@ function updateCategory(&$reports, $newcategory = false) {
 		}
 	} else {
 		$cat->setLastchangeUser($_zp_current_admin_obj->getLoginName());
-		$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
+		$msg = filter::applyFilter('update_category', '', $cat, $oldtitlelink);
 		if ($titleok) {
 			if (empty($titlelink) OR empty($title)) {
 				$reports[] = "<p class='errorbox fade-message'>" . gettext("You forgot to give your category a <strong>title or titlelink</strong>!") . "</p>";

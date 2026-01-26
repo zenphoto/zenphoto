@@ -79,7 +79,7 @@ echo '</head>';
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'sitemap', ''); ?>
+				<?php filter::applyFilter('admin_note', 'sitemap', ''); ?>
 				<h1><?php echo gettext('Sitemap tools'); ?></h1>
 				<?php if (!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
 					<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>

@@ -15,8 +15,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'rss_options';
 
-zp_register_filter('admin_utilities_buttons', 'RSS::overviewbutton');
-zp_register_filter('show_change', 'RSS::clearCacheOnPublish');
+filter::registerFilter('admin_utilities_buttons', 'RSS::overviewbutton');
+filter::registerFilter('show_change', 'RSS::clearCacheOnPublish');
 
 $_zp_cached_feeds = array('RSS'); //    Add to this array any feed classes that need cache clearing
 
@@ -797,5 +797,5 @@ function executeRSS() {
 
 // RSS feed calls before anything else
 if (!OFFSET_PATH && isset($_GET['rss'])) {
-	zp_register_filter('load_theme_script', 'executeRSS', 9999);
+	filter::registerFilter('load_theme_script', 'executeRSS', 9999);
 }

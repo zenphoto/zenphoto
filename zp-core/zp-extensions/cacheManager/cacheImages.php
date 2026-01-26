@@ -42,7 +42,7 @@ if ($alb) {
 	$tab = 'edit';
 	$album = AlbumBase::newAlbum($folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
-		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+		if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 		}
 	}
@@ -74,7 +74,7 @@ printAdminHeader('overview', 'images'); ?>
 <?php printSubtabs(); ?>
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'cache', '');
+	filter::applyFilter('admin_note', 'cache', '');
 	$clear = sprintf(gettext('Refreshing cache for %s'), $object);
 
 	if ($alb) {

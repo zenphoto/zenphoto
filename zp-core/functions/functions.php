@@ -10,7 +10,8 @@
 global $_zp_current_context_stack, $_zp_html_cache;
 
 require_once(dirname(__FILE__) . '/functions-basic.php');
-require_once(dirname(__FILE__) . '/functions-filter.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-filter.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-filter.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/libs/functions-kses.php');
 require_once SERVERPATH . '/' . ZENFOLDER . '/libs/functions-htmlawed.php';
 require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-_zp_captcha.php');
@@ -57,7 +58,7 @@ if (extensionEnabled('zenpage')) {
 	define('ZP_PAGES_ENABLED', false);
 }
 
-zp_register_filter('content_macro', 'getCookieInfoMacro');
+filter::registerFilter('content_macro', 'getCookieInfoMacro');
 
 /**
  * parses the allowed HTML tags for use by htmLawed
@@ -534,7 +535,7 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 		}
 	}
 	if (count($email_list) + count($bcc_addresses) > 0) {
-		if (zp_has_filter('sendmail')) {
+		if (filter::hasFilter('sendmail')) {
 
 			$from_mail = getOption('site_email');
 			$from_name = get_language_string(getOption('site_email_name'));
@@ -560,11 +561,11 @@ function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $
 
 			// Send the mail
 			if (count($email_list) > 0) {
-				$result = zp_apply_filter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
+				$result = filter::applyFilter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
 			}
 			if (count($bcc_addresses) > 0) {
 				foreach ($bcc_addresses as $bcc) {
-					$result = zp_apply_filter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
+					$result = filter::applyFilter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
 				}
 			}
 		} else {
@@ -1017,7 +1018,7 @@ function setupTheme($album = NULL) {
 			$id = $parent->getID();
 		}
 	}
-	$theme = zp_apply_filter('setupTheme', $theme);
+	$theme = filter::applyFilter('setupTheme', $theme);
 	$_zp_gallery->setCurrentTheme($theme);
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
@@ -2002,7 +2003,7 @@ function zp_handle_password_single($authType = NULL, $check_auth = NULL, $check_
 				break;
 			}
 		}
-		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
+		$success = filter::applyFilter('guest_login_attempt', $success, $post_user, $post_pass, $authType);
 		if ($success) {
 			$_zp_login_error = 0;
 			// Correct auth info. Set the cookie.
@@ -2285,8 +2286,8 @@ function getAnonymIP($ip, $anonymize = null) {
  */
 function seoFriendly($string) {
 	$string = trim(preg_replace('~\s+\.\s*~', '.', $string));
-	if (zp_has_filter('seoFriendly')) {
-		$string = zp_apply_filter('seoFriendly', $string);
+	if (filter::hasFilter('seoFriendly')) {
+		$string = filter::applyFilter('seoFriendly', $string);
 	} else { // no filter, do basic cleanup
 		$string = trim($string);
 		$string = preg_replace("/\s+/", "-", $string);
@@ -2301,8 +2302,8 @@ function seoFriendly($string) {
  * emit the javascript seojs() function
  */
 function seoFriendlyJS() {
-	if (zp_has_filter('seoFriendly_js')) {
-		echo zp_apply_filter('seoFriendly_js');
+	if (filter::hasFilter('seoFriendly_js')) {
+		echo filter::applyFilter('seoFriendly_js');
 	} else {
 		?>
 		function seoFriendlyJS(fname) {
@@ -2386,7 +2387,7 @@ function debug404($album, $image, $theme) {
 function XSRFdefender($action) {
 	$token = getXSRFToken($action);
 	if (!isset($_REQUEST['XSRFToken']) || $_REQUEST['XSRFToken'] != $token) {
-		zp_apply_filter('admin_XSRF_access', false, $action);
+		filter::applyFilter('admin_XSRF_access', false, $action);
 		redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg=' . sprintf(gettext('“%s” Cross Site Request Forgery blocked.'), $action), '302');
 	}
 	unset($_REQUEST['XSRFToken']);
@@ -2750,7 +2751,7 @@ function applyMacros($text) {
 function getMacros() {
 	global $_zp_content_macros;
 	if (is_null($_zp_content_macros)) {
-		$_zp_content_macros = zp_apply_filter('content_macro', array());
+		$_zp_content_macros = filter::applyFilter('content_macro', array());
 	}
 	return $_zp_content_macros;
 }

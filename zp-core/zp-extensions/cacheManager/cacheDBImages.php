@@ -28,7 +28,7 @@ printAdminHeader('overview', 'DB'); ?>
 <?php printSubtabs('Cache'); ?>
 <div class="tabbox">
 	<?php
-	zp_apply_filter('admin_note', 'cache', '');
+	filter::applyFilter('admin_note', 'cache', '');
 	?>
 		<p><?php echo gettext('This utility scans the database for images references that have been stored there (e.g. embedded within text content).'); ?></p>
 		<p><?php echo gettext('The following database fields are checked:');?></p>

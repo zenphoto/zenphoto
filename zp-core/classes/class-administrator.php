@@ -411,7 +411,7 @@ class Administrator extends PersistentObject {
 	 */
 	function remove() {
 		global $_zp_db;
-		zp_apply_filter('remove_user', $this);
+		filter::applyFilter('remove_user', $this);
 		$album = $this->getAlbum();
 		$id = $this->getID();
 		if (parent::remove()) {

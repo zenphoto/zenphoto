@@ -29,8 +29,8 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 $option_interface = 'staticHTMLCacheOptions';
 
-zp_register_filter('admin_utilities_buttons', 'static_html_cache::overviewbutton');
-zp_register_filter('show_change', 'static_html_cache::clearOnPublish');
+filter::registerFilter('admin_utilities_buttons', 'static_html_cache::overviewbutton');
+filter::registerFilter('show_change', 'static_html_cache::clearOnPublish');
 
 $cache_path = SERVERPATH . '/' . STATIC_CACHE_FOLDER . "/";
 if (!file_exists($cache_path)) {
@@ -53,7 +53,7 @@ if (OFFSET_PATH == 2) { //	clear the cache upon upgrade
 }
 
 $_zp_html_cache = new static_html_cache();
-zp_register_filter('image_processor_uri', 'static_html_cache::_disable');
+filter::registerFilter('image_processor_uri', 'static_html_cache::_disable');
 
 class staticHTMLCacheOptions {
 

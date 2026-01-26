@@ -8,16 +8,16 @@ if (function_exists('printSlideShow')) {
 <html<?php printLangAttribute(); ?>>
 	<head>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
-		<?php zp_apply_filter('theme_head'); ?>
+		<?php filter::applyFilter('theme_head'); ?>
 		<?php printHeadTitle(); ?>
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 	</head>
 	<body>
-			<?php zp_apply_filter('theme_body_open'); ?>
+			<?php filter::applyFilter('theme_body_open'); ?>
 			<div id="slideshowpage">
 				<?php printSlideShow(true, true); ?>
 			</div>
-			<?php zp_apply_filter('theme_body_close'); ?>
+			<?php filter::applyFilter('theme_body_close'); ?>
 		</body>
 </html>
 <?php

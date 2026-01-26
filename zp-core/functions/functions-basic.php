@@ -949,7 +949,7 @@ function getImageProcessorURI($args, $album, $image) {
 
 	$uri .= '&check=' . sha1(HASH_SEED . serialize($args));
 
-	$uri = zp_apply_filter('image_processor_uri', $uri);
+	$uri = filter::applyFilter('image_processor_uri', $uri);
 
 	return $uri;
 }
@@ -1851,7 +1851,7 @@ function installSignature() {
 	}
 	$testFiles = array(
 			'template-functions.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/template-functions.php'),
-			'functions-filter.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/functions/functions-filter.php'),
+			'class-filter.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-filter.php'),
 			'class-authority.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-authority.php'),
 			'class-administrator.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/classes/class-administrator.php'),
 			'lib-utf8.php' => hash_file($algo, SERVERPATH . '/' . ZENFOLDER . '/libs/class-utf8.php'),

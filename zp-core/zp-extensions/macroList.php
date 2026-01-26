@@ -78,7 +78,7 @@ if (OFFSET_PATH != 2 && zp_loggedin(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS |
 	unset($pn);
 	$macros = getMacros();
 	if (!empty($macros)) {
-		zp_register_filter('admin_tabs', 'macro_admin_tabs');
+		filter::registerFilter('admin_tabs', 'macro_admin_tabs');
 	}
 }
 

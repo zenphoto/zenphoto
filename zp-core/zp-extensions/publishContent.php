@@ -29,7 +29,7 @@ $plugin_description = gettext('A single place to quickly review your unpublished
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Admin');
 
-zp_register_filter('admin_utilities_buttons', 'publishContent::button');
+filter::registerFilter('admin_utilities_buttons', 'publishContent::button');
 
 class publishContent {
 

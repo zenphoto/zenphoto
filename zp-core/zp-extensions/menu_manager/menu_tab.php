@@ -105,7 +105,7 @@ printSortableHead();
 		?>
 		<div id="content">
 			<?php
-			zp_apply_filter('admin_note', 'menu', '');
+			filter::applyFilter('admin_note', 'menu', '');
 
 			$count = $_zp_db->count('menu', NULL, 'DISTINCT `menuset`');
 			?>

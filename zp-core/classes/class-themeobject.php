@@ -160,7 +160,7 @@ class ThemeObject extends PersistentObject {
 		$new = (int) ($published && true);
 		$this->set('show', $new);
 		if ($old != $new && $this->get('id')) {
-			zp_apply_filter('show_change', $this); // TODO rename to "published_change"
+			filter::applyFilter('show_change', $this); // TODO rename to "published_change"
 		}
 	}
 	
@@ -410,7 +410,7 @@ class ThemeObject extends PersistentObject {
 	 * @return object
 	 */
 	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon, $customdata, $dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer) {
-		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata, false, $dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer);
+		$goodMessage = filter::applyFilter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon, $customdata, false, $dataconfirmation, $p_textquiz_answer, $p_mathquiz_answer);
 		return $goodMessage;
 	}
 
@@ -444,7 +444,7 @@ class ThemeObject extends PersistentObject {
 		if (zp_loggedin($this->view_rights) && ($action == LIST_RIGHTS)) { // sees all
 			return true;
 		}
-		if (zp_apply_filter('check_credentials', false, $this, $action)) {
+		if (filter::applyFilter('check_credentials', false, $this, $action)) {
 			return true;
 		}
 		return NULL;

@@ -461,7 +461,7 @@ function getSortByOptions($type) {
 			}
 			break;
 	}
-	return zp_apply_filter('admin_sortbyoptions', $orders, $type);
+	return filter::applyFilter('admin_sortbyoptions', $orders, $type);
 }
 
 /**

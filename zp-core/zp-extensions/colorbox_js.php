@@ -31,9 +31,9 @@ $option_interface = 'colorbox';
 
 global $_zp_gallery, $_zp_gallery_page;
 if (OFFSET_PATH) {
-	zp_register_filter('admin_head', 'colorbox::css');
+	filter::registerFilter('admin_head', 'colorbox::css');
 } else {
-	zp_register_filter('theme_head', 'colorbox::css');
+	filter::registerFilter('theme_head', 'colorbox::css');
 }
 
 /**
@@ -96,7 +96,7 @@ class colorbox {
 				$themepath = 'colorbox_js/themes/example4/colorbox.css';
 			} else {
 				if ($theme == 'custom') {
-					$themepath = zp_apply_filter('colorbox_themepath', 'colorbox_js/colorbox.css');
+					$themepath = filter::applyFilter('colorbox_themepath', 'colorbox_js/colorbox.css');
 				} else {
 					$themepath = 'colorbox_js/themes/' . $theme . '/colorbox.css';
 				}

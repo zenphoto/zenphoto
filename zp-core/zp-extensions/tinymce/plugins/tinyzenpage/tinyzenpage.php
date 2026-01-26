@@ -51,7 +51,7 @@ header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		require_once("js/dialog.php");
 		require_once("tinyzenpage-functions.php");
 		?>
-		<?php zp_apply_filter('admin_head'); ?>
+		<?php filter::applyFilter('admin_head'); ?>
 	</head>
 
 	<body>

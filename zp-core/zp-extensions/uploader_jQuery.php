@@ -24,8 +24,8 @@ if ($plugin_disable) {
 	if (OFFSET_PATH == 2)
 		setoptiondefault('zp_plugin_uploader_jQuery', $plugin_is_filter);
 	if (zp_loggedin(UPLOAD_RIGHTS)) {
-		zp_register_filter('upload_handlers', 'jQueryUploadHandler');
-		zp_register_filter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
+		filter::registerFilter('upload_handlers', 'jQueryUploadHandler');
+		filter::registerFilter('admin_tabs', 'jQueryUploadHandler_admin_tabs', 5);
 	}
 }
 

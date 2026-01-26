@@ -24,7 +24,7 @@ printAdminHeader('overview', 'clone');
 	<?php printSubtabs(); ?>
 	<div class="tabbox">
 	<h1><?php echo (gettext('Create a new install with symbolic links to the current Zenphoto scripts.')); ?></h1>
-	<?php zp_apply_filter('admin_note', 'clone', ''); ?>
+	<?php filter::applyFilter('admin_note', 'clone', ''); ?>
 	<?php
 	if (isset($success)) {
 		if ($success) {

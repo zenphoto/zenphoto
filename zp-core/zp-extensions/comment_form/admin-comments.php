@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('comment_update');
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(1);
-			zp_apply_filter('comment_disapprove', $comment);
+			filter::applyFilter('comment_disapprove', $comment);
 			$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$comment->save();
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('comment_update');
 			$comment = new Comment(sanitize_numeric($_GET['id']));
 			$comment->setInModeration(0);
-			zp_apply_filter('comment_approve', $comment);
+			filter::applyFilter('comment_approve', $comment);
 			$comment->setLastchangeUser($_zp_current_admin_obj->getLoginName());
 			$comment->save();
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/comment_form/admin-comments.php');
@@ -90,7 +90,7 @@ if (isset($_GET['action'])) {
 
 
 printAdminHeader('comments');
-zp_apply_filter('texteditor_config', 'comments');
+filter::applyFilter('texteditor_config', 'comments');
 ?>
 <script>
 	function confirmAction() {
@@ -102,7 +102,7 @@ zp_apply_filter('texteditor_config', 'comments');
 	}
 </script>
 <?php
-zp_apply_filter('texteditor_config', 'zenphoto');
+filter::applyFilter('texteditor_config', 'zenphoto');
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -111,7 +111,7 @@ printTabs();
 echo "\n" . '<div id="content">';
 
 if ($page == "editcomment" && isset($_GET['id'])) {
-	zp_apply_filter('admin_note', 'comments', 'edit');
+	filter::applyFilter('admin_note', 'comments', 'edit');
 	?>
 	<h1><?php echo gettext("Edit comment"); ?></h1>
 	<div class="box" style="padding: 10px">
@@ -258,7 +258,7 @@ if ($page == "editcomment" && isset($_GET['id'])) {
 	$comments = array_slice($allcomments, ($pagenum - 1) * COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));
-	zp_apply_filter('admin_note', '  comments', '  list');
+	filter::applyFilter('admin_note', '  comments', '  list');
 	unset($allcomments);
 	?>
 	<h1><?php echo gettext("Comments"); ?></h1>

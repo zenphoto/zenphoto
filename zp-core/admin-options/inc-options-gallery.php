@@ -1,6 +1,6 @@
 <?php codeblocktabsJS(); ?>
 					<div id="tab_gallery" class="tabbox">
-						<?php zp_apply_filter('admin_note', 'options', $subtab); ?>
+						<?php filter::applyFilter('admin_note', 'options', $subtab); ?>
 						<form class="dirty-check" id="form_options" action="?action=saveoptions" method="post" autocomplete="off">
 							<?php XSRFToken('saveoptions'); ?>
 							<input	type="hidden" name="savegalleryoptions" value="yes" />

@@ -202,7 +202,7 @@ class DownloadList {
 		if (!$checkitem) {
 			$_zp_db->query("INSERT INTO " . $_zp_db->prefix('plugin_storage') . " (`type`,`aux`,`data`) VALUES ('downloadList'," . $_zp_db->quote($path) . ",'0')");
 		}
-		zp_apply_filter('downloadlist_processdownload', $path);
+		filter::applyFilter('downloadlist_processdownload', $path);
 	}
 
 	/** Gets the download items from all download items from the database. For internal use in the downloadList functions.
@@ -317,7 +317,7 @@ class DownloadList {
 		if (!$message) {
 			$message = gettext("Object not found");
 		}
-		zp_apply_filter('theme_headers');
+		filter::applyFilter('theme_headers');
 		?>
 		<!DOCTYPE html>
 		<html<?php printLangAttribute(); ?>>

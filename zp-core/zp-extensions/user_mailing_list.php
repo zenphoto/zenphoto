@@ -14,7 +14,7 @@ if (defined('OFFSET_PATH')) {
 	$plugin_author = "Malte Müller (acrylian)";
 	$plugin_category = gettext('Mail');
 
-	zp_register_filter('admin_utilities_buttons', 'user_mailing_list_button');
+	filter::registerFilter('admin_utilities_buttons', 'user_mailing_list_button');
 
 	function user_mailing_list_button($buttons) {
 		global $_zp_authority, $_zp_current_admin_obj;
@@ -70,11 +70,11 @@ if (defined('OFFSET_PATH')) {
 			<div id="content">
 				<?php printSubtabs('Mailing'); ?>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'user_mailing', ''); ?>
+					<?php filter::applyFilter('admin_note', 'user_mailing', ''); ?>
 					<h1><?php echo gettext('User mailing list'); ?></h1>
 					<p><?php echo gettext("A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."); ?></p>
 					<?php
-					if (!zp_has_filter('sendmail')) {
+					if (!filter::hasFilter('sendmail')) {
 						$disabled = ' disabled="disabled"';
 						?>
 						<p class="notebox">

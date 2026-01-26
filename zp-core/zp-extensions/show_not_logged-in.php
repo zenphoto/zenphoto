@@ -11,8 +11,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Development');
 
 if (!OFFSET_PATH) {
-	zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');
-	zp_register_filter('login_redirect_link', 'show_not_loggedin::loginRedirect');
+	filter::registerFilter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');
+	filter::registerFilter('login_redirect_link', 'show_not_loggedin::loginRedirect');
 	show_not_loggedin::hideAdmin();
 }
 

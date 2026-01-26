@@ -45,32 +45,32 @@ $plugin_category = gettext('Misc');
 
 $option_interface = 'multipleLayoutOptions';
 
-zp_register_filter('load_theme_script', 'getLayout');
-zp_register_filter('remove_object', 'deleteLayoutSelection');
-zp_register_filter('copy_object', 'copyLayoutSelection');
+filter::registerFilter('load_theme_script', 'getLayout');
+filter::registerFilter('remove_object', 'deleteLayoutSelection');
+filter::registerFilter('copy_object', 'copyLayoutSelection');
 if (getOption('multiple_layouts_albums')) {
-	zp_register_filter('edit_album_utilities', 'layoutSelector_album');
-	zp_register_filter('save_album_utilities_data', 'saveZenphotoLayoutSelection');
+	filter::registerFilter('edit_album_utilities', 'layoutSelector_album');
+	filter::registerFilter('save_album_utilities_data', 'saveZenphotoLayoutSelection');
 }
 if (getOption('multiple_layouts_images')) {
-	zp_register_filter('edit_image_utilities', 'layoutSelector');
-	zp_register_filter('save_image_utilities_data', 'saveZenphotoLayoutSelection');
+	filter::registerFilter('edit_image_utilities', 'layoutSelector');
+	filter::registerFilter('save_image_utilities_data', 'saveZenphotoLayoutSelection');
 }
 if (extensionEnabled('zenpage')) {
 	if (getOption('multiple_layouts_pages')) {
-		zp_register_filter('publish_page_utilities', 'layoutSelector');
-		zp_register_filter('new_page', 'saveLayoutSelection');
-		zp_register_filter('update_page', 'saveLayoutSelection');
+		filter::registerFilter('publish_page_utilities', 'layoutSelector');
+		filter::registerFilter('new_page', 'saveLayoutSelection');
+		filter::registerFilter('update_page', 'saveLayoutSelection');
 	}
 	if (getOption('multiple_layouts_news')) {
-		zp_register_filter('publish_article_utilities', 'layoutSelector');
-		zp_register_filter('new_article', 'saveLayoutSelection');
-		zp_register_filter('update_article', 'saveLayoutSelection');
+		filter::registerFilter('publish_article_utilities', 'layoutSelector');
+		filter::registerFilter('new_article', 'saveLayoutSelection');
+		filter::registerFilter('update_article', 'saveLayoutSelection');
 	}
 	if (getOption('multiple_layouts_news_categories')) {
-		zp_register_filter('publish_category_utilities', 'layoutSelector');
-		zp_register_filter('new_category', 'saveLayoutSelection');
-		zp_register_filter('update_category', 'saveLayoutSelection');
+		filter::registerFilter('publish_category_utilities', 'layoutSelector');
+		filter::registerFilter('new_category', 'saveLayoutSelection');
+		filter::registerFilter('update_category', 'saveLayoutSelection');
 	}
 }
 

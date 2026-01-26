@@ -10,7 +10,7 @@
  * @package filters
  * @subpackage zenpage
  */
-$filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+$filehandler = filter::applyFilter('tinymce_zenpage_config', NULL);
 global $_zp_rtl_css;
 ?>
 <script src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce/tinymce.min.js"></script>

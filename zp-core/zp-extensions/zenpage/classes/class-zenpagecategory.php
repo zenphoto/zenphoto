@@ -497,7 +497,7 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$pager = $page = '';
 		}
-		return zp_apply_filter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getName() . '/' . $pager, '/index.php?p=news&category=' . $this->getName() . $page, $path), $this, NULL);
+		return filter::applyFilter('getLink', rewrite_path(_CATEGORY_ . '/' . $this->getName() . '/' . $pager, '/index.php?p=news&category=' . $this->getName() . $page, $path), $this, NULL);
 	}
 
 }

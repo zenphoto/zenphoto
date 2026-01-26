@@ -16,14 +16,14 @@ if (isset($_POST['auth'])) {
 }
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
-$_zp_uploader_folder = zp_apply_filter('admin_upload_process', sanitize_path($_POST['folder']));
+$_zp_uploader_folder = filter::applyFilter('admin_upload_process', sanitize_path($_POST['folder']));
 $types = array_keys($_zp_extra_filetypes);
 if (function_exists('zip_open')) {
 	$types[] = 'ZIP';
 }
 $types = array_merge($_zp_supported_images, $types);
 
-$types = zp_apply_filter('upload_filetypes', $types);
+$types = filter::applyFilter('upload_filetypes', $types);
 $types = array_unique($types);
 $options = array(
 		'upload_dir' => $_zp_uploader_targetpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($_zp_uploader_folder) . '/',
@@ -39,7 +39,7 @@ if (!empty($_zp_uploader_folder)) {
 	}
 	if ($rightsalbum->exists) {
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
-			if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
+			if (!filter::applyFilter('admin_managed_albums_access', false, $return)) {
 				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 			}
 		}

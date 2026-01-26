@@ -57,7 +57,7 @@ function comment_form_PaginationJS() {
 }
 
 function comment_form_visualEditor() {
-	zp_apply_filter('texteditor_config', 'comments');
+	filter::applyFilter('texteditor_config', 'comments');
 }
 
 /**
@@ -373,7 +373,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 		}
 	}
 	$localerrors = $commentobj->getInModeration();
-	zp_apply_filter('comment_post', $commentobj, $receiver);
+	filter::applyFilter('comment_post', $commentobj, $receiver);
 	if ($check === false) {
 		// ignore filter provided errors if caller is supplying the fields to check
 		$localerrors = $commentobj->getInModeration();

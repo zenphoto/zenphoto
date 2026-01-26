@@ -286,7 +286,7 @@ function printNewsIndexURL($name = NULL, $before = '', $archive = NULL, $page = 
 		} else {
 			$name = getBare(html_encode($archive));
 		}
-		$link = zp_apply_filter('getLink', rewrite_path(_ARCHIVE_ . '/', "/index.php?p=archive"), 'archive.php', NULL);
+		$link = filter::applyFilter('getLink', rewrite_path(_ARCHIVE_ . '/', "/index.php?p=archive"), 'archive.php', NULL);
 	} else {
 		if (is_null($name)) {
 			$name = gettext('News');
@@ -313,7 +313,7 @@ function getNewsArchivePath($date, $page) {
 		$rewrite .=  $page . '/';
 		$plain .= "&page=$page";
 	}
-	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
+	return filter::applyFilter('getLink', rewrite_path($rewrite, $plain), 'archive.php', $page);
 }
 
 /* * ********************************************************* */
@@ -334,7 +334,7 @@ function getNewsPathNav($page) {
 		$rewrite .= $page . '/';
 		$plain .= '&page=' . $page;
 	}
-	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
+	return filter::applyFilter('getLink', rewrite_path($rewrite, $plain), 'news.php', $page);
 }
 
 /**

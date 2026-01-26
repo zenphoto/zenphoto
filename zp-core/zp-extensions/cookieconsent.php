@@ -26,8 +26,8 @@ $option_interface = 'cookieConsent';
 $plugin_category = gettext('Misc');
 
 if (!zp_loggedin()) {
-	zp_register_filter('theme_head', 'cookieConsent::getCSS');
-	zp_register_filter('theme_head', 'cookieConsent::getJS');
+	filter::registerFilter('theme_head', 'cookieConsent::getCSS');
+	filter::registerFilter('theme_head', 'cookieConsent::getJS');
 }
 
 class cookieConsent {
@@ -374,7 +374,7 @@ class cookieConsent {
 	 */
 	static function printConsentJS() {
 		$scripts = getOption('zpcookieconsent_scripts');
-		echo zp_apply_filter('cookieconsent_consentscripts', $scripts, cookieconsent::checkConsent());
+		echo filter::applyFilter('cookieconsent_consentscripts', $scripts, cookieconsent::checkConsent());
 	}
 	
 	/**
@@ -386,7 +386,7 @@ class cookieConsent {
 	 */
 	static function printExternalConsentJS() {
 		$option = trim(strval(getOption('zpcookieconsent_externalscripts')));
-		$scripts = zp_apply_filter('cookieconsent_externalconsentscripts', $option, cookieconsent::checkConsent());
+		$scripts = filter::applyFilter('cookieconsent_externalconsentscripts', $option, cookieconsent::checkConsent());
 		if(!empty($scripts)) {
 			$array = explode(',', $scripts);
 			$externaljs = '';

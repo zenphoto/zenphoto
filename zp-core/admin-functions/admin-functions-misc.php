@@ -144,7 +144,7 @@ function admin_securityChecks($rights, $return) {
 	if (!zp_loggedin($rights)) {
 		// prevent nefarious access to this page.
 		$returnurl = urldecode($return);
-		if (!zp_apply_filter('admin_allow_access', false, $returnurl)) {
+		if (!filter::applyFilter('admin_allow_access', false, $returnurl)) {
 			$uri = explode('?', $returnurl);
 			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0], '302');
 		}

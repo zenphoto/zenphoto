@@ -59,10 +59,10 @@ class dynamicAlbum extends AlbumBase {
 				$title = $this->get('title');
 				$this->set('title', stripSuffix($title)); // Strip the suffix
 				$this->save();
-				zp_apply_filter('new_album', $this);
+				filter::applyFilter('new_album', $this);
 			}
 		} 
-		zp_apply_filter('album_instantiate', $this);
+		filter::applyFilter('album_instantiate', $this);
 	}
 
 	/**

@@ -118,7 +118,7 @@ if (!OFFSET_PATH) {
 	setOption('user_logout_login_form', 2, false);
 	$_zp_page_check = 'my_checkPageValidity';
 	if (extensionEnabled('zenpage') && getOption('zenpage_zp_index_news')) { // only one index page if zenpage plugin is enabled & displaying
-		zp_register_filter('getLink', 'newsOnIndex');
+		filter::registerFilter('getLink', 'newsOnIndex');
 	}
 }
 ?>

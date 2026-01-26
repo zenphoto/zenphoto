@@ -794,7 +794,7 @@ class Authority {
 					if ($user) {
 						$_zp_loggedin = $user->getRights();
 					}
-					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
+					$_zp_loggedin = filter::applyFilter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 					if ($_zp_loggedin) {
 						self::logUser($user);
 						$_zp_current_admin_obj = $user;
@@ -923,7 +923,7 @@ class Authority {
 		if (secureServer()) {
 			header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
 		}
-		return zp_apply_filter('zp_logout', NULL, $_zp_current_admin_obj);
+		return filter::applyFilter('zp_logout', NULL, $_zp_current_admin_obj);
 	}
 
 	/**
@@ -932,7 +932,7 @@ class Authority {
 	function checkCookieCredentials() {
 		list($auth, $id) = explode('.', zp_getCookie('zpcms_auth_user') . '.');
 		$loggedin = $this->checkAuthorization($auth, $id);
-		$loggedin = zp_apply_filter('authorization_cookie', $loggedin, $auth, $id);
+		$loggedin = filter::applyFilter('authorization_cookie', $loggedin, $auth, $id);
 		if ($loggedin) {
 			return $loggedin;
 		} else {
@@ -967,7 +967,7 @@ class Authority {
 				$requestor = sanitize($_GET['ref']);
 			}
 		}
-		$alt_handlers = zp_apply_filter('alt_login_handler', array());
+		$alt_handlers = filter::applyFilter('alt_login_handler', array());
 		$star = false;
 		$mails = array();
 		$info = array('challenge' => '', 'response' => '');
@@ -1176,7 +1176,7 @@ class Authority {
 						</script>
 						<?php
 					}
-					$redirect = zp_apply_filter('login_redirect_link', $redirect);
+					$redirect = filter::applyFilter('login_redirect_link', $redirect);
 					?>
 					<form name="login" action="<?php echo html_encode(pathurlencode($redirect)); ?>" method="post">
 						<input type="hidden" name="login" value="1" />

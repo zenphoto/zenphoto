@@ -12,18 +12,19 @@
  * type are valid.
  *
  * This API is heavily inspired by the plugin API used in WordPress.
- *
- * @package zpcore\functions\filter
+ * 
+ * @deprecated 2.0 Use the class filter instead
+ * 
  * @author Ozh
  * @since 1.3
+ * 
+ * @package core
+ * @subpackage functions\functions-filter
+ * 
  */
 // force UTF-8 Ø
 
-global $_zp_filters;
-$_zp_filters = array();
-/* This global var will collect filters with the following structure:
- * $_zp_filter['hook']['array of priorities']['serialized function names']['array of ['array (functions, accepted_args)]']
- */
+
 
 /**
  * Registers a filtering function
@@ -33,7 +34,8 @@ $_zp_filters = array();
  *
  * 		zp_register_filter('some_hook', 'function_handler_for_hook');
  *
- * global array $_zp_filters Storage for all of the filters
+ * @deprecated 2.0 Use fitler::registerFilter() instead
+ * 
  * @param string $hook the name of the zenphoto element to be filtered
  * @param callback $function_name the name of the function that is to be called.
  * @param integer $priority optional. Used to specify the order in which the functions associated with a particular
@@ -41,39 +43,17 @@ $_zp_filters = array();
  * 																		the same priority are executed in the order in which they were added to the filter)
  */
 function zp_register_filter($hook, $function_name, $priority = NULL) {
-	global $_zp_filters, $_zp_enabled_plugins;
-	$bt = @debug_backtrace();
-	if (is_array($bt)) {
-		$b = array_shift($bt);
-		$base = basename($b['file']);
-		if (is_null($priority) && isset($_zp_enabled_plugins[stripSuffix($base)])) {
-			$priority = $_zp_enabled_plugins[stripSuffix($base)]['priority'] & PLUGIN_PRIORITY;
-		}
-	} else {
-		$base = 'unknown';
-	}
-	if (is_null($priority)) {
-		$priority = 5;
-	}
-
-	// At this point, we cannot check if the function exists, as it may well be defined later (which is OK)
-
-	$id = zp_filter_unique_id($hook, $function_name, $priority);
-
-	$_zp_filters[$hook][$priority][$id] = array(
-					'function' => $function_name,
-					'script'	 => $base
-	);
-	if (DEBUG_FILTERS)
-		debugLog($base . '=>' . $function_name . ' registered to ' . $hook . ' at priority ' . $priority);
+	deprecationNotice(gettext('Use fitler::registerFilter() instead'));
+	filter::registerFilter($hook, $function_name, $priority);
 }
 
 /**
  * Build Unique ID for storage and retrieval.
  *
  * Simply using a function name is not enough, as several functions can have the same name when they are enclosed in classes.
- *
- * global array $_zp_filters storage for all of the filters
+ * 
+ * @deprecated 2.0 Use filter::filterUniqueID() instead
+ * 
  * @param string $hook hook to which the function is attached
  * @param string|array $function used for creating unique id
  * @param int|bool $priority used in counting how many hooks were applied.  If === false and $function is an object reference, we return the unique id only if it already has one, false otherwise.
@@ -81,29 +61,8 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
  * @return string unique ID for usage as array key
  */
 function zp_filter_unique_id($hook, $function, $priority) {
-	global $_zp_filters;
-
-	// If function then just skip all of the tests and not overwrite the following.
-	if (is_string($function))
-		return $function;
-	// Object Class Calling
-	else if (is_object($function[0])) {
-		$obj_idx = get_class($function[0]) . $function[1];
-		if (!isset($function[0]->_zp_filters_id)) {
-			if (false === $priority)
-				return false;
-			$count = isset($_zp_filters[$hook][$priority]) ? count((array) $_zp_filters[$hook][$priority]) : 0;
-			$function[0]->_zp_filters_id = $count;
-			$obj_idx .= $count;
-			unset($count);
-		} else {
-			$obj_idx .= $function[0]->_zp_filters_id;
-		}
-		return $obj_idx;
-	}
-	// Static Calling
-	else if (is_string($function[0]))
-		return $function[0] . $function[1];
+	deprecationNotice(gettext('Use filter::filterUniqueID() instead'));
+	return filter::filterUniqueID($hook, $function, $priority);
 }
 
 /**
@@ -123,25 +82,27 @@ function zp_filter_unique_id($hook, $function, $priority) {
  *
  * Returns an element which may have been filtered by a filter.
  *
- * global array $_zp_filters storage for all of the filters
+ * @deprecated 2.0 Use filter::applyFilter() instead
+ * 
  * @param string $hook the name of the zenphoto element
  * @param mixed $value the value of the element before filtering
  * @return mixed
  */
 function zp_apply_filter($hook, $value = '') {
-	global $_zp_filters;
-	if (!isset($_zp_filters[$hook])) {
+	deprecationNotice(gettext('Use filter::applyFilter() instead'));
+	// deprecated code is kept as getting function args otherwise fails
+	if (!isset(filter::$filters[$hook])) {
 		return $value;
 	}
 	$args = func_get_args();
 	// Sort filters by priority
-	krsort($_zp_filters[$hook]);
+	krsort(filter::$filters[$hook]);
 	// Loops through each filter
-	reset($_zp_filters[$hook]);
+	reset(filter::$filters[$hook]);
 	if (DEBUG_FILTERS)
 		$debug = 'Apply filters for ' . $hook;
 	do {
-		foreach ((array) current($_zp_filters[$hook]) as $the_) {
+		foreach ((array) current(filter::$filters[$hook]) as $the_) {
 			if (!is_null($the_['function'])) {
 				if (DEBUG_FILTERS)
 					$debug .= "\n    " . $the_['function'];
@@ -152,7 +113,7 @@ function zp_apply_filter($hook, $value = '') {
 				}
 			}
 		}
-	} while (next($_zp_filters[$hook]) !== false);
+	} while (next(filter::$filters[$hook]) !== false);
 	if (DEBUG_FILTERS)
 		debugLog($debug);
 
@@ -168,8 +129,9 @@ function zp_apply_filter($hook, $value = '') {
  *
  * To be removed the $function_to_remove and $priority arguments must match
  * when the hook was added.
- *
- * global array $_zp_filters storage for all of the filters
+ *  
+ * @deprecated 2.0 Use filter::removeFilter() instead
+ * 
  * @param string $hook The filter hook to which the function to be removed is hooked.
  * @param callback $function_to_remove The name of the function which should be removed.
  * @param int $priority optional. The priority of the function. If not supplied we will get it from zp_has_filter
@@ -177,94 +139,48 @@ function zp_apply_filter($hook, $value = '') {
  * @return boolean Whether the function was registered as a filter before it was removed.
  */
 function zp_remove_filter($hook, $function_to_remove, $priority = NULL, $accepted_args = 1) {
-	global $_zp_filters;
-
-	if (is_null($priority)) {
-		$priority = zp_has_filter($hook, $function_to_remove);
-	}
-	$function_to_remove = zp_filter_unique_id($hook, $function_to_remove, $priority);
-
-	$remove = isset($_zp_filters[$hook][$priority][$function_to_remove]);
-	if ($remove) {
-		unset($_zp_filters[$hook][$priority][$function_to_remove]);
-		if (empty($_zp_filters[$hook][$priority]))
-			unset($_zp_filters[$hook][$priority]);
-		if (empty($_zp_filters[$hook]))
-			unset($_zp_filters[$hook]);
-		if (DEBUG_FILTERS)
-			debugLog($function_to_remove . ' removed from ' . $hook);
-	}
-	return $remove;
+	deprecationNotice(gettext('Use filter::removeFilter() instead'));
+	return filter::removeFilter($hook, $function_to_remove, $priority, $accepted_args);
 }
 
 /**
  * Check if any filter has been registered for a hook.
- *
- * global array $_zp_filters storage for all of the filters
+ * 
+ * @deprecated 2.0 Use filter::hasFilter() instead
+ * 
  * @param string $hook The name of the filter hook.
  * @param callback $function_to_check optional.  If specified, return the priority of that function on this hook or false if not attached.
  * @return int|boolean Optionally returns the priority on that hook for the specified function.
  */
 function zp_has_filter($hook, $function_to_check = false) {
-	global $_zp_filters;
-	$has = !empty($_zp_filters[$hook]);
-	if (false === $function_to_check || false == $has) {
-		return $has;
-	}
-	if (!$idx = zp_filter_unique_id($hook, $function_to_check, false)) {
-		return false;
-	}
-	foreach ((array) array_keys($_zp_filters[$hook]) as $key => $priority) {
-		if (isset($_zp_filters[$hook][$priority][$idx]))
-			return $priority;
-	}
-	return false;
+	deprecationNotice(gettext('Use filter::hasFilter() instead'));
+	return filter::hasFilter($hook, $function_to_check);
 }
 
 /**
  *
  * returns a list of scripts that have attached to the hook
+ * 
+ * @deprecated 2.0 Use filter::getFilterScript() instead
+ * 
  * @param string $hook
  * @return string
  */
 function get_filterScript($hook) {
-	global $_zp_filters;
-	$scripts = array();
-	foreach ($_zp_filters[$hook] as $priority) {
-		foreach ($priority as $actor) {
-			$scripts[] = $actor['script'];
-		}
-	}
-	return implode(', ', $scripts);
+	deprecationNotice(gettext('Use filter::getFilterScript() instead'));
+	return filter::getFilterScript($hook);
 }
 
 /**
  *
  * Returns the position of the function in the hook queue
+ * 
+ * @deprecated 2.0 Use filter::filterSlot() instead
+ * 
  * @param $hook
  * @param $function
  */
 function zp_filter_slot($hook, $function) {
-	global $_zp_filters;
-	if (empty($_zp_filters[$hook])) {
-		return false;
-	}
-	if (!$idx = zp_filter_unique_id($hook, $function, false)) {
-		return false;
-	}
-	// Sort filters by priority
-	$filters = $_zp_filters[$hook];
-	krsort($filters);
-	$c = 0;
-	foreach ((array) array_keys($filters) as $priority) {
-		foreach ($filters[$priority] as $filter => $data) {
-			if ($filter == $idx) {
-				return $c;
-			}
-			$c++;
-		}
-	}
-	return false;
+	deprecationNotice(gettext('Use filter::filterSlot() instead'));
+	return filter::filterSlot($hook, $function);
 }
-
-?>

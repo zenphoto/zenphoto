@@ -110,7 +110,7 @@ function adminToolbox() {
 								</li>
 								<?php
 							}
-							zp_apply_filter('admin_toolbox_global', $zf);
+							filter::applyFilter('admin_toolbox_global', $zf);
 							?>
 						</ul>
 					</li>
@@ -195,7 +195,7 @@ function adminToolbox() {
 									if ($page > 1) {
 										$redirect .= "&;page=$page";
 									}
-									zp_apply_filter('admin_toolbox_gallery', $zf);
+									filter::applyFilter('admin_toolbox_gallery', $zf);
 									break;
 								case 'image.php':
 									$inImage = true; // images are also in albums[sic]
@@ -246,7 +246,7 @@ function adminToolbox() {
 										</li>
 										<?php
 									}
-									zp_apply_filter('admin_toolbox_album', $albumname, $zf);
+									filter::applyFilter('admin_toolbox_album', $albumname, $zf);
 									if ($inImage) {
 										// script is image.php
 										$imagename = $_zp_current_image->filename;
@@ -272,7 +272,7 @@ function adminToolbox() {
 												}
 											}
 											// set return to this image page
-											zp_apply_filter('admin_toolbox_image', $albumname, $imagename, $zf);
+											filter::applyFilter('admin_toolbox_image', $albumname, $imagename, $zf);
 										}
 										$redirect = "&album=" . html_pathurlencode($albumname) . "&amp;image=" . urlencode($imagename);
 									} else {
@@ -296,7 +296,7 @@ function adminToolbox() {
 											</li>
 											<?php
 										}
-										zp_apply_filter('admin_toolbox_search', $zf);
+										filter::applyFilter('admin_toolbox_search', $zf);
 									}
 									$redirect = '&p=search&s=' . $words;
 									break;
@@ -307,10 +307,10 @@ function adminToolbox() {
 									if ($page > 1) {
 										$redirect .= "&page=$page";
 									}
-									$redirect = zp_apply_filter('admin_toolbox_' . $gal, $redirect, $zf);
+									$redirect = filter::applyFilter('admin_toolbox_' . $gal, $redirect, $zf);
 									break;
 							}
-							$redirect = zp_apply_filter('admin_toolbox_close', $redirect, $zf);
+							$redirect = filter::applyFilter('admin_toolbox_close', $redirect, $zf);
 							?>
 						</ul>
 					</li>
@@ -772,7 +772,7 @@ function getCustomPageURL($page, $q = '', $webpath = null) {
 		$rewrite .= "?$q";
 		$plain .= "&$q";
 	}
-	return zp_apply_filter('getLink', rewrite_path($rewrite, $plain, $webpath), $page . '.php', null);
+	return filter::applyFilter('getLink', rewrite_path($rewrite, $plain, $webpath), $page . '.php', null);
 }
 
 /**
@@ -801,7 +801,7 @@ function printCustomPageURL($linktext, $page, $q = '', $prev = '', $next = '', $
  */
 function checkForGuest(&$hint = NULL, &$show = NULL) {
 	global $_zp_gallery, $_zp_current_zenpage_page, $_zp_current_category, $_zp_current_zenpage_news;
-	$authType = zp_apply_filter('checkForGuest', NULL);
+	$authType = filter::applyFilter('checkForGuest', NULL);
 	if (!is_null($authType)) {
 		return $authType;
 	}
@@ -882,7 +882,7 @@ function checkAccess(&$hint = NULL, &$show = NULL) {
 		return true;
 	}
 	if (zp_loggedin()) {
-		$fail = zp_apply_filter('isMyItemToView', NULL);
+		$fail = filter::applyFilter('isMyItemToView', NULL);
 		if (!is_null($fail)) { //	filter had something to say about access, honor it
 			return $fail;
 		}
@@ -992,7 +992,7 @@ function printPasswordForm($_password_hint, $_password_showuser = NULL, $_passwo
 					</p>
 					<?php
 				}
-				if ($loginlink = zp_apply_filter('login_link', NULL)) {
+				if ($loginlink = filter::applyFilter('login_link', NULL)) {
 					$logintext = gettext('login');
 					?>
 					<a href="<?php echo $loginlink; ?>" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
@@ -1022,7 +1022,7 @@ function printZenphotoLink() {
  * @param string $theme The theme being used
  */
 function exposeZenPhotoInformations($obj = '', $plugins = '', $theme = '') {
-	global $_zp_filters, $_zp_graphics;
+	global $_zp_graphics;
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
 		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION;
@@ -1096,7 +1096,7 @@ function getCodeblock($number = 1, $object = NULL) {
 		return NULL;
 	}
 	$codeblock = getSerializedArray($object->getcodeblock());
-	$codeblock = zp_apply_filter('codeblock', @$codeblock[$number], $object, $number);
+	$codeblock = filter::applyFilter('codeblock', @$codeblock[$number], $object, $number);
 	if ($codeblock) {
 		$codeblock = applyMacros($codeblock);
 	}
@@ -1164,7 +1164,7 @@ function checkPageValidity($request, $gallery_page, $page) {
 			$count = (int) ceil($count / ZP_ARTICLES_PER_PAGE);
 			break;
 		default:
-			$count = zp_apply_filter('checkPageValidity', NULL, $gallery_page, $page);
+			$count = filter::applyFilter('checkPageValidity', NULL, $gallery_page, $page);
 			break;
 	}
 	if ($page > $count) {

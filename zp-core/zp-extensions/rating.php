@@ -47,18 +47,18 @@ $plugin_author = "Stephen Billard (sbillard), Malte Müller (acrylian)";
 $plugin_category = gettext('Statistics');
 $option_interface = 'jquery_rating';
 
-zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
-zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
-zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
+filter::registerFilter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
+filter::registerFilter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
+filter::registerFilter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
-	zp_register_filter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
-	zp_register_filter('save_image_utilities_data', 'jquery_rating::optionVoteStatusSave');
+	filter::registerFilter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
+	filter::registerFilter('save_image_utilities_data', 'jquery_rating::optionVoteStatusSave');
 }
 
 // register the scripts needed
 if (in_context(ZP_INDEX)) {
-	zp_register_filter('theme_head', 'jquery_rating::ratingJS');
+	filter::registerFilter('theme_head', 'jquery_rating::ratingJS');
 }
 
 /**

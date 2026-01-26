@@ -44,7 +44,7 @@ if (isset($_GET['album'])) {
 		unset($_GET['album']);
 	}
 }
-if (!zp_apply_filter('admin_managed_albums_access', $allow, $return)) {
+if (!filter::applyFilter('admin_managed_albums_access', $allow, $return)) {
 	redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
 }
 
@@ -335,7 +335,7 @@ if (isset($_GET['action'])) {
       } else {
         $pg = '';
       }
-      $msg = zp_apply_filter('edit_error', '');
+      $msg = filter::applyFilter('edit_error', '');
       if ($msg) {
         $notify .= '&edit_error=' . $msg;
       }
@@ -540,7 +540,7 @@ if (isset($_GET['album']) && (empty($subtab) || $subtab == 'albuminfo') || isset
 </script>
 
 <?php
-zp_apply_filter('texteditor_config', 'zenphoto');
+filter::applyFilter('texteditor_config', 'zenphoto');
 Authority::printPasswordFormJS();
 
 echo "\n</head>";
@@ -586,8 +586,8 @@ echo "\n</head>";
 							gettext('Move')		 => 'moveimages',
 							gettext('Copy')		 => 'copyimages')
 			);
-			$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
-			$checkarray_albums = zp_apply_filter('bulk_album_actions', $checkarray_albums);
+			$checkarray_images = filter::applyFilter('bulk_image_actions', $checkarray_images);
+			$checkarray_albums = filter::applyFilter('bulk_album_actions', $checkarray_albums);
 
 			/** EDIT ***************************************************************************
 			 *
@@ -1267,7 +1267,7 @@ echo "\n</head>";
 																	</div>
 																	<?php
 																}
-																echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
+																echo filter::applyFilter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
 																?>
 																<span class="clearall" ></span>
 															</div>
@@ -1389,7 +1389,7 @@ echo "\n</head>";
 														</td>
 													</tr>
               <?php
-														$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
+														$custom = filter::applyFilter('edit_image_custom_data', '', $image, $currentimage);
 														if (empty($custom)) {
 															?>
 															<tr>

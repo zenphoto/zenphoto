@@ -16,7 +16,7 @@ $option_interface = 'rewriteTokens';
 if (OFFSET_PATH == 2) {
 	setOptionDefault('zp_plugin_rewriteTokens', $plugin_is_filter);
 }
-zp_register_filter('admin_tabs', 'rewriteTokens::tabs');
+filter::registerFilter('admin_tabs', 'rewriteTokens::tabs');
 
 require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-config.php');
 require_once(SERVERPATH . '/' . ZENFOLDER . '/deprecated/functions-config.php');

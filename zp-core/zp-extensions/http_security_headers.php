@@ -24,7 +24,7 @@ $plugin_author = 'Malte Müller (acrylian)';
 $plugin_category = gettext('security');
 $option_interface = 'securityheadersOptions';
 
-zp_register_filter('theme_headers', 'securityHeaders::setHeaders');
+filter::registerFilter('theme_headers', 'securityHeaders::setHeaders');
 
 /**
  * Options handler for http_security_headers plugin

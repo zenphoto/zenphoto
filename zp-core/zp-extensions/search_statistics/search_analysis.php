@@ -32,7 +32,7 @@ echo '</head>';
 		<div id="content">
 			<?php printSubtabs(); ?>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'albums', ''); ?>
+				<?php filter::applyFilter('admin_note', 'albums', ''); ?>
 				<h1><?php echo (gettext('Search analysis')); ?></h1>
 				<?php
 				if (!extensionEnabled('search_statistics')) {

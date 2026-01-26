@@ -23,7 +23,7 @@ if (!zp_loggedin()) {
 }
 
 // Handle any comments that might be posted.
-$_zp_comment_error = zp_apply_filter('handle_comment', false);
+$_zp_comment_error = filter::applyFilter('handle_comment', false);
 
 /*** Consistent URL redirection ***********
  ******************************************/

@@ -71,7 +71,7 @@ if (isset($_REQUEST['backup'])) {
 			}
 			?>
 			<div class="tabbox">
-				<?php zp_apply_filter('admin_note', 'backkup', ''); ?>
+				<?php filter::applyFilter('admin_note', 'backkup', ''); ?>
 				<h1>
 					<?php
 					if ($_zp_current_admin_obj->reset) {

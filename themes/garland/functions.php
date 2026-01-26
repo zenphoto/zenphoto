@@ -1,9 +1,9 @@
 <?php
 // force UTF-8 Ø
 require_once (SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/image_album_statistics.php');
-zp_register_filter('themeSwitcher_head', 'switcher_head');
-zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
-zp_register_filter('load_theme_script', 'fourOhFour');
+filter::registerFilter('themeSwitcher_head', 'switcher_head');
+filter::registerFilter('themeSwitcher_Controllink', 'switcher_controllink');
+filter::registerFilter('load_theme_script', 'fourOhFour');
 
 $cwd = getcwd();
 chdir(dirname(__FILE__));

@@ -3,8 +3,8 @@
  *  @package zpcore\plugins\uploaderjquery
  */
 
-zp_register_filter('admin_headers', 'jQueryUpload_headers', 0);
-//zp_register_filter('admin_head', 'jQueryUpload_head');
+filter::registerFilter('admin_headers', 'jQueryUpload_headers', 0);
+//filter::registerFilter('admin_head', 'jQueryUpload_head');
 
 function jQueryUpload_headers() {
 	ob_start();

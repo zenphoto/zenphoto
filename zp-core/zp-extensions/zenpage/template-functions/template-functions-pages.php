@@ -257,7 +257,7 @@ function getPageContent($titlelink = NULL, $published = true) {
  */
 function printPageContent($titlelink = NULL, $published = true) {
 	global $_zp_current_zenpage_page;
-	$content = zp_apply_filter('pagecontent_html', getPageContent($titlelink, $published), $_zp_current_zenpage_page);
+	$content = filter::applyFilter('pagecontent_html', getPageContent($titlelink, $published), $_zp_current_zenpage_page);
 	echo html_encodeTagged($content);
 }
 

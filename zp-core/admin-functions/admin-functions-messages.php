@@ -8,7 +8,7 @@
  */
 
 function consolidatedEditMessages($subtab) {
-	zp_apply_filter('admin_note', 'albums', $subtab);
+	filter::applyFilter('admin_note', 'albums', $subtab);
 	$messagebox = $errorbox = $notebox = array();
 	if (isset($_GET['ndeleted'])) {
 		$ntdel = sanitize_numeric($_GET['ndeleted']);
@@ -90,7 +90,7 @@ function consolidatedEditMessages($subtab) {
 				$messagebox[] = gettext('Tags cleared for images of selected items');
 				break;
 			default:
-				$message = zp_apply_filter('bulk_actions_message', $action);
+				$message = filter::applyFilter('bulk_actions_message', $action);
 				if (empty($message)) {
 					$messagebox[] = $action;
 				} else {

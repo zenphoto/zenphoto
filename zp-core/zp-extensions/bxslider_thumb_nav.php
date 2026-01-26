@@ -131,7 +131,7 @@ class bxslider {
 }
 
 if (!$plugin_disable && !OFFSET_PATH) {
-	zp_register_filter('theme_head', 'bxslider::themeJS');
+	filter::registerFilter('theme_head', 'bxslider::themeJS');
 
 	/** 
 	 * Prints the jQuery bxslider HTML setup to be replaced by JS

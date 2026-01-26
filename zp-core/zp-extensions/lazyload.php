@@ -20,27 +20,27 @@ $plugin_category = gettext('Media');
 $option_interface = "lazyloadOptions";
 
 //frontend
-zp_register_filter('theme_head', 'lazyload::getJS');
-zp_register_filter('standard_image_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('standard_image_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('theme_head', 'lazyload::getJS');
+filter::registerFilter('standard_image_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('standard_image_html', 'lazyload::addNoscriptImgHTML');
 
-zp_register_filter('custom_image_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('custom_image_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('custom_image_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('custom_image_html', 'lazyload::addNoscriptImgHTML');
 
-zp_register_filter('standard_image_thumb_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('standard_image_thumb_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('standard_image_thumb_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('standard_image_thumb_html', 'lazyload::addNoscriptImgHTML');
 
-zp_register_filter('standard_album_thumb_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('standard_album_thumb_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('standard_album_thumb_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('standard_album_thumb_html', 'lazyload::addNoscriptImgHTML');
 
-zp_register_filter('custom_album_thumb_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('custom_album_thumb_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('custom_album_thumb_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('custom_album_thumb_html', 'lazyload::addNoscriptImgHTML');
 
 
 //backend
-zp_register_filter('admin_head', 'lazyload::getJS');
-zp_register_filter('adminthumb_attr', 'lazyload::filterHTMLAttributes');
-zp_register_filter('adminthumb_html', 'lazyload::addNoscriptImgHTML');
+filter::registerFilter('admin_head', 'lazyload::getJS');
+filter::registerFilter('adminthumb_attr', 'lazyload::filterHTMLAttributes');
+filter::registerFilter('adminthumb_html', 'lazyload::addNoscriptImgHTML');
 
 /**
  * Options for the lazyload plugin

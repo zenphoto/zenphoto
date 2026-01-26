@@ -17,8 +17,8 @@ if (OFFSET_PATH == 2)
 	setoptiondefault('zp_plugin_uploader_http', $plugin_is_filter);
 
 if (zp_loggedin(UPLOAD_RIGHTS)) {
-	zp_register_filter('upload_handlers', 'httpUploadHandler');
-	zp_register_filter('admin_tabs', 'httpUploadHandler_admin_tabs', 10);
+	filter::registerFilter('upload_handlers', 'httpUploadHandler');
+	filter::registerFilter('admin_tabs', 'httpUploadHandler_admin_tabs', 10);
 }
 
 function httpUploadHandler($uploadHandlers) {

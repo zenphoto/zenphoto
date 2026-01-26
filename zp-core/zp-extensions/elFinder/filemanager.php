@@ -38,7 +38,7 @@ echo "\n</head>";
 			<div id="container">
 				<?php $subtab = printSubtabs(); ?>
 				<div class="tabbox">
-					<?php zp_apply_filter('admin_note', 'upload', $subtab); ?>
+					<?php filter::applyFilter('admin_note', 'upload', $subtab); ?>
 					<h1><?php echo gettext('File Manager'); ?></h1>
 					<script>
 						$().ready(function() {

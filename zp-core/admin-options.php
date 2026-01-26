@@ -144,7 +144,7 @@ if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'im
 	</script>
 	<?php
 }
-zp_apply_filter('texteditor_config', 'zenphoto');
+filter::applyFilter('texteditor_config', 'zenphoto');
 Authority::printPasswordFormJS();
 ?>
 </head>

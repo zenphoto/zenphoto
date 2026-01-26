@@ -30,7 +30,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('SEO');
 $option_interface = 'dynamic_locale';
 
-zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
+filter::registerFilter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
 if (getOption('dynamic_locale_subdomain')) {
 	define('LOCALE_TYPE', 2);

@@ -176,7 +176,7 @@ class PersistentObject {
 		// Check if we have a row
 		$result = $_zp_db->querySingleRow('SELECT * FROM ' . $_zp_db->prefix($this->table) . $_zp_db->getWhereClause($new_unique_set) . ' LIMIT 1;');
 		if (!$result || $result['id'] == $this->id) { //	we should not find an entry for the new unique set!
-			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
+			if (!filter::applyFilter('move_object', true, $this, $new_unique_set)) {
 				return false;
 			}
 			$sql = 'UPDATE ' . $_zp_db->prefix($this->table) . $_zp_db->getSetClause($new_unique_set) . ' ' . $_zp_db->getWhereClause($this->unique_set);
@@ -201,7 +201,7 @@ class PersistentObject {
 		$result = $_zp_db->query('SELECT * FROM ' . $_zp_db->prefix($this->table) . $_zp_db->getWhereClause($new_unique_set) . ' LIMIT 1;');
 
 		if ($result && $_zp_db->getNumRows($result) == 0) {
-			if (!zp_apply_filter('copy_object', true, $this, $new_unique_set)) {
+			if (!filter::applyFilter('copy_object', true, $this, $new_unique_set)) {
 				return false;
 			}
 			// Note: It's important for $new_unique_set to come last, as its values should override.
@@ -234,7 +234,7 @@ class PersistentObject {
 			$sql .= ');';
 			$success = $_zp_db->query($sql);
 			if ($success && $_zp_db->getAffectedRows() == 1) {
-				return zp_apply_filter('copy_object', $_zp_db->insertID(), $this);
+				return filter::applyFilter('copy_object', $_zp_db->insertID(), $this);
 			}
 		}
 		return false;
@@ -247,7 +247,7 @@ class PersistentObject {
 	 */
 	function remove() {
 		global $_zp_db;
-		if (!zp_apply_filter('remove_object', true, $this)) {
+		if (!filter::applyFilter('remove_object', true, $this)) {
 			return false;
 		}
 		$id = $this->id;
@@ -429,7 +429,7 @@ class PersistentObject {
 				$this->updates = array();
 			}
 		}
-		zp_apply_filter('save_object', true, $this);
+		filter::applyFilter('save_object', true, $this);
 		$this->addToCache($this->data);
 		return true;
 	}
