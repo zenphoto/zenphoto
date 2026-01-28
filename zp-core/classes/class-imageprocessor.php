@@ -139,7 +139,7 @@ class imageProcessor {
 	}
 
 	/**
-	 * iptc_make_tag() function by Thies C. Arntzen
+	 * iptcMakeTag() function by Thies C. Arntzen
 	 * 
 	 * @since 1.7 Renamed and moved from functions-image.php
 	 * 
@@ -540,10 +540,10 @@ class imageProcessor {
 						$tag_parts = explode('#', $tag);
 						if (is_array($string)) {
 							foreach ($string as $element) {
-								$iptc_result .= self::iptc_make_tag($tag_parts[0], $tag_parts[1], $element);
+								$iptc_result .= self::iptcMakeTag($tag_parts[0], $tag_parts[1], $element);
 							}
 						} else {
-							$iptc_result .= self::iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
+							$iptc_result .= self::iptcMakeTag($tag_parts[0], $tag_parts[1], $string);
 						}
 					}
 					$content = iptcembed($iptc_result, $newfile);
