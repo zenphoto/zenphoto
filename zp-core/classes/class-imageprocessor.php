@@ -508,7 +508,7 @@ class imageProcessor {
 					if (!$_zp_extra_filetypes) {
 						$_zp_extra_filetypes = array();
 					}
-					require_once(dirname(__FILE__) . '/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
+					require_once(SERVERPATH . '/' . ZENFOLDER . '/functions/functions.php'); //	it is ok to increase memory footprint now since the image processing is complete
 					$iptc = array(
 							'1#090' => chr(0x1b) . chr(0x25) . chr(0x47), //	character set is UTF-8
 							'2#115' => $_zp_gallery->getTitle() //	source
