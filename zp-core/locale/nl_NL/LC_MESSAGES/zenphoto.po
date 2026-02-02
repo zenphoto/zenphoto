@@ -12070,7 +12070,7 @@ msgstr "Maak backup"
 
 #: zp-core/utilities/backup_restore.php:108
 msgid "Backup the table content in your database."
-msgstr "Backup de inhoud van de tabellen in de database"
+msgstr "Maak een backup van de database."
 
 #: zp-core/utilities/backup_restore.php:109
 msgid "Backup the Database"
