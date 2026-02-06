@@ -189,7 +189,7 @@ class GoogleMap {
 }
 
 // codeIgniter stuff
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . COMMON_FOLDER . '/jsMin/JSMin.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/JSMin.php');
 
 /**
  * @deprecated 2.0

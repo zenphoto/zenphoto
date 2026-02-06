@@ -17,7 +17,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_category = gettext('Users');
 $plugin_deprecated = true;
 
-require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/common/fieldExtender.php');
+require_once(SERVERPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/userAddressFields/fieldExtender.php');
 
 /**
  * @deprecated 2.0 
