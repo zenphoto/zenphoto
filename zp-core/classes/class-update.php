@@ -29,6 +29,9 @@ class update {
 		$webVersion = false;
 		$v = getOption('last_update_version');
 		$last = getOption('last_update_check');
+		if (version_compare($v, ZENPHOTO_VERSION, '<=')) {
+			$last = 0;
+		}
 		if (empty($last) || is_numeric($last)) {
 			if (time() - $last > 86400) { //  + 86400 / one day
 				if (is_connected()) {
