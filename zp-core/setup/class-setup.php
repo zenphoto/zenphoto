@@ -1,6 +1,6 @@
 <?php
 // force UTF-8 Ø
-require_once(dirname(dirname(__FILE__)) . '/global-definitions.php');
+require_once(dirname(dirname(__FILE__)) . '/definitions-global.php');
 
 $const_webpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $_zp_setup_serverpath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME']));
