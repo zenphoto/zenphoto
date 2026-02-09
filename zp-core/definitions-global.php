@@ -38,6 +38,7 @@ define('PLUGIN_FOLDER', 'zp-extensions');
 
 /**
  * Defines the name of the shared "common" folder within/for core extensions
+ * @deprecated 2.0 Folder removed in 1.7
  */
 define('COMMON_FOLDER', PLUGIN_FOLDER . '/common');
 
