@@ -108,7 +108,7 @@ if (defined('OFFSET_PATH')) {
 						if (!empty($currentadminmail)) {
 							$cc_addresses[] = $currentadminmail;
 						}
-						$err_msg = zp_mail($subject, $message, array(), array(), $cc_addresses);
+						$err_msg = mailHandler::mail($subject, $message, array(), array(), $cc_addresses);
 						if ($err_msg) {
 							echo '<p class="errorbox">' . $err_msg . '</p>';
 						} else {

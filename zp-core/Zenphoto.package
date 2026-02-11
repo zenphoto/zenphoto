@@ -361,7 +361,9 @@ zp-core/admin-globals.php
 zp-core/admin-logs.php
 zp-core/admin-options
 zp-core/admin-options.php
+zp-core/admin-options/class-emailoptions.php
 zp-core/admin-options/class-graphicsoptions.php
+zp-core/admin-options/inc-options-email.php
 zp-core/admin-options/inc-options-gallery_save.php
 zp-core/admin-options/inc-options-gallery.php
 zp-core/admin-options/inc-options-general_save.php
@@ -411,6 +413,7 @@ zp-core/classes/class-i18n.php
 zp-core/classes/class-image.php
 zp-core/classes/class-imagemetaformatter.php
 zp-core/classes/class-imageprocessor.php
+zp-core/classes/class-mailhandler.php
 zp-core/classes/class-maintenancemode.php
 zp-core/classes/class-mediaobject.php
 zp-core/classes/class-mimetypes.php
@@ -717,6 +720,11 @@ zp-core/libs/functions-gettext.php
 zp-core/libs/functions-htmlawed.php
 zp-core/libs/functions-kses.php
 zp-core/libs/functions-utf8.php
+zp-core/libs/PHPMailer
+zp-core/libs/PHPMailer/Exception.php
+zp-core/libs/PHPMailer/PHPMailer.php
+zp-core/libs/PHPMailer/POP3.php
+zp-core/libs/PHPMailer/SMTP.php
 zp-core/license.php
 zp-core/load_objectClasses.php
 zp-core/locale
@@ -1395,12 +1403,6 @@ zp-core/zp-extensions/openstreetmap/MarkerCluster.css
 zp-core/zp-extensions/openstreetmap/MarkerCluster.Default.css
 zp-core/zp-extensions/openstreetmap/openstreetmap.css
 zp-core/zp-extensions/paged_thumbs_nav.php
-zp-core/zp-extensions/PHPMailer
-zp-core/zp-extensions/PHPMailer.php
-zp-core/zp-extensions/PHPMailer/Exception.php
-zp-core/zp-extensions/PHPMailer/PHPMailer.php
-zp-core/zp-extensions/PHPMailer/POP3.php
-zp-core/zp-extensions/PHPMailer/SMTP.php
 zp-core/zp-extensions/print_album_menu.php
 zp-core/zp-extensions/publishContent
 zp-core/zp-extensions/publishContent.php
@@ -1946,7 +1948,6 @@ zp-core/zp-extensions/zenpage/template-functions/template-functions-newscategori
 zp-core/zp-extensions/zenpage/template-functions/template-functions-pages.php
 zp-core/zp-extensions/zenpage/zenpage.css
 zp-core/zp-extensions/zenphoto_news.php
-zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphotoDonate.php
 zp-core/version.php:*
 zp-core/setup:*
@@ -1961,4 +1962,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1963
+1964

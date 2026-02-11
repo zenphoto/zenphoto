@@ -491,7 +491,7 @@ class Authority {
 			}
 		}
 		if ($mails) {
-			return zp_mail($subject, $message, $mails);
+			return mailHandler::mail($subject, $message, $mails);
 		}
 		return 'failed';
 	}
@@ -866,7 +866,7 @@ class Authority {
 							$msg = "\n" . $requestor .
 											"\n" . sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=" . $user['user']) .
 											"\n" . gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-							$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
+							$err_msg = mailHandler::mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
 							if (empty($err_msg)) {
 								$_zp_login_error = 2;
 							} else {

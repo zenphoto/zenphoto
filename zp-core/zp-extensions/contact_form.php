@@ -487,7 +487,7 @@ class contactForm {
 			// If honeypot was triggered, silently don't send the message
 			$err_msg = false;
 			if (empty($honeypot)) {
-				$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
+				$err_msg = mailHandler::mail($subject, $message, $mailinglist, $sendcopy, NULL, array($name => $mailaddress));
 			}
 			if ($err_msg) {
 				$msgs = explode('. ', $err_msg);

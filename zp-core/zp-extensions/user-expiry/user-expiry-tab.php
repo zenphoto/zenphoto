@@ -56,7 +56,7 @@ if (isset($_GET['action'])) {
 							$key = bin2hex(serialize(array('user' => $user, 'email' => $user_e, 'date' => time())));
 							$link = FULLWEBPATH . '/index.php?user_expiry_reverify=' . $key;
 							$message = sprintf(gettext('Your %1$s credentials need to be renewed. Visit %2$s to renew your logon credentials.'), $site, $link);
-							$msg = zp_mail(sprintf(gettext('%s renewal required'), $site), $message, array($user => $user_e));
+							$msg = mailHandler::_mail(sprintf(gettext('%s renewal required'), $site), $message, array($user => $user_e));
 							break;
 					}
 				}

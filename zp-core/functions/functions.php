@@ -463,6 +463,11 @@ function myts_date($format, $mytimestamp) {
 /**
  * Send an mail to the mailing list. We also attempt to intercept any form injection
  * attacks by slime ball spammers. Returns error message if send failure.
+ * 
+ * @author Todd Papaioannou (lucky@luckyspin.org)
+ * @since 1.0.0
+ * 
+ * @deprecated 2.0 Use mailhandler::mail() instdead
  *
  * @param string $subject  The subject of the email.
  * @param string $message  The message contents of the email.
@@ -472,112 +477,10 @@ function myts_date($format, $mytimestamp) {
  * @param string $replyTo reply-to address
  *
  * @return string
- *
- * @author Todd Papaioannou (lucky@luckyspin.org)
- * @since 1.0.0
  */
 function zp_mail($subject, $message, $email_list = NULL, $cc_addresses = NULL, $bcc_addresses = NULL, $replyTo = NULL) {
-	global $_zp_authority, $_zp_gallery, $_zp_utf8;
-	$result = '';
-	if ($replyTo) {
-		$t = $replyTo;
-		if (!isValidEmail($m = array_shift($t))) {
-			if (empty($result)) {
-				$result = gettext('Mail send failed.');
-			}
-			$result .= sprintf(gettext('Invalid “reply-to” mail address %s.'), $m);
-		}
-	}
-	if (is_null($email_list)) {
-		$email_list = $_zp_authority->getAdminEmail();
-	} else {
-		foreach ($email_list as $key => $email) {
-			if (!isValidEmail($email)) {
-				unset($email_list[$key]);
-				if (empty($result)) {
-					$result = gettext('Mail send failed.');
-				}
-				$result .= ' ' . sprintf(gettext('Invalid “to” mail address %s.'), $email);
-			}
-		}
-	}
-	if (is_null($cc_addresses)) {
-		$cc_addresses = array();
-	} else {
-		if (empty($email_list) && !empty($cc_addresses)) {
-			if (empty($result)) {
-				$result = gettext('Mail send failed.');
-			}
-			$result .= ' ' . gettext('“cc” list provided without “to” address list.');
-			return $result;
-		}
-		foreach ($cc_addresses as $key => $email) {
-			if (!isValidEmail($email)) {
-				unset($cc_addresses[$key]);
-				if (empty($result)) {
-					$result = gettext('Mail send failed.');
-				}
-				$result = ' ' . sprintf(gettext('Invalid “cc” mail address %s.'), $email);
-			}
-		}
-	}
-	if (is_null($bcc_addresses)) {
-		$bcc_addresses = array();
-	} else {
-		foreach ($bcc_addresses as $key => $email) {
-			if (!isValidEmail($email)) {
-				unset($bcc_addresses[$key]);
-				if (empty($result)) {
-					$result = gettext('Mail send failed.');
-				}
-				$result = ' ' . sprintf(gettext('Invalid “bcc” mail address %s.'), $email);
-			}
-		}
-	}
-	if (count($email_list) + count($bcc_addresses) > 0) {
-		if (filter::hasFilter('sendmail')) {
-
-			$from_mail = getOption('site_email');
-			$from_name = i18n::getLanguageString(getOption('site_email_name'));
-
-			// Convert to UTF-8
-			if (LOCAL_CHARSET != 'UTF-8') {
-				$subject = $_zp_utf8->convert($subject, LOCAL_CHARSET);
-				$message = $_zp_utf8->convert($message, LOCAL_CHARSET);
-			}
-
-			//	we do not support rich text
-			$message = preg_replace('~<p[^>]*>~', "\n", $message); // Replace the start <p> or <p attr="">
-			$message = preg_replace('~</p>~', "\n", $message); // Replace the end
-			$message = preg_replace('~<br[^>]*>~', "\n", $message); // Replace <br> or <br ...>
-			$message = preg_replace('~<ol[^>]*>~', "", $message); // Replace the start <ol> or <ol attr="">
-			$message = preg_replace('~</ol>~', "", $message); // Replace the end
-			$message = preg_replace('~<ul[^>]*>~', "", $message); // Replace the start <ul> or <ul attr="">
-			$message = preg_replace('~</ul>~', "", $message); // Replace the end
-			$message = preg_replace('~<li[^>]*>~', ".\t", $message); // Replace the start <li> or <li attr="">
-			$message = preg_replace('~</li>~', "", $message); // Replace the end
-			$message = getBare($message);
-			$message = preg_replace('~\n\n\n+~', "\n\n", $message);
-
-			// Send the mail
-			if (count($email_list) > 0) {
-				$result = filter::applyFilter('sendmail', '', $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo); // will be true if all mailers succeeded
-			}
-			if (count($bcc_addresses) > 0) {
-				foreach ($bcc_addresses as $bcc) {
-					$result = filter::applyFilter('sendmail', '', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo); // will be true if all mailers succeeded
-				}
-			}
-		} else {
-			$result = gettext('Mail send failed. There is no mail handler configured.');
-		}
-	} else {
-		if (empty($result)) {
-			$result = gettext('Mail send failed.');
-		}
-		$result .= ' ' . gettext('No “to” address list provided.');
-	}
-	return $result;
+	deprecationNotice(gettext('Use mailHandler::mail() instead'));
+	return mailHandler::mail($subject, $message, $email_list, $cc_addresses, $bcc_addresses, $replyTo);
 }
 
 /**

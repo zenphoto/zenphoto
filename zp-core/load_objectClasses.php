@@ -31,6 +31,7 @@ require_once(dirname(__FILE__) . '/classes/class-image.php');
 require_once(dirname(__FILE__) . '/classes/class-transientimage.php');
 require_once(dirname(__FILE__) . '/classes/class-searchengine.php');
 require_once(dirname(__FILE__) . '/classes/class-maintenancemode.php');
+require_once(dirname(__FILE__) . '/classes/class-mailhandler.php');
 
 $_zp_loaded_plugins = array();
 // load the class & filter plugins

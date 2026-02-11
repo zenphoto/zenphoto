@@ -463,7 +463,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 				}
 			}
 			$on = gettext('Comment posted');
-			$result = zp_mail("[" . $_zp_gallery->getTitle() . "] $on", $message, $emails);
+			$result = mailHandler::mail("[" . $_zp_gallery->getTitle() . "] $on", $message, $emails);
 			if ($result) {
 				$commentobj->setInModeration(-12);
 				$commentobj->comment_error_text = $result;

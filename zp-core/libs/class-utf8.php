@@ -703,8 +703,11 @@ class utf8 {
 	/**
 	 * Send mail
 	 * Replacement for mb_send_mail(), an UTF-8 friendly replacement for mail()
+	 * 
+	 * @since 2.0 Use mailhandler::mail() instead
 	 */
 	static function send_mail($to, $subject, $message, $additional_headers = '', $additional_parameter = '') {
+		deprecatedNotice(gettext('Use mailhandler::mail() instead'));
 		$subject = UTF8::encode_mimeheader($subject);
 		$message = chunk_split(base64_encode($message));
 

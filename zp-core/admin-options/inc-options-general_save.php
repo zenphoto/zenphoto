@@ -45,7 +45,6 @@ $returntab = "&tab=general";
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']), 3);
 			setOption('filesystem_charset', sanitize($_POST['filesystem_charset']), 3);
-			setOption('site_email', sanitize($_POST['site_email']), 3);
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->save();
 			if (isset($_POST['zenphoto_cookie_path'])) {
@@ -66,8 +65,6 @@ $returntab = "&tab=general";
 					setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 				}
 			}
-
-			setOption('site_email_name', process_language_string_save('site_email_name', 3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 			if (isset($_POST['articles_per_page'])) {

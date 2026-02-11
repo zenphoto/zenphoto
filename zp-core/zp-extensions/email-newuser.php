@@ -25,7 +25,7 @@ class email_new_user {
 			$msg = "\n" . sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'), $adm, $_zp_gallery->getTitle()) .
 							"\n" . sprintf(gettext('To set your Zenphoto User password visit: %s'), FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?ticket=$ref&user=$adm") .
 							"\n" . gettext("This ticket will automatically expire in 3 days.");
-			$err_msg = zp_mail(gettext("Zenphoto user created"), $msg, array($mail));
+			$err_msg = mailHandler::mail(gettext("Zenphoto user created"), $msg, array($mail));
 			if (!empty($err_msg)) {
 				$savemsg .= $err_msg;
 			}

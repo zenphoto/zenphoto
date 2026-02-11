@@ -483,7 +483,7 @@ class registerUser {
 				break;
 		}
 		$message_final = sprintf($message, $link, $userobj->getName(), $userobj->getLoginName());
-		return zp_mail($subject,$message_final, array($userobj->getLoginName() => $userobj->getEmail()));
+		return mailHandler::mail($subject,$message_final, array($userobj->getLoginName() => $userobj->getEmail()));
 	}
 
 	/**

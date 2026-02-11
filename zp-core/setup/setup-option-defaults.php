@@ -343,6 +343,14 @@ purgeOption('AlbumThumbSelectDirection');
 
 setOptionDefault('site_email', "zenphoto@" . $_SERVER['SERVER_NAME']);
 setOptionDefault('site_email_name', 'Zenphoto');
+setOptionDefault('zpcore_mailhandler', 'mailHandler::sendmail');
+setOptionDefault('PHPMailer_mail_protocol', 'sendmail');
+setOptionDefault('PHPMailer_server', '');
+setOptionDefault('PHPMailer_pop_port', '110');
+setOptionDefault('PHPMailer_smtp_port', '25');
+setOptionDefault('PHPMailer_user', '');
+setOptionDefault('PHPMailer_password', '');
+setOptionDefault('PHPMailer_secure', 0);
 
 if (file_exists(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package')) {
 	$package = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/Zenphoto.package');

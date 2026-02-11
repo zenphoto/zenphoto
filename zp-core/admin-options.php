@@ -98,7 +98,15 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesecurityoptions'])) {
 			require_once SERVERPATH .'/' . ZENFOLDER . '/admin-options/inc-options-security_save.php';
 		}
-		/*		 * * custom options ** */
+		/* 	
+		 * Email Options
+		 */
+		if (isset($_POST['saveemailoptions'])) {				
+			$returntab = "&tab=email";
+		}
+		/*	
+		 * custom options 
+		 */
 		if (!$themeswitch) { // was really a save.
 			$returntab = processCustomOptionSave($returntab, $themename, $themealbum);
 		}
@@ -255,6 +263,12 @@ Authority::printPasswordFormJS();
 				 */
 				if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/inc-options-security.php';
+				}
+				/*
+				 * Email options
+				 */
+				if ($subtab == 'email' && zp_loggedin(ADMIN_RIGHTS)) {
+					require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/inc-options-email.php';
 				}
 				?>
 			</div><!-- end of container -->
