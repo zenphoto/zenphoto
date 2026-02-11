@@ -299,7 +299,7 @@ function comment_form_addComment($name, $email, $website, $comment, $code, $code
 	$commentobj->setInModeration(0);
 	$commentobj->setCustomData($customdata);
 	$commentobj->dataconfirmation = $dataconfirmation;
-	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !isValidEmail($email))) {
+	if (($whattocheck & COMMENT_EMAIL_REQUIRED) && (empty($email) || !mailHandler::isValidEmail($email))) {
 		$commentobj->setInModeration(-2);
 		$commentobj->comment_error_text .= ' ' . gettext("You must supply an e-mail address.");
 		$goodMessage = false;
@@ -545,7 +545,7 @@ function comment_form_handle_comment() {
 			}
 			if (isset($_POST['email'])) {
 				$p_email = sanitize($_POST['email'], 3);
-				if (!isValidEmail($p_email)) {
+				if (!mailHandler::isValidEmail($p_email)) {
 					$p_email = NULL;
 				}
 			} else {

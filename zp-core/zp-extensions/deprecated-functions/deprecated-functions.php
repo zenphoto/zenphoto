@@ -195,14 +195,14 @@ function replaceOption($oldkey, $newkey) {
  * Determines if the input is an e-mail address. Adapted from WordPress.
  * Name changed to avoid conflicts in WP integrations.
  * 
-  * @deprecated 2.0 – Use isValidEmail() instead
+  * @deprecated 2.0 – Use mailHandler::isValidEmail() instead
  *
  * @param string $input_email email address?
  * @return bool
  */
 function is_valid_email_zp($input_email) {
-	deprecationNotice(gettext("Use the isValidEmail() instead"));
-	return isValidEmail($input_email);
+	deprecationNotice(gettext("Use the mailHandler::isValidEmail() instead"));
+	return mailHandler::isValidEmail($input_email);
 }
 
 /**

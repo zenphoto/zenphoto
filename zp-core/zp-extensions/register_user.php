@@ -328,7 +328,7 @@ class registerUser {
 		} else {
 			registerUser::$admin_email = registerUser::$user;
 		}
-		if (!isValidEmail(registerUser::$admin_email)) {
+		if (!mailHandler::isValidEmail(registerUser::$admin_email)) {
 			registerUser::$notify = 'invalidemail';
 		}
 		if (getOption('register_user_dataconfirmation') && !isset($_POST['admin_dataconfirmation'])) {

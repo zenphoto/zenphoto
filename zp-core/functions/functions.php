@@ -1585,15 +1585,14 @@ function safe_fnmatch($pattern, $string) {
  * It uses PHP's internal `filter_var` functions to validate the syntax but not the existence.
  * 
  * @since 1.5.2
+ * @deprecated 2.0 Use mailHandler::isValidEmail() instead
  * 
  * @param string $email An email address
  * @return boolean
  */
 function isValidEmail($email) {
-	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		return true;
-	}
-	return false;
+	deprecationNotice(gettext('Use mailHandler::isValidEmail() instead'));
+	return mailHandler::isValidEmail($email);
 }
 
 /**
