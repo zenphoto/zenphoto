@@ -303,7 +303,7 @@ class contactForm {
 			if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) {
 				$error[8] = gettext("a postal code");
 			}
-			if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !isValidEmail($mailcontent['email']))) {
+			if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !mailHandler::isValidEmail($mailcontent['email']))) {
 				$error[9] = gettext("a valid email address");
 			}
 			if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {

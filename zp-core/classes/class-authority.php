@@ -1442,7 +1442,7 @@ class Authority {
 	function isUniqueMailaddress($email_to_check, $current_user) {
 		global $_zp_db;
 		$checkmail = trim($email_to_check);
-		if (!empty($checkmail) && isValidEmail($checkmail)) {
+		if (!empty($checkmail) && mailHandler::isValidEmail($checkmail)) {
 			$sql = 'SELECT `user`, `email` FROM ' . $_zp_db->prefix('administrators') . ' WHERE `email` = ' .  $_zp_db->quote($checkmail);
 			$exists = $_zp_db->querySingleRow($sql);
 			if ($exists && $exists['user'] != $current_user && !empty($exists['email']) && $exists['email'] == $checkmail) {
