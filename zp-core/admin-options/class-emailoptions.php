@@ -3,7 +3,7 @@
 /**
  * Option definition class for core e-mail options
  *
- * @since 1.7 Consolided from fromer zenphoto_sendmail and PHPMailer plugins
+ * @since 1.7 Consolidated from former zenphoto_sendmail and PHPMailer plugins
  * 
  * @package admin
  * @subpackage admin-functions\options
