@@ -92,3 +92,10 @@ if (!defined('EXPLAIN_SELECTS')) {
 if (!defined('DEBUG_LOCALE')) {
 	define('DEBUG_LOCALE', isset($_zp_conf_vars['debug_locale']) && $_zp_conf_vars['debug_locale']);
 }
+
+/**
+ * used for examining mail handler problems
+ */
+if (!defined('DEBUG_MAIL')) {
+	define('DEBUG_MAIL', isset($_zp_conf_vars['debug_mail']) && $_zp_conf_vars['debug_mail']);
+}
