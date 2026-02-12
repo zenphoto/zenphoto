@@ -183,7 +183,7 @@ class mailHandler {
 		if ($mailhandler) {
 			if (self::hasDefaultMailhandler()) {
 				switch ($mailhandler) {
-					case 'mailHander::sendmail':
+					case 'mailHandler::sendmail':
 						return self::sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo);
 					case 'mailHandler::PHPMailer':
 						return self::PHPMailer($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo);
