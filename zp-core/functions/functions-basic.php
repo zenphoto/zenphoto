@@ -787,13 +787,13 @@ function getImageCachePostfix($args) {
  * @return array
  */
 function getImageParameters($args, $album = NULL) {
-	$thumb_crop = getOption('thumb_crop');
-	$thumb_size = getOption('thumb_size');
-	$thumb_crop_width = getOption('thumb_crop_width');
-	$thumb_crop_height = getOption('thumb_crop_height');
-	$thumb_quality = getOption('thumb_quality');
-	$image_default_size = getOption('image_size');
-	$quality = getOption('image_quality');
+	$thumb_crop = (bool) getOption('thumb_crop');
+	$thumb_size = (int) getOption('thumb_size');
+	$thumb_crop_width = (int) getOption('thumb_crop_width');
+	$thumb_crop_height = (int) getOption('thumb_crop_height');
+	$thumb_quality = (int) getOption('thumb_quality');
+	$image_default_size = (int) getOption('image_size');
+	$quality = (int) getOption('image_quality');
 	// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
