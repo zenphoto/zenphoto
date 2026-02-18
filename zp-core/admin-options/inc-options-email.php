@@ -14,7 +14,6 @@
 				</td>
 			</tr>
 			<?php
-			require_once dirname(__FILE__) . '/class-emailoptions.php';
 			$emailoptions = new emailOptions();
 			customOptions($emailoptions, '');
 			?>
