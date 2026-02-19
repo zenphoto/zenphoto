@@ -268,6 +268,7 @@ Authority::printPasswordFormJS();
 				 * Email options
 				 */
 				if ($subtab == 'email' && zp_loggedin(ADMIN_RIGHTS)) {
+					require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/class-emailoptions.php';
 					require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/inc-options-email.php';
 				}
 				?>
