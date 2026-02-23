@@ -7,4 +7,4 @@
  * @package core
  */
 require_once(dirname(__FILE__) . '/definitions-global.php'); // Include the version info.
-trigger_error(gettext('Zenphoto deprecation: zp-core/global-definitions.php is deprecated. Use zp-core/definitions-global.php insteadi'), E_USER_DEPRECATED);
+trigger_error(gettext('Zenphoto deprecation: zp-core/global-definitions.php is deprecated. Use zp-core/definitions-global.php instead'), E_USER_DEPRECATED);

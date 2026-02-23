@@ -133,12 +133,12 @@ class mailHandler {
 				}
 				if (count($bcc_addresses) > 0) {
 					if (DEBUG_MAIL) {
-						debuglog(sprintf(gettext('We have a bbc  set: %1$s'), implode(',', $bcc_addresses)));
+						debuglog(sprintf(gettext('We have a bcc set: %1$s'), implode(',', $bcc_addresses)));
 					}
 					foreach ($bcc_addresses as $bcc) {
 						$result = self::handleMail('', array($bcc), $subject, $message, $from_mail, $from_name, array(), $replyTo);
 						if (DEBUG_MAIL && $result) {
-							debuglog(sprintf(gettext('Issue with mailing to bbcs: %1$s'), $result));
+							debuglog(sprintf(gettext('Issue with mailing to bccs: %1$s'), $result));
 						}
 					}
 				}
@@ -286,7 +286,7 @@ class mailHandler {
 			}
 			$msg .= sprintf(gettext('Error info: %1$s'), $mail->ErrorInfo);
 			if (DEBUG_MAIL) {
-				debuglog(sprintf(gettext('phpmailer object:  %1$s'), $mail));
+				debuglog(sprintf(gettext('phpmailer object: %1$s'), $mail));
 				debuglog(sprintf(gettext('Error info: %1$s'), $mail->ErrorInfo));
 			}
 		}
