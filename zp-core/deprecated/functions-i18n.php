@@ -209,7 +209,7 @@ function getUserLocale() {
 }
 
 /**
- * Returns the sring for the current language from a serialized set of language strings
+ * Returns the string for the current language from a serialized set of language strings
  * Defaults to the string for the current locale, the en_US string, or the first string which ever is present
  * 
  * @deprecated 2.0 Use i18n::getLanguageString()
