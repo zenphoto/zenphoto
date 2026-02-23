@@ -577,7 +577,7 @@ class i18n {
 	}
 
 	/**
-	 * Returns the sring for the current language from a serialized set of language strings
+	 * Returns the string for the current language from a serialized set of language strings
 	 * Defaults to the string for the current locale, the en_US string, or the first string which ever is present
 	 * 
 	 * @since 1.7 Moved from functions-i18n.php
