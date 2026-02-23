@@ -286,7 +286,7 @@ class mailHandler {
 			}
 			$msg .= sprintf(gettext('Error info: %1$s'), $mail->ErrorInfo);
 			if (DEBUG_MAIL) {
-				debuglog(sprintf(gettext('phpmailer object:  %1$s'), $mail));
+				debuglog(sprintf(gettext('phpmailer object: %1$s'), $mail));
 				debuglog(sprintf(gettext('Error info: %1$s'), $mail->ErrorInfo));
 			}
 		}
