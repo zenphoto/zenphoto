@@ -57,7 +57,7 @@ class emailOptions {
 						),
 						'desc' => gettext("Zenphoto outgoing mail handler based on the PHP <em>mail()</em> facility or using <a href='http://sourceforge.net/projects/phpmailer/'>PHPMailer</a> classes.")
 				),
-				gettext('PHPMailer – Mail protocol') => array(
+				gettext('PHPMailer – Mail protocol:') => array(
 						'key' => 'PHPMailer_mail_protocol',
 						'type' => OPTION_TYPE_RADIO,
 						'buttons' => array(
