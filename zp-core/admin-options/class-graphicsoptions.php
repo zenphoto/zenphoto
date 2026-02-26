@@ -51,9 +51,15 @@ class graphicsOptions {
 				'key' => 'graphicslib_selected',
 				'type' => OPTION_TYPE_RADIO,
 				'buttons' => $lib_buttons,
-				'order' => 0,
 				'desc' => gettext('Select the graphics library you wish to use for image processing and handling.')
 		);
+		if ($_zp_graphics->imagick_version_notdetected) {
+			$options[gettext('Imagick version not detected')] = array(
+					'key' => 'graphicslib_selected',
+					'type' => OPTION_TYPE_NOTE,
+					'desc' => gettext('<p class="warningbox"><strong>Imagick</strong> is installed but the version could not be detected. It may still work properly.</p>')
+			);
+		}
 		if (defined('GD_FREETYPE') && GD_FREETYPE) {
 			$options += array(
 					gettext('GD TypeFace path') => array(
@@ -67,13 +73,11 @@ class graphicsOptions {
 					gettext('Max height') => array(
 							'key' => 'magick_max_height',
 							'type' => OPTION_TYPE_TEXTBOX,
-							'order' => 1,
 							'desc' => sprintf(gettext('The maximum height used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>'), self::$ignore_size, self::$ignore_size)
 					),
 					gettext('Max width') => array(
 							'key' => 'magick_max_width',
 							'type' => OPTION_TYPE_TEXTBOX,
-							'order' => 2,
 							'desc' => sprintf(gettext('The maximum width used by the site for processed images. Set to %d for unconstrained. Default is <strong>%d</strong>.'), self::$ignore_size, self::$ignore_size)
 					)
 			);
@@ -88,7 +92,7 @@ class graphicsOptions {
 			if (!$_zp_graphics->imagick_version_pass) {
 				$messages[] = sprintf(gettext('The <strong><em>Imagick</em></strong> library version must be <strong>%s</strong> or later.'), IMAGICK_REQUIRED_VERSION);
 			}
-			if (!$_zp_graphics->imagemagick_version_pass) {
+			if (!$_zp_graphics->imagemagick_version_pass || $_zp_graphics->imagick_version_notdetected) {
 				$messages[] = sprintf(gettext('The <strong><em>ImageMagick</em></strong> binary version must be <strong>%s</strong> or later.'), IMAGEMAGICK_REQUIRED_VERSION);
 			}
 		} else {

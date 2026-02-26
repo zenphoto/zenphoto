@@ -17,6 +17,7 @@ class graphicsBase {
 	public $gd_present = false;
 	public $imagick_present = false;
 	public $imagick_version = '';
+	public $imagick_version_notdetected = false;
 	public $imagick_version_pass = false;
 	public $imagemagick_version = '';
 	public $imagemagick_version_pass = false;
@@ -46,7 +47,14 @@ class graphicsBase {
 			$this->generalinfo['GD'] = sprintf(gettext('PHP GD library <em>%s</em>'), $info['GD Version']);
 		}
 		$this->imagick_version = phpversion('imagick');
-		$this->imagick_version_pass = version_compare($this->imagick_version, IMAGICK_REQUIRED_VERSION, '>=');
+		if(!is_numeric($this->imagick_version)) {
+			// Fallback: If imagick is compiled direclty sometimes the version may not be setup properly (e.g. on MAMP) 
+			// but my be correctly available
+			$this->imagick_version_notdetected = true;
+			$this->imagick_version_pass = true;
+		} else {
+			$this->imagick_version_pass = version_compare($this->imagick_version, IMAGICK_REQUIRED_VERSION, '>=');
+		}
 		$this->imagick_present = extension_loaded('imagick') && $this->imagick_version_pass;
 		if ($this->imagick_present) {
 			@$this->imagemagick_version = Imagick::getVersion();
