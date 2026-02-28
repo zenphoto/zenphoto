@@ -871,29 +871,54 @@ function getPrevAlbumURL() {
 
 /**
  * Returns true if this page has image thumbs on it
- *
+ * @since 1.7 replaces isImagePage()
  * @return bool
  */
-function isImagePage() {
+function hasImages() {
 	if (getNumImages()) {
-		global $_zp_page, $_zp_first_page_images;
-		$imagestart = getTotalPages(2); // # of album pages
-		if (!$_zp_first_page_images)
+		global $_zp_page;
+		$imagestart = getTotalPages(true); // # of album pages
+		if (!getFirstPageImages()) {
 			$imagestart++; // then images start on the last album page.
+		}
 		return $_zp_page >= $imagestart;
 	}
 	return false;
 }
 
 /**
+ * Returns true if this page has image thumbs on it
+ * @deprecated 2.0 Use hasImages()
+ * @return bool
+ */
+function isImagePage() {
+	deprecationNotice(gettext('Use hasImages()'));
+	return hasImages();
+}
+
+
+/**
  * Returns true if this page has album thumbs on it
- *
+ * @since 1.7 replaces isAlbumPage()
+ * @return bool
+ */
+function hasAlbums() {
+	if (getNumAlbums()) {
+		global $_zp_page;
+		$pageCount = ceil(getNumAlbums() / max(1, getOption('albums_per_page')));
+		return ($_zp_page <= $pageCount);
+	}
+	return false;
+}
+
+/**
+ * Returns true if this page has album thumbs on it
+ * @deprecated 2.0 Use hasAlbums()
  * @return bool
  */
 function isAlbumPage() {
-	global $_zp_page;
-	$pageCount = Ceil(getNumAlbums() / max(1, getOption('albums_per_page')));
-	return ($_zp_page <= $pageCount);
+	deprecationNotice(gettext('Use hasAlbums()'));
+	return hasAlbums();
 }
 
 /**
