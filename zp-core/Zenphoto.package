@@ -1035,7 +1035,6 @@ zp-core/zp-extensions/defaultCodeblocks.php
 zp-core/zp-extensions/deprecated-functions
 zp-core/zp-extensions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/admin_tab.php
-zp-core/zp-extensions/deprecated-functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated-functions/deprecated-functions.php
 zp-core/zp-extensions/deprecated-functions/functions.php
 zp-core/zp-extensions/downloadList.php
@@ -1962,4 +1961,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1964
+1963

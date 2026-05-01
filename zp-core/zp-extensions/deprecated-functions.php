@@ -40,7 +40,6 @@ if (OFFSET_PATH == 2)
 //	but each release may deprecated new functions which would then just give
 //	(perhaps unseen) errors. Better the user should disable this once he knows
 //	his site is working.
-filter::registerFilter('admin_utilities_buttons', 'deprecated_functions::button');
 filter::registerFilter('admin_tabs', 'deprecated_functions::tabs');
 
 /**
@@ -119,26 +118,6 @@ class deprecated_functions {
 		deprecationNotice($use);
 	}
 
-	/**
-	 * @deprecated 2.0  
-	 * @param type $buttons
-	 * @return string
-	 */
-	static function button($buttons) {
-		$buttons[] = array(
-				'category' => gettext('Development'),
-				'enable' => true,
-				'button_text' => gettext('Check deprecated use'),
-				'formname' => 'deprecated_functions_check',
-				'action' => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/deprecated-functions/check_for_deprecated.php',
-				'icon' => 'images/magnify.png',
-				'title' => gettext("Searches PHP scripts for use of deprecated functions."),
-				'alt' => gettext('Check for update'),
-				'hidden' => '',
-				'rights' => ADMIN_RIGHTS
-		);
-		return $buttons;
-	}
 
 	/**
 	 * @deprecated 2.0 
