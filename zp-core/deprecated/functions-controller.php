@@ -54,7 +54,7 @@ function zp_load_gallery() {
  * @deprecated 2.0 Use controller::loadSearch() instead
  */
 function zp_load_search() {
-	deprecationNotice(gettext('Use controller::controller::loadSearch() instead'));
+	deprecationNotice(gettext('Use controller::loadSearch() instead'));
 	return controller::loadSearch();
 }
 
