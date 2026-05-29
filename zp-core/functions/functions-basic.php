@@ -228,7 +228,7 @@ if (!defined('DATABASE_SOFTWARE') && extension_loaded(strtolower(@$_zp_conf_vars
 }
 if (!$data && OFFSET_PATH != 2) {
 	require_once SERVERPATH .'/'. ZENFOLDER . '/classes/class-reconfigure.php';
-	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecatedfunctions-reconfigure.php';
+	require_once SERVERPATH .'/'. ZENFOLDER . '/deprecated/functions-reconfigure.php';
 	reconfigure::reconfigureAction(3);
 }
 
