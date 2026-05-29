@@ -201,7 +201,7 @@ function replaceOption($oldkey, $newkey) {
  * @return bool
  */
 function is_valid_email_zp($input_email) {
-	deprecationNotice(gettext("Use the mailHandler::isValidEmail() instead"));
+	deprecationNotice(gettext("Use mailHandler::isValidEmail() instead"));
 	return mailHandler::isValidEmail($input_email);
 }
 

@@ -84,7 +84,7 @@ function zp_load_album($folder, $force_nocache = false) {
  * @return the loaded album object on success, or (===false) on failure.
  */
 function zp_load_image($folder, $filename) {
-	deprecationNotice(gettext('Use controller::controller::loadImage() instead'));
+	deprecationNotice(gettext('Use controller::loadImage() instead'));
 	return controller::loadImage($folder, $filename);
 }
 
@@ -100,7 +100,7 @@ function zp_load_image($folder, $filename) {
  * @return object
  */
 function load_zenpage_pages($titlelink) {
-	deprecationNotice(gettext('Use controller::controller::loadZenpagePages() instead'));
+	deprecationNotice(gettext('Use controller::loadZenpagePages() instead'));
 	return controller::loadZenpagePages($titlelink);
 }
 
@@ -116,7 +116,7 @@ function load_zenpage_pages($titlelink) {
  * @return object
  */
 function load_zenpage_news($request) {
-	deprecationNotice(gettext('Use controller::controller::loadZenpageNews() instead'));
+	deprecationNotice(gettext('Use controller::loadZenpageNews() instead'));
 	return controller::loadZenpageNews($request);
 }
 
@@ -127,7 +127,7 @@ function load_zenpage_news($request) {
  * @return bool
  */
 function zp_load_request() {
-	deprecationNotice(gettext('Use controller::controller::loadRequest() instead'));
+	deprecationNotice(gettext('Use controller::loadRequest() instead'));
 	return controller::loadRequest();
 }
 
@@ -140,7 +140,7 @@ function zp_load_request() {
  * @return string
  */
 function prepareIndexPage() {
-	deprecationNotice(gettext('Use controller::controller::prepareIndexPage() instead'));
+	deprecationNotice(gettext('Use controller::prepareIndexPage() instead'));
 	return controller::prepareIndexPage();
 }
 

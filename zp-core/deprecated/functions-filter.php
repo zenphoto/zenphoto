@@ -43,7 +43,7 @@
  * 																		the same priority are executed in the order in which they were added to the filter)
  */
 function zp_register_filter($hook, $function_name, $priority = NULL) {
-	deprecationNotice(gettext('Use fitler::registerFilter() instead'));
+	deprecationNotice(gettext('Use filter::registerFilter() instead'));
 	filter::registerFilter($hook, $function_name, $priority);
 }
 
