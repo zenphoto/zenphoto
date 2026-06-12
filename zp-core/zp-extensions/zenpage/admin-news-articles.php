@@ -147,7 +147,7 @@ datepickerJS();
 						}
 					}
 					$resultU = $_zp_zenpage->getArticles(0, 'unpublished', false, $sortorder, $direction, false, $catobj, $author, $date);
-					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, false, $catobj, $author, $date);
+					$result = $_zp_zenpage->getArticles(0, $published, false, $sortorder, $direction, true, $catobj, $author, $date);
 					foreach ($result as $key => $article) {
 						$article = new ZenpageNews($article['titlelink']);
 						if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
