@@ -587,8 +587,6 @@ zp-core/images/Zp.png
 zp-core/index.php
 zp-core/js
 zp-core/js/encoder.js
-zp-core/js/farbtastic.css
-zp-core/js/farbtastic.js
 zp-core/js/htmlencoder.js
 zp-core/js/jcrop
 zp-core/js/jcrop/css
@@ -1961,4 +1959,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1963
+1961

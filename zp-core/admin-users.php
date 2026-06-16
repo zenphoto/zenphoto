@@ -276,9 +276,7 @@ if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
 printAdminHeader($_current_tab);
 echo $refresh;
 ?>
-<script src="js/farbtastic.js"></script>
 <script src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/sprintf.js"></script>
-<link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
 <script>
 	var visible = false;
 	function getVisible(id, category, show, hide) {
@@ -375,9 +373,11 @@ echo $refresh;
 											}
 											break;
 										default:
-											$hisgroups = explode(',', $user['group']);
-											if (!in_array($showgroup, $hisgroups)) {
-												unset($admins[$key]);
+											if (!empty($user['group'])) {
+												$hisgroups = explode(',', $user['group']);
+												if (!in_array($showgroup, $hisgroups)) {
+													unset($admins[$key]);
+												}
 											}
 											break;
 									}

@@ -118,10 +118,6 @@ if (isset($_GET['action'])) {
 	}
 }
 printAdminHeader($_current_tab);
-?>
-<script src="js/farbtastic.js"></script>
-<link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
-<?php
 if ($_zp_admin_current_subpage == 'gallery' || $_zp_admin_current_subpage == 'image') {
 	if ($_zp_admin_current_subpage == 'image') {
 		$table = 'images';

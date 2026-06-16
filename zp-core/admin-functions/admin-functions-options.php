@@ -260,20 +260,15 @@
 							<?php
 							break;
 						case OPTION_TYPE_COLOR_PICKER:
-							if (empty($v))
+							if (empty($v)) {
 								$v = '#000000';
+							}
 							?>
 							<td width="350" style="margin:0; padding:0">
 								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX . 'text-' . $key; ?>" value="1" />
-								<script>
-									$(document).ready(function () {
-										$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-									});
-								</script>
 								<table style="margin:0; padding:0" >
 									<tr>
-										<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-										<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
+										<td><input type="color" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" /></td>
 									</tr>
 								</table>
 							</td>
