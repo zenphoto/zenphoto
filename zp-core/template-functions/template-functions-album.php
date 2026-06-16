@@ -652,11 +652,13 @@ function printPasswordProtectedImage($extra = '') {
  * @param string $class Insert here the CSS-class name with with you want to style the link.
  * @param string $id Insert here the CSS-id name with with you want to style the link.
  * @param string $title option title attribute
- *  */
-function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '') {
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
+ */
+function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '', $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
-	$sizes = getSizeDefaultThumb($thumbobj);
+	$sizes = $thumbobj->getSizeDefaultThumb();
 	if (empty($title)) {
 		$title = $alt;
 	}
@@ -667,9 +669,15 @@ function printAlbumThumbImage($alt = '', $class = '', $id = '' , $title = '') {
 			'class' => $class,
 			'id' => $id,
 			'width' => $sizes[0],
-			'height' => $sizes[1],
-			'loading' => 'lazy'
+			'height' => $sizes[1]
 	);
+	if ($lazyload) {
+		$attr['loading'] = 'lazy';
+		$attr['decoding'] = 'async';
+	}
+	if (!is_null($fetchpriority) && in_array($fetchpriority, array('high', 'low'))) {
+		$attr['fetchpriority'] = $fetchpriority;
+	}
 	if (!$_zp_current_album->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
@@ -727,13 +735,14 @@ function getCustomAlbumThumb($size = null, $width = NULL, $height = NULL, $cropw
  * @param string $id css id
  * @param string $title title attribute
  * @param bool $maxspace true for maxspace image, false is default
- *
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  * @return string
  */
-function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null, $maxspace = false) {
+function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = null, $class = NULL, $id = NULL, $title = null, $maxspace = false, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_album;
 	$thumbobj = $_zp_current_album->getAlbumThumbImage();
-	$sizes = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbobj, 'thumb');
+	$sizes = $thumbobj->getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, 'thumb');
 	if (empty($title)) {
 		$title = $alt;
 	}
@@ -741,11 +750,17 @@ function printCustomAlbumThumbImage($alt = '', $size = null, $width = NULL, $hei
 			'alt' => html_encode($alt),
 			'class' => $class,
 			'title' => html_encode($title),
-			'id' => $id,
-			'loading' => 'lazy'
+			'id' => $id
 	);
+	if ($lazyload) {
+		$attr['loading'] = 'lazy';
+		$attr['decoding'] = 'async';
+	}
+	if (!is_null($fetchpriority) && in_array($fetchpriority, array('high', 'low'))) {
+		$attr['fetchpriority'] = $fetchpriority;
+	}
 	if ($maxspace) {
-		getMaxSpaceContainer($width, $height, $thumbobj, true);
+		$thumbobj->getMaxSpaceContainer($width, $height, true);
 		$attr['width'] = $width;
 		$attr['height'] = $height;
 	} else {
@@ -804,9 +819,11 @@ function getCustomAlbumThumbMaxSpace($width, $height) {
  * @param string $class Optional style class
  * @param string $id Optional style id
  * @param string $title Optional title attribute
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  */
-function printCustomAlbumThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null) {
-	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title, true);
+function printCustomAlbumThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null, $lazyload = true, $fetchpriority = null) {
+	printCustomAlbumThumbImage($alt, NULL, $width, $height, NULL, NULL, NULL, NULL, $class, $id, $title, true, $lazyload, $fetchpriority);
 }
 
 /**

@@ -665,8 +665,11 @@ function getDefaultSizedImage($image = NULL) {
  * @param string $id Optional style id
  * @param string $title Optional title attribute
  * @param obj $image optional image object, null means current image
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
+
  */
-function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, $image = null) {
+function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, $image = null, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_image;
 	if (is_null($image)) {
 		$image = $_zp_current_image;
@@ -682,10 +685,16 @@ function printDefaultSizedImage($alt, $class = null, $id = null, $title = null, 
 			'class' => $class,
 			'title' => html_encode($title),
 			'id' => $id,
-			'loading' => 'lazy',
 			'width' => getDefaultWidth(),
 			'height' => getDefaultHeight()
 	);
+	if ($lazyload) {
+		$attr['loading'] = 'lazy';
+		$attr['decoding'] = 'async';
+	}
+	if (!is_null($fetchpriority) && in_array($fetchpriority, array('high', 'low'))) {
+		$attr['fetchpriority'] = $fetchpriority;
+	}
 	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
@@ -729,8 +738,10 @@ function getImageThumb($image = null) {
  * @param string $id optional id attribute
  * @param string $title optional title attribute
  * @param obj $image optional image object, null means current image
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  */
-function printImageThumb($alt, $class = null, $id = null, $title = null, $image = null) {
+function printImageThumb($alt, $class = null, $id = null, $title = null, $image = null, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_image;
 	if (is_null($image)) {
 		$image = $_zp_current_image;
@@ -745,9 +756,15 @@ function printImageThumb($alt, $class = null, $id = null, $title = null, $image 
 			'alt' => html_encode($alt),
 			'class' => $class,
 			'title' => html_encode($title),
-			'id' => $id,
-			'loading' => 'lazy'
+			'id' => $id
 	);
+	if ($lazyload) {
+		$attr['loading'] = 'lazy';
+		$attr['decoding'] = 'async';
+	}
+	if (!is_null($fetchpriority) && in_array($fetchpriority, array('high', 'low'))) {
+		$attr['fetchpriority'] = $fetchpriority;
+	}
 	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
@@ -994,8 +1011,10 @@ function getCustomImageURL($size, $width = NULL, $height = NULL, $cropw = NULL, 
  * @param string $type "image" (sizedimage) (default), "thumb" (thumbnail) required for using option settings for uncropped images
  * @param obj $image optional image object, null means current image
  * @param bool $maxspace true for maxspace, false default
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  */
-function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image', $image = null, $maxspace = false) {
+function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumbStandin = false, $effects = NULL, $title = null, $type = 'image', $image = null, $maxspace = false, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_image;
 	if (is_null($image)) {
 		$image = $_zp_current_image;
@@ -1004,7 +1023,7 @@ function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height =
 		return false;
 	}
 	if ($maxspace) {
-		getMaxSpaceContainer($width, $height, $image, $thumbStandin);
+		$image->getMaxSpaceContainer($width, $height, $thumbStandin);
 	}
 	if (empty($title)) {
 		$title = $alt;
@@ -1013,9 +1032,15 @@ function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height =
 			'alt' => html_encode($alt),
 			'class' => $class,
 			'title' => html_encode($title),
-			'id' => $id,
-			'loading' => 'lazy'
+			'id' => $id
 	);
+	if ($lazyload) {
+		$attr['loading'] = 'lazy';
+		$attr['decoding'] = 'async';
+	}
+	if (!is_null($fetchpriority) && in_array($fetchpriority, array('high', 'low'))) {
+		$attr['fetchpriority'] = $fetchpriority;
+	}
 	if (!$image->isPublished()) {
 		$attr['class'] .= " not_visible";
 	}
@@ -1032,7 +1057,7 @@ function printCustomSizedImage($alt = '', $size = null, $width = NULL, $height =
 		if ($thumbStandin) {
 			$type = 'thumb';
 		}
-		$dims = getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $image, $type);
+		$dims = $image->getSizeCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $type);
 		$attr['width'] = $dims[0];
 		$attr['height'] = $dims[1];
 	}
@@ -1094,14 +1119,18 @@ function getCustomSizedImageThumbMaxSpace($width, $height) {
  * @param string $id Optional style id
  * @param string $title optional title attribute
  * @param obj $image optional image object, null means current image
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  */
-function printCustomSizedImageThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null, $image = null) {
+function printCustomSizedImageThumbMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $title = null, $image = null, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_image;
-	if (is_null($image))
+	if (is_null($image)) {
 		$image = $_zp_current_image;
-	if (is_null($image))
+	}
+	if (is_null($image)) {
 		return false;
-	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, true, NULL, $title, 'thumb', $image, true);
+	}
+	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, true, NULL, $title, 'thumb', $image, true, $lazyload, $fetchpriority);
 }
 
 /**
@@ -1115,14 +1144,19 @@ function printCustomSizedImageThumbMaxSpace($alt = '', $width = null, $height = 
  * @param string $id Optional style id
  * @param string $title optional title attribute
  * @param obj $image optional image object, null means current image
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
+
  */
-function printCustomSizedImageMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $thumb = false, $title = null, $image = null) {
+function printCustomSizedImageMaxSpace($alt = '', $width = null, $height = null, $class = NULL, $id = NULL, $thumb = false, $title = null, $image = null, $lazyload = true, $fetchpriority = null) {
 	global $_zp_current_image;
-	if (is_null($image))
+	if (is_null($image)) {
 		$image = $_zp_current_image;
-	if (is_null($image))
+	}
+	if (is_null($image)) {
 		return false;
-	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, $thumb, NULL, $title, 'image', $image, true);
+	}
+	printCustomSizedImage($alt, NULL, $width, $height,  NULL,  NULL, NULL,  NULL, $class, $id, $thumb, NULL, $title, 'image', $image, true, $lazyload, $fetchpriority);
 }
 
 /**

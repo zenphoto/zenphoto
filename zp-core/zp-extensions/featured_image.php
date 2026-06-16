@@ -634,7 +634,7 @@ function getSizedFeaturedImage($obj = NULL, $size = NULL, $width = NULL, $height
 			getMaxSpaceContainer($width, $height, $imageobj, $thumb);
 			return $imageobj->getCustomImage(null, $width, $height, null, null, null, null, $thumb, $effects);
 		} else {
-			return $imageobj->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumb, $effects);
+			return $imageobj->getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumb, $effects, $lazyload, $fetchpriority);
 		}
 	}
 }
@@ -656,9 +656,11 @@ function getSizedFeaturedImage($obj = NULL, $size = NULL, $width = NULL, $height
  * @param bool $thumb set to true to treat as thumbnail. Multimedia items are not used then
  * @param bool $effects set to desired image effect (e.g. 'gray' to force gray scale)
  * @param bool $maxspace Set $width and height and this to true (default false) to get a maxspace image. Other size paramaters will be ignored
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  * @return string
  */
-function printSizedFeaturedImage($obj = NULL, $alt = '', $size = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumb = false, $effects = NULL, $maxspace = false) {
+function printSizedFeaturedImage($obj = NULL, $alt = '', $size = NULL, $width = NULL, $height = NULL, $cropw = NULL, $croph = NULL, $cropx = NULL, $cropy = NULL, $class = NULL, $id = NULL, $thumb = false, $effects = NULL, $maxspace = false, $lazyload = true, $fetchpriority = null) {
 	if (is_null($obj)) {
 		$obj = getContextObject();
 	}
@@ -668,9 +670,9 @@ function printSizedFeaturedImage($obj = NULL, $alt = '', $size = NULL, $width = 
 			$alt = $imageobj->getTitle();
 		}
 		if ($maxspace && !is_null($width) && !is_null($height)) {
-			printCustomSizedImageMaxSpace($alt, $width, $height, $class, $id, $thumb, $alt, $imageobj);
+			printCustomSizedImageMaxSpace($alt, $width, $height, $class, $id, $thumb, $alt, $imageobj, $lazyload, $fetchpriority);
 		} else {
-			printCustomSizedImage($alt, $size, $width, $height, $cropw, $croph, $cropx, $cropy, $class, $id, $thumb, $effects, $alt, 'image', $imageobj);
+			printCustomSizedImage($alt, $size, $width, $height, $cropw, $croph, $cropx, $cropy, $class, $id, $thumb, $effects, $alt, 'image', $imageobj, false, $lazyload, $fetchpriority);
 		}
 	}
 }
@@ -703,9 +705,10 @@ function getFeaturedImageThumb($obj = null) {
  * @param string $id optional id attribute
  * @param string $title optional title attribute
  * @param obj/string $obj Object of the Zenpage page, article or category you want the featured image to get. If you set it to NULL on news.php or pages.php it will try to get the image for the current page, news article or category
- *
+ * @param bool $lazyload Default true. Enables the loading="lazy" and decoding="async" attributes
+ * @param string $fetchpriority Attribute of the same name: "high" or  "low". default null - Note might conflict with $lazyload!
  */
-function printFeaturedImageThumb($alt = null, $class = null, $id = NULL, $title = null, $obj = null) {
+function printFeaturedImageThumb($alt = null, $class = null, $id = NULL, $title = null, $obj = null, $lazyload = true, $fetchpriority = null) {
 	if (is_null($obj)) {
 		$obj = getContextObject();
 	}
@@ -715,9 +718,9 @@ function printFeaturedImageThumb($alt = null, $class = null, $id = NULL, $title 
 			if (empty($alt)) {
 				$alt = $imageobj->getTitle();
 			}
-				printImageThumb($alt, $class, $id, $title, $imageobj);
+			printImageThumb($alt, $class, $id, $title, $imageobj, $lazyload, $fetchpriority);
 		} else {
-			$sizes = getSizeDefaultThumb($imageobj);
+			$sizes = $imageobj->getSizeDefaultThumb();
 			$size = ' width="' . $sizes[0] . '"';
 			printPasswordProtectedImage($size);
 		}
