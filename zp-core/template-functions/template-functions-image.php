@@ -546,10 +546,7 @@ function getSizeDefaultImage($size = NULL, $image = NULL) {
 	if (is_null($image)) {
 		return false;
 	}
-	if (is_null($size)) {
-		$size = getOption('image_size');
-	}
-	return $image->getSizeCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL);
+	return $image->getSizeDefaultImage($size);
 }
 
 /**
@@ -561,10 +558,12 @@ function getSizeDefaultImage($size = NULL, $image = NULL) {
  */
 function getSizeFullImage($image = NULL) {
 	global $_zp_current_image;
-	if (is_null($image))
+	if (is_null($image)) {
 		$image = $_zp_current_image;
-	if (is_null($image))
+	}
+	if (is_null($image)) {
 		return false;
+	}
 	return array($image->getWidth(), $image->getHeight());
 }
 
