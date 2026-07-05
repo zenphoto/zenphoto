@@ -1673,10 +1673,12 @@ function dateTimeConvert($datetime, $raw = false) {
 	// Convert 'yyyy:mm:dd hh:mm:ss' to 'yyyy-mm-dd hh:mm:ss' for Windows' strtotime compatibility
 	$datetime = preg_replace('/(\d{4}):(\d{2}):(\d{2})/', ' \1-\2-\3', $datetime);
 	$time = strtotime($datetime);
-	if ($time == -1 || $time === false)
+	if ($time == -1 || $time === false) {
 		return false;
-	if ($raw)
+	}
+	if ($raw) {
 		return $time;
+	}
 	return date('Y-m-d H:i:s', $time);
 }
 
@@ -1685,14 +1687,14 @@ function dateTimeConvert($datetime, $raw = false) {
  * 
  * @since 1.6.3
  * 
+ * @deprecated 2.0 Use dateTimeConvert() instead
+ * 
  * @param string $date
  * @return string
  */
 function removeDateTimeZone($date) {
-	if (!is_int($date) && strpos($date, 'T') !== false) {
-		$date = str_replace('T', ' ', substr($date, 0, 19));
-	}
-	return $date;
+	deprecationNotice('Use dateTimeConvert() instead');
+	return dateTimeConvert($date, false);
 }
 
 /* * * Context Manipulation Functions ****** */
@@ -3156,11 +3158,11 @@ function getCookieInfoMacro($macros) {
 function getImageMetadataValue($type = '', $value = '', $name = '') {
 	switch ($type) {
 		case 'datetime':
-			return zpFormattedDate(DATETIME_FORMAT, removeDateTimeZone($value));
+			return zpFormattedDate(DATETIME_FORMAT, dateTimeConvert($value));
 		case 'date':
-			return zpFormattedDate(DATE_FORMAT, removeDateTimeZone($value));
+			return zpFormattedDate(DATE_FORMAT, dateTimeConvert($value));
 		case 'time':	
-			return zpFormattedDate(TIME_FORMAT, removeDateTimeZone($value));
+			return zpFormattedDate(TIME_FORMAT, dateTimeConvert($value));
 		default:
 			if ($name == 'IPTCImageCaption') {
 				return nl2br(html_decode($value));
