@@ -233,18 +233,7 @@
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Date:"); ?> </td>
 							<td>
-								<script>
-									$(function () {
-										$("#datepicker<?php echo $suffix; ?>").datepicker({
-											dateFormat: 'yy-mm-dd',
-											showOn: 'button',
-											buttonImage: 'images/calendar.png',
-											buttonText: '<?php echo addslashes(gettext('calendar')); ?>',
-											buttonImageOnly: true
-										});
-									});
-								</script>
-								<input type="text" id="datepicker<?php echo $suffix; ?>" size="20" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
+								<input type="datetime-local" id="datepicker<?php echo $suffix; ?>" name="<?php echo $prefix; ?>albumdate" value="<?php echo $d; ?>" />
 							</td>
 						</tr>
 						<tr>
@@ -613,16 +602,10 @@
 						?>
 						<script>
 							$(function () {
-								$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
-									dateFormat: 'yy-mm-dd',
-									showOn: 'button',
-									buttonImage: '../zp-core/images/calendar.png',
-									buttonText: '<?php echo addslashes(gettext("calendar")); ?>',
-									buttonImageOnly: true
-								});
+								
 								$('#<?php echo $prefix; ?>publishdate').change(function () {
 									var today = new Date();
-									var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
+									var pub =  new Date($('#<?php echo $prefix; ?>publishdate').val());
 									if (pub.getTime() > today.getTime()) {
 										$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
 									} else {
@@ -631,7 +614,7 @@
 								});
 								$('#<?php echo $prefix; ?>expirationdate').change(function () {
 									var today = new Date();
-									var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
+									var expiry =  new Date($('#<?php echo $prefix; ?>expirationdate').val());
 									if (expiry.getTime() > today.getTime()) {
 										$(".<?php echo $prefix; ?>expire").html('');
 									} else {
@@ -644,7 +627,7 @@
 						<hr />
 						<p>
 							<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
-							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
+							<br /><input value="<?php echo $publishdate; ?>" type="datetime-local" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
 							<strong class="scheduledpublishing-<?php echo $prefix; ?>">
 								<?php
 								if ($album->hasPublishSchedule()) {
@@ -654,7 +637,7 @@
 							</strong>
 							<br /><br />
 							<label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
-							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
+							<br /><input value="<?php echo $expirationdate; ?>" type="datetime-local" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
 							<strong class="<?php echo $prefix; ?>expire">
 								<?php
 								if ($album->hasExpiration()) {

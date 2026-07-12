@@ -123,7 +123,6 @@ if (is_AdminEditPage('newscategory')) {
 printAdminHeader($tab, ($result->transient) ? gettext('add') : gettext('edit'));
 filter::applyFilter('texteditor_config', 'zenpage');
 zenpageJSCSS();
-datepickerJS();
 codeblocktabsJS();
 ?>
 <script>
@@ -134,7 +133,7 @@ codeblocktabsJS();
 if (!isset($_GET['add'])) { // prevent showing the message when adding page or article
 	?>
 		function checkFutureExpiry() {
-			var expiry = $('#expiredate').datepicker('getDate');
+			var expiry = new Date($('#expiredate').val());
 			var today = new Date();
 			if (expiry.getTime() > today.getTime()) {
 				$(".expire").html('');
@@ -144,7 +143,7 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 		}
 		function checkFuturePub() {
 			var today = new Date();
-			var pub = $('#date').datepicker('getDate');
+			var pub = new Date($('#date').val());
 			if (pub.getTime() > today.getTime()) {
 				$(".scheduledpublishing").html('<?php echo addslashes(gettext('Future publishing date')); ?>');
 			} else {
@@ -568,22 +567,10 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 													<h2 class="h2_bordered_edit"><?php echo gettext("Date"); ?></h2>
 													<div class="box-edit">
 														<p>
-
-															<script>
-																$(function() {
-																	$("#date").datepicker({
-																		dateFormat: 'yy-mm-dd',
-																		showOn: 'button',
-																		buttonImage: '../../images/calendar.png',
-																		buttonText: '<?php echo gettext('calendar'); ?>',
-																		buttonImageOnly: true
-																	});
-																});
-															</script>
 															<?php
 															$date = $result->getDatetime();
 															?>
-															<input name="date" type="text" id="date" value="<?php echo $date; ?>" onchange="checkFuturePub();" />
+															<input name="date" type="datetime-local" id="date" value="<?php echo $date; ?>" onchange="checkFuturePub();" />
 															<br />
 															<strong class='scheduledpublishing'>
 																<?php
@@ -595,24 +582,12 @@ if (!isset($_GET['add'])) { // prevent showing the message when adding page or a
 														</p>
 														<hr />
 														<p>
-															<script>
-																$(function() {
-																	$("#expiredate").datepicker({
-																		dateFormat: 'yy-mm-dd',
-																		showOn: 'button',
-																		buttonImage: '../../images/calendar.png',
-																		buttonText: '<?php echo gettext('calendar'); ?>',
-																		buttonImageOnly: true
-																	});
-																});
-															</script>
-
 															<?php
 															echo gettext("Expiration date:");
 															$date = $result->getExpireDate();
 															?>
 															<br />
-															<input name="expiredate" type="text" id="expiredate" value="<?php echo $date; ?>" onchange="checkFutureExpiry();" />
+															<input name="expiredate" type="datetime-local" id="expiredate" value="<?php echo $date; ?>" onchange="checkFutureExpiry();" />
 															<br />
 															<strong>
 																<?php

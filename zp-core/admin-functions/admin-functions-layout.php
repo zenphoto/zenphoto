@@ -36,6 +36,9 @@ function printAdminFooter($addl = '') {
 	$_zp_db->close(); //	close the database as we are done
 }
 
+/**
+ * @deprecated 2.0
+ */
 function datepickerJS() {
 	$lang = str_replace('_', '-', getOption('locale'));
 	if (!file_exists(SERVERPATH . '/' . ZENFOLDER . '/js/jqueryui/i18n/jquery.ui.datepicker-' . $lang . '.js')) {

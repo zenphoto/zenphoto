@@ -443,7 +443,6 @@ if (empty($subtab)) {
 }
 
 printAdminHeader('edit', $subtab);
-datepickerJS();
 codeblocktabsJS();
 
 if ((!isset($_GET['massedit']) && !isset($_GET['album'])) || $subtab == 'subalbuminfo') {
@@ -1084,39 +1083,32 @@ echo "\n</head>";
 																$expirationdate = $image->getExpireDate();
 																?>
 																<script>
-																					$(function() {
-																					$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
-																					dateFormat: 'yy-mm-dd',
-																									showOn: 'button',
-																									buttonImage: '../zp-core/images/calendar.png',
-																									buttonText: '<?php echo gettext("calendar"); ?>',
-																									buttonImageOnly: true
-																					});
-																									$('#publishdate-<?php echo $currentimage; ?>').change(function() {
-																					var today = new Date();
-																									var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
-																									if (pub.getTime() > today.getTime()) {
+																		$(function() {
+																			$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+																				var today = new Date();
+																				var pub = new Date($('#publishdate-<?php echo $currentimage; ?>').val());
+																				if (pub.getTime() > today.getTime()) {
 																					$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
-																					} else {
+																				} else {
 																					$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
-																					}
-																					});
-																									$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
-																					var today = new Date();
-																									var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
-																									if (expiry.getTime() > today.getTime()) {
+																				}
+																			});
+																			$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+																				var today = new Date();
+																				var expiry = new Date($('#expirationdate-<?php echo $currentimage; ?>').val());
+																				if (expiry.getTime() > today.getTime()) {
 																					$(".expire<-<?php echo $currentimage; ?>").html('');
-																					} else {
+																				} else {
 																					$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
-																					}
-																					});
-																					});
+																				}
+																				});
+																			});
 																</script>
 																<br class="clearall" />
 																<hr />
 																<p>
-																	<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
-																	<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
+																	<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?></label>
+																	<br /><input value="<?php echo $publishdate; ?>" type="datetime-local" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
 																	<strong class="scheduledpublishing-<?php echo $currentimage; ?>">
 																		<?php
 																		if ($image->hasPublishSchedule()) {
@@ -1125,8 +1117,8 @@ echo "\n</head>";
 																		?>
 																	</strong>
 																	<br /><br />
-																	<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
-																	<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
+																	<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?></label>
+																	<br /><input value="<?php echo $expirationdate; ?>" type="datetime-local" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 																	<strong class="expired expire-<?php echo $currentimage; ?>">
 																		<?php
 																		if ($image->hasExpiration()) {
@@ -1281,18 +1273,7 @@ echo "\n</head>";
 													<tr align="left" valign="top">
 														<td valign="top"><?php echo gettext("Date:"); ?></td>
 														<td>
-															<script>
-																								$(function() {
-																								$("#datepicker_<?php echo $currentimage; ?>").datepicker({
-																								dateFormat: 'yy-mm-dd',
-																												showOn: 'button',
-																												buttonImage: 'images/calendar.png',
-																												buttonText: '<?php echo gettext('calendar'); ?>',
-																												buttonImageOnly: true
-																								});
-																								});
-															</script>
-															<input type="text" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
+															<input type="datetime-local" id="datepicker_<?php echo $currentimage; ?>" size="20" name="<?php echo $currentimage; ?>-date"
 																		 value="<?php
 																		 $d = $image->getDateTime();
 																		 if ($d != '0000-00-00 00:00:00') {

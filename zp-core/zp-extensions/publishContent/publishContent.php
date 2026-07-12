@@ -103,7 +103,6 @@ if ($report) {
 }
 $_zp_admin_menu['overview']['subtabs'] = array(gettext('Content') => FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/publishContent/publishContent.php');
 printAdminHeader('overview', gettext('Content'));
-datepickerJS();
 ?>
 <link rel="stylesheet" href="publishContent.css" type="text/css" media="screen" />
 <?php
@@ -309,18 +308,6 @@ echo '</head>';
 					?>
 				</fieldset>
 				<br class="clearall" />
-
-				<script>
-					$(function() {
-						$("#publish_date").datepicker({
-							dateFormat: 'yy-mm-dd',
-							showOn: 'button',
-							buttonImage: '<?php echo WEBPATH . '/' . ZENFOLDER; ?>/images/calendar.png',
-							buttonText: '<?php echo gettext('calendar'); ?>',
-							buttonImageOnly: true
-						});
-					});
-				</script>
 				<?php $visible = $report == 'images'; ?>
 				<fieldset class="smallbox">
 					<legend><?php
@@ -330,7 +317,7 @@ echo '</head>';
 					<div id="imagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
 						<form name="review" action="" method="post">
 							<?php XSRFToken('publishContent'); ?>
-							<?php printf(gettext('Review images older than: %s'), '<input type="text" size="20" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
+							<?php printf(gettext('Review images older than: %s'), '<input type="datetime-local" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
 							<br class="clearall" />
 							<br class="clearall" />
 							<input type="hidden" name="review" value="true" />

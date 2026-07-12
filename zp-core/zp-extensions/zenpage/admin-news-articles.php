@@ -65,7 +65,6 @@ if (isset($_GET['hitcounter'])) {
 
 printAdminHeader('news', 'articles');
 zenpageJSCSS();
-datepickerJS();
 ?>
 
 <script>
