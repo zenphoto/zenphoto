@@ -875,10 +875,10 @@ class SearchEngine {
 
 	/**
 	 * get connical sort key and direction parameters.
-	 * @param type $sorttype sort field desired
-	 * @param type $sortdirection DESC or ASC
-	 * @param type $defaulttype if no sort type otherwise selected use this one
-	 * @param type $table the database table being searched
+	 * @param string $sorttype sort field desired
+	 * @param string $sortdirection DESC or ASC
+	 * @param string $defaulttype if no sort type otherwise selected use this one
+	 * @param string $table the database table being searched
 	 * @return array
 	 */
 	protected function sortKey($sorttype, $sortdirection, $defaulttype, $table) {
@@ -896,6 +896,13 @@ class SearchEngine {
 			} else if (array_key_exists('sortdirection', $this->extraparams)) {
 				$sortdirection = $this->extraparams['sortdirection'];
 			}
+		}
+		if (strtoupper(trim($sortdirection)) == 'DESC') {
+			$sortdirection = 'DESC';
+		} else if (strtoupper(trim($sortdirection)) == 'ASC') {
+			$sortdirection = 'ASC';
+		} else {
+			$sortdirection = 'DESC';
 		}
 		return array($sorttype, $sortdirection);
 	}
