@@ -919,6 +919,10 @@ class SearchEngine {
 	 */
 	function searchDate($searchstring, $searchdate, $tbl, $sorttype, $sortdirection, $whichdate = 'date') {
 		global $_zp_current_album, $_zp_gallery, $_zp_db;
+		$allowed_dates = array('date', 'publishdate', 'expiredate', 'lastchange');
+		if (!in_array($whichdate, $allowed_dates)) {
+			$whichdate = 'date';
+		}
 		$sql = 'SELECT DISTINCT `id`, `show`,`title`';
 		switch ($tbl) {
 			case 'pages':
@@ -939,14 +943,14 @@ class SearchEngine {
 
 		if (!empty($searchdate)) {
 			if ($searchdate == "0000-00") {
-				$sql .= "`$whichdate`=\"0000-00-00 00:00:00\"";
+				$sql .= "`$whichdate`= " .$_zp_db->quote('0000-00-00 00:00:00');
 			} else {
 				$datesize = sizeof(explode('-', $searchdate));
 // search by day
 				if ($datesize == 3) {
 					$d1 = $searchdate . " 00:00:00";
 					$d2 = $searchdate . " 23:59:59";
-					$sql .= "`$whichdate` >= \"$d1\" AND `$whichdate` < \"$d2\"";
+					$sql .= "`$whichdate` > " . $_zp_db->quote($d1) . " AND `$whichdate` < " . $_zp_db->quote($d2);
 				}
 // search by month
 				else if ($datesize == 2) {
@@ -954,9 +958,9 @@ class SearchEngine {
 					$d = strtotime($d1);
 					$d = strtotime('+ 1 month', $d);
 					$d2 = substr(date('Y-m-d H:m:s', $d), 0, 7) . "-01 00:00:00";
-					$sql .= "`$whichdate` >= \"$d1\" AND `$whichdate` < \"$d2\"";
+					$sql .= "`$whichdate` >= ". $_zp_db->quote($d1). " AND `$whichdate` <" . $_zp_db->quote($d2);
 				} else {
-					$sql .= "`$whichdate`<\"0000-00-00 00:00:00\"";
+					$sql .= "`$whichdate`<" .$_zp_db->quote('0000-00-00 00:00:00');
 				}
 			}
 		}
