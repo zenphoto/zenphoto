@@ -701,8 +701,6 @@ zp-core/js/jqueryui/jquery-ui.structure.min.css
 zp-core/js/jqueryui/jquery-ui.theme.css
 zp-core/js/jqueryui/jquery-ui.theme.min.css
 zp-core/js/jqueryui/LICENSE.txt
-zp-core/js/jqueryui/package.json
-zp-core/js/jqueryui/readme.txt
 zp-core/js/sprintf.js
 zp-core/js/tag.js
 zp-core/js/toggleElements.css
@@ -1959,4 +1957,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1961
+1959
