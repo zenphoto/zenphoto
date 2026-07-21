@@ -1866,14 +1866,16 @@ msgstr "oplopend"
 #: zp-core/admin-functions/admin-functions-general.php:1780
 #, php-format
 msgid "Current albums frontend sort: <strong>%1$s (%2$s)</strong>"
-msgstr "Huidig sortering van albums op de frontend: <strong>%1$s</strong>"
+msgstr ""
+"Huidig sortering van albums op de frontend: <strong>%1$s (%2$s)</strong>"
 
 #: zp-core/admin-functions/admin-functions-general.php:1777
 #: zp-core/admin-functions/admin-functions-general.php:1782
 #, php-format
 msgid "Current images frontend sort: <strong>%1$s (%2$s)</strong>"
 msgstr ""
-"Huidig sortering van afbeeldingen op de frontend: <strong>%1$s</strong>"
+"Huidig sortering van afbeeldingen op de frontend: <strong>%1$s (%2$s)</"
+"strong>"
 
 #: zp-core/admin-functions/admin-functions-image.php:251
 msgid "Horizontal (normal)"
@@ -9741,19 +9743,19 @@ msgstr "Programmaversie"
 
 #: zp-core/functions/functions.php:2772
 msgid "Video File Format"
-msgstr "Video format"
+msgstr "Video File Format"
 
 #: zp-core/functions/functions.php:2773
 msgid "Video File Size"
-msgstr "Video bestandsgrootte"
+msgstr "Video File Size"
 
 #: zp-core/functions/functions.php:2774
 msgid "Video Artist"
-msgstr "Video artiest"
+msgstr "Video Artist"
 
 #: zp-core/functions/functions.php:2775
 msgid "Video Title"
-msgstr "Video titel"
+msgstr "Video Title"
 
 #: zp-core/functions/functions.php:2776
 msgid "Bitrate"
@@ -9777,7 +9779,7 @@ msgstr "Compressieverhouding"
 
 #: zp-core/functions/functions.php:2781
 msgid "Video Dataformat"
-msgstr "Video type"
+msgstr "Video Dataformat"
 
 #: zp-core/functions/functions.php:2782
 msgid "File Encoder"
