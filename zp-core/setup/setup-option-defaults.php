@@ -257,7 +257,7 @@ setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 setOptionDefault('IPTC_convert_linebreaks', 0);
 renameOption('ImbedIPTC', 'EmbedIPTC');
 
-setOptionDefault('metadata_import_mode', 'classic');
+setOptionDefault('metadata_import_mode', 'formatted');
 setOptionDefault('metadata_refresh_behaviour', 'full-refresh');
 
 setOptionDefault('UTF8_image_URI', 0);

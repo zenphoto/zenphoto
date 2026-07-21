@@ -612,18 +612,20 @@
 												<?php 
 												$metaimport_mode = getOption('metadata_import_mode');
 												if (!$metaimport_mode) {
-													$metaimport_mode = 'classic';
+													$metaimport_mode = 'formatted';
 												}
 												?>
 												<ul class="optionlist">
-													<li><label><input type="radio" name="metadata_import_mode" value="classic" <?php checked('classic', $metaimport_mode); ?> /> <?php echo gettext('Classic'); ?></label></li>
-													<li><label><input type="radio" name="metadata_import_mode" value="raw" <?php checked('raw', $metaimport_mode); ?> /> <?php echo gettext('Raw'); ?></label></li>
+													<li><label><input type="radio" name="metadata_import_mode" value="classic" <?php checked('formatted', $metaimport_mode); ?> /> <?php echo gettext('Formatted (Classic)'); ?></label></li>
+													<li><label><input type="radio" name="metadata_import_mode" value="raw" <?php checked('unformatted', $metaimport_mode); ?> /> <?php echo gettext('Unformatted'); ?></label></li>
 												</ul>
 											</td>
-											
 											<td>
-												<?php echo gettext('The image metadata import mode already formatted many metadata fields and stored text notes translated and statically in the language the backend was set to on importing. This is still an applicable way if your site is in a single language. Then choose the <em>classic</em> mode. If you have a multlingual site the <em>raw</em> mode is better suited as in generates translatable output that can be covered by the Zenphoto translation files.'); 
-												echo '<p class="warningbox">' . gettext('<strong>Important:</strong> If you change the mode to <em>raw</em> on an existing site you need to re-import the metadata of all images afterwards. Otherwise the metadata output will be broken.') . '</p>';
+												<ul>
+													<li><?php echo gettext('<em>Formatted (Classic)</em>: The classic image metadata import mode already formatted many metadata fields and stored text notes translated and statically in the language the backend was set to on importing. This is still an applicable way if your site is in a single language.'); ?></li>
+													<li><?php echo gettext('<em>Unformatted</em>: If you have a multlingual site the <em>raw</em> mode is better suited as in generates translatable output that can be covered by the Zenphoto translation files.'); ?></li> 
+												</ul>
+												<?php		echo '<p class="warningbox">' . gettext('<strong>Important:</strong> If you change the mode to <em>raw</em> on an existing site you need to re-import the metadata of all images afterwards. Otherwise the metadata output will be broken.') . '</p>';
 												?>
 											</td>
 										</tr>		

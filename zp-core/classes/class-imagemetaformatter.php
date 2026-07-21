@@ -32,7 +32,7 @@ class imageMetaFormatter {
 	 */
 	static function formatData($tag, $data, $exifdata = array()) {
 		$metaimport_mode = getOption('metadata_import_mode');
-		if (!$metaimport_mode || $metaimport_mode == 'classic') {
+		if (!$metaimport_mode || $metaimport_mode == 'formatted') {
 			$data = self::formatDataOutput($tag, $data, true); // this will be disabled if text based formatting on import is off
 		}
 		$data = self::formatDataRaw($tag, $data, $exifdata);
