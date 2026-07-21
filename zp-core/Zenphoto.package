@@ -929,6 +929,7 @@ zp-core/zp-extensions/elFinder/js/i18n/help/pl.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/ru.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/sk.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/tr.html.js
+zp-core/zp-extensions/elFinder/js/i18n/help/zh_CN.html.js
 zp-core/zp-extensions/elFinder/js/i18n/help/zh_TW.html.js
 zp-core/zp-extensions/elFinder/js/proxy
 zp-core/zp-extensions/elFinder/js/proxy/elFinderSupportVer1.js
@@ -1727,4 +1728,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1729
+1730

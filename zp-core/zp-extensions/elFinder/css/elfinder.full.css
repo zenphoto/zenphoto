@@ -1,9 +1,9 @@
 /*!
  * elFinder - file manager for web
- * Version 2.1.64 (2023-12-20)
+ * Version 2.1.69 (2026-05-07)
  * http://elfinder.org
  * 
- * Copyright 2009-2023, Studio 42
+ * Copyright 2009-2026, Studio 42
  * Licensed under a 3-clauses BSD license
  */
 
@@ -3441,7 +3441,7 @@ button.elfinder-info-button {
 .elfinder-place-drag .elfinder-navbar-dir,
 .elfinder-quicklook-preview-text-wrapper,
 .elfinder-info-tb {
-    font-size: .9em;
+    font-size: .8em;
 }
 
 .std42-dialog .ui-dialog-titlebar {
