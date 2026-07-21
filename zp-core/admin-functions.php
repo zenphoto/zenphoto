@@ -6,7 +6,7 @@
  */
 // force UTF-8 Ø
 
-require_once(dirname(__FILE__) . '/functions/functions.php');
+require_once(dirname(__FILE__) . '/definitions-core.php');
 
 define('TEXTAREA_COLUMNS', 50);
 define('TEXT_INPUT_SIZE', 48);

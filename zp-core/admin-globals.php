@@ -9,7 +9,7 @@
 define('UPLOAD_ERR_QUOTA', -1);
 define('UPLOAD_ERR_BLOCKED', -2);
 
-require_once(dirname(__FILE__) . '/functions/functions-basic.php');
+require_once(dirname(__FILE__) . '/definitions-basic.php');
 
 zp_session_start();
 require_once(SERVERPATH . '/' . ZENFOLDER . '/classes/class-update.php');

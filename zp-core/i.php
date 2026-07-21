@@ -32,7 +32,7 @@
 
 if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__) . '/functions/functions-basic.php');
+require_once(dirname(__FILE__) . '/definitions-basic.php');
 require_once(dirname(__FILE__) . '/classes/class-imageprocessor.php');
 require_once(dirname(__FILE__) . '/deprecated/functions-image.php');
 
@@ -58,7 +58,7 @@ $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
 $theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 if (getOption('secure_image_processor')) {
-	require_once(dirname(__FILE__) . '/functions/functions.php');
+	require_once(dirname(__FILE__) . '/definitions-core.php');
 	$albumobj = AlbumBase::newAlbum(filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageProcessor::imageError('403 Forbidden', gettext("Forbidden(1)"), 'err-imagegeneral.png', $image, $album);

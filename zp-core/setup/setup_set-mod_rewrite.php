@@ -8,7 +8,7 @@
  * @package zpcore\setup
  *
  */
-require_once(dirname(dirname(__FILE__)) . '/functions/functions-basic.php');
+require_once(dirname(dirname(__FILE__)) . '/definitions-basic.php');
 require_once(dirname(__FILE__) . '/class-setup.php');
 require_once(dirname(__FILE__) . '/class-setupmutex.php');
 

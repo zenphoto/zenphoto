@@ -205,6 +205,8 @@ zp-core/css/admin-rtl.css
 zp-core/css/admin-statistics.css
 zp-core/css/admin.css
 zp-core/css/admintoolbox.css
+zp-core/definitions-basic.php
+zp-core/definitions-core.php
 zp-core/definitions-debug.php
 zp-core/definitions-global.php
 zp-core/definitions-i18n.php
@@ -1728,4 +1730,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1730
+1732

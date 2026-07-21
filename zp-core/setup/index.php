@@ -1623,7 +1623,7 @@ $upgrade = $versioncheck['upgrade_text'];
 					if (file_exists(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE)) {
 
 						require(SERVERPATH . '/' . DATA_FOLDER . '/' . CONFIGFILE);
-						require_once(dirname(dirname(__FILE__)) . '/functions/functions.php');
+						require_once(dirname(dirname(__FILE__)) . '/definitions-core.php');
 						echo '<p>' . gettext('Checking the database') . '</p>';
 						$task = '';
 						if (isset($_GET['create'])) {

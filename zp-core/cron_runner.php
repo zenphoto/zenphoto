@@ -11,7 +11,7 @@ if (isset($_GET['offsetPath'])) {
 	define('OFFSET_PATH', 1);
 }
 
-require_once(dirname(__FILE__) . '/functions/functions.php');
+require_once(dirname(__FILE__) . '/definitions-core.php');
 
 $_zp_current_admin_obj = $_zp_loggedin = NULL;
 if (isset($_POST['link'])) {
