@@ -616,8 +616,8 @@
 												}
 												?>
 												<ul class="optionlist">
-													<li><label><input type="radio" name="metadata_import_mode" value="classic" <?php checked('formatted', $metaimport_mode); ?> /> <?php echo gettext('Formatted (Classic)'); ?></label></li>
-													<li><label><input type="radio" name="metadata_import_mode" value="raw" <?php checked('unformatted', $metaimport_mode); ?> /> <?php echo gettext('Unformatted'); ?></label></li>
+													<li><label><input type="radio" name="metadata_import_mode" value="formatted" <?php checked('formatted', $metaimport_mode); ?> /> <?php echo gettext('Formatted (Classic)'); ?></label></li>
+													<li><label><input type="radio" name="metadata_import_mode" value="unformatted" <?php checked('unformatted', $metaimport_mode); ?> /> <?php echo gettext('Unformatted'); ?></label></li>
 												</ul>
 											</td>
 											<td>
