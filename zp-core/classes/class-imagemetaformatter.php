@@ -12,6 +12,8 @@
  * jake@olefsky.com
  * 
  * @since 1.6.5
+ * 
+ * @package zpcore\classes\helpers
  */
 class imageMetaFormatter {
 
@@ -21,6 +23,7 @@ class imageMetaFormatter {
 	 * @TODO Since this traditionally formats EXIF fields only
 	 * 
 	 * @since 1.6.5 Partly adapted from Exifer 1.7 library 
+	 * 
 	 * @author Jake Olefsky jake@olefsky.com, adapted by Malte Müller (acrylian)
 	 * @param type $tag The metadata name of the field (not the db name!)
 	 * @param mixed $data The value to format
@@ -28,23 +31,30 @@ class imageMetaFormatter {
 	 * @return string
 	 */
 	static function formatData($tag, $data, $exifdata = array()) {
-		/*
-		 * Some tags are included although we don't support them by default
-		 * but the original Exifer lib did handle them nevertheless
-		 */
+		$metaimport_mode = getOption('metadata_import_mode');
+		if (!$metaimport_mode || $metaimport_mode == 'classic') {
+			$data = self::formatDataOutput($tag, $data, true); // this will be disabled if text based formatting on import is off
+		}
+		$data = self::formatDataRaw($tag, $data, $exifdata);
+		return $data;
+	}
+	
+	/**
+	 * Formats raw data especially numerica ones for import storage, without translatable strings.
+	 * 
+	 * @since 1.7 separated from formatData()
+	 * 
+	 * @param type $tag The metadata name of the field (not the db name!)
+	 * @param mixed $data The value to format
+	 * @param array $exifdata The full exif data as return by exif_read_data() 
+	 * @return string
+	 */
+	static function formatDataRaw($tag, $data, $exifdata = array()) {
 		switch ($tag) {
 			default:
 				if (is_array($data)) {
 					$data = serialize($data); // we might not know what to do else but we can at least store it
 				}
-				break;
-			case 'XResolution':
-			case 'YResolution':
-				$data = self::rationalNum($data);
-				if (is_numeric($data)) {
-					$data = round($data);
-				}
-				$data = $data . ' dots per ResolutionUnit';
 				break;
 			case 'ExposureTime':
 				$data = self::formatExposure(self::rationalNum($data));
@@ -55,17 +65,6 @@ class imageMetaFormatter {
 					$data = round($data, 2);
 				}
 				$data = 'f/' . $data;
-				break;
-			case 'DateTime':
-			case 'DateTimeOriginal':
-			case 'DateTimeDigitized':
-			case 'DateCreated': // IPTC
-			case 'DigitizeDate': // IPTC
-			case 'TimeCreated': // IPTC
-			case 'DigitizeTime': // IPTC
-				/*
-				 * Datetime formats are formatted on output only traditionally!
-				 */
 				break;
 			case 'ShutterSpeedValue':
 				// The ShutterSpeedValue is given in the APEX mode. Many thanks to Matthieu Froment for this code
@@ -107,7 +106,80 @@ class imageMetaFormatter {
 					$data = round(floatval($data), 1) . ' mm';
 				}
 				break;
-			case 'Orientation':
+			case 'FocalLengthIn35mmFilm':
+				$data = self::get35mmEquivFocalLength($exifdata) . ' mm';
+				break;
+			case 'GPSLatitudeRef':
+			case 'GPSLongitudeRef':
+			case 'GPSLatitude':
+			case 'GPSLongitude':
+			case 'GPSTimeStamp':
+			case 'GPSAltitude':
+			case 'GPSAltitudeRef':
+				$data = self::formatGPS($tag, $data);
+				break;
+			case 'LensInfo':
+				if (is_array($data)) {
+					$data = strval(implode(' ', $data));
+				} else {
+					$data = strval($data);
+				}
+				break;
+		}
+		return $data;
+	}
+	
+	/**
+	 * Formats dates, tags and translatable texts with for example units or notes for output and wth multilingual support.
+	 * 
+	 * It is setup for import processing as well as output processing depending on the import option chosen
+	 * 
+	  * @since 1.7 separated from formatData()
+	 * 
+	 * @param string $tag
+	 * @param mixed $data
+	 * @param bool $exclude_dates if importing date/time tags should not be formatted, set to true to exclude them
+	 * @return string
+	 */
+	static function formatDataOutput($tag = '', $data = '', $exclude_dates = false) {
+		switch ($tag) {
+			case 'XResolution': // metadata name
+			case 'VideoResolution_x': // database name
+			case 'YResolution':// metadata name
+			case 'VideoResolution_y': // database name
+				$data = sprintf(gettext('%d dots per ResolutionUni'), $data);
+				break;
+			case 'DateTime':
+			case 'EXIFDateTime': // database name
+			case 'DateTimeOriginal': // metadata name
+			case 'EXIFDateTimeOriginal': // database name
+			case 'DateTimeDigitized':// metadata name
+			case 'EXIFDateTimeDigitized': // database name
+				// moved from functions.php's getImageMetadataValue()
+				if (!$exclude_dates) {
+					$data = zpFormattedDate(DATETIME_FORMAT, dateTimeConvert($data));
+				}
+				break;
+			case 'DateCreated': // metadata name IPTC
+			case 'IPTCDateCreated': // database name
+			case 'DigitizeDate': // metadata name IPTC 
+			case 'IPTCDigitizeDate': // database name
+				// moved from functions.php's getImageMetadataValue()
+				if (!$exclude_dates) {
+					$data = zpFormattedDate(DATE_FORMAT, dateTimeConvert($data));
+				}
+				break;
+			case 'TimeCreated': // metadata name IPTC
+			case 'IPTCTimeCreated': // database name
+			case 'DigitizeTime': // metadata name IPTC
+			case 'IPTCDigitizeTime': // database name
+				// moved from functions.php's getImageMetadataValue()
+				if (!$exclude_dates) {
+					$data = zpFormattedDate(TIME_FORMAT, dateTimeConvert($data));
+				}
+				break;
+			case 'Orientation': // metadata name
+			case 'EXIFOrientation': // database name
 				// Example of how all of these tag formatters should be...
 				switch ($data) {
 					case 1 : $data = gettext('1: Horizontal (normal)');
@@ -130,53 +202,8 @@ class imageMetaFormatter {
 						break;
 				}
 				break;
-			case 'ResolutionUnit':
-			case 'FocalPlaneResolutionUnit':
-			case 'ThumbnailResolutionUnit':
-				switch ($data) {
-					case 1: $data = gettext('No Unit');
-						break;
-					case 2: $data = gettext('Inch');
-						break;
-					case 3: $data = gettext('Centimeter');
-						break;
-					case 4: $data = gettext('Millimeter');
-						break;
-					case 5: $data = gettext('Micrometer');
-						break;
-				}
-				break;
-			case 'YCbCrPositioning':
-				switch ($data) {
-					case 1: $data = gettext('Center of Pixel Array');
-						break;
-					case 2: $data = gettext('Datum Point');
-						break;
-				}
-				break;
-			case 'ExposureProgram':
-				switch ($data) {
-					case 1: $data = gettext('Manual');
-						break;
-					case 2: $data = gettext('Program');
-						break;
-					case 3: $data = gettext('Aperture Priority');
-						break;
-					case 4: $data = gettext('Shutter Priority');
-						break;
-					case 5: $data = gettext('Program Creative');
-						break;
-					case 6: $data = gettext('Program Action');
-						break;
-					case 7: $data = gettext('Portrait');
-						break;
-					case 8: $data = gettext('Landscape');
-						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
-						break;
-				}
-				break;
-			case 'SensitivityType':
+			case 'SensitivityType': // metadata name
+			case 'EXIFISOSpeedRatings': // database name
 				switch ($data) {
 					case 1: $data = gettext('Standard Output Sensitivity');
 						break;
@@ -192,11 +219,12 @@ class imageMetaFormatter {
 						break;
 					case 7: $data = gettext('Standard Output Sensitivity, Recommended Exposure Index and ISO Speed');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'MeteringMode':
+			case 'MeteringMode': // metadata name
+			case 'EXIFMeteringMode': // database name
 				switch ($data) {
 					case 1: $data = gettext('Average');
 						break;
@@ -212,51 +240,12 @@ class imageMetaFormatter {
 						break;
 					case 255: $data = gettext('Other');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'LightSource':
-				switch ($data) {
-					case 1: $data = gettext('Daylight');
-						break;
-					case 2: $data = gettext('Fluorescent');
-						break;
-					case 3: $data = gettext('Tungsten');
-						break; // 3 Tungsten (Incandescent light)
-					// 4 Flash
-					// 9 Fine Weather
-					case 10: $data = gettext('Flash');
-						break; // 10 Cloudy Weather
-					// 11 Shade
-					// 12 Daylight Fluorescent (D 5700 - 7100K)
-					// 13 Day White Fluorescent (N 4600 - 5400K)
-					// 14 Cool White Fluorescent (W 3900 -4500K)
-					// 15 White Fluorescent (WW 3200 - 3700K)
-					// 10 Flash
-					case 17: $data = gettext('Standard Light A');
-						break;
-					case 18: $data = gettext('Standard Light B');
-						break;
-					case 19: $data = gettext('Standard Light C');
-						break;
-					case 20: $data = gettext('D55');
-						break;
-					case 21: $data = gettext('D65');
-						break;
-					case 22: $data = gettext('D75');
-						break;
-					case 23: $data = gettext('D50');
-						break;
-					case 24: $data = gettext('ISO Studio Tungsten');
-						break;
-					case 255: $data = gettext('Other');
-						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
-						break;
-				}
-				break;
-			case 'Flash':
+			case 'Flash': // metadata name
+			case 'EXIFFlash': // database name
 				switch ($data) {
 					case 0:
 					case 16:
@@ -301,32 +290,169 @@ class imageMetaFormatter {
 						break;
 					case 95: $data = gettext('Red Eye, Auto-Mode, Return light detected');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
+						break;
+				}
+				break;	
+			case 'ExifImageWidth': // db column and exif data
+			case 'ExifImageLength': // PHP follows EXif spec and uses this instead of ExifImageHeight
+				$data = $data . ' ' . gettext('px');
+				break;
+			case 'WhiteBalance': // metadata name
+			case 'EXIFWhiteBalance': // database name
+				switch ($data) {
+					case 0: $data = gettext('Auto');
+						break;
+					case 1: $data = gettext('Manual');
+						break;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'ColorSpace':
+			case 'Saturation': // metadata name
+			case 'EXIFSaturation': // database name
+			case 'Contrast': // metadata name
+			case 'EXIFContrast': // database name
+				switch ($data) {
+					case 0: $data = gettext('Normal');
+						break;
+					case 1: $data = gettext('Low');
+						break;
+					case 2: $data = gettext('High');
+						break;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
+						break;
+				}
+				break;
+			case 'IPTCImageCaption': // database name
+				// moved from functions.php's getImageMetadataValue()
+				$data = nl2br(html_decode($data));
+				break;
+			case 'Sharpness': // metadata name
+			case 'EXIFSharpness': // database name
+				switch ($data) {
+					case 0: $data = gettext('Normal');
+						break;
+					case 1: $data = gettext('Soft');
+						break;
+					case 2: $data = gettext('Hard');
+						break;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
+						break;
+				}
+				break;
+			case 'VideoSize': //database name
+				$data = byteConvert($data);
+				break;
+			
+			/*
+			 * The following metadata fields are kept  from Exifer just in case 
+			 * but are by default not processed/imported by Zenphoto
+			 */
+			case 'ResolutionUnit': // metadata name
+			case 'FocalPlaneResolutionUnit': // metadata name
+			case 'ThumbnailResolutionUnit': // metadata name
+				switch ($data) {
+					case 1: $data = gettext('No Unit');
+						break;
+					case 2: $data = gettext('Inch');
+						break;
+					case 3: $data = gettext('Centimeter');
+						break;
+					case 4: $data = gettext('Millimeter');
+						break;
+					case 5: $data = gettext('Micrometer');
+						break;
+				}
+				break;
+			case 'YCbCrPositioning': // metadata name
+				switch ($data) {
+					case 1: $data = gettext('Center of Pixel Array');
+						break;
+					case 2: $data = gettext('Datum Point');
+						break;
+				}
+				break;
+			case 'ExposureProgram': // metadata name
+				switch ($data) {
+					case 1: $data = gettext('Manual');
+						break;
+					case 2: $data = gettext('Program');
+						break;
+					case 3: $data = gettext('Aperture Priority');
+						break;
+					case 4: $data = gettext('Shutter Priority');
+						break;
+					case 5: $data = gettext('Program Creative');
+						break;
+					case 6: $data = gettext('Program Action');
+						break;
+					case 7: $data = gettext('Portrait');
+						break;
+					case 8: $data = gettext('Landscape');
+						break;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
+						break;
+				}
+				break;
+			case 'LightSource': // metadata name
+				switch ($data) {
+					case 1: $data = gettext('Daylight');
+						break;
+					case 2: $data = gettext('Fluorescent');
+						break;
+					case 3: $data = gettext('Tungsten');
+						break; // 3 Tungsten (Incandescent light)
+					// 4 Flash
+					// 9 Fine Weather
+					case 10: $data = gettext('Flash');
+						break; // 10 Cloudy Weather
+					// 11 Shade
+					// 12 Daylight Fluorescent (D 5700 - 7100K)
+					// 13 Day White Fluorescent (N 4600 - 5400K)
+					// 14 Cool White Fluorescent (W 3900 -4500K)
+					// 15 White Fluorescent (WW 3200 - 3700K)
+					// 10 Flash
+					case 17: $data = gettext('Standard Light A');
+						break;
+					case 18: $data = gettext('Standard Light B');
+						break;
+					case 19: $data = gettext('Standard Light C');
+						break;
+					case 20: $data = gettext('D55');
+						break;
+					case 21: $data = gettext('D65');
+						break;
+					case 22: $data = gettext('D75');
+						break;
+					case 23: $data = gettext('D50');
+						break;
+					case 24: $data = gettext('ISO Studio Tungsten');
+						break;
+					case 255: $data = gettext('Other');
+						break;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
+						break;
+				}
+				break;
+			case 'ColorSpace': // metadata name
 				if ($data == 1) {
 					$data = gettext('sRGB');
 				} else {
 					$data = gettext('Uncalibrated');
 				}
 				break;
-			case 'ExifImageWidth':
-			case 'ExifImageLength': // PHP follows EXif spec and uses this instead of ExifImageHeight
-				$data = $data  . ' ' . gettext('px');
-				break;
-			case 'Compression': // Compression
+			case 'Compression': // metadata name
 				switch ($data) {
 					case 1: $data = gettext('No Compression');
 						break;
 					case 6: $data = gettext('Jpeg Compression');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'SensingMethod':
+			case 'SensingMethod': // metadata name
 				switch ($data) {
 					case 1: $data = gettext('Not defined');
 						break;
@@ -342,11 +468,11 @@ class imageMetaFormatter {
 						break;
 					case 8: $data = gettext('Color Sequential Linear Sensor');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'PhotometricInterpretation':
+			case 'PhotometricInterpretation': // metadata name
 				switch ($data) {
 					case 1: $data = gettext('Monochrome');
 						break;
@@ -354,68 +480,14 @@ class imageMetaFormatter {
 						break;
 					case 6: $data = gettext('YCbCr');
 						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
+					default: $data = sprintf(gettext('Unknown: %d'), $data);
 						break;
 				}
 				break;
-			case 'ExifVersion':
-			case 'FlashPixVersion':
-			case 'InteroperabilityVersion':
-				$data = gettext('version') . ' ' . (intval($data) / 100);
-				break;
-			case 'WhiteBalance':
-				switch ($data) {
-					case 0: $data = gettext('Auto');
-						break;
-					case 1: $data = gettext('Manual');
-						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
-						break;
-				}
-				break;
-			case 'Sharpness':
-				switch ($data) {
-					case 0: $data = gettext('Normal');
-						break;
-					case 1: $data = gettext('Soft');
-						break;
-					case 2: $data = gettext('Hard');
-						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
-						break;
-				}
-				break;
-			case 'Saturation':
-			case 'Contrast':
-				switch ($data) {
-					case 0: $data = gettext('Normal');
-						break;
-					case 1: $data = gettext('Low');
-						break;
-					case 2: $data = gettext('High');
-						break;
-					default: $data = gettext('Unknown') . ': ' . $data;
-						break;
-				}
-				break;
-			case 'FocalLengthIn35mmFilm':
-				$data = self::get35mmEquivFocalLength($exifdata) . ' mm';
-				break;
-			case 'GPSLatitudeRef':
-			case 'GPSLongitudeRef':
-			case 'GPSLatitude':
-			case 'GPSLongitude':
-			case 'GPSTimeStamp':
-			case 'GPSAltitude':
-			case 'GPSAltitudeRef':
-				$data = self::formatGPS($tag, $data);
-				break;
-			case 'LensInfo':
-				if (is_array($data)) {
-					$data = strval(implode(' ', $data));
-				} else {
-					$data = strval($data);
-				}
+			case 'ExifVersion': // metadata name
+			case 'FlashPixVersion': // metadata name
+			case 'InteroperabilityVersion': // metadata name
+				$data = sprintf(gettext('Version %d'), (intval($data) / 100));
 				break;
 		}
 		return $data;

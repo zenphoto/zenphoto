@@ -8,6 +8,8 @@ setOption('thumb_sharpen', (int) isset($_POST['thumb_sharpen']));
 setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 setOption('image_interlace', (int) isset($_POST['image_interlace']));
 setOption('EmbedIPTC', (int) isset($_POST['EmbedIPTC']));
+
+setOption('metadata_import_mode', sanitize($_POST['metadata_import_mode'], 3));
 setOption('metadata_refresh_behaviour', sanitize($_POST['metadata_refresh_behaviour'], 3));
 
 setOption('copyright_image_notice', process_language_string_save('copyright_image_notice', 3));
