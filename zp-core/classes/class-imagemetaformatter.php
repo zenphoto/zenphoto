@@ -147,7 +147,7 @@ class imageMetaFormatter {
 			case 'VideoResolution_x': // database name
 			case 'YResolution':// metadata name
 			case 'VideoResolution_y': // database name
-				$data = sprintf(gettext('%d dots per ResolutionUni'), $data);
+				$data = sprintf(gettext('%d dots per ResolutionUnit'), $data);
 				break;
 			case 'DateTime':
 			case 'EXIFDateTime': // database name
