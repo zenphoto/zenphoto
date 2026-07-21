@@ -623,7 +623,7 @@
 											
 											<td>
 												<?php echo gettext('The image metadata import mode already formatted many metadata fields and stored text notes translated and statically in the language the backend was set to on importing. This is still an applicable way if your site is in a single language. Then choose the <em>classic</em> mode. If you have a multlingual site the <em>raw</em> mode is better suited as in generates translatable output that can be covered by the Zenphoto translation files.'); 
-												echo '<p class="warningbox">' . gettext('<strong>Important:</strong> If change the mode to <em>raw</em> on an existing site you need to re-import the metadata of all images afterwards. Otherwise the metadata output will be broken.') . '</p>';
+												echo '<p class="warningbox">' . gettext('<strong>Important:</strong> If you change the mode to <em>raw</em> on an existing site you need to re-import the metadata of all images afterwards. Otherwise the metadata output will be broken.') . '</p>';
 												?>
 											</td>
 										</tr>		
