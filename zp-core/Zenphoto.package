@@ -131,6 +131,7 @@ zp-core/admin-globals.php
 zp-core/admin-logs.php
 zp-core/admin-options
 zp-core/admin-options.php
+zp-core/admin-options/class-authorityoptions.php
 zp-core/admin-options/class-emailoptions.php
 zp-core/admin-options/class-graphicsoptions.php
 zp-core/admin-options/inc-options-email.php
@@ -1730,4 +1731,4 @@ zp-core/setup/setup-option-defaults.php:*
 zp-core/setup/setup-primitive.php:*
 zp-core/setup/setup-sqlform.php:*
 zp-core/setup/setup.css:*
-1732
+1733

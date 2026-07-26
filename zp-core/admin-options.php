@@ -258,6 +258,9 @@ Authority::printPasswordFormJS();
 				 * Security options
 				 */
 				if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
+					if (!class_exists('authorityoptions')) { // so alternate authorizations in /alt/auth.php may be able to define their own
+						require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/class-authorityoptions.php';
+					}
 					require_once SERVERPATH . '/' . ZENFOLDER . '/admin-options/inc-options-security.php';
 				}
 				/*

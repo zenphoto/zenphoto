@@ -18,11 +18,13 @@ if (file_exists(SERVERPATH . '/' . USER_PLUGIN_FOLDER . '/alt/auth.php')) {
 	 * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. Zenphoto
 	 * will then will be automatically loaded the alternate script in place of this one.
 	 *
-	 * Replacement libraries must implement two classes:
-	 * 		"Authority" class: Provides the methods used for user authorization and management
+	 * Replacement libraries must implement three classes:
+	 * 
+	 * 		- Authority: Provides the methods used for user authorization and management
 	 * 			store an instantiation of this class in $_zp_authority.
-	 *
-	 * 		Administrator: supports the basic Zenphoto needs for object manipulation of administrators.
+	 *    - authorityOptions: Provides extra options for the security options tab (since 1.7 separated from authority class)
+	 * 		- Administrator: supports the basic Zenphoto needs for object manipulation of administrators.
+	 * 
 	 * (You can include this script and extend the classes if that suits your needs.)
 	 *
 	 * The global $_zp_current_admin_obj represents the current admin with.

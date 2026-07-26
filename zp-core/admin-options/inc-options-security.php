@@ -167,10 +167,8 @@
 									</td>
 								<tr>
 									<?php
-									$supportedOptions = $_zp_authority->getOptionsSupported();
-									if (count($supportedOptions) > 0) {
-										customOptions($_zp_authority, '');
-									}
+									$authorityotions = new authorityOptions();
+									customOptions($authorityotions, '');
 									?>
 								</tr>
 								<tr>
