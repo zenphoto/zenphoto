@@ -293,6 +293,7 @@ function addNewTag(id) {
 	if (tag) {
 		$('#newtag_' + id).val('');
 		var name = id + tag;
+		name = name.replaceAll('"', '');// remove quotes from multi word tags
 		//htmlentities
 		name = encodeURI(name);
 		name = name.replaceAll('%20', '__20__');
