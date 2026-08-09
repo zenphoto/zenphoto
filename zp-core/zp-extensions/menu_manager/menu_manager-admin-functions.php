@@ -694,7 +694,7 @@ function updateMenuItem(&$reports) {
 			}
 			break;
 		case 'zenpagepage':
-			$result['title'] = NULL;
+			$result['title'] = '';
 			$result['link'] = sanitize($_POST['pageselect']);
 			if (empty($result['link'])) {
 				$reports[] = "<p class = 'errorbox fade-message'>" . gettext("You forgot to give your menu item a <strong>link</strong>!") . " </p>";
