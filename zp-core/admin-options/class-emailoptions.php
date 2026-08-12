@@ -77,7 +77,7 @@ class emailOptions {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("")
 				),
-				gettext('PHPMailer – SMPT port:') => array(
+				gettext('PHPMailer – SMTP port:') => array(
 						'key' => 'PHPMailer_smtp_port',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext("")
