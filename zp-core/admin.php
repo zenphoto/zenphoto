@@ -313,7 +313,6 @@ if (!zp_loggedin()) {
 									$source = '';
 								} else {
 									$clone = clonedFrom();
-									$official .= ' <em>' . gettext('clone') . '<em>';
 									$base = substr(SERVERPATH, 0, -strlen(WEBPATH));
 									if (strpos($base, $clone) == 0) {
 										$base = substr($clone, strlen($base));

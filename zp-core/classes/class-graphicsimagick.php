@@ -305,7 +305,7 @@ class graphicsImagick extends graphicsBase {
 			case 'horizontal':
 				$im->flopImage();
 				break;
-			case 'vertical';
+			case 'vertical':
 				$im->flipImage();
 				break;
 		}

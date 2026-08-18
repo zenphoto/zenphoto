@@ -251,7 +251,7 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 			$html = '<img' . $attributes . ' /></a>' . "\n";
 			echo filter::applyFilter('custom_album_thumb_html', $html, $albumthumb);
 			break;
-		case 1;
+		case 1:
 			$sizes = getSizeCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, $albumthumb, 'thumb');
 			$attr['src'] = html_pathurlencode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE));
 			$attr['width'] = $sizes[0];

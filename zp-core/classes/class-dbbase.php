@@ -763,7 +763,7 @@ class dbBase {
 			case 'any':
 				$charsets = array('utf8', 'utf8mb4', 'utf8mb3');
 				break;
-			case 'utf8';
+			case 'utf8':
 				$charsets = array('utf8');
 				break;
 			case 'utf8mb4':
