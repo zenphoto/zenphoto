@@ -1230,7 +1230,7 @@ class SearchEngine {
 									$idlist = array();
 								}
 								break;
-							case '';
+							case '':
 							case '|':
 								if (is_array($objectid) && is_array($idlist)) {
 									$idlist = array_merge($idlist, $objectid);
@@ -1281,7 +1281,7 @@ class SearchEngine {
 									$idlist = array_diff($idlist, $objectid);
 								}
 								break;
-							case '';
+							case '':
 							case '|':
 								if (is_array($objectid)) {
 									$idlist = array_merge($idlist, $objectid);

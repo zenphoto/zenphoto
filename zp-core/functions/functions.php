@@ -2099,10 +2099,10 @@ function getAnonymIP($ip, $anonymize = null) {
 	}
 	$is_ipv6 = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
 	switch ($anonymize) {
-		case 0; // No anonymizing
+		case 0: // No anonymizing
 			return $ip;
 		default:
-		case 1; // Last fourth anonymized
+		case 1: // Last fourth anonymized
 			if ($is_ipv6) {
 				return preg_replace('~[0-9a-zA-Z]*:[0-9a-zA-Z]+$~', '0:0', $ip);
 			} else {
@@ -2537,7 +2537,7 @@ function applyMacros($text) {
 			switch ($class) {
 				case 'error':
 					break;
-				case 'function';
+				case 'function':
 				case 'procedure':
 					if (is_callable($macro['value'])) {
 						if ($class == 'function') {

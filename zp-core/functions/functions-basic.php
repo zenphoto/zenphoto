@@ -1561,7 +1561,7 @@ function zp_session_destroy() {
  * @param string $token The token to get, e.g. "gallery". If the token is not existing or NULL the whole definition array is returned
  * @return array
  */
-function getDefaultRewriteTokens($token = null) {
+function getDefaultRewriteTokens($token = '') {
 	global $_zp_default_rewritetokens; 
 	if(!is_array($_zp_default_rewritetokens)) {
 		$zp_cfg = file_get_contents(SERVERPATH . '/' . ZENFOLDER . '/file-templates/zenphoto_cfg.txt');
@@ -1586,7 +1586,7 @@ function getDefaultRewriteTokens($token = null) {
  */
 function addMissingDefaultRewriteTokens() {
 	global $_zp_conf_vars;
-	$tokens = array_keys(getDefaultRewriteTokens(null));
+	$tokens = array_keys(getDefaultRewriteTokens(''));
 	foreach($tokens as $token) {
 		if (!isset($_zp_conf_vars['special_pages'][$token])) {
 			$_zp_conf_vars['special_pages'][$token] = getDefaultRewriteTokens($token);

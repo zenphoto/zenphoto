@@ -349,7 +349,7 @@ class graphicsGD extends graphicsBase {
 	function rotateImage($im, $rotate) {
 		$ccw_rotate = graphicsBase::getCounterClockwiseRotation($rotate);
 		$newim_rot = imagerotate($im, $ccw_rotate, 0);
-		imagedestroy($im);
+		unset($im);
 		return $newim_rot;
 	}
 	
@@ -366,7 +366,7 @@ class graphicsGD extends graphicsBase {
 			case 'horizontal':
 				imageflip($im, IMG_FLIP_HORIZONTAL);
 				break;
-			case 'vertical';
+			case 'vertical':
 				imageflip($im, IMG_FLIP_VERTICAL);
 				break;
 		}
@@ -433,10 +433,10 @@ class graphicsGD extends graphicsBase {
 	 * destroys an image resource
 	 *
 	 * @param resource $im
-	 * @return bool
+	 * @return void
 	 */
 	function imageKill($im) {
-		return imagedestroy($im);
+		unset($im);
 	}
 
 	/**
