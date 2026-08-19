@@ -310,7 +310,7 @@ if (!zp_loggedin()) {
 							<ul>
 								<?php
 								if (hasPrimaryScripts()) {
-									$source = '';
+									$source = $cloned = '';
 								} else {
 									$clone = clonedFrom();
 									$base = substr(SERVERPATH, 0, -strlen(WEBPATH));
@@ -322,13 +322,13 @@ if (!zp_loggedin()) {
 										$source = $clone;
 									}
 									$source = '<br />&nbsp;&nbsp;&nbsp;' . sprintf(gettext('source: %s'), $source);
+									$cloned = ' <em>' . gettext('clone') . '<em>';
 								}
-
 								$graphics_lib = $_zp_graphics->graphicsLibInfo();
 								?>
 								<li>
 									<?php
-									printf(gettext('Zenphoto version <strong>%1$s</strong>'), ZENPHOTO_VERSION);
+									printf(gettext('Zenphoto version <strong>%1$s</strong>'), ZENPHOTO_VERSION . $cloned);
 									echo $source;
 									if (PRE_RELEASE) {
 										?>
