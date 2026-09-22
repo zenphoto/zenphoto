@@ -70,27 +70,27 @@ class emailOptions {
 				gettext('PHPMailer – Outgoing mail server:') => array(
 						'key' => 'PHPMailer_server',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext("")
+						'desc' => ''
 				),
 				gettext('PHPMailer – POP port:') => array(
 						'key' => 'PHPMailer_pop_port',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext("")
+						'desc' => ''
 				),
 				gettext('PHPMailer – SMTP port:') => array(
 						'key' => 'PHPMailer_smtp_port',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext("")
+						'desc' => ''
 				),
 				gettext('PHPMailer – Mail user:') => array(
 						'key' => 'PHPMailer_user',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'desc' => gettext("")
+						'desc' => ''
 				),
 				gettext('PHPMailer – Mail password:') => array(
 						'key' => 'PHPMailer_password',
 						'type' => OPTION_TYPE_PASSWORD,
-						'desc' => gettext("")
+						'desc' => ''
 				),
 				gettext('PHPMailer – Secure mail:') => array(
 						'key' => 'PHPMailer_secure',
@@ -100,7 +100,7 @@ class emailOptions {
 								gettext('SSL') => 'ssl',
 								gettext('TLS') => 'tls'
 						),
-						'desc' => gettext("")
+						'desc' => ''
 				)
 		);
 		return $options;
