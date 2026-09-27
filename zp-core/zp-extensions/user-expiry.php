@@ -58,6 +58,7 @@ class user_expiry {
 		setOptionDefault('user_expiry_warn_interval', 7);
 		setOptionDefault('user_expiry_auto_renew', 0);
 		setOptionDefault('user_expiry_password_cycle', 0);
+		setOptionDefault('user_expiry_only_non_image_users', 0);
 	}
 
 	/**
@@ -85,7 +86,12 @@ class user_expiry {
 						'key' => 'user_expiry_password_cycle',
 						'type' => OPTION_TYPE_CLEARTEXT,
 						'order' => 4,
-						'desc' => gettext('Number of days between required password changes. Set to zero for no required changes.'))
+						'desc' => gettext('Number of days between required password changes. Set to zero for no required changes.')),
+				gettext('Only for non-image users') => array(
+						'key' => 'user_expiry_only_non_image_users',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 5,
+						'desc' => gettext('When selected, users who have uploaded images to their prime album will never expire.')),
 		);
 	}
 
@@ -131,10 +137,21 @@ class user_expiry {
 		}
 		$expires = strtotime($userobj->getDateTime()) + $subscription;
 		if ($expires < time()) {
-			$userobj->setValid(2);
-			$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
-			$userobj->save();
-			$loggedin = false;
+			$shouldDisableUser = true;
+			if (getOption('user_expiry_only_non_image_users')) {
+				$album = $userobj->getAlbum();
+				$imagesTotal = $album->getNumAllImages();
+				if ($imagesTotal > 0) {
+					$shouldDisableUser = false;
+				}
+			}
+
+			if ($shouldDisableUser) {
+				$userobj->setValid(2);
+				$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
+				$userobj->save();
+				$loggedin = false;
+			}
 		} else {
 			if ($expires < (time() + getOption('user_expiry_warn_interval') * 86400)) { //	expired
 				if (getOption('user_expiry_auto_renew')) {
