@@ -91,7 +91,7 @@ class user_expiry {
 						'key' => 'user_expiry_only_non_image_users',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 5,
-						'desc' => gettext('When selected, users who have uploaded images to their prime album will never expire.')),
+						'desc' => gettext('When selected, users who have uploaded images to their primary album will never expire.')),
 		);
 	}
 
