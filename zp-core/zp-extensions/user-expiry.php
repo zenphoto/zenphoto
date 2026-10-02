@@ -87,7 +87,7 @@ class user_expiry {
 						'type' => OPTION_TYPE_CLEARTEXT,
 						'order' => 4,
 						'desc' => gettext('Number of days between required password changes. Set to zero for no required changes.')),
-				gettext('Only for non-image users') => array(
+				gettext('No expiry for users with images') => array(
 						'key' => 'user_expiry_only_non_image_users',
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 5,
@@ -137,16 +137,16 @@ class user_expiry {
 		}
 		$expires = strtotime($userobj->getDateTime()) + $subscription;
 		if ($expires < time()) {
-			$shouldDisableUser = true;
-			if (getOption('user_expiry_only_non_image_users')) {
+			$should_disable_user = true;
+			if (getOption('user_expiry_only_non_image_users') && $userobj->getAlbum()) {
 				$album = $userobj->getAlbum();
-				$imagesTotal = $album->getNumAllImages();
-				if ($imagesTotal > 0) {
-					$shouldDisableUser = false;
+				$images_total = $album->getNumAllImages();
+				if ($images_total > 0) {
+					$should_disable_user = false;
 				}
 			}
 
-			if ($shouldDisableUser) {
+			if ($should_disable_user) {
 				$userobj->setValid(2);
 				$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 				$userobj->save();
