@@ -162,7 +162,7 @@ class user_expiry {
 					$userobj->setDateTime(date('Y-m-d H:i:s', $newdate));
 					$userobj->setValid(1);
 					$credentials = $userobj->getCredentials();
-					$key = array_search('exiry_notice', $credentials);
+					$key = array_search('expiry_notice', $credentials);
 					if ($key !== false) {
 						unset($credentials[$key]);
 						$userobj->setCredentials($credentials);
@@ -172,8 +172,8 @@ class user_expiry {
 				} else {
 					if ($mail = $userobj->getEmail()) {
 						$credentials = $userobj->getCredentials();
-						if (!in_array('exiry_notice', $credentials)) {
-							$credentials[] = 'exiry_notice';
+						if (!in_array('expiry_notice', $credentials)) {
+							$credentials[] = 'expiry_notice';
 							$userobj->setCredentials($credentials);
 							$userobj->setLastChangeUser($_zp_current_admin_obj->getLoginName());
 							$userobj->save();
@@ -184,7 +184,7 @@ class user_expiry {
 				}
 			} else {
 				$credentials = $userobj->getCredentials();
-				$key = array_search('exiry_notice', $credentials);
+				$key = array_search('expiry_notice', $credentials);
 				if ($key !== false) {
 					unset($credentials[$key]);
 					$userobj->setCredentials($credentials);
