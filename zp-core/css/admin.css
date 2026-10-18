@@ -786,6 +786,12 @@ div.outerbox {
   justify-content: center;
 }
 
+.imagethumb_wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* middle and right columns on admin edit pages */
 .width100percent { /* workaround to get the album edit table right */
 	width: 100%;
