@@ -12,3 +12,8 @@
 .leaflet-popup-content,.leaflet-popup-content * {
 	word-wrap:break-word;
 	}
+
+.gpx-marker {
+	background: none;
+	border: none;
+}
