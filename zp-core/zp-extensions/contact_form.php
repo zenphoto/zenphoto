@@ -757,30 +757,27 @@ class contactForm {
 	 * @return string|bool
 	 */
 	static function getQuizFieldQuestion($which = '') {
-		if (!zp_loggedin()) {
-			switch ($which) {
-				case 'contactform_textquiz':
-					if (getOption($which)) {
-						$question = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
-						$answer = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
-						if (!empty($question) && !empty($answer)) {
-							return $question;
-						}
+		switch ($which) {
+			case 'contactform_textquiz':
+				if (getOption($which)) {
+					$question = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
+					$answer = trim(i18n::getLanguageString(getOption('contactform_textquiz_question')));
+					if (!empty($question) && !empty($answer)) {
+						return $question;
 					}
-					break;
-				case 'contactform_mathquiz':
-					if (getOption($which)) {
-						$question = i18n::getLanguageString(getOption('contactform_mathquiz_question'));
-						// filter in case a user entered invalid expression
-						$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
-						if (!empty($question_filtered)) {
-							return $question_filtered;
-						}
+				}
+				break;
+			case 'contactform_mathquiz':
+				if (getOption($which)) {
+					$question = i18n::getLanguageString(getOption('contactform_mathquiz_question'));
+					// filter in case a user entered invalid expression
+					$question_filtered = trim(preg_replace("/[^0-9\-\*\+\/\().]/", '', $question));
+					if (!empty($question_filtered)) {
+						return $question_filtered;
 					}
-					break;
-			}
+				}
+				break;
 		}
-		return false;
 	}
 
 	/**
