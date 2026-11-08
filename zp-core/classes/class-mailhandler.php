@@ -378,7 +378,7 @@ class mailHandler {
 	 * @return array
 	 */
 	static function getDefaultMailhandlers() {
-		return array('mailhandler::sendmail', 'mailHandler::PHPMailer');
+		return array('mailHandler::sendmail', 'mailHandler::PHPailer'); 
 	}
 
 	/**
