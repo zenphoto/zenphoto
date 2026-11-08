@@ -267,7 +267,7 @@ error_reporting($level);
 
 // Set the memory limit higher just in case -- suppress errors if user doesn't have control.
 // 100663296 bytes = 96M
-if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) {
+if (ini_get('memory_limit') && ini_get('memory_limit') != -1 && parse_size(ini_get('memory_limit')) < 100663296) {
 	@ini_set('memory_limit', '96M');
 }
 
