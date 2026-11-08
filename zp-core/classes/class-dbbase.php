@@ -549,7 +549,11 @@ class dbBase {
 			return ' ';
 		$where = ' WHERE';
 		foreach ($unique_set as $var => $value) {
-			$where .= ' `' . $var . '` = ' . $this->quote($value) . ' AND';
+			if (is_null($value)) {
+				$where .= ' `' . $var . '` IS NULL AND';
+			} else {
+				$where .= ' `' . $var . '` = ' . $this->quote($value) . ' AND';
+			}
 		}
 		return substr($where, 0, -4);
 	}

@@ -256,7 +256,7 @@ class Album extends AlbumBase {
 	function copy($newfolder) {
 		$rslt = parent::copy($newfolder);
 		if (!$rslt) {
-			$newfolder .= '/' . basename($this->name);
+			$newfolder = ltrim($newfolder . '/' . basename($this->name), '/'); // $newfolder may be empty for the root level
 			$success = true;
 			//copy the images
 			$images = $this->getImages(0);

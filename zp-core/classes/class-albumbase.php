@@ -820,8 +820,8 @@ class AlbumBase extends MediaObject {
 	 *
 	 */
 	function copy($newfolder) {
-		// album name to destination folder
-		if (substr($newfolder, -1, 1) != '/') {
+		// album name to destination folder, an empty $newfolder is the root level of the gallery
+		if ($newfolder !== '' && substr($newfolder, -1, 1) != '/') {
 			$newfolder .= '/';
 		}
 		$newfolder .= basename($this->localpath);

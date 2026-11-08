@@ -1247,7 +1247,8 @@
 			}
 		} else if ($movecopyrename_action == 'copy') {
 			$dest = sanitize_path($_POST['a' . $prefix . '-albumselect']);
-			if ($dest && $dest != $album->name) {
+			// an empty destination is the root level of the gallery ("/")
+			if ($dest != $album->name) {
 				if ($e = $album->copy($dest)) {
 					$mcrerr['mcrerr'][$e][$index] = $album->getID();
 				}
