@@ -389,8 +389,10 @@ class i18n {
 			}
 		}
 		// gettext setup
-		@putenv("LANG=$locale"); // Windows ???
-		@putenv("LANGUAGE=$locale"); // Windows ???
+		if (function_exists('putenv')) {
+			@putenv("LANG=$locale"); // Windows ???
+			@putenv("LANGUAGE=$locale"); // Windows ???
+		}
 		$result = self::setLocale($locale);
 		if (!$result) {
 			if (isset($_REQUEST['locale']) || is_null($override)) { // and it was chosen via locale

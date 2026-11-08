@@ -604,7 +604,9 @@ function unpublishedZenpageItemCheck($page) {
 function setTinyZenpageLocale() {
 	$encoding = LOCAL_CHARSET;
 	$locale = ZENPHOTO_LOCALE;
-	@putenv("LANG=$locale");
+	if (function_exists('putenv')) {
+		@putenv("LANG=$locale");
+	}
 	$result = setlocale(LC_ALL, $locale);
 	$domain = 'tinyzenpage';
 	$domainpath = "locale/";
