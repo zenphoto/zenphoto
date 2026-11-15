@@ -312,16 +312,16 @@ class mailHandler {
 	 * @return type
 	 */
 	static private function sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses, $replyTo) {
-		$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
+		$additional_headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail) . "\n";
 		if (count($cc_addresses) > 0) {
 			$cclist = '';
 			foreach ($cc_addresses as $cc_name => $cc_mail) {
 				$cclist .= ',' . $cc_mail;
 			}
-			$headers .= 'Cc: ' . substr($cclist, 1) . "\n";
+			$additional_headers .= 'Cc: ' . substr($cclist, 1) . "\n";
 		}
 		if ($replyTo) {
-			$headers .= 'Reply-To: ' . array_shift($replyTo) . "\n";
+			$additional_headers .= 'Reply-To: ' . array_shift($replyTo) . "\n";
 		}
 		$result = true;
 		if (function_exists('mb_encode_mimeheader')) {
