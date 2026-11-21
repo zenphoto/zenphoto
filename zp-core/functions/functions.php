@@ -2676,7 +2676,7 @@ function setexifvars() {
 			'IPTCDigitizeDate' => array('IPTC', 'DigitizeDate', gettext('IPTC Digital Creation Date'), false, 8, true, 'date'),
 			'IPTCDigitizeTime' => array('IPTC', 'DigitizeTime', gettext('IPTC Digital Creation Time'), false, 11, true, 'time'),
 			'EXIFArtist' => array('IFD0', 'Artist', gettext('EXIF Artist'), false, 52, true, 'string'),
-			'IPTCImageCredit' => array('IPTC', 'ImageCredit', gettext('IPTC  Image Credit'), false, 32, true, 'string'),
+			'IPTCImageCredit' => array('IPTC', 'ImageCredit', gettext('IPTC Image Credit'), false, 32, true, 'string'),
 			'IPTCByLine' => array('IPTC', 'ByLine', gettext('IPTC Byline'), false, 32, true, 'string'),
 			'IPTCByLineTitle' => array('IPTC', 'ByLineTitle', gettext('IPTC Byline Title'), false, 32, true, 'string'),
 			'IPTCSource' => array('IPTC', 'Source', gettext('IPTC Image Source'), false, 32, true, 'string'),
