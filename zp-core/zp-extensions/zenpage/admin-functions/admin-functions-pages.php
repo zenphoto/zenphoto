@@ -73,64 +73,67 @@ function updatePage(&$reports, $newpage = false) {
 	}
 	// update page
 	$page = new ZenpagePage($titlelink, true);
-
-	$notice = processCredentials($page);
-	$page->setTitle($title);
-	$page->setContent($content);
-	$page->setExtracontent($extracontent);
-	$page->setCustomData(filter::applyFilter('save_page_custom_data', $custom, $page));
-	$page->setPublished($show);
-	$page->setDateTime($date);
-	$page->setLastChange($date);
-	$page->setCommentsAllowed($commentson);
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$page->setCodeblock($codeblock);
-	}
-	$page->setAuthor($author);
-	$page->setPermalink($permalink);
-	$page->setLocked($locked);
-	$page->setExpiredate($expiredate);
-	if (getcheckboxState('resethitcounter')) {
-		$page->set('hitcounter', 0);
-	}
-	if (getcheckboxState('reset_rating')) {
-		$page->set('total_value', 0);
-		$page->set('total_votes', 0);
-		$page->set('used_ips', 0);
-	}
-	processTags($page);
-	if ($newpage) {
-		$page->setDefaultSortorder();
-		$msg = filter::applyFilter('new_page', '', $page);
-		if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
-		} else if ($notice == '?mismatch=user') {
-			$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
-		} else if ($notice) {
-			$reports[] = "<p class='errorbox fade-message'>" . gettext('Your passwords were empty or did not match') . '</p>';
-		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> added"), $titlelink) . '</p>';
+	if ($page->isMyItem(ZENPAGE_PAGES_RIGHTS)) {
+		$notice = processCredentials($page);
+		$page->setTitle($title);
+		$page->setContent($content);
+		$page->setExtracontent($extracontent);
+		$page->setCustomData(filter::applyFilter('save_page_custom_data', $custom, $page));
+		$page->setPublished($show);
+		$page->setDateTime($date);
+		$page->setLastChange($date);
+		$page->setCommentsAllowed($commentson);
+		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+			$page->setCodeblock($codeblock);
 		}
+		$page->setAuthor($author);
+		$page->setPermalink($permalink);
+		$page->setLocked($locked);
+		$page->setExpiredate($expiredate);
+		if (getcheckboxState('resethitcounter')) {
+			$page->set('hitcounter', 0);
+		}
+		if (getcheckboxState('reset_rating')) {
+			$page->set('total_value', 0);
+			$page->set('total_votes', 0);
+			$page->set('used_ips', 0);
+		}
+		processTags($page);
+		if ($newpage) {
+			$page->setDefaultSortorder();
+			$msg = filter::applyFilter('new_page', '', $page);
+			if (empty($title)) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
+			} else if ($notice == '?mismatch=user') {
+				$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
+			} else if ($notice) {
+				$reports[] = "<p class='errorbox fade-message'>" . gettext('Your passwords were empty or did not match') . '</p>';
+			} else {
+				$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> added"), $titlelink) . '</p>';
+			}
+		} else {
+			$page->setLastchangeUser($_zp_current_admin_obj->getLoginName());
+			$msg = filter::applyFilter('update_page', '', $page, $oldtitlelink);
+			if (!$rslt) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
+			} else if (empty($title)) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
+			} else if ($notice == '?mismatch=user') {
+				$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
+			} else if ($notice) {
+				$reports[] = "<p class='errorbox fade-message'>" . gettext('Your passwords were empty or did not match') . '</p>';
+			} else {
+				$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated"), $titlelink) . '</p>';
+			}
+		}
+		$checkupdates = true;
+		if ($newpage) {
+			$checkupdates = false;
+		}
+		$page->save($checkupdates);
 	} else {
-		$page->setLastchangeUser($_zp_current_admin_obj->getLoginName());
-		$msg = filter::applyFilter('update_page', '', $page, $oldtitlelink);
-		if (!$rslt) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
-		} else if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
-		} else if ($notice == '?mismatch=user') {
-			$reports[] = "<p class='errorbox fade-message'>" . gettext('You must supply a password for the Protected Page user') . '</p>';
-		} else if ($notice) {
-			echo "<p class='errorbox fade-message'>" . gettext('Your passwords were empty or did not match') . '</p>';
-		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Page <em>%s</em> updated"), $titlelink) . '</p>';
-		}
+		$reports[] = "<p class='errorbox fade-message'>" . gettext('You are not allowed to edit this item') . '</p>';
 	}
-	$checkupdates = true;
-	if ($newpage) { 
-		$checkupdates = false;
-	}
-	$page->save($checkupdates);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -147,15 +150,18 @@ function deletePage($titlelink) {
 	} else {
 		$obj = new ZenpagePage($titlelink);
 	}
-	$result = $obj->remove();
-	if ($result) {
-		if (is_object($titlelink)) {
-			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
+	if ($obj->isMyItem(ZENPAGE_PAGES_RIGHTS)) {
+		$result = $obj->remove();
+		if ($result) {
+			if (is_object($titlelink)) {
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-pages.php?deleted');
+			}
+			SearchEngine::clearSearchCache();
+			return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
 		}
-		SearchEngine::clearSearchCache();
-		return "<p class='messagebox fade-message'>" . gettext("Page successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
+		return "<p class='errorbox fade-message'>" . gettext("Page delete failed!") . "</p>";
+	} 
+	return "<p class='errorbox fade-message'>" . gettext("You are not allowed to delete this page") . "</p>";
 }
 
 /**

@@ -75,65 +75,69 @@ function updateArticle(&$reports, $newarticle = false) {
 	}
 	// update article
 	$article = new ZenpageNews($titlelink, true);
-	$article->setTitle($title);
-	$article->setContent($content);
-	$article->setExtracontent($extracontent);
-	$article->setCustomData(filter::applyFilter('save_article_custom_data', $custom, $article));
-	$article->setPublished($show);
-	$article->setDateTime($date);
-	$article->setLastChange($date);
-	$article->setCommentsAllowed($commentson);
-	if (zp_loggedin(CODEBLOCK_RIGHTS)) {
-		$article->setCodeblock($codeblock);
-	}
-	$article->setAuthor($author);
-	$article->setPermalink($permalink);
-	$article->setLocked($locked);
-	$article->setExpiredate($expiredate);
-	$article->setSticky(sanitize_numeric($_POST['sticky']));
-	if (getcheckboxState('resethitcounter')) {
-		$article->set('hitcounter', 0);
-	}
-	if (getcheckboxState('reset_rating')) {
-		$article->set('total_value', 0);
-		$article->set('total_votes', 0);
-		$article->set('used_ips', 0);
-	}
-	$article->setTruncation(getcheckboxState('truncation'));
-	processTags($article);
-	$categories = array();
-	$result2 = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY titlelink");
-	foreach ($result2 as $cat) {
-		if (isset($_POST["cat" . $cat['id']])) {
-			$categories[] = $cat['titlelink'];
+	if ($article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+		$article->setTitle($title);
+		$article->setContent($content);
+		$article->setExtracontent($extracontent);
+		$article->setCustomData(filter::applyFilter('save_article_custom_data', $custom, $article));
+		$article->setPublished($show);
+		$article->setDateTime($date);
+		$article->setLastChange($date);
+		$article->setCommentsAllowed($commentson);
+		if (zp_loggedin(CODEBLOCK_RIGHTS)) {
+			$article->setCodeblock($codeblock);
 		}
-	}
-	$article->setCategories($categories);
-	if (!$newarticle) {
-		$article->setLastchangeUser($_zp_current_admin_obj->getLoginName());
-	}
-	if ($newarticle) {
-		$msg = filter::applyFilter('new_article', '', $article);
-		if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
+		$article->setAuthor($author);
+		$article->setPermalink($permalink);
+		$article->setLocked($locked);
+		$article->setExpiredate($expiredate);
+		$article->setSticky(sanitize_numeric($_POST['sticky']));
+		if (getcheckboxState('resethitcounter')) {
+			$article->set('hitcounter', 0);
+		}
+		if (getcheckboxState('reset_rating')) {
+			$article->set('total_value', 0);
+			$article->set('total_votes', 0);
+			$article->set('used_ips', 0);
+		}
+		$article->setTruncation(getcheckboxState('truncation'));
+		processTags($article);
+		$categories = array();
+		$result2 = $_zp_db->queryFullArray("SELECT * FROM " . $_zp_db->prefix('news_categories') . " ORDER BY titlelink");
+		foreach ($result2 as $cat) {
+			if (isset($_POST["cat" . $cat['id']])) {
+				$categories[] = $cat['titlelink'];
+			}
+		}
+		$article->setCategories($categories);
+		if (!$newarticle) {
+			$article->setLastchangeUser($_zp_current_admin_obj->getLoginName());
+		}
+		if ($newarticle) {
+			$msg = filter::applyFilter('new_article', '', $article);
+			if (empty($title)) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
+			} else {
+				$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
+			}
 		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> added"), $titlelink) . '</p>';
+			$msg = filter::applyFilter('update_article', '', $article, $oldtitlelink);
+			if (!$rslt) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
+			} else if (empty($title)) {
+				$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
+			} else {
+				$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
+			}
 		}
+		$checkupdates = true;
+		if ($newarticle) {
+			$checkupdates = false;
+		}
+		$article->save($checkupdates);
 	} else {
-		$msg = filter::applyFilter('update_article', '', $article, $oldtitlelink);
-		if (!$rslt) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"), $titlelink) . '</p>';
-		} else if (empty($title)) {
-			$reports[] = "<p class='errorbox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"), i18n::getLanguageString($titlelink)) . '</p>';
-		} else {
-			$reports[] = "<p class='messagebox fade-message'>" . sprintf(gettext("Article <em>%s</em> updated"), $titlelink) . '</p>';
-		}
+		$reports[] = "<p class='errorbox fade-message'>" . gettext('You are not allowed to edit this item') . '</p>';
 	}
-	$checkupdates = true;
-	if($newarticle) {
-		$checkupdates = false;
-	}
-	$article->save($checkupdates);
 	if ($msg) {
 		$reports[] = $msg;
 	}
@@ -150,15 +154,18 @@ function deleteArticle($titlelink) {
 	} else {
 		$obj = new ZenpageNews($titlelink);
 	}
-	$result = $obj->remove();
-	if ($result) {
-		if (is_object($titlelink)) {
-			redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
+	if ($obj->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+		$result = $obj->remove();
+		if ($result) {
+			if (is_object($titlelink)) {
+				redirectURL(FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/zenpage/admin-news-articles.php?deleted');
+			}
+			SearchEngine::clearSearchCache();
+			return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
 		}
-		SearchEngine::clearSearchCache();
-		return "<p class='messagebox fade-message'>" . gettext("Article successfully deleted!") . "</p>";
-	}
-	return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
+		return "<p class='errorbox fade-message'>" . gettext("Article delete failed!") . "</p>";
+	} 
+	return "<p class='errorbox fade-message'>" . gettext("You are not allowed to delete this article!") . "</p>";
 }
 
 /**
