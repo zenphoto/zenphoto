@@ -185,7 +185,7 @@ if (isset($_GET['action'])) {
 							$rights = 0;
 							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
 							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
-							if (isset($_POST['delinkAlbum_' . $i])) {
+							if (isset($_POST['delinkAlbum_' . $i]) && zp_loggedin(ADMIN_RIGHTS)) {
 								$delink_primealbum = $userobj->getAlbum()->name;
 								foreach($objects as $key => $val) {
 									if($val['type'] == 'album' && $val['name'] == $delink_primealbum) {
@@ -215,7 +215,7 @@ if (isset($_GET['action'])) {
 								$oldobjects = $userobj->setObjects(NULL); // indicates no change
 							}
 							$_zp_admin_user_updated = filter::applyFilter('save_admin_custom_data', $_zp_admin_user_updated, $userobj, $i, $alter);
-							if (isset($_POST['createAlbum_' . $i])) {		
+							if (isset($_POST['createAlbum_' . $i]) && zp_loggedin(ADMIN_RIGHTS)) {		
 								if ($userobj->getValid() || isset($_POST[$i . '-authentication']) && $_POST[$i . '-authentication'] == 'authenticate') {
 									$userobj->createPrimealbum();
 									markUpdated();
