@@ -888,13 +888,15 @@ function getPrevAlbumURL() {
 
 /**
  * Returns true if this page has image thumbs on it
- * @since 1.7 replaces isImagePage()
+ * @since 1.7 replaces isImagePage(), parameter added
+ * 
+ * @param bool $one_image_page True or false (default for pagination)
  * @return bool
  */
-function hasImages() {
+function hasImages($one_image_page = false) {
 	if (getNumImages()) {
 		global $_zp_page;
-		$imagestart = getTotalPages(true); // # of album pages
+		$imagestart = getTotalPages($one_image_page); // # of album pages
 		if (!getFirstPageImages()) {
 			$imagestart++; // then images start on the last album page.
 		}

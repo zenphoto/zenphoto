@@ -371,7 +371,7 @@ function getAllAccessibleAlbums($obj, &$albumlist, $scan) {
  * Returns the number of pages for the current object
  *
  * @param bool $one_image_page set to true if your theme collapses all image thumbs
- * or their equivalent to one page. This is typical with flash viewer themes
+ * or their equivalent to one page. Default false for pagination
  *
  * @return int
  */
