@@ -397,7 +397,7 @@ function printCommentForm($showcomments = true, $addcommenttext = NULL, $addhead
 				$disabled = array('name'		 => '', 'website'	 => '', 'anon'		 => '', 'private'	 => '', 'comment'	 => '',
 								'street'	 => '', 'city'		 => '', 'state'		 => '', 'country'	 => '', 'postal'	 => '', 'comment_dataconfirmation' => '', 'mathquiz' => '', 'textquiz' => '');
 				$stored = array_merge(array('email' => '', 'custom' => ''), $disabled, getCommentStored());
-				$custom = getSerializedArray($stored['custom']);
+				$custom = getSerializedArray($stored['custom'], true);
 				foreach ($custom as $key => $value) {
 					if (!empty($value))
 						$stored[$key] = $value;
