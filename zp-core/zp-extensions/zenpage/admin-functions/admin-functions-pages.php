@@ -61,7 +61,7 @@ function updatePage(&$reports, $newpage = false) {
 			}
 		}
 	}
-	$id = sanitize($_POST['id']);
+	$id = (int) sanitize_numeric($_POST['id']);
 	$rslt = true;
 	if ($titlelink != $oldtitlelink) { // title link change must be reflected in DB before any other updates
 		$rslt = $_zp_db->query('UPDATE ' . $_zp_db->prefix('pages') . ' SET `titlelink`=' . $_zp_db->quote($titlelink) . ' WHERE `id`=' . $id, false);

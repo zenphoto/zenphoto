@@ -47,7 +47,7 @@ function updateArticle(&$reports, $newarticle = false) {
 		$id = 0;
 	} else {
 		$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'], 3);
-		$id = sanitize($_POST['id']);
+		$id = (int) sanitize_numeric($_POST['id']);
 	}
 
 	if (getcheckboxState('edittitlelink')) {
