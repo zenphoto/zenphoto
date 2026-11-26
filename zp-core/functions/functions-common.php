@@ -109,7 +109,7 @@ function sanitize_path($filename) {
  * Checks if the input is numeric, rounds if so, otherwise returns false.
  *
  * @param mixed $num the number to be sanitized
- * @return int
+ * @return float|false
  */
 function sanitize_numeric($num) {
 	if (is_numeric($num)) {

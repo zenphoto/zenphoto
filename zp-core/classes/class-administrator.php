@@ -41,10 +41,10 @@ class Administrator extends PersistentObject {
 				if ($rights & MANAGE_ALL_ALBUM_RIGHTS) {
 					$new_rights = $new_rights | ALBUM_RIGHTS;
 				}
-				if ($rights & MANAGE_ALL_NEWS_RIGHTS) {
+				if ($rights & MANAGE_ALL_PAGES_RIGHTS) {
 					$new_rights = $new_rights | ZENPAGE_PAGES_RIGHTS;
 				}
-				if ($rights & MANAGE_ALL_PAGES_RIGHTS) {
+				if ($rights & MANAGE_ALL_NEWS_RIGHTS) {
 					$new_rights = $new_rights | ZENPAGE_NEWS_RIGHTS;
 				}
 				$this->getObjects();
