@@ -194,9 +194,13 @@ if (isset($_GET['action'])) {
 								}
 								$userobj->setAlbum(NULL);
 								markUpdated();
-								$alter = true;
+								if (zp_loggedin(ADMIN_RIGHTS)) {
+									$alter = true;
+								} else {
+									$alter = false;
+								}
 							}
-							if ($alter) {
+							if ($alter && zp_loggedin(ADMIN_RIGHTS)) {
 								$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 								$rights = processRights($i);
 								if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
